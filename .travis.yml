@@ -1,0 +1,18 @@
+language: swift
+osx_image: xcode10
+branches:
+  only:
+    - "master"
+script:
+  - ./build.sh
+sudo: false
+git:
+  depth: 1
+deploy:
+  provider: pages
+  repo: mshibanami/GitHubTrendingRSS
+  github_token: $GITHUB_TOKEN
+  local_dir: output
+  skip_cleanup: true
+  on:
+    branch: master
