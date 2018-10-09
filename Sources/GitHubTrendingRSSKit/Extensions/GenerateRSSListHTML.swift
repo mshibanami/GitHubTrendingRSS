@@ -2,6 +2,8 @@
 
 import Foundation
 
+
+
 public extension Array where Element == LanguageTrendingLink {
     public func rssListHTML() -> String? {
         let entityHTMLs = compactMap { element -> String? in
@@ -40,18 +42,23 @@ public extension Array where Element == LanguageTrendingLink {
             <html lang="en">
             <head>
                 <meta charset="UTF-8">
-                <title>bulma cards</title>
+                <title>\(Const.pageTitle)</title>
                 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css'>
                 <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
                     integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
                 <link rel="stylesheet" href="./static/main.css">
             </head>
             <body>
+                <a href="\(Const.gitHubRepositoryURL.absoluteString)">
+                    <img style="position: absolute; top: 0; right: 0; border: 0;"
+                         src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
+                         alt="Fork me on GitHub">
+                </a>
                 <section class="hero is-info is-small">
                     <div class="hero-body">
                         <div class="container has-text-centered">
                             <p class="title">
-                                GitHub Trending RSS
+                                \(Const.pageTitle)
                             </p>
                         </div>
                     </div>
@@ -66,7 +73,7 @@ public extension Array where Element == LanguageTrendingLink {
                 <footer class="footer">
                     <div class="container">
                         <div class="content has-text-centered">
-                            <a href="#">
+                            <a href="\(Const.gitHubRepositoryURL.absoluteString)">
                                 <i class="fa fa-github-alt fa-2x" aria-hidden="true"></i>
                             </a>
                         </div>
