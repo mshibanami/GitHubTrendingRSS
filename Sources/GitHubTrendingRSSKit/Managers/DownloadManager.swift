@@ -27,12 +27,12 @@ public class DownloadManager {
                     return
             }
 
-            print("    statusCode: \(response.statusCode)")
             if response.statusCode == 200 {
                 let htmlResponse = String(data: data, encoding: .utf8)
                 completion(htmlResponse, nil)
                 return
             } else {
+                print("    Failed (statusCode: \(response.statusCode))")
                 completion(nil, NSError())
                 return
             }
