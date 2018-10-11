@@ -14,7 +14,7 @@ public class FeedManager {
                         period: Period) throws -> URL {
         let fileManager = FileManager.default
         let feedHTML = repositories.feedHTML(
-            asLanguage: languageTrendingLink.displayName,
+            ofLanguage: languageTrendingLink,
             period: period)
 
         let outputDirectory = rootOutputDirectory

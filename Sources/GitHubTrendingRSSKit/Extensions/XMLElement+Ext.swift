@@ -4,6 +4,6 @@ import Kanna
 
 public extension XMLElement {
     public var trimmedText: String? {
-        return text?.trimmingCharacters(in: .whitespaces)
+        return text?.trimmingCharacters(in: .whitespacesAndNewlines)
     }
 }

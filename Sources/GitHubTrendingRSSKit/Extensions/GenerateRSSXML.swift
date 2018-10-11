@@ -9,15 +9,15 @@ public extension Repository {
             <entry>
                 <id>\(url)</id>
                 <title>\(pageLink.userName)/\(pageLink.repositoryName)</title>
-                <link rel="alternate" type="text/html" href="\(url)" />
+                <link type="text/html" href="\(url)" />
                 <summary>\(summary.xmlEscaped)</summary>
-            </entry>\n
+            </entry>
             """
     }
 }
 
 public extension Array where Element == Repository {
-    public func feedHTML(asLanguage languageName: String, period: Period) -> String {
+    public func feedHTML(ofLanguage language: LanguageTrendingLink, period: Period) -> String {
         let entriesString = reduce("") {
             $0 + $1.feedEntryHTML()
         }
@@ -27,14 +27,19 @@ public extension Array where Element == Repository {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         let nowString = formatter.string(from: Date())
 
+        let feedURL = Const.rssHomeURL
+          .appendingPathComponent(period.rawValue)
+          .appendingPathComponent("\(language.name).xml")
+          .absoluteString
+      
         let feed = """
             <?xml version="1.0" encoding="UTF-8"?>
             <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-                <id>\(Const.rssHomeURL)</id>
-                <title>GitHub Trending \(languageName)</title>
+                <id>\(feedURL)</id>
+                <title>GitHub Trending \(language.displayName)</title>
                 <updated>\(nowString)</updated>
-                <link rel="alternate" type="text/html" href="\(Const.rssHomeURL)" />
-                <link rel="self" type="application/atom+xml" href="\(Const.rssHomeURL)" />
+                <link rel="alternate" type="text/html" href="\(feedURL)" />
+                <link rel="self" type="application/atom+xml" href="\(feedURL)" />
                 \(entriesString)
             </feed>
             """

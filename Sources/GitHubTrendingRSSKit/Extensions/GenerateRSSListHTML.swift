@@ -60,6 +60,9 @@ public extension Array where Element == LanguageTrendingLink {
                             <p class="title">
                                 \(Const.pageTitle)
                             </p>
+                            <p>
+                                <img src="https://travis-ci.org/mshibanami/GitHubTrendingRSS.svg?branch=master">
+                            </p>
                         </div>
                     </div>
                 </section>

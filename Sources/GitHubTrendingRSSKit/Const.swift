@@ -3,7 +3,7 @@
 import Foundation
 
 public class Const {
-    public static let rssHomeURL = "http://mshibanami.github.io/GitHubTrendingRSS"
+    public static let rssHomeURL = URL(string: "http://mshibanami.github.io/GitHubTrendingRSS")!
     public static let baseURL = URL(string: "https://github.com")!
     public static let apiBaseURL = URL(string: "https://api.github.com")!
     public static let topTrendingURL = URL(string: "\(baseURL)/trending")!
