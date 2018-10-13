@@ -9,7 +9,7 @@ public extension Repository {
             <entry>
                 <id>\(url)</id>
                 <title>\(pageLink.userName)/\(pageLink.repositoryName)</title>
-                <link type="text/html" href="\(url)" />
+                <link>\(url)</link>
                 <summary>\(summary.xmlEscaped)</summary>
             </entry>
             """
