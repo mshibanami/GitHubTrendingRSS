@@ -6,12 +6,11 @@ public extension Repository {
     public func feedEntryHTML() -> String {
         let url = pageLink.url
         return """
-            <entry>
-                <id>\(url)</id>
+            <item>
                 <title>\(pageLink.userName)/\(pageLink.repositoryName)</title>
                 <link>\(url)</link>
-                <summary>\(summary.xmlEscaped)</summary>
-            </entry>
+                <description>\(summary.xmlEscaped)</description>
+            </item>
             """
     }
 }
@@ -23,9 +22,9 @@ public extension Array where Element == Repository {
         }
 
         let formatter = DateFormatter()
-        formatter.dateFormat = "yyyy-MM-dd'T'HH:mm:ss.SSS'Z'"
+        formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let nowString = formatter.string(from: Date())
+        let pubDate = formatter.string(from: Date())
 
         let feedURL = Const.rssHomeURL
           .appendingPathComponent(period.rawValue)
@@ -34,14 +33,16 @@ public extension Array where Element == Repository {
       
         let feed = """
             <?xml version="1.0" encoding="UTF-8"?>
-            <feed xmlns="http://www.w3.org/2005/Atom" xml:lang="en">
-                <id>\(feedURL)</id>
-                <title>GitHub Trending \(language.displayName)</title>
-                <updated>\(nowString)</updated>
-                <link rel="alternate" type="text/html" href="\(feedURL)" />
-                <link rel="self" type="application/atom+xml" href="\(feedURL)" />
+            <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+            <channel>
+                <title>GitHub \(language.displayName) \(period.rawValue.capitalized) Trending</title>
+                <description>\(period.rawValue.capitalized) Trending of \(language.displayName) in GitHub</description>
+                <pubDate>\(pubDate)</pubDate>
+                <link>\(feedURL)</link>
+                <atom:link href="\(feedURL)" rel="self" type="application/rss+xml" />
                 \(entriesString)
-            </feed>
+            </channel>
+            </rss>
             """
 
         return feed

@@ -21,7 +21,9 @@ public extension Array where Element == LanguageTrendingLink {
                 <div class="card-content">
                             <div class="media">
                                 <div class="media-content has-text-centered">
-                                    <p class="title is-4">\(element.displayName)</p>
+                                    <p class="title is-4">
+                                        \(element.displayName)
+                                    </p>
                                 </div>
                             </div>
                         </div>
@@ -36,6 +38,12 @@ public extension Array where Element == LanguageTrendingLink {
         let entriesString = entityHTMLs.reduce("") {
             $0 + $1
         }
+      
+      
+        let formatter = DateFormatter()
+        formatter.dateFormat = "d MMMM, yyyy"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let latestBuildDate = formatter.string(from: Date())
 
         return """
             <!DOCTYPE html>
@@ -49,20 +57,23 @@ public extension Array where Element == LanguageTrendingLink {
                 <link rel="stylesheet" href="./static/main.css">
             </head>
             <body>
-                <a href="\(Const.gitHubRepositoryURL.absoluteString)">
-                    <img style="position: absolute; top: 0; right: 0; border: 0;"
-                         src="https://s3.amazonaws.com/github/ribbons/forkme_right_red_aa0000.png"
-                         alt="Fork me on GitHub">
-                </a>
                 <section class="hero is-info is-small">
                     <div class="hero-body">
                         <div class="container has-text-centered">
                             <p class="title">
                                 \(Const.pageTitle)
                             </p>
-                            <p>
-                                <img src="https://travis-ci.org/mshibanami/GitHubTrendingRSS.svg?branch=master">
-                            </p>
+                            <div class="content">
+                                <p>
+                                    <a href="https://travis-ci.org/mshibanami/GitHubTrendingRSS">
+                                        <img src="https://travis-ci.org/mshibanami/GitHubTrendingRSS.svg?branch=master">
+                                    </a>
+                                    <a class="github-button" href="https://github.com/mshibanami/GitHubTrendingRSS" data-size="small" data-show-count="true" aria-label="Star mshibanami/GitHubTrendingRSS on GitHub">
+                                        Star
+                                    </a>
+                                </p>
+                                <p>Latest Build: \(latestBuildDate)</p>
+                            </div>
                         </div>
                     </div>
                 </section>
@@ -82,6 +93,8 @@ public extension Array where Element == LanguageTrendingLink {
                         </div>
                     </div>
                 </footer>
+
+                <script async defer src="https://buttons.github.io/buttons.js"></script>
             </body>
             </html>
             """
