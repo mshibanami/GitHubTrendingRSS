@@ -4,6 +4,11 @@ import Foundation
 import Kanna
 
 public class GitHubPageParser {
+
+    private static let specialLinks = [
+        LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+        LanguageTrendingLink(displayName: "Unknown Languages", href: "/trending/unknown")]
+
     public init() {}
 
     public func periodSpecifiedTrendingPageLinks(fromTopTrendingPage topTrendingPage: String) throws -> [PageLink] {
@@ -29,8 +34,8 @@ public class GitHubPageParser {
         return links
     }
 
-    public func languageTrendingLinks(fromTrendingPage trendingPage: String) throws -> [LanguageTrendingLink] {
-        let parsed = try HTML(html: trendingPage, encoding: .utf8)
+    public func languageTrendingLinks(fromTopTrendingPage topTrendingPage: String) throws -> [LanguageTrendingLink] {
+        let parsed = try HTML(html: topTrendingPage, encoding: .utf8)
 
         let selectMenuLists = parsed.css("div.select-menu-list")
 
@@ -41,15 +46,16 @@ public class GitHubPageParser {
         let languagesList = selectMenuLists[1]
         let linkTags = languagesList.css("a")
 
-        let links = linkTags.compactMap { link -> LanguageTrendingLink? in
-            guard let title = link.trimmedText,
-                let href = link["href"] else {
-                    return nil
-            }
-            return LanguageTrendingLink(
-                displayName: title,
-                href: href)
+        let links = GitHubPageParser.specialLinks + linkTags.compactMap { link -> LanguageTrendingLink? in
+                guard let title = link.trimmedText,
+                    let href = link["href"] else {
+                        return nil
+                }
+                return LanguageTrendingLink(
+                    displayName: title,
+                    href: href)
         }
+
         return links
     }
 

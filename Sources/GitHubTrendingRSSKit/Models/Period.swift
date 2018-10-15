@@ -6,8 +6,4 @@ public enum Period: String, CaseIterable {
     case daily = "daily"
     case weekly = "weekly"
     case monthly = "monthly"
-
-    public var trendingPageLink: URL {
-        return URL(string: "\(Const.baseURL)/trending?since=\(rawValue)")!
-    }
 }

@@ -15,7 +15,7 @@ final class ModelsTests: XCTestCase {
 
         let html = repository.feedEntryHTML()
         let repoURL = "https://github.com/user/repo"
-        XCTAssertTrue(html.contains("<id>\(repoURL)</id>"))
+        XCTAssertTrue(html.contains("<link>\(repoURL)</link>"))
     }
 
   func testGenerateRssListHTML() throws {

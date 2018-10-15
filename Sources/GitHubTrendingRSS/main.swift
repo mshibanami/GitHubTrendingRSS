@@ -9,12 +9,12 @@ let gitHubPageParser = GitHubPageParser()
 let feedManager = FeedManager(outputDirectory: Const.outputDirectory)
 
 guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
-    print("Error: Couldn't fetch \(Const.topTrendingURL)")
+    print("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
     exit(1)
 }
 
 let languageLinks = try gitHubPageParser
-    .languageTrendingLinks(fromTrendingPage: topTrendingPage)
+    .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
 for period in Period.allCases {
     for languageLink in languageLinks {
@@ -39,4 +39,4 @@ for period in Period.allCases {
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)
 
-print("Saved to: \(feedManager.rootOutputDirectory.absoluteString)")
+print("Saved to: \(feedManager.rootOutputDirectory.path)")

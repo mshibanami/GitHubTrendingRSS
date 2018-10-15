@@ -2,8 +2,6 @@
 
 import Foundation
 
-
-
 public extension Array where Element == LanguageTrendingLink {
     public func rssListHTML() -> String? {
         let entityHTMLs = compactMap { element -> String? in
@@ -18,7 +16,7 @@ public extension Array where Element == LanguageTrendingLink {
             return """
                 <div class="column is-one-third">
                     <div class="card language">
-                <div class="card-content">
+                        <div class="card-content">
                             <div class="media">
                                 <div class="media-content has-text-centered">
                                     <p class="title is-4">
@@ -38,8 +36,7 @@ public extension Array where Element == LanguageTrendingLink {
         let entriesString = entityHTMLs.reduce("") {
             $0 + $1
         }
-      
-      
+
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMMM, yyyy"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -49,12 +46,23 @@ public extension Array where Element == LanguageTrendingLink {
             <!DOCTYPE html>
             <html lang="en">
             <head>
-                <meta charset="UTF-8">
+                <meta charset="utf-8" />
+                <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+                <meta content="width=device-width, initial-scale=1" name="viewport" />
+                <meta content="\(Const.author)" name="author" />
+                <meta content="website" property="og:type" />
+                <meta content="\(Const.pageTitle)" property="og:title" />
+                <meta content="./static/img/favicon-196.png" property="og:image" />
+                <meta content="\(Const.rssHomeURL)" property="og:url" />
+                <meta content="en_US" property="og:locale" />
                 <title>\(Const.pageTitle)</title>
                 <link rel='stylesheet prefetch' href='https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.1/css/bulma.css'>
-                <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet"
-                    integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
-                <link rel="stylesheet" href="./static/main.css">
+                <link href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" integrity="sha384-wvfXpqpZZVQGK6TAh5PVlGOfQNHSoD2xbE+QkPxCAFlNEevoEH3Sl0sibVcOQVnN" crossorigin="anonymous">
+                <link rel="stylesheet" href="./static/css/main.css">
+                <link href="./static/img/favicon-196.png" rel="shortcut icon" type="image/png" />
+                <link href="./static/img/favicon-196.png" rel="shortcut icon" sizes="196x196" />
+                <link href="./static/img/favicon-196.png" rel="apple-touch-icon" />
+                \(Const.googleAnalyticsTrackingCode)
             </head>
             <body>
                 <section class="hero is-info is-small">
@@ -72,7 +80,7 @@ public extension Array where Element == LanguageTrendingLink {
                                         Star
                                     </a>
                                 </p>
-                                <p>Latest Build: \(latestBuildDate)</p>
+                                <p>The latest build: \(latestBuildDate)</p>
                             </div>
                         </div>
                     </div>

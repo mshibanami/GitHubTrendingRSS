@@ -10,7 +10,7 @@ public struct RepositoryPageLink: PageLinkable {
     }
 
     public var url: URL {
-        return Const.baseURL.appendingPathComponent(href)
+        return Const.gitHubBaseURL.appendingPathComponent(href)
     }
 
     public var userName: String {

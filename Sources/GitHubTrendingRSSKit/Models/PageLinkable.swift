@@ -11,7 +11,7 @@ public extension PageLinkable {
         let path = URL(string: href)!.path
 
         var components = URLComponents(
-            url: Const.baseURL,
+            url: Const.gitHubBaseURL,
             resolvingAgainstBaseURL: false)!
 
         components.path = path

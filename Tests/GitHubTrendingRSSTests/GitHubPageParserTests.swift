@@ -13,14 +13,14 @@ final class GitHubPageParserTests: XCTestCase {
         XCTAssertEqual(pageLinks.count, 3)
 
         let languageTrendingLinks = try parser
-            .languageTrendingLinks(fromTrendingPage: TestResources.normalTopTrendingPage)
+            .languageTrendingLinks(fromTopTrendingPage: TestResources.normalTopTrendingPage)
 
-        XCTAssertEqual(languageTrendingLinks.count, 480)
+        XCTAssertEqual(languageTrendingLinks.count, 482)
         let firstTrendingLink = languageTrendingLinks.first!
-        XCTAssertEqual(firstTrendingLink.name, "1c-enterprise")
-        XCTAssertEqual(firstTrendingLink.displayName, "1C Enterprise")
-        XCTAssertEqual(firstTrendingLink.url(ofPeriod: .daily).absoluteString, "https://github.com/trending/1c-enterprise?since=daily")
-        XCTAssertEqual(firstTrendingLink.href, "/trending/1c-enterprise?since=daily")
+        XCTAssertEqual(firstTrendingLink.name, "all")
+        XCTAssertEqual(firstTrendingLink.displayName, "All Languages")
+        XCTAssertEqual(firstTrendingLink.url(ofPeriod: .daily).absoluteString, "https://github.com/trending?since=daily")
+        XCTAssertEqual(firstTrendingLink.href, "/trending")
     }
 
     static var allTests = [

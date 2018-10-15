@@ -30,16 +30,15 @@ public extension Array where Element == Repository {
           .appendingPathComponent(period.rawValue)
           .appendingPathComponent("\(language.name).xml")
           .absoluteString
-      
+
         let feed = """
             <?xml version="1.0" encoding="UTF-8"?>
-            <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
+            <rss version="2.0">
             <channel>
                 <title>GitHub \(language.displayName) \(period.rawValue.capitalized) Trending</title>
                 <description>\(period.rawValue.capitalized) Trending of \(language.displayName) in GitHub</description>
                 <pubDate>\(pubDate)</pubDate>
-                <link>\(feedURL)</link>
-                <atom:link href="\(feedURL)" rel="self" type="application/rss+xml" />
+                <link>\(Const.rssHomeURL.absoluteString)</link>
                 \(entriesString)
             </channel>
             </rss>

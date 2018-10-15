@@ -1,3 +1,5 @@
-# GitHubTrendingRSS
+# GitHub Trending RSS
 
-A description of this package.
+[![Build Status](https://travis-ci.org/mshibanami/GitHubTrendingRSS.svg?branch=master)](https://travis-ci.org/mshibanami/GitHubTrendingRSS)
+
+Unofficial GitHub Trending RSS

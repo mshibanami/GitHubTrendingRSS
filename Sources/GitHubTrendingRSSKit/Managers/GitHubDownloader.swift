@@ -47,6 +47,6 @@ public class GitHubDownloader {
     }
 
     public func fetchTopTrendingPage() -> String? {
-        return downloadManager.fetchWebPage(url: Const.topTrendingURL)
+        return downloadManager.fetchWebPage(url: Const.gitHubTopTrendingURL)
     }
 }
