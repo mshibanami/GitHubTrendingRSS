@@ -17,10 +17,11 @@ public class GitHubDownloader {
                 completion(nil, error)
                 return
             }
-
+            print("    start parse a repositories page")
             guard let parsed = try? HTML(html: page, encoding: .utf8) else {
                 fatalError()
             }
+            print("    end parse")
 
             let repositoryLIList = parsed.css("ol.repo-list > li")
 

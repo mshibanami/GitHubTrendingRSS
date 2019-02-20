@@ -35,7 +35,9 @@ public class GitHubPageParser {
     }
 
     public func languageTrendingLinks(fromTopTrendingPage topTrendingPage: String) throws -> [LanguageTrendingLink] {
+        print("    start parse trending Link")
         let parsed = try HTML(html: topTrendingPage, encoding: .utf8)
+        print("    end parse")
 
         let selectMenuLists = parsed.css("div.select-menu-list")
 
