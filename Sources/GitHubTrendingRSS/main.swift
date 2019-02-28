@@ -16,6 +16,7 @@ guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
 let languageLinks = try gitHubPageParser
     .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
+var numberOfRepositories: Int = 0
 for period in Period.allCases {
     for languageLink in languageLinks {
         let semaphore = DispatchSemaphore(value: 0)
@@ -30,6 +31,8 @@ for period in Period.allCases {
                 fromRepositories: repositories,
                 languageTrendingLink: languageLink,
                 period: period)
+            
+            numberOfRepositories += repositories.count
 
             semaphore.signal()
         }
@@ -38,5 +41,5 @@ for period in Period.allCases {
 }
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)
-
-print("Saved to: \(feedManager.rootOutputDirectory.path)")
+print("- Number of Repositories: \(numberOfRepositories)")
+print("- Saved to \(feedManager.rootOutputDirectory.path)")
