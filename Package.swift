@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "GitHubTrendingRSS",
     dependencies: [
-        .package(url: "https://github.com/mshibanami/Kanna.git", .branch("master")),
+        .package(url: "https://github.com/tid-kijyun/Kanna.git", .branch("master")),
     ],
     targets: [
         .target(
