@@ -25,4 +25,7 @@ public class Const {
             gtag('config', 'UA-46019833-3');
         </script>
         """
+    
+    public static let gitHubClientID = CommandLine.arguments[0]
+    public static let gitHubClientSecret = CommandLine.arguments[1]
 }

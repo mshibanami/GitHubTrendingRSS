@@ -17,8 +17,7 @@ public class FeedManager {
             ofLanguage: languageTrendingLink,
             period: period)
 
-        let outputDirectory = rootOutputDirectory
-            .appendingPathComponent(period.rawValue)
+        let outputDirectory = rootOutputDirectory.appendingPathComponent(period.rawValue)
 
         try fileManager.createDirectory(
             at: outputDirectory,

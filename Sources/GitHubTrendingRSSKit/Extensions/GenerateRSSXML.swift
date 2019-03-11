@@ -26,11 +26,6 @@ public extension Array where Element == Repository {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         let pubDate = formatter.string(from: Date())
 
-        let feedURL = Const.rssHomeURL
-          .appendingPathComponent(period.rawValue)
-          .appendingPathComponent("\(language.name).xml")
-          .absoluteString
-
         let feed = """
             <?xml version="1.0" encoding="UTF-8"?>
             <rss version="2.0">

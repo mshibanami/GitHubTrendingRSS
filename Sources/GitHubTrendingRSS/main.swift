@@ -21,21 +21,17 @@ for period in Period.allCases {
     for languageLink in languageLinks {
         let semaphore = DispatchSemaphore(value: 0)
 
-        gitHubDownloader.fetchRepositories(ofLink: languageLink, period: period) { repositories, _ in
-            guard let repositories = repositories else {
+        _ = gitHubDownloader.fetchRepositories(ofLink: languageLink, period: period)
+            .subscribe(onSuccess: { repositories in
+                _ = try! feedManager.saveRSSFile(
+                    fromRepositories: repositories,
+                    languageTrendingLink: languageLink,
+                    period: period)
+                
+                numberOfRepositories += repositories.count
+                
                 semaphore.signal()
-                return
-            }
-
-            _ = try! feedManager.saveRSSFile(
-                fromRepositories: repositories,
-                languageTrendingLink: languageLink,
-                period: period)
-            
-            numberOfRepositories += repositories.count
-
-            semaphore.signal()
-        }
+            })
         semaphore.wait()
     }
 }

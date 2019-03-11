@@ -1,13 +1,35 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
+import RxSwift
 
 public class DownloadManager {
+    public enum DownloadError: Error {
+        case unknown
+    }
+    
     var maxRetryCount: Int = 10
     var retryInterval: Double = 30
-
+    
     public init() {}
-
+    
+    public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> Single<String> {
+        return Single<String>.create { observer in
+            self.fetchWebPage(url: url, header: header, retryCount: retryCount) { response, error in
+                if let error = error {
+                    observer(.error(error))
+                    return
+                }
+                guard let response = response else {
+                    observer(.error(DownloadError.unknown))
+                    return
+                }
+                observer(.success(response))
+            }
+            return Disposables.create()
+        }
+    }
+    
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0, completion: @escaping (String?, Error?) -> Void) {
         let session = URLSession.shared
 
@@ -17,7 +39,7 @@ public class DownloadManager {
         }
 
         let task = session.dataTask(with: request) { [weak self] data, response, error in
-            guard let `self` = self else {
+            guard let self = self else {
                 return
             }
 

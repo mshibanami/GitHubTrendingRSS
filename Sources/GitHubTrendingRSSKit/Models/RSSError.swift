@@ -9,4 +9,5 @@ public enum RSSError: Error {
     case unsupportedFormat
     case noResponce
     case noData
+    case unknown
 }
