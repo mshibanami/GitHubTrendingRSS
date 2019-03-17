@@ -9,9 +9,7 @@ public class FeedManager {
         self.rootOutputDirectory = outputDirectory
     }
 
-    public func saveRSSFile(fromRepositories repositories: [Repository],
-                        languageTrendingLink: LanguageTrendingLink,
-                        period: Period) throws -> URL {
+    public func saveRSSFile(fromRepositories repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period) throws -> URL {
         let fileManager = FileManager.default
         let feedHTML = repositories.feedHTML(
             ofLanguage: languageTrendingLink,
@@ -43,11 +41,8 @@ public class FeedManager {
             at: rootOutputDirectory,
             withIntermediateDirectories: true,
             attributes: nil)
-
-        guard let html = languageLinks.rssListHTML() else {
-            throw NSError()
-        }
-
+        
+        let html = languageLinks.rssListHTML()
         let fileURL = rootOutputDirectory.appendingPathComponent("index.html")
 
         guard fileManager.createFile(

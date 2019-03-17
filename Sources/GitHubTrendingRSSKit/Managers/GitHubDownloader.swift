@@ -4,24 +4,27 @@ import Foundation
 import Kanna
 import RxSwift
 
-public class GitHubDownloader {
-
+public class GitHubDownloader {    
     let downloadManager: DownloadManager
+    let gitHubAPIBaseQueryItems: [URLQueryItem]
     
     private var disposeBag = DisposeBag()
 
-    public init(downloadManager: DownloadManager) {
+    public init(downloadManager: DownloadManager, clientID: String, clientSecret: String) {
         self.downloadManager = downloadManager
+        self.gitHubAPIBaseQueryItems = [
+            URLQueryItem(name: "client_id", value: clientID),
+            URLQueryItem(name: "client_secret", value: clientSecret)]
     }
     
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period) -> Single<[Repository]> {
         return downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
             .map{ page -> [Repository] in
-                print("    start parse a repositories page")
+                print("  -> start parsing a repositories page")
                 guard let parsed = try? HTML(html: page, encoding: .utf8) else {
                     throw RSSError.unsupportedFormat
                 }
-                print("    end parse")
+                print("  -> end parse")
                 
                 let repositoryLIList = parsed.css("ol.repo-list > li")
                 
@@ -52,19 +55,38 @@ public class GitHubDownloader {
                 for repository in repositories {
                     single = single.flatMap { repos in
                         return self.fetchReadMePage(pageLink: repository.pageLink)
-                            .map { page in
+                            .delay(RxTimeInterval(exactly: 1)!, scheduler: MainScheduler.instance)
+                            .map { readMe in
                                 var repo = repository
-                                repo.readMeText = page
+                                repo.readMe = readMe
                                 return repos + [repo]
-                        }
+                            }
+                            .catchError { _ in
+                                return Single.just(repos + [repository])
+                            }
                     }
                 }
                 return single
             }
     }
 
-    public func fetchReadMePage(pageLink: RepositoryPageLink) -> Single<String> {
-        return .just("")
+    public func fetchReadMePage(pageLink: RepositoryPageLink) -> Single<APIReadMe> {
+        guard var components = URLComponents(url: pageLink.readMeAPIEndpointURL, resolvingAgainstBaseURL: false) else {
+            return .error(DownloadError.invalidURL)
+        }
+        components.queryItems = gitHubAPIBaseQueryItems
+        guard let url = components.url else {
+            return .error(DownloadError.invalidURL)
+        }
+        return downloadManager
+            .fetchWebPage(url: url)
+            .map { page in
+                guard let data = page.data(using: .utf8) else {
+                    throw DownloadError.unsupportedFormat
+                }
+                let decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
+                return decoded
+        }
     }
     
     public func fetchTopTrendingPage() -> String? {

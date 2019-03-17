@@ -4,13 +4,8 @@ import Foundation
 import RxSwift
 
 public class DownloadManager {
-    public enum DownloadError: Error {
-        case unknown
-    }
-    
     var maxRetryCount: Int = 10
-    var retryInterval: Double = 30
-    
+    var retryInterval: Double = 60 * 5
     public init() {}
     
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> Single<String> {
@@ -43,7 +38,7 @@ public class DownloadManager {
                 return
             }
 
-            let retryOrNot = { () -> Bool in
+            let retriesIfNeeded = { () -> Bool in
                 if retryCount < self.maxRetryCount {
                     print("    Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
                     DispatchQueue.global().asyncAfter(deadline: .now() + self.retryInterval) {
@@ -60,24 +55,25 @@ public class DownloadManager {
 
             if let error = error {
                 print("    Error: \(error)")
-
                 switch error {
                 case URLError.notConnectedToInternet:
-                    if retryOrNot() { return }
+                    if retriesIfNeeded() { return }
                     fallthrough
                 default:
                     completion(nil, error)
                     return
                 }
             }
-
-            guard let data = data,
-                let response = response as? HTTPURLResponse else {
-                    print("    Error: no data or no response")
-                    completion(nil, NSError())
-                    return
+            
+            guard let data = data else {
+                completion(nil, DownloadError.noData)
+                return
             }
-
+            guard let response = response as? HTTPURLResponse else {
+                completion(nil, DownloadError.noResponce)
+                return
+            }
+            
             if response.statusCode == 200 {
                 let htmlResponse = String(data: data, encoding: .utf8)
                 completion(htmlResponse, nil)
@@ -85,17 +81,17 @@ public class DownloadManager {
             } else {
                 print("    Failed (statusCode: \(response.statusCode))")
                 switch response.statusCode {
-                case 429:
-                    if retryOrNot() { return }
+                case 429, 403:
+                    if retriesIfNeeded() { return }
                     fallthrough
                 default:
-                    completion(nil, NSError())
+                    completion(nil, DownloadError.unknown)
                     return
                 }
             }
         }
 
-        print("Start fetching: \(url)")
+        print("Start fetching: \(url.host ?? "")\(url.path)")
         task.resume()
     }
 

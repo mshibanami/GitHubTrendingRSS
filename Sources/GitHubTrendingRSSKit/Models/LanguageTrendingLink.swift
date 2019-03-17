@@ -10,9 +10,7 @@ public struct LanguageTrendingLink: PageLinkable {
         guard href != Const.gitHubTopTrendingURL.path else {
             return "all"
         }
-
-        let url = URL(string: href)
-        return url!.lastPathComponent
+        return URL(string: href)!.lastPathComponent
     }
 
     public init(displayName: String, href: String) {

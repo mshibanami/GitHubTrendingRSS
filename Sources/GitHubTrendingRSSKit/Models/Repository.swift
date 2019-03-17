@@ -5,7 +5,7 @@ import Foundation
 public struct Repository {
     public let pageLink: RepositoryPageLink
     public let summary: String
-    public var readMeText: String?
+    public var readMe: APIReadMe?
 
     public init(pageLink: RepositoryPageLink, summary: String) {
         self.pageLink = pageLink

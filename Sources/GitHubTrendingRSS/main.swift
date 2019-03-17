@@ -4,7 +4,10 @@ import Foundation
 import GitHubTrendingRSSKit
 
 let downloadManager = DownloadManager()
-let gitHubDownloader = GitHubDownloader(downloadManager: downloadManager)
+let gitHubDownloader = GitHubDownloader(
+    downloadManager: downloadManager,
+    clientID: Const.gitHubClientID,
+    clientSecret: Const.gitHubClientSecret)
 let gitHubPageParser = GitHubPageParser()
 let feedManager = FeedManager(outputDirectory: Const.outputDirectory)
 

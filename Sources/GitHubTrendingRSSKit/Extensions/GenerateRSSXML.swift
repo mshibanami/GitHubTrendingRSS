@@ -1,24 +1,48 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
+import Kanna
 
 public extension Repository {
-    public func feedEntryHTML() -> String {
+    public func createFeedEntryHTML() -> String {
         let url = pageLink.url
         return """
             <item>
                 <title>\(pageLink.userName)/\(pageLink.repositoryName)</title>
                 <link>\(url)</link>
-                <description>\(summary.xmlEscaped)</description>
+                <description>\(createFeedDescriptionHTML().xmlEscaped)</description>
             </item>
             """
+    }
+    
+    public func createFeedDescriptionHTML() -> String {
+        var imageURLs = [URL]()
+        if let readMe = readMe, let readMeContent = readMe.decodedContent, let downloadURL = readMe.downloadURL {
+            print("  -> start parse readMeText")
+            if let parsed = try? HTML(html: readMeContent, encoding: .utf8) {
+                imageURLs = parsed.css("img").compactMap { img -> URL? in
+                    guard let src = img["src"] else {
+                        return nil
+                    }
+                    return URL(string: src, relativeTo: URL(string: downloadURL))
+                }
+            }
+            print("  -> end parse")
+        }
+        let imageHTML: String
+        if let imageURLString = imageURLs.first?.absoluteString {
+            imageHTML = "<img src='\(imageURLString)'><br>"
+        } else {
+            imageHTML = ""
+        }
+        return imageHTML + summary
     }
 }
 
 public extension Array where Element == Repository {
     public func feedHTML(ofLanguage language: LanguageTrendingLink, period: Period) -> String {
         let entriesString = reduce("") {
-            $0 + $1.feedEntryHTML()
+            $0 + $1.createFeedEntryHTML()
         }
 
         let formatter = DateFormatter()
