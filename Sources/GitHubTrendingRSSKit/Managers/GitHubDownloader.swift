@@ -55,7 +55,7 @@ public class GitHubDownloader {
                 for repository in repositories {
                     single = single.flatMap { repos in
                         return self.fetchReadMePage(pageLink: repository.pageLink)
-                            .delay(RxTimeInterval(exactly: 1)!, scheduler: MainScheduler.instance)
+                            .delay(RxTimeInterval(exactly: 1)!, scheduler: SerialDispatchQueueScheduler(qos: .default))
                             .map { readMe in
                                 var repo = repository
                                 repo.readMe = readMe
