@@ -41,7 +41,7 @@ public class DownloadManager {
 
             let retriesIfNeeded = { () -> Bool in
                 if retryCount < self.maxRetryCount {
-                    print("    Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
+                    NSLog("    Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
                     DispatchQueue.global().asyncAfter(deadline: .now() + self.retryInterval) {
                         self.fetchWebPage(
                             url: url,
@@ -55,7 +55,7 @@ public class DownloadManager {
             }
 
             if let error = error {
-                print("    Error: \(error)")
+                NSLog("    Error: \(error)")
                 switch error {
                 case URLError.notConnectedToInternet:
                     if retriesIfNeeded() { return }
@@ -80,7 +80,7 @@ public class DownloadManager {
                 completion(htmlResponse, nil)
                 return
             } else {
-                print("    Failed (statusCode: \(response.statusCode))")
+                NSLog("    Failed (statusCode: \(response.statusCode))")
                 switch response.statusCode {
                 case 429, 403:
                     if retriesIfNeeded() { return }

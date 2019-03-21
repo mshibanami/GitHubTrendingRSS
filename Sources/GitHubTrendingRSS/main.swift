@@ -12,7 +12,7 @@ let gitHubPageParser = GitHubPageParser()
 let feedManager = FeedManager(outputDirectory: Const.outputDirectory)
 
 guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
-    print("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
+    NSLog("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
     exit(1)
 }
 
@@ -40,5 +40,5 @@ for period in Period.allCases {
 }
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)
-print("- Number of Repositories: \(numberOfRepositories)")
-print("- Saved to \(feedManager.rootOutputDirectory.path)")
+NSLog("- Number of Repositories: \(numberOfRepositories)")
+NSLog("- Saved to \(feedManager.rootOutputDirectory.path)")

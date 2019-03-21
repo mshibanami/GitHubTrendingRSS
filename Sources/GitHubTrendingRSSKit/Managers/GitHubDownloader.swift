@@ -20,11 +20,9 @@ public class GitHubDownloader {
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period) -> Single<[Repository]> {
         return downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
             .map{ page -> [Repository] in
-                print("  -> start parsing a repositories page")
                 guard let parsed = try? HTML(html: page, encoding: .utf8) else {
                     throw RSSError.unsupportedFormat
                 }
-                print("  -> end parse")
                 
                 let repositoryLIList = parsed.css("ol.repo-list > li")
                 

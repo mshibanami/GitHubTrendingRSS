@@ -18,7 +18,6 @@ public extension Repository {
     public func createFeedDescriptionHTML() -> String {
         var imageURLs = [URL]()
         if let readMe = readMe, let readMeContent = readMe.decodedContent, let downloadURL = readMe.downloadURL {
-            print("  -> start parse readMeText")
             if let parsed = try? HTML(html: readMeContent, encoding: .utf8) {
                 imageURLs = parsed.css("img").compactMap { img -> URL? in
                     guard let src = img["src"] else {
@@ -27,7 +26,6 @@ public extension Repository {
                     return URL(string: src, relativeTo: URL(string: downloadURL))
                 }
             }
-            print("  -> end parse")
         }
         let imageHTML: String
         if let imageURLString = imageURLs.first?.absoluteString {
