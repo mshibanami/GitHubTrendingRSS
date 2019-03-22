@@ -49,22 +49,21 @@ public class GitHubDownloader {
                 guard let self = self else {
                     throw RSSError.unknown
                 }
-                var single = Single<[Repository]>.just([])
+                
+                var singles = [Single<Repository>]()
                 for repository in repositories {
-                    single = single.flatMap { repos in
-                        return self.fetchReadMePage(pageLink: repository.pageLink)
-                            .delay(RxTimeInterval(exactly: 1)!, scheduler: SerialDispatchQueueScheduler(qos: .default))
+                    singles.append(
+                        self.fetchReadMePage(pageLink: repository.pageLink)
                             .map { readMe in
                                 var repo = repository
                                 repo.readMe = readMe
-                                return repos + [repo]
+                                return repo
                             }
                             .catchError { _ in
-                                return Single.just(repos + [repository])
-                            }
-                    }
+                                return Single.just(repository)
+                    })
                 }
-                return single
+                return Single.zip(singles)
             }
     }
 
