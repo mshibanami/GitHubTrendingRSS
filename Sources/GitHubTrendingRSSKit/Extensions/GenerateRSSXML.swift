@@ -21,14 +21,13 @@ public extension Repository {
         if let readMe = readMe,
             let readMeContent = readMe.decodedContent,
             let readMeHTML = (try? MarkinParser().parse(readMeContent))?.formatAsHTML(),
-            let downloadURL = readMe.downloadURL {
-            if let parsed = try? HTML(html: readMeHTML, encoding: .utf8) {
-                imageURLs = parsed.css("img").compactMap { img -> URL? in
-                    guard let src = img["src"] else {
-                        return nil
-                    }
-                    return URL(string: src, relativeTo: URL(string: downloadURL))
+            let downloadURL = readMe.downloadURL,
+            let parsedHTML = try? HTML(html: readMeHTML, encoding: .utf8) {
+            imageURLs = parsedHTML.css("img").compactMap { img -> URL? in
+                guard let src = img["src"] else {
+                    return nil
                 }
+                return URL(string: src, relativeTo: URL(string: downloadURL))
             }
         }
         let imageHTML: String
