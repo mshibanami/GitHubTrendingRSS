@@ -17,9 +17,9 @@ public class GitHubDownloader {
             URLQueryItem(name: "client_secret", value: clientSecret)]
     }
     
-    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period) -> Single<[Repository]> {
-        return downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
-            .map{ page -> [Repository] in
+    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, containsReadMe: Bool) -> Single<[Repository]> {
+        var fetchRepositories: Single<[Repository]> = downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
+            .map { page -> [Repository] in
                 guard let parsed = try? HTML(html: page, encoding: .utf8) else {
                     throw RSSError.unsupportedFormat
                 }
@@ -44,12 +44,13 @@ public class GitHubDownloader {
                                    summary: summary))
                 }
                 return repositories
-            }
-            .flatMap { [weak self] repositories in
+        }
+        if containsReadMe {
+            fetchRepositories = fetchRepositories.flatMap { [weak self] repositories in
                 guard let self = self else {
                     throw RSSError.unknown
                 }
-                
+
                 var singles = [Single<Repository>]()
                 for repository in repositories {
                     singles.append(
@@ -65,6 +66,8 @@ public class GitHubDownloader {
                 }
                 return Single.zip(singles)
             }
+        }
+        return fetchRepositories
     }
 
     public func fetchReadMePage(pageLink: RepositoryPageLink) -> Single<APIReadMe> {

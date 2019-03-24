@@ -40,7 +40,7 @@ for period in Period.allCases {
     for languageLink in languageLinks {
         let semaphore = DispatchSemaphore(value: 0)
 
-        _ = gitHubDownloader.fetchRepositories(ofLink: languageLink, period: period)
+        _ = gitHubDownloader.fetchRepositories(ofLink: languageLink, period: period, containsReadMe: Const.populerLanguages.contains(languageLink.name))
             .subscribe(onSuccess: { repositories in
                 _ = try! feedManager.saveRSSFile(
                     fromRepositories: repositories,

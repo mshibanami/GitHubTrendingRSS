@@ -24,7 +24,63 @@ public class Const {
             gtag('config', 'UA-46019833-3');
         </script>
         """
-    
+
     public static let gitHubClientID = CommandLine.arguments[1]
-    public static let gitHubClientSecret = CommandLine.arguments[2]    
+    public static let gitHubClientSecret = CommandLine.arguments[2]
+
+    public static let populerLanguages = [
+        "all",
+        "applescript",
+        "c",
+        "c++",
+        "c#",
+        "ceylon",
+        "common-lisp",
+        "clojure",
+        "cobol",
+        "css",
+        "dart",
+        "dockerfile",
+        "elixir",
+        "elm",
+        "emacs-lisp",
+        "f#",
+        "d",
+        "gnuplot",
+        "go",
+        "groovy",
+        "haskell",
+        "haxe",
+        "html",
+        "jasmin",
+        "java",
+        "javascript",
+        "julia",
+        "kotlin",
+        "llvm",
+        "lua",
+        "makefile",
+        "matlab",
+        "nim",
+        "objective-c",
+        "objective-c++",
+        "pascal",
+        "perl",
+        "php",
+        "powershell",
+        "prolog",
+        "python",
+        "ruby",
+        "scala",
+        "shell",
+        "sql",
+        "swift",
+        "svg",
+        "tex",
+        "typescript",
+        "unknown",
+        "xml",
+        "xslt",
+        "yaml"
+    ]
 }
