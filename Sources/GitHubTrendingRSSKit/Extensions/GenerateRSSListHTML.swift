@@ -7,7 +7,7 @@ public extension Array where Element == LanguageTrendingLink {
         let entityHTMLs = compactMap { element -> String? in
             let periodLinksHTML = Period.allCases.reduce("") {
                 $0 + """
-                    <a href="./\($1.rawValue)/\(element.name).xml" class="card-footer-item">
+                    <a href="./\($1.rawValue)/\(element.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!).xml" class="card-footer-item">
                         \($1.rawValue.capitalized)
                     </a>
                     """
