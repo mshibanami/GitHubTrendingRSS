@@ -2,6 +2,7 @@
 
 import Foundation
 import Kanna
+import Markin
 
 public extension Repository {
     public func createFeedEntryHTML() -> String {
@@ -17,8 +18,11 @@ public extension Repository {
     
     public func createFeedDescriptionHTML() -> String {
         var imageURLs = [URL]()
-        if let readMe = readMe, let readMeContent = readMe.decodedContent, let downloadURL = readMe.downloadURL {
-            if let parsed = try? HTML(html: readMeContent, encoding: .utf8) {
+        if let readMe = readMe,
+            let readMeContent = readMe.decodedContent,
+            let readMeHTML = (try? MarkinParser().parse(readMeContent))?.formatAsHTML(),
+            let downloadURL = readMe.downloadURL {
+            if let parsed = try? HTML(html: readMeHTML, encoding: .utf8) {
                 imageURLs = parsed.css("img").compactMap { img -> URL? in
                     guard let src = img["src"] else {
                         return nil
