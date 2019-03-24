@@ -6,8 +6,8 @@ import PackageDescription
 let package = Package(
     name: "GitHubTrendingRSS",
     dependencies: [
-        .package(url: "https://github.com/tid-kijyun/Kanna.git", .branch("master")),
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "4.4.1")
+        .package(url: "https://github.com/tid-kijyun/Kanna.git", from: "4.0.3"),
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "4.4.1"),
     ],
     targets: [
         .target(
