@@ -12,7 +12,7 @@ public struct RepositoryPageLink: PageLinkable {
     public var url: URL {
         return Const.gitHubBaseURL.appendingPathComponent(href)
     }
-    
+
     public var readMeAPIEndpointURL: URL {
         return URL(string: "\(Const.gitHubAPIBaseURL)/repos/\(userName)/\(repositoryName)/readme")!
     }

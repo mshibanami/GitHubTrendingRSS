@@ -7,7 +7,7 @@ public class DownloadManager {
     var maxRetryCount: Int = 10
     var retryInterval: Double = 60 * 5
     public init() {}
-    
+
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> Single<String> {
         return Single<String>.create { observer in
             self.fetchWebPage(url: url, header: header, retryCount: retryCount) { response, error in
@@ -24,7 +24,7 @@ public class DownloadManager {
             return Disposables.create()
         }
     }
-    
+
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0, completion: @escaping (String?, Error?) -> Void) {
         let session = URLSession.shared
 
@@ -65,7 +65,7 @@ public class DownloadManager {
                     return
                 }
             }
-            
+
             guard let data = data else {
                 completion(nil, DownloadError.noData)
                 return
@@ -74,7 +74,7 @@ public class DownloadManager {
                 completion(nil, DownloadError.noResponce)
                 return
             }
-            
+
             if response.statusCode == 200 {
                 let htmlResponse = String(data: data, encoding: .utf8)
                 completion(htmlResponse, nil)

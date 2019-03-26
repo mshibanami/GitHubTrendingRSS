@@ -8,7 +8,6 @@ extension GitHubPageParserTests {
 
 extension ModelsTests {
     static let __allTests = [
-        ("testGenerateRssListHTML", testGenerateRssListHTML),
         ("testRepository", testRepository)
     ]
 }

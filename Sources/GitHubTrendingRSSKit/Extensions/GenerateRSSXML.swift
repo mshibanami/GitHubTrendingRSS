@@ -3,6 +3,7 @@
 import Foundation
 import Kanna
 import Markin
+import PerfectMarkdown
 
 public extension Repository {
     public func createFeedEntryHTML() -> String {
@@ -15,28 +16,38 @@ public extension Repository {
             </item>
             """
     }
-    
+
     public func createFeedDescriptionHTML() -> String {
-        var imageURLs = [URL]()
-        if let readMe = readMe,
-            let readMeContent = readMe.decodedContent,
-            let readMeHTML = (try? MarkinParser().parse(readMeContent))?.formatAsHTML(),
-            let downloadURL = readMe.downloadURL,
-            let parsedHTML = try? HTML(html: readMeHTML, encoding: .utf8) {
-            imageURLs = parsedHTML.css("img").compactMap { img -> URL? in
-                guard let src = img["src"] else {
-                    return nil
-                }
-                return URL(string: src, relativeTo: URL(string: downloadURL))
-            }
-        }
         let imageHTML: String
-        if let imageURLString = imageURLs.first?.absoluteString {
+        if let imageURLString = imageURLs().first?.absoluteString {
             imageHTML = "<img src='\(imageURLString)'><br>"
         } else {
             imageHTML = ""
         }
         return imageHTML + summary
+    }
+
+    public func imageURLs() -> [URL] {
+        var imageURLs = [URL]()
+        if var readMe = readMe,
+            let readMeContent = readMe.content,
+            let readMeHTML = readMeContent.markdownToHTML,
+            let parsedHTML = try? HTML(html: readMeHTML, encoding: .utf8) {
+            imageURLs = parsedHTML.css("img").compactMap { img -> URL? in
+                guard let src = img["src"] else {
+                    return nil
+                }
+
+                let relativeURL: URL?
+                if let downloadURL = readMe.downloadURL {
+                    relativeURL = URL(string: downloadURL)
+                } else {
+                    relativeURL = nil
+                }
+                return URL(string: src, relativeTo: relativeURL)
+            }
+        }
+        return imageURLs
     }
 }
 

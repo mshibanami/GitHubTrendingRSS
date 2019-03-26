@@ -3,7 +3,6 @@
 //  
 //
 
-
 import Foundation
 
 public struct APIReadMe: Codable {
@@ -16,9 +15,17 @@ public struct APIReadMe: Codable {
     public var gitURL: String?
     public var downloadURL: String?
     public var type: String?
-    public var content: String?
+    public lazy var content: String? = {
+        guard let encodedContent = _content?.replacingOccurrences(of: "\n", with: "") else {
+            return nil
+        }
+        return String(
+            data: Data(base64Encoded: encodedContent, options: [])!,
+            encoding: .utf8)!
+    }()
+    private var _content: String?
     public var encoding: String?
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case path
@@ -29,18 +36,9 @@ public struct APIReadMe: Codable {
         case gitURL = "git_url"
         case downloadURL = "download_url"
         case type
-        case content
+        case _content = "content"
         case encoding
     }
-    
+
     public init() {}
-    
-    public var decodedContent: String? {
-        guard let content = content?.replacingOccurrences(of: "\n", with: "") else {
-            return nil
-        }
-        return String(
-            data: Data(base64Encoded: content, options: [])!,
-            encoding: .utf8)!
-    }
 }

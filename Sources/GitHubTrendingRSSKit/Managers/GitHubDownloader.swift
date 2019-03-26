@@ -4,10 +4,10 @@ import Foundation
 import Kanna
 import RxSwift
 
-public class GitHubDownloader {    
+public class GitHubDownloader {
     let downloadManager: DownloadManager
     let gitHubAPIBaseQueryItems: [URLQueryItem]
-    
+
     private var disposeBag = DisposeBag()
 
     public init(downloadManager: DownloadManager, clientID: String, clientSecret: String) {
@@ -16,24 +16,24 @@ public class GitHubDownloader {
             URLQueryItem(name: "client_id", value: clientID),
             URLQueryItem(name: "client_secret", value: clientSecret)]
     }
-    
+
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, containsReadMe: Bool) -> Single<[Repository]> {
         var fetchRepositories: Single<[Repository]> = downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
             .map { page -> [Repository] in
                 guard let parsed = try? HTML(html: page, encoding: .utf8) else {
                     throw RSSError.unsupportedFormat
                 }
-                
+
                 let repositoryLIList = parsed.css("ol.repo-list > li")
-                
+
                 var repositories = [Repository]()
-                
+
                 for li in repositoryLIList {
                     guard let titleATag = li.at_css("h3 > a"),
                         let summaryPTag = li.at_css("p") else {
                             continue
                     }
-                    
+
                     guard let summary = summaryPTag.trimmedText,
                         let href = titleATag["href"] else {
                             continue
@@ -88,7 +88,7 @@ public class GitHubDownloader {
                 return decoded
         }
     }
-    
+
     public func fetchTopTrendingPage() -> String? {
         return downloadManager.fetchWebPage(url: Const.gitHubTopTrendingURL)
     }

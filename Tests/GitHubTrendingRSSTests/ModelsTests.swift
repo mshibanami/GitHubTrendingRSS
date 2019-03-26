@@ -5,36 +5,37 @@ import GitHubTrendingRSSKit
 import XCTest
 
 final class ModelsTests: XCTestCase {
-    
+
     func testRepository() throws {
-        let link = RepositoryPageLink(href: "/user/repo")
-        
-        var repository = Repository(
-            pageLink: link,
+        var repository1 = Repository(
+            pageLink: RepositoryPageLink(href: "/user/repo"),
             summary: "dummy summary")
-        var readMe = APIReadMe()
-        readMe.content = "SGVsbG8gV29ybGQ="
-        repository.readMe = readMe
-        
-        let html = repository.createFeedEntryHTML()
+        repository1.readMe = APIReadMe()
+        let html = repository1.createFeedEntryHTML()
         let repoURL = "https://github.com/user/repo"
         XCTAssertTrue(html.contains("<link>\(repoURL)</link>"))
-    }
-    
-    func testReadMe() throws {
-        var readMe1 = APIReadMe()
-        readMe1.content = "SGVsbG8gV29ybGQ="
-        XCTAssertEqual(readMe1.decodedContent, "Hello World")
-        
+        XCTAssertEqual(repository1.imageURLs().count, 0)
+
+        var repository2 = Repository(
+            pageLink: RepositoryPageLink(href: "/user/repo"),
+            summary: "dummy summary")
         var readMe2 = APIReadMe()
-        readMe2.content = "SGVsbG8g\nV29ybGQ="
-        XCTAssertEqual(readMe2.decodedContent, "Hello World")
-    }
-    
-    func testGenerateRssListHTML() throws {
-        let links = [LanguageTrendingLink(displayName: "Hello", href: "/hello?since=weekly"),
-                     LanguageTrendingLink(displayName: "World", href: "/world?since=weekly") ]
-        
-        let generated = links.rssListHTML()
+        readMe2.content = """
+        <img align="right" src="https://github.com/foo/bar.png" />
+        """
+        repository2.readMe = readMe2
+        let imageURLs2 = repository2.imageURLs()
+        XCTAssertEqual(imageURLs2.count, 1)
+
+        var repository3 = Repository(
+            pageLink: RepositoryPageLink(href: "/user/repo"),
+            summary: "dummy summary")
+        var readMe3 = APIReadMe()
+        readMe3.content = """
+        ![foo](https://github.com/foo/bar.png)
+        """
+        repository3.readMe = readMe3
+        let imageURLs3 = repository3.imageURLs()
+        XCTAssertEqual(imageURLs3.count, 1)
     }
 }

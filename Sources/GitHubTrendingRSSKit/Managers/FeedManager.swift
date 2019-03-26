@@ -41,7 +41,7 @@ public class FeedManager {
             at: rootOutputDirectory,
             withIntermediateDirectories: true,
             attributes: nil)
-        
+
         let html = languageLinks.rssListHTML()
         let fileURL = rootOutputDirectory.appendingPathComponent("index.html")
 

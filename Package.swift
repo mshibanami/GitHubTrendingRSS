@@ -8,7 +8,7 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/tid-kijyun/Kanna.git", from: "4.0.3"),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "4.4.1"),
-        .package(url: "https://github.com/apparata/Markin.git", .branch("master"))
+        .package(url: "https://github.com/PerfectlySoft/Perfect-Markdown.git", from: "3.0.0"),
     ],
     targets: [
         .target(
@@ -16,7 +16,7 @@ let package = Package(
             dependencies: ["GitHubTrendingRSSKit"]),
         .target(
             name: "GitHubTrendingRSSKit",
-            dependencies: ["Kanna", "RxSwift", "Markin"]),
+            dependencies: ["Kanna", "RxSwift", "PerfectMarkdown"]),
         .testTarget(
             name: "GitHubTrendingRSSTests",
             dependencies: ["GitHubTrendingRSSKit"]),
