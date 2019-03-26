@@ -1,7 +1,7 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
-import Kanna
+import SwiftSoup
 import RxSwift
 
 public class GitHubDownloader {
@@ -20,22 +20,22 @@ public class GitHubDownloader {
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, containsReadMe: Bool) -> Single<[Repository]> {
         var fetchRepositories: Single<[Repository]> = downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
             .map { page -> [Repository] in
-                guard let parsed = try? HTML(html: page, encoding: .utf8) else {
+                guard let parsed = try? SwiftSoup.parse(page) else {
                     throw RSSError.unsupportedFormat
                 }
 
-                let repositoryLIList = parsed.css("ol.repo-list > li")
+                let repositoryLIList = try parsed.select("ol.repo-list > li")
 
                 var repositories = [Repository]()
 
                 for li in repositoryLIList {
-                    guard let titleATag = li.at_css("h3 > a"),
-                        let summaryPTag = li.at_css("p") else {
+                    guard let titleATag = try? li.select("h3 > a"),
+                        let summaryPTag = try? li.select("p") else {
                             continue
                     }
 
                     guard let summary = summaryPTag.trimmedText,
-                        let href = titleATag["href"] else {
+                        let href = try? titleATag.attr("href") else {
                             continue
                     }
                     let repositoryPageLink = RepositoryPageLink(href: href)

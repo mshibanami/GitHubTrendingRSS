@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "GitHubTrendingRSS",
     dependencies: [
-        .package(url: "https://github.com/tid-kijyun/Kanna.git", from: "4.0.3"),
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "1.7.5"),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "4.4.1"),
         .package(url: "https://github.com/PerfectlySoft/Perfect-Markdown.git", from: "3.0.0"),
     ],
@@ -16,7 +16,7 @@ let package = Package(
             dependencies: ["GitHubTrendingRSSKit"]),
         .target(
             name: "GitHubTrendingRSSKit",
-            dependencies: ["Kanna", "RxSwift", "PerfectMarkdown"]),
+            dependencies: ["SwiftSoup", "RxSwift", "PerfectMarkdown"]),
         .testTarget(
             name: "GitHubTrendingRSSTests",
             dependencies: ["GitHubTrendingRSSKit"]),
