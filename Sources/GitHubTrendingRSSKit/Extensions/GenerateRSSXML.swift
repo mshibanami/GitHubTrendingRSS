@@ -2,7 +2,6 @@
 
 import Foundation
 import Kanna
-import Markin
 import PerfectMarkdown
 
 public extension Repository {
