@@ -23,8 +23,17 @@ public extension Repository {
             let readMeHTML = readMeContent.markdownToHTML,
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) {
             
-            if let downloadURL = readMe.downloadURL {
-                try? parsedHTML.setBaseUri(downloadURL)
+            if let downloadURL = readMe.downloadURL,
+                let imgs = try? parsedHTML.getElementsByTag("img") {
+                
+                for img in imgs {
+                    guard let url = try? img.attr("src"),
+                        let baseURL = URL(string: downloadURL),
+                        let absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
+                            continue
+                    }
+                    _ = try? img.attr("src", absoluteURL)
+                }
             }
             return (try? parsedHTML.body()?.html()) ?? nil
         }

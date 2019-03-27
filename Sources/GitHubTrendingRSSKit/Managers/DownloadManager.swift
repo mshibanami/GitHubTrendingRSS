@@ -29,7 +29,6 @@ public class DownloadManager {
         let session = URLSession.shared
 
         var request = URLRequest(url: url)
-        request.timeoutInterval = 5
         for keyValue in header {
             request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
         }
@@ -92,7 +91,7 @@ public class DownloadManager {
             }
         }
 
-        NSLog("Start fetching: \(url.host ?? "")\(url.path)")
+        NSLog("Fetching: \(url.host ?? "")\(url.path)")
         task.resume()
     }
 
