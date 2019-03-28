@@ -2,6 +2,7 @@
 
 import Darwin
 import Foundation
+import RxSwift
 import GitHubTrendingRSSKit
 
 func checkCommandLineArguments() {
@@ -35,26 +36,34 @@ guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
 let languageLinks = try gitHubPageParser
     .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
-var numberOfRepositories: Int = 0
 for period in Period.allCases {
-    for languageLink in languageLinks {
+    let linkChunks = languageLinks.chunked(into: 2)
+    for linkChunk in linkChunks {
         let semaphore = DispatchSemaphore(value: 0)
-
-        _ = gitHubDownloader.fetchRepositories(ofLink: languageLink, period: period, containsReadMe: Const.populerLanguages.contains(languageLink.name))
-            .subscribe(onSuccess: { repositories in
-                _ = try! feedManager.saveRSSFile(
-                    fromRepositories: repositories,
-                    languageTrendingLink: languageLink,
-                    period: period)
-                
-                numberOfRepositories += repositories.count
-                
+        var fetchRepositories = [Single<[Repository]>]()
+        
+        for link in linkChunk {
+            fetchRepositories.append(
+                gitHubDownloader
+                    .fetchRepositories(
+                        ofLink: link,
+                        period: period,
+                        containsReadMe: Const.populerLanguages.contains(link.name))
+                    .do(onSuccess: { repositories in
+                        _ = try! feedManager.saveRSSFile(
+                            fromRepositories: repositories,
+                            languageTrendingLink: link,
+                            period: period)
+                    })
+            )
+        }
+        _ = Single.zip(fetchRepositories)
+            .subscribe { _ in
                 semaphore.signal()
-            })
+        }
         semaphore.wait()
     }
 }
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)
-NSLog("- Number of Repositories: \(numberOfRepositories)")
 NSLog("- Saved to \(feedManager.rootOutputDirectory.path)")
