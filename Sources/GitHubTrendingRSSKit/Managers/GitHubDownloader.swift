@@ -84,7 +84,9 @@ public class GitHubDownloader {
                 guard let data = page.data(using: .utf8) else {
                     throw DownloadError.unsupportedFormat
                 }
-                let decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
+                var decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
+                decoded.userID = pageLink.userID
+                decoded.repositoryName = pageLink.repositoryName
                 return decoded
         }
     }

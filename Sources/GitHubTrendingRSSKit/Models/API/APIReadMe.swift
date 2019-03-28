@@ -25,7 +25,27 @@ public struct APIReadMe: Codable {
     }()
     private var _content: String?
     public var encoding: String?
+    
+    public var userID: String?
+    public var repositoryName: String?
+    
+    public var branchName: String? {
+        guard let url = url, let urlComponents = URLComponents(string: url) else {
+            return nil
+        }
+        return urlComponents
+            .queryItems?
+            .first(where: { $0.name == "ref" })?
+            .value
+    }
 
+    public var fileRootURL: URL? {
+        guard let userID = userID, let repositoryName = repositoryName, let branchName = branchName else {
+            return nil
+        }
+        return URL(string: "https://raw.githubusercontent.com/\(userID)/\(repositoryName)/\(branchName)/")
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name
         case path

@@ -10,7 +10,7 @@ public extension Repository {
         let description = readMeHTML() ?? summary
         return """
             <item>
-                <title>\(pageLink.userName)/\(pageLink.repositoryName)</title>
+                <title>\(pageLink.userID)/\(pageLink.repositoryName)</title>
                 <link>\(url)</link>
                 <description>\(description.xmlEscaped)</description>
             </item>
@@ -23,12 +23,10 @@ public extension Repository {
             let readMeHTML = readMeContent.markdownToHTML,
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) {
             
-            if let downloadURL = readMe.downloadURL,
-                let imgs = try? parsedHTML.getElementsByTag("img") {
-                
+            if let imgs = try? parsedHTML.getElementsByTag("img") {
                 for img in imgs {
                     guard let url = try? img.attr("src"),
-                        let baseURL = URL(string: downloadURL),
+                        let baseURL = readMe.fileRootURL,
                         let absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
                             continue
                     }

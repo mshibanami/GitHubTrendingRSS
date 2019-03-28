@@ -14,10 +14,10 @@ public struct RepositoryPageLink: PageLinkable {
     }
 
     public var readMeAPIEndpointURL: URL {
-        return URL(string: "\(Const.gitHubAPIBaseURL)/repos/\(userName)/\(repositoryName)/readme")!
+        return URL(string: "\(Const.gitHubAPIBaseURL)/repos/\(userID)/\(repositoryName)/readme")!
     }
 
-    public var userName: String {
+    public var userID: String {
         return String(splittedHref[0])
     }
 
