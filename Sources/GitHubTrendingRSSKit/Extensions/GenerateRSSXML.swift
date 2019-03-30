@@ -23,22 +23,27 @@ public extension Repository {
             let readMeHTML = readMeContent.markdownToHTML,
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) {
             
-            let tagAttributePairs = [
-                "img": "src",
-                "a": "href"
+            let tagAttributesPairs = [
+                "a": ["href"],
+                "area": ["href"],
+                "img": ["src", "longdesc", "usemap"],
+                "link": ["href"],
+                "blockquote": ["cite"]
             ]
             
-            for (tag, attribute) in tagAttributePairs {
+            for (tag, attributes) in tagAttributesPairs {
                 guard let elements = try? parsedHTML.getElementsByTag(tag) else {
                     continue
                 }
                 for element in elements {
-                    guard let url = try? element.attr(attribute),
-                        let baseURL = readMe.fileRootURL,
-                        let absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
-                            continue
+                    for attribute in attributes {
+                        guard let url = try? element.attr(attribute),
+                            let baseURL = readMe.fileRootURL,
+                            let absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
+                                continue
+                        }
+                        _ = try? element.attr(attribute, absoluteURL)
                     }
-                    _ = try? element.attr(attribute, absoluteURL)
                 }
             }
             return (try? parsedHTML.body()?.html()) ?? nil
