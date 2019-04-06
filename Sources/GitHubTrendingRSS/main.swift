@@ -37,7 +37,7 @@ let languageLinks = try gitHubPageParser
     .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
 for period in Period.allCases {
-    let linkChunks = languageLinks.chunked(into: 3)
+    let linkChunks = languageLinks.chunked(into: languageLinks.count / 3)
     for linkChunk in linkChunks {
         let semaphore = DispatchSemaphore(value: 0)
         var fetchRepositories = [Single<[Repository]>]()
