@@ -37,13 +37,13 @@ public extension Repository {
                 }
                 for element in elements {
                     for attribute in attributes {
-                        guard let url = try? element.attr(attribute),
+                        guard let url = try? element.attr(attribute).prefixDeleted(prefix: "/"),
                             let baseURL = readMe.fileRootURL,
                             var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
                                 continue
                         }
                         if absoluteURL != url {
-                            if absoluteURL.hasSuffix(".svg") {
+                            if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
                                 absoluteURL += "?sanitize=true"
                             }
                             
