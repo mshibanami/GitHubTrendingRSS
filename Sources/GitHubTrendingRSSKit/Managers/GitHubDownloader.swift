@@ -17,7 +17,7 @@ public class GitHubDownloader {
             URLQueryItem(name: "client_secret", value: clientSecret)]
     }
 
-    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, containsReadMe: Bool) -> Single<[Repository]> {
+    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, needsReadMe: Bool) -> Single<[Repository]> {
         var fetchRepositories: Single<[Repository]> = downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
             .map { page -> [Repository] in
                 guard let parsed = try? SwiftSoup.parse(page) else {
@@ -45,7 +45,7 @@ public class GitHubDownloader {
                 }
                 return repositories
         }
-        if containsReadMe {
+        if needsReadMe {
             fetchRepositories = fetchRepositories.flatMap { [weak self] repositories in
                 guard let self = self else {
                     throw RSSError.unknown

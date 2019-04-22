@@ -57,7 +57,7 @@ for period in Period.allCases {
                     .fetchRepositories(
                         ofLink: link,
                         period: period,
-                        containsReadMe: Const.populerLanguages.contains(link.name))
+                        needsReadMe: Const.populerLanguages.contains(link.name))
                     .do(onSuccess: { repositories in
                         _ = try! feedManager.saveRSSFile(
                             fromRepositories: repositories,

@@ -22,8 +22,4 @@ final class GitHubPageParserTests: XCTestCase {
         XCTAssertEqual(firstTrendingLink.url(ofPeriod: .daily).absoluteString, "https://github.com/trending?since=daily")
         XCTAssertEqual(firstTrendingLink.href, "/trending")
     }
-
-    static var allTests = [
-        ("testParsePeriodSpecifiedTrendingPageLinks", testParsePeriodSpecifiedTrendingPageLinks)
-    ]
 }
