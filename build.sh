@@ -3,5 +3,5 @@
 set -ex
 
 rm -rf output
-swift run GitHubTrendingRSS "${GITHUB_CLIENT_ID}" "${GITHUB_CLIENT_SECRET}"
+swift run GitHubTrendingRSS --client-id="${GITHUB_CLIENT_ID}" --client-secret="${GITHUB_CLIENT_SECRET}"
 cp -r static output

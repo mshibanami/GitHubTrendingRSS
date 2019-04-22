@@ -25,8 +25,8 @@ public class Const {
         </script>
         """
 
-    public static let gitHubClientID = CommandLine.arguments[1]
-    public static let gitHubClientSecret = CommandLine.arguments[2]
+    public private(set) static var gitHubClientID = CommandLine.arguments[1]
+    public private(set) static var gitHubClientSecret = CommandLine.arguments[2]
 
     public static let populerLanguages = [
         "all",
@@ -83,4 +83,9 @@ public class Const {
         "xslt",
         "yaml"
     ]
+    
+    public static func setup(gitHubClientID: String, gitHubClientSecret: String) {
+        self.gitHubClientID = gitHubClientID
+        self.gitHubClientSecret = gitHubClientSecret
+    }
 }

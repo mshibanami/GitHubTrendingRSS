@@ -4,23 +4,30 @@ import Darwin
 import Foundation
 import GitHubTrendingRSSKit
 import RxSwift
+import Basic
+import Utility
 
 let parallelDownloadingChunk = 3
 
-func checkCommandLineArguments() {
-    guard CommandLine.arguments.count == 3,
-        !CommandLine.arguments[1].isEmpty,
-        !CommandLine.arguments[2].isEmpty else {
-            fputs(
-                """
-        Error: The arguments are incorrect.
-        Please specify like this:
-            swift run GitHubTrendingRSS <GitHub Client ID> <GitHub Client Secret>\n
-        """, stderr)
-            exit(1)
+func setup() {
+    let arguments = Array(ProcessInfo.processInfo.arguments.dropFirst())
+    let parser = ArgumentParser(usage: "<options>", overview: "RSS feeds generator for GitHub Trending")
+    
+    let clientIDArgument = parser.add(option: "--client-id", kind: String.self, usage: "Your GitHub's client ID")
+    let clientSecretArgument = parser.add(option: "--client-secret", kind: String.self, usage: "Your GitHub's client secret")
+    // Dummy args already used by SwiftPM
+    _ = parser.add(option: "--configuration", shortName: "-c", kind: String.self, usage: "-")
+    
+    let parsed = try! parser.parse(arguments)
+    
+    guard let clientID = parsed.get(clientIDArgument), let clientSecret = parsed.get(clientSecretArgument) else {
+        fputs("Error: Please specify the GitHub client ID and secret. \n\n", stderr)
+        parser.printUsage(on: stdoutStream)
+        exit(1)
     }
+    Const.setup(gitHubClientID: clientID, gitHubClientSecret: clientSecret)
 }
-checkCommandLineArguments()
+setup()
 
 let downloadManager = DownloadManager()
 let gitHubDownloader = GitHubDownloader(
