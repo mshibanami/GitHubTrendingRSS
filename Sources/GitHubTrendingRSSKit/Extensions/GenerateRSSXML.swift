@@ -39,10 +39,16 @@ public extension Repository {
                     for attribute in attributes {
                         guard let url = try? element.attr(attribute),
                             let baseURL = readMe.fileRootURL,
-                            let absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
+                            var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
                                 continue
                         }
-                        _ = try? element.attr(attribute, absoluteURL)
+                        if absoluteURL != url {
+                            if absoluteURL.hasSuffix(".svg") {
+                                absoluteURL += "?sanitize=true"
+                            }
+                            
+                            _ = try? element.attr(attribute, absoluteURL)
+                        }
                     }
                 }
             }

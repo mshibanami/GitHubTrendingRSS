@@ -5,14 +5,27 @@ import GitHubTrendingRSSKit
 import XCTest
 
 final class ModelsTests: XCTestCase {
-    func testRepository() throws {
+    func testNormalRepository() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
             summary: "dummy summary")
         repository1.readMe = APIReadMe()
         let html = repository1.createFeedEntryHTML()
-        let repoURL = "https://github.com/user/repo"
-        XCTAssertTrue(html.contains("<link>\(repoURL)</link>"))
+        XCTAssertTrue(html.contains("<link>https://github.com/user/repo</link>"))
         XCTAssertEqual(repository1.readMeHTML(), nil)
+    }
+
+    func testSVGSanitizedRepository() throws {
+        var repository1 = Repository(
+            pageLink: RepositoryPageLink(href: "/user/repo"),
+            summary: "dummy summary")
+        repository1.readMe = APIReadMe()
+        repository1.readMe?.userID = "user"
+        repository1.readMe?.repositoryName = "repo"
+        repository1.readMe?.url = "https://api.github.com/repos/user/repo/contents/README.md?ref=master"
+        repository1.readMe!.content = "[hi](hello.svg)"
+        let html = repository1.readMeHTML()!
+        XCTAssertTrue(html.contains("hello.svg"))
+        XCTAssertTrue(html.contains("https://raw.githubusercontent.com/user/repo/master/hello.svg?sanitize=true"))
     }
 }

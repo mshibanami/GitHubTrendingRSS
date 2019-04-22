@@ -83,7 +83,7 @@ public class Const {
         "xslt",
         "yaml"
     ]
-    
+
     public static func setup(gitHubClientID: String, gitHubClientSecret: String) {
         self.gitHubClientID = gitHubClientID
         self.gitHubClientSecret = gitHubClientSecret
