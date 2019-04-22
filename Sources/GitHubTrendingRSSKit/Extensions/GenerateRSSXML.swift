@@ -5,7 +5,7 @@ import SwiftSoup
 import PerfectMarkdown
 
 public extension Repository {
-    public func createFeedEntryHTML() -> String {
+    func createFeedEntryHTML() -> String {
         let url = pageLink.url
         let description = readMeHTML() ?? summary
         return """
@@ -17,8 +17,8 @@ public extension Repository {
             """
     }
 
-    public func readMeHTML() -> String? {
-        if var readMe = readMe,
+    func readMeHTML() -> String? {
+        if let readMe = readMe,
             let readMeContent = readMe.content,
             let readMeHTML = readMeContent.markdownToHTML,
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) {
@@ -53,7 +53,7 @@ public extension Repository {
 }
 
 public extension Array where Element == Repository {
-    public func feedHTML(ofLanguage language: LanguageTrendingLink, period: Period) -> String {
+    func feedHTML(ofLanguage language: LanguageTrendingLink, period: Period) -> String {
         let entriesString = reduce("") {
             $0 + $1.createFeedEntryHTML()
         }

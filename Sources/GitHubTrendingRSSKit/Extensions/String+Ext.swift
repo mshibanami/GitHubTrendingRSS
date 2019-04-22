@@ -3,7 +3,7 @@
 import Foundation
 
 public extension String {
-    public var xmlEscaped: String {
+    var xmlEscaped: String {
         return replacingOccurrences(of: "&", with: "&amp;")
             .replacingOccurrences(of: "'", with: "&#39;")
             .replacingOccurrences(of: "\"", with: "&quot;")

@@ -3,13 +3,13 @@
 import SwiftSoup
 
 public extension Elements {
-    public var trimmedText: String? {
+    var trimmedText: String? {
         return (try? text())?.trimmedText
     }
 }
 
 public extension Element {
-    public var trimmedText: String? {
+    var trimmedText: String? {
         return (try? text())?.trimmedText
     }
 }

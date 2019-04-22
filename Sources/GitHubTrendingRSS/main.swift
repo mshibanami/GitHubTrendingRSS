@@ -5,6 +5,8 @@ import Foundation
 import RxSwift
 import GitHubTrendingRSSKit
 
+let parallelDownloadingChunk = 3
+
 func checkCommandLineArguments() {
     guard CommandLine.arguments.count == 3,
         !CommandLine.arguments[1].isEmpty,
@@ -37,7 +39,7 @@ let languageLinks = try gitHubPageParser
     .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
 for period in Period.allCases {
-    let linkChunks = languageLinks.chunked(into: languageLinks.count / 3)
+    let linkChunks = languageLinks.chunked(into: languageLinks.count / parallelDownloadingChunk)
     for linkChunk in linkChunks {
         let semaphore = DispatchSemaphore(value: 0)
         var fetchRepositories = [Single<[Repository]>]()

@@ -3,7 +3,7 @@
 import Foundation
 
 public extension Array where Element == LanguageTrendingLink {
-    public func rssListHTML() -> String {
+    func rssListHTML() -> String {
         let entityHTMLs = compactMap { element -> String? in
             let periodLinksHTML = Period.allCases.reduce("") {
                 $0 + """

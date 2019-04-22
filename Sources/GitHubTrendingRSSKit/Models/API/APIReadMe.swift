@@ -15,16 +15,8 @@ public struct APIReadMe: Codable {
     public var gitURL: String?
     public var downloadURL: String?
     public var type: String?
-    public lazy var content: String? = {
-        guard let encodedContent = _content?.replacingOccurrences(of: "\n", with: "") else {
-            return nil
-        }
-        return String(
-            data: Data(base64Encoded: encodedContent, options: [])!,
-            encoding: .utf8)!
-    }()
-    private var _content: String?
     public var encoding: String?
+    public var content: String?
     
     public var userID: String?
     public var repositoryName: String?
@@ -56,9 +48,30 @@ public struct APIReadMe: Codable {
         case gitURL = "git_url"
         case downloadURL = "download_url"
         case type
-        case _content = "content"
         case encoding
+        case content = "content"
     }
 
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        self.name = try? container.decode(String.self, forKey: .name)
+        self.path = try? container.decode(String.self, forKey: .path)
+        self.sha = try? container.decode(String.self, forKey: .sha)
+        self.size = try? container.decode(Int.self, forKey: .size)
+        self.url = try? container.decode(String.self, forKey: .url)
+        self.htmlURL = try? container.decode(String.self, forKey: .htmlURL)
+        self.gitURL = try? container.decode(String.self, forKey: .gitURL)
+        self.downloadURL = try? container.decode(String.self, forKey: .downloadURL)
+        self.type = try? container.decode(String.self, forKey: .type)
+        self.encoding = try? container.decode(String.self, forKey: .encoding)
+        if let content = try? container.decode(String.self, forKey: .content) {
+            let encodedContent = content.replacingOccurrences(of: "\n", with: "")
+            self.content = String(
+                data: Data(base64Encoded: encodedContent, options: [])!,
+                encoding: .utf8)!
+        }
+        
+    }
+    
     public init() {}
 }

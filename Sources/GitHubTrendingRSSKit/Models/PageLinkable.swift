@@ -7,7 +7,7 @@ public protocol PageLinkable: Hashable {
 }
 
 public extension PageLinkable {
-    public func url(ofPeriod period: Period) -> URL {
+    func url(ofPeriod period: Period) -> URL {
         let path = URL(string: href)!.path
 
         var components = URLComponents(
