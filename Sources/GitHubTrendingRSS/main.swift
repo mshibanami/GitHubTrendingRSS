@@ -2,8 +2,8 @@
 
 import Darwin
 import Foundation
-import RxSwift
 import GitHubTrendingRSSKit
+import RxSwift
 
 let parallelDownloadingChunk = 3
 
@@ -43,7 +43,7 @@ for period in Period.allCases {
     for linkChunk in linkChunks {
         let semaphore = DispatchSemaphore(value: 0)
         var fetchRepositories = [Single<[Repository]>]()
-        
+
         for link in linkChunk {
             fetchRepositories.append(
                 gitHubDownloader

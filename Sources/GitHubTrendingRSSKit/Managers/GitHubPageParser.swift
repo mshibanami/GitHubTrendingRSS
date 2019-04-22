@@ -38,14 +38,14 @@ public class GitHubPageParser {
         let parsed = try SwiftSoup.parse(topTrendingPage)
 
         let selectMenuLists = (try? parsed.select("div.select-menu-list"))?.array() ?? []
-        
+
         guard selectMenuLists.count == 2 else {
             throw RSSError.unsupportedFormat
         }
-        
+
         let languagesList = selectMenuLists[1]
         let linkTags = (try? languagesList.select("a"))?.array() ?? []
-        
+
         let links = GitHubPageParser.specialLinks + linkTags.compactMap { link -> LanguageTrendingLink? in
             guard let title = link.trimmedText,
                 let href = try? link.attr("href") else {

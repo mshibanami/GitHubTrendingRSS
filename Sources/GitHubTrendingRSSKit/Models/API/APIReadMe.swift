@@ -17,10 +17,10 @@ public struct APIReadMe: Codable {
     public var type: String?
     public var encoding: String?
     public var content: String?
-    
+
     public var userID: String?
     public var repositoryName: String?
-    
+
     public var branchName: String? {
         guard let url = url, let urlComponents = URLComponents(string: url) else {
             return nil
@@ -37,7 +37,7 @@ public struct APIReadMe: Codable {
         }
         return URL(string: "https://raw.githubusercontent.com/\(userID)/\(repositoryName)/\(branchName)/")
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case path
@@ -70,8 +70,8 @@ public struct APIReadMe: Codable {
                 data: Data(base64Encoded: encodedContent, options: [])!,
                 encoding: .utf8)!
         }
-        
+
     }
-    
+
     public init() {}
 }

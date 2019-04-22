@@ -1,8 +1,8 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
-import SwiftSoup
 import PerfectMarkdown
+import SwiftSoup
 
 public extension Repository {
     func createFeedEntryHTML() -> String {
@@ -22,7 +22,7 @@ public extension Repository {
             let readMeContent = readMe.content,
             let readMeHTML = readMeContent.markdownToHTML,
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) {
-            
+
             let tagAttributesPairs = [
                 "a": ["href"],
                 "area": ["href"],
@@ -30,7 +30,7 @@ public extension Repository {
                 "link": ["href"],
                 "blockquote": ["cite"]
             ]
-            
+
             for (tag, attributes) in tagAttributesPairs {
                 guard let elements = try? parsedHTML.getElementsByTag(tag) else {
                     continue
