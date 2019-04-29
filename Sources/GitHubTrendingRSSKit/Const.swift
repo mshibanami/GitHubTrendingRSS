@@ -25,8 +25,8 @@ public class Const {
         </script>
         """
 
-    public private(set) static var gitHubClientID = CommandLine.arguments[1]
-    public private(set) static var gitHubClientSecret = CommandLine.arguments[2]
+    public private(set) static var gitHubClientID: String!
+    public private(set) static var gitHubClientSecret: String!
 
     public static let populerLanguages = [
         "all",

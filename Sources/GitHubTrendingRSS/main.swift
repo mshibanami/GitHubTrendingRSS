@@ -47,31 +47,35 @@ let languageLinks = try gitHubPageParser
 
 for period in Period.allCases {
     let linkChunks = languageLinks.chunked(into: languageLinks.count / parallelDownloadingChunk)
+    var fetchRepositoriesList: [Single<Void>] = []
+    let semaphore = DispatchSemaphore(value: 0)
+    
     for linkChunk in linkChunks {
-        let semaphore = DispatchSemaphore(value: 0)
-        var fetchRepositories = [Single<[Repository]>]()
-
+        var fetchRepositories = Single.just(())
         for link in linkChunk {
-            fetchRepositories.append(
-                gitHubDownloader
-                    .fetchRepositories(
-                        ofLink: link,
-                        period: period,
-                        needsReadMe: Const.populerLanguages.contains(link.name))
-                    .do(onSuccess: { repositories in
-                        _ = try! feedManager.saveRSSFile(
-                            fromRepositories: repositories,
-                            languageTrendingLink: link,
-                            period: period)
-                    })
-            )
+            fetchRepositories = fetchRepositories
+                .flatMap { _ in
+                    gitHubDownloader
+                        .fetchRepositories(
+                            ofLink: link,
+                            period: period,
+                            needsReadMe: Const.populerLanguages.contains(link.name))
+                }
+                .do(onSuccess: { repositories in
+                    _ = try! feedManager.saveRSSFile(
+                        fromRepositories: repositories,
+                        languageTrendingLink: link,
+                        period: period)
+                })
+                .map { _ in () }
         }
-        _ = Single.zip(fetchRepositories)
-            .subscribe { _ in
-                semaphore.signal()
-        }
-        semaphore.wait()
+        fetchRepositoriesList.append(fetchRepositories)
     }
+    _ = Single.zip(fetchRepositoriesList)
+        .subscribe({ _ in
+            semaphore.signal()
+        })
+    semaphore.wait()
 }
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)

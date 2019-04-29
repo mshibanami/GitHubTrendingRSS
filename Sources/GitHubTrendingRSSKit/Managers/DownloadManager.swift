@@ -5,7 +5,7 @@ import RxSwift
 
 public class DownloadManager {
     var maxRetryCount: Int = 10
-    var retryInterval: Double = 60 * 5
+    var retryInterval: Double = 5 * 60
     public init() {}
 
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> Single<String> {
@@ -28,6 +28,8 @@ public class DownloadManager {
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0, completion: @escaping (String?, Error?) -> Void) {
         let session = URLSession.shared
 
+        let urlForDisplay = "\(url.host ?? "")\(url.path)"
+        
         var request = URLRequest(url: url)
         for keyValue in header {
             request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
@@ -40,7 +42,7 @@ public class DownloadManager {
 
             let retriesIfNeeded = { () -> Bool in
                 if retryCount < self.maxRetryCount {
-                    NSLog("    Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
+                    NSLog("   Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
                     DispatchQueue.global().asyncAfter(deadline: .now() + self.retryInterval) {
                         self.fetchWebPage(
                             url: url,
@@ -54,7 +56,7 @@ public class DownloadManager {
             }
 
             if let error = error {
-                NSLog("    Error: \(error)")
+                NSLog("   Error: \(error)")
                 switch error {
                 case URLError.notConnectedToInternet:
                     if retriesIfNeeded() { return }
@@ -73,16 +75,19 @@ public class DownloadManager {
                 completion(nil, DownloadError.noResponce)
                 return
             }
-
+            
             if response.statusCode == 200 {
                 let htmlResponse = String(data: data, encoding: .utf8)
                 completion(htmlResponse, nil)
                 return
             } else {
-                NSLog("    Failed (statusCode: \(response.statusCode))")
+                let remaining = response.allHeaderFields["X-RateLimit-Remaining"] ?? "-"
+                NSLog("<- \(response.statusCode) \(urlForDisplay) [RateLimit-Remaining: \(remaining)]")
                 switch response.statusCode {
                 case 429, 403:
-                    if retriesIfNeeded() { return }
+                    if retriesIfNeeded() {
+                        return
+                    }
                     fallthrough
                 default:
                     completion(nil, DownloadError.unknown)
@@ -91,7 +96,7 @@ public class DownloadManager {
             }
         }
 
-        NSLog("Fetching: \(url.host ?? "")\(url.path)")
+        NSLog("-> \(request.httpMethod ?? "???"): \(urlForDisplay)")
         task.resume()
     }
 
