@@ -41,18 +41,15 @@ public class Const {
         "emacs-lisp",
         "f#",
         "go",
-        "groovy",
         "haskell",
         "haxe",
         "html",
         "java",
         "javascript",
-        "julia",
+        "jupyter-notebook",
         "kotlin",
         "lua",
         "objective-c",
-        "objective-c++",
-        "pascal",
         "perl",
         "php",
         "powershell",
@@ -65,10 +62,8 @@ public class Const {
         "svg",
         "tex",
         "typescript",
-        "unknown",
         "xml",
         "xslt",
-        "yaml"
     ]
 
     public static func setup(gitHubClientID: String, gitHubClientSecret: String) {
