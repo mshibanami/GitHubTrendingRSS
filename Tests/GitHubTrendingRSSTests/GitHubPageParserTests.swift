@@ -6,14 +6,16 @@ import GitHubTrendingRSSKit
 
 final class GitHubPageParserTests: XCTestCase {
     let parser = GitHubPageParser()
-
+    
     func testParsePeriodSpecifiedTrendingPageLinks() throws {
+        let topTrendingPage = TestResources.topTrendingPage()
+        
         let pageLinks = try parser
-            .periodSpecifiedTrendingPageLinks(fromTopTrendingPage: TestResources.normalTopTrendingPage)
+            .periodSpecifiedTrendingPageLinks(fromTopTrendingPage: topTrendingPage)
         XCTAssertEqual(pageLinks.count, 3)
 
         let languageTrendingLinks = try parser
-            .languageTrendingLinks(fromTopTrendingPage: TestResources.normalTopTrendingPage)
+            .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
         XCTAssertEqual(languageTrendingLinks.count, 526)
         let firstTrendingLink = languageTrendingLinks.first!
