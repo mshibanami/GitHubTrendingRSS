@@ -1,6 +1,4 @@
-//
-//  Created by Manabu Nakazawa on 28/3/19.
-//  
+// Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
 
