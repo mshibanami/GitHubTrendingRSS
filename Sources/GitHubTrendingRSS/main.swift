@@ -18,8 +18,15 @@ func setup() {
     // Dummy args already used by SwiftPM
     _ = parser.add(option: "--configuration", shortName: "-c", kind: String.self, usage: "-")
 
-    let parsed = try! parser.parse(arguments)
-
+    let parsed: ArgumentParser.Result
+    do {
+        parsed = try parser.parse(arguments)
+    } catch {
+        fputs("Error: \(error) \n\n", stderr)
+        parser.printUsage(on: stdoutStream)
+        exit(1)
+    }
+    
     guard let clientID = parsed.get(clientIDArgument), let clientSecret = parsed.get(clientSecretArgument) else {
         fputs("Error: Please specify the GitHub client ID and secret. \n\n", stderr)
         parser.printUsage(on: stdoutStream)
