@@ -1,7 +1,7 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
-import PerfectMarkdown
+import Down
 import SwiftSoup
 
 public extension Repository {
@@ -20,7 +20,7 @@ public extension Repository {
     func readMeHTML() -> String? {
         if let readMe = readMe,
             let readMeContent = readMe.content,
-            let readMeHTML = readMeContent.markdownToHTML,
+            let readMeHTML = try? Down(markdownString: readMeContent).toHTML(),
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) {
 
             let tagAttributesPairs = [

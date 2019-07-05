@@ -8,9 +8,9 @@ let package = Package(
     dependencies: [
         .package(url: "https://github.com/apple/swift-log.git", from: "1.1.0"),
         .package(url: "https://github.com/apple/swift-package-manager.git", from: "0.1.0"),
-        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.2.0"),
+        .package(url: "https://github.com/iwasrobbed/Down.git", from: "0.8.5"),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "5.0.0"),
-        .package(url: "https://github.com/PerfectlySoft/Perfect-Markdown.git", from: "3.0.0"),
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.2.0"),
     ],
     targets: [
         .target(
@@ -24,7 +24,7 @@ let package = Package(
             name: "GitHubTrendingRSSKit",
             dependencies: [
               "Logging",
-              "PerfectMarkdown",
+              "Down",
               "RxSwift",
               "SwiftSoup",
           ]),
