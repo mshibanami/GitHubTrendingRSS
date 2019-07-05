@@ -1,10 +1,13 @@
-// swift-tools-version:4.2
+// swift-tools-version:5.1
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import PackageDescription
 
 let package = Package(
     name: "GitHubTrendingRSS",
+    platforms: [
+        .macOS(.v10_14)
+    ],
     dependencies: [
         .package(url: "https://github.com/apple/swift-log.git", from: "1.1.0"),
         .package(url: "https://github.com/apple/swift-package-manager.git", from: "0.1.0"),
