@@ -6,20 +6,32 @@ import PackageDescription
 let package = Package(
     name: "GitHubTrendingRSS",
     dependencies: [
+        .package(url: "https://github.com/apple/swift-log.git", from: "1.1.0"),
         .package(url: "https://github.com/apple/swift-package-manager.git", from: "0.1.0"),
-        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "1.7.5"),
-        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "4.4.1"),
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.2.0"),
+        .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "5.0.0"),
         .package(url: "https://github.com/PerfectlySoft/Perfect-Markdown.git", from: "3.0.0"),
     ],
     targets: [
         .target(
             name: "GitHubTrendingRSS",
-            dependencies: ["GitHubTrendingRSSKit", "Utility"]),
+            dependencies: [
+              "GitHubTrendingRSSKit",
+              "Logging",
+              "SPMUtility",
+          ]),
         .target(
             name: "GitHubTrendingRSSKit",
-            dependencies: ["SwiftSoup", "RxSwift", "PerfectMarkdown"]),
+            dependencies: [
+              "Logging",
+              "PerfectMarkdown",
+              "RxSwift",
+              "SwiftSoup",
+          ]),
         .testTarget(
             name: "GitHubTrendingRSSTests",
-            dependencies: ["GitHubTrendingRSSKit"]),
+            dependencies: [
+                "GitHubTrendingRSSKit",
+            ]),
     ]
 )

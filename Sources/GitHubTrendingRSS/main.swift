@@ -5,7 +5,7 @@ import Darwin
 import Foundation
 import GitHubTrendingRSSKit
 import RxSwift
-import Utility
+import SPMUtility
 
 let parallelDownloadingChunk = 3
 
