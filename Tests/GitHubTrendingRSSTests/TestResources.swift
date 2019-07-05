@@ -5,6 +5,11 @@ import XCTest
 
 // TODO: refactor after https://bugs.swift.org/browse/SR-2866 was solved
 class TestResources {
+    enum TrendingPageType {
+        case top
+        case language(title: String)
+    }
+    
     static var rootURL: URL {
         let url = URL(fileURLWithPath: #file)
             .deletingLastPathComponent()
@@ -19,9 +24,16 @@ class TestResources {
         return url
     }
     
-    static func topTrendingPage() -> String {
+    static func trendingPage(of pageType: TrendingPageType) -> String {
+        let fileName: String
+        switch pageType {
+        case .top:
+            fileName = "github.com_trending.html"
+        case .language(let name):
+            fileName = "github.com_trending_\(name).html"
+        }
         return try! String(
-            contentsOf: rootURL.appendingPathComponent("github.com_trending.html"),
+            contentsOf: rootURL.appendingPathComponent(fileName),
             encoding: .utf8)
     }
 }

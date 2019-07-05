@@ -8,7 +8,7 @@ final class GitHubPageParserTests: XCTestCase {
     let parser = GitHubPageParser()
     
     func testParsePeriodSpecifiedTrendingPageLinks() throws {
-        let topTrendingPage = TestResources.topTrendingPage()
+        let topTrendingPage = TestResources.trendingPage(of: .top)
         
         let pageLinks = try parser
             .periodSpecifiedTrendingPageLinks(fromTopTrendingPage: topTrendingPage)
