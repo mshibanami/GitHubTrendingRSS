@@ -19,7 +19,7 @@ public class GitHubPageParser {
             throw RSSError.unsupportedFormat
         }
 
-        let languagesList = selectMenuLists.first
+        let languagesList = selectMenuLists.last
 
         guard let linkHrefTags = (try? languagesList?.select("a[href]"))??.array() else {
             throw RSSError.unsupportedFormat
@@ -43,8 +43,11 @@ public class GitHubPageParser {
             throw RSSError.unsupportedFormat
         }
 
-        let languagesList = selectMenuLists[1]
-        let linkTags = (try? languagesList.select("a"))?.array() ?? []
+        let languagesList = selectMenuLists.first
+        
+        guard let linkTags = (try? languagesList?.select("a"))??.array() else {
+            throw RSSError.unsupportedFormat
+        }
 
         let links = GitHubPageParser.specialLinks + linkTags.compactMap { link -> LanguageTrendingLink? in
             guard let title = link.trimmedText,
