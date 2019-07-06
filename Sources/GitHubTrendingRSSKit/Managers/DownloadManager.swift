@@ -42,7 +42,7 @@ public class DownloadManager {
 
             let retriesIfNeeded = { () -> Bool in
                 if retryCount < self.maxRetryCount {
-                    logger.info("   Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
+                    NSLog("   Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
                     DispatchQueue.global().asyncAfter(deadline: .now() + self.retryInterval) {
                         self.fetchWebPage(
                             url: url,
@@ -56,7 +56,7 @@ public class DownloadManager {
             }
 
             if let error = error {
-                logger.error("   Error: \(error)")
+                NSLog("   Error: \(error)")
                 switch error {
                 case URLError.notConnectedToInternet:
                     if retriesIfNeeded() { return }
@@ -82,7 +82,7 @@ public class DownloadManager {
                 return
             } else {
                 let remaining = response.allHeaderFields["X-RateLimit-Remaining"] ?? "-"
-                logger.info("<- \(response.statusCode) \(urlForDisplay) [RateLimit-Remaining: \(remaining)]")
+                NSLog("<- \(response.statusCode) \(urlForDisplay) [RateLimit-Remaining: \(remaining)]")
                 switch response.statusCode {
                 case 429, 403:
                     if retriesIfNeeded() {
@@ -96,7 +96,7 @@ public class DownloadManager {
             }
         }
 
-        logger.info("-> \(request.httpMethod ?? "???"): \(urlForDisplay)")
+        NSLog("-> \(request.httpMethod ?? "???"): \(urlForDisplay)")
         task.resume()
     }
 

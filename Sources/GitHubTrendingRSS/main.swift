@@ -22,13 +22,13 @@ func setup() {
     do {
         parsed = try parser.parse(arguments)
     } catch {
-        logger.error("Error: \(error) \n\n")
+        NSLog("Error: \(error) \n\n")
         parser.printUsage(on: stdoutStream)
         exit(1)
     }
 
     guard let clientID = parsed.get(clientIDArgument), let clientSecret = parsed.get(clientSecretArgument) else {
-        logger.error("Error: Please specify the GitHub client ID and secret.")
+        NSLog("Error: Please specify the GitHub client ID and secret.")
         parser.printUsage(on: stdoutStream)
         exit(1)
     }
@@ -46,7 +46,7 @@ let gitHubDownloader = GitHubDownloader(
 let feedManager = FeedManager(outputDirectory: Const.outputDirectory)
 
 guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
-    logger.error("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
+    NSLog("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
     exit(1)
 }
 
@@ -87,4 +87,4 @@ for period in Period.allCases {
 }
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)
-logger.info("- Saved to \(feedManager.rootOutputDirectory.path)")
+NSLog("- Saved to \(feedManager.rootOutputDirectory.path)")
