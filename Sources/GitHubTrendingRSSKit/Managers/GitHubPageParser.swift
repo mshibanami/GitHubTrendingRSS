@@ -44,7 +44,7 @@ public class GitHubPageParser {
         }
 
         let languagesList = selectMenuLists.first
-        
+
         guard let linkTags = (try? languagesList?.select("a"))??.array() else {
             throw RSSError.unsupportedFormat
         }
@@ -59,5 +59,31 @@ public class GitHubPageParser {
                 href: href)
         }
         return links
+    }
+
+    public func repositories(fromTrendingPage trendingPage: String) throws -> [Repository] {
+        guard let parsed = try? SwiftSoup.parse(trendingPage) else {
+            throw RSSError.unsupportedFormat
+        }
+
+        let repositoryArticleList = try parsed.select("article")
+        var repositories = [Repository]()
+
+        for li in repositoryArticleList {
+            guard let titleATag = try? li.select("h1 > a"),
+                let summaryPTag = try? li.select("p") else {
+                    continue
+            }
+
+            guard let summary = summaryPTag.trimmedText,
+                let href = try? titleATag.attr("href") else {
+                    continue
+            }
+            let repositoryPageLink = RepositoryPageLink(href: href)
+            repositories.append(
+                Repository(pageLink: repositoryPageLink,
+                           summary: summary))
+        }
+        return repositories
     }
 }

@@ -10,7 +10,7 @@ public extension String {
             .replacingOccurrences(of: "<", with: "&lt;")
             .replacingOccurrences(of: ">", with: "&gt;")
     }
-    
+
     func prefixDeleted(prefix: String) -> String {
         guard hasPrefix(prefix) else {
             return self

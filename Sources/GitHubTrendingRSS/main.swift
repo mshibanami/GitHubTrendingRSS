@@ -26,7 +26,7 @@ func setup() {
         parser.printUsage(on: stdoutStream)
         exit(1)
     }
-    
+
     guard let clientID = parsed.get(clientIDArgument), let clientSecret = parsed.get(clientSecretArgument) else {
         logger.error("Error: Please specify the GitHub client ID and secret.")
         parser.printUsage(on: stdoutStream)
@@ -37,11 +37,12 @@ func setup() {
 setup()
 
 let downloadManager = DownloadManager()
+let gitHubPageParser = GitHubPageParser()
 let gitHubDownloader = GitHubDownloader(
     downloadManager: downloadManager,
+    gitHubPageParser: gitHubPageParser,
     clientID: Const.gitHubClientID,
     clientSecret: Const.gitHubClientSecret)
-let gitHubPageParser = GitHubPageParser()
 let feedManager = FeedManager(outputDirectory: Const.outputDirectory)
 
 guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
@@ -56,7 +57,7 @@ for period in Period.allCases {
     let linkChunks = languageLinks.chunked(into: languageLinks.count / parallelDownloadingChunk)
     var fetchRepositoriesList: [Single<Void>] = []
     let semaphore = DispatchSemaphore(value: 0)
-    
+
     for linkChunk in linkChunks {
         var fetchRepositories = Single.just(())
         for link in linkChunk {

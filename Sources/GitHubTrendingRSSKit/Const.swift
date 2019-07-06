@@ -4,7 +4,7 @@ import Foundation
 
 public class Const {
     public static let bundleIdentifier = "io.github.mshibanami.GitHubTrendingRSS"
-  
+
     public static let rssHomeURL = URL(string: "http://mshibanami.github.io/GitHubTrendingRSS")!
     public static let gitHubAPIBaseURL = URL(string: "https://api.github.com")!
     public static let gitHubTopTrendingURL = URL(string: "\(gitHubBaseURL)/trending")!
@@ -65,7 +65,7 @@ public class Const {
         "tex",
         "typescript",
         "xml",
-        "xslt",
+        "xslt"
     ]
 
     public static func setup(gitHubClientID: String, gitHubClientSecret: String) {

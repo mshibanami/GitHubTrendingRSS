@@ -7,23 +7,23 @@ import XCTest
 class TestResources {
     enum TrendingPageType {
         case top
-        case language(title: String)
+        case language(name: String)
     }
-    
+
     static var rootURL: URL {
         let url = URL(fileURLWithPath: #file)
             .deletingLastPathComponent()
             .deletingLastPathComponent()
             .deletingLastPathComponent()
             .appendingPathComponent("TestResources")
-        
+
         guard url.hasDirectoryPath else {
             fatalError("Test resources folder doesn't exist: \(url.absoluteString)")
         }
-        
+
         return url
     }
-    
+
     static func trendingPage(of pageType: TrendingPageType) -> String {
         let fileName: String
         switch pageType {

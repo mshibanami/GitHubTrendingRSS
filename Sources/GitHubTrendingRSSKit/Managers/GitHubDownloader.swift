@@ -6,12 +6,14 @@ import SwiftSoup
 
 public class GitHubDownloader {
     let downloadManager: DownloadManager
+    let gitHubPageParser: GitHubPageParser
     let gitHubAPIBaseQueryItems: [URLQueryItem]
 
     private var disposeBag = DisposeBag()
 
-    public init(downloadManager: DownloadManager, clientID: String, clientSecret: String) {
+    public init(downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, clientID: String, clientSecret: String) {
         self.downloadManager = downloadManager
+        self.gitHubPageParser = gitHubPageParser
         self.gitHubAPIBaseQueryItems = [
             URLQueryItem(name: "client_id", value: clientID),
             URLQueryItem(name: "client_secret", value: clientSecret)]
@@ -19,31 +21,11 @@ public class GitHubDownloader {
 
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, needsReadMe: Bool) -> Single<[Repository]> {
         var fetchRepositories: Single<[Repository]> = downloadManager.fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
-            .map { page -> [Repository] in
-                guard let parsed = try? SwiftSoup.parse(page) else {
-                    throw RSSError.unsupportedFormat
+            .map { [weak self] page -> [Repository] in
+                guard let self = self else {
+                    throw RSSError.unknown
                 }
-
-                let repositoryLIList = try parsed.select("ol.repo-list > li")
-
-                var repositories = [Repository]()
-
-                for li in repositoryLIList {
-                    guard let titleATag = try? li.select("h3 > a"),
-                        let summaryPTag = try? li.select("p") else {
-                            continue
-                    }
-
-                    guard let summary = summaryPTag.trimmedText,
-                        let href = try? titleATag.attr("href") else {
-                            continue
-                    }
-                    let repositoryPageLink = RepositoryPageLink(href: href)
-                    repositories.append(
-                        Repository(pageLink: repositoryPageLink,
-                                   summary: summary))
-                }
-                return repositories
+                return try self.gitHubPageParser.repositories(fromTrendingPage: page)
         }
         if needsReadMe {
             fetchRepositories = fetchRepositories.flatMap { [weak self] repositories in

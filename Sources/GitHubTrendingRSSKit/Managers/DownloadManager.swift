@@ -29,7 +29,7 @@ public class DownloadManager {
         let session = URLSession.shared
 
         let urlForDisplay = "\(url.host ?? "")\(url.path)"
-        
+
         var request = URLRequest(url: url)
         for keyValue in header {
             request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
@@ -75,7 +75,7 @@ public class DownloadManager {
                 completion(nil, DownloadError.noResponce)
                 return
             }
-            
+
             if response.statusCode == 200 {
                 let htmlResponse = String(data: data, encoding: .utf8)
                 completion(htmlResponse, nil)

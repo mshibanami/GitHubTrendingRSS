@@ -1,7 +1,7 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
-import Foundation
 import Down
+import Foundation
 import SwiftSoup
 
 public extension Repository {
@@ -46,13 +46,13 @@ public extension Repository {
                             if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
                                 absoluteURL += "?sanitize=true"
                             }
-                            
+
                             _ = try? element.attr(attribute, absoluteURL)
                         }
                     }
                 }
             }
-            return (try? parsedHTML.body()?.html()) ?? nil
+            return (try? parsedHTML.body()?.html())
         }
         return nil
     }

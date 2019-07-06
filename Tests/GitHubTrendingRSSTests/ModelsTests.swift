@@ -27,7 +27,7 @@ final class ModelsTests: XCTestCase {
         let html = repository1.readMeHTML()!
         XCTAssertTrue(html.contains("https://raw.githubusercontent.com/user/repo/master/world.svg?sanitize=true"))
     }
-  
+
     func testRootURL() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),

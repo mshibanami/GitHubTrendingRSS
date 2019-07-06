@@ -6,10 +6,10 @@ import GitHubTrendingRSSKit
 
 final class GitHubPageParserTests: XCTestCase {
     let parser = GitHubPageParser()
-    
+
     func testParsePeriodSpecifiedTrendingPageLinks() throws {
         let topTrendingPage = TestResources.trendingPage(of: .top)
-        
+
         let pageLinks = try parser
             .periodSpecifiedTrendingPageLinks(fromTopTrendingPage: topTrendingPage)
         XCTAssertEqual(pageLinks.count, 3)
@@ -23,5 +23,15 @@ final class GitHubPageParserTests: XCTestCase {
         XCTAssertEqual(firstTrendingLink.displayName, "All Languages")
         XCTAssertEqual(firstTrendingLink.url(ofPeriod: .daily).absoluteString, "https://github.com/trending?since=daily")
         XCTAssertEqual(firstTrendingLink.href, "/trending")
+    }
+
+    func testParse() throws {
+        let swiftTrendingPage = TestResources.trendingPage(of: .language(name: "swift"))
+        let repositories = try parser.repositories(fromTrendingPage: swiftTrendingPage)
+        XCTAssertEqual(repositories.count, 25)
+        let repository = repositories.first!
+        XCTAssertEqual(repository.pageLink.repositoryName, "Pock")
+        XCTAssertEqual(repository.pageLink.href, "/pigigaldi/Pock")
+        XCTAssertEqual(repository.summary, "Display macOS Dock in Touch Bar")
     }
 }
