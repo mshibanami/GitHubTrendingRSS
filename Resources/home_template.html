@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta content="IE=edge" http-equiv="X-UA-Compatible" />
+    <meta content="width=device-width, initial-scale=1" name="viewport" />
+    <meta content="{{ information.author }}" name="author" />
+    <meta content="website" property="og:type" />
+    <meta content="{{ information.pageTitle }}" property="og:title" />
+    <meta content="./static/img/favicon-196.png" property="og:image" />
+    <meta content="{{ information.rssHomeURL }}" property="og:url" />
+    <meta content="en_US" property="og:locale" />
+    <title>{{ information.pageTitle }}</title>
+    <link rel="stylesheet prefetch" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.7.5/css/bulma.css" />
+    <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.6.3/css/all.css" integrity="sha384-UHRtZLI+pbxtHCWp1t77Bi1L4ZtiqrqD80Kn4Z8NTSRyMA2Fd33n5dQ8lWUE00s/" crossorigin="anonymous" />
+    <link rel="stylesheet" href="./static/css/main.css" />
+    <link href="./static/img/favicon-196.png" rel="shortcut icon" type="image/png" />
+    <link href="./static/img/favicon-196.png" rel="shortcut icon" sizes="196x196" />
+    <link href="./static/img/favicon-196.png" rel="apple-touch-icon" />
+    <script async src="https://www.googletagmanager.com/gtag/js?id={{ information.googleAnalyticsTrackingCode }}"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', '{{ information.googleAnalyticsTrackingCode }}');
+      </script>
+  </head>
+  <body>
+    <section class="hero is-info is-small">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <p class="title">
+          {{ information.pageTitle }}
+          </p>
+          <div class="content">
+            <p>
+            <a href="https://travis-ci.org/mshibanami/GitHubTrendingRSS">
+              <img src="https://travis-ci.org/mshibanami/GitHubTrendingRSS.svg?branch=master">
+                </a>
+            <a class="github-button" href="https://github.com/mshibanami/GitHubTrendingRSS" data-size="small" data-show-count="true" aria-label="Star mshibanami/GitHubTrendingRSS on GitHub">
+              Star
+            </a>
+            </p>
+            <p>The latest build: {{ latestBuildDate }}</p>
+          </div>
+        </div>
+      </div>
+    </section>
+    <section class="container">
+      <div class="section">
+        <div class="row columns is-multiline">
+          {% for link, urlEncodedName in languageTrendingLinks %}
+          <div class="column is-one-third">
+            <div class="card language">
+              <div class="card-content">
+                <div class="media">
+                  <div class="media-content has-text-centered">
+                    <p class="title is-4">
+                    {{ link.displayName }}
+                    </p>
+                  </div>
+                </div>
+              </div>
+              <footer class="card-footer">
+                {% for name, capitalizedName in periods %}
+                <a href="./{{ name }}/{{ urlEncodedName }}.xml" class="card-footer-item">
+                  {{ capitalizedName }}
+                </a>
+                {% endfor %}
+              </footer>
+            </div>
+          </div>
+          {% endfor %}
+        </div>
+      </div>
+    </section>
+    <footer class="footer">
+      <div class="container">
+        <div class="content has-text-centered">
+          <a href="{{ information.gitHubRepositoryURL }}">
+            <i class="fab fa-github fa-2x"></i>
+          </a>
+        </div>
+      </div>
+    </footer>
+    <script async defer src="https://buttons.github.io/buttons.js"></script>
+  </body>
+</html>

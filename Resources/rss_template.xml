@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub {{ languageTrendingLink.displayName }} {{ periodText }} Trending</title>
+    <description>{{ periodText }} Trending of {{ languageTrendingLink.displayName }} in GitHub</description>
+    <pubDate>{{ pubDate }}</pubDate>
+    <link>{{ information.rssHomeURL }}</link>
+    {% for description, userID, repositoryName, url, pageLink in repositories %}
+    <item>
+      <title>{{ userID }}/{{ repositoryName }}</title>
+      <link>{{ url }}</link>
+      <description>{{ description }}</description>
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

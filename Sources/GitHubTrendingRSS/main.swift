@@ -6,6 +6,8 @@ import Foundation
 import GitHubTrendingRSSKit
 import RxSwift
 import SPMUtility
+import Stencil
+import PathKit
 
 let parallelDownloadingChunk = 3
 
@@ -43,7 +45,19 @@ let gitHubDownloader = GitHubDownloader(
     gitHubPageParser: gitHubPageParser,
     clientID: Const.gitHubClientID,
     clientSecret: Const.gitHubClientSecret)
-let feedManager = FeedManager(outputDirectory: Const.outputDirectory)
+let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
+let siteInformation = SiteGenerator.Information(
+    pageTitle: Const.pageTitle,
+    author: Const.author,
+    rssHomeURL: Const.rssHomeURL.absoluteString,
+    googleAnalyticsTrackingCode: Const.googleAnalyticsTrackingCode,
+    gitHubRepositoryURL: Const.gitHubRepositoryURL.absoluteString)
+let siteGenerator = SiteGenerator(
+    environment: environment,
+    information: siteInformation)
+let feedManager = FeedManager(
+    outputDirectory: Const.outputDirectory,
+    siteGenerator: siteGenerator)
 
 guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
     NSLog("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
@@ -71,7 +85,7 @@ for period in Period.allCases {
                 }
                 .do(onSuccess: { repositories in
                     _ = try! feedManager.saveRSSFile(
-                        fromRepositories: repositories,
+                        repositories: repositories,
                         languageTrendingLink: link,
                         period: period)
                 })

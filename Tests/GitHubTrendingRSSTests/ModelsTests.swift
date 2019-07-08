@@ -10,8 +10,6 @@ final class ModelsTests: XCTestCase {
             pageLink: RepositoryPageLink(href: "/user/repo"),
             summary: "dummy summary")
         repository1.readMe = APIReadMe()
-        let html = repository1.createFeedEntryHTML()
-        XCTAssertTrue(html.contains("<link>https://github.com/user/repo</link>"))
         XCTAssertEqual(repository1.readMeHTML(), nil)
     }
 

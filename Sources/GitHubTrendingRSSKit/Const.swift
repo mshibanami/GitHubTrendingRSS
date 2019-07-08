@@ -1,6 +1,7 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
+import Stencil
 
 public class Const {
     public static let bundleIdentifier = "io.github.mshibanami.GitHubTrendingRSS"
@@ -12,21 +13,26 @@ public class Const {
     public static let gitHubRepositoryURL = URL(string: "https://github.com/mshibanami/GitHubTrendingRSS")!
     public static let pageTitle = "GitHub Trending RSS"
     public static let author = "Manabu Nakazawa"
-
+    
     public static let outputDirectoryName = "output"
     public static let outputDirectory = URL(fileURLWithPath: FileManager.default.currentDirectoryPath)
         .appendingPathComponent(outputDirectoryName)
+    
+    public static var resourcesRootURL: URL {
+        let url = URL(fileURLWithPath: #file)
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .deletingLastPathComponent()
+            .appendingPathComponent("Resources")
+        
+        guard url.hasDirectoryPath else {
+            fatalError("Test resources folder doesn't exist: \(url.absoluteString)")
+        }
+        return url
+    }
 
-    public static let googleAnalyticsTrackingCode = """
-        <script async src="https://www.googletagmanager.com/gtag/js?id=UA-46019833-3"></script>
-        <script>
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'UA-46019833-3');
-        </script>
-        """
-
+    public static let googleAnalyticsTrackingCode = "UA-46019833-3"
+    
     public private(set) static var gitHubClientID: String!
     public private(set) static var gitHubClientSecret: String!
 

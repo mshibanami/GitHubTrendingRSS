@@ -5,18 +5,6 @@ import Foundation
 import SwiftSoup
 
 public extension Repository {
-    func createFeedEntryHTML() -> String {
-        let url = pageLink.url
-        let description = readMeHTML() ?? summary
-        return """
-            <item>
-                <title>\(pageLink.userID)/\(pageLink.repositoryName)</title>
-                <link>\(url)</link>
-                <description>\(description.xmlEscaped)</description>
-            </item>
-            """
-    }
-
     func readMeHTML() -> String? {
         if let readMe = readMe,
             let readMeContent = readMe.content,
@@ -55,33 +43,5 @@ public extension Repository {
             return (try? parsedHTML.body()?.html())
         }
         return nil
-    }
-}
-
-public extension Array where Element == Repository {
-    func feedHTML(ofLanguage language: LanguageTrendingLink, period: Period) -> String {
-        let entriesString = reduce("") {
-            $0 + $1.createFeedEntryHTML()
-        }
-
-        let formatter = DateFormatter()
-        formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let pubDate = formatter.string(from: Date())
-
-        let feed = """
-            <?xml version="1.0" encoding="UTF-8"?>
-            <rss version="2.0">
-            <channel>
-                <title>GitHub \(language.displayName) \(period.rawValue.capitalized) Trending</title>
-                <description>\(period.rawValue.capitalized) Trending of \(language.displayName) in GitHub</description>
-                <pubDate>\(pubDate)</pubDate>
-                <link>\(Const.rssHomeURL.absoluteString)</link>
-                \(entriesString)
-            </channel>
-            </rss>
-            """
-
-        return feed
     }
 }
