@@ -12,7 +12,7 @@ Feeds of some popular languages (e.g. JavaScript) have more detailed items than 
 
 ## Development
 
-Execute this if you use Xcode:
+Run this if you use Xcode:
 
 ```sh
 swift package generate-xcodeproj --xcconfig-overrides Settings.xcconfig
