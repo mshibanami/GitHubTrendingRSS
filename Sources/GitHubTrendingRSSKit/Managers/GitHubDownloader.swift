@@ -28,26 +28,28 @@ public class GitHubDownloader {
                 return try self.gitHubPageParser.repositories(fromTrendingPage: page)
         }
         if needsReadMe {
-            fetchRepositories = fetchRepositories.flatMap { [weak self] repositories in
-                guard let self = self else {
-                    throw RSSError.unknown
+            fetchRepositories = fetchRepositories
+                .flatMap { [weak self] repositories in
+                    guard let self = self else {
+                        throw RSSError.unknown
+                    }
+                    
+                    var singles = [Single<Repository>]()
+                    for repository in repositories {
+                        singles.append(
+                            self.fetchReadMePage(pageLink: repository.pageLink)
+                                .map {
+                                    var repo = repository
+                                    repo.readMe = $0
+                                    return repo
+                                }
+                                .catchError { _ in
+                                    .just(repository)
+                        })
+                    }
+                    return Single.zip(singles)
                 }
-
-                var singles = [Single<Repository>]()
-                for repository in repositories {
-                    singles.append(
-                        self.fetchReadMePage(pageLink: repository.pageLink)
-                            .map { readMe in
-                                var repo = repository
-                                repo.readMe = readMe
-                                return repo
-                            }
-                            .catchError { _ in
-                                return Single.just(repository)
-                    })
-                }
-                return Single.zip(singles)
-            }
+                .catchErrorJustReturn([])
         }
         return fetchRepositories
     }

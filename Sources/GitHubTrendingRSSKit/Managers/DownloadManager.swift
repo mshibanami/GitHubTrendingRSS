@@ -84,7 +84,7 @@ public class DownloadManager {
                 let remaining = response.allHeaderFields["X-RateLimit-Remaining"] ?? "-"
                 NSLog("<- \(response.statusCode) \(urlForDisplay) [RateLimit-Remaining: \(remaining)]")
                 switch response.statusCode {
-                case 429, 403:
+                case 429, 403, 502:
                     if retriesIfNeeded() {
                         return
                     }
