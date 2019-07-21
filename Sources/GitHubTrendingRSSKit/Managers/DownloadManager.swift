@@ -5,7 +5,7 @@ import RxSwift
 
 public class DownloadManager {
     var maxRetryCount: Int = 10
-    var retryInterval: Double = 5 * 60
+    var retryInterval: Double = 2 * 60
     public init() {}
 
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> Single<String> {
