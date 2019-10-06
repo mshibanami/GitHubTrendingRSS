@@ -4,7 +4,7 @@ import Basic
 import Darwin
 import Foundation
 import GitHubTrendingRSSKit
-import Combine
+import RxSwift
 import SPMUtility
 import Stencil
 import PathKit
@@ -69,41 +69,35 @@ let languageLinks = try gitHubPageParser
 
 for period in Period.allCases {
     let linkChunks = languageLinks.chunked(into: languageLinks.count / parallelDownloadingChunk)
-    var fetchRepositoriesList: [AnyPublisher<Void, Error>] = []
+    var fetchRepositoriesList: [Single<Void>] = []
     let semaphore = DispatchSemaphore(value: 0)
-    
+
     for linkChunk in linkChunks {
-        var fetchRepositories: AnyPublisher<Void, Error>
-            = Swift.Result<Void, Error>.Publisher(()).eraseToAnyPublisher()
+        var fetchRepositories = Single.just(())
         for link in linkChunk {
             fetchRepositories = fetchRepositories
-                .flatMap({ _ in
+                .flatMap { _ in
                     gitHubDownloader
                         .fetchRepositories(
                             ofLink: link,
                             period: period,
                             needsReadMe: Const.populerLanguages.contains(link.name))
-                })
-                .handleEvents(receiveOutput: { repositories in
+                }
+                .do(onSuccess: { repositories in
                     _ = try! feedManager.saveRSSFile(
                         repositories: repositories,
                         languageTrendingLink: link,
                         period: period)
                 })
                 .map { _ in () }
-                .eraseToAnyPublisher()
         }
         fetchRepositoriesList.append(fetchRepositories)
     }
-    let subscriber = Publishers.Sequence<[AnyPublisher<Void, Error>], Error>(sequence: fetchRepositoriesList)
-        .flatMap { $0 }
-        .collect()
-        .sink(receiveCompletion: { _ in
+    _ = Single.zip(fetchRepositoriesList)
+        .subscribe({ _ in
             semaphore.signal()
-        }, receiveValue: { _ in })
-    
+        })
     semaphore.wait()
-    subscriber.cancel()
 }
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)

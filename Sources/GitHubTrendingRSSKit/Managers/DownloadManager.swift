@@ -1,27 +1,28 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
-import Combine
+import RxSwift
 
 public class DownloadManager {
     var maxRetryCount: Int = 10
     var retryInterval: Double = 2 * 60
     public init() {}
 
-    public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> AnyPublisher<String, Error> {
-        return Future<String, Error> { promise in
+    public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> Single<String> {
+        return Single<String>.create { observer in
             self.fetchWebPage(url: url, header: header, retryCount: retryCount) { response, error in
                 if let error = error {
-                    promise(.failure(error))
+                    observer(.error(error))
                     return
                 }
                 guard let response = response else {
-                    promise(.failure(DownloadError.unknown))
+                    observer(.error(DownloadError.unknown))
                     return
                 }
-                promise(.success(response))
+                observer(.success(response))
             }
-        }.eraseToAnyPublisher()
+            return Disposables.create()
+        }
     }
 
     public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0, completion: @escaping (String?, Error?) -> Void) {
@@ -99,7 +100,7 @@ public class DownloadManager {
         task.resume()
     }
 
-    public func fetchWebPageSync(url: URL, header: [String: String] = [:]) -> String? {
+    public func fetchWebPage(url: URL, header: [String: String] = [:]) -> String? {
         var htmlResponse: String?
         let semaphore = DispatchSemaphore(value: 0)
 
