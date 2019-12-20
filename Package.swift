@@ -1,4 +1,4 @@
-// swift-tools-version:5.0
+// swift-tools-version:5.1
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import PackageDescription
@@ -35,5 +35,6 @@ let package = Package(
             dependencies: [
                 "GitHubTrendingRSSKit",
             ]),
-    ]
+    ],
+    swiftLanguageVersions: [.v5]
 )
