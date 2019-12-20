@@ -1,7 +1,6 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
-import Stencil
 
 public class Const {
     public static let bundleIdentifier = "io.github.mshibanami.GitHubTrendingRSS"
