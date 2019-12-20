@@ -36,17 +36,12 @@ public class GitHubPageParser {
 
     public func languageTrendingLinks(fromTopTrendingPage topTrendingPage: String) throws -> [LanguageTrendingLink] {
         let parsed = try SwiftSoup.parse(topTrendingPage)
-
+        
         let selectMenuLists = (try? parsed.select("div.select-menu-list"))?.array() ?? []
-
-        guard selectMenuLists.count == 2 else {
-            throw RSSError.unsupportedFormat
-        }
-
-        let languagesList = selectMenuLists.first
-
-        guard let linkTags = (try? languagesList?.select("a"))??.array() else {
-            throw RSSError.unsupportedFormat
+        
+        guard let languagesList = selectMenuLists.first(where: { $0.id() == "languages-menuitems" }),
+            let linkTags = (try? languagesList.select("a"))?.array() else {
+                throw RSSError.unsupportedFormat
         }
 
         let links = GitHubPageParser.specialLinks + linkTags.compactMap { link -> LanguageTrendingLink? in
