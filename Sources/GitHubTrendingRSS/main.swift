@@ -9,7 +9,7 @@ import PathKit
 
 RunCommand().parseAndRun()
 
-let parallelDownloadChunk = 3
+let parallelDownloadChunk = 4
 let downloadManager = DownloadManager()
 let gitHubPageParser = GitHubPageParser()
 let gitHubDownloader = GitHubDownloader(
