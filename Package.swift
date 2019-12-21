@@ -9,7 +9,7 @@ let package = Package(
         .macOS(.v10_14)
     ],
     dependencies: [
-        .package(url: "https://github.com/apple/swift-package-manager.git", from: "0.5.0"),
+        .package(url: "https://github.com/hartbit/Yaap.git", from: "1.0.0"),
         .package(url: "https://github.com/iwasrobbed/Down.git", from: "0.9.0"),
         .package(url: "https://github.com/ReactiveX/RxSwift.git", from: "5.0.1"),
         .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.2.2"),
@@ -20,7 +20,7 @@ let package = Package(
             name: "GitHubTrendingRSS",
             dependencies: [
               "GitHubTrendingRSSKit",
-              "SPMUtility",
+              "Yaap",
           ]),
         .target(
             name: "GitHubTrendingRSSKit",
