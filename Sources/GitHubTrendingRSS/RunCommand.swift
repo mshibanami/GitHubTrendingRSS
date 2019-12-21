@@ -8,6 +8,9 @@ class RunCommand: Command {
     let name = "run"
     let help = Help()
 
+    @Option(name: "configuration", shorthand: "c", documentation: "(Dummy. Reserved by Swift.)")
+    var configuration: String = ""
+
     @Option(name: "client-id", documentation: "GitHub's client ID")
     var clientID: String = ""
     
