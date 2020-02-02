@@ -5,8 +5,8 @@ cd "$(dirname "${BASH_SOURCE:-$0}")"
 
 BRANCH_NAME="gh-pages"
 OUTPUT_PATH="output"
-GIT_USER_EMAIL="mshibanami+git@gmail.com"
-GIT_USER_NAME="Manabu Nakazawa"
+GIT_USER_EMAIL="github_action_bot@example.com"
+GIT_USER_NAME="GitHub Action Bot"
 
 if [ -z "$GITHUB_TOKEN" ]; then
     echo "Please set the environment value 'GITHUB_TOKEN'." 1>&2
