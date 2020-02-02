@@ -8,8 +8,8 @@ OUTPUT_PATH="output"
 GIT_USER_EMAIL="github_action_bot@example.com"
 GIT_USER_NAME="GitHub Action Bot"
 
-if [ -z "$GITHUB_TOKEN" ]; then
-    echo "Please set the environment value 'GITHUB_TOKEN'." 1>&2
+if [ -z "$USER_GITHUB_TOKEN" ]; then
+    echo "Please set the environment value 'USER_GITHUB_TOKEN'." 1>&2
     exit 1
 fi
 
@@ -18,7 +18,7 @@ if [ -f "$OUTPUT_PATH" ]; then
     exit 1
 fi
 
-GIT_REPO_URL="https://mshibanami:${GITHUB_TOKEN}@github.com/mshibanami/GitHubTrendingRSS.git"
+GIT_REPO_URL="https://mshibanami:${USER_GITHUB_TOKEN}@github.com/mshibanami/GitHubTrendingRSS.git"
 
 cd output
 

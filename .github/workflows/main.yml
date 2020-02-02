@@ -17,4 +17,6 @@ jobs:
         USER_GITHUB_CLIENT_SECRET: ${{ secrets.USER_GITHUB_CLIENT_SECRET }}
       run: ./build.sh
     - name: Deploy
+      env:
+        USER_GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
       run: ./deploy.sh
