@@ -3,7 +3,7 @@
 import Darwin
 import Foundation
 import GitHubTrendingRSSKit
-import RxSwift
+import Combine
 import Stencil
 import PathKit
 
@@ -41,35 +41,41 @@ let languageLinks = try gitHubPageParser
 
 for period in Period.allCases {
     let linkChunks = languageLinks.chunked(into: languageLinks.count / parallelDownloadChunk)
-    var fetchRepositoriesList: [Single<Void>] = []
+    var fetchRepositoriesList: [AnyPublisher<Void, Error>] = []
     let semaphore = DispatchSemaphore(value: 0)
-
+    
     for linkChunk in linkChunks {
-        var fetchRepositories = Single.just(())
+        var fetchRepositories: AnyPublisher<Void, Error>
+            = Swift.Result<Void, Error>.Publisher(()).eraseToAnyPublisher()
         for link in linkChunk {
             fetchRepositories = fetchRepositories
-                .flatMap { _ in
+                .flatMap({ _ in
                     gitHubDownloader
                         .fetchRepositories(
                             ofLink: link,
                             period: period,
                             needsReadMe: Const.populerLanguages.contains(link.name))
-                }
-                .do(onSuccess: { repositories in
+                })
+                .handleEvents(receiveOutput: { repositories in
                     _ = try! feedManager.saveRSSFile(
                         repositories: repositories,
                         languageTrendingLink: link,
                         period: period)
                 })
                 .map { _ in () }
+                .eraseToAnyPublisher()
         }
         fetchRepositoriesList.append(fetchRepositories)
     }
-    _ = Single.zip(fetchRepositoriesList)
-        .subscribe({ _ in
+    let subscriber = Publishers.Sequence<[AnyPublisher<Void, Error>], Error>(sequence: fetchRepositoriesList)
+        .flatMap { $0 }
+        .collect()
+        .sink(receiveCompletion: { _ in
             semaphore.signal()
-        })
+        }, receiveValue: { _ in })
+    
     semaphore.wait()
+    subscriber.cancel()
 }
 
 _ = try feedManager.saveRSSListFile(languageLinks: languageLinks)
