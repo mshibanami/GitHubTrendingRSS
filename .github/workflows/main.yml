@@ -10,6 +10,9 @@ jobs:
     runs-on: macos-10.15
 
     steps:
+      with:
+        USER_GITHUB_CLIENT_ID: ${{ secrets.USER_GITHUB_CLIENT_ID }}
+        USER_GITHUB_CLIENT_SECRET: ${{ secrets.USER_GITHUB_CLIENT_SECRET }}
     - uses: actions/checkout@v2
     - name: Build
       run: ./build.sh
