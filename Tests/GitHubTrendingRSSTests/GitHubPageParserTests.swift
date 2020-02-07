@@ -10,10 +10,6 @@ final class GitHubPageParserTests: XCTestCase {
     func testParsePeriodSpecifiedTrendingPageLinks() throws {
         let topTrendingPage = TestResources.trendingPage(of: .top)
 
-        let pageLinks = try parser
-            .periodSpecifiedTrendingPageLinks(fromTopTrendingPage: topTrendingPage)
-        XCTAssertEqual(pageLinks.count, 3)
-
         let languageTrendingLinks = try parser
             .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
@@ -30,8 +26,8 @@ final class GitHubPageParserTests: XCTestCase {
         let repositories = try parser.repositories(fromTrendingPage: swiftTrendingPage)
         XCTAssertEqual(repositories.count, 25)
         let repository = repositories.first!
-        XCTAssertEqual(repository.pageLink.repositoryName, "Pock")
-        XCTAssertEqual(repository.pageLink.href, "/pigigaldi/Pock")
-        XCTAssertEqual(repository.summary, "Display macOS Dock in Touch Bar")
+        XCTAssertEqual(repository.pageLink.repositoryName, "DarkModeKit")
+        XCTAssertEqual(repository.pageLink.href, "/microsoft/DarkModeKit")
+        XCTAssertEqual(repository.summary, "A library for backporting Dark Mode in iOS")
     }
 }

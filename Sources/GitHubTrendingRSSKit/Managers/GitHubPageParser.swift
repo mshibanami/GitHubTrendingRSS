@@ -11,29 +11,6 @@ public class GitHubPageParser {
 
     public init() {}
 
-    public func periodSpecifiedTrendingPageLinks(fromTopTrendingPage topTrendingPage: String) throws -> [PageLink] {
-        let parsed = try SwiftSoup.parse(topTrendingPage)
-        let selectMenuLists = try parsed.select("div.select-menu-list").array()
-
-        guard selectMenuLists.count == 2 else {
-            throw RSSError.unsupportedFormat
-        }
-
-        let languagesList = selectMenuLists.last
-
-        guard let linkHrefTags = (try? languagesList?.select("a[href]"))??.array() else {
-            throw RSSError.unsupportedFormat
-        }
-
-        let links = linkHrefTags.compactMap { link -> PageLink? in
-            guard let href = try? link.text() else {
-                return nil
-            }
-            return PageLink(href: href)
-        }
-        return links
-    }
-
     public func languageTrendingLinks(fromTopTrendingPage topTrendingPage: String) throws -> [LanguageTrendingLink] {
         let parsed = try SwiftSoup.parse(topTrendingPage)
         
