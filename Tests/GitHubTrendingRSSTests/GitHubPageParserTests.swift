@@ -13,7 +13,7 @@ final class GitHubPageParserTests: XCTestCase {
         let languageTrendingLinks = try parser
             .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
-        XCTAssertEqual(languageTrendingLinks.count, 561)
+        XCTAssertEqual(languageTrendingLinks.count, 564)
         let firstTrendingLink = languageTrendingLinks.first!
         XCTAssertEqual(firstTrendingLink.name, "all")
         XCTAssertEqual(firstTrendingLink.displayName, "All Languages")
@@ -26,8 +26,8 @@ final class GitHubPageParserTests: XCTestCase {
         let repositories = try parser.repositories(fromTrendingPage: swiftTrendingPage)
         XCTAssertEqual(repositories.count, 25)
         let repository = repositories.first!
-        XCTAssertEqual(repository.pageLink.repositoryName, "DarkModeKit")
-        XCTAssertEqual(repository.pageLink.href, "/microsoft/DarkModeKit")
-        XCTAssertEqual(repository.summary, "A library for backporting Dark Mode in iOS")
+        XCTAssertEqual(repository.pageLink.repositoryName, "dp3t-app-ios-ch")
+        XCTAssertEqual(repository.pageLink.href, "/DP-3T/dp3t-app-ios-ch")
+        XCTAssertEqual(repository.summary, "This is a COVID-19 tracing client using the DP3T iOS SDK.")
     }
 }

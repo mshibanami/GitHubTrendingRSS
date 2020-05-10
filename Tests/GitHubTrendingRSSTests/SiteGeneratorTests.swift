@@ -7,23 +7,23 @@ import PathKit
 
 final class SiteGeneratorTests: XCTestCase {
     let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
-    let information = SiteGenerator.Information(
+    let information = SiteSourceMaker.Information(
         pageTitle: "page title",
         author: "spring water",
         rssHomeURL: "rss home url",
         googleAnalyticsTrackingCode: "141421356",
         gitHubRepositoryURL: "github repository url")
     
-    var generator: SiteGenerator!
+    var maker: SiteSourceMaker!
     
     override func setUp() {
-        generator = SiteGenerator(
+        maker = SiteSourceMaker(
             environment: environment,
             information: information)
     }
     
     func testGenerateRSSListHTML() throws {
-        let html = try generator.generateHomeHTML(languageTrendingLinks: [
+        let html = try maker.makeHomeHTML(from: [
             LanguageTrendingLink(displayName: "Hello", href: "/mshibanami/hello"),
             LanguageTrendingLink(displayName: "World", href: "/mshibanami/world"),])
         
@@ -35,8 +35,8 @@ final class SiteGeneratorTests: XCTestCase {
     }
     
     func testGenerateRSS() throws {
-        let html = try generator.generateRSS(
-            languageTrendingLink: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
+        let html = try maker.makeRSS(
+            from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
             period: .weekly,
             repositories: [
             Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"),
