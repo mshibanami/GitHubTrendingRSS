@@ -3,7 +3,7 @@
 import Foundation
 import Stencil
 
-public class SiteGenerator {
+public class SiteSourceMaker {
     public struct Information {
         public let pageTitle: String
         public let author: String
@@ -28,7 +28,7 @@ public class SiteGenerator {
         self.information = information
     }
     
-    public func generateHomeHTML(languageTrendingLinks: [LanguageTrendingLink] ) throws -> String {
+    public func makeHomeHTML(from languageTrendingLinks: [LanguageTrendingLink] ) throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMMM, yyyy"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -48,7 +48,7 @@ public class SiteGenerator {
             context: context)
     }
     
-    public func generateRSS(languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository]) throws -> String {
+    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository]) throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -60,7 +60,7 @@ public class SiteGenerator {
             "periodText": period.rawValue.capitalized,
             "pubDate": pubDate,
             "repositories": repositories.map({
-                (description: ($0.readMeHTML() ?? $0.summary).xmlEscaped,
+                (description: ($0.makeReadMeHTML() ?? $0.summary).xmlEscaped,
                  userID: $0.pageLink.userID,
                  repositoryName: $0.pageLink.repositoryName,
                  url: $0.pageLink.url.absoluteString,

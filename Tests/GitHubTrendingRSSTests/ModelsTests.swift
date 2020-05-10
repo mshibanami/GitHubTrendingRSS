@@ -10,7 +10,7 @@ final class ModelsTests: XCTestCase {
             pageLink: RepositoryPageLink(href: "/user/repo"),
             summary: "dummy summary")
         repository1.readMe = APIReadMe()
-        XCTAssertEqual(repository1.readMeHTML(), nil)
+        XCTAssertEqual(repository1.makeReadMeHTML(), nil)
     }
 
     func testSanitizedSVGImage1() throws {
@@ -22,7 +22,7 @@ final class ModelsTests: XCTestCase {
         repository1.readMe?.repositoryName = "repo"
         repository1.readMe?.url = "https://api.github.com/repos/user/repo/contents/README.md?ref=master"
         repository1.readMe!.content = "![hi](/world.svg)"
-        let html = repository1.readMeHTML()!
+        let html = repository1.makeReadMeHTML()!
         XCTAssertTrue(html.contains("https://raw.githubusercontent.com/user/repo/master/world.svg?sanitize=true"))
     }
 
@@ -35,7 +35,7 @@ final class ModelsTests: XCTestCase {
         repository1.readMe?.repositoryName = "repo"
         repository1.readMe?.url = "https://api.github.com/repos/user/repo/contents/README.md?ref=master"
         repository1.readMe?.content = "[hello](/world.jpg)"
-        let html = repository1.readMeHTML()!
+        let html = repository1.makeReadMeHTML()!
         XCTAssertTrue(html.contains("https://raw.githubusercontent.com/user/repo/master/world.jpg"))
     }
 
@@ -48,7 +48,7 @@ final class ModelsTests: XCTestCase {
         repository1.readMe?.repositoryName = "repo"
         repository1.readMe?.url = "https://api.github.com/repos/user/repo/contents/README.md?ref=master"
         repository1.readMe!.content = "[hi](hello.svg)"
-        let html = repository1.readMeHTML()!
+        let html = repository1.makeReadMeHTML()!
         XCTAssertTrue(html.contains(#""https://raw.githubusercontent.com/user/repo/master/hello.svg""#))
     }
 }

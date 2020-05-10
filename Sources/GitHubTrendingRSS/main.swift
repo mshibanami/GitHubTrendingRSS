@@ -18,20 +18,20 @@ let gitHubDownloader = GitHubDownloader(
     clientID: Const.gitHubClientID,
     clientSecret: Const.gitHubClientSecret)
 let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
-let siteInformation = SiteGenerator.Information(
+let siteInformation = SiteSourceMaker.Information(
     pageTitle: Const.pageTitle,
     author: Const.author,
     rssHomeURL: Const.rssHomeURL.absoluteString,
     googleAnalyticsTrackingCode: Const.googleAnalyticsTrackingCode,
     gitHubRepositoryURL: Const.gitHubRepositoryURL.absoluteString)
-let siteGenerator = SiteGenerator(
+let siteGenerator = SiteSourceMaker(
     environment: environment,
     information: siteInformation)
-let feedManager = FeedManager(
+let feedManager = FeedFileCreator(
     outputDirectory: Const.outputDirectory,
     siteGenerator: siteGenerator)
 
-guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPage() else {
+guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPageSync() else {
     NSLog("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
     exit(1)
 }
@@ -57,7 +57,7 @@ for period in Period.allCases {
                             needsReadMe: Const.populerLanguages.contains(link.name))
                 })
                 .handleEvents(receiveOutput: { repositories in
-                    _ = try! feedManager.saveRSSFile(
+                    _ = try! feedManager.createRSSFile(
                         repositories: repositories,
                         languageTrendingLink: link,
                         period: period)
@@ -78,5 +78,5 @@ for period in Period.allCases {
     subscriber.cancel()
 }
 
-_ = try feedManager.saveRSSListFile(languageLinks: languageLinks)
+_ = try feedManager.createRSSListFile(languageLinks: languageLinks)
 NSLog("- Saved to \(feedManager.rootOutputDirectory.path)")

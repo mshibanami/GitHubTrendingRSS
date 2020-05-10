@@ -2,19 +2,19 @@
 
 import Foundation
 
-public class FeedManager {
-    public let siteGenerator: SiteGenerator
+public class FeedFileCreator {
+    public let siteGenerator: SiteSourceMaker
     public let rootOutputDirectory: URL
 
-    public init(outputDirectory: URL, siteGenerator: SiteGenerator) {
+    public init(outputDirectory: URL, siteGenerator: SiteSourceMaker) {
         self.siteGenerator = siteGenerator
         self.rootOutputDirectory = outputDirectory
     }
 
-    public func saveRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period) throws -> URL {
+    public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period) throws -> URL {
         let fileManager = FileManager.default
-        let feedHTML = try siteGenerator.generateRSS(
-            languageTrendingLink: languageTrendingLink,
+        let feedHTML = try siteGenerator.makeRSS(
+            from: languageTrendingLink,
             period: period,
             repositories: repositories)
 
@@ -38,14 +38,14 @@ public class FeedManager {
         return fileURL
     }
 
-    public func saveRSSListFile(languageLinks: [LanguageTrendingLink]) throws -> URL {
+    public func createRSSListFile(languageLinks: [LanguageTrendingLink]) throws -> URL {
         let fileManager = FileManager.default
         try fileManager.createDirectory(
             at: rootOutputDirectory,
             withIntermediateDirectories: true,
             attributes: nil)
 
-        let html = try siteGenerator.generateHomeHTML(languageTrendingLinks: languageLinks)
+        let html = try siteGenerator.makeHomeHTML(from: languageLinks)
         let fileURL = rootOutputDirectory.appendingPathComponent("index.html")
 
         guard fileManager.createFile(

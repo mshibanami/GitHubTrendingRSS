@@ -14,7 +14,7 @@ public struct Repository {
         self.summary = summary
     }
     
-    public func readMeHTML() -> String? {
+    public func makeReadMeHTML() -> String? {
         if let readMe = readMe,
             let readMeContent = readMe.content,
             let readMeHTML = try? Down(markdownString: readMeContent).toHTML(),
@@ -36,16 +36,15 @@ public struct Repository {
                     for attribute in attributes {
                         guard let url = try? element.attr(attribute).prefixDeleted(prefix: "/"),
                             let baseURL = readMe.fileRootURL,
-                            var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
+                            var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString,
+                            absoluteURL != url else {
                                 continue
                         }
-                        if absoluteURL != url {
-                            if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
-                                absoluteURL += "?sanitize=true"
-                            }
-                            
-                            _ = try? element.attr(attribute, absoluteURL)
+                        if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
+                            absoluteURL += "?sanitize=true"
                         }
+                        
+                        _ = try? element.attr(attribute, absoluteURL)
                     }
                 }
             }
