@@ -18,3 +18,12 @@ Run this if you use Xcode:
 ```sh
 swift package generate-xcodeproj --xcconfig-overrides Settings.xcconfig
 ```
+
+## Aknowledgements
+
+- [stencilproject / Stencil](https://github.com/stencilproject/Stencil)
+- [kylef / PathKit](https://github.com/kylef/PathKit)
+- [scinfu / SwiftSoup](https://github.com/scinfu/SwiftSoup)
+- [iwasrobbed / Down](https://github.com/iwasrobbed/Down)
+- [hartbit / Yaap](https://github.com/hartbit/Yaap)
+- [jgthms / bulma](https://github.com/jgthms/bulma)
