@@ -54,13 +54,15 @@ public class SiteSourceMaker {
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         let pubDate = formatter.string(from: Date())
         
+        let noDescriptionHTML = #"<p style="color:#586069;"><em>No description/README provided.</em></p>"#
+        
         let context: [String: Any] = [
             "languageTrendingLink": languageTrendingLink,
             "information": information,
             "periodText": period.rawValue.capitalized,
             "pubDate": pubDate,
             "repositories": repositories.map({
-                (description: ($0.makeReadMeHTML() ?? $0.summary).xmlEscaped,
+                (description: ($0.makeReadMeHTML(includesSummary: true) ?? noDescriptionHTML).xmlEscaped,
                  userID: $0.pageLink.userID,
                  repositoryName: $0.pageLink.repositoryName,
                  url: $0.pageLink.url.absoluteString,
