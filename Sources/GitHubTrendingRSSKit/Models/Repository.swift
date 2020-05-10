@@ -14,42 +14,50 @@ public struct Repository {
         self.summary = summary
     }
     
-    public func makeReadMeHTML() -> String? {
-        if let readMe = readMe,
+    public func makeReadMeHTML(includesSummary: Bool) -> String? {
+        var html: String?
+        if includesSummary {
+            html = (html ?? "") + summary
+        }
+        
+        guard let readMe = readMe,
             let readMeContent = readMe.content,
             let readMeHTML = try? Down(markdownString: readMeContent).toHTML(),
-            let parsedHTML = try? SwiftSoup.parse(readMeHTML) {
-            
-            let tagAttributesPairs = [
-                "a": ["href"],
-                "area": ["href"],
-                "img": ["src", "longdesc", "usemap"],
-                "link": ["href"],
-                "blockquote": ["cite"]
-            ]
-            
-            for (tag, attributes) in tagAttributesPairs {
-                guard let elements = try? parsedHTML.getElementsByTag(tag) else {
-                    continue
-                }
-                for element in elements {
-                    for attribute in attributes {
-                        guard let url = try? element.attr(attribute).prefixDeleted(prefix: "/"),
-                            let baseURL = readMe.fileRootURL,
-                            var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString,
-                            absoluteURL != url else {
-                                continue
-                        }
-                        if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
-                            absoluteURL += "?sanitize=true"
-                        }
-                        
-                        _ = try? element.attr(attribute, absoluteURL)
+            let parsedHTML = try? SwiftSoup.parse(readMeHTML) else {
+                return html
+        }
+        
+        let tagAttributesPairs = [
+            "a": ["href"],
+            "area": ["href"],
+            "img": ["src", "longdesc", "usemap"],
+            "link": ["href"],
+            "blockquote": ["cite"]
+        ]
+        
+        for (tag, attributes) in tagAttributesPairs {
+            guard let elements = try? parsedHTML.getElementsByTag(tag) else {
+                continue
+            }
+            for element in elements {
+                for attribute in attributes {
+                    guard let url = try? element.attr(attribute).prefixDeleted(prefix: "/"),
+                        let baseURL = readMe.fileRootURL,
+                        var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString,
+                        absoluteURL != url else {
+                            continue
                     }
+                    if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
+                        absoluteURL += "?sanitize=true"
+                    }
+                    
+                    _ = try? element.attr(attribute, absoluteURL)
                 }
             }
-            return (try? parsedHTML.body()?.html())
         }
-        return nil
+        if let readMeHTML = try? parsedHTML.body()?.html() {
+            html = html ?? "" + readMeHTML
+        }
+        return html
     }
 }
