@@ -4,110 +4,58 @@ import Foundation
 import Combine
 
 public class DownloadManager {
-    var maxRetryCount: Int = 10
-    var retryInterval: Double = 2 * 60
+    var maxRetryCount = 10
+    var retryInterval: TimeInterval = 2 * 60
+    
     public init() {}
-
-    public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0) -> AnyPublisher<String, Error> {
-        return Future<String, Error> { promise in
-            self.fetchWebPage(url: url, header: header, retryCount: retryCount) { response, error in
-                if let error = error {
-                    promise(.failure(error))
-                    return
+    
+    public func fetchWebPage(url: URL, header: [String: String] = [:]) -> AnyPublisher<String, Error> {
+        return Result.Publisher(())
+            .flatMap({ _ -> AnyPublisher<String, Error> in
+                let session = URLSession.shared
+                
+                let urlForDisplay = "\(url.host ?? "")\(url.path)"
+                
+                var request = URLRequest(url: url)
+                for keyValue in header {
+                    request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
                 }
-                guard let response = response else {
-                    promise(.failure(DownloadError.unknown))
-                    return
-                }
-                promise(.success(response))
-            }
-        }.eraseToAnyPublisher()
-    }
-
-    public func fetchWebPage(url: URL, header: [String: String] = [:], retryCount: Int = 0, completion: @escaping (String?, Error?) -> Void) {
-        let session = URLSession.shared
-
-        let urlForDisplay = "\(url.host ?? "")\(url.path)"
-
-        var request = URLRequest(url: url)
-        for keyValue in header {
-            request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
-        }
-
-        let task = session.dataTask(with: request) { [weak self] data, response, error in
-            guard let self = self else {
-                return
-            }
-
-            let retriesIfNeeded = { () -> Bool in
-                if retryCount < self.maxRetryCount {
-                    NSLog("   Retry after \(self.retryInterval)s [\(retryCount)/\(self.maxRetryCount)]")
-                    DispatchQueue.global().asyncAfter(deadline: .now() + self.retryInterval) {
-                        self.fetchWebPage(
-                            url: url,
-                            header: header,
-                            retryCount: retryCount + 1,
-                            completion: completion)
+                NSLog("-> \(request.httpMethod ?? "???"): \(urlForDisplay)")
+                let dataTaskPublisher =  session.dataTaskPublisher(for: request)
+                    .mapError { $0 as Error }
+                    .tryMap({ data, response -> String in
+                        guard let response = response as? HTTPURLResponse else {
+                            throw DownloadError.unsupportedFormat
+                        }
+                        if response.statusCode == 200 {
+                            guard let htmlResponse = String(data: data, encoding: .utf8) else {
+                                assertionFailure()
+                                throw DownloadError.unknown
+                            }
+                            return htmlResponse
+                        } else {
+                            let remaining = response.allHeaderFields["X-RateLimit-Remaining"] ?? "-"
+                            NSLog("<- \(response.statusCode) \(urlForDisplay) [RateLimit-Remaining: \(remaining)]")
+                            switch response.statusCode {
+                            case 429, 403, 502:
+                                throw DownloadError.unknown
+                            default:
+                                throw DownloadError.unknownUnreplyable
+                            }
+                        }
+                    })
+                return dataTaskPublisher.tryCatch { error -> AnyPublisher<String, Error> in
+                    switch error {
+                    case DownloadError.unknownUnreplyable:
+                        throw error
+                    default:
+                        return dataTaskPublisher
+                            .delay(for: .init(floatLiteral: self.retryInterval), scheduler: DispatchQueue.global())
+                            .eraseToAnyPublisher()
                     }
-                    return true
                 }
-                return false
-            }
-
-            if let error = error {
-                NSLog("   Error: \(error)")
-                switch error {
-                case URLError.notConnectedToInternet:
-                    if retriesIfNeeded() { return }
-                    fallthrough
-                default:
-                    completion(nil, error)
-                    return
-                }
-            }
-
-            guard let data = data else {
-                completion(nil, DownloadError.noData)
-                return
-            }
-            guard let response = response as? HTTPURLResponse else {
-                completion(nil, DownloadError.noResponce)
-                return
-            }
-
-            if response.statusCode == 200 {
-                let htmlResponse = String(data: data, encoding: .utf8)
-                completion(htmlResponse, nil)
-                return
-            } else {
-                let remaining = response.allHeaderFields["X-RateLimit-Remaining"] ?? "-"
-                NSLog("<- \(response.statusCode) \(urlForDisplay) [RateLimit-Remaining: \(remaining)]")
-                switch response.statusCode {
-                case 429, 403, 502:
-                    if retriesIfNeeded() {
-                        return
-                    }
-                    fallthrough
-                default:
-                    completion(nil, DownloadError.unknown)
-                    return
-                }
-            }
-        }
-
-        NSLog("-> \(request.httpMethod ?? "???"): \(urlForDisplay)")
-        task.resume()
-    }
-
-    public func fetchWebPageSync(url: URL, header: [String: String] = [:]) -> String? {
-        var htmlResponse: String?
-        let semaphore = DispatchSemaphore(value: 0)
-
-        fetchWebPage(url: url, header: header) { response, _ in
-            htmlResponse = response
-            semaphore.signal()
-        }
-        semaphore.wait()
-        return htmlResponse
+                .eraseToAnyPublisher()
+            })
+            .eraseToAnyPublisher()
     }
 }

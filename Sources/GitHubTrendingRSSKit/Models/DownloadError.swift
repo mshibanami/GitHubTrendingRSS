@@ -5,9 +5,9 @@
 import Foundation
 
 public enum DownloadError: Error {
-    case noData
-    case noResponce
     case unknown
+    case unknownUnreplyable
     case invalidURL
     case unsupportedFormat
+    case failedFetching
 }

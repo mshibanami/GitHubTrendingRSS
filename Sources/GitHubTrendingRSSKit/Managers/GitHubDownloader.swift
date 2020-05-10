@@ -82,7 +82,7 @@ public class GitHubDownloader {
             .eraseToAnyPublisher()
     }
 
-    public func fetchTopTrendingPageSync() -> String? {
-        return downloadManager.fetchWebPageSync(url: Const.gitHubTopTrendingURL)
+    public func fetchTopTrendingPage() -> AnyPublisher<String, Error> {
+        return downloadManager.fetchWebPage(url: Const.gitHubTopTrendingURL)
     }
 }

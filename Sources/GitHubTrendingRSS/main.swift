@@ -31,52 +31,66 @@ let feedManager = FeedFileCreator(
     outputDirectory: Const.outputDirectory,
     siteGenerator: siteGenerator)
 
-guard let topTrendingPage = gitHubDownloader.fetchTopTrendingPageSync() else {
-    NSLog("Error: Couldn't fetch \(Const.gitHubTopTrendingURL)")
-    exit(1)
-}
-
-let languageLinks = try gitHubPageParser
-    .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
-
-for period in Period.allCases {
-    let linkChunks = languageLinks.chunked(into: languageLinks.count / parallelDownloadChunk)
-    var fetchRepositoriesList: [AnyPublisher<Void, Error>] = []
-    let semaphore = DispatchSemaphore(value: 0)
-    
-    for linkChunk in linkChunks {
-        var fetchRepositories: AnyPublisher<Void, Error>
-            = Swift.Result<Void, Error>.Publisher(()).eraseToAnyPublisher()
-        for link in linkChunk {
-            fetchRepositories = fetchRepositories
-                .flatMap({ _ in
-                    gitHubDownloader
+func start() throws -> AnyPublisher<Void, Error> {
+    return gitHubDownloader
+        .fetchTopTrendingPage()
+        .flatMap({ topTrendingPage -> AnyPublisher<Void, Error> in
+            guard let languageLinks = try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage) else {
+                return Fail(error: DownloadError.unknown).eraseToAnyPublisher()
+            }
+            
+            let fetchRepositoriesByPeriod: [[AnyPublisher<Void, Error>]] = Period.allCases.map { period in
+                languageLinks.map { link in
+                    let fetchRepository = gitHubDownloader
                         .fetchRepositories(
                             ofLink: link,
                             period: period,
                             needsReadMe: Const.populerLanguages.contains(link.name))
+                        .handleEvents(receiveOutput: { repositories in
+                            _ = try! feedManager.createRSSFile(
+                                repositories: repositories,
+                                languageTrendingLink: link,
+                                period: period)
+                        })
+                        .map { _ in () }
+                        .eraseToAnyPublisher()
+                    return fetchRepository
+                }
+            }
+            
+            let chunked = fetchRepositoriesByPeriod
+                .map({ fetchRepositories -> [AnyPublisher<Void, Error>] in
+                    let chunkedFetchRepositories = fetchRepositories.chunked(into: parallelDownloadChunk)
+                    return chunkedFetchRepositories.map {
+                        return Publishers.Sequence<[AnyPublisher<Void, Error>], Error>(sequence: $0)
+                            .flatMap { $0 }
+                            .collect()
+                            .handleEvents(receiveCompletion: { completion in
+                                _ = try! feedManager.createRSSListFile(languageLinks: languageLinks)
+                            })
+                            .map { _ in () }
+                            .eraseToAnyPublisher()
+                    }
                 })
-                .handleEvents(receiveOutput: { repositories in
-                    _ = try! feedManager.createRSSFile(
-                        repositories: repositories,
-                        languageTrendingLink: link,
-                        period: period)
-                })
-                .map { _ in () }
-                .eraseToAnyPublisher()
-        }
-        fetchRepositoriesList.append(fetchRepositories)
-    }
-    let subscriber = Publishers.Sequence<[AnyPublisher<Void, Error>], Error>(sequence: fetchRepositoriesList)
-        .flatMap { $0 }
-        .collect()
-        .sink(receiveCompletion: { _ in
-            semaphore.signal()
-        }, receiveValue: { _ in })
-    
-    semaphore.wait()
-    subscriber.cancel()
+            
+            return chunked.reduce(Result.Publisher(()).eraseToAnyPublisher()) { result, publishers in
+                return result.flatMap { _ in
+                    return publishers.reduce(Result.Publisher(()).eraseToAnyPublisher()) { result, publisher in
+                        result.flatMap { publisher }.eraseToAnyPublisher()
+                    }.eraseToAnyPublisher()
+                }.eraseToAnyPublisher()
+            }
+        })
+        .map { _ in () }
+        .eraseToAnyPublisher()
 }
 
-_ = try feedManager.createRSSListFile(languageLinks: languageLinks)
-NSLog("- Saved to \(feedManager.rootOutputDirectory.path)")
+
+let semaphore = DispatchSemaphore(value: 0)
+
+let cancellable = try start()
+    .sink(receiveCompletion: { completion in
+        semaphore.signal()
+    }, receiveValue: {})
+
+semaphore.wait()
