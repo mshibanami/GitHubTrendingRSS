@@ -17,7 +17,7 @@ public class GitHubDownloader {
             URLQueryItem(name: "client_secret", value: clientSecret)]
     }
 
-    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, needsReadMe: Bool) -> AnyPublisher<[Repository], Error> {
+    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, includesReadMeIfExists: Bool) -> AnyPublisher<[Repository], Error> {
         let fetchRepositories = downloadManager
             .fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
             .tryMap({ [weak self] page -> [Repository] in
@@ -28,7 +28,7 @@ public class GitHubDownloader {
             })
             .eraseToAnyPublisher()
         
-        guard needsReadMe else {
+        guard includesReadMeIfExists else {
             return fetchRepositories
         }
         

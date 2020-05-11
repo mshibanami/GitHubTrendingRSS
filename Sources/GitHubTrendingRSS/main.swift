@@ -17,16 +17,21 @@ let gitHubDownloader = GitHubDownloader(
     gitHubPageParser: gitHubPageParser,
     clientID: Const.gitHubClientID,
     clientSecret: Const.gitHubClientSecret)
-let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
+
+let environment = Environment(
+    loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
+
 let siteInformation = SiteSourceMaker.Information(
     pageTitle: Const.pageTitle,
     author: Const.author,
     rssHomeURL: Const.rssHomeURL.absoluteString,
     googleAnalyticsTrackingCode: Const.googleAnalyticsTrackingCode,
     gitHubRepositoryURL: Const.gitHubRepositoryURL.absoluteString)
+
 let siteGenerator = SiteSourceMaker(
     environment: environment,
     information: siteInformation)
+
 let feedManager = FeedFileCreator(
     outputDirectory: Const.outputDirectory,
     siteGenerator: siteGenerator)
@@ -45,7 +50,7 @@ func start() throws -> AnyPublisher<Void, Error> {
                         .fetchRepositories(
                             ofLink: link,
                             period: period,
-                            needsReadMe: Const.populerLanguages.contains(link.name))
+                            includesReadMeIfExists: Const.populerLanguages.contains(link.name))
                         .handleEvents(receiveOutput: { repositories in
                             _ = try! feedManager.createRSSFile(
                                 repositories: repositories,
