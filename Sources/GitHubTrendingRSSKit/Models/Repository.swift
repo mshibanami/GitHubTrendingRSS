@@ -17,7 +17,7 @@ public struct Repository {
     public func makeReadMeHTML(includesSummary: Bool) -> String? {
         var html: String?
         if includesSummary {
-            html = (html ?? "") + summary
+            html = (html ?? "") + #"<p>\#(summary)</p><hr>"#
         }
         
         guard let readMe = readMe,
@@ -56,7 +56,7 @@ public struct Repository {
             }
         }
         if let readMeHTML = try? parsedHTML.body()?.html() {
-            html = html ?? "" + readMeHTML
+            html = (html ?? "") + readMeHTML
         }
         return html
     }
