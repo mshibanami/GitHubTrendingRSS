@@ -56,7 +56,7 @@ public struct Repository {
             }
         }
         if let readMeHTML = try? parsedHTML.body()?.html() {
-            html = html ?? "" + readMeHTML
+            html = (html ?? "") + readMeHTML
         }
         return html
     }
