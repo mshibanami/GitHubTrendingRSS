@@ -40,7 +40,7 @@ func start() throws -> AnyPublisher<Void, Error> {
     return gitHubDownloader
         .fetchTopTrendingPage()
         .flatMap({ topTrendingPage -> AnyPublisher<Void, Error> in
-          guard let languageLinks = (try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)) else {
+            guard let languageLinks = (try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)) else {
                 return Fail(error: DownloadError.unknown).eraseToAnyPublisher()
             }
             
