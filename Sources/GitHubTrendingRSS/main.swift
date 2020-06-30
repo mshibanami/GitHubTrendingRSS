@@ -40,7 +40,7 @@ func start() throws -> AnyPublisher<Void, Error> {
     return gitHubDownloader
         .fetchTopTrendingPage()
         .flatMap({ topTrendingPage -> AnyPublisher<Void, Error> in
-            guard let languageLinks = try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage) else {
+          guard let languageLinks = (try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)) else {
                 return Fail(error: DownloadError.unknown).eraseToAnyPublisher()
             }
             
@@ -93,9 +93,23 @@ func start() throws -> AnyPublisher<Void, Error> {
 
 let semaphore = DispatchSemaphore(value: 0)
 
+var fetchError: Error?
 let cancellable = try start()
     .sink(receiveCompletion: { completion in
+        switch completion {
+        case let .failure(error):
+            fetchError = error
+        case .finished:
+            break
+        }
         semaphore.signal()
     }, receiveValue: {})
 
 semaphore.wait()
+
+if let error = fetchError {
+    NSLog("🚨 Fatal Error: \(error)")
+    exit(1)
+}
+
+NSLog("🎉 Finished fetching/generating feeds successfully")
