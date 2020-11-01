@@ -50,7 +50,7 @@ func start() throws -> AnyPublisher<Void, Error> {
                         .fetchRepositories(
                             ofLink: link,
                             period: period,
-                            includesReadMeIfExists: Const.populerLanguages.contains(link.name))
+                            includesReadMeIfExists: Const.popularLanguages.contains(link.name))
                         .handleEvents(receiveOutput: { repositories in
                             _ = try! feedManager.createRSSFile(
                                 repositories: repositories,

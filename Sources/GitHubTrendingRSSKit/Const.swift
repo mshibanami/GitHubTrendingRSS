@@ -35,7 +35,7 @@ public class Const {
     public private(set) static var gitHubClientID: String!
     public private(set) static var gitHubClientSecret: String!
 
-    public static let populerLanguages = [
+    public static let popularLanguages = [
         "all",
         "applescript",
         "c",
