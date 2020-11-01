@@ -10,9 +10,9 @@ let package = Package(
     ],
     dependencies: [
         .package(url: "https://github.com/hartbit/Yaap.git", from: "1.0.0"),
-        .package(url: "https://github.com/iwasrobbed/Down.git", from: "0.9.0"),
-        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.3.0"),
-        .package(url: "https://github.com/stencilproject/Stencil.git", from: "0.13.1"),
+        .package(url: "https://github.com/iwasrobbed/Down.git", from: "0.9.4"),
+        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.3.2"),
+        .package(url: "https://github.com/stencilproject/Stencil.git", from: "0.14.0"),
     ],
     targets: [
         .target(
