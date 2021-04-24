@@ -22,11 +22,18 @@ public struct Repository {
         
         guard let readMe = readMe,
             let readMeContent = readMe.content,
-            let readMeHTML = try? Down(markdownString: readMeContent).toHTML(),
+            let readMeHTML = try? Down(markdownString: readMeContent).toHTML(.smartUnsafe),
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) else {
                 return html
         }
         
+        guard let blobToRawRegex = try? NSRegularExpression(
+            pattern: "(https://github.com/[^/]+/[^/]+/)blob(/.+)",
+                options: []) else {
+            assertionFailure()
+            return html
+        }
+                
         let tagAttributesPairs = [
             "a": ["href"],
             "area": ["href"],
@@ -43,15 +50,21 @@ public struct Repository {
                 for attribute in attributes {
                     guard let url = try? element.attr(attribute).prefixDeleted(prefix: "/"),
                         let baseURL = readMe.fileRootURL,
-                        var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString,
-                        absoluteURL != url else {
+                        var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
                             continue
                     }
                     if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
                         absoluteURL += "?sanitize=true"
                     }
                     
-                    _ = try? element.attr(attribute, absoluteURL)
+                    absoluteURL = blobToRawRegex.stringByReplacingMatches(
+                        in: absoluteURL,
+                        range: NSRange(absoluteURL.startIndex..., in: absoluteURL),
+                        withTemplate: "$1raw$2")
+                    
+                    if absoluteURL != url {
+                        _ = try? element.attr(attribute, absoluteURL)
+                    }
                 }
             }
         }
