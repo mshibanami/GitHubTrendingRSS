@@ -1,0 +1,340 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub XSLT Monthly Trending</title>
+    <description>Monthly Trending of XSLT in GitHub</description>
+    <pubDate>Sun, 11 Jul 2021 02:54:22 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>TideSec/BypassAntiVirus</title>
+      <link>https://github.com/TideSec/BypassAntiVirus</link>
+      <description>&lt;p&gt;远控免杀系列文章及配套工具，汇总测试了互联网上的几十种免杀工具、113种白名单免杀方式、8种代码编译免杀、若干免杀实战技术，并对免杀效果进行了一一测试，为远控的免杀和杀软对抗免杀提供参考。&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;BypassAntiVirus&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;本文为Tide安全团队成员&lt;code&gt;重剑无锋&lt;/code&gt;原创文章，转载请声明出处！&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;郑重声明：文中所涉及的技术、思路和工具仅供以安全为目的的学习交流使用，任何人不得将其用于非法用途以及盈利等目的，否则后果自行承担！&lt;/strong&gt;&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;p&gt;一直从事web安全多一些，对waf绕过还稍微有些研究，但是对远控免杀的认知还大约停留在ASPack、UPX加壳、特征码定位及修改免杀的年代。近两年随着hw和红蓝对抗的增多，接触到的提权、内网渗透、域渗透也越来越多。攻击能力有没有提升不知道，但防护水平明显感觉提升了一大截，先不说防护人员的技术水平如果，最起码各种云WAF、防火墙、隔离设备部署的多了，服务器上也经常能见到安装了杀软、软waf、agent等等，特别是某数字杀软在国内服务器上尤为普及。这个时候，不会点免杀技术就非常吃亏了。&lt;/p&gt; 
+&lt;p&gt;但web狗一般对逆向和二进制都不大熟，编译运行别人的代码都比较费劲，这时候就只能靠现成的工具来曲线救国了。为此，我从互联网上搜集了大约20款知名度比较高的免杀工具研究免杀原理及免杀效果测试，后面还学习了一下各种语言编译加载shellcode的各种姿势，又补充了一些白名单加载payload的常见利用，于是就有了这一个远控免杀的系列文章。&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;工具篇内容&lt;/strong&gt;：msf自免杀、Veil、Venom、Shellter、BackDoor-Factory、Avet、TheFatRat、Avoidz、Green-Hat-Suite、zirikatu、AVIator、DKMC、Unicorn、Python-Rootkit、ASWCrypter、nps_payload、GreatSCT、HERCULES、SpookFlare、SharpShooter、CACTUSTORCH、Winpayload等。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;代码篇内容&lt;/strong&gt;：C/C++、C#、python、powershell、ruby、go等。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;白名单内容&lt;/strong&gt;：总计涉及113个白名单程序，包括Rundll32.exe、Msiexec.exe、MSBuild.exe、InstallUtil.exe、Mshta.exe、Regsvr32.exe、Cmstp.exe、CScript.exe、WScript.exe、Forfiles.exe、te.exe、Odbcconf.exe、InfDefaultInstall.exe、Diskshadow.exe、PsExec.exe、Msdeploy.exe、Winword.exe、Regasm.exe、Regsvcs.exe、Ftp.exe、pubprn.vbs、winrm.vbs、slmgr.vbs、Xwizard.exe、Compiler.exe、IEExec.exe、MavInject32、Presentationhost.exe、Wmic.exe、Pcalua.exe、Url.dll、zipfldr.dll、Syncappvpublishingserver.vbs等。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;其他内容&lt;/strong&gt;：在整个免杀系列文章编写过程中，还穿插写了几篇免杀实践的文章，比如shellcode免杀实践、cs免杀实践、mimikatz免杀实践等几篇文章，水平比较一般，各位小伙伴凑合着看吧。&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;已完成的免杀文章及相关软件下载：&lt;a href=&quot;https://github.com/TideSec/BypassAntiVirus&quot;&gt;&lt;code&gt;https://github.com/TideSec/BypassAntiVirus&lt;/code&gt;&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;远控免杀系列文章打包及配套工具百度网盘下载&lt;/strong&gt;： 链接: &lt;a href=&quot;https://pan.baidu.com/s/1YKbNHzWudMwjGx-3_7KZxw&quot;&gt;https://pan.baidu.com/s/1YKbNHzWudMwjGx-3_7KZxw&lt;/a&gt; 提取码: 5q5q 解压密码为www.tidesec.com&lt;/p&gt; 
+&lt;h1&gt;免杀能力一览表&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;1、表中标识 √ 说明相应杀毒软件未检测出病毒，也就是代表了Bypass。&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;2、为了更好的对比效果，大部分测试payload均使用msf的&lt;code&gt;windows/meterperter/reverse_tcp&lt;/code&gt;模块生成。&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;3、由于本机测试时只是安装了360全家桶和火绒，所以默认情况下360和火绒杀毒情况指的是静态+动态查杀。360杀毒版本&lt;code&gt;5.0.0.8160&lt;/code&gt;(2020.01.01)，火绒版本&lt;code&gt;5.0.34.16&lt;/code&gt;(2020.01.01)，360安全卫士&lt;code&gt;12.0.0.2002&lt;/code&gt;(2020.01.01)。&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;4、其他杀软的检测指标是在&lt;code&gt;virustotal.com&lt;/code&gt;（简称VT）上在线查杀，所以可能只是代表了静态查杀能力，数据仅供参考，不足以作为杀软查杀能力或免杀能力的判断指标。&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;5、完全不必要苛求一种免杀技术能bypass所有杀软，这样的技术肯定是有的，只是没被公开，一旦公开第二天就能被杀了，其实我们只要能bypass目标主机上的杀软就足够了。&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;6、由于白名单程序加载payload的免杀测试需要杀软的行为检测才合理，静态查杀payload或者查杀白名单程序都没有任何意义，所以这里对白名单程序的免杀效果不做评判。&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/TideSec/BypassAntiVirus/master/images/msnl01.png&quot; alt=&quot;screenshot&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/TideSec/BypassAntiVirus/master/images/msnl02.png&quot; alt=&quot;screenshot&quot;&gt;&lt;/p&gt; 
+&lt;h1&gt;文章导航&lt;/h1&gt; 
+&lt;p&gt;1.远控免杀专题(1)-基础篇：&lt;a href=&quot;https://mp.weixin.qq.com/s/3LZ_cj2gDC1bQATxqBfweg&quot;&gt;https://mp.weixin.qq.com/s/3LZ_cj2gDC1bQATxqBfweg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;2.远控免杀专题(2)-msfvenom隐藏的参数：&lt;a href=&quot;https://mp.weixin.qq.com/s/1r0iakLpnLrjCrOp2gT10w&quot;&gt;https://mp.weixin.qq.com/s/1r0iakLpnLrjCrOp2gT10w&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;3.远控免杀专题(3)-msf自带免杀(VT免杀率35/69)：&lt;a href=&quot;https://mp.weixin.qq.com/s/A0CZslLhCLOK_HgkHGcpEA&quot;&gt;https://mp.weixin.qq.com/s/A0CZslLhCLOK_HgkHGcpEA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;4.远控免杀专题(4)-Evasion模块(VT免杀率12/71)：&lt;a href=&quot;https://mp.weixin.qq.com/s/YnnCM7W20xScv52k_ubxYQ&quot;&gt;https://mp.weixin.qq.com/s/YnnCM7W20xScv52k_ubxYQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;5.远控免杀专题(5)-Veil免杀(VT免杀率23/71):&lt;a href=&quot;https://mp.weixin.qq.com/s/-PHVIAQVyU8QIpHwcpN4yw&quot;&gt;https://mp.weixin.qq.com/s/-PHVIAQVyU8QIpHwcpN4yw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;6.远控免杀专题(6)-Venom免杀(VT免杀率11/71):&lt;a href=&quot;https://mp.weixin.qq.com/s/CbfxupSWEPB86tBZsmxNCQ&quot;&gt;https://mp.weixin.qq.com/s/CbfxupSWEPB86tBZsmxNCQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;7.远控免杀专题(7)-Shellter免杀(VT免杀率7/69)：&lt;a href=&quot;https://mp.weixin.qq.com/s/ASnldn6nk68D4bwkfYm3Gg&quot;&gt;https://mp.weixin.qq.com/s/ASnldn6nk68D4bwkfYm3Gg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;8.远控免杀专题(8)-BackDoor-Factory免杀(VT免杀率13/71)：&lt;a href=&quot;https://mp.weixin.qq.com/s/A30JHhXhwe45xV7hv8jvVQ&quot;&gt;https://mp.weixin.qq.com/s/A30JHhXhwe45xV7hv8jvVQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;9.远控免杀专题(9)-Avet免杀(VT免杀率14/71)：&lt;a href=&quot;https://mp.weixin.qq.com/s/EIfqAbMC8HoC6xcZP9SXpA&quot;&gt;https://mp.weixin.qq.com/s/EIfqAbMC8HoC6xcZP9SXpA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;10.远控免杀专题(10)-TheFatRat免杀(VT免杀率22/70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/zOvwfmEtbkpGWWBn642ICA&quot;&gt;https://mp.weixin.qq.com/s/zOvwfmEtbkpGWWBn642ICA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;11.远控免杀专题(11)-Avoidz免杀(VT免杀率23/71)：&lt;a href=&quot;https://mp.weixin.qq.com/s/TnfTXihlyv696uCiv3aWfg&quot;&gt;https://mp.weixin.qq.com/s/TnfTXihlyv696uCiv3aWfg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;12.远控免杀专题(12)-Green-Hat-Suite免杀(VT免杀率23/70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/MVJTXOIqjgL7iEHrnq6OJg&quot;&gt;https://mp.weixin.qq.com/s/MVJTXOIqjgL7iEHrnq6OJg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;13.远控免杀专题(13)-zirikatu免杀(VT免杀率39/71)：&lt;a href=&quot;https://mp.weixin.qq.com/s/5xLuu5UfF4cQbCq_6JeqyA&quot;&gt;https://mp.weixin.qq.com/s/5xLuu5UfF4cQbCq_6JeqyA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;14.远控免杀专题(14)-AVIator免杀(VT免杀率25/69)：&lt;a href=&quot;https://mp.weixin.qq.com/s/JYMq_qHvnslVlqijHNny8Q&quot;&gt;https://mp.weixin.qq.com/s/JYMq_qHvnslVlqijHNny8Q&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;15.远控免杀专题(15)-DKMC免杀(VT免杀率8/55)：&lt;a href=&quot;https://mp.weixin.qq.com/s/UZqOBQKEMcXtF5ZU7E55Fg&quot;&gt;https://mp.weixin.qq.com/s/UZqOBQKEMcXtF5ZU7E55Fg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;16.远控免杀专题(16)-Unicorn免杀(VT免杀率29/56)：&lt;a href=&quot;https://mp.weixin.qq.com/s/y7P6bvHRFes854EAHAPOzw&quot;&gt;https://mp.weixin.qq.com/s/y7P6bvHRFes854EAHAPOzw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;17.远控免杀专题(17)-Python-Rootkit免杀(VT免杀率7/69)：&lt;a href=&quot;https://mp.weixin.qq.com/s/OzO8hv0pTX54ex98k96tjQ&quot;&gt;https://mp.weixin.qq.com/s/OzO8hv0pTX54ex98k96tjQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;18.远控免杀专题(18)-ASWCrypter免杀(VT免杀率19/57)：&lt;a href=&quot;https://mp.weixin.qq.com/s/tT1i55swRWIYiEdxEWElSQ&quot;&gt;https://mp.weixin.qq.com/s/tT1i55swRWIYiEdxEWElSQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;19.远控免杀专题(19)-nps_payload免杀(VT免杀率3/57)：&lt;a href=&quot;https://mp.weixin.qq.com/s/XmSRgRUftMV3nmD1Gk0mvA&quot;&gt;https://mp.weixin.qq.com/s/XmSRgRUftMV3nmD1Gk0mvA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;20.远控免杀专题(20)-GreatSCT免杀(VT免杀率14/56)：&lt;a href=&quot;https://mp.weixin.qq.com/s/s9DFRIgpvpE-_MneO0B_FQ&quot;&gt;https://mp.weixin.qq.com/s/s9DFRIgpvpE-_MneO0B_FQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;21.远控免杀专题(21)-HERCULES免杀(VT免杀率29/70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/Rkr9lixzL4tiL89r10ndig&quot;&gt;https://mp.weixin.qq.com/s/Rkr9lixzL4tiL89r10ndig&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;22.远控免杀专题(22)-SpookFlare免杀(VT免杀率16/67)：&lt;a href=&quot;https://mp.weixin.qq.com/s/LfuQ2XuD7YHUWJqMRUmNVA&quot;&gt;https://mp.weixin.qq.com/s/LfuQ2XuD7YHUWJqMRUmNVA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;23.远控免杀专题(23)-SharpShooter免杀(VT免杀率22/57)：&lt;a href=&quot;https://mp.weixin.qq.com/s/EyvGfWXLbxkHe7liaNFhGg&quot;&gt;https://mp.weixin.qq.com/s/EyvGfWXLbxkHe7liaNFhGg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;24.远控免杀专题(24)-CACTUSTORCH免杀(VT免杀率23/57)：&lt;a href=&quot;https://mp.weixin.qq.com/s/g0CYvFMsrV7bHIfTnSUJBw&quot;&gt;https://mp.weixin.qq.com/s/g0CYvFMsrV7bHIfTnSUJBw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;25.远控免杀专题(25)-Winpayloads免杀(VT免杀率18/70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/YTXT31mCOWhMZEbCg4Jt0w&quot;&gt;https://mp.weixin.qq.com/s/YTXT31mCOWhMZEbCg4Jt0w&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;26.远控免杀专题(26)-C、C++加载免杀(上)(VT免杀率9-70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/LftwV4bpuikDklIjuRw2LQ&quot;&gt;https://mp.weixin.qq.com/s/LftwV4bpuikDklIjuRw2LQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;27.远控免杀专题(27)-C、C++加载免杀(中)(VT免杀率8-70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/McVWP386q5in6cQ8hRxwdA&quot;&gt;https://mp.weixin.qq.com/s/McVWP386q5in6cQ8hRxwdA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;28.远控免杀专题(28)-C、C++加载免杀(下)(VT免杀率3-71)：&lt;a href=&quot;https://mp.weixin.qq.com/s/Kw3-fdyHyiettYn44WNZQw&quot;&gt;https://mp.weixin.qq.com/s/Kw3-fdyHyiettYn44WNZQw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;29.远控免杀专题(29)-C#加载免杀-5种方式(VT免杀率8-70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/Kvhfb13d2_D6m-Bu9Darog&quot;&gt;https://mp.weixin.qq.com/s/Kvhfb13d2_D6m-Bu9Darog&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;30.远控免杀专题(30)-Python加载免杀-8种方式(VT免杀率10-69)：&lt;a href=&quot;https://mp.weixin.qq.com/s/HyBSqrF_kl2ARaCYAMefgA&quot;&gt;https://mp.weixin.qq.com/s/HyBSqrF_kl2ARaCYAMefgA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;31.远控免杀专题(31)-powershell加载-4种方式(VT免杀率5-58)：&lt;a href=&quot;https://mp.weixin.qq.com/s/Tw-FAduHMVzek_YxIErQDQ&quot;&gt;https://mp.weixin.qq.com/s/Tw-FAduHMVzek_YxIErQDQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;32.远控免杀专题(32)-Go加载免杀-3种方式(VT免杀率7-70)：&lt;a href=&quot;https://mp.weixin.qq.com/s/TmfDQgRfEp2qg9SKbD0Quw&quot;&gt;https://mp.weixin.qq.com/s/TmfDQgRfEp2qg9SKbD0Quw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;33.远控免杀专题(33)-Ruby加载免杀(VT免杀率0-58)：&lt;a href=&quot;https://mp.weixin.qq.com/s/2eF6LklvdGetgbhYWdaFIg&quot;&gt;https://mp.weixin.qq.com/s/2eF6LklvdGetgbhYWdaFIg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;34.远控免杀专题(34)-白名单MSBuild.exe(VT免杀率4-57)：&lt;a href=&quot;https://mp.weixin.qq.com/s/1WEglPXm1Q5n6T-c4OhhXA&quot;&gt;https://mp.weixin.qq.com/s/1WEglPXm1Q5n6T-c4OhhXA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;35.远控免杀专题(35)-白名单Msiexec.exe(VT免杀率27-60)：&lt;a href=&quot;https://mp.weixin.qq.com/s/XPrBK1Yh5ggO-PeK85mqcg&quot;&gt;https://mp.weixin.qq.com/s/XPrBK1Yh5ggO-PeK85mqcg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;36.远控免杀专题(36)-白名单InstallUtil.exe(VT免杀率3-68)：&lt;a href=&quot;https://mp.weixin.qq.com/s/gN2p3ZHODZFia2761BVSzg&quot;&gt;https://mp.weixin.qq.com/s/gN2p3ZHODZFia2761BVSzg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;37.远控免杀专题(37)-白名单Mshta.exe(VT免杀率26-58)：&lt;a href=&quot;https://mp.weixin.qq.com/s/oBr-syv2ef5IjeGFrs7sHg&quot;&gt;https://mp.weixin.qq.com/s/oBr-syv2ef5IjeGFrs7sHg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;38.远控免杀专题(38)-白名单Rundll32.exe(VT免杀率22-58)：&lt;a href=&quot;https://mp.weixin.qq.com/s/rmC4AWC6HmcphozfEZhRGA&quot;&gt;https://mp.weixin.qq.com/s/rmC4AWC6HmcphozfEZhRGA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;39.远控免杀专题(39)-白名单Regsvr32.exe(VT免杀率18-58)：&lt;a href=&quot;https://mp.weixin.qq.com/s/6v8w2YZLxHJFnXb-IbnYAA&quot;&gt;https://mp.weixin.qq.com/s/6v8w2YZLxHJFnXb-IbnYAA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;40.远控免杀专题(40)-白名单Cmstp.exe(VT查杀率为21-57)：&lt;a href=&quot;https://mp.weixin.qq.com/s/tgtvOMDGlKFwdRQEnKJf5Q&quot;&gt;https://mp.weixin.qq.com/s/tgtvOMDGlKFwdRQEnKJf5Q&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;41.远控免杀专题(41)-白名单Ftp.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/rnmCIx5oxA9z-0OfjoUAVw&quot;&gt;https://mp.weixin.qq.com/s/rnmCIx5oxA9z-0OfjoUAVw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;42.远控免杀专题(42)-白名单Regasm/Regsvcs.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/MCMjxPdUNdwV8is04AklLA&quot;&gt;https://mp.weixin.qq.com/s/MCMjxPdUNdwV8is04AklLA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;43.远控免杀专题(43)-白名单Compiler.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/Sm_3cJlSk6Pud1CLp-eAEQ&quot;&gt;https://mp.weixin.qq.com/s/Sm_3cJlSk6Pud1CLp-eAEQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;44.远控免杀专题(44)-白名单MavInject.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/dPOGj1VLhqwxJ0e-gOs8vA&quot;&gt;https://mp.weixin.qq.com/s/dPOGj1VLhqwxJ0e-gOs8vA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;45.远控免杀专题(45)-白名单presentationhost.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/r9l5Lh6MHv-Ece2DFr3EsA&quot;&gt;https://mp.weixin.qq.com/s/r9l5Lh6MHv-Ece2DFr3EsA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;46.远控免杀专题(46)-白名单IEexec.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/wVbFrU9cE3hCYAENjmnSUQ&quot;&gt;https://mp.weixin.qq.com/s/wVbFrU9cE3hCYAENjmnSUQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;47.远控免杀专题(47)-白名单winrm.vbs、slmgr.vbs：&lt;a href=&quot;https://mp.weixin.qq.com/s/B3oiMrEB98jtm4DvD2t2tQ&quot;&gt;https://mp.weixin.qq.com/s/B3oiMrEB98jtm4DvD2t2tQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;48.远控免杀专题(48)-白名单pubprn.vbs：&lt;a href=&quot;https://mp.weixin.qq.com/s/btiaVMBPxfxG4oXPa7__kw&quot;&gt;https://mp.weixin.qq.com/s/btiaVMBPxfxG4oXPa7__kw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;49.远控免杀专题(49)-白名单Xwizard.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/8gaweOqkOrT77riaevvFUg&quot;&gt;https://mp.weixin.qq.com/s/8gaweOqkOrT77riaevvFUg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;50.远控免杀专题(50)-白名单winword.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/qXWK5i2cDaletSzkAEzL3w&quot;&gt;https://mp.weixin.qq.com/s/qXWK5i2cDaletSzkAEzL3w&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;51.远控免杀专题(51)-白名单msdeloy.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/1oEzadXZxd3JukrBhNxxyw&quot;&gt;https://mp.weixin.qq.com/s/1oEzadXZxd3JukrBhNxxyw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;52.远控免杀专题(52)-白名单psexec.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/JdOmlqif67GcSqZuuGPz0Q&quot;&gt;https://mp.weixin.qq.com/s/JdOmlqif67GcSqZuuGPz0Q&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;53.远控免杀专题(53)-白名单WMIC.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/QNqM8Vdlu-SOP7ZqnRWY3w&quot;&gt;https://mp.weixin.qq.com/s/QNqM8Vdlu-SOP7ZqnRWY3w&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;54.远控免杀专题(54)-白名单SyncAppvPublishingServer.vbs：&lt;a href=&quot;https://mp.weixin.qq.com/s/Ud7TbeMJb8fsRlaGHWhBww&quot;&gt;https://mp.weixin.qq.com/s/Ud7TbeMJb8fsRlaGHWhBww&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;55.远控免杀专题(55)-白名单Pcalua.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/Aj9A5_LRS_uX8XN1rdUobQ&quot;&gt;https://mp.weixin.qq.com/s/Aj9A5_LRS_uX8XN1rdUobQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;56.远控免杀专题(56)-白名单zipfldr.dll：&lt;a href=&quot;https://mp.weixin.qq.com/s/-qPVenI_lk-ZnMA4j9XNRQ&quot;&gt;https://mp.weixin.qq.com/s/-qPVenI_lk-ZnMA4j9XNRQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;57.远控免杀专题(57)-白名单Url.dll：&lt;a href=&quot;https://mp.weixin.qq.com/s/GzoYvfj7NkXe_nc8eOVEBQ&quot;&gt;https://mp.weixin.qq.com/s/GzoYvfj7NkXe_nc8eOVEBQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;58.远控免杀专题(58)-白名单DiskShadow.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/pr0KYjk80YIk4qJO5h3Yaw&quot;&gt;https://mp.weixin.qq.com/s/pr0KYjk80YIk4qJO5h3Yaw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;59.远控免杀专题(59)-白名单Odbcconf.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/uOwqbW0nkG776zZz6O_WFA&quot;&gt;https://mp.weixin.qq.com/s/uOwqbW0nkG776zZz6O_WFA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;60.远控免杀专题(60)-白名单Forfiles.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/1-HyeNrd4IXQYsyG6dHQkw&quot;&gt;https://mp.weixin.qq.com/s/1-HyeNrd4IXQYsyG6dHQkw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;61.远控免杀专题(61)-白名单Te.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/m37wm620qQ1xw4BN2hGOpg&quot;&gt;https://mp.weixin.qq.com/s/m37wm620qQ1xw4BN2hGOpg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;62.远控免杀专题(62)-白名单CScript.exe-WScript.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/jzWHq7Yc1UjOwnXulIAPKQ&quot;&gt;https://mp.weixin.qq.com/s/jzWHq7Yc1UjOwnXulIAPKQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;63.远控免杀专题(63)-白名单InfDefaultInstall.exe：&lt;a href=&quot;https://mp.weixin.qq.com/s/mrtX4ayCXJJ1LPfBlSuvHw&quot;&gt;https://mp.weixin.qq.com/s/mrtX4ayCXJJ1LPfBlSuvHw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;64.远控免杀专题(64)-Msf自编译免杀补充：&lt;a href=&quot;https://mp.weixin.qq.com/s/HsIqUKl7j1WJ4yyYzXdPZg&quot;&gt;https://mp.weixin.qq.com/s/HsIqUKl7j1WJ4yyYzXdPZg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;65.远控免杀专题(65)-shellcode免杀实践补充：&lt;a href=&quot;https://mp.weixin.qq.com/s/J78CPtHJX5ouN6fxVxMFgg&quot;&gt;https://mp.weixin.qq.com/s/J78CPtHJX5ouN6fxVxMFgg&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;66.远控免杀专题(66)-工具篇总结：&lt;a href=&quot;https://mp.weixin.qq.com/s/WdErH1AOaI3B5Kptu7DK5Q&quot;&gt;https://mp.weixin.qq.com/s/WdErH1AOaI3B5Kptu7DK5Q&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;67.远控免杀专题(67)-白名单篇总结：&lt;a href=&quot;https://mp.weixin.qq.com/s/2bC5otYgIgGnod-cXwkfqw&quot;&gt;https://mp.weixin.qq.com/s/2bC5otYgIgGnod-cXwkfqw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;68.远控免杀专题(68)-Mimikatz免杀实践(上)：&lt;a href=&quot;https://mp.weixin.qq.com/s/CiOaMnJBcEQfZXV_hopzLw&quot;&gt;https://mp.weixin.qq.com/s/CiOaMnJBcEQfZXV_hopzLw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;69.远控免杀专题(69)-Mimikatz免杀实践(下)：&lt;a href=&quot;https://mp.weixin.qq.com/s/0p88rj-tWClLa_geKMkPgw&quot;&gt;https://mp.weixin.qq.com/s/0p88rj-tWClLa_geKMkPgw&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;70.远控免杀专题(70)-终结篇：&lt;a href=&quot;https://mp.weixin.qq.com/s/4shT8tP-Gu3XX7fnWKQHAA&quot;&gt;https://mp.weixin.qq.com/s/4shT8tP-Gu3XX7fnWKQHAA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;完结！撒花~&lt;/strong&gt;&lt;/p&gt; 
+&lt;h1&gt;关于Tide安全团队&lt;/h1&gt; 
+&lt;p&gt;Tide安全团队致力于分享高质量原创文章，研究方向覆盖网络攻防、Web安全、移动终端、安全开发、IoT/物联网/工控安全等多个领域，对安全感兴趣的小伙伴可以关注或加入我们。&lt;/p&gt; 
+&lt;p&gt;Tide安全团队自研开源多套安全平台，如Tide(潮汐)网络空间搜索平台、潮启移动端安全管控平台、分布式web扫描平台WDScanner、Mars网络威胁监测平台、潮汐指纹识别系统、潮巡自动化漏洞挖掘平台、工业互联网安全监测平台、漏洞知识库、代理资源池、字典权重库、内部培训系统等等。&lt;/p&gt; 
+&lt;p&gt;Tide安全团队自建立之初持续向CNCERT、CNVD、漏洞盒子、补天、各大SRC等漏洞提交平台提交漏洞，在漏洞盒子先后组建的两支漏洞挖掘团队在全国300多个安全团队中均拥有排名前十的成绩。团队成员在FreeBuf、安全客、安全脉搏、t00ls、简书、CSDN、51CTO、CnBlogs等网站开设专栏或博客，研究安全技术、分享经验技能。&lt;/p&gt; 
+&lt;p&gt;对安全感兴趣的小伙伴可以关注Tide安全团队Wiki：&lt;a href=&quot;http://paper.TideSec.com&quot;&gt;http://paper.TideSec.com&lt;/a&gt; 或团队公众号。&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt;
+ &lt;img src=&quot;https://raw.githubusercontent.com/TideSec/BypassAntiVirus/master/images/ewm.png&quot; width=&quot;30%&quot;&gt;
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>LOLBAS-Project/LOLBAS</title>
+      <link>https://github.com/LOLBAS-Project/LOLBAS</link>
+      <description>&lt;p&gt;Living Off The Land Binaries And Scripts - (LOLBins and LOLScripts)&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Living Off The Land Binaries and Scripts (and now also Libraries)&lt;/h1&gt; 
+&lt;img src=&quot;https://github.com/api0cradle/LOLBAS/raw/master/Logo/LOLBAS.png&quot; height=&quot;250&quot;&gt; 
+&lt;p&gt;All the different files can be found behind a fancy frontend here: https://lolbas-project.github.io (thanks @ConsciousHacker for this bit of eyecandy and the team over at https://gtfobins.github.io/). This repo serves as a place where we maintain the YML files that are used by the fancy frontend.&lt;/p&gt; 
+&lt;h2&gt;Goal&lt;/h2&gt; 
+&lt;p&gt;The goal of the LOLBAS project is to document every binary, script, and library that can be used for Living Off The Land techniques.&lt;/p&gt; 
+&lt;h2&gt;Criteria&lt;/h2&gt; 
+&lt;p&gt;A LOLBin/Lib/Script must:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Be a Microsoft-signed file, either native to the OS or downloaded from Microsoft.&lt;/li&gt; 
+ &lt;li&gt;Have extra “unexpected” functionality. It is not interesting to document intended use cases. 
+  &lt;ul&gt; 
+   &lt;li&gt;Exceptions are application whitelisting bypasses&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Have functionality that would be useful to an APT or red team&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Interesting functionality can include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Executing code 
+  &lt;ul&gt; 
+   &lt;li&gt;Arbitrary code execution&lt;/li&gt; 
+   &lt;li&gt;Pass-through execution of other programs (unsigned) or scripts (via a LOLBin)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Compiling code&lt;/li&gt; 
+ &lt;li&gt;File operations 
+  &lt;ul&gt; 
+   &lt;li&gt;Downloading&lt;/li&gt; 
+   &lt;li&gt;Upload&lt;/li&gt; 
+   &lt;li&gt;Copy&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Persistence 
+  &lt;ul&gt; 
+   &lt;li&gt;Pass-through persistence utilizing existing LOLBin&lt;/li&gt; 
+   &lt;li&gt;Persistence (e.g. hide data in ADS, execute at logon)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;UAC bypass&lt;/li&gt; 
+ &lt;li&gt;Credential theft&lt;/li&gt; 
+ &lt;li&gt;Dumping process memory&lt;/li&gt; 
+ &lt;li&gt;Surveillance (e.g. keylogger, network trace)&lt;/li&gt; 
+ &lt;li&gt;Log evasion/modification&lt;/li&gt; 
+ &lt;li&gt;DLL side-loading/hijacking without being relocated elsewhere in the filesystem.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you have found a new LOLBin or LOLScript that you would like to contribute, please review the contributing guidelines located here: https://github.com/LOLBAS-Project/LOLBAS/blob/master/CONTRIBUTING.md&lt;/p&gt; 
+&lt;p&gt;A template for the required format has been provided here: https://github.com/LOLBAS-Project/LOLBAS/blob/master/YML-Template.yml&lt;/p&gt; 
+&lt;h2&gt;The History of the LOLBin&lt;/h2&gt; 
+&lt;p&gt;The phrase “Living off the land” was coined by Christopher Campbell (@obscuresec) &amp;amp; Matt Graeber (@mattifestation) at &lt;a href=&quot;https://www.youtube.com/watch?v=j-r6UonEkUw&quot;&gt;DerbyCon 3&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The term LOLBins came from a Twitter discussion on what to call binaries that can be used by an attacker to perform actions beyond their original purpose. Philip Goh (@MathCasualty) &lt;a href=&quot;https://twitter.com/MathCasualty/status/969174982579273728&quot;&gt;proposed LOLBins&lt;/a&gt;. A highly scientific internet poll ensued, and after a general consensus (69%) was reached, the name was &lt;a href=&quot;https://twitter.com/Oddvarmoe/status/985432848961343488&quot;&gt;made official&lt;/a&gt;. Jimmy (@bohops) &lt;a href=&quot;https://twitter.com/bohops/status/984828803120881665&quot;&gt;followed up with LOLScripts&lt;/a&gt;. No poll was taken.&lt;/p&gt; 
+&lt;p&gt;Common hashtags for these files are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;#LOLBin&lt;/li&gt; 
+ &lt;li&gt;#LOLBins&lt;/li&gt; 
+ &lt;li&gt;#LOLScript&lt;/li&gt; 
+ &lt;li&gt;#LOLScripts&lt;/li&gt; 
+ &lt;li&gt;#LOLLib&lt;/li&gt; 
+ &lt;li&gt;#LOLLibs&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Our primary maintainer (@oddvarmoe) of this project did a talk at DerbyCon 2018 called: #Lolbins Nothing to LOL about! - https://www.youtube.com/watch?v=NiYTdmZ8GR4 This talk goes over the history of this project.&lt;/p&gt; 
+&lt;h2&gt;Thanks&lt;/h2&gt; 
+&lt;p&gt;As with many open-source projects, this one is the product of a community and we would like to thank ours:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The domain http://lolbins.com has been registered by an unknown individual and redirected it to the old version of this project.&lt;/li&gt; 
+ &lt;li&gt;The domain http://lolbas-project.com has been registered by Jimmy (@bohops).&lt;/li&gt; 
+ &lt;li&gt;The logos for the project were created by Adam Nadrowski (@_sup_mane). We #@&amp;amp;!!@#! love them.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>kinkofer/FightClub5eXML</title>
+      <link>https://github.com/kinkofer/FightClub5eXML</link>
+      <description>&lt;p&gt;Creating XML files of all D&amp;D sources compatible with Fight Club 5e and Game Master 5e apps for iOS and Android.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Fight Club 5e XML&lt;/h1&gt; 
+&lt;p&gt;Creating XML files of all official D&amp;amp;D sources compatible with Fight Club 5e and Game Master 5e apps for iOS and Android.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;Final XML files are released on a &lt;a href=&quot;http://bit.ly/NewFCXml&quot;&gt;shared Dropbox&lt;/a&gt;. If you’re here to import the files into your app, please refer to the instructions in the link above.&lt;/p&gt; 
+&lt;p&gt;This repository is not an application in itself. But you can use it to build your own custom Compendium (see below).&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you’d like to contribute, feel free to fork the repository and submit pull requests with your changes. We are no longer accepting manual changes to the XML source files because these files are now generated from an external source.&lt;/p&gt; 
+&lt;h2&gt;Development&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The XML files in the FightClub5eXML directory are Compendiums organized by source book.&lt;/li&gt; 
+ &lt;li&gt;The files in Collections define which sources are merged into their own Compendium XML.&lt;/li&gt; 
+ &lt;li&gt;When the master branch is updated, Travis CI validates the XML, builds the Compendiums, and deploys to Dropbox.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Adding a Source&lt;/h3&gt; 
+&lt;p&gt;New material is added to D&amp;amp;D 5e quite frequently, especially through Unearthed Arcana which is typically used for beta testing. Keeping each source in its own file makes it easier to add new content and select which sources you want to include in your Compendium.&lt;/p&gt; 
+&lt;p&gt;Each source is like its own Compendium, and could potentially be imported on its own, with two exceptions (classes and spells) which are explained below. The structure of the XML file should be:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;compendium version=&quot;5&quot; auto_indent=&quot;NO&quot;&amp;gt;
+	&amp;lt;!-- Items --&amp;gt;
+	&amp;lt;!-- Races --&amp;gt;
+	&amp;lt;!-- Classes --&amp;gt;
+	&amp;lt;!-- Feats --&amp;gt;
+	&amp;lt;!-- Backgrounds --&amp;gt;
+	&amp;lt;!-- Spells --&amp;gt;
+	&amp;lt;!-- Monsters --&amp;gt;
+&amp;lt;/compendium&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Add the specific elements under the appropriate comment (e.g. &lt;code&gt;&amp;lt;item&amp;gt;...&amp;lt;/item&amp;gt;&lt;/code&gt; goes under &lt;code&gt;&amp;lt;!-- Items --&amp;gt;&lt;/code&gt;). See the Fight Club Import Tutorial for the format of each element, or use our existing sources as a foundation. You can also check out the schema we use for validation in &lt;code&gt;Utilities/compendium.xsd&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;When merged with other sources (see “Build Your Own Compendium” below), items, races, feats, backgrounds, and monsters are all added to the resulting Compendium. It’s recommended that subraces be added as their own race. Classes and spells, however, are merged when their names match, making it easier to add subclasses without modifying existing sources.&lt;/p&gt; 
+&lt;h4&gt;Subclasses&lt;/h4&gt; 
+&lt;p&gt;Adding a subclass in Fight Club is as easy as adding new &lt;code&gt;&amp;lt;autolevel&amp;gt;&lt;/code&gt; tags to a class. When selecting sources for a Compendium, the merge finds classes with matching &lt;code&gt;&amp;lt;name&amp;gt;&lt;/code&gt; tags and appends the &lt;code&gt;&amp;lt;autolevel&amp;gt;&lt;/code&gt; tags to the end.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;class&amp;gt;
+	&amp;lt;name&amp;gt;Barbarian&amp;lt;/name&amp;gt;
+	&amp;lt;autolevel level=&quot;3&quot;&amp;gt;
+		&amp;lt;feature optional=&quot;YES&quot;&amp;gt;...&amp;lt;/feature&amp;gt;
+	&amp;lt;/autolevel&amp;gt;
+	...
+&amp;lt;/class&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Because the rest of the class data is not included, this means you would need to include the original source of the class in your Compendium as well.&lt;/p&gt; 
+&lt;h4&gt;Spells&lt;/h4&gt; 
+&lt;p&gt;In the Fight Club compendium, spell lists are defined by the spell, not the class. If you want to add a spell to a class list, you would need to modify the spell’s &lt;code&gt;&amp;lt;classes&amp;gt;&lt;/code&gt; tag. This can be done without modifying the original spell by adding only the name and new class in your source XML. During the Compendium merge, the value of &lt;code&gt;&amp;lt;classes&amp;gt;&lt;/code&gt; is concatenated to any matching spells.&lt;/p&gt; 
+&lt;p&gt;New source:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;spell&amp;gt;
+	&amp;lt;name&amp;gt;Acid Splash&amp;lt;/name&amp;gt;
+	&amp;lt;classes&amp;gt;Artificer&amp;lt;/classes&amp;gt;
+&amp;lt;/spell&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Resulting merge with original source:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;  &amp;lt;spell&amp;gt;
+    &amp;lt;name&amp;gt;Acid Splash&amp;lt;/name&amp;gt;
+    &amp;lt;level&amp;gt;0&amp;lt;/level&amp;gt;
+    &amp;lt;school&amp;gt;C&amp;lt;/school&amp;gt;
+    ...
+    &amp;lt;classes&amp;gt;Fighter, Rogue, Sorcerer, Wizard, Artificer&amp;lt;/classes&amp;gt;
+    ...
+  &amp;lt;/spell&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Just like classes, the original source would be required in order for the full spell details to appear in the Compendium.&lt;/p&gt; 
+&lt;h3&gt;Manual Validation&lt;/h3&gt; 
+&lt;p&gt;While you add to XML source files, you can manually validate the XML to catch any errors.&lt;/p&gt; 
+&lt;p&gt;You can find an online XML Linter or use xmllint in the command line. The schema files are in the Utilities folder.&lt;/p&gt; 
+&lt;p&gt;Here is an example, running xmllint at the top level of the repo, using the compendium schema to validate an xml file in Sources:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xmllint --noout --schema Utilities/compendium.xsd FightClub5eXML/Sources/CoreRulebooks.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Build Your Own Compendium&lt;/h2&gt; 
+&lt;h3&gt;Create a collection file&lt;/h3&gt; 
+&lt;p&gt;A collection file is an XML file that lists which sources you would like to merge into your custom Compendium. It must follow this format:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;UTF-8&quot;?&amp;gt;
+&amp;lt;collection&amp;gt;
+    &amp;lt;doc href=&quot;../FightClub5eXML/Sources/PlayersHandbook.xml&quot; /&amp;gt;
+    &amp;lt;doc href=&quot;../FightClub5eXML/Sources/DungeonMastersGuide.xml&quot; /&amp;gt;
+    &amp;lt;doc href=&quot;../FightClub5eXML/Sources/MonsterManual.xml&quot; /&amp;gt;
+&amp;lt;/collection&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can have one or more &lt;code&gt;&amp;lt;doc&amp;gt;&lt;/code&gt; tags. Each doc must reference an xml file with a &lt;code&gt;&amp;lt;compendium&amp;gt;&lt;/code&gt; root element.&lt;/p&gt; 
+&lt;p&gt;The name of the collection file will be the name of the final Compendium.&lt;/p&gt; 
+&lt;h3&gt;Execute the merge&lt;/h3&gt; 
+&lt;p&gt;With your collection in place, you’re ready to build your Compendium by merging the sources together.&lt;/p&gt; 
+&lt;p&gt;Execute this line in your shell at the top level of the repo:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;for i in Collections/*.xml; do xsltproc -o FightClub5eXML/$i Utilities/merge.xslt $i; done
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This is the same line that is executed in our .travis.yml and will place all combined Compendiums in FightClub5eXML/Collections/&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenSCAP/openscap</title>
+      <link>https://github.com/OpenSCAP/openscap</link>
+      <description>&lt;p&gt;NIST Certified SCAP 1.2 toolkit&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OpenSCAP&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/OpenSCAP/openscap/actions&quot;&gt;&lt;img src=&quot;https://github.com/OpenSCAP/openscap/workflows/CI/badge.svg?sanitize=true&quot; alt=&quot;Build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/OpenSCAP/openscap&quot;&gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/3o5fnld1m98bo0so/branch/maint-1.3?svg=true&quot; alt=&quot;Build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/OpenSCAP/openscap&quot;&gt;&lt;img src=&quot;https://travis-ci.org/OpenSCAP/openscap.svg?branch=maint-1.3&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://lgtm.com/projects/g/OpenSCAP/openscap/context:cpp&quot;&gt;&lt;img src=&quot;https://img.shields.io/lgtm/grade/cpp/g/OpenSCAP/openscap.svg?logo=lgtm&amp;amp;logoWidth=18&quot; alt=&quot;Language grade: C/C++&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://lgtm.com/projects/g/OpenSCAP/openscap/alerts/&quot;&gt;&lt;img src=&quot;https://img.shields.io/lgtm/alerts/g/OpenSCAP/openscap.svg?logo=lgtm&amp;amp;logoWidth=18&quot; alt=&quot;Total alerts&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Open Source Security Compliance Solution&lt;/p&gt; 
+&lt;h2&gt;About&lt;/h2&gt; 
+&lt;p&gt;The oscap program is a command line tool that allows users to load, scan, validate, edit, and export SCAP documents.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Homepage of the project: &lt;a href=&quot;http://www.open-scap.org&quot;&gt;www.open-scap.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;User Manual: &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/maint-1.3/docs/manual/manual.adoc&quot;&gt;OpenSCAP User Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Compilation, testing and debugging: &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/maint-1.3/docs/developer/developer.adoc&quot;&gt;OpenSCAP Developer Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;For new contributors: &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/maint-1.3/docs/contribute/contribute.adoc&quot;&gt;How to contribute&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome all contributions to the OpenSCAP project. If you would like to contribute, either by fixing existing issues or adding new features, please check out our &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/maint-1.3/docs/contribute/contribute.adoc&quot;&gt;contribution guide&lt;/a&gt; to get started. If you would like to discuss anything, ask questions, or if you need additional help getting started, you can either send a message to our FreeNode IRC channel, &lt;strong&gt;#openscap&lt;/strong&gt;, or to our &lt;a href=&quot;https://www.redhat.com/mailman/listinfo/open-scap-list&quot;&gt;mailing list&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Use cases&lt;/h2&gt; 
+&lt;h3&gt;SCAP Content Validation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The following example shows how to validate a given source data stream; all components within the data stream are validated (XCCDF, OVAL, OCIL, CPE, and possibly other components):&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap ds sds-validate scap-ds.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Scanning&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate all definitions within the given OVAL Definition file, run the following command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap oval eval --results oval-results.xml scap-oval.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where scap-oval.xml is the OVAL Definition file and oval-results.xml is the OVAL Result file.&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate all definitions from the OVAL component that are part of a particular data stream within a SCAP data stream collection, run the following command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap oval eval --datastream-id ds.xml --oval-id xccdf.xml --results oval-results.xml scap-ds.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where ds.xml is the given data stream, xccdf.xml is an XCCDF file specifying the OVAL component, oval-results.xml is the OVAL Result file, and scap-ds.xml is a file representing the SCAP data stream collection.&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate a specific profile in an XCCDF file run this command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf eval --profile Desktop --results xccdf-results.xml --cpe cpe-dictionary.xml scap-xccdf.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where scap-xccdf.xml is the XCCDF document, Desktop is the selected profile from the XCCDF document, xccdf-results.xml is a file storing the scan results, and cpe-dictionary.xml is the CPE dictionary.&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate a specific XCCDF benchmark that is part of a data stream within a SCAP data stream collection run the following command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf eval --datastream-id ds.xml --xccdf-id xccdf.xml --results xccdf-results.xml scap-ds.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where scap-ds.xml is a file representing the SCAP data stream collection, ds.xml is the particular data stream, xccdf.xml is ID of the component-ref pointing to the desired XCCDF document, and xccdf-results.xml is a file containing the scan results.&lt;/em&gt;&lt;/p&gt; 
+&lt;h3&gt;Document generation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;without XCCDF rules&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf generate guide XCCDF-FILE &amp;gt; XCCDF-GUIDE-FILE
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;with XCCDF rules&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf generate guide --profile PROFILE XCCDF-FILE &amp;gt; XCCDF-GUIDE-FILE
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;generate report from scanning&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf generate report XCCDF-RESULT-FILE &amp;gt; XCCDF-REPORT-FILE
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

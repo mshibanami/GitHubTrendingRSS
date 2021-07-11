@@ -1,0 +1,1073 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Haxe Weekly Trending</title>
+    <description>Weekly Trending of Haxe in GitHub</description>
+    <pubDate>Sun, 11 Jul 2021 02:23:20 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>ninjamuffin99/Funkin</title>
+      <link>https://github.com/ninjamuffin99/Funkin</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Friday Night Funkin&lt;/h1&gt; 
+&lt;p&gt;This is the repository for Friday Night Funkin, a game originally made for Ludum Dare 47 “Stuck In a Loop”.&lt;/p&gt; 
+&lt;p&gt;Play the Ludum Dare prototype here: https://ninja-muffin24.itch.io/friday-night-funkin Play the Newgrounds one here: https://www.newgrounds.com/portal/view/770371 Support the project on the itch.io page: https://ninja-muffin24.itch.io/funkin&lt;/p&gt; 
+&lt;p&gt;IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMIPLED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL&lt;/p&gt; 
+&lt;h2&gt;Credits / shoutouts&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/ninja_muffin99&quot;&gt;ninjamuffin99 (me!)&lt;/a&gt; - Programmer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/phantomarcade3k&quot;&gt;PhantomArcade3K&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/evilsk8r&quot;&gt;Evilsk8r&lt;/a&gt; - Art&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/kawaisprite&quot;&gt;Kawaisprite&lt;/a&gt; - Musician&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This game was made with love to Newgrounds and it’s community. Extra love to Tom Fulp.&lt;/p&gt; 
+&lt;h2&gt;Build instructions&lt;/h2&gt; 
+&lt;p&gt;THESE INSTRUCTIONS ARE FOR COMPILING THE GAME’S SOURCE CODE!!!&lt;/p&gt; 
+&lt;p&gt;IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, GO TO ITCH.IO TO DOWNLOAD THE GAME FOR PC, MAC, AND LINUX!!&lt;/p&gt; 
+&lt;p&gt;https://ninja-muffin24.itch.io/funkin&lt;/p&gt; 
+&lt;p&gt;IF YOU WANT TO COMPILE THE GAME YOURSELF, CONTINUE READING!!!&lt;/p&gt; 
+&lt;h3&gt;Installing the Required Programs&lt;/h3&gt; 
+&lt;p&gt;First you need to install Haxe and HaxeFlixel. I’m too lazy to write and keep updated with that setup (which is pretty simple).&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://haxe.org/download/version/4.1.5/&quot;&gt;Install Haxe 4.1.5&lt;/a&gt; (Download 4.1.5 instead of 4.2.0 because 4.2.0 is broken and is not working with gits properly…)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://haxeflixel.com/documentation/install-haxeflixel/&quot;&gt;Install HaxeFlixel&lt;/a&gt; after downloading Haxe&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Other installations you’d need is the additional libraries, a fully updated list will be in &lt;code&gt;Project.xml&lt;/code&gt; in the project root. Currently, these are all of the things you need to install:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;flixel
+flixel-addons
+flixel-ui
+hscript
+newgrounds
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;So for each of those type &lt;code&gt;haxelib install [library]&lt;/code&gt; so shit like &lt;code&gt;haxelib install newgrounds&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;You’ll also need to install a couple things that involve Gits. To do this, you need to do a few things first.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download &lt;a href=&quot;https://git-scm.com/downloads&quot;&gt;git-scm&lt;/a&gt;. Works for Windows, Mac, and Linux, just select your build.&lt;/li&gt; 
+ &lt;li&gt;Follow instructions to install the application properly.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;haxelib git polymod https://github.com/larsiusprime/polymod.git&lt;/code&gt; to install Polymod.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc&lt;/code&gt; to install Discord RPC.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;You should have everything ready for compiling the game! Follow the guide below to continue!&lt;/p&gt; 
+&lt;p&gt;At the moment, you can optionally fix the transition bug in songs with zoomed out cameras.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Run &lt;code&gt;haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons&lt;/code&gt; in the terminal/command-prompt.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Ignored files&lt;/h3&gt; 
+&lt;p&gt;I gitignore the API keys for the game, so that no one can nab them and post fake highscores on the leaderboards. But because of that the game doesn’t compile without it.&lt;/p&gt; 
+&lt;p&gt;Just make a file in &lt;code&gt;/source&lt;/code&gt; and call it &lt;code&gt;APIStuff.hx&lt;/code&gt;, and copy paste this into it&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-haxe&quot;&gt;package;
+
+class APIStuff
+{
+	public static var API:String = &quot;&quot;;
+	public static var EncKey:String = &quot;&quot;;
+}
+
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;and you should be good to go there.&lt;/p&gt; 
+&lt;h3&gt;Compiling game&lt;/h3&gt; 
+&lt;p&gt;Once you have all those installed, it’s pretty easy to compile the game. You just need to run ‘lime test html5 -debug’ in the root of the project to build and run the HTML5 version. (command prompt navigation guide can be found here: &lt;a href=&quot;https://ninjamuffin99.newgrounds.com/news/post/1090480&quot;&gt;https://ninjamuffin99.newgrounds.com/news/post/1090480&lt;/a&gt;)&lt;/p&gt; 
+&lt;p&gt;To run it from your desktop (Windows, Mac, Linux) it can be a bit more involved. For Linux, you only need to open a terminal in the project directory and run ‘lime test linux -debug’ and then run the executable file in export/release/linux/bin. For Windows, you need to install Visual Studio Community 2019. While installing VSC, don’t click on any of the options to install workloads. Instead, go to the individual components tab and choose the following:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;MSVC v142 - VS 2019 C++ x64/x86 build tools&lt;/li&gt; 
+ &lt;li&gt;Windows SDK (10.0.17763.0)&lt;/li&gt; 
+ &lt;li&gt;C++ Profiling tools&lt;/li&gt; 
+ &lt;li&gt;C++ CMake tools for windows&lt;/li&gt; 
+ &lt;li&gt;C++ ATL for v142 build tools (x86 &amp;amp; x64)&lt;/li&gt; 
+ &lt;li&gt;C++ MFC for v142 build tools (x86 &amp;amp; x64)&lt;/li&gt; 
+ &lt;li&gt;C++/CLI support for v142 build tools (14.21)&lt;/li&gt; 
+ &lt;li&gt;C++ Modules for v142 build tools (x64/x86)&lt;/li&gt; 
+ &lt;li&gt;Clang Compiler for Windows&lt;/li&gt; 
+ &lt;li&gt;Windows 10 SDK (10.0.17134.0)&lt;/li&gt; 
+ &lt;li&gt;Windows 10 SDK (10.0.16299.0)&lt;/li&gt; 
+ &lt;li&gt;MSVC v141 - VS 2017 C++ x64/x86 build tools&lt;/li&gt; 
+ &lt;li&gt;MSVC v140 - VS 2015 C++ build tools (v14.00)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This will install about 22GB of crap, but once that is done you can open up a command line in the project’s directory and run &lt;code&gt;lime test windows -debug&lt;/code&gt;. Once that command finishes (it takes forever even on a higher end PC), you can run FNF from the .exe file under export\release\windows\bin As for Mac, ‘lime test mac -debug’ should work, if not the internet surely has a guide on how to compile Haxe stuff for Mac.&lt;/p&gt; 
+&lt;h3&gt;Additional guides&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://ninjamuffin99.newgrounds.com/news/post/1090480&quot;&gt;Command line basics&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>bbpanzu/bb-fnf-mods</title>
+      <link>https://github.com/bbpanzu/bb-fnf-mods</link>
+      <description>&lt;p&gt;all my mods&#39; FLAs and source codes and stuff&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;bb-fnf-mods&lt;/h1&gt; 
+&lt;p&gt;all my mods’ FLAs and source codes and stuff&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Verwex/Funkin-Mic-d-Up-SC</title>
+      <link>https://github.com/Verwex/Funkin-Mic-d-Up-SC</link>
+      <description>&lt;p&gt;A mod to Friday Night Funkin&#39; called FNF: Mic&#39;d Up, previously named EX Replayability.&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://gamebanana.com/gamefiles/15309&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;/art/FNF Logo.png&quot; alt=&quot;Logo&quot; width=&quot;658.5px&quot; height=&quot;487.5px&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;h3&gt;This is the repository for Friday Night Funkin: Mic’d Up, previously named FNF: EX Replayability, a non-profit modification of Friday Night Funkin’.&lt;/h3&gt; 
+&lt;p&gt;Support the original Newgrounds Build &lt;a href=&quot;https://www.newgrounds.com/portal/view/770371&quot;&gt;here&lt;/a&gt;!&lt;/p&gt; 
+&lt;p&gt;Play the original build on the &lt;a href=&quot;https://ninja-muffin24.itch.io/funkin&quot;&gt;Itch.io page&lt;/a&gt;!&lt;/p&gt; 
+&lt;p&gt;Play the Ludum Dare prototype of the original game &lt;a href=&quot;https://ninja-muffin24.itch.io/friday-night-funkin&quot;&gt;here&lt;/a&gt;!&lt;/p&gt; 
+&lt;p&gt;Go support the original repository for the game &lt;a href=&quot;https://github.com/ninjamuffin99/Funkin&quot;&gt;here&lt;/a&gt;!&lt;/p&gt; 
+&lt;h2&gt;Credits / Shoutouts&lt;/h2&gt; 
+&lt;!--me lol--&gt; 
+&lt;table style=&quot;span:90%&quot;&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;&lt;h3&gt;🖥 Programmers:&lt;/h3&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:middle&quot;&gt;&lt;h3&gt;🖼 Artists:&lt;/h3&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:right&quot;&gt;&lt;h3&gt;🎶 Musicians:&lt;/h3&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://twitter.com/ninja_muffin99&quot;&gt;&lt;b&gt;NinjaMuffin99&lt;/b&gt;&lt;/a&gt;&lt;br&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Ninja.png&quot; alt=&quot;NinjaMuffin99&quot; width=&quot;175&quot; height=&quot;175&quot;&gt; &lt;/td&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://twitter.com/phantomarcade3k&quot;&gt;&lt;b&gt;PhantomArcade3K&lt;/b&gt;&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/evilsk8r&quot;&gt;&lt;b&gt;Evilsk8r&lt;/b&gt;&lt;/a&gt;&lt;br&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Phantom.png&quot; alt=&quot;PhantomArcade3K&quot; width=&quot;175&quot; height=&quot;175&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Evil.png&quot; alt=&quot;Evilsk8r&quot; width=&quot;175&quot; height=&quot;175&quot;&gt;&lt;br&gt; &lt;/td&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://twitter.com/kawaisprite&quot;&gt;&lt;b&gt;Kawaisprite&lt;/b&gt;&lt;/a&gt;&lt;br&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Kawai.png&quot; alt=&quot;Kawaisprite&quot; width=&quot;175&quot; height=&quot;175&quot;&gt; &lt;/td&gt;
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;h2&gt;Mod Creators:&lt;/h2&gt; 
+&lt;table style=&quot;span:90%&quot;&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;th style=&quot;”text-align:left”&quot;&gt;&lt;h4&gt;⚙️ Mod Creator:&lt;/h4&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:middle&quot;&gt;&lt;h4&gt;🖥 Additional Programmers:&lt;/h4&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:right&quot;&gt;&lt;h4&gt;🖼 Additional Artists:&lt;/h4&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://twitter.com/Vershift&quot;&gt;&lt;b&gt;Verwex&lt;/b&gt;&lt;br&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Verwex.png&quot; alt=&quot;Verwex&quot; width=&quot;80&quot; height=&quot;80&quot;&gt;&lt;/a&gt; &lt;/td&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://twitter.com/kadedeveloper&quot;&gt;&lt;b&gt;KadeDev&lt;/b&gt;&lt;/a&gt;, &lt;a href=&quot;https://steamcommunity.com/profiles/76561198353865795&quot;&gt;&lt;b&gt;Ash237&lt;/b&gt;&lt;/a&gt;, &lt;a href=&quot;https://www.youtube.com/channel/UCqBMDBboJaBHLoxO0H3EBgw&quot;&gt;&lt;b&gt;Haya&lt;/b&gt;&lt;/a&gt;, &lt;a href=&quot;https://twitter.com/TentaRJ&quot;&gt;&lt;b&gt;TentaRJ&lt;/b&gt;&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/helpme_thebigt&quot;&gt;&lt;b&gt;Rozebud&lt;/b&gt;&lt;/a&gt;&lt;br&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Kade.png&quot; alt=&quot;KadeDeveloper&quot; width=&quot;80&quot; height=&quot;80&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Ash.png&quot; alt=&quot;Ash237&quot; width=&quot;80&quot; height=&quot;80&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Haya.png&quot; alt=&quot;Haya&quot; width=&quot;80&quot; height=&quot;80&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/TentaRJ.png&quot; alt=&quot;TentaRJ&quot; width=&quot;80&quot; height=&quot;80&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Rozebud.png&quot; alt=&quot;Rozebud&quot; width=&quot;80&quot; height=&quot;80&quot;&gt; &lt;/td&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://twitter.com/Sector0003&quot;&gt;&lt;b&gt;Sector03&lt;/b&gt;&lt;/a&gt;&lt;br&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/Sector03.png&quot; alt=&quot;Sector03&quot; width=&quot;80&quot; height=&quot;80&quot;&gt; &lt;/td&gt;
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt;  
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://ninja-muffin24.itch.io/funkin&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/preloaderArt.png&quot; width&quot;658.5px&quot; height=&quot;369.75px&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;This mod was made with love to Friday Night Funkin’ and its community. Extra love to the team behind it. 💖&lt;/strong&gt;&lt;/p&gt; 
+&lt;h1&gt;Mods (&lt;a href=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/#Compiling&quot;&gt;skip&lt;/a&gt;)&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/Verwex/Mic-d-Up-PRIVATE/raw/main/art/polymodNo.png&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/polymodNo.png&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;In order to load in mods, it HAS to be in the mainMods/_append folder. Why? This is to have backup support for when week 7 polymod actually releases. So if you wanna put in a mod for the shared/ folder then you put it in:&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;mods/mainMods/_append/shared&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;A reminder that this doesnt just work like a charm just yet!!!! This is experimental and can lead to some issues. Report major mod system bugs to Github Issues.&lt;/p&gt; 
+&lt;p&gt;Theres also modcharts, but unlike kade’s they make use of hscript, a haxe script parser. This allows for arbitrary code execution while ingame, however they take up some ram.&lt;/p&gt; 
+&lt;p&gt;Guide for this will be soon once it gets completed.&lt;/p&gt; 
+&lt;h1&gt;Compiling&lt;/h1&gt; 
+&lt;h2&gt;What can I do with compiling the mod? Why should I compile the mod instead of downloading it from &lt;a href=&quot;https://gamebanana.com/gamefiles/15309&quot;&gt;the GamaBanana page of the mod&lt;/a&gt;?&lt;/h2&gt; 
+&lt;p&gt;Compiling the mod gives access to the &lt;code&gt;/source&lt;/code&gt; folder, allowing you to change the code of the mod. You can add a lot of cool things with the open-source code!&lt;/p&gt; 
+&lt;p&gt;I recommend having a good idea on how to program. Compiling the mod is not for everyone!&lt;/p&gt; 
+&lt;p&gt;If you just want to download and play the mod normally, you can click &lt;a href=&quot;https://gamebanana.com/gamefiles/15309&quot;&gt;here to go to the GameBanana page of the mod&lt;/a&gt;!&lt;/p&gt; 
+&lt;h3&gt;&lt;strong&gt;If you do want to compile, continue reading!&lt;/strong&gt;&lt;/h3&gt; 
+&lt;h1&gt;Installing the Required Programs&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://haxe.org/documentation/introduction/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/haxeLogo.png&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;First you need to install Haxe and HaxeFlixel.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://haxe.org/download/version/4.1.5/&quot;&gt;Install Haxe 4.1.5&lt;/a&gt; (Download 4.1.5 instead of 4.2.0 because 4.2.0 is broken and is not working with gits properly…)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://haxeflixel.com/documentation/install-haxeflixel/&quot;&gt;Install HaxeFlixel&lt;/a&gt; after downloading Haxe&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Other installations you will need are the additional libraries. A fully updated list will be in &lt;code&gt;Project.xml&lt;/code&gt; in the project root. Currently, these are all the things you need to install:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;flixel
+flixel-addons
+flixel-ui
+hscript
+newgrounds
+seedyrng
+random
+systools
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;So, for each of those type &lt;code&gt;haxelib install [library]&lt;/code&gt; so shit like &lt;code&gt;haxelib install newgrounds&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;You will also need to install a couple things that involve Gits. To do this, you need to do a few things first.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download &lt;a href=&quot;https://git-scm.com/downloads&quot;&gt;git-scm&lt;/a&gt;. Works for Windows, Mac, and Linux, just select your build.&lt;/li&gt; 
+ &lt;li&gt;Follow instructions to install the application properly.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;haxelib git polymod https://github.com/larsiusprime/polymod.git&lt;/code&gt; to install Polymod.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;haxelib git discord_rpc https://github.com/Aidan63/linc_discord-rpc&lt;/code&gt; to install Discord RPC.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;haxelib git hscript-plus https://github.com/DleanJeans/hscript-plus/&lt;/code&gt; because its required to compile properly.&lt;/li&gt; 
+ &lt;li&gt;Optional: - Run &lt;code&gt;haxelib git flixel-addons https://github.com/HaxeFlixel/flixel-addons&lt;/code&gt; to update Flixel-Addons. This fixes the transition bug for zoomed out stage cameras.&lt;/li&gt; 
+ &lt;li&gt;Optional: - Run &lt;code&gt;haxelib git random https://github.com/jasononeil/hxrandom&lt;/code&gt; to make random more random.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;haxelib git systools https://github.com/haya3218/systools&lt;/code&gt; to install systools and run &lt;code&gt;lime rebuild systools windows&lt;/code&gt;. This is required for system edits, if defender decides to say “fuck u virus” then ignore it. &lt;strong&gt;USE HAYA’S REPO TO MAKE IT WORK OR ITLL THROW A COMPILER ERROR.&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;You should have everything ready for compiling the mod! Follow the guide below to continue!&lt;/p&gt; 
+&lt;h1&gt;Adding &lt;code&gt;APIStuff.hx&lt;/code&gt; into &lt;code&gt;/source&lt;/code&gt;&lt;/h1&gt; 
+&lt;p&gt;The API keys of the mod were gitignored so no one could post fake high scores onto the leaderboards in Newgrounds. Unfortunately, because this mod requires the &lt;code&gt;API&lt;/code&gt; and &lt;code&gt;EncKey&lt;/code&gt; values to compile, you will need to add a file called &lt;code&gt;APIStuff.hx&lt;/code&gt; into &lt;code&gt;/source&lt;/code&gt;.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Create a new text file called &lt;code&gt;APIStuff.hx&lt;/code&gt; inside of the &lt;code&gt;/source&lt;/code&gt; folder.&lt;/li&gt; 
+ &lt;li&gt;Copy the following text:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-haxe&quot;&gt;package;
+class APIStuff
+{
+	public static var API:String = &quot;&quot;;
+	public static var EncKey:String = &quot;&quot;;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt;Paste the text into the APIStuff.hx file and save the file.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;You should be good from there! Now, onto compiling!&lt;/p&gt; 
+&lt;h1&gt;Compiling the Mod&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://lime-ml.readthedocs.io/en/latest/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Verwex/Funkin-Mic-d-Up-SC/stable/art/limeLogo.png&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;h2&gt;HTML Building:&lt;/h2&gt; 
+&lt;p&gt;HTML Compiling currently does not work as Mic’d Up currently requires desktop-only libraries to function properly.&lt;/p&gt; 
+&lt;h2&gt;Desktop Building:&lt;/h2&gt; 
+&lt;p&gt;Desktop building can be a bit tedious. Each different version requires a different setup.&lt;/p&gt; 
+&lt;h3&gt;Linux Building:&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open your machine’s command prompt/terminal and navigate to your root folder of the mod. &lt;a href=&quot;https://ninjamuffin99.newgrounds.com/news/post/1090480&quot;&gt;An easy guide can be found here!&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Type &lt;code&gt;lime build linux -debug&lt;/code&gt; to build the Linux version of the mod.&lt;/li&gt; 
+ &lt;li&gt;Type &lt;code&gt;lime run linux -debug&lt;/code&gt; to run the Linux version of the mod from the command prompt/terminal. (You can also run the mod from &lt;code&gt;funkin/export/debug/linux/bin&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Mac Building:&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open your machine’s command prompt/terminal and navigate to your root folder of the mod. &lt;a href=&quot;https://ninjamuffin99.newgrounds.com/news/post/1090480&quot;&gt;An easy guide can be found here!&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Type &lt;code&gt;lime build mac -debug&lt;/code&gt; to build the Mac version of the mod.&lt;/li&gt; 
+ &lt;li&gt;Type &lt;code&gt;lime run mac -debug&lt;/code&gt; to run the Mac version of the mod from the command prompt/terminal. (You can also run the mod from &lt;code&gt;funkin/export/debug/mac/bin&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Windows Building:&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;THIS METHOD REQUIRES AROUND 22 GIGABYTES OF STORAGE.&lt;/strong&gt;&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://visualstudio.microsoft.com/downloads/&quot;&gt;Visual Studio Community 2019&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the installer and go to the individual workloads tab and download the following:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;* C++ CMake tools for windows 
+* C++ Profiling tools 
+* C++ ATL for v142 build tools (x86 &amp;amp; x64)
+* C++ MFC for v142 build tools (x86 &amp;amp; x64)
+* C++/CLI support for v142 build tools (14.21)
+* C++ Modules for v142 build tools (x64/x86)
+* Clang Compiler for Windows
+* MSVC v140 - VS 2015 C++ build tools (v14.00) 
+* MSVC v141 - VS 2017 C++ x64/x86 build tools
+* MSVC v142 - VS 2019 C++ x64/x86 build tools
+* Windows 10 SDK (10.0.16299.0)
+* Windows 10 SDK (10.0.17134.0)
+* Windows SDK (10.0.17763.0)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt;Wait for the install to finish, which might take a while.&lt;/li&gt; 
+ &lt;li&gt;Open your machine’s command prompt/terminal and navigate to your root folder of the mod. &lt;a href=&quot;https://ninjamuffin99.newgrounds.com/news/post/1090480&quot;&gt;An easy guide can be found here!&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Once everything is installed, type &lt;code&gt;lime build windows -debug&lt;/code&gt; to build the windows version of the mod.&lt;/li&gt; 
+ &lt;li&gt;Type &lt;code&gt;lime run windows -debug&lt;/code&gt; after the mod is compiled to run the windows version of the mod. (You can also run the mod from &lt;code&gt;funkin/export/debug/windows/bin&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h1&gt;All done!&lt;/h1&gt; 
+&lt;p&gt;You should have been able to compile the whole mod now! What can you do now? Well, you can mod to your heart’s desire! Since this mod is open-source, the creator loves seeing what other talented artists and programmers can make! Special thanks to the amazing group of dedicated people that are making the original game amazing, and the modding team for making this mod possible!
+ &lt;!--And the person who fixed this README.md--&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; 💖💖 &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>FunkinModdingPlus/ModdingPlus</title>
+      <link>https://github.com/FunkinModdingPlus/ModdingPlus</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Friday Night Funkin&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://actions-badge.atrox.dev/TheDrawingCoder-Gamer/Funkin/goto?ref=master&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint.svg?url=https%3A%2F%2Factions-badge.atrox.dev%2FTheDrawingCoder-Gamer%2FFunkin%2Fbadge%3Fref%3Dmaster&amp;amp;style=for-the-badge&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/azure-devops/build/benharless820/7af207e5-72fd-483f-9a48-6fc65e63abb9/4?label=pipelines&amp;amp;style=for-the-badge&quot; alt=&quot;Azure DevOps builds&quot;&gt; &lt;a href=&quot;https://forthebadge.com&quot;&gt;&lt;img src=&quot;https://forthebadge.com/images/badges/fuck-it-ship-it.svg?sanitize=true&quot; alt=&quot;forthebadge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://forthebadge.com&quot;&gt;&lt;img src=&quot;https://forthebadge.com/images/badges/works-on-my-machine.svg?sanitize=true&quot; alt=&quot;forthebadge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://forthebadge.com&quot;&gt;&lt;img src=&quot;https://forthebadge.com/images/badges/contains-tasty-spaghetti-code.svg?sanitize=true&quot; alt=&quot;forthebadge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://forthebadge.com&quot;&gt;&lt;img src=&quot;https://forthebadge.com/images/badges/it-works-why.svg?sanitize=true&quot; alt=&quot;forthebadge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://forthebadge.com&quot;&gt;&lt;img src=&quot;https://forthebadge.com/images/badges/just-plain-nasty.svg?sanitize=true&quot; alt=&quot;forthebadge&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This is the repository for Friday Night Funkin Modding Plus, a mod for FNF to add more features for modders and players alike.&lt;/p&gt; 
+&lt;p&gt;Any mods made with this mod must have express permission from the creator of songs included. (for example, if you include the Whitty Mod, you should have express permission from Nate Anim8, KadeDev, and SockClip. I at least would like to see the main author and a majority of secondary offers get express permission) If an author gives express disapproval, and the mod is up, you should take your mod down. I own the code to this mod so I can (and will) take down mods that don’t follow this rule.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Get the cutting edge build: https://dev.azure.com/benharless820/FNF%20Modding%20Plus/_build&lt;/li&gt; 
+ &lt;li&gt;Play the Original Game: https://github.com/ninjamuffin99/Funkin&lt;/li&gt; 
+ &lt;li&gt;Need Help? FNF Modding Plus Discord: https://discord.gg/96nV4Q5HMr&lt;/li&gt; 
+ &lt;li&gt;Trello Page (todo list): https://trello.com/b/cFjJJIjF/fnf-modding-plus&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits for the Original Game&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/ninja_muffin99&quot;&gt;ninjamuffin99&lt;/a&gt; - Programmer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/phantomarcade3k&quot;&gt;PhantomArcade3K&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/evilsk8r&quot;&gt;Evilsk8r&lt;/a&gt; - Art&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/kawaisprite&quot;&gt;KawaiSprite&lt;/a&gt; - Musician&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Modding+ Credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/TheDrawingCoder-Gamer&quot;&gt;BulbyVR&lt;/a&gt; - Owner/Programmer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gamebanana.com/members/1780306&quot;&gt;DJ Popsicle&lt;/a&gt; - Co-Owner/Additional Programmer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gamebanana.com/members/1767306&quot;&gt;Matheus L/Mlops&lt;/a&gt;, &lt;a href=&quot;https://gamebanana.com/members/1764840&quot;&gt;AndreDoodles&lt;/a&gt;, riko, Raf, ElBartSinsoJaJa, and &lt;a href=&quot;https://www.youtube.com/channel/UCXbiI4MJD9Y3FpjW61lG8ZQ&quot;&gt;plum&lt;/a&gt; - Artist &amp;amp; Animation&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gamebanana.com/members/1892442&quot;&gt;ThePinkPhantom/JuliettePink&lt;/a&gt; - Portrait Artist&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gamebanana.com/members/1701629&quot;&gt;Alex Director&lt;/a&gt; - Icon Fixer&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Build instructions&lt;/h2&gt; 
+&lt;p&gt;THESE INSTRUCTIONS ARE FOR COMPILING THE GAME’S SOURCE CODE!!!&lt;/p&gt; 
+&lt;p&gt;IF YOU WANT TO JUST DOWNLOAD AND INSTALL AND PLAY THE GAME NORMALLY, GO TO GAMEBANANA TO DOWNLOAD THE GAME FOR PC!!&lt;/p&gt; 
+&lt;p&gt;https://gamebanana.com/gamefiles/14264&lt;/p&gt; 
+&lt;p&gt;IF YOU WANT TO COMPILE THE GAME YOURSELF, OR PLAY ON MAC OR LINUX, CONTINUE READING!!!&lt;/p&gt; 
+&lt;p&gt;IF YOU MAKE A MOD AND DISTRIBUTE A MODIFIED / RECOMIPLED VERSION, YOU MUST OPEN SOURCE YOUR MOD AS WELL&lt;/p&gt; 
+&lt;h3&gt;Installing shit&lt;/h3&gt; 
+&lt;p&gt;First you need to install Haxe and HaxeFlixel. I’m too lazy to write and keep updated with that setup (which is pretty simple). The link to that is on the &lt;a href=&quot;https://haxeflixel.com/documentation/getting-started/&quot;&gt;HaxeFlixel website&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Other installations you’d need is the additional libraries, a fully updated list will be in &lt;code&gt;Project.xml&lt;/code&gt; in the project root, but here are the one’s I’m using as of writing.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;hscript
+flixel-ui
+tjson
+json2object
+uniontypes
+hxcpp-debug-server
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;So for each of those type &lt;code&gt;haxelib install [library]&lt;/code&gt; so shit like &lt;code&gt;haxelib install hscript&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;You’ll also need to install hscript-ex. Do this with&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib git hscript-ex https://github.com/ianharrigan/hscript-ex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Compiling game&lt;/h3&gt; 
+&lt;p&gt;To run it from your desktop (Windows, Mac, Linux) it can be a bit more involved. For Linux, you only need to open a terminal in the project directory and run ‘lime test linux -debug’ and then run the executible file in export/release/linux/bin. For Windows, you need to install Visual Studio Community 2019. While installing VSC, don’t click on any of the options to install workloads. Instead, go to the individual components tab and choose the following:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;MSVC v142 - VS 2019 C++ x64/x86 build tools&lt;/li&gt; 
+ &lt;li&gt;Windows SDK (10.0.17763.0)&lt;/li&gt; 
+ &lt;li&gt;C++ Profiling tools&lt;/li&gt; 
+ &lt;li&gt;C++ CMake tools for windows&lt;/li&gt; 
+ &lt;li&gt;C++ ATL for v142 build tools (x86 &amp;amp; x64)&lt;/li&gt; 
+ &lt;li&gt;C++ MFC for v142 build tools (x86 &amp;amp; x64)&lt;/li&gt; 
+ &lt;li&gt;C++/CLI support for v142 build tools (14.21)&lt;/li&gt; 
+ &lt;li&gt;C++ Modules for v142 build tools (x64/x86)&lt;/li&gt; 
+ &lt;li&gt;Clang Compiler for Windows&lt;/li&gt; 
+ &lt;li&gt;Windows 10 SDK (10.0.17134.0)&lt;/li&gt; 
+ &lt;li&gt;Windows 10 SDK (10.0.16299.0)&lt;/li&gt; 
+ &lt;li&gt;MSVC v141 - VS 2017 C++ x64/x86 build tools&lt;/li&gt; 
+ &lt;li&gt;MSVC v140 - VS 2015 C++ build tools (v14.00)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This will install about 22GB of crap, but once that is done you can open up a command line in the project’s directory and run &lt;code&gt;lime test windows -debug&lt;/code&gt;. Once that command finishes (it takes forever even on a higher end PC), you can run FNF from the .exe file under export\release\windows\bin As for Mac, ‘lime test mac -debug’ should work, if not the internet surely has a guide on how to compile Haxe stuff for Mac.&lt;/p&gt; 
+&lt;h3&gt;Additional guides&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://ninjamuffin99.newgrounds.com/news/post/1090480&quot;&gt;Command line basics&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>GrowtopiaFli/openfl-haxeflixel-video-code</title>
+      <link>https://github.com/GrowtopiaFli/openfl-haxeflixel-video-code</link>
+      <description>&lt;p&gt;My research on how to play videos in openfl haxeflixel&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;GWebDev FNF Video Code&lt;/h1&gt; 
+&lt;p&gt;This is my research on how to play videos in openfl haxeflixel (webm only supported)&lt;/p&gt; 
+&lt;h1&gt;How To Setup&lt;/h1&gt; 
+&lt;p&gt;BEFORE SETUP apologies to benlonghair the war has ended ok so &lt;br&gt; (btw this is for &lt;code&gt;Friday Night Funkin&lt;/code&gt;) &lt;br&gt; ALSO IF YOU ARE IN LINUX OR MAC AND THE COMMAND &lt;code&gt;lime&lt;/code&gt; DOES NOT WORK BUT YOU INSTALLED IT THEN DO &lt;code&gt;haxelib run lime&lt;/code&gt; INSTEAD!&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the Friday Night Funkin source code in https://github.com/ninjamuffin99/Funkin and follow &lt;code&gt;EVERYTHING&lt;/code&gt; (including the git part which is very important) (make sure its the new file system otherwise you need to put extra code &lt;code&gt;which i have the solution for lol&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Install actuate by doing &lt;code&gt;haxelib install actuate&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Install the extension-webm fork by doing &lt;code&gt;haxelib git extension-webm https://github.com/GrowtopiaFli/extension-webm&lt;/code&gt; &lt;br&gt; &lt;br&gt; &lt;code&gt;If You Are On Mac Please Download XCode In The App Store Before Proceeding&lt;/code&gt; &lt;br&gt; &lt;code&gt;If You Are On Linux Please Run This Command With The Packages Or Similar&lt;/code&gt; &lt;br&gt; &lt;br&gt; &lt;strong&gt;&lt;code&gt;sudo apt-get install libgl1-mesa-dev libglu1-mesa-dev g++ g++-multilib gcc-multilib libasound2-dev libx11-dev libxext-dev libxi-dev libxrandr-dev libxinerama-dev&lt;/code&gt;&lt;/strong&gt; &lt;br&gt; &amp;nbsp;&lt;/li&gt; 
+ &lt;li&gt;It won’t work lol so type the command &lt;code&gt;lime rebuild extension-webm [windows/mac/linux/android]&lt;/code&gt; (depends on your device) &lt;br&gt; &lt;br&gt; &lt;strong&gt;EXTRA STEP FOR ANDROID!&lt;/strong&gt; &lt;br&gt; &lt;br&gt; Run These Commands: &lt;br&gt; &lt;br&gt; &lt;code&gt;lime config HXCPP_ARM64 true&lt;/code&gt; &lt;br&gt; &lt;code&gt;lime config HXCPP_x86 true&lt;/code&gt; &lt;br&gt; &lt;br&gt; STILL PRETTY UNSTABLE THO! &lt;br&gt; &lt;br&gt; ALSO IF YOU ARE IN ANDROID FOLLOW THE ANDROID STUDIO INSTRUCTIONS IN https://github.com/luckydog7/Funkin-android &lt;br&gt; &amp;nbsp;&lt;/li&gt; 
+ &lt;li&gt;Download the zip of this repository and copy paste the files inside the &lt;code&gt;source&lt;/code&gt; folder to your fnf source code’s &lt;code&gt;source&lt;/code&gt; folder&lt;/li&gt; 
+ &lt;li&gt;Edit the &lt;code&gt;Main.hx&lt;/code&gt; file in the fnf source code &lt;br&gt; Then add after the code&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, updateframerate, drawframerate, skipSplash, startFullscreen));
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And before code&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;#if !mobile
+addChild(new FPS(10, 3, 0xFFFFFF));
+#end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The code&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;var ourSource:String = &quot;assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm&quot;;
+
+#if web
+var str1:String = &quot;HTML CRAP&quot;;
+var vHandler = new VideoHandler();
+vHandler.init1();
+vHandler.video.name = str1;
+addChild(vHandler.video);
+vHandler.init2();
+GlobalVideo.setVid(vHandler);
+vHandler.source(ourSource);
+#elseif desktop
+var str1:String = &quot;WEBM SHIT&quot;; 
+var webmHandle = new WebmHandler();
+webmHandle.source(ourSource);
+webmHandle.makePlayer();
+webmHandle.webm.name = str1;
+addChild(webmHandle.webm);
+GlobalVideo.setWebm(webmHandle);
+#end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;So it would look something like&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;addChild(new FlxGame(gameWidth, gameHeight, initialState, zoom, updateframerate, drawframerate, skipSplash, startFullscreen));
+		
+var ourSource:String = &quot;assets/videos/DO NOT DELETE OR GAME WILL CRASH/dontDelete.webm&quot;;
+		
+#if web
+var str1:String = &quot;HTML CRAP&quot;;
+var vHandler = new VideoHandler();
+vHandler.init1();
+vHandler.video.name = str1;
+addChild(vHandler.video);
+vHandler.init2();
+GlobalVideo.setVid(vHandler);
+vHandler.source(ourSource);
+#elseif desktop
+var str1:String = &quot;WEBM SHIT&quot;; 
+var webmHandle = new WebmHandler();
+webmHandle.source(ourSource);
+webmHandle.makePlayer();
+webmHandle.webm.name = str1;
+addChild(webmHandle.webm);
+GlobalVideo.setWebm(webmHandle);
+#end
+
+#if !mobile
+addChild(new FPS(10, 3, 0xFFFFFF));
+#end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Setting up &lt;code&gt;Project.xml&lt;/code&gt;&lt;/h1&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Edit &lt;code&gt;Project.xml&lt;/code&gt; in the fnf source code&lt;/li&gt; 
+ &lt;li&gt;Find the section with &lt;code&gt;&amp;lt;haxelib name=&quot;etc&quot; /&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Add these two extra lines&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;haxelib name=&quot;actuate&quot; /&amp;gt;
+&amp;lt;haxelib name=&quot;extension-webm&quot; if=&quot;desktop&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;4&quot;&gt; 
+ &lt;li&gt;&lt;code&gt;FOLLOW THIS 4TH STEP ONLY IF YOUR USING THE OLD FILE SYSTEM&lt;/code&gt; In the section with &lt;code&gt;&amp;lt;assets path=&quot;bla&quot;&amp;gt;&lt;/code&gt; &lt;br&gt; Add these two lines&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;assets path=&quot;assets/videos&quot; include=&quot;*.mp3&quot; if=&quot;web&quot;/&amp;gt;
+&amp;lt;assets path=&quot;assets/videos&quot; include=&quot;*.ogg&quot; unless=&quot;web&quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;5&quot;&gt; 
+ &lt;li&gt;If your in the new file system &lt;br&gt; Create a new folder named &lt;code&gt;videos&lt;/code&gt; inside assets/preload &lt;br&gt; If your in the old file system &lt;br&gt; Create a new folder named &lt;code&gt;videos&lt;/code&gt; inside assets&lt;/li&gt; 
+ &lt;li&gt;Paste the &lt;code&gt;DO NOT DELETE OR GAME WILL CRASH&lt;/code&gt; folder inside the videos folder (either assets/preload/videos or assets/videos &lt;code&gt;SOURCE CODE SPECIFIC&lt;/code&gt;) if you don’t you know what happens, game crashes.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h1&gt;Setting up the desktop build&lt;/h1&gt; 
+&lt;p&gt;For all you windows users out there You need to do an extra step You must know how to use cmd or &lt;code&gt;Command Prompt&lt;/code&gt; or &lt;code&gt;Terminal&lt;/code&gt; for mac or something idk i don’t have a mac &lt;br&gt; (sorry but this is only for &lt;code&gt;64 bit&lt;/code&gt; architectures)&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download ffmpeg https://github.com/BtbN/FFmpeg-Builds/releases (please download the gpl shared version there is also download for mac please download ffprobe: https://evermeet.cx/ffmpeg)&lt;/li&gt; 
+ &lt;li&gt;Extract the zip file to your choice&lt;/li&gt; 
+ &lt;li&gt;Go inside the &lt;code&gt;bin&lt;/code&gt; folder inside the extracted zip file&lt;/li&gt; 
+ &lt;li&gt;Open &lt;code&gt;Command Prompt&lt;/code&gt; or &lt;code&gt;Terminal&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Change directory inside the &lt;code&gt;bin&lt;/code&gt; folder&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;More on this later&lt;/code&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h1&gt;Understanding of how video works&lt;/h1&gt; 
+&lt;p&gt;As you know, this only supports &lt;code&gt;webm&lt;/code&gt; video files not &lt;code&gt;mp4&lt;/code&gt; or &lt;code&gt;any other file type&lt;/code&gt; &lt;br&gt; The reasoning of this is because of the different types of codecs not embedded inside openfl &lt;br&gt; Let me give an explanation &lt;br&gt; &lt;code&gt;Video Files&lt;/code&gt; require a &lt;code&gt;codec&lt;/code&gt; &lt;br&gt; a codec is an &lt;code&gt;encoder&lt;/code&gt; or a &lt;code&gt;decoder&lt;/code&gt; for video files &lt;br&gt; You &lt;code&gt;CANNOT&lt;/code&gt; compress video files to a smaller size in modern times because they are already &lt;code&gt;COMPRESSED&lt;/code&gt; and that is why we have &lt;code&gt;codecs&lt;/code&gt; so you can’t push the limit &lt;br&gt; OpenFL has no codec embedded into it that’s why someone who made &lt;code&gt;openfl-webm&lt;/code&gt; coded the webm codec from scratch using &lt;code&gt;c++&lt;/code&gt; for haxe/openfl &lt;br&gt; But if you will ask &lt;code&gt;Why does it work for html?&lt;/code&gt; &lt;br&gt; It’s because when it comes to html the &lt;code&gt;BROWSER&lt;/code&gt; has the codec &lt;br&gt; If you were to do it Natively &lt;code&gt;Native means an application that uses the system&#39;s commands instead of depending on other software like browsers which is for html5&lt;/code&gt;, there are no codecs built into it. &lt;br&gt; Now if you were to ask &lt;code&gt;Why is it named extension-webm if it was openfl-webm then?&lt;/code&gt; It’s because &lt;code&gt;openfl-webm&lt;/code&gt; is ancient and broken so someone made &lt;code&gt;extension-webm&lt;/code&gt; to fix it: https://github.com/HaxeExtension/extension-webm &lt;br&gt; Now if you were to ask &lt;code&gt;Then why did i install https://github.com/GrowtopiaFli/extension-webm instead of https://github.com/HaxeExtension/extension-webm then?&lt;/code&gt; It’s because i added some extra code in &lt;code&gt;WebmPlayer.hx&lt;/code&gt; to fix memory leaks. &lt;br&gt; Now if you were to ask &lt;code&gt;What are memory leaks?&lt;/code&gt; well a memory leak is a thing wherein the memory is stuffed and not freed, in basic terms, your &lt;code&gt;RAM&lt;/code&gt; processes more data. &lt;br&gt; Why you ask? it’s because the video isn’t being replaced but keep being added each time. &lt;br&gt; How did i fix this issue you asked? i added extra code to &lt;code&gt;WebmPlayer.hx&lt;/code&gt; which allows you to change the &lt;code&gt;SOURCE VIDEO&lt;/code&gt; of the webm player anytime.&lt;/p&gt; 
+&lt;h1&gt;Solution for the desktop build&lt;/h1&gt; 
+&lt;p&gt;Now how will we setup the video on desktop? &lt;br&gt; Well in webm player there is &lt;code&gt;NO&lt;/code&gt; audio support because it’s broken lol so now we are in trouble but do not worry because ffmpeg is here to save us. &lt;br&gt; My solution is to &lt;code&gt;Audio Sync&lt;/code&gt; a way of Synchronizing the audio version of the video to the video &lt;code&gt;You must have an ogg file either just the video&#39;s audio or just empty audio that lasts as long as the video&#39;s time (i made a solution so if you don&#39;t have audio on your video then just don&#39;t make an ogg file)&lt;/code&gt;. &lt;br&gt; So back to that ffmpeg change directory folder is a ffprobe command template i have&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt;./ffprobe -v error -count_frames -select_streams v:0 -show_entries stream=nb_read_frames -of default=nokey=1:noprint_wrappers=1 &quot;yourvideo.mp4&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Ok so my recommendation is to Convert your video to webm then convert that webm to an mp4 because sometimes there are frame losses to webm files which fails the &lt;code&gt;Audio Sync&lt;/code&gt;. &lt;br&gt; This command logs the number of frames your video has and now you may ask. &lt;br&gt; &lt;code&gt;If i have to convert webm to an mp4 because of frame loss for ffprobe why the hell can&#39;t i just input the webm file?&lt;/code&gt; Well it’s because ffprobe cannot detect the frame numbers in your webm files so you have to use a different format. &lt;br&gt; Now you may ask &lt;code&gt;What am i suppose to do with the frame numbers?&lt;/code&gt; You have to make your video name first. &lt;br&gt; Let me give a video name sample of &lt;code&gt;video&lt;/code&gt;. &lt;br&gt; Now inside the videos folder in either &lt;code&gt;assets/preload/videos&lt;/code&gt; or &lt;code&gt;assets/videos&lt;/code&gt; &lt;code&gt;(SOURCE CODE SPECIFIC)&lt;/code&gt; if the video name is &lt;code&gt;video&lt;/code&gt; then make a file called &lt;code&gt;video.txt&lt;/code&gt; and put the frame numbers there as easy as that. &lt;br&gt; 2. put your webm file in so it will be &lt;code&gt;video.webm&lt;/code&gt; &lt;br&gt; 3. put the ogg converted file in so it will be &lt;code&gt;video.ogg&lt;/code&gt; &lt;br&gt; &lt;code&gt;IMPORTANT NOTE THAT THERE ARE DIFFERENT CODECS FOR WEBM FILES THE SPECIFIC ONE IS VP8 WHILE VP9 AND OTHERS AREN&#39;T SUPPORTED&lt;/code&gt;&lt;/p&gt; 
+&lt;h1&gt;Usage of the player&lt;/h1&gt; 
+&lt;p&gt;You can edit &lt;code&gt;VideoState.hx&lt;/code&gt; all you want but the usage of the &lt;code&gt;VideoState&lt;/code&gt; class is pretty simple. &lt;br&gt; The return must be a new class but i made a separate &lt;code&gt;VideoState.hx&lt;/code&gt; file inside the &lt;code&gt;function&lt;/code&gt; folder in this repository to change the callback to a function.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;FlxG.switchState(new VideoState(&#39;assets/videos/yoursourcevideo.webm&#39;, new YourClass(), your frameskip limit which you can leave blank or put a frameskip limit you can fill this parameter voluntarily and it must be an integer not a decimal, [true/false] (if it is true, the music playing will automatically be paused, this is good for midway videos while playing or idk for pausing the game and showing the video cutscene)));
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;YourClass is your callback class which is called once the video ends so you put your own logic idk &lt;br&gt; Frameskip limit should be an integer not a decimal &lt;br&gt; enter true or false for music auto pause and resume &lt;br&gt; WARNING WARNING! function is very unstable and won’t work do not copy the contents of the &lt;code&gt;function&lt;/code&gt; folder please and also you make your own class with code or something idk i won’t be your coding teacher ask kadedev or something idk&lt;/p&gt; 
+&lt;h1&gt;End of the document&lt;/h1&gt; 
+&lt;p&gt;Thank you for taking your time to read the entire repository ReadMe file. &lt;br&gt; This is the end of the document i hope you understood everything i wrote for you to play videos in &lt;code&gt;Friday Night Funkin&lt;/code&gt;. &lt;br&gt; Support the kickstarter here: https://www.kickstarter.com/projects/funkin/friday-night-funkin-the-full-ass-game&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Jorge-SunSpirit/Monika_Full_Week</title>
+      <link>https://github.com/Jorge-SunSpirit/Monika_Full_Week</link>
+      <description>&lt;p&gt;Friday Night Funkin&#39; Monika Full Week has finally reached it&#39;s full potential!&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://ayetsg.github.io/img/MonikaRebooted.png&quot; alt=&quot;Logo&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Built on &lt;strong&gt;&lt;a href=&quot;https://github.com/KadeDev/Kade-Engine&quot;&gt;Kade Engine&lt;/a&gt;&lt;/strong&gt;&lt;/h2&gt; 
+&lt;h1&gt;Original Game Links&lt;/h1&gt; 
+&lt;p&gt;FNF Links: &lt;strong&gt;&lt;a href=&quot;https://ninja-muffin24.itch.io/funkin&quot;&gt;itch.io page&lt;/a&gt; ⋅ &lt;a href=&quot;https://www.newgrounds.com/portal/view/770371&quot;&gt;Newgrounds&lt;/a&gt; ⋅ &lt;a href=&quot;https://github.com/ninjamuffin99/Funkin&quot;&gt;source code on GitHub&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;DDLC Links: &lt;strong&gt;&lt;a href=&quot;http://ddlc.moe&quot;&gt;DDLC Official Webiste&lt;/a&gt; ⋅ &lt;a href=&quot;https://teamsalvato.itch.io/ddlc&quot;&gt;itch.io page&lt;/a&gt; ⋅ &lt;a href=&quot;https://store.steampowered.com/app/698780/Doki_Doki_Literature_Club/&quot;&gt;Steam page&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;h1&gt;Credits&lt;/h1&gt; 
+&lt;h3&gt;Monika Full Week&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/AetherDX&quot;&gt;AetherDX&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/Jorge_SunSpirit&quot;&gt;Jorge_SunSpirit&lt;/a&gt; - Programming&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/SirDusterBuster&quot;&gt;SirDusterBuster&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/TokyoGalaxyOG&quot;&gt;TokyoGalaxyOG&lt;/a&gt; - Art&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCm3eGs2etEOMzRX0iQ4QzqQ&quot;&gt;CelShader&lt;/a&gt; and &lt;a href=&quot;https://youtube.com/kallionic&quot;&gt;Kallionic&lt;/a&gt; - Music&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Special Thanks&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/channel/UC4rwJYVeDHxGKnFDhHz88ZQ&quot;&gt;Blantados&lt;/a&gt; - Vocals/Charting of “Your Reality”&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gamebanana.com/members/1813477&quot;&gt;aśh&lt;/a&gt; - Implement Alt animations per note and helped add end song cutscenes.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/PeacefulLuma&quot;&gt;Lumitic&lt;/a&gt; - Mad lad that actually knows how to code and helped with the project.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/Zeexel32&quot;&gt;Zeexel32&lt;/a&gt; - Some general bug fixes/coding help.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/foomfs&quot;&gt;foomfs&lt;/a&gt; - Thumbnail Design&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/matt_currency&quot;&gt;Matt$&lt;/a&gt; - Remastering Monika Vocals&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/cval_brown&quot;&gt;Cval&lt;/a&gt; - Charting “Bara no Yume”&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Friday Night Funkin’&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/ninja_muffin99&quot;&gt;ninjamuffin99&lt;/a&gt; - Programming&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/phantomarcade3k&quot;&gt;PhantomArcade3K&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/evilsk8r&quot;&gt;Evilsk8r&lt;/a&gt; - Art&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/kawaisprite&quot;&gt;Kawai Sprite&lt;/a&gt; - Music&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Doki Doki Literature Club!&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/dansalvato&quot;&gt;Dan Salvato&lt;/a&gt; - Creator of DDLC&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/TeamSalvato&quot;&gt;Team Salvato&lt;/a&gt; - Publishers of DDLC&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Kade Engine&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/KadeDeveloper&quot;&gt;KadeDeveloper&lt;/a&gt; - Maintainer and lead programmer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/KadeDev/Kade-Engine/graphs/contributors&quot;&gt;The contributors&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>HaxeFlixel/flixel</title>
+      <link>https://github.com/HaxeFlixel/flixel</link>
+      <description>&lt;p&gt;Free, cross-platform 2D game engine powered by Haxe and OpenFL&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;http://haxeflixel.com/&quot;&gt;&lt;img src=&quot;https://raw.github.com/HaxeFlixel/haxeflixel.com/master/src/files/images/flixel-logos/HaxeFlixel.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/HaxeFlixel/flixel&quot;&gt;flixel&lt;/a&gt; | &lt;a href=&quot;https://github.com/HaxeFlixel/flixel-addons&quot;&gt;addons&lt;/a&gt; | &lt;a href=&quot;https://github.com/HaxeFlixel/flixel-ui&quot;&gt;ui&lt;/a&gt; | &lt;a href=&quot;https://github.com/HaxeFlixel/flixel-demos&quot;&gt;demos&lt;/a&gt; | &lt;a href=&quot;https://github.com/HaxeFlixel/flixel-tools&quot;&gt;tools&lt;/a&gt; | &lt;a href=&quot;https://github.com/HaxeFlixel/flixel-templates&quot;&gt;templates&lt;/a&gt; | &lt;a href=&quot;https://github.com/HaxeFlixel/flixel-docs&quot;&gt;docs&lt;/a&gt; | &lt;a href=&quot;https://github.com/HaxeFlixel/haxeflixel.com&quot;&gt;haxeflixel.com&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/HaxeFlixel/flixel/actions?query=workflow%3ACI&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/workflow/status/HaxeFlixel/flixel/CI.svg?logo=github&quot; alt=&quot;CI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discordapp.com/invite/rqEBAgF&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/162395145352904705.svg?logo=discord&quot; alt=&quot;Discord&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://lib.haxe.org/p/flixel&quot;&gt;&lt;img src=&quot;https://badgen.net/haxelib/v/flixel&quot; alt=&quot;Haxelib Version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://lib.haxe.org/p/flixel&quot;&gt;&lt;img src=&quot;https://badgen.net/haxelib/d/flixel?color=blue&quot; alt=&quot;Haxelib Downloads&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/HaxeFlixel/flixel/dev/LICENSE.md&quot;&gt;&lt;img src=&quot;https://badgen.net/haxelib/license/flixel&quot; alt=&quot;Haxelib License&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.patreon.com/haxeflixel&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/donate-patreon-blue.svg?sanitize=true&quot; alt=&quot;Patreon&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.haxeflixel.com/showcase&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/HaxeFlixel/flixel/dev/images/showcase.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Links&lt;/h2&gt; 
+&lt;p&gt;Here are the most important links to get you started with HaxeFlixel:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://haxeflixel.com/documentation/getting-started/&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://haxeflixel.com/documentation&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.haxeflixel.com/&quot;&gt;API&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://haxeflixel.com/documentation/community/&quot;&gt;Community&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you want to contribute code or report an issue, please check our &lt;a href=&quot;https://github.com/HaxeFlixel/flixel/raw/dev/.github/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Platforms&lt;/h2&gt; 
+&lt;p&gt;Thanks to being built on top of &lt;a href=&quot;https://haxe.org/&quot;&gt;Haxe&lt;/a&gt; and &lt;a href=&quot;http://www.openfl.org/&quot;&gt;OpenFL&lt;/a&gt;, HaxeFlixel can target the following platforms &lt;em&gt;natively&lt;/em&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/HaxeFlixel/flixel/dev/images/platforms.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;About&lt;/h2&gt; 
+&lt;p&gt;HaxeFlixel has its roots in the original &lt;a href=&quot;https://github.com/AdamAtomic/flixel&quot;&gt;ActionScript 3 version of Flixel&lt;/a&gt;, created by &lt;a href=&quot;http://www.adamatomic.com/&quot;&gt;Adam “Atomic” Saltsman&lt;/a&gt;. It was started by &lt;a href=&quot;https://github.com/beeblerox&quot;&gt;Alexander Hohlov&lt;/a&gt; in 2011, initially as a straightforward Haxe port of the AS3 codebase and Richard Davey’s &lt;a href=&quot;http://www.photonstorm.com/flixel-power-tools&quot;&gt;Flixel Power Tools&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Thanks to the efforts of the &lt;a href=&quot;https://github.com/orgs/HaxeFlixel/people&quot;&gt;core team&lt;/a&gt; as well as &lt;a href=&quot;https://github.com/HaxeFlixel/flixel/graphs/contributors&quot;&gt;over 100 contributors&lt;/a&gt;, today’s version of HaxeFlixel far surpasses the capabilities of the original. Not only has the core engine seen many substantial improvements and new features, there is also a far richer ecosystem with additional libaries and &lt;a href=&quot;https://github.com/HaxeFlixel/flixel-demos&quot;&gt;over 80 demo projects&lt;/a&gt; to learn from.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>armory3d/armorpaint</title>
+      <link>https://github.com/armory3d/armorpaint</link>
+      <description>&lt;p&gt;3D PBR Texture Painting Software&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://armorpaint.org/img/git.jpg&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;h1&gt;armorpaint&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://armorpaint.org&quot;&gt;ArmorPaint&lt;/a&gt; is a software for 3D PBR texture painting - check out the &lt;a href=&quot;https://armorpaint.org/manual&quot;&gt;manual&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Note 1: This repository is aimed at developers and may not be stable. Distributed binaries are currently &lt;a href=&quot;https://armorpaint.org/download&quot;&gt;paid&lt;/a&gt; to help with the project funding. All of the development is happening here in order to make it accessible to everyone. Thank you for support!&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Note 2: If you are compiling git version of ArmorPaint, then you need to have a compiler (&lt;a href=&quot;https://visualstudio.microsoft.com/downloads/&quot;&gt;Visual Studio&lt;/a&gt; - Windows, &lt;a href=&quot;https://clang.llvm.org/get_started.html&quot;&gt;clang&lt;/a&gt; + &lt;a href=&quot;https://github.com/armory3d/armorpaint/wiki/Linux-Dependencies&quot;&gt;deps&lt;/a&gt; - Linux, &lt;a href=&quot;https://developer.apple.com/xcode/resources/&quot;&gt;Xcode&lt;/a&gt; - macOS / iOS, &lt;a href=&quot;https://developer.android.com/studio&quot;&gt;Android Studio&lt;/a&gt; - Android), &lt;a href=&quot;https://nodejs.org/en/download/&quot;&gt;nodejs&lt;/a&gt; and &lt;a href=&quot;https://git-scm.com/downloads&quot;&gt;git&lt;/a&gt; installed.&lt;/em&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone --recursive https://github.com/armory3d/armorpaint
+cd armorpaint
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Windows&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make -g direct3d11
+cd armorcore
+# Unpack `v8\libraries\win32\release\v8_monolith.7z` using 7-Zip - Extract Here (exceeds 100MB)
+git apply patch/window_handling.diff --directory=Kinc
+node Kinc/make -g direct3d11
+# Open generated Visual Studio project at `build\Krom.sln`
+# Build and run for x64 &amp;amp; release
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Linux&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make -g opengl
+cd armorcore
+node Kinc/make -g opengl --compiler clang --compile
+cd Deployment
+strip Krom
+./Krom ../../build/krom
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;macOS&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make -g metal
+cp -a build/krom/ armorcore/Deployment
+cd armorcore
+git apply patch/metal_depth.diff --directory=Kinc
+node Kinc/make -g metal
+# Open generated Xcode project at `build/Krom.xcodeproj`
+# Build and run
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Android&lt;/strong&gt; &lt;em&gt;wip&lt;/em&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make android -g opengl --shaderversion 300
+cp -r build/krom/* armorcore/build/Krom/app/src/main/assets/
+cd armorcore
+git apply patch/android_document_picker.diff --directory=Kinc
+node Kinc/make android -g opengl
+# Manual tweaking is required for now:
+# https://github.com/armory3d/armorcore/blob/master/kincfile.js#L68
+# Open generated Android Studio project at `build/Krom`
+# Build for device
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;iOS&lt;/strong&gt; &lt;em&gt;wip&lt;/em&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make ios -g metal
+cp -a build/krom/ armorcore/Deployment
+cd armorcore
+git apply patch/ios_document_picker.diff --directory=Kinc
+git apply patch/metal_depth.diff --directory=Kinc
+node Kinc/make ios -g metal
+# Open generated Xcode project `build/Krom.xcodeproj`
+# Build for device
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Windows DXR&lt;/strong&gt; &lt;em&gt;wip&lt;/em&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make -g direct3d12
+cd armorcore
+# Unpack `v8\libraries\win32\release\v8_monolith.7z` using 7-Zip - Extract Here (exceeds 100MB)
+git apply patch/window_handling.diff --directory=Kinc
+git apply patch/d3d12_raytrace.diff --directory=Kinc
+git apply patch/d3d12_wrap_sampler.diff --directory=Kinc
+node Kinc/make -g direct3d12 --raytrace dxr
+# Open generated Visual Studio project at `build\Krom.sln`
+# Build and run for x64 &amp;amp; release
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Linux VKRT&lt;/strong&gt; &lt;em&gt;wip&lt;/em&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make -g vulkan
+cd armorcore
+git apply patch/vulkan_raytrace.diff --directory=Kinc
+git clone --recursive https://github.com/armory3d/glsl_to_spirv Libraries/glsl_to_spirv
+node Kinc/make -g vulkan --raytrace vkrt --compiler clang --compile
+cd Deployment
+strip Krom
+./Krom ../../build/krom
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Windows VR&lt;/strong&gt; &lt;em&gt;wip&lt;/em&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;node armorcore/make -g direct3d11 --vr oculus
+cd armorcore
+# Unpack `v8\libraries\win32\release\v8_monolith.7z` using 7-Zip - Extract Here (exceeds 100MB)
+git apply patch/window_handling.diff --directory=Kinc
+node Kinc/make -g direct3d11 --vr oculus
+# Open generated Visual Studio project at `build\Krom.sln`
+# Build and run for x64 &amp;amp; release
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Updating cloned repository&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git pull origin master
+git submodule update --init --recursive
+# Delete `armorpaint/build` directory if present
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Generating a locale file&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pip install typing_extensions -t Assets/locale/tools
+python ./Assets/locale/tools/extract_locales.py &amp;lt;locale code&amp;gt;
+# Generates an `Assets/locale/&amp;lt;locale code&amp;gt;.json` file
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Release builds&lt;/strong&gt; &lt;em&gt;Optional, used for best performance&lt;/em&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Compile krom.js using the closure compiler
+https://developers.google.com/closure/compiler
+# Generate a v8 snapshot file
+node armorcore/make -g api --snapshot
+./Krom . --snapshot
+# Generates a `krom.bin` file from `krom.js` file
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>ceramic-engine/ceramic</title>
+      <link>https://github.com/ceramic-engine/ceramic</link>
+      <description>&lt;p&gt;Cross-platform 2D framework created by @jeremyfa that can export natively to desktop (windows, mac, linux), mobile (ios, android), web (js + webgl) and to unity projects&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Ceramic&lt;/h1&gt; 
+&lt;p&gt;| &lt;img src=&quot;https://raw.githubusercontent.com/ceramic-engine/ceramic/master/tools/resources/AppIcon-128.png&quot; alt=&quot;Ceramic Logo&quot;&gt; | Cross-platform 2D multimedia framework. | | - | - |&lt;/p&gt; 
+&lt;h2&gt;ℹ️ More updates about ceramic soon&lt;/h2&gt; 
+&lt;p&gt;Ceramic is &lt;em&gt;almost&lt;/em&gt; ready to be used by more developers.&lt;/p&gt; 
+&lt;p&gt;At the moment, it lacks a lot of documentation, but you can already read a few articles:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Start with the introduction: &lt;a href=&quot;https://jeremyfa.com/what-is-ceramic-engine/&quot;&gt;Discover ceramic, a cross-platform and open-source 2D framework&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Then, continue with the &lt;a href=&quot;https://jeremyfa.com/getting-started-with-ceramic/&quot;&gt;Getting Started with ceramic&lt;/a&gt; guide to create your first project.&lt;/li&gt; 
+ &lt;li&gt;Find some more info on the &lt;a href=&quot;https://github.com/ceramic-engine/ceramic/wiki&quot;&gt;Wiki Page&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Why ceramic?&lt;/h2&gt; 
+&lt;p&gt;Ceramic is made with a few goals in mind:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Provide a runtime with high level cross-platform &lt;a href=&quot;http://haxe.org&quot;&gt;Haxe&lt;/a&gt; API to make apps, 2d games, animations and creative coding projects.&lt;/li&gt; 
+ &lt;li&gt;Bundle a set of command line tools that handle building for different targets. Currently supported: iOS, Android, HTML5 (WebGL), PC (Win/OSX/Linux), Headless (Node.js).&lt;/li&gt; 
+ &lt;li&gt;Make it extensible with a plugin system. A plugin can extend both the runtime and the command line tools.&lt;/li&gt; 
+ &lt;li&gt;Ensure adding new backends is as easy as possible by keeping the API clean and platform independant. New backends/targets can be added via separate plugins without changing the framework itself.&lt;/li&gt; 
+ &lt;li&gt;Provide opinionated features out of the box (event system, observables, physics, data model…), but always try to make these optional.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How does it work?&lt;/h2&gt; 
+&lt;p&gt;Ceramic is built using &lt;a href=&quot;http://haxe.org&quot;&gt;Haxe&lt;/a&gt;, a high level strictly typed programming language that can compile to multiple platforms.&lt;/p&gt; 
+&lt;p&gt;It consists on a high level cross-platform API for Haxe, the &lt;strong&gt;runtime&lt;/strong&gt;, and makes it work on different platforms with &lt;strong&gt;backends&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;Ceramic comes with command line tools, also written in Haxe language, then run with Node.js.&lt;/p&gt; 
+&lt;h2&gt;Getting started&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Take a look at the &lt;a href=&quot;https://github.com/ceramic-engine/ceramic/wiki&quot;&gt;Wiki&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;Available backends&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Current default backend is &lt;code&gt;clay&lt;/code&gt;. It allows to natively target Mac, Windows, Linux, iOS, Android and HTML5 (WebGL).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;A &lt;code&gt;headless&lt;/code&gt; backend allows to run ceramic as a server/cli app (via Node.js for now, even if that could work with other language targets too).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;A &lt;code&gt;unity&lt;/code&gt; backend allows to run a ceramic app &lt;em&gt;inside&lt;/em&gt; Unity Editor and take advantage of all the platforms Unity provides.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;Ceramic was created by &lt;strong&gt;&lt;a href=&quot;https://github.com/jeremyfa&quot;&gt;Jérémy Faivre&lt;/a&gt;&lt;/strong&gt; but is also possible thanks to the following works:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://luxeengine.com/alpha/&quot;&gt;Luxe Engine (alpha)&lt;/a&gt; by Sven Bergström&lt;/strong&gt; which was used as a transitional backend before &lt;code&gt;clay&lt;/code&gt; backend was ready. &lt;code&gt;Luxe&lt;/code&gt; is also a great source of inspiration that influenced how ceramic works in various aspects. Some snippets of &lt;code&gt;ceramic&lt;/code&gt; directly come from &lt;code&gt;luxe&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/HaxeFlixel/flixel/raw/a59545015a65a42b8f24b08262ac80de020deb37/flixel/util/FlxColor.hx&quot;&gt;HaxeFlixel’s FlxColor class&lt;/a&gt; by Joe Williamson&lt;/strong&gt; which was ported into &lt;code&gt;ceramic.Color&lt;/code&gt; class.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/openfl/openfl/raw/0b84012052fc8f6ab2e211c93769c99ad331beb9/openfl/geom/Matrix.hx&quot;&gt;OpenFL&lt;/a&gt; by Joshua Granick&lt;/strong&gt; and &lt;strong&gt;&lt;a href=&quot;https://github.com/pixijs/pixi.js/raw/85aaea595f77bf0511886c499fc2733d4f5ba524/src/core/math/Matrix.js&quot;&gt;PixiJS&lt;/a&gt; by Mathew Groves&lt;/strong&gt; to implement &lt;code&gt;ceramic.Transform&lt;/code&gt; class.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://haxe.org/&quot;&gt;Haxe&lt;/a&gt; by Nicolas Cannasse&lt;/strong&gt;, maintained by the &lt;strong&gt;Haxe Foundation&lt;/strong&gt;, which is a fantastic cross-platform toolkit and programming language making it much easier to create a portable engine.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js&lt;/a&gt; and its huge amount of community supported modules&lt;/strong&gt;, helping a lot to create feature-complete and cross-platform command line tools.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Ceramic is &lt;a href=&quot;https://raw.githubusercontent.com/ceramic-engine/ceramic/master/LICENSE&quot;&gt;MIT licensed&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>t3rmin4t0r/haXsh</title>
+      <link>https://github.com/t3rmin4t0r/haXsh</link>
+      <description>&lt;p&gt;AS3 hash algorithms implemented using HaXe&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;haXsh.MD5&lt;/h1&gt; 
+&lt;p&gt;This was written as a drop-in replacement for the as3corelib MD5 function.&lt;/p&gt; 
+&lt;p&gt;More accurately, it was written to be as fast as possible without using any of the flash DomainMemory APIs.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt;com.adobe.crypto.MD5&lt;/td&gt; 
+   &lt;td&gt;haXsh.MD5&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;134.71 ms&lt;/td&gt; 
+   &lt;td&gt;4.884 ms&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;This was over 1000 runs on a 100kb ByteArray.&lt;/p&gt; 
+&lt;p&gt;The code is inherited from [haxe.MD5][http://haxe.org/api/haxe/md5] which was adapted to work off ByteArrays. The inner loops have been optimized to about twice as fast as the original. Read COPYING file about the HaXe Copyright notices.&lt;/p&gt; 
+&lt;p&gt;The blooddy.by functions are faster, but they run into the alchemy licensing constraints (Adobe wants 9% revenue if you use 3D and DomainMemory together).&lt;/p&gt; 
+&lt;p&gt;But if you need Stage3D and a fast MD5, this is your best bet.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>massiveinteractive/minject</title>
+      <link>https://github.com/massiveinteractive/minject</link>
+      <description>&lt;p&gt;A Haxe port of the ActionScript 3 SwiftSuspenders IOC library with efficient macro enhanced type reflection. Supports AVM1, AVM2, JavaScript, Neko and C++.&lt;/p&gt;&lt;hr&gt;&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;minject is a metadata driven inversion of control (IOC) solution for Haxe. It has been thoroughly tested on JS, AVM1/2, PHP and Neko, but should also work on other platforms.&lt;/p&gt; 
+&lt;p&gt;This documentation is a modified version of the original, which can be found &lt;a href=&quot;https://github.com/tschneidereit/SwiftSuspenders/raw/the-past/README.textile&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;minject supports the following features as described in more details later in the documentation:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;metadata based annotation of injection points&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;injecting into:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;properties&lt;/li&gt; 
+   &lt;li&gt;methods (with support for optional arguments)&lt;/li&gt; 
+   &lt;li&gt;constructors (with support for optional arguments)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;named injections, allowing for more specific binding of injections than just by their type. (See “defining injection points”)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;@post annotations for invoking methods after all injections have been applied&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;mapping:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;values of nearly any type (enums, abstracts, typedefs, functions)&lt;/li&gt; 
+   &lt;li&gt;classes (of which new instances are created for each injection)&lt;/li&gt; 
+   &lt;li&gt;singletons (which are created lazily on first injection and then reused for each additional injection of the same rule)&lt;/li&gt; 
+   &lt;li&gt;rules (which allows sharing singletons between multiple mapping rules)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;creating child injectors which share their parents’ injection mappings but can define additional mappings complementing or replacing the parents’ ones&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;querying for the existence of injection rules using Injector#hasMapping&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;direct application of injection rules using Injector#getInstance&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib install minject
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;You can find an example of minject usage &lt;a href=&quot;https://github.com/massiveinteractive/minject/raw/master/src/example&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Defining dependencies&lt;/h3&gt; 
+&lt;p&gt;minject supports three types of dependency definitions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;em&gt;value bindings&lt;/em&gt;, which simply map an injection request to be satisfied by injecting the given value&lt;/li&gt; 
+ &lt;li&gt;&lt;em&gt;class bindings&lt;/em&gt;, which map an injection request to be satisfied by injecting a new instance of the given class&lt;/li&gt; 
+ &lt;li&gt;&lt;em&gt;singleton bindings&lt;/em&gt;, which map all injection requests for the given class by injecting the same shared instance, which itself gets created on first request&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Additionally, it’s possible to re-use dependency mappings with &lt;code&gt;mapRule&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;For all definition types, it’s possible to specify names, which allows using multiple injection bindings to the same class.&lt;/p&gt; 
+&lt;h3&gt;Defining injection points&lt;/h3&gt; 
+&lt;p&gt;Dependency bindings can be injected into an object using constructor, setter, property or method injection (or a combination of these). Constructor, Setter, property and method injection require metadata for all injections to be added to the injectee class.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@inject
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;and for injecting named dependencies&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@inject(&#39;NamedDependency&#39;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When using basic constructor injections&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@inject public function new(foo:Bar, beautiful:Flower) { ... }
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When using named dependencies for constructor injection, the metadata has to be placed before the constructor method.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@inject(&#39;NamedDependency&#39;) public function new(foo:Bar) { ... }
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For methods and constructors accepting multiple parameters, it’s possible to define mixes of named and unnamed dependency bindings. In this case, trailing unnamed dependencies can simply be omitted in the metadata, whereas unnamed dependencies followed by named ones have to be declared as the empty string:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@inject(&#39;&#39;, &#39;NamedDependency&#39;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For methods and constructors, only the mandatory arguments have to have injection mappings. Optional arguments are added in order as long as a mapping is available for them.&lt;/p&gt; 
+&lt;p&gt;Injection points apply to inheriting classes just as they do to the class they are defined for. Thus, it’s possible to define injection points for a base class and use them with all derived classes (which in turn might specify additional injection points).&lt;/p&gt; 
+&lt;h3&gt;Post construct: Automatically invoking methods on injection completion&lt;/h3&gt; 
+&lt;p&gt;Instances of classes that depend on automatic DI are only ready to be used after the DI has completed. Annotating methods in the injectee class with the &lt;code&gt;@post&lt;/code&gt; metadata causes them to be invoked directly after all injections have completed and it is safe to use the instance. Multiple methods can be invoked in a defined order by specifying a priority: &lt;code&gt;@post(2)&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Querying for injection mapping existence&lt;/h3&gt; 
+&lt;p&gt;minject supports querying for the existence of mapping rules for any request using &lt;code&gt;Injector#hasMapping&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;hasMapping&lt;/code&gt; expects a class or an interface and optionally a name for the mapping and returns &lt;code&gt;true&lt;/code&gt; if a request for this class/name combination can be satisfied. Otherwise, it returns &lt;code&gt;false&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Directly applying injection mappings&lt;/h3&gt; 
+&lt;p&gt;minject supports directly applying injection mappings using &lt;code&gt;Injector#getInstance&lt;/code&gt;. &lt;code&gt;getInstance&lt;/code&gt; expects a class or an interface and optionally a name for the mapping and returns the mapping’s result if one is defined. Otherwise, an exception is thrown.&lt;/p&gt; 
+&lt;p&gt;The returned value depends on the mapping defined for the relevant request. E.g., if a singleton mapping has been defined for the request, the shared singleton instance will be returned instead of creating a new instance of the class.&lt;/p&gt; 
+&lt;h3&gt;Error handling&lt;/h3&gt; 
+&lt;p&gt;If a mapping for a requested injection is not found, an exception string containing the target class and the requested property type is thrown.&lt;/p&gt; 
+&lt;h3&gt;Child Injectors&lt;/h3&gt; 
+&lt;p&gt;minject supports creating child injectors. These are dependent on their parent injector and automatically inherit all rule mappings the parent has. Additionally, they can have their own rule mappings, complementing or overriding the parent mappings.&lt;/p&gt; 
+&lt;p&gt;The main use-case for this feature is as a solution to the so-called “robot legs problem”. When using Dependency Injection, one often wants to create very similar object trees that have only slight differences. A good illustration is a simplified robot, that can be built using identical parts for its legs but needs different parts for the left and the right foot. Using normal Dependency Injection, one would have to subclass the RobotLeg class for each leg only to enable specifying different injections for each foot. The subclasses would then have to implement boilerplate code to apply the injection to the variable the parent expects the foot in:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;class Robot
+{
+	@inject public var leftLeg:LeftRobotLeg;
+	@inject public var rightLeg:RightRobotLeg;
+}
+
+class RobotLeg
+{
+	var foot:RobotFoot;
+}
+
+class LeftRobotLeg extends RobotLeg
+{
+	@inject public var foot:LeftRobotFoot;
+}
+
+class RightRobotLeg extends RobotLeg
+{
+	@inject public var foot:RightRobotFoot;
+}
+
+class RobotConstruction
+{
+	function buildRobot()
+	{
+		var injector = new Injector();
+		injector.map(LeftRobotLeg).toClass(LeftRobotLeg);
+		injector.map(RightRobotLeg).toClass(RightRobotLeg);
+		injector.map(LeftRobotFoot).toClass(LeftRobotFoot);
+		injector.map(RightRobotFoot).toClass(RightRobotFoot);
+		var robot = injector.instantiate(Robot);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Using child injectors, the robot can be built with just the RobotLeg class, while still supplying different feet for each leg:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;public class Robot
+{
+	@inject(&#39;leftLeg&#39;) public var leftLeg:RobotLeg;
+	@inject(&#39;rightLeg&#39;) public var rightLeg:RobotLeg;
+}
+
+public class RobotLeg
+{
+	var foot:RobotFoot;
+}
+
+public class RobotConstruction
+{
+	function buildRobot()
+	{
+		var injector = new Injector();
+
+		// store a reference to the rule
+		var leftLegRule = injector.map(RobotLeg, &#39;leftLeg&#39;).toClass(RobotLeg);
+
+		// create a child injector
+		var leftLegInjector = injector.createChildInjector();
+
+		// create a mapping for the correct foot in the child injector
+		leftLegInjector.map(RobotFoot).toClass(LeftRobotFoot);
+
+		// instruct SwiftSuspenders to use the child injector for all
+		// dependency injections in the left leg object tree
+		leftLegRule.setInjector(leftLegInjector);
+
+		// and the same for the right leg:
+		var rightLegInjector = injector.createChildInjector();
+		rightLegInjector.map(RobotFoot).toClass(RightRobotFoot);
+		rightLegRule.setInjector(rightLegInjector);
+
+		// finally, create the object tree by instantiating the Robot class:
+		var robot = injector.instantiate(Robot);
+	}
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The child injectors forward all injection requests they don’t have a mapping for to their parent injector. This enables sharing additional rules between the injectors. For example, the robot feet might have toes that work the same for both feet, so a mapping for these could be added to the main injector instead of adding the mappings to both child injectors.&lt;/p&gt; 
+&lt;p&gt;If a mapping from a parent (or other ancestor) injector is used, that doesn’t mean that the child injector isn’t used for subsequent injections anymore. I.e., you can have “holes” in your child injector’s mappings that get filled by an ancestor injector and still define other mappings in your child injector that you want to have applied later on in the object tree that is constructed through DI.&lt;/p&gt; 
+&lt;p&gt;Injectors can be nested freely to create configuration trees of arbitrary complexity.&lt;/p&gt; 
+&lt;h3&gt;Examples&lt;/h3&gt; 
+&lt;h4&gt;Field and Setter Injection&lt;/h4&gt; 
+&lt;p&gt;Suppose you have a class into which you want to inject dependencies that looks like this (Note that I’ve left out import statements for brevity):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;class MyDependentClass
+{
+	@inject public var firstDepency:MovieClip;
+
+	@inject(&#39;currentTime&#39;) public var secondDependency:Date;
+
+	@inject public var thirdDependency(default, set_thirdDependency):Sprite
+
+	function set_thirdDependency(value:Sprite):Sprite
+	{
+		return thirdDependency = value;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To inject dependencies into an instance of this class, you would first define dependency mappings and then invoke &lt;code&gt;Injector#injectInto&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;var injector = new Injector();
+injector.map(MovieClip).toValue(new MovieClip());
+
+var currentTime = Date.now();
+injector.map(Date, &#39;currentTime&#39;).toValue(currentTime);
+
+injector.map(Sprite).asSingleton();
+
+var injectee = new MyDependentClass();
+injector.injectInto(injectee);
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Method Injection&lt;/h4&gt; 
+&lt;p&gt;Suppose you have a class into which you want to inject dependencies that looks like this (Note that I’ve left out import statements for brevity):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;class MyDependentClass
+{
+	var myMovieClip:MovieClip;
+	var currentTime:Date;
+
+	@inject public function setFirstDependency(injection:MovieClip):Void
+	{
+		myMovieClip = injection;
+	}
+
+	@inject(&#39;currentTime&#39;)
+	public function setSecondDependency(injection:Date):Void
+	{
+		currentTime = injection;
+	}
+
+	@inject(&#39;&#39;,&#39;currentTime&#39;)
+	public function setMultipleDependencies(movieClip:MovieClip, date:Date):Void
+	{
+		myMovieClip = movieClip;
+		currentTime = date;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To inject dependencies into an instance of this class, you would first define dependency mappings and then invoke &lt;code&gt;Injector#injectInto&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;var injector = new Injector();
+injector.map(MovieClip).toValue(new MovieClip());
+
+var currentTime = Date.now();
+injector.map(Date, &#39;currentTime&#39;).toValue(currentTime);
+
+var injectee = new MyDependentClass();
+injector.injectInto(injectee);
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In this case, the defined dependencies are partly redundant, which is waste - but otherwise not harmful.&lt;/p&gt; 
+&lt;h4&gt;Constructor Injection&lt;/h4&gt; 
+&lt;p&gt;Suppose you have a class into which you want to inject dependencies that looks like this (Note that I’ve left out import statements for brevity):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;class MyDependentClass
+{
+	var myMovieClip:MovieClip;
+	var currentTime:Date;
+
+	@inject(&#39;&#39;, &#39;currentTime&#39;) public function new(movieClip:MovieClip, date:Date)
+	{
+		myMovieClip = movieClip;
+		currentTime = date;
+	}
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To inject dependencies into an instance of this class, you would first define dependency mappings and then invoke &lt;code&gt;Injector#instantiate&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;var injector = new Injector();
+injector.map(MovieClip).toValue(new MovieClip());
+var currentTime = Date.now();
+injector.map(Date, &#39;currentTime&#39;).toValue(currentTime);
+var injectee = injector.instantiate(MyDependentClass);
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>massiveinteractive/MassiveUnit</title>
+      <link>https://github.com/massiveinteractive/MassiveUnit</link>
+      <description>&lt;p&gt;munit is a cross-platform unit testing framework for Haxe. Utilises metadata markup for test cases and includes tools for generating, compiling and running test cases from the command line.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;MUnit is a metadata driven unit testing framework for cross-platform Haxe development.&lt;/p&gt; 
+&lt;p&gt;It includes tools for creating, updating, compiling and running unit test cases from the command line.&lt;/p&gt; 
+&lt;p&gt;MUnit supports Haxe 3+&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install you must have &lt;a href=&quot;http://www.haxe.org&quot;&gt;Haxe&lt;/a&gt; installed&lt;/p&gt; 
+&lt;p&gt;Then just use haxelib to download the latest version&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib install munit
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To check that it is all installed and to view the help run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Please note:&lt;/strong&gt; After upgrading you may be required to update the TestMain.hx in existing project before being able to test&lt;/p&gt; 
+&lt;p&gt;To install latest build from git:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib git munit https://github.com/massiveinteractive/MassiveUnit.git master src
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;h3&gt;Cross Platform&lt;/h3&gt; 
+&lt;p&gt;MUnit has been designed for cross platform Haxe development. It currently supports js, swf, as3, neko, c++, java, cs, python, php and hl and the tool chain works on Windows, OSX and Linux. To run js tests with NodeJS, add &lt;code&gt;-lib hxnodejs&lt;/code&gt; or &lt;code&gt;-D nodejs&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Test Metadata&lt;/h3&gt; 
+&lt;p&gt;Test cases use Haxe metadata to simplify creating tests (and avoid needing to extend or implement framework classes).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-haxe&quot;&gt;@Test
+public function testExample():Void
+{
+	Assert.isTrue(true);
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Asynchronous Tests&lt;/h3&gt; 
+&lt;p&gt;Unlike the default haxe unit test classes, MUnit supports asynchronous testing&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-haxe&quot;&gt;@AsyncTest
+public function asyncTestExample(factory:AsyncFactory):Void
+{
+	...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Tool Chain&lt;/h3&gt; 
+&lt;p&gt;MUnit is way more than just a unit test framework. It includes a command line tool for working with munit projects to streamline your development workflow.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Setup stub test projects in seconds&lt;/li&gt; 
+ &lt;li&gt;Auto generate test suites based on test classes in a src directory&lt;/li&gt; 
+ &lt;li&gt;Compile and run multiple targets from an hxml build file&lt;/li&gt; 
+ &lt;li&gt;Launch and run test applications in the browser or command line (neko)&lt;/li&gt; 
+ &lt;li&gt;Save out text and junit style test reports to the file system for reporting and ci&lt;/li&gt; 
+ &lt;li&gt;Auto generate stub test classes (and/or target classes)&lt;/li&gt; 
+ &lt;li&gt;Integrated code coverage compilation with &lt;a href=&quot;https://github.com/massiveinteractive/MassiveCover&quot;&gt;MCover&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;For detailed user guides refer to the &lt;strong&gt;&lt;a href=&quot;https://github.com/massiveinteractive/MassiveUnit/wiki&quot;&gt;wiki&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;The API documentation is available on the &lt;a href=&quot;http://lib.haxe.org/d/munit&quot;&gt;haxelib project page&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;How to contribute&lt;/h2&gt; 
+&lt;p&gt;If you find a bug, &lt;a href=&quot;https://github.com/massiveinteractive/MassiveUnit/issues&quot;&gt;report it&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you want to help, &lt;a href=&quot;https://github.com/massiveinteractive/MassiveUnit/fork_select&quot;&gt;fork it&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To install latest build from git:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib git munit https://github.com/massiveinteractive/MassiveUnit.git src
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want to make sure it works, make sure to run the bash script (build.sh) and check that the tests all pass on all platforms:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit test -coverage
+
+cd ../test
+haxelib run munit test -coverage
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;New since 2.0.0&lt;/h2&gt; 
+&lt;h3&gt;Haxe 3 Support&lt;/h3&gt; 
+&lt;p&gt;Some APIs have changed to ensure compatibility with both Haxe 2.10 and Haxe3.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: Support for Haxe 2.09 and Haxe 2.08 have been dropped&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;New since 0.9.5.x&lt;/h2&gt; 
+&lt;h3&gt;C++ Target&lt;/h3&gt; 
+&lt;p&gt;MUnit now compiles/runs c++ targets&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit test -cpp
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Updates to TestMain to work with MCover 1.4.x&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Note: You may be required to update the TestMain.hx in existing project
+before being able to run `munit test -coverage`.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Code Coverage customisation&lt;/h3&gt; 
+&lt;p&gt;Munit now supports custom &lt;a href=&quot;https://github.com/massiveinteractive/MassiveCover&quot;&gt;mcover&lt;/a&gt; settings when compiling via &lt;code&gt;munit test -coverage&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;re-run &lt;code&gt;haxelib run munit config&lt;/code&gt; in a project to set &lt;code&gt;coverage packages&lt;/code&gt; and &lt;code&gt;coverage ignored classes&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Thanks to &lt;a href=&quot;https://github.com/tynril&quot;&gt;tynril&lt;/a&gt; for adding these options.&lt;/p&gt; 
+&lt;h2&gt;New since 2.0.x&lt;/h2&gt; 
+&lt;h3&gt;Haxe 3 Support&lt;/h3&gt; 
+&lt;p&gt;Munit now supports Haxe 3 RC.&lt;/p&gt; 
+&lt;p&gt;There aren’t any new features in this release, however there are several breaking changes to internal APIS and Interfaces to ensure compatibility with both versions of Haxe.&lt;/p&gt; 
+&lt;p&gt;To compile tests aginst Haxe 3, you may need to delete any references to js.Dom in the generated TestMain class in your project.&lt;/p&gt; 
+&lt;h2&gt;New since 0.9.4.x&lt;/h2&gt; 
+&lt;h3&gt;Report Command&lt;/h3&gt; 
+&lt;p&gt;Convert munit summary reports into different format(s). As of 0.9.4.0 there is only one supported format (TeamCity)&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit report [format] [dest] [-coverage percent]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Example:&lt;/p&gt; 
+&lt;p&gt;The following example generates a teamcity-info.xml report in the project directory (.)&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit report teamcity . -coverage 85
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: You must run and generated summary reports prior to executing the report command.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;New since 0.9.3.x&lt;/h2&gt; 
+&lt;h3&gt;Better CI support&lt;/h3&gt; 
+&lt;p&gt;Get error exit code when tests on one or more platforms fail&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit test -result-exit-code
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: haxelib currently doesnt return exit codes &amp;gt; 0 on OSX (see &lt;a href=&quot;http://code.google.com/p/haxe/issues/detail?id=879&quot;&gt;issue&lt;/a&gt;)&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Workaround for issues with nekotools server HTTP POST via a simple SummaryReportClient&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-haxe&quot;&gt;var httpClient = new HTTPClient(new SummaryReportClient())
+runner.addResultClient(httpClient);
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;New since 0.9.2.x&lt;/h2&gt; 
+&lt;p&gt;Rich HTML output for JavaScript and Flash targets (see RichPrintClient)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-haxe&quot;&gt;var client = new RichPrintClient();
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Seamless support for MCover code coverage&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit test -coverage
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Commands for generating stub test classes on demand&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit create package.FooTest -for package.Foo  
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;CI friendly options for munit config command&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;haxelib run munit config -default
+haxelib run munit config -src path/to/src -hxml path/to/test.hxml
+haxelib run munit config -file path/to/my/custom/config.txt
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Support for assertions inside async tests&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-haxe&quot;&gt;public function someAsyncTest(factory:AsyncFactory)
+{
+	Assert.isTrue(false);
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Support for custom runner html templates and resources&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;Run &#39;munit config&#39; to set template and resources directories&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;For full list of recent changes see the &lt;strong&gt;&lt;a href=&quot;https://github.com/massiveinteractive/MassiveUnit/raw/master/CHANGES&quot;&gt;change log&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;This project is brought to you by &lt;a href=&quot;https://github.com/misprintt&quot;&gt;Dominic&lt;/a&gt; and &lt;a href=&quot;https://github.com/mikestead&quot;&gt;Mike&lt;/a&gt; from &lt;a href=&quot;http://massiveinteractive.com&quot;&gt;Massive Interactive&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>andrew-git/Lune</title>
+      <link>https://github.com/andrew-git/Lune</link>
+      <description>&lt;p&gt;Lune Game Engine&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Lune v0&lt;/h1&gt; 
+&lt;p&gt;Lune - haXe/NME Cross-Platform Game Engine&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

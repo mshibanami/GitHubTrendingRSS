@@ -1,0 +1,1425 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Dockerfile Daily Trending</title>
+    <description>Daily Trending of Dockerfile in GitHub</description>
+    <pubDate>Sun, 11 Jul 2021 02:00:03 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>apple/swift-docker</title>
+      <link>https://github.com/apple/swift-docker</link>
+      <description>&lt;p&gt;Docker Official Image packaging for Swift&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;swift-docker&lt;/h1&gt; 
+&lt;img src=&quot;https://swift.org/assets/images/swift.svg?sanitize=true&quot; alt=&quot;Swift logo&quot; height=&quot;70&quot;&gt; 
+&lt;h3&gt;Docker images for &lt;a href=&quot;https://swift.org&quot;&gt;Swift&lt;/a&gt;.&lt;/h3&gt; 
+&lt;h4&gt;You can find the Docker Hub repo here: &lt;a href=&quot;https://hub.docker.com/_/swift/&quot;&gt;https://hub.docker.com/_/swift/&lt;/a&gt;&lt;/h4&gt; 
+&lt;h3&gt;Usage&lt;/h3&gt; 
+&lt;h5&gt;Pull the Docker image from Docker Hub:&lt;/h5&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker pull swift
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Create a container from the image and run it:&lt;/h5&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -it swift /bin/bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want to run the Swift REPL you will need to run the container with additional privileges:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run --security-opt seccomp=unconfined -it swift
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;We also provide a “slim” image. Slim images are images designed just for running an already built Swift program. Consequently, they do not contain the Swift compiler.&lt;/p&gt; 
+&lt;p&gt;The normal and slim images can be combined via a multi-stage Dockerfile to produce a lighter-weight image ready for deployment. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;FROM swift:latest as builder
+WORKDIR /root
+COPY . .
+RUN swift build -c release
+
+FROM swift:slim
+WORKDIR /root
+COPY --from=builder /root .
+CMD [&quot;.build/x86_64-unknown-linux/release/docker-test&quot;]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Contributions&lt;/h2&gt; 
+&lt;p&gt;Contributions via pull requests are welcome and encouraged :)&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;docker-swift is licensed under the &lt;a href=&quot;https://raw.githubusercontent.com/apple/swift-docker/main/LICENSE.md&quot;&gt;Apache License, Version 2.0&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>kelseyhightower/nocode</title>
+      <link>https://github.com/kelseyhightower/nocode</link>
+      <description>&lt;p&gt;The best way to write secure and reliable applications. Write nothing; deploy nowhere.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;No Code&lt;/h1&gt; 
+&lt;p&gt;No code is the best way to write secure and reliable applications. Write nothing; deploy nowhere.&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Start by not writing any code.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This is just an example application, but imagine it doing anything you want. Adding new features is easy too:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The possibilities are endless.&lt;/p&gt; 
+&lt;h3&gt;Building the Application&lt;/h3&gt; 
+&lt;p&gt;Now that you have not done anything it’s time to build your application:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Yep. That’s it. You should see the following output:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Deploying&lt;/h3&gt; 
+&lt;p&gt;While you still have not done anything it’s time to deploy your application. By running the following command you can deploy your application absolutely nowhere.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It’s that simple. And when it comes time to scale the application, all you have to do is:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;I know right?&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;You don’t.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>sprintcube/docker-compose-lamp</title>
+      <link>https://github.com/sprintcube/docker-compose-lamp</link>
+      <description>&lt;p&gt;A basic LAMP stack environment built using Docker Compose.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;LAMP stack built with Docker Compose&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://preview.ibb.co/gOTa0y/LAMP_STACK.png&quot; alt=&quot;Landing Page&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;A basic LAMP stack environment built using Docker Compose. It consists of the following:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;PHP&lt;/li&gt; 
+ &lt;li&gt;Apache&lt;/li&gt; 
+ &lt;li&gt;MySQL&lt;/li&gt; 
+ &lt;li&gt;phpMyAdmin&lt;/li&gt; 
+ &lt;li&gt;Redis&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;As of now, we have several different PHP versions. Use appropriate php version as needed:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;5.4.x&lt;/li&gt; 
+ &lt;li&gt;5.6.x&lt;/li&gt; 
+ &lt;li&gt;7.1.x&lt;/li&gt; 
+ &lt;li&gt;7.2.x&lt;/li&gt; 
+ &lt;li&gt;7.3.x&lt;/li&gt; 
+ &lt;li&gt;7.4.x&lt;/li&gt; 
+ &lt;li&gt;8.0.x&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Please note that we simplified the project structure from several branches for each php version, to one centralized master branch. Please let us know if you encouter any problems.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Clone this repository on your local computer&lt;/li&gt; 
+ &lt;li&gt;configure .env as needed&lt;/li&gt; 
+ &lt;li&gt;Run the &lt;code&gt;docker-compose up -d&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git clone https://github.com/sprintcube/docker-compose-lamp.git
+cd docker-compose-lamp/
+cp sample.env .env
+// modify sample.env as needed
+docker-compose up -d
+// visit localhost
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Your LAMP stack is now ready!! You can access it via &lt;code&gt;http://localhost&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Configuration and Usage&lt;/h2&gt; 
+&lt;h3&gt;General Information&lt;/h3&gt; 
+&lt;p&gt;This Docker Stack is build for local development and not for production usage.&lt;/p&gt; 
+&lt;h3&gt;Configuration&lt;/h3&gt; 
+&lt;p&gt;This package comes with default configuration options. You can modify them by creating &lt;code&gt;.env&lt;/code&gt; file in your root directory. To make it easy, just copy the content from &lt;code&gt;sample.env&lt;/code&gt; file and update the environment variable values as per your need.&lt;/p&gt; 
+&lt;h3&gt;Configuration Variables&lt;/h3&gt; 
+&lt;p&gt;There are following configuration variables available and you can customize them by overwritting in your own &lt;code&gt;.env&lt;/code&gt; file.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h4&gt;PHP&lt;/h4&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;PHPVERSION&lt;/strong&gt;&lt;/em&gt; Is used to specify which PHP Version you want to use. Defaults always to latest PHP Version.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;PHP_INI&lt;/strong&gt;&lt;/em&gt; Define your custom &lt;code&gt;php.ini&lt;/code&gt; modification to meet your requirments.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h4&gt;Apache&lt;/h4&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;DOCUMENT_ROOT&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;It is a document root for Apache server. The default value for this is &lt;code&gt;./www&lt;/code&gt;. All your sites will go here and will be synced automatically.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;APACHE_DOCUMENT_ROOT&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Apache config file value. The default value for this is /var/www/html.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;VHOSTS_DIR&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;This is for virtual hosts. The default value for this is &lt;code&gt;./config/vhosts&lt;/code&gt;. You can place your virtual hosts conf files here.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Make sure you add an entry to your system’s &lt;code&gt;hosts&lt;/code&gt; file for each virtual host.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;APACHE_LOG_DIR&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;This will be used to store Apache logs. The default value for this is &lt;code&gt;./logs/apache2&lt;/code&gt;.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h4&gt;Database&lt;/h4&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;DATABASE&lt;/strong&gt;&lt;/em&gt; Define which MySQL or MariaDB Version you would like to use.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;MYSQL_DATA_DIR&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;This is MySQL data directory. The default value for this is &lt;code&gt;./data/mysql&lt;/code&gt;. All your MySQL data files will be stored here.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;MYSQL_LOG_DIR&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;This will be used to store Apache logs. The default value for this is &lt;code&gt;./logs/mysql&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Web Server&lt;/h2&gt; 
+&lt;p&gt;Apache is configured to run on port 80. So, you can access it via &lt;code&gt;http://localhost&lt;/code&gt;.&lt;/p&gt; 
+&lt;h4&gt;Apache Modules&lt;/h4&gt; 
+&lt;p&gt;By default following modules are enabled.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;rewrite&lt;/li&gt; 
+ &lt;li&gt;headers&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;If you want to enable more modules, just update &lt;code&gt;./bin/phpX/Dockerfile&lt;/code&gt;. You can also generate a PR and we will merge if seems good for general purpose. You have to rebuild the docker image by running &lt;code&gt;docker-compose build&lt;/code&gt; and restart the docker containers.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Connect via SSH&lt;/h4&gt; 
+&lt;p&gt;You can connect to web server using &lt;code&gt;docker-compose exec&lt;/code&gt; command to perform various operation on it. Use below command to login to container via ssh.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;docker-compose exec webserver bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;PHP&lt;/h2&gt; 
+&lt;p&gt;The installed version of php depends on your &lt;code&gt;.env&lt;/code&gt;file.&lt;/p&gt; 
+&lt;h4&gt;Extensions&lt;/h4&gt; 
+&lt;p&gt;By default following extensions are installed. May differ for PHP Verions &amp;lt;7.x.x&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;mysqli&lt;/li&gt; 
+ &lt;li&gt;pdo_sqlite&lt;/li&gt; 
+ &lt;li&gt;pdo_mysql&lt;/li&gt; 
+ &lt;li&gt;mbstring&lt;/li&gt; 
+ &lt;li&gt;zip&lt;/li&gt; 
+ &lt;li&gt;intl&lt;/li&gt; 
+ &lt;li&gt;mcrypt&lt;/li&gt; 
+ &lt;li&gt;curl&lt;/li&gt; 
+ &lt;li&gt;json&lt;/li&gt; 
+ &lt;li&gt;iconv&lt;/li&gt; 
+ &lt;li&gt;xml&lt;/li&gt; 
+ &lt;li&gt;xmlrpc&lt;/li&gt; 
+ &lt;li&gt;gd&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;If you want to install more extension, just update &lt;code&gt;./bin/webserver/Dockerfile&lt;/code&gt;. You can also generate a PR and we will merge if it seems good for general purpose. You have to rebuild the docker image by running &lt;code&gt;docker-compose build&lt;/code&gt; and restart the docker containers.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;phpMyAdmin&lt;/h2&gt; 
+&lt;p&gt;phpMyAdmin is configured to run on port 8080. Use following default credentials.&lt;/p&gt; 
+&lt;p&gt;http://localhost:8080/&lt;br&gt; username: root&lt;br&gt; password: tiger&lt;/p&gt; 
+&lt;h2&gt;Redis&lt;/h2&gt; 
+&lt;p&gt;It comes with Redis. It runs on default port &lt;code&gt;6379&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We are happy if you want to create a pull request or help people with their issues. If you want to create a PR, please remember that this stack is not built for production usage, and changes should good for general purpose and not overspecialized.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Please note that we simplified the project structure from several branches for each php version, to one centralized master branch. Please create your PR against master branch.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Thank you!&lt;/p&gt; 
+&lt;h2&gt;Why you shouldn’t use this stack unmodified in production&lt;/h2&gt; 
+&lt;p&gt;We want to empower developers to quickly create creative Applications. Therefore we are providing an easy to set up a local development environment for several different Frameworks and PHP Versions. In Production you should modify at a minimum the following subjects:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;php handler: mod_php=&amp;gt; php-fpm&lt;/li&gt; 
+ &lt;li&gt;secure mysql users with proper source IP limitations&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>aschmelyun/docker-compose-laravel</title>
+      <link>https://github.com/aschmelyun/docker-compose-laravel</link>
+      <description>&lt;p&gt;A docker-compose workflow for local Laravel development&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;docker-compose-laravel&lt;/h1&gt; 
+&lt;p&gt;A pretty simplified Docker Compose workflow that sets up a LEMP network of containers for local Laravel development. You can view the full article that inspired this repo &lt;a href=&quot;https://dev.to/aschmelyun/the-beauty-of-docker-for-local-laravel-development-13c0&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;To get started, make sure you have &lt;a href=&quot;https://docs.docker.com/docker-for-mac/install/&quot;&gt;Docker installed&lt;/a&gt; on your system, and then clone this repository.&lt;/p&gt; 
+&lt;p&gt;Next, navigate in your terminal to the directory you cloned this, and spin up the containers for the web server by running &lt;code&gt;docker-compose up -d --build site&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;After that completes, follow the steps from the &lt;a href=&quot;https://raw.githubusercontent.com/aschmelyun/docker-compose-laravel/main/src/README.md&quot;&gt;src/README.md&lt;/a&gt; file to get your Laravel project added in (or create a new blank one).&lt;/p&gt; 
+&lt;p&gt;Bringing up the Docker Compose network with &lt;code&gt;site&lt;/code&gt; instead of just using &lt;code&gt;up&lt;/code&gt;, ensures that only our site’s containers are brought up at the start, instead of all of the command containers as well. The following are built for our web server, with their exposed ports detailed:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;nginx&lt;/strong&gt; - &lt;code&gt;:80&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;mysql&lt;/strong&gt; - &lt;code&gt;:3306&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;php&lt;/strong&gt; - &lt;code&gt;:9000&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;redis&lt;/strong&gt; - &lt;code&gt;:6379&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;mailhog&lt;/strong&gt; - &lt;code&gt;:8025&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Three additional containers are included that handle Composer, NPM, and Artisan commands &lt;em&gt;without&lt;/em&gt; having to have these platforms installed on your local computer. Use the following command examples from your project root, modifying them to fit your particular use case.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;docker-compose run --rm composer update&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;docker-compose run --rm npm run dev&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;docker-compose run --rm artisan migrate&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Persistent MySQL Storage&lt;/h2&gt; 
+&lt;p&gt;By default, whenever you bring down the Docker network, your MySQL data will be removed after the containers are destroyed. If you would like to have persistent data that remains after bringing containers down and back up, do the following:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Create a &lt;code&gt;mysql&lt;/code&gt; folder in the project root, alongside the &lt;code&gt;nginx&lt;/code&gt; and &lt;code&gt;src&lt;/code&gt; folders.&lt;/li&gt; 
+ &lt;li&gt;Under the mysql service in your &lt;code&gt;docker-compose.yml&lt;/code&gt; file, add the following lines:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;volumes:
+  - ./mysql:/var/lib/mysql
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Using BrowserSync with Laravel Mix&lt;/h2&gt; 
+&lt;p&gt;If you want to enable the hot-reloading that comes with Laravel Mix’s BrowserSync option, you’ll have to follow a few small steps. First, ensure that you’re using the updated &lt;code&gt;docker-compose.yml&lt;/code&gt; with the &lt;code&gt;:3000&lt;/code&gt; and &lt;code&gt;:3001&lt;/code&gt; ports open on the npm service. Then, add the following to the end of your Laravel project’s &lt;code&gt;webpack.mix.js&lt;/code&gt; file:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;.browserSync({
+    proxy: &#39;nginx&#39;,
+    open: false,
+    port: 3000,
+});
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;From your terminal window at the project root, run the following command to start watching for changes with the npm container and its mapped ports:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-compose run --rm --service-ports npm run watch
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;That should keep a small info pane open in your terminal (which you can exit with Ctrl + C). Visiting &lt;a href=&quot;http://localhost:3000&quot;&gt;localhost:3000&lt;/a&gt; in your browser should then load up your Laravel application with BrowserSync enabled and hot-reloading active.&lt;/p&gt; 
+&lt;h2&gt;MailHog&lt;/h2&gt; 
+&lt;p&gt;The current version of Laravel (8 as of today) uses MailHog as the default application for testing email sending and general SMTP work during local development. Using the provided Docker Hub image, getting an instance set up and ready is simple and straight-forward. The service is included in the &lt;code&gt;docker-compose.yml&lt;/code&gt; file, and spins up alongside the webserver and database services.&lt;/p&gt; 
+&lt;p&gt;To see the dashboard and view any emails coming through the system, visit &lt;a href=&quot;http://localhost:8025&quot;&gt;localhost:8025&lt;/a&gt; after running &lt;code&gt;docker-compose up -d site&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>wardviaene/jenkins-docker</title>
+      <link>https://github.com/wardviaene/jenkins-docker</link>
+      <description>&lt;p&gt;Jenkins CI with docker client&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Jenkins docker&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Jenkins CI with docker client&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>big-data-europe/docker-spark</title>
+      <link>https://github.com/big-data-europe/docker-spark</link>
+      <description>&lt;p&gt;Apache Spark docker image&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://gitter.im/big-data-europe/Lobby&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/gitterHQ/gitter.png&quot; alt=&quot;Gitter chat&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/big-data-europe/docker-spark&quot;&gt;&lt;img src=&quot;https://travis-ci.org/big-data-europe/docker-spark.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/BigData_Europe&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/BigData_Europe.svg?style=social&quot; alt=&quot;Twitter&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Spark docker&lt;/h1&gt; 
+&lt;p&gt;Docker images to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Setup a standalone &lt;a href=&quot;https://spark.apache.org/&quot;&gt;Apache Spark&lt;/a&gt; cluster running one Spark Master and multiple Spark workers&lt;/li&gt; 
+ &lt;li&gt;Build Spark applications in Java, Scala or Python to run on a Spark cluster&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;details open&gt; 
+ &lt;summary&gt;Currently supported versions:&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Spark 3.1.1 for Hadoop 3.2 with OpenJDK 8 and Scala 2.12&lt;/li&gt; 
+  &lt;li&gt;Spark 3.1.1 for Hadoop 3.2 with OpenJDK 11 and Scala 2.12&lt;/li&gt; 
+  &lt;li&gt;Spark 3.0.2 for Hadoop 3.2 with OpenJDK 8 and Scala 2.12&lt;/li&gt; 
+  &lt;li&gt;Spark 3.0.1 for Hadoop 3.2 with OpenJDK 8 and Scala 2.12&lt;/li&gt; 
+  &lt;li&gt;Spark 3.0.0 for Hadoop 3.2 with OpenJDK 11 and Scala 2.12&lt;/li&gt; 
+  &lt;li&gt;Spark 3.0.0 for Hadoop 3.2 with OpenJDK 8 and Scala 2.12&lt;/li&gt; 
+  &lt;li&gt;Spark 2.4.5 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.4.4 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.4.3 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.4.1 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.4.0 for Hadoop 2.8 with OpenJDK 8 and Scala 2.12&lt;/li&gt; 
+  &lt;li&gt;Spark 2.4.0 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.3.2 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.3.1 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.3.1 for Hadoop 2.8 with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.3.0 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.2.2 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.2.1 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.2.0 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.1.3 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.1.2 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.1.1 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.1.0 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.0.2 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.0.1 for Hadoop 2.7+ with OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.0.0 for Hadoop 2.7+ with Hive support and OpenJDK 8&lt;/li&gt; 
+  &lt;li&gt;Spark 2.0.0 for Hadoop 2.7+ with Hive support and OpenJDK 7&lt;/li&gt; 
+  &lt;li&gt;Spark 1.6.2 for Hadoop 2.6 and later&lt;/li&gt; 
+  &lt;li&gt;Spark 1.5.1 for Hadoop 2.6 and later&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Using Docker Compose&lt;/h2&gt; 
+&lt;p&gt;Add the following services to your &lt;code&gt;docker-compose.yml&lt;/code&gt; to integrate a Spark master and Spark worker in &lt;a href=&quot;https://github.com/big-data-europe/app-bde-pipeline&quot;&gt;your BDE pipeline&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;version: &#39;3&#39;
+services:
+  spark-master:
+    image: bde2020/spark-master:3.1.1-hadoop3.2
+    container_name: spark-master
+    ports:
+      - &quot;8080:8080&quot;
+      - &quot;7077:7077&quot;
+    environment:
+      - INIT_DAEMON_STEP=setup_spark
+  spark-worker-1:
+    image: bde2020/spark-worker:3.1.1-hadoop3.2
+    container_name: spark-worker-1
+    depends_on:
+      - spark-master
+    ports:
+      - &quot;8081:8081&quot;
+    environment:
+      - &quot;SPARK_MASTER=spark://spark-master:7077&quot;
+  spark-worker-2:
+    image: bde2020/spark-worker:3.1.1-hadoop3.2
+    container_name: spark-worker-2
+    depends_on:
+      - spark-master
+    ports:
+      - &quot;8082:8081&quot;
+    environment:
+      - &quot;SPARK_MASTER=spark://spark-master:7077&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Make sure to fill in the &lt;code&gt;INIT_DAEMON_STEP&lt;/code&gt; as configured in your pipeline.&lt;/p&gt; 
+&lt;h2&gt;Running Docker containers without the init daemon&lt;/h2&gt; 
+&lt;h3&gt;Spark Master&lt;/h3&gt; 
+&lt;p&gt;To start a Spark master:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run --name spark-master -h spark-master -e ENABLE_INIT_DAEMON=false -d bde2020/spark-master:3.1.1-hadoop3.2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Spark Worker&lt;/h3&gt; 
+&lt;p&gt;To start a Spark worker:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run --name spark-worker-1 --link spark-master:spark-master -e ENABLE_INIT_DAEMON=false -d bde2020/spark-worker:3.1.1-hadoop3.2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Launch a Spark application&lt;/h2&gt; 
+&lt;p&gt;Building and running your Spark application on top of the Spark cluster is as simple as extending a template Docker image. Check the template’s README for further documentation.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/big-data-europe/docker-spark/master/template/java&quot;&gt;Java template&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/big-data-europe/docker-spark/master/template/python&quot;&gt;Python template&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/big-data-europe/docker-spark/master/template/scala&quot;&gt;Scala template&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Kubernetes deployment&lt;/h2&gt; 
+&lt;p&gt;The BDE Spark images can also be used in a Kubernetes enviroment.&lt;/p&gt; 
+&lt;p&gt;To deploy a simple Spark standalone cluster issue&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;kubectl apply -f https://raw.githubusercontent.com/big-data-europe/docker-spark/master/k8s-spark-cluster.yaml&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;This will setup a Spark standalone cluster with one master and a worker on every available node using the default namespace and resources. The master is reachable in the same namespace at &lt;code&gt;spark://spark-master:7077&lt;/code&gt;. It will also setup a headless service so spark clients can be reachable from the workers using hostname &lt;code&gt;spark-client&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Then to use &lt;code&gt;spark-shell&lt;/code&gt; issue&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;kubectl run spark-base --rm -it --labels=&quot;app=spark-client&quot; --image bde2020/spark-base:3.1.1-hadoop3.2 -- bash ./spark/bin/spark-shell --master spark://spark-master:7077 --conf spark.driver.host=spark-client&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;To use &lt;code&gt;spark-submit&lt;/code&gt; issue for example&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;kubectl run spark-base --rm -it --labels=&quot;app=spark-client&quot; --image bde2020/spark-base:3.1.1-hadoop3.2 -- bash ./spark/bin/spark-submit --class CLASS_TO_RUN --master spark://spark-master:7077 --deploy-mode client --conf spark.driver.host=spark-client URL_TO_YOUR_APP&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;You can use your own image packed with Spark and your application but when deployed it must be reachable from the workers. One way to achieve this is by creating a headless service for your pod and then use &lt;code&gt;--conf spark.driver.host=YOUR_HEADLESS_SERVICE&lt;/code&gt; whenever you submit your application.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker-library/openjdk</title>
+      <link>https://github.com/docker-library/openjdk</link>
+      <description>&lt;p&gt;Docker Official Image packaging for Java (openJDK)&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;https://github.com/docker-library/openjdk&lt;/h1&gt; 
+&lt;h2&gt;Maintained by: &lt;a href=&quot;https://github.com/docker-library/openjdk&quot;&gt;the Docker Community&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;This is the Git repo of the &lt;a href=&quot;https://github.com/docker-library/official-images#what-are-official-images&quot;&gt;Docker “Official Image”&lt;/a&gt; for &lt;a href=&quot;https://hub.docker.com/_/openjdk/&quot;&gt;&lt;code&gt;openjdk&lt;/code&gt;&lt;/a&gt; (not to be confused with any official &lt;code&gt;openjdk&lt;/code&gt; image provided by &lt;code&gt;openjdk&lt;/code&gt; upstream). See &lt;a href=&quot;https://hub.docker.com/_/openjdk/&quot;&gt;the Docker Hub page&lt;/a&gt; for the full readme on how to use this Docker image and for information regarding contributing and issues.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://hub.docker.com/_/openjdk/&quot;&gt;full image description on Docker Hub&lt;/a&gt; is generated/maintained over in &lt;a href=&quot;https://github.com/docker-library/docs&quot;&gt;the docker-library/docs repository&lt;/a&gt;, specifically in &lt;a href=&quot;https://github.com/docker-library/docs/tree/master/openjdk&quot;&gt;the &lt;code&gt;openjdk&lt;/code&gt; directory&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;See a change merged here that doesn’t show up on Docker Hub yet?&lt;/h2&gt; 
+&lt;p&gt;For more information about the full official images change lifecycle, see &lt;a href=&quot;https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what&quot;&gt;the “An image’s source changed in Git, now what?” FAQ entry&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For outstanding &lt;code&gt;openjdk&lt;/code&gt; image PRs, check &lt;a href=&quot;https://github.com/docker-library/official-images/labels/library%2Fopenjdk&quot;&gt;PRs with the “library/openjdk” label on the official-images repository&lt;/a&gt;. For the current “source of truth” for &lt;a href=&quot;https://hub.docker.com/_/openjdk/&quot;&gt;&lt;code&gt;openjdk&lt;/code&gt;&lt;/a&gt;, see &lt;a href=&quot;https://github.com/docker-library/official-images/raw/master/library/openjdk&quot;&gt;the &lt;code&gt;library/openjdk&lt;/code&gt; file in the official-images repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/docker-library/openjdk/actions?query=workflow%3A%22GitHub+CI%22+branch%3Amaster&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/workflow/status/docker-library/openjdk/GitHub%20CI/master?label=GitHub%20CI&quot; alt=&quot;build status badge&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://doi-janky.infosiftr.net/job/update.sh/job/openjdk/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/update.sh/job/openjdk.svg?label=Automated%20update.sh&quot; alt=&quot;build status badge&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;| Build | Status | Badges | (per-arch) | |:-:|:-:|:-:|:-:| | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/openjdk/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/amd64/job/openjdk.svg?label=amd64&quot; alt=&quot;amd64 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/openjdk/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/openjdk.svg?label=arm64v8&quot; alt=&quot;arm64v8 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/openjdk/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/openjdk.svg?label=windows-amd64&quot; alt=&quot;windows-amd64 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/put-shared/job/light/job/openjdk/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/put-shared/job/light/job/openjdk.svg?label=put-shared&quot; alt=&quot;put-shared build status badge&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;!-- THIS FILE IS GENERATED BY https://github.com/docker-library/docs/blob/master/generate-repo-stub-readme.sh --&gt;</description>
+    </item>
+    
+    <item>
+      <title>openresty/docker-openresty</title>
+      <link>https://github.com/openresty/docker-openresty</link>
+      <description>&lt;p&gt;Docker tooling for OpenResty&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;docker-openresty - Docker tooling for OpenResty&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.com/github/openresty/docker-openresty&quot;&gt;&lt;img src=&quot;https://api.travis-ci.com/openresty/docker-openresty.svg?branch=master&quot; alt=&quot;Travis Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/openresty/docker-openresty&quot;&gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/github/openresty/docker-openresty?branch=master&amp;amp;svg=true&quot; alt=&quot;Appveyor status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://microbadger.com/#/images/openresty/openresty&quot; title=&quot;microbadger.com&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/openresty/openresty.svg?sanitize=true&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Supported tags and respective &lt;code&gt;Dockerfile&lt;/code&gt; links&lt;/h2&gt; 
+&lt;p&gt;The following “flavors” are available and built from &lt;a href=&quot;http://openresty.org/en/linux-packages.html&quot;&gt;upstream OpenResty packages&lt;/a&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/alpine-apk/Dockerfile&quot;&gt;&lt;code&gt;alpine-apk&lt;/code&gt;, (&lt;em&gt;alpine-apk/Dockerfile&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/centos/Dockerfile&quot;&gt;&lt;code&gt;centos&lt;/code&gt;, &lt;code&gt;centos-rpm&lt;/code&gt;, (&lt;em&gt;centos/Dockerfile&lt;/em&gt; with &lt;code&gt;el8&lt;/code&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/centos7/Dockerfile&quot;&gt;&lt;code&gt;centos7&lt;/code&gt;, (&lt;em&gt;centos7/Dockerfile&lt;/em&gt; with &lt;code&gt;el7&lt;/code&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/centos/Dockerfile&quot;&gt;&lt;code&gt;amzn2&lt;/code&gt;, (&lt;em&gt;centos/Dockerfile&lt;/em&gt; with &lt;code&gt;amzn2&lt;/code&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/buster/Dockerfile&quot;&gt;&lt;code&gt;buster&lt;/code&gt;, (&lt;em&gt;buster/Dockerfile&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/buster/Dockerfile.fat&quot;&gt;&lt;code&gt;buster-fat&lt;/code&gt;, (&lt;em&gt;buster/Dockerfile.fat&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/windows/Dockerfile&quot;&gt;&lt;code&gt;windows&lt;/code&gt;, (&lt;em&gt;windows/Dockerfile&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/fedora/Dockerfile&quot;&gt;&lt;code&gt;fedora&lt;/code&gt;, &lt;code&gt;fedora-rpm&lt;/code&gt;, (&lt;em&gt;fedora/Dockerfile&lt;/em&gt; with &lt;code&gt;fc32&lt;/code&gt;)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The following “flavors” are built from source and are intended for more advanced and custom usage, caveat emptor:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/alpine/Dockerfile&quot;&gt;&lt;code&gt;alpine&lt;/code&gt;, (&lt;em&gt;alpine/Dockerfile&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/alpine/Dockerfile.fat&quot;&gt;&lt;code&gt;alpine-fat&lt;/code&gt;, (&lt;em&gt;alpine/Dockerfile.fat&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/bionic/Dockerfile&quot;&gt;&lt;code&gt;bionic&lt;/code&gt;, (&lt;em&gt;bionic/Dockerfile&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/focal/Dockerfile&quot;&gt;&lt;code&gt;focal&lt;/code&gt;, (&lt;em&gt;focal/Dockerfile&lt;/em&gt;)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Since &lt;code&gt;1.19.3.2-1&lt;/code&gt;, all flavors support multi-architecture builds, both &lt;code&gt;amd64&lt;/code&gt; and &lt;code&gt;aarch64&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Starting with &lt;code&gt;1.13.6.1&lt;/code&gt;, releases are tagged with &lt;code&gt;&amp;lt;openresty-version&amp;gt;-&amp;lt;image-version&amp;gt;-&amp;lt;flavor&amp;gt;&lt;/code&gt;. The latest &lt;code&gt;image-version&lt;/code&gt; will also be tagged &lt;code&gt;&amp;lt;openresty-version&amp;gt;-&amp;lt;flavor&amp;gt;&lt;/code&gt;. The HEAD of the master branch is also labeled plainly as &lt;code&gt;&amp;lt;flavor&amp;gt;&lt;/code&gt;. The builds are managed by &lt;a href=&quot;https://travis-ci.com/github/neomantra/docker-openresty&quot;&gt;Travis-CI&lt;/a&gt; and &lt;a href=&quot;https://ci.appveyor.com/project/openresty/docker-openresty&quot;&gt;Appveyor&lt;/a&gt; (for Windows images).&lt;/p&gt; 
+&lt;p&gt;OpenResty supports SSE 4.2 optimizations. Starting with the &lt;code&gt;1.19.3.1&lt;/code&gt; series, the architecture is auto-detected and the optimizations enabled accordingly. Earlier image series &lt;code&gt;1.15.8.1&lt;/code&gt; and &lt;code&gt;1.17.8.2&lt;/code&gt; have &lt;code&gt;-nosse42&lt;/code&gt; image flavors for systems which explicitly disable SSE 4.2 support; this is useful for older systems and embedded systems. They are built with &lt;code&gt;-mno-sse4.2&lt;/code&gt; appended to the build arg &lt;code&gt;RESTY_LUAJIT_OPTIONS&lt;/code&gt;. It is highly recommended &lt;em&gt;NOT&lt;/em&gt; to use these if your system supports SSE 4.2 because the &lt;code&gt;CRC32&lt;/code&gt; instruction dramatically improves large string performance. These are only for built-from-source flavors, e.g. &lt;code&gt;1.15.8.1-3-bionic-nosse42&lt;/code&gt;, &lt;code&gt;1.15.8.1-3-alpine-nosse42&lt;/code&gt;, &lt;code&gt;1.15.8.1-3-alpine-fat-nosse42&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;It is &lt;em&gt;highly recommended&lt;/em&gt; that you use the upstream-based images for best support. For best stability, pin your images to the full tag, for example &lt;code&gt;1.19.3.1-1-bionic&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;At this time, the only images that are compatible with aarch64 are &lt;code&gt;alpine&lt;/code&gt; and &lt;code&gt;alpine-fat&lt;/code&gt;. Once there are binary packages available, they can be released with the upstream packages.&lt;/p&gt; 
+&lt;h1&gt;Table of Contents&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#description&quot;&gt;Description&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#usage&quot;&gt;Usage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#nginx-config-files&quot;&gt;Nginx Config Files&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#opm&quot;&gt;OPM&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#luarocks&quot;&gt;LuaRocks&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#tips--pitfalls&quot;&gt;Tips &amp;amp; Pitfalls&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#image-labels&quot;&gt;Image Labels&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#docker-entrypoint&quot;&gt;Docker CMD&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#building-from-source&quot;&gt;Building (from source)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#building-rpm-based&quot;&gt;Building (RPM based)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#building-deb-based&quot;&gt;Building (DEB based)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#building-apk-based&quot;&gt;Building (APK based)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#building-windows-based&quot;&gt;Building (Windows based)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#feedback--bug-reports&quot;&gt;Feedback &amp;amp; Bug Reports&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#changelog--authors&quot;&gt;Changelog &amp;amp; Authors&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#copyright--license&quot;&gt;Copyright &amp;amp; License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Description&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;docker-openresty&lt;/code&gt; is &lt;a href=&quot;https://www.docker.com&quot;&gt;Docker&lt;/a&gt; tooling for OpenResty (https://www.openresty.org).&lt;/p&gt; 
+&lt;p&gt;Docker is a container management platform.&lt;/p&gt; 
+&lt;p&gt;OpenResty is a full-fledged web application server by bundling the standard nginx core, lots of 3rd-party nginx modules, as well as most of their external dependencies.&lt;/p&gt; 
+&lt;h1&gt;Usage&lt;/h1&gt; 
+&lt;p&gt;If you are happy with the build defaults, then you can use the openresty image from the &lt;a href=&quot;https://hub.docker.com/r/openresty/openresty/&quot;&gt;Docker Hub&lt;/a&gt;. The image tags available there are listed at the top of this README.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run [options] openresty/openresty:buster-fat
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;[options]&lt;/em&gt; would be things like -p to map ports, -v to map volumes, and -d to daemonize.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;docker-openresty&lt;/code&gt; symlinks &lt;code&gt;/usr/local/openresty/nginx/logs/access.log&lt;/code&gt; and &lt;code&gt;error.log&lt;/code&gt; to &lt;code&gt;/dev/stdout&lt;/code&gt; and &lt;code&gt;/dev/stderr&lt;/code&gt; respectively, so that Docker logging works correctly. If you change the log paths in your &lt;code&gt;nginx.conf&lt;/code&gt;, you should symlink those paths as well. This is not possible with the &lt;code&gt;windows&lt;/code&gt; image.&lt;/p&gt; 
+&lt;p&gt;Temporary directories such as &lt;code&gt;client_body_temp_path&lt;/code&gt; are stored in &lt;code&gt;/var/run/openresty/&lt;/code&gt;. You may consider mounting that volume, rather than writing to a container-local directory. This is not done for &lt;code&gt;windows&lt;/code&gt;.&lt;/p&gt; 
+&lt;h1&gt;Nginx Config Files&lt;/h1&gt; 
+&lt;p&gt;The Docker tooling installs its own &lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/nginx.conf&quot;&gt;&lt;code&gt;nginx.conf&lt;/code&gt; file&lt;/a&gt;. If you want to directly override it, you can replace it in your own Dockerfile or via volume bind-mounting.&lt;/p&gt; 
+&lt;p&gt;For the Linux images, that &lt;code&gt;nginx.conf&lt;/code&gt; has the directive &lt;code&gt;include /etc/nginx/conf.d/*.conf;&lt;/code&gt; so all nginx configurations in that directory will be included. The &lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/nginx.vh.default.conf&quot;&gt;default virtual host configuration&lt;/a&gt; has the original OpenResty configuration and is copied to &lt;code&gt;/etc/nginx/conf.d/default.conf&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;You can override that &lt;code&gt;default.conf&lt;/code&gt; directly or volume bind-mount the &lt;code&gt;/etc/nginx/conf.d&lt;/code&gt; directory to your own set of configurations:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -v /my/custom/conf.d:/etc/nginx/conf.d openresty/openresty:alpine
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you are running on an &lt;code&gt;selinux&lt;/code&gt; host (e.g. CentOS), you may need to add &lt;code&gt;:Z&lt;/code&gt; to your &lt;a href=&quot;https://docs.docker.com/storage/bind-mounts/#configure-the-selinux-label&quot;&gt;volume bind-mount argument&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -v /my/custom/conf.d:/etc/nginx/conf.d:Z openresty/openresty:alpine
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When using the &lt;code&gt;windows&lt;/code&gt; image you can change the main configuration directly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -v C:/my/custom/nginx.conf:C:/openresty/conf/nginx.conf openresty/openresty:windows
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;OPM&lt;/h1&gt; 
+&lt;p&gt;Starting at version 1.11.2.2, OpenResty for Linux includes a &lt;a href=&quot;https://github.com/openresty/opm#readme&quot;&gt;package manager called &lt;code&gt;opm&lt;/code&gt;&lt;/a&gt;, which can be found at &lt;code&gt;/usr/local/openresty/bin/opm&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;opm&lt;/code&gt; is built in all the images except &lt;code&gt;alpine&lt;/code&gt; and &lt;code&gt;buster&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;To use &lt;code&gt;opm&lt;/code&gt; in the &lt;code&gt;alpine&lt;/code&gt; image, you must also install the &lt;code&gt;curl&lt;/code&gt; and &lt;code&gt;perl&lt;/code&gt; packages; they are not included by default because they double the image size. You may install them like so: &lt;code&gt;apk add --no-cache curl perl&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;To use &lt;code&gt;opm&lt;/code&gt; within the &lt;code&gt;buster&lt;/code&gt; image, you can either use the &lt;code&gt;buster-fat&lt;/code&gt; image or install the &lt;code&gt;openresty-opm&lt;/code&gt; package in a custom build (which you would need to do to install your own &lt;code&gt;opm&lt;/code&gt; packages anyway), as shown in &lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/buster/Dockerfile.opm_example&quot;&gt;this example&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;LuaRocks&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://luarocks.org/&quot;&gt;LuaRocks&lt;/a&gt; is included in the &lt;code&gt;alpine-fat&lt;/code&gt;, &lt;code&gt;centos&lt;/code&gt;, and &lt;code&gt;bionic&lt;/code&gt; variants. It is excluded from &lt;code&gt;alpine&lt;/code&gt; because it generally requires a build system and we want to keep that variant lean.&lt;/p&gt; 
+&lt;p&gt;It is available at &lt;code&gt;/usr/local/openresty/luajit/bin/luarocks&lt;/code&gt;. Packages can be added in your dependent Dockerfiles like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;RUN /usr/local/openresty/luajit/bin/luarocks install &amp;lt;rock&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Tips &amp;amp; Pitfalls&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;code&gt;envsubst&lt;/code&gt; utility is included in all images except &lt;code&gt;alpine&lt;/code&gt; and &lt;code&gt;windows&lt;/code&gt;; this utility is also included in the Nginx docker image and is used to template environment variables into configuration files.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;By default, OpenResty is built with SSE4.2 optimizations if the build machine supports it. If run on machine without SSE4.2, there will be &lt;a href=&quot;https://github.com/openresty/docker-openresty/issues/39&quot;&gt;invalid opcode issues&lt;/a&gt;. &lt;strong&gt;Thus all the Docker Hub images require SSE4.2.&lt;/strong&gt; You can &lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#building-from-source&quot;&gt;build a custom image from source&lt;/a&gt; explicitly without SSE4.2 support, using build arguments like so:&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;docker build -f bionic/Dockerfile --build-arg &quot;RESTY_LUAJIT_OPTIONS=--with-luajit-xcflags=&#39;-DLUAJIT_NUMMODE=2 -DLUAJIT_ENABLE_LUA52COMPAT -mno-sse4.2&#39;&quot; .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;OpenResty’s OpenSSL library version must be compatible with your &lt;code&gt;opm&lt;/code&gt; and LuaRocks packages’ version. At minimum, the numeric portion should be the same (e.g. &lt;code&gt;1.1.1&lt;/code&gt;). The image label &lt;code&gt;resty_openssl_version&lt;/code&gt; indicates this value. see &lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#image-labels&quot;&gt;Labels&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;code&gt;1.13.6.2-alpine&lt;/code&gt; is built from &lt;code&gt;OpenSSL 1.0.2r&lt;/code&gt; because of build issues on Alpine. &lt;code&gt;1.15.8.1-alpine&lt;/code&gt; and later are built from &lt;code&gt;OpenSSL 1.1.1&lt;/code&gt; series.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Windows images must be built from the same version as the host system it runs on. See &lt;a href=&quot;https://docs.microsoft.com/en-us/virtualization/windowscontainers/deploy-containers/version-compatibility&quot;&gt;Windows container version compatibility&lt;/a&gt;. Our images are currently built from the “Windows Server 2016” series.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;code&gt;SIGQUIT&lt;/code&gt; signal will be sent to nginx to stop this container, to give it an opportunity to stop gracefully (i.e, finish processing active connections). The Docker default is &lt;code&gt;SIGTERM&lt;/code&gt;, which immediately terminates active connections. Note that if your configuration listens on UNIX domain sockets, this means that you’ll need to manually remove the socket file upon shutdown, due to &lt;a href=&quot;https://trac.nginx.org/nginx/ticket/753&quot;&gt;nginx bug #753&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Alpine 3.9 added OpenSSL 1.1.1 and we build images against this. OpenSSL 1.1.1 enabled TLS 1.3 by default, which can create unexpected behavior with ssl_session_(store|fetch)_by_lua*. See this patch, which will ship in OpenResty 1.17.x.1, for more information: https://github.com/openresty/lua-nginx-module/commit/d3dbc0c8102a9978d649c99e3261d93aac547378&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Image Labels&lt;/h1&gt; 
+&lt;p&gt;The image builds are labeled with various information, such as the versions of OpenResty and its dependent libraries. Here’s an example of printing the labels using &lt;a href=&quot;https://stedolan.github.io/jq/&quot;&gt;&lt;code&gt;jq&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ docker pull openresty/openresty:1.17.8.1-0-bionic
+$ docker inspect openresty/openresty:1.17.8.1-0-bionic | jq &#39;.[].Config.Labels&#39;
+{
+  &quot;maintainer&quot;: &quot;Evan Wies &amp;lt;evan@*********.net&amp;gt;&quot;,
+  &quot;resty_add_package_builddeps&quot;: &quot;&quot;,
+  &quot;resty_add_package_rundeps&quot;: &quot;&quot;,
+  &quot;resty_config_deps&quot;: &quot;--with-pcre     --with-cc-opt=&#39;-DNGX_LUA_ABORT_AT_PANIC -I/usr/local/openresty/pcre/include -I/usr/local/openresty/openssl/include&#39;     --with-ld-opt=&#39;-L/usr/local/openresty/pcre/lib -L/usr/local/openresty/openssl/lib -Wl,-rpath,/usr/local/openresty/pcre/lib:/usr/local/openresty/openssl/lib&#39;     &quot;,
+  &quot;resty_config_options&quot;: &quot;    --with-compat     --with-file-aio     --with-http_addition_module     --with-http_auth_request_module     --with-http_dav_module     --with-http_flv_module     --with-http_geoip_module=dynamic     --with-http_gunzip_module     --with-http_gzip_static_module     --with-http_image_filter_module=dynamic     --with-http_mp4_module     --with-http_random_index_module     --with-http_realip_module     --with-http_secure_link_module     --with-http_slice_module     --with-http_ssl_module     --with-http_stub_status_module     --with-http_sub_module     --with-http_v2_module     --with-http_xslt_module=dynamic     --with-ipv6     --with-mail     --with-mail_ssl_module     --with-md5-asm     --with-pcre-jit     --with-sha1-asm     --with-stream     --with-stream_ssl_module     --with-threads     &quot;,
+  &quot;resty_config_options_more&quot;: &quot;&quot;,
+  &quot;resty_eval_post_make&quot;: &quot;&quot;,
+  &quot;resty_eval_pre_configure&quot;: &quot;&quot;,
+  &quot;resty_image_base&quot;: &quot;ubuntu&quot;,
+  &quot;resty_image_tag&quot;: &quot;bionic&quot;,
+  &quot;resty_luarocks_version&quot;: &quot;3.3.1&quot;,
+  &quot;resty_openssl_patch_version&quot;: &quot;1.1.0d&quot;,
+  &quot;resty_openssl_url_base&quot;: &quot;https://www.openssl.org/source/old/1.1.0&quot;,
+  &quot;resty_openssl_version&quot;: &quot;1.1.0l&quot;,
+  &quot;resty_pcre_version&quot;: &quot;8.44&quot;,
+  &quot;resty_version&quot;: &quot;1.17.8.1&quot;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;| Label Name | Description | :—————————– |:———————– | |&lt;code&gt;maintainer&lt;/code&gt; | Maintainer of the image | |&lt;code&gt;resty_add_package_builddeps&lt;/code&gt; | buildarg &lt;code&gt;RESTY_ADD_PACKAGE_BUILDDEPS&lt;/code&gt; | |&lt;code&gt;resty_add_package_rundeps&lt;/code&gt; | buildarg &lt;code&gt;RESTY_ADD_PACKAGE_RUNDEPS&lt;/code&gt; | |&lt;code&gt;resty_apk_key_url&lt;/code&gt; | buildarg &lt;code&gt;RESTY_APK_KEY_URL&lt;/code&gt; | |&lt;code&gt;resty_apk_repo_url&lt;/code&gt; | buildarg &lt;code&gt;RESTY_APK_REPO_URL&lt;/code&gt; | |&lt;code&gt;resty_apk_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_APK_VERSION&lt;/code&gt; | |&lt;code&gt;resty_apt_pgp&lt;/code&gt; | buildarg &lt;code&gt;RESTY_APT_PGP&lt;/code&gt; | |&lt;code&gt;resty_apt_repo&lt;/code&gt; | buildarg &lt;code&gt;RESTY_APT_REPO&lt;/code&gt; | |&lt;code&gt;resty_config_deps&lt;/code&gt; | buildarg &lt;code&gt;_RESTY_CONFIG_DEPS&lt;/code&gt; (internal) | |&lt;code&gt;resty_config_options&lt;/code&gt; | buildarg &lt;code&gt;RESTY_CONFIG_OPTIONS&lt;/code&gt; | |&lt;code&gt;resty_config_options_more&lt;/code&gt; | buildarg &lt;code&gt;RESTY_CONFIG_OPTIONS_MORE&lt;/code&gt; | |&lt;code&gt;resty_deb_flavor&lt;/code&gt; | buildarg &lt;code&gt;RESTY_DEB_FLAVOR&lt;/code&gt; | |&lt;code&gt;resty_deb_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_DEB_VERSION&lt;/code&gt; (&lt;a href=&quot;https://openresty.org/package/debian/pool/openresty/o/openresty/&quot;&gt;available versions&lt;/a&gt;) | |&lt;code&gt;resty_eval_post_make&lt;/code&gt; | buildarg &lt;code&gt;RESTY_EVAL_POST_MAKE&lt;/code&gt; | |&lt;code&gt;resty_eval_pre_configure&lt;/code&gt; | buildarg &lt;code&gt;RESTY_EVAL_PRE_CONFIGURE&lt;/code&gt; | |&lt;code&gt;resty_fat_image_base&lt;/code&gt; | Name of the base image to build fat images from, buildarg &lt;code&gt;RESTY_FAT_IMAGE_BASE&lt;/code&gt; | |&lt;code&gt;resty_fat_image_tag&lt;/code&gt; | Tag of the base image to build fat images from, buildarg &lt;code&gt;RESTY_FAT_IMAGE_TAG&lt;/code&gt; | |&lt;code&gt;resty_image_base&lt;/code&gt; | Name of the base image to build from, buildarg &lt;code&gt;RESTY_IMAGE_BASE&lt;/code&gt; | |&lt;code&gt;resty_image_tag&lt;/code&gt; | Tag of the base image to build from, buildarg &lt;code&gt;RESTY_IMAGE_TAG&lt;/code&gt; | |&lt;code&gt;resty_install_base&lt;/code&gt; | buildarg &lt;code&gt;RESTY_INSTALL_BASE&lt;/code&gt; | |&lt;code&gt;resty_install_tag&lt;/code&gt; | buildarg &lt;code&gt;RESTY_INSTALL_TAG&lt;/code&gt; | |&lt;code&gt;resty_luajit_options&lt;/code&gt; | buildarg &lt;code&gt;RESTY_LUAJIT_OPTIONS&lt;/code&gt; | |&lt;code&gt;resty_luarocks_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_LUAROCKS_VERSION&lt;/code&gt; | |&lt;code&gt;resty_openssl_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_OPENSSL_VERSION&lt;/code&gt; | |&lt;code&gt;resty_openssl_patch_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_OPENSSL_PATCH_VERSION&lt;/code&gt; | |&lt;code&gt;resty_openssl_url_base&lt;/code&gt; | buildarg &lt;code&gt;RESTY_OPENSSL_URL_BASE&lt;/code&gt; | |&lt;code&gt;resty_pcre_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_PCRE_VERSION&lt;/code&gt; | |&lt;code&gt;resty_rpm_arch&lt;/code&gt; | buildarg &lt;code&gt;RESTY_RPM_ARCH&lt;/code&gt; | |&lt;code&gt;resty_rpm_dist&lt;/code&gt; | buildarg &lt;code&gt;RESTY_RPM_DIST&lt;/code&gt; | |&lt;code&gt;resty_rpm_flavor&lt;/code&gt; | buildarg &lt;code&gt;RESTY_RPM_FLAVOR&lt;/code&gt; | |&lt;code&gt;resty_rpm_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_RPM_VERSION&lt;/code&gt; | |&lt;code&gt;resty_version&lt;/code&gt; | buildarg &lt;code&gt;RESTY_VERSION&lt;/code&gt; | |&lt;code&gt;resty_yum_repo&lt;/code&gt; | buildarg &lt;code&gt;RESTY_YUM_REPO&lt;/code&gt; |&lt;/p&gt; 
+&lt;h1&gt;Docker CMD&lt;/h1&gt; 
+&lt;p&gt;The &lt;code&gt;-g &quot;daemon off;&quot;&lt;/code&gt; directive is used in the Dockerfile CMD to keep the Nginx daemon running after container creation. If this directive is added to the nginx.conf, then the &lt;code&gt;docker run&lt;/code&gt; should explicitly invoke &lt;code&gt;openresty&lt;/code&gt; (or &lt;code&gt;nginx&lt;/code&gt; for &lt;code&gt;windows&lt;/code&gt; images):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run [options] openresty/openresty:bionic openresty
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Invoke another CMD, for example the &lt;code&gt;resty&lt;/code&gt; utility, like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run [options] openresty/openresty:bionic resty [script.lua]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;NOTE&lt;/em&gt; The &lt;code&gt;alpine&lt;/code&gt; images do not include the packages &lt;code&gt;perl&lt;/code&gt; and &lt;code&gt;ncurses&lt;/code&gt;, which is needed by the &lt;code&gt;resty&lt;/code&gt; utility.&lt;/p&gt; 
+&lt;h1&gt;Building (from source)&lt;/h1&gt; 
+&lt;p&gt;This Docker image can be built and customized by cloning the repo and running &lt;code&gt;docker build&lt;/code&gt; with the desired Dockerfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/openresty/docker-openresty.git
+cd docker-openresty
+docker build -t myopenresty -f bionic/Dockerfile .
+docker run myopenresty
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Dockerfiles are provided for the following base systems, selecting the Dockerfile path with &lt;code&gt;-f&lt;/code&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/alpine/Dockerfile&quot;&gt;Alpine&lt;/a&gt; (&lt;code&gt;alpine/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/alpine/Dockerfile.fat&quot;&gt;Alpine Fat&lt;/a&gt; (&lt;code&gt;alpine/Dockerfile.fat&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/bionic/Dockerfile&quot;&gt;Ubuntu Bionic&lt;/a&gt; (&lt;code&gt;bionic/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/focal/Dockerfile&quot;&gt;Ubuntu Focal&lt;/a&gt; (&lt;code&gt;focal/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We used to support more build flavors but have trimmed that down. Older Dockerfiles are archived in the &lt;a href=&quot;https://github.com/openresty/docker-openresty/tree/master/archive&quot;&gt;&lt;code&gt;archive&lt;/code&gt;&lt;/a&gt; folder.&lt;/p&gt; 
+&lt;p&gt;The following are the available build-time options. They can be set using the &lt;code&gt;--build-arg&lt;/code&gt; CLI argument, like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker build --build-arg RESTY_J=4 -f bionic/Dockerfile .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;| Key | Default | Description | :—– | :—–: |:———– | |RESTY_IMAGE_BASE | “ubuntu” / “alpine” | The Debian or Alpine Docker image base to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_IMAGE_TAG | “bionic” / “3.13” | The Debian or Alpine Docker image tag to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_VERSION | 1.19.3.2 | The version of OpenResty to use. | |RESTY_LUAROCKS_VERSION | 3.7.0 | The version of LuaRocks to use. | |RESTY_OPENSSL_VERSION | 1.1.1k | The version of OpenSSL to use. | |RESTY_OPENSSL_PATCH_VERSION | 1.1.1f | The version of OpenSSL to use when patching. | |RESTY_OPENSSL_URL_BASE | https://www.openssl.org/source | The base of the URL to download OpenSSL from. | |RESTY_PCRE_VERSION | 8.44 | The version of PCRE to use. | |RESTY_J | 1 | Sets the parallelism level (-jN) for the builds. | |RESTY_CONFIG_OPTIONS | “–with-compat –with-file-aio –with-http_addition_module –with-http_auth_request_module –with-http_dav_module –with-http_flv_module –with-http_geoip_module=dynamic –with-http_gunzip_module –with-http_gzip_static_module –with-http_image_filter_module=dynamic –with-http_mp4_module –with-http_perl_module=dynamic –with-http_random_index_module –with-http_realip_module –with-http_secure_link_module –with-http_slice_module –with-http_ssl_module –with-http_stub_status_module –with-http_sub_module –with-http_v2_module –with-http_xslt_module=dynamic –with-ipv6 –with-mail –with-mail_ssl_module –with-md5-asm –with-pcre-jit –with-sha1-asm –with-stream –with-stream_ssl_module –with-threads” | Options to pass to OpenResty’s &lt;code&gt;./configure&lt;/code&gt; script. | |RESTY_LUAJIT_OPTIONS | “–with-luajit-xcflags=’-DLUAJIT_NUMMODE=2 -DLUAJIT_ENABLE_LUA52COMPAT’” | Options to tweak LuaJIT. | |RESTY_CONFIG_OPTIONS_MORE | “” | More options to pass to OpenResty’s &lt;code&gt;./configure&lt;/code&gt; script. | |RESTY_ADD_PACKAGE_BUILDDEPS | “” | Additional packages to install with package manager required by build only (removed after installation) | |RESTY_ADD_PACKAGE_RUNDEPS | “” | Additional packages to install with package manager required at runtime (not removed after installation) | |RESTY_EVAL_PRE_CONFIGURE | “” | Command(s) to run prior to executing OpenResty’s &lt;code&gt;./configure&lt;/code&gt; script. (this can be used to clone a github repo of an extension you want to add to OpenResty, for example. In that case, dont forget to add the appropriate argument to the RESTY_CONFIG_OPTIONS_MORE argument as described above). | |RESTY_EVAL_POST_MAKE | “” | Command(s) to run after running make install. |&lt;/p&gt; 
+&lt;p&gt;These built-from-source flavors include the following modules by default, but one can easily increase or decrease that with the custom build options above:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;file-aio&lt;/li&gt; 
+ &lt;li&gt;http_addition_module&lt;/li&gt; 
+ &lt;li&gt;http_auth_request_module&lt;/li&gt; 
+ &lt;li&gt;http_dav_module&lt;/li&gt; 
+ &lt;li&gt;http_flv_module&lt;/li&gt; 
+ &lt;li&gt;http_geoip_module=dynamic&lt;/li&gt; 
+ &lt;li&gt;http_gunzip_module&lt;/li&gt; 
+ &lt;li&gt;http_gzip_static_module&lt;/li&gt; 
+ &lt;li&gt;http_image_filter_module=dynamic&lt;/li&gt; 
+ &lt;li&gt;http_mp4_module&lt;/li&gt; 
+ &lt;li&gt;http_random_index_module&lt;/li&gt; 
+ &lt;li&gt;http_realip_module&lt;/li&gt; 
+ &lt;li&gt;http_secure_link_module&lt;/li&gt; 
+ &lt;li&gt;http_slice_module&lt;/li&gt; 
+ &lt;li&gt;http_ssl_module&lt;/li&gt; 
+ &lt;li&gt;http_stub_status_module&lt;/li&gt; 
+ &lt;li&gt;http_sub_module&lt;/li&gt; 
+ &lt;li&gt;http_v2_module&lt;/li&gt; 
+ &lt;li&gt;http_xslt_module=dynamic&lt;/li&gt; 
+ &lt;li&gt;ipv6&lt;/li&gt; 
+ &lt;li&gt;mail&lt;/li&gt; 
+ &lt;li&gt;mail_ssl_module&lt;/li&gt; 
+ &lt;li&gt;md5-asm&lt;/li&gt; 
+ &lt;li&gt;pcre-jit&lt;/li&gt; 
+ &lt;li&gt;sha1-asm&lt;/li&gt; 
+ &lt;li&gt;stream&lt;/li&gt; 
+ &lt;li&gt;stream_ssl_module&lt;/li&gt; 
+ &lt;li&gt;threads &lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Building (RPM based)&lt;/h1&gt; 
+&lt;p&gt;OpenResty now now has &lt;a href=&quot;http://openresty.org/en/rpm-packages.html&quot;&gt;RPMs available&lt;/a&gt;. The &lt;code&gt;centos&lt;/code&gt; and &lt;code&gt;fedora&lt;/code&gt; images use these RPMs rather than building from source.&lt;/p&gt; 
+&lt;p&gt;This Docker image can be built and customized by cloning the repo and running &lt;code&gt;docker build&lt;/code&gt; with the desired Dockerfile:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/centos7/Dockerfile&quot;&gt;CentOS 7 RPM&lt;/a&gt; (&lt;code&gt;centos/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/centos/Dockerfile&quot;&gt;CentOS 8 RPM&lt;/a&gt; (&lt;code&gt;centos/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/fedora/Dockerfile&quot;&gt;Fedora 32 RPM&lt;/a&gt; (&lt;code&gt;centos/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The following are the available build-time options. They can be set using the &lt;code&gt;--build-arg&lt;/code&gt; CLI argument, like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker build --build-arg RESTY_RPM_FLAVOR=&quot;-debug&quot; centos7/Dockerfile .
+docker build --build-arg RESTY_RPM_FLAVOR=&quot;-debug&quot; centos/Dockerfile .
+docker build --build-arg RESTY_RPM_FLAVOR=&quot;-debug&quot; -f fedora/Dockerfile .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;| Key | Default | Description | :—– | :—–: |:———– | |RESTY_IMAGE_BASE | “centos” | The Centos Docker image base to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_IMAGE_TAG | “8” | The CentOS Docker image tag to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_LUAROCKS_VERSION | 3.7.0 | The version of LuaRocks to use. | |RESTY_YUM_REPO | “https://openresty.org/package/centos/openresty.repo” | URL for the OpenResty YUM Repository. | |RESTY_RPM_FLAVOR | “” | The &lt;code&gt;openresty&lt;/code&gt; package flavor to use. Possibly &lt;code&gt;&quot;-debug&quot;&lt;/code&gt; or &lt;code&gt;&quot;-valgrind&quot;&lt;/code&gt;. | |RESTY_RPM_VERSION | “1.19.3.2-1” | The &lt;code&gt;openresty&lt;/code&gt; package version to install. | |RESTY_RPM_DIST | “el8” | The &lt;code&gt;openresty&lt;/code&gt; package distribution to install. | |RESTY_RPM_ARCH | “x86_64” | The &lt;code&gt;openresty&lt;/code&gt; package architecture to install. |&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Building (DEB based)&lt;/h1&gt; 
+&lt;p&gt;OpenResty now now has &lt;a href=&quot;http://openresty.org/en/deb-packages.html&quot;&gt;Debian Packages (DEBs) available&lt;/a&gt;. The &lt;code&gt;buster&lt;/code&gt; image use these DEBs rather than building from source.&lt;/p&gt; 
+&lt;p&gt;You can derive your own Docker images from this to install your own packages. See &lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/buster/Dockerfile.opm_example&quot;&gt;Dockerfile.opm_example&lt;/a&gt; and &lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/buster/Dockerfile.luarocks_example&quot;&gt;Dockerfile.luarocks_example&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;This Docker image can be built and customized by cloning the repo and running &lt;code&gt;docker build&lt;/code&gt; with the desired Dockerfile:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/buster/Dockerfile&quot;&gt;Debian Buster 10 DEB&lt;/a&gt; (&lt;code&gt;buster/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The following are the available build-time options. They can be set using the &lt;code&gt;--build-arg&lt;/code&gt; CLI argument, like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker build --build-arg RESTY_DEB_FLAVOR=&quot;-debug&quot; -f buster/Dockerfile .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;| Key | Default | Description | :—– | :—–: |:———– | |RESTY_APT_REPO | “http://openresty.org/package/debian” | Apt repo to load from. | |RESTY_APT_PGP | “https://openresty.org/package/pubkey.gpg” | URL to download APT PGP key from |RESTY_IMAGE_BASE | “debian” | The Debian Docker image base to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_IMAGE_TAG | “buster-slim” | The Debian Docker image tag to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_DEB_FLAVOR | “” | The &lt;code&gt;openresty&lt;/code&gt; package flavor to use. Possibly &lt;code&gt;&quot;-debug&quot;&lt;/code&gt; or &lt;code&gt;&quot;-valgrind&quot;&lt;/code&gt;. | |RESTY_DEB_VERSION | “=1.19.3.2-1~buster” | The &lt;a href=&quot;https://openresty.org/package/debian/pool/openresty/o/openresty/&quot;&gt;Debian package version&lt;/a&gt; to use, with &lt;code&gt;=&lt;/code&gt; prepended. |&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For &lt;code&gt;amd64&lt;/code&gt; builds, &lt;code&gt;RESTY_APT_REPO=&quot;http://openresty.org/package/debian&quot;&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;For &lt;code&gt;arm64&lt;/code&gt; builds, &lt;code&gt;RESTY_APT_REPO=&quot;http://openresty.org/package/arm64/debian&quot;&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Building (APK based)&lt;/h1&gt; 
+&lt;p&gt;OpenResty now now has &lt;a href=&quot;http://openresty.org/en/apk-packages.html&quot;&gt;Alpine Packages (APKs) available&lt;/a&gt;. The &lt;code&gt;alpine-apk&lt;/code&gt; image use these APKs rather than building from source. You can derive your own Docker images from this to install your own packages.&lt;/p&gt; 
+&lt;p&gt;This Docker image can be built and customized by cloning the repo and running &lt;code&gt;docker build&lt;/code&gt; with the desired Dockerfile:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/alpine-apk/Dockerfile&quot;&gt;Alpine APK&lt;/a&gt; (&lt;code&gt;alpine-apk/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The following are the available build-time options. They can be set using the &lt;code&gt;--build-arg&lt;/code&gt; CLI argument, like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker build --build-arg RESTY_IMAGE_TAG=&quot;3.12&quot; -f alpine-apk/Dockerfile .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;| Key | Default | Description | :—– | :—–: |:———– | |RESTY_IMAGE_BASE | “alpine” | The Alpine Docker image base to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_IMAGE_TAG | “3.13” | The Alpine Docker image tag to build &lt;code&gt;FROM&lt;/code&gt;. | |RESTY_APK_KEY_URL | “http://openresty.org/package/admin@openresty.com-5ea678a6.rsa.pub” | The URL of the signing key of the &lt;code&gt;openresty&lt;/code&gt; package. | |RESTY_APK_REPO_URL | “http://openresty.org/package/alpine/v${RESTY_IMAGE_TAG}/main” | The URL of the APK repository for &lt;code&gt;openresty&lt;/code&gt; package. | |RESTY_APK_VERSION | “=1.19.3.2-r0” | The suffix to add to the apk install package name: &lt;code&gt;openresty${RESTY_APK_VERSION&lt;/code&gt;}. |&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Building (Windows based)&lt;/h1&gt; 
+&lt;p&gt;This Docker image can be built and customized by cloning the repo and running &lt;code&gt;docker build&lt;/code&gt; with the desired Dockerfile:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/centos-rpm/Dockerfile&quot;&gt;Windows&lt;/a&gt; (&lt;code&gt;windows/Dockerfile&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The following are the available build-time options. They can be set using the &lt;code&gt;--build-arg&lt;/code&gt; CLI argument, like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker build --build-arg RESTY_VERSION=&quot;1.13.6.2&quot; -f windows/Dockerfile .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;| Key | Default | Description | :—– | :—–: |:———– | |RESTY_INSTALL_BASE | “mcr.microsoft.com/windows/servercore” | The Windows Server Docker image name to download and install OpenResty with. | |RESTY_INSTALL_TAG | “ltsc2019” | The Windows Server Docker image name to download and install OpenResty with. | |RESTY_IMAGE_BASE | “mcr.microsoft.com/windows/nanoserver” | The Windows Server Docker image name to build &lt;code&gt;FROM&lt;/code&gt; for final image. | |RESTY_IMAGE_TAG | “1809” | The Windows Server Docker image tag to build &lt;code&gt;FROM&lt;/code&gt; for final image. | |RESTY_VERSION | 1.19.3.2 | The version of OpenResty to use. |&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Feedback &amp;amp; Bug Reports&lt;/h1&gt; 
+&lt;p&gt;You’re very welcome to report bugs and give feedback as GitHub Issues:&lt;/p&gt; 
+&lt;p&gt;https://github.com/openresty/docker-openresty/issues&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Changelog &amp;amp; Authors&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/CHANGELOG.md&quot;&gt;CHANGELOG&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openresty/docker-openresty/raw/master/AUTHORS.md&quot;&gt;AUTHORS&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Copyright &amp;amp; License&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;docker-openresty&lt;/code&gt; is licensed under the 2-clause BSD license.&lt;/p&gt; 
+&lt;p&gt;Copyright (c) 2017-2021, Evan Wies &lt;a href=&quot;mailto:evan@neomantra.net&quot;&gt;evan@neomantra.net&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;This module is licensed under the terms of the BSD license.&lt;/p&gt; 
+&lt;p&gt;Redistribution and use in source and binary forms, with or without modification, are permitted provided that the following conditions are met:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Redistributions of source code must retain the above copyright notice, this list of conditions and the following disclaimer.&lt;/li&gt; 
+ &lt;li&gt;Redistributions in binary form must reproduce the above copyright notice, this list of conditions and the following disclaimer in the documentation and/or other materials provided with the distribution.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS “AS IS” AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT HOLDER OR CONTRIBUTORS BE LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE) ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE POSSIBILITY OF SUCH DAMAGE.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openresty/docker-openresty/master/#table-of-contents&quot;&gt;Back to TOC&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker-library/php</title>
+      <link>https://github.com/docker-library/php</link>
+      <description>&lt;p&gt;Docker Official Image packaging for PHP&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;https://github.com/docker-library/php&lt;/h1&gt; 
+&lt;h2&gt;Maintained by: &lt;a href=&quot;https://github.com/docker-library/php&quot;&gt;the Docker Community&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;This is the Git repo of the &lt;a href=&quot;https://github.com/docker-library/official-images#what-are-official-images&quot;&gt;Docker “Official Image”&lt;/a&gt; for &lt;a href=&quot;https://hub.docker.com/_/php/&quot;&gt;&lt;code&gt;php&lt;/code&gt;&lt;/a&gt; (not to be confused with any official &lt;code&gt;php&lt;/code&gt; image provided by &lt;code&gt;php&lt;/code&gt; upstream). See &lt;a href=&quot;https://hub.docker.com/_/php/&quot;&gt;the Docker Hub page&lt;/a&gt; for the full readme on how to use this Docker image and for information regarding contributing and issues.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://hub.docker.com/_/php/&quot;&gt;full image description on Docker Hub&lt;/a&gt; is generated/maintained over in &lt;a href=&quot;https://github.com/docker-library/docs&quot;&gt;the docker-library/docs repository&lt;/a&gt;, specifically in &lt;a href=&quot;https://github.com/docker-library/docs/tree/master/php&quot;&gt;the &lt;code&gt;php&lt;/code&gt; directory&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;See a change merged here that doesn’t show up on Docker Hub yet?&lt;/h2&gt; 
+&lt;p&gt;For more information about the full official images change lifecycle, see &lt;a href=&quot;https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what&quot;&gt;the “An image’s source changed in Git, now what?” FAQ entry&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For outstanding &lt;code&gt;php&lt;/code&gt; image PRs, check &lt;a href=&quot;https://github.com/docker-library/official-images/labels/library%2Fphp&quot;&gt;PRs with the “library/php” label on the official-images repository&lt;/a&gt;. For the current “source of truth” for &lt;a href=&quot;https://hub.docker.com/_/php/&quot;&gt;&lt;code&gt;php&lt;/code&gt;&lt;/a&gt;, see &lt;a href=&quot;https://github.com/docker-library/official-images/raw/master/library/php&quot;&gt;the &lt;code&gt;library/php&lt;/code&gt; file in the official-images repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/docker-library/php/actions?query=workflow%3A%22GitHub+CI%22+branch%3Amaster&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/workflow/status/docker-library/php/GitHub%20CI/master?label=GitHub%20CI&quot; alt=&quot;build status badge&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://doi-janky.infosiftr.net/job/update.sh/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/update.sh/job/php.svg?label=Automated%20update.sh&quot; alt=&quot;build status badge&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;| Build | Status | Badges | (per-arch) | |:-:|:-:|:-:|:-:| | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/amd64/job/php.svg?label=amd64&quot; alt=&quot;amd64 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/php.svg?label=arm32v5&quot; alt=&quot;arm32v5 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/php.svg?label=arm32v6&quot; alt=&quot;arm32v6 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/php.svg?label=arm32v7&quot; alt=&quot;arm32v7 build status badge&quot;&gt;&lt;/a&gt; | | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/php.svg?label=arm64v8&quot; alt=&quot;arm64v8 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/i386/job/php.svg?label=i386&quot; alt=&quot;i386 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/mips64le/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/mips64le/job/php.svg?label=mips64le&quot; alt=&quot;mips64le build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/php.svg?label=ppc64le&quot; alt=&quot;ppc64le build status badge&quot;&gt;&lt;/a&gt; | | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/s390x/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/s390x/job/php.svg?label=s390x&quot; alt=&quot;s390x build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/put-shared/job/light/job/php/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/put-shared/job/light/job/php.svg?label=put-shared&quot; alt=&quot;put-shared build status badge&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;!-- THIS FILE IS GENERATED BY https://github.com/docker-library/docs/blob/master/generate-repo-stub-readme.sh --&gt;</description>
+    </item>
+    
+    <item>
+      <title>microsoft/mssql-docker</title>
+      <link>https://github.com/microsoft/mssql-docker</link>
+      <description>&lt;p&gt;Official Microsoft repository for SQL Server in Docker resources&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;SQL Server in Docker&lt;/h1&gt; 
+&lt;p&gt;This GitHub repository aims to provide a centralized location for community engagement. In here you will find documentation, Dockerfiles and additional developer resources.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;SQL Server in Docker&lt;/strong&gt; comes in two different flavors:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Microsoft/mssql-docker/tree/master/linux&quot;&gt;Linux-based containers&lt;/a&gt;: This Docker image uses &lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/&quot;&gt;SQL Server 2017 Developer Edition on Linux&lt;/a&gt; on top of an Ubuntu 16.04 base image. This is meant to be run on &lt;a href=&quot;https://www.docker.com/products/overview&quot;&gt;Docker Engine&lt;/a&gt; on its multiple platforms. There are also Dockerfiles here for building &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/mssql-docker/master/linux/preview/RHEL/Dockerfile&quot;&gt;RHEL&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/mssql-docker/master/linux/preview/CentOS/Dockerfile&quot;&gt;CentOS&lt;/a&gt; based images.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Microsoft/mssql-docker/tree/master/windows&quot;&gt;Windows-based containers&lt;/a&gt;: These Docker images use SQL Server 2017 Express Edition and SQL Server 2017 Developer Edition. Both images are based on Windows Container technology and can only be run using &lt;a href=&quot;https://msdn.microsoft.com/en-us/virtualization/windowscontainers/docker/configure_docker_daemon&quot;&gt;Docker Engine for Windows Containers&lt;/a&gt;. You can currently sign-up for SQL Server 2019 on Windows Containers available in our &lt;a href=&quot;https://cloudblogs.microsoft.com/sqlserver/2019/07/01/sql-server-2019-on-windows-containers-now-in-early-adopters-program/&quot;&gt;Early Adopter Preview&lt;/a&gt; program.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Before choosing to run a SQL Server container for production use cases, please review our &lt;a href=&quot;https://support.microsoft.com/en-us/help/4047326/support-policy-for-microsoft-sql-server&quot;&gt;support policy&lt;/a&gt; for SQL Server Containers to ensure that you are running on a supported configuration.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;SQL Server Command Line Tools(sqlcmd,bcp)&lt;/strong&gt; are also available as a Docker Image. You can now deliver SQL Server management payload using this as a base image for your CI/CD scenarios. Check out the &lt;a href=&quot;https://hub.docker.com/r/microsoft/mssql-tools/&quot;&gt;mssql-tools Docker Image&lt;/a&gt; to get started.&lt;/p&gt; 
+&lt;p&gt;Visit the &lt;a href=&quot;https://hub.docker.com/u/microsoft&quot;&gt;Microsoft Docker Hub page&lt;/a&gt; for more information and additional images.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker&quot;&gt;Getting started guide for the SQL Server on Linux container&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-docker&quot;&gt;Best practices guide&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Take our survey&lt;/h2&gt; 
+&lt;p&gt;Let us know more about how you would like to use SQL containers by taking our &lt;a href=&quot;https://www.surveymonkey.com/r/XXSY536&quot;&gt;survey&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Issues&lt;/h2&gt; 
+&lt;p&gt;For any issues with the repo, please file under this GitHub project on the &lt;a href=&quot;https://github.com/Microsoft/mssql-docker/issues&quot;&gt;Issues section&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you require support with a production related issue, then please raise a support incident with Microsoft &lt;a href=&quot;https://support.microsoft.com/en-us/hub/4343728/support-for-business&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;There is also a &lt;a href=&quot;https://gitter.im/Microsoft/mssql-devops?utm_source=share-link&amp;amp;utm_medium=link&amp;amp;utm_campaign=share-link&quot;&gt;Gitter channel for SQL Server in DevOps&lt;/a&gt; that you can join and discuss interesting topics with other container, SQL Server, and DevOps enthusiasts.&lt;/p&gt; 
+&lt;h2&gt;Troubleshooting &amp;amp; Frequently Asked Questions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;“Unknown blob” error code: You are probably trying to run the Windows Containers-based Docker image on a Linux-based Docker Engine. If you want to continue running the Windows Container-based image, we recommend reading the following community article: &lt;a href=&quot;https://stefanscherer.github.io/run-linux-and-windows-containers-on-windows-10/&quot;&gt;Run Linux and Windows Containers on Windows 10&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;When using the Windows Docker CLI you must use double quotes instead of single ticks for the environment variables, else the mssql-server-linux image won’t find the &lt;code&gt;ACCEPT_EULA&lt;/code&gt; or &lt;code&gt;SA_PASSWORD&lt;/code&gt; variables which are required to start the container.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The ‘sa’ password has a minimum complexity requirement (8 characters, uppercase, lowercase, alphanumerical and/or non-alphanumerical)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Licensing for SQL Server in Docker: Regardless of where you run it - VM, Docker, physical, cloud, on prem - the licensing model is the same and it depends on which edition of SQL Server you are using. The Express and Developer Editions are free. Standard and Enterprise have a cost. More information here: &lt;a href=&quot;https://www.microsoft.com/en-us/sql-server/sql-server-2016-editions&quot;&gt;https://www.microsoft.com/en-us/sql-server/sql-server-2016-editions&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The Docker resource files for SQL Server are licensed under the MIT license. See the &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/mssql-docker/master/LICENSE&quot;&gt;LICENSE file&lt;/a&gt; for more details.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>render-examples/redis</title>
+      <link>https://github.com/render-examples/redis</link>
+      <description>&lt;p&gt;Persistent Redis as a private Docker service on Render&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Redis on Render&lt;/h1&gt; 
+&lt;p&gt;This is an example repo with a Dockerfile for running a Redis cache with persistence as a &lt;strong&gt;private service&lt;/strong&gt; on Render.&lt;/p&gt; 
+&lt;p&gt;Render private services are only visible to other Render services in your account. They have internal URLs (e.g. &lt;code&gt;redis:6379&lt;/code&gt;), can speak any protocol (like &lt;a href=&quot;https://redis.io/topics/protocol&quot;&gt;RESP&lt;/a&gt;), and can listen on any port.&lt;/p&gt; 
+&lt;p&gt;Backing Redis with a disk makes it resilient to data loss in the case of restarts or deploys, and Render makes this easy to do with Render Disks.&lt;/p&gt; 
+&lt;h2&gt;Deployment&lt;/h2&gt; 
+&lt;h3&gt;One Click Deploy&lt;/h3&gt; 
+&lt;p&gt;Use the button below to deploy a persistent Redis instance on Render.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://render.com/deploy&quot;&gt;&lt;img src=&quot;http://render.com/images/deploy-to-render-button.svg?sanitize=true&quot; alt=&quot;Deploy to Render&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Manual Deployment&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Select &lt;strong&gt;New Private Service&lt;/strong&gt; on your Render dashboard and use your fork of this repo to create the service.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Make sure the &lt;code&gt;Environment&lt;/code&gt; is set to &lt;code&gt;Docker&lt;/code&gt;, and enter a name for the service (this will be used to generate the private URL).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add a new disk in the &lt;code&gt;Advanced&lt;/code&gt; section. Give it a name and set the mount path to &lt;code&gt;/var/lib/redis&lt;/code&gt;. You can also change the default size for your disk: &lt;code&gt;1 GB&lt;/code&gt; should be enough for small projects.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Click &lt;code&gt;Save&lt;/code&gt; and you’re good to go! Once deployed, your Redis instance will be available on a URL similar to &lt;code&gt;redis:10000&lt;/code&gt;, and you can start using your Redis URL from other services in your Render account. Be sure to prepend &lt;code&gt;redis://&lt;/code&gt; to the URL displayed in your dashboard.&lt;/p&gt; 
+&lt;p&gt;If you need help, you can always chat with us at https://render.com/chat.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>odoo/docker</title>
+      <link>https://github.com/odoo/docker</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;About this Repo&lt;/h1&gt; 
+&lt;p&gt;This is the Git repo of the official Docker image for &lt;a href=&quot;https://registry.hub.docker.com/_/odoo/&quot;&gt;Odoo&lt;/a&gt;. See the Hub page for the full readme on how to use the Docker image and for information regarding contributing and issues.&lt;/p&gt; 
+&lt;p&gt;The full readme is generated over in &lt;a href=&quot;https://github.com/docker-library/docs&quot;&gt;docker-library/docs&lt;/a&gt;, specifically in &lt;a href=&quot;https://github.com/docker-library/docs/tree/master/odoo&quot;&gt;docker-library/docs/odoo&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>jessfraz/dockerfiles</title>
+      <link>https://github.com/jessfraz/dockerfiles</link>
+      <description>&lt;p&gt;Various Dockerfiles I use on the desktop and on servers.&lt;/p&gt;&lt;hr&gt;&lt;h2&gt;dockerfiles&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/jessfraz/dockerfiles/actions?query=workflow%3A%22make+test%22+branch%3Amaster&quot;&gt;&lt;img src=&quot;https://github.com/jessfraz/dockerfiles/workflows/make%20test/badge.svg?sanitize=true&quot; alt=&quot;make test&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This is a repo to hold various Dockerfiles for images I create.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt; 
+&lt;!-- toc --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jessfraz/dockerfiles/master/#about&quot;&gt;About&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jessfraz/dockerfiles/master/#resources&quot;&gt;Resources&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jessfraz/dockerfiles/master/#my-dotfiles&quot;&gt;My dotfiles&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jessfraz/dockerfiles/master/#contributing&quot;&gt;Contributing&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jessfraz/dockerfiles/master/#using-the-makefile&quot;&gt;Using the &lt;code&gt;Makefile&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- tocstop --&gt; 
+&lt;h2&gt;About&lt;/h2&gt; 
+&lt;p&gt;Almost all of these live on dockerhub under &lt;a href=&quot;https://hub.docker.com/u/jess/&quot;&gt;jess&lt;/a&gt;. Because you cannot use notary with autobuilds on dockerhub I also build these continuously on a private registry at &lt;a href=&quot;https://r.j3ss.co/&quot;&gt;r.j3ss.co&lt;/a&gt; for public download. (You’re welcome.)&lt;/p&gt; 
+&lt;h2&gt;Resources&lt;/h2&gt; 
+&lt;h3&gt;My dotfiles&lt;/h3&gt; 
+&lt;p&gt;You may also want to checkout my &lt;a href=&quot;https://github.com/jessfraz/dotfiles&quot;&gt;dotfiles&lt;/a&gt;, specifically the aliases for all these files which are here: &lt;a href=&quot;https://github.com/jessfraz/dotfiles/raw/master/.dockerfunc&quot;&gt;github.com/jessfraz/dotfiles/blob/master/.dockerfunc&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;I try to make sure each Dockerfile has a command at the top to document running it, if a file you are looking at does not have a command, please pull request it!&lt;/p&gt; 
+&lt;h3&gt;Using the &lt;code&gt;Makefile&lt;/code&gt;&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;$ make help
+build                          Builds all the dockerfiles in the repository.
+dockerfiles                    Tests the changes to the Dockerfiles build.
+image                          Build a Dockerfile (ex. DIR=telnet).
+latest-versions                Checks all the latest versions of the Dockerfile contents.
+run                            Run a Dockerfile from the command at the top of the file (ex. DIR=telnet).
+shellcheck                     Runs the shellcheck tests on the scripts.
+test                           Runs the tests on the repository.
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>vulhub/vulhub</title>
+      <link>https://github.com/vulhub/vulhub</link>
+      <description>&lt;p&gt;Pre-Built Vulnerable Environments Based on Docker-Compose&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/.github/assets/logo.svg?sanitize=true&quot; alt=&quot;Vulhub&quot; height=&quot;300&quot;&gt; &lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/vulhub/vulhub/raw/master/LICENSE&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/license/vulhub/vulhub.svg?sanitize=true&quot; alt=&quot;GitHub&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://www.wangan.com/vulhub&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Official-Community-blue.svg?sanitize=true&quot; alt=&quot;Official Community&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://discord.gg/GhMB3Z&quot;&gt; &lt;img src=&quot;https://img.shields.io/discord/485505185167179778.svg?sanitize=true&quot; alt=&quot;Chat on Discord&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://www.patreon.com/phith0n&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/sponsor-patreon-73d6a1.svg?sanitize=true&quot; alt=&quot;Backers and sponors on Patreon&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://opencollective.com/vulhub#backer&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/backer-opencollective-f89a76.svg?sanitize=true&quot; alt=&quot;Backers and sponors on Opencollective&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;p&gt;Vulhub is an open-source collection of pre-built vulnerable docker environments. No pre-existing knowledge of docker is required, just execute two simple commands and you have a vulnerable environment.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/README.zh-cn.md&quot;&gt;中文版本(Chinese version)&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Install the docker/docker-compose on Ubuntu 20.04:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Install pip
+curl -s https://bootstrap.pypa.io/get-pip.py | python3
+
+# Install the latest version docker
+curl -s https://get.docker.com/ | sh
+
+# Run docker service
+systemctl start docker
+
+# Install docker compose
+pip install docker-compose
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The installation steps of docker and docker-compose for other operating systems might be slightly different, please refer to the &lt;a href=&quot;https://docs.docker.com/&quot;&gt;docker documentation&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Download project
+wget https://github.com/vulhub/vulhub/archive/master.zip -O vulhub-master.zip
+unzip vulhub-master.zip
+cd vulhub-master
+
+# Enter the directory of vulnerability/environment
+cd flask/ssti
+
+# Compile environment
+docker-compose build
+
+# Run environment
+docker-compose up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;There is a &lt;strong&gt;README&lt;/strong&gt; document in each environment directory, please read this file for vulnerability/environment testing and usage.&lt;/p&gt; 
+&lt;p&gt;After the test, delete the environment with the following command.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker-compose down -v
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It is recommended to use a VPS of at least 1GB memory to build a vulnerability environment. The &lt;code&gt;your-ip&lt;/code&gt; mentioned in the documentation refers to the IP address of your VPS. If you are using a virtual machine, it refers to your virtual machine IP, not the IP inside the docker container.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;All environments in this project are for testing purposes only and should not be used as a production environment!&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;Notice&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;To prevent permission errors, it is best to use the root user to execute the docker and docker-compose commands.&lt;/li&gt; 
+ &lt;li&gt;Some docker images do not support running on ARM machines.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Contribution&lt;/h2&gt; 
+&lt;p&gt;This project relies on docker. So any error during compilation and running are thrown by docker and related programs. Please find the cause of the error by yourself first. If it is determined that the dockerfile is written incorrectly (or the code is wrong in vulhub), then submit the issue. More details please 👉&lt;a href=&quot;https://github.com/phith0n/vulhub/wiki/%E7%BC%96%E8%AF%91%E5%A4%B1%E8%B4%A5%E7%9A%84%E5%8E%9F%E5%9B%A0&quot;&gt;Common reasons for compilation failure&lt;/a&gt;, hope it can help you.&lt;/p&gt; 
+&lt;p&gt;For more question, please contact:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.wangan.com/vulhub&quot;&gt;Chinese Community&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discord.gg/GhMB3Z&quot;&gt;Discord&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/vulhub&quot;&gt;Twitter&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Thanks for the following contributors:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/vulhub/vulhub/graphs/contributors&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/contributors.svg?width=890&amp;amp;button=false&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;More contributors：&lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/contributors.md&quot;&gt;Contributors List&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Partner&lt;/h2&gt; 
+&lt;p&gt;Our Partners and users:&lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://www.wangan.com/vulhub&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/img/sponsor/wangan.png&quot; width=&quot;200&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.cvebase.com&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/img/sponsor/cvebase.png&quot; width=&quot;200&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.huoxian.cn&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/img/sponsor/huoxian.png&quot; width=&quot;200&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.chaitin.cn&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/img/sponsor/chaitin.png&quot; width=&quot;200&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://xianzhi.aliyun.com/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/img/sponsor/aliyun.svg?sanitize=true&quot; width=&quot;200&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Sponsor vulhub on patreon 🙏&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.patreon.com/bePatron?u=12677520&quot;&gt;&lt;img src=&quot;https://vulhub.org/img/sponsor/patreon.png&quot; width=&quot;150&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Sponsor vulhub on opencollective 🙏&lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://opencollective.com/vulhub#backer&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/backers.svg?width=138&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://opencollective.com/vulhub#sponsor&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/sponsors.svg?width=138&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;More &lt;a href=&quot;http://vulhub.org/#/docs/donate/&quot;&gt;Donate&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Vulhub is licensed under the MIT License. See &lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for the full license text.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nodejs/docker-node</title>
+      <link>https://github.com/nodejs/docker-node</link>
+      <description>&lt;p&gt;Official Docker Image for Node.js 🐳 🐢 🚀&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Node.js&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://registry.hub.docker.com/_/node/&quot;&gt;&lt;img src=&quot;http://dockeri.co/image/_/node&quot; alt=&quot;dockeri.co&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/nodejs/docker-node&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/nodejs/docker-node.svg?sanitize=true&quot; alt=&quot;GitHub issues&quot; title=&quot;GitHub issues&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/nodejs/docker-node&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/nodejs/docker-node.svg?sanitize=true&quot; alt=&quot;GitHub stars&quot; title=&quot;GitHub stars&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The official Node.js docker image, made with love by the node community.&lt;/p&gt; 
+&lt;!-- START doctoc generated TOC please keep comment here to allow auto update --&gt; 
+&lt;!-- DON&#39;T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE --&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#what-is-nodejs&quot;&gt;What is Node.js?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#how-to-use-this-image&quot;&gt;How to use this image&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#create-a-dockerfile-in-your-nodejs-app-project&quot;&gt;Create a &lt;code&gt;Dockerfile&lt;/code&gt; in your Node.js app project&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#best-practices&quot;&gt;Best Practices&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#run-a-single-nodejs-script&quot;&gt;Run a single Node.js script&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#verbosity&quot;&gt;Verbosity&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#dockerfile&quot;&gt;Dockerfile&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#docker-run&quot;&gt;Docker Run&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#npm-run&quot;&gt;NPM run&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#image-variants&quot;&gt;Image Variants&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#nodeversion&quot;&gt;&lt;code&gt;node:&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#nodealpine&quot;&gt;&lt;code&gt;node:alpine&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#nodebuster&quot;&gt;&lt;code&gt;node:buster&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#nodestretch&quot;&gt;&lt;code&gt;node:stretch&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#nodeslim&quot;&gt;&lt;code&gt;node:slim&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#supported-docker-versions&quot;&gt;Supported Docker versions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#supported-nodejs-versions&quot;&gt;Supported Node.js versions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#governance-and-current-members&quot;&gt;Governance and Current Members&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#docker-working-group-members&quot;&gt;Docker Working Group Members&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#docker-working-group-collaborators&quot;&gt;Docker Working Group Collaborators&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#emeritus&quot;&gt;Emeritus&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/#docker-working-group-members-1&quot;&gt;Docker Working Group Members&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt; 
+&lt;h2&gt;What is Node.js?&lt;/h2&gt; 
+&lt;p&gt;Node.js is a platform built on Chrome’s JavaScript runtime for easily building fast, scalable network applications. Node.js uses an event-driven, non-blocking I/O model that makes it lightweight and efficient, perfect for data-intensive real-time applications that run across distributed devices.&lt;/p&gt; 
+&lt;p&gt;See: http://nodejs.org&lt;/p&gt; 
+&lt;h2&gt;How to use this image&lt;/h2&gt; 
+&lt;h3&gt;Create a &lt;code&gt;Dockerfile&lt;/code&gt; in your Node.js app project&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;# specify the node base image with your desired version node:&amp;lt;version&amp;gt;
+FROM node:10
+# replace this with your application&#39;s default port
+EXPOSE 8888
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can then build and run the Docker image:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker build -t my-nodejs-app .
+$ docker run -it --rm --name my-running-app my-nodejs-app
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you prefer Docker Compose:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yml&quot;&gt;version: &quot;2&quot;
+services:
+  node:
+    image: &quot;node:8&quot;
+    user: &quot;node&quot;
+    working_dir: /home/node/app
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./:/home/node/app
+    expose:
+      - &quot;8081&quot;
+    command: &quot;npm start&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can then run using Docker Compose:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker-compose up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Docker Compose example copies your current directory (including node_modules) to the container. It assumes that your application has a file named &lt;a href=&quot;https://docs.npmjs.com/files/package.json&quot;&gt;&lt;code&gt;package.json&lt;/code&gt;&lt;/a&gt; defining &lt;a href=&quot;https://docs.npmjs.com/misc/scripts#default-values&quot;&gt;start script&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Best Practices&lt;/h3&gt; 
+&lt;p&gt;We have assembled a &lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/docs/BestPractices.md&quot;&gt;Best Practices Guide&lt;/a&gt; for those using these images on a daily basis.&lt;/p&gt; 
+&lt;h3&gt;Run a single Node.js script&lt;/h3&gt; 
+&lt;p&gt;For many simple, single file projects, you may find it inconvenient to write a complete &lt;code&gt;Dockerfile&lt;/code&gt;. In such cases, you can run a Node.js script by using the Node.js Docker image directly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker run -it --rm --name my-running-script -v &quot;$PWD&quot;:/usr/src/app -w /usr/src/app node:8 node your-daemon-or-script.js
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Verbosity&lt;/h3&gt; 
+&lt;p&gt;Prior to 8.7.0 and 6.11.4 the docker images overrode the default npm log level from &lt;code&gt;warn&lt;/code&gt; to &lt;code&gt;info&lt;/code&gt;. However due to improvements to npm and new Docker patterns (e.g. multi-stage builds) the working group reached a &lt;a href=&quot;https://github.com/nodejs/docker-node/issues/528&quot;&gt;consensus&lt;/a&gt; to revert the log level to npm defaults. If you need more verbose output, please use one of the following methods to change the verbosity level.&lt;/p&gt; 
+&lt;h4&gt;Dockerfile&lt;/h4&gt; 
+&lt;p&gt;If you create your own &lt;code&gt;Dockerfile&lt;/code&gt; which inherits from the &lt;code&gt;node&lt;/code&gt; image you can simply use &lt;code&gt;ENV&lt;/code&gt; to override &lt;code&gt;NPM_CONFIG_LOGLEVEL&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;FROM node
+ENV NPM_CONFIG_LOGLEVEL info
+...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Docker Run&lt;/h4&gt; 
+&lt;p&gt;If you run the node image using &lt;code&gt;docker run&lt;/code&gt; you can use the &lt;code&gt;-e&lt;/code&gt; flag to override &lt;code&gt;NPM_CONFIG_LOGLEVEL&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker run -e NPM_CONFIG_LOGLEVEL=info node ...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;NPM run&lt;/h4&gt; 
+&lt;p&gt;If you are running npm commands you can use &lt;code&gt;--loglevel&lt;/code&gt; to control the verbosity of the output.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker run node npm --loglevel=warn ...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Image Variants&lt;/h2&gt; 
+&lt;p&gt;The &lt;code&gt;node&lt;/code&gt; images come in many flavors, each designed for a specific use case. All of the images contain pre-installed versions of &lt;code&gt;node&lt;/code&gt;, &lt;a href=&quot;https://www.npmjs.com/&quot;&gt;&lt;code&gt;npm&lt;/code&gt;&lt;/a&gt;, and &lt;a href=&quot;https://yarnpkg.com&quot;&gt;&lt;code&gt;yarn&lt;/code&gt;&lt;/a&gt;. For each supported architecture, the supported variants are different. In the file: &lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/versions.json&quot;&gt;versions.json&lt;/a&gt;, it lists all supported variants for all of the architectures that we support now.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;node:&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;This is the defacto image. If you are unsure about what your needs are, you probably want to use this one. It is designed to be used both as a throw away container (mount your source code and start the container to start your app), as well as the base to build other images off of. This tag is based off of &lt;a href=&quot;https://registry.hub.docker.com/_/buildpack-deps/&quot;&gt;&lt;code&gt;buildpack-deps&lt;/code&gt;&lt;/a&gt;. &lt;code&gt;buildpack-deps&lt;/code&gt; is designed for the average user of docker who has many images on their system. It, by design, has a large number of extremely common Debian packages. This reduces the number of packages that images that derive from it need to install, thus reducing the overall size of all images on your system.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;node:alpine&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;This image is based on the popular &lt;a href=&quot;http://alpinelinux.org&quot;&gt;Alpine Linux project&lt;/a&gt;, available in &lt;a href=&quot;https://hub.docker.com/_/alpine&quot;&gt;the &lt;code&gt;alpine&lt;/code&gt; official image&lt;/a&gt;. Alpine Linux is much smaller than most distribution base images (~5MB), and thus leads to much slimmer images in general.&lt;/p&gt; 
+&lt;p&gt;This variant is highly recommended when final image size being as small as possible is desired. The main caveat to note is that it does use &lt;a href=&quot;http://www.musl-libc.org&quot;&gt;musl libc&lt;/a&gt; instead of &lt;a href=&quot;http://www.etalabs.net/compare_libcs.html&quot;&gt;glibc and friends&lt;/a&gt;, so certain software might run into issues depending on the depth of their libc requirements. However, most software doesn’t have an issue with this, so this variant is usually a very safe choice. See &lt;a href=&quot;https://news.ycombinator.com/item?id=10782897&quot;&gt;this Hacker News comment thread&lt;/a&gt; for more discussion of the issues that might arise and some pro/con comparisons of using Alpine-based images. One common issue that may arise is a missing shared library required for use of &lt;code&gt;process.dlopen&lt;/code&gt;. To add the missing shared libraries to your image, adding the &lt;a href=&quot;https://pkgs.alpinelinux.org/package/edge/main/x86/libc6-compat&quot;&gt;&lt;code&gt;libc6-compat&lt;/code&gt;&lt;/a&gt; package in your Dockerfile is recommended: &lt;code&gt;apk add --no-cache libc6-compat&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;To minimize image size, it’s uncommon for additional related tools (such as &lt;code&gt;git&lt;/code&gt; or &lt;code&gt;bash&lt;/code&gt;) to be included in Alpine-based images. Using this image as a base, add the things you need in your own Dockerfile (see the &lt;a href=&quot;https://hub.docker.com/_/alpine/&quot;&gt;&lt;code&gt;alpine&lt;/code&gt; image description&lt;/a&gt; for examples of how to install packages if you are unfamiliar).&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;node:buster&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;This image is based on version 10 of &lt;a href=&quot;http://debian.org&quot;&gt;Debian&lt;/a&gt;, available in &lt;a href=&quot;https://hub.docker.com/_/debian&quot;&gt;the &lt;code&gt;debian&lt;/code&gt; official image&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;node:stretch&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;This image is based on version 9 of &lt;a href=&quot;http://debian.org&quot;&gt;Debian&lt;/a&gt;, available in &lt;a href=&quot;https://hub.docker.com/_/debian&quot;&gt;the &lt;code&gt;debian&lt;/code&gt; official image&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;node:slim&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;This image does not contain the common packages contained in the default tag and only contains the minimal packages needed to run &lt;code&gt;node&lt;/code&gt;. Unless you are working in an environment where &lt;em&gt;only&lt;/em&gt; the Node.js image will be deployed and you have space constraints, we highly recommend using the default image of this repository.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/nodejs/node/raw/master/LICENSE&quot;&gt;License information&lt;/a&gt; for the software contained in this image. &lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/LICENSE&quot;&gt;License information&lt;/a&gt; for the Node.js Docker project.&lt;/p&gt; 
+&lt;h2&gt;Supported Docker versions&lt;/h2&gt; 
+&lt;p&gt;This image is officially supported on Docker version 1.9.1.&lt;/p&gt; 
+&lt;p&gt;Support for older versions (down to 1.6) is provided on a best-effort basis.&lt;/p&gt; 
+&lt;p&gt;Please see &lt;a href=&quot;https://docs.docker.com/installation/&quot;&gt;the Docker installation documentation&lt;/a&gt; for details on how to upgrade your Docker daemon.&lt;/p&gt; 
+&lt;h2&gt;Supported Node.js versions&lt;/h2&gt; 
+&lt;p&gt;This project will support Node.js versions as still under active support as per the &lt;a href=&quot;https://github.com/nodejs/Release&quot;&gt;Node.js release schedule&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Governance and Current Members&lt;/h2&gt; 
+&lt;p&gt;The Node.js Docker Image is governed by the Docker Working Group. See &lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/GOVERNANCE.md&quot;&gt;GOVERNANCE.md&lt;/a&gt; to learn more about the group’s structure and &lt;a href=&quot;https://raw.githubusercontent.com/nodejs/docker-node/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for guidance about the expectations for all contributors to this project.&lt;/p&gt; 
+&lt;h3&gt;Docker Working Group Members&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Hans Kristian Flaatten (&lt;a href=&quot;https://github.com/starefossen&quot;&gt;starefossen&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Hugues Malphettes (&lt;a href=&quot;https://github.com/hmalphettes&quot;&gt;hmalphettes&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;John Mitchell (&lt;a href=&quot;https://github.com/jlmitch5&quot;&gt;jlmitch5&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Docker Working Group Collaborators&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Mikeal Rogers (&lt;a href=&quot;https://github.com/mikeal&quot;&gt;mikeal&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Laurent Goderre (&lt;a href=&quot;https://github.com/LaurentGoderre&quot;&gt;LaurentGoderre&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Simen Bekkhus (&lt;a href=&quot;https://github.com/SimenB&quot;&gt;SimenB&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Peter Dave Hello (&lt;a href=&quot;https://github.com/PeterDaveHello&quot;&gt;PeterDaveHello&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Emeritus&lt;/h3&gt; 
+&lt;h4&gt;Docker Working Group Members&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Christopher Horrell (&lt;a href=&quot;https://github.com/chorrell&quot;&gt;chorrell&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Peter Petrov (&lt;a href=&quot;https://github.com/pesho&quot;&gt;pesho&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>dotnet/dotnet-docker</title>
+      <link>https://github.com/dotnet/dotnet-docker</link>
+      <description>&lt;p&gt;Docker images for .NET and the .NET Tools.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Featured Repos&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-sdk/&quot;&gt;dotnet/sdk&lt;/a&gt;: .NET SDK&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-aspnet/&quot;&gt;dotnet/aspnet&lt;/a&gt;: ASP.NET Core Runtime&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-runtime/&quot;&gt;dotnet/runtime&lt;/a&gt;: .NET Runtime&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-runtime-deps/&quot;&gt;dotnet/runtime-deps&lt;/a&gt;: .NET Runtime Dependencies&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-monitor/&quot;&gt;dotnet/monitor&lt;/a&gt;: .NET Monitor Tool&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-samples/&quot;&gt;dotnet/samples&lt;/a&gt;: .NET Samples&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;About .NET&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://docs.microsoft.com/dotnet/core/&quot;&gt;.NET&lt;/a&gt; is a general purpose development platform maintained by Microsoft and the .NET community on &lt;a href=&quot;https://github.com/dotnet/core&quot;&gt;GitHub&lt;/a&gt;. It is cross-platform, supporting Windows, macOS and Linux, and can be used in device, cloud, and embedded/IoT scenarios.&lt;/p&gt; 
+&lt;p&gt;.NET has several capabilities that make development easier, including automatic memory management, (runtime) generic types, reflection, asynchrony, concurrency, and native interop. Millions of developers take advantage of these capabilities to efficiently build high-quality applications.&lt;/p&gt; 
+&lt;p&gt;You can use C# or F# to write .NET apps.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/dotnet/csharp/&quot;&gt;C#&lt;/a&gt; is simple, powerful, type-safe, and object-oriented while retaining the expressiveness and elegance of C-style languages. Anyone familiar with C and similar languages will find it straightforward to write in C#.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/&quot;&gt;F#&lt;/a&gt; is a cross-platform, open-source, functional programming language for .NET. It also includes object-oriented and imperative programming.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/dotnet/core&quot;&gt;.NET&lt;/a&gt; is open source (MIT and Apache 2 licenses) and was contributed to the &lt;a href=&quot;http://dotnetfoundation.org&quot;&gt;.NET Foundation&lt;/a&gt; by Microsoft in 2014. It can be freely adopted by individuals and companies, including for personal, academic or commercial purposes. Multiple companies use .NET as part of apps, tools, new platforms and hosting services.&lt;/p&gt; 
+&lt;p&gt;You are invited to &lt;a href=&quot;https://github.com/dotnet/core/raw/master/CONTRIBUTING.md&quot;&gt;contribute new features&lt;/a&gt;, fixes, or updates, large or small; we are always thrilled to receive pull requests, and do our best to process them as fast as we can.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;https://docs.microsoft.com/dotnet/core/&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Watch &lt;a href=&quot;https://github.com/dotnet/announcements/labels/Docker&quot;&gt;dotnet/announcements&lt;/a&gt; for Docker-related .NET announcements.&lt;/p&gt; 
+&lt;h1&gt;How to Use the Images&lt;/h1&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/dotnet/dotnet-docker/raw/main/samples/README.md&quot;&gt;.NET Docker samples&lt;/a&gt; show various ways to use .NET and Docker together. See &lt;a href=&quot;https://docs.microsoft.com/dotnet/core/docker/building-net-docker-images&quot;&gt;Building Docker Images for .NET Applications&lt;/a&gt; to learn more.&lt;/p&gt; 
+&lt;h2&gt;Container sample: Run a simple application&lt;/h2&gt; 
+&lt;p&gt;You can quickly run a container with a pre-built &lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-samples/&quot;&gt;.NET Docker image&lt;/a&gt;, based on the &lt;a href=&quot;https://github.com/dotnet/dotnet-docker/raw/main/samples/dotnetapp/README.md&quot;&gt;.NET console sample&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Type the following command to run a sample console application:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;docker run --rm mcr.microsoft.com/dotnet/samples
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Container sample: Run a web application&lt;/h2&gt; 
+&lt;p&gt;You can quickly run a container with a pre-built &lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-samples/&quot;&gt;.NET Docker image&lt;/a&gt;, based on the &lt;a href=&quot;https://github.com/dotnet/dotnet-docker/raw/main/samples/aspnetapp/README.md&quot;&gt;ASP.NET Core sample&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Type the following command to run a sample web application:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;docker run -it --rm -p 8000:80 --name aspnetcore_sample mcr.microsoft.com/dotnet/samples:aspnetapp
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After the application starts, navigate to &lt;code&gt;http://localhost:8000&lt;/code&gt; in your web browser.&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/dotnet/dotnet-docker/raw/main/samples/host-aspnetcore-https.md&quot;&gt;Hosting ASP.NET Core Images with Docker over HTTPS&lt;/a&gt; to use HTTPS with this image.&lt;/p&gt; 
+&lt;h1&gt;Related Repos&lt;/h1&gt; 
+&lt;p&gt;.NET:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-nightly-sdk/&quot;&gt;dotnet/nightly/sdk&lt;/a&gt;: .NET SDK (Preview)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-nightly-aspnet/&quot;&gt;dotnet/nightly/aspnet&lt;/a&gt;: ASP.NET Core Runtime (Preview)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-nightly-runtime/&quot;&gt;dotnet/nightly/runtime&lt;/a&gt;: .NET Runtime (Preview)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-nightly-runtime-deps/&quot;&gt;dotnet/nightly/runtime-deps&lt;/a&gt;: .NET Runtime Dependencies (Preview)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-nightly-monitor/&quot;&gt;dotnet/nightly/monitor&lt;/a&gt;: .NET Monitor Tool (Preview)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;.NET Framework:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-framework/&quot;&gt;dotnet/framework&lt;/a&gt;: .NET Framework, ASP.NET and WCF&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hub.docker.com/_/microsoft-dotnet-framework-samples/&quot;&gt;dotnet/framework/samples&lt;/a&gt;: .NET Framework, ASP.NET and WCF Samples&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Support&lt;/h1&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/dotnet/core/raw/master/microsoft-support.md&quot;&gt;Microsoft Support for .NET&lt;/a&gt; for the support lifecycle.&lt;/p&gt; 
+&lt;h1&gt;Image Update Policy&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;We update the supported .NET images within 12 hours of any updates to their base images (e.g. debian:buster-slim, windows/nanoserver:20H2, buildpack-deps:bionic-scm, etc.).&lt;/li&gt; 
+ &lt;li&gt;We publish .NET images as part of releasing new versions of .NET including major/minor and servicing.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Feedback&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dotnet/dotnet-docker/issues/new/choose&quot;&gt;File an issue&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://support.microsoft.com/contactus/&quot;&gt;Contact Microsoft Support&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Legal Notice: &lt;a href=&quot;https://aka.ms/mcr/osslegalnotice&quot;&gt;Container License Information&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dotnet/dotnet-docker/raw/main/LICENSE&quot;&gt;.NET license&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dotnet/dotnet-docker/raw/main/documentation/image-artifact-details.md&quot;&gt;Discover licensing for Linux image contents&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/virtualization/windowscontainers/images-eula&quot;&gt;Windows base image license&lt;/a&gt; (only applies to Windows containers)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.microsoft.com/cloud-platform/windows-server-pricing&quot;&gt;Pricing and licensing for Windows Server 2019&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>yankils/Simple-DevOps-Project</title>
+      <link>https://github.com/yankils/Simple-DevOps-Project</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Simple DevOps Project&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.udemy.com/course/valaxy-devops/?referralCode=8147A5CF4C8C7D9E253F&quot;&gt;&lt;img src=&quot;https://github.com/yankils/Simple-DevOps-Project/raw/master/Devops_course.PNG&quot; alt=&quot;Image&quot; title=&quot;DevOps Project - CI/CD with Jenkins Ansible Docker Kubernetes &quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This Repository is a collection of Implementation documents.&lt;/p&gt; 
+&lt;h3&gt;Purpose:&lt;/h3&gt; 
+&lt;p&gt;By following this repository you can able to setup a DevOps CI/CD Pipeline using&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;git&lt;/li&gt; 
+ &lt;li&gt;Jenkins&lt;/li&gt; 
+ &lt;li&gt;Maven&lt;/li&gt; 
+ &lt;li&gt;Ansible&lt;/li&gt; 
+ &lt;li&gt;Docker &amp;amp;&lt;/li&gt; 
+ &lt;li&gt;Kubernetes&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>aws/aws-codebuild-docker-images</title>
+      <link>https://github.com/aws/aws-codebuild-docker-images</link>
+      <description>&lt;p&gt;Official AWS CodeBuild repository for managed Docker images http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;AWS CodeBuild curated Docker images&lt;/h1&gt; 
+&lt;p&gt;This repository holds Dockerfiles of official AWS CodeBuild curated Docker images. Please refer to &lt;a href=&quot;http://docs.aws.amazon.com/codebuild/latest/userguide/build-env-ref.html&quot;&gt;the AWS CodeBuild User Guide&lt;/a&gt; for list of environments supported by AWS CodeBuild.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://codebuild.us-west-2.amazonaws.com/badges?uuid=eyJlbmNyeXB0ZWREYXRhIjoiSkJibVVQVEpvUms1cmw3YVlnU1hSdkpBQ0c5SFgyTkJXMFBFdEU2SWtySHREcUlUVlRhbW4zMEd3NlhsOWIzUWgvRkxhUWVSSTFPZGNNakNHRVNLalY0PSIsIml2UGFyYW1ldGVyU3BlYyI6IlV0QjBRZXRvS0F5dE5vbTciLCJtYXRlcmlhbFNldFNlcmlhbCI6MX0%3D&amp;amp;branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;The master branch will sometimes have changes that are still in the process of being released in AWS CodeBuild. See the latest released versions of the Dockerfiles &lt;a href=&quot;https://github.com/aws/aws-codebuild-docker-images/releases&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;How to build Docker images&lt;/h3&gt; 
+&lt;p&gt;Steps to build Standard 5.0 image&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Run &lt;code&gt;git clone https://github.com/aws/aws-codebuild-docker-images.git&lt;/code&gt; to download this repository to your local machine&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;cd ubuntu/standard/5.0&lt;/code&gt; to change the directory in your local workspace. This is the location of the Standard 5.0 Dockerfile with Ubuntu base.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;docker build -t aws/codebuild/standard:5.0 .&lt;/code&gt; to build Docker image locally&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To poke around in the image interactively, build it and run: &lt;code&gt;docker run -it --entrypoint sh aws/codebuild/standard:5.0 -c bash&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;To let the Docker daemon start up in the container, build it and run: &lt;code&gt;docker run -it --privileged aws/codebuild/standard:5.0 bash&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/aws/aws-codebuild-docker-images.git
+$ cd aws-codebuild-docker-images
+$ cd ubuntu/standard/5.0
+$ docker build -t aws/codebuild/standard:5.0 .
+$ docker run -it --entrypoint sh aws/codebuild/standard:5.0 -c bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Image maintenance&lt;/h3&gt; 
+&lt;p&gt;Some of the images in this repository are no longer actively maintained by AWS CodeBuild and may no longer build successfully. These images will not receive any further updates. They remain in this repository as a reference for the contents of these images that were previously released by CodeBuild.&lt;/p&gt; 
+&lt;p&gt;The following images are actively maintained by AWS CodeBuild, and are listed in the CodeBuild console.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/ubuntu/standard/3.0&quot;&gt;standard 3.0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/ubuntu/standard/4.0&quot;&gt;standard 4.0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/ubuntu/standard/5.0&quot;&gt;standard 5.0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/al2/x86_64/standard/2.0&quot;&gt;amazonlinux2-x86_64-standard:2.0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/al2/x86_64/standard/3.0&quot;&gt;amazonlinux2-x86_64-standard:3.0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aws/aws-codebuild-docker-images/master/al2/aarch64/standard/1.0&quot;&gt;amazonlinux2-aarch64-standard:1.0&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>operator-framework/community-operators</title>
+      <link>https://github.com/operator-framework/community-operators</link>
+      <description>&lt;p&gt;The canonical source for Kubernetes Operators that appear on OperatorHub.io, OpenShift Container Platform and OKD.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Community Operators&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0.html&quot;&gt;&lt;img src=&quot;http://img.shields.io/:license-apache-blue.svg?sanitize=true&quot; alt=&quot;License&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://quay.io/repository/operator-framework/upstream-community-operators&quot;&gt;&lt;img src=&quot;https://quay.io/repository/operator-framework/upstream-community-operators/status&quot; alt=&quot;Upstream Operator Catalog Status&quot; title=&quot;Upstream Operator Catalog Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;About this repository&lt;/h2&gt; 
+&lt;p&gt;This repo is the canonical source for Kubernetes Operators that appear on &lt;a href=&quot;https://operatorhub.io&quot;&gt;OperatorHub.io&lt;/a&gt;, &lt;a href=&quot;https://openshift.com&quot;&gt;OpenShift Container Platform&lt;/a&gt; and &lt;a href=&quot;https://okd.io&quot;&gt;OKD&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Full documentation is generated via &lt;a href=&quot;https://www.mkdocs.org/&quot;&gt;mkdoc&lt;/a&gt; and is located at &lt;a href=&quot;https://operator-framework.github.io/community-operators/&quot;&gt;https://operator-framework.github.io/community-operators/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;IMPORTANT NOTICE&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt; Kubernetes has been deprecating API(s) which will be removed and no longer available in &lt;code&gt;1.22&lt;/code&gt; and in the Openshift version &lt;code&gt;4.9&lt;/code&gt;. Note that your project will be unable to use them on &lt;code&gt;OCP 4.9/K8s 1.22&lt;/code&gt; and then, it is strongly recommended to check &lt;a href=&quot;https://kubernetes.io/docs/reference/using-api/deprecation-guide/#v1-22&quot;&gt;Deprecated API Migration Guide from v1.22&lt;/a&gt; and ensure that your projects have them migrated and are not using any deprecated API.&lt;/p&gt; 
+&lt;h3&gt;FOR OPENSHIFT COMMUNITY OPERATORS&lt;/h3&gt; 
+&lt;p&gt;However, If you still need to publish the operator bundles with any of these API(s) on &lt;a href=&quot;https://openshift.com&quot;&gt;OpenShift Container Platform&lt;/a&gt; and &lt;a href=&quot;https://okd.io&quot;&gt;OKD&lt;/a&gt; ensure that it is configured with the criteria defined in &lt;a href=&quot;https://raw.githubusercontent.com/operator-framework/community-operators/master/docs/packaging-required-criteria-ocp.md&quot;&gt;OKD/OpenShift Catalogs criteria and options&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Reporting Bugs&lt;/h2&gt; 
+&lt;p&gt;Use the issue tracker in this repository to report bugs.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>developeranaz/Ubuntu-Desktop-noVNC-Heroku-VPS</title>
+      <link>https://github.com/developeranaz/Ubuntu-Desktop-noVNC-Heroku-VPS</link>
+      <description>&lt;p&gt;Ubuntu-Desktop-noVNC-Heroku-VPS serves docker VPS via heroku web and noVNC&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Ubuntu-Desktop-noVNC-Heroku-VPS (EXPERIMENTAL)&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://dashboard.heroku.com/new?template=https://github.com/developeranaz/Ubuntu-Desktop-noVNC-Heroku-VPS&quot;&gt;&lt;img src=&quot;https://www.herokucdn.com/deploy/button.svg?sanitize=true&quot; alt=&quot;Deploy&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Ubuntu-Desktop-noVNC-Heroku-VPS serves docker VPS via heroku web and noVNC&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/developeranaz/Ubuntu-Desktop-noVNC-Heroku-VPS/raw/main/vncimgs/Screenshot_20210519-094834.jpg&quot; alt=&quot;1&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/developeranaz/Ubuntu-Desktop-noVNC-Heroku-VPS/raw/main/vncimgs/Screenshot_20210519_104452_com.brave.browser_nightly.jpg&quot; alt=&quot;2&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/developeranaz/Ubuntu-Desktop-noVNC-Heroku-VPS/raw/main/vncimgs/Screenshot_20210519-094825.jpg&quot; alt=&quot;3&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;What’s New&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Modern novnc.&lt;/li&gt; 
+ &lt;li&gt;Mobile Browser compatability.&lt;/li&gt; 
+ &lt;li&gt;Remote scaling and local scaling available.&lt;/li&gt; 
+ &lt;li&gt;Mouse&lt;/li&gt; 
+ &lt;li&gt;Keyboard&lt;/li&gt; 
+ &lt;li&gt;Browser installed (FALKON BROWSER)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This is Just a recreated version Now added with Mordern VNC&lt;/p&gt; 
+&lt;p&gt;NOTE : Heroku can’t handle a full machine’s workload.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Don’t post issues this repository is full of issues i can’t fix them.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://dashboard.heroku.com/new?template=https://github.com/developeranaz/Ubuntu-Desktop-noVNC-Heroku-VPS&quot;&gt;&lt;img src=&quot;https://www.herokucdn.com/deploy/button.svg?sanitize=true&quot; alt=&quot;Deploy&quot;&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>nestybox/dockerfiles</title>
+      <link>https://github.com/nestybox/dockerfiles</link>
+      <description>&lt;p&gt;Dockerfiles repository&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Nestybox System Container Dockerfiles&lt;/h1&gt; 
+&lt;p&gt;This directory contains the Dockerfiles for system container images uploaded to the Nestybox public repos on DockerHub and Github.&lt;/p&gt; 
+&lt;p&gt;The Dockerfiles and associated images are meant to be used as examples.&lt;/p&gt; 
+&lt;p&gt;Feel free to copy them and modify them to your needs, or source them from within your Dockerfiles.&lt;/p&gt; 
+&lt;h1&gt;Pulling a Nestybox system container image&lt;/h1&gt; 
+&lt;p&gt;For example, to run the system container image that contains Ubuntu Bionic + Docker, simply type the following:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;DockerHub registry&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker run --runtime=sysbox-runc -it nestybox/ubuntu-bionic-docker:latest
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Github registry:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker run --runtime=sysbox-runc -it ghcr.io/nestybox/ubuntu-bionic-docker:latest
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Customizing the system container to your needs&lt;/h1&gt; 
+&lt;p&gt;Two approaches: either source the Nestybox image from within your own Dockerfile, or copy the Nestybox Dockerfile and modify it.&lt;/p&gt; 
+&lt;p&gt;The former approach makes sense if you wish to leverage the entire image.&lt;/p&gt; 
+&lt;p&gt;The latter approach makes sense if there is some instruction within the Nestybox Dockerfile that you wish to change.&lt;/p&gt; 
+&lt;h2&gt;Sourcing the Nestybox Image&lt;/h2&gt; 
+&lt;p&gt;Simply add this at the beginning of your Dockerfile&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;FROM nestybox/ubuntu-disco-docker:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then add your instructions to the Dockerfile.&lt;/p&gt; 
+&lt;p&gt;Then build the image and tag it:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker build .
+$ docker tag &amp;lt;image-tag&amp;gt; my-custom-syscont:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And run it with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker run --runtime=sysbox-runc -it my-custom-syscont:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can then push the image to your own container image repo for later re-use.&lt;/p&gt; 
+&lt;h2&gt;Copy the Dockerfile, modify it, and build a new image&lt;/h2&gt; 
+&lt;p&gt;First, copy the Nestybox Dockerfile to some directory, &lt;code&gt;cd&lt;/code&gt; to that directory, and modify it per your needs.&lt;/p&gt; 
+&lt;p&gt;Then build the image and tag it:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker build .
+$ docker tag &amp;lt;image-tag&amp;gt; my-custom-syscont:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And run it with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ docker run --runtime=sysbox-runc -it my-custom-syscont:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can then push the image to your own container image repo for later re-use.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>docker-library/golang</title>
+      <link>https://github.com/docker-library/golang</link>
+      <description>&lt;p&gt;Docker Official Image packaging for golang&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;https://github.com/docker-library/golang&lt;/h1&gt; 
+&lt;h2&gt;Maintained by: &lt;a href=&quot;https://github.com/docker-library/golang&quot;&gt;the Docker Community&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;This is the Git repo of the &lt;a href=&quot;https://github.com/docker-library/official-images#what-are-official-images&quot;&gt;Docker “Official Image”&lt;/a&gt; for &lt;a href=&quot;https://hub.docker.com/_/golang/&quot;&gt;&lt;code&gt;golang&lt;/code&gt;&lt;/a&gt; (not to be confused with any official &lt;code&gt;golang&lt;/code&gt; image provided by &lt;code&gt;golang&lt;/code&gt; upstream). See &lt;a href=&quot;https://hub.docker.com/_/golang/&quot;&gt;the Docker Hub page&lt;/a&gt; for the full readme on how to use this Docker image and for information regarding contributing and issues.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://hub.docker.com/_/golang/&quot;&gt;full image description on Docker Hub&lt;/a&gt; is generated/maintained over in &lt;a href=&quot;https://github.com/docker-library/docs&quot;&gt;the docker-library/docs repository&lt;/a&gt;, specifically in &lt;a href=&quot;https://github.com/docker-library/docs/tree/master/golang&quot;&gt;the &lt;code&gt;golang&lt;/code&gt; directory&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;See a change merged here that doesn’t show up on Docker Hub yet?&lt;/h2&gt; 
+&lt;p&gt;For more information about the full official images change lifecycle, see &lt;a href=&quot;https://github.com/docker-library/faq#an-images-source-changed-in-git-now-what&quot;&gt;the “An image’s source changed in Git, now what?” FAQ entry&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For outstanding &lt;code&gt;golang&lt;/code&gt; image PRs, check &lt;a href=&quot;https://github.com/docker-library/official-images/labels/library%2Fgolang&quot;&gt;PRs with the “library/golang” label on the official-images repository&lt;/a&gt;. For the current “source of truth” for &lt;a href=&quot;https://hub.docker.com/_/golang/&quot;&gt;&lt;code&gt;golang&lt;/code&gt;&lt;/a&gt;, see &lt;a href=&quot;https://github.com/docker-library/official-images/raw/master/library/golang&quot;&gt;the &lt;code&gt;library/golang&lt;/code&gt; file in the official-images repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/docker-library/golang/actions?query=workflow%3A%22GitHub+CI%22+branch%3Amaster&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/workflow/status/docker-library/golang/GitHub%20CI/master?label=GitHub%20CI&quot; alt=&quot;build status badge&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://doi-janky.infosiftr.net/job/update.sh/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/update.sh/job/golang.svg?label=Automated%20update.sh&quot; alt=&quot;build status badge&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;| Build | Status | Badges | (per-arch) | |:-:|:-:|:-:|:-:| | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/amd64/job/golang.svg?label=amd64&quot; alt=&quot;amd64 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v5/job/golang.svg?label=arm32v5&quot; alt=&quot;arm32v5 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v6/job/golang.svg?label=arm32v6&quot; alt=&quot;arm32v6 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/golang.svg?label=arm32v7&quot; alt=&quot;arm32v7 build status badge&quot;&gt;&lt;/a&gt; | | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/golang.svg?label=arm64v8&quot; alt=&quot;arm64v8 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/i386/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/i386/job/golang.svg?label=i386&quot; alt=&quot;i386 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/mips64le/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/mips64le/job/golang.svg?label=mips64le&quot; alt=&quot;mips64le build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/ppc64le/job/golang.svg?label=ppc64le&quot; alt=&quot;ppc64le build status badge&quot;&gt;&lt;/a&gt; | | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/s390x/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/s390x/job/golang.svg?label=s390x&quot; alt=&quot;s390x build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/multiarch/job/windows-amd64/job/golang.svg?label=windows-amd64&quot; alt=&quot;windows-amd64 build status badge&quot;&gt;&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/put-shared/job/light/job/golang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/jenkins/s/https/doi-janky.infosiftr.net/job/put-shared/job/light/job/golang.svg?label=put-shared&quot; alt=&quot;put-shared build status badge&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;!-- THIS FILE IS GENERATED BY https://github.com/docker-library/docs/blob/master/generate-repo-stub-readme.sh --&gt;</description>
+    </item>
+    
+    <item>
+      <title>accupara/docker-images</title>
+      <link>https://github.com/accupara/docker-images</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Docker images for various compilation contexts&lt;/h1&gt; 
+&lt;h2&gt;Why?&lt;/h2&gt; 
+&lt;p&gt;Getting just the right dependencies to compile a project is a chore.&lt;br&gt; Why can’t it just be available without the libraries stepping on each other and polluting your pristine development environment?&lt;br&gt; A Docker container can contain the entire build environment into an easy to use package that will not pollute your dev box.&lt;br&gt; Besides, you could even have multiple build environments without any environment interfering with the other.&lt;br&gt; It is like a Python virtualenv that works even for non-Python projects!&lt;br&gt; &lt;img src=&quot;https://i.imgflip.com/1ecipw.jpg&quot; alt=&quot;alt text&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;When building on the Accupara infrastructure, these docker images are a good starting point for containing the dependencies required for compiling your projects.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;All containers are based off non-root Ubuntu images&lt;/li&gt; 
+ &lt;li&gt;I’ve tried to keep the obvious similarities higher up in the image layer stack&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;List of build environments&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Linux kernel compilation: &lt;a href=&quot;https://github.com/accupara/docker-images/raw/master/linuxkernel/Dockerfile&quot;&gt;Dockerfile&lt;/a&gt;, and &lt;a href=&quot;https://hub.docker.com/r/accupara/lkbuild/&quot;&gt;image&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Android apps: &lt;a href=&quot;https://github.com/accupara/docker-images/raw/master/mobile/android/Dockerfile&quot;&gt;Dockerfile&lt;/a&gt;, and &lt;a href=&quot;https://hub.docker.com/r/accupara/android/&quot;&gt;image&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;BlackBerry 10 apps: &lt;a href=&quot;https://github.com/accupara/docker-images/raw/master/mobile/bb10/ndk/Makefile&quot;&gt;Makefile&lt;/a&gt;, and &lt;a href=&quot;https://hub.docker.com/r/accupara/bbndk/&quot;&gt;image&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Qt apps targeting Linux: &lt;a href=&quot;https://github.com/accupara/docker-images/tree/master/qt&quot;&gt;Top level&lt;/a&gt;, and images: &lt;a href=&quot;https://hub.docker.com/r/accupara/qt4/&quot;&gt;qt4&lt;/a&gt;, &lt;a href=&quot;https://hub.docker.com/r/accupara/qt5/&quot;&gt;qt5&lt;/a&gt;, etc.&lt;/li&gt; 
+ &lt;li&gt;qemu: &lt;a href=&quot;https://github.com/accupara/docker-images/raw/master/qemu/Dockerfile&quot;&gt;Dockerfile&lt;/a&gt;, and &lt;a href=&quot;https://hub.docker.com/r/accupara/qemu/&quot;&gt;image&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;rsync: &lt;a href=&quot;https://github.com/accupara/docker-images/raw/master/rsync/Dockerfile&quot;&gt;Dockerfile&lt;/a&gt;, and &lt;a href=&quot;https://hub.docker.com/r/accupara/rsync/&quot;&gt;image&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;gcc &lt;a href=&quot;https://github.com/accupara/docker-images/raw/master/gcc/Dockerfile&quot;&gt;Dockerfile&lt;/a&gt;, and &lt;a href=&quot;https://hub.docker.com/r/accupara/gcc/&quot;&gt;image&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>openfaas/templates</title>
+      <link>https://github.com/openfaas/templates</link>
+      <description>&lt;p&gt;OpenFaaS Classic templates&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OpenFaaS Classic templates&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/openfaas/templates/actions&quot;&gt;&lt;img src=&quot;https://github.com/openfaas/templates/workflows/ci-only/badge.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;To find out more about the OpenFaaS templates see the &lt;a href=&quot;https://github.com/openfaas/faas-cli&quot;&gt;faas-cli&lt;/a&gt;.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: The templates are completely customizable - so if you want to alter them please do fork them and use &lt;code&gt;faas template pull&lt;/code&gt; to make use of your updated versions.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Classic Templates&lt;/h3&gt; 
+&lt;p&gt;This repository contains the Classic OpenFaaS templates, but many more are available in the Template Store. Read above for more information.&lt;/p&gt; 
+&lt;p&gt;| Name | Language | Version | Linux base | Watchdog | Link |:—–|:———|:––––|:———–|:———|:–– | dockerfile | Dockerfile | N/A | Alpine Linux | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/dockerfile&quot;&gt;Dockerfile template&lt;/a&gt; | go | Go | 1.15 | Alpine Linux | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/go&quot;&gt;Go template&lt;/a&gt; | node12 | NodeJS | 12 | Alpine Linux | of-watchdog | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/node12&quot;&gt;NodeJS template&lt;/a&gt; | node14 | NodeJS | 14 | Alpine Linux | of-watchdog | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/node14&quot;&gt;NodeJS template&lt;/a&gt; | node | NodeJS | 12 | Alpine Linux | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/node&quot;&gt;NodeJS template&lt;/a&gt; | python3 | Python | 3 | Alpine Linux | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/python3&quot;&gt;Python 3 template&lt;/a&gt; | python3-debian | Python | 3 | Debian Linux | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/python3-debian&quot;&gt;Python 3 Debian template&lt;/a&gt; | python | Python | 2.7 | Alpine Linux | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/python&quot;&gt;Python 2.7 template&lt;/a&gt; | java11-vert-x | Java and &lt;a href=&quot;https://vertx.io/&quot;&gt;Vert.x&lt;/a&gt; | 11 | Debian GNU/Linux | of-watchdog | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/java11-vert-x&quot;&gt;Java LTS template&lt;/a&gt; | java11 | Java | 11 | Debian GNU/Linux | of-watchdog | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/java11&quot;&gt;Java LTS template&lt;/a&gt; | ruby | Ruby | 2.7 | Alpine Linux 3.11 | classic| &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/ruby&quot;&gt;Ruby template&lt;/a&gt; | php7 | PHP | 7.2 | Alpine Linux | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/php7&quot;&gt;PHP 7 template&lt;/a&gt; | csharp | C# | N/A | Debian GNU/Linux 9 | classic | &lt;a href=&quot;https://github.com/openfaas/templates/tree/master/template/csharp&quot;&gt;C# template&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;For more information on the templates check out the &lt;a href=&quot;https://docs.openfaas.com/cli/templates/&quot;&gt;docs&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Classic vs of-watchdog templates&lt;/h3&gt; 
+&lt;p&gt;The current version of OpenFaaS templates use the original &lt;code&gt;watchdog&lt;/code&gt; which &lt;code&gt;forks&lt;/code&gt; processes - a bit like CGI. The newer watchdog &lt;a href=&quot;https://github.com/openfaas-incubator/of-watchdog&quot;&gt;of-watchdog&lt;/a&gt; is more similar to fastCGI/HTTP and should be used for any benchmarking or performance testing along with one of the newer templates. Contact the project for more information.&lt;/p&gt; 
+&lt;h3&gt;Submit your own template to the template store&lt;/h3&gt; 
+&lt;p&gt;This repository is for templates supported by the project maintainers, if you’d like to submit your own template to the OpenFaaS Template Store then checkout the store:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/openfaas/store/&quot;&gt;OpenFaaS Store&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Contribute to this repository&lt;/h3&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/openfaas/templates/raw/master/CONTRIBUTING.md&quot;&gt;contributing guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;License&lt;/h3&gt; 
+&lt;p&gt;This project is part of the OpenFaaS project licensed under the MIT License.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>osrf/docker_images</title>
+      <link>https://github.com/osrf/docker_images</link>
+      <description>&lt;p&gt;A repository to hold definitions of docker images maintained by OSRF&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OSRF Docker Images&lt;/h1&gt; 
+&lt;p&gt;This repo hosts Dockerfiles and scaffolding for images in the Official Library and OSRF Organization on Docker Hub.&lt;/p&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/osrf/docker_images/raw/master/README.md#official-library&quot;&gt;Official docker library&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;https://github.com/osrf/docker_images/raw/master/README.md#ros--&quot;&gt;Official ROS (1 and 2) images&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;https://github.com/osrf/docker_images/raw/master/README.md#gazebo--&quot;&gt;Official Gazebo images&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;https://github.com/osrf/docker_images/raw/master/README.md#ros---1&quot;&gt;OSRF ROS (1 and 2) overlay images&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;https://github.com/osrf/docker_images/raw/master/README.md#ros2--&quot;&gt;OSRF ROS 2 development images&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;https://github.com/osrf/docker_images/raw/master/README.md#gazebo---1&quot;&gt;OSRF Gazebo overlay images&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;https://github.com/osrf/docker_images/raw/master/README.md#ros-legacy--&quot;&gt;OSRF ROS Legacy images&lt;/a&gt;&lt;br&gt;&lt;/p&gt; 
+&lt;p&gt;| CI | Status | |—|—| | ROS | &lt;a href=&quot;https://github.com/osrf/docker_images/actions?query=workflow%3A%22CI+ROS+images%22+event%3Aschedule&quot;&gt;&lt;img src=&quot;https://github.com/osrf/docker_images/workflows/CI%20ROS%20images/badge.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; | ROS 2 | &lt;a href=&quot;https://github.com/osrf/docker_images&quot;&gt;&lt;img src=&quot;https://github.com/osrf/docker_images/workflows/CI%20ROS%202%20images/badge.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; | Gazebo | &lt;a href=&quot;https://github.com/osrf/docker_images/actions?query=workflow%3A%22CI+Gazebo+images%22+event%3Aschedule&quot;&gt;&lt;img src=&quot;https://github.com/osrf/docker_images/workflows/CI%20Gazebo%20images/badge.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://docs.docker.com/docker-hub/official_images&quot;&gt;Official Library&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;The following repos are hosted under the Official Library on Docker Hub. These images are tagged for production and general downstream use. If you’re targeting released versions of respective projects, then these are recommended.&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://hub.docker.com/_/ros&quot;&gt;ROS &lt;img src=&quot;https://img.shields.io/docker/pulls/_/ros.svg?label=pulls&quot; alt=&quot;Docker Pulls&quot;&gt; &lt;img src=&quot;https://img.shields.io/docker/stars/_/ros.svg?label=stars&quot; alt=&quot;Docker Stars&quot;&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This repo contains images available for ROS, both ROS 1 and ROS 2. For more documentation on using these images, view the Docker Hub repo link above. Images are tagged by distribution name, meta package, as well as code name for supported OS base images. For complete listing of tag, view the Repo Info link below.&lt;/p&gt; 
+&lt;p&gt;This repo also contain images for the &lt;a href=&quot;https://www.ros.org/reps/rep-2002.html&quot;&gt;ROS 2 Rolling Ridley distribution&lt;/a&gt;, this distribution is a rolling release providing the latest bleeding edge packages available via apt. Note that these will be updated regularly and may jump base image without notice. It sits nicely between the official ROS distributions and the &lt;a href=&quot;https://github.com/osrf/docker_images#repo-info-3&quot;&gt;nightly images&lt;/a&gt;.&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://github.com/docker-library/repo-info/tree/master/repos/ros&quot;&gt;Repo Info&lt;/a&gt;&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://microbadger.com/#/images/library/ros&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/library/ros.svg?sanitize=true&quot; alt=&quot;Compare Images&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Architectures&lt;/h4&gt; 
+&lt;p&gt;| Type | Status | |—|—| | &lt;a href=&quot;https://hub.docker.com/r/amd64/ros/tags&quot;&gt;amd64&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/ros/&quot;&gt;&lt;img src=&quot;https://doi-janky.infosiftr.net/buildStatus/icon?job=multiarch/amd64/ros&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; | | &lt;a href=&quot;https://hub.docker.com/r/arm32v7/ros/tags&quot;&gt;arm32v7&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/ros/&quot;&gt;&lt;img src=&quot;https://doi-janky.infosiftr.net/buildStatus/icon?job=multiarch/arm32v7/ros&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; | | &lt;a href=&quot;https://hub.docker.com/r/arm64v8/ros/tags&quot;&gt;arm64v8&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/ros/&quot;&gt;&lt;img src=&quot;https://doi-janky.infosiftr.net/buildStatus/icon?job=multiarch/arm64v8/ros&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://hub.docker.com/_/gazebo&quot;&gt;Gazebo &lt;img src=&quot;https://img.shields.io/docker/pulls/_/gazebo.svg?label=pulls&quot; alt=&quot;Docker Pulls&quot;&gt; &lt;img src=&quot;https://img.shields.io/docker/stars/_/gazebo.svg?label=stars&quot; alt=&quot;Docker Stars&quot;&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This repo contains images available for Gazebo. For more documentation on using these images, view the Docker Hub repo link above. Images are tagged by releases version, meta package, as well as code name for supported OS base images. For complete listing of tag, view the Repo Info link below.&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://github.com/docker-library/repo-info/tree/master/repos/gazebo&quot;&gt;Repo Info&lt;/a&gt;&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://microbadger.com/#/images/library/gazebo&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/library/gazebo.svg?sanitize=true&quot; alt=&quot;Compare Images&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Architectures&lt;/h4&gt; 
+&lt;p&gt;| Type | Status | |—|—| | &lt;a href=&quot;https://hub.docker.com/r/amd64/gazebo/tags&quot;&gt;amd64&lt;/a&gt; | &lt;a href=&quot;https://doi-janky.infosiftr.net/job/multiarch/job/amd64/job/gazebo/&quot;&gt;&lt;img src=&quot;https://doi-janky.infosiftr.net/buildStatus/icon?job=multiarch/amd64/gazebo&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;!--
+| [arm32v7](https://hub.docker.com/r/arm32v7/gazebo/tags) | [![Build Status](https://doi-janky.infosiftr.net/buildStatus/icon?job=multiarch/arm32v7/gazebo)](https://doi-janky.infosiftr.net/job/multiarch/job/arm32v7/job/gazebo/) |
+| [arm64v8](https://hub.docker.com/r/arm64v8/gazebo/tags) | [![Build Status](https://doi-janky.infosiftr.net/buildStatus/icon?job=multiarch/arm64v8/gazebo)](https://doi-janky.infosiftr.net/job/multiarch/job/arm64v8/job/gazebo/) |
+--&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://hub.docker.com/u/osrf/&quot;&gt;OSRF Profile&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;The following repos are hosted under the OSRF Organization on Docker Hub. These images are tagged for development and advanced use cases. If you require extra dependencies not available from the Official Library images above, then using these images may help save you build time during continuous integration or local development.&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://hub.docker.com/r/osrf/ros/&quot;&gt;ROS &lt;img src=&quot;https://img.shields.io/docker/pulls/osrf/ros.svg?label=pulls&quot; alt=&quot;Docker Pulls&quot;&gt; &lt;img src=&quot;https://img.shields.io/docker/stars/osrf/ros.svg?label=stars&quot; alt=&quot;Docker Stars&quot;&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This repo builds ROS (both ROS 1 and ROS 2) images &lt;code&gt;FROM&lt;/code&gt; the Official Library by including additional meta-packages such for desktop installations. These images may be helpful using containers for development or when display forwarding when using GUIs.&lt;br&gt; Images must be pulled using an explicit tag e.g:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker pull osrf/ros:&amp;lt;tag_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;List of tags available at https://hub.docker.com/r/osrf/ros/tags&lt;/p&gt; 
+&lt;h4&gt;Repo Info&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://microbadger.com/#/images/osrf/ros&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/osrf/ros.svg?sanitize=true&quot; alt=&quot;Compare Images&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Architectures&lt;/h4&gt; 
+&lt;p&gt;| Type | Status | |—|—| | &lt;a href=&quot;https://hub.docker.com/r/osrf/ros/tags&quot;&gt;amd64&lt;/a&gt; | &lt;a href=&quot;https://hub.docker.com/r/osrf/ros/builds/&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/build/osrf/ros.svg?label=build&quot; alt=&quot;Docker Build Status&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://hub.docker.com/r/osrf/ros2/&quot;&gt;ROS2 &lt;img src=&quot;https://img.shields.io/docker/pulls/osrf/ros2.svg?label=pulls&quot; alt=&quot;Docker Pulls&quot;&gt; &lt;img src=&quot;https://img.shields.io/docker/stars/osrf/ros2.svg?label=stars&quot; alt=&quot;Docker Stars&quot;&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This repo contains images specific to ROS 2, and are particularly for development and continuous integration. These may contain experimental features or unstable interfaces for testing the latest ROS 2 branches.&lt;br&gt; Images must be pulled using an explicit tag e.g:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker pull osrf/ros2:&amp;lt;tag_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;List of tags available at https://hub.docker.com/r/osrf/ros2/tags&lt;/p&gt; 
+&lt;h4&gt;Repo Info&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://microbadger.com/#/images/osrf/ros2&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/osrf/ros2.svg?sanitize=true&quot; alt=&quot;Compare Images&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/osrf/docker_images/master/ros2/testing/testing&quot;&gt;&lt;code&gt;testing&lt;/code&gt;&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;em&gt;Description:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;closely mimics the Official Library images but sources testing apt repo&lt;/li&gt; 
+     &lt;li&gt;minimal size with no &lt;code&gt;ros-rolling-*&lt;/code&gt; packages pre-installed&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Purpose:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;intended for Continuous Integration and testing package syncs&lt;/li&gt; 
+     &lt;li&gt;small image size and kept fresh by rebuilding upon package updates&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/osrf/docker_images/master/ros2/nightly/nightly&quot;&gt;&lt;code&gt;nightly&lt;/code&gt;&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;em&gt;Description:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;includes pre-installed environment from nightly job on the ci.ros2.org and pre-installed DDS implementations: 
+      &lt;ul&gt; 
+       &lt;li&gt;Fast-RTPS (default)&lt;/li&gt; 
+       &lt;li&gt;CycloneDDS&lt;/li&gt; 
+      &lt;/ul&gt; &lt;/li&gt; 
+     &lt;li&gt;closely mimics the Official Library images as be interchangeable&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Purpose:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;intended for CI and testing against the latest nightly builds&lt;/li&gt; 
+     &lt;li&gt;early detection of regressions or deprecation from upstream&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/osrf/docker_images/master/ros2/nightly/nightly-rmw&quot;&gt;&lt;code&gt;nightly-rmw&lt;/code&gt;&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;em&gt;Description:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;builds &lt;code&gt;FROM&lt;/code&gt; &lt;code&gt;nightly&lt;/code&gt; and installs open source libraries&lt;/li&gt; 
+     &lt;li&gt;currently identical to &lt;code&gt;nightly&lt;/code&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Purpose:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;intended for CI and testing against more rmw implementations&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/osrf/docker_images/master/ros2/nightly/nightly-rmw-nonfree&quot;&gt;&lt;code&gt;nightly-rmw-nonfree&lt;/code&gt;&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;em&gt;Description:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;builds &lt;code&gt;FROM&lt;/code&gt; &lt;code&gt;nightly-rmw&lt;/code&gt; and installs closed source libraries&lt;/li&gt; 
+     &lt;li&gt;including non free vendors: 
+      &lt;ul&gt; 
+       &lt;li&gt;Connext&lt;/li&gt; 
+      &lt;/ul&gt; &lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Notice:&lt;/strong&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;includes third party license agreements for non free software&lt;/li&gt; 
+     &lt;li&gt;including the &lt;a href=&quot;https://www.rti.com/products/pricing/compare&quot;&gt;&lt;code&gt;Open Community Source&lt;/code&gt;&lt;/a&gt; license from RTI&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/osrf/docker_images/master/ros2/source/devel&quot;&gt;&lt;code&gt;devel&lt;/code&gt;&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;em&gt;Description:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;includes pre-installed dependencies for building from source&lt;/li&gt; 
+     &lt;li&gt;closely mimics the source install setup instructions&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Purpose:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;intended for development and bootstrapping source builds&lt;/li&gt; 
+     &lt;li&gt;small image size and kept fresh by rebuilding every day&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/osrf/docker_images/master/ros2/source/source&quot;&gt;&lt;code&gt;source&lt;/code&gt;&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;em&gt;Description:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;builds &lt;code&gt;FROM&lt;/code&gt; &lt;code&gt;devel&lt;/code&gt; and compiles ros2 from source&lt;/li&gt; 
+     &lt;li&gt;closely mimics the Official Library images as be interchangeable&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Purpose:&lt;/em&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;intended for development and bootstrapping source builds&lt;/li&gt; 
+     &lt;li&gt;when an isolated workspace is needed for dependency checking&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Notice:&lt;/strong&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;no pre-built image hosted on Docker Hub&lt;/li&gt; 
+     &lt;li&gt;provides many &lt;code&gt;ARG&lt;/code&gt; options, like running tests&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Note: only core packages are available via these images. An alternative for development is to use the &lt;a href=&quot;https://github.com/osrf/docker_images#ros--&quot;&gt;rolling distribution images&lt;/a&gt;, while less recent than the nightly they allow you to install many ROS packages from deb.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Architectures&lt;/h4&gt; 
+&lt;p&gt;| Type | Status | |—|—| | amd64 | &lt;a href=&quot;https://hub.docker.com/r/osrf/ros2/builds/&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/build/osrf/ros2.svg?label=build&quot; alt=&quot;Docker Build Status&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://hub.docker.com/r/osrf/gazebo/&quot;&gt;Gazebo &lt;img src=&quot;https://img.shields.io/docker/pulls/osrf/gazebo.svg?label=pulls&quot; alt=&quot;Docker Pulls&quot;&gt; &lt;img src=&quot;https://img.shields.io/docker/stars/osrf/gazebo.svg?label=stars&quot; alt=&quot;Docker Stars&quot;&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This repo builds &lt;code&gt;FROM&lt;/code&gt; the Official Library by including additional meta-packages such for desktop installations. These images may be helpful using containers for development or when display forwarding when using GUIs.&lt;br&gt; Images must be pulled using an explicit tag e.g:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker pull osrf/gazebo:&amp;lt;tag_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;List of tags available at https://hub.docker.com/r/osrf/gazebo/tags&lt;/p&gt; 
+&lt;h4&gt;Repo Info&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://microbadger.com/#/images/osrf/gazebo&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/osrf/gazebo.svg?sanitize=true&quot; alt=&quot;Compare Images&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Architectures&lt;/h4&gt; 
+&lt;p&gt;| Type | Status | |—|—| | amd64 | &lt;a href=&quot;https://hub.docker.com/r/osrf/gazebo/builds/&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/build/osrf/gazebo.svg?label=build&quot; alt=&quot;Docker Build Status&quot;&gt;&lt;/a&gt; |&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://hub.docker.com/r/osrf/ros_legacy/&quot;&gt;ROS Legacy &lt;img src=&quot;https://img.shields.io/docker/pulls/osrf/ros_legacy.svg?label=pulls&quot; alt=&quot;Docker Pulls&quot;&gt; &lt;img src=&quot;https://img.shields.io/docker/stars/osrf/ros_legacy.svg?label=stars&quot; alt=&quot;Docker Stars&quot;&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This repo contains legacy images for ROS 1, specifically for releases predating the Official Library. This is intended as a complementary repo only for older releases of ROS that were not archived in the Official Library. Images must be pulled using an explicit tag e.g:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker pull osrf/ros_legacy:&amp;lt;tag_name&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;List of tags available at https://hub.docker.com/r/osrf/ros_legacy/tags&lt;/p&gt; 
+&lt;h4&gt;Repo Info&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://microbadger.com/#/images/osrf/ros_legacy&quot;&gt;&lt;img src=&quot;https://images.microbadger.com/badges/image/osrf/ros_legacy.svg?sanitize=true&quot; alt=&quot;Compare Images&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Architectures&lt;/h4&gt; 
+&lt;p&gt;| Type | Status | |—|—| | amd64 | &lt;a href=&quot;https://hub.docker.com/r/osrf/ros_legacy/builds/&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/build/osrf/ros_legacy.svg?label=build&quot; alt=&quot;Docker Build Status&quot;&gt;&lt;/a&gt; |&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

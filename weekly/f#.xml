@@ -1,0 +1,352 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub F# Weekly Trending</title>
+    <description>Weekly Trending of F# in GitHub</description>
+    <pubDate>Sun, 11 Jul 2021 02:21:25 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>Zaid-Ajaj/Hawaii</title>
+      <link>https://github.com/Zaid-Ajaj/Hawaii</link>
+      <description>&lt;p&gt;dotnet CLI tool to generate type-safe F# clients from OpenAPI/Swagger documents&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Hawaii &lt;a href=&quot;https://www.nuget.org/packages/Hawaii&quot;&gt;&lt;img src=&quot;https://img.shields.io/nuget/v/Hawaii.svg?colorB=green&quot; alt=&quot;Nuget&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Zaid-Ajaj/Hawaii/master/logo.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;A dotnet CLI tool to generate type-safe F# clients from OpenAPI/Swagger services.&lt;/p&gt; 
+&lt;h3&gt;Install&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;dotnet tool install -g hawaii
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Configuration&lt;/h3&gt; 
+&lt;p&gt;Create a configuration file called &lt;code&gt;hawaii.json&lt;/code&gt; with the following shape:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;{
+    &quot;schema&quot;: &amp;lt;schema&amp;gt;,
+    &quot;project&quot;: &amp;lt;project&amp;gt;,
+    &quot;output&quot;: &amp;lt;output&amp;gt;,
+    [&quot;synchronous&quot;]: &amp;lt;true | false&amp;gt;,
+    [&quot;asyncReturnType&quot;]: &amp;lt;&quot;async&quot; | &quot;task&quot;&amp;gt;,
+    [&quot;resolveReferences]&quot;: &amp;lt;true | false&amp;gt;,
+    [&quot;emptyDefinitions&quot;]: &amp;lt;&quot;ignore&quot; | &quot;free-form&quot;&amp;gt;,
+    [&quot;overrideSchema&quot;]: &amp;lt;JSON schema subset&amp;gt;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Where&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;schema&amp;gt;&lt;/code&gt; is a URL to the OpenApi/Swagger location, whether that is an external URL or a relative file path&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;project&amp;gt;&lt;/code&gt; is the name of the project that will get generated&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; is a relative path to the output directory where the project will be generated. (Note: this directory is deleted and re-generated when you run &lt;code&gt;hawaii&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;synchronous&amp;gt;&lt;/code&gt; is an optional flag that determines whether hawaii should generate client methods that run http requests synchronously. This is useful when used inside console applications. (set to false by default)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;asyncReturnType&amp;gt;&lt;/code&gt; is an option to determine whether hawaii should generate client methods that return &lt;code&gt;Async&amp;lt;&#39;T&amp;gt;&lt;/code&gt; when set to “async” (default) or &lt;code&gt;Task&amp;lt;&#39;T&amp;gt;&lt;/code&gt; when set to “task” (this option is irrelevant when the &lt;code&gt;synchronous&lt;/code&gt; option is set to &lt;code&gt;true&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;resolveReferences&amp;gt;&lt;/code&gt; determines whether hawaii will attempt to resolve external references via schema pre-processing. This is set to &lt;code&gt;false&lt;/code&gt; by default but sometimes an OpenApi schema is scattered into multiple schemas across a repository and this might help with the resolution.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;emptyDefintions&amp;gt;&lt;/code&gt; determines what hawaii should do when encountering a global type definition without schema information. When set to “ignore” (default) hawaii will generate the global type. However, sometimes these global types are still referenced from other types or definitions, in which case the setting this option to “free-form” will generate a type abbreviation for the empty schema equal to a free form object (&lt;code&gt;JToken&lt;/code&gt; when targetting F# or &lt;code&gt;obj&lt;/code&gt; when targetting Fable)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;overrideSchema&amp;gt;&lt;/code&gt; Allows you to override the resolved schema either to add more information (such as a missing operation ID) or &lt;em&gt;correct&lt;/em&gt; the types when you know better (see below)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Example&lt;/h3&gt; 
+&lt;p&gt;Here is an example configuration for the pet store API:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &quot;schema&quot;: &quot;https://petstore3.swagger.io/api/v3/openapi.json&quot;,
+    &quot;output&quot;: &quot;./output&quot;,
+    &quot;project&quot;: &quot;PetStore&quot;,
+    &quot;synchronous&quot;: true
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After you have the configuration ready, run &lt;code&gt;hawaii&lt;/code&gt; in the directory where you have the &lt;code&gt;hawaii.json&lt;/code&gt; file:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;hawaii
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also tell hawaii where to find the configuration file if it wasn’t name &lt;code&gt;hawaii.json&lt;/code&gt;, for example&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;hawaii --config ./petstore-hawaii.json
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Using the generated project&lt;/h3&gt; 
+&lt;p&gt;Once hawaii has finished running, you find a full generated F# project inside of the &lt;code&gt;&amp;lt;output&amp;gt;&lt;/code&gt; directory. This project can be referenced from your application so you can start using it.&lt;/p&gt; 
+&lt;p&gt;You can reference the project like this from your app like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;ItemGroup&amp;gt;
+  &amp;lt;ProjectReference Include=&quot;..\path\to\output\PetStore.fsproj&quot; /&amp;gt;
+&amp;lt;/ItemGroup&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then from your code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-fs&quot;&gt;open System
+open System.Net.Http
+open PetStore
+open PetStore.Types
+
+let petStoreUri = Uri &quot;https://petstore3.swagger.io/api/v3&quot;
+let httpClient = new HttpClient(BaseAddress=petStoreUri)
+let petStore = PetStoreClient(httpClient)
+
+let availablePets() =
+    let status = PetStatus.Available.Format()
+    match petStore.findPetsByStatus(status) with
+    | FindPetsByStatus.OK pets -&amp;gt; for pet in pets do printfn $&quot;{pet.name}&quot;
+    | FindPetsByStatus.BadRequest -&amp;gt; printfn &quot;Bad request&quot;
+
+availablePets()
+
+// inventory : Map&amp;lt;string, int&amp;gt;
+let (GetInventory.OK(inventory)) = petStore.getInventory()
+
+for (status, quantity) in Map.toList inventory do
+    printfn $&quot;There are {quantity} pet(s) {status}&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Notice that you have to provide your own &lt;code&gt;HttpClient&lt;/code&gt; to the &lt;code&gt;PetStoreClient&lt;/code&gt; and setting the &lt;code&gt;BaseAddress&lt;/code&gt; to the base path of the service.&lt;/p&gt; 
+&lt;h3&gt;Version&lt;/h3&gt; 
+&lt;p&gt;You can ask hawaii which version it is currently on:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;hawaii --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;No Logo&lt;/h3&gt; 
+&lt;p&gt;If you don’t want the logo to show up in your CI or local machine, add &lt;code&gt;--no-logo&lt;/code&gt; as the last parameter&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;hawaii --no-logo
+hawaii --config ./hawaii.json --no-logo
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Advanced - Overriding The Schema&lt;/h3&gt; 
+&lt;p&gt;OpenAPI schemas can be very loose and not always typed. Sometimes they will be missing operation IDs on certain paths. Although Hawaii will attempt to derive valid operation IDs from the path, name collisions can sometimes happen. Hawaii provides the &lt;code&gt;overrideSchema&lt;/code&gt; option to allow you to “fix” the source schema or add more information when its missing.&lt;/p&gt; 
+&lt;p&gt;Here is an example for how you can override operation IDs for certain paths&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;overrideSchema&quot;: {
+    &quot;paths&quot;: {
+      &quot;/consumer/v1/services/{id}/allocations&quot;: {
+        &quot;get&quot;: {
+          &quot;operationId&quot;: &quot;getAllocationsForCustomerByServiceId&quot;
+        }
+      },
+      &quot;/consumer/v1/services/allocations/{id}&quot;: {
+        &quot;get&quot;: {
+            &quot;operationId&quot;: &quot;getAllocationIdFromCustomerServices&quot;
+        }
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;overrideSchema&lt;/code&gt; property basically takes a subset of another schema and &lt;em&gt;merges&lt;/em&gt; it with the source schema.&lt;/p&gt; 
+&lt;p&gt;You can go a step further by overriding the return types of certain responses. The following example shows how you can get the raw text output from the default response of a path instead of getting a typed response:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;overrideSchema&quot;: {
+    &quot;paths&quot;: {
+      &quot;/bin/querybuilder.json&quot;: {
+        &quot;get&quot;: {
+          &quot;responses&quot;: {
+            &quot;default&quot;: {
+              &quot;content&quot;: {
+                &quot;application/json&quot;: {
+                  &quot;schema&quot;: {
+                    &quot;type&quot;: &quot;string&quot;
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Limitations&lt;/h3&gt; 
+&lt;p&gt;These are the very early days of Hawaii as a tool to generate F# clients and there are some known limitations and rough edges that I will be working on:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Fable support: coming soon&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;anyOf&lt;/code&gt;/&lt;code&gt;oneOf&lt;/code&gt; not supported&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;You can watch the live coding sessions as a playlist published on &lt;a href=&quot;https://www.youtube.com/watch?v=8dgjD6vG7yw&amp;amp;list=PLBzGkJMamtz0KCkK7OFnuXyXP7yUtnt9o&quot;&gt;YouTube here&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Running integration tests&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd ./build
+# run hawaii against 20 schemas
+dotnet run -- integration
+# run hawaii agains the first {n} schemas out of ~2000 and see the progress
+dotnet run -- rate {n}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>dotnet/fsharp</title>
+      <link>https://github.com/dotnet/fsharp</link>
+      <description>&lt;p&gt;The F# compiler, F# core library, F# language service, and F# tooling integration for Visual Studio&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;The F# compiler, F# core library, and F# editor tools&lt;/h1&gt; 
+&lt;p&gt;You’re invited to contribute to future releases of the F# compiler, core library, and tools. Development of this repository can be done on any OS supported by &lt;a href=&quot;https://dotnet.microsoft.com/&quot;&gt;.NET Core&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You will also need the latest .NET 5 SDK installed from &lt;a href=&quot;https://dotnet.microsoft.com/download/dotnet/5.0&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;h3&gt;Quickstart on Windows&lt;/h3&gt; 
+&lt;p&gt;Build from the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;build.cmd
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The build depends on an installation of Visual Studio. To build the compiler without this dependency use:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;build.cmd -noVisualStudio
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After it’s finished, open either &lt;code&gt;FSharp.sln&lt;/code&gt; or &lt;code&gt;VisualFSharp.sln&lt;/code&gt; in your editor of choice. The latter solution is larger but includes the F# tools for Visual Studio and its associated infrastructure.&lt;/p&gt; 
+&lt;h3&gt;Quickstart on Linux or macOS&lt;/h3&gt; 
+&lt;p&gt;Build from the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./build.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After it’s finished, open &lt;code&gt;FSharp.sln&lt;/code&gt; in your editor of choice.&lt;/p&gt; 
+&lt;h3&gt;Visual Studio Online quickstart&lt;/h3&gt; 
+&lt;p&gt;If you’d like to use Visual Studio online (or VSCode with VSO as backend), just click this button to create a new online environment:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://online.visualstudio.com/environments/new?name=my-fsharp&amp;amp;repo=dotnet/fsharp&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?style=flat-square&amp;amp;logo=microsoft&amp;amp;label=VS%20Online&amp;amp;message=Create&amp;amp;color=blue&quot; alt=&quot;VS Online&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This will provision an environment with all necessary dependencies. Initial build of the environment may take up to 10 minutes, as it’s also performing initial build of the F# compiler.&lt;/p&gt; 
+&lt;h3&gt;Documentation for contributors&lt;/h3&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/DEVGUIDE.md&quot;&gt;DEVGUIDE.md&lt;/a&gt; for more details on configurations for building the codebase. In practice, you only really need to run &lt;code&gt;build.cmd&lt;/code&gt;/&lt;code&gt;build.sh&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/TESTGUIDE.md&quot;&gt;TESTGUIDE.md&lt;/a&gt; for information about the various test suites in this codebase and how to run them individually.&lt;/p&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/docs/compiler-guide.md&quot;&gt;Compiler Guide&lt;/a&gt; for an in-depth guide to the F# compiler. It is essential reading for any larger contributions to the F# compiler codebase.&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://fsharp.org/specs/language-spec/&quot;&gt;the F# Language Specification&lt;/a&gt; for an in-depth description of the F# language. This is essential for understanding some behaviors of the F# compiler and some of the rules within the compiler codebase. For example, the order and way name resolution happens is specified here, which greatly impacts how the code in Name Resolutions works and why certain decisions are made.&lt;/p&gt; 
+&lt;h3&gt;No contribution is too small&lt;/h3&gt; 
+&lt;p&gt;Even if you find a single-character typo, we’re happy to take the change! Although the codebase can feel daunting for beginners, we and other contributors are happy to help you along.&lt;/p&gt; 
+&lt;h2&gt;Build Status&lt;/h2&gt; 
+&lt;p&gt;| Branch | Status | |:——:|:——:| |main|&lt;a href=&quot;https://dev.azure.com/dnceng/public/_build/latest?definitionId=496&amp;amp;branchName=main&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng/public/_apis/build/status/dotnet/fsharp/fsharp-ci?branchName=main&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;|&lt;/p&gt; 
+&lt;h2&gt;Per-build NuGet packages&lt;/h2&gt; 
+&lt;p&gt;Per-build verions of our NuGet packages are available via this URL: &lt;code&gt;https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet-tools/nuget/v3/index.json &lt;/code&gt;&lt;/p&gt; 
+&lt;h2&gt;Branches&lt;/h2&gt; 
+&lt;p&gt;These are the branches in use:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;main&lt;/code&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Almost all contributions go here.&lt;/li&gt; 
+   &lt;li&gt;Able to be built, installed and used in the latest public Visual Studio release.&lt;/li&gt; 
+   &lt;li&gt;May contain updated F# features and logic.&lt;/li&gt; 
+   &lt;li&gt;Used to build nightly VSIX (see above).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;release/dev15.9&lt;/code&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Long-term servicing branch for VS 2017 update 15.9.x. We do not expect to service that release, but if we do, that’s where the changes will go.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;release/dev16.x&lt;/code&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Latest release branch for the particular point release of Visual Studio.&lt;/li&gt; 
+   &lt;li&gt;Incorporates features and fixes from main up to a particular branch point, then selective cherry-picks.&lt;/li&gt; 
+   &lt;li&gt;May contain new features that depend on new things or fixes in the corresponding forthcoming Visual Studio release.&lt;/li&gt; 
+   &lt;li&gt;Gets integrated back into main once the corresponding Visual Studio release is made.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;F# language and core library evolution&lt;/h2&gt; 
+&lt;p&gt;Evolution of the F# language and core library follows a process spanning two additional repositories. The process is as follows:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Use the &lt;a href=&quot;https://github.com/fsharp/fslang-suggestions/&quot;&gt;F# language suggestions repo&lt;/a&gt; to search for ideas, vote on ones you like, submit new ideas, and discuss details with the F# community.&lt;/li&gt; 
+ &lt;li&gt;Ideas that are “approved in principle” are eligible for a new RFC in the &lt;a href=&quot;https://github.com/fsharp/fslang-design&quot;&gt;F# language design repo&lt;/a&gt;. This is where the technical specification and discussion of approved suggestions go.&lt;/li&gt; 
+ &lt;li&gt;Implementations and testing of an RFC are submitted to this repository.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is subject to the MIT License. A copy of this license is in &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/License.txt&quot;&gt;License.txt&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Code of Conduct&lt;/h2&gt; 
+&lt;p&gt;This project has adopted the &lt;a href=&quot;https://contributor-covenant.org/&quot;&gt;Contributor Covenant&lt;/a&gt; code of conduct to clarify expected behavior in our community. You can read it at &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/CODE_OF_CONDUCT.md&quot;&gt;CODE_OF_CONDUCT&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Get In Touch&lt;/h2&gt; 
+&lt;p&gt;Members of the &lt;a href=&quot;https://fsharp.org&quot;&gt;F# Software Foundation&lt;/a&gt; are invited to the &lt;a href=&quot;https://fsharp.org/guides/slack/&quot;&gt;FSSF Slack&lt;/a&gt;. You can find support from other contributors in the &lt;code&gt;#compiler&lt;/code&gt; and &lt;code&gt;#editor-support&lt;/code&gt; channels.&lt;/p&gt; 
+&lt;p&gt;Additionally, you can use the &lt;code&gt;#fsharp&lt;/code&gt; tag on Twitter if you have general F# questions, including about this repository. Chances are you’ll get multiple responses.&lt;/p&gt; 
+&lt;h2&gt;About F#&lt;/h2&gt; 
+&lt;p&gt;If you’re curious about F# itself, check out these links:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/what-is-fsharp&quot;&gt;What is F#&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/dotnet/fsharp/get-started/&quot;&gt;Get started with F#&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fsharp.org&quot;&gt;F# Software Foundation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fsharp.org/testimonials&quot;&gt;F# Testimonials&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>PragmaticFlow/NBomber</title>
+      <link>https://github.com/PragmaticFlow/NBomber</link>
+      <description>&lt;p&gt;Modern and flexible load testing framework for Pull and Push scenarios, designed to test any system regardless a protocol (HTTP/WebSockets/AMQP etc) or a semantic model (Pull/Push).&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://github.com/PragmaticFlow/NBomber/raw/dev/assets/nbomber_logo.png&quot; alt=&quot;NBomber logo&quot; width=&quot;600px&quot;&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/PragmaticFlow/NBomber/actions/workflows/dotnet.yml/badge.svg?branch=dev&quot; alt=&quot;Build status&quot;&gt; &lt;a href=&quot;https://www.nuget.org/packages/nbomber/&quot;&gt;&lt;img src=&quot;https://img.shields.io/nuget/v/nbomber.svg?sanitize=true&quot; alt=&quot;NuGet&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/nbomber/community?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/nbomber/community.svg?sanitize=true&quot; alt=&quot;Gitter&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Very simple load testing framework for Pull and Push scenarios. It’s 100% written in F# and targeting .NET Core and full .NET Framework.&lt;/p&gt; 
+&lt;h3&gt;How to install&lt;/h3&gt; 
+&lt;p&gt;To install NBomber via NuGet, run this command in NuGet package manager console:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-code&quot;&gt;PM&amp;gt; Install-Package NBomber
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;p&gt;Documentation is located &lt;a href=&quot;https://nbomber.com/docs/overview/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Run test scenario&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://nbomber.com/assets/images/nbomber_v2_console-6a596abc247223cefefa397c62e620f4.gif&quot; alt=&quot;how to run a scenario gif&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;View report&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/PragmaticFlow/NBomber/dev/assets/nbomber_report.jpg&quot; alt=&quot;view report&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;Analyze trends&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/PragmaticFlow/NBomber/raw/dev/assets/influx_trends.png&quot; alt=&quot;analyze trends&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;Why we build NBomber and what you can do with it?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;The main reason behind NBomber is to provide a &lt;strong&gt;lightweight&lt;/strong&gt; framework for writing load tests which you can use to test literally &lt;strong&gt;any&lt;/strong&gt; system and simulate &lt;strong&gt;any&lt;/strong&gt; production workload. We wanted to provide only a few abstractions so that we could describe any type of load and still have a simple, intuitive API.&lt;/li&gt; 
+ &lt;li&gt;Another goal is to provide building blocks to validate your POC (proof of concept) projects by applying any complex load distribution.&lt;/li&gt; 
+ &lt;li&gt;With NBomber you can test any PULL or PUSH system (HTTP, WebSockets, GraphQl, gRPC, SQL Databse, MongoDb, Redis etc).&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;NBomber as a modern framework provides:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Zero dependencies on protocol (HTTP/WebSockets/AMQP/SQL)&lt;/li&gt; 
+ &lt;li&gt;Zero dependencies on semantic model (Pull/Push)&lt;/li&gt; 
+ &lt;li&gt;Very flexible configuration and dead simple API&lt;/li&gt; 
+ &lt;li&gt;Cluster support&lt;/li&gt; 
+ &lt;li&gt;Reporting sinks&lt;/li&gt; 
+ &lt;li&gt;CI/CD integration&lt;/li&gt; 
+ &lt;li&gt;Plugins/extensions support&lt;/li&gt; 
+ &lt;li&gt;Data feed support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;What makes it very simple?&lt;/h3&gt; 
+&lt;p&gt;NBomber is a foundation of building blocks which you can use to describe your test scenario, run it and get reports.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-fsharp&quot;&gt;// FSharp example
+
+let step = Step.create(&quot;step&quot;, fun context -&amp;gt; task {
+
+    // you can do any logic here: go to http, websocket etc
+    do! Task.Delay(seconds 1)
+    return Response.Ok()
+})
+
+Scenario.create &quot;scenario&quot; [step]
+|&amp;gt; NBomberRunner.registerScenario
+|&amp;gt; NBomberRunner.run
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-csharp&quot;&gt;// CSharp example
+
+var step = Step.Create(&quot;step&quot;, async context =&amp;gt;
+{
+    // you can do any logic here: go to http, websocket etc
+
+    await Task.Delay(TimeSpan.FromSeconds(1));
+    return Response.Ok();
+});
+
+var scenario = ScenarioBuilder.CreateScenario(&quot;scenario&quot;, step);
+
+NBomberRunner
+    .RegisterScenarios(scenario)
+    .Run();
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Examples&lt;/h3&gt; 
+&lt;p&gt;|Language|Example| |–|–| | F# | &lt;a href=&quot;https://github.com/PragmaticFlow/NBomber/tree/dev/examples/FSharpProd&quot;&gt;link&lt;/a&gt; | | C# | &lt;a href=&quot;https://github.com/PragmaticFlow/NBomber/tree/dev/examples/CSharpProd&quot;&gt;link&lt;/a&gt; |&lt;/p&gt; 
+&lt;h3&gt;Contributing&lt;/h3&gt; 
+&lt;p&gt;Would you like to help make NBomber even better? We keep a list of issues that are approachable for newcomers under the &lt;a href=&quot;https://github.com/PragmaticFlow/NBomber/issues?q=is%3Aopen+is%3Aissue+label%3A%22good+first+issue%22&quot;&gt;good-first-issue&lt;/a&gt; label.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>KyleMaysey/CS484-Assignment-3</title>
+      <link>https://github.com/KyleMaysey/CS484-Assignment-3</link>
+      <description>&lt;p&gt;Introductory graphics course, learning to use shaders with OpenGL Shading Language.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Program: CS 484 Assignment 3: GLSL Shader Author: Kyle Maysey Email: Kyle_Maysey@csu.fullerton.edu&lt;/p&gt; 
+&lt;p&gt;Description:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;This program uses the open GL Shanding Language to implement phong illumination.  Currently the program is
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;loading a sphere generated by glut to allow me to better visualize how my shaders are operating.&lt;/p&gt; 
+&lt;p&gt;Controls:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Space		- Toggle light movement mode or model movement mode when mouse left click is held down.
+
+Left Click 	- In conjunction with moving the mouse it will translate the light source, or the object.
+
+		Modifiers:
+		
+			- Control:	If control is held down it will restrict translation to z axis.
+		
+			- Shift:	If shift is held down it will restrict translation to the x and z axis.
+
+G		- Toggles the use of the shaders and the fixed openGL funcionality.
+
+Esc		- Quit application
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;How to run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;1) In the command prompt, make the folder containing &quot;glslshader.exe&quot; your working directory
+
+2) Now call &quot;glslshader.exe -x [vertex shader ending in .vs] -f [fragment shader ending in .fs]&quot; to run the project.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Example command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;glslshader.exe -x shaders/phong.vs -f shaders/phong.fs
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Known Bugs:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;--	When light is close to the edge of the sphere it appears to generate a second light around the edge.  Was more
+	pronounced when I was using the half vector between the eye vector and the light vector, as opposed to calculating
+	the reflection vector.
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
