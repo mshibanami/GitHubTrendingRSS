@@ -36,7 +36,7 @@ class TestResources {
             contentsOf: rootURL.appendingPathComponent(fileName),
             encoding: .utf8)
     }
-    
+
     static func getData(ofFileName fileName: String) -> Data {
         return try! Data(contentsOf: TestResources.rootURL.appendingPathComponent(fileName))
     }

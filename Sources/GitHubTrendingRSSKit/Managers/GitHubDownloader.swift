@@ -1,8 +1,8 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
+import Combine
 import Foundation
 import SwiftSoup
-import Combine
 
 public class GitHubDownloader {
     enum Error: Swift.Error {
@@ -10,7 +10,7 @@ public class GitHubDownloader {
         case unsupportedFormat
         case invalidURL
     }
-    
+
     let downloadManager: DownloadManager
     let gitHubPageParser: GitHubPageParser
     private let basicAuthInfo: BasicAuthInfo
@@ -35,17 +35,17 @@ public class GitHubDownloader {
                 return try self.gitHubPageParser.repositories(fromTrendingPage: page)
             })
             .eraseToAnyPublisher()
-        
+
         guard includesReadMeIfExists else {
             return fetchRepositories
         }
-        
+
         return fetchRepositories
             .flatMap({ [weak self] repositories -> AnyPublisher<[Repository], Swift.Error> in
                 guard let self = self else {
                     return Result.Publisher([]).eraseToAnyPublisher()
                 }
-                
+
                 var singles = [AnyPublisher<Repository, Never>]()
                 for repository in repositories {
                     singles.append(
@@ -67,7 +67,7 @@ public class GitHubDownloader {
             })
             .eraseToAnyPublisher()
     }
-    
+
     public func fetchReadMePage(pageLink: RepositoryPageLink) -> AnyPublisher<APIReadMe, Swift.Error> {
         guard let components = URLComponents(url: pageLink.readMeAPIEndpointURL, resolvingAgainstBaseURL: false) else {
             return Fail(error: DownloadManager.Error.invalidURL).eraseToAnyPublisher()

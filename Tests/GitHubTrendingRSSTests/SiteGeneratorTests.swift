@@ -1,9 +1,9 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
-import XCTest
 import GitHubTrendingRSSKit
-import Stencil
 import PathKit
+import Stencil
+import XCTest
 
 final class SiteGeneratorTests: XCTestCase {
     let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
@@ -13,27 +13,28 @@ final class SiteGeneratorTests: XCTestCase {
         rssHomeURL: "rss home url",
         googleAnalyticsTrackingCode: "141421356",
         gitHubRepositoryURL: "github repository url")
-    
+
     var maker: SiteSourceMaker!
-    
+
     override func setUp() {
         maker = SiteSourceMaker(
             environment: environment,
             information: information)
     }
-    
+
     func testGenerateRSSListHTML() throws {
         let html = try maker.makeHomeHTML(from: [
             LanguageTrendingLink(displayName: "Hello", href: "/mshibanami/hello"),
-            LanguageTrendingLink(displayName: "World", href: "/mshibanami/world"),])
-        
+            LanguageTrendingLink(displayName: "World", href: "/mshibanami/world")
+        ])
+
         XCTAssertTrue(html.contains(information.pageTitle))
         XCTAssertTrue(html.contains(information.author))
         XCTAssertTrue(html.contains(information.rssHomeURL))
         XCTAssertTrue(html.contains(information.googleAnalyticsTrackingCode))
         XCTAssertTrue(html.contains(information.gitHubRepositoryURL))
     }
-    
+
     func testGenerateRSS() throws {
         let html = try maker.makeRSS(
             from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
@@ -44,4 +45,3 @@ final class SiteGeneratorTests: XCTestCase {
         print(html)
     }
 }
-

@@ -13,10 +13,10 @@ class RunCommand: Command {
 
     @Option(name: "client-id", documentation: "GitHub's client ID")
     var clientID: String = ""
-    
+
     @Option(name: "client-secret", documentation: "GitHub's client secret")
     var clientSecret: String = ""
-    
+
     func run(outputStream: inout TextOutputStream, errorStream: inout TextOutputStream) throws {
         Const.setup(gitHubClientID: clientID, gitHubClientSecret: clientSecret)
     }

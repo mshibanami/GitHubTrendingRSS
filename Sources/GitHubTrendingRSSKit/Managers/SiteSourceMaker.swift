@@ -10,7 +10,7 @@ public class SiteSourceMaker {
         public let rssHomeURL: String
         public let googleAnalyticsTrackingCode: String
         public let gitHubRepositoryURL: String
-        
+
         public init(pageTitle: String, author: String, rssHomeURL: String, googleAnalyticsTrackingCode: String, gitHubRepositoryURL: String) {
             self.pageTitle = pageTitle
             self.author = author
@@ -19,15 +19,15 @@ public class SiteSourceMaker {
             self.gitHubRepositoryURL = gitHubRepositoryURL
         }
     }
-    
+
     let information: Information
     let environment: Environment
-  
+
     public init(environment: Environment, information: Information) {
         self.environment = environment
         self.information = information
     }
-    
+
     public func makeHomeHTML(from languageTrendingLinks: [LanguageTrendingLink] ) throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMMM, yyyy"
@@ -40,22 +40,22 @@ public class SiteSourceMaker {
                 (link: $0,
                  urlEncodedName: $0.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) }),
             "periods": Period.allCases.map({
-                (name: $0.rawValue, capitalizedName: $0.rawValue.capitalized) }),
+                (name: $0.rawValue, capitalizedName: $0.rawValue.capitalized) })
         ]
-        
+
         return try environment.renderTemplate(
             name: "home_template.html",
             context: context)
     }
-    
+
     public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository]) throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         let pubDate = formatter.string(from: Date())
-        
+
         let noDescriptionHTML = #"<p style="color:#586069;"><em>No description/README provided.</em></p>"#
-        
+
         let context: [String: Any] = [
             "languageTrendingLink": languageTrendingLink,
             "information": information,
@@ -68,9 +68,9 @@ public class SiteSourceMaker {
                  url: $0.pageLink.url.absoluteString,
                  pageLink: $0.pageLink)
             }),
-            "periods": Period.allCases.map({ $0.rawValue }),
+            "periods": Period.allCases.map({ $0.rawValue })
         ]
-        
+
         return try environment.renderTemplate(
             name: "rss_template.xml",
             context: context)

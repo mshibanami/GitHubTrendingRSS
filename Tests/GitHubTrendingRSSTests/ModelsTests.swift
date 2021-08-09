@@ -1,14 +1,14 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
+import Combine
+import Down
 import Foundation
 import GitHubTrendingRSSKit
 import XCTest
-import Combine
-import Down
 
 final class ModelsTests: XCTestCase {
     private var cancellables: Set<AnyCancellable> = []
-    
+
     func testNormalRepository() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
@@ -16,8 +16,7 @@ final class ModelsTests: XCTestCase {
         repository1.readMe = APIReadMe()
         XCTAssertEqual(repository1.makeReadMeHTML(includesSummary: false), nil)
     }
-  
-  
+
     func testRepositoryIncludingBlobImage() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/uber/ribs"),
@@ -30,7 +29,7 @@ final class ModelsTests: XCTestCase {
         XCTAssertTrue(html.contains("https://github.com/uber/ribs/raw/assets/rib_horizontal_black.png"))
         XCTAssertTrue(!html.contains("https://github.com/uber/ribs/blob/assets/rib_horizontal_black.png"))
     }
-    
+
     func testSanitizedSVGImage1() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
