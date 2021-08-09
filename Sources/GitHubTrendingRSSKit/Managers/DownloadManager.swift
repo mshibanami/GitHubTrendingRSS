@@ -17,17 +17,24 @@ public class DownloadManager {
     
     public init() {}
     
-    public func fetchWebPage(url: URL, header: [String: String] = [:]) -> AnyPublisher<String, Swift.Error> {
+    public func fetch(url: URL, header: [String: String] = [:], basicAuthInfo: BasicAuthInfo? = nil) -> AnyPublisher<String, Swift.Error> {
         return Result.Publisher(())
             .flatMap({ _ -> AnyPublisher<String, Swift.Error> in
                 let session = URLSession.shared
-                
-                let urlForDisplay = "\(url.host ?? "")\(url.path)"
-                
+                                
                 var request = URLRequest(url: url)
                 for keyValue in header {
                     request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
                 }
+                do {
+                    if let basicAuthInfo = try basicAuthInfo?.makeHeaderValue() {
+                        request.addValue(basicAuthInfo, forHTTPHeaderField: "Authorization")
+                    }
+                } catch {
+                    return Fail(error: error).eraseToAnyPublisher()
+                }
+                
+                let urlForDisplay = "\(url.host ?? "")\(url.path)"
                 NSLog("-> \(request.httpMethod ?? "???"): \(urlForDisplay)")
                 let dataTaskPublisher =  session.dataTaskPublisher(for: request)
                     .mapError { $0 as Swift.Error }
@@ -68,5 +75,27 @@ public class DownloadManager {
                 .eraseToAnyPublisher()
             })
             .eraseToAnyPublisher()
+    }
+}
+
+public struct BasicAuthInfo {
+    public enum Error: Swift.Error {
+        case invalidUserNameOrPassword
+    }
+
+    public let userName: String
+    public let password: String
+    
+    public init(userName: String, password: String) {
+        self.userName = userName
+        self.password = password
+    }
+    
+    func makeHeaderValue() throws -> String {
+        guard let credentialData = "\(userName):\(password)".data(using: String.Encoding.utf8) else {
+            throw Error.invalidUserNameOrPassword
+        }
+        let credential = credentialData.base64EncodedString(options: [])
+        return "Basic \(credential)"
     }
 }

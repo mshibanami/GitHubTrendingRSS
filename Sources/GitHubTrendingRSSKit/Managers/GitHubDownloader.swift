@@ -13,19 +13,21 @@ public class GitHubDownloader {
     
     let downloadManager: DownloadManager
     let gitHubPageParser: GitHubPageParser
-    let clientID: String
-    let clientSecret: String
+    private let basicAuthInfo: BasicAuthInfo
 
     public init(downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, clientID: String, clientSecret: String) {
         self.downloadManager = downloadManager
         self.gitHubPageParser = gitHubPageParser
-        self.clientID = clientID
-        self.clientSecret = clientSecret
+        basicAuthInfo = BasicAuthInfo(
+            userName: Const.gitHubClientID,
+            password: Const.gitHubClientSecret)
     }
 
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, includesReadMeIfExists: Bool) -> AnyPublisher<[Repository], Swift.Error> {
         let fetchRepositories = downloadManager
-            .fetchWebPage(url: languageTrendingLink.url(ofPeriod: period))
+            .fetch(
+                url: languageTrendingLink.url(ofPeriod: period),
+                basicAuthInfo: basicAuthInfo)
             .tryMap({ [weak self] page -> [Repository] in
                 guard let self = self else {
                     throw Error.noSelf
@@ -67,16 +69,14 @@ public class GitHubDownloader {
     }
     
     public func fetchReadMePage(pageLink: RepositoryPageLink) -> AnyPublisher<APIReadMe, Swift.Error> {
-        guard var components = URLComponents(url: pageLink.readMeAPIEndpointURL, resolvingAgainstBaseURL: false) else {
+        guard let components = URLComponents(url: pageLink.readMeAPIEndpointURL, resolvingAgainstBaseURL: false) else {
             return Fail(error: DownloadManager.Error.invalidURL).eraseToAnyPublisher()
         }
-        components.user = clientID
-        components.password = clientSecret
         guard let url = components.url else {
             return Fail(error: DownloadManager.Error.invalidURL).eraseToAnyPublisher()
         }
         return downloadManager
-            .fetchWebPage(url: url)
+            .fetch(url: url, basicAuthInfo: basicAuthInfo)
             .tryMap({ page in
                 guard let data = page.data(using: .utf8) else {
                     throw Error.unsupportedFormat
@@ -90,6 +90,6 @@ public class GitHubDownloader {
     }
 
     public func fetchTopTrendingPage() -> AnyPublisher<String, Swift.Error> {
-        return downloadManager.fetchWebPage(url: Const.gitHubTopTrendingURL)
+        return downloadManager.fetch(url: Const.gitHubTopTrendingURL)
     }
 }

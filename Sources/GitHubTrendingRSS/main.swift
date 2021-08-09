@@ -40,8 +40,6 @@ let feedManager = FeedFileCreator(
     outputDirectory: Const.outputDirectory,
     siteGenerator: siteGenerator)
 
-
-
 func start() throws -> AnyPublisher<Void, Error> {
     return gitHubDownloader
         .fetchTopTrendingPage()
