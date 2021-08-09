@@ -2,7 +2,7 @@
 
 <img alt="logo image" src="./static/img/logo.svg" width="100">
 
-![Fetch and Generate RSS Feeds](https://github.com/mshibanami/GitHubTrendingRSS/workflows/Fetch%20and%20Generate%20RSS%20Feeds/badge.svg?event=schedule)
+[![Fetch and Generate RSS Feeds](https://github.com/mshibanami/GitHubTrendingRSS/actions/workflows/generate_feeds.yml/badge.svg)](https://github.com/mshibanami/GitHubTrendingRSS/actions/workflows/generate_feeds.yml)
 ![Unit Test](https://github.com/mshibanami/GitHubTrendingRSS/workflows/Unit%20Test/badge.svg)
 
 This is an RSS feed generator for [GitHub Trending](https://github.com/trending).
