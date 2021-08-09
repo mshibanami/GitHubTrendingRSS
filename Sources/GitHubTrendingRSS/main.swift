@@ -9,6 +9,10 @@ import PathKit
 
 RunCommand().parseAndRun()
 
+enum MainError: Error {
+    case noLanguageTrendingLinks
+}
+
 let parallelDownloadChunk = 4
 let downloadManager = DownloadManager()
 let gitHubPageParser = GitHubPageParser()
@@ -36,12 +40,14 @@ let feedManager = FeedFileCreator(
     outputDirectory: Const.outputDirectory,
     siteGenerator: siteGenerator)
 
+
+
 func start() throws -> AnyPublisher<Void, Error> {
     return gitHubDownloader
         .fetchTopTrendingPage()
         .flatMap({ topTrendingPage -> AnyPublisher<Void, Error> in
             guard let languageLinks = (try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)) else {
-                return Fail(error: DownloadError.unknown).eraseToAnyPublisher()
+                return Fail(error: MainError.noLanguageTrendingLinks).eraseToAnyPublisher()
             }
             
             let fetchRepositoriesByPeriod: [[AnyPublisher<Void, Error>]] = Period.allCases.map { period in
