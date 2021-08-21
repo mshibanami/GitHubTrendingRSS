@@ -92,4 +92,17 @@ public class GitHubDownloader {
     public func fetchTopTrendingPage() -> AnyPublisher<String, Swift.Error> {
         return downloadManager.fetch(url: Const.gitHubTopTrendingURL)
     }
+    
+    public func fetchSupportedEmojis() -> AnyPublisher<[GitHubEmoji], Swift.Error> {
+        return downloadManager
+            .fetch(url: Const.gitHubAPIEmojisURL)
+            .tryMap { body -> [GitHubEmoji] in
+                guard let data = body.data(using: .utf8) else {
+                    throw Error.unsupportedFormat
+                }
+                let emojiList = try JSONDecoder().decode(APIEmojiList.self, from: data)
+                return emojiList.makeEmojis()
+            }
+            .eraseToAnyPublisher()
+    }
 }

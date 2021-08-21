@@ -41,9 +41,11 @@ let feedManager = FeedFileCreator(
     siteGenerator: siteGenerator)
 
 func start() throws -> AnyPublisher<Void, Error> {
-    return gitHubDownloader
-        .fetchTopTrendingPage()
-        .flatMap({ topTrendingPage -> AnyPublisher<Void, Error> in
+    return Publishers
+        .CombineLatest(
+            gitHubDownloader.fetchTopTrendingPage(),
+            gitHubDownloader.fetchSupportedEmojis())
+        .flatMap({ topTrendingPage, supportedEmojis -> AnyPublisher<Void, Error> in
             guard let languageLinks = (try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)) else {
                 return Fail(error: MainError.noLanguageTrendingLinks).eraseToAnyPublisher()
             }
@@ -59,7 +61,8 @@ func start() throws -> AnyPublisher<Void, Error> {
                             _ = try! feedManager.createRSSFile(
                                 repositories: repositories,
                                 languageTrendingLink: link,
-                                period: period)
+                                period: period,
+                                supportedEmojis: supportedEmojis)
                         })
                         .map { _ in () }
                         .eraseToAnyPublisher()
@@ -115,4 +118,4 @@ if let error = fetchError {
     exit(1)
 }
 
-NSLog("🎉 Finished fetching/generating feeds successfully")
+NSLog("🎉 Finished fetching & generating feeds successfully")

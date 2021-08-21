@@ -22,7 +22,7 @@ public class SiteSourceMaker {
 
     let information: Information
     let environment: Environment
-
+    
     public init(environment: Environment, information: Information) {
         self.environment = environment
         self.information = information
@@ -48,7 +48,7 @@ public class SiteSourceMaker {
             context: context)
     }
 
-    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository]) throws -> String {
+    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository], supportedEmojis: [GitHubEmoji]) throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -62,7 +62,7 @@ public class SiteSourceMaker {
             "periodText": period.rawValue.capitalized,
             "pubDate": pubDate,
             "repositories": repositories.map({
-                (description: ($0.makeReadMeHTML(includesSummary: true) ?? noDescriptionHTML).xmlEscaped,
+                (description: ($0.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis) ?? noDescriptionHTML).xmlEscaped,
                  userID: $0.pageLink.userID,
                  repositoryName: $0.pageLink.repositoryName,
                  url: $0.pageLink.url.absoluteString,

@@ -11,12 +11,13 @@ public class FeedFileCreator {
         self.rootOutputDirectory = outputDirectory
     }
 
-    public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period) throws -> URL {
+    public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period, supportedEmojis: [GitHubEmoji]) throws -> URL {
         let fileManager = FileManager.default
         let feedHTML = try siteGenerator.makeRSS(
             from: languageTrendingLink,
             period: period,
-            repositories: repositories)
+            repositories: repositories,
+            supportedEmojis: supportedEmojis)
 
         let outputDirectory = rootOutputDirectory.appendingPathComponent(period.rawValue)
 

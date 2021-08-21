@@ -6,15 +6,16 @@ import Stencil
 import XCTest
 
 final class SiteGeneratorTests: XCTestCase {
-    let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
-    let information = SiteSourceMaker.Information(
+    private let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
+    private let information = SiteSourceMaker.Information(
         pageTitle: "page title",
         author: "spring water",
         rssHomeURL: "rss home url",
         googleAnalyticsTrackingCode: "141421356",
         gitHubRepositoryURL: "github repository url")
 
-    var maker: SiteSourceMaker!
+    private var maker: SiteSourceMaker!
+    private let supportedEmojis = TestResources.supportedEmojis()
 
     override func setUp() {
         maker = SiteSourceMaker(
@@ -40,8 +41,8 @@ final class SiteGeneratorTests: XCTestCase {
             from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
             period: .weekly,
             repositories: [
-            Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"),
-            Repository(pageLink: RepositoryPageLink(href: "foo/bar"), summary: "foo bar")])
+                Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"),
+                Repository(pageLink: RepositoryPageLink(href: "foo/bar"), summary: "foo bar")], supportedEmojis: supportedEmojis)
         print(html)
     }
 }

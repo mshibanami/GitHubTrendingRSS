@@ -14,17 +14,22 @@ public struct Repository {
         self.summary = summary
     }
 
-    public func makeReadMeHTML(includesSummary: Bool) -> String? {
+    public func makeReadMeHTML(includesSummary: Bool, supportedEmojis: [GitHubEmoji]) -> String? {
         var html: String?
         if includesSummary {
             html = (html ?? "") + #"<p>\#(summary)</p><hr>"#
         }
 
         guard let readMe = readMe,
-            let readMeContent = readMe.content,
-            let readMeHTML = try? Markdown(text: readMeContent, options: .unsafe).renderHtml(),
-            let parsedHTML = try? SwiftSoup.parse(readMeHTML) else {
-                return html
+              let readMeContent = readMe.content
+        else {
+            return html
+        }
+        
+        let nomalizedContent = normalizeEmojisInReadMe(readMeContent, supportedEmojis: supportedEmojis)
+        guard let readMeHTML = try? Markdown(text: nomalizedContent, options: .unsafe).renderHtml(),
+              let parsedHTML = try? SwiftSoup.parse(readMeHTML) else {
+            return html
         }
 
         guard let blobToRawRegex = try? NSRegularExpression(
@@ -72,5 +77,25 @@ public struct Repository {
             html = (html ?? "") + readMeHTML
         }
         return html
+    }
+    
+    func normalizeEmojisInReadMe(_ readMeContent: String, supportedEmojis: [GitHubEmoji]) -> String {
+        var nomalized = readMeContent
+        for emoji in supportedEmojis {
+            let target = ":" + emoji.id + ":"
+            nomalized = nomalized.replacingOccurrences(of: target, with: emoji.markdownText)
+        }
+        return nomalized
+    }
+}
+
+private extension GitHubEmoji {
+    var markdownText: String {
+        switch (value) {
+        case .text(let text):
+            return text
+        case .image(let url):
+            return "![\(id)](\(url.absoluteString))"
+        }
     }
 }
