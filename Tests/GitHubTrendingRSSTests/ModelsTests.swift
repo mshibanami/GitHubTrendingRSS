@@ -29,6 +29,29 @@ final class ModelsTests: XCTestCase {
         XCTAssertTrue(!html.contains("https://github.com/uber/ribs/blob/assets/rib_horizontal_black.png"))
     }
 
+    func testRepositoryIncludingTable() throws {
+        var repo = Repository(
+            pageLink: RepositoryPageLink(href: "/rook/rook"),
+            summary: "Storage Orchestration for Kubernetes")
+        repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_rook_rook_readme.json"))
+        repo.readMe?.userID = "rook"
+        repo.readMe?.repositoryName = "rook"
+        let html = repo.makeReadMeHTML(includesSummary: true)!
+        XCTAssertTrue(html.contains("<table>"))
+    }
+  
+    func testRepositoryIncludingCheckbox() throws {
+        var repo = Repository(
+            pageLink: RepositoryPageLink(href: "/blueedgetechno/windows11"),
+            summary: "windows 11 in react 💻🌈⚡")
+        repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_blueedgetechno_windows11_readme.json"))
+        repo.readMe?.userID = "blueedgetechno"
+        repo.readMe?.repositoryName = "windows11"
+        let html = repo.makeReadMeHTML(includesSummary: true)!
+        XCTAssertTrue(html.contains(#"<input type="checkbox" checked disabled>"#))
+        XCTAssertTrue(html.contains(#"<input type="checkbox" disabled>"#))
+    }
+  
     func testSanitizedSVGImage1() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
