@@ -1,6 +1,6 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
-import Down
+import MarkdownSyntax
 import Foundation
 import SwiftSoup
 
@@ -22,7 +22,7 @@ public struct Repository {
 
         guard let readMe = readMe,
             let readMeContent = readMe.content,
-            let readMeHTML = try? Down(markdownString: readMeContent).toHTML(.smartUnsafe),
+            let readMeHTML = try? Markdown(text: readMeContent, options: .unsafe).renderHtml(),
             let parsedHTML = try? SwiftSoup.parse(readMeHTML) else {
                 return html
         }
