@@ -3,11 +3,14 @@
 import MarkdownSyntax
 import Foundation
 import SwiftSoup
+import SwiftAsciidoctor
 
 public struct Repository {
     public let pageLink: RepositoryPageLink
     public let summary: String
     public var readMe: APIReadMe?
+    
+    private let asciidoctor = SwiftAsciidoctor()
 
     public init(pageLink: RepositoryPageLink, summary: String) {
         self.pageLink = pageLink
@@ -21,14 +24,11 @@ public struct Repository {
         }
 
         guard let readMe = readMe,
-              let readMeContent = readMe.content
-        else {
+              let readMeHTML = renderHTML(from: readMe) else {
             return html
         }
-                
-        let nomalizedContent = normalizeEmojisInReadMe(readMeContent, supportedEmojis: supportedEmojis)
-        guard let readMeHTML = try? Markdown(text: nomalizedContent, options: .unsafe).renderHtml(),
-              let parsedHTML = try? SwiftSoup.parse(readMeHTML) else {
+        let nomalizedReadMeHTML = normalizeEmojisInHTML(readMeHTML, supportedEmojis: supportedEmojis)
+        guard let parsedHTML = try? SwiftSoup.parse(nomalizedReadMeHTML) else {
             return html
         }
 
@@ -79,23 +79,41 @@ public struct Repository {
         return html
     }
     
-    func normalizeEmojisInReadMe(_ readMeContent: String, supportedEmojis: [GitHubEmoji]) -> String {
-        var nomalized = readMeContent
+    func normalizeEmojisInHTML(_ readMeHTML: String, supportedEmojis: [GitHubEmoji]) -> String {
+        var nomalized = readMeHTML
         for emoji in supportedEmojis {
             let target = ":" + emoji.id + ":"
-            nomalized = nomalized.replacingOccurrences(of: target, with: emoji.markdownText)
+            nomalized = nomalized.replacingOccurrences(of: target, with: emoji.html)
         }
         return nomalized
+    }
+    
+    func renderHTML(from readMe: APIReadMe) -> String? {
+        guard let content = readMe.content else {
+            return nil
+        }
+        let html: String?
+        switch readMe.fileType {
+        case .markdown, .unknown:
+            html = try? Markdown(text: content, options: .unsafe).renderHtml()
+        case .asciiDoc:
+            html = try? asciidoctor.convert(
+                content,
+                options: [.attributes([
+                    "showtitle": true,
+                ])])
+        }
+        return html
     }
 }
 
 private extension GitHubEmoji {
-    var markdownText: String {
+    var html: String {
         switch (value) {
         case .text(let text):
-            return text
+            return "<span>\(text)</span>"
         case .image(let url):
-            return "![\(id)](\(url.absoluteString))"
+            return "<img alt='\(id)' src='\(url.absoluteString)' />)"
         }
     }
 }

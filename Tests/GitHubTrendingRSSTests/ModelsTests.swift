@@ -53,6 +53,17 @@ final class ModelsTests: XCTestCase {
         XCTAssertTrue(html.contains("✨"))
     }
     
+    func testAsciiDoc() throws {
+        var repo = Repository(
+            pageLink: RepositoryPageLink(href: "/spring-projects/spring-authorization-server"),
+            summary: "A community-driven project led by the Spring Security team and is focused on delivering Authorization Server support to the Spring community")
+        repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_spring-projects_spring-authorization-server_readme.json"))
+        repo.readMe?.userID = "spring-projects"
+        repo.readMe?.repositoryName = "spring-authorization-server"
+        let html = repo.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis)!
+        XCTAssertTrue(html.contains(#"<h1 id="_spring_authorization_server" class="sect0">Spring Authorization Server</h1>"#))
+    }
+    
     func testRepositoryIncludingCheckbox() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/blueedgetechno/windows11"),

@@ -6,6 +6,23 @@
 import Foundation
 
 public struct APIReadMe: Codable {
+    public enum FileType: CaseIterable {
+        case unknown
+        case markdown
+        case asciiDoc
+        
+        var extensions: [String] {
+            switch self {
+            case .unknown:
+                return []
+            case .markdown:
+                return ["markdown", "mdown", "mkdn", "md"]
+            case .asciiDoc:
+                return ["asciidoc", "adoc", "asc"]
+            }
+        }
+    }
+    
     public var name: String?
     public var path: String?
     public var sha: String?
@@ -38,6 +55,16 @@ public struct APIReadMe: Codable {
         return URL(string: "https://raw.githubusercontent.com/\(userID)/\(repositoryName)/\(branchName)/")
     }
 
+    public var fileType: FileType {
+        guard let fileExtension = name?.split(separator: ".").last else {
+            return .unknown
+        }
+        for fileType in FileType.allCases where fileType.extensions.contains(String(fileExtension)) {
+            return fileType
+        }
+        return .unknown
+    }
+    
     enum CodingKeys: String, CodingKey {
         case name
         case path
