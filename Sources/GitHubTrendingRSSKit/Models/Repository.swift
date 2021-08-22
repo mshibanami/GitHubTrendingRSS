@@ -25,7 +25,7 @@ public struct Repository {
         else {
             return html
         }
-        
+                
         let nomalizedContent = normalizeEmojisInReadMe(readMeContent, supportedEmojis: supportedEmojis)
         guard let readMeHTML = try? Markdown(text: nomalizedContent, options: .unsafe).renderHtml(),
               let parsedHTML = try? SwiftSoup.parse(readMeHTML) else {

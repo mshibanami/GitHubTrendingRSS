@@ -19,3 +19,4 @@ Feeds of some popular languages (e.g. JavaScript) have more details than others.
 - [hebertialmeida / MarkdownSyntax](https://github.com/hebertialmeida/MarkdownSyntax)
 - [hartbit / Yaap](https://github.com/hartbit/Yaap)
 - [jgthms / bulma](https://github.com/jgthms/bulma)
+- [mshibanami / SwiftAsciidoctor](https://github.com/mshibanami/SwiftAsciidoctor)

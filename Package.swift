@@ -9,10 +9,11 @@ let package = Package(
         .macOS(.v10_15)
     ],
     dependencies: [
-        .package(url: "https://github.com/hartbit/Yaap.git", from: "1.0.0"),
-        .package(url: "https://github.com/hebertialmeida/MarkdownSyntax.git", from: "1.1.0"),
-        .package(url: "https://github.com/scinfu/SwiftSoup.git", from: "2.3.2"),
-        .package(url: "https://github.com/stencilproject/Stencil.git", from: "0.14.1"),
+        .package(url: "https://github.com/hartbit/Yaap", from: "1.0.0"),
+        .package(url: "https://github.com/hebertialmeida/MarkdownSyntax", from: "1.1.0"),
+        .package(url: "https://github.com/scinfu/SwiftSoup", from: "2.3.2"),
+        .package(url: "https://github.com/stencilproject/Stencil", from: "0.14.1"),
+        .package(url: "https://github.com/mshibanami/SwiftAsciidoctor", from: "1.0.2"),
     ],
     targets: [
         .target(
@@ -27,6 +28,7 @@ let package = Package(
               "MarkdownSyntax",
               "Stencil",
               "SwiftSoup",
+              "SwiftAsciidoctor",
           ]),
         .testTarget(
             name: "GitHubTrendingRSSTests",
