@@ -64,6 +64,7 @@ public class Const {
         "python",
         "r",
         "ruby",
+        "rust",
         "scala",
         "shell",
         "swift",
