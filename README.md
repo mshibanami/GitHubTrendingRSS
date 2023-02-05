@@ -5,13 +5,13 @@
 [![Fetch and Generate RSS Feeds](https://github.com/mshibanami/GitHubTrendingRSS/actions/workflows/generate_feeds.yml/badge.svg)](https://github.com/mshibanami/GitHubTrendingRSS/actions/workflows/generate_feeds.yml)
 [![Unit Test](https://github.com/mshibanami/GitHubTrendingRSS/actions/workflows/test.yml/badge.svg)](https://github.com/mshibanami/GitHubTrendingRSS/actions/workflows/test.yml)
 
-This is an RSS feed generator for [GitHub Trending](https://github.com/trending).
+This project generates RSS feeds for [GitHub Trending](https://github.com/trending) using GitHub Actions.
 
-GitHub Actions of this repository run this tool everyday and the generated feeds are hosted on GitHub Pages. You can check the current feeds' status here: [Fetch and Generate RSS Feeds](https://github.com/mshibanami/GitHubTrendingRSS/actions?query=workflow%3A%22Fetch+and+Generate+RSS+Feeds%22).
+These actions run daily to create the feeds, which are then hosted on GitHub Pages. You can check their status [here](https://github.com/mshibanami/GitHubTrendingRSS/actions?query=workflow%3A%22Fetch+and+Generate+RSS+Feeds%22).
 
-Feeds of some popular languages (e.g. JavaScript) have more details than others. It's specified [here](https://github.com/mshibanami/GitHubTrendingRSS/blob/ea64981/Sources/GitHubTrendingRSSKit/Const.swift#L31) so please feel free to send a PR to add another language if your favorite one isn't there, or just fork this repository and create a scheduled job with GitHub Actions to host your own feeds.
+Feeds for some popular programming languages, such as Python and JavaScript, have more details than others. If your favorite language is not included in [this list](https://github.com/mshibanami/GitHubTrendingRSS/blob/master/Sources/GitHubTrendingRSSKit/Const.swift#L39), you can contribute by sending a pull request to add it. Alternatively, you can fork this repository and host your own feeds using GitHub Actions.
 
-## Aknowledgements
+## Acknowledgements
 
 - [stencilproject / Stencil](https://github.com/stencilproject/Stencil)
 - [kylef / PathKit](https://github.com/kylef/PathKit)
