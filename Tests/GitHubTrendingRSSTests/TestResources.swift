@@ -1,8 +1,8 @@
 // Copyright (c) 2019 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
-import XCTest
 @testable import GitHubTrendingRSSKit
+import XCTest
 
 // TODO: refactor after https://bugs.swift.org/browse/SR-2866 was solved
 class TestResources {
@@ -43,7 +43,7 @@ class TestResources {
         let emojiList = try! JSONDecoder().decode(APIEmojiList.self, from: data)
         return emojiList.makeEmojis()
     }
-    
+
     static func getData(ofFileName fileName: String) -> Data {
         return try! Data(contentsOf: TestResources.rootURL.appendingPathComponent(fileName))
     }

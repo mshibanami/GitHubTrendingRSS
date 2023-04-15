@@ -10,7 +10,7 @@ public struct APIReadMe: Codable {
         case unknown
         case markdown
         case asciiDoc
-        
+
         var extensions: [String] {
             switch self {
             case .unknown:
@@ -22,7 +22,7 @@ public struct APIReadMe: Codable {
             }
         }
     }
-    
+
     public var name: String?
     public var path: String?
     public var sha: String?
@@ -64,7 +64,7 @@ public struct APIReadMe: Codable {
         }
         return .unknown
     }
-    
+
     enum CodingKeys: String, CodingKey {
         case name
         case path

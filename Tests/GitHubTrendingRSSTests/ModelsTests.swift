@@ -40,7 +40,7 @@ final class ModelsTests: XCTestCase {
         let html = repo.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis)!
         XCTAssertTrue(html.contains("<table>"))
     }
-  
+
     func testRepositoryIncludingGitHubEmoji() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/WebpageFX/emoji-cheat-sheet.com"),
@@ -52,7 +52,7 @@ final class ModelsTests: XCTestCase {
         XCTAssertTrue(html.contains("❤️"))
         XCTAssertTrue(html.contains("✨"))
     }
-    
+
     func testAsciiDoc() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/spring-projects/spring-authorization-server"),
@@ -63,7 +63,7 @@ final class ModelsTests: XCTestCase {
         let html = repo.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis)!
         XCTAssertTrue(html.contains(#"<h1 id="_spring_authorization_server" class="sect0">Spring Authorization Server</h1>"#))
     }
-    
+
     func testRepositoryIncludingCheckbox() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/blueedgetechno/windows11"),
@@ -75,7 +75,7 @@ final class ModelsTests: XCTestCase {
         XCTAssertTrue(html.contains(#"<input type="checkbox" checked disabled>"#))
         XCTAssertTrue(html.contains(#"<input type="checkbox" disabled>"#))
     }
-  
+
     func testSanitizedSVGImage1() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),

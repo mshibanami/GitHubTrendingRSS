@@ -22,7 +22,7 @@ public class SiteSourceMaker {
 
     let information: Information
     let environment: Environment
-    
+
     public init(environment: Environment, information: Information) {
         self.environment = environment
         self.information = information

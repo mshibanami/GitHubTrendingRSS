@@ -92,7 +92,7 @@ public class GitHubDownloader {
     public func fetchTopTrendingPage() -> AnyPublisher<String, Swift.Error> {
         return downloadManager.fetch(url: Const.gitHubTopTrendingURL)
     }
-    
+
     public func fetchSupportedEmojis() -> AnyPublisher<[GitHubEmoji], Swift.Error> {
         return downloadManager
             .fetch(url: Const.gitHubAPIEmojisURL, basicAuthInfo: basicAuthInfo)

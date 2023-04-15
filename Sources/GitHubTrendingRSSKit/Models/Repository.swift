@@ -1,15 +1,15 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
-import MarkdownSyntax
 import Foundation
-import SwiftSoup
+import MarkdownSyntax
 import SwiftAsciidoctor
+import SwiftSoup
 
 public struct Repository {
     public let pageLink: RepositoryPageLink
     public let summary: String
     public var readMe: APIReadMe?
-    
+
     private let asciidoctor = SwiftAsciidoctor()
 
     public init(pageLink: RepositoryPageLink, summary: String) {
@@ -78,7 +78,7 @@ public struct Repository {
         }
         return html
     }
-    
+
     func normalizeEmojisInHTML(_ readMeHTML: String, supportedEmojis: [GitHubEmoji]) -> String {
         var nomalized = readMeHTML
         for emoji in supportedEmojis {
@@ -87,7 +87,7 @@ public struct Repository {
         }
         return nomalized
     }
-    
+
     func renderHTML(from readMe: APIReadMe) -> String? {
         guard let content = readMe.content else {
             return nil
@@ -100,7 +100,7 @@ public struct Repository {
             html = try? asciidoctor.convert(
                 content,
                 options: [.attributes([
-                    "showtitle": true,
+                    "showtitle": true
                 ])])
         }
         return html
@@ -109,7 +109,7 @@ public struct Repository {
 
 private extension GitHubEmoji {
     var html: String {
-        switch (value) {
+        switch value {
         case .text(let text):
             return "<span>\(text)</span>"
         case .image(let url):
