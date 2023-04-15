@@ -42,7 +42,7 @@ public class GitHubPageParser {
         var repositories = [Repository]()
 
         for li in repositoryArticleList {
-            guard let titleATag = try? li.select("h1 > a"),
+            guard let titleATag = try? li.select("h2 > a"),
                 let summaryPTag = try? li.select("p") else {
                     continue
             }
