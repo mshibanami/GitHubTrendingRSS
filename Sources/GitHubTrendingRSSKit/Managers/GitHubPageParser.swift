@@ -43,7 +43,7 @@ public class GitHubPageParser {
 
         for li in repositoryArticleList {
             guard let titleATag = try? li.select("h2 > a"),
-                let summaryPTag = try? li.select("p") else {
+                let summaryPTag = try? li.select("h2 ~ p") else {
                     continue
             }
 
