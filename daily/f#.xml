@@ -1,0 +1,710 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub F# Daily Trending</title>
+    <description>Daily Trending of F# in GitHub</description>
+    <pubDate>Thu, 28 Mar 2024 01:26:32 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>yatli/fvim</title>
+      <link>https://github.com/yatli/fvim</link>
+      <description>&lt;p&gt;Cross platform Neovim front-end UI, built with F# + Avalonia&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;FVim&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/fvim.png&quot; width=&quot;40&quot; height=&quot;40&quot;&gt; &lt;a href=&quot;https://dev.azure.com/v-yadli/fvim/_build/latest?definitionId=2&amp;amp;branchName=master&quot;&gt;&lt;img src=&quot;https://dev.azure.com/v-yadli/fvim/_apis/build/status/yatli.fvim?branchName=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;Cross platform Neovim front-end UI, built with &lt;a href=&quot;https://fsharp.org/&quot;&gt;F#&lt;/a&gt; + &lt;a href=&quot;http://avaloniaui.net/&quot;&gt;Avalonia&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/images/screenshot.png&quot; alt=&quot;Screenshot&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/yatli/fvim/releases&quot;&gt;Download&lt;/a&gt; the latest release package for your system, extract and run &lt;code&gt;FVim&lt;/code&gt;!&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For Windows 7 / Vista / 8.1 / Server 2008 R2 / Server 2012 R2, use the &lt;code&gt;win7-x64&lt;/code&gt; package. 
+  &lt;ul&gt; 
+   &lt;li&gt;Follow &lt;a href=&quot;https://docs.microsoft.com/en-us/dotnet/core/install/windows?tabs=netcore31&amp;amp;pivots=os-windows#additional-deps&quot;&gt;these additional steps to install compatibility patches&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;The link to the KB update is no longer functioning. &lt;a href=&quot;https://github.com/dotnet/docs/issues/20459&quot;&gt;The issue is tracked here&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;For Windows 10, use the &lt;code&gt;win-x64&lt;/code&gt; package -- this version has faster startup.&lt;/li&gt; 
+ &lt;li&gt;For macOS, it&#39;s packaged as an app bundle -- unzip and drag it to your applications folder.&lt;/li&gt; 
+ &lt;li&gt;For Linux: 
+  &lt;ul&gt; 
+   &lt;li&gt;Debian based distributions: &lt;code&gt;dpkg -i fvim_package_name.deb&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Arch Linux: &lt;a href=&quot;https://aur.archlinux.org/packages/fvim/&quot;&gt;Install via AUR&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;RPM-based distributions: &lt;code&gt;rpm -ivh fvim_package_name.rpm&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Fedora: &lt;code&gt;dnf install fvim_package_name.rpm&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Compile from Source (having dotnet-sdk-6.0.x installed): &lt;pre&gt;&lt;code&gt;    git clone https://github.com/yatli/fvim &amp;amp;&amp;amp; cd fvim &amp;amp;&amp;amp; dotnet publish -f net6.0 -c Release -r linux-x64 --self-contained
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Features&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Theming done the (Neo)Vim way 
+  &lt;ul&gt; 
+   &lt;li&gt;Cursor color/blink&lt;/li&gt; 
+   &lt;li&gt;Background image/composition&lt;/li&gt; 
+   &lt;li&gt;Custom UI elements are themed with &lt;code&gt;colorscheme&lt;/code&gt; settings&lt;/li&gt; 
+   &lt;li&gt;And more!&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Font handling 
+  &lt;ul&gt; 
+   &lt;li&gt;Proper font rendering -- respects font style, baseline, &lt;a href=&quot;https://github.com/tonsky/FiraCode&quot;&gt;ligatures&lt;/a&gt; etc.&lt;/li&gt; 
+   &lt;li&gt;Built-in support for Nerd font -- no need to patch your fonts!&lt;/li&gt; 
+   &lt;li&gt;East Asia wide glyph display with font fallback options&lt;/li&gt; 
+   &lt;li&gt;Fine-grained font tweaking knobs for personal font rendering&lt;/li&gt; 
+   &lt;li&gt;Emojis!&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;GUI framework 
+  &lt;ul&gt; 
+   &lt;li&gt;HiDPI support -- try dragging it across two screens with different DPIs ;)&lt;/li&gt; 
+   &lt;li&gt;High performance rendering, low latency (60FPS on 4K display with reasonable font size!)&lt;/li&gt; 
+   &lt;li&gt;GPU acceleration&lt;/li&gt; 
+   &lt;li&gt;Multi-grid support -- try &lt;code&gt;Ctrl-w ge&lt;/code&gt; to detach a window into a separate OS window!&lt;/li&gt; 
+   &lt;li&gt;Input method support built from scratch&lt;/li&gt; 
+   &lt;li&gt;Rich information scrollbar (currently read-only)&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/yatli/gui-widgets.nvim&quot;&gt;Extend with UI Server Protocol&lt;/a&gt; -- UI widgets as NeoVim plugins&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Remoting 
+  &lt;ul&gt; 
+   &lt;li&gt;Use a Windows FVim frontend with a WSL neovim: &lt;code&gt;fvim --wsl&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Use custom neovim binary: &lt;code&gt;fvim --nvim ~/bin/nvim.appimage&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Use the front end with a remote neovim: &lt;code&gt;fvim --ssh user@host&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Connect to a remote NeoVim backend: &lt;code&gt;fvim --connect localhost:9527&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;tmux-like session server: &lt;code&gt;fvim --fvr attach --ssh user@host&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;As a terminal emulator: &lt;code&gt;fvim --terminal&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Try these bindings (note, fvim-specific settings only work in &lt;code&gt;ginit.vim&lt;/code&gt;, not &lt;code&gt;init.vim&lt;/code&gt;!):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-vimL&quot;&gt;if exists(&#39;g:fvim_loaded&#39;)
+    &quot; good old &#39;set guifont&#39; compatibility with HiDPI hints...
+    if g:fvim_os == &#39;windows&#39; || g:fvim_render_scale &amp;gt; 1.0
+      set guifont=Iosevka\ Slab:h14
+    else
+      set guifont=Iosevka\ Slab:h28
+    endif
+      
+    &quot; Ctrl-ScrollWheel for zooming in/out
+    nnoremap &amp;lt;silent&amp;gt; &amp;lt;C-ScrollWheelUp&amp;gt; :set guifont=+&amp;lt;CR&amp;gt;
+    nnoremap &amp;lt;silent&amp;gt; &amp;lt;C-ScrollWheelDown&amp;gt; :set guifont=-&amp;lt;CR&amp;gt;
+    nnoremap &amp;lt;A-CR&amp;gt; :FVimToggleFullScreen&amp;lt;CR&amp;gt;
+endif
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Some fancy cursor effects:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-vimL&quot;&gt;if exists(&#39;g:fvim_loaded&#39;)
+    FVimCursorSmoothMove v:true
+    FVimCursorSmoothBlink v:true
+endif
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/yatli/fvim/master/images/fluent_cursor.gif&quot; alt=&quot;fluent_cursor&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;Detaching a window into an external OS window with &lt;code&gt;Ctrl-w ge&lt;/code&gt;: &lt;img src=&quot;https://raw.githubusercontent.com/yatli/fvim/master/images/ext_win.gif&quot; alt=&quot;ext_win&quot;&gt; Detach as many and span them over your monitors!&lt;/p&gt; 
+&lt;p&gt;Custom popup menu entry icons (see below for how to configure): &lt;img src=&quot;https://user-images.githubusercontent.com/20684720/159672096-2630cbda-243d-46c3-b8f7-6d0a4743dffe.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;Building from source&lt;/h3&gt; 
+&lt;p&gt;We&#39;re now targeting &lt;code&gt;net6.0&lt;/code&gt; so make sure to install the latest preview SDK from the &lt;a href=&quot;https://dotnet.microsoft.com/download/dotnet/6.0&quot;&gt;.NET site&lt;/a&gt;. We&#39;re actively tracking the head of &lt;code&gt;Avalonia&lt;/code&gt;, and fetch the nightly packages from myget (see &lt;code&gt;NuGet.config&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;Then, simply:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/yatli/fvim
+cd fvim
+dotnet build -c Release
+dotnet run -c Release
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;FVim-specific commands&lt;/h3&gt; 
+&lt;p&gt;The following new commands are available:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-vimL&quot;&gt;&quot; Toggle between normal and fullscreen
+FVimToggleFullScreen
+
+&quot; Cursor tweaks
+FVimCursorSmoothMove v:true
+FVimCursorSmoothBlink v:true
+
+&quot; Background composition
+FVimBackgroundComposition &#39;acrylic&#39;   &quot; &#39;none&#39;, &#39;transparent&#39;, &#39;blur&#39; or &#39;acrylic&#39;
+FVimBackgroundOpacity 0.85            &quot; value between 0 and 1, default bg opacity.
+FVimBackgroundAltOpacity 0.85         &quot; value between 0 and 1, non-default bg opacity.
+FVimBackgroundImage &#39;C:/foobar.png&#39;   &quot; background image
+FVimBackgroundImageVAlign &#39;center&#39;    &quot; vertial position, &#39;top&#39;, &#39;center&#39; or &#39;bottom&#39;
+FVimBackgroundImageHAlign &#39;center&#39;    &quot; horizontal position, &#39;left&#39;, &#39;center&#39; or &#39;right&#39;
+FVimBackgroundImageStretch &#39;fill&#39;     &quot; &#39;none&#39;, &#39;fill&#39;, &#39;uniform&#39;, &#39;uniformfill&#39;
+FVimBackgroundImageOpacity 0.85       &quot; value between 0 and 1, bg image opacity
+
+&quot; Title bar tweaks
+FVimCustomTitleBar v:true             &quot; themed with colorscheme
+
+&quot; Debug UI overlay
+FVimDrawFPS v:true
+
+&quot; Font tweaks
+FVimFontAntialias v:true
+FVimFontAutohint v:true
+FVimFontHintLevel &#39;full&#39;
+FVimFontLigature v:true
+FVimFontLineHeight &#39;+1.0&#39; &quot; can be &#39;default&#39;, &#39;14.0&#39;, &#39;-1.0&#39; etc.
+FVimFontSubpixel v:true
+FVimFontNoBuiltinSymbols v:true &quot; Disable built-in Nerd font symbols
+
+&quot; Try to snap the fonts to the pixels, reduces blur
+&quot; in some situations (e.g. 100% DPI).
+FVimFontAutoSnap v:true
+
+&quot; Font weight tuning, possible valuaes are 100..900
+FVimFontNormalWeight 400
+FVimFontBoldWeight 700
+
+&quot; Font debugging -- draw bounds around each glyph
+FVimFontDrawBounds v:true
+
+&quot; UI options (all default to v:false)
+FVimUIPopupMenu v:true      &quot; external popup menu
+FVimUIWildMenu v:false      &quot; external wildmenu -- work in progress
+
+&quot; Keyboard mapping options
+FVimKeyDisableShiftSpace v:true &quot; disable unsupported sequence &amp;lt;S-Space&amp;gt;
+FVimKeyAutoIme v:true           &quot; Automatic input method engagement in Insert mode
+FVimKeyAltGr v:true             &quot; Recognize AltGr. Side effect is that &amp;lt;C-A-Key&amp;gt; is then impossible
+
+&quot; Default options (workspace-agnostic)
+FVimDefaultWindowWidth 1600     &quot; Default window size in a new workspace
+FVimDefaultWindowHeight 900
+
+&quot; Detach from a remote session without killing the server
+&quot; If this command is executed on a standalone instance,
+&quot; the embedded process will be terminated anyway.
+FVimDetach
+
+&quot; =========== BREAKING CHANGES -- the following commands are disabled ============
+&quot; FVimUIMultiGrid v:true     -- per-window grid system -- done and enabled by default
+&quot; FVimUITabLine v:false      -- external tabline -- not implemented
+&quot; FVimUICmdLine v:false      -- external cmdline -- not implemented
+&quot; FVimUIMessages v:false     -- external messages -- not implemented
+&quot; FVimUITermColors v:false   -- not implemented
+&quot; FVimUIHlState v:false      -- not implemented
+
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Startup options&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;Usage: FVim [FVim-args] [NeoVim-args]
+
+FVim-args:
+
+    =========================== Client options ===================================
+
+    --ssh user@host             Start NeoVim remotely over ssh
+    --wsl                       Start NeoVim in WSL
+    --nvim path-to-program      Use an alternative nvim program
+
+    --nvr target                Connect to a remote NeoVim backend. The target
+                                can be an IP endpoint (127.0.0.1:9527), or a
+                                Unix socket address (/tmp/path/to/socket), or a
+                                Windows named pipe (PipeName).
+
+    --setup                     Registers FVim as a text editor, and updates
+                                file association and icons. Requires UAC
+                                elevation on Windows.
+    --uninstall                 Unregisters FVim as a text editor, and removes
+                                file association and icons. Requires UAC
+                                elevation on Windows.
+
+    =========================== FVim Remoting ====================================
+                                
+    --daemon                    Start a FVR multiplexer server.
+                                Can be used with --nvim for alternative program.
+
+    --pipe name                 Override the named pipe address of the daemon.
+                                When this option is not given, defaults to
+                                &#39;/tmp/fvr-main&#39;
+
+    --fvr id [FILES...]         Connects to a FVR server.
+    --fvr a[ttach] [FILES...]    - id: an integer session id to connect
+    --fvr n[ew] [args...]        - attach: attach to the first available session 
+                                 - new: create a new session with args passed to
+                                   NeoVim.
+                                Can be used with --ssh or --wsl for connecting a
+                                remote server. If neither is specified, connects
+                                to the local server.
+                                Can be used with --pipe to override the server 
+                                address.
+
+    =========================== Debug options ====================================
+
+    --trace-to-stdout           Trace to stdout.
+    --trace-to-file             Trace to a file.
+    --trace-patterns            Filter trace output by a list of keyword strings
+
+    =========================== Terminal emulator ================================
+
+    --terminal                  Start as a terminal emulator.
+    --terminal-cmd              Command to run instead of the default shell.
+
+
+The FVim arguments will be consumed and filtered before the rest are passed to NeoVim.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Custom PUM icons&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Category&lt;/th&gt; 
+   &lt;th&gt;PUM text&lt;/th&gt; 
+   &lt;th&gt;FVim&lt;/th&gt; 
+   &lt;th&gt;NERD equivalent&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Text&lt;/td&gt; 
+   &lt;td&gt;t&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Text_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Method&lt;/td&gt; 
+   &lt;td&gt;:&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Method_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Function&lt;/td&gt; 
+   &lt;td&gt;f&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Method_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Constructor&lt;/td&gt; 
+   &lt;td&gt;c&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/NewClass_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Field&lt;/td&gt; 
+   &lt;td&gt;.&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Field_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;ﰠ&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Variable&lt;/td&gt; 
+   &lt;td&gt;v&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/LocalVariable_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Class&lt;/td&gt; 
+   &lt;td&gt;C&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Class_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;ﴯ&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Interface&lt;/td&gt; 
+   &lt;td&gt;I&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Interface_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Module&lt;/td&gt; 
+   &lt;td&gt;M&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Module_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Property&lt;/td&gt; 
+   &lt;td&gt;p&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Property_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;ﰠ&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Unit&lt;/td&gt; 
+   &lt;td&gt;U&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Dimension_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;塞&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Value&lt;/td&gt; 
+   &lt;td&gt;l&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Literal_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Enum&lt;/td&gt; 
+   &lt;td&gt;E&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Enumerator_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Keyword&lt;/td&gt; 
+   &lt;td&gt;k&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/IntelliSenseKeyword_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Snippet&lt;/td&gt; 
+   &lt;td&gt;s&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Snippet_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Color&lt;/td&gt; 
+   &lt;td&gt;K&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/ColorPalette_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;File&lt;/td&gt; 
+   &lt;td&gt;F&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/TextFile_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Reference&lt;/td&gt; 
+   &lt;td&gt;r&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Reference_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Folder&lt;/td&gt; 
+   &lt;td&gt;d&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Folder_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;EnumMember&lt;/td&gt; 
+   &lt;td&gt;m&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/EnumItem_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Constant&lt;/td&gt; 
+   &lt;td&gt;0&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Constant_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Struct&lt;/td&gt; 
+   &lt;td&gt;S&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Structure_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;פּ&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Event&lt;/td&gt; 
+   &lt;td&gt;e&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Event_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Operator&lt;/td&gt; 
+   &lt;td&gt;o&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Operator_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;TypeParameter&lt;/td&gt; 
+   &lt;td&gt;T&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/yatli/fvim/raw/master/Assets/intellisense/Type_16x.png&quot; alt=&quot;Symbol&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;T&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;So instead of populating your symbol dictionary with the NERD-specific characters, use textual characters. FVim will pick them up and display graphical icons stored in &lt;code&gt;Assets/intellisense&lt;/code&gt; instead.&lt;/p&gt; 
+&lt;h3&gt;Goals&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Keep up with the latest NeoVim features&lt;/li&gt; 
+ &lt;li&gt;Ergonomics improvements via GUI/native OS integration&lt;/li&gt; 
+ &lt;li&gt;Drive the flexible and accessible UI extension method &quot;UI Server Protocol&quot; 
+  &lt;ul&gt; 
+   &lt;li&gt;The idea is to establish a standard protocol for UI extensions, so that the nice GUI additions are not limited to one specific front-end. Think of a front end as a UI server handling UI Server Protocol requests issued from front-end-agnostic plugins. It&#39;s like Language Server Protocol, but for UI.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Non-Goals&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Electron ecosystem integration :p&lt;/li&gt; 
+ &lt;li&gt;No walled garden. Everything should be accessible from the NeoVim core, which means: 
+  &lt;ul&gt; 
+   &lt;li&gt;No project explorers -- use a NeoVim plugin&lt;/li&gt; 
+   &lt;li&gt;No custom tab lines / document wells -- use a NeoVim plugin&lt;/li&gt; 
+   &lt;li&gt;No side-by-side markdown viewer, unless it&#39;s a NeoVim plugin, implemented via the UI-Protocol extensions.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Fellow Front-Ends (to name a few)&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/neovide/neovide&quot;&gt;Neovide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/akiyosi/goneovim&quot;&gt;goneovim&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/vhakulinen/gnvim&quot;&gt;Gnvim&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/smolck/uivonim&quot;&gt;Uivonim&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/glacambre/firenvim&quot;&gt;firenvim&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>fsprojects/Paket</title>
+      <link>https://github.com/fsprojects/Paket</link>
+      <description>&lt;p&gt;A dependency manager for .NET with support for NuGet packages and Git repositories.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/fsprojects/Paket?branch=master&quot;&gt;&lt;img src=&quot;https://api.travis-ci.org/fsprojects/Paket.svg?branch=master&quot; alt=&quot;Travis build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/paket/paket/branch/master&quot;&gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/f77ejdp6mtkris2u/branch/master?svg=true&quot; alt=&quot;Appveyor Build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.nuget.org/packages/Paket/&quot;&gt;&lt;img src=&quot;https://img.shields.io/nuget/v/Paket.svg?style=flat&quot; alt=&quot;NuGet Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/fsprojects/Paket?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/Join%20Chat.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/fsprojects/Paket&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/PaketManager&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Twitter-PaketManager-blue.svg?sanitize=true&quot; alt=&quot;Twitter&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Paket&lt;/h1&gt; 
+&lt;p&gt;A dependency manager for .NET with support for NuGet packages and git repositories.&lt;/p&gt; 
+&lt;h2&gt;Why Paket?&lt;/h2&gt; 
+&lt;p&gt;NuGet &lt;a href=&quot;https://raw.githubusercontent.com/fsprojects/Paket/master/%5Burl%5D(https://devblogs.microsoft.com/nuget/announcing-nuget-6-3-transitive-dependencies-floating-versions-and-re-enabling-signed-package-verification/)&quot;&gt;did not&lt;/a&gt; separate out the concept of transitive dependencies. If you install a package into your project and that package has further dependencies then all transitive packages are included in the packages.config. There is no way to tell which packages are only transitive dependencies.&lt;/p&gt; 
+&lt;p&gt;Even more importantly: If two packages reference conflicting versions of a package, NuGet will silently take the latest version (&lt;a href=&quot;https://fsprojects.github.io/Paket/controlling-nuget-resolution.html&quot;&gt;read more&lt;/a&gt;). You have no control over this process.&lt;/p&gt; 
+&lt;p&gt;Paket on the other hand maintains this information on a consistent and stable basis within the &lt;a href=&quot;https://fsprojects.github.io/Paket/lock-file.html&quot;&gt;&lt;code&gt;paket.lock&lt;/code&gt; file&lt;/a&gt; in the solution root. This file, together with the &lt;a href=&quot;https://fsprojects.github.io/Paket/dependencies-file.html&quot;&gt;&lt;code&gt;paket.dependencies&lt;/code&gt; file&lt;/a&gt; enables you to determine exactly what&#39;s happening with your dependencies.&lt;/p&gt; 
+&lt;p&gt;Paket also enables you to &lt;a href=&quot;https://fsprojects.github.io/Paket/git-dependencies.html&quot;&gt;reference files directly from git&lt;/a&gt; repositories or any &lt;a href=&quot;https://fsprojects.github.io/Paket/http-dependencies.html&quot;&gt;http-resource&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For more reasons see the &lt;a href=&quot;https://fsprojects.github.io/Paket/faq.html&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Online resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/fsprojects/Paket/&quot;&gt;Source code&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fsprojects.github.io/Paket/&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fsprojects.github.io/Paket/get-started.html&quot;&gt;Getting started guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Download &lt;a href=&quot;https://github.com/fsprojects/Paket/releases/latest&quot;&gt;paket.exe&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Download &lt;a href=&quot;https://github.com/fsprojects/Paket/releases/latest&quot;&gt;paket.bootstrapper.exe&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Troubleshooting and support&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Found a bug or missing a feature? Feed the &lt;a href=&quot;https://github.com/fsprojects/Paket/issues&quot;&gt;issue tracker&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Announcements and related miscellanea through Twitter (&lt;a href=&quot;https://twitter.com/PaketManager&quot;&gt;@PaketManager&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Prerequisites&lt;/h2&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;As of &lt;a href=&quot;https://github.com/fsprojects/Paket/pull/2664&quot;&gt;https://github.com/fsprojects/Paket/pull/2664&lt;/a&gt;, paket now automatically bootstraps all required dependencies and builds on a clean windows installation.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Linux&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;up-to-date Mono (&amp;gt;= 5.0 required, &amp;gt;= 5.2 recommended, just install the latest nightly)&lt;/li&gt; 
+ &lt;li&gt;up-to-date MSBuild (&amp;gt;= 15.0, support for &quot;Directory.Build.props&quot; required)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;On most distros, it should be enough to follow &lt;a href=&quot;http://www.mono-project.com/docs/getting-started/install/linux/&quot;&gt;this guide&lt;/a&gt; and install &lt;code&gt;mono-devel&lt;/code&gt;, which contains MSBuild. Note: if the paket build script fails at &lt;code&gt;paket restore&lt;/code&gt; just rerun it a few times until it succeeds.&lt;/p&gt; 
+&lt;h2&gt;Quick contributing guide&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Fork and clone locally.&lt;/li&gt; 
+ &lt;li&gt;Build the solution with Visual Studio, &lt;code&gt;build.cmd&lt;/code&gt; or &lt;code&gt;build.sh&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Create a topic specific branch in git. Add a nice feature in the code. Do not forget to add tests and/or docs.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;build.cmd&lt;/code&gt; (&lt;code&gt;build.sh&lt;/code&gt; on Mono) to make sure all tests are still passing.&lt;/li&gt; 
+ &lt;li&gt;When built, you&#39;ll find the binaries in &lt;code&gt;./bin&lt;/code&gt; which you can then test with locally, to ensure the bug or feature has been successfully implemented.&lt;/li&gt; 
+ &lt;li&gt;Send a Pull Request.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you want to contribute to the &lt;a href=&quot;https://fsprojects.github.io/Paket/&quot;&gt;docs&lt;/a&gt; then please modify the markdown files in &lt;code&gt;/docs/content&lt;/code&gt; and send a pull request. Note, that short description and syntax for each command is generated automatically from the &lt;code&gt;Paket.Commands&lt;/code&gt; module.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/fsprojects/Paket/raw/master/LICENSE.txt&quot;&gt;MIT license&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Maintainer(s)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/forki&quot;&gt;@forki&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/agross&quot;&gt;@agross&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/cloudroutine&quot;&gt;@cloudroutine&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/matthid&quot;&gt;@matthid&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/isaacabraham&quot;&gt;@isaacabraham&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/theimowski&quot;&gt;@theimowski&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The default maintainer account for projects under &quot;fsprojects&quot; is &lt;a href=&quot;https://github.com/fsprojectsgit&quot;&gt;@fsprojectsgit&lt;/a&gt; - F# Community Project Incubation Space (repo management)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>dotnet/performance</title>
+      <link>https://github.com/dotnet/performance</link>
+      <description>&lt;p&gt;This repo contains benchmarks used for testing the performance of all .NET Runtimes&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;.NET Performance&lt;/h1&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;left&quot;&gt;Build Source Version&lt;/th&gt; 
+   &lt;th align=&quot;left&quot;&gt;Public Build Status&lt;/th&gt; 
+   &lt;th align=&quot;left&quot;&gt;Internal Build Status&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;left&quot;&gt;main&lt;/td&gt; 
+   &lt;td align=&quot;left&quot;&gt;&lt;a href=&quot;https://dev.azure.com/dnceng-public/public/_build/latest?definitionId=38&amp;amp;branchName=main&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng-public/public/_apis/build/status/dotnet/performance/performance-ci?branchName=main&quot; alt=&quot;public_build_icon_main&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;left&quot;&gt;&lt;a href=&quot;https://dev.azure.com/dnceng/internal/_build/latest?definitionId=306&amp;amp;branchName=main&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng/internal/_apis/build/status/dotnet/performance/dotnet-performance?branchName=main&quot; alt=&quot;internal_build_icon_main&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;left&quot;&gt;release/7.0&lt;/td&gt; 
+   &lt;td align=&quot;left&quot;&gt;&lt;a href=&quot;https://dev.azure.com/dnceng-public/public/_build/latest?definitionId=38&amp;amp;branchName=release%2F7.0&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng-public/public/_apis/build/status/dotnet/performance/performance-ci?branchName=release%2F7.0&quot; alt=&quot;public_build_icon_release_7.0&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;left&quot;&gt;&lt;a href=&quot;https://dev.azure.com/dnceng/internal/_build/latest?definitionId=306&amp;amp;branchName=release%2F7.0&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng/internal/_apis/build/status/dotnet/performance/dotnet-performance?branchName=release%2F7.0&quot; alt=&quot;internal_build_icon_release_7.0&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;left&quot;&gt;release/6.0&lt;/td&gt; 
+   &lt;td align=&quot;left&quot;&gt;&lt;a href=&quot;https://dev.azure.com/dnceng-public/public/_build/latest?definitionId=38&amp;amp;branchName=release%2F6.0&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng-public/public/_apis/build/status/dotnet/performance/performance-ci?branchName=release%2F6.0&quot; alt=&quot;public_build_icon_release_6.0&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;left&quot;&gt;&lt;a href=&quot;https://dev.azure.com/dnceng/internal/_build/latest?definitionId=306&amp;amp;branchName=release%2F6.0&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng/internal/_apis/build/status/dotnet/performance/dotnet-performance?branchName=release%2F6.0&quot; alt=&quot;internal_build_icon_release_6.0&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;This repo contains benchmarks used for testing the performance of all .NET Runtimes: .NET Core, Full .NET Framework, Mono and NativeAOT.&lt;/p&gt; 
+&lt;p&gt;Finding these benchmarks in a separate repository might be surprising. Performance in a given scenario may be impacted by changes in seemingly unrelated components. Using this central repository ensures that measurements are made in comparable ways across all .NET runtimes and repos. This consistency lets engineers make progress and ensures the customer scenarios are protected.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dotnet/performance/main/src/benchmarks/micro/README.md&quot;&gt;Microbenchmarks Guide&lt;/a&gt; for information on running our microbenchmarks&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dotnet/performance/main/docs/scenarios-workflow.md&quot;&gt;Scenario Tests Guide&lt;/a&gt; for information on running our real-world scenario benchmarks&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dotnet/performance/main/docs/benchmarking-workflow-dotnet-runtime.md&quot;&gt;Benchmarking workflow for dotnet/runtime repository&lt;/a&gt; for information on benchmarking local &lt;a href=&quot;https://github.com/dotnet/runtime&quot;&gt;dotnet/runtime&lt;/a&gt; builds&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dotnet/performance/main/docs/profiling-workflow-dotnet-runtime.md&quot;&gt;Profiling workflow for dotnet/runtime repository&lt;/a&gt; for information on profiling local &lt;a href=&quot;https://github.com/dotnet/runtime&quot;&gt;dotnet/runtime&lt;/a&gt; builds&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing to Repository&lt;/h2&gt; 
+&lt;p&gt;This project has adopted the code of conduct defined by the Contributor Covenant to clarify expected behavior in our community. For more information, see the &lt;a href=&quot;https://dotnetfoundation.org/code-of-conduct&quot;&gt;.NET Foundation Code of Conduct&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>artempyanykh/marksman</title>
+      <link>https://github.com/artempyanykh/marksman</link>
+      <description>&lt;p&gt;Write Markdown with code assist and intelligence in the comfort of your favourite editor.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/artempyanykh/marksman/actions/workflows/build.yml&quot;&gt;&lt;img src=&quot;https://github.com/artempyanykh/marksman/actions/workflows/build.yml/badge.svg?sanitize=true&quot; alt=&quot;Build &amp;amp; Test&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/artempyanykh/marksman/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/artempyanykh/marksman&quot; alt=&quot;release&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://formulae.brew.sh/formula/marksman&quot;&gt;&lt;img src=&quot;https://img.shields.io/homebrew/v/marksman&quot; alt=&quot;homebrew&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://snapcraft.io/marksman&quot;&gt;&lt;img src=&quot;https://snapcraft.io/marksman/badge.svg?sanitize=true&quot; alt=&quot;marksman&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/artempyanykh/marksman/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/artempyanykh/marksman/total&quot; alt=&quot;Downloads&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Marksman&lt;/h1&gt; 
+&lt;p&gt;&lt;em&gt;Write Markdown with code assist and intelligence in the comfort of your favourite editor.&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/assets/readme/splash.png&quot; alt=&quot;splash&quot;&gt;&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;p&gt;Marksman is a program that integrates with your editor to assist you in writing and maintaining your Markdown documents. Using &lt;a href=&quot;https://microsoft.github.io/language-server-protocol/&quot;&gt;LSP protocol&lt;/a&gt; it provides &lt;strong&gt;completion&lt;/strong&gt;, goto &lt;strong&gt;definition&lt;/strong&gt;, find &lt;strong&gt;references&lt;/strong&gt;, &lt;strong&gt;rename&lt;/strong&gt; refactoring, &lt;strong&gt;diagnostics&lt;/strong&gt;, and more. In addition to regular Markdown, it also supports &lt;strong&gt;wiki-link&lt;/strong&gt;-style references that enable &lt;a href=&quot;https://en.wikipedia.org/wiki/Zettelkasten&quot;&gt;Zettelkasten-like&lt;/a&gt;[^roam-research]&lt;sup&gt;,&lt;/sup&gt; [^markdown-memo] note taking. See more about Marksman&#39;s features below.&lt;/p&gt; 
+&lt;p&gt;Marksman &lt;strong&gt;works on MacOS, Linux, and Windows&lt;/strong&gt; and is distributed as a &lt;strong&gt;self-contained binary&lt;/strong&gt; for each OS.&lt;/p&gt; 
+&lt;p&gt;The server provides assistance with:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Markdown inline links: &lt;pre&gt;&lt;code class=&quot;language-md&quot;&gt;This is [inline link](/some-file.md#some-heading).
+This is an internal [anchor link](#heading).
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt;Markdown reference links: &lt;pre&gt;&lt;code class=&quot;language-md&quot;&gt;See [reference].
+
+[reference]: /url &quot;Title&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt;Wiki-links: &lt;pre&gt;&lt;code class=&quot;language-md&quot;&gt;Link to [[another-note]].
+Link to [[another-notes#heading]].
+Internal link to [[#a-heading]].
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;All types of links support completion, hover, goto definition/references. Additionally, Marksman provides diagnostics for wiki-links to detect broken references and duplicate/ambiguous headings.&lt;/p&gt; 
+&lt;h2&gt;Existing editor integrations[^lsp]:&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;VSCode via &lt;a href=&quot;https://github.com/artempyanykh/marksman-vscode&quot;&gt;Marksman VSCode&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Neovim:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;via &lt;a href=&quot;https://github.com/williamboman/mason.nvim&quot;&gt;mason.nvim&lt;/a&gt; (automatic server installation) (requires &lt;a href=&quot;https://github.com/williamboman/mason-lspconfig.nvim&quot;&gt;mason-lspconfig.nvim&lt;/a&gt;)&lt;/li&gt; 
+   &lt;li&gt;via &lt;a href=&quot;https://github.com/neovim/nvim-lspconfig/raw/master/doc/server_configurations.md#marksman&quot;&gt;nvim-lspconfig&lt;/a&gt;,&lt;/li&gt; 
+   &lt;li&gt;via &lt;a href=&quot;https://github.com/yaegassy/coc-marksman&quot;&gt;CoC-marksman&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Vim:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;via &lt;a href=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/ale&quot;&gt;ale&lt;/a&gt; - will support Marksman out-of-the-box once &lt;a href=&quot;https://github.com/dense-analysis/ale/pull/4565&quot;&gt;PR&lt;/a&gt; is merged; in the meantime...&lt;/p&gt; &lt;p&gt;Example config (add the following to your &lt;code&gt;~/.vim/after/ftplugin/markdown.vim&lt;/code&gt;):&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-viml&quot;&gt;if exists(&#39;g:loaded_ale&#39;)
+  call ale#linter#Define(&#39;markdown&#39;, { &#39;name&#39;: &#39;marksman&#39;, &#39;lsp&#39;: &#39;stdio&#39;, &#39;executable&#39;: &#39;marksman&#39;, &#39;command&#39;: &#39;%e server&#39;, &#39;initialization_options&#39;: {} })
+end
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;via &lt;a href=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/lsp&quot;&gt;lsp&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Example config (add the following to your &lt;code&gt;~/.vim/after/ftplugin/markdown.vim&lt;/code&gt;):&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-viml&quot;&gt;if exists(&#39;g:loaded_lsp&#39;)
+  call LspAddServer([#{ name: &#39;marksman&#39;, filetype: [&#39;markdown&#39;], path: &#39;/path/to/marksman&#39;, args: [&#39;server&#39;], syncInit: v:true }])
+end
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Emacs:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;via &lt;a href=&quot;https://emacs-lsp.github.io/lsp-mode/page/lsp-marksman/&quot;&gt;LSP Mode&lt;/a&gt; (automatic server installation).&lt;/p&gt; &lt;p&gt;Example config for &lt;code&gt;use-package&lt;/code&gt; users:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;(use-package markdown-mode
+  :hook (markdown-mode . lsp)
+  :config
+  (require &#39;lsp-marksman))
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;via &lt;a href=&quot;https://github.com/joaotavora/eglot&quot;&gt;Eglot&lt;/a&gt;, requires configuration (unless &lt;a href=&quot;https://github.com/joaotavora/eglot/pull/1013&quot;&gt;eglot#1013&lt;/a&gt; gets merged); add the following to your &lt;code&gt;init.el&lt;/code&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;(add-to-list &#39;eglot-server-programs &#39;(markdown-mode . (&quot;marksman&quot;)))
+(add-hook &#39;markdown-mode-hook #&#39;eglot-ensure)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://helix-editor.com/&quot;&gt;Helix&lt;/a&gt; supports Marksman out of the box. However, you need add &lt;code&gt;marksman&lt;/code&gt; binary to your &lt;code&gt;PATH&lt;/code&gt; manually.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Sublime Text via &lt;a href=&quot;https://github.com/bitsper2nd/LSP-marksman&quot;&gt;LSP-marksman&lt;/a&gt; (automatic server installation).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;BBEdit &lt;a href=&quot;https://github.com/artempyanykh/marksman/discussions/206#discussioncomment-5906423&quot;&gt;can be configured&lt;/a&gt; to use Marksman as an LSP server for Markdown files.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to install&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/docs/install.md&quot;&gt;installation instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Demos and tutorials&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/docs/demo.md&quot;&gt;this page&lt;/a&gt; for a mix of Neovim, VSCode, and Emacs screen captures.&lt;/li&gt; 
+ &lt;li&gt;See &lt;a href=&quot;https://medium.com/@chrisatmachine/lunarvim-improve-markdown-editing-with-marksman-739d06c73a26&quot;&gt;this post&lt;/a&gt; on how to use Marksman with &lt;a href=&quot;https://www.lunarvim.org&quot;&gt;LunarVim&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Check out &lt;a href=&quot;https://www.youtube.com/watch?v=8GQKOLh_V5E&quot;&gt;this YouTube video&lt;/a&gt; by Luke Pighetti on how to use Marksman with Helix.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/assets/readme/gifs/completion-markdown.gif&quot; alt=&quot;Completion Markdown&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/docs/features.md&quot;&gt;the Features page&lt;/a&gt; to learn more about language features, configurations, and single- and multi-file modes.&lt;/p&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Cross-file references and completions don&#39;t work. 
+  &lt;ul&gt; 
+   &lt;li&gt;Either create an empty &lt;code&gt;.marksman.toml&lt;/code&gt; in the root folder of your project or initialize a repository (e.g. &lt;code&gt;git init&lt;/code&gt;). See &lt;a href=&quot;https://raw.githubusercontent.com/artempyanykh/marksman/main/docs/features.md#workspace-folders-project-roots-and-single-file-mode&quot;&gt;this page&lt;/a&gt; to learn more about single- and mult-file modes.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;I&#39;m getting &quot;marksman can’t be opened because Apple cannot check it for malicious software&quot; on MacOS. 
+  &lt;ul&gt; 
+   &lt;li&gt;Run the following command to bypass it and let Mac know that it&#39;s fine: &lt;code&gt;xattr -d com.apple.quarantine &amp;lt;path-to-marksman-bin&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;[^roam-research]: You may have heard about &lt;a href=&quot;https://roamresearch.com&quot;&gt;Roam Research&lt;/a&gt;. That is a commercial implementation of the Zettelkasten method and another point of reference for what Marksman is about. However, unlike a proprietary Roam Research, Marksman is free, open-source and integrated into your favourite editor (albeit for not not as feature rich as Roam Research).&lt;/p&gt; 
+&lt;p&gt;[^markdown-memo]: There is an excellent VSCode extension called &lt;a href=&quot;https://github.com/svsool/vscode-memo&quot;&gt;Markdown Memo&lt;/a&gt;. You definitely need to check it out if you&#39;re primarily using VSCode as it has some features that are missing in Marksman and &lt;a href=&quot;https://github.com/artempyanykh/marksman-vscode&quot;&gt;Marksman VSCode extension&lt;/a&gt;. However, Markdown Memo is VSCode specific while Marksman is a generic language server, so can be used with any editor that has LSP support: Emacs, Vim, Neovim, etc.&lt;/p&gt; 
+&lt;p&gt;[^lsp]: Since Marksman is a regular Language Server most of the functionality works out of the box with any LSP client.&lt;/p&gt; 
+&lt;p&gt;[^single-file-mode]: There is an initiative to add a single-file mode to LSP but it&#39;s not a part of the spec at least until and including v3.17.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>dotnet/fsharp</title>
+      <link>https://github.com/dotnet/fsharp</link>
+      <description>&lt;p&gt;The F# compiler, F# core library, F# language service, and F# tooling integration for Visual Studio&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;The F# compiler, F# core library, and F# editor tools&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://dev.azure.com/dnceng-public/public/_build/latest?definitionId=90&amp;amp;branchName=main&quot;&gt;&lt;img src=&quot;https://dev.azure.com/dnceng-public/public/_apis/build/status/dotnet/fsharp/fsharp-ci?branchName=main&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/dotnet/fsharp/labels/help%20wanted&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/dotnet/fsharp/help%20wanted?style=flat-square&amp;amp;color=%232EA043&amp;amp;label=help%20wanted&quot; alt=&quot;Help Wanted&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You&#39;re invited to contribute to future releases of the F# compiler, core library, and tools. Development of this repository can be done on any OS supported by &lt;a href=&quot;https://dotnet.microsoft.com/&quot;&gt;.NET&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You will also need .NET SDK installed from &lt;a href=&quot;https://dotnet.microsoft.com/download/dotnet&quot;&gt;here&lt;/a&gt;, exact version can be found in the global.json file in the root of the repository.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;h3&gt;Quickstart on Windows&lt;/h3&gt; 
+&lt;p&gt;Build from the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;build.cmd
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The build depends on an installation of Visual Studio. To build the compiler without this dependency use:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;build.cmd -noVisualStudio
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After it&#39;s finished, open either &lt;code&gt;FSharp.sln&lt;/code&gt; or &lt;code&gt;VisualFSharp.sln&lt;/code&gt; in your editor of choice. The latter solution is larger but includes the F# tools for Visual Studio and its associated infrastructure.&lt;/p&gt; 
+&lt;h3&gt;Quickstart on Linux or macOS&lt;/h3&gt; 
+&lt;p&gt;Build from the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./build.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After it&#39;s finished, open &lt;code&gt;FSharp.sln&lt;/code&gt; in your editor of choice.&lt;/p&gt; 
+&lt;h3&gt;Documentation for contributors&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/docs/index.md&quot;&gt;Compiler Documentation&lt;/a&gt; is essential reading for any larger contributions to the F# compiler codebase and contains links to learning videos, architecture diagrams, and other resources.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The same docs are also published as &lt;a href=&quot;https://fsharp.github.io/fsharp-compiler-docs/&quot;&gt;The F# Compiler Guide&lt;/a&gt;. It also contains the public searchable docs for FSharp.Compiler.Service component.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/DEVGUIDE.md&quot;&gt;DEVGUIDE.md&lt;/a&gt; for more details on configurations for building the codebase. In practice, you only need to run &lt;code&gt;build.cmd&lt;/code&gt;/&lt;code&gt;build.sh&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/TESTGUIDE.md&quot;&gt;TESTGUIDE.md&lt;/a&gt; for information about the various test suites in this codebase and how to run them individually.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Documentation for F# community&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://learn.microsoft.com/dotnet/fsharp/&quot;&gt;The F# Documentation&lt;/a&gt; is the primary documentation for F#. The source for the content is &lt;a href=&quot;https://github.com/dotnet/docs/tree/main/docs/fsharp&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/fsharp/fslang-design/&quot;&gt;The F# Language Design Process&lt;/a&gt; is the fundamental design process for the language, from &lt;a href=&quot;https://github.com/fsharp/fslang-suggestions&quot;&gt;suggestions&lt;/a&gt; to completed RFCs. There are also &lt;a href=&quot;https://github.com/fsharp/fslang-design/tree/main/tooling&quot;&gt;tooling RFCs&lt;/a&gt; for some topics where cross-community co-operation and visibility are most useful.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://fsharp.org/specs/language-spec/&quot;&gt;The F# Language Specification&lt;/a&gt; is an in-depth description of the F# language. This is essential for understanding some behaviors of the F# compiler and some of the rules within the compiler codebase. For example, the order and way name resolution happens are specified here, which greatly impacts how the code in Name Resolutions works and why certain decisions are made.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;No contribution is too small&lt;/h3&gt; 
+&lt;p&gt;Even if you find a single-character typo, we&#39;re happy to take the change! Although the codebase can feel daunting for beginners, we and other contributors are happy to help you along.&lt;/p&gt; 
+&lt;h2&gt;Per-build NuGet packages&lt;/h2&gt; 
+&lt;h3&gt;7.0.40x series&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://dev.azure.com/dnceng/public/_artifacts/feed/dotnet7/NuGet/FSharp.Compiler.Service/versions/&quot;&gt;FSharp.Compiler.Service 43.7.400-preview&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;add key=&quot;fsharp-prerelease&quot; value=&quot;https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet7/nuget/v3/index.json&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;8.0.10x series&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://dev.azure.com/dnceng/public/_artifacts/feed/dotnet8/NuGet/FSharp.Compiler.Service/versions/&quot;&gt;FSharp.Compiler.Service 43.8.100-preview&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;add key=&quot;fsharp-prerelease&quot; value=&quot;https://pkgs.dev.azure.com/dnceng/public/_packaging/dotnet8/nuget/v3/index.json&quot; /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; Official NuGet releases of FCS and FSharp.Core are synched with SDK releases (on purpose - we want to be in sync). Nightly packages release to Azure feeds on every successful insertion.&lt;/p&gt; 
+&lt;h2&gt;Branches&lt;/h2&gt; 
+&lt;p&gt;These are the branches in use:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;main&lt;/code&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Almost all contributions go here.&lt;/li&gt; 
+   &lt;li&gt;Able to be built, installed and used in the latest public Visual Studio release.&lt;/li&gt; 
+   &lt;li&gt;May contain updated F# features and logic.&lt;/li&gt; 
+   &lt;li&gt;Used to build nightly VSIX (see above).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;release/dev15.9&lt;/code&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Long-term servicing branch for VS 2017 update 15.9.x. We do not expect to service that release, but if we do, that&#39;s where the changes will go.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;release/dev17.x&lt;/code&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Latest release branch for the particular point release of Visual Studio.&lt;/li&gt; 
+   &lt;li&gt;Incorporates features and fixes from main up to a particular branch point, then selective cherry-picks.&lt;/li&gt; 
+   &lt;li&gt;May contain new features that depend on new things or fixes in the corresponding forthcoming Visual Studio release.&lt;/li&gt; 
+   &lt;li&gt;Gets integrated back into main once the corresponding Visual Studio release is made.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;F# language and core library evolution&lt;/h2&gt; 
+&lt;p&gt;Evolution of the F# language and core library follows a process spanning two additional repositories. The process is as follows:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Use the &lt;a href=&quot;https://github.com/fsharp/fslang-suggestions/&quot;&gt;F# language suggestions repo&lt;/a&gt; to search for ideas, vote on ones you like, submit new ideas, and discuss details with the F# community.&lt;/li&gt; 
+ &lt;li&gt;Ideas that are &quot;approved in principle&quot; are eligible for a new RFC in the &lt;a href=&quot;https://github.com/fsharp/fslang-design&quot;&gt;F# language design repo&lt;/a&gt;. This is where the technical specification and discussion of approved suggestions go.&lt;/li&gt; 
+ &lt;li&gt;Implementations and testing of an RFC are submitted to this repository.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is subject to the MIT License. A copy of this license is in &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/License.txt&quot;&gt;License.txt&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Code of Conduct&lt;/h2&gt; 
+&lt;p&gt;This project has adopted the &lt;a href=&quot;https://contributor-covenant.org/&quot;&gt;Contributor Covenant&lt;/a&gt; code of conduct to clarify expected behavior in our community. You can read it at &lt;a href=&quot;https://raw.githubusercontent.com/dotnet/fsharp/main/CODE_OF_CONDUCT.md&quot;&gt;CODE_OF_CONDUCT&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Get In Touch&lt;/h2&gt; 
+&lt;p&gt;Members of the &lt;a href=&quot;https://fsharp.org&quot;&gt;F# Software Foundation&lt;/a&gt; are invited to the &lt;a href=&quot;https://fsharp.org/guides/slack/&quot;&gt;FSSF Slack&lt;/a&gt;. You can find support from other contributors in the &lt;code&gt;#compiler&lt;/code&gt; and &lt;code&gt;#editor-support&lt;/code&gt; channels.&lt;/p&gt; 
+&lt;p&gt;Additionally, you can use the &lt;code&gt;#fsharp&lt;/code&gt; tag on Twitter if you have general F# questions, including about this repository. Chances are you&#39;ll get multiple responses.&lt;/p&gt; 
+&lt;h2&gt;About F#&lt;/h2&gt; 
+&lt;p&gt;If you&#39;re curious about F# itself, check out these links:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/dotnet/fsharp/what-is-fsharp&quot;&gt;What is F#&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/dotnet/fsharp/get-started/&quot;&gt;Get started with F#&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fsharp.org&quot;&gt;F# Software Foundation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fsharp.org/testimonials&quot;&gt;F# Testimonials&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
