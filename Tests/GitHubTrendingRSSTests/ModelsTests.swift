@@ -12,7 +12,8 @@ final class ModelsTests: XCTestCase {
     func testNormalRepository() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
-            summary: "dummy summary")
+            summary: "dummy summary"
+        )
         repository1.readMe = APIReadMe()
         XCTAssertEqual(repository1.makeReadMeHTML(includesSummary: false, supportedEmojis: supportedEmojis), nil)
     }
@@ -20,7 +21,8 @@ final class ModelsTests: XCTestCase {
     func testRepositoryIncludingBlobImage() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/uber/ribs"),
-            summary: "Uber's cross-platform mobile architecture framework.")
+            summary: "Uber's cross-platform mobile architecture framework."
+        )
         repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_uber_ribs_readme.json"))
         repo.readMe?.userID = "uber"
         repo.readMe?.repositoryName = "ribs"
@@ -33,7 +35,8 @@ final class ModelsTests: XCTestCase {
     func testRepositoryIncludingTable() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/rook/rook"),
-            summary: "Storage Orchestration for Kubernetes")
+            summary: "Storage Orchestration for Kubernetes"
+        )
         repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_rook_rook_readme.json"))
         repo.readMe?.userID = "rook"
         repo.readMe?.repositoryName = "rook"
@@ -44,7 +47,8 @@ final class ModelsTests: XCTestCase {
     func testRepositoryIncludingGitHubEmoji() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/WebpageFX/emoji-cheat-sheet.com"),
-            summary: "A one pager for emojis on Campfire and GitHub")
+            summary: "A one pager for emojis on Campfire and GitHub"
+        )
         repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_WebpageFX_emoji-cheat-sheet.com_readme.json"))
         repo.readMe?.userID = "WebpageFX"
         repo.readMe?.repositoryName = "emoji-cheat-sheet.com"
@@ -56,7 +60,8 @@ final class ModelsTests: XCTestCase {
     func testAsciiDoc() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/spring-projects/spring-authorization-server"),
-            summary: "A community-driven project led by the Spring Security team and is focused on delivering Authorization Server support to the Spring community")
+            summary: "A community-driven project led by the Spring Security team and is focused on delivering Authorization Server support to the Spring community"
+        )
         repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_spring-projects_spring-authorization-server_readme.json"))
         repo.readMe?.userID = "spring-projects"
         repo.readMe?.repositoryName = "spring-authorization-server"
@@ -67,7 +72,8 @@ final class ModelsTests: XCTestCase {
     func testRepositoryIncludingCheckbox() throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/blueedgetechno/windows11"),
-            summary: "windows 11 in react 💻🌈⚡")
+            summary: "windows 11 in react 💻🌈⚡"
+        )
         repo.readMe = try JSONDecoder().decode(APIReadMe.self, from: TestResources.getData(ofFileName: "api.github.com_blueedgetechno_windows11_readme.json"))
         repo.readMe?.userID = "blueedgetechno"
         repo.readMe?.repositoryName = "windows11"
@@ -79,7 +85,8 @@ final class ModelsTests: XCTestCase {
     func testSanitizedSVGImage1() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
-            summary: "dummy summary")
+            summary: "dummy summary"
+        )
         repository1.readMe = APIReadMe()
         repository1.readMe?.userID = "user"
         repository1.readMe?.repositoryName = "repo"
@@ -92,7 +99,8 @@ final class ModelsTests: XCTestCase {
     func testRootURL() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
-            summary: "dummy summary")
+            summary: "dummy summary"
+        )
         repository1.readMe = APIReadMe()
         repository1.readMe?.userID = "user"
         repository1.readMe?.repositoryName = "repo"
@@ -105,7 +113,8 @@ final class ModelsTests: XCTestCase {
     func testSanitizedSVGIsAppliedOnlyForImage() throws {
         var repository1 = Repository(
             pageLink: RepositoryPageLink(href: "/user/repo"),
-            summary: "dummy summary")
+            summary: "dummy summary"
+        )
         repository1.readMe = APIReadMe()
         repository1.readMe?.userID = "user"
         repository1.readMe?.repositoryName = "repo"

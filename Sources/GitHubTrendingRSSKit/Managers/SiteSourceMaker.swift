@@ -28,7 +28,7 @@ public class SiteSourceMaker {
         self.information = information
     }
 
-    public func makeHomeHTML(from languageTrendingLinks: [LanguageTrendingLink] ) throws -> String {
+    public func makeHomeHTML(from languageTrendingLinks: [LanguageTrendingLink]) throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "d MMMM, yyyy"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -36,16 +36,21 @@ public class SiteSourceMaker {
         let context: [String: Any] = [
             "information": information,
             "latestBuildDate": latestBuildDate,
-            "languageTrendingLinks": languageTrendingLinks.map({
-                (link: $0,
-                 urlEncodedName: $0.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!) }),
-            "periods": Period.allCases.map({
-                (name: $0.rawValue, capitalizedName: $0.rawValue.capitalized) })
+            "languageTrendingLinks": languageTrendingLinks.map {
+                (
+                    link: $0,
+                    urlEncodedName: $0.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
+                )
+            },
+            "periods": Period.allCases.map {
+                (name: $0.rawValue, capitalizedName: $0.rawValue.capitalized)
+            },
         ]
 
         return try environment.renderTemplate(
             name: "home_template.html",
-            context: context)
+            context: context
+        )
     }
 
     public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository], supportedEmojis: [GitHubEmoji]) throws -> String {
@@ -61,18 +66,21 @@ public class SiteSourceMaker {
             "information": information,
             "periodText": period.rawValue.capitalized,
             "pubDate": pubDate,
-            "repositories": repositories.map({
-                (description: ($0.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis) ?? noDescriptionHTML).xmlEscaped,
-                 userID: $0.pageLink.userID,
-                 repositoryName: $0.pageLink.repositoryName,
-                 url: $0.pageLink.url.absoluteString,
-                 pageLink: $0.pageLink)
-            }),
-            "periods": Period.allCases.map({ $0.rawValue })
+            "repositories": repositories.map {
+                (
+                    description: ($0.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis) ?? noDescriptionHTML).xmlEscaped,
+                    userID: $0.pageLink.userID,
+                    repositoryName: $0.pageLink.repositoryName,
+                    url: $0.pageLink.url.absoluteString,
+                    pageLink: $0.pageLink
+                )
+            },
+            "periods": Period.allCases.map(\.rawValue),
         ]
 
         return try environment.renderTemplate(
             name: "rss_template.xml",
-            context: context)
+            context: context
+        )
     }
 }

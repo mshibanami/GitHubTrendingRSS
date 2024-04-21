@@ -3,7 +3,7 @@
 import Foundation
 
 public enum Period: String, CaseIterable {
-    case daily = "daily"
-    case weekly = "weekly"
-    case monthly = "monthly"
+    case daily
+    case weekly
+    case monthly
 }

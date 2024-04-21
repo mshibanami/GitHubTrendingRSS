@@ -1,6 +1,6 @@
 ////
 //  Created by Manabu Nakazawa on 1/10/18.
-//  
+//
 //
 
 import Foundation

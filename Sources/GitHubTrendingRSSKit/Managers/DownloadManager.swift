@@ -19,7 +19,7 @@ public class DownloadManager {
 
     public func fetch(url: URL, header: [String: String] = [:], basicAuthInfo: BasicAuthInfo? = nil) -> AnyPublisher<String, Swift.Error> {
         return Result.Publisher(())
-            .flatMap({ _ -> AnyPublisher<String, Swift.Error> in
+            .flatMap { _ -> AnyPublisher<String, Swift.Error> in
                 let session = URLSession.shared
 
                 var request = URLRequest(url: url)
@@ -37,7 +37,7 @@ public class DownloadManager {
                 NSLog("-> \(request.httpMethod ?? "???"): \(url.absoluteString)")
                 let dataTaskPublisher = session.dataTaskPublisher(for: request)
                     .mapError { $0 as Swift.Error }
-                    .tryMap({ data, response -> String in
+                    .tryMap { data, response -> String in
                         guard let response = response as? HTTPURLResponse else {
                             throw Error.unsupportedFormat
                         }
@@ -53,7 +53,7 @@ public class DownloadManager {
                             NSLog("<- \(response.statusCode) \(url.absoluteString) [\(rateLimitRemainingKey): \(remaining)]")
                             throw Error.failedFetching(statusCode: response.statusCode)
                         }
-                    })
+                    }
 
                 return dataTaskPublisher.tryCatch { error -> AnyPublisher<String, Swift.Error> in
                     switch error {
@@ -72,7 +72,7 @@ public class DownloadManager {
                     }
                 }
                 .eraseToAnyPublisher()
-            })
+            }
             .eraseToAnyPublisher()
     }
 }

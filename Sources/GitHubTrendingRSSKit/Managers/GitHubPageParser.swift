@@ -1,11 +1,10 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
+import Algorithms
 import Foundation
 import SwiftSoup
-import Algorithms
 
 public class GitHubPageParser {
-
     private static let specialLinks = [
         LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
     ]
@@ -18,18 +17,19 @@ public class GitHubPageParser {
         let selectMenuLists = (try? parsed.select("div.select-menu-list"))?.array() ?? []
 
         guard let languagesList = selectMenuLists.first(where: { $0.id() == "languages-menuitems" }),
-            let linkTags = (try? languagesList.select("a"))?.array() else {
-                throw RSSError.unsupportedFormat
+              let linkTags = (try? languagesList.select("a"))?.array() else {
+            throw RSSError.unsupportedFormat
         }
 
         let links = GitHubPageParser.specialLinks + linkTags.compactMap { link -> LanguageTrendingLink? in
             guard let title = link.trimmedText,
-                let href = try? link.attr("href") else {
-                    return nil
+                  let href = try? link.attr("href") else {
+                return nil
             }
             return LanguageTrendingLink(
                 displayName: title,
-                href: href)
+                href: href
+            )
         }
         
         let uniqueLinks = links.uniqued(on: \.name)
@@ -47,18 +47,20 @@ public class GitHubPageParser {
 
         for li in repositoryArticleList {
             guard let titleATag = try? li.select("h2 > a"),
-                let summaryPTag = try? li.select("h2 ~ p") else {
-                    continue
+                  let summaryPTag = try? li.select("h2 ~ p") else {
+                continue
             }
 
             guard let summary = summaryPTag.trimmedText,
-                let href = try? titleATag.attr("href") else {
-                    continue
+                  let href = try? titleATag.attr("href") else {
+                continue
             }
             let repositoryPageLink = RepositoryPageLink(href: href)
             repositories.append(
-                Repository(pageLink: repositoryPageLink,
-                           summary: summary))
+                Repository(
+                    pageLink: repositoryPageLink,
+                    summary: summary
+                ))
         }
         return repositories
     }

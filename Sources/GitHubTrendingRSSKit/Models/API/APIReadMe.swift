@@ -1,6 +1,6 @@
 //
 //  Created by Manabu Nakazawa on 17/3/19.
-//  
+//
 //
 
 import Foundation
@@ -39,7 +39,7 @@ public struct APIReadMe: Codable {
     public var repositoryName: String?
 
     public var branchName: String? {
-        guard let url = url, let urlComponents = URLComponents(string: url) else {
+        guard let url, let urlComponents = URLComponents(string: url) else {
             return nil
         }
         return urlComponents
@@ -49,7 +49,7 @@ public struct APIReadMe: Codable {
     }
 
     public var fileRootURL: URL? {
-        guard let userID = userID, let repositoryName = repositoryName, let branchName = branchName else {
+        guard let userID, let repositoryName, let branchName else {
             return nil
         }
         return URL(string: "https://raw.githubusercontent.com/\(userID)/\(repositoryName)/\(branchName)/")
@@ -76,28 +76,28 @@ public struct APIReadMe: Codable {
         case downloadURL = "download_url"
         case type
         case encoding
-        case content = "content"
+        case content
     }
 
     public init(from decoder: Decoder) throws {
         let container = try decoder.container(keyedBy: CodingKeys.self)
-        self.name = try? container.decode(String.self, forKey: .name)
-        self.path = try? container.decode(String.self, forKey: .path)
-        self.sha = try? container.decode(String.self, forKey: .sha)
-        self.size = try? container.decode(Int.self, forKey: .size)
-        self.url = try? container.decode(String.self, forKey: .url)
-        self.htmlURL = try? container.decode(String.self, forKey: .htmlURL)
-        self.gitURL = try? container.decode(String.self, forKey: .gitURL)
-        self.downloadURL = try? container.decode(String.self, forKey: .downloadURL)
-        self.type = try? container.decode(String.self, forKey: .type)
-        self.encoding = try? container.decode(String.self, forKey: .encoding)
+        name = try? container.decode(String.self, forKey: .name)
+        path = try? container.decode(String.self, forKey: .path)
+        sha = try? container.decode(String.self, forKey: .sha)
+        size = try? container.decode(Int.self, forKey: .size)
+        url = try? container.decode(String.self, forKey: .url)
+        htmlURL = try? container.decode(String.self, forKey: .htmlURL)
+        gitURL = try? container.decode(String.self, forKey: .gitURL)
+        downloadURL = try? container.decode(String.self, forKey: .downloadURL)
+        type = try? container.decode(String.self, forKey: .type)
+        encoding = try? container.decode(String.self, forKey: .encoding)
         if let content = try? container.decode(String.self, forKey: .content) {
             let encodedContent = content.replacingOccurrences(of: "\n", with: "")
             self.content = String(
                 data: Data(base64Encoded: encodedContent, options: [])!,
-                encoding: .utf8)!
+                encoding: .utf8
+            )!
         }
-
     }
 
     public init() {}

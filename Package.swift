@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "GitHubTrendingRSS",
     platforms: [
-        .macOS(.v10_15)
+        .macOS(.v10_15),
     ],
     dependencies: [
         .package(url: "https://github.com/hartbit/Yaap", from: "1.0.0"),
@@ -20,23 +20,26 @@ let package = Package(
         .target(
             name: "GitHubTrendingRSS",
             dependencies: [
-              "GitHubTrendingRSSKit",
-              "Yaap",
-          ]),
+                "GitHubTrendingRSSKit",
+                "Yaap",
+            ]
+        ),
         .target(
             name: "GitHubTrendingRSSKit",
             dependencies: [
-              "MarkdownSyntax",
-              "Stencil",
-              "SwiftSoup",
-              "SwiftAsciidoctor",
-              "Algorithms",
-          ]),
+                "MarkdownSyntax",
+                "Stencil",
+                "SwiftSoup",
+                "SwiftAsciidoctor",
+                "Algorithms",
+            ]
+        ),
         .testTarget(
             name: "GitHubTrendingRSSTests",
             dependencies: [
                 "GitHubTrendingRSSKit",
-            ]),
+            ]
+        ),
     ],
     swiftLanguageVersions: [.v5]
 )

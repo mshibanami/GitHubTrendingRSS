@@ -1,8 +1,8 @@
 // Copyright (c) 2019 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import Foundation
-@testable import GitHubTrendingRSSKit
 import XCTest
+@testable import GitHubTrendingRSSKit
 
 // TODO: refactor after https://bugs.swift.org/browse/SR-2866 was solved
 class TestResources {
@@ -30,12 +30,13 @@ class TestResources {
         switch pageType {
         case .top:
             fileName = "github.com_trending.html"
-        case .language(let name):
+        case let .language(name):
             fileName = "github.com_trending_\(name).html"
         }
         return try! String(
             contentsOf: rootURL.appendingPathComponent(fileName),
-            encoding: .utf8)
+            encoding: .utf8
+        )
     }
 
     static func supportedEmojis() -> [GitHubEmoji] {

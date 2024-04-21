@@ -12,11 +12,13 @@ public extension PageLinkable {
 
         var components = URLComponents(
             url: Const.gitHubBaseURL,
-            resolvingAgainstBaseURL: false)!
+            resolvingAgainstBaseURL: false
+        )!
 
         components.path = path
         components.queryItems = [
-            URLQueryItem(name: "since", value: period.rawValue)]
+            URLQueryItem(name: "since", value: period.rawValue),
+        ]
 
         return components.url!
     }

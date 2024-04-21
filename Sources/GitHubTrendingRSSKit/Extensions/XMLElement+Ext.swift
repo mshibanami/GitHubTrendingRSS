@@ -14,7 +14,7 @@ public extension Element {
     }
 }
 
-fileprivate extension String {
+private extension String {
     var trimmedText: String {
         return trimmingCharacters(in: .whitespacesAndNewlines)
     }

@@ -1,6 +1,6 @@
 //
 //  GitHubEmoji.swift
-//  
+//
 //
 //  Created by Manabu Nakazawa on 21/8/21.
 //
@@ -12,6 +12,7 @@ public struct GitHubEmoji {
         case text(String)
         case image(URL)
     }
+
     public var id: String
     public var value: ValueType
 }
@@ -25,7 +26,7 @@ public extension APIEmojiList {
             }
             var unicodeStrings = fallbackURL.deletingPathExtension().lastPathComponent
                 .split(separator: "-")
-            if unicodeStrings.count == 1 && unicodeStrings.first == "2764" {
+            if unicodeStrings.count == 1, unicodeStrings.first == "2764" {
                 // Select ❤️ rather than ❤︎
                 unicodeStrings.append("FE0F")
             }
@@ -33,8 +34,7 @@ public extension APIEmojiList {
             let unicodeScalars = unicodeStrings
                 .compactMap { unicodeString -> Unicode.Scalar? in
                     guard let hex = UInt32(unicodeString, radix: 16),
-                          let scalar = Unicode.Scalar(hex)
-                    else {
+                          let scalar = Unicode.Scalar(hex) else {
                         return nil
                     }
                     return scalar

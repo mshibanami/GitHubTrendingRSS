@@ -23,7 +23,7 @@ public struct Repository {
             html = (html ?? "") + #"<p>\#(summary)</p><hr>"#
         }
 
-        guard let readMe = readMe,
+        guard let readMe,
               let readMeHTML = renderHTML(from: readMe) else {
             return html
         }
@@ -34,7 +34,8 @@ public struct Repository {
 
         guard let blobToRawRegex = try? NSRegularExpression(
             pattern: "(https://github.com/[^/]+/[^/]+/)blob(/.+)",
-                options: []) else {
+            options: []
+        ) else {
             assertionFailure()
             return html
         }
@@ -44,7 +45,7 @@ public struct Repository {
             "area": ["href"],
             "img": ["src", "longdesc", "usemap"],
             "link": ["href"],
-            "blockquote": ["cite"]
+            "blockquote": ["cite"],
         ]
 
         for (tag, attributes) in tagAttributesPairs {
@@ -54,18 +55,19 @@ public struct Repository {
             for element in elements {
                 for attribute in attributes {
                     guard let url = try? element.attr(attribute).prefixDeleted(prefix: "/"),
-                        let baseURL = readMe.fileRootURL,
-                        var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
-                            continue
+                          let baseURL = readMe.fileRootURL,
+                          var absoluteURL = URL(string: url, relativeTo: baseURL)?.absoluteString else {
+                        continue
                     }
-                    if absoluteURL.hasSuffix(".svg") && tag == "img" && attribute == "src" {
+                    if absoluteURL.hasSuffix(".svg"), tag == "img", attribute == "src" {
                         absoluteURL += "?sanitize=true"
                     }
 
                     absoluteURL = blobToRawRegex.stringByReplacingMatches(
                         in: absoluteURL,
                         range: NSRange(absoluteURL.startIndex..., in: absoluteURL),
-                        withTemplate: "$1raw$2")
+                        withTemplate: "$1raw$2"
+                    )
 
                     if absoluteURL != url {
                         _ = try? element.attr(attribute, absoluteURL)
@@ -100,8 +102,9 @@ public struct Repository {
             html = try? asciidoctor.convert(
                 content,
                 options: [.attributes([
-                    "showtitle": true
-                ])])
+                    "showtitle": true,
+                ])]
+            )
         }
         return html
     }
@@ -110,9 +113,9 @@ public struct Repository {
 private extension GitHubEmoji {
     var html: String {
         switch value {
-        case .text(let text):
+        case let .text(text):
             return "<span>\(text)</span>"
-        case .image(let url):
+        case let .image(url):
             return "<img alt='\(id)' src='\(url.absoluteString)' />)"
         }
     }

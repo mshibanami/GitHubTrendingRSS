@@ -20,20 +20,22 @@ public class GitHubDownloader {
         self.gitHubPageParser = gitHubPageParser
         basicAuthInfo = BasicAuthInfo(
             userName: Const.gitHubClientID,
-            password: Const.gitHubClientSecret)
+            password: Const.gitHubClientSecret
+        )
     }
 
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, includesReadMeIfExists: Bool) -> AnyPublisher<[Repository], Swift.Error> {
         let fetchRepositories = downloadManager
             .fetch(
                 url: languageTrendingLink.url(ofPeriod: period),
-                basicAuthInfo: basicAuthInfo)
-            .tryMap({ [weak self] page -> [Repository] in
-                guard let self = self else {
+                basicAuthInfo: basicAuthInfo
+            )
+            .tryMap { [weak self] page -> [Repository] in
+                guard let self else {
                     throw Error.noSelf
                 }
-                return try self.gitHubPageParser.repositories(fromTrendingPage: page)
-            })
+                return try gitHubPageParser.repositories(fromTrendingPage: page)
+            }
             .eraseToAnyPublisher()
 
         guard includesReadMeIfExists else {
@@ -41,20 +43,20 @@ public class GitHubDownloader {
         }
 
         return fetchRepositories
-            .flatMap({ [weak self] repositories -> AnyPublisher<[Repository], Swift.Error> in
-                guard let self = self else {
+            .flatMap { [weak self] repositories -> AnyPublisher<[Repository], Swift.Error> in
+                guard let self else {
                     return Result.Publisher([]).eraseToAnyPublisher()
                 }
 
                 var singles = [AnyPublisher<Repository, Never>]()
                 for repository in repositories {
                     singles.append(
-                        self.fetchReadMePage(pageLink: repository.pageLink)
-                            .map({
+                        fetchReadMePage(pageLink: repository.pageLink)
+                            .map {
                                 var repo = repository
                                 repo.readMe = $0
                                 return repo
-                            })
+                            }
                             .replaceError(with: repository)
                             .eraseToAnyPublisher()
                     )
@@ -64,7 +66,7 @@ public class GitHubDownloader {
                     .collect()
                     .setFailureType(to: Swift.Error.self)
                     .eraseToAnyPublisher()
-            })
+            }
             .eraseToAnyPublisher()
     }
 
@@ -77,7 +79,7 @@ public class GitHubDownloader {
         }
         return downloadManager
             .fetch(url: url, basicAuthInfo: basicAuthInfo)
-            .tryMap({ page in
+            .tryMap { page in
                 guard let data = page.data(using: .utf8) else {
                     throw Error.unsupportedFormat
                 }
@@ -85,7 +87,7 @@ public class GitHubDownloader {
                 decoded.userID = pageLink.userID
                 decoded.repositoryName = pageLink.repositoryName
                 return decoded
-            })
+            }
             .eraseToAnyPublisher()
     }
 

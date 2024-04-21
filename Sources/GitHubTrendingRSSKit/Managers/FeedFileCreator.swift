@@ -8,7 +8,7 @@ public class FeedFileCreator {
 
     public init(outputDirectory: URL, siteGenerator: SiteSourceMaker) {
         self.siteGenerator = siteGenerator
-        self.rootOutputDirectory = outputDirectory
+        rootOutputDirectory = outputDirectory
     }
 
     public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period, supportedEmojis: [GitHubEmoji]) throws -> URL {
@@ -17,14 +17,16 @@ public class FeedFileCreator {
             from: languageTrendingLink,
             period: period,
             repositories: repositories,
-            supportedEmojis: supportedEmojis)
+            supportedEmojis: supportedEmojis
+        )
 
         let outputDirectory = rootOutputDirectory.appendingPathComponent(period.rawValue)
 
         try fileManager.createDirectory(
             at: outputDirectory,
             withIntermediateDirectories: true,
-            attributes: nil)
+            attributes: nil
+        )
 
         let fileName = "\(languageTrendingLink.name).xml"
         let fileURL = outputDirectory.appendingPathComponent(fileName)
@@ -32,8 +34,9 @@ public class FeedFileCreator {
         guard fileManager.createFile(
             atPath: fileURL.path,
             contents: feedHTML.data(using: .utf8),
-            attributes: nil) else {
-                throw NSError()
+            attributes: nil
+        ) else {
+            throw NSError()
         }
 
         return fileURL
@@ -44,7 +47,8 @@ public class FeedFileCreator {
         try fileManager.createDirectory(
             at: rootOutputDirectory,
             withIntermediateDirectories: true,
-            attributes: nil)
+            attributes: nil
+        )
 
         let html = try siteGenerator.makeHomeHTML(from: languageLinks)
         let fileURL = rootOutputDirectory.appendingPathComponent("index.html")
@@ -52,8 +56,9 @@ public class FeedFileCreator {
         guard fileManager.createFile(
             atPath: fileURL.path,
             contents: html.data(using: .utf8),
-            attributes: nil) else {
-                throw NSError()
+            attributes: nil
+        ) else {
+            throw NSError()
         }
 
         return fileURL

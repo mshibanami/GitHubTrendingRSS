@@ -1,6 +1,6 @@
 //
-//  File.swift
-//  
+//  APIEmojiList.swift
+//
 //
 //  Created by Manabu Nakazawa on 21/8/21.
 //

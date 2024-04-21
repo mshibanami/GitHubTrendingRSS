@@ -20,7 +20,8 @@ let gitHubDownloader = GitHubDownloader(
     downloadManager: downloadManager,
     gitHubPageParser: gitHubPageParser,
     clientID: Const.gitHubClientID,
-    clientSecret: Const.gitHubClientSecret)
+    clientSecret: Const.gitHubClientSecret
+)
 
 let environment = Environment(
     loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
@@ -30,22 +31,26 @@ let siteInformation = SiteSourceMaker.Information(
     author: Const.author,
     rssHomeURL: Const.rssHomeURL.absoluteString,
     googleAnalyticsTrackingCode: Const.googleAnalyticsTrackingCode,
-    gitHubRepositoryURL: Const.gitHubRepositoryURL.absoluteString)
+    gitHubRepositoryURL: Const.gitHubRepositoryURL.absoluteString
+)
 
 let siteGenerator = SiteSourceMaker(
     environment: environment,
-    information: siteInformation)
+    information: siteInformation
+)
 
 let feedManager = FeedFileCreator(
     outputDirectory: Const.outputDirectory,
-    siteGenerator: siteGenerator)
+    siteGenerator: siteGenerator
+)
 
 func start() throws -> AnyPublisher<Void, Error> {
     return Publishers
         .CombineLatest(
             gitHubDownloader.fetchTopTrendingPage(),
-            gitHubDownloader.fetchSupportedEmojis())
-        .flatMap({ topTrendingPage, supportedEmojis -> AnyPublisher<Void, Error> in
+            gitHubDownloader.fetchSupportedEmojis()
+        )
+        .flatMap { topTrendingPage, supportedEmojis -> AnyPublisher<Void, Error> in
             guard let languageLinks = (try? gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)) else {
                 return Fail(error: MainError.noLanguageTrendingLinks).eraseToAnyPublisher()
             }
@@ -56,13 +61,15 @@ func start() throws -> AnyPublisher<Void, Error> {
                         .fetchRepositories(
                             ofLink: link,
                             period: period,
-                            includesReadMeIfExists: Const.popularLanguages.contains(link.name))
+                            includesReadMeIfExists: Const.popularLanguages.contains(link.name)
+                        )
                         .handleEvents(receiveOutput: { repositories in
                             _ = try! feedManager.createRSSFile(
                                 repositories: repositories,
                                 languageTrendingLink: link,
                                 period: period,
-                                supportedEmojis: supportedEmojis)
+                                supportedEmojis: supportedEmojis
+                            )
                         })
                         .map { _ in () }
                         .eraseToAnyPublisher()
@@ -71,7 +78,7 @@ func start() throws -> AnyPublisher<Void, Error> {
             }
 
             let chunked = fetchRepositoriesByPeriod
-                .map({ fetchRepositories -> [AnyPublisher<Void, Error>] in
+                .map { fetchRepositories -> [AnyPublisher<Void, Error>] in
                     let chunkedFetchRepositories = fetchRepositories.chunked(into: parallelDownloadChunk)
                     return chunkedFetchRepositories.map {
                         return Publishers.Sequence<[AnyPublisher<Void, Error>], Error>(sequence: $0)
@@ -83,7 +90,7 @@ func start() throws -> AnyPublisher<Void, Error> {
                             .map { _ in () }
                             .eraseToAnyPublisher()
                     }
-                })
+                }
 
             return chunked.reduce(Result.Publisher(()).eraseToAnyPublisher()) { result, publishers in
                 return result.flatMap { _ in
@@ -92,7 +99,7 @@ func start() throws -> AnyPublisher<Void, Error> {
                     }.eraseToAnyPublisher()
                 }.eraseToAnyPublisher()
             }
-        })
+        }
         .map { _ in () }
         .eraseToAnyPublisher()
 }

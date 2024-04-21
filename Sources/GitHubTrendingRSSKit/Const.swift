@@ -72,7 +72,7 @@ public class Const {
         "tex",
         "typescript",
         "xml",
-        "xslt"
+        "xslt",
     ]
 
     public static func setup(gitHubClientID: String, gitHubClientSecret: String) {
