@@ -13,7 +13,7 @@ final class GitHubPageParserTests: XCTestCase {
         let languageTrendingLinks = try parser
             .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
-        XCTAssertEqual(languageTrendingLinks.count, 726)
+        XCTAssertEqual(languageTrendingLinks.count, 720)
         let firstTrendingLink = languageTrendingLinks.first!
         XCTAssertEqual(firstTrendingLink.name, "all")
         XCTAssertEqual(firstTrendingLink.displayName, "All Languages")
@@ -27,7 +27,7 @@ final class GitHubPageParserTests: XCTestCase {
         let languageTrendingLinks = try parser
             .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
-        XCTAssertEqual(languageTrendingLinks.count, 726)
+        XCTAssertEqual(languageTrendingLinks.count, 720)
         let duplicates = languageTrendingLinks
             .map(\.name)
             .findDuplicates()

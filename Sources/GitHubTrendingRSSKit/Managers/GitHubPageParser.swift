@@ -2,6 +2,7 @@
 
 import Foundation
 import SwiftSoup
+import Algorithms
 
 public class GitHubPageParser {
 
@@ -30,7 +31,10 @@ public class GitHubPageParser {
                 displayName: title,
                 href: href)
         }
-        return links
+        
+        let uniqueLinks = links.uniqued(on: \.name)
+        
+        return uniqueLinks
     }
 
     public func repositories(fromTrendingPage trendingPage: String) throws -> [Repository] {
