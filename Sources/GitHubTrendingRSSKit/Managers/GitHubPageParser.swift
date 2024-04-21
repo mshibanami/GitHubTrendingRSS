@@ -7,7 +7,7 @@ public class GitHubPageParser {
 
     private static let specialLinks = [
         LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
-        LanguageTrendingLink(displayName: "Unknown Languages", href: "/trending/unknown")]
+    ]
 
     public init() {}
 
