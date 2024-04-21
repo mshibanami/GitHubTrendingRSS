@@ -13,7 +13,7 @@ final class GitHubPageParserTests: XCTestCase {
         let languageTrendingLinks = try parser
             .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
-        XCTAssertEqual(languageTrendingLinks.count, 700)
+        XCTAssertEqual(languageTrendingLinks.count, 727)
         let firstTrendingLink = languageTrendingLinks.first!
         XCTAssertEqual(firstTrendingLink.name, "all")
         XCTAssertEqual(firstTrendingLink.displayName, "All Languages")
@@ -26,8 +26,8 @@ final class GitHubPageParserTests: XCTestCase {
         let repositories = try parser.repositories(fromTrendingPage: swiftTrendingPage)
         XCTAssertEqual(repositories.count, 25)
         let repository = repositories.first!
-        XCTAssertEqual(repository.pageLink.repositoryName, "LlamaChat")
-        XCTAssertEqual(repository.pageLink.href, "/alexrozanski/LlamaChat")
-        XCTAssertEqual(repository.summary, "Chat with your favourite LLaMA models in a native macOS app")
+        XCTAssertEqual(repository.pageLink.repositoryName, "lottie-ios")
+        XCTAssertEqual(repository.pageLink.href, "/airbnb/lottie-ios")
+        XCTAssertEqual(repository.summary, "An iOS library to natively render After Effects vector animations")
     }
 }
