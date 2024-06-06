@@ -65,7 +65,8 @@ func start() throws -> AnyPublisher<Void, Error> {
                         )
                         .map { $0 as [Repository]? }
                         .catch { error -> AnyPublisher<[Repository]?, Error> in
-                            if case DownloadManager.Error.failedFetching(statusCode: 504) = error {
+                            if error == DownloadManager.Error.failedFetching(statusCode: 504)
+                                || error == DownloadManager.Error.failedFetching(statusCode: 502) {
                                 return Result.Publisher(nil).eraseToAnyPublisher()
                             } else {
                                 return Fail(error: error).eraseToAnyPublisher()

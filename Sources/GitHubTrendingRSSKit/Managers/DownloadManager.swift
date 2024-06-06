@@ -4,7 +4,7 @@ import Combine
 import Foundation
 
 public class DownloadManager {
-    public enum Error: Swift.Error {
+    public enum Error: Swift.Error, Equatable {
         case unknown
         case failedFetching(statusCode: Int)
         case brokenResponseData
