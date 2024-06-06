@@ -5,7 +5,7 @@ import Foundation
 import SwiftSoup
 
 public class GitHubDownloader {
-    enum Error: Swift.Error {
+    public enum Error: Swift.Error {
         case noSelf
         case unsupportedFormat
         case invalidURL

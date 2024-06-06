@@ -63,14 +63,27 @@ func start() throws -> AnyPublisher<Void, Error> {
                             period: period,
                             includesReadMeIfExists: Const.popularLanguages.contains(link.name)
                         )
-                        .handleEvents(receiveOutput: { repositories in
-                            _ = try! feedManager.createRSSFile(
-                                repositories: repositories,
-                                languageTrendingLink: link,
-                                period: period,
-                                supportedEmojis: supportedEmojis
-                            )
-                        })
+                        .map { $0 as [Repository]? }
+                        .catch { error -> AnyPublisher<[Repository]?, Error> in
+                            if case DownloadManager.Error.failedFetching(statusCode: 504) = error {
+                                return Result.Publisher(nil).eraseToAnyPublisher()
+                            } else {
+                                return Fail(error: error).eraseToAnyPublisher()
+                            }
+                        }
+                        .handleEvents(
+                            receiveOutput: { repositories in
+                                guard let repositories else {
+                                    NSLog("⚠️ Failed to fetch repositories of \(link.name).")
+                                    return
+                                }
+                                try! feedManager.createRSSFile(
+                                    repositories: repositories,
+                                    languageTrendingLink: link,
+                                    period: period,
+                                    supportedEmojis: supportedEmojis
+                                )
+                            })
                         .map { _ in () }
                         .eraseToAnyPublisher()
                     return fetchRepository

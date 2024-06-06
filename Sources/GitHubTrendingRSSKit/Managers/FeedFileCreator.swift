@@ -11,7 +11,7 @@ public class FeedFileCreator {
         rootOutputDirectory = outputDirectory
     }
 
-    public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period, supportedEmojis: [GitHubEmoji]) throws -> URL {
+    @discardableResult public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period, supportedEmojis: [GitHubEmoji]) throws -> URL {
         let fileManager = FileManager.default
         let feedHTML = try siteGenerator.makeRSS(
             from: languageTrendingLink,
