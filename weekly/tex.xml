@@ -1,0 +1,1481 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub TeX Weekly Trending</title>
+    <description>Weekly Trending of TeX in GitHub</description>
+    <pubDate>Tue, 02 Jul 2024 01:41:52 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>dendibakh/perf-book</title>
+      <link>https://github.com/dendibakh/perf-book</link>
+      <description>&lt;p&gt;The book &quot;Performance Analysis and Tuning on Modern CPU&quot;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://github.com/dendibakh/perf-book/actions/workflows/build_pdf.yml/badge.svg?sanitize=true&quot; alt=&quot;Build PDF Windows&quot;&gt; &lt;img src=&quot;https://github.com/dendibakh/perf-book/actions/workflows/build_pdf_linux.yml/badge.svg?sanitize=true&quot; alt=&quot;Build PDF Linux&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/dendibakh&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/dendibakh&quot; alt=&quot;X (formerly Twitter) Follow&quot;&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/stars/dendibakh/perf-book&quot; alt=&quot;GitHub Repo stars&quot;&gt;&lt;/p&gt; 
+&lt;h1&gt;perf-book&lt;/h1&gt; 
+&lt;p&gt;This is a repository with source files of the book &quot;Performance Analysis and Tuning on Modern CPU&quot; by Denis Bakhvalov, et al.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Second edition work in progress!&lt;/strong&gt; Planned changes are outlined in the google &lt;a href=&quot;https://docs.google.com/document/d/1tr2qRDe72VSBYypIANYjJLM_zCdPB6S9m4LmXsQb0vQ/edit?usp=sharing&quot;&gt;document&lt;/a&gt;. The planned new table of contents is in &lt;a href=&quot;https://raw.githubusercontent.com/dendibakh/perf-book/main/new_toc.md&quot;&gt;new_toc.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;My goal is to accumulate as much knowledge as possible from all the best experts in the industry. And of course, share that knowledge with you. Contributions are welcome.&lt;/p&gt; 
+&lt;h1&gt;Contributing&lt;/h1&gt; 
+&lt;p&gt;There are many ways how you can help.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;You can author a section(s) on a topic you are an expert in. But let me know before you start.&lt;/li&gt; 
+ &lt;li&gt;Small improvements are welcome without prior approval, just open a new PR.&lt;/li&gt; 
+ &lt;li&gt;Feel free to propose ideas for new content.&lt;/li&gt; 
+ &lt;li&gt;Reviewers with all backgrounds are needed.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Check out the &lt;a href=&quot;https://github.com/dendibakh/perf-book/discussions&quot;&gt;discussions&lt;/a&gt; page to start.&lt;/p&gt; 
+&lt;p&gt;For examples on how to add images, table, code listings, etc, see &lt;a href=&quot;https://raw.githubusercontent.com/dendibakh/perf-book/main/how-to.md&quot;&gt;how-to.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Building a book (pdf)&lt;/h1&gt; 
+&lt;p&gt;At the moment, building a PDF only works on Windows and Linux. MacOS requires building some components (e.g. pandoc-crossref from sources).&lt;/p&gt; 
+&lt;p&gt;Requirements:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Python3. Install natsort module: &lt;code&gt;pip install natsort&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pandoc.org/installing.html&quot;&gt;pandoc&lt;/a&gt; - install &lt;a href=&quot;https://github.com/jgm/pandoc/releases/tag/2.9.2.1&quot;&gt;version 2.9&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;install pandoc filters: &lt;code&gt;pip install pandoc-fignos pandoc-tablenos&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;install &lt;code&gt;pandoc-crossref&lt;/code&gt;. This one requires manual installation. I just downloaded the binary from &lt;a href=&quot;https://github.com/lierdakil/pandoc-crossref/releases/tag/v0.3.6.4&quot;&gt;here&lt;/a&gt; and copied it to the same place where &lt;code&gt;pandoc-fignos&lt;/code&gt; is.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://miktex.org/download&quot;&gt;MiKTeX&lt;/a&gt; - check &lt;code&gt;Yes&lt;/code&gt; for automatic package installation&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Linux bash and Windows cmd prompt
+python export_book.py &amp;amp;&amp;amp; pdflatex book.tex &amp;amp;&amp;amp; bibtex book &amp;amp;&amp;amp; pdflatex book.tex &amp;amp;&amp;amp; pdflatex book.tex
+
+# Windows powershell
+function Run-Block-With-Error($block) {
+    $ErrorActionPreference=&quot;Stop&quot;
+    Invoke-Command -ScriptBlock $block
+}
+Run-Block-With-Error {python.exe export_book.py; pdflatex book.tex; bibtex book; pdflatex book.tex; pdflatex book.tex}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;As a result, &lt;code&gt;book.pdf&lt;/code&gt; will be generated. The first compilation may be slow due to the installation of required packets.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dendibakh/perf-book/main/LICENSE&quot;&gt;Creative Commons Zero v1.0 Universal&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>lervag/vimtex</title>
+      <link>https://github.com/lervag/vimtex</link>
+      <description>&lt;p&gt;VimTeX: A modern Vim and neovim filetype plugin for LaTeX files.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;VimTeX&lt;/h1&gt; 
+&lt;p&gt;VimTeX is a modern &lt;a href=&quot;http://www.vim.org/&quot;&gt;Vim&lt;/a&gt; and &lt;a href=&quot;https://neovim.io/&quot;&gt;Neovim&lt;/a&gt; filetype and syntax plugin for LaTeX files.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gitter.im/vimtex-chat/community?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/vimtex-chat/community.svg?sanitize=true&quot; alt=&quot;Gitter&quot;&gt;&lt;/a&gt; &lt;img src=&quot;https://github.com/lervag/vimtex/workflows/CI%20tests/badge.svg?sanitize=true&quot; alt=&quot;CI tests&quot;&gt; &lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=5N4MFVXN7U8NW&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Donate-PayPal-green.svg?sanitize=true&quot; alt=&quot;Donate&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Table of contents&lt;/h2&gt; 
+&lt;!-- START doctoc generated TOC please keep comment here to allow auto update --&gt; 
+&lt;!-- DON&#39;T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#requirements&quot;&gt;Requirements&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#installation&quot;&gt;Installation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#configuration&quot;&gt;Configuration&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#quick-start&quot;&gt;Quick Start&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#tutorial&quot;&gt;Tutorial&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#documentation&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#screenshots&quot;&gt;Screenshots&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#gifs&quot;&gt;GIFs&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#other-relevant-plugins&quot;&gt;Other relevant plugins&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#linting-and-syntax-checking&quot;&gt;Linting and syntax checking&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#snippets-and-templates&quot;&gt;Snippets and templates&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#tag-navigation&quot;&gt;Tag navigation&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#alternatives&quot;&gt;Alternatives&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#vimtex-on-the-web&quot;&gt;VimTeX on the Web&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;VimTeX requires Vim version 8.2.3995 or Neovim version 0.9.5. The requirements were updated in April 2024 after the release of VimTeX 2.15. If you are stuck on older versions of Vim or Neovim, then you should not use the most recent version of VimTeX, but instead remain at the v2.15 tag.&lt;/p&gt; 
+&lt;p&gt;Some features require external tools. For example, the default compiler backend relies on &lt;a href=&quot;https://www.cantab.net/users/johncollins/latexmk/index.html&quot;&gt;latexmk&lt;/a&gt;. Users are encouraged to read the requirements section in the &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/doc/vimtex.txt&quot;&gt;documentation&lt;/a&gt; (&lt;code&gt;:h vimtex-requirements&lt;/code&gt;).&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;There are a lot of methods for installing plugins. The following explains the most common and popular approaches.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Many plugin managers provide mechanisms to lazy load plugins. Please don&#39;t use this for VimTeX! VimTeX is already lazy loaded by virtue of being a filetype plugin and by using the autoload mechanisms. There is therefore nothing to gain by forcing VimTeX to lazily load through the plugin manager. In fact, doing it will &lt;em&gt;break&lt;/em&gt; the inverse-search mechanism, which relies on a &lt;em&gt;global&lt;/em&gt; command (&lt;code&gt;:VimtexInverseSearch&lt;/code&gt;).&lt;/p&gt; 
+&lt;h3&gt;lazy.nvim&lt;/h3&gt; 
+&lt;p&gt;In Neovim, &lt;a href=&quot;https://github.com/folke/lazy.nvim&quot;&gt;lazy.nvim&lt;/a&gt; is probably the most popular plugin manger. To install VimTeX, add a plugin spec similar to this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+  &quot;lervag/vimtex&quot;,
+  lazy = false,     -- we don&#39;t want to lazy load VimTeX
+  -- tag = &quot;v2.15&quot;, -- uncomment to pin to a specific release
+  init = function()
+    -- VimTeX configuration goes here, e.g.
+    vim.g.vimtex_view_method = &quot;zathura&quot;
+  end
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;VimTeX is mostly implemented with Vimscript and is configured with the classical vimscript variable convention like &lt;code&gt;g:vimtex_OPTION_NAME&lt;/code&gt;. Nowadays, Neovim is often configured with Lua, thus some users may be interested in reading &lt;code&gt;:help lua-vimscript&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;vim-plug&lt;/h3&gt; 
+&lt;p&gt;If you use &lt;a href=&quot;https://github.com/junegunn/vim-plug&quot;&gt;vim-plug&lt;/a&gt;, then add &lt;em&gt;one&lt;/em&gt; of the following lines to your configuration. The first will use the latest versions from the &lt;code&gt;master&lt;/code&gt; branch, whereas the second will pin to a release tag.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;Plug &#39;lervag/vimtex&#39;
+Plug &#39;lervag/vimtex&#39;, { &#39;tag&#39;: &#39;v2.15&#39; }
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Other&lt;/h3&gt; 
+&lt;p&gt;There are many other plugin managers out there. They are typically well documented, and it should be straightforward to extrapolate the above snippets.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: If you use the built-in package feature, then:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Make sure to read and understand the package feature: &lt;code&gt;:help package&lt;/code&gt;!&lt;/li&gt; 
+ &lt;li&gt;Use the &lt;code&gt;/pack/foo/start&lt;/code&gt; subdirectory to make sure the filetype plugin is automatically loaded for the &lt;code&gt;tex&lt;/code&gt; filetypes.&lt;/li&gt; 
+ &lt;li&gt;Helptags are not generated automatically. Run &lt;code&gt;:helptags&lt;/code&gt; to generate them.&lt;/li&gt; 
+ &lt;li&gt;Please note that by default Vim puts custom &lt;code&gt;/start/&lt;/code&gt; plugin directories at the end of the &lt;code&gt;&amp;amp;runtimepath&lt;/code&gt;. This means the built in filetype plugin is loaded, which prevents VimTeX from loading. See &lt;a href=&quot;https://github.com/lervag/vimtex/issues/1413&quot;&gt;#1413&lt;/a&gt; for two suggested solutions to this. To see which scripts are loaded and in which order, use &lt;code&gt;:scriptnames&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;For more information on how to use the Vim native package solution, see &lt;a href=&quot;https://vi.stackexchange.com/questions/9522/what-is-the-vim8-package-feature-and-how-should-i-use-it&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://shapeshed.com/vim-packages/&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;After installing VimTeX, you should edit your &lt;code&gt;.vimrc&lt;/code&gt; file or &lt;code&gt;init.vim&lt;/code&gt; file to configure VimTeX to your liking. Users should read the documentation to learn the various configuration possibilities, but the below is a simple overview of some of the main aspects.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;PLEASE don&#39;t just copy this without reading the comments!&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;&quot; This is necessary for VimTeX to load properly. The &quot;indent&quot; is optional.
+&quot; Note: Most plugin managers will do this automatically!
+filetype plugin indent on
+
+&quot; This enables Vim&#39;s and neovim&#39;s syntax-related features. Without this, some
+&quot; VimTeX features will not work (see &quot;:help vimtex-requirements&quot; for more
+&quot; info).
+&quot; Note: Most plugin managers will do this automatically!
+syntax enable
+
+&quot; Viewer options: One may configure the viewer either by specifying a built-in
+&quot; viewer method:
+let g:vimtex_view_method = &#39;zathura&#39;
+
+&quot; Or with a generic interface:
+let g:vimtex_view_general_viewer = &#39;okular&#39;
+let g:vimtex_view_general_options = &#39;--unique file:@pdf\#src:@line@tex&#39;
+
+&quot; VimTeX uses latexmk as the default compiler backend. If you use it, which is
+&quot; strongly recommended, you probably don&#39;t need to configure anything. If you
+&quot; want another compiler backend, you can change it as follows. The list of
+&quot; supported backends and further explanation is provided in the documentation,
+&quot; see &quot;:help vimtex-compiler&quot;.
+let g:vimtex_compiler_method = &#39;latexrun&#39;
+
+&quot; Most VimTeX mappings rely on localleader and this can be changed with the
+&quot; following line. The default is usually fine and is the symbol &quot;\&quot;.
+let maplocalleader = &quot;,&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: If the compiler or the viewer doesn&#39;t start properly, one may type &lt;code&gt;&amp;lt;localleader&amp;gt;li&lt;/code&gt; to view the system commands that were executed to start them. To inspect the compiler output, use &lt;code&gt;&amp;lt;localleader&amp;gt;lo&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;p&gt;The following video shows how to use VimTeX&#39;s main features (credits: &lt;a href=&quot;https://github.com/DustyTopology&quot;&gt;@DustyTopology&lt;/a&gt; from &lt;a href=&quot;https://github.com/lervag/vimtex/issues/1946#issuecomment-846345095&quot;&gt;#1946&lt;/a&gt;). The example LaTeX file used in the video is available under &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/test/example-quick-start/main.tex&quot;&gt;&lt;code&gt;test/example-quick-start/main.tex&lt;/code&gt;&lt;/a&gt; and it may be instructive to copy the file and play with it to learn some of these basic functions.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://user-images.githubusercontent.com/66584581/119213849-1b7d4080-ba77-11eb-8a31-7ff7b9a4a020.mp4&quot;&gt;https://user-images.githubusercontent.com/66584581/119213849-1b7d4080-ba77-11eb-8a31-7ff7b9a4a020.mp4&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Tutorial&lt;/h3&gt; 
+&lt;p&gt;Both new and experienced users are encouraged to read the excellent guide by @ejmastnak: &lt;a href=&quot;https://ejmastnak.com/tutorials/vim-latex/vimtex/&quot;&gt;Getting started with the VimTeX plugin&lt;/a&gt;. The guide covers all the fundamentals of setting up a VimTeX-based LaTeX workflow, including usage of the VimTeX plugin, compilation, setting up forward and inverse search with a PDF reader, and Vimscript tools for user-specific customization.&lt;/p&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;p&gt;Users are of course &lt;em&gt;strongly&lt;/em&gt; encouraged to read the documentation, at least the introduction, to learn about the different features and possibilities provided by VimTeX (see &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/doc/vimtex.txt&quot;&gt;&lt;code&gt;:h vimtex&lt;/code&gt;&lt;/a&gt;). Advanced users and potential developers may also be interested in reading the supplementary documents:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/DOCUMENTATION.md&quot;&gt;DOCUMENTATION.md&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;p&gt;Here is an example of the syntax highlighting provided by VimTeX. The conceal feature is active on the right-hand side split. The example is made by @DustyTopology with the &lt;a href=&quot;https://github.com/arzg/vim-colors-xcode&quot;&gt;vim-colors-xcode&lt;/a&gt; colorscheme with some minor adjustments &lt;a href=&quot;https://github.com/lervag/vimtex/issues/1946#issuecomment-843674951&quot;&gt;described here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/lervag/vimtex-media/raw/main/img/syntax.png&quot; alt=&quot;Syntax example&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;GIFs&lt;/h3&gt; 
+&lt;p&gt;See the file &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md&quot;&gt;VISUALS.md&lt;/a&gt; for screencast-style GIFs demonstrating VimTeX&#39;s core motions, text-editing commands, and text objects.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;Below is a list of features offered by VimTeX. The features are accessible as both commands and mappings. The mappings generally start with &lt;code&gt;&amp;lt;localleader&amp;gt;l&lt;/code&gt;, but if desired one can disable default mappings to define custom mappings. Nearly all features are enabled by default, but each feature may be disabled if desired. The two exceptions are code folding and formating, which are disabled by default and must be manually enabled.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Document compilation with &lt;a href=&quot;https://www.cantab.net/users/johncollins/latexmk/index.html&quot;&gt;latexmk&lt;/a&gt;, &lt;a href=&quot;https://github.com/aclements/latexrun&quot;&gt;latexrun&lt;/a&gt;, &lt;a href=&quot;https://tectonic-typesetting.github.io&quot;&gt;tectonic&lt;/a&gt;, or &lt;a href=&quot;https://github.com/cereda/arara&quot;&gt;arara&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;LaTeX log parsing for quickfix entries using 
+  &lt;ul&gt; 
+   &lt;li&gt;internal method&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/stefanhepp/pplatex&quot;&gt;pplatex&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Compilation of selected part of document&lt;/li&gt; 
+ &lt;li&gt;Support for several PDF viewers with forward search 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://www.mupdf.com/&quot;&gt;MuPDF&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://okular.kde.org/&quot;&gt;Okular&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://launchpad.net/qpdfview&quot;&gt;qpdfview&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://skim-app.sourceforge.net/&quot;&gt;Skim&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://www.sumatrapdfreader.org/free-pdf-reader.html&quot;&gt;SumatraPDF&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://pages.uoregon.edu/koch/texshop/&quot;&gt;TeXShop&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://pwmt.org/projects/zathura/&quot;&gt;Zathura&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Other viewers are supported through a general interface&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Completion of 
+  &lt;ul&gt; 
+   &lt;li&gt;citations&lt;/li&gt; 
+   &lt;li&gt;labels&lt;/li&gt; 
+   &lt;li&gt;commands&lt;/li&gt; 
+   &lt;li&gt;file names for figures, input/include, includepdf, includestandalone&lt;/li&gt; 
+   &lt;li&gt;glossary entries&lt;/li&gt; 
+   &lt;li&gt;package and documentclass names based on available &lt;code&gt;.sty&lt;/code&gt; and &lt;code&gt;.cls&lt;/code&gt; files&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Document navigation through 
+  &lt;ul&gt; 
+   &lt;li&gt;table of contents&lt;/li&gt; 
+   &lt;li&gt;table of labels&lt;/li&gt; 
+   &lt;li&gt;proper settings for &lt;code&gt;&#39;include&#39;&lt;/code&gt;, &lt;code&gt;&#39;includexpr&#39;&lt;/code&gt;, &lt;code&gt;&#39;suffixesadd&#39;&lt;/code&gt; and &lt;code&gt;&#39;define&#39;&lt;/code&gt;, which among other things 
+    &lt;ul&gt; 
+     &lt;li&gt;allow &lt;code&gt;:h include-search&lt;/code&gt; and &lt;code&gt;:h definition-search&lt;/code&gt;&lt;/li&gt; 
+     &lt;li&gt;give enhanced &lt;code&gt;gf&lt;/code&gt; command&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Easy access to (online) documentation of packages&lt;/li&gt; 
+ &lt;li&gt;Word count (through &lt;code&gt;texcount&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Motions (&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md#motion-commands&quot;&gt;link to GIF demonstrations&lt;/a&gt;) 
+  &lt;ul&gt; 
+   &lt;li&gt;Move between section boundaries with &lt;code&gt;[[&lt;/code&gt;, &lt;code&gt;[]&lt;/code&gt;, &lt;code&gt;][&lt;/code&gt;, and &lt;code&gt;]]&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between environment boundaries with &lt;code&gt;[m&lt;/code&gt;, &lt;code&gt;[M&lt;/code&gt;, &lt;code&gt;]m&lt;/code&gt;, and &lt;code&gt;]M&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between math environment boundaries with &lt;code&gt;[n&lt;/code&gt;, &lt;code&gt;[N&lt;/code&gt;, &lt;code&gt;]n&lt;/code&gt;, and &lt;code&gt;]N&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between frame environment boundaries with &lt;code&gt;[r&lt;/code&gt;, &lt;code&gt;[R&lt;/code&gt;, &lt;code&gt;]r&lt;/code&gt;, and &lt;code&gt;]R&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between comment boundaries with &lt;code&gt;[*&lt;/code&gt; and &lt;code&gt;]*&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between matching delimiters with &lt;code&gt;%&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Text objects (&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md#text-objects&quot;&gt;link to GIF demonstrations&lt;/a&gt;) 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;ic ac&lt;/code&gt; Commands&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;id ad&lt;/code&gt; Delimiters&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;ie ae&lt;/code&gt; LaTeX environments&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;i$ a$&lt;/code&gt; Math environments&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;iP aP&lt;/code&gt; Sections&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;im am&lt;/code&gt; Items&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Other mappings (&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md#deleting-surrounding-latex-content&quot;&gt;link to GIF demonstrations&lt;/a&gt;) 
+  &lt;ul&gt; 
+   &lt;li&gt;Delete the surrounding command, environment or delimiter with &lt;code&gt;dsc&lt;/code&gt;/&lt;code&gt;dse&lt;/code&gt;/&lt;code&gt;ds$&lt;/code&gt;/&lt;code&gt;dsd&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Change the surrounding command, environment or delimiter with &lt;code&gt;csc&lt;/code&gt;/&lt;code&gt;cse&lt;/code&gt;/&lt;code&gt;cs$&lt;/code&gt;/&lt;code&gt;csd&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle starred command or environment with &lt;code&gt;tsc&lt;/code&gt;/&lt;code&gt;tse&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle inline and displaymath with &lt;code&gt;ts$&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle between e.g. &lt;code&gt;()&lt;/code&gt; and &lt;code&gt;\left(\right)&lt;/code&gt; with &lt;code&gt;tsd&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle (inline) fractions with &lt;code&gt;tsf&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle line-break macro &lt;code&gt;\\&lt;/code&gt; with &lt;code&gt;tsb&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Close the current environment/delimiter in insert mode with &lt;code&gt;]]&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Add &lt;code&gt;\left ... \right)&lt;/code&gt; modifiers to surrounding delimiters with &lt;code&gt;&amp;lt;F8&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Insert new command with &lt;code&gt;&amp;lt;F7&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Convenient insert mode mappings for faster typing of e.g. maths&lt;/li&gt; 
+   &lt;li&gt;Context menu on citations (e.g. &lt;code&gt;\cite{...}&lt;/code&gt;) mapped to &lt;code&gt;&amp;lt;cr&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Improved folding (&lt;code&gt;:h &#39;foldexpr&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Improved indentation (&lt;code&gt;:h &#39;indentexpr&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Syntax highlighting 
+  &lt;ul&gt; 
+   &lt;li&gt;A consistent core syntax specification&lt;/li&gt; 
+   &lt;li&gt;General syntax highlighting for several popular LaTeX packages&lt;/li&gt; 
+   &lt;li&gt;Nested syntax highlighting for several popular LaTeX packages&lt;/li&gt; 
+   &lt;li&gt;Highlight matching delimiters&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Support for multi-file project packages 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://ctan.uib.no/macros/latex/contrib/import/import.pdf&quot;&gt;import&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://ctan.uib.no/macros/latex/contrib/subfiles/subfiles.pdf&quot;&gt;subfiles&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;See the documentation for a thorough introduction to VimTeX (e.g. &lt;code&gt;:h vimtex&lt;/code&gt;).&lt;/p&gt; 
+&lt;h2&gt;Other relevant plugins&lt;/h2&gt; 
+&lt;p&gt;Even though VimTeX provides a lot of nice features for working with LaTeX documents, there are several features that are better served by other, dedicated plugins. For a more detailed listing of these, please see &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/doc/vimtex.txt#L540&quot;&gt;&lt;code&gt;:help vimtex-and-friends&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Linting and syntax checking&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/w0rp/ale&quot;&gt;ale&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/neomake/neomake&quot;&gt;neomake&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/vim-syntastic/syntastic&quot;&gt;syntastic&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Snippets and templates&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/SirVer/ultisnips&quot;&gt;UltiSnips&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Shougo/neosnippet.vim&quot;&gt;neosnippet&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Tag navigation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ludovicchabant/vim-gutentags&quot;&gt;vim-gutentags&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;p&gt;The following are some alternative LaTeX plugins for Vim:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;http://vim-latex.sourceforge.net&quot;&gt;LaTeX-Suite&lt;/a&gt;&lt;/p&gt; &lt;p&gt;The main difference between VimTeX and LaTeX-Suite (aka vim-latex) is probably that VimTeX does not try to implement a full fledged IDE for LaTeX inside Vim. E.g.:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;VimTeX does not provide a full snippet feature, because this is better handled by &lt;a href=&quot;https://github.com/SirVer/ultisnips&quot;&gt;UltiSnips&lt;/a&gt; or &lt;a href=&quot;https://github.com/Shougo/neosnippet.vim&quot;&gt;neosnippet&lt;/a&gt; or similar snippet engines.&lt;/li&gt; 
+   &lt;li&gt;VimTeX builds upon Vim principles: It provides text objects for environments, inline math, it provides motions for sections and paragraphs&lt;/li&gt; 
+   &lt;li&gt;VimTeX uses &lt;code&gt;latexmk&lt;/code&gt;, &lt;code&gt;latexrun&lt;/code&gt;, &lt;code&gt;tectonic&lt;/code&gt; or &lt;code&gt;arara&lt;/code&gt; for compilation with a callback feature to get instant feedback on compilation errors&lt;/li&gt; 
+   &lt;li&gt;VimTeX is very modular: if you don&#39;t like a feature, you can turn it off.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/jakewvincent/texmagic.nvim&quot;&gt;TexMagic.nvim&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&quot;A simple, lightweight Neovim plugin that facilitates LaTeX build engine selection via magic comments. It is designed with the TexLab LSP server&#39;s build functionality in mind, which at the time of this plugin&#39;s inception had to be specified in init.lua/init.vim and could not be set on a by-project basis.&quot;&lt;/p&gt; &lt;p&gt;This plugin should be combined with the TexLab LSP server, and it only works on neovim.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/LaTeX-Box-Team/LaTeX-Box&quot;&gt;LaTeX-Box&lt;/a&gt;&lt;/p&gt; &lt;p&gt;VimTeX currently has most of the features of LaTeX-Box, as well as some additional ones. See &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#features&quot;&gt;here&lt;/a&gt; for a relatively complete list of features.&lt;/p&gt; &lt;p&gt;One particular feature that LaTeX-Box has but VimTeX misses, is the ability to do single-shot compilation &lt;em&gt;with callback&lt;/em&gt;. This functionality was removed because it adds a lot of complexity for relatively little gain (IMHO).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;http://atp-vim.sourceforge.net&quot;&gt;AutomaticTexPlugin&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/xuhdev/vim-latex-live-preview&quot;&gt;vim-latex-live-preview&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For more alternatives and more information and discussions regarding LaTeX plugins for Vim, see:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://vi.stackexchange.com/questions/2047/what-are-the-differences-between-latex-plugins&quot;&gt;What are the differences between LaTeX plugins&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://tex.stackexchange.com/questions/339/latex-editors-ides&quot;&gt;List of LaTeX editors (not only Vim)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>sb2nov/resume</title>
+      <link>https://github.com/sb2nov/resume</link>
+      <description>&lt;p&gt;Software developer resume in Latex&lt;/p&gt;&lt;hr&gt;&lt;p&gt;A single-page, one-column resume for software developers. It uses the base latex templates and fonts to provide ease of use and installation when trying to update the resume. The different sections are clearly documented and custom commands are used to provide consistent formatting. The three main sections in the resume are education, experience, and projects.&lt;/p&gt; 
+&lt;h3&gt;Motivation&lt;/h3&gt; 
+&lt;p&gt;I created this template as managing a resume on Google Docs was hard and changing any formatting was too difficult since it had to be applied in multiple places.&lt;/p&gt; 
+&lt;p&gt;Most currently available templates either focus on two columns, or are multiple pages long that didn&#39;t work well for career fairs or online applications.&lt;/p&gt; 
+&lt;h3&gt;Quick start&lt;/h3&gt; 
+&lt;p&gt;Get started quickly using &lt;a href=&quot;https://www.overleaf.com/latex/templates/software-engineer-resume/gqxmqsvsbdjf&quot;&gt;Overleaf&lt;/a&gt; template.&lt;/p&gt; 
+&lt;h3&gt;Build using Docker&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;docker build -t latex .
+docker run --rm -i -v &quot;$PWD&quot;:/data latex pdflatex sourabh_bajaj_resume.tex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Preview&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/sb2nov/resume/master/resume_preview.png&quot; alt=&quot;Resume Screenshot&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;License&lt;/h3&gt; 
+&lt;p&gt;Format is MIT but all the data is owned by Sourabh Bajaj.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>lib-pku/libpku</title>
+      <link>https://github.com/lib-pku/libpku</link>
+      <description>&lt;p&gt;贵校课程资料民间整理&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;libpku - 贵校课程资料民间整理&lt;/h1&gt; 
+&lt;h2&gt;Preface&lt;/h2&gt; 
+&lt;p&gt;（引用自 &lt;a href=&quot;https://github.com/QSCTech/zju-icicles&quot;&gt;QSCTech/zju-icicles&lt;/a&gt; ）&lt;/p&gt; 
+&lt;p&gt;来到一所大学，从第一次接触许多课，直到一门一门完成，这个过程中我们时常收集起许多资料和情报。&lt;/p&gt; 
+&lt;p&gt;有些是需要在网上搜索的电子书，每次见到一门新课程，Google 一下教材名称，有的可以立即找到，有的却是要花费许多眼力；有些是历年试卷或者 A4 纸，前人精心收集制作，抱着能对他人有用的想法公开，却需要在各个群或者私下中摸索以至于从学长手中代代相传；有些是上完一门课才恍然领悟的技巧，原来这门课重点如此，当初本可以更轻松地完成得更好……&lt;/p&gt; 
+&lt;p&gt;我也曾很努力地收集各种课程资料，但到最后，某些重要信息的得到却往往依然是纯属偶然。这种状态时常令我感到后怕与不安。我也曾在课程结束后终于有了些许方法与总结，但这些想法无处诉说，最终只能把花费时间与精力才换来的经验耗散在了漫漫的遗忘之中。&lt;/p&gt; 
+&lt;p&gt;我为这一年一年，这么多人孤军奋战的重复劳动感到不平。&lt;/p&gt; 
+&lt;p&gt;我希望能够将这些隐晦的、不确定的、口口相传的资料和经验，变为公开的、易于获取的和大家能够共同完善、积累的共享资料。&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;我希望只要是前人走过的弯路，后人就不必再走。&lt;/strong&gt; 这是我的信念，也是我建立这个项目的原因。&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;使用方法：访问 &lt;a href=&quot;https://lib-pku.github.io/&quot;&gt;https://lib-pku.github.io/&lt;/a&gt; ，点击资料链接即可下载。&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://minhaskamal.github.io/DownGit/#/home&quot;&gt;https://minhaskamal.github.io/DownGit/#/home&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Contribution&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;欢迎贡献！&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;欢迎贡献！&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;欢迎贡献！&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;——因为很重要所以说了三遍&lt;/p&gt; 
+&lt;p&gt;Issue、PR、纠错、资料、选课/考试攻略，完全欢迎！&lt;/p&gt; 
+&lt;p&gt;来自大家的关注、维护和贡献，才是让这个攻略继续存在的动力~&lt;/p&gt; 
+&lt;p&gt;对于课程的评价可写在对应课程文件夹的 &lt;code&gt;README.md&lt;/code&gt; 中。如果想上传课件（请确保无版权问题），推荐使用 PDF 格式，避免系统差。&lt;/p&gt; 
+&lt;p&gt;由于本项目体积很大，故推荐采用在 &lt;strong&gt;GitHub Web 端直接上传&lt;/strong&gt; 的方式，具体操作如下：&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;首先 Fork 本项目&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;上传文件到已有文件夹：打开对应文件夹，点击绿色 Download 按钮旁的 upload，上传你的文件。&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;上传文件到新文件夹：打开任意文件夹，点击绿色 Download 按钮旁的 upload，&lt;strong&gt;把浏览器地址栏中文件夹名称改为你想要新建的文件夹名称，然后回车&lt;/strong&gt;，上传你的文件。&lt;/p&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;提交 PR：Fork 本项目，然后在 GitHub 网页端点击 Upload File 上传文件，发起 PR 即可。留意一下项目的文件组织喔。&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;或者也可以直接附加在 &lt;strong&gt;Issue&lt;/strong&gt; 中，由维护者进行添加。&lt;/p&gt; 
+&lt;p&gt;或者也可以发送邮件至 &lt;strong&gt;&lt;a href=&quot;mailto:libpku@protonmail.com&quot;&gt;libpku@protonmail.com&lt;/a&gt;&lt;/strong&gt; ，由维护者进行添加。&lt;/p&gt; 
+&lt;h2&gt;Disclaimer&lt;/h2&gt; 
+&lt;p&gt;这不是北京大学图书馆。 我们也不对项目中信息的准确性或真实性做任何承诺。&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;如果有侵权情况，麻烦您发送必要的信息至 &lt;a href=&quot;mailto:libpku@protonmail.com&quot;&gt;libpku@protonmail.com&lt;/a&gt; ，带来不便还请您谅解。&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;资料来自网络，相关权利由原作者所有，这个 repo 仅用于收集现有资料。&lt;/p&gt; 
+&lt;p&gt;当然，我们不会为收集到的资料收费，或是尝试收取捐赠。&lt;/p&gt; 
+&lt;p&gt;我们只是尝试为后来的同学节省一些时间。&lt;/p&gt; 
+&lt;h2&gt;Related Works&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/QSCTech/zju-icicles&quot;&gt;浙江大学课程攻略共享计划&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/martinwu42/project-hover&quot;&gt;气垫船计划——免费、去中心化的北京大学往年题资料库&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/EECS-PKU-XSB/Shared-learning-materials&quot;&gt;北京大学信科学生会学术部资料库&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/tongtzeho/PKUCourse&quot;&gt;北大计算机课程大作业&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PKUanonym/REKCARC-TSC-UHT&quot;&gt;清华大学计算机系课程攻略&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/zjdx1998/seucourseshare&quot;&gt;东南大学课程共享计划&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/USTC-Resource/USTC-Course&quot;&gt;中国科学技术大学计算机学院课程资源&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/CoolPhilChen/SJTU-Courses/&quot;&gt;上海交通大学课程资料分享&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sysuexam/SYSU-Exam&quot;&gt;中山大学课程资料分享&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/idealclover/NJU-Review-Materials&quot;&gt;南京大学课程复习资料&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/CooperNiu/ZZU-Courses-Resource&quot;&gt;郑州大学课程复习资料&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/brenner8023/gdut-course&quot;&gt;广东工业大学计算机学院课程攻略&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;(more to be added....)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vdumoulin/conv_arithmetic</title>
+      <link>https://github.com/vdumoulin/conv_arithmetic</link>
+      <description>&lt;p&gt;A technical report on convolution arithmetic in the context of deep learning&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Convolution arithmetic&lt;/h1&gt; 
+&lt;p&gt;A technical report on convolution arithmetic in the context of deep learning.&lt;/p&gt; 
+&lt;p&gt;The code and the images of this tutorial are free to use as regulated by the licence and subject to proper attribution:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;[1] Vincent Dumoulin, Francesco Visin - &lt;a href=&quot;https://arxiv.org/abs/1603.07285&quot;&gt;A guide to convolution arithmetic for deep learning&lt;/a&gt; (&lt;a href=&quot;https://gist.github.com/fvisin/165ca9935392fa9600a6c94664a01214&quot;&gt;BibTeX&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Convolution animations&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;N.B.: Blue maps are inputs, and cyan maps are outputs.&lt;/em&gt;&lt;/p&gt; 
+&lt;table style=&quot;width:100%; table-layout:fixed;&quot;&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/no_padding_no_strides.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/arbitrary_padding_no_strides.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/same_padding_no_strides.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/full_padding_no_strides.gif&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;No padding, no strides&lt;/td&gt; 
+   &lt;td&gt;Arbitrary padding, no strides&lt;/td&gt; 
+   &lt;td&gt;Half padding, no strides&lt;/td&gt; 
+   &lt;td&gt;Full padding, no strides&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/no_padding_strides.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/padding_strides.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/padding_strides_odd.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;No padding, strides&lt;/td&gt; 
+   &lt;td&gt;Padding, strides&lt;/td&gt; 
+   &lt;td&gt;Padding, strides (odd)&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;h2&gt;Transposed convolution animations&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;N.B.: Blue maps are inputs, and cyan maps are outputs.&lt;/em&gt;&lt;/p&gt; 
+&lt;table style=&quot;width:100%; table-layout:fixed;&quot;&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/no_padding_no_strides_transposed.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/arbitrary_padding_no_strides_transposed.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/same_padding_no_strides_transposed.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/full_padding_no_strides_transposed.gif&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;No padding, no strides, transposed&lt;/td&gt; 
+   &lt;td&gt;Arbitrary padding, no strides, transposed&lt;/td&gt; 
+   &lt;td&gt;Half padding, no strides, transposed&lt;/td&gt; 
+   &lt;td&gt;Full padding, no strides, transposed&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/no_padding_strides_transposed.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/padding_strides_transposed.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/padding_strides_odd_transposed.gif&quot;&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;No padding, strides, transposed&lt;/td&gt; 
+   &lt;td&gt;Padding, strides, transposed&lt;/td&gt; 
+   &lt;td&gt;Padding, strides, transposed (odd)&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;h2&gt;Dilated convolution animations&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;N.B.: Blue maps are inputs, and cyan maps are outputs.&lt;/em&gt;&lt;/p&gt; 
+&lt;table style=&quot;width:25%&quot; ; table-layout:fixed;&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img width=&quot;150px&quot; src=&quot;https://raw.githubusercontent.com/vdumoulin/conv_arithmetic/master/gif/dilation.gif&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;No padding, no stride, dilation&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;h2&gt;Generating the Makefile&lt;/h2&gt; 
+&lt;p&gt;From the repository&#39;s root directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ ./bin/generate_makefile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Generating the animations&lt;/h2&gt; 
+&lt;p&gt;From the repository&#39;s root directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ make all_animations
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The animations will be output to the &lt;code&gt;gif&lt;/code&gt; directory. Individual animation steps will be output in PDF format to the &lt;code&gt;pdf&lt;/code&gt; directory and in PNG format to the &lt;code&gt;png&lt;/code&gt; directory.&lt;/p&gt; 
+&lt;h2&gt;Compiling the document&lt;/h2&gt; 
+&lt;p&gt;From the repository&#39;s root directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ make
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>posquit0/Awesome-CV</title>
+      <link>https://github.com/posquit0/Awesome-CV</link>
+      <description>&lt;p&gt;📄 Awesome CV is LaTeX template for your outstanding job application&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/posquit0/Awesome-CV&quot; title=&quot;AwesomeCV Documentation&quot;&gt; &lt;img alt=&quot;AwesomeCV&quot; src=&quot;https://github.com/posquit0/Awesome-CV/raw/master/icon.png&quot; width=&quot;200px&quot; height=&quot;200px&quot;&gt; &lt;/a&gt; &lt;br&gt; Awesome CV &lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; LaTeX template for your outstanding job application &lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://www.paypal.me/posquit0&quot;&gt; &lt;img alt=&quot;Donate&quot; src=&quot;https://img.shields.io/badge/Donate-PayPal-blue.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml&quot;&gt; &lt;img alt=&quot;GitHub Actions&quot; src=&quot;https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml/badge.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt; &lt;img alt=&quot;Example Resume&quot; src=&quot;https://img.shields.io/badge/resume-pdf-green.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/cv.pdf&quot;&gt; &lt;img alt=&quot;Example CV&quot; src=&quot;https://img.shields.io/badge/cv-pdf-green.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt; &lt;img alt=&quot;Example Coverletter&quot; src=&quot;https://img.shields.io/badge/coverletter-pdf-green.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;br&gt; 
+&lt;h2&gt;What is Awesome CV?&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Awesome CV&lt;/strong&gt; is LaTeX template for a &lt;strong&gt;CV(Curriculum Vitae)&lt;/strong&gt;, &lt;strong&gt;Résumé&lt;/strong&gt; or &lt;strong&gt;Cover Letter&lt;/strong&gt; inspired by &lt;a href=&quot;https://www.sharelatex.com/templates/cv-or-resume/fancy-cv&quot;&gt;Fancy CV&lt;/a&gt;. It is easy to customize your own template, especially since it is really written by a clean, semantic markup.&lt;/p&gt; 
+&lt;h2&gt;Donate&lt;/h2&gt; 
+&lt;p&gt;Please help keep this project alive! Donations are welcome and will go towards further development of this project.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;PayPal: paypal.me/posquit0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;Thank you for your support!&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Preview&lt;/h2&gt; 
+&lt;h4&gt;Résumé&lt;/h4&gt; 
+&lt;p&gt;You can see &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;Page. 1&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;Page. 2&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume-0.png&quot; alt=&quot;Résumé&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume-1.png&quot; alt=&quot;Résumé&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;Cover Letter&lt;/h4&gt; 
+&lt;p&gt;You can see &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;Without Sections&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;With Sections&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter-0.png&quot; alt=&quot;Cover Letter(Traditional)&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter-1.png&quot; alt=&quot;Cover Letter(Awesome)&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.overleaf.com/latex/templates/awesome-cv/tvmzpvdjfqxp&quot;&gt;&lt;strong&gt;Edit Résumé on OverLeaf.com&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.overleaf.com/latex/templates/awesome-cv-cover-letter/pfzzjspkthbk&quot;&gt;&lt;strong&gt;Edit Cover Letter on OverLeaf.com&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Note:&lt;/em&gt; Above services do not guarantee up-to-date source code of Awesome CV&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;How to Use&lt;/h2&gt; 
+&lt;h4&gt;Requirements&lt;/h4&gt; 
+&lt;p&gt;A full TeX distribution is assumed. &lt;a href=&quot;http://tex.stackexchange.com/q/55437&quot;&gt;Various distributions for different operating systems (Windows, Mac, *nix) are available&lt;/a&gt; but TeX Live is recommended. You can &lt;a href=&quot;https://tex.stackexchange.com/q/1092&quot;&gt;install TeX from upstream&lt;/a&gt; (recommended; most up-to-date) or use &lt;code&gt;sudo apt-get install texlive-full&lt;/code&gt; if you really want that. (It&#39;s generally a few years behind.)&lt;/p&gt; 
+&lt;p&gt;If you don&#39;t want to install the dependencies on your system, this can also be obtained via &lt;a href=&quot;https://docker.com&quot;&gt;Docker&lt;/a&gt;.&lt;/p&gt; 
+&lt;h4&gt;Usage&lt;/h4&gt; 
+&lt;p&gt;At a command prompt, run&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xelatex {your-cv}.tex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or using docker:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run --rm --user $(id -u):$(id -g) -i -w &quot;/doc&quot; -v &quot;$PWD&quot;:/doc thomasweise/texlive make
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In either case, this should result in the creation of &lt;code&gt;{your-cv}.pdf&lt;/code&gt;&lt;/p&gt; 
+&lt;h2&gt;Credit&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.latex-project.org&quot;&gt;&lt;strong&gt;LaTeX&lt;/strong&gt;&lt;/a&gt; is a fantastic typesetting program that a lot of people use these days, especially the math and computer science people in academia.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/furl/latex-fontawesome&quot;&gt;&lt;strong&gt;LaTeX FontAwesome&lt;/strong&gt;&lt;/a&gt; is bindings for FontAwesome icons to be used in XeLaTeX.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/google/roboto&quot;&gt;&lt;strong&gt;Roboto&lt;/strong&gt;&lt;/a&gt; is the default font on Android and ChromeOS, and the recommended font for Google’s visual language, Material Design.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/adobe-fonts/source-sans-pro&quot;&gt;&lt;strong&gt;Source Sans Pro&lt;/strong&gt;&lt;/a&gt; is a set of OpenType fonts that have been designed to work well in user interface (UI) environments.&lt;/p&gt; 
+&lt;h2&gt;Contact&lt;/h2&gt; 
+&lt;p&gt;You are free to take my &lt;code&gt;.tex&lt;/code&gt; file and modify it to create your own resume. Please don&#39;t use my resume for anything else without my permission, though!&lt;/p&gt; 
+&lt;p&gt;If you have any questions, feel free to join me at &lt;a href=&quot;irc://irc.freenode.net/posquit0&quot;&gt;&lt;code&gt;#posquit0&lt;/code&gt; on Freenode&lt;/a&gt; and ask away. Click &lt;a href=&quot;https://kiwiirc.com/client/irc.freenode.net/posquit0&quot;&gt;here&lt;/a&gt; to connect.&lt;/p&gt; 
+&lt;p&gt;Good luck!&lt;/p&gt; 
+&lt;h2&gt;Maintainers&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/posquit0&quot;&gt;posquit0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/OJFord&quot;&gt;OJFord&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;See Also&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/posquit0/hugo-awesome-identity&quot;&gt;Awesome Identity&lt;/a&gt; - A single-page Hugo theme to introduce yourself.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>tuhdo/os01</title>
+      <link>https://github.com/tuhdo/os01</link>
+      <description>&lt;p&gt;Bootstrap yourself to write an OS from scratch. A book for self-learner.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_donations&amp;amp;business=tuhdo1710%40gmail%2ecom&amp;amp;lc=VN&amp;amp;item_number=tuhdo&amp;amp;currency_code=USD&amp;amp;bn=PP%2dDonationsBF%3aDonate%2dPayPal%2dgreen%2esvg%3aNonHosted&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Donate-PayPal-green.svg?sanitize=true&quot; alt=&quot;Donate&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://tuhdo.github.io/os01/&quot;&gt;Operating Systems: From 0 to 1&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;This book helps you gain the foundational knowledge required to write an operating system from scratch. Hence the title, 0 to 1.&lt;/p&gt; 
+&lt;p&gt;After completing this book, at the very least you will learn:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;How to write an operating system from scratch by reading hardware datasheets. In the real world, it works like that. You won&#39;t be able to consult Google for a quick answer.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;A big picture of how each layer of a computer is related to the other, from hardware to software.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Write code independently. It&#39;s pointless to copy and paste code. Real learning happens when you solve problems on your own. Some examples are given to kick start, but most problems are yours to conquer. However, the solutions are available online for you to examine after giving it a good try.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Linux as a development environment and how to use common tools for low-level programming.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;x86 assembly in-depth.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;How a program is structured so that an operating system can run.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;How to debug a program running directly on hardware with gdb and QEMU.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Linking and loading on bare metal x86_64, with pure C. No standard library. No runtime overhead.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/tuhdo/os01/raw/master/Operating_Systems_From_0_to_1.pdf&quot;&gt;Download the book&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;The pedagogy of the book&lt;/h1&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;You give a poor man a fish and you feed him for a day. You teach him to fish and you give him an occupation that will feed him for a lifetime.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;This has been the guiding principle of the book when I was writing it. The book does not try to teach you everything, but enough to enable you to learn by yourself. The book itself, at this point, is quite &quot;complete&quot;: once you master part 1 and part 2 (which consist of 8 chapters), you can drop the book and learn by yourself. At this point, smart readers should be able to continue on their own. For example, they can continue their journeys on &lt;a href=&quot;http://wiki.osdev.org/Main_Page&quot;&gt;OSDev wiki&lt;/a&gt;; in fact, after you study everything in part 1 and part 2, you only meet the &lt;a href=&quot;http://wiki.osdev.org/Required_Knowledge&quot;&gt;minimum requirement&lt;/a&gt; by OSDev Wiki (well, not quite, the book actually goes deeper for the suggested topics). Or, if you consider developing an OS for fun is impractical, you can continue with a Linux-specific book, such as this free book &lt;a href=&quot;https://0xax.gitbooks.io/linux-insides/content/&quot;&gt;Linux Insides&lt;/a&gt;, or other popular Linux kernel books. The book tries hard to provide you a strong foundation, and that&#39;s why part 1 and part 2 were released first.&lt;/p&gt; 
+&lt;p&gt;The book teaches you core concepts, such as x86 Assembly, ELF, linking and debugging on bare metal, etc., but more importantly, where such information come from. For example, instead of just teaching x86 Assembly, it also teaches how to use reference manuals from Intel. Learning to read the official manuals is important because only the hardware manufacturers themselves understand how their hardware work. If you only learn from the secondary resources because it is easier, you will never gain a complete understanding of the hardware you are programming for. Have you ever read a book on Assembly, and wondered where all the information came from? How does the author know everything he says is correct? And how one seems to magically know so much about hardware programming? This book gives pointers to such questions.&lt;/p&gt; 
+&lt;p&gt;As an example, you should skim through chapter 4, &quot;x86 Assembly and C&quot;, to see how it makes use of the Intel manual, Volume 2. And in the process, it guides you how to use the official manuals.&lt;/p&gt; 
+&lt;p&gt;Part 3 is planned as a series of specifications that a reader will implement to complete each operating system component. It does not contain code aside from a few examples. Part 3 is just there to shorten the reader&#39;s time when reading the official manuals by giving hints where to read, explaining difficult concepts and how to use the manuals to debug. In short, the implementation is up to the reader to work on his or her own; the chapters are just like university assignments.&lt;/p&gt; 
+&lt;h1&gt;Prerequisites&lt;/h1&gt; 
+&lt;p&gt;Know some circuit concepts:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Basic Concepts of Electricity: atoms, electrons, protons, neutrons, current flow.&lt;/li&gt; 
+ &lt;li&gt;Ohm&#39;s law&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;However, if you know absolutely nothing about electricity, you can quickly learn it here: &lt;a href=&quot;http://www.allaboutcircuits.com/textbook/&quot;&gt;http://www.allaboutcircuits.com/textbook/&lt;/a&gt;, by reading chapter 1 and chapter 2.&lt;/p&gt; 
+&lt;p&gt;C programming. In particular:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Variable and function declarations/definitions&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;While and for loops&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Pointers and function pointers&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Fundamental algorithms and data structures in C&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Linux basics:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Know how to navigate directory with the command line&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Know how to invoke a command with options&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Know how to pipe output to another program&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Touch typing. Since we are going to use Linux, touch typing helps. I know typing speed does not relate to problem-solving, but at least your typing speed should be fast enough not to let it get it the way and degrade the learning experience.&lt;/p&gt; 
+&lt;p&gt;In general, I assume that the reader has basic C programming knowledge, and can use an IDE to build and run a program.&lt;/p&gt; 
+&lt;h1&gt;Status:&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Part 1&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Chapter 1: Complete&lt;/li&gt; 
+   &lt;li&gt;Chapter 2: Complete&lt;/li&gt; 
+   &lt;li&gt;Chapter 3: Almost. Currently, the book relies on the Intel Manual for fully explaining x86 execution environment.&lt;/li&gt; 
+   &lt;li&gt;Chapter 4: Complete&lt;/li&gt; 
+   &lt;li&gt;Chapter 5: Complete&lt;/li&gt; 
+   &lt;li&gt;Chapter 6: Complete&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Part 2&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Chapter 7: Complete&lt;/li&gt; 
+   &lt;li&gt;Chapter 8: Complete&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Part 3&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Chapter 9: Incomplete&lt;/li&gt; 
+   &lt;li&gt;Chapter 10: Incomplete&lt;/li&gt; 
+   &lt;li&gt;Chapter 11: Incomplete&lt;/li&gt; 
+   &lt;li&gt;Chapter 12: Incomplete&lt;/li&gt; 
+   &lt;li&gt;Chapter 13: Incomplete&lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;... and future chapters not included yet ...&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In the future, I hope to expand part 3 to cover more than the first 2 parts. But for the time being, I will try to finish the above chapters first.&lt;/p&gt; 
+&lt;h1&gt;Sample OS&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/tuhdo/sample-os&quot;&gt;This repository&lt;/a&gt; is the sample OS of the book that is intended as a reference material for part 3. It covers 10 chapters of the &quot;System Programming Guide&quot; (Intel Manual Volume 3), along with a simple keyboard and video driver for input and output. However, at the moment, only the following features are implemented:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Protected mode.&lt;/li&gt; 
+ &lt;li&gt;Creating and managing processes with TSS (Task State Structure).&lt;/li&gt; 
+ &lt;li&gt;Interrupts&lt;/li&gt; 
+ &lt;li&gt;LAPIC.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Paging and I/O are not yet implemented. I will try to implement it as the book progresses.&lt;/p&gt; 
+&lt;h1&gt;Contributing&lt;/h1&gt; 
+&lt;p&gt;If you find any grammatical issues, please report it using Github Issues. Or, if some sentence or paragraph is difficult to understand, feel free to open an issue with the following title format: &lt;code&gt;[page number][type] Descriptive Title&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;For example: &lt;code&gt;[pg.9][grammar] Incorrect verb usage&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;type&lt;/code&gt; can be one of the following:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;Typo&lt;/code&gt;: indicates typing mistake.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Grammar&lt;/code&gt;: indicates incorrect grammar usage.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Style&lt;/code&gt;: indicates a style improvement.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Content&lt;/code&gt;: indicates problems with the content.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Even better, you can make a pull request with the provided book source. The main content of the book is in the file &quot;Operating Systems: From 0 to 1.lyx&quot;. You can edit the .txt file, then I will integrate the changes manually. It is a workaround for now since Lyx can cause a huge diff which makes it impossible to review changes.&lt;/p&gt; 
+&lt;p&gt;The book is in development, so please bear with me if the English irritates you. I really appreciate it.&lt;/p&gt; 
+&lt;p&gt;Finally, if you like the project and if it is possible, please donate to help this project and keep it going.&lt;/p&gt; 
+&lt;h1&gt;Got questions?&lt;/h1&gt; 
+&lt;p&gt;If you have any question related to the material or the development of the book, feel free to &lt;a href=&quot;https://github.com/tuhdo/os01/issues/new&quot;&gt;open a Github issue&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>openmlsys/openmlsys-zh</title>
+      <link>https://github.com/openmlsys/openmlsys-zh</link>
+      <description>&lt;p&gt;《Machine Learning Systems: Design and Implementation》- Chinese Version&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;机器学习系统：设计和实现&lt;/h1&gt; 
+&lt;p&gt;本开源项目试图给读者讲解现代机器学习系统的设计原理和实现经验。&lt;/p&gt; 
+&lt;p&gt;🔥 &lt;strong&gt;书籍网页版：&lt;/strong&gt; &lt;a href=&quot;https://openmlsys.github.io/&quot;&gt;机器学习系统：设计和实现&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;🔥 &lt;strong&gt;书籍PDF：&lt;/strong&gt; 将在勘误后，2022年中发布。&lt;/p&gt; 
+&lt;h2&gt;发布&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;27/06/2022: OpenMLSys社区发布通俗易懂的高性能AI算子开发教程，助力学生和工程师60分钟理解算子性能优化的关键知识点。相应的&lt;a href=&quot;https://zhuanlan.zhihu.com/p/531498210&quot;&gt;技术博客&lt;/a&gt;和&lt;a href=&quot;https://github.com/openmlsys/openmlsys-cuda&quot;&gt;复现代码&lt;/a&gt;都已免费公开。感谢@&lt;a href=&quot;https://github.com/JieRen98&quot;&gt;Jie Ren&lt;/a&gt; 和 @&lt;a href=&quot;https://github.com/Went-Liang&quot;&gt;Wenteng Liang&lt;/a&gt; 的贡献！🔥&lt;/li&gt; 
+ &lt;li&gt;17/03/2022: 本书处于勘误阶段。如发现文字和图片错误，可创建Issue并@&lt;a href=&quot;https://raw.githubusercontent.com/openmlsys/openmlsys-zh/main/info/editors.md&quot;&gt;章节编辑&lt;/a&gt;。我们非常欢迎社区提交PR直接勘误。&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;适用读者&lt;/h2&gt; 
+&lt;p&gt;本书的常见读者包括：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;学生：&lt;/strong&gt; 随着大量机器学习课程在大学中的普及，学生已经开始掌握大量机器学习的基础理论和神经网络的实现。然而，需要训练出可以实际应用的机器学习模型，需要对现代机器学习系统有充分的认识。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;科研人员：&lt;/strong&gt; 研发新型的机器学习模型不仅仅需要会使用基础的机器学习系统接口。同时，新型的模型需要给系统提供新的自定义算子（Custom Operators），又或者是会利用高级的分布式执行算子来实现大模型的开发。这一系列需求都需要对底层系统具有充分认识。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;开发人员：&lt;/strong&gt; 大量的数据和AI驱动的公司都部署了机器学习基础设施。这一设施的核心就是机器学习系统。因此了解机器学习系统有助于开发人员对于系统性能调优，以定位问题，并且根据业务需求对机器学习系统进行深度定制。&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;内容介绍&lt;/h2&gt; 
+&lt;p&gt;现代机器学习框架具有复杂的内部架构和繁多的外部相关组件。在本书中，我们将对其细致拆分，深入解读：&lt;/p&gt; 
+&lt;p&gt;基础：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;编程接口：&lt;/strong&gt; 为了支持海量应用，机器学习框架的编程接口设计具有大量的设计哲学，在易用性和性能之间取得平衡。本书将讲述编程接口的演进，机器学习工作流，定义深度学习模型，以及用C/C++进行框架开发。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;计算图：&lt;/strong&gt; 机器学习框架需要支持自动微分，硬件加速器，多编程前端等。实现这些支持的核心技术是：计算图（Computational Graph）。本书将讲述计算图的基本构成，生成方法和调度策略。&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;性能进阶：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;编译器前端：&lt;/strong&gt; 机器学习框架需要利用编译器前端技术对计算图进行功能拓展和性能优化。本书将讲述常见的前端技术，包括类型推导，中间表示（Intermediate Representation），自动微分等。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;编译器后端和运行时：&lt;/strong&gt; 机器学习框架的一个核心目标是：如何充分利用异构硬件。这其中会涉及编译器后端技术，以及将计算图算子（Operator）调度到硬件上的运行时（Runtime）。本书将讲述计算图优化，算子选择，内存分配和计算调度与执行。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;硬件加速器：&lt;/strong&gt; 机器学习框架的基本运行单元是算子，而算子的实现必须充分利用硬件加速器（GPU和Ascend）的特性。本书将会讲述硬件加速器的基本构成原理和常见的高性能编程接口。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;数据处理框架：&lt;/strong&gt; 机器学习框架会集成高性能框架来进行数据预处理。本书将会讲述这一类数据处理框架在设计中需要达到的多个目标：易用性，高效性，保序性，分布式等。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;模型部署：&lt;/strong&gt; 在模型完成训练后，用户需要将模型部署到终端设备（如云服务器，移动终端和无人车）。这其中涉及到的模型转换，模型压缩，模型推理和安全保护等知识也会在本书中讨论。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;分布式训练：&lt;/strong&gt; 机器学习模型的训练需要消耗大量资源。越来越多的机器学习框架因此原生支持分布式训练。在本书中我们将会讨论常见的分布式训练方法（包括数据并行，模型并行和流水线并行），以及实现这些方法的系统架构（包括集合通讯和参数服务器）。&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;功能拓展：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;深度学习推荐系统：&lt;/strong&gt; 推荐系统是目前机器学习应用最成功的领域之一。本书将会概括推荐系统的运作原理，详细描述大规模工业场景下的推荐系统架构设计。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;联邦学习系统：&lt;/strong&gt; 随着数据保护法规和隐私保护的崛起，联邦学习正成为日益重要的研究领域。本书将会介绍联邦学习的常用方法以及相关系统实现。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;强化学习系统：&lt;/strong&gt; 强化学习是走向通用人工智能的关键技术。本书将会介绍目前常见的强化学习系统（包括单智能体和多智能体等）。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;可解释性AI系统：&lt;/strong&gt; 随着机器学习在安全攸关（Safety-critical）领域的应用，机器学习系统越来越需要对决策给出充分解释。本书将会讨论可解释AI系统的常用方法和落地实践经验。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;机器人系统：&lt;/strong&gt; 机器人（无人车，无人机，家用机器人等）作为机器学习技术重要的应用领域，在最近数年得到了广泛应用。在实践中，机器人系统在实时性，安全性，鲁棒性等方面都有极高要求，这要求开发者具有算法和系统的双重思维，从而解决实际问题。本书中我们将结合最新研究成果和机器人系统实践经验讲解该类系统的设计原则和实现细节。&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;我们在持续拓展拓展本书的内容，如元学习系统，自动并行，深度学习集群调度，绿色AI系统，图学习系统等。我们也非常欢迎社区对于新内容提出建议，贡献章节。&lt;/p&gt; 
+&lt;h2&gt;构建指南&lt;/h2&gt; 
+&lt;p&gt;请参考&lt;a href=&quot;https://raw.githubusercontent.com/openmlsys/openmlsys-zh/main/info/info.md&quot;&gt;构建指南&lt;/a&gt;来了解如何构建本书的网页版本和PDF版本。&lt;/p&gt; 
+&lt;h2&gt;写作指南&lt;/h2&gt; 
+&lt;p&gt;我们欢迎大家来一起贡献和更新本书的内容。常见的贡献方式是提交PR来更新和添加Markdown文件。写作的风格和图片要求请参考&lt;a href=&quot;https://raw.githubusercontent.com/openmlsys/openmlsys-zh/main/info/style.md&quot;&gt;风格指南&lt;/a&gt;。同时，机器学习领域涉及到大量的中英文翻译，相关的翻译要求请参考&lt;a href=&quot;https://raw.githubusercontent.com/openmlsys/openmlsys-zh/main/info/terminology.md&quot;&gt;术语指南&lt;/a&gt;。&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>exacity/deeplearningbook-chinese</title>
+      <link>https://github.com/exacity/deeplearningbook-chinese</link>
+      <description>&lt;p&gt;Deep Learning Book Chinese Translation&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Deep Learning 中文翻译&lt;/h1&gt; 
+&lt;p&gt;在众多网友的帮助和校对下，中文版终于出版了。尽管还有很多问题，但至少90%的内容是可读的，并且是准确的。 我们尽可能地保留了原书&lt;a href=&quot;http://www.deeplearningbook.org/&quot;&gt;Deep Learning&lt;/a&gt;中的意思并保留原书的语句。&lt;/p&gt; 
+&lt;p&gt;然而我们水平有限，我们无法消除众多读者的方差。我们仍需要大家的建议和帮助，一起减小翻译的偏差。&lt;/p&gt; 
+&lt;p&gt;大家所要做的就是阅读，然后汇总你的建议，提issue（最好不要一个一个地提）。如果你确定你的建议不需要商量，可以直接发起PR。&lt;/p&gt; 
+&lt;p&gt;对应的翻译者：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;第1、4、7、10、14、20章及第12.4、12.5节由 @swordyork 负责&lt;/li&gt; 
+ &lt;li&gt;第2、5、8、11、15、18章由 @liber145 负责&lt;/li&gt; 
+ &lt;li&gt;第3、6、9章由 @KevinLee1110 负责&lt;/li&gt; 
+ &lt;li&gt;第13、16、17、19章及第12.1至12.3节由 @futianfan 负责&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;面向的读者&lt;/h2&gt; 
+&lt;p&gt;请直接下载&lt;a href=&quot;https://github.com/exacity/deeplearningbook-chinese/releases/download/v0.5-beta/dlbook_cn_v0.5-beta.pdf&quot;&gt;PDF&lt;/a&gt;阅读。 不打算提供EPUB等格式，如有需要请自行修改。&lt;/p&gt; 
+&lt;p&gt;这一版准确性已经有所提高，读者可以以中文版为主、英文版为辅来阅读学习，但我们仍建议研究者阅读&lt;a href=&quot;http://www.deeplearningbook.org/&quot;&gt;原版&lt;/a&gt;。&lt;/p&gt; 
+&lt;h2&gt;出版及开源原因&lt;/h2&gt; 
+&lt;p&gt;本书由人民邮电出版社出版，如果你觉得中文版PDF对你有所帮助，希望你能支持下纸质正版书籍。 如果你觉得中文版不行，希望你能多提建议。非常感谢各位！ 纸质版也会进一步更新，需要大家更多的建议和意见，一起完善中文版。&lt;/p&gt; 
+&lt;p&gt;纸质版目前在人民邮电出版社的异步社区出售，见&lt;a href=&quot;http://www.epubit.com.cn/book/details/4278&quot;&gt;地址&lt;/a&gt;。 价格不低，但看了样本之后，我们认为物有所值。 注意，我们不会通过媒体进行宣传，希望大家先看电子版内容，再判断是否购买纸质版。&lt;/p&gt; 
+&lt;p&gt;以下是开源的具体原因：&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;我们不是文学工作者，不专职翻译。单靠我们，无法给出今天的翻译，众多网友都给我们提出了宝贵的建议，因此开源帮了很大的忙。出版社会给我们稿费（我们也不知道多少，可能2万左右），我们也不好意思自己用，商量之后觉得捐出是最合适的，以所有贡献过的网友的名义（我们把稿费捐给了杉树公益，用于4名贵州高中生三年的生活费，见&lt;a href=&quot;https://github.com/exacity/deeplearningbook-chinese/raw/master/donation.pdf&quot;&gt;捐赠情况&lt;/a&gt;）。&lt;/li&gt; 
+ &lt;li&gt;PDF电子版对于技术类书籍来说是很重要的，随时需要查询，拿着纸质版到处走显然不合适。国外很多技术书籍都有对应的电子版（虽然不一定是正版），而国内的几乎没有。个人认为这是出版社或者作者认为国民素质还没有高到主动为知识付费的境界，所以不愿意&quot;泄露&quot;电子版。时代在进步，我们也需要改变。特别是翻译作品普遍质量不高的情况下，要敢为天下先。&lt;/li&gt; 
+ &lt;li&gt;深度学习发展太快，日新月异，所以我们希望大家更早地学到相关的知识。我觉得原作者开放PDF电子版也有类似的考虑，也就是先阅读后付费。我们认为中国人口素质已经足够高，懂得为知识付费。当然这不是付给我们的，是付给出版社的，出版社再付给原作者。我们不希望中文版的销量因PDF电子版的存在而下滑。出版社只有值回了版权才能在以后引进更多的优秀书籍。我们这个开源翻译先例也不会成为一个反面案例，以后才会有更多的PDF电子版。&lt;/li&gt; 
+ &lt;li&gt;开源也涉及版权问题，出于版权原因，我们不再更新此初版PDF文件，请大家以最终的纸质版为准。（但源码会一直更新）&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;致谢&lt;/h2&gt; 
+&lt;p&gt;我们有3个类别的校对人员。&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;负责人也就是对应的翻译者。&lt;/li&gt; 
+ &lt;li&gt;简单阅读，对语句不通顺或难以理解的地方提出修改意见。&lt;/li&gt; 
+ &lt;li&gt;中英对比，进行中英对应阅读，排除少翻错翻的情况。&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;所有校对建议都保存在各章的&lt;code&gt;annotations.txt&lt;/code&gt;文件中。&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;章节&lt;/th&gt; 
+   &lt;th&gt;负责人&lt;/th&gt; 
+   &lt;th&gt;简单阅读&lt;/th&gt; 
+   &lt;th&gt;中英对比&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter1_introduction/&quot;&gt;第一章 前言&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@swordyork&lt;/td&gt; 
+   &lt;td&gt;lc, @SiriusXDJ, @corenel, @NeutronT&lt;/td&gt; 
+   &lt;td&gt;@linzhp&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter2_linear_algebra/&quot;&gt;第二章 线性代数&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@liber145&lt;/td&gt; 
+   &lt;td&gt;@SiriusXDJ, @angrymidiao&lt;/td&gt; 
+   &lt;td&gt;@badpoem&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter3_probability_and_information_theory/&quot;&gt;第三章 概率与信息论&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@KevinLee1110&lt;/td&gt; 
+   &lt;td&gt;@SiriusXDJ&lt;/td&gt; 
+   &lt;td&gt;@kkpoker, @Peiyan&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter4_numerical_computation/&quot;&gt;第四章 数值计算&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@swordyork&lt;/td&gt; 
+   &lt;td&gt;@zhangyafeikimi&lt;/td&gt; 
+   &lt;td&gt;@hengqujushi&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter5_machine_learning_basics/&quot;&gt;第五章 机器学习基础&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@liber145&lt;/td&gt; 
+   &lt;td&gt;@wheaio, @huangpingchun&lt;/td&gt; 
+   &lt;td&gt;@fairmiracle, @linzhp&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter6_deep_feedforward_networks/&quot;&gt;第六章 深度前馈网络&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@KevinLee1110&lt;/td&gt; 
+   &lt;td&gt;David_Chow, @linzhp, @sailordiary&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter7_regularization/&quot;&gt;第七章 深度学习中的正则化&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@swordyork&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;@NBZCC&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter8_optimization_for_training_deep_models/&quot;&gt;第八章 深度模型中的优化&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@liber145&lt;/td&gt; 
+   &lt;td&gt;@happynoom, @codeVerySlow&lt;/td&gt; 
+   &lt;td&gt;@huangpingchun&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter9_convolutional_networks/&quot;&gt;第九章 卷积网络&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@KevinLee1110&lt;/td&gt; 
+   &lt;td&gt;@zhaoyu611, @corenel&lt;/td&gt; 
+   &lt;td&gt;@zhiding&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter10_sequence_modeling_rnn/&quot;&gt;第十章 序列建模：循环和递归网络&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@swordyork&lt;/td&gt; 
+   &lt;td&gt;lc&lt;/td&gt; 
+   &lt;td&gt;@zhaoyu611, @yinruiqing&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter11_practical_methodology/&quot;&gt;第十一章 实践方法论&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@liber145&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter12_applications/&quot;&gt;第十二章 应用&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@swordyork, @futianfan&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;@corenel&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter13_linear_factor_models/&quot;&gt;第十三章 线性因子模型&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@futianfan&lt;/td&gt; 
+   &lt;td&gt;@cloudygoose&lt;/td&gt; 
+   &lt;td&gt;@ZhiweiYang&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter14_autoencoders/&quot;&gt;第十四章 自编码器&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@swordyork&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;@Seaball, @huangpingchun&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter15_representation_learning/&quot;&gt;第十五章 表示学习&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@liber145&lt;/td&gt; 
+   &lt;td&gt;@cnscottzheng&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter16_structured_probabilistic_modelling/&quot;&gt;第十六章 深度学习中的结构化概率模型&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@futianfan&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter17_monte_carlo_methods/&quot;&gt;第十七章 蒙特卡罗方法&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@futianfan&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;@sailordiary&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter18_confronting_the_partition_function/&quot;&gt;第十八章 面对配分函数&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@liber145&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;@tankeco&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter19_approximate_inference/&quot;&gt;第十九章 近似推断&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@futianfan&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;@sailordiary, @hengqujushi, huanghaojun&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese/Chapter20_deep_generative_models/&quot;&gt;第二十章 深度生成模型&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;@swordyork&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;参考文献&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;@pkuwwt&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;我们会在纸质版正式出版的时候，在书中致谢，正式感谢各位作出贡献的同学！&lt;/p&gt; 
+&lt;p&gt;还有很多同学提出了不少建议，我们都列在此处。&lt;/p&gt; 
+&lt;p&gt;@tttwwy @tankeco @fairmiracle @GageGao @huangpingchun @MaHongP @acgtyrant @yanhuibin315 @Buttonwood @titicacafz @weijy026a @RuiZhang1993 @zymiboxpay @xingkongliang @oisc @tielei @yuduowu @Qingmu @HC-2016 @xiaomingabc @bengordai @Bojian @JoyFYan @minoriwww @khty2000 @gump88 @zdx3578 @PassStory @imwebson @wlbksy @roachsinai @Elvinczp @endymecy name:YUE-DaJiong @9578577 @linzhp @cnscottzheng @germany-zhu @zhangyafeikimi @showgood163 @gump88 @kangqf @NeutronT @badpoem @kkpoker @Seaball @wheaio @angrymidiao @ZhiweiYang @corenel @zhaoyu611 @SiriusXDJ @dfcv24 EmisXXY FlyingFire vsooda @friskit-china @poerin @ninesunqian @JiaqiYao @Sofring @wenlei @wizyoung @imageslr @@indam @XuLYC @zhouqingping @freedomRen @runPenguin @pkuwwt @wuqi @tjliupeng @neo0801 @jt827859032 @demolpc @fishInAPool @xiaolangyuxin @jzj1993 @whatbeg LongXiaJun jzd&lt;/p&gt; 
+&lt;p&gt;如有遗漏，请务必通知我们，可以发邮件至&lt;code&gt;echo c3dvcmQueW9ya0BnbWFpbC5jb20K | base64 --decode&lt;/code&gt;。 这是我们必须要感谢的，所以不要不好意思。&lt;/p&gt; 
+&lt;h2&gt;TODO&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;排版&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;注意&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;各种问题或者建议可以提issue，建议使用中文。&lt;/li&gt; 
+ &lt;li&gt;由于版权问题，我们不能将图片和bib上传，请见谅。&lt;/li&gt; 
+ &lt;li&gt;Due to copyright issues, we would not upload figures and the bib file.&lt;/li&gt; 
+ &lt;li&gt;可用于学习研究目的，不得用于任何商业行为。谢谢！&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Markdown格式&lt;/h2&gt; 
+&lt;p&gt;这种格式确实比较重要，方便查阅，也方便索引。初步转换后，生成网页，具体见&lt;a href=&quot;https://exacity.github.io/deeplearningbook-chinese&quot;&gt;deeplearningbook-chinese&lt;/a&gt;。 注意，这种转换没有把图放进去，也不会放图。目前使用单个&lt;a href=&quot;https://raw.githubusercontent.com/exacity/deeplearningbook-chinese/master/scripts/convert2md.sh&quot;&gt;脚本&lt;/a&gt;，基于latex文件转换，以后可能会更改但原则是不直接修改&lt;a href=&quot;https://raw.githubusercontent.com/exacity/deeplearningbook-chinese/master/docs/_posts&quot;&gt;md文件&lt;/a&gt;。 需要的同学可以自行修改&lt;a href=&quot;https://raw.githubusercontent.com/exacity/deeplearningbook-chinese/master/scripts/convert2md.sh&quot;&gt;脚本&lt;/a&gt;。&lt;/p&gt; 
+&lt;h2&gt;HTML格式&lt;/h2&gt; 
+&lt;p&gt;读者可以使用&lt;a href=&quot;https://github.com/coolwanglu/pdf2htmlEX&quot;&gt;pdf2htmlEX&lt;/a&gt;进行转换，直接将PDF转换为HTML。&lt;/p&gt; 
+&lt;p&gt;Updating.....&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>harvard-edge/cs249r_book</title>
+      <link>https://github.com/harvard-edge/cs249r_book</link>
+      <description>&lt;p&gt;Collaborative book Machine Learning Systems&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;MACHINE LEARNING SYSTEMS with TinyML&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/harvard-edge/cs249r_book/dev/cover-image-transparent.png&quot; height=&quot;400&quot; alt=&quot;Cover Image&quot;&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/harvard-edge/cs249r_book&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/all-contributors/harvard-edge/cs249r_book?color=ee8449&quot; alt=&quot;Contributors Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/harvard-edge/cs249r_book&quot;&gt;&lt;img src=&quot;https://github.com/harvard-edge/cs249r_book/actions/workflows/build_pages.yml/badge.svg?sanitize=true&quot; alt=&quot;Build Status Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/harvard-edge/cs249r_book&quot;&gt;&lt;img src=&quot;https://github.com/harvard-edge/cs249r_book/actions/workflows/build_pages_windows.yml/badge.svg?sanitize=true&quot; alt=&quot;Build Status Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/harvard-edge/cs249r_book&quot;&gt;&lt;img src=&quot;https://github.com/harvard-edge/cs249r_book/actions/workflows/markdown_linter.yml/badge.svg?sanitize=true&quot; alt=&quot;Markdown Linter Status Badge&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Welcome to the collaborative book repository for students of CS249r at Harvard! This repository contains the source files of chapters and sections written by your peers. We&#39;re excited to see your contributions!&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;To contribute to the repository, please see the &lt;a href=&quot;https://raw.githubusercontent.com/harvard-edge/cs249r_book/dev/contribute.md&quot;&gt;contribution guidelines&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Website&lt;/h2&gt; 
+&lt;p&gt;The book&#39;s website is automatically constructed from the &lt;code&gt;gh-pages&lt;/code&gt; branch. Once reviewed, changes to &lt;code&gt;main&lt;/code&gt; are merged into &lt;code&gt;gh-pages&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;You can view the book&#39;s website at: &lt;a href=&quot;https://harvard-edge.github.io/cs249r_book/&quot;&gt;https://harvard-edge.github.io/cs249r_book/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The most recent changes are staged at &lt;a href=&quot;https://harvard-edge.github.io/cs249r_book_dev/&quot;&gt;https://harvard-edge.github.io/cs249r_book_dev/&lt;/a&gt;&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Local Rendering&lt;/h2&gt; 
+&lt;p&gt;You need to have &lt;code&gt;quarto&lt;/code&gt; installed for local book rendering. Please follow the &lt;a href=&quot;https://quarto.org/docs/download/&quot;&gt;Quarto installation instructions here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Once that&#39;s done, the following command can be used to produce the HTML pages:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd cs249r_book
+quarto render
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Code of Conduct&lt;/h2&gt; 
+&lt;p&gt;Please note that the cs249r project is released with a &lt;a href=&quot;https://raw.githubusercontent.com/harvard-edge/cs249r_book/dev/CODE_OF_CONDUCT.md&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By contributing to this project, you agree to abide by its terms.&lt;/p&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;!-- ALL-CONTRIBUTORS-LIST:START - Do not remove or modify this section --&gt; 
+&lt;!-- prettier-ignore-start --&gt; 
+&lt;!-- markdownlint-disable --&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/profvjreddi&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/profvjreddi?s=100&quot; width=&quot;100px;&quot; alt=&quot;Vijay Janapa Reddi&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Vijay Janapa Reddi&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/uchendui&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/uchendui?s=100&quot; width=&quot;100px;&quot; alt=&quot;Ikechukwu Uchendu&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Ikechukwu Uchendu&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/Naeemkh&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/Naeemkh?s=100&quot; width=&quot;100px;&quot; alt=&quot;naeemkh&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;naeemkh&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/V0XNIHILI&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/V0XNIHILI?s=100&quot; width=&quot;100px;&quot; alt=&quot;Douwe den Blanken&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Douwe den Blanken&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/shanzehbatool&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/shanzehbatool?s=100&quot; width=&quot;100px;&quot; alt=&quot;Shanzeh Batool&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Shanzeh Batool&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/kai4avaya&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/kai4avaya?s=100&quot; width=&quot;100px;&quot; alt=&quot;Kleinbard&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Kleinbard&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/JaredP94&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/JaredP94?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jared Ping&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jared Ping&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/eliasab16&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/eliasab16?s=100&quot; width=&quot;100px;&quot; alt=&quot;eliasab16&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;eliasab16&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/ishapira1&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/ishapira1?s=100&quot; width=&quot;100px;&quot; alt=&quot;ishapira&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;ishapira&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/Mjrovai&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/Mjrovai?s=100&quot; width=&quot;100px;&quot; alt=&quot;Marcelo Rovai&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Marcelo Rovai&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/8863743b4f26c1a20e730fcf7ebc3bc0?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Maximilian Lam&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Maximilian Lam&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/mpstewart1&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/mpstewart1?s=100&quot; width=&quot;100px;&quot; alt=&quot;Matthew Stewart&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Matthew Stewart&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/jaysonzlin&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/jaysonzlin?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jayson Lin&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jayson Lin&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/sophiacho1&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/sophiacho1?s=100&quot; width=&quot;100px;&quot; alt=&quot;Sophia Cho&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Sophia Cho&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/18jeffreyma&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/18jeffreyma?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jeffrey Ma&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jeffrey Ma&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/korneelf1&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/korneelf1?s=100&quot; width=&quot;100px;&quot; alt=&quot;Korneel Van den Berghe&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Korneel Van den Berghe&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/zishenwan&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/zishenwan?s=100&quot; width=&quot;100px;&quot; alt=&quot;Zishen&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Zishen&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/colbybanbury&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/colbybanbury?s=100&quot; width=&quot;100px;&quot; alt=&quot;Colby Banbury&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Colby Banbury&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/alxrod&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/alxrod?s=100&quot; width=&quot;100px;&quot; alt=&quot;Alex Rodriguez&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Alex Rodriguez&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/srivatsankrishnan&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/srivatsankrishnan?s=100&quot; width=&quot;100px;&quot; alt=&quot;Srivatsan Krishnan&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Srivatsan Krishnan&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/andreamurillomtz&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/andreamurillomtz?s=100&quot; width=&quot;100px;&quot; alt=&quot;Andrea Murillo&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Andrea Murillo&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/1439f56088ae6ed2a84066d1396e3027?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Aghyad Deeb&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Aghyad Deeb&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/aptl26&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/aptl26?s=100&quot; width=&quot;100px;&quot; alt=&quot;Aghyad Deeb&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Aghyad Deeb&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/DivyaAmirtharaj&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/DivyaAmirtharaj?s=100&quot; width=&quot;100px;&quot; alt=&quot;Divya&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Divya&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/ma3mool&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/ma3mool?s=100&quot; width=&quot;100px;&quot; alt=&quot;Abdulrahman Mahmoud&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Abdulrahman Mahmoud&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/arnaumarin&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/arnaumarin?s=100&quot; width=&quot;100px;&quot; alt=&quot;arnaumarin&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;arnaumarin&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/Ekhao&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/Ekhao?s=100&quot; width=&quot;100px;&quot; alt=&quot;Emil Njor&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Emil Njor&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/MichaelSchnebly&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/MichaelSchnebly?s=100&quot; width=&quot;100px;&quot; alt=&quot;Michael Schnebly&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Michael Schnebly&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/ELSuitorHarvard&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/ELSuitorHarvard?s=100&quot; width=&quot;100px;&quot; alt=&quot;ELSuitorHarvard&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;ELSuitorHarvard&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/oishib&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/oishib?s=100&quot; width=&quot;100px;&quot; alt=&quot;oishib&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;oishib&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/jared-ni&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/jared-ni?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jared Ni&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jared Ni&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/mmaz&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/mmaz?s=100&quot; width=&quot;100px;&quot; alt=&quot;Mark Mazumder&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Mark Mazumder&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/leo47007&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/leo47007?s=100&quot; width=&quot;100px;&quot; alt=&quot;YU SHUN, HSIAO&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;YU SHUN, HSIAO&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/Sara-Khosravi&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/Sara-Khosravi?s=100&quot; width=&quot;100px;&quot; alt=&quot;Sara Khosravi&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Sara Khosravi&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/BaeHenryS&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/BaeHenryS?s=100&quot; width=&quot;100px;&quot; alt=&quot;Henry Bae&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Henry Bae&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/jaywonchung&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/jaywonchung?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jae-Won Chung&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jae-Won Chung&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/ShvetankPrakash&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/ShvetankPrakash?s=100&quot; width=&quot;100px;&quot; alt=&quot;Shvetank Prakash&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Shvetank Prakash&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/arbass22&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/arbass22?s=100&quot; width=&quot;100px;&quot; alt=&quot;Andrew Bass&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Andrew Bass&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/pongtr&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/pongtr?s=100&quot; width=&quot;100px;&quot; alt=&quot;Pong Trairatvorakul&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Pong Trairatvorakul&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/eurashin&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/eurashin?s=100&quot; width=&quot;100px;&quot; alt=&quot;eurashin&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;eurashin&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/jzhou1318&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/jzhou1318?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jennifer Zhou&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jennifer Zhou&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/AditiR-42&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/AditiR-42?s=100&quot; width=&quot;100px;&quot; alt=&quot;Aditi Raju&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Aditi Raju&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/marcozennaro&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/marcozennaro?s=100&quot; width=&quot;100px;&quot; alt=&quot;Marco Zennaro&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Marco Zennaro&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/BrunoScaglione&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/BrunoScaglione?s=100&quot; width=&quot;100px;&quot; alt=&quot;Bruno Scaglione&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Bruno Scaglione&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/Allen-Kuang&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/Allen-Kuang?s=100&quot; width=&quot;100px;&quot; alt=&quot;Allen-Kuang&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Allen-Kuang&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/Gjain234&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/Gjain234?s=100&quot; width=&quot;100px;&quot; alt=&quot;Gauri Jain&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Gauri Jain&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/alex-oesterling&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/alex-oesterling?s=100&quot; width=&quot;100px;&quot; alt=&quot;Alex Oesterling&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Alex Oesterling&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/gnodipac886&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/gnodipac886?s=100&quot; width=&quot;100px;&quot; alt=&quot;Eric D&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Eric D&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/serco425&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/serco425?s=100&quot; width=&quot;100px;&quot; alt=&quot;Sercan Aygün&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Sercan Aygün&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/35a8d9ffd03f05e79a2c6ce6206a56f2?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Batur Arslan&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Batur Arslan&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/7cd8d5dfd83071f23979019d97655dc5?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Annie Laurie Cook&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Annie Laurie Cook&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/abigailswallow&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/abigailswallow?s=100&quot; width=&quot;100px;&quot; alt=&quot;abigailswallow&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;abigailswallow&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/YangZhou1997&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/YangZhou1997?s=100&quot; width=&quot;100px;&quot; alt=&quot;Yang Zhou&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Yang Zhou&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/YLab-UChicago&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/YLab-UChicago?s=100&quot; width=&quot;100px;&quot; alt=&quot;yanjingl&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;yanjingl&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/c2dc311aa8122d5f5f061e1db14682b1?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;songhan&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;songhan&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/fc4f3460cdfb9365ab59bdeafb06413e?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Costin-Andrei Oncescu&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Costin-Andrei Oncescu&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/bd53d146aa888548c8db4da02bf81e7a?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Curren Iyer&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Curren Iyer&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/af39c27c6090c50a1921a9b6366e81cc?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Emeka Ezike&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Emeka Ezike&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/harvard-edge/cs249r_book/graphs/contributors&quot;&gt;&lt;img src=&quot;https://www.gravatar.com/avatar/242dbc711f7056b6a276763473fc88b8?d=identicon&amp;amp;s=100?s=100&quot; width=&quot;100px;&quot; alt=&quot;Yu-Shun Hsiao&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Yu-Shun Hsiao&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/jessicaquaye&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/jessicaquaye?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jessica Quaye&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jessica Quaye&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/emmanuel2406&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/emmanuel2406?s=100&quot; width=&quot;100px;&quot; alt=&quot;Emmanuel Rassou&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Emmanuel Rassou&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/happyappledog&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/happyappledog?s=100&quot; width=&quot;100px;&quot; alt=&quot;happyappledog&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;happyappledog&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/jasonlyik&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/jasonlyik?s=100&quot; width=&quot;100px;&quot; alt=&quot;Jason Yik&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Jason Yik&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/sjohri20&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/sjohri20?s=100&quot; width=&quot;100px;&quot; alt=&quot;Shreya Johri&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Shreya Johri&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/skmur&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/skmur?s=100&quot; width=&quot;100px;&quot; alt=&quot;Sonia Murthy&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Sonia Murthy&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/vijay-edu&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/vijay-edu?s=100&quot; width=&quot;100px;&quot; alt=&quot;Vijay Edupuganti&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;Vijay Edupuganti&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; valign=&quot;top&quot; width=&quot;20%&quot;&gt;&lt;a href=&quot;https://github.com/vitasam&quot;&gt;&lt;img src=&quot;https://avatars.githubusercontent.com/vitasam?s=100&quot; width=&quot;100px;&quot; alt=&quot;The Random DIY&quot;&gt;&lt;br&gt;&lt;sub&gt;&lt;b&gt;The Random DIY&lt;/b&gt;&lt;/sub&gt;&lt;/a&gt;&lt;br&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- markdownlint-restore --&gt; 
+&lt;!-- prettier-ignore-end --&gt; 
+&lt;!-- ALL-CONTRIBUTORS-LIST:END --&gt; 
+&lt;p&gt;This project follows the &lt;a href=&quot;https://allcontributors.org&quot;&gt;all-contributors&lt;/a&gt; specification. Contributions of any kind are welcome!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>riscv/riscv-isa-manual</title>
+      <link>https://github.com/riscv/riscv-isa-manual</link>
+      <description>&lt;p&gt;RISC-V Instruction Set Manual&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;RISC-V Instruction Set Manual&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/actions/workflows/isa-build.yml&quot;&gt;&lt;img src=&quot;https://github.com/riscv/riscv-isa-manual/actions/workflows/isa-build.yml/badge.svg?sanitize=true&quot; alt=&quot;RISC-V ISA Build&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This repository contains the source files for the RISC-V Instruction Set Manual, which consists of the Privileged RISC-V Instruction Set Manual (LaTeX) and the Unprivileged RISC-V Instruction Set Manual (AsciiDoc). The preface of each document indicates the version of each standard that has been formally ratified by RISC-V International.&lt;/p&gt; 
+&lt;p&gt;This work is licensed under a &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;. See the &lt;a href=&quot;https://raw.githubusercontent.com/riscv/riscv-isa-manual/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for details.&lt;/p&gt; 
+&lt;p&gt;The RISC-V Instruction Set Manual is organized into the following volumes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Volume I: User-Level ISA&lt;/li&gt; 
+ &lt;li&gt;Volume II: Privileged Architecture&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Official and Draft Versions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Official versions&lt;/strong&gt; of the specifications are available at the &lt;a href=&quot;https://riscv.org/specifications/&quot;&gt;RISC-V International website&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Compiled versions of the most recent drafts&lt;/strong&gt; of the specifications can be found on the &lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/releases/latest&quot;&gt;GitHub releases page&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Older official versions&lt;/strong&gt; of the specifications are archived at the &lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/releases/tag/archive&quot;&gt;GitHub releases archive&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The canonical list of &lt;strong&gt;open-source RISC-V implementations&#39; marchid CSR values&lt;/strong&gt; is available in the &lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/raw/main/marchid.md&quot;&gt;marchid.md file&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you would like to contribute to this documentation, please refer to the &lt;a href=&quot;https://github.com/riscv/docs-dev-guide&quot;&gt;Documentation Developer&#39;s Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The recommended method for building the PDF files is to use the Docker Image, as described in the &lt;a href=&quot;https://github.com/riscv/riscv-docs-base-container-image&quot;&gt;RISC-V Docs Base Container Image repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Alternative build methods, such as local builds and GitHub Action builds, are also available and described in the Documentation Developer&#39;s Guide.&lt;/p&gt; 
+&lt;h2&gt;Images not rendered for EPUB files&lt;/h2&gt; 
+&lt;p&gt;If the eBook reader does not support embedded images, uncomment &lt;code&gt;:data-uri:&lt;/code&gt; lines in &lt;code&gt;src/riscv-privileged.adoc&lt;/code&gt; and &lt;code&gt;src/riscv-unprivileged.adoc&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Known devices that cannot handle embedded images&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;PocketBook InkPad 3&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Repo Activity&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://repobeats.axiom.co/api/embed/ccec87dc4502f2ed7c216b670b5ed8efc33a1d4c.svg?sanitize=true&quot; alt=&quot;Alt&quot; title=&quot;Repobeats analytics image&quot;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>pllk/cphb</title>
+      <link>https://github.com/pllk/cphb</link>
+      <description>&lt;p&gt;Competitive Programmer&#39;s Handbook&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Competitive Programmer&#39;s Handbook&lt;/h1&gt; 
+&lt;p&gt;Competitive Programmer&#39;s Handbook is a modern introduction to competitive programming. The book discusses programming tricks and algorithm design techniques relevant in competitive programming.&lt;/p&gt; 
+&lt;h2&gt;CSES Problem Set&lt;/h2&gt; 
+&lt;p&gt;The CSES Problem Set contains a collection of competitive programming problems. You can practice the techniques presented in the book by solving the problems.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cses.fi/problemset/&quot;&gt;https://cses.fi/problemset/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The license of the book is Creative Commons BY-NC-SA 4.0.&lt;/p&gt; 
+&lt;h2&gt;Other books&lt;/h2&gt; 
+&lt;p&gt;Guide to Competitive Programming is a printed book, published by Springer, based on Competitive Programmer&#39;s Handbook. There is also a Russian edition Олимпиадное программирование (Olympiad Programming) and a Korean edition 알고리즘 트레이닝: 프로그래밍 대회 입문 가이드.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cses.fi/book/&quot;&gt;https://cses.fi/book/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>terryum/awesome-deep-learning-papers</title>
+      <link>https://github.com/terryum/awesome-deep-learning-papers</link>
+      <description>&lt;p&gt;The most cited deep learning papers&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Awesome - Most Cited Deep Learning Papers&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/sindresorhus/awesome&quot;&gt;&lt;img src=&quot;https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg?sanitize=true&quot; alt=&quot;Awesome&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;[Notice] This list is not being maintained anymore because of the overwhelming amount of deep learning papers published every day since 2017.&lt;/p&gt; 
+&lt;p&gt;A curated list of the most cited deep learning papers (2012-2016)&lt;/p&gt; 
+&lt;p&gt;We believe that there exist &lt;em&gt;classic&lt;/em&gt; deep learning papers which are worth reading regardless of their application domain. Rather than providing overwhelming amount of papers, We would like to provide a &lt;em&gt;curated list&lt;/em&gt; of the awesome deep learning papers which are considered as &lt;em&gt;must-reads&lt;/em&gt; in certain research domains.&lt;/p&gt; 
+&lt;h2&gt;Background&lt;/h2&gt; 
+&lt;p&gt;Before this list, there exist other &lt;em&gt;awesome deep learning lists&lt;/em&gt;, for example, &lt;a href=&quot;https://github.com/kjw0612/awesome-deep-vision&quot;&gt;Deep Vision&lt;/a&gt; and &lt;a href=&quot;https://github.com/kjw0612/awesome-rnn&quot;&gt;Awesome Recurrent Neural Networks&lt;/a&gt;. Also, after this list comes out, another awesome list for deep learning beginners, called &lt;a href=&quot;https://github.com/songrotek/Deep-Learning-Papers-Reading-Roadmap&quot;&gt;Deep Learning Papers Reading Roadmap&lt;/a&gt;, has been created and loved by many deep learning researchers.&lt;/p&gt; 
+&lt;p&gt;Although the &lt;em&gt;Roadmap List&lt;/em&gt; includes lots of important deep learning papers, it feels overwhelming for me to read them all. As I mentioned in the introduction, I believe that seminal works can give us lessons regardless of their application domain. Thus, I would like to introduce &lt;strong&gt;top 100 deep learning papers&lt;/strong&gt; here as a good starting point of overviewing deep learning researches.&lt;/p&gt; 
+&lt;p&gt;To get the news for newly released papers everyday, follow my &lt;a href=&quot;https://twitter.com/TerryUm_ML&quot;&gt;twitter&lt;/a&gt; or &lt;a href=&quot;https://www.facebook.com/terryum.io/&quot;&gt;facebook page&lt;/a&gt;!&lt;/p&gt; 
+&lt;h2&gt;Awesome list criteria&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;A list of &lt;strong&gt;top 100 deep learning papers&lt;/strong&gt; published from 2012 to 2016 is suggested.&lt;/li&gt; 
+ &lt;li&gt;If a paper is added to the list, another paper (usually from *More Papers from 2016&quot; section) should be removed to keep top 100 papers. (Thus, removing papers is also important contributions as well as adding papers)&lt;/li&gt; 
+ &lt;li&gt;Papers that are important, but failed to be included in the list, will be listed in &lt;em&gt;More than Top 100&lt;/em&gt; section.&lt;/li&gt; 
+ &lt;li&gt;Please refer to &lt;em&gt;New Papers&lt;/em&gt; and &lt;em&gt;Old Papers&lt;/em&gt; sections for the papers published in recent 6 months or before 2012.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;em&gt;(Citation criteria)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&amp;lt; 6 months&lt;/strong&gt; : &lt;em&gt;New Papers&lt;/em&gt; (by discussion)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;2016&lt;/strong&gt; : +60 citations or &quot;More Papers from 2016&quot;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;2015&lt;/strong&gt; : +200 citations&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;2014&lt;/strong&gt; : +400 citations&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;2013&lt;/strong&gt; : +600 citations&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;2012&lt;/strong&gt; : +800 citations&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;~2012&lt;/strong&gt; : &lt;em&gt;Old Papers&lt;/em&gt; (by discussion)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please note that we prefer seminal deep learning papers that can be applied to various researches rather than application papers. For that reason, some papers that meet the criteria may not be accepted while others can be. It depends on the impact of the paper, applicability to other researches scarcity of the research domain, and so on.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;We need your contributions!&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;If you have any suggestions (missing papers, new papers, key researchers or typos), please feel free to edit and pull a request. (Please read the &lt;a href=&quot;https://github.com/terryum/awesome-deep-learning-papers/raw/master/Contributing.md&quot;&gt;contributing guide&lt;/a&gt; for further instructions, though just letting me know the title of papers can also be a big contribution to us.)&lt;/p&gt; 
+&lt;p&gt;(Update) You can download all top-100 papers with &lt;a href=&quot;https://github.com/terryum/awesome-deep-learning-papers/raw/master/fetch_papers.py&quot;&gt;this&lt;/a&gt; and collect all authors&#39; names with &lt;a href=&quot;https://github.com/terryum/awesome-deep-learning-papers/raw/master/get_authors.py&quot;&gt;this&lt;/a&gt;. Also, &lt;a href=&quot;https://github.com/terryum/awesome-deep-learning-papers/raw/master/top100papers.bib&quot;&gt;bib file&lt;/a&gt; for all top-100 papers are available. Thanks, doodhwala, &lt;a href=&quot;https://github.com/sunshinemyson&quot;&gt;Sven&lt;/a&gt; and &lt;a href=&quot;https://github.com/grepinsight&quot;&gt;grepinsight&lt;/a&gt;!&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Can anyone contribute the code for obtaining the statistics of the authors of Top-100 papers?&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#understanding--generalization--transfer&quot;&gt;Understanding / Generalization / Transfer&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#optimization--training-techniques&quot;&gt;Optimization / Training Techniques&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#unsupervised--generative-models&quot;&gt;Unsupervised / Generative Models&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#convolutional-neural-network-models&quot;&gt;Convolutional Network Models&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#image-segmentation--object-detection&quot;&gt;Image Segmentation / Object Detection&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#image--video--etc&quot;&gt;Image / Video / Etc&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#natural-language-processing--rnns&quot;&gt;Natural Language Processing / RNNs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#speech--other-domain&quot;&gt;Speech / Other Domain&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#reinforcement-learning--robotics&quot;&gt;Reinforcement Learning / Robotics&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#more-papers-from-2016&quot;&gt;More Papers from 2016&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;(More than Top 100)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#new-papers&quot;&gt;New Papers&lt;/a&gt; : Less than 6 months&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#old-papers&quot;&gt;Old Papers&lt;/a&gt; : Before 2012&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#hw--sw--dataset&quot;&gt;HW / SW / Dataset&lt;/a&gt; : Technical reports&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#book--survey--review&quot;&gt;Book / Survey / Review&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#video-lectures--tutorials--blogs&quot;&gt;Video Lectures / Tutorials / Blogs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/terryum/awesome-deep-learning-papers/master/#appendix-more-than-top-100&quot;&gt;Appendix: More than Top 100&lt;/a&gt; : More papers not in the list&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;h3&gt;Understanding / Generalization / Transfer&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Distilling the knowledge in a neural network&lt;/strong&gt; (2015), G. Hinton et al. &lt;a href=&quot;http://arxiv.org/pdf/1503.02531&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Deep neural networks are easily fooled: High confidence predictions for unrecognizable images&lt;/strong&gt; (2015), A. Nguyen et al. &lt;a href=&quot;http://arxiv.org/pdf/1412.1897&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;How transferable are features in deep neural networks?&lt;/strong&gt; (2014), J. Yosinski et al. &lt;a href=&quot;http://papers.nips.cc/paper/5347-how-transferable-are-features-in-deep-neural-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;CNN features off-the-Shelf: An astounding baseline for recognition&lt;/strong&gt; (2014), A. Razavian et al. &lt;a href=&quot;http://www.cv-foundation.org//openaccess/content_cvpr_workshops_2014/W15/papers/Razavian_CNN_Features_Off-the-Shelf_2014_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Learning and transferring mid-Level image representations using convolutional neural networks&lt;/strong&gt; (2014), M. Oquab et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Oquab_Learning_and_Transferring_2014_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Visualizing and understanding convolutional networks&lt;/strong&gt; (2014), M. Zeiler and R. Fergus &lt;a href=&quot;http://arxiv.org/pdf/1311.2901&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Decaf: A deep convolutional activation feature for generic visual recognition&lt;/strong&gt; (2014), J. Donahue et al. &lt;a href=&quot;http://arxiv.org/pdf/1310.1531&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers]  [Geoffrey Hinton](https://scholar.google.ca/citations?user=JicYPdAAAAAJ), [Yoshua Bengio](https://scholar.google.ca/citations?user=kukA0LcAAAAJ), [Jason Yosinski](https://scholar.google.ca/citations?hl=en&amp;user=gxL1qj8AAAAJ) --&gt; 
+&lt;h3&gt;Optimization / Training Techniques&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Training very deep networks&lt;/strong&gt; (2015), R. Srivastava et al. &lt;a href=&quot;http://papers.nips.cc/paper/5850-training-very-deep-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Batch normalization: Accelerating deep network training by reducing internal covariate shift&lt;/strong&gt; (2015), S. Loffe and C. Szegedy &lt;a href=&quot;http://arxiv.org/pdf/1502.03167&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Delving deep into rectifiers: Surpassing human-level performance on imagenet classification&lt;/strong&gt; (2015), K. He et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/He_Delving_Deep_into_ICCV_2015_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Dropout: A simple way to prevent neural networks from overfitting&lt;/strong&gt; (2014), N. Srivastava et al. &lt;a href=&quot;http://jmlr.org/papers/volume15/srivastava14a/srivastava14a.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Adam: A method for stochastic optimization&lt;/strong&gt; (2014), D. Kingma and J. Ba &lt;a href=&quot;http://arxiv.org/pdf/1412.6980&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Improving neural networks by preventing co-adaptation of feature detectors&lt;/strong&gt; (2012), G. Hinton et al. &lt;a href=&quot;http://arxiv.org/pdf/1207.0580.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Random search for hyper-parameter optimization&lt;/strong&gt; (2012) J. Bergstra and Y. Bengio &lt;a href=&quot;http://www.jmlr.org/papers/volume13/bergstra12a/bergstra12a&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers] [Geoffrey Hinton](https://scholar.google.ca/citations?user=JicYPdAAAAAJ), [Yoshua Bengio](https://scholar.google.ca/citations?user=kukA0LcAAAAJ), [Christian Szegedy](https://scholar.google.ca/citations?hl=en&amp;user=3QeF7mAAAAAJ), [Sergey Ioffe](https://scholar.google.ca/citations?user=S5zOyIkAAAAJ), [Kaming He](https://scholar.google.ca/citations?hl=en&amp;user=DhtAFkwAAAAJ), [Diederik P. Kingma](https://scholar.google.ca/citations?hl=en&amp;user=yyIoQu4AAAAJ)--&gt; 
+&lt;h3&gt;Unsupervised / Generative Models&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Pixel recurrent neural networks&lt;/strong&gt; (2016), A. Oord et al. &lt;a href=&quot;http://arxiv.org/pdf/1601.06759v2.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Improved techniques for training GANs&lt;/strong&gt; (2016), T. Salimans et al. &lt;a href=&quot;http://papers.nips.cc/paper/6125-improved-techniques-for-training-gans.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Unsupervised representation learning with deep convolutional generative adversarial networks&lt;/strong&gt; (2015), A. Radford et al. &lt;a href=&quot;https://arxiv.org/pdf/1511.06434v2&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;DRAW: A recurrent neural network for image generation&lt;/strong&gt; (2015), K. Gregor et al. &lt;a href=&quot;http://arxiv.org/pdf/1502.04623&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Generative adversarial nets&lt;/strong&gt; (2014), I. Goodfellow et al. &lt;a href=&quot;http://papers.nips.cc/paper/5423-generative-adversarial-nets.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Auto-encoding variational Bayes&lt;/strong&gt; (2013), D. Kingma and M. Welling &lt;a href=&quot;http://arxiv.org/pdf/1312.6114&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Building high-level features using large scale unsupervised learning&lt;/strong&gt; (2013), Q. Le et al. &lt;a href=&quot;http://arxiv.org/pdf/1112.6209&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers] [Yoshua Bengio](https://scholar.google.ca/citations?user=kukA0LcAAAAJ), [Ian Goodfellow](https://scholar.google.ca/citations?user=iYN86KEAAAAJ), [Alex Graves](https://scholar.google.ca/citations?user=DaFHynwAAAAJ)--&gt; 
+&lt;h3&gt;Convolutional Neural Network Models&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Rethinking the inception architecture for computer vision&lt;/strong&gt; (2016), C. Szegedy et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Szegedy_Rethinking_the_Inception_CVPR_2016_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Inception-v4, inception-resnet and the impact of residual connections on learning&lt;/strong&gt; (2016), C. Szegedy et al. &lt;a href=&quot;http://arxiv.org/pdf/1602.07261&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Identity Mappings in Deep Residual Networks&lt;/strong&gt; (2016), K. He et al. &lt;a href=&quot;https://arxiv.org/pdf/1603.05027v2.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Deep residual learning for image recognition&lt;/strong&gt; (2016), K. He et al. &lt;a href=&quot;http://arxiv.org/pdf/1512.03385&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Spatial transformer network&lt;/strong&gt; (2015), M. Jaderberg et al., &lt;a href=&quot;http://papers.nips.cc/paper/5854-spatial-transformer-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Going deeper with convolutions&lt;/strong&gt; (2015), C. Szegedy et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Szegedy_Going_Deeper_With_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Very deep convolutional networks for large-scale image recognition&lt;/strong&gt; (2014), K. Simonyan and A. Zisserman &lt;a href=&quot;http://arxiv.org/pdf/1409.1556&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Return of the devil in the details: delving deep into convolutional nets&lt;/strong&gt; (2014), K. Chatfield et al. &lt;a href=&quot;http://arxiv.org/pdf/1405.3531&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;OverFeat: Integrated recognition, localization and detection using convolutional networks&lt;/strong&gt; (2013), P. Sermanet et al. &lt;a href=&quot;http://arxiv.org/pdf/1312.6229&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Maxout networks&lt;/strong&gt; (2013), I. Goodfellow et al. &lt;a href=&quot;http://arxiv.org/pdf/1302.4389v4&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Network in network&lt;/strong&gt; (2013), M. Lin et al. &lt;a href=&quot;http://arxiv.org/pdf/1312.4400&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;ImageNet classification with deep convolutional neural networks&lt;/strong&gt; (2012), A. Krizhevsky et al. &lt;a href=&quot;http://papers.nips.cc/paper/4824-imagenet-classification-with-deep-convolutional-neural-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers]  [Christian Szegedy](https://scholar.google.ca/citations?hl=en&amp;user=3QeF7mAAAAAJ), [Kaming He](https://scholar.google.ca/citations?hl=en&amp;user=DhtAFkwAAAAJ), [Shaoqing Ren](https://scholar.google.ca/citations?hl=en&amp;user=AUhj438AAAAJ), [Jian Sun](https://scholar.google.ca/citations?hl=en&amp;user=ALVSZAYAAAAJ), [Geoffrey Hinton](https://scholar.google.ca/citations?user=JicYPdAAAAAJ), [Yoshua Bengio](https://scholar.google.ca/citations?user=kukA0LcAAAAJ), [Yann LeCun](https://scholar.google.ca/citations?hl=en&amp;user=WLN3QrAAAAAJ)--&gt; 
+&lt;h3&gt;Image: Segmentation / Object Detection&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;You only look once: Unified, real-time object detection&lt;/strong&gt; (2016), J. Redmon et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Redmon_You_Only_Look_CVPR_2016_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Fully convolutional networks for semantic segmentation&lt;/strong&gt; (2015), J. Long et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Long_Fully_Convolutional_Networks_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Faster R-CNN: Towards Real-Time Object Detection with Region Proposal Networks&lt;/strong&gt; (2015), S. Ren et al. &lt;a href=&quot;http://papers.nips.cc/paper/5638-faster-r-cnn-towards-real-time-object-detection-with-region-proposal-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Fast R-CNN&lt;/strong&gt; (2015), R. Girshick &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Girshick_Fast_R-CNN_ICCV_2015_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Rich feature hierarchies for accurate object detection and semantic segmentation&lt;/strong&gt; (2014), R. Girshick et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Girshick_Rich_Feature_Hierarchies_2014_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Spatial pyramid pooling in deep convolutional networks for visual recognition&lt;/strong&gt; (2014), K. He et al. &lt;a href=&quot;http://arxiv.org/pdf/1406.4729&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Semantic image segmentation with deep convolutional nets and fully connected CRFs&lt;/strong&gt;, L. Chen et al. &lt;a href=&quot;https://arxiv.org/pdf/1412.7062&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Learning hierarchical features for scene labeling&lt;/strong&gt; (2013), C. Farabet et al. &lt;a href=&quot;https://hal-enpc.archives-ouvertes.fr/docs/00/74/20/77/PDF/farabet-pami-13.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers]  [Ross Girshick](https://scholar.google.ca/citations?hl=en&amp;user=W8VIEZgAAAAJ), [Jeff Donahue](https://scholar.google.ca/citations?hl=en&amp;user=UfbuDH8AAAAJ), [Trevor Darrell](https://scholar.google.ca/citations?hl=en&amp;user=bh-uRFMAAAAJ)--&gt; 
+&lt;h3&gt;Image / Video / Etc&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Image Super-Resolution Using Deep Convolutional Networks&lt;/strong&gt; (2016), C. Dong et al. &lt;a href=&quot;https://arxiv.org/pdf/1501.00092v3.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;A neural algorithm of artistic style&lt;/strong&gt; (2015), L. Gatys et al. &lt;a href=&quot;https://arxiv.org/pdf/1508.06576&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Deep visual-semantic alignments for generating image descriptions&lt;/strong&gt; (2015), A. Karpathy and L. Fei-Fei &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Karpathy_Deep_Visual-Semantic_Alignments_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Show, attend and tell: Neural image caption generation with visual attention&lt;/strong&gt; (2015), K. Xu et al. &lt;a href=&quot;http://arxiv.org/pdf/1502.03044&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Show and tell: A neural image caption generator&lt;/strong&gt; (2015), O. Vinyals et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Vinyals_Show_and_Tell_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Long-term recurrent convolutional networks for visual recognition and description&lt;/strong&gt; (2015), J. Donahue et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Donahue_Long-Term_Recurrent_Convolutional_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;VQA: Visual question answering&lt;/strong&gt; (2015), S. Antol et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Antol_VQA_Visual_Question_ICCV_2015_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;DeepFace: Closing the gap to human-level performance in face verification&lt;/strong&gt; (2014), Y. Taigman et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Taigman_DeepFace_Closing_the_2014_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;:&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Large-scale video classification with convolutional neural networks&lt;/strong&gt; (2014), A. Karpathy et al. &lt;a href=&quot;http://vision.stanford.edu/pdf/karpathy14.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Two-stream convolutional networks for action recognition in videos&lt;/strong&gt; (2014), K. Simonyan et al. &lt;a href=&quot;http://papers.nips.cc/paper/5353-two-stream-convolutional-networks-for-action-recognition-in-videos.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;3D convolutional neural networks for human action recognition&lt;/strong&gt; (2013), S. Ji et al. &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/icml2010_JiXYY10.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers]  [Oriol Vinyals](https://scholar.google.ca/citations?user=NkzyCvUAAAAJ), [Andrej Karpathy](https://scholar.google.ca/citations?user=l8WuQJgAAAAJ)--&gt; 
+&lt;!--[Key researchers]  [Alex Graves](https://scholar.google.ca/citations?user=DaFHynwAAAAJ)--&gt; 
+&lt;h3&gt;Natural Language Processing / RNNs&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Neural Architectures for Named Entity Recognition&lt;/strong&gt; (2016), G. Lample et al. &lt;a href=&quot;http://aclweb.org/anthology/N/N16/N16-1030.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Exploring the limits of language modeling&lt;/strong&gt; (2016), R. Jozefowicz et al. &lt;a href=&quot;http://arxiv.org/pdf/1602.02410&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Teaching machines to read and comprehend&lt;/strong&gt; (2015), K. Hermann et al. &lt;a href=&quot;http://papers.nips.cc/paper/5945-teaching-machines-to-read-and-comprehend.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Effective approaches to attention-based neural machine translation&lt;/strong&gt; (2015), M. Luong et al. &lt;a href=&quot;https://arxiv.org/pdf/1508.04025&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Conditional random fields as recurrent neural networks&lt;/strong&gt; (2015), S. Zheng and S. Jayasumana. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Zheng_Conditional_Random_Fields_ICCV_2015_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Memory networks&lt;/strong&gt; (2014), J. Weston et al. &lt;a href=&quot;https://arxiv.org/pdf/1410.3916&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Neural turing machines&lt;/strong&gt; (2014), A. Graves et al. &lt;a href=&quot;https://arxiv.org/pdf/1410.5401&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Neural machine translation by jointly learning to align and translate&lt;/strong&gt; (2014), D. Bahdanau et al. &lt;a href=&quot;http://arxiv.org/pdf/1409.0473&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Sequence to sequence learning with neural networks&lt;/strong&gt; (2014), I. Sutskever et al. &lt;a href=&quot;http://papers.nips.cc/paper/5346-sequence-to-sequence-learning-with-neural-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Learning phrase representations using RNN encoder-decoder for statistical machine translation&lt;/strong&gt; (2014), K. Cho et al. &lt;a href=&quot;http://arxiv.org/pdf/1406.1078&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;A convolutional neural network for modeling sentences&lt;/strong&gt; (2014), N. Kalchbrenner et al. &lt;a href=&quot;http://arxiv.org/pdf/1404.2188v1&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Convolutional neural networks for sentence classification&lt;/strong&gt; (2014), Y. Kim &lt;a href=&quot;http://arxiv.org/pdf/1408.5882&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Glove: Global vectors for word representation&lt;/strong&gt; (2014), J. Pennington et al. &lt;a href=&quot;http://anthology.aclweb.org/D/D14/D14-1162.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Distributed representations of sentences and documents&lt;/strong&gt; (2014), Q. Le and T. Mikolov &lt;a href=&quot;http://arxiv.org/pdf/1405.4053&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Distributed representations of words and phrases and their compositionality&lt;/strong&gt; (2013), T. Mikolov et al. &lt;a href=&quot;http://papers.nips.cc/paper/5021-distributed-representations-of-words-and-phrases-and-their-compositionality.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Efficient estimation of word representations in vector space&lt;/strong&gt; (2013), T. Mikolov et al. &lt;a href=&quot;http://arxiv.org/pdf/1301.3781&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Recursive deep models for semantic compositionality over a sentiment treebank&lt;/strong&gt; (2013), R. Socher et al. &lt;a href=&quot;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.383.1327&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Generating sequences with recurrent neural networks&lt;/strong&gt; (2013), A. Graves. &lt;a href=&quot;https://arxiv.org/pdf/1308.0850&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers]  [Kyunghyun Cho](https://scholar.google.ca/citations?user=0RAmmIAAAAAJ), [Oriol Vinyals](https://scholar.google.ca/citations?user=NkzyCvUAAAAJ), [Richard Socher](https://scholar.google.ca/citations?hl=en&amp;user=FaOcyfMAAAAJ), [Tomas Mikolov](https://scholar.google.ca/citations?user=oBu8kMMAAAAJ), [Christopher D. Manning](https://scholar.google.ca/citations?user=1zmDOdwAAAAJ), [Yoshua Bengio](https://scholar.google.ca/citations?user=kukA0LcAAAAJ)--&gt; 
+&lt;h3&gt;Speech / Other Domain&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;End-to-end attention-based large vocabulary speech recognition&lt;/strong&gt; (2016), D. Bahdanau et al. &lt;a href=&quot;https://arxiv.org/pdf/1508.04395&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Deep speech 2: End-to-end speech recognition in English and Mandarin&lt;/strong&gt; (2015), D. Amodei et al. &lt;a href=&quot;https://arxiv.org/pdf/1512.02595&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Speech recognition with deep recurrent neural networks&lt;/strong&gt; (2013), A. Graves &lt;a href=&quot;http://arxiv.org/pdf/1303.5778.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Deep neural networks for acoustic modeling in speech recognition: The shared views of four research groups&lt;/strong&gt; (2012), G. Hinton et al. &lt;a href=&quot;http://www.cs.toronto.edu/~asamir/papers/SPM_DNN_12.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Context-dependent pre-trained deep neural networks for large-vocabulary speech recognition&lt;/strong&gt; (2012) G. Dahl et al. &lt;a href=&quot;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.337.7548&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Acoustic modeling using deep belief networks&lt;/strong&gt; (2012), A. Mohamed et al. &lt;a href=&quot;http://www.cs.toronto.edu/~asamir/papers/speechDBN_jrnl.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers]  [Alex Graves](https://scholar.google.ca/citations?user=DaFHynwAAAAJ), [Geoffrey Hinton](https://scholar.google.ca/citations?user=JicYPdAAAAAJ), [Dong Yu](https://scholar.google.ca/citations?hl=en&amp;user=tMY31_gAAAAJ)--&gt; 
+&lt;h3&gt;Reinforcement Learning / Robotics&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;End-to-end training of deep visuomotor policies&lt;/strong&gt; (2016), S. Levine et al. &lt;a href=&quot;http://www.jmlr.org/papers/volume17/15-522/source/15-522.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Learning Hand-Eye Coordination for Robotic Grasping with Deep Learning and Large-Scale Data Collection&lt;/strong&gt; (2016), S. Levine et al. &lt;a href=&quot;https://arxiv.org/pdf/1603.02199&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Asynchronous methods for deep reinforcement learning&lt;/strong&gt; (2016), V. Mnih et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v48/mniha16.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Deep Reinforcement Learning with Double Q-Learning&lt;/strong&gt; (2016), H. Hasselt et al. &lt;a href=&quot;https://arxiv.org/pdf/1509.06461.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Mastering the game of Go with deep neural networks and tree search&lt;/strong&gt; (2016), D. Silver et al. &lt;a href=&quot;http://www.nature.com/nature/journal/v529/n7587/full/nature16961.html&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Continuous control with deep reinforcement learning&lt;/strong&gt; (2015), T. Lillicrap et al. &lt;a href=&quot;https://arxiv.org/pdf/1509.02971&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Human-level control through deep reinforcement learning&lt;/strong&gt; (2015), V. Mnih et al. &lt;a href=&quot;http://www.davidqiu.com:8888/research/nature14236.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Deep learning for detecting robotic grasps&lt;/strong&gt; (2015), I. Lenz et al. &lt;a href=&quot;http://www.cs.cornell.edu/~asaxena/papers/lenz_lee_saxena_deep_learning_grasping_ijrr2014.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Playing atari with deep reinforcement learning&lt;/strong&gt; (2013), V. Mnih et al. &lt;a href=&quot;http://arxiv.org/pdf/1312.5602.pdf&quot;&gt;[pdf]&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--[Key researchers]  [Sergey Levine](https://scholar.google.ca/citations?user=8R35rCwAAAAJ), [Volodymyr Mnih](https://scholar.google.ca/citations?hl=en&amp;user=rLdfJ1gAAAAJ), [David Silver](https://scholar.google.ca/citations?user=-8DNE4UAAAAJ)--&gt; 
+&lt;h3&gt;More Papers from 2016&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Layer Normalization&lt;/strong&gt; (2016), J. Ba et al. &lt;a href=&quot;https://arxiv.org/pdf/1607.06450v1.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Learning to learn by gradient descent by gradient descent&lt;/strong&gt; (2016), M. Andrychowicz et al. &lt;a href=&quot;http://arxiv.org/pdf/1606.04474v1&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Domain-adversarial training of neural networks&lt;/strong&gt; (2016), Y. Ganin et al. &lt;a href=&quot;http://www.jmlr.org/papers/volume17/15-239/source/15-239.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;WaveNet: A Generative Model for Raw Audio&lt;/strong&gt; (2016), A. Oord et al. &lt;a href=&quot;https://arxiv.org/pdf/1609.03499v2&quot;&gt;[pdf]&lt;/a&gt; &lt;a href=&quot;https://deepmind.com/blog/wavenet-generative-model-raw-audio/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Colorful image colorization&lt;/strong&gt; (2016), R. Zhang et al. &lt;a href=&quot;https://arxiv.org/pdf/1603.08511&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Generative visual manipulation on the natural image manifold&lt;/strong&gt; (2016), J. Zhu et al. &lt;a href=&quot;https://arxiv.org/pdf/1609.03552&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Texture networks: Feed-forward synthesis of textures and stylized images&lt;/strong&gt; (2016), D Ulyanov et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v48/ulyanov16.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SSD: Single shot multibox detector&lt;/strong&gt; (2016), W. Liu et al. &lt;a href=&quot;https://arxiv.org/pdf/1512.02325&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SqueezeNet: AlexNet-level accuracy with 50x fewer parameters and&amp;lt; 1MB model size&lt;/strong&gt; (2016), F. Iandola et al. &lt;a href=&quot;http://arxiv.org/pdf/1602.07360&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Eie: Efficient inference engine on compressed deep neural network&lt;/strong&gt; (2016), S. Han et al. &lt;a href=&quot;http://arxiv.org/pdf/1602.01528&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Binarized neural networks: Training deep neural networks with weights and activations constrained to+ 1 or-1&lt;/strong&gt; (2016), M. Courbariaux et al. &lt;a href=&quot;https://arxiv.org/pdf/1602.02830&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Dynamic memory networks for visual and textual question answering&lt;/strong&gt; (2016), C. Xiong et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v48/xiong16.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Stacked attention networks for image question answering&lt;/strong&gt; (2016), Z. Yang et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Yang_Stacked_Attention_Networks_CVPR_2016_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hybrid computing using a neural network with dynamic external memory&lt;/strong&gt; (2016), A. Graves et al. &lt;a href=&quot;https://www.gwern.net/docs/2016-graves.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Google&#39;s neural machine translation system: Bridging the gap between human and machine translation&lt;/strong&gt; (2016), Y. Wu et al. &lt;a href=&quot;https://arxiv.org/pdf/1609.08144&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;h3&gt;New papers&lt;/h3&gt; 
+&lt;p&gt;&lt;em&gt;Newly published papers (&amp;lt; 6 months) which are worth reading&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;MobileNets: Efficient Convolutional Neural Networks for Mobile Vision Applications (2017), Andrew G. Howard et al. &lt;a href=&quot;https://arxiv.org/pdf/1704.04861.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Convolutional Sequence to Sequence Learning (2017), Jonas Gehring et al. &lt;a href=&quot;https://arxiv.org/pdf/1705.03122&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;A Knowledge-Grounded Neural Conversation Model (2017), Marjan Ghazvininejad et al. &lt;a href=&quot;https://arxiv.org/pdf/1702.01932&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Accurate, Large Minibatch SGD:Training ImageNet in 1 Hour (2017), Priya Goyal et al. &lt;a href=&quot;https://research.fb.com/wp-content/uploads/2017/06/imagenet1kin1h3.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;TACOTRON: Towards end-to-end speech synthesis (2017), Y. Wang et al. &lt;a href=&quot;https://arxiv.org/pdf/1703.10135.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep Photo Style Transfer (2017), F. Luan et al. &lt;a href=&quot;http://arxiv.org/pdf/1703.07511v1.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Evolution Strategies as a Scalable Alternative to Reinforcement Learning (2017), T. Salimans et al. &lt;a href=&quot;http://arxiv.org/pdf/1703.03864v1.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deformable Convolutional Networks (2017), J. Dai et al. &lt;a href=&quot;http://arxiv.org/pdf/1703.06211v2.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Mask R-CNN (2017), K. He et al. &lt;a href=&quot;https://128.84.21.199/pdf/1703.06870&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning to discover cross-domain relations with generative adversarial networks (2017), T. Kim et al. &lt;a href=&quot;http://arxiv.org/pdf/1703.05192v1.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep voice: Real-time neural text-to-speech (2017), S. Arik et al., &lt;a href=&quot;http://arxiv.org/pdf/1702.07825v2.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;PixelNet: Representation of the pixels, by the pixels, and for the pixels (2017), A. Bansal et al. &lt;a href=&quot;http://arxiv.org/pdf/1702.06506v1.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Batch renormalization: Towards reducing minibatch dependence in batch-normalized models (2017), S. Ioffe. &lt;a href=&quot;https://arxiv.org/abs/1702.03275&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Wasserstein GAN (2017), M. Arjovsky et al. &lt;a href=&quot;https://arxiv.org/pdf/1701.07875v1&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Understanding deep learning requires rethinking generalization (2017), C. Zhang et al. &lt;a href=&quot;https://arxiv.org/pdf/1611.03530&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Least squares generative adversarial networks (2016), X. Mao et al. &lt;a href=&quot;https://arxiv.org/abs/1611.04076v2&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Old Papers&lt;/h3&gt; 
+&lt;p&gt;&lt;em&gt;Classic papers published before 2012&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An analysis of single-layer networks in unsupervised feature learning (2011), A. Coates et al. &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/AISTATS2011_CoatesNL11.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep sparse rectifier neural networks (2011), X. Glorot et al. &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/AISTATS2011_GlorotBB11.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Natural language processing (almost) from scratch (2011), R. Collobert et al. &lt;a href=&quot;http://arxiv.org/pdf/1103.0398&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Recurrent neural network based language model (2010), T. Mikolov et al. &lt;a href=&quot;http://www.fit.vutbr.cz/research/groups/speech/servite/2010/rnnlm_mikolov.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Stacked denoising autoencoders: Learning useful representations in a deep network with a local denoising criterion (2010), P. Vincent et al. &lt;a href=&quot;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.297.3484&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning mid-level features for recognition (2010), Y. Boureau &lt;a href=&quot;http://ece.duke.edu/~lcarin/boureau-cvpr-10.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;A practical guide to training restricted boltzmann machines (2010), G. Hinton &lt;a href=&quot;http://www.csri.utoronto.ca/~hinton/absps/guideTR.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Understanding the difficulty of training deep feedforward neural networks (2010), X. Glorot and Y. Bengio &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/AISTATS2010_GlorotB10.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Why does unsupervised pre-training help deep learning (2010), D. Erhan et al. &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/AISTATS2010_ErhanCBV10.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning deep architectures for AI (2009), Y. Bengio. &lt;a href=&quot;http://sanghv.com/download/soft/machine%20learning,%20artificial%20intelligence,%20mathematics%20ebooks/ML/learning%20deep%20architectures%20for%20AI%20(2009).pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Convolutional deep belief networks for scalable unsupervised learning of hierarchical representations (2009), H. Lee et al. &lt;a href=&quot;http://citeseerx.ist.psu.edu/viewdoc/download?doi=10.1.1.149.802&amp;amp;rep=rep1&amp;amp;type=pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Greedy layer-wise training of deep networks (2007), Y. Bengio et al. &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/NIPS2006_739.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Reducing the dimensionality of data with neural networks, G. Hinton and R. Salakhutdinov. &lt;a href=&quot;http://homes.mpimf-heidelberg.mpg.de/~mhelmsta/pdf/2006%20Hinton%20Salakhudtkinov%20Science.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;A fast learning algorithm for deep belief nets (2006), G. Hinton et al. &lt;a href=&quot;http://nuyoo.utm.mx/~jjf/rna/A8%20A%20fast%20learning%20algorithm%20for%20deep%20belief%20nets.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Gradient-based learning applied to document recognition (1998), Y. LeCun et al. &lt;a href=&quot;http://yann.lecun.com/exdb/publis/pdf/lecun-01a.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Long short-term memory (1997), S. Hochreiter and J. Schmidhuber. &lt;a href=&quot;http://www.mitpressjournals.org/doi/pdfplus/10.1162/neco.1997.9.8.1735&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;HW / SW / Dataset&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;SQuAD: 100,000+ Questions for Machine Comprehension of Text (2016), Rajpurkar et al. &lt;a href=&quot;https://arxiv.org/pdf/1606.05250.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;OpenAI gym (2016), G. Brockman et al. &lt;a href=&quot;https://arxiv.org/pdf/1606.01540&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;TensorFlow: Large-scale machine learning on heterogeneous distributed systems (2016), M. Abadi et al. &lt;a href=&quot;http://arxiv.org/pdf/1603.04467&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Theano: A Python framework for fast computation of mathematical expressions, R. Al-Rfou et al.&lt;/li&gt; 
+ &lt;li&gt;Torch7: A matlab-like environment for machine learning, R. Collobert et al. &lt;a href=&quot;https://ronan.collobert.com/pub/matos/2011_torch7_nipsw.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;MatConvNet: Convolutional neural networks for matlab (2015), A. Vedaldi and K. Lenc &lt;a href=&quot;http://arxiv.org/pdf/1412.4564&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Imagenet large scale visual recognition challenge (2015), O. Russakovsky et al. &lt;a href=&quot;http://arxiv.org/pdf/1409.0575&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Caffe: Convolutional architecture for fast feature embedding (2014), Y. Jia et al. &lt;a href=&quot;http://arxiv.org/pdf/1408.5093&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Book / Survey / Review&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;On the Origin of Deep Learning (2017), H. Wang and Bhiksha Raj. &lt;a href=&quot;https://arxiv.org/pdf/1702.07800&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep Reinforcement Learning: An Overview (2017), Y. Li, &lt;a href=&quot;http://arxiv.org/pdf/1701.07274v2.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Neural Machine Translation and Sequence-to-sequence Models(2017): A Tutorial, G. Neubig. &lt;a href=&quot;http://arxiv.org/pdf/1703.01619v1.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Neural Network and Deep Learning (Book, Jan 2017), Michael Nielsen. &lt;a href=&quot;http://neuralnetworksanddeeplearning.com/index.html&quot;&gt;[html]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep learning (Book, 2016), Goodfellow et al. &lt;a href=&quot;http://www.deeplearningbook.org/&quot;&gt;[html]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;LSTM: A search space odyssey (2016), K. Greff et al. &lt;a href=&quot;https://arxiv.org/pdf/1503.04069.pdf?utm_content=buffereddc5&amp;amp;utm_medium=social&amp;amp;utm_source=plus.google.com&amp;amp;utm_campaign=buffer&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Tutorial on Variational Autoencoders (2016), C. Doersch. &lt;a href=&quot;https://arxiv.org/pdf/1606.05908&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep learning (2015), Y. LeCun, Y. Bengio and G. Hinton &lt;a href=&quot;https://www.cs.toronto.edu/~hinton/absps/NatureDeepReview.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep learning in neural networks: An overview (2015), J. Schmidhuber &lt;a href=&quot;http://arxiv.org/pdf/1404.7828&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Representation learning: A review and new perspectives (2013), Y. Bengio et al. &lt;a href=&quot;http://arxiv.org/pdf/1206.5538&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Video Lectures / Tutorials / Blogs&lt;/h3&gt; 
+&lt;p&gt;&lt;em&gt;(Lectures)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;CS231n, Convolutional Neural Networks for Visual Recognition, Stanford University &lt;a href=&quot;http://cs231n.stanford.edu/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CS224d, Deep Learning for Natural Language Processing, Stanford University &lt;a href=&quot;http://cs224d.stanford.edu/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Oxford Deep NLP 2017, Deep Learning for Natural Language Processing, University of Oxford &lt;a href=&quot;https://github.com/oxford-cs-deepnlp-2017/lectures&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;(Tutorials)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;NIPS 2016 Tutorials, Long Beach &lt;a href=&quot;https://nips.cc/Conferences/2016/Schedule?type=Tutorial&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;ICML 2016 Tutorials, New York City &lt;a href=&quot;http://techtalks.tv/icml/2016/tutorials/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;ICLR 2016 Videos, San Juan &lt;a href=&quot;http://videolectures.net/iclr2016_san_juan/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep Learning Summer School 2016, Montreal &lt;a href=&quot;http://videolectures.net/deeplearning2016_montreal/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Bay Area Deep Learning School 2016, Stanford &lt;a href=&quot;https://www.bayareadlschool.org/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;(Blogs)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;OpenAI &lt;a href=&quot;https://www.openai.com/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Distill &lt;a href=&quot;http://distill.pub/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Andrej Karpathy Blog &lt;a href=&quot;http://karpathy.github.io/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Colah&#39;s Blog &lt;a href=&quot;http://colah.github.io/&quot;&gt;[Web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;WildML &lt;a href=&quot;http://www.wildml.com/&quot;&gt;[Web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;FastML &lt;a href=&quot;http://www.fastml.com/&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;TheMorningPaper &lt;a href=&quot;https://blog.acolyer.org&quot;&gt;[web]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Appendix: More than Top 100&lt;/h3&gt; 
+&lt;p&gt;&lt;em&gt;(2016)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A character-level decoder without explicit segmentation for neural machine translation (2016), J. Chung et al. &lt;a href=&quot;https://arxiv.org/pdf/1603.06147&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Dermatologist-level classification of skin cancer with deep neural networks (2017), A. Esteva et al. &lt;a href=&quot;http://www.nature.com/nature/journal/v542/n7639/full/nature21056.html&quot;&gt;[html]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Weakly supervised object localization with multi-fold multiple instance learning (2017), R. Gokberk et al. &lt;a href=&quot;https://arxiv.org/pdf/1503.00949&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Brain tumor segmentation with deep neural networks (2017), M. Havaei et al. &lt;a href=&quot;https://arxiv.org/pdf/1505.03540&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Professor Forcing: A New Algorithm for Training Recurrent Networks (2016), A. Lamb et al. &lt;a href=&quot;https://arxiv.org/pdf/1610.09038&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Adversarially learned inference (2016), V. Dumoulin et al. &lt;a href=&quot;https://ishmaelbelghazi.github.io/ALI/&quot;&gt;[web]&lt;/a&gt;&lt;a href=&quot;https://arxiv.org/pdf/1606.00704v1&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Understanding convolutional neural networks (2016), J. Koushik &lt;a href=&quot;https://arxiv.org/pdf/1605.09081v1&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Taking the human out of the loop: A review of bayesian optimization (2016), B. Shahriari et al. &lt;a href=&quot;https://www.cs.ox.ac.uk/people/nando.defreitas/publications/BayesOptLoop.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Adaptive computation time for recurrent neural networks (2016), A. Graves &lt;a href=&quot;http://arxiv.org/pdf/1603.08983&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Densely connected convolutional networks (2016), G. Huang et al. &lt;a href=&quot;https://arxiv.org/pdf/1608.06993v1&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Region-based convolutional networks for accurate object detection and segmentation (2016), R. Girshick et al.&lt;/li&gt; 
+ &lt;li&gt;Continuous deep q-learning with model-based acceleration (2016), S. Gu et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v48/gu16.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;A thorough examination of the cnn/daily mail reading comprehension task (2016), D. Chen et al. &lt;a href=&quot;https://arxiv.org/pdf/1606.02858&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Achieving open vocabulary neural machine translation with hybrid word-character models, M. Luong and C. Manning. &lt;a href=&quot;https://arxiv.org/pdf/1604.00788&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Very Deep Convolutional Networks for Natural Language Processing (2016), A. Conneau et al. &lt;a href=&quot;https://arxiv.org/pdf/1606.01781&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Bag of tricks for efficient text classification (2016), A. Joulin et al. &lt;a href=&quot;https://arxiv.org/pdf/1607.01759&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Efficient piecewise training of deep structured models for semantic segmentation (2016), G. Lin et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Lin_Efficient_Piecewise_Training_CVPR_2016_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning to compose neural networks for question answering (2016), J. Andreas et al. &lt;a href=&quot;https://arxiv.org/pdf/1601.01705&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Perceptual losses for real-time style transfer and super-resolution (2016), J. Johnson et al. &lt;a href=&quot;https://arxiv.org/pdf/1603.08155&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Reading text in the wild with convolutional neural networks (2016), M. Jaderberg et al. &lt;a href=&quot;http://arxiv.org/pdf/1412.1842&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;What makes for effective detection proposals? (2016), J. Hosang et al. &lt;a href=&quot;https://arxiv.org/pdf/1502.05082&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Inside-outside net: Detecting objects in context with skip pooling and recurrent neural networks (2016), S. Bell et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Bell_Inside-Outside_Net_Detecting_CVPR_2016_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Instance-aware semantic segmentation via multi-task network cascades (2016), J. Dai et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2016/papers/Dai_Instance-Aware_Semantic_Segmentation_CVPR_2016_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Conditional image generation with pixelcnn decoders (2016), A. van den Oord et al. &lt;a href=&quot;http://papers.nips.cc/paper/6527-tree-structured-reinforcement-learning-for-sequential-object-localization.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep networks with stochastic depth (2016), G. Huang et al., &lt;a href=&quot;https://arxiv.org/pdf/1603.09382&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Consistency and Fluctuations For Stochastic Gradient Langevin Dynamics (2016), Yee Whye Teh et al. &lt;a href=&quot;http://www.jmlr.org/papers/volume17/teh16a/teh16a.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;(2015)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Ask your neurons: A neural-based approach to answering questions about images (2015), M. Malinowski et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Malinowski_Ask_Your_Neurons_ICCV_2015_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Exploring models and data for image question answering (2015), M. Ren et al. &lt;a href=&quot;http://papers.nips.cc/paper/5640-stochastic-variational-inference-for-hidden-markov-models.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Are you talking to a machine? dataset and methods for multilingual image question (2015), H. Gao et al. &lt;a href=&quot;http://papers.nips.cc/paper/5641-are-you-talking-to-a-machine-dataset-and-methods-for-multilingual-image-question.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Mind&#39;s eye: A recurrent visual representation for image caption generation (2015), X. Chen and C. Zitnick. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Chen_Minds_Eye_A_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;From captions to visual concepts and back (2015), H. Fang et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Fang_From_Captions_to_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Towards AI-complete question answering: A set of prerequisite toy tasks (2015), J. Weston et al. &lt;a href=&quot;http://arxiv.org/pdf/1502.05698&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Ask me anything: Dynamic memory networks for natural language processing (2015), A. Kumar et al. &lt;a href=&quot;http://arxiv.org/pdf/1506.07285&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Unsupervised learning of video representations using LSTMs (2015), N. Srivastava et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v37/srivastava15.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep compression: Compressing deep neural networks with pruning, trained quantization and huffman coding (2015), S. Han et al. &lt;a href=&quot;https://arxiv.org/pdf/1510.00149&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Improved semantic representations from tree-structured long short-term memory networks (2015), K. Tai et al. &lt;a href=&quot;https://arxiv.org/pdf/1503.00075&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Character-aware neural language models (2015), Y. Kim et al. &lt;a href=&quot;https://arxiv.org/pdf/1508.06615&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Grammar as a foreign language (2015), O. Vinyals et al. &lt;a href=&quot;http://papers.nips.cc/paper/5635-grammar-as-a-foreign-language.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Trust Region Policy Optimization (2015), J. Schulman et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v37/schulman15.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Beyond short snippents: Deep networks for video classification (2015) &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2015/papers/Ng_Beyond_Short_Snippets_2015_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning Deconvolution Network for Semantic Segmentation (2015), H. Noh et al. &lt;a href=&quot;https://arxiv.org/pdf/1505.04366v1&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning spatiotemporal features with 3d convolutional networks (2015), D. Tran et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Tran_Learning_Spatiotemporal_Features_ICCV_2015_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Understanding neural networks through deep visualization (2015), J. Yosinski et al. &lt;a href=&quot;https://arxiv.org/pdf/1506.06579&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;An Empirical Exploration of Recurrent Network Architectures (2015), R. Jozefowicz et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v37/jozefowicz15.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Deep generative image models using a￼ laplacian pyramid of adversarial networks (2015), E.Denton et al. &lt;a href=&quot;http://papers.nips.cc/paper/5773-deep-generative-image-models-using-a-laplacian-pyramid-of-adversarial-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Gated Feedback Recurrent Neural Networks (2015), J. Chung et al. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v37/chung15.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Fast and accurate deep network learning by exponential linear units (ELUS) (2015), D. Clevert et al. &lt;a href=&quot;https://arxiv.org/pdf/1511.07289.pdf%5Cnhttp://arxiv.org/abs/1511.07289%5Cnhttp://arxiv.org/abs/1511.07289&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Pointer networks (2015), O. Vinyals et al. &lt;a href=&quot;http://papers.nips.cc/paper/5866-pointer-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Visualizing and Understanding Recurrent Networks (2015), A. Karpathy et al. &lt;a href=&quot;https://arxiv.org/pdf/1506.02078&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Attention-based models for speech recognition (2015), J. Chorowski et al. &lt;a href=&quot;http://papers.nips.cc/paper/5847-attention-based-models-for-speech-recognition.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;End-to-end memory networks (2015), S. Sukbaatar et al. &lt;a href=&quot;http://papers.nips.cc/paper/5846-end-to-end-memory-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Describing videos by exploiting temporal structure (2015), L. Yao et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_iccv_2015/papers/Yao_Describing_Videos_by_ICCV_2015_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;A neural conversational model (2015), O. Vinyals and Q. Le. &lt;a href=&quot;https://arxiv.org/pdf/1506.05869.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Improving distributional similarity with lessons learned from word embeddings, O. Levy et al. [[pdf]] (&lt;a href=&quot;https://www.transacl.org/ojs/index.php/tacl/article/download/570/124&quot;&gt;https://www.transacl.org/ojs/index.php/tacl/article/download/570/124&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Transition-Based Dependency Parsing with Stack Long Short-Term Memory (2015), C. Dyer et al. &lt;a href=&quot;http://aclweb.org/anthology/P/P15/P15-1033.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Improved Transition-Based Parsing by Modeling Characters instead of Words with LSTMs (2015), M. Ballesteros et al. &lt;a href=&quot;http://aclweb.org/anthology/D/D15/D15-1041.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Finding function in form: Compositional character models for open vocabulary word representation (2015), W. Ling et al. &lt;a href=&quot;http://aclweb.org/anthology/D/D15/D15-1176.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;(~2014)&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;DeepPose: Human pose estimation via deep neural networks (2014), A. Toshev and C. Szegedy &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Toshev_DeepPose_Human_Pose_2014_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning a Deep Convolutional Network for Image Super-Resolution (2014, C. Dong et al. &lt;a href=&quot;https://www.researchgate.net/profile/Chen_Change_Loy/publication/264552416_Lecture_Notes_in_Computer_Science/links/53e583e50cf25d674e9c280e.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Recurrent models of visual attention (2014), V. Mnih et al. &lt;a href=&quot;http://arxiv.org/pdf/1406.6247.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Empirical evaluation of gated recurrent neural networks on sequence modeling (2014), J. Chung et al. &lt;a href=&quot;https://arxiv.org/pdf/1412.3555&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Addressing the rare word problem in neural machine translation (2014), M. Luong et al. &lt;a href=&quot;https://arxiv.org/pdf/1410.8206&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;On the properties of neural machine translation: Encoder-decoder approaches (2014), K. Cho et. al.&lt;/li&gt; 
+ &lt;li&gt;Recurrent neural network regularization (2014), W. Zaremba et al. &lt;a href=&quot;http://arxiv.org/pdf/1409.2329&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Intriguing properties of neural networks (2014), C. Szegedy et al. &lt;a href=&quot;https://arxiv.org/pdf/1312.6199.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Towards end-to-end speech recognition with recurrent neural networks (2014), A. Graves and N. Jaitly. &lt;a href=&quot;http://www.jmlr.org/proceedings/papers/v32/graves14.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Scalable object detection using deep neural networks (2014), D. Erhan et al. &lt;a href=&quot;http://www.cv-foundation.org/openaccess/content_cvpr_2014/papers/Erhan_Scalable_Object_Detection_2014_CVPR_paper.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;On the importance of initialization and momentum in deep learning (2013), I. Sutskever et al. &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/icml2013_sutskever13.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Regularization of neural networks using dropconnect (2013), L. Wan et al. &lt;a href=&quot;http://machinelearning.wustl.edu/mlpapers/paper_files/icml2013_wan13.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Learning Hierarchical Features for Scene Labeling (2013), C. Farabet et al. &lt;a href=&quot;https://hal-enpc.archives-ouvertes.fr/docs/00/74/20/77/PDF/farabet-pami-13.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Linguistic Regularities in Continuous Space Word Representations (2013), T. Mikolov et al. &lt;a href=&quot;http://www.aclweb.org/anthology/N13-1#page=784&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Large scale distributed deep networks (2012), J. Dean et al. &lt;a href=&quot;http://papers.nips.cc/paper/4687-large-scale-distributed-deep-networks.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;A Fast and Accurate Dependency Parser using Neural Networks. Chen and Manning. &lt;a href=&quot;http://cs.stanford.edu/people/danqi/papers/emnlp2014.pdf&quot;&gt;[pdf]&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Acknowledgement&lt;/h2&gt; 
+&lt;p&gt;Thank you for all your contributions. Please make sure to read the &lt;a href=&quot;https://github.com/terryum/awesome-deep-learning-papers/raw/master/Contributing.md&quot;&gt;contributing guide&lt;/a&gt; before you make a pull request.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/publicdomain/zero/1.0/&quot;&gt;&lt;img src=&quot;http://mirrors.creativecommons.org/presskit/buttons/88x31/svg/cc-zero.svg?sanitize=true&quot; alt=&quot;CC0&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;To the extent possible under law, &lt;a href=&quot;https://www.facebook.com/terryum.io/&quot;&gt;Terry T. Um&lt;/a&gt; has waived all copyright and related or neighboring rights to this work.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>w3f/ring-vrf</title>
+      <link>https://github.com/w3f/ring-vrf</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ring-vrf&lt;/h1&gt; 
+&lt;p&gt;Ring VRF implementation using zkSNARKs.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

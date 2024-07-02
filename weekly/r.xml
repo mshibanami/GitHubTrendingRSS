@@ -1,0 +1,1181 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub R Weekly Trending</title>
+    <description>Weekly Trending of R in GitHub</description>
+    <pubDate>Tue, 02 Jul 2024 01:40:29 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>mojaveazure/seurat-disk</title>
+      <link>https://github.com/mojaveazure/seurat-disk</link>
+      <description>&lt;p&gt;Interfaces for HDF5-based Single Cell File Formats&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;SeuratDisk v0.0.0.9015&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=SeuratDisk&quot;&gt;&lt;img src=&quot;https://img.shields.io/cran/v/SeuratDisk&quot; alt=&quot;CRAN/METACRAN&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/mojaveazure/seurat-disk&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-experimental-orange.svg?sanitize=true&quot; alt=&quot;Lifecycle&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;!-- Interfaces for HDF5-based Single Cell File Formats --&gt; 
+&lt;p&gt;The h5Seurat file format is specifically designed for the storage and analysis of multi-modal single-cell and spatially-resolved expression experiments, for example, from CITE-seq or 10X Visium technologies. It holds all molecular information and associated metadata, including (for example) nearest-neighbor graphs, dimensional reduction information, spatial coordinates and image data, and cluster labels. We also support rapid and on-disk conversion between h5Seurat and AnnData objects, with the goal of enhancing interoperability between Seurat and Scanpy.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;SeuratDisk is not currently available on CRAN. You can install it from &lt;a href=&quot;https://github.com/mojaveazure/seurat-disk&quot;&gt;GitHub&lt;/a&gt; with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;remotes&quot;, quietly = TRUE)) {
+  install.packages(&quot;remotes&quot;)
+}
+remotes::install_github(&quot;mojaveazure/seurat-disk&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Dependencies&lt;/h2&gt; 
+&lt;p&gt;SeuratDisk depends on the following non-standard packages:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;Package&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;CRAN Webpage&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;Source&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;Website&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;cli&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=cli&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/r-lib/cli#readme&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;–&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;crayon&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=crayon&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/r-lib/crayon#readme&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;–&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;hdf5r&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=hdf5r&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/hhoeflin/hdf5r&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://hhoeflin.github.io/hdf5r/&quot;&gt;Website&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;Matrix&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=Matrix&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;–&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;http://Matrix.R-forge.R-project.org/&quot;&gt;Website&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;R6&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=R6&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/r-lib/R6/&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://r6.r-lib.org&quot;&gt;Website&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;rlang&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=rlang&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/r-lib/rlang&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://rlang.r-lib.org&quot;&gt;Website&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;Seurat&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://satijalab.org/seurat&quot;&gt;Website&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;SeuratObject&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=SeuratObject&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/mojaveazure/seurat-object&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://satijalab.org/seurat&quot;&gt;Website&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;stringi&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=stringi&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;–&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;[Website](&lt;a href=&quot;https://stringi.gagolewski.com/&quot;&gt;https://stringi.gagolewski.com/&lt;/a&gt; &lt;a href=&quot;http://site.icu-project.org/&quot;&gt;http://site.icu-project.org/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.unicode.org/&quot;&gt;https://www.unicode.org/&lt;/a&gt;)&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;withr&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://cran.r-project.org/package=withr&quot;&gt;CRAN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/r-lib/withr#readme&quot;&gt;GitHub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://withr.r-lib.org&quot;&gt;Website&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt;</description>
+    </item>
+    
+    <item>
+      <title>sqjin/CellChat</title>
+      <link>https://github.com/sqjin/CellChat</link>
+      <description>&lt;p&gt;R toolkit for inference, visualization and analysis of cell-cell communication from single-cell data&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://github.com/sqjin/CellChat/raw/master/CellChat_Logo.png&quot;&gt; &lt;/p&gt; 
+&lt;h1&gt;CAUTION&lt;/h1&gt; 
+&lt;p&gt;We have updated CellChat to v2 and migrated CellChat to a new repository. This repository will be NOT updated and maintained any more. Please check the new repository &lt;a href=&quot;https://github.com/jinworks/CellChat&quot;&gt;jinworks/CellChat&lt;/a&gt; for the new updates, and the &lt;a href=&quot;https://biorxiv.org/cgi/content/short/2023.11.05.565674v1&quot;&gt;CellChat v2 paper&lt;/a&gt; for a comprehensive protocol of CellChat.&lt;/p&gt; 
+&lt;h1&gt;About CellChat and CellChatDB&lt;/h1&gt; 
+&lt;p&gt;CellChat is an R package designed for inference, analysis, and visualization of cell-cell communication from single-cell data. CellChat aims to enable users to identify and interpret cell-cell communication within an easily interpretable framework, with the emphasis of clear, attractive, and interpretable visualizations.&lt;/p&gt; 
+&lt;p&gt;CellChatDB is a manually curated database of literature-supported ligand-receptor interactions in mutiple species, leading to a comprehensive recapitulation of known molecular interaction mechanisms including multi-subunit structure of ligand-receptor complexes and co-factors.&lt;/p&gt; 
+&lt;p&gt;If you use CellChat in your research, please considering citing our papers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://biorxiv.org/cgi/content/short/2023.11.05.565674v1&quot;&gt;Suoqin Jin et al., CellChat for systematic analysis of cell-cell communication from single-cell and spatially resolved transcriptomics, bioRxiv 2023&lt;/a&gt; [CellChat v2]&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nature.com/articles/s41467-021-21246-9&quot;&gt;Suoqin Jin et al., Inference and analysis of cell-cell communication using CellChat, Nature Communications 2021&lt;/a&gt; [CellChat v1]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Capabilities&lt;/h1&gt; 
+&lt;p&gt;In addition to infer the intercellular communication from any given single-cell data, CellChat provides functionality for further data exploration, analysis, and visualization.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;It can quantitatively characterize and compare the inferred cell-cell communication networks using a systems approach by combining social network analysis, pattern recognition, and manifold learning approaches.&lt;/li&gt; 
+ &lt;li&gt;It provides an easy-to-use tool for extracting and visualizing high-order information of the inferred networks. For example, it allows ready prediction of major signaling inputs and outputs for all cell populations and how these populations and signals coordinate together for functions.&lt;/li&gt; 
+ &lt;li&gt;It enables comparative analysis of cell-cell communication across different conditions and identification of altered signaling and cell populations.&lt;/li&gt; 
+ &lt;li&gt;It provides several visualization outputs to facilitate intuitive user-guided data interpretation.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;700&quot; src=&quot;https://github.com/sqjin/CellChat/raw/master/overview_CellChat.png&quot;&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://clustrmaps.com/site/1bpq2&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://clustrmaps.com/map_v2.png?cl=ffffff&amp;amp;w=a&amp;amp;t=n&amp;amp;d=42WqeykSXznN_NSaBlpf6CtSXQxhqmIs6QusUsguFdY&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/sqjin/CellChat/master/#&quot;&gt; &lt;img src=&quot;https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fsqjin%2FCellChat&amp;amp;labelColor=%233499cc&amp;amp;countColor=%2370c168&quot;&gt; &lt;/a&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cole-trapnell-lab/monocle3</title>
+      <link>https://github.com/cole-trapnell-lab/monocle3</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;MONOCLE 3&lt;/h1&gt; 
+&lt;p&gt;Monocle 3 is an analysis toolkit for single-cell RNA-Seq experiments. To use this package, you will need the R statistical computing environment (version 3.0 or later) and several packages available through Bioconductor and CRAN.&lt;/p&gt; 
+&lt;p&gt;Details on how to install and use Monocle 3 are available on our website:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cole-trapnell-lab.github.io/monocle3/&quot;&gt;http://cole-trapnell-lab.github.io/monocle3/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>MRCIEU/TwoSampleMR</title>
+      <link>https://github.com/MRCIEU/TwoSampleMR</link>
+      <description>&lt;p&gt;R package for performing 2-sample MR using MR-Base database&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Mendelian randomization with GWAS summary data&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/MRCIEU/TwoSampleMR/actions/workflows/check-full.yaml&quot;&gt;&lt;img src=&quot;https://github.com/MRCIEU/TwoSampleMR/actions/workflows/check-full.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://lifecycle.r-lib.org/articles/stages.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-experimental-orange.svg?sanitize=true&quot; alt=&quot;Lifecycle: experimental&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://zenodo.org/badge/latestdoi/49515156&quot;&gt;&lt;img src=&quot;https://zenodo.org/badge/49515156.svg?sanitize=true&quot; alt=&quot;DOI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/MRCIEU/TwoSampleMR?branch=master&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/MRCIEU/TwoSampleMR/branch/master/graph/badge.svg?sanitize=true&quot; alt=&quot;Codecov test coverage&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://mrcieu.r-universe.dev/TwoSampleMR&quot;&gt;&lt;img src=&quot;https://mrcieu.r-universe.dev/badges/TwoSampleMR&quot; alt=&quot;TwoSampleMR status badge&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;A package for performing Mendelian randomization using GWAS summary data. It uses the &lt;a href=&quot;https://gwas.mrcieu.ac.uk/&quot;&gt;IEU GWAS database&lt;/a&gt; to obtain data automatically, and a wide range of methods to run the analysis. You can use the &lt;a href=&quot;https://www.mrbase.org/&quot;&gt;MR-Base web app&lt;/a&gt; to try out a limited range of the functionality in this package, but for any serious work we strongly recommend using this R package.&lt;/p&gt; 
+&lt;h2&gt;January 2020 major update&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;We have made substantial changes to the package, database and reference panels.&lt;/strong&gt; For full details of the changes, please visit &lt;a href=&quot;https://mrcieu.github.io/TwoSampleMR/articles/gwas2020.html&quot;&gt;https://mrcieu.github.io/TwoSampleMR/articles/gwas2020.html&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Users running Windows and macOS, to install the latest version of TwoSampleMR please install from our MRC IEU r-universe&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;TwoSampleMR&quot;, repos = c(&quot;https://mrcieu.r-universe.dev&quot;, &quot;https://cloud.r-project.org&quot;))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Users running Linux or WebR please see the &lt;a href=&quot;https://github.com/MRCIEU/mrcieu.r-universe.dev#readme&quot;&gt;following instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To update the package run the same command again.&lt;/p&gt; 
+&lt;h3&gt;Installing from source&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;MRCIEU/TwoSampleMR&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To update the package just run the &lt;code&gt;remotes::install_github(&quot;MRCIEU/TwoSampleMR&quot;)&lt;/code&gt; command again.&lt;/p&gt; 
+&lt;h2&gt;Docker&lt;/h2&gt; 
+&lt;p&gt;A docker image containing R with the TwoSampleMR package pre-installed is available here: &lt;a href=&quot;https://hub.docker.com/r/mrcieu/twosamplemr&quot;&gt;https://hub.docker.com/r/mrcieu/twosamplemr&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- Additional content --&gt; 
+&lt;p&gt;&lt;strong&gt;Full documentation available here:&lt;/strong&gt; &lt;a href=&quot;https://mrcieu.github.io/TwoSampleMR/&quot;&gt;https://mrcieu.github.io/TwoSampleMR/&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>broadinstitute/infercnv</title>
+      <link>https://github.com/broadinstitute/infercnv</link>
+      <description>&lt;p&gt;Inferring CNV from Single-Cell RNA-Seq&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Visit project &lt;a href=&quot;https://github.com/broadinstitute/inferCNV/wiki&quot;&gt;wiki&lt;/a&gt; for InferCNV documentation.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>paul-buerkner/brms</title>
+      <link>https://github.com/paul-buerkner/brms</link>
+      <description>&lt;p&gt;brms R package for Bayesian generalized multivariate non-linear multilevel models using Stan&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/paul-buerkner/brms/master/man/figures/brms.png&quot; width=&quot;120&quot; alt=&quot;brms Logo&quot;&gt;&lt;a href=&quot;https://mc-stan.org/&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/stan-dev/logos/master/logo_tm.png&quot; align=&quot;right&quot; width=&quot;120&quot; alt=&quot;Stan Logo&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;brms&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/paul-buerkner/brms/actions&quot;&gt;&lt;img src=&quot;https://github.com/paul-buerkner/brms/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/github/paul-buerkner/brms?branch=master&quot;&gt;&lt;img src=&quot;https://codecov.io/github/paul-buerkner/brms/coverage.svg?branch=master&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=brms&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/brms&quot; alt=&quot;CRAN Version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://CRAN.R-project.org/package=brms&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/brms?color=brightgreen&quot; alt=&quot;Downloads&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;The &lt;strong&gt;brms&lt;/strong&gt; package provides an interface to fit Bayesian generalized (non-)linear multivariate multilevel models using Stan, which is a C++ package for performing full Bayesian inference (see &lt;a href=&quot;https://mc-stan.org/&quot;&gt;https://mc-stan.org/&lt;/a&gt;). The formula syntax is very similar to that of the package lme4 to provide a familiar and simple interface for performing regression analyses. A wide range of response distributions are supported, allowing users to fit – among others – linear, robust linear, count data, survival, response times, ordinal, zero-inflated, and even self-defined mixture models all in a multilevel context. Further modeling options include non-linear and smooth terms, auto-correlation structures, censored data, missing value imputation, and quite a few more. In addition, all parameters of the response distribution can be predicted in order to perform distributional regression. Multivariate models (i.e., models with multiple response variables) can be fit, as well. Prior specifications are flexible and explicitly encourage users to apply prior distributions that actually reflect their beliefs. Model fit can easily be assessed and compared with posterior predictive checks, cross-validation, and Bayes factors.&lt;/p&gt; 
+&lt;h2&gt;Resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://doi.org/10.18637/jss.v080.i01&quot;&gt;Introduction to brms&lt;/a&gt; (Journal of Statistical Software)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://journal.r-project.org/archive/2018/RJ-2018-017/index.html&quot;&gt;Advanced multilevel modeling with brms&lt;/a&gt; (The R Journal)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://paul-buerkner.github.io/brms/&quot;&gt;Website&lt;/a&gt; (Website of brms with documentation and vignettes)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://paul-buerkner.github.io/software/brms-blogposts.html&quot;&gt;Blog posts&lt;/a&gt; (List of blog posts about brms)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discourse.mc-stan.org/&quot;&gt;Ask a question&lt;/a&gt; (Stan Forums on Discourse)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/paul-buerkner/brms/issues&quot;&gt;Open an issue&lt;/a&gt; (GitHub issues for bug reports and feature requests)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to use brms&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(brms)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;As a simple example, we use poisson regression to model the seizure counts in epileptic patients to investigate whether the treatment (represented by variable &lt;code&gt;Trt&lt;/code&gt;) can reduce the seizure counts and whether the effect of the treatment varies with the (standardized) baseline number of seizures a person had before treatment (variable &lt;code&gt;zBase&lt;/code&gt;). As we have multiple observations per person, a group-level intercept is incorporated to account for the resulting dependency in the data.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;fit1 &amp;lt;- brm(count ~ zAge + zBase * Trt + (1|patient),
+            data = epilepsy, family = poisson())
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The results (i.e., posterior draws) can be investigated using&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;summary(fit1)
+#&amp;gt;  Family: poisson 
+#&amp;gt;   Links: mu = log 
+#&amp;gt; Formula: count ~ zAge + zBase * Trt + (1 | patient) 
+#&amp;gt;    Data: epilepsy (Number of observations: 236) 
+#&amp;gt;   Draws: 4 chains, each with iter = 2000; warmup = 1000; thin = 1;
+#&amp;gt;          total post-warmup draws = 4000
+#&amp;gt; 
+#&amp;gt; Multilevel Hyperparameters:
+#&amp;gt; ~patient (Number of levels: 59) 
+#&amp;gt;               Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+#&amp;gt; sd(Intercept)     0.59      0.07     0.46     0.74 1.01      566     1356
+#&amp;gt; 
+#&amp;gt; Regression Coefficients:
+#&amp;gt;            Estimate Est.Error l-95% CI u-95% CI Rhat Bulk_ESS Tail_ESS
+#&amp;gt; Intercept      1.78      0.12     1.55     2.01 1.00      771     1595
+#&amp;gt; zAge           0.09      0.09    -0.08     0.27 1.00      590     1302
+#&amp;gt; zBase          0.71      0.12     0.47     0.96 1.00      848     1258
+#&amp;gt; Trt1          -0.27      0.16    -0.60     0.05 1.01      749     1172
+#&amp;gt; zBase:Trt1     0.05      0.17    -0.30     0.38 1.00      833     1335
+#&amp;gt; 
+#&amp;gt; Draws were sampled using sampling(NUTS). For each parameter, Bulk_ESS
+#&amp;gt; and Tail_ESS are effective sample size measures, and Rhat is the potential
+#&amp;gt; scale reduction factor on split chains (at convergence, Rhat = 1).
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;On the top of the output, some general information on the model is given, such as family, formula, number of iterations and chains. Next, group-level effects are displayed separately for each grouping factor in terms of standard deviations and (in case of more than one group-level effect per grouping factor; not displayed here) correlations between group-level effects. On the bottom of the output, population-level effects (i.e.&amp;nbsp;regression coefficients) are displayed. If incorporated, autocorrelation effects and family specific parameters (e.g., the residual standard deviation ‘sigma’ in normal models) are also given.&lt;/p&gt; 
+&lt;p&gt;In general, every parameter is summarized using the mean (‘Estimate’) and the standard deviation (‘Est.Error’) of the posterior distribution as well as two-sided 95% credible intervals (‘l-95% CI’ and ‘u-95% CI’) based on quantiles. We see that the coefficient of &lt;code&gt;Trt&lt;/code&gt; is negative with a zero overlapping 95%-CI. This indicates that, on average, the treatment may reduce seizure counts by some amount but the evidence based on the data and applied model is not very strong and still insufficient by standard decision rules. Further, we find little evidence that the treatment effect varies with the baseline number of seizures.&lt;/p&gt; 
+&lt;p&gt;The last three values (‘ESS_bulk’, ‘ESS_tail’, and ‘Rhat’) provide information on how well the algorithm could estimate the posterior distribution of this parameter. If ‘Rhat’ is considerably greater than 1, the algorithm has not yet converged and it is necessary to run more iterations and / or set stronger priors.&lt;/p&gt; 
+&lt;p&gt;To visually investigate the chains as well as the posterior distributions, we can use the &lt;code&gt;plot&lt;/code&gt; method. If we just want to see results of the regression coefficients of &lt;code&gt;Trt&lt;/code&gt; and &lt;code&gt;zBase&lt;/code&gt;, we go for&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;plot(fit1, variable = c(&quot;b_Trt1&quot;, &quot;b_zBase&quot;))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/paul-buerkner/brms/master/man/figures/README-plot-1.png&quot; width=&quot;60%&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;p&gt;A more detailed investigation can be performed by running &lt;code&gt;launch_shinystan(fit1)&lt;/code&gt;. To better understand the relationship of the predictors with the response, I recommend the &lt;code&gt;conditional_effects&lt;/code&gt; method:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;plot(conditional_effects(fit1, effects = &quot;zBase:Trt&quot;))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/paul-buerkner/brms/master/man/figures/README-conditional_effects-1.png&quot; width=&quot;60%&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;p&gt;This method uses some prediction functionality behind the scenes, which can also be called directly. Suppose that we want to predict responses (i.e.&amp;nbsp;seizure counts) of a person in the treatment group (&lt;code&gt;Trt = 1&lt;/code&gt;) and in the control group (&lt;code&gt;Trt = 0&lt;/code&gt;) with average age and average number of previous seizures. Than we can use&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;newdata &amp;lt;- data.frame(Trt = c(0, 1), zAge = 0, zBase = 0)
+predict(fit1, newdata = newdata, re_formula = NA)
+#&amp;gt;      Estimate Est.Error Q2.5 Q97.5
+#&amp;gt; [1,]  5.91200  2.494857    2    11
+#&amp;gt; [2,]  4.57325  2.166058    1     9
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;We need to set &lt;code&gt;re_formula = NA&lt;/code&gt; in order not to condition of the group-level effects. While the &lt;code&gt;predict&lt;/code&gt; method returns predictions of the responses, the &lt;code&gt;fitted&lt;/code&gt; method returns predictions of the regression line.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;fitted(fit1, newdata = newdata, re_formula = NA)
+#&amp;gt;      Estimate Est.Error     Q2.5    Q97.5
+#&amp;gt; [1,] 5.945276 0.7075160 4.696257 7.450011
+#&amp;gt; [2,] 4.540081 0.5343471 3.579757 5.665132
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Both methods return the same estimate (up to random error), while the latter has smaller variance, because the uncertainty in the regression line is smaller than the uncertainty in each response. If we want to predict values of the original data, we can just leave the &lt;code&gt;newdata&lt;/code&gt; argument empty.&lt;/p&gt; 
+&lt;p&gt;Suppose, we want to investigate whether there is overdispersion in the model, that is residual variation not accounted for by the response distribution. For this purpose, we include a second group-level intercept that captures possible overdispersion.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;fit2 &amp;lt;- brm(count ~ zAge + zBase * Trt + (1|patient) + (1|obs),
+            data = epilepsy, family = poisson())
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;We can then go ahead and compare both models via approximate leave-one-out (LOO) cross-validation.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;loo(fit1, fit2)
+#&amp;gt; Output of model &#39;fit1&#39;:
+#&amp;gt; 
+#&amp;gt; Computed from 4000 by 236 log-likelihood matrix.
+#&amp;gt; 
+#&amp;gt;          Estimate   SE
+#&amp;gt; elpd_loo   -671.7 36.6
+#&amp;gt; p_loo        94.3 14.2
+#&amp;gt; looic      1343.4 73.2
+#&amp;gt; ------
+#&amp;gt; MCSE of elpd_loo is NA.
+#&amp;gt; MCSE and ESS estimates assume MCMC draws (r_eff in [0.4, 2.0]).
+#&amp;gt; 
+#&amp;gt; Pareto k diagnostic values:
+#&amp;gt;                          Count Pct.    Min. ESS
+#&amp;gt; (-Inf, 0.7]   (good)     228   96.6%   157     
+#&amp;gt;    (0.7, 1]   (bad)        7    3.0%   &amp;lt;NA&amp;gt;    
+#&amp;gt;    (1, Inf)   (very bad)   1    0.4%   &amp;lt;NA&amp;gt;    
+#&amp;gt; See help(&#39;pareto-k-diagnostic&#39;) for details.
+#&amp;gt; 
+#&amp;gt; Output of model &#39;fit2&#39;:
+#&amp;gt; 
+#&amp;gt; Computed from 4000 by 236 log-likelihood matrix.
+#&amp;gt; 
+#&amp;gt;          Estimate   SE
+#&amp;gt; elpd_loo   -596.8 14.0
+#&amp;gt; p_loo       109.7  7.2
+#&amp;gt; looic      1193.6 28.1
+#&amp;gt; ------
+#&amp;gt; MCSE of elpd_loo is NA.
+#&amp;gt; MCSE and ESS estimates assume MCMC draws (r_eff in [0.4, 1.7]).
+#&amp;gt; 
+#&amp;gt; Pareto k diagnostic values:
+#&amp;gt;                          Count Pct.    Min. ESS
+#&amp;gt; (-Inf, 0.7]   (good)     172   72.9%   83      
+#&amp;gt;    (0.7, 1]   (bad)       56   23.7%   &amp;lt;NA&amp;gt;    
+#&amp;gt;    (1, Inf)   (very bad)   8    3.4%   &amp;lt;NA&amp;gt;    
+#&amp;gt; See help(&#39;pareto-k-diagnostic&#39;) for details.
+#&amp;gt; 
+#&amp;gt; Model comparisons:
+#&amp;gt;      elpd_diff se_diff
+#&amp;gt; fit2   0.0       0.0  
+#&amp;gt; fit1 -74.9      27.2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;loo&lt;/code&gt; output when comparing models is a little verbose. We first see the individual LOO summaries of the two models and then the comparison between them. Since higher &lt;code&gt;elpd&lt;/code&gt; (i.e., expected log posterior density) values indicate better fit, we see that the model accounting for overdispersion (i.e., &lt;code&gt;fit2&lt;/code&gt;) fits substantially better. However, we also see in the individual LOO outputs that there are several problematic observations for which the approximations may have not have been very accurate. To deal with this appropriately, we need to fall back to other methods such as &lt;code&gt;reloo&lt;/code&gt; or &lt;code&gt;kfold&lt;/code&gt; but this requires the model to be refit several times which takes too long for the purpose of a quick example. The post-processing methods we have shown above are just the tip of the iceberg. For a full list of methods to apply on fitted model objects, type &lt;code&gt;methods(class = &quot;brmsfit&quot;)&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Citing brms and related software&lt;/h2&gt; 
+&lt;p&gt;Developing and maintaining open source software is an important yet often underappreciated contribution to scientific progress. Thus, whenever you are using open source software (or software in general), please make sure to cite it appropriately so that developers get credit for their work.&lt;/p&gt; 
+&lt;p&gt;When using brms, please cite one or more of the following publications:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Bürkner P. C. (2017). brms: An R Package for Bayesian Multilevel Models using Stan. &lt;em&gt;Journal of Statistical Software&lt;/em&gt;. 80(1), 1-28. doi.org/10.18637/jss.v080.i01&lt;/li&gt; 
+ &lt;li&gt;Bürkner P. C. (2018). Advanced Bayesian Multilevel Modeling with the R Package brms. &lt;em&gt;The R Journal&lt;/em&gt;. 10(1), 395-411. doi.org/10.32614/RJ-2018-017&lt;/li&gt; 
+ &lt;li&gt;Bürkner P. C. (2021). Bayesian Item Response Modeling in R with brms and Stan. &lt;em&gt;Journal of Statistical Software&lt;/em&gt;, 100(5), 1-54. doi.org/10.18637/jss.v100.i05&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;As brms is a high-level interface to Stan, please additionally cite Stan (see also &lt;a href=&quot;https://mc-stan.org/users/citations/&quot;&gt;https://mc-stan.org/users/citations/&lt;/a&gt;):&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Stan Development Team. YEAR. Stan Modeling Language Users Guide and Reference Manual, VERSION. &lt;a href=&quot;https://mc-stan.org&quot;&gt;https://mc-stan.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Carpenter B., Gelman A., Hoffman M. D., Lee D., Goodrich B., Betancourt M., Brubaker M., Guo J., Li P., and Riddell A. (2017). Stan: A probabilistic programming language. &lt;em&gt;Journal of Statistical Software&lt;/em&gt;. 76(1). doi.org/10.18637/jss.v076.i01&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Further, brms relies on several other R packages and, of course, on R itself. To find out how to cite R and its packages, use the &lt;code&gt;citation&lt;/code&gt; function. There are some features of brms which specifically rely on certain packages. The &lt;strong&gt;rstan&lt;/strong&gt; package together with &lt;strong&gt;Rcpp&lt;/strong&gt; makes Stan conveniently accessible in R. Visualizations and posterior-predictive checks are based on &lt;strong&gt;bayesplot&lt;/strong&gt; and &lt;strong&gt;ggplot2&lt;/strong&gt;. Approximate leave-one-out cross-validation using &lt;code&gt;loo&lt;/code&gt; and related methods is done via the &lt;strong&gt;loo&lt;/strong&gt; package. Marginal likelihood based methods such as &lt;code&gt;bayes_factor&lt;/code&gt; are realized by means of the &lt;strong&gt;bridgesampling&lt;/strong&gt; package. Splines specified via the &lt;code&gt;s&lt;/code&gt; and &lt;code&gt;t2&lt;/code&gt; functions rely on &lt;strong&gt;mgcv&lt;/strong&gt;. If you use some of these features, please also consider citing the related packages.&lt;/p&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;h3&gt;How do I install brms?&lt;/h3&gt; 
+&lt;p&gt;To install the latest release version from CRAN use&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;brms&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The current developmental version can be downloaded from GitHub via&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;remotes&quot;)) {
+  install.packages(&quot;remotes&quot;)
+}
+remotes::install_github(&quot;paul-buerkner/brms&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Because brms is based on Stan, a C++ compiler is required. The program Rtools (available on &lt;a href=&quot;https://cran.r-project.org/bin/windows/Rtools/&quot;&gt;https://cran.r-project.org/bin/windows/Rtools/&lt;/a&gt;) comes with a C++ compiler for Windows. On Mac, you should install Xcode. For further instructions on how to get the compilers running, see the prerequisites section on &lt;a href=&quot;https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started&quot;&gt;https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;I am new to brms. Where can I start?&lt;/h3&gt; 
+&lt;p&gt;Detailed instructions and case studies are given in the package’s extensive vignettes. See &lt;code&gt;vignette(package = &quot;brms&quot;)&lt;/code&gt; for an overview. For documentation on formula syntax, families, and prior distributions see &lt;code&gt;help(&quot;brm&quot;)&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Where do I ask questions, propose a new feature, or report a bug?&lt;/h3&gt; 
+&lt;p&gt;Questions can be asked on the &lt;a href=&quot;https://discourse.mc-stan.org/&quot;&gt;Stan forums&lt;/a&gt; on Discourse. To propose a new feature or report a bug, please open an issue on &lt;a href=&quot;https://github.com/paul-buerkner/brms&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;How can I extract the generated Stan code?&lt;/h3&gt; 
+&lt;p&gt;If you have already fitted a model, apply the &lt;code&gt;stancode&lt;/code&gt; method on the fitted model object. If you just want to generate the Stan code without any model fitting, use the &lt;code&gt;stancode&lt;/code&gt; method on your model formula.&lt;/p&gt; 
+&lt;h3&gt;Can I avoid compiling models?&lt;/h3&gt; 
+&lt;p&gt;When you fit your model for the first time with brms, there is currently no way to avoid compilation. However, if you have already fitted your model and want to run it again, for instance with more draws, you can do this without recompilation by using the &lt;code&gt;update&lt;/code&gt; method. For more details see &lt;code&gt;help(&quot;update.brmsfit&quot;)&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;What is the difference between brms and rstanarm?&lt;/h3&gt; 
+&lt;p&gt;The rstanarm package is similar to brms in that it also allows to fit regression models using Stan for the backend estimation. Contrary to brms, rstanarm comes with precompiled code to save the compilation time (and the need for a C++ compiler) when fitting a model. However, as brms generates its Stan code on the fly, it offers much more flexibility in model specification than rstanarm. Also, multilevel models are currently fitted a bit more efficiently in brms. For detailed comparisons of brms with other common R packages implementing multilevel models, see &lt;code&gt;vignette(&quot;brms_multilevel&quot;)&lt;/code&gt; and &lt;code&gt;vignette(&quot;brms_overview&quot;)&lt;/code&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>vegandevs/vegan</title>
+      <link>https://github.com/vegandevs/vegan</link>
+      <description>&lt;p&gt;R package for community ecologists: popular ordination methods, ecological null models &amp; diversity analysis&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;vegan: an R package for community ecologists&lt;/h1&gt; 
+&lt;p&gt;Ordination methods, diversity analysis and other functions for community and vegetation ecologists.&lt;/p&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/vegandevs/vegan/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/vegandevs/vegan/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=vegan&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/vegan&quot; alt=&quot;CRAN_Status_Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;http://cran.rstudio.com/web/packages/vegan/index.html&quot;&gt;&lt;img src=&quot;http://cranlogs.r-pkg.org/badges/grand-total/vegan&quot; alt=&quot;Downloads&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://vegandevs.r-universe.dev/vegan&quot;&gt;&lt;img src=&quot;https://vegandevs.r-universe.dev/badges/vegan&quot; alt=&quot;R-universe&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;Website for the development version of the &lt;strong&gt;vegan&lt;/strong&gt; package.&lt;/p&gt; 
+&lt;p&gt;Vignettes are available on &lt;a href=&quot;https://vegandevs.r-universe.dev/vegan&quot;&gt;R-universe&lt;/a&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://vegandevs.r-universe.dev/vegan/doc/intro-vegan.pdf&quot;&gt;Introduction to ordination in vegan&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://vegandevs.r-universe.dev/vegan/doc/partitioning.pdf&quot;&gt;Partition of Variation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://vegandevs.r-universe.dev/vegan/doc/diversity-vegan.pdf&quot;&gt;Diversity analysis in vegan&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://vegandevs.r-universe.dev/vegan/doc/decision-vegan.pdf&quot;&gt;Design decisions and implementation&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Installation&lt;/h1&gt; 
+&lt;p&gt;To install the development version of &lt;strong&gt;vegan&lt;/strong&gt; you can use the usual &lt;code&gt;git&lt;/code&gt; and &lt;code&gt;R CMD build -&amp;gt; R CMD INSTALL&lt;/code&gt; dance on the cloned repo (or downloaded sources). You&#39;ll need to be able to install packages from source for that to work; if you don&#39;t have the relevant developer tools, you won&#39;t be able to install &lt;strong&gt;vegan&lt;/strong&gt; this way.&lt;/p&gt; 
+&lt;h2&gt;Using &lt;strong&gt;remotes&lt;/strong&gt;&lt;/h2&gt; 
+&lt;p&gt;If you do have the developer tools installed but don&#39;t want the hassle of keeping a local source code tree up-to-date, use the &lt;strong&gt;remotes&lt;/strong&gt; package:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;vegandevs/vegan&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Installing binaries from R Universe&lt;/h2&gt; 
+&lt;p&gt;If you just want to install a binary version of the packages, just as you would from CRAN, you can install from our R Universe repository. Run the following in your R session:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&#39;vegan&#39;,
+    repos = c(&#39;https://vegandevs.r-universe.dev&#39;,&#39;https://cloud.r-project.org&#39;))
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>satijalab/seurat-wrappers</title>
+      <link>https://github.com/satijalab/seurat-wrappers</link>
+      <description>&lt;p&gt;Community-provided extensions to Seurat&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;SeuratWrappers&lt;/h1&gt; 
+&lt;p&gt;SeuratWrappers is a collection of community-provided methods and extensions for &lt;a href=&quot;https://satijalab.org/seurat/&quot;&gt;Seurat&lt;/a&gt;, curated by the Satija Lab at NYGC. These methods comprise functionality not presently found in Seurat, and are able to be updated much more frequently.&lt;/p&gt; 
+&lt;p&gt;Please see our &lt;a href=&quot;https://github.com/satijalab/seurat.wrappers/wiki&quot;&gt;contribution guide&lt;/a&gt; for assistance and guidelines in developing and adding new methods to SeuratWrappers&lt;/p&gt; 
+&lt;p&gt;Individual method vignettes can be found in the &lt;a href=&quot;https://github.com/satijalab/seurat.wrappers/tree/master/docs&quot;&gt;&lt;code&gt;docs/&lt;/code&gt;&lt;/a&gt; directory, we recommend looking at the standard markdown (&lt;code&gt;*.md&lt;/code&gt;) files when viewing on GitHub&lt;/p&gt; 
+&lt;p&gt;Installation can be accomplished through &lt;a href=&quot;https://cran.r-project.org/package=remotes&quot;&gt;remotes&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-R&quot;&gt;remotes::install_github(&#39;satijalab/seurat-wrappers&#39;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Method Listing&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Package&lt;/th&gt; 
+   &lt;th&gt;Vignette&lt;/th&gt; 
+   &lt;th&gt;Reference&lt;/th&gt; 
+   &lt;th&gt;Source&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Monocle 3&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/monocle3.html&quot;&gt;Calculating Trajectories with Monocle 3 and Seurat&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Cao et al, Nature 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://cole-trapnell-lab.github.io/monocle3&quot;&gt;https://cole-trapnell-lab.github.io/monocle3&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;scVelo&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/scvelo.html&quot;&gt;Estimating RNA Velocity using Seurat and scVelo&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bergen et al, bioRxiv 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://scvelo.readthedocs.io&quot;&gt;https://scvelo.readthedocs.io&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;CoGAPS&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/cogaps.html&quot;&gt;Running CoGAPS on Seurat Objects&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Stein-O’Brien et al, Cell Systems 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.bioconductor.org/packages/release/bioc/html/CoGAPS.html&quot;&gt;https://www.bioconductor.org/packages/release/bioc/html/CoGAPS.html&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;glmpca&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/glmpca.html&quot;&gt;Running GLM-PCA on a Seurat Object&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Townes et al, Genome Biology 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/willtownes/glmpca&quot;&gt;https://github.com/willtownes/glmpca&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Conos&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/conos.html&quot;&gt;Integration of datasets using Conos&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Barkas et al, Nature Methods 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/hms-dbmi/conos&quot;&gt;https://github.com/hms-dbmi/conos&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;LIGER&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/liger.html&quot;&gt;Integrating Seurat objects using LIGER&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Welch et al, Cell 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/MacoskoLab/liger&quot;&gt;https://github.com/MacoskoLab/liger&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;fastMNN&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/fast_mnn.html&quot;&gt;Running fastMNN on Seurat Objects&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Nature Biotechnology 2018&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://bioconductor.org/packages/release/bioc/html/batchelor.html&quot;&gt;https://bioconductor.org/packages/release/bioc/html/batchelor.html&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Harmony&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/harmony.html&quot;&gt;Integration of datasets using Harmony&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Korsunsky et al, bioRxiv 2018&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/immunogenomics/harmony&quot;&gt;https://github.com/immunogenomics/harmony&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;ALRA&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/alra.html&quot;&gt;Zero-preserving imputation with ALRA&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Linderman et al, bioRxiv 2018&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/KlugerLab/ALRA&quot;&gt;https://github.com/KlugerLab/ALRA&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Velocity&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/velocity.html&quot;&gt;Estimating RNA Velocity using Seurat&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;La Manno et al, Nature 2018&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://velocyto.org&quot;&gt;https://velocyto.org&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;schex&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/schex.html&quot;&gt;Using schex with Seurat&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Freytag, R package 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/SaskiaFreytag/schex&quot;&gt;https://github.com/SaskiaFreytag/schex&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;alevin&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/alevin.html&quot;&gt;Import alevin counts into Seurat&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Srivastava et. al., Genome Biology 2019&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/k3yavi/alevin-Rtools&quot;&gt;https://github.com/k3yavi/alevin-Rtools&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Nebulosa&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/nebulosa.html&quot;&gt;Visualization of gene expression with Nebulosa&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Jose Alquicira-Hernandez and Joseph E. Powell, &lt;em&gt;Under Review&lt;/em&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/powellgenomicslab/Nebulosa&quot;&gt;https://github.com/powellgenomicslab/Nebulosa&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;CIPR&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/cipr.html&quot;&gt;Using CIPR with human PBMC data&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Ekiz et. al., BMC Bioinformatics 2020&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/atakanekiz/CIPR-Package&quot;&gt;https://github.com/atakanekiz/CIPR-Package&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;miQC&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/miQC.html&quot;&gt;Running miQC on Seurat objects&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Hippen et. al., bioRxiv 2021&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/greenelab/miQC&quot;&gt;https://github.com/greenelab/miQC&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;tricycle&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://htmlpreview.github.io/?https://github.com/satijalab/seurat-wrappers/raw/master/docs/tricycle.html&quot;&gt;Running estimate_cycle_position from tricycle on Seurat Objects&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Zheng et. al., bioRxiv 2021&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.bioconductor.org/packages/release/bioc/html/tricycle.html&quot;&gt;https://www.bioconductor.org/packages/release/bioc/html/tricycle.html&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt;</description>
+    </item>
+    
+    <item>
+      <title>stuart-lab/signac</title>
+      <link>https://github.com/stuart-lab/signac</link>
+      <description>&lt;p&gt;R toolkit for the analysis of single-cell chromatin data&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Signac &lt;img align=&quot;right&quot; src=&quot;https://raw.githubusercontent.com/stuart-lab/signac/master/man/figures/logo.svg?sanitize=true&quot; style=&quot;height:100px;&quot;&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/stuart-lab/signac/actions&quot;&gt;&lt;img src=&quot;https://github.com/stuart-lab/signac/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Signac&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Signac&quot; alt=&quot;CRAN Version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Signac&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Signac&quot; alt=&quot;CRAN Downloads&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;Signac is a comprehensive R package for the analysis of single-cell chromatin data. Signac includes functions for quality control, normalization, dimension reduction, clustering, differential activity, and more.&lt;/p&gt; 
+&lt;p&gt;Documentation and tutorials can be found at &lt;a href=&quot;https://stuartlab.org/signac/&quot;&gt;https://stuartlab.org/signac/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the latest release of Signac from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
+install.packages(&quot;Signac&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To release the latest develop version from GitHub:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;remotes&quot;, quietly = TRUE))
+    install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;stuart-lab/signac&quot;, ref = &quot;develop&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Release notes&lt;/h2&gt; 
+&lt;p&gt;For a changelog please see the &lt;a href=&quot;https://github.com/stuart-lab/signac/raw/develop/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;, also available on the &lt;a href=&quot;https://stuartlab.org/signac/news/index.html&quot;&gt;Signac website&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions to the Signac package. Please see the &lt;a href=&quot;https://github.com/stuart-lab/signac/raw/develop/CONTRIBUTING.md&quot;&gt;contribution guide&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h2&gt;Getting help&lt;/h2&gt; 
+&lt;p&gt;If you encounter a bug or have a feature request, please open an &lt;a href=&quot;https://github.com/stuart-lab/signac/issues&quot;&gt;issue&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you would like to discuss questions related to single-cell analysis, you can open a &lt;a href=&quot;https://github.com/stuart-lab/signac/discussions&quot;&gt;discussion&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Roadmap&lt;/h2&gt; 
+&lt;p&gt;Signac runs on a quarterly release schedule. Additional releases will be scheduled in the case of urgent bug fixes. The development roadmap can be viewed on GitHub &lt;a href=&quot;https://github.com/orgs/stuart-lab/projects/1&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Citing Signac&lt;/h2&gt; 
+&lt;p&gt;If you use the Signac package in your work please cite &lt;a href=&quot;https://doi.org/10.1038/s41592-021-01282-5&quot;&gt;Stuart et al. 2021&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@ARTICLE{signac,
+  title     = &quot;Single-cell chromatin state analysis with Signac&quot;,
+  author    = &quot;Stuart, Tim and Srivastava, Avi and Madad, Shaista and Lareau,
+               Caleb A and Satija, Rahul&quot;,
+  journal   = &quot;Nat. Methods&quot;,
+  publisher = &quot;Nature Publishing Group&quot;,
+  pages     = &quot;1--9&quot;,
+  month     =  nov,
+  year      =  2021,
+  url       = &quot;https://www.nature.com/articles/s41592-021-01282-5&quot;,
+  language  = &quot;en&quot;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Related packages&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;Seurat&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-object&quot;&gt;SeuratObject&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mojaveazure/seurat-disk&quot;&gt;SeuratDisk&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-data&quot;&gt;SeuratData&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-wrappers&quot;&gt;SeuratWrappers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/azimuth&quot;&gt;Azimuth&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>satijalab/seurat</title>
+      <link>https://github.com/satijalab/seurat</link>
+      <description>&lt;p&gt;R toolkit for single cell genomics&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://app.travis-ci.com:443/github/satijalab/seurat&quot;&gt;&lt;img src=&quot;https://travis-ci.com/satijalab/seurat.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/satijalab/seurat&quot;&gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/github/satijalab/seurat?branch=master&amp;amp;svg=true&quot; alt=&quot;AppVeyor build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Seurat&quot; alt=&quot;CRAN Version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Seurat&quot; alt=&quot;CRAN Downloads&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Seurat v5&lt;/h1&gt; 
+&lt;p&gt;Seurat is an R toolkit for single cell genomics, developed and maintained by the Satija Lab at NYGC.&lt;/p&gt; 
+&lt;p&gt;We are excited to release Seurat v5! This updates introduces new functionality for spatial, multimodal, and scalable single-cell analysis.&lt;/p&gt; 
+&lt;p&gt;Seurat v5 is backwards-compatible with previous versions, so that users will continue to be able to re-run existing workflows.&lt;/p&gt; 
+&lt;p&gt;Instructions, documentation, and tutorials can be found at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://satijalab.org/seurat&quot;&gt;https://satijalab.org/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat is also hosted on GitHub, you can view and clone the repository at&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;https://github.com/satijalab/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat has been successfully installed on Mac OS X, Linux, and Windows, using the devtools package to install directly from GitHub&lt;/p&gt; 
+&lt;p&gt;Improvements and new features will be added on a regular basis, please post on the &lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;github page&lt;/a&gt; with any questions or if you would like to contribute&lt;/p&gt; 
+&lt;p&gt;For a version history/changelog, please see the &lt;a href=&quot;https://github.com/satijalab/seurat/raw/master/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rstudio/shiny</title>
+      <link>https://github.com/rstudio/shiny</link>
+      <description>&lt;p&gt;Easy interactive web applications with R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;shiny &lt;img src=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/man/figures/logo.png&quot; align=&quot;right&quot; width=&quot;120&quot; height=&quot;139&quot; alt=&quot;&quot;&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://CRAN.R-project.org/package=shiny&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/shiny&quot; alt=&quot;CRAN&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/rstudio/shiny/actions&quot;&gt;&lt;img src=&quot;https://github.com/rstudio/shiny/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/community-shiny-blue?style=social&amp;amp;logo=rstudio&amp;amp;logoColor=75AADB&quot; alt=&quot;RStudio community&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;Easily build rich and productive interactive web apps in R — no HTML/CSS/JavaScript required.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An intuitive and extensible &lt;a href=&quot;https://en.wikipedia.org/wiki/Reactive_programming&quot;&gt;reactive programming&lt;/a&gt; model which makes it easy to transform existing R code into a &quot;live app&quot; where outputs automatically react to new user input. 
+  &lt;ul&gt; 
+   &lt;li&gt;Compared to event-based programming, reactivity allows Shiny to do the minimum amount of work when input(s) change, and allows humans to more easily reason about complex &lt;a href=&quot;https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC logic&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;A prebuilt set of highly sophisticated, customizable, and easy-to-use widgets (e.g., plots, tables, sliders, dropdowns, date pickers, and more).&lt;/li&gt; 
+ &lt;li&gt;An attractive default look based on &lt;a href=&quot;https://getbootstrap.com/&quot;&gt;Bootstrap&lt;/a&gt; which can also be easily customized with the &lt;a href=&quot;https://github.com/rstudio/bslib&quot;&gt;bslib&lt;/a&gt; package or avoided entirely with more direct R bindings to HTML/CSS/JavaScript.&lt;/li&gt; 
+ &lt;li&gt;Seamless integration with &lt;a href=&quot;https://shiny.rstudio.com/articles/interactive-docs.html&quot;&gt;R Markdown&lt;/a&gt;, making it easy to embed numerous applications natively within a larger dynamic document.&lt;/li&gt; 
+ &lt;li&gt;Tools for improving and monitoring performance, including native support for &lt;a href=&quot;https://posit.co/blog/shiny-1-1-0/&quot;&gt;async programming&lt;/a&gt;, &lt;a href=&quot;https://talks.cpsievert.me/20201117&quot;&gt;caching&lt;/a&gt;, &lt;a href=&quot;https://rstudio.github.io/shinyloadtest/&quot;&gt;load testing&lt;/a&gt;, and more.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://shiny.rstudio.com/articles/modules.html&quot;&gt;Modules&lt;/a&gt;: a framework for reducing code duplication and complexity.&lt;/li&gt; 
+ &lt;li&gt;An ability to &lt;a href=&quot;https://shiny.rstudio.com/articles/bookmarking-state.html&quot;&gt;bookmark application state&lt;/a&gt; and/or &lt;a href=&quot;https://github.com/rstudio/shinymeta&quot;&gt;generate code to reproduce output(s)&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;A rich ecosystem of extension packages for more &lt;a href=&quot;http://www.htmlwidgets.org/&quot;&gt;custom widgets&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinyvalidate&quot;&gt;input validation&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinytest&quot;&gt;unit testing&lt;/a&gt;, and more.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the stable version from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;shiny&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Once installed, load the library and run an example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(shiny)
+# Launches an app, with the app&#39;s source code included
+runExample(&quot;06_tabsets&quot;)
+# Lists more prepackaged examples
+runExample()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more examples and inspiration, check out the &lt;a href=&quot;https://shiny.rstudio.com/gallery/&quot;&gt;Shiny User Gallery&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For help with learning fundamental Shiny programming concepts, check out the &lt;a href=&quot;https://mastering-shiny.org/&quot;&gt;Mastering Shiny&lt;/a&gt; book and the &lt;a href=&quot;https://shiny.rstudio.com/tutorial/&quot;&gt;Shiny Tutorial&lt;/a&gt;. The former is currently more up-to-date with modern Shiny features, whereas the latter takes a deeper, more visual, dive into fundamental concepts.&lt;/p&gt; 
+&lt;h2&gt;Join the conversation&lt;/h2&gt; 
+&lt;p&gt;If you want to chat about Shiny, meet other developers, or help us decide what to work on next, &lt;a href=&quot;https://discord.com/invite/yMGCamUMnS&quot;&gt;join us on Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Getting Help&lt;/h2&gt; 
+&lt;p&gt;To ask a question about Shiny, please use the &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;RStudio Community website&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For bug reports, please use the &lt;a href=&quot;https://github.com/rstudio/shiny/issues&quot;&gt;issue tracker&lt;/a&gt; and also keep in mind that by &lt;a href=&quot;https://github.com/rstudio/shiny/wiki/Writing-Good-Bug-Reports&quot;&gt;writing a good bug report&lt;/a&gt;, you&#39;re more likely to get help with your problem.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions to the &lt;strong&gt;shiny&lt;/strong&gt; package. Please see our &lt;a href=&quot;https://github.com/rstudio/shiny/raw/main/.github/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; file for detailed guidelines of how to contribute.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The shiny package as a whole is licensed under the GPLv3. See the &lt;a href=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for more details.&lt;/p&gt; 
+&lt;h2&gt;R version support&lt;/h2&gt; 
+&lt;p&gt;Shiny is supported on the latest release version of R, as well as the previous four minor release versions of R. For example, if the latest release R version is 4.1, then that version is supported, as well as 4.0, 3.6, 3.5, and 3.4.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>GreenleafLab/ArchR</title>
+      <link>https://github.com/GreenleafLab/ArchR</link>
+      <description>&lt;p&gt;ArchR : Analysis of Regulatory Chromatin in R (www.ArchRProject.com)&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.archrproject.com&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/GreenleafLab/ArchR/master/Figures/ArchR_Logo_Integrated.png&quot; alt=&quot;&quot; width=&quot;350&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.tidyverse.org/lifecycle/#maturing&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-maturing-blue.svg?sanitize=true&quot; alt=&quot;Lifecycle: maturing&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;ArchR has new features available for scATAC-seq Analysis&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Paired scATAC-seq and scRNA-seq Analysis&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;ArchR now supports paired scATAC-seq and scRNA-seq Analysis! &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;See updates with importFeatureMatrix, addGeneExpressionMatrix, addIterativeLSI, addCombinedDims &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For a brief tutorial of these features : &lt;a href=&quot;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html&quot;&gt;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Trajectory Analysis&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;ArchR now directly supports both monocle3 and Slingshot based trajectory analysis! &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;See updates with getMonocleTrajectories, addMonocleTrajectory, addSlingShotTrajectories &lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For a brief tutorial of these features : &lt;a href=&quot;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Trajectory.html&quot;&gt;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Trajectory.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Additionally ArchR now enables export of a peak matrix that is compatible with STREAM!&lt;br&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;See updates with exportPeakMatrixForSTREAM &lt;br&gt;&lt;/p&gt; 
+&lt;h3&gt;ArchR is currently in Beta and will be in active development through the peer review process.&lt;/h3&gt; 
+&lt;p&gt;ArchR is a full-featured R package for processing and analyzing single-cell ATAC-seq data. ArchR provides the most extensive suite of scATAC-seq analysis tools of any software available. Additionally, ArchR excels in both speed and resource usage, making it possible to analyze 1 million cells in 8 hours on a MacBook Pro laptop.&lt;/p&gt; 
+&lt;h3&gt;For installation instructions and full documentation, visit &lt;a href=&quot;http://www.ArchRProject.com&quot;&gt;www.ArchRProject.com&lt;/a&gt;.&lt;/h3&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/GreenleafLab/ArchR/master/Figures/ArchR_Workflow_Horizontal.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;h1&gt;Quick Installation of ArchR&lt;/h1&gt; 
+&lt;p&gt;For a full walk through of installation and frequently related issues please visit &lt;a href=&quot;http://www.ArchRProject.com&quot;&gt;www.ArchRProject.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;First, install devtools (for installing GitHub packages) if it isn&#39;t already installed:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;devtools&quot;, quietly = TRUE)) install.packages(&quot;devtools&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Then, install BiocManager (for installing bioconductor packages) if it isn&#39;t already installed:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE)) install.packages(&quot;BiocManager&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Then, install ArchR:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;devtools::install_github(&quot;GreenleafLab/ArchR&quot;, ref=&quot;master&quot;, repos = BiocManager::repositories())
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Lastly, install all of the ArchR dependencies that aren&#39;t installed by default:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ArchR)
+ArchR::installExtraPackages()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If any of these steps fails, you should identify the offending package and troubleshoot that individual installation before proceeding. Additionally, please see the ArchR website (&lt;a href=&quot;http://www.ArchRProject.com&quot;&gt;www.ArchRProject.com&lt;/a&gt;) where we have installation troubleshooting tips.&lt;/p&gt; 
+&lt;h1&gt;Issues using ArchR?&lt;/h1&gt; 
+&lt;p&gt;ArchR is currently in &lt;strong&gt;beta&lt;/strong&gt;. We expect there to be bumps in the road. If you think you have found a bug, please first install the latest version of ArchR via&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;devtools::install_github(&quot;GreenleafLab/ArchR&quot;, ref=&quot;master&quot;, repos = BiocManager::repositories())
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If this does not fix your problem, please &lt;a href=&quot;https://github.com/GreenleafLab/ArchR/issues&quot;&gt;report an issue on Github&lt;/a&gt; with the &lt;strong&gt;Bug Report&lt;/strong&gt; form.&lt;/p&gt; 
+&lt;p&gt;If you have questions about ArchR usage, please refer to the &lt;a href=&quot;https://www.archrproject.com/bookdown/index.html&quot;&gt;the searchable full user&#39;s manual&lt;/a&gt;, &lt;a href=&quot;https://www.archrproject.com/articles/Articles/faq.html&quot;&gt;the FAQ section&lt;/a&gt;, and the &lt;a href=&quot;https://greenleaf.stanford.edu/assets/pdf/&quot;&gt;publication&lt;/a&gt;. If you think the documentation on this website or in the function annotations is unclear, please &lt;a href=&quot;https://github.com/GreenleafLab/ArchR/issues&quot;&gt;submit an issue on Github&lt;/a&gt; with the &lt;strong&gt;Documentation Request&lt;/strong&gt; form. If there is a feature that you think is missing from ArchR &lt;em&gt;and you have already searched the user&#39;s manual&lt;/em&gt;, &lt;a href=&quot;https://github.com/GreenleafLab/ArchR/issues&quot;&gt;submit an issue on Github&lt;/a&gt; with the &lt;strong&gt;Feature Request&lt;/strong&gt; form. If none of these options help, &lt;a href=&quot;mailto:archr.devs@gmail.com&quot;&gt;send us an email&lt;/a&gt;. We will do our best to respond to questions that are not otherwise answered in the documentation.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>benjjneb/dada2</title>
+      <link>https://github.com/benjjneb/dada2</link>
+      <description>&lt;p&gt;Accurate sample inference from amplicon data with single nucleotide resolution&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://app.travis-ci.com/benjjneb/dada2&quot;&gt;&lt;img src=&quot;https://app.travis-ci.com/benjjneb/dada2.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;dada2&lt;/h1&gt; 
+&lt;p&gt;Exact sample inference from high-throughput amplicon data. Resolves real variants differing by as little as one nucleotide. Visit &lt;a href=&quot;https://benjjneb.github.io/dada2/index.html&quot;&gt;the DADA2 website&lt;/a&gt; for the most detailed and up-to-date documentation.&lt;/p&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;p&gt;The dada2 package binaries are available through Bioconductor:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-S&quot;&gt;## try http:// if https:// URLs are not supported
+if (!requireNamespace(&quot;BiocManager&quot;, quietly=TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(&quot;dada2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In order to install dada2 from source (and get the latest and greatest new features) see our &lt;a href=&quot;https://benjjneb.github.io/dada2/dada-installation.html&quot;&gt;installation from source instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://benjjneb.github.io/dada2/tutorial.html&quot;&gt;tutorial walkthrough of the DADA2 pipeline on paired end Illumina Miseq data&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://www.bioconductor.org/packages/3.6/bioc/manuals/dada2/man/dada2.pdf&quot;&gt;dada2 R package manual&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Further documentation is available on &lt;a href=&quot;http://benjjneb.github.io/dada2/&quot;&gt;the DADA2 front page&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;DADA2 Articles&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1038/nmeth.3869&quot;&gt;DADA2: High resolution sample inference from Illumina amplicon data. Nature Methods, 2016.&lt;/a&gt; &lt;a href=&quot;http://rdcu.be/ipGh&quot;&gt;(Open Access link.)&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://f1000research.com/articles/5-1492&quot;&gt;Bioconductor workflow for microbiome data analysis: from raw reads to community analyses. F1000 Research, 2016.&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1038/ismej.2017.119&quot;&gt;Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. ISMEJ, 2017.&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1093/nar/gkz569&quot;&gt;High-throughput amplicon sequencing of the full-length 16S rRNA gene with single-nucleotide resolution. Nucleic Acids Research, 2019.&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Other Resources&lt;/h3&gt; 
+&lt;p&gt;Planned feature improvements are publicly catalogued at the main DADA2 development site on github, specifically on the &quot;Issues&quot; page for DADA2:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/benjjneb/dada2/issues&quot;&gt;https://github.com/benjjneb/dada2/issues&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If the feature you are hoping for is not listed, you are welcome to add it as a feature request &quot;issue&quot; on this page. This request will be publicly available and listed on the page.&lt;/p&gt; 
+&lt;p&gt;Bugs and difficulties in using DADA2 are also welcome on &lt;a href=&quot;https://github.com/benjjneb/dada2/issues&quot;&gt;the issue tracker&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>joey711/phyloseq</title>
+      <link>https://github.com/joey711/phyloseq</link>
+      <description>&lt;p&gt;phyloseq is a set of classes, wrappers, and tools (in R) to make it easier to import, store, and analyze phylogenetic sequencing data; and to reproducibly share that data and analysis with others. See the phyloseq front page:&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;a href=&quot;http://joey711.github.com/phyloseq/&quot;&gt;phyloseq&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/joey711/phyloseq&quot;&gt;&lt;img src=&quot;https://travis-ci.org/joey711/phyloseq.svg?branch=master&quot; alt=&quot;Travis-CI Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/joey711/phyloseq/master/inst/extdata/phyloseq.png&quot; alt=&quot;phyloseq&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Quick Install&lt;/h2&gt; 
+&lt;p&gt;In R terminal:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;if(!requireNamespace(&quot;BiocManager&quot;)){
+  install.packages(&quot;BiocManager&quot;)
+}
+BiocManager::install(&quot;phyloseq&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;See &lt;a href=&quot;http://joey711.github.io/phyloseq/install.html&quot;&gt;the phyloseq installation page&lt;/a&gt; for further details, examples.&lt;/p&gt; 
+&lt;h2&gt;Article on Improved Microbiome Analysis&lt;/h2&gt; 
+&lt;p&gt;McMurdie and Holmes (2014) &lt;a href=&quot;http://dx.plos.org/10.1371/journal.pcbi.1003531&quot;&gt;Waste Not, Want Not: Why Rarefying Microbiome Data is Statistically Inadmissible&lt;/a&gt; &lt;em&gt;PLoS Computational Biology&lt;/em&gt; 10(4): e1003531&lt;/p&gt; 
+&lt;p&gt;Presubmission versions ahead of acceptance (2013): &lt;a href=&quot;http://arxiv.org/pdf/1310.0424v2.pdf&quot;&gt;PDF version 2&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/pdf/1310.0424v1.pdf&quot;&gt;PDF version 1&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Peer-reviewed articles about phyloseq&lt;/h2&gt; 
+&lt;p&gt;McMurdie and Holmes (2014) &lt;a href=&quot;http://bioinformatics.oxfordjournals.org/content/early/2014/10/02/bioinformatics.btu616&quot;&gt;Shiny-phyloseq: Web Application for Interactive Microbiome Analysis with Provenance Tracking&lt;/a&gt;. &lt;em&gt;Bioinformatics (Oxford, England)&lt;/em&gt; 31(2), 282–283.&lt;/p&gt; 
+&lt;p&gt;McMurdie and Holmes (2013) &lt;a href=&quot;http://dx.plos.org/10.1371/journal.pone.0061217&quot;&gt;phyloseq: An R package for reproducible interactive analysis and graphics of microbiome census data&lt;/a&gt; &lt;em&gt;PLoS ONE&lt;/em&gt; 8(4):e61217&lt;/p&gt; 
+&lt;h2&gt;Other resources&lt;/h2&gt; 
+&lt;p&gt;The phyloseq project also has a number of supporting online resources, including (but probably not limited to)&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;http://joey711.github.com/phyloseq/&quot;&gt;the phyloseq home page&lt;/a&gt;&lt;/h3&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://www.bioconductor.org/packages/release/bioc/vignettes/phyloseq/inst/doc/phyloseq-FAQ.html&quot;&gt;the phyloseq FAQ&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;I recommend checking this page, and the issues tracker, before posting new issues.&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;http://bioconductor.org/packages/release/bioc/html/phyloseq.html&quot;&gt;Bioconductor stable release&lt;/a&gt;.&lt;/h3&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://github.com/joey711/phyloseq/issues&quot;&gt;the phyloseq Issue Tracker&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This is the recommended location to post&lt;/p&gt; 
+&lt;p&gt;(1) feature requests (2) bug reports (3) theoretical considerations (4) other issues, feedback (5) ask for help&lt;/p&gt; 
+&lt;p&gt;Search previous posts, and check &lt;a href=&quot;https://www.bioconductor.org/packages/release/bioc/vignettes/phyloseq/inst/doc/phyloseq-FAQ.html&quot;&gt;the phyloseq FAQ&lt;/a&gt; before posting a new issue.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rmaia/pavo</title>
+      <link>https://github.com/rmaia/pavo</link>
+      <description>&lt;p&gt;tools for the analysis of color data in R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;code&gt;pavo&lt;/code&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=pavo/&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version-ago/pavo&quot; alt=&quot;cran version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=pavo/&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/grand-total/pavo&quot; alt=&quot;cran downloads&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/rmaia/pavo/actions&quot;&gt;&lt;img src=&quot;https://github.com/rmaia/pavo/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/web/checks/check_results_pavo.html&quot;&gt;&lt;img src=&quot;https://badges.cranchecks.info/worst/pavo.svg?sanitize=true&quot; alt=&quot;cran checks&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h2&gt;An &lt;code&gt;R&lt;/code&gt; package for the spectral and spatial analysis of color patterns&lt;/h2&gt; 
+&lt;h3&gt;Currently maintained by &lt;a href=&quot;https://github.com/thomased&quot;&gt;Thomas White&lt;/a&gt; and &lt;a href=&quot;https://github.com/bisaloo&quot;&gt;Hugo Gruson&lt;/a&gt;.&lt;/h3&gt; 
+&lt;h2&gt;About&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;pavo&lt;/code&gt; is an R package developed with the goal of establishing a flexible and integrated workflow for working with spectral and spatial colour data. It includes functions that take advantage of new data classes to work seamlessly from importing raw spectra and images, to visualisation and analysis. It provides flexible ways to input spectral data from a variety of equipment manufacturers, process these data, extract variables, and produce publication-quality figures.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;pavo&lt;/code&gt; was written with the following workflow in mind:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Organise&lt;/strong&gt; data by importing and processing spectra and images (e.g., to remove noise, negative values, smooth curves, etc.).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Analyse&lt;/strong&gt; the resulting files, using spectral analyses of shape (hue, saturation, brightness), visual models based on perceptual data, and/or spatial adjacency and boundary strength analyses.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Visualise&lt;/strong&gt; the output, with multiple options provided for exploration, presentation, and analysis.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Need more information, or help with the package?&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Take a look at the &lt;a href=&quot;https://book.colrverse.com&quot;&gt;package documentation&lt;/a&gt; for detailed examples and discussion.&lt;/li&gt; 
+ &lt;li&gt;Check out the &lt;a href=&quot;http://pavo.colrverse.com/news/index.html&quot;&gt;latest news&lt;/a&gt; for changes and updates.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Need help or advice and can&#39;t find what you&#39;re looking for?&lt;/strong&gt; Head over to the &lt;a href=&quot;https://github.com/colrverse/colRverse/discussions&quot;&gt;colRverse discussion board&lt;/a&gt; and feel free to post a message.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;If all else fails&lt;/strong&gt; (or you don&#39;t have a GitHub account), &lt;a href=&quot;mailto:thomas.white@sydney.edu.au&quot;&gt;email Tom&lt;/a&gt;!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Citing pavo&lt;/h2&gt; 
+&lt;p&gt;The manuscript describing the current iteration of the package has been published and is free to access:&lt;/p&gt; 
+&lt;p&gt;Maia R., Gruson H., Endler J.A., and White T.E. 2019 &lt;a href=&quot;https://doi.org/10.1111/2041-210X.13174&quot;&gt;pavo 2: New tools for the spectral and spatial analysis of colour in R&lt;/a&gt;. &lt;em&gt;Methods in Ecology and Evolution&lt;/em&gt;, 10(7):1097‑1107.&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;This is the development page for &lt;code&gt;pavo&lt;/code&gt;. The stable release is available from CRAN. Simply use &lt;code&gt;install.packages(&quot;pavo&quot;)&lt;/code&gt; to install.&lt;/p&gt; 
+&lt;p&gt;If you want to install the bleeding edge version of &lt;code&gt;pavo&lt;/code&gt;, you can:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;use the &lt;a href=&quot;https://github.com/r-lib/remotes&quot;&gt;&lt;code&gt;remotes&lt;/code&gt;&lt;/a&gt; package:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;rmaia/pavo&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;download files from GitHub and install using &lt;code&gt;$R CMD INSTALL&lt;/code&gt; or, from within R:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(path, type = &quot;source&quot;, repos = NULL)
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>jdeboer/ganalytics</title>
+      <link>https://github.com/jdeboer/ganalytics</link>
+      <description>&lt;p&gt;Interact with Google Analytics using R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Interactively querying Google Analytics reports&lt;/h1&gt; 
+&lt;p&gt;Johann de Boer 2018-06-07&lt;/p&gt; 
+&lt;!-- README.md is generated from README.rmd. Please edit that file --&gt; 
+&lt;h1&gt;ganalytics &lt;img src=&quot;https://raw.githubusercontent.com/jdeboer/ganalytics/master/man/figures/logo.png&quot; align=&quot;right&quot; height=&quot;140/&quot;&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/jdeboer/ganalytics&quot;&gt;&lt;img src=&quot;https://travis-ci.org/jdeboer/ganalytics.png?branch=master&quot; alt=&quot;Travis-CI Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/github/jdeboer/ganalytics?branch=master&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/jdeboer/ganalytics/branch/master/graph/badge.svg?sanitize=true&quot; alt=&quot;Coverage status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=ganalytics&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/ganalytics&quot; alt=&quot;CRAN status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;http://www.rdocumentation.org/packages/ganalytics&quot;&gt;&lt;img src=&quot;http://www.rdocumentation.org/badges/version/ganalytics&quot; alt=&quot;Rdoc&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Classes and methods for interactive use of the Google Analytics core reporting, real-time reporting, multi-channel funnel reporting, metadata, configuration management and Google Tag Manager APIs.&lt;/p&gt; 
+&lt;p&gt;The aim of this package is to support R users in defining reporting queries using natural R expressions instead of being concerned about API technical intricacies like query syntax, character code escaping and API limitations.&lt;/p&gt; 
+&lt;p&gt;This package provides functions for querying the Google Analytics core reporting, real-time reporting, multi-channel funnel reporting and management APIs, as well as the Google Tag Manager API. Write methods are also provided for the Google Analytics Management and Google Tag Manager APIs so that you can, for example, change tag, property or view settings.&lt;/p&gt; 
+&lt;h2&gt;Updates&lt;/h2&gt; 
+&lt;p&gt;Support for GoogleAnalyticsR integration is now available for segments and table filter objects. You can supply these objects to the &lt;code&gt;google_analytics&lt;/code&gt; function in GoogleAnalyticsR by using &lt;code&gt;as()&lt;/code&gt;, supplying the appropriate GoogleAnalyticsR class names, which are &lt;code&gt;&quot;segment_ga4&quot;&lt;/code&gt; for segments and &lt;code&gt;&quot;.filter_clauses_ga4&quot;&lt;/code&gt; for table filters. Soon GoogleanalyticsR will implicitly coerce ganalytics segments and table filters so that you do not need to explicitly coerce using &lt;code&gt;as()&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Many new functions have been provided for writing segmentation expressions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;Segments(...)&lt;/code&gt; - define a list of segments dynamically based on one or more expressions and/or a selection of built-in and/or custom segments by their IDs.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Include(...)&lt;/code&gt; - expressions (conditions or sequences) defining users or sessions to include in the segment&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Exclude(...)&lt;/code&gt; - expressions (conditions or sequences) defining users or sessions to exclude from the segment&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;PerUser(...)&lt;/code&gt; - set the scope of one or more segment conditions or sequences to user-level, or set the scope of a metric condition to user-level.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;PerSession(...)&lt;/code&gt; - set the scope of one or more segment conditions or sequences to user-level, or set the scope of a metric condition to session-level.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;PerHit(...)&lt;/code&gt; - specify that a set of logically combined conditions must all be met for a single hit, or set the scope of a metric condition to hit-level.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Sequence(...)&lt;/code&gt; - define a sequence of one or more conditions to use in a dynamic segment definition.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Then(condition)&lt;/code&gt; - used within a &lt;code&gt;Sequence()&lt;/code&gt; to specify that this condition must immediately follow the preceding condition, as opposed to the default of loosely following at some point later.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Later(condition)&lt;/code&gt; - similar to &lt;code&gt;Then()&lt;/code&gt; but means that a condition can happen any point after the preceding condition - this is how conditions are treated by default in a sequence if not explicitly set.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;First(condition)&lt;/code&gt; - similar to &lt;code&gt;Then()&lt;/code&gt; but means that a condition must be the first interaction (hit) by the user within the specified date-range. Using &lt;code&gt;First()&lt;/code&gt; is optional. Without using &lt;code&gt;First()&lt;/code&gt; at the start of a sequence, then the first condition does not need to match the first interaction by the user. It does not make sense to use &lt;code&gt;First()&lt;/code&gt; anywhere else in the sequence other than at the start, if used at all.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Multi-channel funnel (MCF) and real-time (RT) queries can now be constructed, but work is still needed to process the response from these queries - stay tuned for updates on this.&lt;/p&gt; 
+&lt;p&gt;Instead of using &lt;code&gt;Or&lt;/code&gt;, &lt;code&gt;And&lt;/code&gt;, and &lt;code&gt;Not&lt;/code&gt;, it is now possible to use familiar R language Boolean operators, &lt;code&gt;|&lt;/code&gt; (&lt;code&gt;Or&lt;/code&gt;), &lt;code&gt;&amp;amp;&lt;/code&gt; (&lt;code&gt;And&lt;/code&gt;), and &lt;code&gt;!&lt;/code&gt; (&lt;code&gt;Not&lt;/code&gt;) instead (thanks to @hadley for suggestion &lt;a href=&quot;https://github.com/jdeboer/ganalytics/issues/2&quot;&gt;#2&lt;/a&gt;). It is important to keep in mind however that Google Analytics requires &lt;code&gt;Or&lt;/code&gt; to have precedence over &lt;code&gt;And&lt;/code&gt;, which is the opposite to the natural precedence given by R when using the &lt;code&gt;|&lt;/code&gt; and &lt;code&gt;&amp;amp;&lt;/code&gt; operators. Therefore, remember to use parentheses &lt;code&gt;(&lt;/code&gt; &lt;code&gt;)&lt;/code&gt; to enforce the correct order of operation to your Boolean expressions. For example &lt;code&gt;my_filter &amp;lt;- !bounced &amp;amp; (completed_goal | transacted)&lt;/code&gt; is a valid structure for a Google Analytics reporting API filter expression.&lt;/p&gt; 
+&lt;p&gt;You can now query the Google Analytics Management API to obtain details in R about the configuration of your accounts, properties and views, such as goals you have defined. There are &lt;em&gt;write&lt;/em&gt; methods available too, but these have not been fully tested so use with extreme care. If you wish to use these functions, it is recommended that you test these using test login, otherwise avoid using the “INSERT”, “UPDATE” and “DELETE” methods.&lt;/p&gt; 
+&lt;p&gt;There is also some basic support for the Google Tag Manager API, but again, this is a work in progress so take care with the write methods above.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;1. Install the necessary packages into R via the GitHub repository&lt;/h3&gt; 
+&lt;h4&gt;Prerequisites&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Ensure you have installed the latest version of &lt;a href=&quot;https://cran.r-project.org/&quot;&gt;R&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Current stable release from CRAN&lt;/h4&gt; 
+&lt;p&gt;You can install the released version of ganalytics from &lt;a href=&quot;https://CRAN.R-project.org&quot;&gt;CRAN&lt;/a&gt; with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;ganalytics&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Current development release from GitHub&lt;/h4&gt; 
+&lt;p&gt;Alternatively, you can execute the following statements in R to install the current stable development version of ganalytics from GitHub:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Install the latest version of remotes via CRAN
+install.packages(&quot;remotes&quot;)
+# Install ganalytics via the GitHub repository.
+remotes::install_github(&quot;jdeboer/ganalytics&quot;)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;2. Prepare your Google API application &lt;em&gt;(you only need to do this once)&lt;/em&gt;&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Browse to [&lt;strong&gt;Google API Console&lt;/strong&gt;] (&lt;a href=&quot;https://code.google.com/apis/console/&quot;&gt;https://code.google.com/apis/console/&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Check you are &lt;strong&gt;signed into Google&lt;/strong&gt; with the account you wish to use.&lt;/li&gt; 
+ &lt;li&gt;Choose &lt;strong&gt;Create Project&lt;/strong&gt; from the Google API Console and give your project a name (or choose an existing project if you have one already).&lt;/li&gt; 
+ &lt;li&gt;From the &lt;strong&gt;APIs&lt;/strong&gt; page, enable the &lt;strong&gt;Analytics API&lt;/strong&gt;. You may also want to enable the &lt;strong&gt;Tag Manager API&lt;/strong&gt; if you wish to try that.&lt;/li&gt; 
+ &lt;li&gt;You will need to &lt;strong&gt;agree&lt;/strong&gt; and &lt;strong&gt;accept&lt;/strong&gt; the Google APIs and Analytics API Terms of Service to proceed.&lt;/li&gt; 
+ &lt;li&gt;Go to the &lt;strong&gt;Credentials&lt;/strong&gt; page, click &lt;strong&gt;Add credentials&lt;/strong&gt;, choose &lt;strong&gt;OAuth 2.0 client ID&lt;/strong&gt;, then select “Other”.&lt;/li&gt; 
+ &lt;li&gt;Note your &lt;strong&gt;Client ID&lt;/strong&gt; and &lt;strong&gt;Client Secret&lt;/strong&gt; and download the JSON file to your R working directory.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;Note: For further information about Google APIs, please refer to the &lt;a href=&quot;https://github.com/jdeboer/ganalytics/raw/master/README.md#useful-references&quot;&gt;References section&lt;/a&gt; at the end of this document.&lt;/em&gt;&lt;/p&gt; 
+&lt;h3&gt;3. Set your system environment variables &lt;em&gt;(this is optional but recommended)&lt;/em&gt;&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Add the following two user variables:&lt;/p&gt; 
+  &lt;table&gt; 
+   &lt;thead&gt; 
+    &lt;tr&gt; 
+     &lt;th&gt;&lt;/th&gt; 
+     &lt;th&gt;Variable name&lt;/th&gt; 
+     &lt;th&gt;Variable value&lt;/th&gt; 
+    &lt;/tr&gt; 
+   &lt;/thead&gt; 
+   &lt;tbody&gt; 
+    &lt;tr&gt; 
+     &lt;td&gt;1&lt;/td&gt; 
+     &lt;td&gt;&lt;code&gt;GOOGLE_APIS_CONSUMER_ID&lt;/code&gt;&lt;/td&gt; 
+     &lt;td&gt;&lt;code&gt;&amp;lt;Your client ID&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+    &lt;/tr&gt; 
+    &lt;tr&gt; 
+     &lt;td&gt;2&lt;/td&gt; 
+     &lt;td&gt;&lt;code&gt;GOOGLE_APIS_CONSUMER_SECRET&lt;/code&gt;&lt;/td&gt; 
+     &lt;td&gt;&lt;code&gt;&amp;lt;Your client secret&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+    &lt;/tr&gt; 
+   &lt;/tbody&gt; 
+  &lt;/table&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;To do this in Windows: 
+    &lt;ul&gt; 
+     &lt;li&gt;Search for and select &lt;strong&gt;“Edit Environment Variables For Your Account”&lt;/strong&gt; from the Start menu.&lt;/li&gt; 
+     &lt;li&gt;Within the &lt;strong&gt;Environment Variables&lt;/strong&gt; window, add the above &lt;strong&gt;User Variables&lt;/strong&gt; by selecting &lt;strong&gt;New&lt;/strong&gt; and entering the &lt;strong&gt;Variable Name&lt;/strong&gt; and &lt;strong&gt;Variable Value&lt;/strong&gt;, then click &lt;strong&gt;OK&lt;/strong&gt;. Do this for both variables listed in the table above.&lt;/li&gt; 
+     &lt;li&gt;Click &lt;strong&gt;OK&lt;/strong&gt;.&lt;/li&gt; 
+     &lt;li&gt;&lt;strong&gt;Restart&lt;/strong&gt; your computer for the new environment variables to take effect.&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;There is also a free open source utility to set environment variables on Mac OS called &lt;a href=&quot;https://github.com/hschmidt/EnvPane&quot;&gt;EnvPane&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Another method that works across platforms is to create an &lt;code&gt;.Renviron&lt;/code&gt; file within your active R working directory that is structured like this:&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- end list --&gt; 
+&lt;pre&gt;&lt;code&gt;GOOGLE_APIS_CONSUMER_ID = &amp;lt;Your client ID&amp;gt;
+GOOGLE_APIS_CONSUMER_SECRET = &amp;lt;Your client secret&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Alternatively&lt;/strong&gt; you can temporarily set your environment variables straight from R using this command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;Sys.setenv(
+  GOOGLE_APIS_CONSUMER_ID = &quot;&amp;lt;Your client ID&amp;gt;&quot;,
+  GOOGLE_APIS_CONSUMER_SECRET = &quot;&amp;lt;Your client secret&amp;gt;&quot;
+)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;Note: For other operating systems please refer to the Reference section at the end of this document.&lt;/em&gt;&lt;/p&gt; 
+&lt;h3&gt;4. Authenticate and attempt your first query with ganalytics&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;ganalytics needs to know the ID of the Google Analytics &lt;strong&gt;view&lt;/strong&gt; that you wish to query. You can obtain this in a number of ways:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Using the &lt;a href=&quot;https://ga-dev-tools.appspot.com/explorer/&quot;&gt;Google Analytics Query Explorer tool&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;From the &lt;strong&gt;Admin page&lt;/strong&gt; in Google Analytics under &lt;strong&gt;View Settings&lt;/strong&gt;, or&lt;/li&gt; 
+   &lt;li&gt;The browser’s address bar while viewing a report in Google Analytics - look for the digits between the letter &lt;strong&gt;‘p’&lt;/strong&gt; and trailing &lt;strong&gt;‘/’&lt;/strong&gt;, e.g. &lt;code&gt;.../a11111111w22222222p33333333/&lt;/code&gt; shows a view ID of &lt;code&gt;33333333&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Alternatively, ganalytics can look up the view ID for you:&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;If you have access to only one Google Analytics account, with one property, then ganalytics will automatically select the default view for you from that property.&lt;/li&gt; 
+   &lt;li&gt;Otherwise it will select the default view of the first property from the first account that it finds in the list of accounts that you have access to.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Return to R and execute the following to load the ganalytics package:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ganalytics)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you have successfully set your system environment variables in step 3 above, then you can execute the following, optionally providing the email address you use to sign-in to Google Analytics:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;my_creds &amp;lt;- GoogleApiCreds(&quot;you@domain.com&quot;)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Otherwise do one of the following:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;If you downloaded the JSON file containing your Google API app credentials, then provide the file path:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;my_creds &amp;lt;- GoogleApiCreds(&quot;you@domain.com&quot;, &quot;client_secret.json&quot;)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;Or, instead of a file you can supply the &lt;code&gt;client_id&lt;/code&gt; and &lt;code&gt;client_secret&lt;/code&gt; directly:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;my_creds &amp;lt;- GoogleApiCreds(
+  &quot;you@domain.com&quot;,
+  list(client_id = &quot;&amp;lt;client id&amp;gt;&quot;, client_secret = &quot;&amp;lt;client secret&amp;gt;&quot;)
+)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Now formulate and run your Google Analytics query, remembering to substitute &lt;code&gt;view_id&lt;/code&gt; with the view ID you wish to use:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;myQuery &amp;lt;- GaQuery( view_id, creds = my_creds ) # view_id is optional
+GetGaData(myQuery)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;You should then be directed to &lt;em&gt;accounts.google.com&lt;/em&gt; within your default web browser asking you to sign-in to your Google account if you are not already. Once signed-in you will be asked to grant read-only access to your Google Analytics account for the Google API project you created in step 1.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Make sure you are signed into the Google account you wish to use, then grant access by selecting &lt;strong&gt;“Allow access”&lt;/strong&gt;. You can then close the page and return back to R.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you have successfully executed all of the above R commands you should see the output of the default ganalytics query; sessions by day for the past 7 days. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;        date sessions
+1 2015-03-27     2988
+2 2015-03-28     1594
+3 2015-03-29     1912
+4 2015-03-30     3061
+5 2015-03-31     2609
+6 2015-04-01     2762
+7 2015-04-02     2179
+8 2015-04-03     1552
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;Note: A small file will be saved to your home directory (‘My Documents’ in Windows) to cache your new reusable authentication token.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;p&gt;As demonstrated in the installation steps above, before executing any of the following examples:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Load the ganalytics package&lt;/li&gt; 
+ &lt;li&gt;Generate a &lt;code&gt;gaQuery&lt;/code&gt; object using the &lt;code&gt;GaQuery()&lt;/code&gt; function and assigning the object to a variable name such as &lt;code&gt;myQuery&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Assumptions&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;The following examples assume you have successfully completed the above steps and have named your Google Analytics query object: &lt;code&gt;myQuery&lt;/code&gt;.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h3&gt;Example 1 - Setting the date range&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Set the date range from 1 January 2013 to 31 May 2013: (Dates are specified in the format &quot;YYYY-MM-DD&quot;.)
+DateRange(myQuery) &amp;lt;- c(&quot;2013-01-01&quot;, &quot;2013-05-31&quot;)
+
+myData &amp;lt;- GetGaData(myQuery)
+summary(myData)
+
+# Adjust the start date to 1 March 2013:
+StartDate(myQuery) &amp;lt;- &quot;2013-03-01&quot;
+# Adjust the end date to 31 March 2013:
+EndDate(myQuery) &amp;lt;- &quot;2013-03-31&quot;
+
+myData &amp;lt;- GetGaData(myQuery)
+summary(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 2 - Choosing what metrics to report&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Report number of page views instead
+Metrics(myQuery) &amp;lt;- &quot;pageviews&quot;
+
+myData &amp;lt;- GetGaData(myQuery)
+summary(myData)
+
+# Report both pageviews and sessions
+Metrics(myQuery) &amp;lt;- c(&quot;pageviews&quot;, &quot;sessions&quot;)
+# These variations are also acceptable
+Metrics(myQuery) &amp;lt;- c(&quot;ga:pageviews&quot;, &quot;ga.sessions&quot;)
+
+myData &amp;lt;- GetGaData(myQuery)
+summary(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 3 - Selecting what dimensions to split your metrics by&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Similar to metrics, but for dimensions
+Dimensions(myQuery) &amp;lt;- c(&quot;year&quot;, &quot;week&quot;, &quot;dayOfWeekName&quot;, &quot;hour&quot;)
+
+# Lets set a wider date range
+DateRange(myQuery) &amp;lt;- c(&quot;2012-10-01&quot;, &quot;2013-03-31&quot;)
+
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+tail(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 4 - Sort by&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Sort by descending number of pageviews
+SortBy(myQuery) &amp;lt;- &quot;-pageviews&quot;
+
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+tail(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 5 - Row filters&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Filter for Sunday sessions only
+sundayExpr &amp;lt;- Expr(~dayOfWeekName == &quot;Sunday&quot;)
+TableFilter(myQuery) &amp;lt;- sundayExpr
+
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+
+# Remove the filter
+TableFilter(myQuery) &amp;lt;- NULL
+
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 6 - Combining filters with AND&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Expression to define Sunday sessions
+sundayExpr &amp;lt;- Expr(~dayOfWeekName == &quot;Sunday&quot;)
+# Expression to define organic search sessions
+organicExpr &amp;lt;- Expr(~medium == &quot;organic&quot;)
+# Expression to define organic search sessions made on a Sunday
+sundayOrganic &amp;lt;- sundayExpr &amp;amp; organicExpr
+TableFilter(myQuery) &amp;lt;- sundayOrganic
+
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+
+# Let&#39;s concatenate medium to the dimensions for our query
+Dimensions(myQuery) &amp;lt;- c(Dimensions(myQuery), &quot;medium&quot;)
+
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 7 - Combining filters with OR&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# In a similar way to AND
+loyalExpr &amp;lt;- !Expr(~sessionCount %matches% &quot;^[0-3]$&quot;) # Made more than 3 sessions
+recentExpr &amp;lt;- Expr(~daysSinceLastSession %matches% &quot;^[0-6]$&quot;) # Visited sometime within the past 7 days.
+loyalOrRecent &amp;lt;- loyalExpr | recentExpr
+TableFilter(myQuery) &amp;lt;- loyalOrRecent
+
+myData &amp;lt;- GetGaData(myQuery)
+summary(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 8 - Filters that combine ORs with ANDs&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;loyalExpr &amp;lt;- !Expr(~sessionCount %matches% &quot;^[0-3]$&quot;) # Made more than 3 sessions
+recentExpr &amp;lt;- Expr(~daysSinceLastSession %matches% &quot;^[0-6]$&quot;) # Visited sometime within the past 7 days.
+loyalOrRecent &amp;lt;- loyalExpr | recentExpr
+sundayExpr &amp;lt;- Expr(~dayOfWeekName == &quot;Sunday&quot;)
+loyalOrRecent_Sunday &amp;lt;- loyalOrRecent &amp;amp; sundayExpr
+TableFilter(myQuery) &amp;lt;- loyalOrRecent_Sunday
+
+myData &amp;lt;- GetGaData(myQuery)
+summary(myData)
+
+# Perform the same query but change which dimensions to view
+Dimensions(myQuery) &amp;lt;- c(&quot;sessionCount&quot;, &quot;daysSinceLastSession&quot;, &quot;dayOfWeek&quot;)
+
+myData &amp;lt;- GetGaData(myQuery)
+summary(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 9 - Sorting ‘numeric’ dimensions (continuing from example 8)&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Continuing from example 8...
+
+# Change filter to loyal session AND recent sessions AND visited on Sunday
+loyalAndRecent_Sunday &amp;lt;- loyalExpr &amp;amp; recentExpr &amp;amp; sundayExpr
+TableFilter(myQuery) &amp;lt;- loyalAndRecent_Sunday
+
+# Sort by decending visit count and ascending days since last visit.
+SortBy(myQuery) &amp;lt;- c(&quot;-sessionCount&quot;, &quot;+daysSinceLastSession&quot;)
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+
+# Notice that the Google Analytics Core Reporting API doesn&#39;t recognise &#39;numerical&#39; dimensions as
+# ordered factors when sorting. We can use R to sort instead, such as using dplyr.
+library(dplyr)
+myData &amp;lt;- myData %&amp;gt;% arrange(desc(sessionCount), daysSinceLastSession)
+head(myData)
+tail(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 10 - Session segmentation&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Visit segmentation is expressed similarly to row filters and supports AND and OR combinations.
+# Define a segment for sessions where a &quot;thank-you&quot;, &quot;thankyou&quot; or &quot;success&quot; page was viewed.
+thankyouExpr &amp;lt;- Expr(~pagePath %matches% &quot;thank\\-?you|success&quot;)
+Segments(myQuery) &amp;lt;- thankyouExpr
+
+# Reset the filter
+TableFilter(myQuery) &amp;lt;- NULL
+
+# Split by traffic source and medium
+Dimensions(myQuery) &amp;lt;- c(&quot;source&quot;, &quot;medium&quot;)
+
+# Sort by decending number of sessions
+SortBy(myQuery) &amp;lt;- &quot;-sessions&quot;
+
+myData &amp;lt;- GetGaData(myQuery)
+head(myData)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 11 - Using automatic pagination to get more than 10,000 rows of data per query&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# Sessions by date and hour for the years 2016 and 2017:
+# First let&#39;s clear any filters or segments defined previously
+TableFilter(myQuery) &amp;lt;- NULL
+Segments(myQuery) &amp;lt;- NULL
+# Define our date range
+DateRange(myQuery) &amp;lt;- c(&quot;2016-01-01&quot;, &quot;2017-12-31&quot;)
+# Define our metrics and dimensions
+Metrics(myQuery) &amp;lt;- &quot;sessions&quot;
+Dimensions(myQuery) &amp;lt;- c(&quot;date&quot;, &quot;dayOfWeekName&quot;, &quot;hour&quot;)
+# Let&#39;s allow a maximum of 20000 rows (default is 10000)
+MaxResults(myQuery) &amp;lt;- 20000
+
+myData &amp;lt;- GetGaData(myQuery)
+nrow(myData)
+
+## Let&#39;s use dplyr to analyse the data
+library(dplyr)
+
+# Sessions by day of week
+sessions_by_dayOfWeek &amp;lt;- myData %&amp;gt;%
+  count(dayOfWeekName, wt = sessions) %&amp;gt;% 
+  mutate(dayOfWeekName = factor(dayOfWeekName, levels = c(
+    &quot;Monday&quot;, &quot;Tuesday&quot;, &quot;Wednesday&quot;, &quot;Thursday&quot;, &quot;Friday&quot;, &quot;Saturday&quot;, &quot;Sunday&quot;
+  ), labels = c(&quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;, &quot;Sun&quot;), ordered = TRUE)) %&amp;gt;% 
+  arrange(dayOfWeekName)
+with(
+  sessions_by_dayOfWeek,
+  barplot(n, names.arg = dayOfWeekName, xlab = &quot;day of week&quot;, ylab = &quot;sessions&quot;)
+)
+
+# Sessions by hour of day
+sessions_by_hour &amp;lt;- myData %&amp;gt;%
+  count(hour, wt = sessions)
+with(
+  sessions_by_hour,
+  barplot(n, names.arg = hour, xlab = &quot;hour&quot;, ylab = &quot;sessions&quot;)
+)
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Example 12 - Using ggplot2&lt;/h3&gt; 
+&lt;p&gt;To run this example first install ggplot2 if you haven’t already.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;ggplot2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Once installed, then run the following example.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ggplot2)
+library(dplyr)
+
+# Sessions by date and hour for the years 2016 and 2017:
+# First let&#39;s clear any filters or segments defined previously
+TableFilter(myQuery) &amp;lt;- NULL
+Segments(myQuery) &amp;lt;- NULL
+# Define our date range
+DateRange(myQuery) &amp;lt;- c(&quot;2016-01-01&quot;, &quot;2017-12-31&quot;)
+# Define our metrics and dimensions
+Metrics(myQuery) &amp;lt;- &quot;sessions&quot;
+Dimensions(myQuery) &amp;lt;- c(&quot;date&quot;, &quot;dayOfWeek&quot;, &quot;hour&quot;, &quot;deviceCategory&quot;)
+# Let&#39;s allow a maximum of 40000 rows (default is 10000)
+MaxResults(myQuery) &amp;lt;- 40000
+
+myData &amp;lt;- GetGaData(myQuery)
+
+# Sessions by hour of day and day of week
+avg_sessions_by_hour_wday_device &amp;lt;- myData %&amp;gt;% 
+  group_by(hour, dayOfWeek, deviceCategory) %&amp;gt;% 
+  summarise(sessions = mean(sessions)) %&amp;gt;% 
+  ungroup()
+
+# Relabel the days of week
+levels(avg_sessions_by_hour_wday_device$dayOfWeek) &amp;lt;- c(
+  &quot;Sun&quot;, &quot;Mon&quot;, &quot;Tue&quot;, &quot;Wed&quot;, &quot;Thu&quot;, &quot;Fri&quot;, &quot;Sat&quot;
+)
+
+# Plot the summary data
+qplot(
+  x = hour,
+  y = sessions,
+  data = avg_sessions_by_hour_wday_device,
+  facets = ~dayOfWeek,
+  fill = deviceCategory,
+  geom = &quot;col&quot;
+)
+
+# End
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Thanks to:&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Hadley Wickham @hadley&lt;/li&gt; 
+ &lt;li&gt;Mark Edmondson @MarkEdmondson1234&lt;/li&gt; 
+ &lt;li&gt;RStudio team&lt;/li&gt; 
+ &lt;li&gt;R Core team&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Useful references&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://developers.google.com/analytics/devguides/reporting/core/v3/reference&quot;&gt;Google Analytics Core Reporting API reference guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://developers.google.com/analytics/devguides/reporting/core/dimsmets&quot;&gt;Google Analytics Dimensions and Metrics reference&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://developers.google.com/console/help/#creatingdeletingprojects&quot;&gt;Creating a Google API project&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://developers.google.com/console/help/#generatingoauth2&quot;&gt;Generating an OAuth 2.0 client ID for Google APIs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://developers.google.com/accounts/docs/OAuth2InstalledApp&quot;&gt;Using OAuth 2.0 for Installed Applications&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/hschmidt/EnvPane&quot;&gt;EnvPane utility for setting environment variables in OSX&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.ubuntu.com/community/EnvironmentVariables&quot;&gt;Setting environment variables in Ubuntu Linux&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Notes&lt;/h2&gt; 
+&lt;p&gt;Please note that this project is released with a &lt;a href=&quot;https://raw.githubusercontent.com/jdeboer/ganalytics/master/CONDUCT.md&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By participating in this project you agree to abide by its terms.&lt;/p&gt; 
+&lt;p&gt;Google Analytics and Google Tag Manager are trademarks of Google.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1675 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub CSS Weekly Trending</title>
+    <description>Weekly Trending of CSS in GitHub</description>
+    <pubDate>Tue, 02 Jul 2024 01:36:24 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>micro-zoe/micro-app</title>
+      <link>https://github.com/micro-zoe/micro-app</link>
+      <description>&lt;p&gt;A simple, efficient and powerful micro front-end framework. 一款简约、高效、功能强大的微前端框架&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://micro-zoe.github.io/micro-app/&quot;&gt; &lt;img src=&quot;https://micro-zoe.github.io/micro-app/home/assets/logo.png&quot; alt=&quot;logo&quot; width=&quot;200&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://www.npmjs.com/package/@micro-zoe/micro-app&quot;&gt; &lt;img src=&quot;https://img.shields.io/npm/v/@micro-zoe/micro-app.svg?sanitize=true&quot; alt=&quot;version&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://www.npmjs.com/package/@micro-zoe/micro-app&quot;&gt; &lt;img src=&quot;https://img.shields.io/npm/dt/@micro-zoe/micro-app.svg?sanitize=true&quot; alt=&quot;downloads&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/micro-zoe/micro-app/raw/master/LICENSE&quot;&gt; &lt;img src=&quot;https://img.shields.io/npm/l/@micro-zoe/micro-app.svg?sanitize=true&quot; alt=&quot;license&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/micro-zoe/micro-app/raw/dev/Contact.md&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/chat-wechat-blue&quot; alt=&quot;WeChat&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://travis-ci.com/github/micro-zoe/micro-app&quot;&gt; &lt;img src=&quot;https://api.travis-ci.com/micro-zoe/micro-app.svg?branch=master&quot; alt=&quot;travis&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/micro-zoe/micro-app?branch=master&quot;&gt; &lt;img src=&quot;https://coveralls.io/repos/github/micro-zoe/micro-app/badge.svg?branch=master&quot; alt=&quot;coveralls&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;English｜&lt;a href=&quot;https://raw.githubusercontent.com/micro-zoe/micro-app/dev/README.zh-cn.md&quot;&gt;简体中文&lt;/a&gt;｜&lt;a href=&quot;https://micro-zoe.github.io/micro-app/&quot;&gt;Documentation&lt;/a&gt;｜&lt;a href=&quot;https://github.com/micro-zoe/micro-app/discussions&quot;&gt;Discussions&lt;/a&gt;｜&lt;a href=&quot;https://raw.githubusercontent.com/micro-zoe/micro-app/dev/Contact.md&quot;&gt;WeChat&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;📖Introduction&lt;/h1&gt; 
+&lt;p&gt;micro-app is a micro front-end framework launched by JD Retail. It renders based on webcomponent-like and realizes the micro front-end from component thinking, it aiming to reduce the difficulty of getting started and improve work efficiency.&lt;/p&gt; 
+&lt;p&gt;It is the lowest cost framework for accessing micro front-end, and provides a series of perfect functions such as JS sandbox, style isolation, element isolation, preloading, resource address completion, plugin system, data communication and so on.&lt;/p&gt; 
+&lt;p&gt;micro-app has no restrictions on the front-end framework, and any framework can be used as a base application to embed any type of micro application of the framework.&lt;/p&gt; 
+&lt;h1&gt;How to use&lt;/h1&gt; 
+&lt;h2&gt;Base application&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;1、Install&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;yarn add @micro-zoe/micro-app
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;2、import at the entrance&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;// main.js
+import microApp from &#39;@micro-zoe/micro-app&#39;
+
+microApp.start()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;3、Use components in page&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!-- my-page.vue --&amp;gt;
+&amp;lt;template&amp;gt;
+  &amp;lt;!-- 👇 name is the app name, url is the app address --&amp;gt;
+  &amp;lt;micro-app name=&#39;my-app&#39; url=&#39;http://localhost:3000/&#39;&amp;gt;&amp;lt;/micro-app&amp;gt;
+&amp;lt;/template&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Sub application&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Set cross-domain support in the headers of webpack-dev-server&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;devServer: {
+  headers: {
+    &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  },
+},
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The above micro front-end rendering is completed, and the effect is as follows:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img10.360buyimg.com/imagetools/jfs/t1/188373/14/17696/41854/6111f4a0E532736ba/4b86f4f8e2044519.png&quot; alt=&quot;image&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;More detailed configuration can be viewed &lt;a href=&quot;https://micro-zoe.github.io/micro-app/docs.html#/zh-cn/start&quot;&gt;Documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;🤝 Contribution&lt;/h1&gt; 
+&lt;p&gt;If you&#39;re interested in this project, you&#39;re welcome to mention pull request, and also welcome your &quot;Star&quot; ^_^&lt;/p&gt; 
+&lt;h3&gt;development&lt;/h3&gt; 
+&lt;p&gt;1、Clone&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/micro-zoe/micro-app.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;2、Install dependencies&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;yarn bootstrap
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;3、Run project&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;yarn start
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more commands, see &lt;a href=&quot;https://github.com/micro-zoe/micro-app/raw/master/DEVELOP.md&quot;&gt;DEVELOP&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;FAQ&lt;/h1&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;What are the advantages of micro-app?&lt;/summary&gt; It is easy to use and low invasive. It only needs to change a small amount of code to access the micro front-end, and provides rich functions at the same time. 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;How compatible?&lt;/summary&gt; The micro-app relies on two newer APIs, CustomElements and Proxy. 
+ &lt;p&gt;For browsers that do not support CustomElements, they can be compatible by introducing polyfills. For details, please refer to: &lt;a href=&quot;https://github.com/webcomponents/polyfills/tree/master/packages/custom-elements&quot;&gt;webcomponents/polyfills&lt;/a&gt;。&lt;/p&gt; 
+ &lt;p&gt;However, Proxy is not compatible for the time being, so the micro-app cannot be run on browsers that do not support Proxy.&lt;/p&gt; 
+ &lt;p&gt;Browser compatibility can be viewed: &lt;a href=&quot;https://caniuse.com/?search=Proxy&quot;&gt;Can I Use&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;The general is as follows:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;desktop: Except IE browser, other browsers are basically compatible.&lt;/li&gt; 
+  &lt;li&gt;mobile: ios10+、android5+&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Must micro applications support cross-domain?&lt;/summary&gt; yes! 
+ &lt;p&gt;If it is a development environment, you can set headers in webpack-dev-server to support cross-domain.&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;devServer: {
+  headers: {
+    &#39;Access-Control-Allow-Origin&#39;: &#39;*&#39;,
+  },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;If it is a production environment, you can support cross-domain through &lt;a href=&quot;https://segmentfault.com/a/1190000012550346&quot;&gt;Configuration nginx&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Does it support vite?&lt;/summary&gt; 
+ &lt;p&gt;Yes, please see &lt;a href=&quot;https://micro-zoe.github.io/micro-app/docs.html#/zh-cn/framework/vite&quot;&gt;adapt vite&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Does it support ssr?&lt;/summary&gt; 
+ &lt;p&gt;Yes, please see &lt;a href=&quot;https://micro-zoe.github.io/micro-app/docs.html#/zh-cn/framework/nextjs&quot;&gt;nextjs&lt;/a&gt;, &lt;a href=&quot;https://micro-zoe.github.io/micro-app/docs.html#/zh-cn/framework/nuxtjs&quot;&gt;nuxtjs&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h1&gt;Contributors&lt;/h1&gt; 
+&lt;a href=&quot;https://github.com/micro-zoe/micro-app/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=micro-zoe/micro-app&quot;&gt; &lt;/a&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/micro-zoe/micro-app/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>KiKaraage/ArcWTF</title>
+      <link>https://github.com/KiKaraage/ArcWTF</link>
+      <description>&lt;p&gt;A userChrome.css theme to bring Arc Browser look from Windows to Firefox. No waitlist, no registration needed ✨&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Arc Windows to Firefox / Floorp&lt;/h1&gt; 
+&lt;p&gt;For you who want to try new, shiny Arc Browser on Windows! No registration needed, compatible for all Windows versions ✨&lt;/p&gt; 
+&lt;p&gt;Based on &lt;a href=&quot;https://github.com/bmFtZQ/edge-frfox&quot;&gt;edge-frfox theme by bmFtZQ&lt;/a&gt; | Vertical tab sidebar setup derived from &lt;a href=&quot;https://github.com/sirlan-ff00ff/arcticfox-theme&quot;&gt;arcticfox-theme by Sirlan-ff00ff&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Any suggestions or concerns? &lt;a href=&quot;https://github.com/KiKaraage/ArcWTF/issues/new/choose&quot;&gt;Submit new issues&lt;/a&gt; or &lt;a href=&quot;https://www.reddit.com/r/FirefoxCSS/comments/1acgx8c/arcftw_attempt_to_replicate_arc_browser_sleek/&quot;&gt;contact me on Reddit&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Previews&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/0f280fd2-2049-4ed2-8bf2-41e25f381f65&quot; alt=&quot;Screenshot 1 with tab sidebar pinned&quot;&gt; &lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/d9288422-8a54-4493-b90b-56a6ebea4ed5&quot; alt=&quot;Screenshot 2, new tab panel setup&quot;&gt; &lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/aa3b66c2-1aee-46a0-8ad8-14e1320c6508&quot; alt=&quot;Screenshot 3 with tab sidebar unpinned&quot;&gt; &lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/3be1ab66-c9c6-44bc-a557-e26b2136b29d&quot; alt=&quot;Screenshot 4 with popup searchbar activated&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Compability&lt;/h2&gt; 
+&lt;p&gt;I modify, made and test this theme on Firefox 123, Windows 10. This theme can work with Linux and MacOS too.&lt;/p&gt; 
+&lt;p&gt;ArcWTF will &lt;strong&gt;clash with the default Firefox system theme&lt;/strong&gt;, dark themes that have light toolbar/light URL bar, and light themes with dark toolbar/dark URL bar.&lt;/p&gt; 
+&lt;p&gt;Vertical tabs are currently disabled in Private Browsing Mode due to behaviour clashes with window controls.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;For Floorp, there&#39;s several incompability I currently have since it might clashed with several parts of the built-in theme they had, like:&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;I haven&#39;t been able to modify URL font size&lt;/li&gt; 
+  &lt;li&gt;Userchrome Toggle hasn&#39;t working yet, so the vertical tab sidebar is either a) autohidden but you can&#39;t toggle it to be in fixed position, or b) can be switched on to be shown/hidden, but it can&#39;t be automated.&lt;/li&gt; 
+  &lt;li&gt;Advanced configurations from this theme in about:config doesn&#39;t worked, so the sidebar tab (either in Sidebery, TST or their default vertical tab) tend to mimic the window background instead of mimicking tab/toolbar background to blend with the toolbar and browser border. So far I can only fix this in Sidebery - you will have to grab toolbar&#39;s hex/RGB color and apply it to &lt;code&gt;--frame-bg&lt;/code&gt; parameter, as shown in screenshots below.&lt;/li&gt; 
+  &lt;li&gt;Hiding tabs bar, turning on browser border frame is applicable only through Floorp&#39;s settings instead of through the theme + about:config configurations.&lt;/li&gt; 
+  &lt;li&gt;Otherwise, the theme are working quite well! Split view is available too, but since the devs haven&#39;t put the option in right-click context menu, you will have to use their default vertical tab to do it. Though it doesn&#39;t look as good as Sidebery.&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Condition&lt;/th&gt; 
+    &lt;th&gt;Screenshot&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;Original vertical tab bar + Split view&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/1ca4cadb-146d-499d-9d1c-8d77e50183aa&quot; alt=&quot;gambar&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;Original Sidebery (with CSS styling)&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/8ce5ccc4-cb52-4f48-ac75-4e2c5d699074&quot; alt=&quot;gambar&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;Sidebery (with CSS styling) after &lt;code&gt;--frame-bg&lt;/code&gt; parameter modified, the panel blend better in Floorp&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/ac47a984-d892-481f-97c2-9fb58407f8be&quot; alt=&quot;gambar&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Applying the theme&lt;/h2&gt; 
+&lt;p&gt;&lt;b&gt;(1/3) Installing addons and choosing theme&lt;/b&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Install &lt;a href=&quot;https://github.com/mbnuqw/sidebery&quot;&gt;Sidebery&lt;/a&gt; and &lt;a href=&quot;https://addons.mozilla.org/firefox/addon/userchrome-toggle/&quot;&gt;Userchrome Toggle&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Open &lt;code&gt;about:addons&lt;/code&gt;, click &#39;Userchrome Toggle&#39;, go to &#39;Options&#39; tab.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Disable &#39;Display a notification&#39;, Go to &#39;Style Toggle 1&#39;, put &lt;code&gt;|| &lt;/code&gt; in prefix (should also have the ending space) and apply changes.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/dde05450-f53b-497f-8107-865289b3be84&quot; alt=&quot;Userchrome Toggle settings&quot;&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Click extension button (puzzle icon), right click on Userchrome Toggle icon, click &#39;Pin to Toolbar&#39;.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/8a72dc0c-7f40-4d34-a3d3-ca9e8820b127&quot; alt=&quot;Pin to Toolbar&quot;&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Open Sidebery settings, go to the Style Editor and paste the &lt;a href=&quot;https://raw.githubusercontent.com/KiKaraage/ArcWTF/main/sidebery-css-style&quot;&gt;CSS config&lt;/a&gt;, or go to Help section and click import &lt;a href=&quot;https://raw.githubusercontent.com/KiKaraage/ArcWTF/main/sidebery-ArcWTF.json&quot;&gt;my backup JSON file&lt;/a&gt;. Go to Navigation Bar settings and add tab panels to use as Spaces to your liking. &lt;em&gt;Personally I use History panel as the first item to mimic &#39;Recently closed&#39; button on Arc so applying custom icon on the CSS config would be easier.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/0471a443-8bff-46f3-9108-41ba6657b2a2&quot; alt=&quot;Sidebery navigation bar setting&quot;&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; 
+  &lt;details&gt; 
+   &lt;summary&gt;Some of my favourites Firefox themes to apply with ArcWTF:&lt;/summary&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/nord-polar/&quot;&gt;Nord Polar&lt;/a&gt;, &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/nord-dark&quot;&gt;Nord Dark&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/arc-dark-theme-we&quot;&gt;Arc Dark Theme&lt;/a&gt;, &lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/arc-theme-we&quot;&gt;Arc Theme&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/activist-soft&quot;&gt;Activist - Soft&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/foto-bold&quot;&gt;Foto - Bold&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/plum-torte&quot;&gt;Plum Torte&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://addons.mozilla.org/en-US/firefox/addon/dark-teal-chrome&quot;&gt;Dark Teal (chrome-like)&lt;/a&gt;&lt;/li&gt; 
+   &lt;/ul&gt; 
+  &lt;/details&gt;&lt;/li&gt; 
+&lt;/ul&gt;  
+&lt;p&gt;&lt;b&gt;(2/3) Applying the CSS theme&lt;/b&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Download - &lt;a href=&quot;https://github.com/KiKaraage/ArcWTF/archive/refs/heads/main.zip&quot;&gt;for Firefox&lt;/a&gt;; &lt;a href=&quot;https://github.com/KiKaraage/ArcWTF/archive/refs/heads/floorp.zip&quot;&gt;for Floorp&lt;/a&gt; - or clone this repo locally&lt;/li&gt; 
+ &lt;li&gt;Go to &lt;code&gt;about:profiles&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Check &#39;Root Directory&#39; and click &#39;Open Folder&#39;/&#39;Show in Finder&#39;&lt;/li&gt; 
+ &lt;li&gt;Click and open &#39;chrome&#39; folder (or create the folder if it isn&#39;t existed yet)&lt;/li&gt; 
+ &lt;li&gt;Paste folders and files from this repo to the chrome folder&lt;/li&gt; 
+ &lt;li&gt;Go to &lt;code&gt;about:config&lt;/code&gt;, paste &lt;code&gt;toolkit.legacyUserProfileCustomizations.stylesheets&lt;/code&gt; into the bar and set its value to true/choose Boolean and click + (plus) icon.&lt;/li&gt; 
+ &lt;li&gt;After that, paste &lt;code&gt;svg.context-properties.content.enabled&lt;/code&gt; into the bar and set its value to true/choose Boolean and click + (plus) icon.&lt;/li&gt; 
+ &lt;li&gt;Restart Firefox&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;b&gt;(3/3) How to use this theme?&lt;/b&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Hover to browser left corner to show the vertical tabs.&lt;/li&gt; 
+ &lt;li&gt;Right-click navigation toolbar and click &#39;Customize Toolbar&#39;. Move Userchrome Toggle button to the left position, before back-forward-reload buttons. Put flexible spaces before and after the URL bar. Take a look on screenshots below for guides: &lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/4928ae8e-55fb-42c3-8295-8748e6ae6a68&quot; alt=&quot;Toolbar configuration for &amp;quot;vertical bar always on&amp;quot;&quot;&gt; &lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/40739e9f-0ee5-4165-8460-ec5cdf9e374a&quot; alt=&quot;Toolbar configuration for &amp;quot;vertical bar autohide&amp;quot;&quot;&gt;&lt;/li&gt; 
+ &lt;li&gt;Use the Userchrome Toggle to turn sidebar on (fixed positions) or off (autohidden, hover to show tabs).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;b&gt;Bonus!&lt;/b&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Tweaks&lt;/th&gt; 
+   &lt;th&gt;Screenshot&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Replace Firefox icon on Start Menu and Taskbar&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/3f67829e-91b2-4496-a31c-0d6326478eb4&quot; alt=&quot;gambar&quot;&gt; &lt;br&gt; Download &lt;a href=&quot;https://github.com/KiKaraage/ArcWTF/raw/main/Arc.ico&quot;&gt;Arc.ico&lt;/a&gt;, open &lt;code&gt;C:\ProgramData\Microsoft\Windows\Start Menu\Programs&lt;/code&gt; directory, right click Firefox shorcut, click &#39;Properties&#39;, click &#39;Change Icon...&#39; and use the ICO file for maximum Arc feel. Pin to taskbar too.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Activate popup search/URL bar launchpad&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/KiKaraage/ArcWTF/assets/10529881/29bea83d-231a-45d2-8118-769885d87d88&quot; alt=&quot;gambar&quot;&gt; &lt;br&gt; Go to &lt;code&gt;about:config&lt;/code&gt; and add new Boolean entry: &lt;code&gt;uc.tweak.popup-search&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Hide header sidebar, containing space/tab panel name&lt;/td&gt; 
+   &lt;td&gt;Go to &lt;code&gt;about:config&lt;/code&gt; and add new Boolean entry: &lt;code&gt;uc.tweak.hide-sidebar-header&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Extend sidebar length to 250px (original: 200px)&lt;/td&gt; 
+   &lt;td&gt;Go to &lt;code&gt;about:config&lt;/code&gt; and add new Boolean entry: &lt;code&gt;uc.tweak.longer-sidebar&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Other tweaks (some might&#39;ve already preapplied here)&lt;/td&gt; 
+   &lt;td&gt;Check &lt;a href=&quot;https://github.com/bmFtZQ/edge-frfox?tab=readme-ov-file#tweaks&quot;&gt;bmFtZQ/edge-frfox theme page&lt;/a&gt; and add to &lt;code&gt;about:config&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Use Segoe UI Variable (Windows 11 default font) as Firefox UI font, as shown on preview screenshots&lt;/td&gt; 
+   &lt;td&gt;Download from &lt;a href=&quot;https://www.cufonfonts.com/font/segoe-ui-variable&quot;&gt;CufonFonts&lt;/a&gt;, install and uncomment the related settings on userchrome.css and Sidebery style configurations (sidebery-css-style)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Additional addons for theming&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://addons.mozilla.org/id/firefox/addon/adaptive-tab-bar-colour/&quot;&gt;Adaptive Tab Bar Colour&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://color.firefox.com&quot;&gt;Firefox Color&lt;/a&gt; &lt;a href=&quot;https://addons.mozilla.org/id/firefox/addon/firefox-color&quot;&gt;extension&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Changelogs&lt;/h3&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;v1.2-firefox&lt;/b&gt; (Feb 29, 2024)&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;IMPORTANT: Fix missing window controls in FF123+ &lt;em&gt;credit to bmFtZQ/edge-frfox&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;NEW: Option to make URL bar popped up like command bar in Arc. Add &quot;uc.tweak.popup-search&quot; in about:config! &lt;em&gt;credit to Naezr/ShyFox&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Improving inactive window behaviour - instead of lighter navbar color, opacity of navbar icons, URL bar and window controls would be decreased. &lt;em&gt;credit to MrOtherGuy&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Improving Sidebery look: Now icons for Sidebery settings, history, and new tab panels are replaced with Fluent icons as used in Arc on Windows&lt;/li&gt; 
+  &lt;li&gt;Improving Sidebery look: Inactive tab panels would be rendered on smaller size with monochrome colors (depend on theme) to mimic Arc.&lt;/li&gt; 
+  &lt;li&gt;Improving Sidebery look: New tab button now have similar design to Arc on Windows. It would still exist below all tabs tho, unlike in Arc where new tab button is located after pinned tabs, before regular tabs.&lt;/li&gt; 
+  &lt;li&gt;Improving Sidebery look: Fixing hidden panels popup layer, now it&#39;s correctly popped upwards. And remove dark overlay for all Sidebery popup. &lt;em&gt;partial credit to cherrynoize&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Improving Sidebery look: Fixing pinned tab, now active pinned tabs has light overlay to distinguished it from non-active pinned tabs.&lt;/li&gt; 
+  &lt;li&gt;Added rounded corners to the devtools. &lt;em&gt;credit to bmFtZQ/edge-frfox&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Added rounded corners to sidebar and sidebar header and fixing sidebar hover flickering. &lt;em&gt;credit to anoshione, and ishid4 for fixing it&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Now showed Space/tab panel name by enabling (and tidying) the sidebar header. &lt;em&gt;thanks to mbnuqw/Sidebery&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Changing unified extensions menu to grid layout.&lt;/li&gt; 
+  &lt;li&gt;Pre-applied Segoe UI Variable in Firefox UI and Sidebery - Uncomment the respective codes on userchrome.css and Sidebery style editor to activate it.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;v1.1-firefox (Feb 13, 2024)&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Tab bar is now hidden by default.&lt;/li&gt; 
+  &lt;li&gt;Rounded corners are now implemented by default. (no about:config entry required)&lt;/li&gt; 
+  &lt;li&gt;Fix rounded corners issue on some websites, like Twitter/X. &lt;em&gt;credit to bmFtZQ/edge-frfox&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Fix PiP controls not showing. &lt;em&gt;credit to bmFtZQ/edge-frfox&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Fix window controls visibility when hiding the tab bar on Linux. &lt;em&gt;credit to bmFtZQ/edge-frfox&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Fix window controls visibility in fullscreen mode. &lt;em&gt;credit to bmFtZQ/edge-frfox&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Simplified find bar and navigation bar CSS codes.&lt;/li&gt; 
+  &lt;li&gt;Improved find bar look.&lt;/li&gt; 
+  &lt;li&gt;Improved in-browser notification look.&lt;/li&gt; 
+  &lt;li&gt;Adding option to extend sidebar size (from default 200px to 250px) easily: Go to about:config and enable uc.tweak.longer-sidebar (create new Boolean entry)&lt;/li&gt; 
+  &lt;li&gt;Moved Sidebery navigation bar to bottom. Now Sidebery fully worked like Arc Spaces! &lt;em&gt;credit to u/themacuser90&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;Pinned tab width in Sidebery is now resized automatically depend on sidebar size and preferred pinned tabs columns. (I set 3 columns as default, you can customize it from Sidebery Styles Editor)&lt;/li&gt; 
+  &lt;li&gt;Changed unified extensions menu styling to horizontal-styled list like Microsoft Edge&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h3&gt;Current Issues/Things to Improve&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Improving Floorp compability.&lt;/li&gt; 
+ &lt;li&gt;Recently added support for translucency in Mac, still on early trial mode. (thanks to artsyfriedchicken)&lt;/li&gt; 
+ &lt;li&gt;Add support to apply MacOS default icons (optional), replacing Fluent icons used on ArcWTF.&lt;/li&gt; 
+ &lt;li&gt;Window controls not working in Private Browsing Mode when tab bar are hidden. Current solution: Don&#39;t enable Sidebery and Userchrome Toggle on Private Browsing; the script will automatically show tab bar when you go on Private Browsing Mode. &lt;em&gt;credit to bmFtZQ/edge-frfox&lt;/em&gt; &lt;em&gt;(low priority)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Bookmarks bar not showing bookmarks even when enabled. Current solution: Click Menu (Arc logo) &amp;gt; Bookmarks, or use Sidebery bookmarks panel to access bookmarks. &lt;em&gt;(low priority)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Firefox alternative window controls are shown overlapping GTK window controls when using Adaptive Tab Bar Color addon in Linux. Current solution: Install &lt;a href=&quot;https://github.com/linonetwo/browser-adaptation-dynamic-theme&quot;&gt;Browser Adaptation Dynamic Theme&lt;/a&gt; addon. &lt;em&gt;credit to LuanderFarias &amp;amp; Enigma1309&lt;/em&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Credits&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/bmFtZQ/edge-frfox&quot;&gt;bmFtZQ - edge-frfox&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sirlan-ff00ff/arcticfox-theme&quot;&gt;ssirlan-ff00ff - arcticfox-theme&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://arc.net&quot;&gt;The Browser Company&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.svgrepo.com/collection/toe-basic-line-interface-icons/&quot;&gt;Javisperez on SVGRepo - base of sidebar &amp;amp; split tabs icons&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/KiKaraage/ArcWTF/main/%5Bhttps://github.com/aminomancer/uc.css.js/raw/master/uc-extensions.css%5D(https://github.com/microsoft/fluentui-system-icons)&quot;&gt;Microsoft - Fluent UI system icons&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://mrotherguy.github.io/firefox-csshacks/&quot;&gt;MrOtherGuy - several CSS hacks&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/datguypiko/Firefox-Mod-Blur/tree/master/EXTRA%20MODS/Compact%20extensions%20menu&quot;&gt;DatGuyPiko - compact extensions menu&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mbnuqw/sidebery/issues/1481&quot;&gt;mbnuqw - support on Sidebery customizations&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>bradtraversy/50projects50days</title>
+      <link>https://github.com/bradtraversy/50projects50days</link>
+      <description>&lt;p&gt;50+ mini web projects using HTML, CSS &amp; JS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;50 Projects in 50 Days - HTML/CSS and JavaScript&lt;/h1&gt; 
+&lt;p&gt;This is the main repository for all of the projects in the course.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.traversymedia.com/50-Projects-In-50-Days&quot;&gt;Course Link&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;#&lt;/th&gt; 
+   &lt;th&gt;Project&lt;/th&gt; 
+   &lt;th&gt;Live Demo&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;01&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/expanding-cards&quot;&gt;Expanding Cards&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/expanding-cards/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;02&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/progress-steps&quot;&gt;Progress Steps&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/progress-steps/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;03&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/rotating-nav-animation&quot;&gt;Rotating Navigation Animation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/rotating-navigation-animation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;04&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/hidden-search&quot;&gt;Hidden Search Widget&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/hidden-search-widget/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;05&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/blurry-loading&quot;&gt;Blurry Loading&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/blurry-loading/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;06&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/scroll-animation&quot;&gt;Scroll Animation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/scroll-animation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;07&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/split-landing-page&quot;&gt;Split Landing Page&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/split-landing-page/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;08&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/form-input-wave&quot;&gt;Form Wave&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/form-wave/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;09&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/sound-board&quot;&gt;Sound Board&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/sound-board/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;10&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/dad-jokes&quot;&gt;Dad Jokes&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/dad-jokes/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;11&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/event-keycodes&quot;&gt;Event Keycodes&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/event-keycodes/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;12&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/faq-collapse&quot;&gt;Faq Collapse&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/faq-collapse/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;13&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/random-choice-picker&quot;&gt;Random Choice Picker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/random-choice-picker/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;14&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/animated-navigation&quot;&gt;Animated Navigation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/animated-navigation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;15&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/incrementing-counter&quot;&gt;Incrementing Counter&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/incrementing-counter/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;16&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/drink-water&quot;&gt;Drink Water&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/drink-water/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;17&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/movie-app&quot;&gt;Movie App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/movie-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;18&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/background-slider&quot;&gt;Background Slider&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/background-slider/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;19&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/theme-clock&quot;&gt;Theme Clock&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/theme-clock/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;20&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/button-ripple-effect&quot;&gt;Button Ripple Effect&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/button-ripple-effect/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;21&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/drag-n-drop&quot;&gt;Drag N Drop&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/drag-n-drop/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;22&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/drawing-app&quot;&gt;Drawing App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/drawing-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;23&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/kinetic-loader&quot;&gt;Kinetic Loader&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/kinetic-loader/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;24&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/content-placeholder&quot;&gt;Content Placeholder&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/content-placeholder/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;25&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/sticky-navigation&quot;&gt;Sticky Navbar&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/sticky-navbar/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;26&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/double-vertical-slider&quot;&gt;Double Vertical Slider&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/double-vertical-slider/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;27&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/toast-notification&quot;&gt;Toast Notification&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/toast-notification/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;28&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/github-profiles&quot;&gt;Github Profiles&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/github-profiles/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;29&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/double-click-heart&quot;&gt;Double Click Heart&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/double-click-heart/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;30&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/auto-text-effect&quot;&gt;Auto Text Effect&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/auto-text-effect/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;31&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/password-generator&quot;&gt;Password Generator&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/password-generator/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;32&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/good-cheap-fast&quot;&gt;Good Cheap Fast&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/good-cheap-fast/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;33&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/notes-app&quot;&gt;Notes App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/notes-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;34&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/animated-countdown&quot;&gt;Animated Countdown&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/animated-countdown/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;35&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/image-carousel&quot;&gt;Image Carousel&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/image-carousel/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;36&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/hoverboard&quot;&gt;Hoverboard&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/hoverboard/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;37&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/pokedex&quot;&gt;Pokedex&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/pokedex/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;38&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/mobile-tab-navigation&quot;&gt;Mobile Tab Navigation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/mobile-tab-navigation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;39&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/password-strength-background&quot;&gt;Password Strength Background&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/password-strength-background/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;40&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/3d-boxes-background&quot;&gt;3d Background Boxes&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/3d-background-boxes/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;41&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/verify-account-ui&quot;&gt;Verify Account Ui&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/verify-account-ui/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;42&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/live-user-filter&quot;&gt;Live User Filter&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/live-user-filter/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;43&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/feedback-ui-design&quot;&gt;Feedback Ui Design&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/feedback-ui-design/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;44&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/custom-range-slider&quot;&gt;Custom Range Slider&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/custom-range-slider/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;45&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/netflix-mobile-navigation&quot;&gt;Netflix Mobile Navigation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/netflix-mobile-navigation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;46&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/quiz-app&quot;&gt;Quiz App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/quiz-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;47&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/testimonial-box-switcher&quot;&gt;Testimonial Box Switcher&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/testimonial-box-switcher/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;48&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/random-image-generator&quot;&gt;Random Image Feed&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/random-image-feed/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;49&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/todo-list&quot;&gt;Todo List&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/todo-list/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;50&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/insect-catch-game&quot;&gt;Insect Catch Game&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/insect-catch-game/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;51&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/simple-timer&quot;&gt;Simple Timer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/simple-timer/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;strong&gt;NOTE ON PULL REQUESTS&lt;/strong&gt;: All of these projects are part of the course. While I do appreciate people trying to make some things prettier or adding new features, we are only accepting pull requests and looking at issues for bug fixes so that the code stays inline with the course&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The MIT License&lt;/p&gt; 
+&lt;p&gt;Copyright (c) 2020-2021 Traversy Media &lt;a href=&quot;https://traversymedia.com&quot;&gt;https://traversymedia.com&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:&lt;/p&gt; 
+&lt;p&gt;The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&lt;/p&gt; 
+&lt;p&gt;THE SOFTWARE IS PROVIDED &quot;AS IS&quot;, WITHOUT WARRANTY OF ANY KIND, EXPRESS OR IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY, FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE SOFTWARE.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>primefaces/primereact</title>
+      <link>https://github.com/primefaces/primereact</link>
+      <description>&lt;p&gt;The Most Complete React UI Component Library&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://opensource.org/licenses/MIT&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-MIT-yellow.svg?sanitize=true&quot; alt=&quot;License: MIT&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://badge.fury.io/js/primereact&quot;&gt;&lt;img src=&quot;https://badge.fury.io/js/primereact.svg?sanitize=true&quot; alt=&quot;npm version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://snyk.io/advisor/npm-package/primereact&quot;&gt;&lt;img src=&quot;https://snyk.io/advisor/npm-package/primereact/badge.svg?sanitize=true&quot; alt=&quot;primereact&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/primefaces/primereact/actions/workflows/node.js.yml&quot;&gt;&lt;img src=&quot;https://github.com/primefaces/primereact/workflows/NodeJS%20CI/badge.svg?sanitize=true&quot; alt=&quot;Actions CI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/gzKFYnpmCY&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/557940238991753223.svg?color=7289da&amp;amp;label=chat&amp;amp;logo=discord&quot; alt=&quot;Discord Chat&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://stackoverflow.com/questions/tagged/primereact&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/StackOverflow-primereact-chocolate.svg?sanitize=true&quot; alt=&quot;Stackoverflow&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/orgs/primefaces/discussions&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/discussions-search?query=org%3Aprimefaces&amp;amp;logo=github&amp;amp;label=Prime%20Discussions&amp;amp;link=https%3A%2F%2Fgithub.com%2Forgs%2Fprimefaces%2Fdiscussions&quot; alt=&quot;Prime Discussions&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.primereact.org&quot;&gt;&lt;img src=&quot;https://www.primefaces.org/static/social/primereact-preview.jpg&quot; alt=&quot;PrimeReact Hero&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;PrimeReact&lt;/h1&gt; 
+&lt;p&gt;PrimeReact is a rich set of open source UI Components for React. See &lt;a href=&quot;https://primereact.org/&quot;&gt;PrimeReact homepage&lt;/a&gt; for live showcase and documentation.&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;PrimeReact is available at &lt;a href=&quot;https://www.npmjs.com/package/primereact&quot;&gt;npm&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# Using npm
+npm install primereact
+
+# Using yarn
+yarn add primereact
+
+# Using pnpm
+pnpm add primereact
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Import&lt;/h2&gt; 
+&lt;p&gt;Each component can be imported individually so that you only bundle what you use. Import path is available in the documentation of the corresponding component.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;//import { ComponentName } from &#39;primereact/{componentname}&#39;;
+import { Button } from &#39;primereact/button&#39;;
+
+export default function MyComponent() {
+  return (
+    &amp;lt;Button label=&quot;PrimeReact&quot; /&amp;gt;
+  )
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Theming&lt;/h2&gt; 
+&lt;p&gt;PrimeReact has two theming modes; styled or unstyled.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Styled Mode&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Styled mode is based on pre-skinned components with opinionated themes like Material, Bootstrap or PrimeOne themes. Theme is the required css file to be imported, visit the &lt;a href=&quot;https://primereact.org/theming&quot;&gt;Themes&lt;/a&gt; section for the complete list of available themes to choose from.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;// theme
+import &#39;primereact/resources/themes/lara-light-cyan/theme.css&#39;;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Unstyled Mode&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Unstyled mode is disabled by default for all components. Using the PrimeReact context, set &lt;code&gt;unstyled&lt;/code&gt; as true to enable it globally. Visit the &lt;a href=&quot;https://primereact.org/unstyled&quot;&gt;Unstyled mode&lt;/a&gt; documentation for more information and examples.&lt;/p&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;a href=&quot;https://github.com/primefaces/primereact/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=primefaces/primereact&quot;&gt; &lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>thewhiteh4t/seeker</title>
+      <link>https://github.com/thewhiteh4t/seeker</link>
+      <description>&lt;p&gt;Accurately Locate Smartphones using Social Engineering&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt;&lt;img src=&quot;https://i.imgur.com/DIpuNTI.jpg&quot;&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://twitter.com/thewhiteh4t&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/-TWITTER-black?logo=twitter&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://twc1rcle.com/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/-THE WHITE CIRCLE-black?logo=&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://thewhiteh4t.github.io/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/-BLOG-black?logo=dialogflow&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;br&gt; &lt;b&gt;Available in&lt;/b&gt; &lt;br&gt; &lt;img src=&quot;https://i.imgur.com/1wJVDV5.png&quot;&gt; &lt;/p&gt; 
+&lt;p&gt; &lt;a style=&quot;margin-right: 10px;&quot; href=&quot;https://github.com/thewhiteh4t/seeker#installation&quot;&gt; &lt;img src=&quot;https://dabuttonfactory.com/button.png?t=INSTALL&amp;amp;f=Open+Sans&amp;amp;ts=15&amp;amp;tc=000&amp;amp;hp=25&amp;amp;vp=10&amp;amp;c=5&amp;amp;bgt=unicolored&amp;amp;bgc=00e2ff&quot;&gt; &lt;/a&gt; &lt;a style=&quot;margin-right: 10px;&quot; href=&quot;https://github.com/thewhiteh4t/seeker#usage&quot;&gt; &lt;img src=&quot;https://dabuttonfactory.com/button.png?t=USAGE&amp;amp;f=Open+Sans&amp;amp;ts=15&amp;amp;tc=000&amp;amp;hp=25&amp;amp;vp=10&amp;amp;c=5&amp;amp;bgt=unicolored&amp;amp;bgc=00e2ff&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/thewhiteh4t/seeker#demo&quot;&gt; &lt;img src=&quot;https://dabuttonfactory.com/button.png?t=DEMO&amp;amp;f=Open+Sans&amp;amp;ts=15&amp;amp;tc=000&amp;amp;hp=25&amp;amp;vp=10&amp;amp;c=5&amp;amp;bgt=unicolored&amp;amp;bgc=00e2ff&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Concept behind Seeker is simple, just like we host phishing pages to get credentials why not host a fake page that requests your location like many popular location based websites. Read more on &lt;a href=&quot;https://thewhiteh4t.github.io&quot;&gt; thewhiteh4t&#39;s Blog &lt;/a&gt;.Seeker Hosts a fake website which asks for Location Permission and if the target allows it, we can get :&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Longitude&lt;/li&gt; 
+ &lt;li&gt;Latitude&lt;/li&gt; 
+ &lt;li&gt;Accuracy&lt;/li&gt; 
+ &lt;li&gt;Altitude - Not always available&lt;/li&gt; 
+ &lt;li&gt;Direction - Only available if user is moving&lt;/li&gt; 
+ &lt;li&gt;Speed - Only available if user is moving&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Along with Location Information we also get &lt;strong&gt;Device Information&lt;/strong&gt; without any permissions :&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Unique ID using Canvas Fingerprinting&lt;/li&gt; 
+ &lt;li&gt;Device Model - Not always available&lt;/li&gt; 
+ &lt;li&gt;Operating System&lt;/li&gt; 
+ &lt;li&gt;Platform&lt;/li&gt; 
+ &lt;li&gt;Number of CPU Cores - Approximate Results&lt;/li&gt; 
+ &lt;li&gt;Amount of RAM - Approximate Results&lt;/li&gt; 
+ &lt;li&gt;Screen Resolution&lt;/li&gt; 
+ &lt;li&gt;GPU information&lt;/li&gt; 
+ &lt;li&gt;Browser Name and Version&lt;/li&gt; 
+ &lt;li&gt;Public IP Address&lt;/li&gt; 
+ &lt;li&gt;Local IP Address&lt;/li&gt; 
+ &lt;li&gt;Local Port&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Automatic IP Address Reconnaissance&lt;/strong&gt; is performed after the above information is received.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;This tool is a Proof of Concept and is for Educational Purposes Only, Seeker shows what data a malicious website can gather about you and your devices and why you should not click on random links and allow critical permissions such as Location etc.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;How is this Different from IP GeoLocation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Other tools and services offer IP Geolocation which is NOT accurate at all and does not give location of the target instead it is the approximate location of the ISP.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Seeker uses HTML API and gets Location Permission and then grabs Longitude and Latitude using GPS Hardware which is present in the device, so Seeker works best with Smartphones, if the GPS Hardware is not present, such as on a Laptop, Seeker fallbacks to IP Geolocation or it will look for Cached Coordinates.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Generally if a user accepts location permsission, Accuracy of the information recieved is &lt;strong&gt;accurate to approximately 30 meters&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Accuracy depends on multiple factors which you may or may not control such as :&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Device - Won&#39;t work on laptops or phones which have broken GPS&lt;/li&gt; 
+   &lt;li&gt;Browser - Some browsers block javascripts&lt;/li&gt; 
+   &lt;li&gt;GPS Calibration - If GPS is not calibrated you may get inaccurate results and this is very common&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Templates&lt;/h2&gt; 
+&lt;p&gt;Available Templates :&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;NearYou&lt;/li&gt; 
+ &lt;li&gt;Google Drive (Suggested by @Akaal_no_one)&lt;/li&gt; 
+ &lt;li&gt;WhatsApp (Suggested by @Dazmed707)&lt;/li&gt; 
+ &lt;li&gt;Telegram&lt;/li&gt; 
+ &lt;li&gt;Zoom (Made by @a7maadf)&lt;/li&gt; 
+ &lt;li&gt;Google reCAPTCHA (Made by @MrEgyptian)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Create your own template ! Steps to let you create your template is described in this &lt;a href=&quot;https://raw.githubusercontent.com/thewhiteh4t/seeker/master/createTemplate.md&quot;&gt;how-to&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Once your template is ready, &lt;strong&gt;do not forget to propose it to the community via a PR (pull request)&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;Tested On :&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Kali Linux&lt;/li&gt; 
+ &lt;li&gt;BlackArch Linux&lt;/li&gt; 
+ &lt;li&gt;Ubuntu&lt;/li&gt; 
+ &lt;li&gt;Fedora&lt;/li&gt; 
+ &lt;li&gt;Kali Nethunter&lt;/li&gt; 
+ &lt;li&gt;Termux&lt;/li&gt; 
+ &lt;li&gt;Parrot OS&lt;/li&gt; 
+ &lt;li&gt;OSX - Monterey v.12.0.1&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Kali Linux / Arch Linux / Ubuntu / Fedora / Parrot OS / Termux&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/thewhiteh4t/seeker.git
+cd seeker/
+chmod +x install.sh
+./install.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;BlackArch Linux&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo pacman -S seeker
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Docker&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker pull thewhiteh4t/seeker
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;OSX&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/thewhiteh4t/seeker.git
+cd seeker/
+python3 seeker.py
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In order to run in tunnel mode, install ngrok by running this command in the terminal:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install ngrok/ngrok/ngrok
+
+ngrok http 8080
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python3 seeker.py -h
+
+usage: seeker.py [-h] [-k KML] [-p PORT] [-u] [-v] [-t TEMPLATE] [-d] [--telegram token:chatId] [--webhook WEBHOOK]
+
+options:
+  -h, --help                            show this help message and exit
+  -k KML, --kml KML                     KML filename
+  -p PORT, --port PORT                  Web server port [ Default : 8080 ]
+  -u, --update                          Check for updates
+  -v, --version                         Prints version
+  -t TEMPLATE, --template TEMPLATE      Auto choose the template with the given index
+  -d, --debugHTTP                       Disable auto http --&amp;gt; https redirection for testing purposes 
+                                        (only works for the templates having index_temp.html file)
+  --telegram                            Send info to a telegram bot, provide telegram token and chat to use
+                                        format = token:chatId separated by a colon
+  --webhook                             Send events to a webhook endpoint to be processed
+                                        Note : endpoint must be unauthenticated and accept POST request
+
+#########################
+# Environment Variables #
+#########################
+
+Some of the options above can also be enabled via environment variables, to ease deployment.
+Other parameters can be provided via environment variables to avoid interactive mode.
+
+Variables:
+  DEBUG_HTTP            Same as -d, --debugHTTP
+  PORT                  Same as -p, --port
+  TEMPLATE              Same as -t, --template
+  TITLE                 Provide the group title or the page title
+  REDIRECT              Provide the URL to redirect the user to, after the job is done
+  IMAGE                 Provide the image to use, can either be remote (http or https) or local
+                        Note : Remote image will be downloaded locally during the startup
+  DESC                  Provide the description of the item (group or webpage depending on the template)
+  SITENAME              Provide the name of the website
+  DISPLAY_URL           Provide the URL to display on the page
+  MEM_NUM               Provide the number of group membres (Telegram so far)
+  ONLINE_NUM            Provide the number of the group online members (Telegram so far)
+  TELEGRAM              Provide telegram token and chat to use to send info to a telegram bot
+                        format = token:chatId separated by a colon
+  WEBHOOK               Provide the webhook url to forward the events to 
+                        Note : endpoint should be unauthenticated and accept POST method
+                        
+
+##################
+# Usage Examples #
+##################
+
+# Step 1 : In first terminal
+$ python3 seeker.py
+
+# Step 2 : In second terminal start a tunnel service such as ngrok
+$ ./ngrok http 8080
+
+###########
+# Options #
+###########
+
+# Ouput KML File for Google Earth
+$ python3 seeker.py -k &amp;lt;filename&amp;gt;
+
+# Use Custom Port
+$ python3 seeker.py -p 1337
+$ ./ngrok http 1337
+
+# Pre-select a specific template
+$ python3 seeker.py -t 1
+
+################
+# Docker Usage #
+################
+
+# Step 1
+$ docker network create ngroknet
+
+# Step 2
+$ docker run --rm -it --net ngroknet --name seeker thewhiteh4t/seeker
+
+# Step 3
+$ docker run --rm -it --net ngroknet --name ngrok wernight/ngrok ngrok http seeker:8080
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Local Tunnels&lt;/h2&gt; 
+&lt;p&gt;Use&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;ssh -R 80:localhost:8080 nokey@localhost.run
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;as an alterntive to ngrok&lt;/p&gt; 
+&lt;h2&gt;Demo&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;YouTube&lt;/strong&gt;&lt;/p&gt; 
+&lt;a href=&quot;https://odysee.com/@thewhiteh4t:2/seeker_v126_demo:e&quot;&gt; &lt;img src=&quot;https://thumbnails.odycdn.com/optimize/s:1024:768/quality:85/plain/https://thumbs.odycdn.com/5ce9ed06e0ce8a995987dba0949dbc9a.webp&quot;&gt; &lt;/a&gt;</description>
+    </item>
+    
+    <item>
+      <title>primefaces/primeng</title>
+      <link>https://github.com/primefaces/primeng</link>
+      <description>&lt;p&gt;The Most Complete Angular UI Component Library&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://badge.fury.io/js/primeng&quot;&gt;&lt;img src=&quot;https://badge.fury.io/js/primeng.svg?sanitize=true&quot; alt=&quot;npm version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.npmjs.com/package/primeng&quot;&gt;&lt;img src=&quot;https://img.shields.io/npm/dm/primeng.svg?sanitize=true&quot; alt=&quot;npm downloads&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/primefaces/primeng/actions/workflows/node.js.yml&quot;&gt;&lt;img src=&quot;https://github.com/primefaces/primeng/workflows/NodeJS%20CI/badge.svg?sanitize=true&quot; alt=&quot;Actions CI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/gzKFYnpmCY&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/557940238991753223.svg?color=7289da&amp;amp;label=chat&amp;amp;logo=discord&quot; alt=&quot;Discord Chat&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/orgs/primefaces/discussions&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/discussions-search?query=org%3Aprimefaces&amp;amp;logo=github&amp;amp;label=Prime%20Discussions&amp;amp;link=https%3A%2F%2Fgithub.com%2Forgs%2Fprimefaces%2Fdiscussions&quot; alt=&quot;Discussions&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://primeng.org&quot;&gt;&lt;img src=&quot;https://www.primefaces.org/static/social/primeng-preview.jpg&quot; alt=&quot;PrimeNG Hero&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Website&lt;/h3&gt; 
+&lt;p&gt;Visit the &lt;a href=&quot;https://primeng.org&quot;&gt;PrimeNG Website&lt;/a&gt; for general information, demos and documentation.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>lipis/flag-icons</title>
+      <link>https://github.com/lipis/flag-icons</link>
+      <description>&lt;p&gt;🎏 A curated collection of all country flags in SVG — plus the CSS for easier integration&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;flag-icons&lt;/h1&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;A curated collection of all country flags in SVG — plus the CSS for easier integration. See the &lt;a href=&quot;https://flagicons.lipis.dev&quot;&gt;demo&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;You can either &lt;a href=&quot;https://github.com/lipis/flag-icons/archive/main.zip&quot;&gt;download&lt;/a&gt; the whole project as is or install it via npm or Yarn:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install flag-icons
+# or
+yarn add flag-icons
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;First, you need to import css:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;import &quot;/node_modules/flag-icons/css/flag-icons.min.css&quot;;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or use CDN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;link
+  rel=&quot;stylesheet&quot;
+  href=&quot;https://cdn.jsdelivr.net/gh/lipis/flag-icons@7.2.3/css/flag-icons.min.css&quot;
+/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For using the flags inline with text add the classes &lt;code&gt;.fi&lt;/code&gt; and &lt;code&gt;.fi-xx&lt;/code&gt; (where &lt;code&gt;xx&lt;/code&gt; is the &lt;a href=&quot;https://www.iso.org/obp/ui/#search/code/&quot;&gt;ISO 3166-1-alpha-2 code&lt;/a&gt; of a country) to an empty &lt;code&gt;&amp;lt;span&amp;gt;&lt;/code&gt;. If you want to have a squared version flag then add the class &lt;code&gt;fis&lt;/code&gt; as well. Example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;span class=&quot;fi fi-gr&quot;&amp;gt;&amp;lt;/span&amp;gt; &amp;lt;span class=&quot;fi fi-gr fis&quot;&amp;gt;&amp;lt;/span&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You could also apply this to any element, but in that case you&#39;ll have to use the &lt;code&gt;fib&lt;/code&gt; instead of &lt;code&gt;fi&lt;/code&gt; and you&#39;re set. This will add the correct background with the following CSS properties:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;background-size: contain;
+background-position: 50%;
+background-repeat: no-repeat;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Which means that the flag is just going to appear in the middle of an element, so you will have to set manually the correct size of 4 by 3 ratio or if it&#39;s squared add also the &lt;code&gt;flag-icon-squared&lt;/code&gt; class.&lt;/p&gt; 
+&lt;h2&gt;Development&lt;/h2&gt; 
+&lt;p&gt;Run the &lt;code&gt;yarn&lt;/code&gt; to install the dependencies after cloning the project and you&#39;ll be able to:&lt;/p&gt; 
+&lt;p&gt;To build &lt;code&gt;*.scss&lt;/code&gt; files&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To serve it on &lt;code&gt;localhost:8000&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ yarn start
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To have only specific countries in the css file, remove the ones that you don&#39;t need from the &lt;a href=&quot;https://raw.githubusercontent.com/lipis/flag-icons/main/sass/_flag-icons-list.scss&quot;&gt;&lt;code&gt;_flag-icons-list.scss&lt;/code&gt;&lt;/a&gt; file and build it again.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;This project wouldn&#39;t exist without the awesome and now deleted collection of SVG flags by &lt;a href=&quot;https://github.com/koppi&quot;&gt;koppi&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Thank you &lt;a href=&quot;https://twitter.com/andrejsabrickis&quot;&gt;Andrejs Abrickis&lt;/a&gt; for providing the &lt;code&gt;flag-icons&lt;/code&gt; name on &lt;a href=&quot;https://www.npmjs.com/package/flag-icons&quot;&gt;npm&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>devicons/devicon</title>
+      <link>https://github.com/devicons/devicon</link>
+      <description>&lt;p&gt;Set of icons representing programming languages, designing &amp; development tools&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/devicons/devicon/releases&quot;&gt; &lt;img alt=&quot;GitHub release (latest by semver)&quot; src=&quot;https://img.shields.io/github/v/release/devicons/devicon?color=%2360be86&amp;amp;label=Latest%20release&amp;amp;style=for-the-badge&amp;amp;sort=semver&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/LICENSE&quot;&gt; &lt;img alt=&quot;GitHub&quot; src=&quot;https://img.shields.io/github/license/devicons/devicon?color=%2360be86&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/devicons/devicon/graphs/contributors&quot;&gt; &lt;img alt=&quot;GitHub contributors&quot; src=&quot;https://img.shields.io/github/contributors-anon/devicons/devicon?color=%2360be86&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/devicons/devicon/actions&quot;&gt; &lt;img alt=&quot;GitHub branch checks state&quot; src=&quot;https://img.shields.io/github/checks-status/devicons/devicon/master?color=%2360be86&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/devicons/devicon/issues?q=is%3Aopen+is%3Aissue+label%3Arequest%3Aicon&quot;&gt; &lt;img alt=&quot;GitHub issues by-label&quot; src=&quot;https://img.shields.io/github/issues/devicons/devicon/request:icon?color=%2360be86&amp;amp;label=icon%20requests&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/devicons/devicon/stargazers&quot;&gt; &lt;img alt=&quot;GitHub repository stars&quot; src=&quot;https://img.shields.io/github/stars/devicons/devicon?color=%2360be86&amp;amp;label=github%20stars&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &lt;a href=&quot;https://devicon.dev/&quot;&gt; &lt;img alt=&quot;Registered logos&quot; src=&quot;https://img.shields.io/github/directory-file-count/devicons/devicon/icons?color=%2360be86&amp;amp;label=registered%20logos&amp;amp;style=for-the-badge&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;br&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://github.com/devicons/devicon&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/devicons/devicon/master/icons/devicon/devicon-original-wordmark.svg?sanitize=true&quot; alt=&quot;Devicon Logo&quot; height=&quot;140&quot;&gt; &lt;/a&gt; 
+ &lt;h5 align=&quot;center&quot;&gt; Devicon aims to gather all logos representing development languages and tools. &lt;/h5&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;a target=&quot;_blank&quot; href=&quot;https://devicon.dev&quot;&gt;Demo&lt;/a&gt; · &lt;a target=&quot;_blank&quot; href=&quot;https://github.com/devicons/devicon/issues/new?assignees=&amp;amp;labels=request%3Aicon&amp;amp;template=icon-request.md&amp;amp;title=Icon+request%3A+%5BNAME%5D&quot;&gt;Request Icon&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#contribute&quot;&gt;Contribute&lt;/a&gt; &lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;TL;DR&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!-- in your header --&amp;gt;
+&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css&quot;&amp;gt;
+
+&amp;lt;!-- in your body --&amp;gt;
+&amp;lt;i class=&quot;devicon-devicon-plain&quot;&amp;gt;&amp;lt;/i&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#about&quot;&gt;About the Project&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#getting-started&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#request-icon&quot;&gt;Requesting Icon&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#contribute&quot;&gt;Contributing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#discord-community&quot;&gt;Discord Community&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#develop-vs-master&quot;&gt;&lt;code&gt;develop&lt;/code&gt; vs &lt;code&gt;master&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#stale-prs&quot;&gt;Stale Pull Requests&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#building-devicon&quot;&gt;Building Devicon&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2 id=&quot;about&quot;&gt;About the Project&lt;/h2&gt; 
+&lt;p&gt; Devicon aims to gather all logos representing development languages and tools. Each icon comes in several versions: font/SVG, original/plain/line, colored/not colored, wordmark/no wordmark. Devicon has 150+ icons. And it&#39;s growing!&lt;br&gt; &lt;/p&gt; 
+&lt;p&gt; See the &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/devicon.json&quot;&gt;devicon.json&lt;/a&gt; or &lt;a href=&quot;https://devicon.dev&quot;&gt;our website&lt;/a&gt; for complete and up to date reference of all available icons. &lt;/p&gt; 
+&lt;p&gt; Thanks to all our contributors and the &lt;a href=&quot;https://icomoon.io/#home&quot;&gt;IcoMoon app&lt;/a&gt;. Devicon would not be possible without you. &lt;/p&gt; 
+&lt;sub&gt; All product names, logos, and brands are property of their respective owners. All company, product and service names used in this website are for identification purposes only. Use of these names, logos, and brands does not imply endorsement. Usage of these logos should be done according to the company/brand/service&#39;s brand policy. &lt;/sub&gt; 
+&lt;h2 id=&quot;getting-started&quot;&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt; For a super fast setup, go check &lt;a href=&quot;https://devicon.dev&quot;&gt;devicon.dev&lt;/a&gt;.&lt;br&gt; You can either use the &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#getting-started-svg&quot;&gt;raw SVG&lt;/a&gt; icons, our &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#getting-started-font&quot;&gt;Devicon font&lt;/a&gt; (which is also available via &lt;a href=&quot;https://www.jsdelivr.com/package/npm/devicon&quot;&gt;CDN&lt;/a&gt;), or by &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#building-devicon&quot;&gt;building Devicon&lt;/a&gt; yourself. &lt;/p&gt; 
+&lt;h3 id=&quot;getting-started-font&quot;&gt;Use the &lt;code&gt;devicon&lt;/code&gt; font (recommended)&lt;/h3&gt; 
+&lt;p&gt; You can install devicon as a dependency to your project either with &lt;code&gt;npm&lt;/code&gt; or &lt;code&gt;yarn&lt;/code&gt;: &lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install --save devicon
+yarn add devicon
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt; If you don&#39;t want to use a package manager, you can also download and include &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/devicon.min.css&quot;&gt;devicon.min.css&lt;/a&gt; next to the &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/fonts&quot;&gt;font files&lt;/a&gt; to your project. See &lt;a href=&quot;https://devicon.dev&quot;&gt;devicon.dev&lt;/a&gt; for details about how to add Devicon to your project via a CDN. &lt;/p&gt; 
+&lt;p&gt; After setting up you just have to include the stylesheet in your header to get started: &lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;link rel=&quot;stylesheet&quot; href=&quot;devicon.min.css&quot;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Start using icons with &lt;code&gt;&amp;lt;i&amp;gt;&lt;/code&gt;-tag:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!--  for devicon plain version --&amp;gt;
+&amp;lt;i class=&quot;devicon-devicon-plain&quot;&amp;gt;&amp;lt;/i&amp;gt;
+
+&amp;lt;!--  for devicon plain version with wordmark --&amp;gt;
+&amp;lt;i class=&quot;devicon-devicon-plain-wordmark&quot;&amp;gt;&amp;lt;/i&amp;gt;
+
+&amp;lt;!--  for devicon plain version colored with devicon main color --&amp;gt;
+&amp;lt;i class=&quot;devicon-devicon-plain colored&quot;&amp;gt;&amp;lt;/i&amp;gt;
+
+&amp;lt;!--  for devicon plain version with wordmark colored with devicon main color --&amp;gt;
+&amp;lt;i class=&quot;devicon-devicon-plain-wordmark colored&quot;&amp;gt;&amp;lt;/i&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt; An alternate way to use &lt;code&gt;devicon&lt;/code&gt; is by copy/pasting the raw SVG code to your project. &lt;/p&gt; 
+&lt;h3 id=&quot;getting-started-svg&quot;&gt;Copy/paste SVG code (from the &lt;a href=&quot;https://github.com/devicons/devicon/tree/master/icons&quot;&gt;SVG folder&lt;/a&gt; or the &lt;a href=&quot;https://devicon.dev&quot;&gt;project page&lt;/a&gt;):&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;!--  for devicon plain version --&amp;gt;
+&amp;lt;svg id=&quot;Devicon&quot; class=&#39;devicon-devicon-plain&#39; xmlns=&quot;http://www.w3.org/2000/svg&quot; viewBox=&quot;0 0 128 128&quot;&amp;gt;&amp;lt;path id=&quot;plain&quot; fill=&quot;#60be86&quot; d=&quot;M64,7.83H4.77L14.95,95.13l49,25,.06,0,49.07-25L123.23,7.83Zm42.77,54.86c0,.88,0,1.67-.77,2L73.25,80.44l-2.42,1.13-.27-3.15V72.23l.24-1.57,1.09-.47L95.07,59.81l-21.54-9.6L64.35,68.34,58.9,78.87l-1.22,2.27-2.05-.9L22,64.71a2.42,2.42,0,0,1-1.45-2V56.91a2.39,2.39,0,0,1,1.42-2l34-15.73,3.21-1.44v9.66l.24,1.34-1.56.7L34.45,59.79,56.3,69.42l8.05-16,6.21-12.65,1.13-2.28,1.81.91L106,54.89c.73.35.76,1.14.76,2Z&quot;/&amp;gt;&amp;lt;/svg&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Add the following CSS rules in your stylesheet:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-css&quot;&gt;.devicon-devicon-plain {
+  max-width: 2em;
+}
+
+/* if you want to change the original color */
+.devicon-devicon-plain path {
+  fill: #4691f6;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;You can also use the &lt;code&gt;img&lt;/code&gt; tag and reference an SVG directly from the repository:&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-html&quot;&gt;&amp;lt;img src=&#39;https://cdn.jsdelivr.net/gh/devicons/devicon@latest/icons/devicon/devicon-original.svg&#39;&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2 id=&quot;request-icon&quot;&gt;Requesting an icon&lt;/h2&gt; 
+&lt;p&gt; When you want to request an icon please feel free to create an issue. Check out our &lt;a href=&quot;https://github.com/devicons/devicon/wiki/Requesting-an-Icon&quot;&gt;Wiki&lt;/a&gt; for more information. &lt;/p&gt; 
+&lt;h2 id=&quot;contribute&quot;&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt; We are happy with every contribution, whether it&#39;s new icons, features, or maintainers. Please have a look at our &lt;a href=&quot;https://github.com/devicons/devicon/wiki&quot;&gt;Wiki&lt;/a&gt; to see how you can contribute to this project. &lt;/p&gt; 
+&lt;h2 id=&quot;discord-community&quot;&gt;Discord community&lt;/h2&gt; 
+&lt;p&gt; We have a Discord community for Devicons. You can easily request icons, discuss, and have a good time talking with the community members! Join the official Discord Server &lt;a href=&quot;https://discord.gg/hScy8KWACQ&quot;&gt;here!&lt;/a&gt; &lt;/p&gt; 
+&lt;h2 id=&quot;develop-vs-master&quot;&gt;&lt;code&gt;develop&lt;/code&gt; vs &lt;code&gt;master&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt; All official releases shall be in &lt;code&gt;master&lt;/code&gt;. Any updates in between (icons, features, etc.) will be kept in &lt;code&gt;develop&lt;/code&gt;. &lt;/p&gt; 
+&lt;b&gt;&lt;code&gt;develop&lt;/code&gt; contains:&lt;/b&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; Latest SVGs (non-optimized). &lt;/li&gt; 
+ &lt;li&gt; No icons for the latest SVGs. These will be built at every release.&lt;br&gt; Can be built manually. See &lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#building-devicon&quot;&gt;&lt;i&gt;Building Devicon&lt;/i&gt;&lt;/a&gt;. &lt;/li&gt; 
+ &lt;li&gt; Experimental changes. &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;b&gt;&lt;code&gt;master&lt;/code&gt; contains:&lt;/b&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; Latest official release, which contains all the SVGs and icons. &lt;/li&gt; 
+ &lt;li&gt; Official, tested changes. &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2 id=&quot;stale-prs&quot;&gt;Stale Pull Requests&lt;/h2&gt; 
+&lt;p&gt; After a pull request has been open for over 30 days with no activity or response from the author, it&#39;ll be automatically marked as stale. We might fork your changes and merge the changes ourselves. Since GitHub tracks contributions by commits, you will be credited. &lt;/p&gt; 
+&lt;h2 id=&quot;building-devicon&quot;&gt;Building Devicon&lt;/h2&gt; 
+&lt;p&gt; Follow these steps to build the website and icons either locally or using &lt;a href=&quot;https://www.gitpod.io&quot;&gt;Gitpod.io&lt;/a&gt;. &lt;/p&gt; 
+&lt;h3&gt;Table of contents&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#using-gitpod&quot;&gt;Using Gitpod to build&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#local-installation&quot;&gt;Local Installation&lt;/a&gt;&lt;/li&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#install-dependencies&quot;&gt;Install dependencies&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#building-icons&quot;&gt;Build the icons&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#build-css&quot;&gt;Build the CSS stylesheet&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/devicons/devicon/master/#web-server&quot;&gt;Setting up the web server&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ol&gt; 
+&lt;/ol&gt; 
+&lt;h2 id=&quot;using-gitpod&quot;&gt;Using Gitpod.io&lt;/h2&gt; 
+&lt;p&gt;By using &lt;a href=&quot;https://www.gitpod.io)&quot;&gt;Gitpod.io&lt;/a&gt;, you can easily build the icons and install the&lt;br&gt;required dependencies in one single click. No extra setup is required.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gitpod.io/#https://github.com/devicons/devicon/tree/develop&quot;&gt;&lt;img src=&quot;https://gitpod.io/button/open-in-gitpod.svg?sanitize=true&quot; alt=&quot;Open in Gitpod&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; In case some of the commands are not properly ran, you can&lt;br&gt; follow the steps below and run the same commands on Gitpod.io&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2 id=&quot;local-installation&quot;&gt;Local Installation&lt;/h2&gt; 
+&lt;h3 id=&quot;install-dependencies&quot;&gt;Install dependencies&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/devicons/devicon/fork&quot;&gt;Fork&lt;/a&gt; the repository and clone the forked repository.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/&amp;lt;your-github-username&amp;gt;/devicon.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; In case you don&#39;t have Git installed, check the &lt;a href=&quot;https://git-scm.com/book/en/v2/Getting-Started-Installing-Git&quot;&gt;official guide&lt;/a&gt; to install Git on your operating system.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Install all the necessary NPM dependencies&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; In case you don&#39;t have NPM installed, check this &lt;a href=&quot;https://kinsta.com/blog/how-to-install-node-js/&quot;&gt;&lt;b&gt;ultimate guide&lt;/b&gt;&lt;/a&gt; on installing Node.js and NPM. These tools are required in order to build Devicon properly.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Install Firefox&lt;/h3&gt; https://www.mozilla.org/en-US/firefox/new/ 
+&lt;h3&gt;Install Python 3.8&lt;/h3&gt; https://www.python.org/downloads/ 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; Make sure your Python install includes &lt;a href=&quot;https://pypi.org/project/pip/&quot;&gt;pip&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Install Selenium&lt;/h3&gt; ```bash python3 -m pip install --upgrade pip &amp;amp;&amp;amp; pip install selenium==4.1.0 requests==2.25.1 ``` 
+&lt;h3 id=&quot;building-icons&quot;&gt;Build the new icons&lt;/h3&gt; 
+&lt;p&gt;Once all the dependencies are installed, you can proceed to build the newest icons.&lt;br&gt; Usually, this is done on each release, but you can have a sneak peek before a release.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Linux/Unix
+npm run build-icons
+
+# Windows
+python3 ./.github/scripts/icomoon_build_githubless.py ./.github/scripts/build_assets/geckodriver-v0.32.2-win64/geckodriver.exe ./icomoon.json ./devicon.json ./icons ./ --headless
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;i&gt;The process might take a while, depending on your operating system&#39;s speed and the amount of icons.&lt;/i&gt;&lt;/p&gt; 
+&lt;p&gt;If there are any errors shown, please let us know by &lt;a href=&quot;https://github.com/devicons/devicon/issues/new/choose&quot;&gt;creating an issue&lt;/a&gt; or contacting us on our &lt;a href=&quot;https://discord.gg/hScy8KWACQ&quot;&gt;Discord community&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3 id=&quot;build-css&quot;&gt;Build the CSS stylesheet&lt;/h3&gt; 
+&lt;p&gt;Run the following command to build the new CSS stylesheet.&lt;br&gt; This file is used to show all the new icons previously built.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm run build-css
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3 id=&quot;web-server&quot;&gt;Setting up the web server&lt;/h3&gt; 
+&lt;p&gt;Run the following command to start the web server with Python.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm run dev # Will run on port 8000
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or this command, which does exactly the same, but the port can be customized.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python3 -m http.server &amp;lt;port&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You&#39;re done now! &lt;span&gt;🎉&lt;/span&gt; Your build of Devicons should be available at &lt;code&gt;https://localhost:8000&lt;/code&gt; (or the desired port).&lt;/p&gt; 
+&lt;br&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://forthebadge.com/images/badges/built-with-love.svg?sanitize=true&quot;&gt; 
+ &lt;img src=&quot;https://forthebadge.com/images/badges/built-by-developers.svg?sanitize=true&quot;&gt; 
+&lt;/div&gt;</description>
+    </item>
+    
+    <item>
+      <title>isocpp/CppCoreGuidelines</title>
+      <link>https://github.com/isocpp/CppCoreGuidelines</link>
+      <description>&lt;p&gt;The C++ Core Guidelines are a set of tried-and-true guidelines, rules, and best practices about coding in C++&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/isocpp/CppCoreGuidelines/master/cpp_core_guidelines_logo_text.png&quot; alt=&quot;C++ Core Guidelines&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&quot;Within C++ is a smaller, simpler, safer language struggling to get out.&quot; -- &lt;cite&gt;Bjarne Stroustrup&lt;/cite&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/isocpp/CppCoreGuidelines/master/CppCoreGuidelines.md&quot;&gt;C++ Core Guidelines&lt;/a&gt; are a collaborative effort led by Bjarne Stroustrup, much like the C++ language itself. They are the result of many person-years of discussion and design across a number of organizations. Their design encourages general applicability and broad adoption but they can be freely copied and modified to meet your organization&#39;s needs.&lt;/p&gt; 
+&lt;h2&gt;Getting started&lt;/h2&gt; 
+&lt;p&gt;The guidelines themselves are found at &lt;a href=&quot;https://raw.githubusercontent.com/isocpp/CppCoreGuidelines/master/CppCoreGuidelines.md&quot;&gt;CppCoreGuidelines&lt;/a&gt;. The document is in &lt;a href=&quot;https://github.github.com/gfm/&quot;&gt;GH-flavored MarkDown&lt;/a&gt;. It is intentionally kept simple, mostly in ASCII, to allow automatic post-processing such as language translation and reformatting. The editors maintain one &lt;a href=&quot;http://isocpp.github.io/CppCoreGuidelines/CppCoreGuidelines&quot;&gt;version formatted for browsing&lt;/a&gt;. Note that it is manually integrated and can be slightly older than the version in the master branch.&lt;/p&gt; 
+&lt;p&gt;The Guidelines are a constantly evolving document without a strict &quot;release&quot; cadence. Bjarne Stroustrup periodically reviews the document and increments the version number in the introduction. &lt;a href=&quot;https://github.com/isocpp/CppCoreGuidelines/releases&quot;&gt;Checkins that increment the version number&lt;/a&gt; are tagged in git.&lt;/p&gt; 
+&lt;p&gt;Many of the guidelines make use of the header-only Guidelines Support Library. One implementation is available at &lt;a href=&quot;https://github.com/Microsoft/GSL&quot;&gt;GSL: Guidelines Support Library&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Background and scope&lt;/h2&gt; 
+&lt;p&gt;The aim of the guidelines is to help people to use modern C++ effectively. By &quot;modern C++&quot; we mean C++11 and newer. In other words, what would you like your code to look like in 5 years&#39; time, given that you can start now? In 10 years&#39; time?&lt;/p&gt; 
+&lt;p&gt;The guidelines are focused on relatively higher-level issues, such as interfaces, resource management, memory management, and concurrency. Such rules affect application architecture and library design. Following the rules will lead to code that is statically type-safe, has no resource leaks, and catches many more programming logic errors than is common in code today. And it will run fast -- you can afford to do things right.&lt;/p&gt; 
+&lt;p&gt;We are less concerned with low-level issues, such as naming conventions and indentation style. However, no topic that can help a programmer is out of bounds.&lt;/p&gt; 
+&lt;p&gt;Our initial set of rules emphasizes safety (of various forms) and simplicity. They may very well be too strict. We expect to have to introduce more exceptions to better accommodate real-world needs. We also need more rules.&lt;/p&gt; 
+&lt;p&gt;You will find some of the rules contrary to your expectations or even contrary to your experience. If we haven&#39;t suggested that you change your coding style in any way, we have failed! Please try to verify or disprove rules! In particular, we&#39;d really like to have some of our rules backed up with measurements or better examples.&lt;/p&gt; 
+&lt;p&gt;You will find some of the rules obvious or even trivial. Please remember that one purpose of a guideline is to help someone who is less experienced or coming from a different background or language to get up to speed.&lt;/p&gt; 
+&lt;p&gt;The rules are designed to be supported by an analysis tool. Violations of rules will be flagged with references (or links) to the relevant rule. We do not expect you to memorize all the rules before trying to write code.&lt;/p&gt; 
+&lt;p&gt;The rules are meant for gradual introduction into a code base. We plan to build tools for that and hope others will too.&lt;/p&gt; 
+&lt;h2&gt;Contributions and LICENSE&lt;/h2&gt; 
+&lt;p&gt;Comments and suggestions for improvements are most welcome. We plan to modify and extend this document as our understanding improves and the language and the set of available libraries improve. More details are found at &lt;a href=&quot;https://raw.githubusercontent.com/isocpp/CppCoreGuidelines/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/isocpp/CppCoreGuidelines/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Thanks to &lt;a href=&quot;https://www.digitalocean.com/?refcode=32f291566cf7&amp;amp;utm_campaign=Referral_Invite&amp;amp;utm_medium=Referral_Program&amp;amp;utm_source=CopyPaste&quot;&gt;DigitalOcean&lt;/a&gt; for hosting the Standard C++ Foundation website.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>spring-projects/spring-petclinic</title>
+      <link>https://github.com/spring-projects/spring-petclinic</link>
+      <description>&lt;p&gt;A sample Spring-based application&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Spring PetClinic Sample Application &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml&quot;&gt;&lt;img src=&quot;https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gitpod.io/#https://github.com/spring-projects/spring-petclinic&quot;&gt;&lt;img src=&quot;https://gitpod.io/button/open-in-gitpod.svg?sanitize=true&quot; alt=&quot;Open in Gitpod&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/codespaces/new?hide_repo_select=true&amp;amp;ref=main&amp;amp;repo=7517918&quot;&gt;&lt;img src=&quot;https://github.com/codespaces/badge.svg?sanitize=true&quot; alt=&quot;Open in GitHub Codespaces&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Understanding the Spring Petclinic application with a few diagrams&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application&quot;&gt;See the presentation here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Run Petclinic locally&lt;/h2&gt; 
+&lt;p&gt;Spring Petclinic is a &lt;a href=&quot;https://spring.io/guides/gs/spring-boot&quot;&gt;Spring Boot&lt;/a&gt; application built using &lt;a href=&quot;https://spring.io/guides/gs/maven/&quot;&gt;Maven&lt;/a&gt; or &lt;a href=&quot;https://spring.io/guides/gs/gradle/&quot;&gt;Gradle&lt;/a&gt;. You can build a jar file and run it from the command line (it should work just as well with Java 17 or newer):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+./mvnw package
+java -jar target/*.jar
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can then access the Petclinic at &lt;a href=&quot;http://localhost:8080/&quot;&gt;http://localhost:8080/&lt;/a&gt;.&lt;/p&gt; 
+&lt;img width=&quot;1042&quot; alt=&quot;petclinic-screenshot&quot; src=&quot;https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png&quot;&gt; 
+&lt;p&gt;Or you can run it from Maven directly using the Spring Boot Maven plugin. If you do this, it will pick up changes that you make in the project immediately (changes to Java source files require a compile as well - most people use an IDE for this):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./mvnw spring-boot:run
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;NOTE: If you prefer to use Gradle, you can build the app using &lt;code&gt;./gradlew build&lt;/code&gt; and look for the jar file in &lt;code&gt;build/libs&lt;/code&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Building a Container&lt;/h2&gt; 
+&lt;p&gt;There is no &lt;code&gt;Dockerfile&lt;/code&gt; in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./mvnw spring-boot:build-image
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;In case you find a bug/suggested improvement for Spring Petclinic&lt;/h2&gt; 
+&lt;p&gt;Our issue tracker is available &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/issues&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Database configuration&lt;/h2&gt; 
+&lt;p&gt;In its default configuration, Petclinic uses an in-memory database (H2) which gets populated at startup with data. The h2 console is exposed at &lt;code&gt;http://localhost:8080/h2-console&lt;/code&gt;, and it is possible to inspect the content of the database using the &lt;code&gt;jdbc:h2:mem:&amp;lt;uuid&amp;gt;&lt;/code&gt; URL. The UUID is printed at startup to the console.&lt;/p&gt; 
+&lt;p&gt;A similar setup is provided for MySQL and PostgreSQL if a persistent database configuration is needed. Note that whenever the database type changes, the app needs to run with a different profile: &lt;code&gt;spring.profiles.active=mysql&lt;/code&gt; for MySQL or &lt;code&gt;spring.profiles.active=postgres&lt;/code&gt; for PostgreSQL.&lt;/p&gt; 
+&lt;p&gt;You can start MySQL or PostgreSQL locally with whatever installer works for your OS or use docker:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:8.4
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -e POSTGRES_USER=petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_DB=petclinic -p 5432:5432 postgres:16.3
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Further documentation is provided for &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/resources/db/mysql/petclinic_db_setup_mysql.txt&quot;&gt;MySQL&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/resources/db/postgres/petclinic_db_setup_postgres.txt&quot;&gt;PostgreSQL&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Instead of vanilla &lt;code&gt;docker&lt;/code&gt; you can also use the provided &lt;code&gt;docker-compose.yml&lt;/code&gt; file to start the database containers. Each one has a profile just like the Spring profile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-compose --profile mysql up
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-compose --profile postgres up
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Test Applications&lt;/h2&gt; 
+&lt;p&gt;At development time we recommend you use the test applications set up as &lt;code&gt;main()&lt;/code&gt; methods in &lt;code&gt;PetClinicIntegrationTests&lt;/code&gt; (using the default H2 database and also adding Spring Boot Devtools), &lt;code&gt;MySqlTestApplication&lt;/code&gt; and &lt;code&gt;PostgresIntegrationTests&lt;/code&gt;. These are set up so that you can run the apps in your IDE to get fast feedback and also run the same classes as integration tests against the respective database. The MySql integration tests use Testcontainers to start the database in a Docker container, and the Postgres tests use Docker Compose to do the same thing.&lt;/p&gt; 
+&lt;h2&gt;Compiling the CSS&lt;/h2&gt; 
+&lt;p&gt;There is a &lt;code&gt;petclinic.css&lt;/code&gt; in &lt;code&gt;src/main/resources/static/resources/css&lt;/code&gt;. It was generated from the &lt;code&gt;petclinic.scss&lt;/code&gt; source, combined with the &lt;a href=&quot;https://getbootstrap.com/&quot;&gt;Bootstrap&lt;/a&gt; library. If you make changes to the &lt;code&gt;scss&lt;/code&gt;, or upgrade Bootstrap, you will need to re-compile the CSS resources using the Maven profile &quot;css&quot;, i.e. &lt;code&gt;./mvnw package -P css&lt;/code&gt;. There is no build profile for Gradle to compile the CSS.&lt;/p&gt; 
+&lt;h2&gt;Working with Petclinic in your IDE&lt;/h2&gt; 
+&lt;h3&gt;Prerequisites&lt;/h3&gt; 
+&lt;p&gt;The following items should be installed in your system:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Java 17 or newer (full JDK, not a JRE)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/set-up-git&quot;&gt;Git command line tool&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Your preferred IDE 
+  &lt;ul&gt; 
+   &lt;li&gt;Eclipse with the m2e plugin. Note: when m2e is available, there is an m2 icon in &lt;code&gt;Help -&amp;gt; About&lt;/code&gt; dialog. If m2e is not there, follow the install process &lt;a href=&quot;https://www.eclipse.org/m2e/&quot;&gt;here&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://spring.io/tools&quot;&gt;Spring Tools Suite&lt;/a&gt; (STS)&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/idea/&quot;&gt;IntelliJ IDEA&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com&quot;&gt;VS Code&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Steps&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;On the command line run:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/spring-projects/spring-petclinic.git
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Inside Eclipse or STS:&lt;/p&gt; &lt;p&gt;Open the project via &lt;code&gt;File -&amp;gt; Import -&amp;gt; Maven -&amp;gt; Existing Maven project&lt;/code&gt;, then select the root directory of the cloned repo.&lt;/p&gt; &lt;p&gt;Then either build on the command line &lt;code&gt;./mvnw generate-resources&lt;/code&gt; or use the Eclipse launcher (right-click on project and &lt;code&gt;Run As -&amp;gt; Maven install&lt;/code&gt;) to generate the CSS. Run the application&#39;s main method by right-clicking on it and choosing &lt;code&gt;Run As -&amp;gt; Java Application&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Inside IntelliJ IDEA:&lt;/p&gt; &lt;p&gt;In the main menu, choose&amp;nbsp;&lt;code&gt;File -&amp;gt; Open&lt;/code&gt; and select the&amp;nbsp;Petclinic &lt;a href=&quot;https://raw.githubusercontent.com/spring-projects/spring-petclinic/main/pom.xml&quot;&gt;pom.xml&lt;/a&gt;. Click on the &lt;code&gt;Open&lt;/code&gt; button.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;CSS files are generated from the Maven build. You can build them on the command line &lt;code&gt;./mvnw generate-resources&lt;/code&gt; or right-click on the &lt;code&gt;spring-petclinic&lt;/code&gt; project then &lt;code&gt;Maven -&amp;gt; Generates sources and Update Folders&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;A run configuration named &lt;code&gt;PetClinicApplication&lt;/code&gt; should have been created for you if you&#39;re using a recent Ultimate version. Otherwise, run the application by right-clicking on the &lt;code&gt;PetClinicApplication&lt;/code&gt; main class and choosing &lt;code&gt;Run &#39;PetClinicApplication&#39;&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Navigate to the Petclinic&lt;/p&gt; &lt;p&gt;Visit &lt;a href=&quot;http://localhost:8080&quot;&gt;http://localhost:8080&lt;/a&gt; in your browser.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Looking for something in particular?&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Spring Boot Configuration&lt;/th&gt; 
+   &lt;th&gt;Class or Java property files&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;The Main Class&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java&quot;&gt;PetClinicApplication&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Properties Files&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/resources&quot;&gt;application.properties&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Caching&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/java/org/springframework/samples/petclinic/system/CacheConfiguration.java&quot;&gt;CacheConfiguration&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Interesting Spring Petclinic branches and forks&lt;/h2&gt; 
+&lt;p&gt;The Spring Petclinic &quot;main&quot; branch in the &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic&quot;&gt;spring-projects&lt;/a&gt; GitHub org is the &quot;canonical&quot; implementation based on Spring Boot and Thymeleaf. There are &lt;a href=&quot;https://spring-petclinic.github.io/docs/forks.html&quot;&gt;quite a few forks&lt;/a&gt; in the GitHub org &lt;a href=&quot;https://github.com/spring-petclinic&quot;&gt;spring-petclinic&lt;/a&gt;. If you are interested in using a different technology stack to implement the Pet Clinic, please join the community there.&lt;/p&gt; 
+&lt;h2&gt;Interaction with other open-source projects&lt;/h2&gt; 
+&lt;p&gt;One of the best parts about working on the Spring Petclinic application is that we have the opportunity to work in direct contact with many Open Source projects. We found bugs/suggested improvements on various topics such as Spring, Spring Data, Bean Validation and even Eclipse! In many cases, they&#39;ve been fixed/implemented in just a few days. Here is a list of them:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Name&lt;/th&gt; 
+   &lt;th&gt;Issue&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Spring JDBC: simplify usage of NamedParameterJdbcTemplate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://jira.springsource.org/browse/SPR-10256&quot;&gt;SPR-10256&lt;/a&gt; and &lt;a href=&quot;https://jira.springsource.org/browse/SPR-10257&quot;&gt;SPR-10257&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Bean Validation / Hibernate Validator: simplify Maven dependencies and backward compatibility&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://hibernate.atlassian.net/browse/HV-790&quot;&gt;HV-790&lt;/a&gt; and &lt;a href=&quot;https://hibernate.atlassian.net/browse/HV-792&quot;&gt;HV-792&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Spring Data: provide more flexibility when working with JPQL queries&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://jira.springsource.org/browse/DATAJPA-292&quot;&gt;DATAJPA-292&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/issues&quot;&gt;issue tracker&lt;/a&gt; is the preferred channel for bug reports, feature requests and submitting pull requests.&lt;/p&gt; 
+&lt;p&gt;For pull requests, editor preferences are available in the &lt;a href=&quot;https://raw.githubusercontent.com/spring-projects/spring-petclinic/main/.editorconfig&quot;&gt;editor config&lt;/a&gt; for easy use in common text editors. Read more and download plugins at &lt;a href=&quot;https://editorconfig.org&quot;&gt;https://editorconfig.org&lt;/a&gt;. If you have not previously done so, please fill out and submit the &lt;a href=&quot;https://cla.pivotal.io/sign/spring&quot;&gt;Contributor License Agreement&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The Spring PetClinic sample application is released under version 2.0 of the &lt;a href=&quot;https://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache License&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>jgthms/bulma</title>
+      <link>https://github.com/jgthms/bulma</link>
+      <description>&lt;p&gt;Modern CSS framework based on Flexbox&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;a href=&quot;https://bulma.io&quot;&gt;Bulma&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;Bulma is a &lt;strong&gt;modern CSS framework&lt;/strong&gt; based on &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/CSS_Flexible_Box_Layout/Using_CSS_flexible_boxes&quot;&gt;Flexbox&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/jgthms/bulma?logo=Bulma&quot; alt=&quot;Github&quot;&gt; &lt;a href=&quot;https://www.npmjs.com/package/bulma&quot;&gt;&lt;img src=&quot;https://img.shields.io/npm/v/bulma.svg?sanitize=true&quot; alt=&quot;npm&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.npmjs.com/package/bulma&quot;&gt;&lt;img src=&quot;https://img.shields.io/npm/dm/bulma.svg?sanitize=true&quot; alt=&quot;npm&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.jsdelivr.com/package/npm/bulma&quot;&gt;&lt;img src=&quot;https://data.jsdelivr.com/v1/package/npm/bulma/badge&quot; alt=&quot;&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/awesome-css-group/awesome-css&quot;&gt;&lt;img src=&quot;https://cdn.rawgit.com/sindresorhus/awesome/d7305f38d29fed78fa85652e3a63e154dd8e8829/media/badge.svg?sanitize=true&quot; alt=&quot;Awesome&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/jgthms/bulma&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/jgthms/bulma.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/jgthms/bulma&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/jgthms/bulma&quot;&gt;&lt;img src=&quot;https://travis-ci.org/jgthms/bulma.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://bulma.io&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jgthms/bulma/master/docs/images/bulma-banner.png&quot; alt=&quot;Bulma: a Flexbox CSS framework&quot; style=&quot;max-width:100%;&quot; width=&quot;600&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Quick install&lt;/h2&gt; 
+&lt;p&gt;Bulma is constantly in development! Try it out now:&lt;/p&gt; 
+&lt;h3&gt;NPM&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install bulma
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;or&lt;/strong&gt;&lt;/p&gt; 
+&lt;h3&gt;Yarn&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;yarn add bulma
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Bower&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;bower install bulma
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Import&lt;/h3&gt; 
+&lt;p&gt;After installation, you can import the CSS file into your project using this snippet:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;@import &#39;bulma/css/bulma.css&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;CDN&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.jsdelivr.com/package/npm/bulma&quot;&gt;https://www.jsdelivr.com/package/npm/bulma&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Feel free to raise an issue or submit a pull request.&lt;/p&gt; 
+&lt;h2&gt;CSS only&lt;/h2&gt; 
+&lt;p&gt;Bulma is a &lt;strong&gt;CSS&lt;/strong&gt; framework. As such, the sole output is a single CSS file: &lt;a href=&quot;https://github.com/jgthms/bulma/raw/master/css/bulma.css&quot;&gt;bulma.css&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can either use that file, &quot;out of the box&quot;, or download the Sass source files to customize the &lt;a href=&quot;https://bulma.io/documentation/customize/#docsNav&quot;&gt;variables&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;There is &lt;strong&gt;no&lt;/strong&gt; JavaScript included. People generally want to use their own JS implementation (and usually already have one). Bulma can be considered &quot;environment agnostic&quot;: it&#39;s just the style layer on top of the logic.&lt;/p&gt; 
+&lt;h2&gt;Browser Support&lt;/h2&gt; 
+&lt;p&gt;Bulma uses &lt;a href=&quot;https://github.com/postcss/autoprefixer&quot;&gt;autoprefixer&lt;/a&gt; to make (most) Flexbox features compatible with earlier browser versions. According to &lt;a href=&quot;https://caniuse.com/#feat=flexbox&quot;&gt;Can I use&lt;/a&gt;, Bulma is compatible with &lt;strong&gt;recent&lt;/strong&gt; versions of:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Chrome&lt;/li&gt; 
+ &lt;li&gt;Edge&lt;/li&gt; 
+ &lt;li&gt;Firefox&lt;/li&gt; 
+ &lt;li&gt;Opera&lt;/li&gt; 
+ &lt;li&gt;Safari&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Internet Explorer (10+) is only partially supported.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;The documentation resides in the &lt;a href=&quot;https://raw.githubusercontent.com/jgthms/bulma/main/docs&quot;&gt;docs&lt;/a&gt; directory, and is built with the Ruby-based &lt;a href=&quot;https://jekyllrb.com/&quot;&gt;Jekyll&lt;/a&gt; tool.&lt;/p&gt; 
+&lt;p&gt;Browse the &lt;a href=&quot;https://bulma.io/documentation/start/overview/&quot;&gt;online documentation here.&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Related projects&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Project&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/j5bot/bulma-attribute-selectors&quot;&gt;Bulma with Attribute Modules&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Adds support for attribute-based selectors&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/joshuajansen/bulma-rails&quot;&gt;Bulma with Rails&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Integrates Bulma with the rails asset pipeline&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/loogn/bulmarazor&quot;&gt;BulmaRazor&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;A lightweight component library based on Bulma and Blazor.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/vue-bulma/vue-admin&quot;&gt;Vue Admin (dead)&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Vue Admin framework powered by Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/jenil/bulmaswatch&quot;&gt;Bulmaswatch&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Free themes for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Caiyeon/goldfish&quot;&gt;Goldfish (read-only)&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Vault UI with Bulma, Golang, and Vue Admin&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-tux/ember-bulma&quot;&gt;ember-bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Ember addon providing a collection of UI components for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://bloomer.js.org&quot;&gt;Bloomer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;A set of React components for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/kulakowka/react-bulma&quot;&gt;React-bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;React.js components for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://buefy.org/&quot;&gt;Buefy&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Lightweight UI components for Vue.js based on Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/vouill/vue-bulma-components&quot;&gt;vue-bulma-components&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma components for Vue.js with straightforward syntax&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/VizuaaLOG/BulmaJS&quot;&gt;BulmaJS&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Javascript integration for Bulma. Written in ES6 with a data-* API&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/postare/bulma-modal-fx&quot;&gt;Bulma-modal-fx&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;A set of modal window effects with CSS transitions and animations for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/groenroos/bulma-stylus&quot;&gt;Bulma Stylus&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Up-to-date 1:1 translation to Stylus&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/log1x/bulma.styl&quot;&gt;Bulma.styl (read-only)&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;1:1 Stylus translation of Bulma 0.6.11&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/surprisetalk/elm-bulma&quot;&gt;elm-bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma + Elm&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ahstro/elm-bulma-classes&quot;&gt;elm-bulma-classes&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma classes prepared for usage with Elm&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://bulma-customizer.bstash.io/&quot;&gt;Bulma Customizer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma Customizer – Create your own &lt;strong&gt;bespoke&lt;/strong&gt; Bulma build&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://fulma.github.io/Fulma/&quot;&gt;Fulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Wrapper around Bulma for &lt;a href=&quot;https://github.com/fable-compiler/fable-react&quot;&gt;fable-react&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/laravel-enso/enso&quot;&gt;Laravel Enso&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;SPA Admin Panel built with Bulma, VueJS and Laravel&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/timonweb/django-bulma&quot;&gt;Django Bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Integrates Bulma with Django&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/dansup/bulma-templates&quot;&gt;Bulma Templates&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Free Templates for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/couds/react-bulma-components&quot;&gt;React Bulma Components&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Another React wrap on React for Bulma.io&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/sectore/purescript-bulma&quot;&gt;purescript-bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;PureScript bindings for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/laravel-enso/vuedatatable&quot;&gt;Vue Datatable&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma themed datatable based on Vue, Laravel &amp;amp; JSON templates&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://mubaidr.github.io/bulma-fluent/&quot;&gt;bulma-fluent&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Fluent Design Theme for Bulma inspired by Microsoft’s Fluent Design System&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/4d11/csskrt-csskrt&quot;&gt;csskrt-csskrt&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Automatically add Bulma classes to HTML files&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/hipstersmoothie/bulma-pagination-react&quot;&gt;bulma-pagination-react&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma pagination as a react component&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/jmaczan/bulma-helpers&quot;&gt;bulma-helpers&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Functional / Atomic CSS classes for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/hipstersmoothie/bulma-swatch-hook&quot;&gt;bulma-swatch-hook&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma swatches as a react hook and a component&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/tomhrtly/BulmaWP&quot;&gt;BulmaWP (read-only)&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Starter WordPress theme for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/aldi/ralma&quot;&gt;Ralma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Stateless Ractive.js Components for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/python-discord/django-simple-bulma&quot;&gt;Django Simple Bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Lightweight integration of Bulma and Bulma-Extensions for your Django app&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://dfee.github.io/rbx&quot;&gt;rbx&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Comprehensive React UI Framework written in TypeScript&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/aldi/awesome-bulma-templates&quot;&gt;Awesome Bulma Templates&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Free real-world Templates built with Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/fibo/trunx&quot;&gt;Trunx&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Super Saiyan React components, son of awesome Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/web-padawan/aybolit/tree/master/packages/bulma&quot;&gt;@aybolit/bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Web Components library inspired by Bulma and Bulma-extensions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.drupal.org/project/drulma&quot;&gt;Drulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Drupal theme for Bulma.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/textbook/bulrush&quot;&gt;Bulrush&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;A Bulma-based Python Pelican blog theme&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/service-paradis/bulma-variables-export&quot;&gt;Bulma Variable Export&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Access Bulma Variables in Javascript/Typescript in project using Webpack&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/gomah/bulmil&quot;&gt;Bulmil&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;An agnostic UI components library based on Web Components, made with Bulma &amp;amp; Stencil.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/elcobvg/svelte-bulma-components&quot;&gt;Svelte Bulma Components&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Library of UI components to be used in &lt;a href=&quot;https://svelte.technology/&quot;&gt;Svelte.js&lt;/a&gt; or standalone.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/benninkcorien/nunjucks-starter-kit&quot;&gt;Bulma Nunjucks Starterkit&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Starterkit for Nunjucks with Bulma.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/aldi/bulma-social&quot;&gt;Bulma-Social&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Social Buttons and Colors for Bulma&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://divjoy.com/?kit=bulma&quot;&gt;Divjoy&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;React codebase generator with Bulma templates&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Megabit/Blazorise&quot;&gt;Blazorise&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Blazor component library with the support for Bulma CSS framework&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/oruga-ui/theme-bulma&quot;&gt;Oruga-Bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma theme for &lt;a href=&quot;https://oruga.io&quot;&gt;Oruga UI&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/daniil4udo/bulvar/tree/master/packages/bulma&quot;&gt;@bulvar/bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma with &lt;a href=&quot;https://developer.mozilla.org/en-US/docs/Web/CSS/Using_CSS_custom_properties&quot;&gt;CSS Variables&lt;/a&gt; support&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://quinnjr.github.io/angular-bulma&quot;&gt;@angular-bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://angular.io/&quot;&gt;Angular&lt;/a&gt; directives and components to use in your Bulma projects&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/eliutdev/bulma-css-class-completion&quot;&gt;Bulma CSS Class Completion&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;CSS class name completion for the HTML class attribute based on Bulma CSS classes.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ckrybus/crispy-bulma&quot;&gt;Crispy-Bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Bulma template pack for django-crispy-forms&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://case.app&quot;&gt;CASE&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;CASE is Lightweight Backend-as-a-Service with essential features: DB, Admin panel, API, JS SDK&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/NicolasOmar/reactive-bulma&quot;&gt;Reactive Bulma&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;A component library based on React, Bulma, Typescript and Rollup&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Copyright and license &lt;img src=&quot;https://img.shields.io/github/license/jgthms/bulma?logo=Github&quot; alt=&quot;Github&quot;&gt;&lt;/h2&gt; 
+&lt;p&gt;Code copyright 2023 Jeremy Thomas. Code released under &lt;a href=&quot;https://github.com/jgthms/bulma/raw/master/LICENSE&quot;&gt;the MIT license&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>joy-of-react/project-toast</title>
+      <link>https://github.com/joy-of-react/project-toast</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Toast Component Project&lt;/h1&gt; 
+&lt;h2&gt;Joy of React, Project II&lt;/h2&gt; 
+&lt;p&gt;In this project, we&#39;ll dive deep into the implementation of a single common UI component: A &lt;code&gt;&amp;lt;Toast&amp;gt;&lt;/code&gt; message component.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/joy-of-react/project-toast/main/docs/toast-demo.gif&quot; alt=&quot;Screen recording showing 3 toast messages popping up from user input&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;This project is created with &lt;a href=&quot;https://parceljs.org/&quot;&gt;Parcel&lt;/a&gt;. It&#39;s intended to be run locally, on your computer, using Node.js and NPM.&lt;/p&gt; 
+&lt;p&gt;During the first project, Wordle, we saw how to run a local development server. If you&#39;re not quite sure how to get started, I recommend reviewing the &lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/project-wordle/03-dev-server&quot;&gt;“Local Development” instructions&lt;/a&gt; lesson.&lt;/p&gt; 
+&lt;p&gt;To jog your memory, here are the terminal commands you&#39;ll need to run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Install dependencies:
+npm install
+
+# Run a development server:
+npm run dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To create new components, you can use this helper script. It saves you a bit of time, creating all the files and adding the standard code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Create a new component:
+npm run new-component [TheNewComponentName]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Troubleshooting&lt;/h2&gt; 
+&lt;p&gt;If you run into any weird errors when trying to run a development server, start by deleting the &lt;code&gt;.parcel-cache&lt;/code&gt; directory. This directory holds temporary automatically-generated files, and sometimes things get out of sync, and they need to be deleted.&lt;/p&gt; 
+&lt;h3&gt;Cannot Destructure ToastPlayground&lt;/h3&gt; 
+&lt;p&gt;Several students have reported getting an error like this, when saving files:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;TypeError: Cannot destructure property &#39;handleToastAddition&#39; of &#39;(0 , _reactDefault.default).useContext(...)&#39; as it is undefined&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Frustratingly, I haven&#39;t been able to reproduce this error, so I don&#39;t really know what&#39;s causing it, but &lt;strong&gt;it isn&#39;t really anything you have to worry about.&lt;/strong&gt; It only happens in development, when saving files. This error won&#39;t stop you from sharing your projects with the world, it&#39;s just a bit annoying while developing.&lt;/p&gt; 
+&lt;p&gt;This issue also appears to be specific to Parcel, the bundler we&#39;re using in this project. I chose Parcel because it is the most lightweight option I know, to quickly get a React project working, but in the real world, I recommend using Next.js. We explore Next later in this course.&lt;/p&gt; 
+&lt;h3&gt;Other issues&lt;/h3&gt; 
+&lt;p&gt;If you&#39;re running into other issues, please let us know in Discord. Please include the error message, your environment (browser/OS), and any changes you&#39;ve made to the code.&lt;/p&gt; 
+&lt;p&gt;Also, please try deleting the &lt;code&gt;.parcel-cache&lt;/code&gt; directory first, to rule out any cache issues.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Exercise 1: Wiring up form controls&lt;/h2&gt; 
+&lt;p&gt;In order to test our &lt;code&gt;Toast&lt;/code&gt; component, we&#39;ll start by building a little playground. This will allow us to test our component throughout development.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/joy-of-react/project-toast/main/docs/playground.png&quot; alt=&quot;Image showing a textarea and set of radio buttons, along with a “Pop Toast!” radio button&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;In &lt;code&gt;ToastPlayground.js&lt;/code&gt;, you&#39;ll find most of the markup you&#39;ll need, but there are two problems:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;All of the inputs are &lt;em&gt;uncontrolled&lt;/em&gt;, meaning we can&#39;t easily access their values in React. We should use React state to drive all form controls.&lt;/li&gt; 
+ &lt;li&gt;We&#39;re only given a single radio button. We need one for each valid variant.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Our &lt;code&gt;Toast&lt;/code&gt; component should support 4 different variants:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;notice&lt;/li&gt; 
+ &lt;li&gt;warning&lt;/li&gt; 
+ &lt;li&gt;success&lt;/li&gt; 
+ &lt;li&gt;error&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;This first exercise is meant to be a review of the concepts learned in Module 1 and Module 2.&lt;/strong&gt; So, it might be worth brushing up on some of those earlier lessons. In particular, the &lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/02-state/11-bonus-cheatsheet&quot;&gt;Input Cheatsheet bonus lesson&lt;/a&gt; has some handy info about binding different types of form inputs!&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The “Message” textarea should be driven by React state&lt;/li&gt; 
+ &lt;li&gt;Using the data in the &lt;code&gt;VARIANT_OPTIONS&lt;/code&gt; array, render 4 radio buttons within the “Variant” row. They should all be part of the same group (so that only one can be selected at a time). They should also be driven by React state.&lt;/li&gt; 
+ &lt;li&gt;There should be no key warnings in the console.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Exercise 2: Live-editable toast preview&lt;/h2&gt; 
+&lt;p&gt;Inside &lt;code&gt;src/components&lt;/code&gt;, you&#39;ll find a &lt;code&gt;Toast&lt;/code&gt; component. This component includes the basic DOM structure you&#39;ll need, but &lt;strong&gt;it&#39;s entirely static right now.&lt;/strong&gt; It doesn&#39;t accept any props!&lt;/p&gt; 
+&lt;p&gt;Your mission in this exercise is to render the &lt;code&gt;Toast&lt;/code&gt; component within &lt;code&gt;ToastPlayground&lt;/code&gt; and allow the playground to customize the Toast using the state we set up in the previous exercise. We should also figure out a &quot;dismissal&quot; mechanism, so that the close button functions.&lt;/p&gt; 
+&lt;p&gt;Here&#39;s what it should look like, when you&#39;ve solved this exercise:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/joy-of-react/project-toast/main/docs/toast-exercise-2-demo.gif&quot; alt=&quot;Screen recording showing how a demo Toast component can be edited using the playground&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;For now, you can import the &lt;code&gt;Toast&lt;/code&gt; component in &lt;code&gt;ToastPlayground&lt;/code&gt; and render it between the header and the controls:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-jsx&quot;&gt;&amp;lt;header&amp;gt;
+  &amp;lt;img alt=&quot;Cute toast mascot&quot; src=&quot;/toast.png&quot; /&amp;gt;
+  &amp;lt;h1&amp;gt;Toast Playground&amp;lt;/h1&amp;gt;
+&amp;lt;/header&amp;gt;
+
+{/* Place a &amp;lt;Toast /&amp;gt; here! */}
+
+&amp;lt;div className={styles.controlsWrapper}&amp;gt;
+  &amp;lt;div className={styles.row}&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;It&#39;s up to you to come up with the best possible “Prop API” for this component!&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;If you get stuck, you may wish to review the following lessons from the course:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/01-fundamentals/09.02-styling-exercises&quot;&gt;Styling in React, exercises&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/04-component-design/07.01-slots-exercises&quot;&gt;Slots, exercises&lt;/a&gt; (Especially the stretch goal from the first exercise!)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The toast component should show the message entered in the textarea, essentially acting as a “live preview”.&lt;/li&gt; 
+ &lt;li&gt;The toast&#39;s styling should be affected by the “variant” selected: 
+  &lt;ul&gt; 
+   &lt;li&gt;The colors can be set by specifying the appropriate class on the top-level &lt;code&gt;&amp;lt;div&amp;gt;&lt;/code&gt;. By default, it&#39;s set to &lt;code&gt;styles.notice&lt;/code&gt;, but you&#39;ll want to dynamically select the class based on the variant (eg. for a success toast, you&#39;ll want to apply &lt;code&gt;styles.success&lt;/code&gt;).&lt;/li&gt; 
+   &lt;li&gt;The icon can be selected from the &lt;code&gt;ICONS_BY_VARIANT&lt;/code&gt; object. Feel free to re-organize things however you wish!&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;The toast should be hidden by default, but can be shown by clicking the &quot;Pop Toast!” button.&lt;/li&gt; 
+ &lt;li&gt;The toast can be hidden by clicking the “×” button within the toast.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Exercise 3: Toast shelf&lt;/h2&gt; 
+&lt;p&gt;One of the core defining characteristics of toast notifications is that they stack!&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/joy-of-react/project-toast/main/docs/poppin-toasts.gif&quot; alt=&quot;Several toasts popping up, one after another&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;Your mission in this exercise is to restructure things so that our &lt;code&gt;ToastPlayground&lt;/code&gt; allows us to create &lt;em&gt;multiple&lt;/em&gt; toasts.&lt;/p&gt; 
+&lt;p&gt;To help in your quest, you&#39;ll find a &lt;code&gt;ToastShelf&lt;/code&gt; component in this project. It will automatically apply the styles and animations.&lt;/p&gt; 
+&lt;p&gt;You&#39;ll need to replace the &lt;code&gt;Toast&lt;/code&gt; live demo with this new &lt;code&gt;ToastShelf&lt;/code&gt; component, inside &lt;code&gt;ToastPlayground&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-diff&quot;&gt;&amp;lt;header&amp;gt;
+  &amp;lt;img alt=&quot;Cute toast mascot&quot; src=&quot;/toast.png&quot; /&amp;gt;
+  &amp;lt;h1&amp;gt;Toast Playground&amp;lt;/h1&amp;gt;
+&amp;lt;/header&amp;gt;
+
+- &amp;lt;Toast /&amp;gt;
++ &amp;lt;ToastShelf /&amp;gt;
+
+&amp;lt;div className={styles.controlsWrapper}&amp;gt;
+  &amp;lt;div className={styles.row}&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;By the end of this exercise, it should look like this:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/joy-of-react/project-toast/main/docs/toast-exercise-3-demo.gif&quot; alt=&quot;Screen recording showing toast messages popping up when “Pop Toast!” is clicked&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;This is a very tricky exercise.&lt;/strong&gt; If you&#39;re not sure where to start / how to make this work, I share some &lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/project-toast/03-hints&quot;&gt;hints on the course platform&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Some lessons that might help, from the course:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/02-state/04.02-on-click-parable&quot;&gt;The onClick Parable&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/02-state/07-key-generation&quot;&gt;Dynamic key generation&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Instead of live-editing a single Toast instance, the playground should be used to push new toast messages onto a stack, rendered inside &lt;code&gt;ToastShelf&lt;/code&gt; and shown in the corner of the page.&lt;/li&gt; 
+ &lt;li&gt;When “Pop Toast!” is clicked, the message/variant form controls should be reset to their default state (&lt;code&gt;message&lt;/code&gt; should be an empty string, &lt;code&gt;variant&lt;/code&gt; should be &quot;notice&quot;).&lt;/li&gt; 
+ &lt;li&gt;Clicking the “×” button inside the toast should remove that specific toast (but leave the rest untouched).&lt;/li&gt; 
+ &lt;li&gt;A proper &lt;code&gt;&amp;lt;form&amp;gt;&lt;/code&gt; tag should be used in the &lt;code&gt;ToastPlayground&lt;/code&gt;. The toast should be created when submitting the form.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;There should be no key warnings in the console!&lt;/strong&gt; Keys should be unique, and you should not use the index.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Exercise 4: Context&lt;/h2&gt; 
+&lt;p&gt;As it stands, all of our state has been managed by &lt;code&gt;ToastPlayground&lt;/code&gt;. This works for our little demo app, but it wouldn&#39;t scale well in a real-world application!&lt;/p&gt; 
+&lt;p&gt;In this exercise, we&#39;ll refactor our application to use the &lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/04-component-design/08.04-provider-component&quot;&gt;“Provider component” pattern&lt;/a&gt;. It will own all of the state related to the toasts state, and make it available to any child component who requires it.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Create a new component, &lt;code&gt;ToastProvider&lt;/code&gt;, that will serve as the “keeper” for all toast-related state. 
+  &lt;ul&gt; 
+   &lt;li&gt;To generate a new component, you can use the “new-component” script! Try tunning &lt;code&gt;npm run new-component ToastProvider&lt;/code&gt; in the terminal.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Components that require the state should pull it from context with the &lt;code&gt;useContext&lt;/code&gt; hook, rather than passing through props.&lt;/li&gt; 
+ &lt;li&gt;As we saw in the &lt;a href=&quot;https://courses.joshwcomeau.com/joy-of-react/04-component-design/08.04-provider-component&quot;&gt;“Provider Components” lesson&lt;/a&gt;, we can also share &lt;em&gt;functions&lt;/em&gt; that allow consumers to alter the state. Consider making functions available that will create a new toast, or dismiss a specific toast.&lt;/li&gt; 
+ &lt;li&gt;This is a “refactor” exercise. The user experience shouldn&#39;t change at all.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Exercise 5: Keyboard and screen reader support&lt;/h2&gt; 
+&lt;p&gt;Our component so far works pretty well for sighted mouse users, but the experience isn&#39;t as great for everyone else.&lt;/p&gt; 
+&lt;p&gt;In this exercise, we&#39;ll improve the experience for two different groups of people:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Sighted keyboard users&lt;/li&gt; 
+ &lt;li&gt;Users who use a screen reader&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;5.1: Keyboard users&lt;/h3&gt; 
+&lt;p&gt;Let&#39;s try something. Pretend that you don&#39;t have a mouse or trackpad. Using the keyboard alone, can you create and dismiss a toast message?&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Give it a shot now, in browser.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;How do I do this?&lt;/strong&gt; You&#39;ll use the “Tab” key to move focus between interactive elements. You can hold &quot;Shift&quot; and hit &quot;Tab&quot; to move backwards. In order to dismiss the toasts, you&#39;ll need to keep tabbing until your focus reaches the close button. Then, hit &quot;Enter&quot;.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;NOTE: If you&#39;re using Safari or Firefox on MacOS, you&#39;ll need to toggle a system setting to allow tabs to focus on buttons. Read more here: &lt;a href=&quot;https://www.scottohara.me/blog/2014/10/03/link-tabbing-firefox-osx.html&quot;&gt;https://www.scottohara.me/blog/2014/10/03/link-tabbing-firefox-osx.html&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;hr&gt; 
+&lt;p&gt;Well, what did you think?&lt;/p&gt; 
+&lt;p&gt;I found that this experience was pretty annoying. It was difficult to get the focus to reach the close buttons.&lt;/p&gt; 
+&lt;p&gt;When we built a modal from scratch, we moved focus to within the modal, and trapped it there. This is a good idea for modals (which are urgent and blocking), but it&#39;s not the right approach for toasts (which are non-urgent and passive). Moving the user&#39;s focus is a pretty aggressive move, and not something we should do unless it&#39;s necessary.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;So, here&#39;s what we should do:&lt;/strong&gt; Let&#39;s wire up the &quot;Escape&quot; key to automatically dismiss all toasts.&lt;/p&gt; 
+&lt;p&gt;That way, we aren&#39;t interrupting the user. They can read the messages in their own time, and hit &quot;Escape&quot; to dismiss them, without them needing to fuss with tab navigation at all.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Hitting the &quot;Escape&quot; key should dismiss all toasts&lt;/li&gt; 
+ &lt;li&gt;You&#39;ll want to do this with a &lt;code&gt;useEffect&lt;/code&gt; hook, but it&#39;s up to you to decide which component should bear this responsibility.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;5.2: Screen reader users&lt;/h3&gt; 
+&lt;p&gt;A screen reader is a piece of software that narrates the page. They&#39;re primarily used by folks who are blind or have low vision (though screen readers are also useful for folks with cognitive disabilities).&lt;/p&gt; 
+&lt;p&gt;Understanding how to use screen readers is a bit beyond the scope of this course, so I won&#39;t ask you to test things with a screen reader.&lt;/p&gt; 
+&lt;p&gt;Let&#39;s imagine we reach out to an accessibility specialist, and they do us the favor of converting our HTML to be screen-reader-friendly.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Here are the changes we need to make:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-diff&quot;&gt;&amp;lt;ol
+  class=&quot;ToastShelf_wrapper&quot;
++ role=&quot;region&quot;
++ aria-live=&quot;polite&quot;
++ aria-label=&quot;Notification&quot;
+&amp;gt;
+  &amp;lt;li class=&quot;ToastShelf_toastWrapper&quot;&amp;gt;
+    &amp;lt;div class=&quot;Toast_toast Toast_error&quot;&amp;gt;
+      &amp;lt;div class=&quot;Toast_iconContainer&quot;&amp;gt;
+        &amp;lt;!-- Variant SVG icon --&amp;gt;
+      &amp;lt;/div&amp;gt;
+      &amp;lt;p class=&quot;Toast_content&quot;&amp;gt;
++       &amp;lt;div class=&quot;VisuallyHidden_wrapper&quot;&amp;gt;
++         error -
++       &amp;lt;/div&amp;gt;
+        Something went wrong! Please contact customer support
+      &amp;lt;/p&amp;gt;
+      &amp;lt;button
+        class=&quot;Toast_closeButton&quot;
++       aria-label=&quot;Dismiss message&quot;
++       aria-live=&quot;off&quot;
+      &amp;gt;
+        &amp;lt;!-- Close SVG icon --&amp;gt;
+-       &amp;lt;div class=&quot;VisuallyHidden_wrapper&quot;&amp;gt;
+-         Dismiss message
+-       &amp;lt;/div&amp;gt;
+      &amp;lt;/button&amp;gt;
+    &amp;lt;/div&amp;gt;
+  &amp;lt;/li&amp;gt;
+&amp;lt;/ol&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;NOTE: This diff shows the &lt;em&gt;HTML&lt;/em&gt;.&lt;/strong&gt; Pretend that this is an HTML snippet given to you by an accessibility consultant who doesn&#39;t know React. Your job is to integrate their suggestions into our React components.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Curious about these changes?&lt;/strong&gt; In the solution video, I&#39;ll share exactly why each of these changes are necessary. I realize it probably seems pretty arbitrary right now 😅 but all will be explained in the video.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The &lt;code&gt;&amp;lt;ol&amp;gt;&lt;/code&gt; should have the specified role / aria tags&lt;/li&gt; 
+ &lt;li&gt;The toast&#39;s content should be prefixed with the variant, using the &lt;code&gt;VisuallyHidden&lt;/code&gt; component. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;em&gt;NOTE:&lt;/em&gt; The diff above shows an &lt;em&gt;error&lt;/em&gt; toast, but the prefix should be dynamic, based on the variant.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;The “Dismiss message” content in the close button should be moved to an &lt;code&gt;aria-label&lt;/code&gt;. &lt;code&gt;aria-live&lt;/code&gt; should also be set to &quot;off&quot;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;h2&gt;Exercise 6: Extracting a custom hook&lt;/h2&gt; 
+&lt;p&gt;Whew! We&#39;ve done quite a bit with this lil’ &lt;code&gt;Toast&lt;/code&gt; component!&lt;/p&gt; 
+&lt;p&gt;In the previous exercise, we added an “escape” keyboard shortcut, to dismiss all toasts in a single keystroke. This is a very common pattern, and it requires a surprising amount of boilerplate in React.&lt;/p&gt; 
+&lt;p&gt;Let&#39;s build a &lt;strong&gt;custom reusable hook&lt;/strong&gt; that makes it easy to reuse this boilerplate to solve future problems.&lt;/p&gt; 
+&lt;p&gt;There are lots of different ways to tackle this, and there&#39;s no right or wrong answer, but here&#39;s one idea to get you started: what if we create a new custom hook called &lt;code&gt;useEscapeKey&lt;/code&gt;?&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;useEscapeKey(() =&amp;gt; {
+  // Code to dismiss all toasts
+});
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;This is an open-ended exercise.&lt;/strong&gt; Feel free to experiment with different APIs and see what works best for you!&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Acceptance Criteria:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;We want to create a new generic hook that makes it easy to listen for &lt;code&gt;keydown&lt;/code&gt; events in React. It&#39;s up to you to come up with the best “consumer experience”.&lt;/li&gt; 
+ &lt;li&gt;Because this is a generic hook, it shouldn&#39;t be stored with the &lt;code&gt;ToastProvider&lt;/code&gt; component. Create a new &lt;code&gt;/src/hooks&lt;/code&gt; directory, and place your new hook in there.&lt;/li&gt; 
+ &lt;li&gt;The &lt;code&gt;ToastProvider&lt;/code&gt; component should use this new hook.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Make sure there are no ESLint warnings.&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;In VSCode, ESLint warnings are shown as squiggly yellow underlines. You can view the warning by hovering over the underlined characters, or by opening the “Problems” tab (&lt;code&gt;⌘&lt;/code&gt; + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;M&lt;/code&gt;, or Ctrl + &lt;code&gt;Shift&lt;/code&gt; + &lt;code&gt;M&lt;/code&gt;).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

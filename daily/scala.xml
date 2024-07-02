@@ -1,0 +1,1579 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Scala Daily Trending</title>
+    <description>Daily Trending of Scala in GitHub</description>
+    <pubDate>Tue, 02 Jul 2024 01:33:56 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>chipsalliance/rocket-chip</title>
+      <link>https://github.com/chipsalliance/rocket-chip</link>
+      <description>&lt;p&gt;Rocket Chip Generator&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Rocket Chip Generator &lt;span&gt;🚀&lt;/span&gt; &lt;img src=&quot;https://github.com/chipsalliance/rocket-chip/workflows/Continuous%20Integration/badge.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/h1&gt; 
+&lt;p&gt;This repository contains the Rocket chip generator necessary to instantiate the RISC-V Rocket Core. For more information on Rocket Chip, please consult our &lt;a href=&quot;https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-17.html&quot;&gt;technical report&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;RocketChip Dev Meeting&lt;/h2&gt; 
+&lt;p&gt;RocketChip development meetings happen every 2 weeks on Wednesday 17:00 – 18:00am CST (Pacific Time - Los Angeles) with meeting notes &lt;a href=&quot;https://docs.google.com/document/d/1NjDnf-i10QE0y-qI94A67uCspDRdCIS_IRTm4jc0Ycc&quot;&gt;here&lt;/a&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Click &lt;a href=&quot;https://calendar.google.com/calendar/ical/c_699527d804418f900468a49b413d1f9c08e13c0f3f872ce551fc0470d4cdf983%40group.calendar.google.com/public/basic.ics&quot;&gt;here&lt;/a&gt; to subscribe Meeting Schedule(iCal format)&lt;/li&gt; 
+ &lt;li&gt;Click &lt;a href=&quot;https://calendar.google.com/calendar/embed?src=c_699527d804418f900468a49b413d1f9c08e13c0f3f872ce551fc0470d4cdf983%40group.calendar.google.com&quot;&gt;here&lt;/a&gt; to view Meeting Schedule via Google Calendar&lt;/li&gt; 
+ &lt;li&gt;Click &lt;a href=&quot;https://sifive.zoom.us/j/93899365000?pwd=UG1HSFJ4ODFzR2dhMHU2bUNqbXc3Zz09&quot;&gt;here&lt;/a&gt; to join Zoom meeting (ID: 93899365000, passcode: 754340)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For possible time adjustments, they will be negotiated in Slack and published in the calendar.&lt;/p&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#quick&quot;&gt;Quick instructions&lt;/a&gt; for those who want to dive directly into the details without knowing exactly what&#39;s in the repository.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#what&quot;&gt;What&#39;s in the Rocket chip generator repository?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#how&quot;&gt;How should I use the Rocket chip generator?&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#emulator&quot;&gt;Using the cycle-accurate Verilator simulation&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#fpga&quot;&gt;Mapping a Rocket core down to an FPGA&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#vlsi&quot;&gt;Pushing a Rocket core through the VLSI tools&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#param&quot;&gt;How can I parameterize my Rocket chip?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#debug&quot;&gt;Debugging with GDB&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#ide&quot;&gt;Building Rocket Chip with an IDE&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/#contributors&quot;&gt;Contributors&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;&lt;a name=&quot;quick&quot;&gt;&lt;/a&gt; Quick Instructions&lt;/h2&gt; 
+&lt;h3&gt;Checkout The Code&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/ucb-bar/rocket-chip.git
+$ cd rocket-chip
+$ git submodule update --init
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Install Necessary Dependencies&lt;/h3&gt; 
+&lt;p&gt;You may need to install some additional packages to use this repository. Rather than list all dependencies here, please see the appropriate section of the READMEs for each of the subprojects:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/freechipsproject/rocket-tools/raw/master/README.md&quot;&gt;rocket-tools &quot;Ubuntu Packages Needed&quot;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ucb-bar/chisel3#installation&quot;&gt;chisel3 &quot;Installation&quot;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Building The Project&lt;/h3&gt; 
+&lt;p&gt;Generating verilog&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ make verilog
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Generating verilog for a specific Config&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ make verilog CONFIG=DefaultSmallConfig
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Keeping Your Repo Up-to-Date&lt;/h3&gt; 
+&lt;p&gt;If you are trying to keep your repo up to date with this GitHub repo, you also need to keep the submodules and tools up to date.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ # Get the newest versions of the files in this repo
+$ git pull origin master
+$ # Make sure the submodules have the correct versions
+$ git submodule update --init --recursive
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If rocket-tools version changes, you should recompile and install rocket-tools according to the directions in the &lt;a href=&quot;https://github.com/freechipsproject/rocket-tools/raw/master/README.md&quot;&gt;rocket-tools/README&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ cd rocket-tools
+$ ./build.sh
+$ ./build-rv32ima.sh (if you are using RV32)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;&lt;a name=&quot;what&quot;&gt;&lt;/a&gt; What&#39;s in the Rocket chip generator repository?&lt;/h2&gt; 
+&lt;p&gt;The rocket-chip repository is a meta-repository that points to several sub-repositories using &lt;a href=&quot;http://git-scm.com/book/en/Git-Tools-Submodules&quot;&gt;Git submodules&lt;/a&gt;. Those repositories contain tools needed to generate and test SoC designs. This respository also contains code that is used to generate RTL. Hardware generation is done using &lt;a href=&quot;http://chisel.eecs.berkeley.edu&quot;&gt;Chisel&lt;/a&gt;, a hardware construction language embedded in Scala. The rocket-chip generator is a Scala program that invokes the Chisel compiler in order to emit RTL describing a complete SoC. The following sections describe the components of this repository.&lt;/p&gt; 
+&lt;h3&gt;&lt;a name=&quot;what_submodules&quot;&gt;&lt;/a&gt;Git Submodules&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Tools-Submodules&quot;&gt;Git submodules&lt;/a&gt; allow you to keep a Git repository as a subdirectory of another Git repository. For projects being co-developed with the Rocket Chip Generator, we have often found it expedient to track them as submodules, allowing for rapid exploitation of new features while keeping commit histories separate. As submoduled projects adopt stable public APIs, we transition them to external dependencies. Here are the submodules that are currently being tracked in the rocket-chip repository:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;chisel3&lt;/strong&gt; (&lt;a href=&quot;https://github.com/ucb-bar/chisel3&quot;&gt;https://github.com/ucb-bar/chisel3&lt;/a&gt;): The Rocket Chip Generator uses &lt;a href=&quot;http://chisel.eecs.berkeley.edu&quot;&gt;Chisel&lt;/a&gt; to generate RTL.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;firrtl&lt;/strong&gt; (&lt;a href=&quot;https://github.com/ucb-bar/firrtl&quot;&gt;https://github.com/ucb-bar/firrtl&lt;/a&gt;): &lt;a href=&quot;http://bar.eecs.berkeley.edu/projects/2015-firrtl.html&quot;&gt;Firrtl (Flexible Internal Representation for RTL)&lt;/a&gt; is the intermediate representation of RTL constructions used by Chisel3. The Chisel3 compiler generates a Firrtl representation, from which the final product (Verilog code, C code, etc) is generated.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;hardfloat&lt;/strong&gt; (&lt;a href=&quot;https://github.com/ucb-bar/berkeley-hardfloat&quot;&gt;https://github.com/ucb-bar/berkeley-hardfloat&lt;/a&gt;): Hardfloat holds Chisel code that generates parameterized IEEE 754-2008 compliant floating-point units used for fused multiply-add operations, conversions between integer and floating-point numbers, and conversions between floating-point conversions with different precision.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;rocket-tools&lt;/strong&gt; (&lt;a href=&quot;https://github.com/freechipsproject/rocket-tools&quot;&gt;https://github.com/freechipsproject/rocket-tools&lt;/a&gt;): We tag a version of RISC-V software tools that work with the RTL committed in this repository.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;torture&lt;/strong&gt; (&lt;a href=&quot;https://github.com/ucb-bar/riscv-torture&quot;&gt;https://github.com/ucb-bar/riscv-torture&lt;/a&gt;): This module is used to generate and execute constrained random instruction streams that can be used to stress-test both the core and uncore portions of the design.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;&lt;a name=&quot;what_packages&quot;&gt;&lt;/a&gt;Scala Packages&lt;/h3&gt; 
+&lt;p&gt;In addition to submodules that track independent Git repositories, the rocket-chip code base is itself factored into a number of Scala packages. These packages are all found within the src/main/scala directory. Some of these packages provide Scala utilities for generator configuration, while other contain the actual Chisel RTL generators themselves. Here is a brief description of what can be found in each package:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;amba&lt;/strong&gt; This RTL package uses diplomacy to generate bus implementations of AMBA protocols, including AXI4, AHB-lite, and APB.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;config&lt;/strong&gt; This utility package provides Scala interfaces for configuring a generator via a dynamically-scoped parameterization library.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;coreplex&lt;/strong&gt; This RTL package generates a complete coreplex by gluing together a variety of components from other packages, including: tiled Rocket cores, a system bus network, coherence agents, debug devices, interrupt handlers, externally-facing peripherals, clock-crossers and converters from TileLink to external bus protocols (e.g. AXI or AHB).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;devices&lt;/strong&gt; This RTL package contains implementations for peripheral devices, including the Debug module and various TL slaves.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;diplomacy&lt;/strong&gt; This utility package extends Chisel by allowing for two-phase hardware elaboration, in which certain parameters are dynamically negotiated between modules. For more information about diplomacy, see &lt;a href=&quot;https://carrv.github.io/2017/papers/cook-diplomacy-carrv2017.pdf&quot;&gt;this paper&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;groundtest&lt;/strong&gt; This RTL package generates synthesizable hardware testers that emit randomized memory access streams in order to stress-tests the uncore memory hierarchy.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;jtag&lt;/strong&gt; This RTL package provides definitions for generating JTAG bus interfaces.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;regmapper&lt;/strong&gt; This utility package generates slave devices with a standardized interface for accessing their memory-mapped registers.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;rocket&lt;/strong&gt; This RTL package generates the Rocket in-order pipelined core, as well as the L1 instruction and data caches. This library is intended to be used by a chip generator that instantiates the core within a memory system and connects it to the outside world.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;tile&lt;/strong&gt; This RTL package contains components that can be combined with cores to construct tiles, such as FPUs and accelerators.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;tilelink&lt;/strong&gt; This RTL package uses diplomacy to generate bus implementations of the TileLink protocol. It also contains a variety of adapters and protocol converters.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;system&lt;/strong&gt; This top-level utility package invokes Chisel to elaborate a particular configuration of a coreplex, along with the appropriate testing collateral.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;unittest&lt;/strong&gt; This utility package contains a framework for generateing synthesizable hardware testers of individual modules.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;util&lt;/strong&gt; This utility package provides a variety of common Scala and Chisel constructs that are re-used across multiple other packages,&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;&lt;a name=&quot;what_else&quot;&gt;&lt;/a&gt;Other Resources&lt;/h3&gt; 
+&lt;p&gt;Outside of Scala, we also provide a variety of resources to create a complete SoC implementation and test the generated designs.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;bootrom&lt;/strong&gt; Sources for the first-stage bootloader included in the BootROM.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;csrc&lt;/strong&gt; C sources for use with Verilator simulation.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;docs&lt;/strong&gt; Documentation, tutorials, etc for specific parts of the codebase.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;emulator&lt;/strong&gt; Directory in which Verilator simulations are compiled and run.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;regression&lt;/strong&gt; Defines continuous integration and nightly regression suites.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;scripts&lt;/strong&gt; Utilities for parsing the output of simulations or manipulating the contents of source files.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;vsim&lt;/strong&gt; Directory in which Synopsys VCS simulations are compiled and run.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;vsrc&lt;/strong&gt; Verilog sources containing interfaces, harnesses and VPI.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;&lt;a name=&quot;ide&quot;&gt;&lt;/a&gt; IDEs Support&lt;/h2&gt; 
+&lt;p&gt;The Rocket Chip Scala build uses &lt;a href=&quot;https://github.com/com-lihaoyi/mill&quot;&gt;mill&lt;/a&gt; as build tool.&lt;/p&gt; 
+&lt;p&gt;IDEs like &lt;a href=&quot;https://www.jetbrains.com/idea/&quot;&gt;IntelliJ&lt;/a&gt; and &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VSCode&lt;/a&gt; are popular in the Scala community and work with Rocket Chip.&lt;/p&gt; 
+&lt;p&gt;The Rocket Chip currently uses &lt;code&gt;nix&lt;/code&gt; to configure the build and/or development environment, you need to install it first depending on your OS distro.&lt;/p&gt; 
+&lt;p&gt;Then follow the steps:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Generate BSP config by running:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;mill mill.bsp.BSP/install
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Patch the &lt;code&gt;argv&lt;/code&gt; in &lt;code&gt;.bsp/mill-bsp.json&lt;/code&gt;, from&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{&quot;name&quot;:&quot;mill-bsp&quot;,&quot;argv&quot;:[&quot;/usr/bin/mill&quot;,&quot;--bsp&quot;,&quot;--disable-ticker&quot;,&quot;--color&quot;,&quot;false&quot;,&quot;--jobs&quot;,&quot;1&quot;],&quot;millVersion&quot;:&quot;0.10.9&quot;,&quot;bspVersion&quot;:&quot;2.0.0&quot;,&quot;languages&quot;:[&quot;scala&quot;,&quot;java&quot;]}
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;to&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{&quot;name&quot;:&quot;mill-bsp&quot;,&quot;argv&quot;:[&quot;/usr/bin/nix&quot;,&quot;develop&quot;,&quot;-c&quot;,&quot;mill&quot;,&quot;--bsp&quot;,&quot;--disable-ticker&quot;,&quot;--color&quot;,&quot;false&quot;,&quot;--jobs&quot;,&quot;1&quot;],&quot;millVersion&quot;:&quot;0.10.9&quot;,&quot;bspVersion&quot;:&quot;2.0.0&quot;,&quot;languages&quot;:[&quot;scala&quot;,&quot;java&quot;]}
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;For IntelliJ users&lt;/h3&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt; &lt;p&gt;Install and configure &lt;a href=&quot;https://plugins.jetbrains.com/plugin/1347-scala&quot;&gt;Scala&lt;/a&gt; plugin.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;BSP should be automatically run. If it doesn&#39;t, click &lt;code&gt;bsp&lt;/code&gt; on the right bar, then right-click on your project to reload.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;For VSCode users&lt;/h3&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt; &lt;p&gt;Install and configure &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=scalameta.metals&quot;&gt;Metals&lt;/a&gt; extension.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Execute VSCode command &lt;code&gt;Metals: Import build&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;&lt;a name=&quot;contributors&quot;&gt;&lt;/a&gt; Contributors&lt;/h2&gt; 
+&lt;p&gt;Contributing guidelines can be found in &lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/rocket-chip/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;A list of contributors can be found &lt;a href=&quot;https://github.com/chipsalliance/rocket-chip/graphs/contributors&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;&lt;a name=&quot;attribution&quot;&gt;&lt;/a&gt; Attribution&lt;/h2&gt; 
+&lt;p&gt;If used for research, please cite Rocket Chip by the technical report:&lt;/p&gt; 
+&lt;p&gt;Krste Asanović, Rimas Avižienis, Jonathan Bachrach, Scott Beamer, David Biancolin, Christopher Celio, Henry Cook, Palmer Dabbelt, John Hauser, Adam Izraelevitz, Sagar Karandikar, Benjamin Keller, Donggyu Kim, John Koenig, Yunsup Lee, Eric Love, Martin Maas, Albert Magyar, Howard Mao, Miquel Moreto, Albert Ou, David Patterson, Brian Richards, Colin Schmidt, Stephen Twigg, Huy Vo, and Andrew Waterman, &lt;em&gt;&lt;a href=&quot;https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-17.html&quot;&gt;The Rocket Chip Generator&lt;/a&gt;&lt;/em&gt;, Technical Report UCB/EECS-2016-17, EECS Department, University of California, Berkeley, April 2016&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>chipsalliance/chisel</title>
+      <link>https://github.com/chipsalliance/chisel</link>
+      <description>&lt;p&gt;Chisel: A Modern Hardware Design Language&lt;/p&gt;&lt;hr&gt;&lt;a href=&quot;https://www.chisel-lang.org&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/docs/src/images/chisel_logo.svg?sanitize=true&quot; height=&quot;60&quot;&gt; &lt;/a&gt; 
+&lt;a href=&quot;https://www.chipsalliance.org&quot;&gt; &lt;img align=&quot;right&quot; src=&quot;https://raw.githubusercontent.com/chipsalliance/.github/main/profile/images/chips_alliance.svg?sanitize=true&quot; height=&quot;60&quot;&gt; &lt;/a&gt; 
+&lt;p&gt;The &lt;strong&gt;Constructing Hardware in a Scala Embedded Language&lt;/strong&gt; (&lt;a href=&quot;https://www.chisel-lang.org&quot;&gt;&lt;strong&gt;Chisel&lt;/strong&gt;&lt;/a&gt;) is an open-source hardware description language (HDL) used to describe digital electronics and circuits at the register-transfer level that facilitates &lt;strong&gt;advanced circuit generation and design reuse for both ASIC and FPGA digital logic designs&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;Chisel adds hardware construction primitives to the &lt;a href=&quot;https://www.scala-lang.org&quot;&gt;Scala&lt;/a&gt; programming language, providing designers with the power of a modern programming language to write complex, parameterizable circuit generators that produce synthesizable Verilog. This generator methodology enables the creation of re-usable components and libraries, such as the FIFO queue and arbiters in the &lt;a href=&quot;https://www.chisel-lang.org/api/latest/#chisel3.util.package&quot;&gt;Chisel Standard Library&lt;/a&gt;, raising the level of abstraction in design while retaining fine-grained control.&lt;/p&gt; 
+&lt;p&gt;For more information on the benefits of Chisel see: &lt;a href=&quot;https://stackoverflow.com/questions/53007782/what-benefits-does-chisel-offer-over-classic-hardware-description-languages&quot;&gt;&quot;What benefits does Chisel offer over classic Hardware Description Languages?&quot;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Chisel is powered by &lt;a href=&quot;https://github.com/chipsalliance/firrtl-spec&quot;&gt;FIRRTL (Flexible Intermediate Representation for RTL)&lt;/a&gt;, a hardware compiler framework implemented by &lt;a href=&quot;https://github.com/llvm/circt&quot;&gt;LLVM CIRCT&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Chisel is &lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/LICENSE&quot;&gt;permissively licensed&lt;/a&gt; (Apache 2.0) under the guidance of &lt;a href=&quot;https://www.chipsalliance.org&quot;&gt;CHIPS Alliance&lt;/a&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#what-does-chisel-code-look-like&quot;&gt;What does Chisel code look like?&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#led-blink&quot;&gt;LED blink&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#fir-filter&quot;&gt;FIR Filter&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#getting-started&quot;&gt;Getting Started&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#bootcamp-interactive-tutorial&quot;&gt;Bootcamp Interactive Tutorial&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#a-textbook-on-chisel&quot;&gt;A Textbook on Chisel&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#build-your-own-chisel-projects&quot;&gt;Build Your Own Chisel Projects&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#guide-for-new-contributors&quot;&gt;Guide For New Contributors&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#design-verification&quot;&gt;Design Verification&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#documentation&quot;&gt;Documentation&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#useful-resources&quot;&gt;Useful Resources&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#chisel-dev-meeting&quot;&gt;Chisel Dev Meeting&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#data-types-overview&quot;&gt;Data Types Overview&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#contributor-documentation&quot;&gt;Contributor Documentation&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#useful-resources-for-contributors&quot;&gt;Useful Resources for Contributors&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#compiling-and-testing-chisel&quot;&gt;Compiling and Testing Chisel&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#running-projects-against-local-chisel&quot;&gt;Running Projects Against Local Chisel&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#chisel-architecture-overview&quot;&gt;Chisel Architecture Overview&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#chisel-sub-projects&quot;&gt;Chisel Sub-Projects&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#which-version-should-i-use&quot;&gt;Which version should I use?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#roadmap&quot;&gt;Roadmap&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gitter.im/freechipsproject/chisel3?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://matrix.to/img/matrix-badge.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/freechipsproject/chisel3&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://javadoc.io/doc/org.chipsalliance/chisel_2.13/latest&quot;&gt;&lt;img src=&quot;https://www.javadoc.io/badge/org.chipsalliance/chisel_2.13.svg?color=blue&amp;amp;label=Scaladoc&quot; alt=&quot;Scaladoc&quot;&gt;&lt;/a&gt; &lt;img src=&quot;https://github.com/chipsalliance/chisel/actions/workflows/test.yml/badge.svg?sanitize=true&quot; alt=&quot;CI&quot;&gt; &lt;a href=&quot;https://github.com/chipsalliance/chisel/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/tag/chipsalliance/chisel.svg?include_prereleases&amp;amp;sort=semver&quot; alt=&quot;GitHub tag (latest SemVer)&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://index.scala-lang.org/chipsalliance/chisel/chisel&quot;&gt;&lt;img src=&quot;https://index.scala-lang.org/chipsalliance/chisel/chisel/latest-by-scala-version.svg?platform=jvm&quot; alt=&quot;Scala version support&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://index.scala-lang.org/chipsalliance/chisel/chisel3&quot;&gt;&lt;img src=&quot;https://index.scala-lang.org/chipsalliance/chisel/chisel3/latest-by-scala-version.svg?platform=jvm&quot; alt=&quot;Scala version support (chisel3)&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://s01.oss.sonatype.org/content/repositories/snapshots/org/chipsalliance/chisel_2.13&quot;&gt;&lt;img src=&quot;https://img.shields.io/nexus/s/org.chipsalliance/chisel_2.13?server=https%3A%2F%2Fs01.oss.sonatype.org&quot; alt=&quot;Sonatype Snapshots&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;What does Chisel code look like?&lt;/h2&gt; 
+&lt;h3&gt;LED blink&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;import chisel3._
+import chisel3.util.Counter
+import circt.stage.ChiselStage
+
+class Blinky(freq: Int, startOn: Boolean = false) extends Module {
+  val io = IO(new Bundle {
+    val led0 = Output(Bool())
+  })
+  // Blink LED every second using Chisel built-in util.Counter
+  val led = RegInit(startOn.B)
+  val (_, counterWrap) = Counter(true.B, freq / 2)
+  when(counterWrap) {
+    led := ~led
+  }
+  io.led0 := led
+}
+
+object Main extends App {
+  // These lines generate the Verilog output
+  println(
+    ChiselStage.emitSystemVerilog(
+      new Blinky(1000),
+      firtoolOpts = Array(&quot;-disable-all-randomization&quot;, &quot;-strip-debug-info&quot;)
+    )
+  )
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Should output the following Verilog:&lt;/p&gt; 
+&lt;!--
+Note that you can regenerate the HTML below by using VSCode with extensions:
+* Markdown All in One: https://marketplace.visualstudio.com/items?itemName=yzhang.markdown-all-in-one
+* Verilog-HDL/SystemVerilog/Bluespec SystemVerilog: https://marketplace.visualstudio.com/items?itemName=mshr-h.VerilogHDL
+
+You then generate the Verilog and place it in a syntax highlighted code block in this file, eg.
+```verilog
+...
+```
+You can then run the command: &gt; Markdown All in One: Print current document to HTML
+Then you can open the generated HTML and copy-paste
+--&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Click to expand!&lt;/summary&gt; 
+ &lt;p&gt;&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-verilog&quot;&gt;&lt;span class=&quot;hljs-comment&quot;&gt;// Generated by CIRCT firtool-1.37.0&lt;/span&gt;
+&lt;span class=&quot;hljs-keyword&quot;&gt;module&lt;/span&gt; Blinky(
+  &lt;span class=&quot;hljs-keyword&quot;&gt;input&lt;/span&gt;  clock,
+         reset,
+  &lt;span class=&quot;hljs-keyword&quot;&gt;output&lt;/span&gt; io_led0
+);
+
+  &lt;span class=&quot;hljs-keyword&quot;&gt;reg&lt;/span&gt;       led;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;reg&lt;/span&gt; [&lt;span class=&quot;hljs-number&quot;&gt;8&lt;/span&gt;:&lt;span class=&quot;hljs-number&quot;&gt;0&lt;/span&gt;] counterWrap_c_value;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;always&lt;/span&gt; @(&lt;span class=&quot;hljs-keyword&quot;&gt;posedge&lt;/span&gt; clock) &lt;span class=&quot;hljs-keyword&quot;&gt;begin&lt;/span&gt;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (reset) &lt;span class=&quot;hljs-keyword&quot;&gt;begin&lt;/span&gt;
+      led &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;1&#39;h0&lt;/span&gt;;
+      counterWrap_c_value &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;9&#39;h0&lt;/span&gt;;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;end&lt;/span&gt;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;begin&lt;/span&gt;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;automatic&lt;/span&gt; &lt;span class=&quot;hljs-keyword&quot;&gt;logic&lt;/span&gt; counterWrap = counterWrap_c_value == &lt;span class=&quot;hljs-number&quot;&gt;9&#39;h1F3&lt;/span&gt;;
+      led &amp;lt;= counterWrap ^ led;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;if&lt;/span&gt; (counterWrap)
+        counterWrap_c_value &amp;lt;= &lt;span class=&quot;hljs-number&quot;&gt;9&#39;h0&lt;/span&gt;;
+      &lt;span class=&quot;hljs-keyword&quot;&gt;else&lt;/span&gt;
+        counterWrap_c_value &amp;lt;= counterWrap_c_value + &lt;span class=&quot;hljs-number&quot;&gt;9&#39;h1&lt;/span&gt;;
+    &lt;span class=&quot;hljs-keyword&quot;&gt;end&lt;/span&gt;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;end&lt;/span&gt; &lt;span class=&quot;hljs-comment&quot;&gt;// always @(posedge)&lt;/span&gt;
+  &lt;span class=&quot;hljs-keyword&quot;&gt;assign&lt;/span&gt; io_led0 = led;
+&lt;span class=&quot;hljs-keyword&quot;&gt;endmodule&lt;/span&gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt; 
+&lt;h3&gt;FIR Filter&lt;/h3&gt; 
+&lt;p&gt;Consider an FIR filter that implements a convolution operation, as depicted in this block diagram:&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/docs/src/images/fir_filter.svg?sanitize=true&quot; width=&quot;512&quot;&gt; 
+&lt;p&gt;While Chisel provides similar base primitives as synthesizable Verilog, and &lt;em&gt;could&lt;/em&gt; be used as such:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;// 3-point moving sum implemented in the style of a FIR filter
+class MovingSum3(bitWidth: Int) extends Module {
+  val io = IO(new Bundle {
+    val in = Input(UInt(bitWidth.W))
+    val out = Output(UInt(bitWidth.W))
+  })
+
+  val z1 = RegNext(io.in)
+  val z2 = RegNext(z1)
+
+  io.out := (io.in * 1.U) + (z1 * 1.U) + (z2 * 1.U)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;the power of Chisel comes from the ability to create generators, such as an FIR filter that is defined by the list of coefficients:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;// Generalized FIR filter parameterized by the convolution coefficients
+class FirFilter(bitWidth: Int, coeffs: Seq[UInt]) extends Module {
+  val io = IO(new Bundle {
+    val in = Input(UInt(bitWidth.W))
+    val out = Output(UInt(bitWidth.W))
+  })
+  // Create the serial-in, parallel-out shift register
+  val zs = Reg(Vec(coeffs.length, UInt(bitWidth.W)))
+  zs(0) := io.in
+  for (i &amp;lt;- 1 until coeffs.length) {
+    zs(i) := zs(i-1)
+  }
+
+  // Do the multiplies
+  val products = VecInit.tabulate(coeffs.length)(i =&amp;gt; zs(i) * coeffs(i))
+
+  // Sum up the products
+  io.out := products.reduce(_ + _)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;and use and re-use them across designs:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;val movingSum3Filter = Module(new FirFilter(8, Seq(1.U, 1.U, 1.U)))  // same 3-point moving sum filter as before
+val delayFilter = Module(new FirFilter(8, Seq(0.U, 1.U)))  // 1-cycle delay as a FIR filter
+val triangleFilter = Module(new FirFilter(8, Seq(1.U, 2.U, 3.U, 2.U, 1.U)))  // 5-point FIR filter with a triangle impulse response
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The above can be converted to Verilog using &lt;code&gt;ChiselStage&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;import chisel3.stage.ChiselGeneratorAnnotation
+import circt.stage.{ChiselStage, FirtoolOption}
+
+(new ChiselStage).execute(
+  Array(&quot;--target&quot;, &quot;systemverilog&quot;),
+  Seq(ChiselGeneratorAnnotation(() =&amp;gt; new FirFilter(8, Seq(1.U, 1.U, 1.U))),
+    FirtoolOption(&quot;--disable-all-randomization&quot;))
+)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, you may generate some Verilog directly for inspection:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;val verilogString = chisel3.getVerilogString(new FirFilter(8, Seq(0.U, 1.U)))
+println(verilogString)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;h3&gt;Bootcamp Interactive Tutorial&lt;/h3&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://mybinder.org/v2/gh/freechipsproject/chisel-bootcamp/master&quot;&gt;&lt;strong&gt;online Chisel Bootcamp&lt;/strong&gt;&lt;/a&gt; is the recommended way to get started with and learn Chisel. &lt;strong&gt;No setup is required&lt;/strong&gt; (it runs in the browser), nor does it assume any prior knowledge of Scala.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/ucb-bar/chisel-tutorial&quot;&gt;&lt;strong&gt;classic Chisel tutorial&lt;/strong&gt;&lt;/a&gt; contains small exercises and runs on your computer.&lt;/p&gt; 
+&lt;h3&gt;A Textbook on Chisel&lt;/h3&gt; 
+&lt;p&gt;If you like a textbook to learn Chisel and also a bit of digital design in general, you may be interested in reading &lt;a href=&quot;http://www.imm.dtu.dk/~masca/chisel-book.html&quot;&gt;&lt;strong&gt;Digital Design with Chisel&lt;/strong&gt;&lt;/a&gt;. It is available in English, Chinese, Japanese, and Vietnamese.&lt;/p&gt; 
+&lt;h3&gt;Build Your Own Chisel Projects&lt;/h3&gt; 
+&lt;p&gt;Please see &lt;a href=&quot;https://www.chisel-lang.org/docs/installation&quot;&gt;the Installation page&lt;/a&gt; of the Chisel website for information about how to use Chisel locally.&lt;/p&gt; 
+&lt;p&gt;When you&#39;re ready to build your own circuits in Chisel, &lt;strong&gt;we recommend starting from the &lt;a href=&quot;https://github.com/chipsalliance/chisel-template&quot;&gt;Chisel Template&lt;/a&gt; repository&lt;/strong&gt;, which provides a pre-configured project, example design, and testbench. Follow the &lt;a href=&quot;https://github.com/chipsalliance/chisel-template&quot;&gt;chisel-template README&lt;/a&gt; to get started.&lt;/p&gt; 
+&lt;p&gt;If you insist on setting up your own project from scratch, your project needs to depend on both the chisel-plugin (Scalac plugin) and the chisel library. For example, in SBT this could be expressed as:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;// build.sbt
+scalaVersion := &quot;2.13.12&quot;
+val chiselVersion = &quot;6.0.0&quot;
+addCompilerPlugin(&quot;org.chipsalliance&quot; % &quot;chisel-plugin&quot; % chiselVersion cross CrossVersion.full)
+libraryDependencies += &quot;org.chipsalliance&quot; %% &quot;chisel&quot; % chiselVersion
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For Chisel prior to v5.0.0, Chisel was published using a different artifact name:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;// build.sbt
+scalaVersion := &quot;2.13.10&quot;
+addCompilerPlugin(&quot;edu.berkeley.cs&quot; % &quot;chisel3-plugin&quot; % &quot;3.6.0&quot; cross CrossVersion.full)
+libraryDependencies += &quot;edu.berkeley.cs&quot; %% &quot;chisel3&quot; % &quot;3.6.0&quot;
+// We also recommend using chiseltest for writing unit tests
+libraryDependencies += &quot;edu.berkeley.cs&quot; %% &quot;chiseltest&quot; % &quot;0.6.0&quot; % &quot;test&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Guide For New Contributors&lt;/h3&gt; 
+&lt;p&gt;If you are trying to make a contribution to this project, please read &lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Design Verification&lt;/h3&gt; 
+&lt;p&gt;These simulation-based verification tools are available for Chisel:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/svsim&quot;&gt;&lt;strong&gt;svsim&lt;/strong&gt;&lt;/a&gt; is the lightweight testing library for Chisel, included in this repository.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ucb-bar/chiseltest&quot;&gt;&lt;strong&gt;chiseltest (Chisel 5.0 and before)&lt;/strong&gt;&lt;/a&gt; is the batteries-included testing and formal verification library for Chisel-based RTL designs and a replacement for the former PeekPokeTester, providing the same base constructs but with a streamlined interface and concurrency support with &lt;code&gt;fork&lt;/code&gt; and &lt;code&gt;join&lt;/code&gt; with internal and Verilator integration for simulations.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;h3&gt;Useful Resources&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/freechipsproject/chisel-cheatsheet/releases/latest/download/chisel_cheatsheet.pdf&quot;&gt;&lt;strong&gt;Cheat Sheet&lt;/strong&gt;&lt;/a&gt;, a 2-page reference of the base Chisel syntax and libraries&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.chisel-lang.org/api/latest/index.html&quot;&gt;&lt;strong&gt;ScalaDoc (latest)&lt;/strong&gt;&lt;/a&gt;, a listing, description, and examples of the functionality exposed by Chisel, &lt;a href=&quot;https://www.chisel-lang.org/api/&quot;&gt;older versions&lt;/a&gt; are also available&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gitter.im/freechipsproject/chisel3&quot;&gt;&lt;strong&gt;Gitter&lt;/strong&gt;&lt;/a&gt;, where you can ask questions or discuss anything Chisel&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.chisel-lang.org&quot;&gt;&lt;strong&gt;Website&lt;/strong&gt;&lt;/a&gt; (&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/website&quot;&gt;source&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://scastie.scala-lang.org/CsDO7Q3TQHmBWJfKEB85Tw&quot;&gt;&lt;strong&gt;Scastie (v6.0.0)&lt;/strong&gt;&lt;/a&gt; - cannot generate Verilog (firtool does not work in Scastie)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://scastie.scala-lang.org/1XICrlaZQs6ZvxpuKdFdDw&quot;&gt;&lt;strong&gt;Scastie (v3.6.0)&lt;/strong&gt;&lt;/a&gt; - generates Verilog with legacy Scala FIRRTL Compiler&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.asic-world.com/verilog/veritut.html&quot;&gt;&lt;strong&gt;asic-world&lt;/strong&gt;&lt;/a&gt; If you aren&#39;t familiar with verilog, this is a good tutorial.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you are migrating from Chisel2, see &lt;a href=&quot;https://www.chisel-lang.org/chisel3/docs/appendix/chisel3-vs-chisel2.html&quot;&gt;the migration guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Chisel Dev Meeting&lt;/h3&gt; 
+&lt;p&gt;Chisel/FIRRTL development meetings happen every Monday from 9:00-10:00 am PT.&lt;/p&gt; 
+&lt;p&gt;Call-in info and meeting notes are available &lt;a href=&quot;https://docs.google.com/document/d/1BLP2DYt59DqI-FgFCcjw8Ddl4K-WU0nHmQu0sZ_wAGo/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Data Types Overview&lt;/h3&gt; 
+&lt;p&gt;These are the base data types for defining circuit components:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/docs/src/images/type_hierarchy.svg?sanitize=true&quot; alt=&quot;Image&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributor Documentation&lt;/h2&gt; 
+&lt;p&gt;This section describes how to get started contributing to Chisel itself, including how to test your version locally against other projects that pull in Chisel using &lt;a href=&quot;https://www.scala-sbt.org/1.x/docs/Library-Dependencies.html&quot;&gt;sbt&#39;s managed dependencies&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Useful Resources for Contributors&lt;/h3&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/#useful-resources&quot;&gt;Useful Resources&lt;/a&gt; for users are also helpful for contributors.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.google.com/presentation/d/1gMtABxBEDFbCFXN_-dPyvycNAyFROZKwk-HMcnxfTnU/edit?usp=sharing&quot;&gt;&lt;strong&gt;Chisel Breakdown Slides&lt;/strong&gt;&lt;/a&gt;, an introductory talk about Chisel&#39;s internals&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Compiling and Testing Chisel&lt;/h3&gt; 
+&lt;p&gt;You must first install required dependencies to build Chisel locally, please see &lt;a href=&quot;https://www.chisel-lang.org/docs/installation&quot;&gt;the installation instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Clone and build the Chisel library:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/chipsalliance/chisel.git
+cd chisel
+sbt compile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In order to run the following unit tests, you will need several tools on your &lt;code&gt;PATH&lt;/code&gt;, namely &lt;a href=&quot;https://www.veripool.org/verilator/&quot;&gt;verilator&lt;/a&gt;, &lt;a href=&quot;https://yosyshq.net/yosys/&quot;&gt;yosys&lt;/a&gt;, and &lt;a href=&quot;https://github.com/chipsalliance/espresso&quot;&gt;espresso&lt;/a&gt;. Check that each is installed on your &lt;code&gt;PATH&lt;/code&gt; by running &lt;code&gt;which verilator&lt;/code&gt; and so on.&lt;/p&gt; 
+&lt;p&gt;If the compilation succeeded and the dependencies noted above are installed, you can then run the included unit tests by invoking:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sbt test
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Running Projects Against Local Chisel&lt;/h3&gt; 
+&lt;p&gt;To use the development version of Chisel (&lt;code&gt;main&lt;/code&gt; branch), you will need to build from source and publish locally. The repository version can be found by running &lt;code&gt;sbt version&lt;/code&gt;. As of the time of writing it was: &lt;code&gt;6.0.0+1-8d92842c-SNAPSHOT&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;To publish your version of Chisel to the local Ivy (sbt&#39;s dependency manager) repository, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sbt &quot;unipublish / publishLocal&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The compiled version gets placed in &lt;code&gt;~/.ivy2/local/org.chipsalliance/&lt;/code&gt;. If you need to un-publish your local copy of Chisel, remove the directory generated in &lt;code&gt;~/.ivy2/local/org.chipsalliance/&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;In order to have your projects use this version of Chisel, you should update the &lt;code&gt;libraryDependencies&lt;/code&gt; setting in your project&#39;s build.sbt file to use the current version, for example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;val chiselVersion = &quot;6.0.0+1-8d92842c-SNAPSHOT&quot;
+addCompilerPlugin(&quot;org.chipsalliance&quot; % &quot;chisel-plugin&quot; % chiselVersion cross CrossVersion.full)
+libraryDependencies += &quot;org.chipsalliance&quot; %% &quot;chisel&quot; % chiselVersion
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Chisel Architecture Overview&lt;/h3&gt; 
+&lt;p&gt;The Chisel compiler consists of these main parts:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;The frontend&lt;/strong&gt;, &lt;code&gt;chisel3.*&lt;/code&gt;, which is the publicly visible &quot;API&quot; of Chisel and what is used in Chisel RTL. These just add data to the...&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;The Builder&lt;/strong&gt;, &lt;code&gt;chisel3.internal.Builder&lt;/code&gt;, which maintains global state (like the currently open Module) and contains commands, generating...&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;The intermediate data structures&lt;/strong&gt;, &lt;code&gt;chisel3.firrtl.*&lt;/code&gt;, which are syntactically very similar to Firrtl. Once the entire circuit has been elaborated, the top-level object (a &lt;code&gt;Circuit&lt;/code&gt;) is then passed to...&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;The Firrtl emitter&lt;/strong&gt;, &lt;code&gt;chisel3.firrtl.Emitter&lt;/code&gt;, which turns the intermediate data structures into a string that can be written out into a Firrtl file for further processing.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Also included is:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;The standard library&lt;/strong&gt; of circuit generators, &lt;code&gt;chisel3.util.*&lt;/code&gt;. These contain commonly used interfaces and constructors (like &lt;code&gt;Decoupled&lt;/code&gt;, which wraps a signal with a ready-valid pair) as well as fully parameterizable circuit generators (like arbiters and multiplexors).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Chisel Stage&lt;/strong&gt;, &lt;code&gt;chisel3.stage.*&lt;/code&gt;, which contains compilation and test functions that are invoked in the standard Verilog generation and simulation testing infrastructure. These can also be used as part of custom flows.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Chisel Sub-Projects&lt;/h3&gt; 
+&lt;p&gt;Chisel consists of several Scala projects; each is its own separate compilation unit:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/core&quot;&gt;&lt;code&gt;core&lt;/code&gt;&lt;/a&gt; is the bulk of the source code of Chisel, depends on &lt;code&gt;firrtl&lt;/code&gt;, &lt;code&gt;svsim&lt;/code&gt;, and &lt;code&gt;macros&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/firrtl&quot;&gt;&lt;code&gt;firrtl&lt;/code&gt;&lt;/a&gt; is the vestigial remains of the old Scala FIRRTL compiler, much if it will likely be absorbed into &lt;code&gt;core&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/macros&quot;&gt;&lt;code&gt;macros&lt;/code&gt;&lt;/a&gt; is most of the macros used in Chisel, no internal dependencies&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/plugin&quot;&gt;&lt;code&gt;plugin&lt;/code&gt;&lt;/a&gt; is the compiler plugin, no internal dependencies&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/src/main&quot;&gt;&lt;code&gt;src/main&lt;/code&gt;&lt;/a&gt; is the &quot;main&quot; that brings it all together and includes a &lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/src/main/scala/chisel3/util&quot;&gt;&lt;code&gt;util&lt;/code&gt;&lt;/a&gt; library, which depends on &lt;code&gt;core&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/svsim&quot;&gt;&lt;code&gt;svsim&lt;/code&gt;&lt;/a&gt; is a low-level library for compiling and controlling SystemVerilog simulations, currently targeting Verilator and VCS as backends&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Code that touches lots of APIs that are private to the &lt;code&gt;chisel3&lt;/code&gt; package should belong in &lt;code&gt;core&lt;/code&gt;, while code that is pure Chisel should belong in &lt;code&gt;src/main&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Which version should I use?&lt;/h3&gt; 
+&lt;p&gt;We encourage Chisel users (as opposed to Chisel developers), to use the latest release version of Chisel. This &lt;a href=&quot;https://github.com/chipsalliance/chisel-template&quot;&gt;chisel-template&lt;/a&gt; repository is kept up-to-date, depending on the most recent version of Chisel. The recommended version is also captured near the top of this README, and in the &lt;a href=&quot;https://github.com/chipsalliance/chisel/releases&quot;&gt;Github releases&lt;/a&gt; section of this repo. If you encounter an issue with a released version of Chisel, please file an issue on GitHub mentioning the Chisel version and provide a simple test case (if possible). Try to reproduce the issue with the associated latest minor release (to verify that the issue hasn&#39;t been addressed).&lt;/p&gt; 
+&lt;p&gt;For more information on our versioning policy and what versions of the various Chisel ecosystem projects work together, see &lt;a href=&quot;https://www.chisel-lang.org/chisel3/docs/appendix/versioning.html&quot;&gt;Chisel Project Versioning&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you&#39;re developing a Chisel library (or &lt;code&gt;chisel3&lt;/code&gt; itself), you&#39;ll probably want to work closer to the tip of the development trunk. By default, the main branch of the chisel repository is configured to build and publish its version of the code as &lt;code&gt;&amp;lt;version&amp;gt;+&amp;lt;n&amp;gt;-&amp;lt;commit hash&amp;gt;-SNAPSHOT&lt;/code&gt;. Updated SNAPSHOTs are publised on every push to main. You are encouraged to do your development against the latest SNAPSHOT, but note that neither API nor ABI compatibility is guaranteed so your code may break at any time.&lt;/p&gt; 
+&lt;h3&gt;Roadmap&lt;/h3&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/chipsalliance/chisel/main/ROADMAP.md&quot;&gt;Roadmap&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>lichess-org/lila</title>
+      <link>https://github.com/lichess-org/lila</link>
+      <description>&lt;p&gt;♞ lichess.org: the forever free, adless and open source chess server ♞&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;a href=&quot;https://lichess.org&quot;&gt;lichess.org&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/lichess-org/lila/actions/workflows/server.yml&quot;&gt;&lt;img src=&quot;https://github.com/lichess-org/lila/actions/workflows/server.yml/badge.svg?sanitize=true&quot; alt=&quot;Build server&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/lichess-org/lila/actions/workflows/assets.yml&quot;&gt;&lt;img src=&quot;https://github.com/lichess-org/lila/actions/workflows/assets.yml/badge.svg?sanitize=true&quot; alt=&quot;Build assets&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://crowdin.com/project/lichess&quot;&gt;&lt;img src=&quot;https://d322cqt584bo4o.cloudfront.net/lichess/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/lichess&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Twitter-%40lichess-blue.svg?sanitize=true&quot; alt=&quot;Twitter&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/lichess&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/280713822073913354?label=Discord&amp;amp;logo=discord&amp;amp;style=flat&quot; alt=&quot;Discord&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/lichess-org/lila/master/public/images/home-bicolor.png&quot; alt=&quot;Lichess homepage&quot; title=&quot;Lichess comes with light and dark theme, this screenshot shows both.&quot;&gt; 
+&lt;p&gt;Lila (li[chess in sca]la) is a free online chess game server focused on &lt;a href=&quot;https://lichess.org/games&quot;&gt;realtime&lt;/a&gt; gameplay and ease of use.&lt;/p&gt; 
+&lt;p&gt;It features a &lt;a href=&quot;https://lichess.org/games/search&quot;&gt;search engine&lt;/a&gt;, &lt;a href=&quot;https://lichess.org/ief49lif&quot;&gt;computer analysis&lt;/a&gt; distributed with &lt;a href=&quot;https://github.com/lichess-org/fishnet&quot;&gt;fishnet&lt;/a&gt;, &lt;a href=&quot;https://lichess.org/tournament&quot;&gt;tournaments&lt;/a&gt;, &lt;a href=&quot;https://lichess.org/simul&quot;&gt;simuls&lt;/a&gt;, &lt;a href=&quot;https://lichess.org/forum&quot;&gt;forums&lt;/a&gt;, &lt;a href=&quot;https://lichess.org/team&quot;&gt;teams&lt;/a&gt;, &lt;a href=&quot;https://lichess.org/training&quot;&gt;tactic trainer&lt;/a&gt;, a &lt;a href=&quot;https://lichess.org/mobile&quot;&gt;mobile app&lt;/a&gt;, and a &lt;a href=&quot;https://lichess.org/study&quot;&gt;shared analysis board&lt;/a&gt;. The UI is available in more than &lt;a href=&quot;https://crowdin.com/project/lichess&quot;&gt;140 languages&lt;/a&gt; thanks to the community.&lt;/p&gt; 
+&lt;p&gt;Lichess is written in &lt;a href=&quot;https://www.scala-lang.org/&quot;&gt;Scala 3&lt;/a&gt;, and relies on the &lt;a href=&quot;https://www.playframework.com/&quot;&gt;Play 2.8&lt;/a&gt; framework. &lt;a href=&quot;https://com-lihaoyi.github.io/scalatags/&quot;&gt;scalatags&lt;/a&gt; is used for templating. Pure chess logic is contained in the &lt;a href=&quot;https://github.com/lichess-org/scalachess&quot;&gt;scalachess&lt;/a&gt; submodule. The server is fully asynchronous, making heavy use of Scala Futures and &lt;a href=&quot;https://akka.io&quot;&gt;Akka streams&lt;/a&gt;. WebSocket connections are handled by a &lt;a href=&quot;https://github.com/lichess-org/lila-ws&quot;&gt;separate server&lt;/a&gt; that communicates using &lt;a href=&quot;https://redis.io/&quot;&gt;redis&lt;/a&gt;. Lichess talks to &lt;a href=&quot;https://stockfishchess.org/&quot;&gt;Stockfish&lt;/a&gt; deployed in an &lt;a href=&quot;https://github.com/lichess-org/fishnet&quot;&gt;AI cluster&lt;/a&gt; of donated servers. It uses &lt;a href=&quot;https://www.mongodb.com&quot;&gt;MongoDB&lt;/a&gt; to store more than 4.7 billion games, which are indexed by &lt;a href=&quot;https://github.com/elastic/elasticsearch&quot;&gt;elasticsearch&lt;/a&gt;. HTTP requests and WebSocket connections can be proxied by &lt;a href=&quot;https://nginx.org&quot;&gt;nginx&lt;/a&gt;. The web client is written in &lt;a href=&quot;https://www.typescriptlang.org/&quot;&gt;TypeScript&lt;/a&gt; and &lt;a href=&quot;https://github.com/snabbdom/snabbdom&quot;&gt;snabbdom&lt;/a&gt;, using &lt;a href=&quot;https://sass-lang.com/&quot;&gt;Sass&lt;/a&gt; to generate CSS. All rated games are published in a &lt;a href=&quot;https://database.lichess.org&quot;&gt;free PGN database&lt;/a&gt;. Browser testing done with &lt;a href=&quot;https://www.browserstack.com&quot;&gt;Browserstack&lt;/a&gt;. Proxy detection done with &lt;a href=&quot;https://www.ip2location.com/database/ip2proxy&quot;&gt;IP2Proxy database&lt;/a&gt;. Please help us &lt;a href=&quot;https://crowdin.com/project/lichess&quot;&gt;translate Lichess with Crowdin&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://lichess.org/source&quot;&gt;lichess.org/source&lt;/a&gt; for a list of repositories.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://discord.gg/lichess&quot;&gt;Join us on Discord&lt;/a&gt; for more info. Use &lt;a href=&quot;https://github.com/lichess-org/lila/issues&quot;&gt;GitHub issues&lt;/a&gt; for bug reports and feature requests.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;./lila # thin wrapper around sbt
+run
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The Wiki describes &lt;a href=&quot;https://github.com/lichess-org/lila/wiki/Lichess-Development-Onboarding&quot;&gt;how to setup a development environment&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;HTTP API&lt;/h2&gt; 
+&lt;p&gt;Feel free to use the &lt;a href=&quot;https://lichess.org/api&quot;&gt;Lichess API&lt;/a&gt; in your applications and websites.&lt;/p&gt; 
+&lt;h2&gt;Supported browsers&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Name&lt;/th&gt; 
+   &lt;th&gt;Version&lt;/th&gt; 
+   &lt;th&gt;Notes&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Chromium / Chrome&lt;/td&gt; 
+   &lt;td&gt;last 10&lt;/td&gt; 
+   &lt;td&gt;Full support&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Firefox&lt;/td&gt; 
+   &lt;td&gt;67+&lt;/td&gt; 
+   &lt;td&gt;Full support (fastest local analysis since FF 79)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Edge&lt;/td&gt; 
+   &lt;td&gt;91+&lt;/td&gt; 
+   &lt;td&gt;Full support (reasonable support for 79+)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Opera&lt;/td&gt; 
+   &lt;td&gt;55+&lt;/td&gt; 
+   &lt;td&gt;Reasonable support&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Safari&lt;/td&gt; 
+   &lt;td&gt;11.1+&lt;/td&gt; 
+   &lt;td&gt;Reasonable support&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Older browsers (including any version of Internet Explorer) will not work. For your own sake, please upgrade. Security and performance, think about it!&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Lila is licensed under the GNU Affero General Public License 3 or any later version at your choice. See &lt;a href=&quot;https://github.com/lichess-org/lila/raw/master/COPYING.md&quot;&gt;copying&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;h2&gt;Production architecture (as of July 2022)&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/lichess-org/lila/master/public/images/architecture.png&quot; alt=&quot;Lichess production server architecture diagram&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://lichess.org/thanks&quot;&gt;lichess.org/thanks&lt;/a&gt; and the contributors here:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/lichess-org/lila/graphs/contributors&quot;&gt;&lt;img src=&quot;https://contrib.rocks/image?repo=lichess-org/lila&quot; alt=&quot;GitHub contributors&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Competence development program&lt;/h2&gt; 
+&lt;p&gt;Lichess would like to support its contributors in their competence development by covering costs of relevant training materials and activities. This is a small way to further empower contributors who have given their time to Lichess and to enable or improve additional contributions to Lichess in the future. For more information, including how to apply, check &lt;a href=&quot;https://lichess.org/page/competence-development&quot;&gt;Competence Development for Lichess contributors&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>digital-asset/daml</title>
+      <link>https://github.com/digital-asset/daml</link>
+      <description>&lt;p&gt;The Daml smart contract language&lt;/p&gt;&lt;hr&gt;</description>
+    </item>
+    
+    <item>
+      <title>NVIDIA/spark-rapids</title>
+      <link>https://github.com/NVIDIA/spark-rapids</link>
+      <description>&lt;p&gt;Spark RAPIDS plugin - accelerate Apache Spark with GPUs&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;RAPIDS Accelerator For Apache Spark&lt;/h1&gt; 
+&lt;p&gt;NOTE: For the latest stable &lt;a href=&quot;https://github.com/nvidia/spark-rapids/raw/main/README.md&quot;&gt;README.md&lt;/a&gt; ensure you are on the main branch.&lt;/p&gt; 
+&lt;p&gt;The RAPIDS Accelerator for Apache Spark provides a set of plugins for &lt;a href=&quot;https://spark.apache.org&quot;&gt;Apache Spark&lt;/a&gt; that leverage GPUs to accelerate processing via the &lt;a href=&quot;https://rapids.ai&quot;&gt;RAPIDS&lt;/a&gt; libraries.&lt;/p&gt; 
+&lt;p&gt;Documentation on the current release can be found &lt;a href=&quot;https://nvidia.github.io/spark-rapids/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To get started and try the plugin out use the &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/getting-started/overview.html&quot;&gt;getting started guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;p&gt;The SQL plugin tries to produce results that are bit for bit identical with Apache Spark. Operator compatibility is documented &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/spark-rapids/branch-24.08/docs/compatibility.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Tuning&lt;/h2&gt; 
+&lt;p&gt;To get started tuning your job and get the most performance out of it please start with the &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/tuning-guide.html&quot;&gt;tuning guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;The plugin has a set of Spark configs that control its behavior and are documented &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/spark-rapids/branch-24.08/docs/configs.md&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Issues &amp;amp; Questions&lt;/h2&gt; 
+&lt;p&gt;We use github to track bugs, feature requests, and answer questions. File an &lt;a href=&quot;https://github.com/NVIDIA/spark-rapids/issues/new/choose&quot;&gt;issue&lt;/a&gt; for a bug or feature request. Ask or answer a question on the &lt;a href=&quot;https://github.com/NVIDIA/spark-rapids/discussions&quot;&gt;discussion board&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;The jar files for the most recent release can be retrieved from the &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/spark-rapids/branch-24.08/docs/download.md&quot;&gt;download&lt;/a&gt; page.&lt;/p&gt; 
+&lt;h2&gt;Building From Source&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/spark-rapids/branch-24.08/CONTRIBUTING.md#building-from-source&quot;&gt;build instructions in the contributing guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Testing&lt;/h2&gt; 
+&lt;p&gt;Tests are described &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/spark-rapids/branch-24.08/tests/README.md&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Integration&lt;/h2&gt; 
+&lt;p&gt;The RAPIDS Accelerator For Apache Spark does provide some APIs for doing zero copy data transfer into other GPU enabled applications. It is described &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/additional-functionality/ml-integration.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Currently, we are working with XGBoost to try to provide this integration out of the box.&lt;/p&gt; 
+&lt;p&gt;You may need to disable RMM caching when exporting data to an ML library as that library will likely want to use all of the GPU&#39;s memory and if it is not aware of RMM it will not have access to any of the memory that RMM is holding.&lt;/p&gt; 
+&lt;h2&gt;Qualification and Profiling tools&lt;/h2&gt; 
+&lt;p&gt;The Qualification and Profiling tools have been moved to &lt;a href=&quot;https://github.com/NVIDIA/spark-rapids-tools&quot;&gt;nvidia/spark-rapids-tools&lt;/a&gt; repo.&lt;/p&gt; 
+&lt;p&gt;Please refer to &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/qualification/overview.html&quot;&gt;Qualification tool documentation&lt;/a&gt; and &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/profiling/overview.html&quot;&gt;Profiling tool documentation&lt;/a&gt; for more details on how to use the tools.&lt;/p&gt; 
+&lt;h2&gt;Dependency for External Projects&lt;/h2&gt; 
+&lt;p&gt;If you need to develop some functionality on top of RAPIDS Accelerator For Apache Spark (we currently limit support to GPU-accelerated UDFs) we recommend you declare our distribution artifact as a &lt;code&gt;provided&lt;/code&gt; dependency.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.nvidia&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;rapids-4-spark_2.12&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;24.08.0-SNAPSHOT&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>gatling/gatling</title>
+      <link>https://github.com/gatling/gatling</link>
+      <description>&lt;p&gt;Modern Load Testing as Code&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Gatling &lt;a href=&quot;https://github.com/gatling/gatling/actions/workflows/build.yml?query=branch%3Amain&quot;&gt;&lt;img src=&quot;https://github.com/gatling/gatling/actions/workflows/build.yml/badge.svg?branch=main&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://maven-badges.herokuapp.com/maven-central/io.gatling/gatling-core/&quot;&gt;&lt;img src=&quot;https://maven-badges.herokuapp.com/maven-central/io.gatling/gatling-core/badge.svg?sanitize=true&quot; alt=&quot;Maven Central&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;h2&gt;What is Gatling ?&lt;/h2&gt; 
+&lt;p&gt;Gatling is a load test tool. It officially supports HTTP, WebSocket, Server-Sent-Events and JMS.&lt;/p&gt; 
+&lt;h2&gt;Motivation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Finding fancy GUIs not that convenient for describing load tests, what you want is a friendly expressive DSL?&lt;/li&gt; 
+ &lt;li&gt;Wanting something more convenient than huge XML dumps to store in your source version control system?&lt;/li&gt; 
+ &lt;li&gt;Fed up with having to host a farm of injecting servers because your tool uses blocking IO and one-thread-per-user architecture?&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Gatling is for you!&lt;/p&gt; 
+&lt;h2&gt;Questions, help?&lt;/h2&gt; 
+&lt;p&gt;Read the &lt;a href=&quot;https://docs.gatling.io&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Join the &lt;a href=&quot;https://community.gatling.io&quot;&gt;Gatling Community Forum&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Found a real bug? Raise an &lt;a href=&quot;https://github.com/gatling/gatling/issues&quot;&gt;issue&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Partners&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gatling/gatling/main/images/highsoft_logo.png&quot; alt=&quot;Highsoft AS&quot;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenXiangShan/XiangShan</title>
+      <link>https://github.com/OpenXiangShan/XiangShan</link>
+      <description>&lt;p&gt;Open-source high-performance RISC-V processor&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;XiangShan&lt;/h1&gt; 
+&lt;p&gt;XiangShan (香山) is an open-source high-performance RISC-V processor project.&lt;/p&gt; 
+&lt;p&gt;中文说明&lt;a href=&quot;https://raw.githubusercontent.com/OpenXiangShan/XiangShan/master/readme.zh-cn.md&quot;&gt;在此&lt;/a&gt;。&lt;/p&gt; 
+&lt;p&gt;Copyright 2020-2022 by Institute of Computing Technology, Chinese Academy of Sciences.&lt;/p&gt; 
+&lt;p&gt;Copyright 2020-2022 by Peng Cheng Laboratory.&lt;/p&gt; 
+&lt;h2&gt;Docs and slides&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/OpenXiangShan/XiangShan-doc&quot;&gt;XiangShan-doc&lt;/a&gt; is our official documentation repository. It contains design spec., technical slides, tutorial and more.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Micro-architecture documentation of XiangShan has been published. Please check out &lt;a href=&quot;https://xiangshan-doc.readthedocs.io&quot;&gt;https://xiangshan-doc.readthedocs.io&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Publications&lt;/h2&gt; 
+&lt;h3&gt;MICRO 2022: Towards Developing High Performance RISC-V Processors Using Agile Methodology&lt;/h3&gt; 
+&lt;p&gt;Our paper introduces XiangShan and the practice of agile development methodology on high performance RISC-V processors. It covers some representative tools we have developed and used to accelerate the chip development process, including design, functional verification, debugging, performance validation, etc. This paper is awarded all three available badges for artifact evaluation (Available, Functional, and Reproduced).&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_available_dl.jpg&quot; alt=&quot;Artifacts Available&quot;&gt; &lt;img src=&quot;https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/artifacts_evaluated_functional_dl.jpg&quot; alt=&quot;Artifacts Evaluated — Functional&quot;&gt; &lt;img src=&quot;https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/images/results_reproduced_dl.jpg&quot; alt=&quot;Results Reproduced&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2022-xiangshan.pdf&quot;&gt;Paper PDF&lt;/a&gt; | &lt;a href=&quot;https://ieeexplore.ieee.org/abstract/document/9923860&quot;&gt;IEEE Xplore&lt;/a&gt; | &lt;a href=&quot;https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2022-xiangshan.bib&quot;&gt;BibTeX&lt;/a&gt; | &lt;a href=&quot;https://github.com/OpenXiangShan/XiangShan-doc/raw/main/publications/micro2022-xiangshan-slides.pdf&quot;&gt;Presentation Slides&lt;/a&gt; | &lt;a href=&quot;https://www.bilibili.com/video/BV1FB4y1j7Jy&quot;&gt;Presentation Video&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Follow us&lt;/h2&gt; 
+&lt;p&gt;Wechat/微信：香山开源处理器&lt;/p&gt; 
+&lt;div align=&quot;left&quot;&gt;
+ &lt;img width=&quot;340&quot; height=&quot;117&quot; src=&quot;https://raw.githubusercontent.com/OpenXiangShan/XiangShan/master/images/wechat.png&quot;&gt;
+&lt;/div&gt; 
+&lt;p&gt;Zhihu/知乎：&lt;a href=&quot;https://www.zhihu.com/people/openxiangshan&quot;&gt;香山开源处理器&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Weibo/微博：&lt;a href=&quot;https://weibo.com/u/7706264932&quot;&gt;香山开源处理器&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can contact us through &lt;a href=&quot;mailto:xiangshan-all@ict.ac.cn&quot;&gt;our mail list&lt;/a&gt;. All mails from this list will be archived to &lt;a href=&quot;https://www.mail-archive.com/xiangshan-all@ict.ac.cn/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Architecture&lt;/h2&gt; 
+&lt;p&gt;The first stable micro-architecture of XiangShan is called Yanqihu (雁栖湖) &lt;a href=&quot;https://github.com/OpenXiangShan/XiangShan/tree/yanqihu&quot;&gt;on the yanqihu branch&lt;/a&gt;, which has been developed since June 2020.&lt;/p&gt; 
+&lt;p&gt;The second stable micro-architecture of XiangShan is called Nanhu (南湖) &lt;a href=&quot;https://github.com/OpenXiangShan/XiangShan/tree/nanhu&quot;&gt;on the nanhu branch&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The current version of XiangShan, also known as Kunminghu (昆明湖), is still under development on the master branch.&lt;/p&gt; 
+&lt;p&gt;The micro-architecture overview of Nanhu (南湖) is shown below.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/OpenXiangShan/XiangShan/master/images/xs-arch-nanhu.svg?sanitize=true&quot; alt=&quot;xs-arch-nanhu&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Sub-directories Overview&lt;/h2&gt; 
+&lt;p&gt;Some of the key directories are shown below.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;.
+├── src
+│   └── main/scala         # design files
+│       ├── device         # virtual device for simulation
+│       ├── system         # SoC wrapper
+│       ├── top            # top module
+│       ├── utils          # utilization code
+│       └── xiangshan      # main design code
+│           └── transforms # some useful firrtl transforms
+├── scripts                # scripts for agile development
+├── fudian                 # floating unit submodule of XiangShan
+├── huancun                # L2/L3 cache submodule of XiangShan
+├── difftest               # difftest co-simulation framework
+└── ready-to-run           # pre-built simulation images
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;IDE Support&lt;/h2&gt; 
+&lt;h3&gt;bsp&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;make bsp
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;IDEA&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;make idea
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Generate Verilog&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Run &lt;code&gt;make verilog&lt;/code&gt; to generate verilog code. The output file is &lt;code&gt;build/XSTop.v&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Refer to &lt;code&gt;Makefile&lt;/code&gt; for more information.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Run Programs by Simulation&lt;/h2&gt; 
+&lt;h3&gt;Prepare environment&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Set environment variable &lt;code&gt;NEMU_HOME&lt;/code&gt; to the &lt;strong&gt;absolute path&lt;/strong&gt; of the &lt;a href=&quot;https://github.com/OpenXiangShan/NEMU&quot;&gt;NEMU project&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Set environment variable &lt;code&gt;NOOP_HOME&lt;/code&gt; to the &lt;strong&gt;absolute path&lt;/strong&gt; of the XiangShan project.&lt;/li&gt; 
+ &lt;li&gt;Set environment variable &lt;code&gt;AM_HOME&lt;/code&gt; to the &lt;strong&gt;absolute path&lt;/strong&gt; of the &lt;a href=&quot;https://github.com/OpenXiangShan/nexus-am&quot;&gt;AM project&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;code&gt;mill&lt;/code&gt;. Refer to &lt;a href=&quot;https://com-lihaoyi.github.io/mill/mill/Intro_to_Mill.html#_installation&quot;&gt;the Manual section in this guide&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Clone this project and run &lt;code&gt;make init&lt;/code&gt; to initialize submodules.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Run with simulator&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://verilator.org/guide/latest/&quot;&gt;Verilator&lt;/a&gt;, the open-source Verilog simulator.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;make emu&lt;/code&gt; to build the C++ simulator &lt;code&gt;./build/emu&lt;/code&gt; with Verilator.&lt;/li&gt; 
+ &lt;li&gt;Refer to &lt;code&gt;./build/emu --help&lt;/code&gt; for run-time arguments of the simulator.&lt;/li&gt; 
+ &lt;li&gt;Refer to &lt;code&gt;Makefile&lt;/code&gt; and &lt;code&gt;verilator.mk&lt;/code&gt; for more information.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;make emu CONFIG=MinimalConfig EMU_THREADS=2 -j10
+./build/emu -b 0 -e 0 -i ./ready-to-run/coremark-2-iteration.bin --diff ./ready-to-run/riscv64-nemu-interpreter-so
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Troubleshooting Guide&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/OpenXiangShan/XiangShan/wiki/Troubleshooting-Guide&quot;&gt;Troubleshooting Guide&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ghostdogpr/caliban</title>
+      <link>https://github.com/ghostdogpr/caliban</link>
+      <description>&lt;p&gt;Functional GraphQL library for Scala&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Caliban&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://oss.sonatype.org/content/repositories/releases/com/github/ghostdogpr/caliban_2.12/&quot; title=&quot;Sonatype Releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/nexus/r/https/oss.sonatype.org/com.github.ghostdogpr/caliban_2.12.svg?sanitize=true&quot; alt=&quot;Release Artifacts&quot; title=&quot;Sonatype Releases&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://oss.sonatype.org/content/repositories/snapshots/com/github/ghostdogpr/caliban_2.12/&quot; title=&quot;Sonatype Snapshots&quot;&gt;&lt;img src=&quot;https://img.shields.io/nexus/s/https/oss.sonatype.org/com.github.ghostdogpr/caliban_2.12.svg?sanitize=true&quot; alt=&quot;Snapshot Artifacts&quot; title=&quot;Sonatype Snapshots&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/2ccFBr4&quot; title=&quot;Discord&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/629491597070827530?logo=discord&quot; alt=&quot;Badge-Discord&quot; title=&quot;chat on discord&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Caliban is a purely functional library for building GraphQL servers and clients in Scala.&lt;/p&gt; 
+&lt;p&gt;The design principles behind the library are the following:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;minimal amount of boilerplate: no need to manually define a schema for every type in your API.&lt;/li&gt; 
+ &lt;li&gt;high performance: while every public interface is pure and immutable, library internals have been optimized for speed.&lt;/li&gt; 
+ &lt;li&gt;clean separation between schema definition and implementation: schema is defined and validated at compile time using Scala standard types, resolver (&lt;code&gt;RootResolver&lt;/code&gt;) is a simple value provided at runtime.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Consult the &lt;a href=&quot;https://ghostdogpr.github.io/caliban/docs/&quot;&gt;Documentation&lt;/a&gt; to learn how to use Caliban.&lt;/h3&gt; 
+&lt;h3&gt;Any questions? Head up to the &lt;a href=&quot;https://discordapp.com/channels/629491597070827530/633200096393166868&quot;&gt;#caliban&lt;/a&gt; channel on &lt;a href=&quot;https://discord.gg/EYpumuv&quot;&gt;ZIO Discord&lt;/a&gt;.&lt;/h3&gt; 
+&lt;h3&gt;Adopters&lt;/h3&gt; 
+&lt;p&gt;Here is a partial list of companies using Caliban in production.&lt;/p&gt; 
+&lt;p&gt;Want to see your company here? &lt;a href=&quot;https://github.com/ghostdogpr/caliban/edit/series/2.x/README.md&quot;&gt;Submit a PR&lt;/a&gt;!&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.anduintransact.com&quot;&gt;Anduin Transactions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://anymindgroup.com&quot;&gt;AnyMind Group&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.autoscout24.de&quot;&gt;AutoScout24&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://businesschat.io&quot;&gt;BusinessChat.io&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.carvana.com&quot;&gt;Carvana&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.conduktor.io&quot;&gt;Conduktor&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.credimi.com&quot;&gt;Credimi&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.devsisters.com&quot;&gt;Devsisters&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.fugo.ai&quot;&gt;Fugo.ai&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://leadiq.com&quot;&gt;LeadIQ&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://sanjagh.pro&quot;&gt;Sanjagh.pro&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.soundtrackyourbrand.com&quot;&gt;Soundtrack Your Brand&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.stepzen.com&quot;&gt;StepZen&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.undo.app&quot;&gt;Undo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.valamis.com&quot;&gt;Valamis Group&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>akka/akka</title>
+      <link>https://github.com/akka/akka</link>
+      <description>&lt;p&gt;Build highly concurrent, distributed, and resilient message-driven applications on the JVM&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Akka&lt;/h1&gt; 
+&lt;p&gt;The Akka family of projects is managed by teams at &lt;a href=&quot;https://lightbend.com/&quot;&gt;Lightbend&lt;/a&gt; with help from the community.&lt;/p&gt; 
+&lt;p&gt;We believe that writing correct concurrent &amp;amp; distributed, resilient and elastic applications is too hard. Most of the time it&#39;s because we are using the wrong tools and the wrong level of abstraction.&lt;/p&gt; 
+&lt;p&gt;Akka is here to change that.&lt;/p&gt; 
+&lt;p&gt;Using the Actor Model we raise the abstraction level and provide a better platform to build correct concurrent and scalable applications. This model is a perfect match for the principles laid out in the &lt;a href=&quot;https://www.reactivemanifesto.org/&quot;&gt;Reactive Manifesto&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For resilience, we adopt the &quot;Let it crash&quot; model which the telecom industry has used with great success to build applications that self-heal and systems that never stop.&lt;/p&gt; 
+&lt;p&gt;Actors also provide the abstraction for transparent distribution and the basis for truly scalable and fault-tolerant applications.&lt;/p&gt; 
+&lt;p&gt;Learn more at &lt;a href=&quot;https://akka.io/&quot;&gt;akka.io&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Reference Documentation&lt;/h2&gt; 
+&lt;p&gt;The reference documentation is available at &lt;a href=&quot;https://doc.akka.io&quot;&gt;doc.akka.io&lt;/a&gt;, for &lt;a href=&quot;https://doc.akka.io/docs/akka/current/scala.html&quot;&gt;Scala&lt;/a&gt; and &lt;a href=&quot;https://doc.akka.io/docs/akka/current/java.html&quot;&gt;Java&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Current versions of all Akka libraries&lt;/h2&gt; 
+&lt;p&gt;The current versions of all Akka libraries are listed on the &lt;a href=&quot;https://doc.akka.io/docs/akka-dependencies/current/&quot;&gt;Akka Dependencies&lt;/a&gt; page. Releases of the Akka core libraries in this repository are listed on the &lt;a href=&quot;https://github.com/akka/akka/releases&quot;&gt;GitHub releases&lt;/a&gt; page.&lt;/p&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;p&gt;You can join these groups and chats to discuss and ask Akka related questions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Forums: &lt;a href=&quot;https://discuss.akka.io&quot;&gt;discuss.akka.io&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Issue tracker: &lt;a href=&quot;https://github.com/akka/akka/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/github%3A-issues-blue.svg?style=flat-square&quot; alt=&quot;github: akka/akka&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In addition to that, you may enjoy following:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The &lt;a href=&quot;https://akka.io/blog/news-archive.html&quot;&gt;news&lt;/a&gt; section of the page, which is updated whenever a new version is released&lt;/li&gt; 
+ &lt;li&gt;The &lt;a href=&quot;https://akka.io/blog/article-archive.html&quot;&gt;Akka Team Blog&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;The &lt;a href=&quot;https://www.lightbend.com/blog/akka&quot;&gt;Akka articles in the Lightbend Blog&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Questions tagged &lt;a href=&quot;https://stackoverflow.com/questions/tagged/akka&quot;&gt;#akka on StackOverflow&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Contributions are &lt;em&gt;very&lt;/em&gt; welcome!&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;If you see an issue that you&#39;d like to see fixed, or want to shape out some ideas, the best way to make it happen is to help out by submitting a pull request implementing it. We welcome contributions from all, even you are not yet familiar with this project, We are happy to get you started, and will guide you through the process once you&#39;ve submitted your PR.&lt;/p&gt; 
+&lt;p&gt;Refer to the &lt;a href=&quot;https://github.com/akka/akka/raw/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; file for more details about the workflow, and general hints on how to prepare your pull request. You can also ask for clarifications or guidance in GitHub issues directly, or in the akka/dev chat if a more real time communication would be of benefit.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Akka is licensed under the Business Source License 1.1, please see the &lt;a href=&quot;https://www.lightbend.com/akka/license-faq&quot;&gt;Akka License FAQ&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Tests and documentation are under a separate license, see the LICENSE file in each documentation and test root directory for details.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>scalameta/metals</title>
+      <link>https://github.com/scalameta/metals</link>
+      <description>&lt;p&gt;Scala language server with rich IDE features 🚀&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Metals&lt;/h1&gt; 
+&lt;a href=&quot;https://discord.gg/FaVDrJegEh&quot;&gt; &lt;img alt=&quot;Chat with us on discord&quot; src=&quot;https://img.shields.io/discord/632642981228314653&quot;&gt; &lt;/a&gt; 
+&lt;a href=&quot;https://twitter.com/scalameta&quot;&gt; &lt;img alt=&quot;Follow scalameta on Twitter&quot; src=&quot;https://img.shields.io/twitter/follow/scalameta.svg?logo=twitter&amp;amp;color=blue&quot;&gt; &lt;/a&gt; 
+&lt;a href=&quot;https://index.scala-lang.org/scalameta/metals/metals&quot;&gt; &lt;img alt=&quot;Find us on scaladex&quot; src=&quot;https://index.scala-lang.org/scalameta/metals/metals/latest.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;See the website: &lt;a href=&quot;https://scalameta.org/metals/&quot;&gt;https://scalameta.org/metals/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;See the contributing guide: &lt;a href=&quot;https://scalameta.org/metals/docs/contributors/getting-started.html&quot;&gt;https://scalameta.org/metals/docs/contributors/getting-started.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;To learn more about how Metals works, see &lt;a href=&quot;https://raw.githubusercontent.com/scalameta/metals/main/architecture.md&quot;&gt;./architecture.md&lt;/a&gt;. It explains the high-level layout of the source code. Do skim through that document.&lt;/p&gt; 
+&lt;h3&gt;Acknowledgements and Development&lt;/h3&gt; 
+&lt;p&gt;For more information on the current maintainers, companies that have/are sponsoring the development of Metals, and acknowledgements of previous work, please see &lt;a href=&quot;https://scalameta.org/metals/docs/acknowledgements/development.html&quot;&gt;https://scalameta.org/metals/docs/acknowledgements/development.html&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/help/idea/discover-intellij-idea-for-scala.html&quot;&gt;IntelliJ IDEA&lt;/a&gt;: the most widely used IDE for Scala using a re-implementation of the Scala typechecker.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Why Metals?&lt;/h2&gt; 
+&lt;p&gt;Metals = Meta (from Scalameta) + LS (from Language Server)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>sbt/sbt</title>
+      <link>https://github.com/sbt/sbt</link>
+      <description>&lt;p&gt;sbt, the interactive build tool&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/sbt/sbt/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/sbt/sbt/actions/workflows/ci.yml/badge.svg?sanitize=true&quot; alt=&quot;CI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://index.scala-lang.org/sbt/sbt&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/tag/sbt/sbt.svg?sanitize=true&quot; alt=&quot;Latest version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.com/channels/632150470000902164/922600050989875282&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/632150470000902164?label=Discord%20%23sbt&quot; alt=&quot;Discord&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;sbt&lt;/h1&gt; 
+&lt;p&gt;sbt is a build tool for Scala, Java, and more.&lt;/p&gt; 
+&lt;p&gt;For general documentation, see &lt;a href=&quot;https://www.scala-sbt.org/&quot;&gt;https://www.scala-sbt.org/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;sbt 1.x&lt;/h2&gt; 
+&lt;p&gt;This is the 1.x series of sbt. The source code of sbt is split across several GitHub repositories, including this one.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sbt/io&quot;&gt;sbt/io&lt;/a&gt; hosts &lt;code&gt;sbt.io&lt;/code&gt; module.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sbt/librarymanagement&quot;&gt;sbt/librarymanagement&lt;/a&gt; hosts &lt;code&gt;sbt.librarymanagement&lt;/code&gt; module that wraps Ivy.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sbt/zinc&quot;&gt;sbt/zinc&lt;/a&gt; hosts Zinc, an incremental compiler for Scala.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sbt/sbt&quot;&gt;sbt/sbt&lt;/a&gt;, this repository hosts modules that implements the build tool.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Other links&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.scala-sbt.org/release/docs/Getting-Started/Setup&quot;&gt;Setup&lt;/a&gt;: Describes getting started with the latest binary release.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.scala-sbt.org/release/docs/Faq.html&quot;&gt;FAQ&lt;/a&gt;: Explains how to get help and more.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sbt/sbt-zero-seven&quot;&gt;sbt/sbt-zero-seven&lt;/a&gt;: hosts sbt 0.7.7 and earlier versions&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Issues and Pull Requests&lt;/h2&gt; 
+&lt;p&gt;Please read &lt;a href=&quot;https://raw.githubusercontent.com/sbt/sbt/1.10.x/CONTRIBUTING.md&quot;&gt;CONTRIBUTING&lt;/a&gt; carefully before opening a GitHub Issue.&lt;/p&gt; 
+&lt;p&gt;The short version: try &lt;a href=&quot;https://stackoverflow.com/tags/sbt&quot;&gt;searching&lt;/a&gt; or &lt;a href=&quot;https://stackoverflow.com/questions/ask?tags=sbt&quot;&gt;asking&lt;/a&gt; on StackOverflow.&lt;/p&gt; 
+&lt;h2&gt;license&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/sbt/sbt/1.10.x/LICENSE&quot;&gt;LICENSE&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>twitter/the-algorithm</title>
+      <link>https://github.com/twitter/the-algorithm</link>
+      <description>&lt;p&gt;Source code for Twitter&#39;s Recommendation Algorithm&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Twitter&#39;s Recommendation Algorithm&lt;/h1&gt; 
+&lt;p&gt;Twitter&#39;s Recommendation Algorithm is a set of services and jobs that are responsible for serving feeds of Tweets and other content across all Twitter product surfaces (e.g. For You Timeline, Search, Explore, Notifications). For an introduction to how the algorithm works, please refer to our &lt;a href=&quot;https://blog.twitter.com/engineering/en_us/topics/open-source/2023/twitter-recommendation-algorithm&quot;&gt;engineering blog&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Architecture&lt;/h2&gt; 
+&lt;p&gt;Product surfaces at Twitter are built on a shared set of data, models, and software frameworks. The shared components included in this repository are listed below:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;Component&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Data&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/tweetypie/server/README.md&quot;&gt;tweetypie&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Core Tweet service that handles the reading and writing of Tweet data.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/unified_user_actions/README.md&quot;&gt;unified-user-actions&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Real-time stream of user actions on Twitter.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/user-signal-service/README.md&quot;&gt;user-signal-service&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Centralized platform to retrieve explicit (e.g. likes, replies) and implicit (e.g. profile visits, tweet clicks) user signals.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Model&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/src/scala/com/twitter/simclusters_v2/README.md&quot;&gt;SimClusters&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Community detection and sparse embeddings into those communities.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/twitter/the-algorithm-ml/raw/main/projects/twhin/README.md&quot;&gt;TwHIN&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Dense knowledge graph embeddings for Users and Tweets.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/trust_and_safety_models/README.md&quot;&gt;trust-and-safety-models&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Models for detecting NSFW or abusive content.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/src/scala/com/twitter/interaction_graph/README.md&quot;&gt;real-graph&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Model to predict the likelihood of a Twitter User interacting with another User.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/src/scala/com/twitter/graph/batch/job/tweepcred/README&quot;&gt;tweepcred&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Page-Rank algorithm for calculating Twitter User reputation.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/recos-injector/README.md&quot;&gt;recos-injector&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Streaming event processor for building input streams for &lt;a href=&quot;https://github.com/twitter/GraphJet&quot;&gt;GraphJet&lt;/a&gt; based services.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/graph-feature-service/README.md&quot;&gt;graph-feature-service&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Serves graph features for a directed pair of Users (e.g. how many of User A&#39;s following liked Tweets from User B).&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/topic-social-proof/README.md&quot;&gt;topic-social-proof&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Identifies topics related to individual Tweets.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/representation-scorer/README.md&quot;&gt;representation-scorer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Compute scores between pairs of entities (Users, Tweets, etc.) using embedding similarity.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Software framework&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/navi/README.md&quot;&gt;navi&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;High performance, machine learning model serving written in Rust.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/product-mixer/README.md&quot;&gt;product-mixer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Software framework for building feeds of content.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/timelines/data_processing/ml_util/aggregation_framework/README.md&quot;&gt;timelines-aggregation-framework&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Framework for generating aggregate features in batch or real time.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/representation-manager/README.md&quot;&gt;representation-manager&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Service to retrieve embeddings (i.e. SimClusers and TwHIN).&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/twml/README.md&quot;&gt;twml&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Legacy machine learning framework built on TensorFlow v1.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The product surfaces currently included in this repository are the For You Timeline and Recommended Notifications.&lt;/p&gt; 
+&lt;h3&gt;For You Timeline&lt;/h3&gt; 
+&lt;p&gt;The diagram below illustrates how major services and jobs interconnect to construct a For You Timeline.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/docs/system-diagram.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;The core components of the For You Timeline included in this repository are listed below:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;Component&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Candidate Source&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/src/java/com/twitter/search/README.md&quot;&gt;search-index&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Find and rank In-Network Tweets. ~50% of Tweets come from this candidate source.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/cr-mixer/README.md&quot;&gt;cr-mixer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Coordination layer for fetching Out-of-Network tweet candidates from underlying compute services.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/src/scala/com/twitter/recos/user_tweet_entity_graph/README.md&quot;&gt;user-tweet-entity-graph&lt;/a&gt; (UTEG)&lt;/td&gt; 
+   &lt;td&gt;Maintains an in memory User to Tweet interaction graph, and finds candidates based on traversals of this graph. This is built on the &lt;a href=&quot;https://github.com/twitter/GraphJet&quot;&gt;GraphJet&lt;/a&gt; framework. Several other GraphJet based features and candidate sources are located &lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/src/scala/com/twitter/recos&quot;&gt;here&lt;/a&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/follow-recommendations-service/README.md&quot;&gt;follow-recommendation-service&lt;/a&gt; (FRS)&lt;/td&gt; 
+   &lt;td&gt;Provides Users with recommendations for accounts to follow, and Tweets from those accounts.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ranking&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/src/python/twitter/deepbird/projects/timelines/scripts/models/earlybird/README.md&quot;&gt;light-ranker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Light Ranker model used by search index (Earlybird) to rank Tweets.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/twitter/the-algorithm-ml/raw/main/projects/home/recap/README.md&quot;&gt;heavy-ranker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Neural network for ranking candidate tweets. One of the main signals used to select timeline Tweets post candidate sourcing.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Tweet mixing &amp;amp; filtering&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/home-mixer/README.md&quot;&gt;home-mixer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Main service used to construct and serve the Home Timeline. Built on &lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/product-mixer/README.md&quot;&gt;product-mixer&lt;/a&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/visibilitylib/README.md&quot;&gt;visibility-filters&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Responsible for filtering Twitter content to support legal compliance, improve product quality, increase user trust, protect revenue through the use of hard-filtering, visible product treatments, and coarse-grained downranking.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/timelineranker/README.md&quot;&gt;timelineranker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Legacy service which provides relevance-scored tweets from the Earlybird Search Index and UTEG service.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Recommended Notifications&lt;/h3&gt; 
+&lt;p&gt;The core components of Recommended Notifications included in this repository are listed below:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;Component&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Service&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/pushservice/README.md&quot;&gt;pushservice&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Main recommendation service at Twitter used to surface recommendations to our users via notifications.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ranking&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/pushservice/src/main/python/models/light_ranking/README.md&quot;&gt;pushservice-light-ranker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Light Ranker model used by pushservice to rank Tweets. Bridges candidate generation and heavy ranking by pre-selecting highly-relevant candidates from the initial huge candidate pool.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/twitter/the-algorithm/main/pushservice/src/main/python/models/heavy_ranking/README.md&quot;&gt;pushservice-heavy-ranker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Multi-task learning model to predict the probabilities that the target users will open and engage with the sent notifications.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Build and test code&lt;/h2&gt; 
+&lt;p&gt;We include Bazel BUILD files for most components, but not a top-level BUILD or WORKSPACE file. We plan to add a more complete build and test system in the future.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We invite the community to submit GitHub issues and pull requests for suggestions on improving the recommendation algorithm. We are working on tools to manage these suggestions and sync changes to our internal repository. Any security concerns or issues should be routed to our official &lt;a href=&quot;https://hackerone.com/twitter&quot;&gt;bug bounty program&lt;/a&gt; through HackerOne. We hope to benefit from the collective intelligence and expertise of the global community in helping us identify issues and suggest improvements, ultimately leading to a better Twitter.&lt;/p&gt; 
+&lt;p&gt;Read our blog on the open source initiative &lt;a href=&quot;https://blog.twitter.com/en_us/topics/company/2023/a-new-era-of-transparency-for-twitter&quot;&gt;here&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>apache/spark</title>
+      <link>https://github.com/apache/spark</link>
+      <description>&lt;p&gt;Apache Spark - A unified analytics engine for large-scale data processing&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Apache Spark&lt;/h1&gt; 
+&lt;p&gt;Spark is a unified analytics engine for large-scale data processing. It provides high-level APIs in Scala, Java, Python, and R, and an optimized engine that supports general computation graphs for data analysis. It also supports a rich set of higher-level tools including Spark SQL for SQL and DataFrames, pandas API on Spark for pandas workloads, MLlib for machine learning, GraphX for graph processing, and Structured Streaming for stream processing.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://spark.apache.org/&quot;&gt;https://spark.apache.org/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/apache/spark/actions/workflows/build_main.yml&quot;&gt;&lt;img src=&quot;https://github.com/apache/spark/actions/workflows/build_main.yml/badge.svg?sanitize=true&quot; alt=&quot;GitHub Actions Build&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/apache/spark&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/apache/spark/branch/master/graph/badge.svg?sanitize=true&quot; alt=&quot;PySpark Coverage&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://pypi.org/project/pyspark/&quot;&gt;&lt;img src=&quot;https://static.pepy.tech/personalized-badge/pyspark?period=month&amp;amp;units=international_system&amp;amp;left_color=black&amp;amp;right_color=orange&amp;amp;left_text=PyPI%20downloads&quot; alt=&quot;PyPI Downloads&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Online Documentation&lt;/h2&gt; 
+&lt;p&gt;You can find the latest Spark documentation, including a programming guide, on the &lt;a href=&quot;https://spark.apache.org/documentation.html&quot;&gt;project web page&lt;/a&gt;. This README file only contains basic setup instructions.&lt;/p&gt; 
+&lt;h2&gt;Building Spark&lt;/h2&gt; 
+&lt;p&gt;Spark is built using &lt;a href=&quot;https://maven.apache.org/&quot;&gt;Apache Maven&lt;/a&gt;. To build Spark and its example programs, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./build/mvn -DskipTests clean package
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;(You do not need to do this if you downloaded a pre-built package.)&lt;/p&gt; 
+&lt;p&gt;More detailed documentation is available from the project site, at &lt;a href=&quot;https://spark.apache.org/docs/latest/building-spark.html&quot;&gt;&quot;Building Spark&quot;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For general development tips, including info on developing Spark using an IDE, see &lt;a href=&quot;https://spark.apache.org/developer-tools.html&quot;&gt;&quot;Useful Developer Tools&quot;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Interactive Scala Shell&lt;/h2&gt; 
+&lt;p&gt;The easiest way to start using Spark is through the Scala shell:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./bin/spark-shell
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Try the following command, which should return 1,000,000,000:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;scala&amp;gt; spark.range(1000 * 1000 * 1000).count()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Interactive Python Shell&lt;/h2&gt; 
+&lt;p&gt;Alternatively, if you prefer Python, you can use the Python shell:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./bin/pyspark
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And run the following command, which should also return 1,000,000,000:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;&amp;gt;&amp;gt;&amp;gt; spark.range(1000 * 1000 * 1000).count()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Example Programs&lt;/h2&gt; 
+&lt;p&gt;Spark also comes with several sample programs in the &lt;code&gt;examples&lt;/code&gt; directory. To run one of them, use &lt;code&gt;./bin/run-example &amp;lt;class&amp;gt; [params]&lt;/code&gt;. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./bin/run-example SparkPi
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;will run the Pi example locally.&lt;/p&gt; 
+&lt;p&gt;You can set the MASTER environment variable when running examples to submit examples to a cluster. This can be spark:// URL, &quot;yarn&quot; to run on YARN, and &quot;local&quot; to run locally with one thread, or &quot;local[N]&quot; to run locally with N threads. You can also use an abbreviated class name if the class is in the &lt;code&gt;examples&lt;/code&gt; package. For instance:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;MASTER=spark://host:7077 ./bin/run-example SparkPi
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Many of the example programs print usage help if no params are given.&lt;/p&gt; 
+&lt;h2&gt;Running Tests&lt;/h2&gt; 
+&lt;p&gt;Testing first requires &lt;a href=&quot;https://raw.githubusercontent.com/apache/spark/master/#building-spark&quot;&gt;building Spark&lt;/a&gt;. Once Spark is built, tests can be run using:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./dev/run-tests
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Please see the guidance on how to &lt;a href=&quot;https://spark.apache.org/developer-tools.html#individual-tests&quot;&gt;run tests for a module, or individual tests&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;There is also a Kubernetes integration test, see resource-managers/kubernetes/integration-tests/README.md&lt;/p&gt; 
+&lt;h2&gt;A Note About Hadoop Versions&lt;/h2&gt; 
+&lt;p&gt;Spark uses the Hadoop core library to talk to HDFS and other Hadoop-supported storage systems. Because the protocols have changed in different versions of Hadoop, you must build Spark against the same version that your cluster runs.&lt;/p&gt; 
+&lt;p&gt;Please refer to the build documentation at &lt;a href=&quot;https://spark.apache.org/docs/latest/building-spark.html#specifying-the-hadoop-version-and-enabling-yarn&quot;&gt;&quot;Specifying the Hadoop Version and Enabling YARN&quot;&lt;/a&gt; for detailed guidance on building for a particular distribution of Hadoop, including building for particular Hive and Hive Thriftserver distributions.&lt;/p&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;Please refer to the &lt;a href=&quot;https://spark.apache.org/docs/latest/configuration.html&quot;&gt;Configuration Guide&lt;/a&gt; in the online documentation for an overview on how to configure Spark.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Please review the &lt;a href=&quot;https://spark.apache.org/contributing.html&quot;&gt;Contribution to Spark guide&lt;/a&gt; for information on how to get started contributing to the project.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>locationtech/geomesa</title>
+      <link>https://github.com/locationtech/geomesa</link>
+      <description>&lt;p&gt;GeoMesa is a suite of tools for working with big geo-spatial data in a distributed fashion.&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://geomesa.github.io&quot;&gt;&lt;img align=&quot;center&quot; width=&quot;50%&quot; src=&quot;https://raw.githubusercontent.com/geomesa/geomesa.github.io/main/img/geomesa-2x.png&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;GeoMesa is an open source suite of tools that enables large-scale geospatial querying and analytics on distributed computing systems. GeoMesa provides spatio-temporal indexing on top of the Accumulo, HBase and Cassandra databases for massive storage of point, line, and polygon data. GeoMesa also provides near real time stream processing of spatio-temporal data by layering spatial semantics on top of Apache Kafka. Through GeoServer, GeoMesa facilitates integration with a wide range of existing mapping clients over standard OGC (Open Geospatial Consortium) APIs and protocols such as WFS and WMS. GeoMesa supports Apache Spark for custom distributed geospatial analytics.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img align=&quot;center&quot; height=&quot;150px&quot; src=&quot;https://www.geomesa.org/img/geomesa-overview-848x250.png&quot;&gt; &lt;/p&gt; 
+&lt;h4&gt;&lt;img src=&quot;https://pbs.twimg.com/profile_images/2552421256/hv2oas84tv7n3maianiq_normal.png&quot; alt=&quot;LocationTech&quot;&gt; GeoMesa is a member of the &lt;a href=&quot;https://projects.eclipse.org/projects/locationtech.geomesa&quot;&gt;LocationTech&lt;/a&gt; working group of the Eclipse Foundation.&lt;/h4&gt; 
+&lt;h2&gt;Join the Community&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gitter.im/locationtech/geomesa?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/Join%20Chat.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/locationtech/geomesa&quot;&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;GeoMesa &lt;a href=&quot;https://accounts.eclipse.org/mailing-list/geomesa-users&quot;&gt;Users&lt;/a&gt; and &lt;a href=&quot;https://accounts.eclipse.org/mailing-list/geomesa-dev&quot;&gt;Dev&lt;/a&gt; mailing lists&lt;/li&gt; 
+ &lt;li&gt;GeoMesa &lt;a href=&quot;https://geomesa.atlassian.net/issues/?jql=order+by+created+DESC&quot;&gt;JIRA&lt;/a&gt; for issue tracking&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.geomesa.org/documentation/&quot;&gt;Main documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.geomesa.org/documentation/user/upgrade.html&quot;&gt;Upgrade Guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Quick Starts: &lt;a href=&quot;https://www.geomesa.org/documentation/tutorials/geomesa-quickstart-hbase.html&quot;&gt;HBase&lt;/a&gt; | &lt;a href=&quot;https://www.geomesa.org/documentation/tutorials/geomesa-quickstart-accumulo.html&quot;&gt;Accumulo&lt;/a&gt; | &lt;a href=&quot;https://www.geomesa.org/documentation/tutorials/geomesa-quickstart-cassandra.html&quot;&gt;Cassandra&lt;/a&gt; | &lt;a href=&quot;https://www.geomesa.org/documentation/tutorials/geomesa-quickstart-kafka.html&quot;&gt;Kafka&lt;/a&gt; | &lt;a href=&quot;https://www.geomesa.org/documentation/tutorials/geomesa-quickstart-redis.html&quot;&gt;Redis&lt;/a&gt; | &lt;a href=&quot;https://www.geomesa.org/documentation/current/tutorials/geomesa-quickstart-fsds.html&quot;&gt;FileSystem&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.geomesa.org/tutorials/&quot;&gt;Tutorials&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Downloads&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Current release: &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/tag/geomesa-5.0.0&quot;&gt;5.0.0&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/download/geomesa-5.0.0/geomesa-hbase_2.12-5.0.0-bin.tar.gz&quot;&gt;&lt;strong&gt;HBase&lt;/strong&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/download/geomesa-5.0.0/geomesa-accumulo_2.12-5.0.0-bin.tar.gz&quot;&gt;&lt;strong&gt;Accumulo&lt;/strong&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/download/geomesa-5.0.0/geomesa-cassandra_2.12-5.0.0-bin.tar.gz&quot;&gt;&lt;strong&gt;Cassandra&lt;/strong&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/download/geomesa-5.0.0/geomesa-kafka_2.12-5.0.0-bin.tar.gz&quot;&gt;&lt;strong&gt;Kafka&lt;/strong&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/download/geomesa-5.0.0/geomesa-redis_2.12-5.0.0-bin.tar.gz&quot;&gt;&lt;strong&gt;Redis&lt;/strong&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/download/geomesa-5.0.0/geomesa-fs_2.12-5.0.0-bin.tar.gz&quot;&gt;&lt;strong&gt;FileSystem&lt;/strong&gt;&lt;/a&gt; | &lt;a href=&quot;https://github.com/locationtech/geomesa/releases/download/geomesa-5.0.0/geomesa-gt_2.12-5.0.0-bin.tar.gz&quot;&gt;&lt;strong&gt;PostGIS&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Verifying Downloads&lt;/h3&gt; 
+&lt;p&gt;Downloads hosted on GitHub include SHA-256 hashes and gpg signatures (.asc files). To verify a download using gpg, import the appropriate key:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg2 --keyserver hkp://pool.sks-keyservers.net --recv-keys CD24F317
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then verify the file:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ gpg2 --verify geomesa-accumulo_2.12-5.0.0-bin.tar.gz.asc geomesa-accumulo_2.12-5.0.0-bin.tar.gz
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The keys currently used for signing are:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Key ID&lt;/th&gt; 
+   &lt;th&gt;Name&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;CD24F317&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Emilio Lahr-Vivaz &amp;lt;elahrvivaz(-at-)ccri.com&amp;gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;1E679A56&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;James Hughes &amp;lt;jnh5y(-at-)ccri.com&amp;gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Maven Integration&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://search.maven.org/search?q=g:org.locationtech.geomesa&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/locationtech/geomesa/main/.github/maven-badge.svg?sanitize=true&quot; alt=&quot;Maven&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;GeoMesa is hosted on Maven Central. To include it as a dependency, add the desired modules, for example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;org.locationtech.geomesa&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;geomesa-hbase-datastore_2.12&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;5.0.0&amp;lt;/version&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;GeoMesa depends on several third-party libraries that are only available in separate repositories. To include GeoMesa in your project, add the following repositories to your pom:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;repositories&amp;gt;
+  &amp;lt;!-- geotools --&amp;gt;
+  &amp;lt;repository&amp;gt;
+    &amp;lt;id&amp;gt;osgeo&amp;lt;/id&amp;gt;
+    &amp;lt;url&amp;gt;https://repo.osgeo.org/repository/release&amp;lt;/url&amp;gt;
+  &amp;lt;/repository&amp;gt;
+  &amp;lt;!-- confluent --&amp;gt;
+  &amp;lt;repository&amp;gt;
+    &amp;lt;id&amp;gt;confluent&amp;lt;/id&amp;gt;
+    &amp;lt;url&amp;gt;https://packages.confluent.io/maven/&amp;lt;/url&amp;gt;
+  &amp;lt;/repository&amp;gt;
+&amp;lt;/repositories&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Nightly Snapshots&lt;/h3&gt; 
+&lt;p&gt;Snapshot versions are published nightly to the Eclipse repository:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;repository&amp;gt;
+  &amp;lt;id&amp;gt;geomesa-snapshots&amp;lt;/id&amp;gt;
+  &amp;lt;url&amp;gt;https://repo.eclipse.org/content/repositories/geomesa-snapshots&amp;lt;/url&amp;gt;
+  &amp;lt;releases&amp;gt;
+    &amp;lt;enabled&amp;gt;false&amp;lt;/enabled&amp;gt;
+  &amp;lt;/releases&amp;gt;
+  &amp;lt;snapshots&amp;gt;
+    &amp;lt;enabled&amp;gt;true&amp;lt;/enabled&amp;gt;
+  &amp;lt;/snapshots&amp;gt;
+&amp;lt;/repository&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Spark Runtimes&lt;/h3&gt; 
+&lt;p&gt;GeoMesa publishes &lt;code&gt;spark-runtime&lt;/code&gt; JARs for integration with Spark environments like Databricks. These shaded JARs include all the required dependencies in a single artifact. When importing through Maven, all transitive dependencies can be excluded. There are Spark runtime JARs available for most of the different DataStore implementations:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+  &amp;lt;groupId&amp;gt;org.locationtech.geomesa&amp;lt;/groupId&amp;gt;
+  &amp;lt;artifactId&amp;gt;geomesa-gt-spark-runtime_2.12&amp;lt;/artifactId&amp;gt;
+  &amp;lt;version&amp;gt;5.0.0&amp;lt;/version&amp;gt;
+  &amp;lt;exclusions&amp;gt;
+    &amp;lt;exclusion&amp;gt;
+      &amp;lt;!-- if groupId wildcards are not supported, the two main ones are jline:* and org.geotools:* --&amp;gt;
+      &amp;lt;groupId&amp;gt;*&amp;lt;/groupId&amp;gt;
+      &amp;lt;artifactId&amp;gt;*&amp;lt;/artifactId&amp;gt;
+    &amp;lt;/exclusion&amp;gt;
+  &amp;lt;/exclusions&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;These JARs are also included in the &lt;a href=&quot;https://raw.githubusercontent.com/locationtech/geomesa/main/#downloads&quot;&gt;Downloads&lt;/a&gt; bundles, above.&lt;/p&gt; 
+&lt;h2&gt;&lt;code&gt;sbt&lt;/code&gt; Integration&lt;/h2&gt; 
+&lt;p&gt;Similarly, integration with &lt;code&gt;sbt&lt;/code&gt; is straightforward:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;// Add necessary resolvers
+resolvers ++= Seq(
+  &quot;osgeo&quot; at &quot;https://repo.osgeo.org/repository/release&quot;,
+  &quot;confluent&quot; at &quot;https://packages.confluent.io/maven&quot;
+)
+
+// Select desired modules
+libraryDependencies ++= Seq(
+  &quot;org.locationtech.geomesa&quot; %% &quot;geomesa-utils&quot; % &quot;5.0.0&quot;
+)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Building from Source&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Development version: 5.1.0-SNAPSHOT&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://github.com/locationtech/geomesa/actions/workflows/build-and-test-2.12.yml?query=branch%3Amain&quot;&gt;&lt;img src=&quot;https://github.com/locationtech/geomesa/actions/workflows/build-and-test-2.12.yml/badge.svg?branch=main&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://github.com/locationtech/geomesa/actions/workflows/build-and-test-2.13.yml?query=branch%3Amain&quot;&gt;&lt;img src=&quot;https://github.com/locationtech/geomesa/actions/workflows/build-and-test-2.13.yml/badge.svg?branch=main&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://api.securityscorecards.dev/projects/github.com/locationtech/geomesa&quot;&gt;&lt;img src=&quot;https://api.securityscorecards.dev/projects/github.com/locationtech/geomesa/badge&quot; alt=&quot;OpenSSF Scorecard&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Requirements:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://git-scm.com/&quot;&gt;Git&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://adoptium.net/temurin/releases/&quot;&gt;Java JDK 11&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://maven.apache.org/&quot;&gt;Apache Maven&lt;/a&gt; 3.6.3 or later&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/get-docker/&quot;&gt;Docker&lt;/a&gt; (only required for running unit tests)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Use Git to download the source code. Navigate to the destination directory, then run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:locationtech/geomesa.git
+cd geomesa
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The project is built using Maven. To build, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;mvn clean install -DskipTests
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The full build takes quite a while. To speed it up, you may use multiple threads (&lt;code&gt;-T 1.5C&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;To run unit tests, omit the &lt;code&gt;-DskipTests&lt;/code&gt; (note: requires &lt;code&gt;docker&lt;/code&gt; to be available).&lt;/p&gt; 
+&lt;h3&gt;Build with Bloop Compile Server&lt;/h3&gt; 
+&lt;p&gt;GeoMesa also provides experimental support for the &lt;a href=&quot;https://scalacenter.github.io/bloop/&quot;&gt;Bloop&lt;/a&gt; compile server, which provides fast incremental compilation. To export the GeoMesa build to Bloop, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./build/bloop-export.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more information on using Bloop, refer to the &lt;a href=&quot;https://scalacenter.github.io/bloop/docs/build-tools/maven&quot;&gt;Bloop documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Build with Zinc Compile Server&lt;/h3&gt; 
+&lt;p&gt;GeoMesa also provides experimental support for the &lt;a href=&quot;https://github.com/typesafehub/zinc&quot;&gt;Zinc&lt;/a&gt; compile server, which provides fast incremental compilation. However, please note that Zinc is no longer actively maintained. To use an existing Zinc server, run maven with &lt;code&gt;-Pzinc&lt;/code&gt;. GeoMesa provides a helper script at &lt;code&gt;build/mvn&lt;/code&gt;, which is a wrapper around Maven that downloads and runs Zinc automatically:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;build/mvn clean install -T8 -DskipTests
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If the Zinc build fails with an error finding &quot;javac&quot;, try setting the JAVA_HOME environment variable to point to the root of your JDK. Example from a Mac:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;JAVA_HOME=&quot;/Library/Java/JavaVirtualMachines/jdk1.8.0_51.jdk/Contents/Home&quot; build/mvn clean install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Scala Cross Build&lt;/h3&gt; 
+&lt;p&gt;To build for a different Scala version (e.g. 2.13), run the following script, then build as normal:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./build/change-scala-version.sh 2.13
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Building on OS X&lt;/h3&gt; 
+&lt;p&gt;When building on OS X and using Docker Desktop in a non-default configuration, you may need to edit &lt;code&gt;~/.testcontainers.properties&lt;/code&gt; to contain the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker.client.strategy=org.testcontainers.dockerclient.UnixSocketClientProviderStrategy
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>chipsalliance/firrtl</title>
+      <link>https://github.com/chipsalliance/firrtl</link>
+      <description>&lt;p&gt;Flexible Intermediate Representation for RTL&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;This project is in maintenance mode&lt;/h1&gt; 
+&lt;p&gt;Pull Requests should only be made for bug fixes against versions 1.6 and below (Chisel 3.6 and below).&lt;/p&gt; 
+&lt;p&gt;Please see &lt;a href=&quot;https://github.com/llvm/circt&quot;&gt;CIRCT&lt;/a&gt; for the next generation FIRRTL compiler. Also see &lt;a href=&quot;https://github.com/chipsalliance/chisel&quot;&gt;Chisel&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/freechipsproject/firrtl/master/doc/images/firrtl_logo.svg?sanitize=true&quot; alt=&quot;FIRRTL&quot;&gt;&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gitter.im/freechipsproject/firrtl?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/freechipsproject/firrtl.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/freechipsproject/firrtl&quot;&gt;&lt;/a&gt; &lt;img src=&quot;https://github.com/chipsalliance/firrtl/workflows/Continuous%20Integration/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot;&gt; &lt;a href=&quot;https://mergify.io&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint.svg?url=https://gh.mergify.io/badges/chipsalliance/firrtl&amp;amp;style=flat&quot; alt=&quot;Mergify Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Flexible Internal Representation for RTL&lt;/h4&gt; 
+&lt;p&gt;Firrtl is an intermediate representation (IR) for digital circuits designed as a platform for writing circuit-level transformations. This repository consists of a collection of transformations (written in Scala) which simplify, verify, transform, or emit their input circuit.&lt;/p&gt; 
+&lt;p&gt;A Firrtl compiler is constructed by chaining together these transformations, then writing the final circuit to a file.&lt;/p&gt; 
+&lt;p&gt;For a detailed description of Firrtl&#39;s intermediate representation, see the &lt;a href=&quot;https://github.com/chipsalliance/firrtl-spec/releases/latest/download/spec.pdf&quot;&gt;FIRRTL Language Specification&lt;/a&gt; (&lt;a href=&quot;https://github.com/chipsalliance/firrtl-spec&quot;&gt;source&lt;/a&gt;).&lt;/p&gt; 
+&lt;h4&gt;Wiki Pages and Tutorials&lt;/h4&gt; 
+&lt;p&gt;Useful information is on our wiki, located here:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/freechipsproject/firrtl/wiki&quot;&gt;https://github.com/freechipsproject/firrtl/wiki&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Some important pages to read, before writing your own transform:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/freechipsproject/firrtl/wiki/Submitting-a-Pull-Request&quot;&gt;Submitting Pull Requests&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/freechipsproject/firrtl/wiki/Understanding-Firrtl-Intermediate-Representation&quot;&gt;Understanding Firrtl&#39;s IR&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/freechipsproject/firrtl/wiki/traversing-a-circuit&quot;&gt;Traversing a Circuit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/freechipsproject/firrtl/wiki/Common-Pass-Idioms&quot;&gt;Common Pass Idioms&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To write a Firrtl transform, please start with the tutorial here: &lt;a href=&quot;https://github.com/freechipsproject/firrtl/raw/master/src/main/scala/tutorial&quot;&gt;src/main/scala/tutorial&lt;/a&gt;. To run these examples:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;sbt assembly
+./utils/bin/firrtl -td regress -i regress/RocketCore.fir --custom-transforms tutorial.lesson1.AnalyzeCircuit
+./utils/bin/firrtl -td regress -i regress/RocketCore.fir --custom-transforms tutorial.lesson2.AnalyzeCircuit
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Other Tools&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Firrtl syntax highlighting for Vim users: &lt;a href=&quot;https://github.com/azidar/firrtl-syntax&quot;&gt;https://github.com/azidar/firrtl-syntax&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Firrtl syntax highlighting for Sublime Text 3 users: &lt;a href=&quot;https://github.com/codelec/highlight-firrtl&quot;&gt;https://github.com/codelec/highlight-firrtl&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Firrtl syntax highlighting for Atom users: &lt;a href=&quot;https://atom.io/packages/language-firrtl&quot;&gt;https://atom.io/packages/language-firrtl&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Firrtl syntax highlighting, structure view, navigate to corresponding Chisel code for IntelliJ platform: &lt;a href=&quot;https://plugins.jetbrains.com/plugin/14183-easysoc-firrtl&quot;&gt;install&lt;/a&gt;, &lt;a href=&quot;https://github.com/easysoc/easysoc-firrtl&quot;&gt;source&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Firrtl mode for Emacs users: &lt;a href=&quot;https://github.com/ibm/firrtl-mode&quot;&gt;https://github.com/ibm/firrtl-mode&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Chisel3, an embedded hardware DSL that generates Firrtl: &lt;a href=&quot;https://github.com/freechipsproject/chisel3&quot;&gt;https://github.com/freechipsproject/chisel3&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Treadle, a Firrtl Interpreter: &lt;a href=&quot;https://github.com/freechipsproject/treadle&quot;&gt;https://github.com/freechipsproject/treadle&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Yosys Verilog-to-Firrtl Front-end: &lt;a href=&quot;https://github.com/cliffordwolf/yosys&quot;&gt;https://github.com/cliffordwolf/yosys&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Installation Instructions&lt;/h4&gt; 
+&lt;p&gt;&lt;em&gt;Disclaimer&lt;/em&gt;: The installation instructions should work for OSX/Linux machines. Other environments may not be tested.&lt;/p&gt; 
+&lt;h5&gt;Prerequisites&lt;/h5&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;If not already installed, install &lt;a href=&quot;http://www.veripool.org/projects/verilator/wiki/Installing&quot;&gt;verilator&lt;/a&gt; (Requires at least v3.886)&lt;/li&gt; 
+ &lt;li&gt;If not already installed, install &lt;a href=&quot;https://github.com/YosysHQ/yosys&quot;&gt;yosys&lt;/a&gt; (Requires at least v0.8)&lt;/li&gt; 
+ &lt;li&gt;If not already installed, install &lt;a href=&quot;http://www.scala-sbt.org/&quot;&gt;sbt&lt;/a&gt; (Recommend v1.6.2)&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h5&gt;Installation&lt;/h5&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Clone the repository: &lt;code&gt;git clone https://github.com/freechipsproject/firrtl.git &amp;amp;&amp;amp; cd firrtl&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Compile firrtl: &lt;code&gt;sbt compile&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Run tests: &lt;code&gt;sbt test&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Build executable (&lt;code&gt;utils/bin/firrtl&lt;/code&gt;): &lt;code&gt;sbt assembly&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;Note:&lt;/strong&gt; You can add &lt;code&gt;utils/bin&lt;/code&gt; to your path to call firrtl from other processes&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Publish this version locally in order to satisfy other tool chain library dependencies:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;sbt publishLocal
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Useful sbt Tips&lt;/h5&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Run a single test suite: &lt;code&gt;sbt &quot;testOnly firrtlTests.UnitTests&quot;&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Continually execute a command: &lt;code&gt;sbt ~compile&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Only invoke sbt once:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;sbt
+&amp;gt; compile
+&amp;gt; test
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Use scalafix to remove unused import and deprecated procedure syntax&lt;/h5&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Remove unused import:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;sbt &quot;firrtl/scalafix RemoveUnused&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Remove deprecated procedure syntax&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;sbt &quot;firrtl/scalafix ProcedureSyntax&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Using Firrtl as a commandline tool&lt;/h5&gt; 
+&lt;pre&gt;&lt;code&gt;utils/bin/firrtl -i regress/rocket.fir -o regress/rocket.v -X verilog // Compiles rocket-chip to Verilog
+utils/bin/firrtl --help // Returns usage string
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Using the JQF Fuzzer&lt;/h5&gt; 
+&lt;p&gt;The &lt;code&gt;build.sbt&lt;/code&gt; defines the &lt;code&gt;fuzzer/jqfFuzz&lt;/code&gt; and &lt;code&gt;fuzzer/jqfRepro&lt;/code&gt; tasks. These can be used to randomly generate and run test cases and reproduce failing test cases respectively. These tasks are Scala implementations of the &lt;a href=&quot;https://github.com/rohanpadhye/JQF/tree/master/maven-plugin/src/main/java/edu/berkeley/cs/jqf/plugin&quot;&gt;FuzzGoal and ReproGoal&lt;/a&gt; of the JQF maven plugin and should be functionally identical.&lt;/p&gt; 
+&lt;p&gt;The format for the arguments to jqfFuzz are as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;sbt&amp;gt; fuzzer/jqfFuzz &amp;lt;testClassName&amp;gt; &amp;lt;testMethodName&amp;gt; &amp;lt;otherArgs&amp;gt;...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The available options are:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  --classpath &amp;lt;value&amp;gt;       the classpath to instrument and load the test class from
+  --outputDirectory &amp;lt;value&amp;gt; the directory to output test results
+  --testClassName &amp;lt;value&amp;gt;   the full class path of the test class
+  --testMethod &amp;lt;value&amp;gt;      the method of the test class to run
+  --excludes &amp;lt;value&amp;gt;        comma-separated list of FQN prefixes to exclude from coverage instrumentation
+  --includes &amp;lt;value&amp;gt;        comma-separated list of FQN prefixes to forcibly include, even if they match an exclude
+  --time &amp;lt;value&amp;gt;            the duration of time for which to run fuzzing
+  --blind                   whether to generate inputs blindly without taking into account coverage feedback
+  --engine &amp;lt;value&amp;gt;          the fuzzing engine, valid choices are zest|zeal
+  --disableCoverage         disable code-coverage instrumentation
+  --inputDirectory &amp;lt;value&amp;gt;  the name of the input directory containing seed files
+  --saveAll                 save ALL inputs generated during fuzzing, even the ones that do not have any unique code coverage
+  --libFuzzerCompatOutput   use libFuzzer like output instead of AFL like stats screen
+  --quiet                   avoid printing fuzzing statistics progress in the console
+  --exitOnCrash             stop fuzzing once a crash is found.
+  --runTimeout &amp;lt;value&amp;gt;      the timeout for each individual trial, in milliseconds
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;fuzzer/jqfFuzz&lt;/code&gt; sbt task is a thin wrapper around the &lt;code&gt;firrtl.jqf.jqfFuzz&lt;/code&gt; main method that provides the &lt;code&gt;--classpath&lt;/code&gt; argument and a default &lt;code&gt;--outputDirectory&lt;/code&gt; and passes the rest of the arguments to the main method verbatim.&lt;/p&gt; 
+&lt;p&gt;The results will be put in the &lt;code&gt;fuzzer/target/JQf/$testClassName/$testMethod&lt;/code&gt; directory. Input files in the &lt;code&gt;fuzzer/target/JQf/$testClassName/$testMethod/corpus&lt;/code&gt; and &lt;code&gt;fuzzer/target/JQf/$testClassName/$testMethod/failures&lt;/code&gt; directories can be passed as inputs to the &lt;code&gt;fuzzer/jqfRepro&lt;/code&gt; task.&lt;/p&gt; 
+&lt;p&gt;The format for the arguments to jqfRepro are the same as &lt;code&gt;jqfFuzz&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;sbt&amp;gt; fuzzer/jqfRepro &amp;lt;testClassName&amp;gt; &amp;lt;testMethodName&amp;gt; &amp;lt;otherArgs&amp;gt;...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The available options are:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  --classpath &amp;lt;value&amp;gt;      the classpath to instrument and load the test class from
+  --testClassName &amp;lt;value&amp;gt;  the full class path of the test class
+  --testMethod &amp;lt;value&amp;gt;     the method of the test class to run
+  --input &amp;lt;value&amp;gt;          input file or directory to reproduce test case(s)
+  --logCoverage &amp;lt;value&amp;gt;    output file to dump coverage info
+  --excludes &amp;lt;value&amp;gt;       comma-separated list of FQN prefixes to exclude from coverage instrumentation
+  --includes &amp;lt;value&amp;gt;       comma-separated list of FQN prefixes to forcibly include, even if they match an exclude
+  --printArgs              whether to print the args to each test case
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Like &lt;code&gt;fuzzer/jqfFuzz&lt;/code&gt;, the &lt;code&gt;fuzzer/jqfRepro&lt;/code&gt; sbt task is a thin wrapper around the &lt;code&gt;firrtl.jqf.jqfRepro&lt;/code&gt; main method that provides the &lt;code&gt;--classpath&lt;/code&gt; argument and a default &lt;code&gt;--outputDirectory&lt;/code&gt; and passes the rest of the arguments to the main method verbatim.&lt;/p&gt; 
+&lt;h5&gt;Citing Firrtl&lt;/h5&gt; 
+&lt;p&gt;If you use Firrtl in a paper, please cite the following ICCAD paper and technical report: &lt;a href=&quot;https://ieeexplore.ieee.org/document/8203780&quot;&gt;https://ieeexplore.ieee.org/document/8203780&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@INPROCEEDINGS{8203780, 
+author={A. Izraelevitz and J. Koenig and P. Li and R. Lin and A. Wang and A. Magyar and D. Kim and C. Schmidt and C. Markley and J. Lawson and J. Bachrach}, 
+booktitle={2017 IEEE/ACM International Conference on Computer-Aided Design (ICCAD)}, 
+title={Reusability is FIRRTL ground: Hardware construction languages, compiler frameworks, and transformations}, 
+year={2017}, 
+volume={}, 
+number={}, 
+pages={209-216}, 
+keywords={field programmable gate arrays;hardware description languages;program compilers;software reusability;hardware development practices;hardware libraries;open-source hardware intermediate representation;hardware compiler transformations;Hardware construction languages;retargetable compilers;software development;virtual Cambrian explosion;hardware compiler frameworks;parameterized libraries;FIRRTL;FPGA mappings;Chisel;Flexible Intermediate Representation for RTL;Reusability;Hardware;Libraries;Hardware design languages;Field programmable gate arrays;Tools;Open source software;RTL;Design;FPGA;ASIC;Hardware;Modeling;Reusability;Hardware Design Language;Hardware Construction Language;Intermediate Representation;Compiler;Transformations;Chisel;FIRRTL}, 
+doi={10.1109/ICCAD.2017.8203780}, 
+ISSN={1558-2434}, 
+month={Nov},}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-9.html&quot;&gt;https://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-9.html&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@techreport{Li:EECS-2016-9,
+    Author = {Li, Patrick S. and Izraelevitz, Adam M. and Bachrach, Jonathan},
+    Title = {Specification for the FIRRTL Language},
+    Institution = {EECS Department, University of California, Berkeley},
+    Year = {2016},
+    Month = {Feb},
+    URL = {http://www2.eecs.berkeley.edu/Pubs/TechRpts/2016/EECS-2016-9.html},
+    Number = {UCB/EECS-2016-9}
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>playframework/playframework</title>
+      <link>https://github.com/playframework/playframework</link>
+      <description>&lt;p&gt;The Community Maintained High Velocity Web Framework For Java and Scala.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Play Framework - The High Velocity Web Framework&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://x.com/playframework&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/playframework?label=follow&amp;amp;style=flat&amp;amp;logo=x&amp;amp;color=brightgreen&quot; alt=&quot;X (formerly Twitter) Follow&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/g5s2vtZ4Fa&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/931647755942776882?logo=discord&amp;amp;logoColor=white&quot; alt=&quot;Discord&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/playframework/playframework/discussions&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/discussions/playframework/playframework?&amp;amp;logo=github&amp;amp;color=brightgreen&quot; alt=&quot;GitHub Discussions&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://stackoverflow.com/tags/playframework&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=stackoverflow&amp;amp;logo=stackoverflow&amp;amp;logoColor=fe7a16&amp;amp;color=brightgreen&amp;amp;message=playframework&quot; alt=&quot;StackOverflow&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.youtube.com/channel/UCRp6QDm5SDjbIuisUpxV9cg&quot;&gt;&lt;img src=&quot;https://img.shields.io/youtube/channel/views/UCRp6QDm5SDjbIuisUpxV9cg?label=watch&amp;amp;logo=youtube&amp;amp;style=flat&amp;amp;color=brightgreen&amp;amp;logoColor=ff0000&quot; alt=&quot;YouTube&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.twitch.tv/playframework&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitch/status/playframework?logo=twitch&amp;amp;logoColor=white&amp;amp;color=brightgreen&amp;amp;label=live%20stream&quot; alt=&quot;Twitch Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://opencollective.com/playframework&quot;&gt;&lt;img src=&quot;https://img.shields.io/opencollective/all/playframework?label=financial%20contributors&amp;amp;logo=open-collective&quot; alt=&quot;OpenCollective&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/playframework/playframework/actions/workflows/build-test.yml&quot;&gt;&lt;img src=&quot;https://github.com/playframework/playframework/actions/workflows/build-test.yml/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://mvnrepository.com/artifact/org.playframework/play_2.13&quot;&gt;&lt;img src=&quot;https://img.shields.io/maven-central/v/org.playframework/play_2.13.svg?logo=apache-maven&quot; alt=&quot;Maven&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/playframework/playframework&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/repo-size/playframework/playframework.svg?logo=git&quot; alt=&quot;Repository size&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://scala-steward.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Scala_Steward-helping-blue.svg?style=flat&amp;amp;logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAA4AAAAQCAMAAAARSr4IAAAAVFBMVEUAAACHjojlOy5NWlrKzcYRKjGFjIbp293YycuLa3pYY2LSqql4f3pCUFTgSjNodYRmcXUsPD/NTTbjRS+2jomhgnzNc223cGvZS0HaSD0XLjbaSjElhIr+AAAAAXRSTlMAQObYZgAAAHlJREFUCNdNyosOwyAIhWHAQS1Vt7a77/3fcxxdmv0xwmckutAR1nkm4ggbyEcg/wWmlGLDAA3oL50xi6fk5ffZ3E2E3QfZDCcCN2YtbEWZt+Drc6u6rlqv7Uk0LdKqqr5rk2UCRXOk0vmQKGfc94nOJyQjouF9H/wCc9gECEYfONoAAAAASUVORK5CYII=&quot; alt=&quot;Scala Steward badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://mergify.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint.svg?url=https://api.mergify.com/v1/badges/playframework/playframework&amp;amp;style=flat&quot; alt=&quot;Mergify Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The Play Framework combines productivity and performance making it easy to build scalable web applications with Java and Scala. Play is developer friendly with a &quot;just hit refresh&quot; workflow and built-in testing support. With Play, applications scale predictably due to a stateless and non-blocking architecture. By being RESTful by default, including assets compilers, JSON &amp;amp; WebSocket support, Play is a perfect fit for modern web &amp;amp; mobile applications.&lt;/p&gt; 
+&lt;h2&gt;Learn More&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com&quot;&gt;www.playframework.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com/download&quot;&gt;Download&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com/documentation/latest/Installing&quot;&gt;Install&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com/documentation/latest/NewApplication&quot;&gt;Create a new application&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com/documentation/latest/ScalaHome&quot;&gt;Play for Scala developers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com/documentation/latest/JavaHome&quot;&gt;Play for Java developers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com/documentation/latest/BuildingFromSource&quot;&gt;Build from source&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/playframework/playframework/issues&quot;&gt;Search or create issues&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://stackoverflow.com/questions/tagged/playframework&quot;&gt;Get help&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.playframework.com/contributing&quot;&gt;Contribute&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Sponsors &amp;amp; Backers&lt;/h2&gt; 
+&lt;p&gt;If you find Play useful for work, please consider asking your company to support this Open Source project by &lt;a href=&quot;https://www.playframework.com/sponsors&quot;&gt;becoming a sponsor&lt;/a&gt;.&lt;br&gt; You can also individually sponsor the project by &lt;a href=&quot;https://www.playframework.com/sponsors&quot;&gt;becoming a backer&lt;/a&gt;.&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://opencollective.com/playframework&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://opencollective.com/playframework/donate/button@2x.png?color=blue&quot; width=&quot;250&quot;&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Thank you to our premium sponsors!&lt;/h3&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://informaticon.com/&quot;&gt;&lt;img src=&quot;https://www.playframework.com/assets/images/home/sponsors/49a3d5258c8e8b1daf5481eb9e00b898-informaticon-logo-black.png&quot; width=&quot;250&quot;&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://cedarlakeventures.com/&quot;&gt;&lt;img src=&quot;https://www.playframework.com/assets/images/home/sponsors/bec2b526c9ce52c051f9089a10044867-cedar-lake-ventures.png&quot; width=&quot;250&quot;&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://nulab.com/&quot;&gt;&lt;img src=&quot;https://www.playframework.com/assets/images/home/sponsors/6152e584aa8625eedca1c4accf8f8b63-nulab_logo_color.png&quot; width=&quot;250&quot;&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://pronto.net/&quot;&gt;&lt;img src=&quot;https://www.playframework.com/assets/images/home/sponsors/c77b1d664f10a1c9cb19b97c6d8bd204-pronto-software.png&quot; width=&quot;250&quot;&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://sprypoint.com/&quot;&gt;&lt;img src=&quot;https://www.playframework.com/assets/images/home/sponsors/3fdf14f6369cf9d69f4a2a29ce26c2f8-sprypoint-logo-lrg-transparent.png&quot; width=&quot;250&quot;&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://theguardian.com/&quot;&gt;&lt;img src=&quot;https://www.playframework.com/assets/images/home/sponsors/b15eb0f249dbc45089872e268d8ea5ad-the_guardian.png&quot; width=&quot;250&quot;&gt;&lt;/a&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Thank you to all our backers!&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://opencollective.com/playframework#section-contributors&quot;&gt;&lt;img src=&quot;https://opencollective.com/playframework/organizations.svg?width=890&amp;amp;button=false&amp;amp;avatarHeight=46&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://opencollective.com/playframework#section-contributors&quot;&gt;&lt;img src=&quot;https://opencollective.com/playframework/individuals.svg?width=890&amp;amp;button=false&amp;amp;avatarHeight=46&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Copyright (C) from 2022 The Play Framework Contributors &lt;a href=&quot;https://github.com/playframework&quot;&gt;https://github.com/playframework&lt;/a&gt;, 2011-2021 Lightbend Inc. &lt;a href=&quot;https://www.lightbend.com&quot;&gt;https://www.lightbend.com&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this project except in compliance with the License. You may obtain a copy of the License at &lt;a href=&quot;https://www.apache.org/licenses/LICENSE-2.0&quot;&gt;https://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>joernio/joern</title>
+      <link>https://github.com/joernio/joern</link>
+      <description>&lt;p&gt;Open-source code analysis platform for C/C++/Java/Binary/Javascript/Python/Kotlin based on code property graphs. Discord https://discord.gg/vv4MH284Hc&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Joern - The Bug Hunter&#39;s Workbench&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/joernio/joern/actions/workflows/release.yml&quot;&gt;&lt;img src=&quot;https://github.com/joernio/joern/actions/workflows/release.yml/badge.svg?sanitize=true&quot; alt=&quot;release&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://index.scala-lang.org/joernio/joern&quot;&gt;&lt;img src=&quot;https://index.scala-lang.org/joernio/joern/latest.svg?sanitize=true&quot; alt=&quot;Joern SBT&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/joernio/joern/releases/&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/joernio/joern/total.svg?sanitize=true&quot; alt=&quot;Github All Releases&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.com/invite/vv4MH284Hc&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Discord-lime?style=for-the-badge&amp;amp;logo=discord&amp;amp;logoColor=white&amp;amp;color=black&quot; alt=&quot;Gitter&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Joern is a platform for analyzing source code, bytecode, and binary executables. It generates code property graphs (CPGs), a graph representation of code for cross-language code analysis. Code property graphs are stored in a custom graph database. This allows code to be mined using search queries formulated in a Scala-based domain-specific query language. Joern is developed with the goal of providing a useful tool for vulnerability discovery and research in static program analysis.&lt;/p&gt; 
+&lt;p&gt;Website: &lt;a href=&quot;https://joern.io&quot;&gt;https://joern.io&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Documentation: &lt;a href=&quot;https://docs.joern.io/&quot;&gt;https://docs.joern.io/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Specification: &lt;a href=&quot;https://cpg.joern.io&quot;&gt;https://cpg.joern.io&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;News / Changelog&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Joern v2.0.0 &lt;a href=&quot;https://raw.githubusercontent.com/joernio/joern/master/changelog/2.0.0-scala3.md&quot;&gt;upgrades from Scala2 to Scala3&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Joern v1.2.0 removes the &lt;code&gt;overflowdb.traversal.Traversal&lt;/code&gt; class. This change is not completely backwards compatible. See &lt;a href=&quot;https://raw.githubusercontent.com/joernio/joern/master/changelog/traversal_removal.md&quot;&gt;here&lt;/a&gt; for a detailed writeup.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;JDK 21 (other versions &lt;em&gt;might&lt;/em&gt; work, but have not been properly tested)&lt;/li&gt; 
+ &lt;li&gt;&lt;em&gt;optional&lt;/em&gt;: gcc and g++ (for auto-discovery of C/C++ system header files if included/used in your C/C++ code)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Development Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;mvn &lt;a href=&quot;https://maven.apache.org/install.html&quot;&gt;https://maven.apache.org/install.html&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Quick Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;wget https://github.com/joernio/joern/releases/latest/download/joern-install.sh
+chmod +x ./joern-install.sh
+sudo ./joern-install.sh
+joern
+
+     ██╗ ██████╗ ███████╗██████╗ ███╗   ██╗
+     ██║██╔═══██╗██╔════╝██╔══██╗████╗  ██║
+     ██║██║   ██║█████╗  ██████╔╝██╔██╗ ██║
+██   ██║██║   ██║██╔══╝  ██╔══██╗██║╚██╗██║
+╚█████╔╝╚██████╔╝███████╗██║  ██║██║ ╚████║
+ ╚════╝  ╚═════╝ ╚══════╝╚═╝  ╚═╝╚═╝  ╚═══╝
+Version: 2.0.1
+Type `help` to begin
+
+joern&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If the installation script fails for any reason, try&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./joern-install --interactive
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Docker based execution&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;docker run --rm -it -v /tmp:/tmp -v $(pwd):/app:rw -w /app -t ghcr.io/joernio/joern joern
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To run joern in server mode:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run --rm -it -v /tmp:/tmp -v $(pwd):/app:rw -w /app -t ghcr.io/joernio/joern joern --server
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Almalinux 9 requires the CPU to support SSE4.2. For kvm64 VM use the Almalinux 8 version instead.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run --rm -it -v /tmp:/tmp -v $(pwd):/app:rw -w /app -t ghcr.io/joernio/joern-alma8 joern
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Releases&lt;/h2&gt; 
+&lt;p&gt;A new release is &lt;a href=&quot;https://raw.githubusercontent.com/joernio/joern/master/.github/workflows/release.yml&quot;&gt;created automatically&lt;/a&gt; once per day. Contributers can also manually run the &lt;a href=&quot;https://github.com/joernio/joern/actions/workflows/release.yml&quot;&gt;release workflow&lt;/a&gt; if they need the release sooner.&lt;/p&gt; 
+&lt;h2&gt;Developers&lt;/h2&gt; 
+&lt;h3&gt;Contribution Guidelines&lt;/h3&gt; 
+&lt;p&gt;Thank you for taking time to contribute to Joern! Here are a few guidelines to ensure your pull request will get merged as soon as possible:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Try to make use of the templates as far as possible, however they may not suit all needs. The minimum we would like to see is: 
+  &lt;ul&gt; 
+   &lt;li&gt;A title that briefly describes the change and purpose of the PR, preferably with the affected module in square brackets, e.g. &lt;code&gt;[javasrc2cpg] Addition Operator Fix&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;A short description of the changes in the body of the PR. This could be in bullet points or paragraphs.&lt;/li&gt; 
+   &lt;li&gt;A link or reference to the related issue, if any exists.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Do not: 
+  &lt;ul&gt; 
+   &lt;li&gt;Immediately CC/@/email spam other contributors, the team will review the PR and assign the most appropriate contributor to review the PR. Joern is maintained by industry partners and researchers alike, for the most part with their own goals and priorities, and additional help is largely volunteer work. If your PR is going stale, then reach out to us in follow-up comments with @&#39;s asking for an explanation of priority or planning of when it may be addressed (if ever, depending on quality).&lt;/li&gt; 
+   &lt;li&gt;Leave the description body empty, this makes reviewing the purpose of the PR difficult.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Remember to: 
+  &lt;ul&gt; 
+   &lt;li&gt;Remember to format your code, i.e. run &lt;code&gt;sbt scalafmt Test/scalafmt&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Add a unit test to verify your change.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;IDE setup&lt;/h3&gt; 
+&lt;h4&gt;Intellij IDEA&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/idea/download&quot;&gt;Download Intellij Community&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Install and run it&lt;/li&gt; 
+ &lt;li&gt;Install the &lt;a href=&quot;https://plugins.jetbrains.com/plugin/1347-scala&quot;&gt;Scala Plugin&lt;/a&gt; - just search and install from within Intellij.&lt;/li&gt; 
+ &lt;li&gt;Important: open &lt;code&gt;sbt&lt;/code&gt; in your local joern repository, run &lt;code&gt;compile&lt;/code&gt; and keep it open - this will allow us to use the BSP build in the next step&lt;/li&gt; 
+ &lt;li&gt;Back to Intellij: open project: select your local joern clone: select to open as &lt;code&gt;BSP project&lt;/code&gt; (i.e. &lt;em&gt;not&lt;/em&gt; &lt;code&gt;sbt project&lt;/code&gt;!)&lt;/li&gt; 
+ &lt;li&gt;Await the import and indexing to complete, then you can start, e.g. &lt;code&gt;Build -&amp;gt; build project&lt;/code&gt; or run a test&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;VSCode&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Install VSCode and Docker&lt;/li&gt; 
+ &lt;li&gt;Install the plugin &lt;code&gt;ms-vscode-remote.remote-containers&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Open Joern project folder in &lt;a href=&quot;https://docs.microsoft.com/en-us/azure-sphere/app-development/container-build-vscode#build-and-debug-the-project&quot;&gt;VSCode&lt;/a&gt; Visual Studio Code detects the new files and opens a message box saying: &lt;code&gt;Folder contains a Dev Container configuration file. Reopen to folder to develop in a container.&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Select the &lt;code&gt;Reopen in Container&lt;/code&gt; button to reopen the folder in the container created by the &lt;code&gt;.devcontainer/Dockerfile&lt;/code&gt; file&lt;/li&gt; 
+ &lt;li&gt;Switch to &lt;code&gt;scalameta.metals&lt;/code&gt; sidebar in VSCode, and select &lt;code&gt;import build&lt;/code&gt; in &lt;code&gt;BUILD COMMANDS&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;After &lt;code&gt;import build&lt;/code&gt; succeeds, you are ready to start writing code for Joern&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;QueryDB (queries plugin)&lt;/h2&gt; 
+&lt;p&gt;Quick way to develop and test QueryDB:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;sbt stage
+./querydb-install.sh
+./joern-scan --list-query-names
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The last command prints all available queries - add your own in querydb, run the above commands again to see that your query got deployed. More details in the &lt;a href=&quot;https://raw.githubusercontent.com/joernio/joern/master/querydb/README.md&quot;&gt;separate querydb readme&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>lightbend/kalix-jvm-sdk</title>
+      <link>https://github.com/lightbend/kalix-jvm-sdk</link>
+      <description>&lt;p&gt;Java and Scala SDKs for Kalix&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Kalix JVM SDKs&lt;/h1&gt; 
+&lt;p&gt;The Kalix JVM SDKs are used to develop Kalix services using Java or Scala. Two different development approaches are available as listed below:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Java SDK (code-first)&lt;/li&gt; 
+ &lt;li&gt;Java Protobuf SDK (protocol-first)&lt;/li&gt; 
+ &lt;li&gt;Scala Protobuf SDK (protocol-first)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you’re just looking to get started, we advise you to start with the Java SDK which is the only one supporting a code-first development approach at present. For more information see the documentation for &lt;a href=&quot;https://docs.kalix.io/java/index.html&quot;&gt;implementing Kalix services in Java&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Java SDK&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;User-facing packages 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;kalix-spring-boot-starter&lt;/code&gt;: The Java API to build services in Kalix with a code-first development approach using a Spring Boot Starter. See &lt;a href=&quot;https://docs.kalix.io/java/index.html&quot;&gt;Java SDK&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;kalix-spring-boot-starter-test&lt;/code&gt;: A library to implement integration tests for services, based on &lt;a href=&quot;https://www.testcontainers.org/&quot;&gt;TestContainers&lt;/a&gt;. Also contains library parts of unit TestKit.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lightbend/kalix-jvm-sdk/main/samples/&quot;&gt;Samples&lt;/a&gt;: Small example services to illustrate Kalix features for this SDK are prefixed with &lt;code&gt;java-spring-&lt;/code&gt;. The code also provides snippets for the documentation.&lt;/li&gt; 
+ &lt;li&gt;Developer tooling 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;maven-java&lt;/code&gt; Maven tooling 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;code&gt;kalix-spring-boot-archetype&lt;/code&gt; Maven archetype to create a project.&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Java/Scala Protobuf SDK&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;User-facing packages&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;kalix-java-sdk-protobuf&lt;/code&gt; and &lt;code&gt;kalix-scala-sdk-protobuf&lt;/code&gt;: The Java/Scala Protobuf API to build services in Kalix. See &lt;a href=&quot;https://docs.kalix.io/java-protobuf/index.html&quot;&gt;Java/Scala Protobuf SDK&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;kalix-java-sdk-testkit&lt;/code&gt; and &lt;code&gt;kalix-scala-sdk-testkit&lt;/code&gt;: A library to implement integration tests for services, based on &lt;a href=&quot;https://www.testcontainers.org/&quot;&gt;TestContainers&lt;/a&gt;. Also contains library parts of unit TestKit.&lt;/p&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lightbend/kalix-jvm-sdk/main/samples/&quot;&gt;Samples&lt;/a&gt;: Small example services to illustrate Kalix features are prefixed with &lt;code&gt;java-protobuf-&lt;/code&gt; or &lt;code&gt;scala-protobuf-&lt;/code&gt;. The code provides snippets for the documentation.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Developer tooling&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;codegen/core&lt;/code&gt;, &lt;code&gt;codegen/java-gen&lt;/code&gt;, &lt;code&gt;codegen/scala-gen&lt;/code&gt; Tooling to generate code from Protobuf with annotations.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;maven-java&lt;/code&gt; Maven tooling 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;code&gt;kalix-maven-plugin&lt;/code&gt; Maven plugin to trigger code generation.&lt;/li&gt; 
+     &lt;li&gt;&lt;code&gt;kalix-maven-archetype-event-sourced-entity&lt;/code&gt; Maven archetype to create a project with an Event-sourced Entity.&lt;/li&gt; 
+     &lt;li&gt;&lt;code&gt;kalix-maven-archetype-value-entity&lt;/code&gt; Maven archetype to create a project with a Value Entity.&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;sbt-plugin&lt;/code&gt; sbt plugin for code generation.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;sbt new&lt;/code&gt; (gitter8) templates: 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://github.com/lightbend/kalix-value-entity.g8&quot;&gt;lightbend/kalix-value-entity.g8&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Common parts&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;docs&lt;/code&gt; The documentation feeding into &lt;a href=&quot;https://docs.kalix.io/java/index.html&quot;&gt;Java SDK&lt;/a&gt; and &lt;a href=&quot;https://docs.kalix.io/java/index.html&quot;&gt;Java/Scala Protobuf SDK&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;tck&lt;/code&gt; The Technology Compatibility Kit which ensures the Java SDK adheres to the Kalix protocol.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;p&gt;The Kalix JVM SDKs are Open Source and available under the &lt;a href=&quot;https://raw.githubusercontent.com/lightbend/kalix-jvm-sdk/main/LICENSE&quot;&gt;Apache 2 License&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>databricks/Spark-The-Definitive-Guide</title>
+      <link>https://github.com/databricks/Spark-The-Definitive-Guide</link>
+      <description>&lt;p&gt;Spark: The Definitive Guide&#39;s Code Repository&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Spark: The Definitive Guide&lt;/h1&gt; 
+&lt;p&gt;This is the central repository for all materials related to &lt;a href=&quot;http://shop.oreilly.com/product/0636920034957.do&quot;&gt;Spark: The Definitive Guide&lt;/a&gt; by Bill Chambers and Matei Zaharia.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;This repository is currently a work in progress and new material will be added over time.&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://images-na.ssl-images-amazon.com/images/I/51z7TzI-Y3L._SX379_BO1,204,203,200_.jpg&quot; alt=&quot;Spark: The Definitive Guide&quot;&gt;&lt;/p&gt; 
+&lt;h1&gt;Code from the book&lt;/h1&gt; 
+&lt;p&gt;You can find the code from the book in the &lt;code&gt;code&lt;/code&gt; subfolder where it is broken down by language and chapter.&lt;/p&gt; 
+&lt;h1&gt;How to run the code&lt;/h1&gt; 
+&lt;h2&gt;Run on your local machine&lt;/h2&gt; 
+&lt;p&gt;To run the example on your local machine, either pull all data in the &lt;code&gt;data&lt;/code&gt; subfolder to &lt;code&gt;/data&lt;/code&gt; on your computer or specify the path to that particular dataset on your local machine.&lt;/p&gt; 
+&lt;h2&gt;Run on Databricks&lt;/h2&gt; 
+&lt;p&gt;To run these modules on Databricks, you&#39;re going to need to do two things.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Sign up for an account. You can do that &lt;a href=&quot;https://databricks.com/try-databricks&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Import individual Notebooks to run on the platform&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Databricks is a zero-management cloud platform that provides:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Fully managed Spark clusters&lt;/li&gt; 
+ &lt;li&gt;An interactive workspace for exploration and visualization&lt;/li&gt; 
+ &lt;li&gt;A production pipeline scheduler&lt;/li&gt; 
+ &lt;li&gt;A platform for powering your favorite Spark-based applications&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Instructions for importing&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Navigate to the notebook you would like to import&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;For instance, you might go to &lt;a href=&quot;https://github.com/databricks/Spark-The-Definitive-Guide/raw/master/code/A_Gentle_Introduction_to_Spark-Chapter_3_A_Tour_of_Sparks_Toolset.py&quot;&gt;this page&lt;/a&gt;. Once you do that, you&#39;re going to need to navigate to the &lt;strong&gt;RAW&lt;/strong&gt; version of the file and save that to your Desktop. You can do that by clicking the &lt;strong&gt;Raw&lt;/strong&gt; button. &lt;em&gt;Alternatively, you could just clone the entire repository to your local desktop and navigate to the file on your computer&lt;/em&gt;.&lt;/p&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Upload that to Databricks&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Read &lt;a href=&quot;https://docs.databricks.com/user-guide/notebooks/index.html#import-a-notebook&quot;&gt;the instructions&lt;/a&gt; here. Simply open the Databricks workspace and go to import in a given directory. From there, navigate to the file on your computer to upload it. &lt;em&gt;Unfortunately due to a recent security upgrade, notebooks cannot be imported from external URLs. Therefore you must upload it from your computer&lt;/em&gt;.&lt;/p&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt;You&#39;re almost ready to go!&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Now you just need to simply run the notebooks! All the examples run on Databricks Runtime 3.1 and above so just be sure to create a cluster with a version equal to or greater than that. Once you&#39;ve created your cluster, attach the notebook.&lt;/p&gt; 
+&lt;ol start=&quot;4&quot;&gt; 
+ &lt;li&gt;Replacing the data path in each notebook&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Rather than you having to upload all of the data yourself, you simply have to change the path in each chapter from &lt;code&gt;/data&lt;/code&gt; to &lt;code&gt;/databricks-datasets/definitive-guide/data&lt;/code&gt;. Once you&#39;ve done that, all examples should run without issue. You can use find and replace to do this very efficiently.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

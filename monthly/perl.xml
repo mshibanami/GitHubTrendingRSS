@@ -1,0 +1,1890 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Perl Monthly Trending</title>
+    <description>Monthly Trending of Perl in GitHub</description>
+    <pubDate>Tue, 02 Jul 2024 01:50:01 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>adrienverge/openfortivpn</title>
+      <link>https://github.com/adrienverge/openfortivpn</link>
+      <description>&lt;p&gt;Client for PPP+TLS VPN tunnel services&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;openfortivpn&lt;/h1&gt; 
+&lt;p&gt;openfortivpn is a client for PPP+TLS VPN tunnel services. It spawns a pppd process and operates the communication between the gateway and this process.&lt;/p&gt; 
+&lt;p&gt;It is compatible with Fortinet VPNs.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;man openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Simply connect to a VPN:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect to a VPN using an authentication realm:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo --realm=bar
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Store password securely with a pinentry program:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo --pinentry=pinentry-mac
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect with a user certificate and no password:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username= --password= --user-cert=cert.pem --user-key=key.pem
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Don&#39;t set IP routes and don&#39;t add VPN nameservers to &lt;code&gt;/etc/resolv.conf&lt;/code&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 -u foo --no-routes --no-dns --pppd-no-peerdns
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Using a configuration file:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn -c /etc/openfortivpn/my-config
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;With &lt;code&gt;/etc/openfortivpn/my-config&lt;/code&gt; containing:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;host = vpn-gateway
+port = 8443
+username = foo
+set-dns = 0
+pppd-use-peerdns = 0
+# X509 certificate sha256 sum, trust only this one!
+trusted-cert = e46d4aff08ba6914e64daa85bc6112a422fa7ce16631bff0b592a28556f993db
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For the full list of config options, see the &lt;code&gt;CONFIGURATION&lt;/code&gt; section of&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;man openfortivpn
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Smartcard&lt;/h2&gt; 
+&lt;p&gt;Smartcard support needs &lt;code&gt;openssl pkcs engine&lt;/code&gt; and &lt;code&gt;opensc&lt;/code&gt; to be installed. The pkcs11-engine from libp11 needs to be compiled with p11-kit-devel installed. Check &lt;a href=&quot;https://github.com/adrienverge/openfortivpn/issues/464&quot;&gt;#464&lt;/a&gt; for a discussion of known issues in this area.&lt;/p&gt; 
+&lt;p&gt;To make use of your smartcard put at least &lt;code&gt;pkcs11:&lt;/code&gt; to the user-cert config or commandline option. It takes the full or a partial PKCS#11 token URI.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;user-cert = pkcs11:
+user-cert = pkcs11:token=someuser
+user-cert = pkcs11:model=PKCS%2315%20emulated;manufacturer=piv_II;serial=012345678;token=someuser
+username =
+password =
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In most cases &lt;code&gt;user-cert = pkcs11:&lt;/code&gt; will do it, but if needed you can get the token-URI with &lt;code&gt;p11tool --list-token-urls&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Multiple readers are currently not supported.&lt;/p&gt; 
+&lt;p&gt;Smartcard support has been tested with Yubikey under Linux, but other PIV enabled smartcards may work too. On Mac OS X Mojave it is known that the pkcs engine-by-id is not found.&lt;/p&gt; 
+&lt;h2&gt;Installing&lt;/h2&gt; 
+&lt;h3&gt;Installing existing packages&lt;/h3&gt; 
+&lt;p&gt;Some Linux distributions provide &lt;code&gt;openfortivpn&lt;/code&gt; packages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.fedoraproject.org/pkgs/openfortivpn&quot;&gt;Fedora / CentOS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://software.opensuse.org/package/openfortivpn&quot;&gt;openSUSE / SLE&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.gentoo.org/packages/net-vpn/openfortivpn&quot;&gt;Gentoo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/NixOS/nixpkgs/tree/master/pkgs/tools/networking/openfortivpn&quot;&gt;NixOS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://archlinux.org/packages/extra/x86_64/openfortivpn&quot;&gt;Arch Linux&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.debian.org/stable/openfortivpn&quot;&gt;Debian&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.ubuntu.com/search?keywords=openfortivpn&quot;&gt;Ubuntu&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dev.getsol.us/source/openfortivpn/&quot;&gt;Solus&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;On macOS both &lt;a href=&quot;https://formulae.brew.sh/formula/openfortivpn&quot;&gt;Homebrew&lt;/a&gt; and &lt;a href=&quot;https://ports.macports.org/port/openfortivpn&quot;&gt;MacPorts&lt;/a&gt; provide an &lt;code&gt;openfortivpn&lt;/code&gt; package. Either &lt;a href=&quot;https://brew.sh/&quot;&gt;install Homebrew&lt;/a&gt; then install openfortivpn:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;Homebrew&#39;
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+# Install &#39;openfortivpn&#39;
+brew install openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or &lt;a href=&quot;https://www.macports.org/install.php&quot;&gt;install MacPorts&lt;/a&gt; then install openfortivpn:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;openfortivpn&#39;
+sudo port install openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A more complete overview can be obtained from &lt;a href=&quot;https://repology.org/project/openfortivpn/versions&quot;&gt;repology&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Building and installing from source&lt;/h3&gt; 
+&lt;p&gt;For other distros, you&#39;ll need to build and install from source:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Install build dependencies.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;RHEL/CentOS/Fedora: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl-devel&lt;/code&gt; &lt;code&gt;make&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Debian/Ubuntu: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libssl-dev&lt;/code&gt; &lt;code&gt;make&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Arch Linux: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Gentoo Linux: &lt;code&gt;net-dialup/ppp&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;openSUSE: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libopenssl-devel&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;macOS (Homebrew): &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl@1.1&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;FreeBSD: &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libressl&lt;/code&gt; &lt;code&gt;pkgconf&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;On Linux, if you manage your kernel yourself, ensure to compile those modules:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;CONFIG_PPP=m
+CONFIG_PPP_ASYNC=m
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;On macOS, install &#39;Homebrew&#39; to install the build dependencies:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;Homebrew&#39;
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+# Install Dependencies
+brew install automake autoconf openssl@1.1 pkg-config
+
+# You may need to make this openssl available to compilers and pkg-config
+export LDFLAGS=&quot;-L/usr/local/opt/openssl/lib $LDFLAGS&quot;
+export CPPFLAGS=&quot;-I/usr/local/opt/openssl/include $CPPFLAGS&quot;
+export PKG_CONFIG_PATH=&quot;/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build and install.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./autogen.sh
+./configure --prefix=/usr/local --sysconfdir=/etc
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If targeting platforms with pppd &amp;lt; 2.5.0 such as current version of macOS, we suggest you configure with option --enable-legacy-pppd:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./autogen.sh
+./configure --prefix=/usr/local --sysconfdir=/etc --enable-legacy-pppd
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If you need to specify the openssl location you can set the &lt;code&gt;$PKG_CONFIG_PATH&lt;/code&gt; environment variable. For fine-tuning check the available configure arguments with &lt;code&gt;./configure --help&lt;/code&gt; especially when you are cross compiling.&lt;/p&gt; &lt;p&gt;Finally, install runtime dependency &lt;code&gt;ppp&lt;/code&gt; or &lt;code&gt;pppd&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Running as root?&lt;/h2&gt; 
+&lt;p&gt;openfortivpn needs elevated privileges at three steps during tunnel set up:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;when spawning a &lt;code&gt;/usr/sbin/pppd&lt;/code&gt; process;&lt;/li&gt; 
+ &lt;li&gt;when setting IP routes through VPN (when the tunnel is up);&lt;/li&gt; 
+ &lt;li&gt;when adding nameservers to &lt;code&gt;/etc/resolv.conf&lt;/code&gt; (when the tunnel is up).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For these reasons, you need to use &lt;code&gt;sudo openfortivpn&lt;/code&gt;. If you need it to be usable by non-sudoer users, you might consider adding an entry in &lt;code&gt;/etc/sudoers&lt;/code&gt; or a file under &lt;code&gt;/etc/sudoers.d&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;visudo -f /etc/sudoers.d/openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;Cmnd_Alias  OPENFORTIVPN = /usr/bin/openfortivpn
+
+%adm       ALL = (ALL) OPENFORTIVPN
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Adapt the above example by changing the &lt;code&gt;openfortivpn&lt;/code&gt; path or choosing a group different from &lt;code&gt;adm&lt;/code&gt; - such as a dedicated &lt;code&gt;openfortivpn&lt;/code&gt; group.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;: Make sure only trusted users can run openfortivpn as root! As described in &lt;a href=&quot;https://github.com/adrienverge/openfortivpn/issues/54&quot;&gt;#54&lt;/a&gt;, a malicious user could use &lt;code&gt;--pppd-plugin&lt;/code&gt; and &lt;code&gt;--pppd-log&lt;/code&gt; options to divert the program&#39;s behaviour.&lt;/p&gt; 
+&lt;h2&gt;SSO/SAML/2FA&lt;/h2&gt; 
+&lt;p&gt;In some cases, the server may require the VPN client to load and interact with a web page containing JavaScript. Depending on the complexity of the web page, interpreting the web page might be beyond the reach of a command line program such as openfortivpn.&lt;/p&gt; 
+&lt;p&gt;In such cases, you may use an external program spawning a full-fledged web browser such as &lt;a href=&quot;https://github.com/gm-vm/openfortivpn-webview&quot;&gt;openfortivpn-webview&lt;/a&gt; to authenticate and retrieve a session cookie. This cookie can be fed to openfortivpn using option &lt;code&gt;--cookie-on-stdin&lt;/code&gt;. Obviously, such a solution requires a graphic session.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Feel free to make pull requests!&lt;/p&gt; 
+&lt;p&gt;C coding style should follow the &lt;a href=&quot;https://www.kernel.org/doc/html/latest/process/coding-style.html&quot;&gt;Linux kernel coding style&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>brendangregg/FlameGraph</title>
+      <link>https://github.com/brendangregg/FlameGraph</link>
+      <description>&lt;p&gt;Stack trace visualizer&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Flame Graphs visualize profiled code&lt;/h1&gt; 
+&lt;p&gt;Main Website: &lt;a href=&quot;http://www.brendangregg.com/flamegraphs.html&quot;&gt;http://www.brendangregg.com/flamegraphs.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Example (click to zoom):&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg&quot;&gt;&lt;img src=&quot;http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg?sanitize=true&quot; alt=&quot;Example&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Click a box to zoom the Flame Graph to this stack frame only. To search and highlight all stack frames matching a regular expression, click the &lt;em&gt;search&lt;/em&gt; button in the upper right corner or press Ctrl-F. By default, search is case sensitive, but this can be toggled by pressing Ctrl-I or by clicking the &lt;em&gt;ic&lt;/em&gt; button in the upper right corner.&lt;/p&gt; 
+&lt;p&gt;Other sites:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The Flame Graph article in ACMQ and CACM: &lt;a href=&quot;http://queue.acm.org/detail.cfm?id=2927301&quot;&gt;http://queue.acm.org/detail.cfm?id=2927301&lt;/a&gt; &lt;a href=&quot;http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract&quot;&gt;http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CPU profiling using Linux perf_events, DTrace, SystemTap, or ktap: &lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html&quot;&gt;http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CPU profiling using XCode Instruments: &lt;a href=&quot;http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/&quot;&gt;http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CPU profiling using Xperf.exe: &lt;a href=&quot;http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/&quot;&gt;http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Memory profiling: &lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html&quot;&gt;http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Other examples, updates, and news: &lt;a href=&quot;http://www.brendangregg.com/flamegraphs.html#Updates&quot;&gt;http://www.brendangregg.com/flamegraphs.html#Updates&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Flame graphs can be created in three steps:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Capture stacks&lt;/li&gt; 
+ &lt;li&gt;Fold stacks&lt;/li&gt; 
+ &lt;li&gt;flamegraph.pl&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h1&gt;1. Capture stacks&lt;/h1&gt; 
+&lt;p&gt;Stack samples can be captured using Linux perf_events, FreeBSD pmcstat (hwpmc), DTrace, SystemTap, and many other profilers. See the stackcollapse-* converters.&lt;/p&gt; 
+&lt;h3&gt;Linux perf_events&lt;/h3&gt; 
+&lt;p&gt;Using Linux perf_events (aka &quot;perf&quot;) to capture 60 seconds of 99 Hertz stack samples, both user- and kernel-level stacks, all processes:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# perf record -F 99 -a -g -- sleep 60
+# perf script &amp;gt; out.perf
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Now only capturing PID 181:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# perf record -F 99 -p 181 -g -- sleep 60
+# perf script &amp;gt; out.perf
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;DTrace&lt;/h3&gt; 
+&lt;p&gt;Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# dtrace -x stackframes=100 -n &#39;profile-997 /arg0/ { @[stack()] = count(); } tick-60s { exit(0); }&#39; -o out.kern_stacks
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Using DTrace to capture 60 seconds of user-level stacks for PID 12345 at 97 Hertz:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# dtrace -x ustackframes=100 -n &#39;profile-97 /pid == 12345 &amp;amp;&amp;amp; arg1/ { @[ustack()] = count(); } tick-60s { exit(0); }&#39; -o out.user_stacks
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;60 seconds of user-level stacks, including time spent in-kernel, for PID 12345 at 97 Hertz:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# dtrace -x ustackframes=100 -n &#39;profile-97 /pid == 12345/ { @[ustack()] = count(); } tick-60s { exit(0); }&#39; -o out.user_stacks
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Switch &lt;code&gt;ustack()&lt;/code&gt; for &lt;code&gt;jstack()&lt;/code&gt; if the application has a ustack helper to include translated frames (eg, node.js frames; see: &lt;a href=&quot;http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/&quot;&gt;http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/&lt;/a&gt;). The rate for user-level stack collection is deliberately slower than kernel, which is especially important when using &lt;code&gt;jstack()&lt;/code&gt; as it performs additional work to translate frames.&lt;/p&gt; 
+&lt;h1&gt;2. Fold stacks&lt;/h1&gt; 
+&lt;p&gt;Use the stackcollapse programs to fold stack samples into single lines. The programs provided are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse.pl&lt;/code&gt;: for DTrace stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-perf.pl&lt;/code&gt;: for Linux perf_events &quot;perf script&quot; output&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-pmc.pl&lt;/code&gt;: for FreeBSD pmcstat -G stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-stap.pl&lt;/code&gt;: for SystemTap stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-instruments.pl&lt;/code&gt;: for XCode Instruments&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-vtune.pl&lt;/code&gt;: for Intel VTune profiles&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-ljp.awk&lt;/code&gt;: for Lightweight Java Profiler&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-jstack.pl&lt;/code&gt;: for Java jstack(1) output&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-gdb.pl&lt;/code&gt;: for gdb(1) stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-go.pl&lt;/code&gt;: for Golang pprof stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-vsprof.pl&lt;/code&gt;: for Microsoft Visual Studio profiles&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-wcp.pl&lt;/code&gt;: for wallClockProfiler output&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Usage example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;For perf_events:
+$ ./stackcollapse-perf.pl out.perf &amp;gt; out.folded
+
+For DTrace:
+$ ./stackcollapse.pl out.kern_stacks &amp;gt; out.kern_folded
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The output looks like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;unix`_sys_sysenter_post_swapgs 1401
+unix`_sys_sysenter_post_swapgs;genunix`close 5
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf 85
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;c2audit`audit_closef 26
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;c2audit`audit_setf 5
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_getstate 6
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_unfalloc 2
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef 48
+[...]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;3. flamegraph.pl&lt;/h1&gt; 
+&lt;p&gt;Use flamegraph.pl to render a SVG.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ ./flamegraph.pl out.kern_folded &amp;gt; kernel.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;An advantage of having the folded input file (and why this is separate to flamegraph.pl) is that you can use grep for functions of interest. Eg:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ grep cpuid out.kern_folded | ./flamegraph.pl &amp;gt; cpuid.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Provided Examples&lt;/h1&gt; 
+&lt;h3&gt;Linux perf_events&lt;/h3&gt; 
+&lt;p&gt;An example output from Linux &quot;perf script&quot; is included, gzip&#39;d, as example-perf-stacks.txt.gz. The resulting flame graph is example-perf.svg:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/example-perf.svg&quot;&gt;&lt;img src=&quot;http://www.brendangregg.com/FlameGraphs/example-perf.svg?sanitize=true&quot; alt=&quot;Example&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can create this using:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ gunzip -c example-perf-stacks.txt.gz | ./stackcollapse-perf.pl --all | ./flamegraph.pl --color=java --hash &amp;gt; example-perf.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This shows my typical workflow: I&#39;ll gzip profiles on the target, then copy them to my laptop for analysis. Since I have hundreds of profiles, I leave them gzip&#39;d!&lt;/p&gt; 
+&lt;p&gt;Since this profile included Java, I used the flamegraph.pl --color=java palette. I&#39;ve also used stackcollapse-perf.pl --all, which includes all annotations that help flamegraph.pl use separate colors for kernel and user level code. The resulting flame graph uses: green == Java, yellow == C++, red == user-mode native, orange == kernel.&lt;/p&gt; 
+&lt;p&gt;This profile was from an analysis of vert.x performance. The benchmark client, wrk, is also visible in the flame graph.&lt;/p&gt; 
+&lt;h3&gt;DTrace&lt;/h3&gt; 
+&lt;p&gt;An example output from DTrace is also included, example-dtrace-stacks.txt, and the resulting flame graph, example-dtrace.svg:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/example-dtrace.svg&quot;&gt;&lt;img src=&quot;http://www.brendangregg.com/FlameGraphs/example-dtrace.svg?sanitize=true&quot; alt=&quot;Example&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can generate this using:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ ./stackcollapse.pl example-stacks.txt | ./flamegraph.pl &amp;gt; example.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This was from a particular performance investigation: the Flame Graph identified that CPU time was spent in the lofs module, and quantified that time.&lt;/p&gt; 
+&lt;h1&gt;Options&lt;/h1&gt; 
+&lt;p&gt;See the USAGE message (--help) for options:&lt;/p&gt; 
+&lt;p&gt;USAGE: ./flamegraph.pl [options] infile &amp;gt; outfile.svg&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;--title TEXT     # change title text
+--subtitle TEXT  # second level title (optional)
+--width NUM      # width of image (default 1200)
+--height NUM     # height of each frame (default 16)
+--minwidth NUM   # omit smaller functions. In pixels or use &quot;%&quot; for 
+                 # percentage of time (default 0.1 pixels)
+--fonttype FONT  # font type (default &quot;Verdana&quot;)
+--fontsize NUM   # font size (default 12)
+--countname TEXT # count type label (default &quot;samples&quot;)
+--nametype TEXT  # name type label (default &quot;Function:&quot;)
+--colors PALETTE # set color palette. choices are: hot (default), mem,
+                 # io, wakeup, chain, java, js, perl, red, green, blue,
+                 # aqua, yellow, purple, orange
+--bgcolors COLOR # set background colors. gradient choices are yellow
+                 # (default), blue, green, grey; flat colors use &quot;#rrggbb&quot;
+--hash           # colors are keyed by function name hash
+--cp             # use consistent palette (palette.map)
+--reverse        # generate stack-reversed flame graph
+--inverted       # icicle graph
+--flamechart     # produce a flame chart (sort by time, do not merge stacks)
+--negate         # switch differential hues (blue&amp;lt;-&amp;gt;red)
+--notes TEXT     # add notes comment in SVG (for debugging)
+--help           # this message
+
+eg,
+./flamegraph.pl --title=&quot;Flame Graph: malloc()&quot; trace.txt &amp;gt; graph.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;As suggested in the example, flame graphs can process traces of any event, such as malloc()s, provided stack traces are gathered.&lt;/p&gt; 
+&lt;h1&gt;Consistent Palette&lt;/h1&gt; 
+&lt;p&gt;If you use the &lt;code&gt;--cp&lt;/code&gt; option, it will use the $colors selection and randomly generate the palette like normal. Any future flamegraphs created using the &lt;code&gt;--cp&lt;/code&gt; option will use the same palette map. Any new symbols from future flamegraphs will have their colors randomly generated using the $colors selection.&lt;/p&gt; 
+&lt;p&gt;If you don&#39;t like the palette, just delete the palette.map file.&lt;/p&gt; 
+&lt;p&gt;This allows your to change your colorscheme between flamegraphs to make the differences REALLY stand out.&lt;/p&gt; 
+&lt;p&gt;Example:&lt;/p&gt; 
+&lt;p&gt;Say we have 2 captures, one with a problem, and one when it was working (whatever &quot;it&quot; is):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cat working.folded | ./flamegraph.pl --cp &amp;gt; working.svg
+# this generates a palette.map, as per the normal random generated look.
+
+cat broken.folded | ./flamegraph.pl --cp --colors mem &amp;gt; broken.svg
+# this svg will use the same palette.map for the same events, but a very
+# different colorscheme for any new events.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Take a look at the demo directory for an example:&lt;/p&gt; 
+&lt;p&gt;palette-example-working.svg&lt;br&gt; palette-example-broken.svg&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>sullo/nikto</title>
+      <link>https://github.com/sullo/nikto</link>
+      <description>&lt;p&gt;Nikto web server scanner&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;nikto&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.patreon.com/sullo&quot;&gt;&lt;img src=&quot;https://cirt.net/images/patreon.png&quot; alt=&quot;alt text&quot; title=&quot;Become a patron of Nikto!&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Nikto web server scanner - &lt;a href=&quot;https://cirt.net/Nikto2&quot;&gt;https://cirt.net/Nikto2&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Full documentation - &lt;a href=&quot;https://github.com/sullo/nikto/wiki&quot;&gt;https://github.com/sullo/nikto/wiki&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Run normally:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/sullo/nikto
+# Main script is in program/
+cd nikto/program
+# Run using the shebang interpreter
+./nikto.pl -h http://www.example.com
+# Run using perl (if you forget to chmod)
+perl nikto.pl -h http://www.example.com
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run as a Docker container:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/sullo/nikto.git
+cd nikto
+docker build -t sullo/nikto .
+# Call it without arguments to display the full help
+docker run --rm sullo/nikto
+# Basic usage
+docker run --rm sullo/nikto -h http://www.example.com
+# To save the report in a specific format, mount /tmp as a volume:
+docker run --rm -v $(pwd):/tmp sullo/nikto -h http://www.example.com -o /tmp/out.json
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Basic usage:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   Options:
+       -ask+               Whether to ask about submitting updates
+                               yes   Ask about each (default)
+                               no    Don&#39;t ask, don&#39;t send
+                               auto  Don&#39;t ask, just send
+       -Cgidirs+           Scan these CGI dirs: &quot;none&quot;, &quot;all&quot;, or values like &quot;/cgi/ /cgi-a/&quot;
+       -config+            Use this config file
+       -Display+           Turn on/off display outputs:
+                               1     Show redirects
+                               2     Show cookies received
+                               3     Show all 200/OK responses
+                               4     Show URLs which require authentication
+                               D     Debug output
+                               E     Display all HTTP errors
+                               P     Print progress to STDOUT
+                               S     Scrub output of IPs and hostnames
+                               V     Verbose output
+       -dbcheck           Check database and other key files for syntax errors
+       -followredirects   Follow 3xx redirects to new location
+       -evasion+          Encoding technique:
+                               1     Random URI encoding (non-UTF8)
+                               2     Directory self-reference (/./)
+                               3     Premature URL ending
+                               4     Prepend long random string
+                               5     Fake parameter
+                               6     TAB as request spacer
+                               7     Change the case of the URL
+                               8     Use Windows directory separator (\)
+                               A     Use a carriage return (0x0d) as a request spacer
+                               B     Use binary value 0x0b as a request spacer
+        -Format+           Save file (-o) format:
+                               csv   Comma-separated-value
+                               htm   HTML Format
+                               msf+  Log to Metasploit
+                               nbe   Nessus NBE format
+                               txt   Plain text
+                               xml   XML Format
+                               (if not specified the format will be taken from the file extension passed to -output)
+       -Help              Extended help information
+       -host+             Target host
+       -IgnoreCode        Ignore Codes--treat as negative responses
+       -id+               Host authentication to use, format is id:pass or id:pass:realm
+       -key+              Client certificate key file
+       -list-plugins      List all available plugins, perform no testing
+       -maxtime+          Maximum testing time per host
+       -mutate+           Guess additional file names:
+                               1     Test all files with all root directories
+                               2     Guess for password file names
+                               3     Enumerate user names via Apache (/~user type requests)
+                               4     Enumerate user names via cgiwrap (/cgi-bin/cgiwrap/~user type requests)
+                               5     Attempt to brute force sub-domain names, assume that the host name is the parent domain
+                               6     Attempt to guess directory names from the supplied dictionary file
+       -mutate-options    Provide information for mutates
+       -nointeractive     Disables interactive features
+       -nolookup          Disables DNS lookups
+       -noslash           Strip trailing slash from URL (e.g., &#39;/admin/&#39; to &#39;/admin&#39;)
+       -nossl             Disables the use of SSL
+       -no404             Disables nikto attempting to guess a 404 page
+       -output+           Write output to this file (&#39;.&#39; for auto-name)
+       -Pause+            Pause between tests (seconds, integer or float)
+       -Plugins+          List of plugins to run (default: ALL)
+       -port+             Port to use (default 80)
+       -RSAcert+          Client certificate file
+       -root+             Prepend root value to all requests, format is /directory
+       -Save              Save positive responses to this directory (&#39;.&#39; for auto-name)
+       -ssl               Force ssl mode on port
+       -Tuning+           Scan tuning:
+                               1     Interesting File / Seen in logs
+                               2     Misconfiguration / Default File
+                               3     Information Disclosure
+                               4     Injection (XSS/Script/HTML)
+                               5     Remote File Retrieval - Inside Web Root
+                               6     Denial of Service
+                               7     Remote File Retrieval - Server Wide
+                               8     Command Execution / Remote Shell
+                               9     SQL Injection
+                               0     File Upload
+                               a     Authentication Bypass
+                               b     Software Identification
+                               c     Remote Source Inclusion
+                               x     Reverse Tuning Options (i.e., include all except specified)
+       -timeout+          Timeout for requests (default 10 seconds)
+       -Userdbs           Load only user databases, not the standard databases
+                               all   Disable standard dbs and load only user dbs
+                               tests Disable only db_tests and load udb_tests
+       -until             Run until the specified time or duration
+       -update            Update databases and plugins from CIRT.net
+       -useproxy          Use the proxy defined in nikto.conf
+       -usecookies        Use cookies from responses in future requests
+       -Version           Print plugin and database versions
+       -vhost+            Virtual host (for Host header)
+              + requires a value
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;p&gt;Copyright (C) 2001 Chris Sullo&lt;/p&gt; 
+&lt;p&gt;This program is free software; you can redistribute it and/or modify it under the terms of the GNU General Public License as published by the Free Software Foundation; version 2 of the License only.&lt;/p&gt; 
+&lt;p&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See the GNU General Public License for more details.&lt;/p&gt; 
+&lt;p&gt;You should have received a copy of the GNU General Public License along with this program; if not, write to Free Software Foundation, 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Difegue/LANraragi</title>
+      <link>https://github.com/Difegue/LANraragi</link>
+      <description>&lt;p&gt;Web application for archival and reading of manga/doujinshi. Lightweight and Docker-ready for NAS/servers.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://hub.docker.com/r/difegue/lanraragi/&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/difegue/lanraragi.svg?sanitize=true&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Difegue/LANraragi/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/difegue/lanraragi/total.svg?sanitize=true&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Difegue/LANraragi/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/difegue/lanraragi.svg?label=latest%20release&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://formulae.brew.sh/formula/lanraragi&quot;&gt;&lt;img src=&quot;https://img.shields.io/homebrew/v/lanraragi.svg?sanitize=true&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://lrr.tvc-16.science/&quot;&gt;&lt;img src=&quot;https://img.shields.io/website/https/lrr.tvc-16.science.svg?label=demo%20website&amp;amp;up_message=online&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Difegue/LANraragi/actions&quot;&gt;&lt;img src=&quot;https://github.com/Difegue/LANraragi/actions/workflows/push-continuous-integration.yml/badge.svg?sanitize=true&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/aRQxtbg&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/612709831744290847&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/public/favicon.ico&quot; width=&quot;128&quot;&gt; 
+&lt;h1&gt;LANraragi&lt;/h1&gt; 
+&lt;p&gt;Open source server for archival of comics/manga, running on Mojolicious + Redis.&lt;/p&gt; 
+&lt;h4&gt;💬 Talk with other fellow LANraragi Users on &lt;a href=&quot;https://discord.gg/aRQxtbg&quot;&gt;Discord&lt;/a&gt; or &lt;a href=&quot;https://github.com/Difegue/LANraragi/discussions&quot;&gt;GitHub Discussions&lt;/a&gt;&lt;/h4&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://sugoi.gitbook.io/lanraragi/v/dev&quot;&gt;📄 Documentation&lt;/a&gt; | &lt;a href=&quot;https://github.com/Difegue/LANraragi/releases/latest&quot;&gt;⏬ Download&lt;/a&gt; | &lt;a href=&quot;https://lrr.tvc-16.science&quot;&gt;🎞 Demo&lt;/a&gt; | &lt;a href=&quot;https://nightly.link/Difegue/LANraragi/workflows/push-continous-delivery/dev&quot;&gt;🪟🌃 Windows Nightlies&lt;/a&gt; | &lt;a href=&quot;https://ko-fi.com/T6T2UP5N&quot;&gt;💵 Sponsor Development&lt;/a&gt;&lt;/h4&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Main Page, Thumbnail View&lt;/th&gt; 
+   &lt;th&gt;Main Page, List View&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/archive_thumb.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/archive_thumb.png&quot; alt=&quot;archive_thumb&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/archive_list.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/archive_list.png&quot; alt=&quot;archive_list&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Archive Reader&lt;/th&gt; 
+   &lt;th&gt;Reader with overlay&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/reader.jpg&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/reader.jpg&quot; alt=&quot;reader&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/reader_overlay.jpg&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/reader_overlay.jpg&quot; alt=&quot;reader_overlay&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Configuration&lt;/th&gt; 
+   &lt;th&gt;Plugin Configuration&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/cfg.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/cfg.png&quot; alt=&quot;cfg&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/cfg_plugin.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Difegue/LANraragi/dev/tools/_screenshots/cfg_plugin.png&quot; alt=&quot;cfg_plugin&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Stores your comics in archive format. (zip/rar/targz/lzma/7z/xz/cbz/cbr/pdf supported, barebones support for epub)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Read archives directly from your web browser: the server reads from within compressed files using temporary folders.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Read your archives in dedicated reader software using the built-in OPDS Catalog (now with PSE support!)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Use the Client API to interact with LANraragi from other programs (Available for &lt;a href=&quot;https://sugoi.gitbook.io/lanraragi/v/dev/advanced-usage/external-readers&quot;&gt;many platforms!&lt;/a&gt;)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Two different user interfaces : compact archive list with thumbnails-on-hover, or thumbnail view.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Choose from 5 preinstalled responsive library styles, or add your own with CSS.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Full Tag support with Namespaces: Add your own or import them from other sources using Plugins.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Store archives in either arbitary or dynamic Categories to sort your Library easily&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Import metadata using Plugins automatically when archives are added to LANraragi.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Download archives from the Internet directly to the server, while using the aforementioned automatic metadata import&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Backup your database as JSON to carry your tags over to another LANraragi instance.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Make a PR, get stickers™&lt;/h2&gt; 
+&lt;p&gt;Merged PRs to this repo(or $5+ donations) are eligible to get a dumb sticker pack &lt;a href=&quot;https://forms.office.com/Pages/ResponsePage.aspx?id=DQSIkWdsW0yxEjajBLZtrQAAAAAAAAAAAAN__osxt25URTdTUTVBVFRCTjlYWFJLMlEzRTJPUEhEVy4u&quot;&gt;shipped on the house.&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>awakecoding/FreeRDP-Manuals</title>
+      <link>https://github.com/awakecoding/FreeRDP-Manuals</link>
+      <description>&lt;p&gt;FreeRDP Manuals&lt;/p&gt;&lt;hr&gt;</description>
+    </item>
+    
+    <item>
+      <title>alx-tools/Betty</title>
+      <link>https://github.com/alx-tools/Betty</link>
+      <description>&lt;p&gt;Holberton-style C code checker written in Perl&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Betty&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/holbertonschool/Betty&quot;&gt;&lt;img src=&quot;https://travis-ci.org/holbertonschool/Betty.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;p&gt;Run the script &lt;code&gt;install.sh&lt;/code&gt; with &lt;strong&gt;sudo privileges&lt;/strong&gt; to install &lt;code&gt;betty-style&lt;/code&gt; and &lt;code&gt;betty-doc&lt;/code&gt; on your computer, along with the following manuals:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;em&gt;betty(1)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;em&gt;betty-style(1)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;em&gt;betty-doc(1)&lt;/em&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;p&gt;Please visit the &lt;a href=&quot;https://github.com/holbertonschool/Betty/wiki&quot;&gt;Betty Wiki&lt;/a&gt; for the full specifications of Betty coding and documentation styles.&lt;/p&gt; 
+&lt;p&gt;You&#39;ll also find some references and some tools for common text editors such as Emacs and Atom.&lt;/p&gt; 
+&lt;h3&gt;Usage&lt;/h3&gt; 
+&lt;p&gt;Run the following command to check if your code/doc fits the Betty Style (mostly inspired from the Linux Kernel style):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ShellSession&quot;&gt;betty-style file1 [file2 [file3 [...]]]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ShellSession&quot;&gt;betty-doc file1 [file2 [file3 [...]]]
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>imapsync/imapsync</title>
+      <link>https://github.com/imapsync/imapsync</link>
+      <description>&lt;p&gt;Imapsync is an IMAP transfers tool. The purpose of imapsync is to migrate IMAP accounts or to backup IMAP accounts. IMAP is one of the three current standard protocols to access mailboxes, the two others are POP3 and HTTP with webmails, webmails are often tied to an IMAP server. Upstream website is&lt;/p&gt;&lt;hr&gt;&lt;p&gt;NAME&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;imapsync - Email IMAP tool for syncing, copying, migrating and archiving
+email mailboxes between two imap servers, one way, and without
+duplicates.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;VERSION&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;This documentation refers to Imapsync $Revision: 2.229 $
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;USAGE&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; To synchronize the source imap account
+   &quot;test1&quot; on server &quot;test1.lamiral.info&quot; with password &quot;secret1&quot;
+ to the destination imap account
+   &quot;test2&quot; on server &quot;test2.lamiral.info&quot; with password &quot;secret2&quot;
+ do:
+
+  imapsync \
+   --host1 test1.lamiral.info --user1 test1 --password1 secret1 \
+   --host2 test2.lamiral.info --user2 test2 --password2 secret2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;DESCRIPTION&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;We sometimes need to transfer mailboxes from one imap server to one
+another.
+
+Imapsync command is a tool allowing incremental and recursive imap
+transfers from one mailbox to another. If you don&#39;t understand the
+previous sentence, it&#39;s normal, it&#39;s pedantic computer-oriented jargon.
+
+All folders are transferred, recursively, meaning the whole folder
+hierarchy is taken, all messages in them, and all message flags (\Seen
+\Answered \Flagged etc.) are synced too.
+
+Imapsync reduces the amount of data transferred by not transferring a
+given message if it already resides on the destination side. Messages
+that are on the destination side but not on the source side stay as they
+are. See the --delete2 option to have strict sync and delete them.
+
+How does imapsync know a message is already on both sides? Same specific
+headers and the transfer is done only once. By default, the
+identification headers are &quot;Message-Id:&quot; and &quot;Received:&quot; lines but this
+choice can be changed with the --useheader option, most often a
+duplicate problem is solved by using --useheader &quot;Message-Id&quot;
+
+All flags are preserved, unread messages will stay unread, read ones
+will stay read, deleted will stay deleted. In the IMAP protocol, a
+deleted message is not deleted, it is marked \Deleted and can be
+undeleted. Real destruction comes with the EXPUNGE or UIDEXPUNGE IMAP
+commands.
+
+You can abort the transfer at any time and restart it later, imapsync
+works well with bad connections and interruptions, by design. On a
+terminal hit Ctr-c twice within two seconds to abort the program. Hit
+Ctr-c just once makes imapsync reconnect to both imap servers.
+
+How do you know the sync is finished and well done? When imapsync ends
+by itself it mentions it with lines like those:
+
+  Exiting with return value 0 (EX_OK: successful termination) 0/50 nb_errors/max_errors PID 301
+  Removing pidfile /tmp/imapsync.pid
+  Log file is LOG_imapsync/2020_11_17_15_59_22_761_test1_test2.txt ( to change it, use --logfile filepath ; or use --nolog to turn off logging )
+
+If you don&#39;t have those lines it means that either the sync process is
+still running (or eventually hanging indefinitely) or that it ended
+without a whisper, a strong kill -9 on Linux for example.
+
+If you have those final lines then it means the sync process is properly
+finished. It may have encountered problems though.
+
+A good synchronization is mentioned by some lines above the last ones,
+especially those three lines:
+
+  The sync looks good, all 1745 identified messages in host1 are on host2.
+  There is no unidentified message on host1.
+  Detected 0 errors
+
+Imapsync mentions the total sizes of both accounts at the beginning of
+the sync and also at the end. Sometimes, even with a strict sync, those
+total sizes differ, and sometimes they differ a lot. The difference is
+not a good criterion to conclude the sync went wrong.
+
+Why? That&#39;s because message sizes given by the imap servers are not
+always accurate, they are not always the same as the actual message
+sizes of the messages transferred by imapsync. Imapsync use the sizes
+given by the imap servers to calculate the big total size. They can
+differ. In the early days, Imapsync used the sizes of the messages as
+one of the criteria to identify the messages, different sizes implied
+different messages; but it was a mistake, the same message had different
+sizes on both sides sometimes, depending on the imap servers.
+
+Another explanation for a big total size difference is that Gmail
+doesn&#39;t count the size of duplicate messages across folders twice, while
+imapsync does.
+
+A classical scenario is synchronizing a mailbox B from another mailbox A
+where you just want to keep a strict copy of A in B. Strict meaning all
+messages in A will be in B but no more.
+
+For a strict synchronization, use the option --delete2. The option
+--delete2 deletes the messages in the host2 folder B that are not in the
+host1 folder A. If you also need to destroy host2 folders that are not
+in host1 then use --delete2folders. See also --delete2foldersonly and
+--delete2foldersbutnot to set up exceptions on folders to destroy. INBOX
+will never be destroyed, it&#39;s a mandatory folder in IMAP so imapsync
+doesn&#39;t even try to remove it.
+
+A different scenario is to delete the messages from the source mailbox
+after a successful transfer, it can be a good feature when migrating
+mailboxes since messages will be only on one side. The source account
+will only have messages that are not on the destination yet, ie,
+messages that arrived after a sync or that failed to be transferred.
+
+In that case, use the --delete1 option. Option --delete1 implies also
+the option --expunge1 so all messages marked deleted on host1 will be
+deleted. In IMAP protocol deleting a message does not delete it, it
+marks it with the flag \Deleted, allowing an undelete. Expunging a
+folder removes, definitively, all the messages marked as \Deleted in
+this folder.
+
+You can also decide to remove empty folders once all of their messages
+have been transferred. Add --delete1emptyfolders to obtain this
+behavior.
+
+Imapsync is not adequate for maintaining two active imap accounts in
+synchronization when the user plays independently on both sides. Use
+offlineimap (written by John Goerzen) or mbsync (written by Michael R.
+Elkins) for a 2 ways synchronization.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; usage: imapsync [options]
+
+The standard options are the six values forming the credentials. Three
+values on each side are needed to login into the IMAP servers. These six
+values are a hostname, a username, and a password, two times.
+
+Here are the conventions used in the following descriptions of the
+options:
+
+ str means a string
+ int means an integer number
+ flo means a float number
+ reg means a regular expression
+ cmd means a command
+
+ --dry               : Makes imapsync do nothing for real; it just prints what
+                       would be done without --dry.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/credentials&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --host1        str  : Source or &quot;from&quot; imap server.
+ --port1        int  : Port to connect on host1.
+                       Optional since default ports are the
+                       well known ports imap/143 or imaps/993.
+ --user1        str  : User to login on host1.
+ --password1    str  : Password of user1.
+
+ --host2        str  : &quot;destination&quot; imap server.
+ --port2        int  : Port to connect on host2. Optional
+ --user2        str  : User to login on host2.
+ --password2    str  : Password of user2.
+
+ --showpasswords     : Shows passwords on output instead of &quot;MASKED&quot;.
+                       Useful to restart a complete run by just reading
+                       the command line used in the log,
+                       or to debug passwords.
+                       It&#39;s not a secure practice at all!
+
+ --passfile1    str  : Password file for the user1. It must contain the
+                       password on the first line. This option avoids showing
+                       the password on the command line like --password1 does.
+ --passfile2    str  : Password file for the user2.
+
+You can also pass the passwords in the environment variables
+IMAPSYNC_PASSWORD1 and IMAPSYNC_PASSWORD2. If you don&#39;t pass the user1
+password via --password1 nor --passfile1 nor $IMAPSYNC_PASSWORD1 then
+imapsync will prompt to enter the password on the terminal. Same thing
+for user2 password.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/encryption&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --nossl1            : Do not use a SSL connection on host1.
+ --ssl1              : Use a SSL connection on host1. On by default if possible.
+
+ --nossl2            : Do not use a SSL connection on host2.
+ --ssl2              : Use a SSL connection on host2. On by default if possible.
+
+ --notls1            : Do not use a TLS connection on host1.
+ --tls1              : Use a TLS connection on host1. On by default if possible.
+
+ --notls2            : Do not use a TLS connection on host2.
+ --tls2              : Use a TLS connection on host2. On by default if possible.
+
+ --debugssl     int  : SSL debug mode from 0 to 4.
+
+ --sslargs1     str  : Pass any ssl parameter for host1 ssl or tls connection. Example:
+                       --sslargs1 SSL_verify_mode=1 --sslargs1 SSL_version=SSLv3
+                       See all possibilities in the new() method of IO::Socket::SSL
+                       http://search.cpan.org/perldoc?IO::Socket::SSL#Description_Of_Methods
+ --sslargs2     str  : Pass any ssl parameter for host2 ssl or tls connection.
+                       See --sslargs1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/authentication&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --authmech1    str  : Auth mechanism to use with host1:
+                       PLAIN, LOGIN, CRAM-MD5 etc. Use UPPERCASE.
+ --authmech2    str  : Auth mechanism to use with host2. See --authmech1
+
+ --authuser1    str  : User to auth with on host1 (admin user).
+                       Avoid using --authmech1 SOMETHING with --authuser1.
+ --authuser2    str  : User to auth with on host2 (admin user).
+ --proxyauth1        : Use proxyauth on host1. Requires --authuser1.
+                       Required by Sun/iPlanet/Netscape IMAP servers to
+                       be able to use an administrative user.
+ --proxyauth2        : Use proxyauth on host2. Requires --authuser2.
+
+ --authmd51          : Use MD5 authentication for host1.
+ --authmd52          : Use MD5 authentication for host2.
+ --domain1      str  : Domain on host1 (NTLM authentication).
+ --domain2      str  : Domain on host2 (NTLM authentication).
+
+ --oauthaccesstoken1 str : The access token to authenticate with OAUTH2.
+                       It will be combined with the --user1 value to form the 
+                       string to pass with XOAUTH2 authentication.
+                       The password given by --password1 or --passfile1
+                       is ignored but needed on the command line.
+                       Instead of the access token itself, the value can be a
+                       file containing the access token on the first line.
+                       If the value is a file, imapsync reads its first line
+                       and take this line as the access token. The advantage
+                       of the file is that if the access token changes then
+                       imapsync can read it again when it needs to reconnect 
+                       during a run.
+
+
+ --oauthaccesstoken2 str : same thing as --oauthaccesstoken1 
+
+ --oauthdirect1 str  : The direct string to pass with XOAUTH2 authentication.
+                       The password given by --password1 or --passfile1 and 
+                       the user given by --user1 are ignored but they are 
+                       needed to be on the command line. Consider it a bug.
+
+ --oauthdirect2 str  : same thing as oauthdirect1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/folders&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --folder       str  : Sync this folder.
+ --folder       str  : and this one, etc.
+ --folderrec    str  : Sync this folder recursively.
+ --folderrec    str  : and this one, etc.
+
+ --folderfirst  str  : Sync this folder first. Ex. --folderfirst &quot;INBOX&quot;
+ --folderfirst  str  : then this one, etc.
+ --folderlast   str  : Sync this folder last. --folderlast &quot;[Gmail]/All Mail&quot;
+ --folderlast   str  : then this one, etc.
+
+ --nomixfolders      : Do not merge folders when host1 is case-sensitive
+                       while host2 is not (like Exchange). Only the first
+                       similar folder is synced. Example: with folders
+                       &quot;Sent&quot;, &quot;SENT&quot; and &quot;sent&quot; on host1, only &quot;Sent&quot;
+                       will be synced to host2.
+
+ --skipemptyfolders  : Empty host1 folders are not created on host2.
+
+ --include      reg  : Sync folders matching this regular expression
+ --include      reg  : or this one, etc.
+                       If both --include --exclude options are used, then
+                       include is done before.
+ --exclude      reg  : Skips folders matching this regular expression
+                       Several folders to avoid:
+                        --exclude &#39;fold1|fold2|f3&#39; skips fold1, fold2 and f3.
+ --exclude      reg  : or this one, etc.
+
+ --automap           : guesses folders mapping, for folders well known as
+                       &quot;Sent&quot;, &quot;Junk&quot;, &quot;Drafts&quot;, &quot;All&quot;, &quot;Archive&quot;, &quot;Flagged&quot;.
+
+ --f1f2    str1=str2 : Force folder str1 to be synced to str2,
+                       --f1f2 overrides --automap and --regextrans2.
+                       Use several --f1f2 options to map several folders.
+                       Option --f1f2 is a one to one only folder mapping,
+                       str1 and str2 have to be full path folder names.
+
+ --subfolder2   str  : Syncs the whole host1 folders hierarchy under the
+                       host2 folder named str.
+                       It does it internally by adding three
+                       --regextrans2 options before all others.
+                       Add --debug to see what&#39;s really going on.
+
+ --subfolder1   str  : Syncs the host1 folders hierarchy which is under folder
+                       str to the root hierarchy of host2.
+                       It&#39;s the counterpart of a sync done by --subfolder2
+                       when doing it in the reverse order.
+                       Backup/Restore scenario:
+                       Use --subfolder2 str for a backup to the folder str
+                       on host2. Then use --subfolder1 str for restoring
+                       from the folder str, after inverting
+                       host1/host2 user1/user2 values.
+
+
+ --subscribed        : Transfers subscribed folders.
+ --subscribe         : Subscribe to the folders transferred on the
+                       host2 that are subscribed on host1. On by default.
+ --subscribeall      : Subscribe to the folders transferred on the
+                       host2 even if they are not subscribed on host1.
+
+ --prefix1      str  : Remove prefix str to all destination folders,
+                       usually &quot;INBOX.&quot; or &quot;INBOX/&quot; or an empty string &quot;&quot;.
+                       imapsync guesses the prefix if host1 imap server
+                       does not have NAMESPACE capability. So this option
+                       should not be used most of the time.
+ --prefix2      str  : Add prefix to all host2 folders. See --prefix1
+
+ --sep1         str  : Host1 separator. This option should not be used
+                       most of the time.
+                       Imapsync gets the separator from the server itself,
+                       by using NAMESPACE, or it tries to guess it
+                       from the folders listing (it counts
+                       characters / . \\ \ in folder names and choose the
+                       more frequent, or finally / if nothing is found.
+ --sep2         str  : Host2 separator. See --sep1
+
+ --regextrans2  reg  : Apply the whole regex to each destination folders.
+ --regextrans2  reg  : and this one. etc.
+                       When you play with the --regextrans2 option, first
+                       add also the safe options --dry --justfolders
+                       Then, when happy, remove --dry for a run, then
+                       remove --justfolders for the next ones.
+                       Have in mind that --regextrans2 is applied after
+                       the automatic prefix and separator inversion.
+                       For examples see:
+                       https://imapsync.lamiral.info/FAQ.d/FAQ.Folders_Mapping.txt
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/folders sizes&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --nofoldersizes     : Do not calculate the size of each folder at the
+                       beginning of the sync. Default is to calculate them.
+ --nofoldersizesatend: Do not calculate the size of each folder at the
+                       end of the sync. Default is to calculate them.
+ --justfoldersizes   : Exit after having printed the initial folder sizes.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/tmp&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --tmpdir       str  : Where to store temporary files and subdirectories.
+                       Will be created if it doesn&#39;t exist.
+                       Default is system specific, Unix is /tmp but
+                       /tmp is often too small and deleted at reboot.
+                       --tmpdir /var/tmp should be better.
+
+ --pidfile      str  : The file where imapsync pid is written,
+                       it can be dirname/filename complete path.
+                       The default name is imapsync.pid in tmpdir.
+
+ --pidfilelocking    : Abort if pidfile already exists. Useful to avoid
+                       concurrent transfers on the same mailbox.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/log&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --nolog             : Turn off logging on file
+ --logfile      str  : Change the default log filename (can be dirname/filename).
+ --logdir       str  : Change the default log directory. Default is LOG_imapsync/
+
+The default logfile name is for example
+
+ LOG_imapsync/2019_12_22_23_57_59_532_user1_user2.txt
+
+where:
+
+ 2019_12_22_23_57_59_532 is nearly the date of the start
+ YYYY_MM_DD_HH_MM_SS_mmm
+ year_month_day_hour_minute_second_millisecond
+
+and user1 user2 are the --user1 --user2 values.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/messages&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --skipmess     reg  : Skips messages matching the regex.
+                       Example: &#39;m/[\x80-\xff]/&#39; # to avoid 8bits messages.
+                       --skipmess is applied before --regexmess
+ --skipmess     reg  : or this one, etc.
+
+ --skipcrossduplicates : Avoid copying messages that are already copied
+                         in another folder, good from Gmail to XYZ when
+                         XYZ is not also Gmail.
+                         Activated with --gmail1 unless --noskipcrossduplicates
+
+ --debugcrossduplicates : Prints which messages (UIDs) are skipped with
+                          --skipcrossduplicates and in what other folders
+                          they are.
+
+ --pipemess     cmd  : Apply this cmd command to each message content
+                       before the copy.
+ --pipemess     cmd  : and this one, etc.
+                       With several --pipemess, the output of each cmd
+                       command (STDOUT) is given to the input (STDIN)
+                       of the next command.
+                       For example,
+                       --pipemess cmd1 --pipemess cmd2 --pipemess cmd3
+                       is like a Unix pipe:
+                       &quot;cat message | cmd1 | cmd2 | cmd3&quot;
+
+ --disarmreadreceipts : Disarms read receipts (host2 Exchange issue)
+
+ --regexmess    reg  : Apply the whole regex to each message before transfer.
+                       Example: &#39;s/\000/ /g&#39; # to replace null characters
+                       by spaces.
+ --regexmess    reg  : and this one, etc.
+
+ --truncmess    int  : truncates messages when their size exceed the int 
+                       value, specified in bytes. Good to sync too big 
+                       messages or to &quot;suppress&quot; attachments. 
+                       Have in mind that this way, messages become 
+                       uncoherent somehow.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/labels&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Gmail present labels as folders in imap. Imapsync can accelerate the
+sync by syncing X-GM-LABELS, it will avoid to transfer messages when
+they are already on host2 in another folder.
+
+ --synclabels        : Syncs also Gmail labels when a message is copied to host2.
+                       Activated by default with --gmail1 --gmail2 unless
+                       --nosynclabels is added.
+
+ --resynclabels      : Resyncs Gmail labels when a message is already on host2.
+                       Activated by default with --gmail1 --gmail2 unless
+                       --noresynclabels is added.
+
+For Gmail syncs, see also:
+https://imapsync.lamiral.info/FAQ.d/FAQ.Gmail.txt
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/flags&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; If you encounter flag problems see also:
+ https://imapsync.lamiral.info/FAQ.d/FAQ.Flags.txt
+
+ --regexflag    reg  : Apply the whole regex to each flags list.
+                       Example: &#39;s/&quot;Junk&quot;//g&#39; # to remove &quot;Junk&quot; flag.
+ --regexflag    reg  : then this one, etc.
+
+ --resyncflags       : Resync flags for already transferred messages.
+                       On by default.
+ --noresyncflags     : Do not resync flags for already transferred messages.
+                       May be useful when a user has already started to play
+                       with its host2 account.
+
+ --filterbuggyflags  : Filter flags known to be buggy and generators of errors
+                       &quot;BAD Invalid system flag&quot; or &quot;NO APPEND Invalid flag list&quot;.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/deletions&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --delete1           : Deletes messages on host1 server after a successful
+                       transfer. Option --delete1 has the following behavior:
+                       it marks messages as deleted with the IMAP flag
+                       \Deleted, then messages are really deleted with an
+                       EXPUNGE IMAP command. If expunging after each message
+                       slows down too much the sync then use
+                       --noexpungeaftereach to speed up, expunging will then be
+                       done only twice per folder, one at the beginning and
+                       one at the end of a folder sync.
+
+ --expunge1          : Expunge messages on host1 just before syncing a folder.
+                       Expunge is done per folder.
+                       Expunge aims is to really delete messages marked deleted.
+                       An expunge is also done after each message copied
+                       if option --delete1 is set (unless --noexpungeaftereach).
+
+ --noexpunge1        : Do not expunge messages on host1.
+
+ --delete1emptyfolders : Deletes empty folders on host1, INBOX excepted.
+                         Useful with --delete1 since what remains on host1
+                         is only what failed to be synced.
+
+ --delete2           : Delete messages in the host2 account that are not in
+                       the host1 account. Useful for backup or pre-sync.
+                       --delete2 implies --uidexpunge2
+
+ --delete2duplicates : Deletes messages in host2 that are duplicates in host2.
+                       Works only without --useuid since duplicates are
+                       detected with an header part of each message.
+                       NB: --delete2duplicates is far less violent than --delete2
+                       since it removes only duplicates.
+
+ --delete2folders    : Delete folders in host2 that are not in host1.
+                       For safety, first try it like this, it is safe:
+                       --delete2folders --dry --justfolders --nofoldersizes
+                       and see what folders will be deleted.
+
+ --delete2foldersonly   reg : Delete only folders matching the regex reg.
+                              Example: --delete2foldersonly &quot;/^Junk$|^INBOX.Junk$/&quot;
+                              This option activates --delete2folders
+
+ --delete2foldersbutnot reg : Do not delete folders matching the regex rex.
+                              Example: --delete2foldersbutnot &quot;/Tasks$|Contacts$|Foo$/&quot;
+                              This option activates --delete2folders
+
+ --noexpunge2        : Do not expunge messages on host2.
+ --nouidexpunge2     : Do not uidexpunge messages on the host2 account
+                       that are not on the host1 account.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/dates&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; If you encounter problems with dates, see also:
+ https://imapsync.lamiral.info/FAQ.d/FAQ.Dates.txt
+
+ --syncinternaldates : Sets the internal dates on host2 as the same as host1.
+                       Turned on by default. Internal date is the date
+                       a message arrived on a host (Unix mtime usually).
+ --idatefromheader   : Sets the internal dates on host2 as same as the
+                       ones in &quot;Date:&quot; headers.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/message selection&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --maxsize      int  : Skip messages larger  (or equal) than  int  bytes
+ --minsize      int  : Skip messages smaller (or equal) than  int  bytes
+
+ --maxage       int  : Skip messages older than  int days.
+                       final stats (skipped) don&#39;t count older messages
+                       see also --minage
+ --minage       int  : Skip messages newer than  int  days.
+                       final stats (skipped) don&#39;t count newer messages
+                       You can do (+ zone are the messages selected):
+                       past|----maxage+++++++++++++++&amp;gt;now
+                       past|+++++++++++++++minage----&amp;gt;now
+                       past|----maxage+++++minage----&amp;gt;now (intersection)
+                       past|++++minage-----maxage++++&amp;gt;now (union)
+
+ --search       str  : Selects only messages returned by this IMAP SEARCH
+                       command. Applied on both sides.
+                       For a complete set of what can be search see
+                       https://imapsync.lamiral.info/FAQ.d/FAQ.Messages_Selection.txt
+
+ --search1      str  : Same as --search but for selecting host1 messages only.
+ --search2      str  : Same as --search but for selecting host2 messages only.
+                       So --search CRIT equals --search1 CRIT --search2 CRIT
+
+ --noabletosearch    : Makes --minage and --maxage options use the internal
+                       dates given by a FETCH imap command instead of the
+                       &quot;Date:&quot; header. Internal date is the arrival date
+                       in the mailbox.
+                       --noabletosearch equals --noabletosearch1 --noabletosearch2
+
+ --noabletosearch1   : Like --noabletosearch but for host1 only.
+ --noabletosearch2   : Like --noabletosearch but for host2 only.
+
+ --maxlinelength int : skip messages with a line length longer than  int  bytes.
+                       RFC 2822 says it must be no more than 1000 bytes but
+                       real life servers and email clients do more.
+
+
+ --useheader    str  : Use this header to compare messages on both sides.
+                       Example: &quot;Message-Id&quot; or &quot;Received&quot; or &quot;Date&quot;.
+ --useheader    str    and this one, etc.
+
+ --syncduplicates    : Sync also duplicates. Off by default.
+
+ --usecache          : Use cache to speed up next syncs. Off by default.
+ --nousecache        : Do not use cache. Caveat: --useuid --nousecache creates
+                       duplicates on multiple runs.
+
+ --useuid            : Use UIDs instead of headers as a criterion to recognize
+                       messages. Option --usecache is then implied unless
+                       --nousecache is used.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/miscellaneous&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --syncacls          : Synchronizes acls (Access Control Lists).
+                       Acls in IMAP are not standardized, be careful
+                       since one acl code on one side may signify something
+                       else on the other one.
+ --nosyncacls        : Does not synchronize acls. This is the default.
+
+ --addheader         : When a message has no headers to be identified,
+                       --addheader adds a &quot;Message-Id&quot; header,
+                       like &quot;Message-Id: 12345@imapsync&quot;, where 12345
+                       is the imap UID of the message on the host1 folder.
+                       Useful to sync folders &quot;Sent&quot; or &quot;Draft&quot;.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/debugging&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --debug             : Debug mode.
+ --debugfolders      : Debug mode for the folders part only.
+ --debugcontent      : Debug content of the messages transferred. Huge output.
+ --debugflags        : Debug mode for flags.
+ --debugimap1        : IMAP debug mode for host1. Very verbose.
+ --debugimap2        : IMAP debug mode for host2. Very verbose.
+ --debugimap         : IMAP debug mode for host1 and host2. Twice very verbose.
+ --debugmemory       : Debug mode showing memory consumption after each copy.
+
+ --errorsmax     int : Exit when int number of errors is reached. Default is 50.
+
+ --tests             : Run local non-regression tests. Exit code 0 means all ok.
+ --testslive         : Run a live test with test1.lamiral.info imap server.
+                       Useful to check the basics. Needs internet connection.
+ --testslive6        : Run a live test with ks6ipv6.lamiral.info imap server.
+                       Useful to check the ipv6 connectivity. Needs internet.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/specific&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  --gmail1           : sets --host1 to Gmail and other options. See FAQ.Gmail.txt
+  --gmail2           : sets --host2 to Gmail and other options. See FAQ.Gmail.txt
+
+  --office1          : sets --host1 to Office365 and other options. See FAQ.Office365.txt
+  --office2          : sets --host2 to Office365 and other options. See FAQ.Office365.txt
+
+  --exchange1        : sets options for Exchange. See FAQ.Exchange.txt
+  --exchange2        : sets options for Exchange. See FAQ.Exchange.txt
+
+  --domino1          : sets options for Domino. See FAQ.Domino.txt
+  --domino2          : sets options for Domino. See FAQ.Domino.txt
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OPTIONS/behavior&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; --timeout1     flo  : Connection timeout in seconds for host1.
+                       Default is 120 and 0 means no timeout at all.
+ --timeout2     flo  : Connection timeout in seconds for host2.
+                       Default is 120 and 0 means no timeout at all.
+
+                       Caveat, under CGI context, you may encounter a timeout
+                       from the webserver, killing imapsync and the imap connections.
+                       See the document INSTALL.OnlineUI.txt and search
+                       for &quot;Timeout&quot; for how to deal with this issue.
+
+ --keepalive1        : https://metacpan.org/pod/Mail::IMAPClient#Keepalive
+                       Some firewalls and network gears like to timeout connections 
+                       prematurely if the connection sits idle.
+                       This option enables SO_KEEPALIVE on the host1 socket.
+                       --keepalive1 is on by default since imapsync release 2.169
+                       Use --nokeepalive1 to disable it.
+                   
+ --keepalive2        : Same as --keepalive2 but for host2.
+                       Use --nokeepalive2 to disable it.
+
+ --maxmessagespersecond flo : limits the average number of messages 
+                              transferred per second.
+
+ --maxbytespersecond int : limits the average transfer rate per second.
+ --maxbytesafter     int : starts --maxbytespersecond limitation only after
+                           --maxbytesafter amount of data transferred.
+
+ --maxsleep      flo : do not sleep more than int seconds.
+                       On by default, 2 seconds max, like --maxsleep 2
+
+ --abort             : terminates a previous call still running.
+                       It uses the pidfile to know what process to abort.
+
+ --exitwhenover int  : Stop syncing and exits when int total bytes
+                       transferred is reached.
+
+ --version           : Print only the software version.
+ --noreleasecheck    : Do not check for any new imapsync release.
+ --releasecheck      : Check for new imapsync release.
+                       it&#39;s an http request to
+                       http://imapsync.lamiral.info/prj/imapsync/VERSION
+
+  --emailreport1     : Put the email final report in host1 INBOX
+  --emailreport2     : Put the email final report in host2 INBOX
+
+  --noemailreport1   : Do not put the email final report in host1 INBOX
+  --noemailreport2   : Do not put the email final report in host2 INBOX
+
+ --noid              : Do not send/receive IMAP &quot;ID&quot; command to imap servers.
+
+ --justconnect       : Just connect to both servers and print useful
+                       information. Need only --host1 and --host2 options.
+                       Obsolete since &quot;imapsync --host1 imaphost&quot; alone
+                       implies --justconnect
+
+ --justlogin         : Just login to both host1 and host2 with users
+                       credentials, then exit.
+
+ --justfolders       : Do only things about folders (ignore messages).
+
+ --help              : print this help.
+
+ Example: to synchronize imap account &quot;test1&quot; on &quot;test1.lamiral.info&quot;
+                     to  imap account &quot;test2&quot; on &quot;test2.lamiral.info&quot;
+                     with test1 password &quot;secret1&quot;
+                     and  test2 password &quot;secret2&quot;
+
+ imapsync \
+    --host1 test1.lamiral.info --user1 test1 --password1 secret1 \
+    --host2 test2.lamiral.info --user2 test2 --password2 secret2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;SECURITY&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;You can use --passfile1 instead of --password1 to mention the password
+since it is safer. With --password1 option, on Linux, any user on your
+host can see the password by using the &#39;ps auxwwww&#39; command. Using a
+variable (like IMAPSYNC_PASSWORD1) is also dangerous because of the &#39;ps
+auxwwwwe&#39; command. So, saving the password in a well protected file (600
+or rw-------) is the best solution.
+
+Imapsync activates ssl or tls encryption by default, if possible.
+
+What detailed behavior is under this &quot;if possible&quot;?
+
+Imapsync activates ssl if the well known port imaps port (993) is open
+on the imap servers. If the imaps port is closed then it open a normal
+(clear) connection on port 143 but it looks for TLS support in the
+CAPABILITY list of the servers. If TLS is supported then imapsync goes
+to encryption with STARTTLS.
+
+If the automatic ssl and the tls detections fail then imapsync will not
+protect against sniffing activities on the network, especially for
+passwords.
+
+If you want to force ssl or tls just use --ssl1 --ssl2 or --tls1 --tls2
+
+See also the document FAQ.Security.txt in the FAQ.d/ directory or at
+https://imapsync.lamiral.info/FAQ.d/FAQ.Security.txt
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;EXIT STATUS&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Imapsync will exit with a 0 status (return code) if everything went
+good. Otherwise, it exits with a non-zero status. That&#39;s classical Unix
+behavior. Here is the list of the exit code values (an integer between 0
+and 255). In Bourne Shells, this exit code value can be retrieved within
+the variable value &quot;$?&quot; if you read it just after the imapsync call.
+
+The names reflect their meaning:
+
+     EX_OK          =&amp;gt; 0  ; #/* successful termination */
+     EX_USAGE       =&amp;gt; 64 ; #/* command line usage error */
+     EX_NOINPUT     =&amp;gt; 66 ; #/* cannot open input */
+     EX_UNAVAILABLE =&amp;gt; 69 ; #/* service unavailable */
+     EX_SOFTWARE    =&amp;gt; 70 ; #/* internal software error */
+     EXIT_CATCH_ALL              =&amp;gt;   1 ; # Any other error
+     EXIT_BY_SIGNAL              =&amp;gt;   6 ; # Should be 128+n where n is the sig_num
+     EXIT_BY_FILE                =&amp;gt;   7 ;
+     EXIT_PID_FILE_ERROR         =&amp;gt;   8 ;
+     EXIT_CONNECTION_FAILURE     =&amp;gt;  10 ;
+     EXIT_TLS_FAILURE            =&amp;gt;  12 ;
+     EXIT_AUTHENTICATION_FAILURE =&amp;gt;  16 ;
+     EXIT_SUBFOLDER1_NO_EXISTS   =&amp;gt;  21 ;
+     EXIT_WITH_ERRORS            =&amp;gt; 111 ;
+     EXIT_WITH_ERRORS_MAX        =&amp;gt; 112 ;
+     EXIT_OVERQUOTA              =&amp;gt; 113 ;
+     EXIT_ERR_APPEND             =&amp;gt; 114 ;
+     EXIT_ERR_FETCH              =&amp;gt; 115 ;
+     EXIT_ERR_CREATE             =&amp;gt; 116 ;
+     EXIT_ERR_SELECT             =&amp;gt; 117 ;
+     EXIT_TRANSFER_EXCEEDED      =&amp;gt; 118 ;
+     EXIT_ERR_APPEND_VIRUS       =&amp;gt; 119 ;
+     EXIT_TESTS_FAILED           =&amp;gt; 254 ; # Like Test::More API
+     EXIT_CONNECTION_FAILURE_HOST1     =&amp;gt;  101 ;
+     EXIT_CONNECTION_FAILURE_HOST2     =&amp;gt;  102 ;
+     EXIT_AUTHENTICATION_FAILURE_USER1 =&amp;gt;  161 ;
+     EXIT_AUTHENTICATION_FAILURE_USER2 =&amp;gt;  162 ;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;LICENSE AND COPYRIGHT&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Imapsync is free, open, public but not always gratis software cover by
+the NOLIMIT Public License, now called NLPL. See the LICENSE file
+included in the distribution or just read the following simple sentence
+as it IS the license text:
+
+ &quot;No limits to do anything with this work and this license.&quot;
+
+In case it is not long enough, I repeat:
+
+ &quot;No limits to do anything with this work and this license.&quot;
+
+Look at https://imapsync.lamiral.info/LICENSE
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;AUTHOR&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Gilles LAMIRAL &amp;lt;gilles@lamiral.info&amp;gt;
+
+Good feedback is always welcome. Bad feedback is very often welcome.
+
+Gilles LAMIRAL earns his living by writing, installing, configuring and
+sometimes teaching free, open, and often gratis software. Imapsync used
+to be &quot;always gratis&quot; but now it is only &quot;often gratis&quot; because imapsync
+is sold by its author, your servitor, a good way to maintain and support
+free open public software tools over decades.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;BUGS AND LIMITATIONS&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;See https://imapsync.lamiral.info/FAQ.d/FAQ.Reporting_Bugs.txt
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;IMAP SERVERS supported&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;See https://imapsync.lamiral.info/S/imapservers.shtml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;HUGE MIGRATION&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;If you have many mailboxes to migrate think about a little shell
+program. Write a file called file.txt (for example) containing users and
+passwords. The separator used in this example is &#39;;&#39;
+
+The file.txt file contains:
+
+user001_1;password001_1;user001_2;password001_2
+user002_1;password002_1;user002_2;password002_2
+user003_1;password003_1;user003_2;password003_2
+user004_1;password004_1;user004_2;password004_2
+user005_1;password005_1;user005_2;password005_2 ...
+
+On Unix the shell program can be:
+
+ { while IFS=&#39;;&#39; read  u1 p1 u2 p2; do
+        imapsync --host1 imap.side1.org --user1 &quot;$u1&quot; --password1 &quot;$p1&quot; \
+                 --host2 imap.side2.org --user2 &quot;$u2&quot; --password2 &quot;$p2&quot; ...
+ done ; } &amp;lt; file.txt
+
+On Windows the batch program can be:
+
+  FOR /F &quot;tokens=1,2,3,4 delims=; eol=#&quot; %%G IN (file.txt) DO imapsync ^
+  --host1 imap.side1.org --user1 %%G --password1 %%H ^
+  --host2 imap.side2.org --user2 %%I --password2 %%J ...
+
+The ... have to be replaced by nothing or any imapsync option. Welcome
+in shell or batch programming !
+
+You will find already written scripts at
+https://imapsync.lamiral.info/examples/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;INSTALL&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; Imapsync works under any Unix with Perl.
+
+ Imapsync works under most Windows (2000, XP, Vista, Seven, Eight, Ten
+ and all Server releases 2000, 2003, 2008 and R2, 2012 and R2, 2016)
+ as a standalone binary software called imapsync.exe, usually launched
+ from a batch file in order to avoid always typing the options. There
+ is also a 32bit binary called imapsync_32bit.exe
+
+ Imapsync works under OS X as a standalone binary software called
+ imapsync_bin_Darwin
+
+ Purchase latest imapsync at
+ https://imapsync.lamiral.info/
+
+ You&#39;ll receive a link to a compressed tarball called
+ imapsync-x.xx.tgz where x.xx is the version number. 
+ Untar the tarball where you want (on Unix):
+
+  tar xzvf  imapsync-x.xx.tgz
+
+ Go into the directory imapsync-x.xx and read the INSTALL file.
+ As mentioned at https://imapsync.lamiral.info/#install
+ the INSTALL file can also be found at
+ https://imapsync.lamiral.info/INSTALL.d/INSTALL.ANY.txt
+ It is now split in several files for each system
+ https://imapsync.lamiral.info/INSTALL.d/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;CONFIGURATION&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;There is no specific configuration file for imapsync, everything is
+specified by the command line parameters and the default behavior.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;HACKING&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Feel free to hack imapsync as the NOLIMIT license permits it.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;SIMILAR SOFTWARE&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  See also https://imapsync.lamiral.info/S/external.shtml
+  for a better up to date list.
+
+List verified on Friday July 1, 2021.
+
+ imapsync: https://github.com/imapsync/imapsync (this is an imapsync copy, sometimes delayed, with --noreleasecheck by default since release 1.592, 2014/05/22)
+ imap_tools: https://web.archive.org/web/20161228145952/http://www.athensfbc.com/imap_tools/. The imap_tools code is now at https://github.com/andrewnimmo/rick-sanders-imap-tools
+ imaputils: https://github.com/mtsatsenko/imaputils (very old imap_tools fork)
+ Doveadm-Sync: https://wiki2.dovecot.org/Tools/Doveadm/Sync ( Dovecot sync tool )
+ davmail: http://davmail.sourceforge.net/
+ offlineimap: http://offlineimap.org/
+ fdm: https://github.com/nicm/fdm
+ mbsync: http://isync.sourceforge.net/
+ mailsync: http://mailsync.sourceforge.net/
+ mailutil: https://www.washington.edu/imap/ part of the UW IMAP toolkit. (well, seems abandoned now)
+ imaprepl: https://bl0rg.net/software/ http://freecode.com/projects/imap-repl/
+ imapcopy (Pascal): http://www.ardiehl.de/imapcopy/
+ imapcopy (Java): https://code.google.com/archive/p/imapcopy/
+ imapsize: http://www.broobles.com/imapsize/
+ migrationtool: http://sourceforge.net/projects/migrationtool/
+ imapmigrate: http://sourceforge.net/projects/cyrus-utils/
+ larch: https://github.com/rgrove/larch (derived from wonko_imapsync, good at Gmail)
+ wonko_imapsync: http://wonko.com/article/554 (superseded by larch)
+ pop2imap: http://www.linux-france.org/prj/pop2imap/ (I wrote that too)
+ exchange-away: http://exchange-away.sourceforge.net/
+ SyncBackPro: http://www.2brightsparks.com/syncback/sbpro.html
+ ImapSyncClient: https://github.com/ridaamirini/ImapSyncClient
+ MailStore: https://www.mailstore.com/en/products/mailstore-home/
+ mnIMAPSync: https://github.com/manusa/mnIMAPSync
+ imap-upload: http://imap-upload.sourceforge.net/ (A tool for uploading a local mbox file to IMAP4 server)
+ imapbackup: https://github.com/rcarmo/imapbackup (A Python script for incremental backups of IMAP mailboxes)
+ BitRecover email-backup 99 USD, 299 USD https://www.bitrecover.com/email-backup/.
+ ImportExportTools: https://addons.thunderbird.net/en-us/thunderbird/addon/importexporttools/ ImportExportTools for Mozilla Thunderbird by Paolo Kaosmos. ImportExportTools does not do IMAP.
+ rximapmail: https://sourceforge.net/projects/rximapmail/
+ CodeTwo: https://www.codetwo.com/ but CodeTwo does imap source to Office365 only.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;HISTORY&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;I initially wrote imapsync in July 2001 because an enterprise, called
+BaSystemes, paid me to install a new imap server without losing huge old
+mailboxes located in a far away remote imap server, accessible by an
+often broken low-bandwidth ISDN link.
+
+I had to verify every mailbox was well transferred, all folders, all
+messages, without wasting bandwidth or creating duplicates upon resyncs.
+The imapsync design was made with the beautiful rsync command in mind.
+
+Imapsync started its life as a patch of the copy_folder.pl script. The
+script copy_folder.pl comes from the Mail-IMAPClient-2.1.3 perl module
+tarball source (more precisely in the examples/ directory of the
+Mail-IMAPClient tarball).
+
+So many changes happened since then that I wonder if it remains any
+lines of the original copy_folder.pl in imapsync source code.
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>centreon/centreon-plugins</title>
+      <link>https://github.com/centreon/centreon-plugins</link>
+      <description>&lt;p&gt;Collection of standard plugins to discover and gather cloud-to-edge metrics and status across your whole IT infrastructure.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;centreon-plugins&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/raw/master/LICENSE.txt&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-APACHE2-brightgreen.svg?sanitize=true&quot; alt=&quot;License&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- SHIELDS --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/graphs/contributors&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/contributors/centreon/centreon-plugins?color=%2384BD00&amp;amp;label=CONTRIBUTORS&amp;amp;style=for-the-badge&quot; alt=&quot;Contributors&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/centreon/centreon-plugins/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/centreon/centreon-plugins?color=%23433b02a&amp;amp;label=STARS&amp;amp;style=for-the-badge&quot; alt=&quot;Stars&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/centreon/centreon-plugins/network/members&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/forks/centreon/centreon-plugins?color=%23009fdf&amp;amp;label=FORKS&amp;amp;style=for-the-badge&quot; alt=&quot;Forks&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/centreon/centreon-plugins/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/centreon/centreon-plugins?color=%230072ce&amp;amp;label=ISSUES&amp;amp;style=for-the-badge&quot; alt=&quot;Issues&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;What are Centreon Plugins&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/&quot;&gt;Centreon plugins&lt;/a&gt; is a free and open source project to monitor systems. The project can be used with Centreon and all monitoring softwares compatible with Nagios plugins.&lt;/p&gt; 
+&lt;h3&gt;Principles&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/&quot;&gt;Centreon plugins&lt;/a&gt; should comply with &lt;a href=&quot;https://www.monitoring-plugins.org/doc/guidelines.html&quot;&gt;Monitoring Plugins Development Guidelines&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;In short, they return:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An error code: 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;0&lt;/code&gt; for &lt;code&gt;OK&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;1&lt;/code&gt; for &lt;code&gt;WARNING&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;2&lt;/code&gt; for &lt;code&gt;CRITICAL&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;3&lt;/code&gt; for &lt;code&gt;UNKNOWN&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;A human understandable output message (example: &lt;code&gt;OK: CPU(s) average usage is 2.66 % - CPU &#39;0&#39; usage : 2.66 %&lt;/code&gt;).&lt;/li&gt; 
+ &lt;li&gt;A set of metrics provided as &lt;em&gt;perfdata&lt;/em&gt; after a &lt;code&gt;|&lt;/code&gt; character (example: &lt;code&gt;&#39;cpu.utilization.percentage&#39;=2.66%;;;0;100 &#39;0#core.cpu.utilization.percentage&#39;=2.66%;;;0;100&lt;/code&gt;).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;What can Centreon Plugins monitor?&lt;/h3&gt; 
+&lt;p&gt;You can monitor many systems:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Application&lt;/strong&gt;: Apache, Asterisk, Elasticsearch, Github, Jenkins, Kafka, Nginx, Pfsense, Redis, Tomcat, Varnish, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Cloud&lt;/strong&gt;: AWS, Azure, Docker, Office365, Nutanix, Prometheus, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Databases&lt;/strong&gt;: Firebird, Informix, MS SQL, MySQL, Oracle, Postgres, Cassandra.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hardware&lt;/strong&gt;: printers (RFC3805), UPS (Powerware, Mge, Standard), Sun Hardware, Cisco UCS, SensorIP, HP Proliant, HP Bladechassis, Dell Openmanage, Dell CMC, Raritan, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Network&lt;/strong&gt;: Aruba, Brocade, Bluecoat, Brocade, Checkpoint, Cisco AP/IronPort/ASA/Standard, Extreme, Fortigate, H3C, Hirschmann, HP Procurve, F5 BIG-IP, Juniper, PaloAlto, Redback, Riverbed, Ruggedcom, Stonesoft, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Operating systems&lt;/strong&gt;: Linux (SNMP, NRPE), Freebsd (SNMP), AIX (SNMP), Solaris (SNMP), etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Storage&lt;/strong&gt;: EMC Clariion, Netapp, Nimble, HP MSA p2000, Dell EqualLogic, Qnap, Panzura, Synology, etc.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To get a complete list, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;perl src/centreon_plugins.pl --list-plugin
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Basic Usage&lt;/h3&gt; 
+&lt;p&gt;We&#39;ll use a basic example to show you how to monitor a system. I have finished the install section and I want to monitor a Linux in SNMP. First, I need to find the plugin to use in the list:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;perl centreon_plugins.pl --list-plugin | grep -i linux | grep &#39;PLUGIN&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It will return:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;PLUGIN: os::linux::local::plugin
+PLUGIN: os::linux::snmp::plugin
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It seems that &#39;os::linux::snmp::plugin&#39; is the good one. So I verify with the option &lt;code&gt;--help&lt;/code&gt; to be sure:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --help
+...
+Plugin Description:
+  Check Linux operating systems in SNMP.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It&#39;s exactly what I need. Now I&#39;ll add the option &lt;code&gt;--list-mode&lt;/code&gt; to know what can I do with it:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --list-mode
+...
+Modes Available:
+ processcount
+ time
+ list-storages
+ disk-usage
+ diskio
+ uptime
+ swap
+ cpu-detailed
+ load
+ traffic
+ cpu
+ inodes
+ list-diskspath
+ list-interfaces
+ packet-errors
+ memory
+ tcpcon
+ storage
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;I would like to test the &#39;load&#39; mode:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load
+UNKNOWN: Missing parameter --hostname.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It&#39;s not working because some options are missing. I can have a description of the mode and options with the option &lt;code&gt;--help&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load --help
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Eventually, I have to configure some SNMP options:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load --hostname=127.0.0.1 --snmp-version=2c --snmp-community=public
+OK: Load average: 0.00, 0.00, 0.00 | &#39;load1&#39;=0.00;;;0; &#39;load5&#39;=0.00;;;0; &#39;load15&#39;=0.00;;;0;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;I can set threshold with options &lt;code&gt;--warning&lt;/code&gt; and &lt;code&gt;--critical&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load --hostname=127.0.0.1 --snmp-version=2c --snmp-community=public --warning=1,2,3 --critical=2,3,4
+OK: Load average: 0.00, 0.00, 0.00 | &#39;load1&#39;=0.00;0:1;0:2;0; &#39;load5&#39;=0.00;0:2;0:3;0; &#39;load15&#39;=0.00;0:3;0:4;0;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more information or help, please read &lt;a href=&quot;https://raw.githubusercontent.com/centreon/centreon-plugins/develop/doc/en/user/guide.rst&quot;&gt;&#39;doc/en/user/guide.rst&#39;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributions&lt;/h2&gt; 
+&lt;h3&gt;Code contributions/pull requests&lt;/h3&gt; 
+&lt;p&gt;If you want to contribute by submitting new functionalities, enhancements or bug fixes, first thank you for participating :-) Then have a look, if not already done, to our &lt;strong&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/raw/develop/doc/en/developer/guide.md&quot;&gt;development guide&lt;/a&gt;&lt;/strong&gt;. Then create a &lt;a href=&quot;https://github.com/centreon/centreon-plugins/fork&quot;&gt;fork&lt;/a&gt; and a development branch, and once it&#39;s done, you may submit a &lt;a href=&quot;https://github.com/centreon/centreon-plugins/pulls&quot;&gt;pull request&lt;/a&gt; that the corporate development team will examine.&lt;/p&gt; 
+&lt;h3&gt;Issues/bug reports&lt;/h3&gt; 
+&lt;p&gt;If you encounter a behaviour that is clearly a bug or a regression, you are welcome to submit an &lt;a href=&quot;https://github.com/centreon/centreon-plugins/issues&quot;&gt;issue&lt;/a&gt;. Please be aware that this is an open source project and that there is no guaranteed response time.&lt;/p&gt; 
+&lt;h3&gt;Questions/search for help&lt;/h3&gt; 
+&lt;p&gt;If you have trouble using our plugins, but are not sure whether it&#39;s due to a bug or a misuse, please take the time to ask for help on &lt;a href=&quot;https://thewatch.centreon.com/data-collection-6&quot;&gt;The Watch, Data Collection section&lt;/a&gt; and become certain that it is a bug before submitting it here.&lt;/p&gt; 
+&lt;h3&gt;Feature/enhancement request&lt;/h3&gt; 
+&lt;p&gt;There is high demand for new plugins and new functionalities on existing plugins, so we have to rely on our community to help us prioritize them. How? Post your suggestion on &lt;a href=&quot;https://thewatch.centreon.com/ideas&quot;&gt;The Watch Ideas&lt;/a&gt; with as much detail as possible and we will pick the most voted topics to add them to our product roadmap.&lt;/p&gt; 
+&lt;p&gt;To develop a plugin/mode, we need the following information, depending on the protocol:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;SNMP&lt;/strong&gt;: MIB files and full snmpwalk of enterprise branch (&lt;code&gt;snmpwalk -ObentU -v 2c -c public address .1.3.6.1.4.1 &amp;gt; equipment.snmpwalk&lt;/code&gt;) or &lt;a href=&quot;https://thewatch.centreon.com/product-how-to-21/snmp-collection-tutorial-132&quot;&gt;SNMP collections&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;HTTP API (SOAP, Rest/Json, XML-RPC)&lt;/strong&gt;: the documentation and some curl examples or HTTP &lt;a href=&quot;https://thewatch.centreon.com/data-collection-6/centreon-plugins-discover-collection-modes-131&quot;&gt;collections&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;CLI&lt;/strong&gt;: command line examples (command + result).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SQL&lt;/strong&gt;: queries + results + column types or &lt;a href=&quot;https://thewatch.centreon.com/product-how-to-21/sql-collection-tutorial-134&quot;&gt;SQL collections&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;JMX&lt;/strong&gt;: mbean names and attributes.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If some information is confidential, such as logins or IP addresses, obfuscate them in what is sent publicly and we&#39;ll get in touch with you by private message if this information is needed.&lt;/p&gt; 
+&lt;p&gt;Please note that all the developments are open source, we will not commit to a release date. If it is an emergency for you, please contact &lt;a href=&quot;https://www.centreon.com/contact/&quot;&gt;Centreon&#39;s sales team&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Continuous integration&lt;/h3&gt; 
+&lt;p&gt;Please follow documentation &lt;a href=&quot;https://raw.githubusercontent.com/centreon/centreon-plugins/develop/doc/CI.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- URL AND IMAGES FOR SHIELDS --&gt;</description>
+    </item>
+    
+    <item>
+      <title>curl/everything-curl</title>
+      <link>https://github.com/curl/everything-curl</link>
+      <description>&lt;p&gt;The book documenting the curl project, the curl tool, libcurl and more. Simply put: everything curl.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Introduction&lt;/h1&gt; 
+&lt;p&gt;&lt;em&gt;Everything curl&lt;/em&gt; is an extensive guide for all things curl. The project, the command-line tool, the library, how everything started and how it came to be the useful tool it is today. It explains how we work on developing it further, what it takes to use it, how you can contribute with code or bug reports and why millions of existing users use it.&lt;/p&gt; 
+&lt;p&gt;This book is meant to be interesting and useful to both casual readers and somewhat more experienced developers. It offers something for everyone to pick and choose from.&lt;/p&gt; 
+&lt;p&gt;Do not read this book from front to back. Read the chapters or content you are curious about and flip back and forth as you see fit.&lt;/p&gt; 
+&lt;p&gt;This book is an open source project in itself: open, completely free to download and read. Free for anyone to comment on, and available for everyone to contribute to and help out with. Send your bug reports, ideas, pull requests or critiques to us and I or someone else will work on improving the book accordingly.&lt;/p&gt; 
+&lt;p&gt;This book will never be finished. I intend to keep working on it. While I may at some point consider it fairly complete, covering most aspects of the project (even if only that seems like an insurmountable goal), the curl project will continue to move so there will always be things to update in the book as well.&lt;/p&gt; 
+&lt;p&gt;This book project started at the end of September 2015.&lt;/p&gt; 
+&lt;h2&gt;Site&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://everything.curl.dev&quot;&gt;https://everything.curl.dev&lt;/a&gt; is the home of this book. It features the book online in a web version.&lt;/p&gt; 
+&lt;p&gt;This book is also provided as a &lt;a href=&quot;https://daniel.haxx.se/everything-curl/everything-curl.pdf&quot;&gt;PDF&lt;/a&gt; and an &lt;a href=&quot;https://daniel.haxx.se/everything-curl/everything-curl.epub&quot;&gt;ePUB&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The book website is hosted by Fastly. The book contents is rendered by &lt;a href=&quot;https://github.com/rust-lang/mdBook&quot;&gt;mdBook&lt;/a&gt; since March 18th, 2024.&lt;/p&gt; 
+&lt;h2&gt;Content&lt;/h2&gt; 
+&lt;p&gt;All book content is hosted on GitHub in the &lt;a href=&quot;https://github.com/curl/everything-curl&quot;&gt;https://github.com/curl/everything-curl&lt;/a&gt; repository.&lt;/p&gt; 
+&lt;h2&gt;Author&lt;/h2&gt; 
+&lt;p&gt;With the hope of becoming just a co-author of this material, I am Daniel Stenberg. I founded the curl project and I am a developer at heart—for fun and profit. I live and work in Stockholm, Sweden.&lt;/p&gt; 
+&lt;p&gt;All there is to know about Daniel can be found on &lt;a href=&quot;https://daniel.haxx.se/&quot;&gt;daniel.haxx.se&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contribute&lt;/h2&gt; 
+&lt;p&gt;If you find mistakes, omissions, errors or blatant lies in this document, please send us a refreshed version of the affected paragraph and we will amend and update. We give credit to and recognize everyone who helps out.&lt;/p&gt; 
+&lt;p&gt;Preferably, you could submit &lt;a href=&quot;https://github.com/curl/everything-curl/issues&quot;&gt;errors&lt;/a&gt; or &lt;a href=&quot;https://github.com/curl/everything-curl/pulls&quot;&gt;pull requests&lt;/a&gt; on the book&#39;s GitHub page.&lt;/p&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;p&gt;Lots of people have reported bugs, improved sections or otherwise helped make this book the success it is. These friends include the following:&lt;/p&gt; 
+&lt;p&gt;AaronChen0 on github, alawvt on github, Amin Khoshnood, amnkh on github, Anders Roxell, Angad Gill, Aris (Karim) Merchant, auktis on github, Ben Bodenmiller Ben Peachey, bookofportals on github, Bruno Baguette, Carlton Gibson, Chris DeLuca, Citizen Esosa, Dan Fandrich, Daniel Brown, Daniel Sabsay, David Piano, DrDoom74 at GitHub, Emil Hessman, enachos71 on github, ethomag on github, Fabian Keil, faterer on github, Frank Dana, Frank Hassanabad, Gautham B A, Geir Hauge, Harry Wright, Helena Udd, Hubert Lin, i-ky on github, infinnovation-dev on GitHub, Jay Ottinger, Jay Satiro, Jeroen Ooms, Johan Wigert, John Simpson, JohnCoconut on github, Jonas Forsberg, Josh Vanderhook, JoyIfBam5, KJM on github, knorr3 on github, lowttl on github, Luca Niccoli, Manuel on github, Marius Žilėnas, Mark Koester, Martin van den Nieuwelaar, mehandes on github, Michael Kaufmann, Ms2ger, Mohammadreza Hendiani, Nick Travers, Nicolas Brassard, Oscar on github, Oskar Köök, Patrik Lundin, RekGRpth on github, Ryan McQuen, Saravanan Musuwathi Kesavan, Senthil Kumaran, Shusen Liu, Sonia Hamilton, Spiros Georgaras, Stephen, Steve Holme, Stian Hvatum, strupo on github, Viktor Szakats, Vitaliy T, Wayne Lai, Wieland Hoffmann, 谭九鼎&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This document is licensed under the &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Creative Commons Attribution 4.0 license&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ddclient/ddclient</title>
+      <link>https://github.com/ddclient/ddclient</link>
+      <description>&lt;p&gt;Ddclient updates dynamic DNS entries for accounts on a wide range of dynamic DNS services.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;DDCLIENT&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;ddclient&lt;/code&gt; is a Perl client used to update dynamic DNS entries for accounts on many dynamic DNS services. It uses &lt;code&gt;curl&lt;/code&gt; for internet access.&lt;/p&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;p&gt;You might also want to consider using one of the following, if they support your dynamic DNS provider(s): &lt;a href=&quot;https://github.com/troglobit/inadyn&quot;&gt;https://github.com/troglobit/inadyn&lt;/a&gt; or &lt;a href=&quot;https://github.com/lopsided98/dnsupdate&quot;&gt;https://github.com/lopsided98/dnsupdate&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Supported services&lt;/h2&gt; 
+&lt;p&gt;Dynamic DNS services currently supported include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.1984.is/product/freedns&quot;&gt;1984.is&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.changeip.com&quot;&gt;ChangeIP&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.cloudflare.com&quot;&gt;CloudFlare&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.cloudns.net&quot;&gt;ClouDNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dinahosting.com&quot;&gt;dinahosting&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dondominio.com&quot;&gt;DonDominio&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dnsmadeeasy.com&quot;&gt;DNS Made Easy&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dnsexit.com/dns/dns-api&quot;&gt;DNSExit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.domeneshop.no/docs/#tag/ddns/paths/~1dyndns~1update/get&quot;&gt;Domeneshop&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dslreports.com&quot;&gt;DslReports&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://duckdns.org&quot;&gt;Duck DNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://account.dyn.com&quot;&gt;DynDNS.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.easydns.com&quot;&gt;EasyDNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.enom.com&quot;&gt;Enom&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://freedns.afraid.org&quot;&gt;Freedns&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://freemyip.com&quot;&gt;Freemyip&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gandi.net&quot;&gt;Gandi&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.godaddy.com&quot;&gt;GoDaddy&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://domains.google&quot;&gt;Google&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://faq.infomaniak.com/2376&quot;&gt;Infomaniak&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.loopia.se&quot;&gt;Loopia&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.mythic-beasts.com/support/api/dnsv2/dynamic-dns&quot;&gt;Mythic Beasts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.namecheap.com&quot;&gt;NameCheap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nearlyfreespeech.net/services/dns&quot;&gt;NearlyFreeSpeech.net&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://njal.la/docs/ddns&quot;&gt;Njalla&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.noip.com&quot;&gt;Noip&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;nsupdate - see nsupdate(1) and ddns-confgen(8)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.ovhcloud.com&quot;&gt;OVH&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://porkbun.com&quot;&gt;Porkbun&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.regfish.de/domains/dyndns&quot;&gt;regfish.de&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.sitelutions.com&quot;&gt;Sitelutions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://woima.fi&quot;&gt;woima.fi&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dns.yandex.com&quot;&gt;Yandex&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.zoneedit.com&quot;&gt;Zoneedit&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;code&gt;ddclient&lt;/code&gt; supports finding your IP address from many cable and DSL broadband routers.&lt;/p&gt; 
+&lt;p&gt;Comments, suggestions and requests: please file an issue at &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/new&quot;&gt;https://github.com/ddclient/ddclient/issues/new&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The code was originally written by Paul Burry and is now hosted and maintained through github.com. Please check out &lt;a href=&quot;https://ddclient.net&quot;&gt;https://ddclient.net&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;REQUIREMENTS&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An account from a supported dynamic DNS service provider&lt;/li&gt; 
+ &lt;li&gt;Perl v5.10.1 or later 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;JSON::PP&lt;/code&gt; perl library for JSON support&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Linux, macOS, or any other Unix-ish system&lt;/li&gt; 
+ &lt;li&gt;An implementation of &lt;code&gt;make&lt;/code&gt; (such as &lt;a href=&quot;https://www.gnu.org/software/make/&quot;&gt;GNU Make&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;If you are installing from a clone of the Git repository, you will also need &lt;a href=&quot;https://www.gnu.org/software/autoconf/&quot;&gt;GNU Autoconf&lt;/a&gt; and &lt;a href=&quot;https://www.gnu.org/software/automake/&quot;&gt;GNU Automake&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;DOWNLOAD&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/ddclient/ddclient/releases&quot;&gt;https://github.com/ddclient/ddclient/releases&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;INSTALLATION&lt;/h2&gt; 
+&lt;h3&gt;Distribution Package&lt;/h3&gt; 
+&lt;a href=&quot;https://repology.org/project/ddclient/versions&quot;&gt; &lt;img src=&quot;https://repology.org/badge/vertical-allrepos/ddclient.svg?sanitize=true&quot; alt=&quot;Packaging status&quot; align=&quot;right&quot;&gt; &lt;/a&gt; The easiest way to install ddclient is to install a package offered by your operating system. See the image to the right for a list of distributions with a ddclient package. 
+&lt;h3&gt;Manual Installation&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Extract the distribution tarball (&lt;code&gt;.tar.gz&lt;/code&gt; file) and &lt;code&gt;cd&lt;/code&gt; into the directory:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;tar xvfa ddclient-3.XX.X.tar.gz
+cd ddclient-3.XX.X
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;(If you are installing from a clone of the Git repository, you must run &lt;code&gt;./autogen&lt;/code&gt; before continuing to the next step.)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run the following commands to build and install:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc/ddclient \
+    --localstatedir=/var
+make
+make VERBOSE=1 check
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Edit &lt;code&gt;/etc/ddclient/ddclient.conf&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;systemd&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;cp sample-etc_systemd.service /etc/systemd/system/ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;enable automatic startup when booting&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;systemctl enable ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;start the first time by hand&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;systemctl start ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Known issues&lt;/h2&gt; 
+&lt;p&gt;This is a list for quick referencing of known issues. For further details check out the linked issues and the changelog.&lt;/p&gt; 
+&lt;p&gt;Note that any issues prior to version v3.9.1 will not be listed here. If a fix is committed but not yet part of any tagged release, the notes here will reference the not-yet-released version number.&lt;/p&gt; 
+&lt;h3&gt;v3.11.2 - v3.9.1: SSL parameter breaks HTTP-only IP acquisition&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;ssl&lt;/code&gt; parameter forces all connections to use HTTPS. While technically working as expected, this behavior keeps coming up as a pain point when using HTTP-only IP querying sites such as &lt;a href=&quot;http://checkip.dyndns.org&quot;&gt;http://checkip.dyndns.org&lt;/a&gt;. Starting with v3.12.0, the behavior is changed to respect &lt;code&gt;http://&lt;/code&gt; in a URL. A separate parameter to disallow all HTTP connections or warn about them may be added later.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v3.12.0 uses HTTP to connect to URLs starting with &lt;code&gt;http://&lt;/code&gt;. See &lt;a href=&quot;https://github.com/ddclient/ddclient/pull/608&quot;&gt;here&lt;/a&gt; for more info.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Disable the SSL parameter&lt;/p&gt; 
+&lt;h3&gt;v3.10.0: Chunked encoding not corretly supported in IO::Socket HTTP code&lt;/h3&gt; 
+&lt;p&gt;Using the IO::Socket HTTP code will break in various ways whenever the server responds using HTTP 1.1 chunked encoding. Refer to &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/548&quot;&gt;this issue&lt;/a&gt; for more info.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v3.11.0 - IO::Socket has been deprecated there and curl has been made the standard.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Use curl for transfers by either setting &lt;code&gt;-curl&lt;/code&gt; in the command line or by adding &lt;code&gt;curl=yes&lt;/code&gt; in the config&lt;/p&gt; 
+&lt;h3&gt;v3.10.0: Spammed updates to some providers&lt;/h3&gt; 
+&lt;p&gt;This issue arises when using the &lt;code&gt;use&lt;/code&gt; parameter in the config and using one of these providers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Cloudflare&lt;/li&gt; 
+ &lt;li&gt;Hetzner&lt;/li&gt; 
+ &lt;li&gt;Digitalocean&lt;/li&gt; 
+ &lt;li&gt;Infomaniak&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v3.11.2&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Use the &lt;code&gt;usev4&lt;/code&gt;/&lt;code&gt;usev6&lt;/code&gt; parameters instead of &lt;code&gt;use&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;TROUBLESHOOTING&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;enable debugging and verbose messages: &lt;code&gt;$ ddclient --daemon=0 --debug --verbose --noquiet&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Do you need to specify a proxy? If so, just add a &lt;code&gt;proxy=your.isp.proxy&lt;/code&gt; to the ddclient.conf file.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Define the IP address of your router with &lt;code&gt;fw=xxx.xxx.xxx.xxx&lt;/code&gt; in &lt;code&gt;/etc/ddclient/ddclient.conf&lt;/code&gt; and then try &lt;code&gt;$ ddclient --daemon=0 --query&lt;/code&gt; to see if the router status web page can be understood.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Need support for another router/firewall? Define the router status page yourself with: &lt;code&gt;fw=url-to-your-router&lt;/code&gt;&#39;s-status-page &lt;code&gt;fw-skip=any-string-preceding-your-IP-address&lt;/code&gt;&lt;/p&gt; &lt;p&gt;ddclient does something like this to provide builtin support for common routers. For example, the Linksys routers could have been added with:&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;fw=192.168.1.1/Status.htm
+fw-skip=WAN.*?IP Address
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;OR Send me the output from: &lt;code&gt;$ ddclient --geturl {fw-ip-status-url} [--login login [--password password]]&lt;/code&gt; and I&#39;ll add it to the next release!&lt;/p&gt; 
+&lt;p&gt;ie. for my fw/router I used: &lt;code&gt;$ ddclient --geturl 192.168.1.254/status.htm&lt;/code&gt;&lt;/p&gt; 
+&lt;ol start=&quot;5&quot;&gt; 
+ &lt;li&gt;Some broadband routers require the use of a password when ddclient accesses its status page to determine the router&#39;s WAN IP address. If this is the case for your router, add&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;fw-login=your-router-login
+fw-password=your-router-password
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;to the beginning of your ddclient.conf file. Note that some routers use either &#39;root&#39; or &#39;admin&#39; as their login while some others accept anything.&lt;/p&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;ppp&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using a ppp connection, you can easily update your DynDNS entry with each connection, with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;## configure pppd to update DynDNS with each connection
+cp sample-etc_ppp_ip-up.local /etc/ppp/ip-up.local
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ppp interface.&lt;/p&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;cron&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you have not configured ddclient to use daemon-mode, you&#39;ll need to configure cron to force an update once a month so that the dns entry will not become stale.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;## configure cron to force an update twice a month
+cp sample-etc_cron.d_ddclient /etc/cron.d/ddclient
+vi /etc/cron.d/ddclient
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;dhcpcd&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using dhcpcd-1.3.17 or thereabouts, you can easily update your DynDNS entry automatically every time your lease is obtained or renewed by creating an executable file named: &lt;code&gt;/etc/dhcpc/dhcpcd-{your-interface}.exe&lt;/code&gt; ie.: &lt;code&gt;cp sample-etc_dhcpc_dhcpcd-eth0.exe /etc/dhcpc/dhcpcd-{your-interface}.exe&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;In my case, it is named dhcpcd-eth0.exe and contains the lines:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;#!/bin/sh
+PATH=/usr/bin:/root/bin:${PATH}
+logger -t dhcpcd IP address changed to $1
+ddclient --proxy fasthttp.sympatico.ca --wildcard --ip $1 | logger -t ddclient
+exit 0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Other DHCP clients may have another method of calling out to programs for updating DNS entries.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ethernet interface.&lt;/p&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;dhclient&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using the ISC DHCP client (dhclient), you can update your DynDNS entry automatically every time your lease is obtained or renewed by creating an executable file named: &lt;code&gt;/etc/dhclient-exit-hooks&lt;/code&gt; ie.: &lt;code&gt;cp sample-etc_dhclient-exit-hooks /etc/dhclient-exit-hooks&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Edit &lt;code&gt;/etc/dhclient-exit-hooks&lt;/code&gt; to change any options required.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ethernet interface.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Perl/perl5</title>
+      <link>https://github.com/Perl/perl5</link>
+      <description>&lt;p&gt;🐪 The Perl programming language&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Perl is Copyright (C) 1993 - 2024 by Larry Wall and others.&lt;/p&gt; 
+&lt;p&gt;All rights reserved.&lt;/p&gt; 
+&lt;h1&gt;ABOUT PERL&lt;/h1&gt; 
+&lt;p&gt;Perl is a general-purpose programming language originally developed for text manipulation and now used for a wide range of tasks including system administration, web development, network programming, GUI development, and more.&lt;/p&gt; 
+&lt;p&gt;The language is intended to be practical (easy to use, efficient, complete) rather than beautiful (tiny, elegant, minimal). Its major features are that it&#39;s easy to use, supports both procedural and object-oriented (OO) programming, has powerful built-in support for text processing, and has one of the world&#39;s most impressive collections of third-party modules.&lt;/p&gt; 
+&lt;p&gt;For an introduction to the language&#39;s features, see pod/perlintro.pod.&lt;/p&gt; 
+&lt;p&gt;For a discussion of the important changes in this release, see pod/perldelta.pod.&lt;/p&gt; 
+&lt;p&gt;There are also many Perl books available, covering a wide variety of topics, from various publishers. See pod/perlbook.pod for more information.&lt;/p&gt; 
+&lt;h1&gt;INSTALLATION&lt;/h1&gt; 
+&lt;p&gt;If you&#39;re using a relatively modern operating system and want to install this version of Perl locally, run the following commands:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./Configure -des -Dprefix=$HOME/localperl
+make test
+make install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will configure and compile perl for your platform, run the regression tests, and install perl in a subdirectory &quot;localperl&quot; of your home directory.&lt;/p&gt; 
+&lt;p&gt;If you run into any trouble whatsoever or you need to install a customized version of Perl, you should read the detailed instructions in the &quot;INSTALL&quot; file that came with this distribution. Additionally, there are a number of &quot;README&quot; files with hints and tips about building and using Perl on a wide variety of platforms, some more common than others.&lt;/p&gt; 
+&lt;p&gt;Once you have Perl installed, a wealth of documentation is available to you through the &#39;perldoc&#39; tool. To get started, run this command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;perldoc perl
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;IF YOU RUN INTO TROUBLE&lt;/h1&gt; 
+&lt;p&gt;Perl is a large and complex system that&#39;s used for everything from knitting to rocket science. If you run into trouble, it&#39;s quite likely that someone else has already solved the problem you&#39;re facing. Once you&#39;ve exhausted the documentation, please report bugs to us at the GitHub issue tracker at &lt;a href=&quot;https://github.com/Perl/perl5/issues&quot;&gt;https://github.com/Perl/perl5/issues&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;While it was current when we made it available, Perl is constantly evolving and there may be a more recent version that fixes bugs you&#39;ve run into or adds new features that you might find useful.&lt;/p&gt; 
+&lt;p&gt;You can always find the latest version of perl on a CPAN (Comprehensive Perl Archive Network) site near you at &lt;a href=&quot;https://www.cpan.org/src/&quot;&gt;https://www.cpan.org/src/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you want to submit a simple patch to the perl source, see the &quot;SUPER QUICK PATCH GUIDE&quot; in pod/perlhack.pod.&lt;/p&gt; 
+&lt;p&gt;Just a personal note: I want you to know that I create nice things like this because it pleases the Author of my story. If this bothers you, then your notion of Authorship needs some revision. But you can use perl anyway. :-)&lt;/p&gt; 
+&lt;p&gt;The author.&lt;/p&gt; 
+&lt;h1&gt;LICENSING&lt;/h1&gt; 
+&lt;p&gt;This program is free software; you can redistribute it and/or modify it under the terms of either:&lt;/p&gt; 
+&lt;p&gt;a. the GNU General Public License as published by the Free Software Foundation; either version 1, or (at your option) any later version, or&lt;/p&gt; 
+&lt;p&gt;b. the &quot;Artistic License&quot; which comes with this Kit.&lt;/p&gt; 
+&lt;p&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See either the GNU General Public License or the Artistic License for more details.&lt;/p&gt; 
+&lt;p&gt;You should have received a copy of the Artistic License with this Kit, in the file named &quot;Artistic&quot;. If not, I&#39;ll be glad to provide one.&lt;/p&gt; 
+&lt;p&gt;You should also have received a copy of the GNU General Public License along with this program in the file named &quot;Copying&quot;. If not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or visit their web page on the internet at &lt;a href=&quot;https://www.gnu.org/copyleft/gpl.html&quot;&gt;https://www.gnu.org/copyleft/gpl.html&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For those of you that choose to use the GNU General Public License, my interpretation of the GNU General Public License is that no Perl script falls under the terms of the GPL unless you explicitly put said script under the terms of the GPL yourself. Furthermore, any object code linked with perl does not automatically fall under the terms of the GPL, provided such object code only adds definitions of subroutines and variables, and does not otherwise impair the resulting interpreter from executing any standard Perl script. I consider linking in C subroutines in this manner to be the moral equivalent of defining subroutines in the Perl language itself. You may sell such an object file as proprietary provided that you provide or offer to provide the Perl source, as specified by the GNU General Public License. (This is merely an alternate way of specifying input to the program.) You may also sell a binary produced by the dumping of a running Perl script that belongs to you, provided that you provide or offer to provide the Perl source as specified by the GPL. (The fact that a Perl interpreter and your code are in the same binary file is, in this case, a form of mere aggregation.) This is my interpretation of the GPL. If you still have concerns or difficulties understanding my intent, feel free to contact me. Of course, the Artistic License spells all this out for your protection, so you may prefer to use that.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>owasp-modsecurity/ModSecurity-nginx</title>
+      <link>https://github.com/owasp-modsecurity/ModSecurity-nginx</link>
+      <description>&lt;p&gt;ModSecurity v3 Nginx Connector&lt;/p&gt;&lt;hr&gt;&lt;img src=&quot;https://github.com/SpiderLabs/ModSecurity/raw/v3/master/others/modsec.png&quot; width=&quot;50%&quot;&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/SpiderLabs/ModSecurity-nginx&quot;&gt;&lt;img src=&quot;https://travis-ci.org/SpiderLabs/ModSecurity-nginx.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://zenhub.com&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ZenHubIO/support/master/zenhub-badge.png&quot; alt=&quot;&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The ModSecurity-nginx connector is the connection point between nginx and libmodsecurity (ModSecurity v3). Said another way, this project provides a communication channel between nginx and libmodsecurity. This connector is required to use LibModSecurity with nginx.&lt;/p&gt; 
+&lt;p&gt;The ModSecurity-nginx connector takes the form of an nginx module. The module simply serves as a layer of communication between nginx and ModSecurity.&lt;/p&gt; 
+&lt;p&gt;Notice that this project depends on libmodsecurity rather than ModSecurity (version 2.9 or less).&lt;/p&gt; 
+&lt;h3&gt;What is the difference between this project and the old ModSecurity add-on for nginx?&lt;/h3&gt; 
+&lt;p&gt;The old version uses ModSecurity standalone, which is a wrapper for Apache internals to link ModSecurity to nginx. This current version is closer to nginx, consuming the new libmodsecurity which is no longer dependent on Apache. As a result, this current version has less dependencies, fewer bugs, and is faster. In addition, some new functionality is also provided - such as the possibility of use of global rules configuration with per directory/location customizations (e.g. SecRuleRemoveById).&lt;/p&gt; 
+&lt;h1&gt;Compilation&lt;/h1&gt; 
+&lt;p&gt;Before compile this software make sure that you have libmodsecurity installed. You can download it from the &lt;a href=&quot;https://github.com/SpiderLabs/ModSecurity&quot;&gt;ModSecurity git repository&lt;/a&gt;. For information pertaining to the compilation and installation of libmodsecurity please consult the documentation provided along with it.&lt;/p&gt; 
+&lt;p&gt;With libmodsecurity installed, you can proceed with the installation of the ModSecurity-nginx connector, which follows the nginx third-party module installation procedure. From the nginx source directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./configure --add-module=/path/to/ModSecurity-nginx
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or, to build a dynamic module:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./configure --add-dynamic-module=/path/to/ModSecurity-nginx --with-compat
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Note that when building a dynamic module, your nginx source version needs to match the version of nginx you&#39;re compiling this for.&lt;/p&gt; 
+&lt;p&gt;Further information about nginx third-party add-ons support are available here: &lt;a href=&quot;http://wiki.nginx.org/3rdPartyModules&quot;&gt;http://wiki.nginx.org/3rdPartyModules&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Usage&lt;/h1&gt; 
+&lt;p&gt;ModSecurity for nginx extends your nginx configuration directives. It adds four new directives and they are:&lt;/p&gt; 
+&lt;h2&gt;modsecurity&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;syntax:&lt;/strong&gt; &lt;em&gt;modsecurity on | off&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;context:&lt;/strong&gt; &lt;em&gt;http, server, location&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;default:&lt;/strong&gt; &lt;em&gt;off&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Turns on or off ModSecurity functionality. Note that this configuration directive is no longer related to the SecRule state. Instead, it now serves solely as an nginx flag to enable or disable the module.&lt;/p&gt; 
+&lt;h2&gt;modsecurity_rules_file&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;syntax:&lt;/strong&gt; &lt;em&gt;modsecurity_rules_file &amp;lt;path to rules file&amp;gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;context:&lt;/strong&gt; &lt;em&gt;http, server, location&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;default:&lt;/strong&gt; &lt;em&gt;no&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Specifies the location of the modsecurity configuration file, e.g.:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-nginx&quot;&gt;server {
+    modsecurity on;
+    location / {
+        root /var/www/html;
+        modsecurity_rules_file /etc/my_modsecurity_rules.conf;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;modsecurity_rules_remote&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;syntax:&lt;/strong&gt; &lt;em&gt;modsecurity_rules_remote &amp;lt;key&amp;gt; &amp;lt;URL to rules&amp;gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;context:&lt;/strong&gt; &lt;em&gt;http, server, location&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;default:&lt;/strong&gt; &lt;em&gt;no&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Specifies from where (on the internet) a modsecurity configuration file will be downloaded. It also specifies the key that will be used to authenticate to that server:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-nginx&quot;&gt;server {
+    modsecurity on;
+    location / {
+        root /var/www/html;
+        modsecurity_rules_remote my-server-key https://my-own-server/rules/download;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;modsecurity_rules&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;syntax:&lt;/strong&gt; &lt;em&gt;modsecurity_rules &amp;lt;modsecurity rule&amp;gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;context:&lt;/strong&gt; &lt;em&gt;http, server, location&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;default:&lt;/strong&gt; &lt;em&gt;no&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Allows for the direct inclusion of a ModSecurity rule into the nginx configuration. The following example is loading rules from a file and injecting specific configurations per directory/alias:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-nginx&quot;&gt;server {
+    modsecurity on;
+    location / {
+        root /var/www/html;
+        modsecurity_rules_file /etc/my_modsecurity_rules.conf;
+    }
+    location /ops {
+        root /var/www/html/opts;
+        modsecurity_rules &#39;
+          SecRuleEngine On
+          SecDebugLog /tmp/modsec_debug.log
+          SecDebugLogLevel 9
+          SecRuleRemoveById 10
+        &#39;;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;modsecurity_transaction_id&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;syntax:&lt;/strong&gt; &lt;em&gt;modsecurity_transaction_id string&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;context:&lt;/strong&gt; &lt;em&gt;http, server, location&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;default:&lt;/strong&gt; &lt;em&gt;no&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Allows to pass transaction ID from nginx instead of generating it in the library. This can be useful for tracing purposes, e.g. consider this configuration:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-nginx&quot;&gt;log_format extended &#39;$remote_addr - $remote_user [$time_local] &#39;
+                    &#39;&quot;$request&quot; $status $body_bytes_sent &#39;
+                    &#39;&quot;$http_referer&quot; &quot;$http_user_agent&quot; $request_id&#39;;
+
+server {
+    server_name host1;
+    modsecurity on;
+    modsecurity_transaction_id &quot;host1-$request_id&quot;;
+    access_log logs/host1-access.log extended;
+    error_log logs/host1-error.log;
+    location / {
+        ...
+    }
+}
+
+server {
+    server_name host2;
+    modsecurity on;
+    modsecurity_transaction_id &quot;host2-$request_id&quot;;
+    access_log logs/host2-access.log extended;
+    error_log logs/host2-error.log;
+    location / {
+        ...
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Using a combination of log_format and modsecurity_transaction_id you will be able to find correlations between access log and error log entries using the same unique identificator.&lt;/p&gt; 
+&lt;p&gt;String can contain variables.&lt;/p&gt; 
+&lt;h1&gt;Contributing&lt;/h1&gt; 
+&lt;p&gt;As an open source project we invite (and encourage) anyone from the community to contribute to our project. This may take the form of: new functionality, bug fixes, bug reports, beginners user support, and anything else that you are willing to help with. Thank you.&lt;/p&gt; 
+&lt;h2&gt;Providing Patches&lt;/h2&gt; 
+&lt;p&gt;We prefer to have your patch within the GitHub infrastructure to facilitate our review work, and our QA integration. GitHub provides an excellent documentation on how to perform “Pull Requests”. More information available here: &lt;a href=&quot;https://help.github.com/articles/using-pull-requests/&quot;&gt;https://help.github.com/articles/using-pull-requests/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Please respect the coding style in use. Pull requests can include various commits, so provide one fix or one functionality per commit. Do not change anything outside the scope of your target work (e.g. coding style in a function that you have passed by).&lt;/p&gt; 
+&lt;h3&gt;Don’t know where to start?&lt;/h3&gt; 
+&lt;p&gt;Within our code there are various items marked as TODO or FIXME that may need your attention. Check the list of items by performing a grep:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ cd /path/to/modsecurity-nginx
+$ egrep -Rin &quot;TODO|FIXME&quot; -R *
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You may also take a look at recent bug reports and open issues to get an idea of what kind of help we are looking for.&lt;/p&gt; 
+&lt;h3&gt;Testing your patch&lt;/h3&gt; 
+&lt;p&gt;Along with the manual testing, we strongly recommend that you to use the nginx test utility to make sure that you patch does not adversely affect the behavior or performance of nginx.&lt;/p&gt; 
+&lt;p&gt;The nginx tests are available on: &lt;a href=&quot;http://hg.nginx.org/nginx-tests/&quot;&gt;http://hg.nginx.org/nginx-tests/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;To use those tests, make sure you have the Perl utility prove (part of Perl 5) and proceed with the following commands:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ cp /path/to/ModSecurity-nginx/tests/* /path/to/nginx/test/repository
+$ cd /path/to/nginx/test/repository
+$ TEST_NGINX_BINARY=/path/to/your/nginx prove .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you are facing problems getting your added functionality to pass all the nginx tests, feel free to contact us or the nginx mailing list at: &lt;a href=&quot;http://nginx.org/en/support.html&quot;&gt;http://nginx.org/en/support.html&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Debugging&lt;/h3&gt; 
+&lt;p&gt;We respect the nginx debugging schema. By using the configuration option &quot;--with-debug&quot; during the nginx configuration you will also be enabling the connector&#39;s debug messages. Core dumps and crashes are expected to be debugged in the same fashion that is used to debug nginx. For further information, please check the nginx debugging information: &lt;a href=&quot;http://wiki.nginx.org/Debugging&quot;&gt;http://wiki.nginx.org/Debugging&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Reporting Issues&lt;/h2&gt; 
+&lt;p&gt;If you are facing a configuration issue or if something is not working as you expect it to be, please use ModSecurity user’s mailing list. Issues on GitHub are also welcome, but we prefer to have users question on the mailing list first, where you can reach an entire community. Also don’t forget to look for an existing issue before opening a new one.&lt;/p&gt; 
+&lt;p&gt;Lastly, If you are planning to open an issue on GitHub, please don’t forget to tell us the version of your libmodsecurity and the version of the nginx connector you are running.&lt;/p&gt; 
+&lt;h3&gt;Security issue&lt;/h3&gt; 
+&lt;p&gt;Please do not publicly report any security issue. Instead, contact us at: &lt;a href=&quot;mailto:security@modsecurity.org&quot;&gt;security@modsecurity.org&lt;/a&gt; to report the issue. Once the problem is fixed we will provide you with credit for the discovery.&lt;/p&gt; 
+&lt;h2&gt;Feature Request&lt;/h2&gt; 
+&lt;p&gt;We would love to discuss any ideas that you may have for a new feature. Please keep in mind this is a community driven project so be sure to contact the community via the mailing list to get feedback first. Alternatively, feel free to open GitHub issues requesting for new features. Before opening a new issue, please check if there is an existing feature request for the desired functionality.&lt;/p&gt; 
+&lt;h2&gt;Packaging&lt;/h2&gt; 
+&lt;p&gt;Having our packages in distros on time is something we highly desire. Let us know if there is anything we can do to facilitate your work as a packager.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rjbs/Email-Sender</title>
+      <link>https://github.com/rjbs/Email-Sender</link>
+      <description>&lt;p&gt;a perl library for sending email&lt;/p&gt;&lt;hr&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
