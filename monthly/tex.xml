@@ -1,0 +1,1394 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub TeX Monthly Trending</title>
+    <description>Monthly Trending of TeX in GitHub</description>
+    <pubDate>Wed, 05 Feb 2025 02:04:39 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>libretro/docs</title>
+      <link>https://github.com/libretro/docs</link>
+      <description>&lt;p&gt;This is a repo of the RetroArch official document page.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Contribute to the documentation&lt;/h1&gt; 
+&lt;p&gt;These docs are written in &lt;a href=&quot;https://en.wikipedia.org/wiki/Markdown&quot;&gt;Markdown.&lt;/a&gt; If you need help with the syntax, use &lt;a href=&quot;https://guides.github.com/features/mastering-markdown/&quot;&gt;this guide&lt;/a&gt;. Mkdocs uses some &lt;a href=&quot;http://www.mkdocs.org/user-guide/writing-your-docs/#markdown-extensions&quot;&gt;Markdown extensions&lt;/a&gt; that you may have to familiarize with.&lt;/p&gt; 
+&lt;p&gt;The documentation source is maintained via &lt;a href=&quot;https://en.wikipedia.org/wiki/Git&quot;&gt;Git&lt;/a&gt;. For more info on how to use git, &lt;a href=&quot;https://help.github.com/&quot;&gt;refer to Github&#39;s help page.&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;In order to propose improvements to a document:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/libretro/docs&quot;&gt;Clone the repo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Make the changes and update your clone&lt;/li&gt; 
+ &lt;li&gt;Follow the &quot;Building the docs&quot; section to render the documentation site locally&lt;/li&gt; 
+ &lt;li&gt;Propose your changes using the button &lt;code&gt;New Pull Request&lt;/code&gt; &lt;a href=&quot;https://github.com/libretro/docs&quot;&gt;in the docs repo&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;There is a To-Do list for libretro/docs &lt;em&gt;here&lt;/em&gt; and you can submit suggestions or issues regarding documentation at the &lt;a href=&quot;https://github.com/libretro/docs/issues&quot;&gt;libretro/docs issue tracker&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Building the docs&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Make sure you have &lt;a href=&quot;https://www.python.org/&quot;&gt;Python&lt;/a&gt; and &lt;a href=&quot;https://pip.pypa.io&quot;&gt;pip&lt;/a&gt; installed &lt;pre&gt;&lt;code&gt;python --version
+pip --version
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;!!! Note &quot;Building in Windows/msys2&quot; If you are using the standard RetroArch msys2 environment, you will need to install python with the command &lt;code&gt;pacman -S python&lt;/code&gt;. Next you will need to download &lt;a href=&quot;https://bootstrap.pypa.io/get-pip.py&quot;&gt;the &lt;code&gt;get-pip.py&lt;/code&gt; script&lt;/a&gt; from the &lt;code&gt;pip&lt;/code&gt; bootstrap site. Finally, execute the script with the command &lt;code&gt;python get-pip.py&lt;/code&gt;.&lt;/p&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt; &lt;p&gt;Install MkDocs&lt;/p&gt; &lt;pre&gt;&lt;code&gt;pip install mkdocs
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Install MkDocs-Material&lt;/p&gt; &lt;pre&gt;&lt;code&gt;pip install mkdocs-material
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Install PyMdown Extensions&lt;/p&gt; &lt;pre&gt;&lt;code&gt;pip install pymdown-extensions
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Install mkdocs-git-revision-date&lt;/p&gt; &lt;pre&gt;&lt;code&gt;pip install mkdocs-git-revision-date-plugin
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Install mkdocs-macros&lt;/p&gt; &lt;pre&gt;&lt;code&gt;pip install mkdocs-macros-plugin
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build the site&lt;/p&gt; &lt;pre&gt;&lt;code&gt;mkdocs build
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The documentation will be built to the &lt;code&gt;site&lt;/code&gt; directory; preview any changes with MkDocs&#39; built-in dev-server before submitting a pull request&lt;/p&gt; &lt;pre&gt;&lt;code&gt;mkdocs serve
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;strong&gt;References&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.mkdocs.org/#installation&quot;&gt;Guide to installing mkdocs&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Adding a new core&lt;/h2&gt; 
+&lt;p&gt;These are the documents that should be added/updated when a new core is added to the libretro ecosystem.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Add the core to docs/library/ (Follow the latest core template. docs/meta/core-template.md)&lt;/li&gt; 
+ &lt;li&gt;Add the core to mkdocs.yml&lt;/li&gt; 
+ &lt;li&gt;Add the core to docs/meta/core-list.md&lt;/li&gt; 
+ &lt;li&gt;Add the core to docs/meta/see-also.md if it&#39;s related to another core in some way&lt;/li&gt; 
+ &lt;li&gt;Add the core to docs/development/licenses.md&lt;/li&gt; 
+ &lt;li&gt;Add the core to docs/guides/softpatching.md if it supports softpatching&lt;/li&gt; 
+ &lt;li&gt;Add the core to docs/guides/retroachievements.md if it supports cheevos&lt;/li&gt; 
+ &lt;li&gt;Add the core to docs/library/bios.md if it needs a BIOS&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>acl-org/acl-style-files</title>
+      <link>https://github.com/acl-org/acl-style-files</link>
+      <description>&lt;p&gt;Official style files for papers submitted to venues of the Association for Computational Linguistics&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;*ACL Paper Styles&lt;/h1&gt; 
+&lt;p&gt;This directory contains the latest LaTeX and Word templates for *ACL conferences.&lt;/p&gt; 
+&lt;h2&gt;Instructions for authors&lt;/h2&gt; 
+&lt;p&gt;Paper submissions to *ACL conferences must use the official ACL style templates.&lt;/p&gt; 
+&lt;p&gt;The LaTeX style files are available&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;as an &lt;a href=&quot;https://www.overleaf.com/latex/templates/association-for-computational-linguistics-acl-conference/jvxskxpnznfj&quot;&gt;Overleaf template&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;in this repository, in the &lt;a href=&quot;https://github.com/acl-org/acl-style-files/raw/master/latex&quot;&gt;&lt;code&gt;latex&lt;/code&gt;&lt;/a&gt; subdirectory&lt;/li&gt; 
+ &lt;li&gt;as a &lt;a href=&quot;https://github.com/acl-org/acl-style-files/archive/refs/heads/master.zip&quot;&gt;.zip file&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please see &lt;a href=&quot;https://github.com/acl-org/acl-style-files/raw/master/latex/acl_latex.tex&quot;&gt;&lt;code&gt;latex/acl_latex.tex&lt;/code&gt;&lt;/a&gt; for an example.&lt;/p&gt; 
+&lt;p&gt;The Microsoft Word template is available in this repository at &lt;a href=&quot;https://github.com/acl-org/acl-style-files/raw/master/word/acl.docx&quot;&gt;&lt;code&gt;word/acl.docx&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Please follow the paper formatting guidelines general to *ACL conferences:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://acl-org.github.io/ACLPUB/formatting.html&quot;&gt;Paper formatting guidelines&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Authors may not modify these style files or use templates designed for other conferences.&lt;/p&gt; 
+&lt;h2&gt;Instructions for publications chairs&lt;/h2&gt; 
+&lt;p&gt;To adapt the style files for your conference, please fork this repository and make necessary changes. Minimally, you&#39;ll need to update the name of the conference and rename the files.&lt;/p&gt; 
+&lt;p&gt;If you make improvements to the templates that should be propagated to future conferences, please submit a pull request. Thank you in advance!&lt;/p&gt; 
+&lt;p&gt;In older versions of the templates, authors were asked to fill in the START submission ID so that it would be stamped at the top of each page of the anonymized version. This is no longer needed, because it is now possible to do this stamping automatically within START. Currently, the way to do this is for the program chair to email &lt;a href=&quot;mailto:support@softconf.com&quot;&gt;support@softconf.com&lt;/a&gt; and request it.&lt;/p&gt; 
+&lt;h2&gt;Instructions for making changes to style files&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;merge pull request in github, or push to github&lt;/li&gt; 
+ &lt;li&gt;git pull from github to a local repository&lt;/li&gt; 
+ &lt;li&gt;then, git push from your local repository to overleaf project 
+  &lt;ul&gt; 
+   &lt;li&gt;Overleaf project is &lt;a href=&quot;https://www.overleaf.com/project/5f64f1fb97c4c50001b60549&quot;&gt;https://www.overleaf.com/project/5f64f1fb97c4c50001b60549&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Overleaf git url is &lt;a href=&quot;https://git.overleaf.com/5f64f1fb97c4c50001b60549&quot;&gt;https://git.overleaf.com/5f64f1fb97c4c50001b60549&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;then, click &quot;Submit&quot; and then &quot;Sumbit as Template&quot; in overleaf in order to ask overleaf to update the overleaf template from the overleaf project&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template</title>
+      <link>https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template</link>
+      <description>&lt;p&gt;LaTeX-template for russian Phd thesis&lt;/p&gt;&lt;hr&gt;&lt;p&gt;LaTeX-шаблон для русской кандидатской диссертации и её автореферата.&lt;/p&gt; 
+&lt;h2&gt;Особенности&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Кодировка: UTF-8.&lt;/li&gt; 
+ &lt;li&gt;Стандарт: ГОСТ Р 7.0.11-2011.&lt;/li&gt; 
+ &lt;li&gt;Поддерживаемые движки: pdfTeX, XeTeX, LuaTeX.&lt;/li&gt; 
+ &lt;li&gt;Поддерживаемые реализации библиографии: встроенная на движке BibTeX, BibLaTeX на движке Biber.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/releases/latest&quot;&gt;&lt;strong&gt;Примеры компиляции шаблона&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Readme/Installation.md&quot;&gt;&lt;strong&gt;Установка программного обеспечения и сборка диссертации в файлы PDF&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Readme/github.md&quot;&gt;&lt;strong&gt;Как писать диссертацию на GitHub?&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Обсуждение&lt;/h2&gt; 
+&lt;p&gt;Общие вопросы лучше всего писать в gitter-канал: &lt;a href=&quot;https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/Join%20Chat.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Для отчётов об ошибках и для конкретных пожеланий/предложений лучше всего использовать раздел &lt;a href=&quot;https://github.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/issues&quot;&gt;Issues&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Структура&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/dissertation.tex&quot;&gt;dissertation.tex&lt;/a&gt;: главный файл диссертации.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Dissertation/&quot;&gt;папка Dissertation&lt;/a&gt;:&lt;/strong&gt; Структурированная система файлов с шаблоном диссертации. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;папка images:&lt;/strong&gt; Папка для размещения файлов изображений, относящихся только к диссертации.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Dissertation/setup.tex&quot;&gt;setup.tex&lt;/a&gt;: Файл упрощённой настройки оформления диссертации.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/synopsis.tex&quot;&gt;synopsis.tex&lt;/a&gt;: главный файл автореферата диссертации.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Synopsis/&quot;&gt;папка Synopsis&lt;/a&gt;:&lt;/strong&gt; Структурированная система файлов с шаблоном автореферата. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;папка images:&lt;/strong&gt; Папка для размещения файлов изображений, относящихся только к автореферату диссертации.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Synopsis/setup.tex&quot;&gt;setup.tex&lt;/a&gt;: Файл упрощённой настройки оформления автореферата.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/presentation.tex&quot;&gt;presentation.tex&lt;/a&gt;: главный файл презентации.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Presentation/&quot;&gt;папка Presentation&lt;/a&gt;:&lt;/strong&gt; Структурированная система файлов с шаблоном презентации. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;папка images:&lt;/strong&gt; Папка для размещения файлов изображений, относящихся только к презентации.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Presentation/setup.tex&quot;&gt;setup.tex&lt;/a&gt;: Файл упрощённой настройки оформления презентации.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Documents/&quot;&gt;папка Documents&lt;/a&gt;:&lt;/strong&gt; Полезные документы (ГОСТ-ы и постановления).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/PSCyr/&quot;&gt;папка PSCyr&lt;/a&gt;:&lt;/strong&gt; Пакет PSCyr + инструкции по установке.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/BibTeX-Styles/&quot;&gt;папка BibTeX-Styles&lt;/a&gt;:&lt;/strong&gt; Подборка русских стилевых пакетов BibTeX под UTF-8.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/common/&quot;&gt;папка common&lt;/a&gt;:&lt;/strong&gt; Общие файлы настроек и управления содержанием шаблонов. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/common/characteristic.tex&quot;&gt;characteristic.tex&lt;/a&gt;: Часть общей характеристики работы, повторяющаяся в диссертации и автореферате.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/common/concl.tex&quot;&gt;concl.tex&lt;/a&gt;: Заключение. Является общим для автореферата и диссертации (согласно &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Documents/GOST%20R%207.0.11-2011.pdf&quot;&gt;ГОСТ Р 7.0.11-2011&lt;/a&gt;, пункты 5.3.3 и 9.2.3).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/common/data.tex&quot;&gt;data.tex&lt;/a&gt;: Общие данные (название работы, руководитель, оппоненты, ключевые слова и&amp;nbsp;т.&amp;nbsp;п.).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/common/packages.tex&quot;&gt;packages.tex&lt;/a&gt; и &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/common/styles.tex&quot;&gt;styles.tex&lt;/a&gt;: Общие пакеты и стили оформления автореферата и диссертации.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/common/setup.tex&quot;&gt;setup.tex&lt;/a&gt;: Общие настройки автореферата и диссертации. В нём же настраивается выбор реализации библиографии.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/biblio/&quot;&gt;папка biblio&lt;/a&gt;:&lt;/strong&gt; Файлы с библиографией. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/biblio/author.bib&quot;&gt;author.bib&lt;/a&gt;: Публикации автора по теме диссертации.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/biblio/registered.bib&quot;&gt;registered.bib&lt;/a&gt;: Зарегистрированные патенты и программы для ЭВМ.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/biblio/external.bib&quot;&gt;external.bib&lt;/a&gt;: Работы которые ссылается автор.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;папка images:&lt;/strong&gt; Общие файлы изображений шаблонов. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;папка cache:&lt;/strong&gt; Папка прекомпелированных рисунков. 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/images/cache/placeholder.txt&quot;&gt;placeholder.txt&lt;/a&gt;: Файл, необходимый для прекомпиляции рисунков в &lt;a href=&quot;https://www.overleaf.com/&quot;&gt;overleaf&lt;/a&gt;.&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;папка listings:&lt;/strong&gt; Общие файлы листингов.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;папка letters:&lt;/strong&gt; Файлы генерации конвертов для рассылки автореферата.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Дополнительные файлы:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Makefile&quot;&gt;Makefile&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/compress.mk&quot;&gt;compress.mk&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/unix.mk&quot;&gt;unix.mk&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/windows.mk&quot;&gt;windows.mk&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/examples.mk&quot;&gt;examples.mk&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/latexmkrc&quot;&gt;latexmkrc&lt;/a&gt;: Файлы системы сборки шаблона.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/usercfg.mk&quot;&gt;usercfg.mk&lt;/a&gt;: Пользовательские настройки системы сборки шаблона.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/indent.yaml&quot;&gt;indent.yaml&lt;/a&gt;: Файл настройки форматирования исходного кода для &lt;a href=&quot;https://www.ctan.org/pkg/latexindent&quot;&gt;latexindent&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/.editorconfig&quot;&gt;.editorconfig&lt;/a&gt;: Файл настройки текстовых редакторов, поддерживающих стандарт &lt;a href=&quot;https://editorconfig.org/&quot;&gt;editorconfig&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Dockerfile&quot;&gt;Dockerfile&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/install-dockertex.sh&quot;&gt;install-dockertex.sh&lt;/a&gt;: Файлы генерации &lt;a href=&quot;https://www.docker.com/&quot;&gt;Docker&lt;/a&gt; образа для сборки шаблона.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/siunitx.cfg&quot;&gt;siunitx.cfg&lt;/a&gt;: Определения величин SI для библиотеки &lt;a href=&quot;https://ctan.org/pkg/siunitx&quot;&gt;siunitx&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/synopsis_booklet.tex&quot;&gt;synopsis_booklet.tex&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/presentation_booklet.tex&quot;&gt;presentation_booklet.tex&lt;/a&gt;: Файлы генерации печатных версий автореферата и презентации.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/presentation_handout.tex&quot;&gt;presentation_handout.tex&lt;/a&gt;: Файл генерации раздаточных материалов из презентации с добавлением подписей под слайдами.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/tikz.tex&quot;&gt;tikz.tex&lt;/a&gt;: Файл изолированной сборки векторной графики &lt;a href=&quot;https://www.ctan.org/pkg/pgf&quot;&gt;tikz&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Дополнительная полезная информация&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Readme/Bibliography.md&quot;&gt;Оформление библиографии&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/CONTRIBUTING.md&quot;&gt;Как вносить правки в проект&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/AndreyAkinshin/Russian-Phd-LaTeX-Dissertation-Template/master/Readme/Links.md&quot;&gt;Полезные ссылки&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.sharelatex.com/templates/thesis/russian-phd-latex-dissertation-template&quot;&gt;Шаблон в галерее шаблонов ShareLaTeX&lt;/a&gt; (очень старая версия).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Благодарности&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Большое спасибо Юлии Мартыновой за &lt;a href=&quot;http://alessia-lano.livejournal.com/4267.html&quot;&gt;оригинальный вариант шаблона&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Большое спасибо &lt;a href=&quot;https://github.com/dustalov&quot;&gt;dustalov&lt;/a&gt;, &lt;a href=&quot;https://github.com/Lenchik&quot;&gt;Lenchik&lt;/a&gt;, &lt;a href=&quot;https://github.com/tonkonogov&quot;&gt;tonkonogov&lt;/a&gt; за значительный вклад и обсуждения.&lt;/li&gt; 
+ &lt;li&gt;Спасибо &lt;a href=&quot;https://github.com/storkvist&quot;&gt;storkvist&lt;/a&gt;, &lt;a href=&quot;https://github.com/kshmirko&quot;&gt;kshmirko&lt;/a&gt;, &lt;a href=&quot;https://github.com/ZoomRmc&quot;&gt;ZoomRmc&lt;/a&gt;, &lt;a href=&quot;https://github.com/tonytonov&quot;&gt;tonytonov&lt;/a&gt;, &lt;a href=&quot;https://github.com/Thibak&quot;&gt;Thibak&lt;/a&gt;, &lt;a href=&quot;https://github.com/eximius8&quot;&gt;eximius8&lt;/a&gt;, &lt;a href=&quot;https://github.com/Nizky&quot;&gt;Nizky&lt;/a&gt; за полезные правки и замечания.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Лицензия&lt;/h2&gt; 
+&lt;p&gt;CC BY 4.0&lt;/p&gt; 
+&lt;p&gt;Поэтому можно модифицировать и использовать шаблон любым образом, при условии сохранения авторства на шаблон оформления диссертации в формате LaTeX (в виде списка авторов в настоящем файле). При этом не накладывается никаких ограничений на текст диссертации, все права на содержательную часть диссертации остаются за её автором. В том числе, если в тексте возникает раздел благодарностей (например, научному руководителю за умелое руководство, коллегам за помощь в работе и т.д.), то надо ли выносить авторам шаблона &lt;em&gt;Russian-Phd-LaTeX-Dissertation-Template&lt;/em&gt; благодарность за помощь в оформлении диссертации или нет - решает сам диссертант. Использвание шаблона не накладывает никаких ограничений на использование итоговых файлов (например, PDF с готовой диссертацией или авторефератом), т.е. никак не регулирует то, как они распространяются, копируются, модифицируются и т.д.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>aaronwangy/Data-Science-Cheatsheet</title>
+      <link>https://github.com/aaronwangy/Data-Science-Cheatsheet</link>
+      <description>&lt;p&gt;A helpful 5-page machine learning cheatsheet to assist with exam reviews, interview prep, and anything in-between.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Data Science Cheatsheet 2.0&lt;/h1&gt; 
+&lt;p&gt;A helpful 5-page data science cheatsheet to assist with exam reviews, interview prep, and anything in-between. It covers over a semester of introductory machine learning, and is based on MIT&#39;s Machine Learning courses 6.867 and 15.072. The reader should have at least a basic understanding of statistics and linear algebra, though beginners may find this resource helpful as well.&lt;/p&gt; 
+&lt;p&gt;Inspired by Maverick&#39;s &lt;em&gt;Data Science Cheatsheet&lt;/em&gt; (hence the 2.0 in the name), located &lt;a href=&quot;https://github.com/ml874/Data-Science-Cheatsheet&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Topics covered:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Linear and Logistic Regression&lt;/li&gt; 
+ &lt;li&gt;Decision Trees and Random Forest&lt;/li&gt; 
+ &lt;li&gt;SVM&lt;/li&gt; 
+ &lt;li&gt;K-Nearest Neighbors&lt;/li&gt; 
+ &lt;li&gt;Clustering&lt;/li&gt; 
+ &lt;li&gt;Boosting&lt;/li&gt; 
+ &lt;li&gt;Dimension Reduction (PCA, LDA, Factor Analysis)&lt;/li&gt; 
+ &lt;li&gt;Natural Language Processing&lt;/li&gt; 
+ &lt;li&gt;Neural Networks&lt;/li&gt; 
+ &lt;li&gt;Recommender Systems&lt;/li&gt; 
+ &lt;li&gt;Reinforcement Learning&lt;/li&gt; 
+ &lt;li&gt;Anomaly Detection&lt;/li&gt; 
+ &lt;li&gt;Time Series&lt;/li&gt; 
+ &lt;li&gt;A/B Testing&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This cheatsheet will be occasionally updated with new/improved info, so consider a follow or star to stay up to date.&lt;/p&gt; 
+&lt;p&gt;Future additions (ideas welcome):&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;del&gt;Time Series&lt;/del&gt; Added!&lt;/li&gt; 
+ &lt;li&gt;&lt;del&gt;Statistics and Probability&lt;/del&gt; Added!&lt;/li&gt; 
+ &lt;li&gt;Data Imputation&lt;/li&gt; 
+ &lt;li&gt;Generative Adversarial Networks&lt;/li&gt; 
+ &lt;li&gt;Graph Neural Networks&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Links&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/aaronwangy/Data-Science-Cheatsheet/raw/main/Data_Science_Cheatsheet.pdf&quot;&gt;Data Science Cheatsheet 2.0 PDF&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;p&gt;Here are screenshots of a couple pages - the link to the full cheatsheet is above!&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aaronwangy/Data-Science-Cheatsheet/main/images/page1-1.png?raw=true&quot; alt=&quot;&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/aaronwangy/Data-Science-Cheatsheet/main/images/page2-1.png?raw=true&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;Why is Python/SQL not covered in this cheatsheet?&lt;/h3&gt; 
+&lt;p&gt;I planned for this resource to cover mainly algorithms, models, and concepts, as these rarely change and are common throughout industries. Technical languages and data structures often vary by job function, and refreshing these skills may make more sense on keyboard than on paper.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Feel free to share this resource in classes, review sessions, or to anyone who might find it helpful :)&lt;/p&gt; 
+&lt;p&gt;This work is licensed under the &lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot;&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International License&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot;&gt;&lt;img alt=&quot;Creative Commons License&quot; style=&quot;border-width:0&quot; src=&quot;https://i.creativecommons.org/l/by-nc-sa/4.0/88x31.png&quot;&gt;&lt;/a&gt;&lt;br&gt;&lt;/p&gt; 
+&lt;p&gt;Images are used for educational purposes, created by me, or borrowed from my colleagues &lt;a href=&quot;https://stanford.edu/~shervine/teaching/cs-229/&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Contact&lt;/h2&gt; 
+&lt;p&gt;Feel free to suggest comments, updates, and potential improvements!&lt;/p&gt; 
+&lt;p&gt;Author - &lt;a href=&quot;https://www.linkedin.com/in/axw/&quot;&gt;Aaron Wang&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you&#39;d like to support this cheatsheet, you can buy me a coffee &lt;a href=&quot;https://www.paypal.me/aaxw&quot;&gt;here&lt;/a&gt;. I also do resume, application, and tech consulting - send me a message if interested.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>dnl-blkv/mcdowell-cv</title>
+      <link>https://github.com/dnl-blkv/mcdowell-cv</link>
+      <description>&lt;p&gt;A Nice-looking CV template made into LaTeX&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;McDowell CV&lt;/h1&gt; 
+&lt;p&gt;McDowell CV is a LuaLaTeX class for building neat and space-efficient CVs using the design originally proposed by Gayle L. McDowell at &lt;a href=&quot;http://www.careercup.com/resume&quot;&gt;http://www.careercup.com/resume&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The class is based on &lt;code&gt;article&lt;/code&gt; class. The paper format is set to U.S. letterpaper by default. A template showing an example usage of the class is included.&lt;/p&gt; 
+&lt;h2&gt;Screenshot&lt;/h2&gt; 
+&lt;img src=&quot;https://github.com/dnl-blkv/mcdowell-cv/raw/master/McDowell_CV.png&quot; width=&quot;240px&quot;&gt; 
+&lt;h2&gt;Use Cases&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A great tool making it easy to build CVs: &lt;a href=&quot;https://latexresu.me/&quot;&gt;https://latexresu.me/&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Class Options&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;calibri&lt;/code&gt; - sets calibri as the main font. Otherwise the default font is Times New Roman since version 1.1.0.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Commands&lt;/h2&gt; 
+&lt;p&gt;The class features the following commands:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;\name{name}&lt;/code&gt; - defines the applicant&#39;s name to be printed by &lt;code&gt;\printheader&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;\address{address}&lt;/code&gt; - defines the applicant&#39;s address to be printed by &lt;code&gt;\printheader&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;\contacts{contacts}&lt;/code&gt; - defines the applicant&#39;s contacts to be printed by &lt;code&gt;\printheader&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;\makecvheader&lt;/code&gt; - prints the CV header consisting of the name (see the &lt;code&gt;\name&lt;/code&gt; command), address (see the &lt;code&gt;\address&lt;/code&gt; command) and contacts (see the &lt;code&gt;\contacts&lt;/code&gt; command).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Environments&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;\begin{cvsection}{sectionname}&lt;/code&gt; - prints a section with a header consisting of the name in bold small caps and a page-wide horizontal line below.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;\begin{cvsubsection}[linesnum]{left}{center}{right}{content}&lt;/code&gt; - prints a subsection with header consisting of the &lt;code&gt;left&lt;/code&gt;, &lt;code&gt;center&lt;/code&gt; and &lt;code&gt;right&lt;/code&gt; titles. The optional &lt;code&gt;linesnum&lt;/code&gt; argument defines the amount of lines in the header. The argument only affects the vertical spacing between the environment header and content thus eliminating the effect of &lt;em&gt;tabu&lt;/em&gt; package vertical spacing bug.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Build Instructions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Make sure &lt;code&gt;lualatex&lt;/code&gt; (see &lt;a href=&quot;https://www.luatex.org/download.html&quot;&gt;https://www.luatex.org/download.html&lt;/a&gt;) is installed on your machine and is available in the terminal or a command line client of your choice.&lt;/li&gt; 
+ &lt;li&gt;In the terminal or a command line client of your choice, go to the folder containing &lt;code&gt;McDowell_CV_Template.tex&lt;/code&gt; and &lt;code&gt;mcdowellcv.cls&lt;/code&gt;, and run the following command: &lt;code&gt;lualatex McDowell_CV_Template.tex&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>posquit0/Awesome-CV</title>
+      <link>https://github.com/posquit0/Awesome-CV</link>
+      <description>&lt;p&gt;📄 Awesome CV is LaTeX template for your outstanding job application&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/posquit0/Awesome-CV&quot; title=&quot;AwesomeCV Documentation&quot;&gt; &lt;img alt=&quot;AwesomeCV&quot; src=&quot;https://github.com/posquit0/Awesome-CV/raw/master/icon.png&quot; width=&quot;200px&quot; height=&quot;200px&quot;&gt; &lt;/a&gt; &lt;br&gt; Awesome CV &lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; LaTeX template for your outstanding job application &lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://www.paypal.me/posquit0&quot;&gt; &lt;img alt=&quot;Donate&quot; src=&quot;https://img.shields.io/badge/Donate-PayPal-blue.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml&quot;&gt; &lt;img alt=&quot;GitHub Actions&quot; src=&quot;https://github.com/posquit0/Awesome-CV/actions/workflows/main.yml/badge.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt; &lt;img alt=&quot;Example Resume&quot; src=&quot;https://img.shields.io/badge/resume-pdf-green.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/cv.pdf&quot;&gt; &lt;img alt=&quot;Example CV&quot; src=&quot;https://img.shields.io/badge/cv-pdf-green.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt; &lt;img alt=&quot;Example Coverletter&quot; src=&quot;https://img.shields.io/badge/coverletter-pdf-green.svg?sanitize=true&quot;&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;br&gt; 
+&lt;h2&gt;What is Awesome CV?&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Awesome CV&lt;/strong&gt; is LaTeX template for a &lt;strong&gt;CV(Curriculum Vitae)&lt;/strong&gt;, &lt;strong&gt;Résumé&lt;/strong&gt; or &lt;strong&gt;Cover Letter&lt;/strong&gt; inspired by &lt;a href=&quot;https://www.sharelatex.com/templates/cv-or-resume/fancy-cv&quot;&gt;Fancy CV&lt;/a&gt;. It is easy to customize your own template, especially since it is really written by a clean, semantic markup.&lt;/p&gt; 
+&lt;h2&gt;Donate&lt;/h2&gt; 
+&lt;p&gt;Please help keep this project alive! Donations are welcome and will go towards further development of this project.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;PayPal: paypal.me/posquit0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;Thank you for your support!&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Preview&lt;/h2&gt; 
+&lt;h4&gt;Résumé&lt;/h4&gt; 
+&lt;p&gt;You can see &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;Page. 1&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;Page. 2&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume-0.png&quot; alt=&quot;Résumé&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/resume-1.png&quot; alt=&quot;Résumé&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;Cover Letter&lt;/h4&gt; 
+&lt;p&gt;You can see &lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt;PDF&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;Without Sections&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;With Sections&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter-0.png&quot; alt=&quot;Cover Letter(Traditional)&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/posquit0/Awesome-CV/master/examples/coverletter-1.png&quot; alt=&quot;Cover Letter(Awesome)&quot;&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.overleaf.com/latex/templates/awesome-cv/tvmzpvdjfqxp&quot;&gt;&lt;strong&gt;Edit Résumé on OverLeaf.com&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.overleaf.com/latex/templates/awesome-cv-cover-letter/pfzzjspkthbk&quot;&gt;&lt;strong&gt;Edit Cover Letter on OverLeaf.com&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;em&gt;Note:&lt;/em&gt; Above services do not guarantee up-to-date source code of Awesome CV&lt;/strong&gt;&lt;/p&gt; 
+&lt;h2&gt;How to Use&lt;/h2&gt; 
+&lt;h4&gt;Requirements&lt;/h4&gt; 
+&lt;p&gt;A full TeX distribution is assumed. &lt;a href=&quot;http://tex.stackexchange.com/q/55437&quot;&gt;Various distributions for different operating systems (Windows, Mac, *nix) are available&lt;/a&gt; but TeX Live is recommended. You can &lt;a href=&quot;https://tex.stackexchange.com/q/1092&quot;&gt;install TeX from upstream&lt;/a&gt; (recommended; most up-to-date) or use &lt;code&gt;sudo apt-get install texlive-full&lt;/code&gt; if you really want that. (It&#39;s generally a few years behind.)&lt;/p&gt; 
+&lt;p&gt;If you don&#39;t want to install the dependencies on your system, this can also be obtained via &lt;a href=&quot;https://docker.com&quot;&gt;Docker&lt;/a&gt;.&lt;/p&gt; 
+&lt;h4&gt;Usage&lt;/h4&gt; 
+&lt;p&gt;At a command prompt, run&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xelatex {your-cv}.tex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or using docker:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run --rm --user $(id -u):$(id -g) -i -w &quot;/doc&quot; -v &quot;$PWD&quot;:/doc thomasweise/texlive make
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In either case, this should result in the creation of &lt;code&gt;{your-cv}.pdf&lt;/code&gt;&lt;/p&gt; 
+&lt;h2&gt;Credit&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.latex-project.org&quot;&gt;&lt;strong&gt;LaTeX&lt;/strong&gt;&lt;/a&gt; is a fantastic typesetting program that a lot of people use these days, especially the math and computer science people in academia.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/furl/latex-fontawesome&quot;&gt;&lt;strong&gt;LaTeX FontAwesome&lt;/strong&gt;&lt;/a&gt; is bindings for FontAwesome icons to be used in XeLaTeX.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/google/roboto&quot;&gt;&lt;strong&gt;Roboto&lt;/strong&gt;&lt;/a&gt; is the default font on Android and ChromeOS, and the recommended font for Google’s visual language, Material Design.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/adobe-fonts/source-sans-pro&quot;&gt;&lt;strong&gt;Source Sans Pro&lt;/strong&gt;&lt;/a&gt; is a set of OpenType fonts that have been designed to work well in user interface (UI) environments.&lt;/p&gt; 
+&lt;h2&gt;Contact&lt;/h2&gt; 
+&lt;p&gt;You are free to take my &lt;code&gt;.tex&lt;/code&gt; file and modify it to create your own resume. Please don&#39;t use my resume for anything else without my permission, though!&lt;/p&gt; 
+&lt;p&gt;If you have any questions, feel free to join me at &lt;a href=&quot;irc://irc.freenode.net/posquit0&quot;&gt;&lt;code&gt;#posquit0&lt;/code&gt; on Freenode&lt;/a&gt; and ask away. Click &lt;a href=&quot;https://kiwiirc.com/client/irc.freenode.net/posquit0&quot;&gt;here&lt;/a&gt; to connect.&lt;/p&gt; 
+&lt;p&gt;Good luck!&lt;/p&gt; 
+&lt;h2&gt;Maintainers&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/posquit0&quot;&gt;posquit0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/OJFord&quot;&gt;OJFord&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;See Also&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/posquit0/hugo-awesome-identity&quot;&gt;Awesome Identity&lt;/a&gt; - A single-page Hugo theme to introduce yourself.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>sanjib-sen/WebLaTex</title>
+      <link>https://github.com/sanjib-sen/WebLaTex</link>
+      <description>&lt;p&gt;A complete alternative for Overleaf with VSCode + Web + Git Integration + Copilot + Grammar &amp; Spell Checker + Live Collaboration Support. Based on GitHub Codespace and Dev container.&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;The WebLatex&lt;/h1&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/54777542/224550592-657a2f4e-bd46-4f11-85af-e9b299650434.jpg&quot; alt=&quot;image&quot;&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/sanjib-sen/WebLaTex/raw/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/sanjib-sen/WebLaTex?style=for-the-badge&quot; alt=&quot;GitHub license&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sanjib-sen/WebLaTex/network&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/forks/sanjib-sen/WebLaTex?color=orange&amp;amp;label=Forked%20%F0%9F%91%A8%E2%80%8D%F0%9F%92%BB&amp;amp;style=for-the-badge&quot; alt=&quot;GitHub forks&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sanjib-sen/WebLaTex/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/sanjib-sen/WebLaTex?color=red&amp;amp;label=Loved%20%F0%9F%92%96&amp;amp;style=for-the-badge&quot; alt=&quot;GitHub stars&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://www.producthunt.com/posts/weblatex?utm_source=badge-featured&amp;amp;utm_medium=badge&amp;amp;utm_souce=badge-weblatex&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt;&lt;img src=&quot;https://api.producthunt.com/widgets/embed-image/v1/featured.svg?post_id=383518&amp;amp;theme=dark&quot; alt=&quot;WebLaTeX - A LaTeX editor with Git, VSCode, Copilot, Grammarly and more | Product Hunt&quot; style=&quot;width: 250px; height: 54px;&quot; width=&quot;250&quot; height=&quot;54&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;blockquote&gt; 
+  &lt;p&gt;A complete alternative for Overleaf with VSCode + Web + Git Integration + GitHub Copilot + Grammarly/LanguageTool + Live Collaboration Support&lt;/p&gt; 
+ &lt;/blockquote&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/sanjib-sen/weblatex/generate&quot; target=&quot;_blank&quot; rel=&quot;noreferrer noopener&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/54777542/224549654-6f2dc0ad-54e0-4827-b316-ebe264dbf007.svg?sanitize=true&quot; alt=&quot;get-started&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;I am so glad to share that, the project has been recognized globally and many people are using this tool to create their journals, research paper, and personal resume. Students, Lecturers, and Professors from universities like the University of Minnesota, University of Colorado, University of Utah, Cornell University, and even MIT Plasma Science and Fusion Center are using this tool for creating documents. A few of you personally thanked me for this project and wished to contribute in the future, which honestly I did not expect myself! Thank you again, for the limitless support!&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#the-weblatex&quot;&gt;The WebLatex&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#preview&quot;&gt;Preview&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#why&quot;&gt;Why&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#just-use-overleaf&quot;&gt;Just use overleaf&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#whats-new&quot;&gt;Whats New&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#installation-instructions&quot;&gt;Installation Instructions&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#where-is-my-pdf&quot;&gt;Where is my PDF?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#editor-instructions&quot;&gt;Editor Instructions&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#to-use-with-lualatex-or-any-other-tex-program&quot;&gt;To use with LuaLatex or any other Tex program&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#github-copilot&quot;&gt;GitHub Copilot&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#grammarly&quot;&gt;Grammarly&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#languagetools&quot;&gt;LanguageTools&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#live-collaboration&quot;&gt;Live Collaboration&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#pdf-viewer-dark-mode&quot;&gt;PDF Viewer Dark Mode&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#configuration&quot;&gt;Configuration&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#more-features-and-configurations&quot;&gt;More Features and Configurations&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#contribution&quot;&gt;Contribution&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#credits&quot;&gt;Credits&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#whats-next&quot;&gt;What&#39;s Next&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#contact&quot;&gt;Contact&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Preview&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://user-images.githubusercontent.com/54777542/224549577-1c5e0b5f-c544-4fdf-a79e-25655483e2da.mp4&quot;&gt;Video Preview&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;a href=&quot;https://star-history.com/#sanjib-sen/weblatex&amp;amp;Date&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://api.star-history.com/svg?repos=sanjib-sen/weblatex&amp;amp;type=Date&amp;amp;theme=dark&quot;&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://api.star-history.com/svg?repos=sanjib-sen/weblatex&amp;amp;type=Date&quot;&gt; 
+  &lt;img alt=&quot;Star History Chart&quot; src=&quot;https://api.star-history.com/svg?repos=sanjib-sen/weblatex&amp;amp;type=Date&quot;&gt; 
+ &lt;/picture&gt; &lt;/a&gt; 
+&lt;h2&gt;Why&lt;/h2&gt; 
+&lt;p&gt;Do you use latex as your Resume builder / Research Project / Documentation / Article or any Documentation? Then you probably sometimes wondered in your life if you could use the advantages of git. You could just commit your changes and roll back to older versions anytime you like. When writing a journal, you suddenly remembered you need the section that you deleted earlier. What will you do?&lt;/p&gt; 
+&lt;p&gt;Hasn&#39;t it occurred to you that if only you could use your favorite editor VSCode to write your documents? With all the settings you configured, themes you liked and the extensions you probably prefer over your toxic girlfriend?&lt;/p&gt; 
+&lt;p&gt;Think of a moment, your thesis supervisor and co-supervisor wanted to make some changes to your document. What you will do? Email them your document and tell them to reply with the updated version? This is no 80&#39;s.&lt;/p&gt; 
+&lt;p&gt;Or, you are in your car, away from your Laptop / Desktop. Suddenly remember you forgot to change the title of your document from &quot;Loren Ipsum&quot; to your actual document title. Won&#39;t it be great to modify your document On the Go with your phone? Or in a nerdy way, Apple Watch?&lt;/p&gt; 
+&lt;p&gt;What if you could format your latex codes, automatically, after each save?&lt;/p&gt; 
+&lt;p&gt;And most importantly, what if you could use &lt;a href=&quot;https://github.com/features/copilot&quot;&gt;GitHub Copilot&lt;/a&gt; to automatically complete your latex commands and sentences? Forget the command for a thing? No worry, this tool will guess what could be the next command and will suggest that to you in each step. Not only it complete and suggest commands, but also the full sentence, and Paragraphs! Can you imaging how powerful you can be with this tool?&lt;/p&gt; 
+&lt;p&gt;And do I need to tell you about the usefulness of &lt;a href=&quot;https://www.grammarly.com/&quot;&gt;Grammarly&lt;/a&gt; for built in grammar and spelling checker? Or &lt;a href=&quot;https://languagetool.org&quot;&gt;LanguageTool&lt;/a&gt;? if you prefer open-source?&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Yes! You can do all of these things now with Git, GitHub, Full VSCode Integration, Grammarly, Live Collaboration and Web Support - The WebLatex.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h3&gt;Just use overleaf&lt;/h3&gt; 
+&lt;p&gt;Yes, but&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;In overleaf, you have to pay 40$ to get the git feature which isn&#39;t even have the best or full git experience.&lt;/li&gt; 
+ &lt;li&gt;Pay 40$ to collaborate with more than 1 person&lt;/li&gt; 
+ &lt;li&gt;No VSCode, Code formatting, Grammarly, Or Dark Mode / Customization&lt;/li&gt; 
+ &lt;li&gt;GitHub Copilot: Clippy, but a lot better!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Whats New&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/sanjib-sen/WebLaTex/main/#github-copilot&quot;&gt;GitHub Copilot&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Added support for the up-to-date texlive-full package. Now, You can stop worrying about package support.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation Instructions&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/sanjib-sen/weblatex/generate&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/54777542/224549654-6f2dc0ad-54e0-4827-b316-ebe264dbf007.svg?sanitize=true&quot; alt=&quot;get-started&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;You can either fork this repository or just use as a template. You will not get latest updates if you use this as a template. And you can only fork once. So, I will recommend this to use as a template and check for updates manually.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Login or Sign Up to &lt;a href=&quot;https://github.com/login&quot;&gt;GitHub&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Use this as template or Fork.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;Use as Template (Recommended):&lt;/strong&gt; just Click on &lt;code&gt;Use this template&lt;/code&gt; and &lt;code&gt;Create a new Repository&lt;/code&gt; or just &lt;a href=&quot;https://github.com/sanjib-sen/weblatex/generate&quot;&gt;Click Here&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;Or,&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;Fork:&lt;/strong&gt; Fork this repository or just &lt;a href=&quot;https://github.com/sanjib-sen/weblatex/fork&quot;&gt;Click Here&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Give it a name and select &lt;strong&gt;Create Fork / Create repository from template&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Select &lt;strong&gt;&amp;lt;&amp;gt; Code&lt;/strong&gt; &amp;gt; &lt;strong&gt;CodeSpaces&lt;/strong&gt; &amp;gt; &lt;strong&gt;Create Codespace on Main&lt;/strong&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/54777542/224550678-32a949ae-3a9b-4e8d-a0f1-ad30ec429908.gif&quot; alt=&quot;tutorial&quot;&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;It will start installing. &lt;strong&gt;You Have to wait for 2 mins in the first time&lt;/strong&gt;. After that it will take 2/3 seconds to open up&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Where is my PDF?&lt;/h2&gt; 
+&lt;p&gt;Generated PDFs will be saved to &lt;strong&gt;&lt;code&gt;/PDF&lt;/code&gt;&lt;/strong&gt; directory&lt;/p&gt; 
+&lt;h2&gt;Editor Instructions&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Pressing &lt;code&gt;Ctrl+S&lt;/code&gt; will save the document and generate PDF in the &lt;strong&gt;PDF&lt;/strong&gt; folder&lt;/li&gt; 
+ &lt;li&gt;To check the generated PDF click on the PDF file. However &lt;strong&gt;It will take 20/30 seconds to open the preview for the first time. So, do not panic&lt;/strong&gt;. After that, it will generate and preview the pdf instantly.&lt;/li&gt; 
+ &lt;li&gt;Your code will be automatically saved and the PDF will generate automatically each time you edit something&lt;/li&gt; 
+ &lt;li&gt;You can see all the error logs in the &lt;strong&gt;Terminal &amp;gt; Output &amp;gt; Latex Compiler&lt;/strong&gt; as well as in the Latex Workshop sidebar&lt;/li&gt; 
+ &lt;li&gt;If it shows &lt;strong&gt;Error showing PDF&lt;/strong&gt; or in case of any inconvenience, just reload the browser or press &lt;code&gt;Ctrl+R&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Just use it as you use Visual Studio Code&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Do not delete the &lt;code&gt;devcontainer.json&lt;/code&gt; file. However you can edit the properties there to customize many things!&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;To use with LuaLatex or any other Tex program&lt;/h2&gt; 
+&lt;p&gt;Add this line to your main .tex file&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-tex&quot;&gt;%!TEX program = &amp;lt;tex_program&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, to use &lt;strong&gt;&lt;code&gt;LuaLatex&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-tex&quot;&gt;%!TEX program = lualatex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;GitHub Copilot&lt;/h2&gt; 
+&lt;p&gt;Wonderful news, people! &lt;a href=&quot;https://github.com/features/copilot&quot;&gt;GitHub Copilot&lt;/a&gt; has been integrated with this tool, thanks to &lt;a href=&quot;https://github.com/thodson-hugs&quot;&gt;@thodson-hugs&lt;/a&gt;. This program will suggest the next command, sentence and paragraph based on your document and previous writings.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/54777542/224550711-9927d67f-e63e-445e-9ff0-db7674d7acef.gif&quot; alt=&quot;copilot&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;To turn this off just &lt;strong&gt;remove&lt;/strong&gt; or &lt;strong&gt;comment out&lt;/strong&gt; the &lt;code&gt;&quot;GitHub.copilot&quot;&lt;/code&gt; extension from the extensions list in &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt; file.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt; &quot;extensions&quot;: [
+      &quot;...&quot;,
+      //&quot;GitHub.copilot&quot;,
+      &quot;...&quot;
+      ]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Grammarly&lt;/h2&gt; 
+&lt;p&gt;This editor has built-in &lt;a href=&quot;https://www.grammarly.com/&quot;&gt;Grammarly&lt;/a&gt; support for &lt;code&gt;.tex&lt;/code&gt; files.&lt;/p&gt; 
+&lt;p&gt;To disable grammarly, you can just &lt;strong&gt;remove&lt;/strong&gt; or &lt;strong&gt;comment out&lt;/strong&gt; the &lt;code&gt;&quot;ms-vsliveshare.vsliveshare&quot;&lt;/code&gt; extension from the extensions list in &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt; file.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt; &quot;extensions&quot;: [
+      &quot;...&quot;,
+      //&quot;znck.grammarly&quot;,
+      &quot;...&quot;
+      ]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want to use Grammarly for other files, Go to &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt; and add your file extension in the&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;  &quot;grammarly.files.include&quot;: [&quot;*.md&quot;, &quot;.YourFileExtension&quot;]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And in case you do not want to use Grammarly for other files, add your file extension in the&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;  &quot;grammarly.files.exclude&quot;: [&quot;*.md&quot;, &quot;.YourFileExtension&quot;]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can use Grammarly in any file apart from &lt;code&gt;.tex&lt;/code&gt; files. Just press &lt;code&gt;CTRL + SHIFT + P&lt;/code&gt; and search for &lt;code&gt;Grammarly: Check text&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;This editor uses Grammarly Free account to check grammar and spelling. However if you want to use your Grammarly Premium account, simply press &lt;code&gt;CTRL + SHIFT + P&lt;/code&gt; and search for &lt;code&gt;Grammarly: Login / Connect your account&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;LanguageTools&lt;/h2&gt; 
+&lt;p&gt;This editor has built-in &lt;a href=&quot;https://languagetool.org&quot;&gt;LanguageTool&lt;/a&gt; support for &lt;code&gt;BibTEX&lt;/code&gt;, &lt;code&gt;ConTEXt&lt;/code&gt;, &lt;code&gt;LATEX&lt;/code&gt;, &lt;code&gt;Markdown&lt;/code&gt;, &lt;code&gt;Org&lt;/code&gt;, &lt;code&gt;reStructuredText&lt;/code&gt;, &lt;code&gt;R Sweave&lt;/code&gt;, and &lt;code&gt;XHTML&lt;/code&gt; documents but &lt;strong&gt;it is disabled by default in favor of grammarly&lt;/strong&gt;. If you want to use LanguageTool instead of grammarly, just &lt;strong&gt;uncomment&lt;/strong&gt; the following lines from &lt;code&gt;.devcontainer/devcontainer.json&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;&quot;extensions&quot;: [
+    &quot;...&quot;,
+    &quot;valentjn.vscode-ltex&quot;,
+    &quot;...&quot;
+  ]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And the &lt;strong&gt;remove&lt;/strong&gt; or &lt;strong&gt;comment out&lt;/strong&gt; the &lt;code&gt;&quot;znck.grammarly&quot;&lt;/code&gt; extension from the extensions list in &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt; file. (Recommended)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;&quot;extensions&quot;: [
+    &quot;...&quot;,
+    // &quot;znck.grammarly&quot;,
+    &quot;...&quot;
+  ]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Live Collaboration&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;All about Live Collaboration: &lt;a href=&quot;https://visualstudio.microsoft.com/services/live-share/&quot;&gt;Click Here&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Just click on the &lt;strong&gt;Live Share&lt;/strong&gt; Sidebar button and you are good to go&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/54777542/224550768-48997ac9-8747-425b-b7b4-05473f3ba944.png&quot; alt=&quot;collaborate&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;If you do not need the Live Collaboration at all, you can just &lt;strong&gt;remove&lt;/strong&gt; or &lt;strong&gt;comment out&lt;/strong&gt; the &lt;code&gt;&quot;ms-vsliveshare.vsliveshare&quot;&lt;/code&gt; extension from the extensions list in &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt; file.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;&quot;extensions&quot;: [
+    &quot;...&quot;,
+    // &quot;ms-vsliveshare.vsliveshare&quot;,
+    &quot;...&quot;
+  ]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;PDF Viewer Dark Mode&lt;/h2&gt; 
+&lt;p&gt;The pdf viewer will preview the pdf in Dark Mode by default if your Operating System is in Dark Mode. To view the pdf in Normal mode in os-wide dark mode just &lt;strong&gt;remove or comment&lt;/strong&gt; these lines from &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;  //&quot;latex-workshop.view.pdf.color.dark.pageColorsBackground&quot;:&quot;#171717&quot;,
+  //&quot;latex-workshop.view.pdf.color.dark.pageColorsForeground&quot;:&quot;#FFFFFF&quot;,
+  //&quot;latex-workshop.view.pdf.color.dark.backgroundColor&quot;:&quot;#171717&quot;,
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;To change the output directory change the following properties in &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;&quot;latex-workshop.latex.outDir&quot;: &quot;&amp;lt;YourDirectoryName&amp;gt;&quot;,
+&quot;latex-workshop.latex.magic.args&quot;: [&quot;-output-directory=&amp;lt;YourDirectoryName&amp;gt;&quot;],
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Other configurations (e.g. PDF Generation Delay, Auto Saving etc.) can be modified in &lt;code&gt;./.devcontainer/devcontainer.json&lt;/code&gt;. Check the &lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki&quot;&gt;Wiki&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;More Features and Configurations&lt;/h2&gt; 
+&lt;p&gt;There are a lot of features like&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki/Intellisense&quot;&gt;Intellisense (Citation, References)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki/Snippets&quot;&gt;Snippet and Shortcuts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki/Linters&quot;&gt;Linting&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki/Format&quot;&gt;Formatting&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures#code-folding&quot;&gt;Code Folding&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;And a lot &lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki/ExtraFeatures&quot;&gt;more&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;All of the features and configurations can be found &lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop/wiki&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contribution&lt;/h2&gt; 
+&lt;p&gt;I am open to and request you to contribute to this project. You can just Create a new issue to let me know about your concern/requests or just send a pull request with your desired changes.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;@James-Yu&#39;s &lt;a href=&quot;https://github.com/James-Yu/LaTeX-Workshop&quot;&gt;latex-workshop&lt;/a&gt; For all the Latex support.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dante-ev/docker-texlive&quot;&gt;danteev/texlive&lt;/a&gt; For Latex compilation.&lt;/li&gt; 
+ &lt;li&gt;@znck&#39;s &lt;a href=&quot;https://github.com/znck/grammarly&quot;&gt;Grammarly&lt;/a&gt; for Grammarly support.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/thodson-hugs&quot;&gt;@thodson-hugs&lt;/a&gt; for GitHub Copilot&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;What&#39;s Next&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Will optimize the backend to decrease installation time and PDF showing time for the first time&lt;/li&gt; 
+ &lt;li&gt;Documentation&lt;/li&gt; 
+ &lt;li&gt;Release: Export PDF as a release version&lt;/li&gt; 
+ &lt;li&gt;You tell me&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Contact&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Send an email to &lt;code&gt;mail@sanjibsen.com&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.facebook.com/sanjib.kumarsen.963/&quot;&gt;Facebook&lt;/a&gt;, &lt;a href=&quot;https://www.linkedin.com/in/sanjibsen/&quot;&gt;LinkedIn&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>rstudio/cheatsheets</title>
+      <link>https://github.com/rstudio/cheatsheets</link>
+      <description>&lt;p&gt;Posit Cheat Sheets - Can also be found at https://posit.co/resources/cheatsheets/.&lt;/p&gt;&lt;hr&gt;&lt;h2&gt;Posit Cheatsheets&lt;/h2&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/rstudio-ide.png&quot; width=&quot;364&quot; height=&quot;288&quot; align=&quot;right&quot;&gt; 
+&lt;p&gt;The cheatsheets make it easy to learn about and use some of our favorite packages. They are published in their respective PDF versions here: &lt;a href=&quot;https://posit.co/resources/cheatsheets/&quot;&gt;https://posit.co/resources/cheatsheets/&lt;/a&gt;, some are also available in the RStudio IDE under Help &amp;gt; Cheatsheets.&lt;/p&gt; 
+&lt;p&gt;We are also starting to make some cheatsheets available in a more accessible, text-based HTML format. These are available at &lt;a href=&quot;https://rstudio.github.io/cheatsheets/&quot;&gt;https://rstudio.github.io/cheatsheets/&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;This repository contains the source files of the current, archived and translated versions.&lt;/p&gt; 
+&lt;p&gt;The cheatsheets use the creative commons copyright. Please see the LICENSE document for more details.&lt;/p&gt; 
+&lt;h2&gt;Translations&lt;/h2&gt; 
+&lt;p&gt;If you wish to contribute to this effort by translating a cheatsheet, please feel free to use the source Keynote file. To submit a translation, please use a Pull Request via GitHub. See the &lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/.github/CONTRIBUTING.md&quot;&gt;contributing guidelines&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h2&gt;HTML cheatsheets&lt;/h2&gt; 
+&lt;p&gt;If you wish to provide an HTML cheatsheet version, please create a Pull Request with a new &lt;code&gt;.qmd&lt;/code&gt; file in the &lt;code&gt;html/&lt;/code&gt; directory of this repository. Use one of the existing &lt;code&gt;qmd&lt;/code&gt; files there as a starting point/template. These should not be duplicates of the pdf versions - they should be text-based so they are more accessible to people with visual impairments. Use of images should be minimized, and any images should include appropriate alternative text.&lt;/p&gt; 
+&lt;h2&gt;Tips for making a new cheatsheet&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Cheatsheets are not meant to be text or documentation!&lt;/strong&gt; They are scannable visual aids that use layout and visual mnemonics to help people zoom to the functions they need. Think of cheatsheets as a quick reference, with the emphasis on quick. Here&#39;s an analogy:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;A cheatsheet is more like a well-organized computer menu bar that leads you to a command than like a manual that documents each command.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Everything about your cheatsheet should be designed to lead users to essential information &lt;em&gt;quickly&lt;/em&gt;. If you are summarizing the documentation manual, you are doing it wrong! Here are some tips to help you do it right:&lt;/p&gt; 
+&lt;h3&gt;Getting Started&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;RStudio cheatsheets are hosted at &lt;a href=&quot;https://github.com/rstudio/cheatsheets&quot;&gt;https://github.com/rstudio/cheatsheets&lt;/a&gt;. You can submit new cheatsheets to the repository with a pull request. See the &lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/.github/CONTRIBUTING.md&quot;&gt;contributing guidelines&lt;/a&gt; for more information.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The files &lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/keynotes/0-template.key&quot;&gt;keynotes/0-template.key&lt;/a&gt; and &lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/powerpoints/0-template.pptx&quot;&gt;powerpoints/0-template.ppt&lt;/a&gt; are official templates that contain some helpful tips.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;You may find it easiest to create a new cheatsheet by duplicating the most recent Keynote / Powerpoint cheatsheet and then heavily editing it—that&#39;s what I do!&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Process&lt;/h3&gt; 
+&lt;p&gt;Budget more time than you expect to make the sheets. So far, I&#39;ve found this process to be the least time consuming:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Identify which functions to include&lt;/strong&gt; by reading the package web page and vignettes. I try to limit my cheatsheets to the essentials.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Organize the functions&lt;/strong&gt; into meaningful, self-explanatory groups. Each group should address a common problem or task.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Think about how to visualize the purpose of each function.&lt;/strong&gt; Visual mnemonics are easier to scan than text, which all looks the same.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Think about&lt;/strong&gt; what &lt;strong&gt;key mental models&lt;/strong&gt;, definitions, or explanations the cheatsheet should contain in addition to the functions. Ideally, use these to explain the visualizations.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Sketch out several possible layouts&lt;/strong&gt; for the sheet. Take care to put the more basic and/or pre-requisite content above and to the left of other content. Try to keep related content on the same side of the page. often your final layout will itself be a &quot;mental map&quot; for the topic of the cheatsheet.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Type out all of the explanations and function descriptions&lt;/strong&gt; that you plan to include. Lay them out. Use placeholders for the visuals. Verify that everything fits. White space is very important. Use it to make the sheet scannable and to isolate content groups. Retain white space, even if it means smaller text.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Make the visuals.&lt;/strong&gt; They take the longest, so I save them for last or make them as I do step 6.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Tweak until happy.&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Visual Design&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Use the existing theme&lt;/strong&gt; that you see in the cheatsheets. It is cohesive and black and white printer friendly.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Choose a highlight color&lt;/strong&gt; to use throughout your cheatsheet, and repeat this highlight color in the background of the top right corner. Ideally you could find a color that is different enough from the other cheatsheets that you can quickly tell yours apart when flipping through a booklet of cheatsheets.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Use a second color sparingly or not at all&lt;/strong&gt; to draw attention to where it is needed and to differentiate different groupings of content.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Include lots of white space.&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Visually differentiate groups of content.&lt;/strong&gt; Backgrounds, boxes, side bars, and headers are helpful here. It is very useful for the user to know immediately where one group of content begins and where one ends. Our &quot;gradation headers&quot; fail here, so think of better solutions if possible.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Align things&lt;/strong&gt; to guides, i.e. align things across the page. It helps define the white space and makes the cheat more orderly and professional.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Make the text no smaller than ~10pt.&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;If the letters are white on a colored background&lt;/strong&gt;, make the font thicker - semibold or bold.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Save bold text&lt;/strong&gt; for simple, important statements, or to draw scanning eyes to important words, such as words that identify the topic discussed. Don&#39;t make an entire paragraph bold text.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Content&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Include a hex sticker, IDE screenshot, or other branding material&lt;/strong&gt;. The cheatsheets have a second function as marketing material.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Include a &lt;a href=&quot;https://creativecommons.org/&quot;&gt;Creative Commons Copyright&lt;/a&gt;&lt;/strong&gt; to make the sheet easy to share. You&#39;ll find one baked into every cheatsheet and the template.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Be very concise&lt;/strong&gt; - rely on diagrams where possible.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Pay attention to the details!&lt;/strong&gt; Your readers sure will... so be correct.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;If in doubt, leave it out.&lt;/strong&gt; There is a documentation manual after all.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Code comments inform, but fail&lt;/strong&gt; to draw the readers attention. It is better to use arrows, speech bubbles, etc. for important information. If it is not important information, leave it out.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Simple working examples are more helpful than documentation details.&lt;/strong&gt; They meet the user at his or her pain points, demonstrating code, and reminding users how to run it, with the least context shifting.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add some concise text to &lt;strong&gt;help the user make sense of your sections and diagrams&lt;/strong&gt;. Images are best, but readers need to be able to interpret them.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Summary&lt;/h3&gt; 
+&lt;p&gt;Your cheatsheet has two goals. First, to help users find essential information quickly, and second, to prevent confusion while doing the above. Your best strategy will be to limit the amount of information you put into the cheatsheet and to lay that information out intuitively and visually. This approach will make your cheatsheet equally useful as a teaching tool, programming tool, or marketing tool.&lt;/p&gt; 
+&lt;p&gt;Cheatsheets fall squarely on the &lt;em&gt;human-facing side of software design&lt;/em&gt;. They focus on human attention. What does that mean? When you write documentation, your job is to fill in all of the relevant details—that&#39;s a software facing job, you need to know the software to do it. You assume that interested humans will find their way to your details on their own (and understand them when they do!). When you make a cheatsheet, your job flips. You assume that the relevant details already exist in the documentation. Your job is to help interested humans find them and understand them. Your job is to guide the human&#39;s attention. Don&#39;t just write, design.&lt;/p&gt; 
+&lt;h2&gt;Website&lt;/h2&gt; 
+&lt;p&gt;This repo is deployed as a quarto website at &lt;a href=&quot;https://rstudio.github.io/cheatsheets/&quot;&gt;https://rstudio.github.io/cheatsheets/&lt;/a&gt;. It uses &lt;a href=&quot;https://rstudio.github.io/renv/&quot;&gt;renv&lt;/a&gt; to manage the dependencies to render the site (in particular the &lt;code&gt;html/*.qmd&lt;/code&gt; files that generate the HTML cheatsheets). Packages that are required to render these cheatsheets should be list in &lt;code&gt;DESCRIPTION&lt;/code&gt; so that they are reliably discovered by &lt;code&gt;renv::snapshot()&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;We prefer the Quarto cheatsheets to set &lt;code&gt;eval: true&lt;/code&gt; and &lt;code&gt;output: false&lt;/code&gt; in the &lt;code&gt;execute&lt;/code&gt; options (vs &lt;code&gt;eval: false&lt;/code&gt;) as this helps to ensure the code in them still works when they are rerun. Exceptions can be made on a per-chunk basis, and some (e.g., keras) are not really feasible to run all the time due to complex installation.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>sb2nov/resume</title>
+      <link>https://github.com/sb2nov/resume</link>
+      <description>&lt;p&gt;Software developer resume in Latex&lt;/p&gt;&lt;hr&gt;&lt;p&gt;A single-page, one-column resume for software developers. It uses the base latex templates and fonts to provide ease of use and installation when trying to update the resume. The different sections are clearly documented and custom commands are used to provide consistent formatting. The three main sections in the resume are education, experience, and projects.&lt;/p&gt; 
+&lt;h3&gt;Motivation&lt;/h3&gt; 
+&lt;p&gt;I created this template as managing a resume on Google Docs was hard and changing any formatting was too difficult since it had to be applied in multiple places.&lt;/p&gt; 
+&lt;p&gt;Most currently available templates either focus on two columns, or are multiple pages long that didn&#39;t work well for career fairs or online applications.&lt;/p&gt; 
+&lt;h3&gt;Quick start&lt;/h3&gt; 
+&lt;p&gt;Get started quickly using &lt;a href=&quot;https://www.overleaf.com/latex/templates/software-engineer-resume/gqxmqsvsbdjf&quot;&gt;Overleaf&lt;/a&gt; template.&lt;/p&gt; 
+&lt;h3&gt;Build using Docker&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;docker build -t latex .
+docker run --rm -i -v &quot;$PWD&quot;:/data latex pdflatex sourabh_bajaj_resume.tex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Preview&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/sb2nov/resume/master/resume_preview.png&quot; alt=&quot;Resume Screenshot&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;License&lt;/h3&gt; 
+&lt;p&gt;Format is MIT but all the data is owned by Sourabh Bajaj.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>riscv/riscv-isa-manual</title>
+      <link>https://github.com/riscv/riscv-isa-manual</link>
+      <description>&lt;p&gt;RISC-V Instruction Set Manual&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;RISC-V Instruction Set Manual&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/actions/workflows/isa-build.yml&quot;&gt;&lt;img src=&quot;https://github.com/riscv/riscv-isa-manual/actions/workflows/isa-build.yml/badge.svg?sanitize=true&quot; alt=&quot;RISC-V ISA Build&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This repository contains the source files for the RISC-V Instruction Set Manual, which consists of the Privileged RISC-V Instruction Set Manual (LaTeX) and the Unprivileged RISC-V Instruction Set Manual (AsciiDoc). The preface of each document indicates the version of each standard that has been formally ratified by RISC-V International.&lt;/p&gt; 
+&lt;p&gt;This work is licensed under a &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Creative Commons Attribution 4.0 International License&lt;/a&gt;. See the &lt;a href=&quot;https://raw.githubusercontent.com/riscv/riscv-isa-manual/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for details.&lt;/p&gt; 
+&lt;p&gt;The RISC-V Instruction Set Manual is organized into the following volumes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Volume I: User-Level ISA&lt;/li&gt; 
+ &lt;li&gt;Volume II: Privileged Architecture&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Official and Draft Versions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Official versions&lt;/strong&gt; of the specifications are available at the &lt;a href=&quot;https://riscv.org/specifications/&quot;&gt;RISC-V International website&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Compiled versions of the most recent drafts&lt;/strong&gt; of the specifications can be found on the &lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/releases/latest&quot;&gt;GitHub releases page&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Older official versions&lt;/strong&gt; of the specifications are archived at the &lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/releases/tag/archive&quot;&gt;GitHub releases archive&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The canonical list of &lt;strong&gt;open-source RISC-V implementations&#39; marchid CSR values&lt;/strong&gt; is available in the &lt;a href=&quot;https://github.com/riscv/riscv-isa-manual/raw/main/marchid.md&quot;&gt;marchid.md file&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you would like to contribute to this documentation, please refer to the &lt;a href=&quot;https://github.com/riscv/docs-dev-guide&quot;&gt;Documentation Developer&#39;s Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The recommended method for building the PDF files is to use the Docker Image, as described in the &lt;a href=&quot;https://github.com/riscv/riscv-docs-base-container-image&quot;&gt;RISC-V Docs Base Container Image repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Alternative build methods, such as local builds and GitHub Action builds, are also available and described in the Documentation Developer&#39;s Guide.&lt;/p&gt; 
+&lt;h2&gt;Images not rendered for EPUB files&lt;/h2&gt; 
+&lt;p&gt;If the eBook reader does not support embedded images, uncomment &lt;code&gt;:data-uri:&lt;/code&gt; lines in &lt;code&gt;src/riscv-privileged.adoc&lt;/code&gt; and &lt;code&gt;src/riscv-unprivileged.adoc&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Known devices that cannot handle embedded images&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;PocketBook InkPad 3&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Repo Activity&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://repobeats.axiom.co/api/embed/ccec87dc4502f2ed7c216b670b5ed8efc33a1d4c.svg?sanitize=true&quot; alt=&quot;Alt&quot; title=&quot;Repobeats analytics image&quot;&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>cosmos/ibc</title>
+      <link>https://github.com/cosmos/ibc</link>
+      <description>&lt;p&gt;Interchain Standards (ICS) for the Cosmos network &amp; interchain ecosystem.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;IBC&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/assets/interchain-standards.png&quot; alt=&quot;banner&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Synopsis&lt;/h2&gt; 
+&lt;p&gt;This repository is the canonical location for development and documentation of the inter-blockchain communication protocol (IBC).&lt;/p&gt; 
+&lt;p&gt;It shall be used to consolidate design rationale, protocol semantics, and encoding descriptions for IBC, including both the core transport, authentication, &amp;amp; ordering layer (IBC/TAO) and the application layers describing packet encoding &amp;amp; processing semantics (IBC/APP).&lt;/p&gt; 
+&lt;p&gt;Contributions are welcome. See &lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/meta/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for contribution guidelines.&lt;/p&gt; 
+&lt;h2&gt;What is IBC?&lt;/h2&gt; 
+&lt;!-- markdown-link-check-disable-next-line --&gt; 
+&lt;p&gt;For a high-level explanation of what IBC is and how it works, please read &lt;a href=&quot;https://medium.com/the-interchain-foundation/eli5-what-is-ibc-def44d7b5b4c&quot;&gt;this blog post&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Interchain Standards&lt;/h2&gt; 
+&lt;p&gt;All standards at or past the &quot;Draft&quot; stage are listed here in order of their ICS numbers, sorted by category.&lt;/p&gt; 
+&lt;h3&gt;Meta&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Interchain Standard Number&lt;/th&gt; 
+   &lt;th&gt;Standard Title&lt;/th&gt; 
+   &lt;th&gt;Stage&lt;/th&gt; 
+   &lt;th&gt;Maintainer&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/ics-001-ics-standard/README.md&quot;&gt;1&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;ICS Specification Standard&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Core Transport&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Interchain Standard Number&lt;/th&gt; 
+   &lt;th&gt;Standard Title&lt;/th&gt; 
+   &lt;th&gt;Stage&lt;/th&gt; 
+   &lt;th&gt;Implementations&lt;/th&gt; 
+   &lt;th&gt;Maintainer&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-002-client-semantics/README.md&quot;&gt;2&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Client Semantics&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-003-connection-semantics/README.md&quot;&gt;3&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Connection Semantics&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-004-channel-and-packet-semantics/README.md&quot;&gt;4&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Channel &amp;amp; Packet Semantics&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-005-port-allocation/README.md&quot;&gt;5&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Port Allocation&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-023-vector-commitments/README.md&quot;&gt;23&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Vector Commitments&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-024-host-requirements/README.md&quot;&gt;24&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Host Requirements&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-025-handler-interface/README.md&quot;&gt;25&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Handler Interface&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-026-routing-module/README.md&quot;&gt;26&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Routing Module&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/core/ics-033-multi-hop/README.md&quot;&gt;33&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Multi-hop Messaging&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go&quot;&gt;ibc-go&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Light Clients&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Interchain Standard Number&lt;/th&gt; 
+   &lt;th&gt;Standard Title&lt;/th&gt; 
+   &lt;th&gt;Stage&lt;/th&gt; 
+   &lt;th&gt;Implementations&lt;/th&gt; 
+   &lt;th&gt;Maintainer&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/client/ics-006-solo-machine-client/README.md&quot;&gt;6&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Solo Machine Client&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/main/modules/light-clients/06-solomachine&quot;&gt;ibc-go&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/client/ics-007-tendermint-client/README.md&quot;&gt;7&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Tendermint Client&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/main/modules/light-clients/07-tendermint&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs/tree/main/ibc-clients/ics07-tendermint&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/client/ics-008-wasm-client/README.md&quot;&gt;8&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Wasm Client&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/main/modules/light-clients/08-wasm&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs/tree/main/ibc-clients/ics08-wasm&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team / &lt;a href=&quot;https://www.composable.finance&quot;&gt;Composable Finance&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/client/ics-009-loopback-cilent/README.md&quot;&gt;9&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Loopback Client&lt;/td&gt; 
+   &lt;td&gt;Draft&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/main/modules/light-clients/09-localhost&quot;&gt;ibc-go&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/client/ics-010-grandpa-client/README.md&quot;&gt;10&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;GRANDPA Client&lt;/td&gt; 
+   &lt;td&gt;Draft&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://oct.network&quot;&gt;Octopus Network&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Relayer&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Interchain Standard Number&lt;/th&gt; 
+   &lt;th&gt;Standard Title&lt;/th&gt; 
+   &lt;th&gt;Stage&lt;/th&gt; 
+   &lt;th&gt;Implementations&lt;/th&gt; 
+   &lt;th&gt;Maintainer&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/relayer/ics-018-relayer-algorithms/README.md&quot;&gt;18&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Relayer Algorithms&lt;/td&gt; 
+   &lt;td&gt;Finalized&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/relayer&quot;&gt;go-relayer&lt;/a&gt;, &lt;a href=&quot;https://github.com/informalsystems/hermes&quot;&gt;rust-relayer&lt;/a&gt;, &lt;a href=&quot;https://github.com/confio/ts-relayer&quot;&gt;ts-relayer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;App&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Interchain Standard Number&lt;/th&gt; 
+   &lt;th&gt;Version&lt;/th&gt; 
+   &lt;th&gt;Standard Title&lt;/th&gt; 
+   &lt;th&gt;Stage&lt;/th&gt; 
+   &lt;th&gt;Implementations&lt;/th&gt; 
+   &lt;th&gt;Maintainer&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-020-fungible-token-transfer/README.md&quot;&gt;20&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v2&lt;/td&gt; 
+   &lt;td&gt;Fungible Token Transfer&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/ics20-v2-beta.0/modules/apps/transfer&quot;&gt;ibc-go&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-020-fungible-token-transfer/v1/README.md&quot;&gt;20&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;Fungible Token Transfer&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/main/modules/apps/transfer&quot;&gt;ibc-go&lt;/a&gt;, &lt;a href=&quot;https://github.com/cosmos/ibc-rs/tree/main/ibc-apps/ics20-transfer&quot;&gt;ibc-rs&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-027-interchain-accounts/README.md&quot;&gt;27&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;Interchain Accounts&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/main/modules/apps/27-interchain-accounts&quot;&gt;ibc-go&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-028-cross-chain-validation/README.md&quot;&gt;28&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;Cross-Chain Validation&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/interchain-security/tree/main&quot;&gt;interchain-security&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Cosmos Hub team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-029-fee-payment&quot;&gt;29&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;General Relayer Incentivization Mechanism&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/cosmos/ibc-go/tree/main/modules/apps/29-fee&quot;&gt;ibc-go&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-030-middleware&quot;&gt;30&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;IBC Application Middleware&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-031-crosschain-queries&quot;&gt;31&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;Cross-Chain Queries&lt;/td&gt; 
+   &lt;td&gt;Draft&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+   &lt;td&gt;Protocol team&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/strangelove-ventures/async-icq&quot;&gt;32&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;Interchain Queries&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/strangelove-ventures/async-icq&quot;&gt;async-icq&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://strange.love&quot;&gt;Strangelove Ventures&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-100-atomic-swap&quot;&gt;100&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;Interchain Atomic Swap&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ibcswap/ibcswap&quot;&gt;ibcswap&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://side.one&quot;&gt;Side Labs&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/cosmos/ibc/main/spec/app/ics-721-nft-transfer&quot;&gt;721&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;v1&lt;/td&gt; 
+   &lt;td&gt;Non-Fungible Token Transfer&lt;/td&gt; 
+   &lt;td&gt;Candidate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bianjieai/nft-transfer&quot;&gt;nft-transfer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.irisnet.org&quot;&gt;IRIS Network&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Translations&lt;/h2&gt; 
+&lt;p&gt;The Interchain Standards are also translated into the following languages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/octopus-network/ibc-spec-cn&quot;&gt;Chinese&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>lervag/vimtex</title>
+      <link>https://github.com/lervag/vimtex</link>
+      <description>&lt;p&gt;VimTeX: A modern Vim and neovim filetype plugin for LaTeX files.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;VimTeX&lt;/h1&gt; 
+&lt;p&gt;VimTeX is a modern &lt;a href=&quot;http://www.vim.org/&quot;&gt;Vim&lt;/a&gt; and &lt;a href=&quot;https://neovim.io/&quot;&gt;Neovim&lt;/a&gt; filetype and syntax plugin for LaTeX files.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gitter.im/vimtex-chat/community?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/vimtex-chat/community.svg?sanitize=true&quot; alt=&quot;Gitter&quot;&gt;&lt;/a&gt; &lt;img src=&quot;https://github.com/lervag/vimtex/workflows/CI%20tests/badge.svg?sanitize=true&quot; alt=&quot;CI tests&quot;&gt; &lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=5N4MFVXN7U8NW&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Donate-PayPal-green.svg?sanitize=true&quot; alt=&quot;Donate&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Table of contents&lt;/h2&gt; 
+&lt;!-- START doctoc generated TOC please keep comment here to allow auto update --&gt; 
+&lt;!-- DON&#39;T EDIT THIS SECTION, INSTEAD RE-RUN doctoc TO UPDATE --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#requirements&quot;&gt;Requirements&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#installation&quot;&gt;Installation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#configuration&quot;&gt;Configuration&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#quick-start&quot;&gt;Quick Start&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#tutorial&quot;&gt;Tutorial&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#documentation&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#screenshots&quot;&gt;Screenshots&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#gifs&quot;&gt;GIFs&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#other-relevant-plugins&quot;&gt;Other relevant plugins&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#linting-and-syntax-checking&quot;&gt;Linting and syntax checking&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#snippets-and-templates&quot;&gt;Snippets and templates&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#tag-navigation&quot;&gt;Tag navigation&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#alternatives&quot;&gt;Alternatives&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#vimtex-on-the-web&quot;&gt;VimTeX on the Web&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- END doctoc generated TOC please keep comment here to allow auto update --&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;VimTeX requires Vim version 9.1 or Neovim version 0.10. The requirements were updated in January 2025 after the release of VimTeX 2.16. If you are stuck on older versions of Vim or Neovim, then you should not use the most recent version of VimTeX, but instead remain at the v2.15 tag (or older).&lt;/p&gt; 
+&lt;p&gt;Some features require external tools. For example, the default compiler backend relies on &lt;a href=&quot;https://www.cantab.net/users/johncollins/latexmk/index.html&quot;&gt;latexmk&lt;/a&gt;. Users are encouraged to read the requirements section in the &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/doc/vimtex.txt&quot;&gt;documentation&lt;/a&gt; (&lt;code&gt;:h vimtex-requirements&lt;/code&gt;).&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;There are a lot of methods for installing plugins. The following explains the most common and popular approaches.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!WARNING]&lt;/p&gt; 
+ &lt;p&gt;Many plugin managers provide mechanisms to lazy load plugins. Please don&#39;t use this for VimTeX! VimTeX is already lazy loaded by virtue of being a filetype plugin and by using the autoload mechanisms. There is therefore nothing to gain by forcing VimTeX to lazily load through the plugin manager. In fact, doing it will &lt;em&gt;break&lt;/em&gt; the inverse-search mechanism, which relies on a &lt;em&gt;global&lt;/em&gt; command (&lt;code&gt;:VimtexInverseSearch&lt;/code&gt;).&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;lazy.nvim&lt;/h3&gt; 
+&lt;p&gt;In Neovim, &lt;a href=&quot;https://github.com/folke/lazy.nvim&quot;&gt;lazy.nvim&lt;/a&gt; is probably the most popular plugin manger. To install VimTeX, add a plugin spec similar to this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+  &quot;lervag/vimtex&quot;,
+  lazy = false,     -- we don&#39;t want to lazy load VimTeX
+  -- tag = &quot;v2.15&quot;, -- uncomment to pin to a specific release
+  init = function()
+    -- VimTeX configuration goes here, e.g.
+    vim.g.vimtex_view_method = &quot;zathura&quot;
+  end
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;VimTeX is mostly implemented with Vimscript and is configured with the classical vimscript variable convention like &lt;code&gt;g:vimtex_OPTION_NAME&lt;/code&gt;. Nowadays, Neovim is often configured with Lua, thus some users may be interested in reading &lt;code&gt;:help lua-vimscript&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;vim-plug&lt;/h3&gt; 
+&lt;p&gt;If you use &lt;a href=&quot;https://github.com/junegunn/vim-plug&quot;&gt;vim-plug&lt;/a&gt;, then add &lt;em&gt;one&lt;/em&gt; of the following lines to your configuration. The first will use the latest versions from the &lt;code&gt;master&lt;/code&gt; branch, whereas the second will pin to a release tag.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;Plug &#39;lervag/vimtex&#39;
+Plug &#39;lervag/vimtex&#39;, { &#39;tag&#39;: &#39;v2.15&#39; }
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Other&lt;/h3&gt; 
+&lt;p&gt;There are many other plugin managers out there. They are typically well documented, and it should be straightforward to extrapolate the above snippets.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE]&lt;/p&gt; 
+ &lt;p&gt;If you use the built-in package feature, then:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Make sure to read and understand the package feature: &lt;code&gt;:help package&lt;/code&gt;!&lt;/li&gt; 
+  &lt;li&gt;Use the &lt;code&gt;/pack/foo/start&lt;/code&gt; subdirectory to make sure the filetype plugin is automatically loaded for the &lt;code&gt;tex&lt;/code&gt; filetypes.&lt;/li&gt; 
+  &lt;li&gt;Helptags are not generated automatically. Run &lt;code&gt;:helptags&lt;/code&gt; to generate them.&lt;/li&gt; 
+  &lt;li&gt;Please note that by default Vim puts custom &lt;code&gt;/start/&lt;/code&gt; plugin directories at the end of the &lt;code&gt;&amp;amp;runtimepath&lt;/code&gt;. This means the built in filetype plugin is loaded, which prevents VimTeX from loading. See &lt;a href=&quot;https://github.com/lervag/vimtex/issues/1413&quot;&gt;#1413&lt;/a&gt; for two suggested solutions to this. To see which scripts are loaded and in which order, use &lt;code&gt;:scriptnames&lt;/code&gt;.&lt;/li&gt; 
+  &lt;li&gt;For more information on how to use the Vim native package solution, see &lt;a href=&quot;https://vi.stackexchange.com/questions/9522/what-is-the-vim8-package-feature-and-how-should-i-use-it&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://shapeshed.com/vim-packages/&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;After installing VimTeX, you should edit your &lt;code&gt;.vimrc&lt;/code&gt; file or &lt;code&gt;init.vim&lt;/code&gt; file to configure VimTeX to your liking. Users should read the documentation to learn the various configuration possibilities, but the below is a simple overview of some of the main aspects.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!CAUTION]&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;PLEASE&lt;/strong&gt; don&#39;t just copy this without reading the comments!&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-vim&quot;&gt;&quot; This is necessary for VimTeX to load properly. The &quot;indent&quot; is optional.
+&quot; Note: Most plugin managers will do this automatically!
+filetype plugin indent on
+
+&quot; This enables Vim&#39;s and neovim&#39;s syntax-related features. Without this, some
+&quot; VimTeX features will not work (see &quot;:help vimtex-requirements&quot; for more
+&quot; info).
+&quot; Note: Most plugin managers will do this automatically!
+syntax enable
+
+&quot; Viewer options: One may configure the viewer either by specifying a built-in
+&quot; viewer method:
+let g:vimtex_view_method = &#39;zathura&#39;
+
+&quot; Or with a generic interface:
+let g:vimtex_view_general_viewer = &#39;okular&#39;
+let g:vimtex_view_general_options = &#39;--unique file:@pdf\#src:@line@tex&#39;
+
+&quot; VimTeX uses latexmk as the default compiler backend. If you use it, which is
+&quot; strongly recommended, you probably don&#39;t need to configure anything. If you
+&quot; want another compiler backend, you can change it as follows. The list of
+&quot; supported backends and further explanation is provided in the documentation,
+&quot; see &quot;:help vimtex-compiler&quot;.
+let g:vimtex_compiler_method = &#39;latexrun&#39;
+
+&quot; Most VimTeX mappings rely on localleader and this can be changed with the
+&quot; following line. The default is usually fine and is the symbol &quot;\&quot;.
+let maplocalleader = &quot;,&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;p&gt;The following video shows how to use VimTeX&#39;s main features (credits: &lt;a href=&quot;https://github.com/DustyTopology&quot;&gt;@DustyTopology&lt;/a&gt; from &lt;a href=&quot;https://github.com/lervag/vimtex/issues/1946#issuecomment-846345095&quot;&gt;#1946&lt;/a&gt;). The example LaTeX file used in the video is available under &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/test/example-quick-start/main.tex&quot;&gt;&lt;code&gt;test/example-quick-start/main.tex&lt;/code&gt;&lt;/a&gt; and it may be instructive to copy the file and play with it to learn some of these basic functions.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://user-images.githubusercontent.com/66584581/119213849-1b7d4080-ba77-11eb-8a31-7ff7b9a4a020.mp4&quot;&gt;https://user-images.githubusercontent.com/66584581/119213849-1b7d4080-ba77-11eb-8a31-7ff7b9a4a020.mp4&lt;/a&gt;&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!TIP]&lt;/p&gt; 
+ &lt;p&gt;If the compiler or the viewer doesn&#39;t start properly, one may type &lt;code&gt;&amp;lt;localleader&amp;gt;li&lt;/code&gt; to view the system commands that were executed to start them. To inspect the compiler output, use &lt;code&gt;&amp;lt;localleader&amp;gt;lo&lt;/code&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Tutorial&lt;/h3&gt; 
+&lt;p&gt;Both new and experienced users are encouraged to read the excellent guide by @ejmastnak: &lt;a href=&quot;https://ejmastnak.com/tutorials/vim-latex/vimtex/&quot;&gt;Getting started with the VimTeX plugin&lt;/a&gt;. The guide covers all the fundamentals of setting up a VimTeX-based LaTeX workflow, including usage of the VimTeX plugin, compilation, setting up forward and inverse search with a PDF reader, and Vimscript tools for user-specific customization.&lt;/p&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;p&gt;Users are of course &lt;em&gt;strongly&lt;/em&gt; encouraged to read the documentation, at least the introduction, to learn about the different features and possibilities provided by VimTeX (see &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/doc/vimtex.txt&quot;&gt;&lt;code&gt;:h vimtex&lt;/code&gt;&lt;/a&gt;). Advanced users and potential developers may also be interested in reading the supplementary documents:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/DOCUMENTATION.md&quot;&gt;DOCUMENTATION.md&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;p&gt;Here is an example of the syntax highlighting provided by VimTeX. The conceal feature is active on the right-hand side split. The example is made by @DustyTopology with the &lt;a href=&quot;https://github.com/arzg/vim-colors-xcode&quot;&gt;vim-colors-xcode&lt;/a&gt; colorscheme with some minor adjustments &lt;a href=&quot;https://github.com/lervag/vimtex/issues/1946#issuecomment-843674951&quot;&gt;described here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/lervag/vimtex-media/raw/main/img/syntax.png&quot; alt=&quot;Syntax example&quot;&gt;&lt;/p&gt; 
+&lt;h3&gt;GIFs&lt;/h3&gt; 
+&lt;p&gt;See the file &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md&quot;&gt;VISUALS.md&lt;/a&gt; for screencast-style GIFs demonstrating VimTeX&#39;s core motions, text-editing commands, and text objects.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;Below is a list of features offered by VimTeX. The features are accessible as both commands and mappings. The mappings generally start with &lt;code&gt;&amp;lt;localleader&amp;gt;l&lt;/code&gt;, but if desired one can disable default mappings to define custom mappings. Nearly all features are enabled by default, but each feature may be disabled if desired. The two exceptions are code folding and formating, which are disabled by default and must be manually enabled.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Document compilation with &lt;a href=&quot;https://www.cantab.net/users/johncollins/latexmk/index.html&quot;&gt;latexmk&lt;/a&gt;, &lt;a href=&quot;https://github.com/aclements/latexrun&quot;&gt;latexrun&lt;/a&gt;, &lt;a href=&quot;https://tectonic-typesetting.github.io&quot;&gt;tectonic&lt;/a&gt;, or &lt;a href=&quot;https://github.com/cereda/arara&quot;&gt;arara&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;LaTeX log parsing for quickfix entries using 
+  &lt;ul&gt; 
+   &lt;li&gt;internal method&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/stefanhepp/pplatex&quot;&gt;pplatex&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Compilation of selected part of document&lt;/li&gt; 
+ &lt;li&gt;Support for several PDF viewers with forward search 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://www.mupdf.com/&quot;&gt;MuPDF&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://okular.kde.org/&quot;&gt;Okular&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://launchpad.net/qpdfview&quot;&gt;qpdfview&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://skim-app.sourceforge.net/&quot;&gt;Skim&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://www.sumatrapdfreader.org/free-pdf-reader.html&quot;&gt;SumatraPDF&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://pages.uoregon.edu/koch/texshop/&quot;&gt;TeXShop&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://pwmt.org/projects/zathura/&quot;&gt;Zathura&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Other viewers are supported through a general interface&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Completion of 
+  &lt;ul&gt; 
+   &lt;li&gt;citations&lt;/li&gt; 
+   &lt;li&gt;labels&lt;/li&gt; 
+   &lt;li&gt;commands&lt;/li&gt; 
+   &lt;li&gt;file names for figures, input/include, includepdf, includestandalone&lt;/li&gt; 
+   &lt;li&gt;glossary entries&lt;/li&gt; 
+   &lt;li&gt;package and documentclass names based on available &lt;code&gt;.sty&lt;/code&gt; and &lt;code&gt;.cls&lt;/code&gt; files&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Document navigation through 
+  &lt;ul&gt; 
+   &lt;li&gt;table of contents&lt;/li&gt; 
+   &lt;li&gt;table of labels&lt;/li&gt; 
+   &lt;li&gt;proper settings for &lt;code&gt;&#39;include&#39;&lt;/code&gt;, &lt;code&gt;&#39;includeexpr&#39;&lt;/code&gt;, &lt;code&gt;&#39;suffixesadd&#39;&lt;/code&gt; and &lt;code&gt;&#39;define&#39;&lt;/code&gt;, which among other things 
+    &lt;ul&gt; 
+     &lt;li&gt;allow &lt;code&gt;:h include-search&lt;/code&gt; and &lt;code&gt;:h definition-search&lt;/code&gt;&lt;/li&gt; 
+     &lt;li&gt;give enhanced &lt;code&gt;gf&lt;/code&gt; command&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Easy access to (online) documentation of packages&lt;/li&gt; 
+ &lt;li&gt;Word count (through &lt;code&gt;texcount&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Motions (&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md#motion-commands&quot;&gt;link to GIF demonstrations&lt;/a&gt;) 
+  &lt;ul&gt; 
+   &lt;li&gt;Move between section boundaries with &lt;code&gt;[[&lt;/code&gt;, &lt;code&gt;[]&lt;/code&gt;, &lt;code&gt;][&lt;/code&gt;, and &lt;code&gt;]]&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between environment boundaries with &lt;code&gt;[m&lt;/code&gt;, &lt;code&gt;[M&lt;/code&gt;, &lt;code&gt;]m&lt;/code&gt;, and &lt;code&gt;]M&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between math environment boundaries with &lt;code&gt;[n&lt;/code&gt;, &lt;code&gt;[N&lt;/code&gt;, &lt;code&gt;]n&lt;/code&gt;, and &lt;code&gt;]N&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between frame environment boundaries with &lt;code&gt;[r&lt;/code&gt;, &lt;code&gt;[R&lt;/code&gt;, &lt;code&gt;]r&lt;/code&gt;, and &lt;code&gt;]R&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between comment boundaries with &lt;code&gt;[*&lt;/code&gt; and &lt;code&gt;]*&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Move between matching delimiters with &lt;code&gt;%&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Text objects (&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md#text-objects&quot;&gt;link to GIF demonstrations&lt;/a&gt;) 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;ic ac&lt;/code&gt; Commands&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;id ad&lt;/code&gt; Delimiters&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;ie ae&lt;/code&gt; LaTeX environments&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;i$ a$&lt;/code&gt; Math environments&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;iP aP&lt;/code&gt; Sections&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;im am&lt;/code&gt; Items&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Other mappings (&lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/VISUALS.md#deleting-surrounding-latex-content&quot;&gt;link to GIF demonstrations&lt;/a&gt;) 
+  &lt;ul&gt; 
+   &lt;li&gt;Delete the surrounding command, environment or delimiter with &lt;code&gt;dsc&lt;/code&gt;/&lt;code&gt;dse&lt;/code&gt;/&lt;code&gt;ds$&lt;/code&gt;/&lt;code&gt;dsd&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Change the surrounding command, environment or delimiter with &lt;code&gt;csc&lt;/code&gt;/&lt;code&gt;cse&lt;/code&gt;/&lt;code&gt;cs$&lt;/code&gt;/&lt;code&gt;csd&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle starred command or environment with &lt;code&gt;tsc&lt;/code&gt;/&lt;code&gt;tse&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle inline and displaymath with &lt;code&gt;ts$&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle between e.g. &lt;code&gt;()&lt;/code&gt; and &lt;code&gt;\left(\right)&lt;/code&gt; with &lt;code&gt;tsd&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle (inline) fractions with &lt;code&gt;tsf&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Toggle line-break macro &lt;code&gt;\\&lt;/code&gt; with &lt;code&gt;tsb&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Close the current environment/delimiter in insert mode with &lt;code&gt;]]&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Add &lt;code&gt;\left ... \right)&lt;/code&gt; modifiers to surrounding delimiters with &lt;code&gt;&amp;lt;F8&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Insert new command with &lt;code&gt;&amp;lt;F7&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Convenient insert mode mappings for faster typing of e.g. maths&lt;/li&gt; 
+   &lt;li&gt;Context menu on citations (e.g. &lt;code&gt;\cite{...}&lt;/code&gt;) mapped to &lt;code&gt;&amp;lt;cr&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Improved folding (&lt;code&gt;:h &#39;foldexpr&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Improved indentation (&lt;code&gt;:h &#39;indentexpr&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Syntax highlighting 
+  &lt;ul&gt; 
+   &lt;li&gt;A consistent core syntax specification&lt;/li&gt; 
+   &lt;li&gt;General syntax highlighting for several popular LaTeX packages&lt;/li&gt; 
+   &lt;li&gt;Nested syntax highlighting for several popular LaTeX packages&lt;/li&gt; 
+   &lt;li&gt;Highlight matching delimiters&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Support for multi-file project packages 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://ctan.uib.no/macros/latex/contrib/import/import.pdf&quot;&gt;import&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;http://ctan.uib.no/macros/latex/contrib/subfiles/subfiles.pdf&quot;&gt;subfiles&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;See the documentation for a thorough introduction to VimTeX (e.g. &lt;code&gt;:h vimtex&lt;/code&gt;).&lt;/p&gt; 
+&lt;h2&gt;Other relevant plugins&lt;/h2&gt; 
+&lt;p&gt;Even though VimTeX provides a lot of nice features for working with LaTeX documents, there are several features that are better served by other, dedicated plugins. For a more detailed listing of these, please see &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/doc/vimtex.txt#L540&quot;&gt;&lt;code&gt;:help vimtex-and-friends&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Linting and syntax checking&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/w0rp/ale&quot;&gt;ale&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/neomake/neomake&quot;&gt;neomake&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/vim-syntastic/syntastic&quot;&gt;syntastic&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Snippets and templates&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/SirVer/ultisnips&quot;&gt;UltiSnips&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Shougo/neosnippet.vim&quot;&gt;neosnippet&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Tag navigation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ludovicchabant/vim-gutentags&quot;&gt;vim-gutentags&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;p&gt;The following are some alternative LaTeX plugins for Vim:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;http://vim-latex.sourceforge.net&quot;&gt;LaTeX-Suite&lt;/a&gt;&lt;/p&gt; &lt;p&gt;The main difference between VimTeX and LaTeX-Suite (aka vim-latex) is probably that VimTeX does not try to implement a full fledged IDE for LaTeX inside Vim. E.g.:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;VimTeX does not provide a full snippet feature, because this is better handled by &lt;a href=&quot;https://github.com/SirVer/ultisnips&quot;&gt;UltiSnips&lt;/a&gt; or &lt;a href=&quot;https://github.com/Shougo/neosnippet.vim&quot;&gt;neosnippet&lt;/a&gt; or similar snippet engines.&lt;/li&gt; 
+   &lt;li&gt;VimTeX builds upon Vim principles: It provides text objects for environments, inline math, it provides motions for sections and paragraphs&lt;/li&gt; 
+   &lt;li&gt;VimTeX uses &lt;code&gt;latexmk&lt;/code&gt;, &lt;code&gt;latexrun&lt;/code&gt;, &lt;code&gt;tectonic&lt;/code&gt; or &lt;code&gt;arara&lt;/code&gt; for compilation with a callback feature to get instant feedback on compilation errors&lt;/li&gt; 
+   &lt;li&gt;VimTeX is very modular: if you don&#39;t like a feature, you can turn it off.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/jakewvincent/texmagic.nvim&quot;&gt;TexMagic.nvim&lt;/a&gt;&lt;/p&gt; &lt;p&gt;&quot;A simple, lightweight Neovim plugin that facilitates LaTeX build engine selection via magic comments. It is designed with the TexLab LSP server&#39;s build functionality in mind, which at the time of this plugin&#39;s inception had to be specified in init.lua/init.vim and could not be set on a by-project basis.&quot;&lt;/p&gt; &lt;p&gt;This plugin should be combined with the TexLab LSP server, and it only works on neovim.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/LaTeX-Box-Team/LaTeX-Box&quot;&gt;LaTeX-Box&lt;/a&gt;&lt;/p&gt; &lt;p&gt;VimTeX currently has most of the features of LaTeX-Box, as well as some additional ones. See &lt;a href=&quot;https://raw.githubusercontent.com/lervag/vimtex/master/#features&quot;&gt;here&lt;/a&gt; for a relatively complete list of features.&lt;/p&gt; &lt;p&gt;One particular feature that LaTeX-Box has but VimTeX misses, is the ability to do single-shot compilation &lt;em&gt;with callback&lt;/em&gt;. This functionality was removed because it adds a lot of complexity for relatively little gain (IMHO).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;http://atp-vim.sourceforge.net&quot;&gt;AutomaticTexPlugin&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/xuhdev/vim-latex-live-preview&quot;&gt;vim-latex-live-preview&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For more alternatives and more information and discussions regarding LaTeX plugins for Vim, see:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://vi.stackexchange.com/questions/2047/what-are-the-differences-between-latex-plugins&quot;&gt;What are the differences between LaTeX plugins&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://tex.stackexchange.com/questions/339/latex-editors-ides&quot;&gt;List of LaTeX editors (not only Vim)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>latex3/latex2e</title>
+      <link>https://github.com/latex3/latex2e</link>
+      <description>&lt;p&gt;The LaTeX2e kernel&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;The LaTeX2e Kernel Code Repository&lt;/h1&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Important notice:&lt;/strong&gt; This repository holds the unpackaged sources of LaTeX2e as well as code under development in various branches. For this reason it is only of interest to a small number of developers in this form and building a working version from the sources is a non-trivial exercise.&lt;/p&gt; 
+ &lt;p&gt;The normal way to obtain LaTeX is therefore not to get it from this repository, but through the packaged version available from &lt;a href=&quot;https://ctan.org&quot;&gt;https://ctan.org&lt;/a&gt; and automatically distributed as part of major TeX distributions such as TeXLive, MacTeX or MiKTeX.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;This repository hosts development of the core LaTeX distribution, which comprises:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The LaTeX kernel itself (&lt;code&gt;base&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;LaTeX team documentation (&lt;code&gt;doc&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Bundles which must be available (&lt;code&gt;required&lt;/code&gt;). These are 
+  &lt;ul&gt; 
+   &lt;li&gt;Essential tools (&lt;code&gt;tools&lt;/code&gt;)&lt;/li&gt; 
+   &lt;li&gt;Core graphics and color support (&lt;code&gt;graphics&lt;/code&gt;)&lt;/li&gt; 
+   &lt;li&gt;Key mathematics support (&lt;code&gt;amsmath&lt;/code&gt;)&lt;/li&gt; 
+   &lt;li&gt;First aid for LaTeX (&lt;code&gt;firstaid&lt;/code&gt;)&lt;/li&gt; 
+   &lt;li&gt;LaTeX laboratory (&lt;code&gt;latex-lab&lt;/code&gt;)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The main public Git repository is hosted on &lt;a href=&quot;https://github.com/latex3/latex2e&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Note that Babel moved to its own repository in 2019: &lt;a href=&quot;https://github.com/latex3/babel&quot;&gt;GitHub&lt;/a&gt;; any issues related to Babel should be reported there.&lt;/p&gt; 
+&lt;p&gt;From 2020 onwards LaTeX includes the L3 programming layer as part of the format. The code for this layer is hosted in its own repository: &lt;a href=&quot;https://github.com/latex3/latex3&quot;&gt;GitHub&lt;/a&gt;; any issues directly related to commands from that layer should preferably be reported there.&lt;/p&gt; 
+&lt;h2&gt;LaTeX Version number&lt;/h2&gt; 
+&lt;p&gt;The LaTeX version is defined in the file &lt;code&gt;ltvers.dtx&lt;/code&gt; in the two commands &lt;code&gt;\fmtversion&lt;/code&gt; (the main version) and &lt;code&gt;\patch@level&lt;/code&gt; (the patch level). A negative patch level indicates a pretest version.&lt;/p&gt; 
+&lt;p&gt;Each component of the core distribution contains a &lt;code&gt;README&lt;/code&gt; file which is tagged with the appropriate release string prior to upload to CTAN.&lt;/p&gt; 
+&lt;h2&gt;Issues&lt;/h2&gt; 
+&lt;p&gt;Only issues &lt;em&gt;specifically related to these components&lt;/em&gt; should be logged &lt;a href=&quot;https://github.com/latex3/latex2e/issues&quot;&gt;with the team on GitHub&lt;/a&gt;. The LaTeX ecosystem is large, and there are &lt;em&gt;many&lt;/em&gt; (thousands) of additional packages not maintained by us: issues related to the use of those need to be reported to the relevant maintainers because we are usually unable to help in that case.&lt;/p&gt; 
+&lt;p&gt;To help you making the right decision where to report an issue we ask to start your minimal example file showing the problem &lt;em&gt;always&lt;/em&gt; with&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;\RequirePackage{latexbug}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Please look at the report generated from &lt;code&gt;latexbug&lt;/code&gt; and if it indicates that you are using packages not maintained by the LaTeX Project check if your problem is still present after removing them. If so contact the maintainers of these third-party packages and file a bug report with them.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;More details on creating issue reports for the core LaTeX distribution are given in our &lt;a href=&quot;https://raw.githubusercontent.com/latex3/latex2e/develop/CONTRIBUTING.md&quot;&gt;CONTRIBUTING guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;We are unable to provide advice/support here: community sites such as &lt;a href=&quot;http://tex.stackexchange.com&quot;&gt;TeX-LaTeX StackExchange&lt;/a&gt; and &lt;a href=&quot;http://latex-community.org&quot;&gt;The LaTeX Community&lt;/a&gt; are available for general help. See also &lt;a href=&quot;https://www.latex-project.org/help&quot;&gt;the help pages on our website&lt;/a&gt; for further suggestions.&lt;/p&gt; 
+&lt;h2&gt;Code fixes&lt;/h2&gt; 
+&lt;p&gt;Changes to the core LaTeX distribution have to be approached bearing in mind the importance of maintaining stability. This means that all changes have to be carefully weighed up, balancing the issues addressed by a change with the effects on existing documents.&lt;/p&gt; 
+&lt;h2&gt;Development team&lt;/h2&gt; 
+&lt;p&gt;The LaTeX kernel is developed by &lt;a href=&quot;https://latex-project.org&quot;&gt;The LaTeX Project&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Copyright&lt;/h2&gt; 
+&lt;p&gt;This README file is&lt;/p&gt; 
+&lt;p&gt;Copyright (C) 2019-2025 The LaTeX Project&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>HugoBlox/theme-academic-cv</title>
+      <link>https://github.com/HugoBlox/theme-academic-cv</link>
+      <description>&lt;p&gt;🎓 无需编写任何代码即可轻松创建漂亮的学术网站 Easily create a beautiful academic résumé or educational website using Hugo and GitHub. No code.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;a href=&quot;https://github.com/HugoBlox/theme-academic-cv&quot;&gt;Hugo Academic CV Theme&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://hugoblox.com/templates/&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/HugoBlox/theme-academic-cv/main/.github/preview.webp&quot; alt=&quot;Screenshot&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The Hugo &lt;strong&gt;Academic CV Template&lt;/strong&gt; empowers you to easily create your job-winning online resumé, showcase your academic publications, and create online courses or knowledge bases to grow your audience.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://hugoblox.com/templates/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Get%20started-ff4655?style=for-the-badge&quot; alt=&quot;Get Started&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.com/channels/722225264733716590/742892432458252370/742895548159492138&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/722225264733716590?style=for-the-badge&quot; alt=&quot;Discord&quot;&gt;&lt;/a&gt;&lt;br&gt; &lt;a href=&quot;https://twitter.com/GetResearchDev&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/GetResearchDev?label=Follow%20on%20Twitter&quot; alt=&quot;Twitter Follow&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p>️&lt;strong&gt;Trusted by 250,000+ researchers, educators, and students.&lt;/strong&gt; Highly customizable via the integrated &lt;strong&gt;no-code, Hugo Blox Builder&lt;/strong&gt;, making every site truly personalized ⭐⭐⭐⭐⭐&lt;/p&gt; 
+&lt;p&gt;Easily write technical content with plain text Markdown, LaTeX math, diagrams, RMarkdown, or Jupyter, and import publications from BibTeX.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://academic-demo.netlify.app/&quot;&gt;Check out the latest demo&lt;/a&gt; of what you&#39;ll get in less than 10 minutes, or &lt;a href=&quot;https://hugoblox.com/creators/&quot;&gt;get inspired by our academics and research groups&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The integrated &lt;a href=&quot;https://hugoblox.com&quot;&gt;&lt;strong&gt;Hugo Blox Builder&lt;/strong&gt;&lt;/a&gt; and CMS makes it easy to create a beautiful website for free. Edit your site in the CMS (or your favorite editor), generate it with &lt;a href=&quot;https://github.com/gohugoio/hugo&quot;&gt;Hugo&lt;/a&gt;, and deploy with GitHub or Netlify. Customize anything on your site with widgets, light/dark themes, and language packs.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;👉 &lt;a href=&quot;https://hugoblox.com/templates/&quot;&gt;&lt;strong&gt;Get Started&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;📚 &lt;a href=&quot;https://docs.hugoblox.com/&quot;&gt;View the &lt;strong&gt;documentation&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;💬 &lt;a href=&quot;https://discord.gg/z8wNYzb&quot;&gt;Chat with the &lt;strong&gt;Hugo Blox Builder community&lt;/strong&gt;&lt;/a&gt; or &lt;a href=&quot;https://discourse.gohugo.io&quot;&gt;&lt;strong&gt;Hugo community&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;🐦 Twitter: &lt;a href=&quot;https://twitter.com/GetResearchDev&quot;&gt;@GetResearchDev&lt;/a&gt; &lt;a href=&quot;https://twitter.com/GeorgeCushen&quot;&gt;@GeorgeCushen&lt;/a&gt; &lt;a href=&quot;https://twitter.com/search?q=%23MadeWithHugoBlox&amp;amp;src=typed_query&quot;&gt;#MadeWithHugoBlox&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;⬇️ &lt;strong&gt;Automatically import your publications from BibTeX&lt;/strong&gt; with the &lt;a href=&quot;https://github.com/GetRD/academic-file-converter&quot;&gt;Hugo Academic CLI&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;💡 &lt;a href=&quot;https://github.com/HugoBlox/hugo-blox-builder/issues&quot;&gt;Suggest an improvement&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;⬆️ &lt;strong&gt;Updating?&lt;/strong&gt; View the &lt;a href=&quot;https://docs.hugoblox.com/reference/update/&quot;&gt;Update Guide&lt;/a&gt; and &lt;a href=&quot;https://github.com/HugoBlox/hugo-blox-builder/releases&quot;&gt;Release Notes&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;We ask you, humbly, to support this open source movement&lt;/h2&gt; 
+&lt;p&gt;Today we ask you to defend the open source independence of the Hugo Blox Builder and themes 🐧&lt;/p&gt; 
+&lt;p&gt;We&#39;re an open source movement that depends on your support to stay online and thriving, but 99.9% of our creators don&#39;t give; they simply look the other way.&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://hugoblox.com/sponsor/&quot;&gt;❤️ Click here to become a Sponsor, unlocking awesome perks such as &lt;em&gt;exclusive academic templates and blocks&lt;/em&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;!--
+&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://hugoblox.com/templates/&quot; target=&quot;_blank&quot; rel=&quot;noopener&quot;&gt;&lt;img src=&quot;https://hugoblox.com/uploads/readmes/academic_logo_200px.png&quot; alt=&quot;Hugo Academic Theme for Hugo Blox Builder&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+--&gt; 
+&lt;h2&gt;Demo image credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://unsplash.com&quot;&gt;Unsplash&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Latest news&lt;/h2&gt; 
+&lt;!--START_SECTION:news--&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hugoblox.com/blog/easily-make-academic-website/&quot;&gt;Easily make an academic CV website to get more cites and grow your audience 🚀&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hugoblox.com/blog/whats-new-in-v5.2/&quot;&gt;What&#39;s new in v5.2?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hugoblox.com/blog/whats-new-in-v5.1/&quot;&gt;What&#39;s new in v5.1?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hugoblox.com/blog/version-5.0-february-2021/&quot;&gt;Version 5.0 (February 2021)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hugoblox.com/blog/version-5.0-beta-3-february-2021/&quot;&gt;Version 5.0 Beta 3 (February 2021)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--END_SECTION:news--&gt;</description>
+    </item>
+    
+    <item>
+      <title>cvpr-org/author-kit</title>
+      <link>https://github.com/cvpr-org/author-kit</link>
+      <description>&lt;p&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;CVPR/ICCV/3DV Official LaTeX template&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; the Microsoft Word version of the template is in the branch &lt;a href=&quot;https://github.com/cvpr-org/author-kit/tree/main-msword&quot;&gt;&lt;code&gt;main-msword&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;History (in reverse chronological order)&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;added styles for &lt;code&gt;subsubsection&lt;/code&gt; and fixed the wrong PDF bookmarks by &lt;a href=&quot;https://github.com/fang-d&quot;&gt;Di Fang&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;modernized for CVPR 2025 by &lt;a href=&quot;https://richardt.name/&quot;&gt;Christian Richardt&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;fixed page centering for CVPR 2025 by &lt;a href=&quot;mailto:stefan.roth@NOSPAMtu-darmstadt.de&quot;&gt;Stefan Roth&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;inline enumerations and &lt;code&gt;cvprblue&lt;/code&gt; links for CVPR 2025 by &lt;a href=&quot;https://www.cs.cmu.edu/~igkioule/&quot;&gt;Ioannis Gkioulekas &lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;added automated LaTeX build testing for CVPR 2025 by &lt;a href=&quot;https://ahanio.github.io&quot;&gt;Ahan Shabanov&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;references in &lt;code&gt;cvprblue&lt;/code&gt; for CVPR 2024 by &lt;a href=&quot;https://github.com/Qwlouse&quot;&gt;Klaus Greff&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;added natbib for CVPR 2024 by &lt;a href=&quot;https://richardt.name/&quot;&gt;Christian Richardt&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;replaced buggy (review-mode) line numbering for 3DV 2024 by &lt;a href=&quot;https://openreview.net/profile?id=~Ad%C3%ADn_Ram%C3%ADrez_Rivera1&quot;&gt;Adín Ramírez Rivera &lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;logic for inline supplementary for 3DV 2024 by &lt;a href=&quot;https://taiya.github.io&quot;&gt;Andrea Tagliasacchi&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;modernized for CVPR 2022 by &lt;a href=&quot;mailto:stefan.roth@NOSPAMtu-darmstadt.de&quot;&gt;Stefan Roth&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;created cvpr.sty file to unify review/rebuttal/final versions by &lt;a href=&quot;https://github.com/MCG-NKU/CVPR_Template&quot;&gt;Ming-Ming Cheng&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;developed CVPR 2005 template by &lt;a href=&quot;mailto:Paolo.Ienne@di.epfl.ch&quot;&gt;Paolo Ienne&lt;/a&gt; and &lt;a href=&quot;mailto:awf@acm.org&quot;&gt;Andrew Fitzgibbon&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>dart-lang/language</title>
+      <link>https://github.com/dart-lang/language</link>
+      <description>&lt;p&gt;Design of the Dart language&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Dart language evolution&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/dart-lang/language/actions?query=workflow%3ACI+branch%3Amain&quot;&gt;&lt;img src=&quot;https://github.com/dart-lang/language/workflows/CI/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This repository is a place for the &lt;a href=&quot;https://www.dartlang.org&quot;&gt;Dart&lt;/a&gt; language team to work on &lt;a href=&quot;https://github.com/orgs/dart-lang/projects/90&quot;&gt;language changes and features&lt;/a&gt;, and to solicit and accept &lt;a href=&quot;https://github.com/dart-lang/language/issues&quot;&gt;feedback and requests&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Dart language team&lt;/h1&gt; 
+&lt;p&gt;As of January 2024, the Dart language team consists of:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Leaf Petersen (&lt;a href=&quot;https://github.com/leafpetersen&quot;&gt;@leafpetersen&lt;/a&gt;), language engineer&lt;/li&gt; 
+ &lt;li&gt;Lasse R.H. Nielsen (&lt;a href=&quot;https://github.com/lrhn&quot;&gt;@lrhn&lt;/a&gt;), language engineer&lt;/li&gt; 
+ &lt;li&gt;Bob Nystrom (&lt;a href=&quot;https://github.com/munificent&quot;&gt;@munificent&lt;/a&gt;), language engineer&lt;/li&gt; 
+ &lt;li&gt;Erik Ernst (&lt;a href=&quot;https://github.com/eernstg&quot;&gt;@eernstg&lt;/a&gt;), language engineer, &lt;a href=&quot;https://dart.dev/guides/language/spec&quot;&gt;specification&lt;/a&gt; maintainer&lt;/li&gt; 
+ &lt;li&gt;Nate Bosch (&lt;a href=&quot;https://github.com/natebosch&quot;&gt;@natebosch&lt;/a&gt;), language engineer&lt;/li&gt; 
+ &lt;li&gt;Jake MacDonald (&lt;a href=&quot;https://github.com/jakemac53&quot;&gt;@jakemac53&lt;/a&gt;), language engineer&lt;/li&gt; 
+ &lt;li&gt;Paul Berry (&lt;a href=&quot;https://github.com/stereotype441&quot;&gt;@stereotype441&lt;/a&gt;), language engineer&lt;/li&gt; 
+ &lt;li&gt;Michael Thomsen (&lt;a href=&quot;https://github.com/mit-mit&quot;&gt;@mit-mit&lt;/a&gt;), product manager&lt;/li&gt; 
+ &lt;li&gt;Kallen Tu (&lt;a href=&quot;https://github.com/kallentu&quot;&gt;@kallentu&lt;/a&gt;), language engineer&lt;/li&gt; 
+ &lt;li&gt;David Morgan (&lt;a href=&quot;https://github.com/davidmorgan&quot;&gt;@davidmorgan&lt;/a&gt;), language engineer&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Organization&lt;/h1&gt; 
+&lt;p&gt;We follow &lt;a href=&quot;https://github.com/dart-lang/language/raw/master/doc/life_of_a_language_feature.md&quot;&gt;this process&lt;/a&gt; for planning and rolling out language changes.&lt;/p&gt; 
+&lt;p&gt;Features currently being worked on are listed in the &lt;a href=&quot;https://github.com/orgs/dart-lang/projects/90&quot;&gt;language funnel&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Anyone can participate in the discussion about language changes by participating on the dart language mailing list, by replying to issues in this repository, and by uploading documents, tests or other resources.&lt;/p&gt; 
+&lt;p&gt;When commenting on issues in this repository, keep in mind:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;span&gt;👍&lt;/span&gt; reactions are more useful than comments to show support.&lt;/li&gt; 
+ &lt;li&gt;Motivating examples help us understand why you want new features more than pointers to other languages which have them. We love hearing feedback about your experiences with other languages, but we also want to know why they are right for Dart in particular.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License &amp;amp; patents&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/dart-lang/language/raw/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt; and &lt;a href=&quot;https://github.com/dart-lang/language/raw/master/PATENTS&quot;&gt;PATENTS&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

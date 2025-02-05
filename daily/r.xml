@@ -1,0 +1,1107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub R Daily Trending</title>
+    <description>Daily Trending of R in GitHub</description>
+    <pubDate>Wed, 05 Feb 2025 01:39:34 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>rdpeng/ProgrammingAssignment2</title>
+      <link>https://github.com/rdpeng/ProgrammingAssignment2</link>
+      <description>&lt;p&gt;Repository for Programming Assignment 2 for R Programming on Coursera&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;Introduction&lt;/h3&gt; 
+&lt;p&gt;This second programming assignment will require you to write an R function that is able to cache potentially time-consuming computations. For example, taking the mean of a numeric vector is typically a fast operation. However, for a very long vector, it may take too long to compute the mean, especially if it has to be computed repeatedly (e.g. in a loop). If the contents of a vector are not changing, it may make sense to cache the value of the mean so that when we need it again, it can be looked up in the cache rather than recomputed. In this Programming Assignment you will take advantage of the scoping rules of the R language and how they can be manipulated to preserve state inside of an R object.&lt;/p&gt; 
+&lt;h3&gt;Example: Caching the Mean of a Vector&lt;/h3&gt; 
+&lt;p&gt;In this example we introduce the &lt;code&gt;&amp;lt;&amp;lt;-&lt;/code&gt; operator which can be used to assign a value to an object in an environment that is different from the current environment. Below are two functions that are used to create a special object that stores a numeric vector and caches its mean.&lt;/p&gt; 
+&lt;p&gt;The first function, &lt;code&gt;makeVector&lt;/code&gt; creates a special &quot;vector&quot;, which is really a list containing a function to&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;set the value of the vector&lt;/li&gt; 
+ &lt;li&gt;get the value of the vector&lt;/li&gt; 
+ &lt;li&gt;set the value of the mean&lt;/li&gt; 
+ &lt;li&gt;get the value of the mean&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;!-- --&gt; 
+&lt;pre&gt;&lt;code&gt;makeVector &amp;lt;- function(x = numeric()) {
+        m &amp;lt;- NULL
+        set &amp;lt;- function(y) {
+                x &amp;lt;&amp;lt;- y
+                m &amp;lt;&amp;lt;- NULL
+        }
+        get &amp;lt;- function() x
+        setmean &amp;lt;- function(mean) m &amp;lt;&amp;lt;- mean
+        getmean &amp;lt;- function() m
+        list(set = set, get = get,
+             setmean = setmean,
+             getmean = getmean)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The following function calculates the mean of the special &quot;vector&quot; created with the above function. However, it first checks to see if the mean has already been calculated. If so, it &lt;code&gt;get&lt;/code&gt;s the mean from the cache and skips the computation. Otherwise, it calculates the mean of the data and sets the value of the mean in the cache via the &lt;code&gt;setmean&lt;/code&gt; function.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cachemean &amp;lt;- function(x, ...) {
+        m &amp;lt;- x$getmean()
+        if(!is.null(m)) {
+                message(&quot;getting cached data&quot;)
+                return(m)
+        }
+        data &amp;lt;- x$get()
+        m &amp;lt;- mean(data, ...)
+        x$setmean(m)
+        m
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Assignment: Caching the Inverse of a Matrix&lt;/h3&gt; 
+&lt;p&gt;Matrix inversion is usually a costly computation and there may be some benefit to caching the inverse of a matrix rather than computing it repeatedly (there are also alternatives to matrix inversion that we will not discuss here). Your assignment is to write a pair of functions that cache the inverse of a matrix.&lt;/p&gt; 
+&lt;p&gt;Write the following functions:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;code&gt;makeCacheMatrix&lt;/code&gt;: This function creates a special &quot;matrix&quot; object that can cache its inverse.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cacheSolve&lt;/code&gt;: This function computes the inverse of the special &quot;matrix&quot; returned by &lt;code&gt;makeCacheMatrix&lt;/code&gt; above. If the inverse has already been calculated (and the matrix has not changed), then &lt;code&gt;cacheSolve&lt;/code&gt; should retrieve the inverse from the cache.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Computing the inverse of a square matrix can be done with the &lt;code&gt;solve&lt;/code&gt; function in R. For example, if &lt;code&gt;X&lt;/code&gt; is a square invertible matrix, then &lt;code&gt;solve(X)&lt;/code&gt; returns its inverse.&lt;/p&gt; 
+&lt;p&gt;For this assignment, assume that the matrix supplied is always invertible.&lt;/p&gt; 
+&lt;p&gt;In order to complete this assignment, you must do the following:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the GitHub repository containing the stub R files at &lt;a href=&quot;https://github.com/rdpeng/ProgrammingAssignment2&quot;&gt;https://github.com/rdpeng/ProgrammingAssignment2&lt;/a&gt; to create a copy under your own account.&lt;/li&gt; 
+ &lt;li&gt;Clone your forked GitHub repository to your computer so that you can edit the files locally on your own machine.&lt;/li&gt; 
+ &lt;li&gt;Edit the R file contained in the git repository and place your solution in that file (please do not rename the file).&lt;/li&gt; 
+ &lt;li&gt;Commit your completed R file into YOUR git repository and push your git branch to the GitHub repository under your account.&lt;/li&gt; 
+ &lt;li&gt;Submit to Coursera the URL to your GitHub repository that contains the completed R code for the assignment.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Grading&lt;/h3&gt; 
+&lt;p&gt;This assignment will be graded via peer assessment.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>joey711/phyloseq</title>
+      <link>https://github.com/joey711/phyloseq</link>
+      <description>&lt;p&gt;phyloseq is a set of classes, wrappers, and tools (in R) to make it easier to import, store, and analyze phylogenetic sequencing data; and to reproducibly share that data and analysis with others. See the phyloseq front page:&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;a href=&quot;http://joey711.github.com/phyloseq/&quot;&gt;phyloseq&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/joey711/phyloseq&quot;&gt;&lt;img src=&quot;https://travis-ci.org/joey711/phyloseq.svg?branch=master&quot; alt=&quot;Travis-CI Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/joey711/phyloseq/master/inst/extdata/phyloseq.png&quot; alt=&quot;phyloseq&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Quick Install&lt;/h2&gt; 
+&lt;p&gt;In R terminal:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;if(!requireNamespace(&quot;BiocManager&quot;)){
+  install.packages(&quot;BiocManager&quot;)
+}
+BiocManager::install(&quot;phyloseq&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;See &lt;a href=&quot;http://joey711.github.io/phyloseq/install.html&quot;&gt;the phyloseq installation page&lt;/a&gt; for further details, examples.&lt;/p&gt; 
+&lt;h2&gt;Article on Improved Microbiome Analysis&lt;/h2&gt; 
+&lt;p&gt;McMurdie and Holmes (2014) &lt;a href=&quot;http://dx.plos.org/10.1371/journal.pcbi.1003531&quot;&gt;Waste Not, Want Not: Why Rarefying Microbiome Data is Statistically Inadmissible&lt;/a&gt; &lt;em&gt;PLoS Computational Biology&lt;/em&gt; 10(4): e1003531&lt;/p&gt; 
+&lt;p&gt;Presubmission versions ahead of acceptance (2013): &lt;a href=&quot;http://arxiv.org/pdf/1310.0424v2.pdf&quot;&gt;PDF version 2&lt;/a&gt;, &lt;a href=&quot;http://arxiv.org/pdf/1310.0424v1.pdf&quot;&gt;PDF version 1&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Peer-reviewed articles about phyloseq&lt;/h2&gt; 
+&lt;p&gt;McMurdie and Holmes (2014) &lt;a href=&quot;http://bioinformatics.oxfordjournals.org/content/early/2014/10/02/bioinformatics.btu616&quot;&gt;Shiny-phyloseq: Web Application for Interactive Microbiome Analysis with Provenance Tracking&lt;/a&gt;. &lt;em&gt;Bioinformatics (Oxford, England)&lt;/em&gt; 31(2), 282–283.&lt;/p&gt; 
+&lt;p&gt;McMurdie and Holmes (2013) &lt;a href=&quot;http://dx.plos.org/10.1371/journal.pone.0061217&quot;&gt;phyloseq: An R package for reproducible interactive analysis and graphics of microbiome census data&lt;/a&gt; &lt;em&gt;PLoS ONE&lt;/em&gt; 8(4):e61217&lt;/p&gt; 
+&lt;h2&gt;Other resources&lt;/h2&gt; 
+&lt;p&gt;The phyloseq project also has a number of supporting online resources, including (but probably not limited to)&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;http://joey711.github.com/phyloseq/&quot;&gt;the phyloseq home page&lt;/a&gt;&lt;/h3&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://www.bioconductor.org/packages/release/bioc/vignettes/phyloseq/inst/doc/phyloseq-FAQ.html&quot;&gt;the phyloseq FAQ&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;I recommend checking this page, and the issues tracker, before posting new issues.&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;http://bioconductor.org/packages/release/bioc/html/phyloseq.html&quot;&gt;Bioconductor stable release&lt;/a&gt;.&lt;/h3&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://github.com/joey711/phyloseq/issues&quot;&gt;the phyloseq Issue Tracker&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;This is the recommended location to post&lt;/p&gt; 
+&lt;p&gt;(1) feature requests (2) bug reports (3) theoretical considerations (4) other issues, feedback (5) ask for help&lt;/p&gt; 
+&lt;p&gt;Search previous posts, and check &lt;a href=&quot;https://www.bioconductor.org/packages/release/bioc/vignettes/phyloseq/inst/doc/phyloseq-FAQ.html&quot;&gt;the phyloseq FAQ&lt;/a&gt; before posting a new issue.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>stan-dev/rstan</title>
+      <link>https://github.com/stan-dev/rstan</link>
+      <description>&lt;p&gt;RStan, the R interface to Stan&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;RStan &lt;img src=&quot;https://raw.githubusercontent.com/stan-dev/rstan/develop/rstan/rstan/man/figures/stanlogo.png&quot; align=&quot;right&quot; width=&quot;120&quot;&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=rstan&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/rstan?color=blue&quot; alt=&quot;CRAN_Status_Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.rstudio.com/package=rstan&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/rstan?color=blue&quot; alt=&quot;Downloads&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://depsy.org/package/r/rstan&quot;&gt;&lt;img src=&quot;http://depsy.org/api/package/cran/rstan/badge.svg?sanitize=true&quot; alt=&quot;Research software impact&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/stan-dev/rstan/actions&quot;&gt;&lt;img src=&quot;https://github.com/stan-dev/rstan/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;&lt;strong&gt;RStan&lt;/strong&gt; is the R interface to &lt;a href=&quot;https://mc-stan.org&quot;&gt;Stan&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Quick links&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://mc-stan.org/rstan/&quot;&gt;mc-stan.org/rstan&lt;/a&gt; (online RStan documentation, vignettes)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://mc-stan.org/users/documentation/&quot;&gt;Stan documentation&lt;/a&gt; (language manual, case studies, and more)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discourse.mc-stan.org&quot;&gt;Ask a question&lt;/a&gt; (Stan Forums on Discourse)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/stan-dev/rstan/issues&quot;&gt;Open an issue&lt;/a&gt; (GitHub issues for bug reports, feature requests)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Getting Started&lt;/h3&gt; 
+&lt;p&gt;For installation instructions and other tips on getting started with RStan see&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started&quot;&gt;RStan Getting Started&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Several Stan users have also contributed translations of the &lt;em&gt;RStan Getting Started&lt;/em&gt; page:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started-(Fran%C3%A7ais)&quot;&gt;RStan Getting Started (French)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started-(Japanese)&quot;&gt;RStan Getting Started (Japanese)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started-(%E7%B9%81%E9%AB%94%E4%B8%AD%E6%96%87)&quot;&gt;RStan Getting Started (繁體中文)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/stan-dev/rstan/wiki/RStan-Getting-Started-(Portugu%C3%AAs)&quot;&gt;RStan Getting Started (Portuguese)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Source Repository&lt;/h3&gt; 
+&lt;p&gt;RStan&#39;s source code repository is hosted here on GitHub. Stan&#39;s source repository is defined as a submodule. See &lt;a href=&quot;https://github.com/stan-dev/rstan/wiki/How-to-work-with-the-stan-submodule-in-rstan-repo%3F&quot;&gt;how to work with stan submodule in rstan repo&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Licensing&lt;/h3&gt; 
+&lt;p&gt;RStan is licensed under GPLv3. The Stan code packaged in RStan is licensed under new BSD.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>satijalab/seurat</title>
+      <link>https://github.com/satijalab/seurat</link>
+      <description>&lt;p&gt;R toolkit for single cell genomics&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Seurat&quot; alt=&quot;CRAN Version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Seurat&quot; alt=&quot;CRAN Downloads&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Seurat v5&lt;/h1&gt; 
+&lt;p&gt;Seurat is an R toolkit for single cell genomics, developed and maintained by the Satija Lab at NYGC.&lt;/p&gt; 
+&lt;p&gt;We are excited to release Seurat v5! This updates introduces new functionality for spatial, multimodal, and scalable single-cell analysis.&lt;/p&gt; 
+&lt;p&gt;Seurat v5 is backwards-compatible with previous versions, so that users will continue to be able to re-run existing workflows.&lt;/p&gt; 
+&lt;p&gt;Instructions, documentation, and tutorials can be found at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://satijalab.org/seurat&quot;&gt;https://satijalab.org/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat is also hosted on GitHub, you can view and clone the repository at&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;https://github.com/satijalab/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat has been successfully installed on Mac OS X, Linux, and Windows, using the devtools package to install directly from GitHub&lt;/p&gt; 
+&lt;p&gt;Improvements and new features will be added on a regular basis, please post on the &lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;github page&lt;/a&gt; with any questions or if you would like to contribute&lt;/p&gt; 
+&lt;p&gt;For a version history/changelog, please see the &lt;a href=&quot;https://github.com/satijalab/seurat/raw/master/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>r-spatial/sf</title>
+      <link>https://github.com/r-spatial/sf</link>
+      <description>&lt;p&gt;Simple Features for R&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/r-spatial/sf/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/r-spatial/sf/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/r-spatial/sf/actions/workflows/tic-db.yml&quot;&gt;&lt;img src=&quot;https://github.com/r-spatial/sf/actions/workflows/tic-db.yml/badge.svg?sanitize=true&quot; alt=&quot;tic-db&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/r-spatial/sf&quot;&gt;&lt;img src=&quot;https://img.shields.io/codecov/c/github/r-spatial/sf/main.svg?sanitize=true&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;img src=&quot;http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat&quot; alt=&quot;License&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=sf&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/sf&quot; alt=&quot;CRAN&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/web/checks/check_results_sf.html&quot;&gt;&lt;img src=&quot;https://badges.cranchecks.info/worst/sf.svg?sanitize=true&quot; alt=&quot;cran checks&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.r-pkg.org/pkg/sf&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/sf?color=brightgreen&quot; alt=&quot;Downloads&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://CRAN.R-project.org/package=sf&quot;&gt;&lt;img src=&quot;https://tinyverse.netlify.app/badge/sf&quot; alt=&quot;status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h1&gt;Simple Features for R&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/edzer/f461a3a95570c4ab7edf3125c2f19d20&quot;&gt;&lt;img align=&quot;right&quot; src=&quot;https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A package that provides &lt;a href=&quot;https://en.wikipedia.org/wiki/Simple_Features&quot;&gt;simple features access&lt;/a&gt; for R.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#blogs-presentations-vignettes-sp-sf-wiki&quot;&gt;Blogs, links&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#cheatsheet&quot;&gt;Cheatsheet&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#installing&quot;&gt;Installing&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#contributing&quot;&gt;Contributing&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#acknowledgment&quot;&gt;Acknowledgment&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#how-to-cite&quot;&gt;How to cite&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Package sf:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;represents simple features as records in a &lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;tibble&lt;/code&gt; with a geometry list-column&lt;/li&gt; 
+ &lt;li&gt;represents natively in R all 17 simple feature types for all dimensions (XY, XYZ, XYM, XYZM)&lt;/li&gt; 
+ &lt;li&gt;interfaces to &lt;a href=&quot;https://libgeos.org&quot;&gt;GEOS&lt;/a&gt; for geometrical operations on projected coordinates, and (through R package &lt;a href=&quot;https://cran.r-project.org/package=s2&quot;&gt;s2&lt;/a&gt;) to &lt;a href=&quot;http://s2geometry.io/&quot;&gt;s2geometry&lt;/a&gt; for geometrical operations on ellipsoidal coordinates&lt;/li&gt; 
+ &lt;li&gt;interfaces to &lt;a href=&quot;https://gdal.org/&quot;&gt;GDAL&lt;/a&gt;, supporting all driver options, &lt;code&gt;Date&lt;/code&gt; and &lt;code&gt;POSIXct&lt;/code&gt; and list-columns&lt;/li&gt; 
+ &lt;li&gt;interfaces to &lt;a href=&quot;http://proj.org/&quot;&gt;PRØJ&lt;/a&gt; for coordinate reference system conversion and transformation&lt;/li&gt; 
+ &lt;li&gt;uses &lt;a href=&quot;https://en.wikipedia.org/wiki/Well-known_text#Well-known_binary&quot;&gt;well-known-binary&lt;/a&gt; serialisations written in C++/Rcpp for fast I/O with GDAL and GEOS&lt;/li&gt; 
+ &lt;li&gt;reads from and writes to spatial databases such as &lt;a href=&quot;http://postgis.net/&quot;&gt;PostGIS&lt;/a&gt; using &lt;a href=&quot;https://cran.r-project.org/package=DBI&quot;&gt;DBI&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;is extended by 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/r-spatial/lwgeom/&quot;&gt;lwgeom&lt;/a&gt; for selected liblwgeom/PostGIS functions&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/r-spatial/stars/&quot;&gt;stars&lt;/a&gt; for raster data, and raster or vector data cubes (spatial time series)&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://luukvdmeer.github.io/sfnetworks/&quot;&gt;sfnetworks&lt;/a&gt; for geospatial network data&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/edzer/442d74a5775abcd5068cf3e73b23687b&quot;&gt;&lt;img align=&quot;left&quot; src=&quot;https://user-images.githubusercontent.com/520851/50280460-e35c1880-044c-11e9-9ed7-cc46754e49db.jpg&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;(Illustration (c) 2018 by &lt;a href=&quot;https://twitter.com/allison_horst/status/1071456081308614656&quot;&gt;Allison Horst&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Books, journal articles, blogs, presentations, vignettes, sp-sf wiki&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;an open access &lt;a href=&quot;https://journal.r-project.org/archive/2018/RJ-2018-009/index.html&quot;&gt;R Journal article&lt;/a&gt; summarizes the package&lt;/li&gt; 
+ &lt;li&gt;two books: &lt;a href=&quot;https://r-spatial.org/book/&quot;&gt;Spatial Data Science: with applications in R&lt;/a&gt;, &lt;a href=&quot;https://r.geocompx.org/&quot;&gt;Geocomputation with R&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;package vignettes: &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf1.html&quot;&gt;first&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf2.html&quot;&gt;second&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf3.html&quot;&gt;third&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf4.html&quot;&gt;fourth&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf5.html&quot;&gt;fifth&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf6.html&quot;&gt;sixth&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf7.html&quot;&gt;seventh&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;blog posts: &lt;a href=&quot;https://r-spatial.org/r/2016/02/15/simple-features-for-r.html&quot;&gt;first&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.org/r/2016/07/18/sf2.html&quot;&gt;second&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.org/r/2016/11/02/sfcran.html&quot;&gt;third&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.org/r/2017/01/12/newssf.html&quot;&gt;fourth&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;the original R Consortium ISC &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/PROPOSAL.md&quot;&gt;proposal&lt;/a&gt;, the R Consortium &lt;a href=&quot;https://www.r-consortium.org/blog/2017/01/03/simple-features-now-on-cran&quot;&gt;blog post&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;presentations: &lt;a href=&quot;https://edzer.github.io/rstudio_conf/#1&quot;&gt;rstudio::conf 2018&lt;/a&gt; (&lt;a href=&quot;https://posit.co/resources/videos/tidy-spatial-data-analysis/&quot;&gt;video&lt;/a&gt;), &lt;a href=&quot;http://pebesma.staff.ifgi.de/pebesma_sfr.pdf&quot;&gt;UseR! 2016&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;wiki page describing &lt;a href=&quot;https://github.com/r-spatial/sf/wiki/Migrating&quot;&gt;sp-sf migration&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Cheatsheet&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;CC 4.0&lt;/a&gt; BY &lt;a href=&quot;https://github.com/ryangarnett&quot;&gt;Ryan Garnett&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/sf.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/sf.png&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installing&lt;/h2&gt; 
+&lt;p&gt;Install either from CRAN with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;sf&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will install binary packages on Windows and MacOS, unless you configured R such that it tries to install source packages; in that case, see below.&lt;/p&gt; 
+&lt;p&gt;Install development versions from GitHub with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(remotes)
+install_github(&quot;r-spatial/sf&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;p&gt;Installing sf from source works under Windows when &lt;a href=&quot;https://cran.r-project.org/bin/windows/Rtools/&quot;&gt;Rtools&lt;/a&gt; is installed.&lt;/p&gt; 
+&lt;h3&gt;MacOS&lt;/h3&gt; 
+&lt;p&gt;MacOS users are strongly encouraged to install the &lt;code&gt;sf&lt;/code&gt; binary packages from CRAN, unless they are familiar with compilers, linking, C++ source code, and homebrew.&lt;/p&gt; 
+&lt;p&gt;The easiest way to install &lt;code&gt;gdal&lt;/code&gt; is using Homebrew. Recent versions of Homebrew include a full-featured up-to-date &lt;a href=&quot;https://github.com/Homebrew/homebrew-core/raw/master/Formula/g/gdal.rb&quot;&gt;gdal formula&lt;/a&gt;, which installs &lt;code&gt;proj&lt;/code&gt; and &lt;code&gt;gdal&lt;/code&gt; at the same time:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;brew install pkg-config
+brew install gdal
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Once gdal is installed, you will be able to install &lt;code&gt;sf&lt;/code&gt; package from source in R. With the current version of &lt;code&gt;proj&lt;/code&gt; on homebrew, installation requires additional configuration:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;sf&quot;, type = &quot;source&quot;, configure.args = &quot;--with-proj-lib=$(brew --prefix)/lib/&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or the development version:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(remotes)
+install_github(&quot;r-spatial/sf&quot;, configure.args = &quot;--with-proj-lib=$(brew --prefix)/lib/&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you are using &lt;code&gt;sf&lt;/code&gt; and &lt;code&gt;rgdal&lt;/code&gt; together, it is necessary to install &lt;code&gt;rgdal&lt;/code&gt; from source using this configuration:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;rgdal&quot;, type = &quot;source&quot;, configure.args = c(&quot;--with-proj-lib=$(brew --prefix)/lib/&quot;, &quot;--with-proj-include=$(brew --prefix)/include/&quot;))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, &lt;a href=&quot;https://stat.ethz.ch/pipermail/r-sig-mac/2017-June/012429.html&quot;&gt;these instructions&lt;/a&gt; explain how to install gdal using kyngchaos frameworks.&lt;/p&gt; 
+&lt;p&gt;For Mac OS 11 Big Sur source install instruction, see &lt;a href=&quot;https://github.com/r-spatial/sf/issues/1536#issuecomment-727342736&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Linux&lt;/h3&gt; 
+&lt;p&gt;For Unix-alikes, GDAL (&amp;gt;= 2.0.1), GEOS (&amp;gt;= 3.4.0) and Proj.4 (&amp;gt;= 4.8.0) are required.&lt;/p&gt; 
+&lt;h4&gt;Ubuntu&lt;/h4&gt; 
+&lt;p&gt;Dependencies for recent versions of Ubuntu (18.04 and later) are available in the official repositories; you can install them with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;apt-get -y update &amp;amp;&amp;amp; apt-get install -y  libudunits2-dev libgdal-dev libgeos-dev libproj-dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;However, to get more up-to-date versions of dependencies such as GDAL, we recommend adding the &lt;a href=&quot;http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/&quot;&gt;ubuntugis-unstable&lt;/a&gt; PPA to the package repositories and installing them as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt-get update
+sudo apt-get install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite0-dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Adding this PPA is required for installing &lt;code&gt;sf&lt;/code&gt; on older versions of Ubuntu (e.g. Xenial).&lt;/p&gt; 
+&lt;p&gt;Another option, for advanced users, is to install dependencies from source; see e.g. an older &lt;a href=&quot;https://github.com/r-spatial/sf/raw/593ee48b34001fe3b383ea73ea57063ecf690732/.travis.yml&quot;&gt;Travis&lt;/a&gt; config file for hints.&lt;/p&gt; 
+&lt;h4&gt;Fedora&lt;/h4&gt; 
+&lt;p&gt;The following command installs all required dependencies:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo dnf install gdal-devel proj-devel geos-devel sqlite-devel udunits2-devel
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Arch&lt;/h4&gt; 
+&lt;p&gt;Get gdal, proj, geos and podofo from the main repos, and udunits from the AUR:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;pacman -S gdal proj geos arrow podofo
+yay/pacaur/yaourt/whatever -S udunits
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;&lt;code&gt;renv&lt;/code&gt; or &lt;code&gt;conda&lt;/code&gt;&lt;/h4&gt; 
+&lt;p&gt;There are several reports that &lt;code&gt;sf&lt;/code&gt; fails to install as a source package when R is used with &lt;code&gt;renv&lt;/code&gt;, or when R is installed in a &lt;code&gt;conda&lt;/code&gt; environment. If you experience this, please do not raise an issue here, but&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;try to sort this out with the &lt;code&gt;renv&lt;/code&gt; developers or the &lt;code&gt;conda&lt;/code&gt; maintainers, or&lt;/li&gt; 
+ &lt;li&gt;try to use binary installs of the &lt;code&gt;sf&lt;/code&gt; package, e.g. from &lt;a href=&quot;https://github.com/eddelbuettel/r2u&quot;&gt;r2u&lt;/a&gt;, or the Posit package manager&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Other&lt;/h4&gt; 
+&lt;p&gt;To install on Debian, the &lt;a href=&quot;https://github.com/rocker-org/geospatial&quot;&gt;rocker geospatial&lt;/a&gt; Dockerfiles may be helpful. Ubuntu Dockerfiles are found &lt;a href=&quot;https://github.com/r-spatial/sf/tree/main/inst/docker&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Multiple GDAL, GEOS and/or PROJ versions on your system&lt;/h3&gt; 
+&lt;p&gt;If you use dynamic linking (installation from source) and have multiple versions of these libraries installed (e.g. one from ubuntugis-unstable, another installed from source in &lt;code&gt;/usr/local/lib&lt;/code&gt;) then this will in general not work, even when setting &lt;code&gt;LD_LIBRARY_PATH&lt;/code&gt; manually. See &lt;a href=&quot;https://github.com/r-spatial/sf/issues/844&quot;&gt;here&lt;/a&gt; for the reason why.&lt;/p&gt; 
+&lt;h3&gt;lwgeom&lt;/h3&gt; 
+&lt;p&gt;Functions and methods that require &lt;code&gt;liblwgeom&lt;/code&gt;, including ellipsoidal (not spherical or Euclidean) metrics (area, distances), are provide by and used from &lt;a href=&quot;https://github.com/r-spatial/lwgeom&quot;&gt;lwgeom&lt;/a&gt;, which is also on &lt;a href=&quot;https://cran.r-project.org/package=lwgeom&quot;&gt;CRAN&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Contributions of all sorts are most welcome, issues and pull requests are the preferred ways of sharing them.&lt;/li&gt; 
+ &lt;li&gt;When contributing pull requests, please adhere to the package style (in package code use &lt;code&gt;=&lt;/code&gt; rather than &lt;code&gt;&amp;lt;-&lt;/code&gt;; don&#39;t change indentation; tab stops of 4 spaces are preferred).&lt;/li&gt; 
+ &lt;li&gt;This project is released with a &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/CONDUCT.md&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By participating in this project, you agree to abide by its terms.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to cite&lt;/h2&gt; 
+&lt;p&gt;Package &lt;code&gt;sf&lt;/code&gt; can be cited as:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Edzer Pebesma, 2018. Simple Features for R: Standardized Support for Spatial Vector Data. The R Journal &lt;a href=&quot;https://journal.r-project.org/archive/2018/RJ-2018-009/index.html&quot;&gt;10:1, 439-446.&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Pebesma, E.; Bivand, R. (2023). &lt;a href=&quot;https://r-spatial.org/book/&quot;&gt;Spatial Data Science: With Applications in R&lt;/a&gt; (1st ed.). 314 pages. &lt;a href=&quot;https://doi.org/10.1201/9780429459016&quot;&gt;Chapman and Hall/CRC&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Acknowledgment&lt;/h2&gt; 
+&lt;p&gt;This project gratefully acknowledges financial &lt;a href=&quot;https://www.r-consortium.org/projects&quot;&gt;support&lt;/a&gt; from the&lt;/p&gt; 
+&lt;a href=&quot;https://r-consortium.org/all-projects/2016-group-1.html#simple-features-for-r&quot;&gt; &lt;img src=&quot;https://r-consortium.org/images/RConsortium_Horizontal_Pantone.webp&quot; width=&quot;300&quot;&gt; &lt;/a&gt; 
+&lt;!--
+&lt;img src=&quot;http://pebesma.staff.ifgi.de/RConsortium_Horizontal_Pantone.png&quot; width=&quot;300&quot;&gt;
+--&gt;</description>
+    </item>
+    
+    <item>
+      <title>sqjin/CellChat</title>
+      <link>https://github.com/sqjin/CellChat</link>
+      <description>&lt;p&gt;R toolkit for inference, visualization and analysis of cell-cell communication from single-cell data&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://github.com/sqjin/CellChat/raw/master/CellChat_Logo.png&quot;&gt; &lt;/p&gt; 
+&lt;h1&gt;CAUTION&lt;/h1&gt; 
+&lt;p&gt;We have updated CellChat to v2 and migrated CellChat to a new repository. This repository will be NOT updated and maintained any more. Please check the new repository &lt;a href=&quot;https://github.com/jinworks/CellChat&quot;&gt;jinworks/CellChat&lt;/a&gt; for the new updates, and the &lt;a href=&quot;https://biorxiv.org/cgi/content/short/2023.11.05.565674v1&quot;&gt;CellChat v2 paper&lt;/a&gt; for a comprehensive protocol of CellChat.&lt;/p&gt; 
+&lt;h1&gt;About CellChat and CellChatDB&lt;/h1&gt; 
+&lt;p&gt;CellChat is an R package designed for inference, analysis, and visualization of cell-cell communication from single-cell data. CellChat aims to enable users to identify and interpret cell-cell communication within an easily interpretable framework, with the emphasis of clear, attractive, and interpretable visualizations.&lt;/p&gt; 
+&lt;p&gt;CellChatDB is a manually curated database of literature-supported ligand-receptor interactions in mutiple species, leading to a comprehensive recapitulation of known molecular interaction mechanisms including multi-subunit structure of ligand-receptor complexes and co-factors.&lt;/p&gt; 
+&lt;p&gt;If you use CellChat in your research, please considering citing our papers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://biorxiv.org/cgi/content/short/2023.11.05.565674v1&quot;&gt;Suoqin Jin et al., CellChat for systematic analysis of cell-cell communication from single-cell and spatially resolved transcriptomics, bioRxiv 2023&lt;/a&gt; [CellChat v2]&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nature.com/articles/s41467-021-21246-9&quot;&gt;Suoqin Jin et al., Inference and analysis of cell-cell communication using CellChat, Nature Communications 2021&lt;/a&gt; [CellChat v1]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Capabilities&lt;/h1&gt; 
+&lt;p&gt;In addition to infer the intercellular communication from any given single-cell data, CellChat provides functionality for further data exploration, analysis, and visualization.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;It can quantitatively characterize and compare the inferred cell-cell communication networks using a systems approach by combining social network analysis, pattern recognition, and manifold learning approaches.&lt;/li&gt; 
+ &lt;li&gt;It provides an easy-to-use tool for extracting and visualizing high-order information of the inferred networks. For example, it allows ready prediction of major signaling inputs and outputs for all cell populations and how these populations and signals coordinate together for functions.&lt;/li&gt; 
+ &lt;li&gt;It enables comparative analysis of cell-cell communication across different conditions and identification of altered signaling and cell populations.&lt;/li&gt; 
+ &lt;li&gt;It provides several visualization outputs to facilitate intuitive user-guided data interpretation.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;700&quot; src=&quot;https://github.com/sqjin/CellChat/raw/master/overview_CellChat.png&quot;&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://clustrmaps.com/site/1bpq2&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://clustrmaps.com/map_v2.png?cl=ffffff&amp;amp;w=a&amp;amp;t=n&amp;amp;d=42WqeykSXznN_NSaBlpf6CtSXQxhqmIs6QusUsguFdY&quot;&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/sqjin/CellChat/master/#&quot;&gt; &lt;img src=&quot;https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fsqjin%2FCellChat&amp;amp;labelColor=%233499cc&amp;amp;countColor=%2370c168&quot;&gt; &lt;/a&gt; &lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rstudio/reticulate</title>
+      <link>https://github.com/rstudio/reticulate</link>
+      <description>&lt;p&gt;R Interface to Python&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;R Interface to Python&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/rstudio/reticulate/actions&quot;&gt;&lt;img src=&quot;https://github.com/rstudio/reticulate/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;The &lt;strong&gt;reticulate&lt;/strong&gt; package provides a comprehensive set of tools for interoperability between Python and R. The package includes facilities for:&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/man/figures/reticulated_python.png&quot; alt=&quot;reticulated python&quot; width=&quot;200&quot; align=&quot;right&quot; style=&quot;margin-left: 15px;&quot;&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Calling Python from R in a variety of ways including R Markdown, sourcing Python scripts, importing Python modules, and using Python interactively within an R session.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Translation between R and Python objects (for example, between R and Pandas data frames, or between R matrices and NumPy arrays).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Flexible binding to different versions of Python including virtual environments and Conda environments.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Reticulate embeds a Python session within your R session, enabling seamless, high-performance interoperability. If you are an R developer that uses Python for some of your work or a member of data science team that uses both languages, reticulate can dramatically streamline your workflow!&lt;/p&gt; 
+&lt;h3&gt;Getting started&lt;/h3&gt; 
+&lt;h4&gt;Installation&lt;/h4&gt; 
+&lt;p&gt;Install the &lt;strong&gt;reticulate&lt;/strong&gt; package from CRAN as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;reticulate&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Python version&lt;/h4&gt; 
+&lt;p&gt;By default, reticulate uses an isolated python virtual environment named &quot;r-reticulate&quot;.&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;use_python()&lt;/code&gt; function enables you to specify an alternate python, for example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(reticulate)
+use_python(&quot;/usr/local/bin/python&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;use_virtualenv()&lt;/code&gt; and &lt;code&gt;use_condaenv()&lt;/code&gt; functions enable you to specify versions of Python in virtual or Conda environments, for example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(reticulate)
+use_virtualenv(&quot;myenv&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;See the article on &lt;a href=&quot;https://rstudio.github.io/reticulate/articles/versions.html&quot;&gt;Python Version Configuration&lt;/a&gt; for additional details.&lt;/p&gt; 
+&lt;h4&gt;Python packages&lt;/h4&gt; 
+&lt;p&gt;You can install any required Python packages using standard shell tools like &lt;code&gt;pip&lt;/code&gt; and &lt;code&gt;conda&lt;/code&gt;. Alternately, reticulate includes a set of functions for managing and installing packages within virtualenvs and Conda environments. See the article on &lt;a href=&quot;https://rstudio.github.io/reticulate/articles/python_packages.html&quot;&gt;Installing Python Packages&lt;/a&gt; for additional details.&lt;/p&gt; 
+&lt;h4&gt;Calling Python&lt;/h4&gt; 
+&lt;p&gt;There are a variety of ways to integrate Python code into your R projects:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/#python-in-r-markdown&quot;&gt;Python in R Markdown&lt;/a&gt; — A new Python language engine for R Markdown that supports bi-directional communication between R and Python (R chunks can access Python objects and vice-versa).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/#importing-python-modules&quot;&gt;Importing Python modules&lt;/a&gt; — The &lt;code&gt;import()&lt;/code&gt; function enables you to import any Python module and call it’s functions directly from R.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/#sourcing-python-scripts&quot;&gt;Sourcing Python scripts&lt;/a&gt; — The &lt;code&gt;source_python()&lt;/code&gt; function enables you to source a Python script the same way you would &lt;code&gt;source()&lt;/code&gt; an R script (Python functions and objects defined within the script become directly available to the R session).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/#python-repl&quot;&gt;Python REPL&lt;/a&gt; — The &lt;code&gt;repl_python()&lt;/code&gt; function creates an interactive Python console within R. Objects you create within Python are available to your R session (and vice-versa).&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Each of these techniques is explained in more detail below.&lt;/p&gt; 
+&lt;h2&gt;Python in R Markdown&lt;/h2&gt; 
+&lt;p&gt;The &lt;strong&gt;reticulate&lt;/strong&gt; package includes a Python engine for &lt;a href=&quot;https://rmarkdown.rstudio.com/&quot;&gt;R Markdown&lt;/a&gt; with the following features:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Run Python chunks in a single Python session embedded within your R session (shared variables/state between Python chunks)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Printing of Python output, including graphical output from &lt;a href=&quot;https://matplotlib.org/&quot;&gt;matplotlib&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Access to objects created within Python chunks from R using the &lt;code&gt;py&lt;/code&gt; object (e.g. &lt;code&gt;py$x&lt;/code&gt; would access an &lt;code&gt;x&lt;/code&gt; variable created within Python from R).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Access to objects created within R chunks from Python using the &lt;code&gt;r&lt;/code&gt; object (e.g. &lt;code&gt;r.x&lt;/code&gt; would access to &lt;code&gt;x&lt;/code&gt; variable created within R from Python)&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Built in conversion for many Python object types is provided, including &lt;a href=&quot;https://numpy.org/&quot;&gt;NumPy&lt;/a&gt; arrays and &lt;a href=&quot;https://pandas.pydata.org/&quot;&gt;Pandas&lt;/a&gt; data frames. For example, you can use Pandas to read and manipulate data then easily plot the Pandas data frame using &lt;a href=&quot;https://ggplot2.tidyverse.org/&quot;&gt;ggplot2&lt;/a&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/man/figures/rmarkdown_engine_zoomed.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;Note that the reticulate Python engine is enabled by default within R Markdown whenever reticulate is installed.&lt;/p&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://rstudio.github.io/reticulate/articles/r_markdown.html&quot;&gt;R Markdown Python Engine&lt;/a&gt; documentation for additional details.&lt;/p&gt; 
+&lt;h2&gt;Importing Python modules&lt;/h2&gt; 
+&lt;p&gt;You can use the &lt;code&gt;import()&lt;/code&gt; function to import any Python module and call it from R. For example, this code imports the Python &lt;code&gt;os&lt;/code&gt; module and calls the &lt;code&gt;listdir()&lt;/code&gt; function:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(reticulate)
+os &amp;lt;- import(&quot;os&quot;)
+os$listdir(&quot;.&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt; [1] &quot;.git&quot;             &quot;.gitignore&quot;       &quot;.Rbuildignore&quot;    &quot;.RData&quot;
+ [5] &quot;.Rhistory&quot;        &quot;.Rproj.user&quot;      &quot;.travis.yml&quot;      &quot;appveyor.yml&quot;
+ [9] &quot;DESCRIPTION&quot;      &quot;docs&quot;             &quot;external&quot;         &quot;index.html&quot;
+[13] &quot;index.Rmd&quot;        &quot;inst&quot;             &quot;issues&quot;           &quot;LICENSE&quot;
+[17] &quot;man&quot;              &quot;NAMESPACE&quot;        &quot;NEWS.md&quot;          &quot;pkgdown&quot;
+[21] &quot;R&quot;                &quot;README.md&quot;        &quot;reticulate.Rproj&quot; &quot;src&quot;
+[25] &quot;tests&quot;            &quot;vignettes&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Functions and other data within Python modules and classes can be accessed via the &lt;code&gt;$&lt;/code&gt; operator (analogous to the way you would interact with an R list, environment, or reference class).&lt;/p&gt; 
+&lt;p&gt;Imported Python modules support code completion and inline help:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/man/figures/reticulate_completion.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://rstudio.github.io/reticulate/articles/calling_python.html&quot;&gt;Calling Python from R&lt;/a&gt; for additional details on interacting with Python objects from within R.&lt;/p&gt; 
+&lt;h2&gt;Sourcing Python scripts&lt;/h2&gt; 
+&lt;p&gt;You can source any Python script just as you would source an R script using the &lt;code&gt;source_python()&lt;/code&gt; function. For example, if you had the following Python script &lt;em&gt;flights.py&lt;/em&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pandas
+def read_flights(file):
+  flights = pandas.read_csv(file)
+  flights = flights[flights[&#39;dest&#39;] == &quot;ORD&quot;]
+  flights = flights[[&#39;carrier&#39;, &#39;dep_delay&#39;, &#39;arr_delay&#39;]]
+  flights = flights.dropna()
+  return flights
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then you can source the script and call the &lt;code&gt;read_flights()&lt;/code&gt; function as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;source_python(&quot;flights.py&quot;)
+flights &amp;lt;- read_flights(&quot;flights.csv&quot;)
+
+library(ggplot2)
+ggplot(flights, aes(carrier, arr_delay)) + geom_point() + geom_jitter()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;See the &lt;code&gt;source_python()&lt;/code&gt; documentation for additional details on sourcing Python code.&lt;/p&gt; 
+&lt;h2&gt;Python REPL&lt;/h2&gt; 
+&lt;p&gt;If you want to work with Python interactively you can call the &lt;code&gt;repl_python()&lt;/code&gt; function, which provides a Python REPL embedded within your R session. Objects created within the Python REPL can be accessed from R using the &lt;code&gt;py&lt;/code&gt; object exported from reticulate. For example:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/reticulate/main/man/figures/python_repl.png&quot; alt=&quot;&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;Enter &lt;code&gt;exit&lt;/code&gt; within the Python REPL to return to the R prompt.&lt;/p&gt; 
+&lt;p&gt;Note that Python code can also access objects from within the R session using the &lt;code&gt;r&lt;/code&gt; object (e.g. &lt;code&gt;r.flights&lt;/code&gt;). See the &lt;code&gt;repl_python()&lt;/code&gt; documentation for additional details on using the embedded Python REPL.&lt;/p&gt; 
+&lt;h2&gt;Type conversions&lt;/h2&gt; 
+&lt;p&gt;When calling into Python, R data types are automatically converted to their equivalent Python types. When values are returned from Python to R they are converted back to R types. Types are converted as follows:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;R&lt;/th&gt; 
+   &lt;th&gt;Python&lt;/th&gt; 
+   &lt;th&gt;Examples&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Single-element atomic vector&lt;/td&gt; 
+   &lt;td&gt;Scalar&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;1&lt;/code&gt;, &lt;code&gt;1L&lt;/code&gt;, &lt;code&gt;TRUE&lt;/code&gt;, &lt;code&gt;&quot;foo&quot;&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Unnamed list or multi-element atomic vector&lt;/td&gt; 
+   &lt;td&gt;List&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;c(1.0, 2.0, 3.0)&lt;/code&gt;, &lt;code&gt;c(1L, 2L, 3L)&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Named list&lt;/td&gt; 
+   &lt;td&gt;Dict&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;list(a = 1L, b = 2.0)&lt;/code&gt;, &lt;code&gt;dict(x = x_data)&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Matrix/Array&lt;/td&gt; 
+   &lt;td&gt;NumPy ndarray&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;matrix(c(1,2,3,4), nrow = 2, ncol = 2)&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Data Frame&lt;/td&gt; 
+   &lt;td&gt;Pandas DataFrame&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;data.frame(x = c(1,2,3), y = c(&quot;a&quot;, &quot;b&quot;, &quot;c&quot;))&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Function&lt;/td&gt; 
+   &lt;td&gt;Python function&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;function(x) x + 1&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;NULL, TRUE, FALSE&lt;/td&gt; 
+   &lt;td&gt;None, True, False&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;NULL&lt;/code&gt;, &lt;code&gt;TRUE&lt;/code&gt;, &lt;code&gt;FALSE&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;If a Python object of a custom class is returned then an R reference to that object is returned. You can call methods and access properties of the object just as if it was an instance of an R reference class.&lt;/p&gt; 
+&lt;h2&gt;Learning more&lt;/h2&gt; 
+&lt;p&gt;The following articles cover the various aspects of using &lt;strong&gt;reticulate&lt;/strong&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://rstudio.github.io/reticulate/articles/calling_python.html&quot;&gt;Calling Python from R&lt;/a&gt; — Describes the various ways to access Python objects from R as well as functions available for more advanced interactions and conversion behavior.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://rstudio.github.io/reticulate/articles/r_markdown.html&quot;&gt;R Markdown Python Engine&lt;/a&gt; — Provides details on using Python chunks within R Markdown documents, including how call Python code from R chunks and vice-versa.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://rstudio.github.io/reticulate/articles/versions.html&quot;&gt;Python Version Configuration&lt;/a&gt; — Describes facilities for determining which version of Python is used by reticulate within an R session.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://rstudio.github.io/reticulate/articles/python_packages.html&quot;&gt;Installing Python Packages&lt;/a&gt; — Documentation on installing Python packages from PyPI or Conda, and managing package installations using virtualenvs and Conda environments.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://rstudio.github.io/reticulate/articles/package.html&quot;&gt;Using reticulate in an R Package&lt;/a&gt; — Guidelines and best practices for using reticulate in an R package.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://rstudio.github.io/reticulate/articles/arrays.html&quot;&gt;Arrays in R and Python&lt;/a&gt; — Advanced discussion of the differences between arrays in R and Python and the implications for conversion and interoperability.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://rstudio.github.io/reticulate/articles/python_primer.html&quot;&gt;Python Primer&lt;/a&gt; — Introduction to Python for R users.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Why reticulate?&lt;/h2&gt; 
+&lt;p&gt;From the &lt;a href=&quot;https://en.wikipedia.org/wiki/Reticulated_python&quot;&gt;Wikipedia&lt;/a&gt; article on the reticulated python:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;The reticulated python is a species of python found in Southeast Asia. They are the world’s longest snakes and longest reptiles…The specific name, reticulatus, is Latin meaning “net-like”, or reticulated, and is a reference to the complex colour pattern.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;From the &lt;a href=&quot;https://www.merriam-webster.com/dictionary/reticulate&quot;&gt;Merriam-Webster&lt;/a&gt; definition of reticulate:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;1: resembling a net or network; especially : having veins, fibers, or lines crossing a reticulate leaf. 2: being or involving evolutionary change dependent on genetic recombination involving diverse interbreeding populations.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;The package enables you to &lt;em&gt;reticulate&lt;/em&gt; Python code into R, creating a new breed of project that weaves together the two languages.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>tidyverse/ellmer</title>
+      <link>https://github.com/tidyverse/ellmer</link>
+      <description>&lt;p&gt;Call LLM APIs from R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ellmer &lt;a href=&quot;https://ellmer.tidyverse.org&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/ellmer/main/man/figures/logo.png&quot; align=&quot;right&quot; height=&quot;138&quot; alt=&quot;ellmer website&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lifecycle.r-lib.org/articles/stages.html#experimental&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-experimental-orange.svg?sanitize=true&quot; alt=&quot;Lifecycle: experimental&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/tidyverse/ellmer/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/tidyverse/ellmer/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;ellmer makes it easy to use large language models (LLM) from R. It supports a wide variety of LLM providers and implements a rich set of features including streaming outputs, tool/function calling, structured data extraction, and more.&lt;/p&gt; 
+&lt;p&gt;(Looking for something similar to ellmer for python? Check out &lt;a href=&quot;https://github.com/posit-dev/chatlas&quot;&gt;chatlas&lt;/a&gt;!)&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;You can install ellmer from CRAN with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;ellmer&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Providers&lt;/h2&gt; 
+&lt;p&gt;ellmer supports a wide variety of model providers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Anthropic’s Claude: &lt;code&gt;chat_claude()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;AWS Bedrock: &lt;code&gt;chat_bedrock()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Azure OpenAI: &lt;code&gt;chat_azure()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Databricks: &lt;code&gt;chat_databricks()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;DeepSeek: &lt;code&gt;chat_deepseek()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;GitHub model marketplace: &lt;code&gt;chat_github()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Google Gemini: &lt;code&gt;chat_gemini()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Groq: &lt;code&gt;chat_groq()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Ollama: &lt;code&gt;chat_ollama()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;OpenAI: &lt;code&gt;chat_openai()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;OpenRouter: &lt;code&gt;chat_openrouter()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;perplexity.ai: &lt;code&gt;chat_perplexity()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Snowflake Cortex: &lt;code&gt;chat_snowflake()&lt;/code&gt; and &lt;code&gt;chat_cortex_analyst()&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;VLLM: &lt;code&gt;chat_vllm()&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Model choice&lt;/h2&gt; 
+&lt;p&gt;If you’re using ellmer inside your organisation, you’ll be limited to what your IT department allows, which is likely to be one provided by a big cloud provider, e.g.&amp;nbsp;&lt;code&gt;chat_azure()&lt;/code&gt;, &lt;code&gt;chat_bedrock()&lt;/code&gt;, &lt;code&gt;chat_databricks()&lt;/code&gt;, or &lt;code&gt;chat_snowflake()&lt;/code&gt;. If you’re using ellmer for your own exploration, you’ll have a lot more freedom, so we have a few recommendations to help you get started:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;chat_openai()&lt;/code&gt; or &lt;code&gt;chat_claude()&lt;/code&gt; are good places to start. &lt;code&gt;chat_openai()&lt;/code&gt; defaults to &lt;strong&gt;GPT-4o&lt;/strong&gt;, but you can use &lt;code&gt;model = &quot;gpt-4o-mini&quot;&lt;/code&gt; for a cheaper, lower-quality model, or &lt;code&gt;model = &quot;o1-mini&quot;&lt;/code&gt; for more complex reasoning. &lt;code&gt;chat_claude()&lt;/code&gt; is also good; it defaults to &lt;strong&gt;Claude 3.5 Sonnet&lt;/strong&gt;, which we have found to be particularly good at writing code.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;chat_gemini()&lt;/code&gt; is great for large prompts because it has a much larger context window than other models. It allows up to 1 million tokens, compared to Claude 3.5 Sonnet’s 200k and GPT-4o’s 128k. It also comes with a generous free tier (with the downside that &lt;a href=&quot;https://ai.google.dev/gemini-api/terms#unpaid-services&quot;&gt;your data is used&lt;/a&gt; to improve the model).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;chat_ollama()&lt;/code&gt;, which uses &lt;a href=&quot;https://ollama.com&quot;&gt;Ollama&lt;/a&gt;, allows you to run models on your own computer. While the biggest models you can run locally aren’t as good as the state of the art hosted models, they don’t share your data and are effectively free.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Using ellmer&lt;/h2&gt; 
+&lt;p&gt;You can work with ellmer in several different ways, depending on whether you are working interactively or programmatically. They all start with creating a new chat object:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ellmer)
+
+chat &amp;lt;- chat_openai(
+  model = &quot;gpt-4o-mini&quot;,
+  system_prompt = &quot;You are a friendly but terse assistant.&quot;,
+)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Chat objects are stateful &lt;a href=&quot;https://r6.r-lib.org&quot;&gt;R6 objects&lt;/a&gt;: they retain the context of the conversation, so each new query builds on the previous ones. You call their methods with &lt;code&gt;$&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Interactive chat console&lt;/h3&gt; 
+&lt;p&gt;The most interactive and least programmatic way of using ellmer is to chat directly in your R console or browser with &lt;code&gt;live_console(chat)&lt;/code&gt; or &lt;code&gt;live_browser()&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;live_console(chat)
+#&amp;gt; ╔════════════════════════════════════════════════════════╗
+#&amp;gt; ║  Entering chat console. Use &quot;&quot;&quot; for multi-line input.  ║
+#&amp;gt; ║  Press Ctrl+C to quit.                                 ║
+#&amp;gt; ╚════════════════════════════════════════════════════════╝
+#&amp;gt; &amp;gt;&amp;gt;&amp;gt; Who were the original creators of R?
+#&amp;gt; R was originally created by Ross Ihaka and Robert Gentleman at the University of
+#&amp;gt; Auckland, New Zealand.
+#&amp;gt;
+#&amp;gt; &amp;gt;&amp;gt;&amp;gt; When was that?
+#&amp;gt; R was initially released in 1995. Development began a few years prior to that,
+#&amp;gt; in the early 1990s.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Keep in mind that the chat object retains state, so when you enter the chat console, any previous interactions with that chat object are still part of the conversation, and any interactions you have in the chat console will persist after you exit back to the R prompt. This is true regardless of which chat function you use.&lt;/p&gt; 
+&lt;h3&gt;Interactive method call&lt;/h3&gt; 
+&lt;p&gt;The second most interactive way to chat is to call the &lt;code&gt;chat()&lt;/code&gt; method:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;chat$chat(&quot;What preceding languages most influenced R?&quot;)
+#&amp;gt; R was primarily influenced by the S programming language, particularly S-PLUS.
+#&amp;gt; Other languages that had an impact include Scheme and various data analysis
+#&amp;gt; languages.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you initialize the chat object in the global environment, the &lt;code&gt;chat&lt;/code&gt; method will stream the response to the console. When the entire response is received, it’s also (invisibly) returned as a character vector. This is useful when you want to see the response as it arrives, but you don’t want to enter the chat console.&lt;/p&gt; 
+&lt;p&gt;If you want to ask a question about an image, you can pass one or more additional input arguments using &lt;code&gt;content_image_file()&lt;/code&gt; and/or &lt;code&gt;content_image_url()&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;chat$chat(
+  content_image_url(&quot;https://www.r-project.org/Rlogo.png&quot;),
+  &quot;Can you explain this logo?&quot;
+)
+#&amp;gt; The logo of R features a stylized letter &quot;R&quot; in blue, enclosed in an oval
+#&amp;gt; shape that resembles the letter &quot;O,&quot; signifying the programming language&#39;s
+#&amp;gt; name. The design conveys a modern and professional look, reflecting its use
+#&amp;gt; in statistical computing and data analysis. The blue color often represents
+#&amp;gt; trust and reliability, which aligns with R&#39;s role in data science.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Programmatic chat&lt;/h3&gt; 
+&lt;p&gt;The most programmatic way to chat is to create the chat object inside a function. By doing so, live streaming is automatically suppressed and &lt;code&gt;$chat()&lt;/code&gt; returns the result as a string:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;my_function &amp;lt;- function() {
+  chat &amp;lt;- chat_openai(
+    model = &quot;gpt-4o-mini&quot;,
+    system_prompt = &quot;You are a friendly but terse assistant.&quot;,
+  )
+  chat$chat(&quot;Is R a functional programming language?&quot;)
+}
+my_function()
+#&amp;gt; [1] &quot;Yes, R supports functional programming concepts. It allows functions to
+#&amp;gt; be first-class objects, supports higher-order functions, and encourages the
+#&amp;gt; use of functions as core components of code. However, it also supports
+#&amp;gt; procedural and object-oriented programming styles.&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If needed, you can manually control this behaviour with the &lt;code&gt;echo&lt;/code&gt; argument. This is useful for programming with ellmer when the result is either not intended for human consumption or when you want to process the response before displaying it.&lt;/p&gt; 
+&lt;h2&gt;Learning more&lt;/h2&gt; 
+&lt;p&gt;ellmer comes with a bunch of vignettes to help you learn more:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Learn key vocabulary and see example use cases in &lt;code&gt;vignette(&quot;ellmer&quot;)&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Learn how to design your prompt in &lt;code&gt;vignette(&quot;prompt-design&quot;)&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Learn about tool/function calling in &lt;code&gt;vignette(&quot;tool-calling&quot;)&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Learn how to extract structured data in &lt;code&gt;vignette(&quot;structured-data&quot;)&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Learn about streaming and async APIs in &lt;code&gt;vignette(&quot;streaming-async&quot;)&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>benjjneb/dada2</title>
+      <link>https://github.com/benjjneb/dada2</link>
+      <description>&lt;p&gt;Accurate sample inference from amplicon data with single nucleotide resolution&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://app.travis-ci.com/benjjneb/dada2&quot;&gt;&lt;img src=&quot;https://app.travis-ci.com/benjjneb/dada2.svg?branch=master&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;dada2&lt;/h1&gt; 
+&lt;p&gt;Exact sample inference from high-throughput amplicon data. Resolves real variants differing by as little as one nucleotide. Visit &lt;a href=&quot;https://benjjneb.github.io/dada2/index.html&quot;&gt;the DADA2 website&lt;/a&gt; for the most detailed and up-to-date documentation.&lt;/p&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;p&gt;The dada2 package binaries are available through Bioconductor:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-S&quot;&gt;## try http:// if https:// URLs are not supported
+if (!requireNamespace(&quot;BiocManager&quot;, quietly=TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(&quot;dada2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In order to install dada2 from source (and get the latest and greatest new features) see our &lt;a href=&quot;https://benjjneb.github.io/dada2/dada-installation.html&quot;&gt;installation from source instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://benjjneb.github.io/dada2/tutorial.html&quot;&gt;tutorial walkthrough of the DADA2 pipeline on paired end Illumina Miseq data&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://www.bioconductor.org/packages/3.6/bioc/manuals/dada2/man/dada2.pdf&quot;&gt;dada2 R package manual&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Further documentation is available on &lt;a href=&quot;http://benjjneb.github.io/dada2/&quot;&gt;the DADA2 front page&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;DADA2 Articles&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1038/nmeth.3869&quot;&gt;DADA2: High resolution sample inference from Illumina amplicon data. Nature Methods, 2016.&lt;/a&gt; &lt;a href=&quot;http://rdcu.be/ipGh&quot;&gt;(Open Access link.)&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://f1000research.com/articles/5-1492&quot;&gt;Bioconductor workflow for microbiome data analysis: from raw reads to community analyses. F1000 Research, 2016.&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1038/ismej.2017.119&quot;&gt;Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. ISMEJ, 2017.&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1093/nar/gkz569&quot;&gt;High-throughput amplicon sequencing of the full-length 16S rRNA gene with single-nucleotide resolution. Nucleic Acids Research, 2019.&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Other Resources&lt;/h3&gt; 
+&lt;p&gt;Planned feature improvements are publicly catalogued at the main DADA2 development site on github, specifically on the &quot;Issues&quot; page for DADA2:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/benjjneb/dada2/issues&quot;&gt;https://github.com/benjjneb/dada2/issues&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If the feature you are hoping for is not listed, you are welcome to add it as a feature request &quot;issue&quot; on this page. This request will be publicly available and listed on the page.&lt;/p&gt; 
+&lt;p&gt;Bugs and difficulties in using DADA2 are also welcome on &lt;a href=&quot;https://github.com/benjjneb/dada2/issues&quot;&gt;the issue tracker&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rstudio/shiny</title>
+      <link>https://github.com/rstudio/shiny</link>
+      <description>&lt;p&gt;Easy interactive web applications with R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;shiny &lt;img src=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/man/figures/logo.png&quot; align=&quot;right&quot; width=&quot;120&quot; height=&quot;139&quot; alt=&quot;&quot;&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://CRAN.R-project.org/package=shiny&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/shiny&quot; alt=&quot;CRAN&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/rstudio/shiny/actions&quot;&gt;&lt;img src=&quot;https://github.com/rstudio/shiny/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R build status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/community-shiny-blue?style=social&amp;amp;logo=rstudio&amp;amp;logoColor=75AADB&quot; alt=&quot;RStudio community&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;Easily build rich and productive interactive web apps in R — no HTML/CSS/JavaScript required.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An intuitive and extensible &lt;a href=&quot;https://en.wikipedia.org/wiki/Reactive_programming&quot;&gt;reactive programming&lt;/a&gt; model which makes it easy to transform existing R code into a &quot;live app&quot; where outputs automatically react to new user input. 
+  &lt;ul&gt; 
+   &lt;li&gt;Compared to event-based programming, reactivity allows Shiny to do the minimum amount of work when input(s) change, and allows humans to more easily reason about complex &lt;a href=&quot;https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC logic&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;A prebuilt set of highly sophisticated, customizable, and easy-to-use widgets (e.g., plots, tables, sliders, dropdowns, date pickers, and more).&lt;/li&gt; 
+ &lt;li&gt;An attractive default look based on &lt;a href=&quot;https://getbootstrap.com/&quot;&gt;Bootstrap&lt;/a&gt; which can also be easily customized with the &lt;a href=&quot;https://github.com/rstudio/bslib&quot;&gt;bslib&lt;/a&gt; package or avoided entirely with more direct R bindings to HTML/CSS/JavaScript.&lt;/li&gt; 
+ &lt;li&gt;Seamless integration with &lt;a href=&quot;https://shiny.rstudio.com/articles/interactive-docs.html&quot;&gt;R Markdown&lt;/a&gt;, making it easy to embed numerous applications natively within a larger dynamic document.&lt;/li&gt; 
+ &lt;li&gt;Tools for improving and monitoring performance, including native support for &lt;a href=&quot;https://posit.co/blog/shiny-1-1-0/&quot;&gt;async programming&lt;/a&gt;, &lt;a href=&quot;https://talks.cpsievert.me/20201117&quot;&gt;caching&lt;/a&gt;, &lt;a href=&quot;https://rstudio.github.io/shinyloadtest/&quot;&gt;load testing&lt;/a&gt;, and more.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://shiny.rstudio.com/articles/modules.html&quot;&gt;Modules&lt;/a&gt;: a framework for reducing code duplication and complexity.&lt;/li&gt; 
+ &lt;li&gt;An ability to &lt;a href=&quot;https://shiny.rstudio.com/articles/bookmarking-state.html&quot;&gt;bookmark application state&lt;/a&gt; and/or &lt;a href=&quot;https://github.com/rstudio/shinymeta&quot;&gt;generate code to reproduce output(s)&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;A rich ecosystem of extension packages for more &lt;a href=&quot;http://www.htmlwidgets.org/&quot;&gt;custom widgets&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinyvalidate&quot;&gt;input validation&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinytest&quot;&gt;unit testing&lt;/a&gt;, and more.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the stable version from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;shiny&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Once installed, load the library and run an example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(shiny)
+# Launches an app, with the app&#39;s source code included
+runExample(&quot;06_tabsets&quot;)
+# Lists more prepackaged examples
+runExample()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more examples and inspiration, check out the &lt;a href=&quot;https://shiny.rstudio.com/gallery/&quot;&gt;Shiny User Gallery&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For help with learning fundamental Shiny programming concepts, check out the &lt;a href=&quot;https://mastering-shiny.org/&quot;&gt;Mastering Shiny&lt;/a&gt; book and the &lt;a href=&quot;https://shiny.rstudio.com/tutorial/&quot;&gt;Shiny Tutorial&lt;/a&gt;. The former is currently more up-to-date with modern Shiny features, whereas the latter takes a deeper, more visual, dive into fundamental concepts.&lt;/p&gt; 
+&lt;h2&gt;Join the conversation&lt;/h2&gt; 
+&lt;p&gt;If you want to chat about Shiny, meet other developers, or help us decide what to work on next, &lt;a href=&quot;https://discord.com/invite/yMGCamUMnS&quot;&gt;join us on Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Getting Help&lt;/h2&gt; 
+&lt;p&gt;To ask a question about Shiny, please use the &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;RStudio Community website&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For bug reports, please use the &lt;a href=&quot;https://github.com/rstudio/shiny/issues&quot;&gt;issue tracker&lt;/a&gt; and also keep in mind that by &lt;a href=&quot;https://github.com/rstudio/shiny/wiki/Writing-Good-Bug-Reports&quot;&gt;writing a good bug report&lt;/a&gt;, you&#39;re more likely to get help with your problem.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions to the &lt;strong&gt;shiny&lt;/strong&gt; package. Please see our &lt;a href=&quot;https://github.com/rstudio/shiny/raw/main/.github/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; file for detailed guidelines of how to contribute.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The shiny package as a whole is licensed under the GPLv3. See the &lt;a href=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for more details.&lt;/p&gt; 
+&lt;h2&gt;R version support&lt;/h2&gt; 
+&lt;p&gt;Shiny is supported on the latest release version of R, as well as the previous four minor release versions of R. For example, if the latest release R version is 4.1, then that version is supported, as well as 4.0, 3.6, 3.5, and 3.4.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>jbengler/tidyplots</title>
+      <link>https://github.com/jbengler/tidyplots</link>
+      <description>&lt;p&gt;Tidy Plots for Scientific Papers&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;tidyplots &lt;a href=&quot;https://jbengler.github.io/tidyplots/&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/logo.svg?sanitize=true&quot; align=&quot;right&quot; height=&quot;139&quot; alt=&quot;tidyplots website&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/jbengler/tidyplots/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://CRAN.R-project.org/package=tidyplots&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/tidyplots&quot; alt=&quot;CRAN status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;The goal of &lt;code&gt;tidyplots&lt;/code&gt; is to streamline the creation of publication-ready plots for scientific papers. It allows to gradually add, remove and adjust plot components using a consistent and intuitive syntax.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;You can install the released version of tidyplots from &lt;a href=&quot;https://cran.r-project.org/&quot;&gt;CRAN&lt;/a&gt; with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;tidyplots&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And the development version from &lt;a href=&quot;https://github.com/&quot;&gt;GitHub&lt;/a&gt; with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;jbengler/tidyplots&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;Here are some examples. Also have a look at the &lt;a href=&quot;https://jbengler.github.io/tidyplots/articles/tidyplots.html&quot;&gt;getting started guide&lt;/a&gt; and the &lt;a href=&quot;https://jbengler.github.io/tidyplots/reference/&quot;&gt;full documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(tidyplots)
+
+study |&amp;gt; 
+  tidyplot(x = treatment, y = score, color = treatment) |&amp;gt; 
+  add_mean_bar(alpha = 0.4) |&amp;gt; 
+  add_sem_errorbar() |&amp;gt; 
+  add_data_points_beeswarm()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-2-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;energy |&amp;gt; 
+  tidyplot(x = year, y = energy, color = energy_source) |&amp;gt; 
+  add_barstack_absolute()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-3-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;energy |&amp;gt; 
+  dplyr::filter(year %in% c(2005, 2010, 2015, 2020)) |&amp;gt; 
+  tidyplot(y = energy, color = energy_source) |&amp;gt; 
+  add_donut() |&amp;gt; 
+  split_plot(by = year)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-4-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;energy_week |&amp;gt; 
+  tidyplot(x = date, y = power, color = energy_source) |&amp;gt; 
+  add_areastack_absolute()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-5-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;energy_week |&amp;gt; 
+  tidyplot(x = date, y = power, color = energy_source) |&amp;gt; 
+  add_areastack_relative()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-6-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;study |&amp;gt; 
+  tidyplot(x = group, y = score, color = dose) |&amp;gt; 
+  add_mean_bar(alpha = 0.4) |&amp;gt; 
+  add_mean_dash() |&amp;gt; 
+  add_mean_value()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-7-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;time_course |&amp;gt;
+  tidyplot(x = day, y = score, color = treatment) |&amp;gt;
+  add_mean_line() |&amp;gt;
+  add_mean_dot() |&amp;gt;
+  add_sem_ribbon()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-8-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;climate |&amp;gt;
+  tidyplot(x = month, y = year, color = max_temperature) |&amp;gt;
+  add_heatmap()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-9-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;study |&amp;gt; 
+  tidyplot(x = treatment, y = score, color = treatment) |&amp;gt; 
+  add_boxplot() |&amp;gt; 
+  add_test_pvalue(ref.group = 1)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-10-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;gene_expression |&amp;gt; 
+  dplyr::filter(external_gene_name %in% c(&quot;Apol6&quot;, &quot;Col5a3&quot;, &quot;Vgf&quot;, &quot;Bsn&quot;)) |&amp;gt; 
+  tidyplot(x = condition, y = expression, color = sample_type) |&amp;gt; 
+  add_mean_dash() |&amp;gt; 
+  add_sem_errorbar() |&amp;gt; 
+  add_data_points_beeswarm() |&amp;gt; 
+  add_test_asterisks(hide_info = TRUE) |&amp;gt; 
+  remove_x_axis_title() |&amp;gt; 
+  split_plot(by = external_gene_name)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-11-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;study |&amp;gt; 
+  tidyplot(x = treatment, y = score, color = treatment) |&amp;gt; 
+  add_mean_bar(alpha = 0.4) |&amp;gt; 
+  add_sem_errorbar() |&amp;gt; 
+  add_data_points_beeswarm() |&amp;gt; 
+  view_plot(title = &quot;Default color scheme: &#39;friendly&#39;&quot;) |&amp;gt; 
+  adjust_colors(colors_discrete_apple) |&amp;gt; 
+  view_plot(title = &quot;Alternative color scheme: &#39;apple&#39;&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-12-1.png&quot; style=&quot;display: block; margin: auto;&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jbengler/tidyplots/master/man/figures/README-unnamed-chunk-12-2.png&quot; style=&quot;display: block; margin: auto;&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://jbengler.github.io/tidyplots/reference/&quot;&gt;Package index&lt;/a&gt;&lt;br&gt; Overview of all tidyplots functions&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://jbengler.github.io/tidyplots/articles/tidyplots.html&quot;&gt;Get started&lt;/a&gt;&lt;br&gt; Getting started guide&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://jbengler.github.io/tidyplots/articles/Visualizing-data.html&quot;&gt;Visualizing data&lt;/a&gt;&lt;br&gt; Article with examples for common data visualizations&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://jbengler.github.io/tidyplots/articles/Advanced-plotting.html&quot;&gt;Advanced plotting&lt;/a&gt;&lt;br&gt; Article about advanced plotting techniques and workflows&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://jbengler.github.io/tidyplots/articles/Color-schemes.html&quot;&gt;Color schemes&lt;/a&gt;&lt;br&gt; Article about the use of color schemes&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Acknowledgements&lt;/h2&gt; 
+&lt;p&gt;I would like to thank Lars Binkle-Ladisch for our insightful discussions and for consistently challenging my decisions regarding the naming of functions and their arguments.&lt;/p&gt; 
+&lt;p&gt;Many thanks to the R and tidyverse communities. tidyplots is built upon their software and coding paradigms, and it would not have been possible without their contributions.&lt;/p&gt; 
+&lt;p&gt;tidyplots relies on several fantastic packages that handle all the heavy lifting behind the scenes. These include cli, dplyr, forcats, ggbeeswarm, ggplot2, ggpubr, ggrastr, ggrepel, glue, Hmisc, htmltools, lifecycle, patchwork, purrr, rlang, scales, stringr, tidyr, and tidyselect.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>plotly/plotly.R</title>
+      <link>https://github.com/plotly/plotly.R</link>
+      <description>&lt;p&gt;An interactive graphing library for R&lt;/p&gt;&lt;hr&gt;&lt;img src=&quot;https://raw.githubusercontent.com/plotly/plotly.R/master/man/figures/plotly.png&quot; width=&quot;200&quot;&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/plotly/plotly.R/actions&quot;&gt;&lt;img src=&quot;https://github.com/ropensci/plotly/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=plotly&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/plotly&quot; alt=&quot;CRAN Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cranlogs.r-pkg.org/badges/grand-total/plotly&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/grand-total/plotly&quot; alt=&quot;CRAN Downloads&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cranlogs.r-pkg.org/badges/plotly&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/plotly&quot; alt=&quot;monthly&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;An R package for creating interactive web graphics via the open source JavaScript graphing library &lt;a href=&quot;https://github.com/plotly/plotly.js&quot;&gt;plotly.js&lt;/a&gt;.&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://dash.plotly.com/project-maintenance&quot;&gt; &lt;img src=&quot;https://dash.plotly.com/assets/images/maintained-by-community.png&quot; width=&quot;400px&quot; alt=&quot;Maintained by the Plotly Community&quot;&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Install from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;plotly&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or install the latest development version (on GitHub) via &lt;code&gt;{remotes}&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;remotes::install_github(&quot;plotly/plotly&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Getting started&lt;/h2&gt; 
+&lt;h3&gt;Web-based ggplot2 graphics&lt;/h3&gt; 
+&lt;p&gt;If you use &lt;a href=&quot;https://github.com/tidyverse/ggplot2&quot;&gt;ggplot2&lt;/a&gt;, &lt;code&gt;ggplotly()&lt;/code&gt; converts your static plots to an interactive web-based version!&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(plotly)
+g &amp;lt;- ggplot(faithful, aes(x = eruptions, y = waiting)) +
+  stat_density_2d(aes(fill = ..level..), geom = &quot;polygon&quot;) + 
+  xlim(1, 6) + ylim(40, 100)
+ggplotly(g)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/G1rSArP.gif&quot; alt=&quot;https://i.imgur.com/G1rSArP.gifv&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;By default, &lt;code&gt;ggplotly()&lt;/code&gt; tries to replicate the static ggplot2 version exactly (before any interaction occurs), but sometimes you need greater control over the interactive behavior. The &lt;code&gt;ggplotly()&lt;/code&gt; function itself has some convenient “high-level” arguments, such as &lt;code&gt;dynamicTicks&lt;/code&gt;, which tells plotly.js to dynamically recompute axes, when appropriate. The &lt;code&gt;style()&lt;/code&gt; function also comes in handy for &lt;em&gt;modifying&lt;/em&gt; the underlying trace attributes (e.g. &lt;a href=&quot;https://plotly.com/r/reference/#scatter-hoveron&quot;&gt;hoveron&lt;/a&gt;) used to generate the plot:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;gg &amp;lt;- ggplotly(g, dynamicTicks = &quot;y&quot;)
+style(gg, hoveron = &quot;points&quot;, hoverinfo = &quot;x+y+text&quot;, hoverlabel = list(bgcolor = &quot;white&quot;))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://imgur.com/qRvLgea.gif&quot; alt=&quot;https://i.imgur.com/qRvLgea.gifv&quot;&gt;&lt;/p&gt; 
+&lt;p&gt;Moreover, since &lt;code&gt;ggplotly()&lt;/code&gt; returns a plotly object, you can apply essentially any function from the R package on that object. Some useful ones include &lt;code&gt;layout()&lt;/code&gt; (for &lt;a href=&quot;https://plotly-r.com/improving-ggplotly.html#modifying-layout&quot;&gt;customizing the layout&lt;/a&gt;), &lt;code&gt;add_traces()&lt;/code&gt; (and its higher-level &lt;code&gt;add_*()&lt;/code&gt; siblings, for example &lt;code&gt;add_polygons()&lt;/code&gt;, for &lt;a href=&quot;https://plotly-r.com/improving-ggplotly.html#leveraging-statistical-output&quot;&gt;adding new traces/data&lt;/a&gt;), &lt;code&gt;subplot()&lt;/code&gt; (for &lt;a href=&quot;https://plotly-r.com/arranging-views.html#arranging-plotly-objects&quot;&gt;combining multiple plotly objects&lt;/a&gt;), and &lt;code&gt;plotly_json()&lt;/code&gt; (for inspecting the underlying JSON sent to plotly.js).&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;ggplotly()&lt;/code&gt; function will also respect some “unofficial” &lt;strong&gt;ggplot2&lt;/strong&gt; aesthetics, namely &lt;code&gt;text&lt;/code&gt; (for &lt;a href=&quot;https://plotly-r.com/controlling-tooltips.html#tooltip-text-ggplotly&quot;&gt;customizing the tooltip&lt;/a&gt;), &lt;code&gt;frame&lt;/code&gt; (for &lt;a href=&quot;https://plotly-r.com/animating-views.html&quot;&gt;creating animations&lt;/a&gt;), and &lt;code&gt;ids&lt;/code&gt; (for ensuring sensible smooth transitions).&lt;/p&gt; 
+&lt;h3&gt;Using plotly without ggplot2&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;plot_ly()&lt;/code&gt; function provides a more direct interface to plotly.js so you can leverage more specialized chart types (e.g., &lt;a href=&quot;https://plotly.com/r/parallel-coordinates-plot/&quot;&gt;parallel coordinates&lt;/a&gt; or &lt;a href=&quot;https://plotly.com/r/maps/&quot;&gt;maps&lt;/a&gt;) or even some visualization that the ggplot2 API won’t ever support (e.g., surface, &lt;a href=&quot;https://plotly.com/r/3d-mesh/&quot;&gt;mesh&lt;/a&gt;, &lt;a href=&quot;https://plotly.com/r/trisurf/&quot;&gt;trisurf&lt;/a&gt;, etc).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;plot_ly(z = ~volcano, type = &quot;surface&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://plot.ly/~brnvg/1134.png&quot; alt=&quot;https://plot.ly/~brnvg/1134&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Learn more&lt;/h2&gt; 
+&lt;p&gt;To learn more about special features that the plotly R package provides (e.g., &lt;a href=&quot;https://plotly-r.com/client-side-linking.html&quot;&gt;client-side linking&lt;/a&gt;, &lt;a href=&quot;https://plotly-r.com/linking-views-with-shiny.html&quot;&gt;&lt;strong&gt;shiny&lt;/strong&gt; integration&lt;/a&gt;, &lt;a href=&quot;https://plotly-r.com/publish.html&quot;&gt;editing and generating static images&lt;/a&gt;, &lt;a href=&quot;https://plotly-r.com/javascript.html&quot;&gt;custom events in JavaScript&lt;/a&gt;, and more), see &lt;a href=&quot;https://plotly-r.com&quot;&gt;https://plotly-r.com&lt;/a&gt;. You may already be familiar with existing plotly documentation (e.g., &lt;a href=&quot;https://plotly.com/r/&quot;&gt;https://plotly.com/r/&lt;/a&gt;), which is essentially a language-agnostic how-to guide for learning plotly.js, whereas &lt;a href=&quot;https://plotly-r.com&quot;&gt;https://plotly-r.com&lt;/a&gt; is meant to be more wholistic tutorial written by and for the R user. The package itself ships with a number of demos (list them by running &lt;code&gt;demo(package = &quot;plotly&quot;)&lt;/code&gt;) and shiny/rmarkdown examples (list them by running &lt;code&gt;plotly_example(&quot;shiny&quot;)&lt;/code&gt; or &lt;code&gt;plotly_example(&quot;rmd&quot;)&lt;/code&gt;). &lt;a href=&quot;https://cpsievert.me&quot;&gt;Carson&lt;/a&gt; also keeps numerous &lt;a href=&quot;https://talks.cpsievert.me&quot;&gt;slide decks&lt;/a&gt; with useful examples and concepts.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Please read through our &lt;a href=&quot;https://github.com/plotly/plotly.R/raw/master/CONTRIBUTING.md&quot;&gt;contributing guidelines&lt;/a&gt;. Included are directions for opening issues, asking questions, contributing changes to plotly, and our code of conduct.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>swirldev/swirl_courses</title>
+      <link>https://github.com/swirldev/swirl_courses</link>
+      <description>&lt;p&gt;🎓 A collection of interactive courses for the swirl R package.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;swirl courses&lt;/h1&gt; 
+&lt;p&gt;This is a collection of interactive courses for use with the &lt;a href=&quot;http://swirlstats.com&quot;&gt;swirl R package&lt;/a&gt;. You&#39;ll find instructions for installing courses further down on this page. Some courses are still in development and we&#39;d love to hear any &lt;a href=&quot;https://github.com/swirldev/swirl_courses/issues/new&quot;&gt;suggestions&lt;/a&gt; you have as you work through them.&lt;/p&gt; 
+&lt;p&gt;For more information regarding swirl, visit &lt;a href=&quot;http://swirlstats.com&quot;&gt;swirlstats.com&lt;/a&gt; or the &lt;a href=&quot;https://github.com/swirldev/swirl&quot;&gt;swirl GitHub repository&lt;/a&gt;. If you&#39;d like to write your own interactive content, please visit the &lt;a href=&quot;http://swirlstats.com/instructors.html&quot;&gt;Instructors page&lt;/a&gt; of our website.&lt;/p&gt; 
+&lt;p&gt;Here are our current offerings, organized by level of difficulty:&lt;/p&gt; 
+&lt;h4&gt;Beginner&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;R Programming&lt;/strong&gt;: The basics of programming in R&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/swirldev/R_Programming_E&quot;&gt;&lt;strong&gt;R Programming E&lt;/strong&gt;&lt;/a&gt;: Same as the original, but modified slightly for in-class use (see below ***)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swirlstats.com/scn/rpe.html&quot;&gt;&lt;strong&gt;The R Programming Environment&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- - **Data Analysis**: Basic ideas in statistics and data visualization --&gt; 
+&lt;!-- - **Mathematical Biostatistics Boot Camp**: One- and two-sample t-tests, power, and sample size --&gt; 
+&lt;!-- - **Open Intro**: A very basic introduction to statistics, data analysis, and data visualization --&gt; 
+&lt;p&gt;*** &lt;em&gt;R Programming E is identical to R Programming, except we&#39;ve eliminated the prompts for Coursera credentials at the end of each lesson and instead give students the option to send an email to their instructor notifying them of completion. Admittedly, it&#39;s sort of a hack until we come up with a more robust solution for in-class use (i.e. an instructor &quot;dashboard&quot;).&lt;/em&gt;&lt;/p&gt; 
+&lt;h4&gt;Intermediate&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Regression Models&lt;/strong&gt;: The basics of regression modeling in R&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Getting and Cleaning Data&lt;/strong&gt;: dplyr, tidyr, lubridate, oh my!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Advanced&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Statistical Inference&lt;/strong&gt;: This intermediate to advanced level course closely follows the &lt;a href=&quot;https://www.coursera.org/course/statinference&quot;&gt;Statistical Inference course&lt;/a&gt; of the Johns Hopkins &lt;a href=&quot;https://www.coursera.org/specialization/jhudatascience/1&quot;&gt;Data Science Specialization&lt;/a&gt; on Coursera. It introduces the student to basic concepts of statistical inference including probability, hypothesis testing, confidence intervals and p-values. It concludes with an initiation to topics of particular relevance to big data, issues of multiple testing and resampling.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swirlstats.com/scn/arp.html&quot;&gt;&lt;strong&gt;Advanced R Programming&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Since our users come from a variety backgrounds, it&#39;s very hard to label material as &lt;strong&gt;Beginner&lt;/strong&gt;, &lt;strong&gt;Intermediate&lt;/strong&gt;, or &lt;strong&gt;Advanced&lt;/strong&gt;. If you find something that is labelled &lt;strong&gt;Beginner&lt;/strong&gt; to be challenging, please don&#39;t be discouraged. The first step of learning anything is to acknowledge that you are capable of understanding it. True understanding will come with time and practice.&lt;/p&gt; 
+&lt;h4&gt;Course Authors&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Writing swirl Courses&lt;/strong&gt;: An interactive guides and example for swirl course authors. The first group of lessons cover basics. The rest cover special topics useful primarily as samples--points of departure for one&#39;s own material. For more comprehensive documentation about writing your own swirl courses see &lt;a href=&quot;http://swirlstats.com/swirlify/&quot;&gt;http://swirlstats.com/swirlify/&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Install and run a course automatically from swirl&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;This is the preferred method of installing courses.&lt;/strong&gt; It automates the process by allowing you to do everything right from the R console.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Make sure you have a recent version version of swirl:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;install.packages(&quot;swirl&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Enter the following from the R console, &lt;strong&gt;substituting the name of the course&lt;/strong&gt; that you wish to install:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;library(swirl)
+install_course(&quot;Course Name Here&quot;)
+swirl()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, &lt;code&gt;install_course(&quot;R Programming&quot;)&lt;/code&gt; will install the R Programming course. &lt;strong&gt;Please note that course names are case sensitive!&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;If that doesn&#39;t work for you...&lt;/p&gt; 
+&lt;h2&gt;Install and run a course manually&lt;/h2&gt; 
+&lt;p&gt;If the automatic course installation method outlined above does not work for you, then there&#39;s a simple alternative.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Find the course you want to install on the &lt;a href=&quot;https://swirlstats.com/scn/title.html&quot;&gt;Swirl Course network website&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Follow the manual installation instructions on the course page.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;If that does not work for you, consider taking a look at the &lt;a href=&quot;https://github.com/swirldev/swirl_courses/wiki/Legacy-Manual-Install-Instructions-for-Swirl-Courses&quot;&gt;legacy manual install instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Uninstall a course&lt;/h2&gt; 
+&lt;p&gt;If you&#39;d like to remove a course at any time, you can use &lt;code&gt;uninstall_course(&quot;Course Name Here&quot;)&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Using swirl in the classroom&lt;/h2&gt; 
+&lt;p&gt;Instructors around the world are using swirl in their classrooms. We think this is awesome. If you&#39;re an instructor, please feel free to do the same -- free of charge. While your students may be paying to take your course or attend your institution, we simply ask that you don&#39;t charge people &lt;em&gt;directly&lt;/em&gt; for the use of our software or instructional content.&lt;/p&gt; 
+&lt;p&gt;If you are not sure about a particular use case, don&#39;t hesitate to post a question to our &lt;a href=&quot;https://groups.google.com/forum/#!forum/swirl-discuss&quot;&gt;Google Group&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>tidyverse/ggplot2</title>
+      <link>https://github.com/tidyverse/ggplot2</link>
+      <description>&lt;p&gt;An implementation of the Grammar of Graphics in R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ggplot2 &lt;a href=&quot;https://ggplot2.tidyverse.org&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png&quot; align=&quot;right&quot; height=&quot;138&quot; alt=&quot;ggplot2 website&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=ggplot2&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/ggplot2&quot; alt=&quot;CRAN_Status_Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/tidyverse/ggplot2&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/tidyverse/ggplot2/graph/badge.svg?sanitize=true&quot; alt=&quot;Codecov test coverage&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;ggplot2 is a system for declaratively creating graphics, based on &lt;a href=&quot;https://www.amazon.com/Grammar-Graphics-Statistics-Computing/dp/0387245448/ref=as_li_ss_tl&quot;&gt;The Grammar of Graphics&lt;/a&gt;. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# The easiest way to get ggplot2 is to install the whole tidyverse:
+install.packages(&quot;tidyverse&quot;)
+
+# Alternatively, install just ggplot2:
+install.packages(&quot;ggplot2&quot;)
+
+# Or the development version from GitHub:
+# install.packages(&quot;pak&quot;)
+pak::pak(&quot;tidyverse/ggplot2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Cheatsheet&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/master/data-visualization.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png&quot; width=&quot;630&quot; height=&quot;252&quot; alt=&quot;ggplot2 cheatsheet&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;It’s hard to succinctly describe how ggplot2 works because it embodies a deep philosophy of visualisation. However, in most cases you start with &lt;code&gt;ggplot()&lt;/code&gt;, supply a dataset and aesthetic mapping (with &lt;code&gt;aes()&lt;/code&gt;). You then add on layers (like &lt;code&gt;geom_point()&lt;/code&gt; or &lt;code&gt;geom_histogram()&lt;/code&gt;), scales (like &lt;code&gt;scale_colour_brewer()&lt;/code&gt;), faceting specifications (like &lt;code&gt;facet_wrap()&lt;/code&gt;) and coordinate systems (like &lt;code&gt;coord_flip()&lt;/code&gt;).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ggplot2)
+
+ggplot(mpg, aes(displ, hwy, colour = class)) + 
+  geom_point()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/README-example-1.png&quot; alt=&quot;Scatterplot of engine displacement versus highway miles per gallon, for 234 cars coloured by 7 &#39;types&#39; of car. The displacement and miles per gallon are inversely correlated.&quot;&gt; 
+&lt;h2&gt;Lifecycle&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lifecycle.r-lib.org/articles/stages.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?sanitize=true&quot; alt=&quot;lifecycle&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;ggplot2 is now over 10 years old and is used by hundreds of thousands of people to make millions of plots. That means, by-and-large, ggplot2 itself changes relatively little. When we do make changes, they will be generally to add new functions or arguments rather than changing the behaviour of existing functions, and if we do make changes to existing behaviour we will do them for compelling reasons.&lt;/p&gt; 
+&lt;p&gt;If you are looking for innovation, look to ggplot2’s rich ecosystem of extensions. See a community maintained list at &lt;a href=&quot;https://exts.ggplot2.tidyverse.org/gallery/&quot;&gt;https://exts.ggplot2.tidyverse.org/gallery/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Learning ggplot2&lt;/h2&gt; 
+&lt;p&gt;If you are new to ggplot2 you are better off starting with a systematic introduction, rather than trying to learn from reading individual documentation pages. Currently, there are several good places to start:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;a href=&quot;https://r4ds.hadley.nz/data-visualize&quot;&gt;Data Visualization&lt;/a&gt; and &lt;a href=&quot;https://r4ds.hadley.nz/communication&quot;&gt;Communication&lt;/a&gt; chapters in &lt;a href=&quot;https://r4ds.hadley.nz&quot;&gt;R for Data Science&lt;/a&gt;. R for Data Science is designed to give you a comprehensive introduction to the &lt;a href=&quot;https://www.tidyverse.org&quot;&gt;tidyverse&lt;/a&gt;, and these two chapters will get you up to speed with the essentials of ggplot2 as quickly as possible.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’d like to take an online course, try &lt;a href=&quot;https://learning.oreilly.com/videos/data-visualization-in/9781491963661/&quot;&gt;Data Visualization in R With ggplot2&lt;/a&gt; by Kara Woo.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’d like to follow a webinar, try &lt;a href=&quot;https://youtu.be/h29g21z0a68&quot;&gt;Plotting Anything with ggplot2&lt;/a&gt; by Thomas Lin Pedersen.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you want to dive into making common graphics as quickly as possible, I recommend &lt;a href=&quot;https://r-graphics.org&quot;&gt;The R Graphics Cookbook&lt;/a&gt; by Winston Chang. It provides a set of recipes to solve common graphics problems.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’ve mastered the basics and want to learn more, read &lt;a href=&quot;https://ggplot2-book.org&quot;&gt;ggplot2: Elegant Graphics for Data Analysis&lt;/a&gt;. It describes the theoretical underpinnings of ggplot2 and shows you how all the pieces fit together. This book helps you understand the theory that underpins ggplot2, and will help you create new types of graphics specifically tailored to your needs.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For articles about announcements and deep-dives you can visit the &lt;a href=&quot;https://www.tidyverse.org/tags/ggplot2/&quot;&gt;tidyverse blog&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Getting help&lt;/h2&gt; 
+&lt;p&gt;There are two main places to get help with ggplot2:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;a href=&quot;https://forum.posit.co/&quot;&gt;RStudio community&lt;/a&gt; is a friendly place to ask any questions about ggplot2.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/tagged/ggplot2?sort=frequent&amp;amp;pageSize=50&quot;&gt;Stack Overflow&lt;/a&gt; is a great source of answers to common ggplot2 questions. It is also a great place to get help, once you have created a reproducible example that illustrates your problem.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt;</description>
+    </item>
+    
+    <item>
+      <title>stuart-lab/signac</title>
+      <link>https://github.com/stuart-lab/signac</link>
+      <description>&lt;p&gt;R toolkit for the analysis of single-cell chromatin data&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Signac &lt;img align=&quot;right&quot; src=&quot;https://raw.githubusercontent.com/stuart-lab/signac/master/man/figures/logo.svg?sanitize=true&quot; style=&quot;height:100px;&quot;&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/stuart-lab/signac/actions&quot;&gt;&lt;img src=&quot;https://github.com/stuart-lab/signac/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Signac&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Signac&quot; alt=&quot;CRAN Version&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Signac&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Signac&quot; alt=&quot;CRAN Downloads&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;Signac is a comprehensive R package for the analysis of single-cell chromatin data. Signac includes functions for quality control, normalization, dimension reduction, clustering, differential activity, and more.&lt;/p&gt; 
+&lt;p&gt;Documentation and tutorials can be found at &lt;a href=&quot;https://stuartlab.org/signac/&quot;&gt;https://stuartlab.org/signac/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the latest release of Signac from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
+install.packages(&quot;Signac&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To release the latest develop version from GitHub:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;remotes&quot;, quietly = TRUE))
+    install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;stuart-lab/signac&quot;, ref = &quot;develop&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Release notes&lt;/h2&gt; 
+&lt;p&gt;For a changelog please see the &lt;a href=&quot;https://github.com/stuart-lab/signac/raw/develop/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;, also available on the &lt;a href=&quot;https://stuartlab.org/signac/news/index.html&quot;&gt;Signac website&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions to the Signac package. Please see the &lt;a href=&quot;https://github.com/stuart-lab/signac/raw/develop/CONTRIBUTING.md&quot;&gt;contribution guide&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h2&gt;Getting help&lt;/h2&gt; 
+&lt;p&gt;If you encounter a bug or have a feature request, please open an &lt;a href=&quot;https://github.com/stuart-lab/signac/issues&quot;&gt;issue&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you would like to discuss questions related to single-cell analysis, you can open a &lt;a href=&quot;https://github.com/stuart-lab/signac/discussions&quot;&gt;discussion&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Roadmap&lt;/h2&gt; 
+&lt;p&gt;Signac runs on a quarterly release schedule. Additional releases will be scheduled in the case of urgent bug fixes. The development roadmap can be viewed on GitHub &lt;a href=&quot;https://github.com/orgs/stuart-lab/projects/1&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Citing Signac&lt;/h2&gt; 
+&lt;p&gt;If you use the Signac package in your work please cite &lt;a href=&quot;https://doi.org/10.1038/s41592-021-01282-5&quot;&gt;Stuart et al. 2021&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@ARTICLE{signac,
+  title     = &quot;Single-cell chromatin state analysis with Signac&quot;,
+  author    = &quot;Stuart, Tim and Srivastava, Avi and Madad, Shaista and Lareau,
+               Caleb A and Satija, Rahul&quot;,
+  journal   = &quot;Nat. Methods&quot;,
+  publisher = &quot;Nature Publishing Group&quot;,
+  pages     = &quot;1--9&quot;,
+  month     =  nov,
+  year      =  2021,
+  url       = &quot;https://www.nature.com/articles/s41592-021-01282-5&quot;,
+  language  = &quot;en&quot;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Related packages&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;Seurat&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-object&quot;&gt;SeuratObject&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mojaveazure/seurat-disk&quot;&gt;SeuratDisk&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-data&quot;&gt;SeuratData&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-wrappers&quot;&gt;SeuratWrappers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/azimuth&quot;&gt;Azimuth&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>broadinstitute/infercnv</title>
+      <link>https://github.com/broadinstitute/infercnv</link>
+      <description>&lt;p&gt;Inferring CNV from Single-Cell RNA-Seq&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Subclustering&lt;/h1&gt; 
+&lt;p&gt;Subclustering resolution is one of the primary settings that will need to be adjusted in most runs to avoid oversplitting. The tutorial below explains how it works and details about it can also be found on the &lt;a href=&quot;https://github.com/broadinstitute/infercnv/wiki/infercnv-tumor-subclusters#tumor-subclustering-by-leiden-clustering-preferred&quot;&gt;wiki&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Documentation&lt;/h1&gt; 
+&lt;h3&gt;Full documentation&lt;/h3&gt; 
+&lt;p&gt;Visit project &lt;a href=&quot;https://github.com/broadinstitute/inferCNV/wiki&quot;&gt;wiki&lt;/a&gt; for InferCNV documentation.&lt;/p&gt; 
+&lt;h3&gt;Infercnv video tutorial&lt;/h3&gt; 
+&lt;p&gt;A &lt;strong&gt;video&lt;/strong&gt; tutorial giving on overview of infercnv features and how to run an analysis can be found below &lt;strong&gt;(click on the image)&lt;/strong&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=-qOcHAavZT8&quot; title=&quot;Tutorial: Running infercnv&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/-qOcHAavZT8/0.jpg&quot; alt=&quot;Tutorial: Running infercnv&quot;&gt;&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>YuLab-SMU/clusterProfiler</title>
+      <link>https://github.com/YuLab-SMU/clusterProfiler</link>
+      <description>&lt;p&gt;📊 A universal enrichment tool for interpreting omics data&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;clusterProfiler&lt;/h1&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/Bioconductor/BiocStickers/master/clusterProfiler/clusterProfiler.png&quot; height=&quot;200&quot; align=&quot;right&quot;&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.repostatus.org/#active&quot;&gt;&lt;img src=&quot;http://www.repostatus.org/badges/latest/active.svg?sanitize=true&quot; alt=&quot;Project Status: Active - The project has reached a stable, usable state and is being actively developed.&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.bioconductor.org/packages/clusterProfiler&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/release%20version-4.12.6-green.svg?sanitize=true&quot; alt=&quot;&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/guangchuangyu/clusterProfiler&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/devel%20version-4.13.4-green.svg?sanitize=true&quot; alt=&quot;&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://www.bioconductor.org/packages/devel/bioc/html/clusterProfiler.html#since&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/years-in-bioc/clusterProfiler.svg?sanitize=true&quot; alt=&quot;Bioc&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.bioconductor.org/packages/devel/bioc/html/clusterProfiler.html#archives&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/availability/devel/clusterProfiler.svg?sanitize=true&quot; alt=&quot;platform&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://bioconductor.org/checkResults/devel/bioc-LATEST/clusterProfiler/&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/build/devel/bioc/clusterProfiler.svg?sanitize=true&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/GuangchuangYu/clusterProfiler/&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/GuangchuangYu/clusterProfiler/branch/master/graph/badge.svg?sanitize=true&quot; alt=&quot;codecov&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!--
+[![Last-changedate](https://img.shields.io/badge/last%20change-2024--10--07-green.svg)](https://github.com/GuangchuangYu/clusterProfiler/commits/master)
+--&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://bioconductor.org/packages/clusterProfiler&quot;&gt;clusterProfiler&lt;/a&gt; supports exploring functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation.&lt;/li&gt; 
+ &lt;li&gt;It provides a universal interface for gene functional annotation from a variety of sources and thus can be applied in diverse scenarios.&lt;/li&gt; 
+ &lt;li&gt;It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation&lt;/li&gt; 
+ &lt;li&gt;Datasets obtained from multiple treatments and time points can be analyzed and compared in a single run, easily revealing functional consensus and differences among distinct conditions&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For details, please visit:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://yulab-smu.top/contribution-knowledge-mining/&quot;&gt;https://yulab-smu.top/contribution-knowledge-mining/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://yulab-smu.top/biomedical-knowledge-mining-book/&quot;&gt;https://yulab-smu.top/biomedical-knowledge-mining-book/&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/YuLab-SMU/clusterProfiler/devel/graphic-abstract-The-Innovation-2021.jpg&quot; width=&quot;890&quot;&gt; 
+&lt;h2&gt;&lt;span&gt;✍&lt;/span&gt; Authors&lt;/h2&gt; 
+&lt;p&gt;Guangchuang YU &lt;a href=&quot;https://yulab-smu.top&quot;&gt;https://yulab-smu.top&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;School of Basic Medical Sciences, Southern Medical University&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;p&gt;If you use &lt;a href=&quot;http://bioconductor.org/packages/clusterProfiler&quot;&gt;clusterProfiler&lt;/a&gt; in published research, please cite the most appropriate paper(s) from this list:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;S Xu&lt;sup&gt;#&lt;/sup&gt;, E Hu&lt;sup&gt;#&lt;/sup&gt;, Y Cai&lt;sup&gt;#&lt;/sup&gt;, Z Xie&lt;sup&gt;#&lt;/sup&gt;, X Luo&lt;sup&gt;#&lt;/sup&gt;, L Zhan, W Tang, Q Wang, B Liu, R Wang, W Xie, T Wu, L Xie, &lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. Using clusterProfiler to characterise Multi-Omics Data. &lt;em&gt;&lt;strong&gt;Nature Protocols&lt;/strong&gt;&lt;/em&gt;. 2024, accepted. doi: &lt;a href=&quot;https://doi.org/10.1038/s41596-024-01020-z&quot;&gt;10.1038/s41596-024-01020-z&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;T Wu&lt;sup&gt;#&lt;/sup&gt;, E Hu&lt;sup&gt;#&lt;/sup&gt;, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo&lt;sup&gt;*&lt;/sup&gt;, &lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. &lt;em&gt;&lt;strong&gt;The Innovation&lt;/strong&gt;&lt;/em&gt;. 2021, 2(3):100141. doi: &lt;a href=&quot;https://doi.org/10.1016/j.xinn.2021.100141&quot;&gt;10.1016/j.xinn.2021.100141&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. Gene Ontology Semantic Similarity Analysis Using GOSemSim. In: Kidder B. (eds) Stem Cell Transcriptional Networks. &lt;em&gt;&lt;strong&gt;Methods in Molecular Biology&lt;/strong&gt;&lt;/em&gt;. 2020, 2117:207-215. Humana, New York, NY. doi: &lt;a href=&quot;https://doi.org/10.1007/978-1-0716-0301-7_11&quot;&gt;10.1007/978-1-0716-0301-7_11&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. Using meshes for MeSH term enrichment and semantic analyses. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2018, 34(21):3766–3767. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/bty410&quot;&gt;10.1093/bioinformatics/bty410&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;, QY He&lt;sup&gt;*&lt;/sup&gt;. ReactomePA: an R/Bioconductor package for reactome pathway analysis and visualization. &lt;em&gt;&lt;strong&gt;Molecular BioSystems&lt;/strong&gt;&lt;/em&gt;. 2016, 12(2):477-479. doi: &lt;a href=&quot;https://doi.org/10.1039/C5MB00663E&quot;&gt;10.1039/C5MB00663E&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;, LG Wang, and QY He&lt;sup&gt;*&lt;/sup&gt;. ChIPseeker: an R/Bioconductor package for ChIP peak annotation, comparison and visualization. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2015, 31(14):2382-2383. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btv145&quot;&gt;10.1093/bioinformatics/btv145&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;, LG Wang, GR Yan, QY He&lt;sup&gt;*&lt;/sup&gt;. DOSE: an R/Bioconductor package for Disease Ontology Semantic and Enrichment analysis. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2015, 31(4):608-609. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btu684&quot;&gt;10.1093/bioinformatics/btu684&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;, LG Wang, Y Han and QY He&lt;sup&gt;*&lt;/sup&gt;. clusterProfiler: an R package for comparing biological themes among gene clusters. &lt;em&gt;&lt;strong&gt;OMICS: A Journal of Integrative Biology&lt;/strong&gt;&lt;/em&gt;. 2012, 16(5):284-287. doi: &lt;a href=&quot;https://doi.org/10.1089/omi.2011.0118&quot;&gt;10.1089/omi.2011.0118&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;, F Li, Y Qin, X Bo&lt;sup&gt;*&lt;/sup&gt;, Y Wu, S Wang&lt;sup&gt;*&lt;/sup&gt;. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2010, 26(7):976-978. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btq064&quot;&gt;10.1093/bioinformatics/btq064&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;!--
+&amp;#10;
+&amp;#10; r badge_custom(&quot;1st most cited paper&quot;, &quot;in OMICS&quot;, &quot;green&quot;,
+  &quot;http://online.liebertpub.com/action/showMostCitedArticles?journalCode=omi&quot;)`
+ r badge_custom(&quot;ESI&quot;, &quot;Highly Cited Paper&quot;, &quot;green&quot;)`
+ r badge_doi(&quot;10.1089/omi.2011.0118&quot;, &quot;green&quot;)`
+&amp;#10;
+------------------------------------------------------------------------
+&amp;#10;### Citation
+&amp;#10;
+&amp;#10;
+&lt;img src=&quot;https://guangchuangyu.github.io/software/citation_trend/clusterProfiler.png&quot; width=&quot;890&quot;/&gt;
+&amp;#10;
+### Download stats
+&amp;#10;r badge_download_bioc(&quot;clusterProfiler&quot;)
+r badge_bioc_download(&quot;clusterProfiler&quot;, &quot;total&quot;, &quot;blue&quot;)
+r badge_bioc_download(&quot;clusterProfiler&quot;, &quot;month&quot;, &quot;blue&quot;)
+&amp;#10;
+&lt;img src=&quot;https://guangchuangyu.github.io/software/dlstats/clusterProfiler.png&quot; width=&quot;890&quot;/&gt;
+&amp;#10;--&gt;</description>
+    </item>
+    
+    <item>
+      <title>thomasp85/patchwork</title>
+      <link>https://github.com/thomasp85/patchwork</link>
+      <description>&lt;p&gt;The Composer of ggplots&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;patchwork &lt;a href=&quot;https://patchwork.data-imaginist.com&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/thomasp85/patchwork/main/man/figures/logo.png&quot; align=&quot;right&quot; height=&quot;131.5&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/thomasp85/patchwork/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/thomasp85/patchwork/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://CRAN.R-project.org/package=patchwork&quot;&gt;&lt;img src=&quot;http://www.r-pkg.org/badges/version-ago/patchwork&quot; alt=&quot;CRAN_Release_Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://CRAN.R-project.org/package=patchwork&quot;&gt;&lt;img src=&quot;http://cranlogs.r-pkg.org/badges/patchwork&quot; alt=&quot;CRAN_Download_Badge&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/thomasp85/patchwork?branch=main&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/thomasp85/patchwork/branch/main/graph/badge.svg?sanitize=true&quot; alt=&quot;Codecov test coverage&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;The goal of &lt;code&gt;patchwork&lt;/code&gt; is to make it ridiculously simple to combine separate ggplots into the same graphic. As such it tries to solve the same problem as &lt;code&gt;gridExtra::grid.arrange()&lt;/code&gt; and &lt;code&gt;cowplot::plot_grid&lt;/code&gt; but using an API that incites exploration and iteration, and scales to arbitrarily complex layouts.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;You can install patchwork from CRAN using &lt;code&gt;install.packages(&#39;patchwork&#39;)&lt;/code&gt;. Alternatively you can grab the development version from github using devtools:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# install.packages(&quot;devtools&quot;)
+devtools::install_github(&quot;thomasp85/patchwork&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Basic example&lt;/h2&gt; 
+&lt;p&gt;The usage of &lt;code&gt;patchwork&lt;/code&gt; is simple: just add plots together!&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ggplot2)
+library(patchwork)
+
+p1 &amp;lt;- ggplot(mtcars) + geom_point(aes(mpg, disp))
+p2 &amp;lt;- ggplot(mtcars) + geom_boxplot(aes(gear, disp, group = gear))
+
+p1 + p2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/thomasp85/patchwork/main/man/figures/README-example-1.png&quot; alt=&quot;&quot;&gt;
+ &lt;!-- --&gt;&lt;/p&gt; 
+&lt;p&gt;patchwork provides rich support for arbitrarily complex layouts with full alignment. As an example, check out this very readable code for nesting three plots on top of a third:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;p3 &amp;lt;- ggplot(mtcars) + geom_smooth(aes(disp, qsec))
+p4 &amp;lt;- ggplot(mtcars) + geom_bar(aes(carb))
+
+(p1 | p2 | p3) /
+      p4
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/thomasp85/patchwork/main/man/figures/README-unnamed-chunk-2-1.png&quot; alt=&quot;&quot;&gt;
+ &lt;!-- --&gt;&lt;/p&gt; 
+&lt;h2&gt;Learn more&lt;/h2&gt; 
+&lt;p&gt;patchwork can do so much more. Check out the guides for learning everything there is to know about all the different features:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://patchwork.data-imaginist.com/articles/patchwork.html&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://patchwork.data-imaginist.com/articles/guides/assembly.html&quot;&gt;Assembling Plots&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://patchwork.data-imaginist.com/articles/guides/layout.html&quot;&gt;Defining Layouts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://patchwork.data-imaginist.com/articles/guides/annotation.html&quot;&gt;Adding Annotation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://patchwork.data-imaginist.com/articles/guides/multipage.html&quot;&gt;Aligning across pages&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Code of Conduct&lt;/h2&gt; 
+&lt;p&gt;Please note that the patchwork project is released with a &lt;a href=&quot;https://patchwork.data-imaginist.com/CODE_OF_CONDUCT.html&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By contributing to this project, you agree to abide by its terms.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

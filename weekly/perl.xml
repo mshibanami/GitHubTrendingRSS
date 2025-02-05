@@ -1,0 +1,1144 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Perl Weekly Trending</title>
+    <description>Weekly Trending of Perl in GitHub</description>
+    <pubDate>Wed, 05 Feb 2025 01:51:56 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>adrienverge/openfortivpn</title>
+      <link>https://github.com/adrienverge/openfortivpn</link>
+      <description>&lt;p&gt;Client for PPP+TLS VPN tunnel services&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;openfortivpn&lt;/h1&gt; 
+&lt;p&gt;openfortivpn is a client for PPP+TLS VPN tunnel services. It spawns a pppd process and operates the communication between the gateway and this process.&lt;/p&gt; 
+&lt;p&gt;It is compatible with Fortinet VPNs.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;man openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Simply connect to a VPN:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect to a VPN using an authentication realm:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo --realm=bar
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Store password securely with a pinentry program:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo --pinentry=pinentry-mac
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect with a user certificate and no password:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username= --password= --user-cert=cert.pem --user-key=key.pem
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect using SAML login:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --saml-login
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Don&#39;t set IP routes and don&#39;t add VPN nameservers to &lt;code&gt;/etc/resolv.conf&lt;/code&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 -u foo --no-routes --no-dns --pppd-no-peerdns
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Using a configuration file:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn -c /etc/openfortivpn/my-config
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;With &lt;code&gt;/etc/openfortivpn/my-config&lt;/code&gt; containing:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;host = vpn-gateway
+port = 8443
+username = foo
+set-dns = 0
+pppd-use-peerdns = 0
+# X509 certificate sha256 sum, trust only this one!
+trusted-cert = e46d4aff08ba6914e64daa85bc6112a422fa7ce16631bff0b592a28556f993db
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For the full list of config options, see the &lt;code&gt;CONFIGURATION&lt;/code&gt; section of&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;man openfortivpn
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Smartcard&lt;/h2&gt; 
+&lt;p&gt;Smartcard support needs &lt;code&gt;openssl pkcs engine&lt;/code&gt; and &lt;code&gt;opensc&lt;/code&gt; to be installed. The pkcs11-engine from libp11 needs to be compiled with p11-kit-devel installed. Check &lt;a href=&quot;https://github.com/adrienverge/openfortivpn/issues/464&quot;&gt;#464&lt;/a&gt; for a discussion of known issues in this area.&lt;/p&gt; 
+&lt;p&gt;To make use of your smartcard put at least &lt;code&gt;pkcs11:&lt;/code&gt; to the user-cert config or commandline option. It takes the full or a partial PKCS#11 token URI.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;user-cert = pkcs11:
+user-cert = pkcs11:token=someuser
+user-cert = pkcs11:model=PKCS%2315%20emulated;manufacturer=piv_II;serial=012345678;token=someuser
+username =
+password =
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In most cases &lt;code&gt;user-cert = pkcs11:&lt;/code&gt; will do it, but if needed you can get the token-URI with &lt;code&gt;p11tool --list-token-urls&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Multiple readers are currently not supported.&lt;/p&gt; 
+&lt;p&gt;Smartcard support has been tested with Yubikey under Linux, but other PIV enabled smartcards may work too. On Mac OS X Mojave it is known that the pkcs engine-by-id is not found.&lt;/p&gt; 
+&lt;h2&gt;Installing&lt;/h2&gt; 
+&lt;h3&gt;Installing existing packages&lt;/h3&gt; 
+&lt;p&gt;Some Linux distributions provide &lt;code&gt;openfortivpn&lt;/code&gt; packages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.fedoraproject.org/pkgs/openfortivpn&quot;&gt;Fedora / CentOS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://software.opensuse.org/package/openfortivpn&quot;&gt;openSUSE / SLE&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.gentoo.org/packages/net-vpn/openfortivpn&quot;&gt;Gentoo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/NixOS/nixpkgs/tree/master/pkgs/tools/networking/openfortivpn&quot;&gt;NixOS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://archlinux.org/packages/extra/x86_64/openfortivpn&quot;&gt;Arch Linux&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.debian.org/stable/openfortivpn&quot;&gt;Debian&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.ubuntu.com/search?keywords=openfortivpn&quot;&gt;Ubuntu&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dev.getsol.us/source/openfortivpn/&quot;&gt;Solus&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pkgs.alpinelinux.org/package/edge/testing/x86_64/openfortivpn&quot;&gt;Alpine Linux&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;On macOS both &lt;a href=&quot;https://formulae.brew.sh/formula/openfortivpn&quot;&gt;Homebrew&lt;/a&gt; and &lt;a href=&quot;https://ports.macports.org/port/openfortivpn&quot;&gt;MacPorts&lt;/a&gt; provide an &lt;code&gt;openfortivpn&lt;/code&gt; package. Either &lt;a href=&quot;https://brew.sh/&quot;&gt;install Homebrew&lt;/a&gt; then install openfortivpn:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;Homebrew&#39;
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+# Install &#39;openfortivpn&#39;
+brew install openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or &lt;a href=&quot;https://www.macports.org/install.php&quot;&gt;install MacPorts&lt;/a&gt; then install openfortivpn:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;openfortivpn&#39;
+sudo port install openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A more complete overview can be obtained from &lt;a href=&quot;https://repology.org/project/openfortivpn/versions&quot;&gt;repology&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Building and installing from source&lt;/h3&gt; 
+&lt;p&gt;For other distros, you&#39;ll need to build and install from source:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Install build dependencies.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;RHEL/CentOS/Fedora: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl-devel&lt;/code&gt; &lt;code&gt;make&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Debian/Ubuntu: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libssl-dev&lt;/code&gt; &lt;code&gt;make&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Arch Linux: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Gentoo Linux: &lt;code&gt;net-dialup/ppp&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;openSUSE: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libopenssl-devel&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;macOS (Homebrew): &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl@1.1&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;FreeBSD: &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libressl&lt;/code&gt; &lt;code&gt;pkgconf&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;On Linux, if you manage your kernel yourself, ensure to compile those modules:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;CONFIG_PPP=m
+CONFIG_PPP_ASYNC=m
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;On macOS, install &#39;Homebrew&#39; to install the build dependencies:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;Homebrew&#39;
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+# Install Dependencies
+brew install automake autoconf openssl@1.1 pkg-config
+
+# You may need to make this openssl available to compilers and pkg-config
+export LDFLAGS=&quot;-L/usr/local/opt/openssl/lib $LDFLAGS&quot;
+export CPPFLAGS=&quot;-I/usr/local/opt/openssl/include $CPPFLAGS&quot;
+export PKG_CONFIG_PATH=&quot;/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build and install.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./autogen.sh
+./configure --prefix=/usr/local --sysconfdir=/etc
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If targeting platforms with pppd &amp;lt; 2.5.0 such as current version of macOS, we suggest you configure with option --enable-legacy-pppd:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./autogen.sh
+./configure --prefix=/usr/local --sysconfdir=/etc --enable-legacy-pppd
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If you need to specify the openssl location you can set the &lt;code&gt;$PKG_CONFIG_PATH&lt;/code&gt; environment variable. For fine-tuning check the available configure arguments with &lt;code&gt;./configure --help&lt;/code&gt; especially when you are cross compiling.&lt;/p&gt; &lt;p&gt;Finally, install runtime dependency &lt;code&gt;ppp&lt;/code&gt; or &lt;code&gt;pppd&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Running as root?&lt;/h2&gt; 
+&lt;p&gt;openfortivpn needs elevated privileges at three steps during tunnel set up:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;when spawning a &lt;code&gt;/usr/sbin/pppd&lt;/code&gt; process;&lt;/li&gt; 
+ &lt;li&gt;when setting IP routes through VPN (when the tunnel is up);&lt;/li&gt; 
+ &lt;li&gt;when adding nameservers to &lt;code&gt;/etc/resolv.conf&lt;/code&gt; (when the tunnel is up).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For these reasons, you need to use &lt;code&gt;sudo openfortivpn&lt;/code&gt;. If you need it to be usable by non-sudoer users, you might consider adding an entry in &lt;code&gt;/etc/sudoers&lt;/code&gt; or a file under &lt;code&gt;/etc/sudoers.d&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;visudo -f /etc/sudoers.d/openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;Cmnd_Alias  OPENFORTIVPN = /usr/bin/openfortivpn
+
+%adm       ALL = (ALL) OPENFORTIVPN
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Adapt the above example by changing the &lt;code&gt;openfortivpn&lt;/code&gt; path or choosing a group different from &lt;code&gt;adm&lt;/code&gt; - such as a dedicated &lt;code&gt;openfortivpn&lt;/code&gt; group.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;: Make sure only trusted users can run openfortivpn as root! As described in &lt;a href=&quot;https://github.com/adrienverge/openfortivpn/issues/54&quot;&gt;#54&lt;/a&gt;, a malicious user could use &lt;code&gt;--pppd-plugin&lt;/code&gt; and &lt;code&gt;--pppd-log&lt;/code&gt; options to divert the program&#39;s behaviour.&lt;/p&gt; 
+&lt;h2&gt;SSO/SAML/2FA&lt;/h2&gt; 
+&lt;p&gt;In some cases, the server may require the VPN client to load and interact with a web page containing JavaScript. Depending on the complexity of the web page, interpreting the web page might be beyond the reach of a command line program such as openfortivpn.&lt;/p&gt; 
+&lt;p&gt;In such cases, you may use an external program spawning a full-fledged web browser such as &lt;a href=&quot;https://github.com/gm-vm/openfortivpn-webview&quot;&gt;openfortivpn-webview&lt;/a&gt; to authenticate and retrieve a session cookie. This cookie can be fed to openfortivpn using option &lt;code&gt;--cookie-on-stdin&lt;/code&gt;. Obviously, such a solution requires a graphic session.&lt;/p&gt; 
+&lt;p&gt;When started using &lt;code&gt;--saml-login&lt;/code&gt; the program creates a web server that accepts SAML login requests. To login using SAML you just have to open &lt;code&gt;&amp;lt;your-vpn-domain&amp;gt;/remote/saml/start?redirect=1&lt;/code&gt; and follow the login steps. At the end of the login process the page will be redirected to &lt;code&gt;http://127.0.0.1:8020/?id=&amp;lt;session-id&amp;gt;&lt;/code&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Feel free to make pull requests!&lt;/p&gt; 
+&lt;p&gt;C coding style should follow the &lt;a href=&quot;https://www.kernel.org/doc/html/latest/process/coding-style.html&quot;&gt;Linux kernel coding style&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>glpi-project/glpi-agent</title>
+      <link>https://github.com/glpi-project/glpi-agent</link>
+      <description>&lt;p&gt;GLPI Agent&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;img src=&quot;https://raw.githubusercontent.com/glpi-project/glpi-agent/develop/share/html/logo.png&quot; alt=&quot;GLPI Agent&quot; width=&quot;32&quot; height=&quot;32&quot;&gt; GLPI Agent&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-ci.yml/badge.svg?sanitize=true&quot; alt=&quot;GLPI Agent CI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-packaging.yml&quot;&gt;&lt;img src=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-packaging.yml/badge.svg?sanitize=true&quot; alt=&quot;GLPI Agent Packaging&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/glpi-project/glpi-agent/develop/#download&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/glpi-project/glpi-agent/total.svg?sanitize=true&quot; alt=&quot;Github All Releases&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/GLPI_PROJECT&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/GLPI_PROJECT.svg?style=social&amp;amp;label=Follow&quot; alt=&quot;Twitter Follow&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Summary&lt;/h2&gt; 
+&lt;p&gt;The GLPI Agent is a generic management agent. It can perform a certain number of tasks, according to its own execution plan, or on behalf of a GLPI server acting as a control point.&lt;/p&gt; 
+&lt;h2&gt;Description&lt;/h2&gt; 
+&lt;p&gt;This agent is based on a fork of &lt;a href=&quot;https://github.com/fusioninventory/fusioninventory-agent&quot;&gt;FusionInventory agent&lt;/a&gt; and so works mainly like FusionInventory agent. It introduces new features and a new protocol to communicate directly with a GLPI server and its native inventory feature. Anyway it also keeps the compatibility with &lt;a href=&quot;https://github.com/fusioninventory/fusioninventory-for-glpi&quot;&gt;FusionInventory for GLPI plugin&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Release: See &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/releases&quot;&gt;our github releases&lt;/a&gt; for official win32, MacOSX &amp;amp; linux packages.&lt;/li&gt; 
+ &lt;li&gt;Development builds: 
+  &lt;ul&gt; 
+   &lt;li&gt;nightly builds for last &#39;develop&#39; branch commits: &lt;a href=&quot;http://nightly.glpi-project.org/glpi-agent&quot;&gt;GLPI-Agent nightly builds&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;with a github account, you can also access artifacts for any other branches supporting &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-packaging.yml?query=is%3Asuccess+event%3Apush+-branch%3Adevelop&quot;&gt;&quot;GLPI Agent Packaging&quot; workflow&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;The GLPI Agent has its &lt;a href=&quot;https://github.com/glpi-project/doc-agent&quot;&gt;dedicated documentation project&lt;/a&gt; where any contribution will also be appreciated.&lt;/p&gt; 
+&lt;p&gt;The documentation itself is &lt;a href=&quot;https://glpi-agent.readthedocs.io/&quot;&gt;readable online&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://glpi-agent.readthedocs.io/en/latest/?badge=latest&quot;&gt;&lt;img src=&quot;https://readthedocs.org/projects/glpi-agent/badge/?version=latest&quot; alt=&quot;Documentation Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Dependencies&lt;/h2&gt; 
+&lt;h3&gt;Core&lt;/h3&gt; 
+&lt;p&gt;Minimum perl version: 5.8&lt;/p&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;File::Which&lt;/li&gt; 
+ &lt;li&gt;LWP::UserAgent&lt;/li&gt; 
+ &lt;li&gt;Net::IP&lt;/li&gt; 
+ &lt;li&gt;Text::Template&lt;/li&gt; 
+ &lt;li&gt;UNIVERSAL::require&lt;/li&gt; 
+ &lt;li&gt;XML::LibXML&lt;/li&gt; 
+ &lt;li&gt;Cpanel::JSON::XS&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Compress::Zlib, for message compression&lt;/li&gt; 
+ &lt;li&gt;HTTP::Daemon, for web interface&lt;/li&gt; 
+ &lt;li&gt;IO::Socket::SSL, for HTTPS support&lt;/li&gt; 
+ &lt;li&gt;LWP::Protocol::https, for HTTPS support&lt;/li&gt; 
+ &lt;li&gt;Proc::Daemon, for daemon mode (Unix only)&lt;/li&gt; 
+ &lt;li&gt;Proc::PID::File, for daemon mode (Unix only)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Inventory task&lt;/h3&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::CUPS, for printers detection&lt;/li&gt; 
+ &lt;li&gt;Parse::EDID, for EDID data parsing&lt;/li&gt; 
+ &lt;li&gt;DateTime, for reliable timezone name extraction&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional programs:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;dmidecode, for DMI data retrieval&lt;/li&gt; 
+ &lt;li&gt;lspci, for PCI bus scanning&lt;/li&gt; 
+ &lt;li&gt;hdparm, for additional disk drive info retrieval&lt;/li&gt; 
+ &lt;li&gt;monitor-get-edid-using-vbe, monitor-get-edid or get-edid, for EDID data access&lt;/li&gt; 
+ &lt;li&gt;ssh-keyscan, for host SSH public key retrieval&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Network discovery tasks&lt;/h3&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Thread::Queue&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::NBName, for NetBios method support&lt;/li&gt; 
+ &lt;li&gt;Net::SNMP, for SNMP method support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional programs:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;arp, for arp table lookup method support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Network inventory tasks&lt;/h3&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::SNMP&lt;/li&gt; 
+ &lt;li&gt;Thread::Queue&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Crypt::DES, for SNMPv3 support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Wake on LAN task&lt;/h3&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::Write::Layer2, for ethernet method support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Deploy task&lt;/h3&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Digest::SHA&lt;/li&gt; 
+ &lt;li&gt;File::Copy::Recursive&lt;/li&gt; 
+ &lt;li&gt;Cpanel::JSON::XS&lt;/li&gt; 
+ &lt;li&gt;URI::Escape&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Mandatory Perl modules for P2P Support:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::Ping&lt;/li&gt; 
+ &lt;li&gt;Parallel::ForkManager&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;MSI Packaging&lt;/h3&gt; 
+&lt;p&gt;Tools:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/glpi-project/dmidecode&quot;&gt;dmidecode&lt;/a&gt; modified to be built with mingw32&lt;/li&gt; 
+ &lt;li&gt;hdparm&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.7-zip.org/&quot;&gt;7zip&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Perl::Dist::Strawberry&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;MacOSX Packaging&lt;/h3&gt; 
+&lt;p&gt;Tools:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/glpi-project/dmidecode/tree/macosx&quot;&gt;dmidecode&lt;/a&gt; modified to be built on macosx&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/munki/munki-pkg&quot;&gt;munkipkg&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Xcode&lt;/li&gt; 
+ &lt;li&gt;productbuild&lt;/li&gt; 
+ &lt;li&gt;hdiutil&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Public databases&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Pci.ids&lt;/li&gt; 
+ &lt;li&gt;Usb.ids&lt;/li&gt; 
+ &lt;li&gt;SysObject.ids: &lt;a href=&quot;https://github.com/glpi-project/sysobject.ids&quot;&gt;sysobject.ids&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Related contribs&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/glpi-project/glpi-agent/develop/CONTRIB.md&quot;&gt;CONTRIB&lt;/a&gt; to find references to GLPI Agent related scritps/files&lt;/p&gt; 
+&lt;h2&gt;Contacts&lt;/h2&gt; 
+&lt;p&gt;Project websites:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;main site: &lt;a href=&quot;https://glpi-project.org/&quot;&gt;https://glpi-project.org/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;forum: &lt;a href=&quot;https://forum.glpi-project.org/&quot;&gt;https://forum.glpi-project.org/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;github: &lt;a href=&quot;http://github.com/glpi-project/glpi-agent&quot;&gt;http://github.com/glpi-project/glpi-agent&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Project Telegram channel:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://t.me/glpien&quot;&gt;https://t.me/glpien&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please report any issues on project &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/issues&quot;&gt;github issue tracker&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Active authors&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Guillaume Bougard &lt;a href=&quot;mailto:gbougard@teclib.com&quot;&gt;gbougard@teclib.com&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Copyright 2006-2010 &lt;a href=&quot;https://www.ocsinventory-ng.org/&quot;&gt;OCS Inventory contributors&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Copyright 2010-2019 &lt;a href=&quot;https://fusioninventory.org&quot;&gt;FusionInventory Team&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Copyright 2011-2021 &lt;a href=&quot;https://www.teclib-edition.com/&quot;&gt;Teclib Editions&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-GPL%20v2-blue.svg?sanitize=true&quot; alt=&quot;License: GPL v2&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This software is licensed under the terms of GPLv2+, see LICENSE file for details.&lt;/p&gt; 
+&lt;h2&gt;Additional pieces of software&lt;/h2&gt; 
+&lt;p&gt;The glpi-injector script is based on fusioninventory-injector script:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;author: Pascal Danek&lt;/li&gt; 
+ &lt;li&gt;copyright: 2005 Pascal Danek&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;GLPI::Agent::Task::Inventory::Vmsystem contains code from imvirt:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;url: &lt;a href=&quot;http://micky.ibh.net/~liske/imvirt.html&quot;&gt;http://micky.ibh.net/~liske/imvirt.html&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;author: Thomas Liske &lt;a href=&quot;mailto:liske@ibh.de&quot;&gt;liske@ibh.de&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;copyright: 2008 IBH IT-Service GmbH &lt;a href=&quot;http://www.ibh.de/&quot;&gt;http://www.ibh.de/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;License: GPLv2+&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>so-fancy/diff-so-fancy</title>
+      <link>https://github.com/so-fancy/diff-so-fancy</link>
+      <description>&lt;p&gt;Good-lookin&#39; diffs. Actually… nah… The best-lookin&#39; diffs. 🎉&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;diff-so-fancy &lt;a href=&quot;https://circleci.com/gh/so-fancy/diff-so-fancy&quot;&gt;&lt;img src=&quot;https://circleci.com/gh/so-fancy/diff-so-fancy.svg?style=shield&quot; alt=&quot;Circle CI build&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/so-fancy/diff-so-fancy&quot;&gt;&lt;img src=&quot;https://travis-ci.org/so-fancy/diff-so-fancy.svg?branch=master&quot; alt=&quot;TravisCI build&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/stevemao/diff-so-fancy/branch/master&quot;&gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/github/so-fancy/diff-so-fancy?branch=master&amp;amp;svg=true&quot; alt=&quot;AppVeyor build&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;diff-so-fancy&lt;/code&gt; strives to make your diffs &lt;strong&gt;human&lt;/strong&gt; readable instead of machine readable. This helps improve code quality and helps you spot defects faster.&lt;/p&gt; 
+&lt;h2&gt;Screenshot&lt;/h2&gt; 
+&lt;p&gt;Vanilla &lt;code&gt;git diff&lt;/code&gt; vs &lt;code&gt;git&lt;/code&gt; and &lt;code&gt;diff-so-fancy&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/diff-so-fancy.png&quot; alt=&quot;diff-highlight vs diff-so-fancy&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Simply copy the &lt;code&gt;diff-so-fancy&lt;/code&gt; script from the latest release into your &lt;code&gt;$PATH&lt;/code&gt; and you&#39;re done. Alternately to test development features you can clone this repo and then put the &lt;code&gt;diff-so-fancy&lt;/code&gt; script (symlink will work) into your &lt;code&gt;$PATH&lt;/code&gt;. The &lt;code&gt;lib/&lt;/code&gt; directory will need to be kept relative to the core script.&lt;/p&gt; 
+&lt;p&gt;If you are using a ZSH framework like &lt;a href=&quot;https://github.com/jandamm/zgenom&quot;&gt;zgenom&lt;/a&gt; or &lt;a href=&quot;https://ohmyz.sh&quot;&gt;oh-my-zsh&lt;/a&gt;, refer to &lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/pro-tips.md&quot;&gt;Zsh plugin support for diff-so-fancy&lt;/a&gt; for detailed installation instructions.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;diff-so-fancy&lt;/code&gt; is also available from the &lt;a href=&quot;https://www.npmjs.com/package/diff-so-fancy&quot;&gt;NPM registry&lt;/a&gt;, &lt;a href=&quot;https://formulae.brew.sh/formula/diff-so-fancy&quot;&gt;brew&lt;/a&gt;, as a package on &lt;a href=&quot;https://github.com/NixOS/nixpkgs/raw/master/pkgs/applications/version-management/diff-so-fancy/default.nix&quot;&gt;Nix&lt;/a&gt;, &lt;a href=&quot;https://packages.fedoraproject.org/pkgs/diff-so-fancy/diff-so-fancy/&quot;&gt;Fedora&lt;/a&gt;, in the &lt;a href=&quot;https://archlinux.org/packages/extra/any/diff-so-fancy/&quot;&gt;Arch extra repo&lt;/a&gt;, and as &lt;a href=&quot;https://github.com/aos/dsf-debian&quot;&gt;ppa:aos for Debian/Ubuntu Linux&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Issues relating to packaging (&#39;installation does not work&#39;, &#39;version is out of date&#39;, etc.) should be directed to those packages&#39; own repositories/issue trackers where applicable. Issues relating to packaging (&quot;installation does not work&quot;, &quot;version is out of date&quot;, etc.) should be directed to those packages&#39; repositories/issue trackers where applicable.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Windows users may need to install &lt;a href=&quot;https://sourceforge.net/projects/mingw/files/&quot;&gt;MinGW&lt;/a&gt; or the &lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/install-win10&quot;&gt;Windows subsystem for Linux&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;h3&gt;With git&lt;/h3&gt; 
+&lt;p&gt;Configure git to use &lt;code&gt;diff-so-fancy&lt;/code&gt; for all diff output:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global core.pager &quot;diff-so-fancy | less --tabs=4 -RF&quot;
+git config --global interactive.diffFilter &quot;diff-so-fancy --patch&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Improved colors for the highlighted bits&lt;/h3&gt; 
+&lt;p&gt;The default Git colors are not optimal. The colors used for the screenshot above were:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global color.ui true
+
+git config --global color.diff-highlight.oldNormal    &quot;red bold&quot;
+git config --global color.diff-highlight.oldHighlight &quot;red bold 52&quot;
+git config --global color.diff-highlight.newNormal    &quot;green bold&quot;
+git config --global color.diff-highlight.newHighlight &quot;green bold 22&quot;
+
+git config --global color.diff.meta       &quot;11&quot;
+git config --global color.diff.frag       &quot;magenta bold&quot;
+git config --global color.diff.func       &quot;146 bold&quot;
+git config --global color.diff.commit     &quot;yellow bold&quot;
+git config --global color.diff.old        &quot;red bold&quot;
+git config --global color.diff.new        &quot;green bold&quot;
+git config --global color.diff.whitespace &quot;red reverse&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;With diff&lt;/h3&gt; 
+&lt;p&gt;Use &lt;code&gt;-u&lt;/code&gt; with &lt;code&gt;diff&lt;/code&gt; for unified output, and pipe the output to &lt;code&gt;diff-so-fancy&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff -u file_a file_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It also supports the recursive mode of diff with &lt;code&gt;-r&lt;/code&gt; or &lt;code&gt;--recursive&lt;/code&gt; as &lt;strong&gt;first argument&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff -r -u folder_a folder_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff --recursive -u folder_a folder_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Options&lt;/h2&gt; 
+&lt;h3&gt;markEmptyLines&lt;/h3&gt; 
+&lt;p&gt;Should the first block of an empty line be colored. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.markEmptyLines false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;changeHunkIndicators&lt;/h3&gt; 
+&lt;p&gt;Simplify git header chunks to a more human readable format. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.changeHunkIndicators false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;stripLeadingSymbols&lt;/h3&gt; 
+&lt;p&gt;Should the pesky &lt;code&gt;+&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt; at line-start be removed. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.stripLeadingSymbols false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;useUnicodeRuler&lt;/h3&gt; 
+&lt;p&gt;By default, the separator for the file header uses Unicode line-drawing characters. If this is causing output errors on your terminal, set this to &lt;code&gt;false&lt;/code&gt; to use ASCII characters instead. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.useUnicodeRuler false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;rulerWidth&lt;/h3&gt; 
+&lt;p&gt;By default, the separator for the file header spans the full width of the terminal. Use this setting to set the width of the file header manually.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global diff-so-fancy.rulerWidth 80
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;The diff-so-fancy team&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Person&lt;/th&gt; 
+   &lt;th&gt;Role&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@scottchiefbaker&lt;/td&gt; 
+   &lt;td&gt;Project lead&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@OJFord&lt;/td&gt; 
+   &lt;td&gt;Bug triage&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@GenieTim&lt;/td&gt; 
+   &lt;td&gt;Travis OSX fixes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@AOS&lt;/td&gt; 
+   &lt;td&gt;Debian packager&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@Stevemao/@Paul Irish&lt;/td&gt; 
+   &lt;td&gt;NPM release team&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Pull requests are quite welcome, and should target the &lt;a href=&quot;https://github.com/so-fancy/diff-so-fancy/tree/next&quot;&gt;&lt;code&gt;next&lt;/code&gt; branch&lt;/a&gt;. We are also looking for any feedback or ideas on how to make &lt;code&gt;diff-so-fancy&lt;/code&gt; even &lt;em&gt;fancier&lt;/em&gt;.&lt;/p&gt; 
+&lt;h3&gt;Other documentation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/pro-tips.md&quot;&gt;Pro-tips on advanced usage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/reporting-bugs.md&quot;&gt;Reporting Bugs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/hacking-and-testing.md&quot;&gt;Hacking and Testing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/history.md&quot;&gt;History&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dandavison/delta&quot;&gt;Delta&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jesseduffield/lazygit&quot;&gt;Lazygit&lt;/a&gt; with diff-so-fancy &lt;a href=&quot;https://github.com/jesseduffield/lazygit/raw/master/docs/Custom_Pagers.md#diff-so-fancy&quot;&gt;integration&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>centreon/centreon-plugins</title>
+      <link>https://github.com/centreon/centreon-plugins</link>
+      <description>&lt;p&gt;Collection of standard plugins to discover and gather cloud-to-edge metrics and status across your whole IT infrastructure.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;centreon-plugins&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/raw/master/LICENSE.txt&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-APACHE2-brightgreen.svg?sanitize=true&quot; alt=&quot;License&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- SHIELDS --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/graphs/contributors&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/contributors/centreon/centreon-plugins?color=%2384BD00&amp;amp;label=CONTRIBUTORS&amp;amp;style=for-the-badge&quot; alt=&quot;Contributors&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/centreon/centreon-plugins/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/centreon/centreon-plugins?color=%23433b02a&amp;amp;label=STARS&amp;amp;style=for-the-badge&quot; alt=&quot;Stars&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/centreon/centreon-plugins/network/members&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/forks/centreon/centreon-plugins?color=%23009fdf&amp;amp;label=FORKS&amp;amp;style=for-the-badge&quot; alt=&quot;Forks&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/centreon/centreon-plugins/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/centreon/centreon-plugins?color=%230072ce&amp;amp;label=ISSUES&amp;amp;style=for-the-badge&quot; alt=&quot;Issues&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;What are Centreon Plugins&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/&quot;&gt;Centreon plugins&lt;/a&gt; is a free and open source project to monitor systems. The project can be used with Centreon and all monitoring softwares compatible with Nagios plugins.&lt;/p&gt; 
+&lt;h3&gt;Principles&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/&quot;&gt;Centreon plugins&lt;/a&gt; should comply with &lt;a href=&quot;https://www.monitoring-plugins.org/doc/guidelines.html&quot;&gt;Monitoring Plugins Development Guidelines&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;In short, they return:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An error code: 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;0&lt;/code&gt; for &lt;code&gt;OK&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;1&lt;/code&gt; for &lt;code&gt;WARNING&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;2&lt;/code&gt; for &lt;code&gt;CRITICAL&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;3&lt;/code&gt; for &lt;code&gt;UNKNOWN&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;A human understandable output message (example: &lt;code&gt;OK: CPU(s) average usage is 2.66 % - CPU &#39;0&#39; usage : 2.66 %&lt;/code&gt;).&lt;/li&gt; 
+ &lt;li&gt;A set of metrics provided as &lt;em&gt;perfdata&lt;/em&gt; after a &lt;code&gt;|&lt;/code&gt; character (example: &lt;code&gt;&#39;cpu.utilization.percentage&#39;=2.66%;;;0;100 &#39;0#core.cpu.utilization.percentage&#39;=2.66%;;;0;100&lt;/code&gt;).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;What can Centreon Plugins monitor?&lt;/h3&gt; 
+&lt;p&gt;You can monitor many systems:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Application&lt;/strong&gt;: Apache, Asterisk, Elasticsearch, Github, Jenkins, Kafka, Nginx, Pfsense, Redis, Tomcat, Varnish, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Cloud&lt;/strong&gt;: AWS, Azure, Docker, Office365, Nutanix, Prometheus, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Databases&lt;/strong&gt;: Firebird, Informix, MS SQL, MySQL, Oracle, Postgres, Cassandra.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hardware&lt;/strong&gt;: printers (RFC3805), UPS (Powerware, Mge, Standard), Sun Hardware, Cisco UCS, SensorIP, HP Proliant, HP Bladechassis, Dell Openmanage, Dell CMC, Raritan, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Network&lt;/strong&gt;: Aruba, Brocade, Bluecoat, Brocade, Checkpoint, Cisco AP/IronPort/ASA/Standard, Extreme, Fortigate, H3C, Hirschmann, HP Procurve, F5 BIG-IP, Juniper, PaloAlto, Redback, Riverbed, Ruggedcom, Stonesoft, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Operating systems&lt;/strong&gt;: Linux (SNMP, NRPE), Freebsd (SNMP), AIX (SNMP), Solaris (SNMP), etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Storage&lt;/strong&gt;: EMC Clariion, Netapp, Nimble, HP MSA p2000, Dell EqualLogic, Qnap, Panzura, Synology, etc.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To get a complete list, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;perl src/centreon_plugins.pl --list-plugin
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Basic Usage&lt;/h3&gt; 
+&lt;p&gt;We&#39;ll use a basic example to show you how to monitor a system. I have finished the install section and I want to monitor a Linux in SNMP. First, I need to find the plugin to use in the list:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;perl centreon_plugins.pl --list-plugin | grep -i linux | grep &#39;PLUGIN&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It will return:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;PLUGIN: os::linux::local::plugin
+PLUGIN: os::linux::snmp::plugin
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It seems that &#39;os::linux::snmp::plugin&#39; is the good one. So I verify with the option &lt;code&gt;--help&lt;/code&gt; to be sure:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --help
+...
+Plugin Description:
+  Check Linux operating systems in SNMP.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It&#39;s exactly what I need. Now I&#39;ll add the option &lt;code&gt;--list-mode&lt;/code&gt; to know what can I do with it:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --list-mode
+...
+Modes Available:
+ processcount
+ time
+ list-storages
+ disk-usage
+ diskio
+ uptime
+ swap
+ cpu-detailed
+ load
+ traffic
+ cpu
+ inodes
+ list-diskspath
+ list-interfaces
+ packet-errors
+ memory
+ tcpcon
+ storage
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;I would like to test the &#39;load&#39; mode:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load
+UNKNOWN: Missing parameter --hostname.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It&#39;s not working because some options are missing. I can have a description of the mode and options with the option &lt;code&gt;--help&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load --help
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Eventually, I have to configure some SNMP options:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load --hostname=127.0.0.1 --snmp-version=2c --snmp-community=public
+OK: Load average: 0.00, 0.00, 0.00 | &#39;load1&#39;=0.00;;;0; &#39;load5&#39;=0.00;;;0; &#39;load15&#39;=0.00;;;0;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;I can set threshold with options &lt;code&gt;--warning&lt;/code&gt; and &lt;code&gt;--critical&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl centreon_plugins.pl --plugin=os::linux::snmp::plugin --mode=load --hostname=127.0.0.1 --snmp-version=2c --snmp-community=public --warning=1,2,3 --critical=2,3,4
+OK: Load average: 0.00, 0.00, 0.00 | &#39;load1&#39;=0.00;0:1;0:2;0; &#39;load5&#39;=0.00;0:2;0:3;0; &#39;load15&#39;=0.00;0:3;0:4;0;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more information or help, please read &lt;a href=&quot;https://raw.githubusercontent.com/centreon/centreon-plugins/develop/doc/en/user/guide.rst&quot;&gt;&#39;doc/en/user/guide.rst&#39;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributions&lt;/h2&gt; 
+&lt;h3&gt;Code contributions/pull requests&lt;/h3&gt; 
+&lt;p&gt;If you want to contribute by submitting new functionalities, enhancements or bug fixes, first thank you for participating :-) Then have a look, if not already done, to our &lt;strong&gt;&lt;a href=&quot;https://github.com/centreon/centreon-plugins/raw/develop/doc/en/developer/guide.md&quot;&gt;development guide&lt;/a&gt;&lt;/strong&gt;. Then create a &lt;a href=&quot;https://github.com/centreon/centreon-plugins/fork&quot;&gt;fork&lt;/a&gt; and a development branch, and once it&#39;s done, you may submit a &lt;a href=&quot;https://github.com/centreon/centreon-plugins/pulls&quot;&gt;pull request&lt;/a&gt; that the corporate development team will examine.&lt;/p&gt; 
+&lt;h3&gt;Issues/bug reports&lt;/h3&gt; 
+&lt;p&gt;If you encounter a behaviour that is clearly a bug or a regression, you are welcome to submit an &lt;a href=&quot;https://github.com/centreon/centreon-plugins/issues&quot;&gt;issue&lt;/a&gt;. Please be aware that this is an open source project and that there is no guaranteed response time.&lt;/p&gt; 
+&lt;h3&gt;Questions/search for help&lt;/h3&gt; 
+&lt;p&gt;If you have trouble using our plugins, but are not sure whether it&#39;s due to a bug or a misuse, please take the time to ask for help on &lt;a href=&quot;https://thewatch.centreon.com/data-collection-6&quot;&gt;The Watch, Data Collection section&lt;/a&gt; and become certain that it is a bug before submitting it here.&lt;/p&gt; 
+&lt;h3&gt;Feature/enhancement request&lt;/h3&gt; 
+&lt;p&gt;There is high demand for new plugins and new functionalities on existing plugins, so we have to rely on our community to help us prioritize them. How? Post your suggestion on &lt;a href=&quot;https://thewatch.centreon.com/ideas&quot;&gt;The Watch Ideas&lt;/a&gt; with as much detail as possible and we will pick the most voted topics to add them to our product roadmap.&lt;/p&gt; 
+&lt;p&gt;To develop a plugin/mode, we need the following information, depending on the protocol:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;SNMP&lt;/strong&gt;: MIB files and full snmpwalk of enterprise branch (&lt;code&gt;snmpwalk -ObentU -v 2c -c public address .1.3.6.1.4.1 &amp;gt; equipment.snmpwalk&lt;/code&gt;) or &lt;a href=&quot;https://thewatch.centreon.com/product-how-to-21/snmp-collection-tutorial-132&quot;&gt;SNMP collections&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;HTTP API (SOAP, Rest/Json, XML-RPC)&lt;/strong&gt;: the documentation and some curl examples or HTTP &lt;a href=&quot;https://thewatch.centreon.com/data-collection-6/centreon-plugins-discover-collection-modes-131&quot;&gt;collections&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;CLI&lt;/strong&gt;: command line examples (command + result).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SQL&lt;/strong&gt;: queries + results + column types or &lt;a href=&quot;https://thewatch.centreon.com/product-how-to-21/sql-collection-tutorial-134&quot;&gt;SQL collections&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;JMX&lt;/strong&gt;: mbean names and attributes.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If some information is confidential, such as logins or IP addresses, obfuscate them in what is sent publicly and we&#39;ll get in touch with you by private message if this information is needed.&lt;/p&gt; 
+&lt;p&gt;Please note that all the developments are open source, we will not commit to a release date. If it is an emergency for you, please contact &lt;a href=&quot;https://www.centreon.com/contact/&quot;&gt;Centreon&#39;s sales team&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Continuous integration&lt;/h3&gt; 
+&lt;p&gt;Please follow documentation &lt;a href=&quot;https://raw.githubusercontent.com/centreon/centreon-plugins/develop/doc/CI.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- URL AND IMAGES FOR SHIELDS --&gt;</description>
+    </item>
+    
+    <item>
+      <title>ocpi/ocpi</title>
+      <link>https://github.com/ocpi/ocpi</link>
+      <description>&lt;p&gt;The Open Charge Point Interface (OCPI) allows for a scalable, automated roaming setup between Charge Point Operators and e-Mobility Service Providers. It supports authorisation, charge point information exchange (incl transaction events), charge detail record exchange and finally, the exchange of smart-charging commands between parties.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;This repository contains the OCPI specification, latest release: &lt;a href=&quot;https://evroaming.org/app/uploads/2021/11/OCPI-2.2.1.pdf&quot;&gt;&lt;code&gt;OCPI 2.2.1&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The branch with the latest fixes to the 2.2.1 documentation is &lt;a href=&quot;https://github.com/ocpi/ocpi/tree/release-2.2.1-bugfixes&quot;&gt;&lt;code&gt;release-2.2.1-bugfixes&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;-The branch with the latest fixes to the 2.2 documentation is &lt;a href=&quot;https://github.com/ocpi/ocpi/tree/release-2.2-bugfixes&quot;&gt;&lt;code&gt;release-2.2-bugfixes&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The branch with the latest fixes to the 2.1.1 documentation is &lt;a href=&quot;https://github.com/ocpi/ocpi/tree/release-2.1.1-bugfixes&quot;&gt;&lt;code&gt;release-2.1.1-bugfixes&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;master&lt;/code&gt; branch always contains the latest official release.&lt;/p&gt; 
+&lt;p&gt;Development of the next version of OCPI, new functionality, is done in the &lt;a href=&quot;https://github.com/ocpi/ocpi-3/&quot;&gt;ocpi-3 repository&lt;/a&gt;, which is only accessible to Contributors of the &lt;a href=&quot;https://evroaming.org/how-to-join/&quot;&gt;EV Roaming Foundation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/version_history.asciidoc&quot;&gt;&lt;strong&gt;Version History&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/introduction.asciidoc&quot;&gt;&lt;strong&gt;Introduction&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/terminology.asciidoc&quot;&gt;Terminology and Definitions&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/topology.asciidoc&quot;&gt;Supported Topologies&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Protocol Meta Information&lt;/strong&gt;, describes the connections between the parties&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/transport_and_format.asciidoc&quot;&gt;Transport and Format&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/status_codes.asciidoc&quot;&gt;Status codes&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/version_information_endpoint.asciidoc&quot;&gt;Version information endpoint&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/credentials.asciidoc&quot;&gt;Credentials &amp;amp; registration&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Overview of Modules&lt;/strong&gt;, each section describes one module.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_locations.asciidoc&quot;&gt;Locations&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_sessions.asciidoc&quot;&gt;Sessions&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_cdrs.asciidoc&quot;&gt;CDRs&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_tariffs.asciidoc&quot;&gt;Tariffs&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_tokens.asciidoc&quot;&gt;Tokens&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_commands.asciidoc&quot;&gt;Commands&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_charging_profiles.asciidoc&quot;&gt;Charging Profiles&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/mod_hub_client_info.asciidoc&quot;&gt;Hub Client Info&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Generic Types&lt;/strong&gt;, describing all data types that are used by multiple objects&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/types.asciidoc&quot;&gt;Types&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/changelog.asciidoc&quot;&gt;&lt;strong&gt;Changelog&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Current versions&lt;/h3&gt; 
+&lt;h4&gt;Release 2.2.1&lt;/h4&gt; 
+&lt;p&gt;Only minor changes, but breaking compatibility with 2.2 in order to support signed data exchange so that parties using OCPI can comply with consumer protection legislation. A more detailed overview is inside &lt;a href=&quot;https://evroaming.org/app/uploads/2021/11/OCPI-2.2.1.pdf&quot;&gt;the specification document itself&lt;/a&gt;.&lt;/p&gt; 
+&lt;h4&gt;Release 2.2-d2&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Support for Hubs 
+  &lt;ul&gt; 
+   &lt;li&gt;Message routing headers&lt;/li&gt; 
+   &lt;li&gt;Hub Client Info&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Support Platforms with multiple/different roles, additional roles&lt;/li&gt; 
+ &lt;li&gt;Charging Profiles&lt;/li&gt; 
+ &lt;li&gt;based Smart Charging&lt;/li&gt; 
+ &lt;li&gt;Improvements: 
+  &lt;ul&gt; 
+   &lt;li&gt;CDRs: Credit CDRs, VAT, Calibration law/Eichrecht support, Session_id, AuthorizationReference, CdrLocation, CdrToken&lt;/li&gt; 
+   &lt;li&gt;Sessions: VAT, CdrToken, How to add a Charging Period&lt;/li&gt; 
+   &lt;li&gt;Tariffs: Tariff types, Min/Max price, reservation tariff, Much more examples&lt;/li&gt; 
+   &lt;li&gt;Locations: Multiple Tariffs, Lost of small improvements&lt;/li&gt; 
+   &lt;li&gt;Tokens: Group_id, energy contract&lt;/li&gt; 
+   &lt;li&gt;Commands: Cancel Reservation added&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;fixes some bugs of 2.1.1&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Release 2.1.1-d2&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Improvements from rel. 2.0&lt;/li&gt; 
+ &lt;li&gt;Chargepoint commands&lt;/li&gt; 
+ &lt;li&gt;realtime authorization&lt;/li&gt; 
+ &lt;li&gt;fixes some bugs of 2.1 (2.1 is now deprecated)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Release 2.0&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Charge Point Exchange Static &amp;amp; Dynamic (with tariffing covering only start/kWh/time)&lt;/li&gt; 
+ &lt;li&gt;Authorization &amp;amp; token data exchange&lt;/li&gt; 
+ &lt;li&gt;Tariffing&lt;/li&gt; 
+ &lt;li&gt;Session Info exchange (cdr &amp;amp; ndr)&lt;/li&gt; 
+ &lt;li&gt;Registration (How to connect) &amp;amp; Security&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Planned releases&lt;/h3&gt; 
+&lt;h4&gt;Release 3.0&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;ISO 15118 Plug&amp;amp;Charge&lt;/li&gt; 
+ &lt;li&gt;Eichrecht support&lt;/li&gt; 
+ &lt;li&gt;Performance improvements&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Building Process&lt;/h2&gt; 
+&lt;p&gt;The OCPI Build Process has been improved. OCPI 2.0/2.1.1 was in markdown format, and diagrams where Plantuml.&lt;/p&gt; 
+&lt;p&gt;For OCPI 2.2, the text of OCPI has been converted to asciidoc. Asciidoc is easier to format the output, and chapter numbering and internal links are much easier to work with.&lt;/p&gt; 
+&lt;p&gt;The Plantuml is no longer converted to PNG images, but the SVG, making them much better readable, and even searchable in the PDF.&lt;/p&gt; 
+&lt;p&gt;In OCPI 2.0 and 2.1.1, the JSON examples contained a lot of mistakes, where outdated compared to the text, or not even valid JSON. To prevent issues with the examples in the specification, the examples are not placed in separate JSON files. At the moment, the JSON files are check if they are valid JSON.&lt;/p&gt; 
+&lt;hr&gt; 
+&lt;p&gt;1 Dec 2014 &lt;a href=&quot;https://raw.githubusercontent.com/ocpi/ocpi/master/releases/old/OCPI-Draftv4.pdf&quot;&gt;Draft v4&lt;/a&gt; is published 17 June 2015 [Draft v5] is moved to a new branch that will be used as a reference as the OCPI specifications are being redefined and the specifications are restructured in different files, a file per chapter&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ddclient/ddclient</title>
+      <link>https://github.com/ddclient/ddclient</link>
+      <description>&lt;p&gt;ddclient updates dynamic DNS entries for accounts on a wide range of dynamic DNS services.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;DDCLIENT&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;ddclient&lt;/code&gt; is a Perl client used to update dynamic DNS entries for accounts on many dynamic DNS services. It uses &lt;code&gt;curl&lt;/code&gt; for internet access.&lt;/p&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;p&gt;You might also want to consider using one of the following, if they support your dynamic DNS provider(s): &lt;a href=&quot;https://github.com/troglobit/inadyn&quot;&gt;https://github.com/troglobit/inadyn&lt;/a&gt; or &lt;a href=&quot;https://github.com/lopsided98/dnsupdate&quot;&gt;https://github.com/lopsided98/dnsupdate&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Supported services&lt;/h2&gt; 
+&lt;p&gt;Dynamic DNS services currently supported include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.1984.is/product/freedns&quot;&gt;1984.is&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.changeip.com&quot;&gt;ChangeIP&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.cloudflare.com&quot;&gt;CloudFlare&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.cloudns.net&quot;&gt;ClouDNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.ddns.fm/&quot;&gt;DDNS.fm&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dinahosting.com&quot;&gt;dinahosting&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://directnic.com&quot;&gt;Directnic&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dondominio.com&quot;&gt;DonDominio&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dnsmadeeasy.com&quot;&gt;DNS Made Easy&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dnsexit.com/dns/dns-api&quot;&gt;DNSExit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dnshome.de&quot;&gt;dnsHome.de&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.domeneshop.no/docs/#tag/ddns/paths/~1dyndns~1update/get&quot;&gt;Domeneshop&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dslreports.com&quot;&gt;DslReports&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://duckdns.org&quot;&gt;Duck DNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://account.dyn.com&quot;&gt;DynDNS.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.easydns.com&quot;&gt;EasyDNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.enom.com&quot;&gt;Enom&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://freedns.afraid.org&quot;&gt;Freedns&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://freemyip.com&quot;&gt;Freemyip&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gandi.net&quot;&gt;Gandi&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.godaddy.com&quot;&gt;GoDaddy&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dns.he.net&quot;&gt;Hurricane Electric&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://faq.infomaniak.com/2376&quot;&gt;Infomaniak&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.inwx.com/&quot;&gt;INWX&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.loopia.se&quot;&gt;Loopia&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.mythic-beasts.com/support/api/dnsv2/dynamic-dns&quot;&gt;Mythic Beasts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.namecheap.com&quot;&gt;NameCheap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nearlyfreespeech.net/services/dns&quot;&gt;NearlyFreeSpeech.net&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://njal.la/docs/ddns&quot;&gt;Njalla&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.noip.com&quot;&gt;Noip&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;nsupdate - see nsupdate(1) and ddns-confgen(8)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.ovhcloud.com&quot;&gt;OVH&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://porkbun.com&quot;&gt;Porkbun&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.regfish.de/domains/dyndns&quot;&gt;regfish.de&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.sitelutions.com&quot;&gt;Sitelutions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dns.yandex.com&quot;&gt;Yandex&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.zoneedit.com&quot;&gt;Zoneedit&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;code&gt;ddclient&lt;/code&gt; supports finding your IP address from many cable and DSL broadband routers.&lt;/p&gt; 
+&lt;p&gt;Comments, suggestions and requests: please file an issue at &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/new&quot;&gt;https://github.com/ddclient/ddclient/issues/new&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The code was originally written by Paul Burry and is now hosted and maintained through github.com. Please check out &lt;a href=&quot;https://ddclient.net&quot;&gt;https://ddclient.net&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;REQUIREMENTS&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An account from a supported dynamic DNS service provider&lt;/li&gt; 
+ &lt;li&gt;Perl v5.10.1 or later 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;JSON::PP&lt;/code&gt; perl library for JSON support&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Linux, macOS, or any other Unix-ish system&lt;/li&gt; 
+ &lt;li&gt;An implementation of &lt;code&gt;make&lt;/code&gt; (such as &lt;a href=&quot;https://www.gnu.org/software/make/&quot;&gt;GNU Make&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;If you are installing from a clone of the Git repository, you will also need &lt;a href=&quot;https://www.gnu.org/software/autoconf/&quot;&gt;GNU Autoconf&lt;/a&gt; and &lt;a href=&quot;https://www.gnu.org/software/automake/&quot;&gt;GNU Automake&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;DOWNLOAD&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/ddclient/ddclient/releases&quot;&gt;https://github.com/ddclient/ddclient/releases&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;INSTALLATION&lt;/h2&gt; 
+&lt;h3&gt;Distribution Package&lt;/h3&gt; 
+&lt;a href=&quot;https://repology.org/project/ddclient/versions&quot;&gt; &lt;img src=&quot;https://repology.org/badge/vertical-allrepos/ddclient.svg?sanitize=true&quot; alt=&quot;Packaging status&quot; align=&quot;right&quot;&gt; &lt;/a&gt; The easiest way to install ddclient is to install a package offered by your operating system. See the image to the right for a list of distributions with a ddclient package. 
+&lt;h3&gt;Manual Installation&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Extract the distribution tarball (&lt;code&gt;.tar.gz&lt;/code&gt; file) and &lt;code&gt;cd&lt;/code&gt; into the directory:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;tar xvfa ddclient-3.XX.X.tar.gz
+cd ddclient-3.XX.X
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;(If you are installing from a clone of the Git repository, you must run &lt;code&gt;./autogen&lt;/code&gt; before continuing to the next step.)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run the following commands to build and install:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var
+make
+make VERBOSE=1 check
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Edit &lt;code&gt;/etc/ddclient/ddclient.conf&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;systemd&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;cp sample-etc_systemd.service /etc/systemd/system/ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;enable automatic startup when booting&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;systemctl enable ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;start the first time by hand&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;systemctl start ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Known issues&lt;/h2&gt; 
+&lt;p&gt;This is a list for quick referencing of known issues. For further details check out the linked issues and the changelog.&lt;/p&gt; 
+&lt;p&gt;Note that any issues prior to version v3.9.1 will not be listed here. If a fix is committed but not yet part of any tagged release, the notes here will reference the not-yet-released version number.&lt;/p&gt; 
+&lt;h3&gt;v3.11.2 - v3.9.1: SSL parameter breaks HTTP-only IP acquisition&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;ssl&lt;/code&gt; parameter forces all connections to use HTTPS. While technically working as expected, this behavior keeps coming up as a pain point when using HTTP-only IP querying sites such as &lt;a href=&quot;http://checkip.dyndns.org&quot;&gt;http://checkip.dyndns.org&lt;/a&gt;. Starting with v4.0.0, the behavior is changed to respect &lt;code&gt;http://&lt;/code&gt; in a URL. A separate parameter to disallow all HTTP connections or warn about them may be added later.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v4.0.0 uses HTTP to connect to URLs starting with &lt;code&gt;http://&lt;/code&gt;. See &lt;a href=&quot;https://github.com/ddclient/ddclient/pull/608&quot;&gt;here&lt;/a&gt; for more info.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Disable the SSL parameter&lt;/p&gt; 
+&lt;h3&gt;v3.10.0: Chunked encoding not corretly supported in IO::Socket HTTP code&lt;/h3&gt; 
+&lt;p&gt;Using the IO::Socket HTTP code will break in various ways whenever the server responds using HTTP 1.1 chunked encoding. Refer to &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/548&quot;&gt;this issue&lt;/a&gt; for more info.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v3.11.0 - IO::Socket has been deprecated there and curl has been made the standard.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Use curl for transfers by either setting &lt;code&gt;-curl&lt;/code&gt; in the command line or by adding &lt;code&gt;curl=yes&lt;/code&gt; in the config&lt;/p&gt; 
+&lt;h3&gt;v3.10.0: Spammed updates to some providers&lt;/h3&gt; 
+&lt;p&gt;This issue arises when using the &lt;code&gt;use&lt;/code&gt; parameter in the config and using one of these providers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Cloudflare&lt;/li&gt; 
+ &lt;li&gt;Hetzner&lt;/li&gt; 
+ &lt;li&gt;Digitalocean&lt;/li&gt; 
+ &lt;li&gt;Infomaniak&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v3.11.2&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Use the &lt;code&gt;usev4&lt;/code&gt;/&lt;code&gt;usev6&lt;/code&gt; parameters instead of &lt;code&gt;use&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;TROUBLESHOOTING&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Enable debugging and verbose messages: &lt;code&gt;ddclient --daemon=0 --debug --verbose&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Do you need to specify a proxy? If so, just add a &lt;code&gt;proxy=your.isp.proxy&lt;/code&gt; to the &lt;code&gt;ddclient.conf&lt;/code&gt; file.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Define the IP address of your router with &lt;code&gt;fwv4=xxx.xxx.xxx.xxx&lt;/code&gt; in &lt;code&gt;/etc/ddclient/ddclient.conf&lt;/code&gt; and then try &lt;code&gt;$ ddclient --daemon=0 --query&lt;/code&gt; to see if the router status web page can be understood.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Need support for another router/firewall? Define the router yourself with:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;usev4=fwv4
+fwv4=url-to-your-router-status-page
+fwv4-skip=&quot;regular expression matching any string preceding your IP address, if necessary&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;ddclient does something like this to provide builtin support for common routers. For example, the Linksys routers could have been added with:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;usev4=fwv4
+fwv4=192.168.1.1/Status.htm
+fwv4-skip=WAN.*?IP Address
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;OR &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/new&quot;&gt;create a new issue&lt;/a&gt; containing the output from:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;curl --include --location http://url.of.your.firewall/ip-status-page
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;so that we can add a new firewall definition to a future release of ddclient.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Some broadband routers require the use of a password when ddclient accesses its status page to determine the router&#39;s WAN IP address. If this is the case for your router, add&lt;/p&gt; &lt;pre&gt;&lt;code&gt;fw-login=your-router-login
+fw-password=your-router-password
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;to the beginning of your ddclient.conf file. Note that some routers use either &#39;root&#39; or &#39;admin&#39; as their login while some others accept anything.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;ppp&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using a ppp connection, you can easily update your DynDNS entry with each connection, with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;## configure pppd to update DynDNS with each connection
+cp sample-etc_ppp_ip-up.local /etc/ppp/ip-up.local
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ppp interface.&lt;/p&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;cron&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you have not configured ddclient to use daemon-mode, you&#39;ll need to configure cron to force an update once a month so that the dns entry will not become stale.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;## configure cron to force an update twice a month
+cp sample-etc_cron.d_ddclient /etc/cron.d/ddclient
+vi /etc/cron.d/ddclient
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;dhcpcd&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using dhcpcd-1.3.17 or thereabouts, you can easily update your DynDNS entry automatically every time your lease is obtained or renewed by creating an executable file named: &lt;code&gt;/etc/dhcpc/dhcpcd-{your-interface}.exe&lt;/code&gt; ie.: &lt;code&gt;cp sample-etc_dhcpc_dhcpcd-eth0.exe /etc/dhcpc/dhcpcd-{your-interface}.exe&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;In my case, it is named dhcpcd-eth0.exe and contains the lines:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;#!/bin/sh
+PATH=/usr/bin:/root/bin:${PATH}
+logger -t dhcpcd IP address changed to $1
+ddclient --proxy fasthttp.sympatico.ca --wildcard --ip $1 | logger -t ddclient
+exit 0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Other DHCP clients may have another method of calling out to programs for updating DNS entries.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ethernet interface.&lt;/p&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;dhclient&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using the ISC DHCP client (dhclient), you can update your DynDNS entry automatically every time your lease is obtained or renewed by creating an executable file named: &lt;code&gt;/etc/dhclient-exit-hooks&lt;/code&gt; ie.: &lt;code&gt;cp sample-etc_dhclient-exit-hooks /etc/dhclient-exit-hooks&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Edit &lt;code&gt;/etc/dhclient-exit-hooks&lt;/code&gt; to change any options required.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ethernet interface.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Perl/perl5</title>
+      <link>https://github.com/Perl/perl5</link>
+      <description>&lt;p&gt;🐪 The Perl programming language&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Perl is Copyright (C) 1993 - 2025 by Larry Wall and others.&lt;/p&gt; 
+&lt;p&gt;All rights reserved.&lt;/p&gt; 
+&lt;h1&gt;ABOUT PERL&lt;/h1&gt; 
+&lt;p&gt;Perl is a general-purpose programming language originally developed for text manipulation and now used for a wide range of tasks including system administration, web development, network programming, GUI development, and more.&lt;/p&gt; 
+&lt;p&gt;The language is intended to be practical (easy to use, efficient, complete) rather than beautiful (tiny, elegant, minimal). Its major features are that it&#39;s easy to use, supports both procedural and object-oriented (OO) programming, has powerful built-in support for text processing, and has one of the world&#39;s most impressive collections of third-party modules.&lt;/p&gt; 
+&lt;p&gt;For an introduction to the language&#39;s features, see pod/perlintro.pod.&lt;/p&gt; 
+&lt;p&gt;For a discussion of the important changes in this release, see pod/perldelta.pod.&lt;/p&gt; 
+&lt;p&gt;There are also many Perl books available, covering a wide variety of topics, from various publishers. See pod/perlbook.pod for more information.&lt;/p&gt; 
+&lt;h1&gt;INSTALLATION&lt;/h1&gt; 
+&lt;p&gt;If you&#39;re using a relatively modern operating system and want to install this version of Perl locally, run the following commands:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./Configure -des -Dprefix=$HOME/localperl
+make test
+make install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will configure and compile perl for your platform, run the regression tests, and install perl in a subdirectory &quot;localperl&quot; of your home directory.&lt;/p&gt; 
+&lt;p&gt;If you run into any trouble whatsoever or you need to install a customized version of Perl, you should read the detailed instructions in the &quot;INSTALL&quot; file that came with this distribution. Additionally, there are a number of &quot;README&quot; files with hints and tips about building and using Perl on a wide variety of platforms, some more common than others.&lt;/p&gt; 
+&lt;p&gt;Once you have Perl installed, a wealth of documentation is available to you through the &#39;perldoc&#39; tool. To get started, run this command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;perldoc perl
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;IF YOU RUN INTO TROUBLE&lt;/h1&gt; 
+&lt;p&gt;Perl is a large and complex system that&#39;s used for everything from knitting to rocket science. If you run into trouble, it&#39;s quite likely that someone else has already solved the problem you&#39;re facing. Once you&#39;ve exhausted the documentation, please report bugs to us at the GitHub issue tracker at &lt;a href=&quot;https://github.com/Perl/perl5/issues&quot;&gt;https://github.com/Perl/perl5/issues&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;While it was current when we made it available, Perl is constantly evolving and there may be a more recent version that fixes bugs you&#39;ve run into or adds new features that you might find useful.&lt;/p&gt; 
+&lt;p&gt;You can always find the latest version of perl on a CPAN (Comprehensive Perl Archive Network) site near you at &lt;a href=&quot;https://www.cpan.org/src/&quot;&gt;https://www.cpan.org/src/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you want to submit a simple patch to the perl source, see the &quot;SUPER QUICK PATCH GUIDE&quot; in pod/perlhack.pod.&lt;/p&gt; 
+&lt;p&gt;Just a personal note: I want you to know that I create nice things like this because it pleases the Author of my story. If this bothers you, then your notion of Authorship needs some revision. But you can use perl anyway. :-)&lt;/p&gt; 
+&lt;p&gt;The author.&lt;/p&gt; 
+&lt;h1&gt;LICENSING&lt;/h1&gt; 
+&lt;p&gt;This program is free software; you can redistribute it and/or modify it under the terms of either:&lt;/p&gt; 
+&lt;p&gt;a. the GNU General Public License as published by the Free Software Foundation; either version 1, or (at your option) any later version, or&lt;/p&gt; 
+&lt;p&gt;b. the &quot;Artistic License&quot; which comes with this Kit.&lt;/p&gt; 
+&lt;p&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See either the GNU General Public License or the Artistic License for more details.&lt;/p&gt; 
+&lt;p&gt;You should have received a copy of the Artistic License with this Kit, in the file named &quot;Artistic&quot;. If not, I&#39;ll be glad to provide one.&lt;/p&gt; 
+&lt;p&gt;You should also have received a copy of the GNU General Public License along with this program in the file named &quot;Copying&quot;. If not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or visit their web page on the internet at &lt;a href=&quot;https://www.gnu.org/copyleft/gpl.html&quot;&gt;https://www.gnu.org/copyleft/gpl.html&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For those of you that choose to use the GNU General Public License, my interpretation of the GNU General Public License is that no Perl script falls under the terms of the GPL unless you explicitly put said script under the terms of the GPL yourself. Furthermore, any object code linked with perl does not automatically fall under the terms of the GPL, provided such object code only adds definitions of subroutines and variables, and does not otherwise impair the resulting interpreter from executing any standard Perl script. I consider linking in C subroutines in this manner to be the moral equivalent of defining subroutines in the Perl language itself. You may sell such an object file as proprietary provided that you provide or offer to provide the Perl source, as specified by the GNU General Public License. (This is merely an alternate way of specifying input to the program.) You may also sell a binary produced by the dumping of a running Perl script that belongs to you, provided that you provide or offer to provide the Perl source as specified by the GPL. (The fact that a Perl interpreter and your code are in the same binary file is, in this case, a form of mere aggregation.) This is my interpretation of the GPL. If you still have concerns or difficulties understanding my intent, feel free to contact me. Of course, the Artistic License spells all this out for your protection, so you may prefer to use that.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Ensembl/ensembl-variation</title>
+      <link>https://github.com/Ensembl/ensembl-variation</link>
+      <description>&lt;p&gt;The Ensembl Variation Perl API and SQL schema&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Ensembl Variation API&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/Ensembl/ensembl-variation/raw/release/113/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/Ensembl/ensembl-variation.svg?sanitize=true&quot; alt=&quot;GitHub&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/Ensembl/ensembl-variation&quot;&gt;&lt;img src=&quot;https://travis-ci.org/Ensembl/ensembl-variation.png?branch=release/113&quot; alt=&quot;Build Status&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/Ensembl/ensembl-variation?branch=release/113&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/github/Ensembl/ensembl-variation/badge.svg?branch=release/113&quot; alt=&quot;Coverage Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The Ensembl Variation API (Application Programme Interface) serves as a middle layer between the underlying MySQL database and the user&#39;s script. It aims to encapsulate the database layout by providing high level access to the database.&lt;/p&gt; 
+&lt;p&gt;Find more information (including the installation guide and a tutorial) on the Ensembl website: &lt;a href=&quot;http://www.ensembl.org/info/docs/api/variation/&quot;&gt;http://www.ensembl.org/info/docs/api/variation/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;To clone the Ensembl Variation API, use the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/Ensembl/ensembl-variation.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;API requirements&lt;/h2&gt; 
+&lt;p&gt;In order to use the Ensembl Variation API, an installation of the same version of the &quot;Ensembl Core&quot; API is mandatory. A guide for installing all Ensembl APIs and their respective prerequisites is available here: &lt;a href=&quot;http://www.ensembl.org/info/docs/api/api_installation.html&quot;&gt;http://www.ensembl.org/info/docs/api/api_installation.html&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;API tutorial&lt;/h2&gt; 
+&lt;p&gt;An extensive tutorial for the Ensembl Variation API can be found at:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.ensembl.org/info/docs/api/variation/variation_tutorial.html&quot;&gt;http://www.ensembl.org/info/docs/api/variation/variation_tutorial.html&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributions&lt;/h2&gt; 
+&lt;p&gt;If you wish to contribute to this repository or any Ensembl repository, please refer to &lt;a href=&quot;https://github.com/Ensembl/ensembl/raw/release/113/CONTRIBUTING.md&quot;&gt;our contribution guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contact us&lt;/h2&gt; 
+&lt;p&gt;Please email comments or questions to the public Ensembl developers list at&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://lists.ensembl.org/mailman/listinfo/dev&quot;&gt;http://lists.ensembl.org/mailman/listinfo/dev&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Questions may also be sent to the Ensembl help desk at&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.ensembl.org/Help/Contact&quot;&gt;http://www.ensembl.org/Help/Contact&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LMS-Community/slimserver</title>
+      <link>https://github.com/LMS-Community/slimserver</link>
+      <description>&lt;p&gt;Server for Squeezebox and compatible players. This server is also called Lyrion Music Server.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a name=&quot;readme-top&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/LMS-Community/slimserver/actions/workflows/00_smoketest.yaml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/LMS-Community/slimserver/00_smoketest.yaml?style=flat&quot; alt=&quot;Build passing&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://perl.org/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Written_in-perl-orange?logo=perl&quot; alt=&quot;Perl&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/graphs/contributors&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/contributors/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Contributors&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/network/members&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/forks/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Forks&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Stargazers&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Issues&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/pulls&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues-pr/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Pull requests&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/lmscommunity/lyrionmusicserver&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/lmscommunity/lyrionmusicserver?style=flat&quot; alt=&quot;Docker pulls&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;br&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://github.com/LMS-Community/slimserver&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver-platforms/public/9.0/win32/res/SqueezeCenter.ico&quot; alt=&quot;Logo&quot; width=&quot;128&quot; height=&quot;128&quot;&gt; &lt;/a&gt; 
+ &lt;h3 align=&quot;center&quot;&gt;Lyrion Music Server&lt;/h3&gt; 
+ &lt;p align=&quot;center&quot;&gt; Streaming audio server &lt;br&gt; &lt;a href=&quot;https://lyrion.org&quot;&gt;&lt;strong&gt;Explore the docs »&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; &lt;br&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues/new?labels=bug&quot;&gt;Report Bug&lt;/a&gt; · &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues/new?labels=enhancement&quot;&gt;Request Feature&lt;/a&gt; &lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;About The Project&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lyrion.org&quot;&gt;&lt;img src=&quot;https://lyrion.org/assets/screenshot.png&quot; alt=&quot;LMS Screen Shot&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Lyrion Music Server (aka. LMS, fka. Logitech Mediaserver, SlimServer, SqueezeCenter, SqueezeboxServer, SliMP3) is the server software that powers audio players from &lt;a href=&quot;https://www.logi.com&quot;&gt;Logitech&lt;/a&gt; (formerly known as SlimDevices), including &lt;a href=&quot;https://lms-community.github.io/players-and-controllers/hardware-comparison/&quot;&gt;Squeezebox 3rd Generation, Squeezebox Boom, Squeezebox Receiver, Transporter, Squeezebox2, Squeezebox and SLIMP3&lt;/a&gt;, and many software emulators like &lt;a href=&quot;https://sourceforge.net/projects/lmsclients/files/&quot;&gt;Squeezelite and SqueezePlay&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;With the help of many plugins, Lyrion Music Server can stream not only your local music collection, but content from many music services and internet radio stations to your players.&lt;/p&gt; 
+&lt;p&gt;Lyrion Music Server is written in Perl. It runs on pretty much any platform that Perl runs on, including Linux, Mac OSX, Solaris and Windows.&lt;/p&gt; 
+&lt;p&gt;Enjoy the music on your Squeezebox!&lt;/p&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.1/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;LMS runs on almost anything! Whether you have a Windows, macOS or Linux system, whether this is a single board computer (such as a Raspberry Pi), desktop, laptop or even a NAS, LMS will most likely run on it. Go to the &lt;a href=&quot;https://lyrion.org/getting-started/&quot;&gt;Getting started documentation&lt;/a&gt; for installation instructions.&lt;/p&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.1/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are &lt;strong&gt;greatly appreciated&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag &quot;enhancement&quot;. Don&#39;t forget to give the project a star! Thanks again!&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the Project&lt;/li&gt; 
+ &lt;li&gt;Create your Feature Branch (&lt;code&gt;git checkout -b feature/AmazingFeature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Commit your Changes (&lt;code&gt;git commit -m &#39;Add some AmazingFeature&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Push to the Branch (&lt;code&gt;git push origin feature/AmazingFeature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Open a Pull Request&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.1/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Zimbra/zm-build</title>
+      <link>https://github.com/Zimbra/zm-build</link>
+      <description>&lt;p&gt;zm-build for Zimbra Collaboration Suite, FOSS Edition&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;zm-build&lt;/h1&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;p&gt;This repository contains the build script and supporting files required to create a &lt;a href=&quot;https://en.wikipedia.org/wiki/Free_and_open-source_software&quot;&gt;FOSS&lt;/a&gt; build of the &lt;a href=&quot;https://www.zimbra.com/&quot;&gt;Zimbra Collaboration Suite&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;build.pl&lt;/code&gt; - Invoke this script to produce a build. See the &lt;em&gt;Building&lt;/em&gt; section below for an example.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;instructions/&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;FOSS_remote_list.pl&lt;/code&gt; - Maps between remote label and URL&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;FOSS_repo_list.pl&lt;/code&gt; - Specifies which branches (or tags) are checked out to build each component repository.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;FOSS_staging_list.pl&lt;/code&gt; - defines the staging order and details.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Setup with Zimbra Development Images (used for building)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Set up docker on your box&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;You can then pull and run using development images (built from Zimbra/zm-base-os.git)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;In case you need to customize the images for your purposes, you could maintain your own Dockerfile such as this:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;  $ cat Dockerfile
+  FROM zimbra/zm-base-os:devcore-ubuntu-16.04
+  RUN sudo apt-get install emacs my-special-tool etc..
+  RUN ...
+
+  $ docker build -t myuser/my-devcore-ubuntu-16 .
+  $ docker run -it myuser/my-devcore-ubuntu-16 bash
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Ubuntu 16.04&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -it zimbra/zm-base-os:devcore-ubuntu-16.04 bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;CentOS 7&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -it zimbra/zm-base-os:devcore-centos-7 bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;CentOS 6&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -it zimbra/zm-base-os:devcore-centos-6 bash
+
+# some tools are installed inside /home/build/.zm-dev-tools/, zm-build automatically sources this path.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Setup (traditional)&lt;/h2&gt; 
+&lt;h3&gt;Ubuntu 16.04&lt;/h3&gt; 
+&lt;p&gt;The following steps assume that your are starting with a clean VM and are logged in as a non-root user with &lt;code&gt;sudo&lt;/code&gt; privileges.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;sudo apt-get update
+sudo apt-get install software-properties-common openjdk-8-jdk ant ant-optional ant-contrib ruby git maven build-essential debhelper
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;CentOS 7&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;sudo yum groupinstall &#39;Development Tools&#39;
+sudo yum install java-1.8.0-openjdk ant ant-junit ruby git maven cpan wget perl-IPC-Cmd
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;CentOS 6&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;sudo yum groupinstall &#39;Development Tools&#39;
+sudo yum remove java-1.7.0-openjdk java-1.6.0-openjdk ant
+sudo yum install java-1.8.0-openjdk java-1.8.0-openjdk-devel ruby git cpan wget
+# install specific perl modules
+sudo cpan IPC::Cmd
+cd /tmp
+# install maven
+wget http://mirror.metrocast.net/apache/maven/maven-3/3.3.9/binaries/apache-maven-3.3.9-bin.tar.gz
+sudo tar -xf apache-maven-3.3.9-bin.tar.gz
+sudo mv apache-maven-3.3.9 /opt
+echo &#39;export PATH=&quot;/opt/apache-maven-3.3.9/bin:$PATH&quot;&#39; | sudo tee -a /etc/profile.d/maven.sh
+# install current version of ant
+wget https://www.apache.org/dist/ant/binaries/apache-ant-1.9.9-bin.zip
+sudo unzip apache-ant-1.9.9-bin.zip
+sudo mv apache-ant-1.9.9 /opt
+echo &#39;export PATH=&quot;/opt/apache-ant-1.9.9/bin:$PATH&quot;&#39; | sudo tee -a /etc/profile.d/ant.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Building&lt;/h2&gt; 
+&lt;p&gt;Create a directory for your build and check-out the &lt;code&gt;zm-build&lt;/code&gt; repository:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;mkdir installer-build
+cd installer-build
+git clone https://github.com/Zimbra/zm-build.git
+cd zm-build
+git checkout origin/develop
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Build 10.1.0&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;mkdir installer-build
+cd installer-build
+git clone --depth 1 --branch 10.1.0 git@github.com:Zimbra/zm-build.git
+cd zm-build
+ENV_CACHE_CLEAR_FLAG=true ./build.pl --ant-options -DskipTests=true --git-default-tag=10.1.0 --build-release-no=10.1.0 --build-type=FOSS --build-release=LIBERTY --build-release-candidate=GA --build-thirdparty-server=files.zimbra.com --no-interactive
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To build a specific patch example 10.0.8 run the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;mkdir installer-build
+cd installer-build
+git clone --depth 1 --branch 10.0.6 git@github.com:Zimbra/zm-build.git
+cd zm-build
+ENV_CACHE_CLEAR_FLAG=true ./build.pl --ant-options -DskipTests=true --git-default-tag=10.0.8,10.0.7,10.0.6,10.0.5,10.0.4,10.0.3,10.0.2,10.0.1,10.0.0-GA --build-release-no=10.0.8 --build-type=FOSS --build-release=LIBERTY --build-release-candidate=GA --build-thirdparty-server=files.zimbra.com --no-interactive
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or for example 9.0.0.p40 run the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;mkdir installer-build
+cd installer-build
+git clone --depth 1 --branch 9.0.0.p38 git@github.com:Zimbra/zm-build.git
+cd zm-build
+ENV_CACHE_CLEAR_FLAG=true ./build.pl --ant-options -DskipTests=true --git-default-tag=9.0.0.p40,9.0.0.p39,9.0.0.p38,9.0.0.p37,9.0.0.p36,9.0.0.p35,9.0.0.p34,9.0.0.p33,9.0.0.p32.1,9.0.0.p32,9.0.0.p31,9.0.0.p30,9.0.0.p29,9.0.0.p28,9.0.0.p27,9.0.0.p26,9.0.0.p25,9.0.0.p24.1,9.0.0.p24,9.0.0.p23,9.0.0.p22,9.0.0.p21,9.0.0.p20,9.0.0.p19,9.0.0.p18,9.0.0.p17,9.0.0.p16,9.0.0.p15,9.0.0.p14,9.0.0.p13,9.0.0.p12,9.0.0.p11,9.0.0.p10,9.0.0.p9,9.0.0.p8,9.0.0.p7,9.0.0.p6.1,9.0.0.p6,9.0.0.p5,9.0.0.p4,9.0.0.p3,9.0.0.p2,9.0.0.p1,9.0.0 --build-release-no=9.0.0 --build-type=FOSS --build-release=KEPLER --build-release-candidate=GA --build-thirdparty-server=files.zimbra.com --no-interactive
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;build.pl&lt;/code&gt; command is used to build the product. Run it with the &lt;code&gt;-h&lt;/code&gt; option for help:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Usage: ./build.pl &amp;lt;options&amp;gt;
+Supported options:
+   --build-no=i
+   --build-ts=i
+   --build-artifacts-base-dir=s
+   --build-sources-base-dir=s
+   --build-release=s
+   --build-release-no=s
+   --build-release-candidate=s
+   --build-type=s
+   --build-thirdparty-server=s
+   --build-prod-flag!
+   --build-debug-flag!
+   --build-dev-tool-base-dir=s
+   --interactive!
+   --git-overrides=s%
+   --git-default-tag=s
+   --git-default-remote=s
+   --git-default-branch=s
+   --stop-after-checkout!
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You &lt;em&gt;can&lt;/em&gt; specify all the options on the command-line, as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./build.pl --build-no=1713 --build-ts=`date +&#39;%Y%m%d%H%M%S&#39;` \
+  --build-release=JUDASPRIEST --build-release-no=8.7.6 \
+  --build-release-candidate=GA --build-type=FOSS \
+  --build-thirdparty-server=files.zimbra.com --no-interactive
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The completed build will be archived into a &lt;code&gt;*.tgz&lt;/code&gt; file that is stored in the appropriate platform and release-specific subdirectory of the &lt;code&gt;BUILDS&lt;/code&gt; directory. The above command, run on an Ubuntu 16.04 machine, created the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$HOME/installer_build/BUILDS/UBUNTU16_64/JUDASPRIEST-876/20170322153033_FOSS/zm-build/zcs-8.7.6_1713.UBUNTU16_64.20170322153033.tgz
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also specify any or all of the required options by placing them in a file called &lt;code&gt;config.build&lt;/code&gt;. This file should be at the top level of the &lt;code&gt;zm-build&lt;/code&gt; directory. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;BUILD_NO                    = 1713
+BUILD_RELEASE               = JUDASPRIEST
+BUILD_RELEASE_NO            = 8.7.6
+BUILD_RELEASE_CANDIDATE     = GA
+BUILD_TYPE                  = FOSS
+BUILD_THIRDPARTY_SERVER     = files.zimbra.com
+INTERACTIVE                 = 0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then just run &lt;code&gt;./build.pl&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;The above command, run on a CentOS 7 machine with the options as shown in &lt;code&gt;config.build&lt;/code&gt;, created the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$HOME/installer-build/BUILDS/RHEL7_64/JUDASPRIEST-876/20170323061131_FOSS/zm-build/zcs-8.7.6_GA_1713.RHEL7_64.20170323061131.tgz
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Development&lt;/h1&gt; 
+&lt;h2&gt;Setup&lt;/h2&gt; 
+&lt;p&gt;The following is a walk-through of the basic steps required to do ZCS development. The first step is to simply install a current FOSS build on the machine that you wish to use. The instructions that follow assume that this has been done.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Create &lt;code&gt;/home/zimbra&lt;/code&gt; and make &lt;code&gt;zimbra&lt;/code&gt; the owner.&lt;/p&gt; &lt;pre&gt;&lt;code&gt; sudo mkdir /home/zimbra
+ sudo chown zimbra:zimbra /home/zimbra
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Install &lt;code&gt;git&lt;/code&gt;, &lt;code&gt;ant&lt;/code&gt;, and &lt;code&gt;ant-contrib&lt;/code&gt; by whichever method is appropriate for your distro:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; sudo apt-get install git ant ant-contrib
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;or&lt;/p&gt; &lt;pre&gt;&lt;code&gt; sudo yum install git ant ant-contrib
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Configure &lt;code&gt;/opt/zimbra/.ssh/config&lt;/code&gt; to use your ssh key for the git remotes that you need to access.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Perform the following edits on &lt;code&gt;/opt/zimbra/.bash_profile&lt;/code&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Comment-out &lt;code&gt;export LANG=C&lt;/code&gt; and &lt;code&gt;export LC_ALL=C&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;Add export &lt;code&gt;LANG=en_US.UTF-8&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Add export &lt;code&gt;ANT_OPTS=-Ddev.home=/home/zimbra&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Change permissions on files and folders that you will be updating; e.g.,&lt;/p&gt; &lt;pre&gt;&lt;code&gt; sudo chmod -R o+w /opt/zimbra/lib/
+ sudo chmod -R o+w /opt/zimbra/jetty/
+ sudo chown zimbra:zimbra /opt/zimbra
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you run &lt;code&gt;zmfixperms&lt;/code&gt;, some of these permissions will be overwritten.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add file &lt;code&gt;/opt/zimbra/.gitconfig&lt;/code&gt; and update as needed. At a minimum:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; [user]
+ 	email = YOUR-EMAIL-ADDRESS
+ 	name = YOUR-FIRST-AND-LAST-NAME
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;As the &lt;code&gt;zimbra&lt;/code&gt; user, create a base directory under &lt;code&gt;/home/zimbra&lt;/code&gt; from which to work.&lt;/p&gt; &lt;pre&gt;&lt;code&gt; cd /home/zimbra
+ mkdir zcs
+ cd zcs
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Now you can clone any repositories that you require and get to work.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Email Delivery&lt;/h2&gt; 
+&lt;p&gt;If you want email delivery to work, set up a DNS server on your host machine or another VM and configure &lt;code&gt;zimbraDNSMasterIP&lt;/code&gt; to point to it. To configure &lt;code&gt;zimbraDNSMasterIP&lt;/code&gt;, do the following as the &lt;code&gt;zimbra&lt;/code&gt; user:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;zmprov ms `zmhostname` zimbraDNSMasterIP DNS-SERVER-IP-ADDRESS
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You may receive the following error when trying to send email:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;No SMTP hosts available for domain
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If this occurs, you need to manually configure &lt;code&gt;zimbraSmtpHostname&lt;/code&gt; for your domain(s). To configure &lt;code&gt;zimbraSmtpHostname&lt;/code&gt;, do the following as the &lt;code&gt;zimbra&lt;/code&gt; user:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;zmprov md DOMAIN-NAME zimbraSmtpHostname `zmhostname`
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;zm-mailbox example&lt;/h2&gt; 
+&lt;p&gt;As the &lt;code&gt;zimbra&lt;/code&gt; user, &lt;code&gt;cd /home/zimbra/zcs&lt;/code&gt;. Then clone the &lt;code&gt;zm-mailbox&lt;/code&gt; repository from github&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:Zimbra/zm-mailbox.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The following sub-directories &lt;code&gt;zm-mailbox&lt;/code&gt; build and deploy separately:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;client
+common
+milter-conf
+native
+soap
+store
+store-conf
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The top-level &lt;code&gt;build.xml&lt;/code&gt; is used by the &lt;code&gt;zm-build&lt;/code&gt; scripts to create an installer package. You will not use that for normal development. There are build-order dependencies between the above-listed deployment targets. These can be determined by inspection of the &lt;code&gt;ivy.xml&lt;/code&gt; files within each subdirectory.&lt;/p&gt; 
+&lt;p&gt;For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;grep &#39;org=&quot;zimbra&quot;&#39; store/ivy.xml
+
+&amp;lt;dependency org=&quot;zimbra&quot; name=&quot;zm-common&quot; rev=&quot;latest.integration&quot;/&amp;gt;
+&amp;lt;dependency org=&quot;zimbra&quot; name=&quot;zm-soap&quot; rev=&quot;latest.integration&quot;/&amp;gt;
+&amp;lt;dependency org=&quot;zimbra&quot; name=&quot;zm-client&quot; rev=&quot;latest.integration&quot;/&amp;gt;
+&amp;lt;dependency org=&quot;zimbra&quot; name=&quot;zm-native&quot; rev=&quot;latest.integration&quot;/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Here you can see that the deployment target, &lt;code&gt;zm-store&lt;/code&gt; (the &lt;code&gt;store&lt;/code&gt; subdirectory), depends upon &lt;code&gt;common&lt;/code&gt;, &lt;code&gt;soap&lt;/code&gt;, &lt;code&gt;client&lt;/code&gt;, and &lt;code&gt;native&lt;/code&gt;. Here is the current ordering dependencies among all of the &lt;code&gt;zm-mailbox&lt;/code&gt; deployment targets. The higher-numbered deployment targets depend upon the lower-numbered ones. Note that &lt;code&gt;milter-conf&lt;/code&gt; and &lt;code&gt;store-conf&lt;/code&gt; have no cross-dependencies.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;code&gt;native&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;common&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;soap&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;client&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;store&lt;/code&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;So, from the &lt;code&gt;native&lt;/code&gt; sub-directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;ant -Dzimbra.buildinfo.version=8.7.6_GA clean compile publish-local deploy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Comments:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;The requirement to include &lt;code&gt;-Dzimbra.buildinfo.version=8.7.6_GA&lt;/code&gt; to ant is due to a change that was made when the FOSS code was moved to GitHub. You can also just add that option to your &lt;code&gt;ANT_OPTS&lt;/code&gt; enviroment variable that you defined in &lt;code&gt;$HOME/.bash_profile&lt;/code&gt; as follows:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;export ANT_OPTS=&quot;-Ddev.home=/home/zimbra -Dzimbra.buildinfo.version=8.7.6_GA&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If you do that, then you can omit that &lt;code&gt;-D...&lt;/code&gt; argument to the &lt;code&gt;ant&lt;/code&gt; command and future examples will reflect that.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;code&gt;publish-local&lt;/code&gt; target adds the artifact to &lt;code&gt;/home/zimbra/.zcs-deps&lt;/code&gt;, which is included in the Ivy resolution path.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;code&gt;deploy&lt;/code&gt; target installs the artifact to its run-time location and restarts the appropriate service(s). This will allow you to test your changes.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Then, from the &lt;code&gt;common&lt;/code&gt;, &lt;code&gt;soap&lt;/code&gt;, &lt;code&gt;client&lt;/code&gt;, and &lt;code&gt;store&lt;/code&gt; sub-directories (in that order):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;ant clean compile publish-local deploy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Adding a new LDAP Attribute&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;WARNING:It is absolutely imperative to avoid duplicate IDs for attributes. Unfortunately, that currently isn&#39;t a trivial thing to do. Need to check Zimbra 8 and Zimbra X along with all development branches. If customers get different setups using different IDs, this makes future upgrade scenarios a complete nightmare&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Start by cloning &lt;em&gt;both&lt;/em&gt; the &lt;code&gt;zm-ldap-utilites&lt;/code&gt; and the &lt;code&gt;zm-mailbox&lt;/code&gt; repositories from GitHub. Check out the appropriate branch of each. Then proceed as follows:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Add your new attribute to &lt;code&gt;zm-mailbox/store/conf/attrs/zimbra-attrs.xml&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;From &lt;code&gt;zm-common/store&lt;/code&gt; invoke the following command:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;  ant generate-getters
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Do the following as &lt;code&gt;root&lt;/code&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;  chmod -R o+w /opt/zimbra/common/etc/openldap/schema
+  chmod o+w /opt/zimbra/conf/zimbra.ldif
+  chmod +w /opt/zimbra/conf/attrs/zimbra-attrs.xml
+  chmod -R o+w /opt/zimbra/common/etc/openldap/zimbra
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Back as the &lt;code&gt;zimbra&lt;/code&gt; user, invoke the following command from &lt;code&gt;zm-mailbox/common&lt;/code&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;  ant deploy publish-local
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Then from the &lt;code&gt;zm-mailbox/store&lt;/code&gt; directory:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;  ant deploy update-ldap-schema
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Your ZCS development server should now be running with the new attribute(s). You can test that by querying them and modifying them with &lt;code&gt;zmprov&lt;/code&gt;. You can &lt;code&gt;git add ...&lt;/code&gt; and &lt;code&gt;git commit&lt;/code&gt; your changes now.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rjbs/Email-Sender</title>
+      <link>https://github.com/rjbs/Email-Sender</link>
+      <description>&lt;p&gt;a perl library for sending email&lt;/p&gt;&lt;hr&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

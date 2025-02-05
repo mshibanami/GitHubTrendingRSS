@@ -1,0 +1,992 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Perl Monthly Trending</title>
+    <description>Monthly Trending of Perl in GitHub</description>
+    <pubDate>Wed, 05 Feb 2025 02:02:43 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>adrienverge/openfortivpn</title>
+      <link>https://github.com/adrienverge/openfortivpn</link>
+      <description>&lt;p&gt;Client for PPP+TLS VPN tunnel services&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;openfortivpn&lt;/h1&gt; 
+&lt;p&gt;openfortivpn is a client for PPP+TLS VPN tunnel services. It spawns a pppd process and operates the communication between the gateway and this process.&lt;/p&gt; 
+&lt;p&gt;It is compatible with Fortinet VPNs.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;man openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Simply connect to a VPN:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect to a VPN using an authentication realm:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo --realm=bar
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Store password securely with a pinentry program:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username=foo --pinentry=pinentry-mac
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect with a user certificate and no password:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --username= --password= --user-cert=cert.pem --user-key=key.pem
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect using SAML login:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 --saml-login
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Don&#39;t set IP routes and don&#39;t add VPN nameservers to &lt;code&gt;/etc/resolv.conf&lt;/code&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn vpn-gateway:8443 -u foo --no-routes --no-dns --pppd-no-peerdns
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Using a configuration file:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;openfortivpn -c /etc/openfortivpn/my-config
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;With &lt;code&gt;/etc/openfortivpn/my-config&lt;/code&gt; containing:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;host = vpn-gateway
+port = 8443
+username = foo
+set-dns = 0
+pppd-use-peerdns = 0
+# X509 certificate sha256 sum, trust only this one!
+trusted-cert = e46d4aff08ba6914e64daa85bc6112a422fa7ce16631bff0b592a28556f993db
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For the full list of config options, see the &lt;code&gt;CONFIGURATION&lt;/code&gt; section of&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;man openfortivpn
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Smartcard&lt;/h2&gt; 
+&lt;p&gt;Smartcard support needs &lt;code&gt;openssl pkcs engine&lt;/code&gt; and &lt;code&gt;opensc&lt;/code&gt; to be installed. The pkcs11-engine from libp11 needs to be compiled with p11-kit-devel installed. Check &lt;a href=&quot;https://github.com/adrienverge/openfortivpn/issues/464&quot;&gt;#464&lt;/a&gt; for a discussion of known issues in this area.&lt;/p&gt; 
+&lt;p&gt;To make use of your smartcard put at least &lt;code&gt;pkcs11:&lt;/code&gt; to the user-cert config or commandline option. It takes the full or a partial PKCS#11 token URI.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ini&quot;&gt;user-cert = pkcs11:
+user-cert = pkcs11:token=someuser
+user-cert = pkcs11:model=PKCS%2315%20emulated;manufacturer=piv_II;serial=012345678;token=someuser
+username =
+password =
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In most cases &lt;code&gt;user-cert = pkcs11:&lt;/code&gt; will do it, but if needed you can get the token-URI with &lt;code&gt;p11tool --list-token-urls&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Multiple readers are currently not supported.&lt;/p&gt; 
+&lt;p&gt;Smartcard support has been tested with Yubikey under Linux, but other PIV enabled smartcards may work too. On Mac OS X Mojave it is known that the pkcs engine-by-id is not found.&lt;/p&gt; 
+&lt;h2&gt;Installing&lt;/h2&gt; 
+&lt;h3&gt;Installing existing packages&lt;/h3&gt; 
+&lt;p&gt;Some Linux distributions provide &lt;code&gt;openfortivpn&lt;/code&gt; packages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.fedoraproject.org/pkgs/openfortivpn&quot;&gt;Fedora / CentOS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://software.opensuse.org/package/openfortivpn&quot;&gt;openSUSE / SLE&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.gentoo.org/packages/net-vpn/openfortivpn&quot;&gt;Gentoo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/NixOS/nixpkgs/tree/master/pkgs/tools/networking/openfortivpn&quot;&gt;NixOS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://archlinux.org/packages/extra/x86_64/openfortivpn&quot;&gt;Arch Linux&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.debian.org/stable/openfortivpn&quot;&gt;Debian&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://packages.ubuntu.com/search?keywords=openfortivpn&quot;&gt;Ubuntu&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dev.getsol.us/source/openfortivpn/&quot;&gt;Solus&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pkgs.alpinelinux.org/package/edge/testing/x86_64/openfortivpn&quot;&gt;Alpine Linux&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;On macOS both &lt;a href=&quot;https://formulae.brew.sh/formula/openfortivpn&quot;&gt;Homebrew&lt;/a&gt; and &lt;a href=&quot;https://ports.macports.org/port/openfortivpn&quot;&gt;MacPorts&lt;/a&gt; provide an &lt;code&gt;openfortivpn&lt;/code&gt; package. Either &lt;a href=&quot;https://brew.sh/&quot;&gt;install Homebrew&lt;/a&gt; then install openfortivpn:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;Homebrew&#39;
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+# Install &#39;openfortivpn&#39;
+brew install openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or &lt;a href=&quot;https://www.macports.org/install.php&quot;&gt;install MacPorts&lt;/a&gt; then install openfortivpn:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;openfortivpn&#39;
+sudo port install openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A more complete overview can be obtained from &lt;a href=&quot;https://repology.org/project/openfortivpn/versions&quot;&gt;repology&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Building and installing from source&lt;/h3&gt; 
+&lt;p&gt;For other distros, you&#39;ll need to build and install from source:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Install build dependencies.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;RHEL/CentOS/Fedora: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl-devel&lt;/code&gt; &lt;code&gt;make&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Debian/Ubuntu: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libssl-dev&lt;/code&gt; &lt;code&gt;make&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Arch Linux: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Gentoo Linux: &lt;code&gt;net-dialup/ppp&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;openSUSE: &lt;code&gt;gcc&lt;/code&gt; &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libopenssl-devel&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;macOS (Homebrew): &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;openssl@1.1&lt;/code&gt; &lt;code&gt;pkg-config&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;FreeBSD: &lt;code&gt;automake&lt;/code&gt; &lt;code&gt;autoconf&lt;/code&gt; &lt;code&gt;libressl&lt;/code&gt; &lt;code&gt;pkgconf&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;On Linux, if you manage your kernel yourself, ensure to compile those modules:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;CONFIG_PPP=m
+CONFIG_PPP_ASYNC=m
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;On macOS, install &#39;Homebrew&#39; to install the build dependencies:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;# Install &#39;Homebrew&#39;
+/usr/bin/ruby -e &quot;$(curl -fsSL https://raw.githubusercontent.com/Homebrew/install/master/install)&quot;
+
+# Install Dependencies
+brew install automake autoconf openssl@1.1 pkg-config
+
+# You may need to make this openssl available to compilers and pkg-config
+export LDFLAGS=&quot;-L/usr/local/opt/openssl/lib $LDFLAGS&quot;
+export CPPFLAGS=&quot;-I/usr/local/opt/openssl/include $CPPFLAGS&quot;
+export PKG_CONFIG_PATH=&quot;/usr/local/opt/openssl/lib/pkgconfig:$PKG_CONFIG_PATH&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build and install.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./autogen.sh
+./configure --prefix=/usr/local --sysconfdir=/etc
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If targeting platforms with pppd &amp;lt; 2.5.0 such as current version of macOS, we suggest you configure with option --enable-legacy-pppd:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./autogen.sh
+./configure --prefix=/usr/local --sysconfdir=/etc --enable-legacy-pppd
+make
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If you need to specify the openssl location you can set the &lt;code&gt;$PKG_CONFIG_PATH&lt;/code&gt; environment variable. For fine-tuning check the available configure arguments with &lt;code&gt;./configure --help&lt;/code&gt; especially when you are cross compiling.&lt;/p&gt; &lt;p&gt;Finally, install runtime dependency &lt;code&gt;ppp&lt;/code&gt; or &lt;code&gt;pppd&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Running as root?&lt;/h2&gt; 
+&lt;p&gt;openfortivpn needs elevated privileges at three steps during tunnel set up:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;when spawning a &lt;code&gt;/usr/sbin/pppd&lt;/code&gt; process;&lt;/li&gt; 
+ &lt;li&gt;when setting IP routes through VPN (when the tunnel is up);&lt;/li&gt; 
+ &lt;li&gt;when adding nameservers to &lt;code&gt;/etc/resolv.conf&lt;/code&gt; (when the tunnel is up).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For these reasons, you need to use &lt;code&gt;sudo openfortivpn&lt;/code&gt;. If you need it to be usable by non-sudoer users, you might consider adding an entry in &lt;code&gt;/etc/sudoers&lt;/code&gt; or a file under &lt;code&gt;/etc/sudoers.d&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;visudo -f /etc/sudoers.d/openfortivpn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;Cmnd_Alias  OPENFORTIVPN = /usr/bin/openfortivpn
+
+%adm       ALL = (ALL) OPENFORTIVPN
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Adapt the above example by changing the &lt;code&gt;openfortivpn&lt;/code&gt; path or choosing a group different from &lt;code&gt;adm&lt;/code&gt; - such as a dedicated &lt;code&gt;openfortivpn&lt;/code&gt; group.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Warning&lt;/strong&gt;: Make sure only trusted users can run openfortivpn as root! As described in &lt;a href=&quot;https://github.com/adrienverge/openfortivpn/issues/54&quot;&gt;#54&lt;/a&gt;, a malicious user could use &lt;code&gt;--pppd-plugin&lt;/code&gt; and &lt;code&gt;--pppd-log&lt;/code&gt; options to divert the program&#39;s behaviour.&lt;/p&gt; 
+&lt;h2&gt;SSO/SAML/2FA&lt;/h2&gt; 
+&lt;p&gt;In some cases, the server may require the VPN client to load and interact with a web page containing JavaScript. Depending on the complexity of the web page, interpreting the web page might be beyond the reach of a command line program such as openfortivpn.&lt;/p&gt; 
+&lt;p&gt;In such cases, you may use an external program spawning a full-fledged web browser such as &lt;a href=&quot;https://github.com/gm-vm/openfortivpn-webview&quot;&gt;openfortivpn-webview&lt;/a&gt; to authenticate and retrieve a session cookie. This cookie can be fed to openfortivpn using option &lt;code&gt;--cookie-on-stdin&lt;/code&gt;. Obviously, such a solution requires a graphic session.&lt;/p&gt; 
+&lt;p&gt;When started using &lt;code&gt;--saml-login&lt;/code&gt; the program creates a web server that accepts SAML login requests. To login using SAML you just have to open &lt;code&gt;&amp;lt;your-vpn-domain&amp;gt;/remote/saml/start?redirect=1&lt;/code&gt; and follow the login steps. At the end of the login process the page will be redirected to &lt;code&gt;http://127.0.0.1:8020/?id=&amp;lt;session-id&amp;gt;&lt;/code&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Feel free to make pull requests!&lt;/p&gt; 
+&lt;p&gt;C coding style should follow the &lt;a href=&quot;https://www.kernel.org/doc/html/latest/process/coding-style.html&quot;&gt;Linux kernel coding style&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>ddclient/ddclient</title>
+      <link>https://github.com/ddclient/ddclient</link>
+      <description>&lt;p&gt;ddclient updates dynamic DNS entries for accounts on a wide range of dynamic DNS services.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;DDCLIENT&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;ddclient&lt;/code&gt; is a Perl client used to update dynamic DNS entries for accounts on many dynamic DNS services. It uses &lt;code&gt;curl&lt;/code&gt; for internet access.&lt;/p&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;p&gt;You might also want to consider using one of the following, if they support your dynamic DNS provider(s): &lt;a href=&quot;https://github.com/troglobit/inadyn&quot;&gt;https://github.com/troglobit/inadyn&lt;/a&gt; or &lt;a href=&quot;https://github.com/lopsided98/dnsupdate&quot;&gt;https://github.com/lopsided98/dnsupdate&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Supported services&lt;/h2&gt; 
+&lt;p&gt;Dynamic DNS services currently supported include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.1984.is/product/freedns&quot;&gt;1984.is&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.changeip.com&quot;&gt;ChangeIP&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.cloudflare.com&quot;&gt;CloudFlare&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.cloudns.net&quot;&gt;ClouDNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.ddns.fm/&quot;&gt;DDNS.fm&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.digitalocean.com/&quot;&gt;DigitalOcean&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dinahosting.com&quot;&gt;dinahosting&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://directnic.com&quot;&gt;Directnic&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dondominio.com&quot;&gt;DonDominio&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dnsmadeeasy.com&quot;&gt;DNS Made Easy&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dnsexit.com/dns/dns-api&quot;&gt;DNSExit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dnshome.de&quot;&gt;dnsHome.de&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.domeneshop.no/docs/#tag/ddns/paths/~1dyndns~1update/get&quot;&gt;Domeneshop&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dslreports.com&quot;&gt;DslReports&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://duckdns.org&quot;&gt;Duck DNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://account.dyn.com&quot;&gt;DynDNS.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.easydns.com&quot;&gt;EasyDNS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.enom.com&quot;&gt;Enom&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://freedns.afraid.org&quot;&gt;Freedns&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://freemyip.com&quot;&gt;Freemyip&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gandi.net&quot;&gt;Gandi&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.godaddy.com&quot;&gt;GoDaddy&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dns.he.net&quot;&gt;Hurricane Electric&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://faq.infomaniak.com/2376&quot;&gt;Infomaniak&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.inwx.com/&quot;&gt;INWX&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.loopia.se&quot;&gt;Loopia&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.mythic-beasts.com/support/api/dnsv2/dynamic-dns&quot;&gt;Mythic Beasts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.namecheap.com&quot;&gt;NameCheap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nearlyfreespeech.net/services/dns&quot;&gt;NearlyFreeSpeech.net&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://njal.la/docs/ddns&quot;&gt;Njalla&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.noip.com&quot;&gt;Noip&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;nsupdate - see nsupdate(1) and ddns-confgen(8)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.ovhcloud.com&quot;&gt;OVH&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://porkbun.com&quot;&gt;Porkbun&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.regfish.de/domains/dyndns&quot;&gt;regfish.de&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.sitelutions.com&quot;&gt;Sitelutions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dns.yandex.com&quot;&gt;Yandex&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.zoneedit.com&quot;&gt;Zoneedit&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;code&gt;ddclient&lt;/code&gt; supports finding your IP address from many cable and DSL broadband routers.&lt;/p&gt; 
+&lt;p&gt;Comments, suggestions and requests: please file an issue at &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/new&quot;&gt;https://github.com/ddclient/ddclient/issues/new&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The code was originally written by Paul Burry and is now hosted and maintained through github.com. Please check out &lt;a href=&quot;https://ddclient.net&quot;&gt;https://ddclient.net&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;REQUIREMENTS&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An account from a supported dynamic DNS service provider&lt;/li&gt; 
+ &lt;li&gt;Perl v5.10.1 or later 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;JSON::PP&lt;/code&gt; perl library for JSON support&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Linux, macOS, or any other Unix-ish system&lt;/li&gt; 
+ &lt;li&gt;An implementation of &lt;code&gt;make&lt;/code&gt; (such as &lt;a href=&quot;https://www.gnu.org/software/make/&quot;&gt;GNU Make&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;If you are installing from a clone of the Git repository, you will also need &lt;a href=&quot;https://www.gnu.org/software/autoconf/&quot;&gt;GNU Autoconf&lt;/a&gt; and &lt;a href=&quot;https://www.gnu.org/software/automake/&quot;&gt;GNU Automake&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;DOWNLOAD&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/ddclient/ddclient/releases&quot;&gt;https://github.com/ddclient/ddclient/releases&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;INSTALLATION&lt;/h2&gt; 
+&lt;h3&gt;Distribution Package&lt;/h3&gt; 
+&lt;a href=&quot;https://repology.org/project/ddclient/versions&quot;&gt; &lt;img src=&quot;https://repology.org/badge/vertical-allrepos/ddclient.svg?sanitize=true&quot; alt=&quot;Packaging status&quot; align=&quot;right&quot;&gt; &lt;/a&gt; The easiest way to install ddclient is to install a package offered by your operating system. See the image to the right for a list of distributions with a ddclient package. 
+&lt;h3&gt;Manual Installation&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Extract the distribution tarball (&lt;code&gt;.tar.gz&lt;/code&gt; file) and &lt;code&gt;cd&lt;/code&gt; into the directory:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;tar xvfa ddclient-3.XX.X.tar.gz
+cd ddclient-3.XX.X
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;(If you are installing from a clone of the Git repository, you must run &lt;code&gt;./autogen&lt;/code&gt; before continuing to the next step.)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run the following commands to build and install:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;./configure \
+    --prefix=/usr \
+    --sysconfdir=/etc \
+    --localstatedir=/var
+make
+make VERBOSE=1 check
+sudo make install
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Edit &lt;code&gt;/etc/ddclient/ddclient.conf&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;systemd&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;cp sample-etc_systemd.service /etc/systemd/system/ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;enable automatic startup when booting&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;systemctl enable ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;start the first time by hand&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;systemctl start ddclient.service
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Known issues&lt;/h2&gt; 
+&lt;p&gt;This is a list for quick referencing of known issues. For further details check out the linked issues and the changelog.&lt;/p&gt; 
+&lt;p&gt;Note that any issues prior to version v3.9.1 will not be listed here. If a fix is committed but not yet part of any tagged release, the notes here will reference the not-yet-released version number.&lt;/p&gt; 
+&lt;h3&gt;v3.11.2 - v3.9.1: SSL parameter breaks HTTP-only IP acquisition&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;ssl&lt;/code&gt; parameter forces all connections to use HTTPS. While technically working as expected, this behavior keeps coming up as a pain point when using HTTP-only IP querying sites such as &lt;a href=&quot;http://checkip.dyndns.org&quot;&gt;http://checkip.dyndns.org&lt;/a&gt;. Starting with v4.0.0, the behavior is changed to respect &lt;code&gt;http://&lt;/code&gt; in a URL. A separate parameter to disallow all HTTP connections or warn about them may be added later.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v4.0.0 uses HTTP to connect to URLs starting with &lt;code&gt;http://&lt;/code&gt;. See &lt;a href=&quot;https://github.com/ddclient/ddclient/pull/608&quot;&gt;here&lt;/a&gt; for more info.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Disable the SSL parameter&lt;/p&gt; 
+&lt;h3&gt;v3.10.0: Chunked encoding not corretly supported in IO::Socket HTTP code&lt;/h3&gt; 
+&lt;p&gt;Using the IO::Socket HTTP code will break in various ways whenever the server responds using HTTP 1.1 chunked encoding. Refer to &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/548&quot;&gt;this issue&lt;/a&gt; for more info.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v3.11.0 - IO::Socket has been deprecated there and curl has been made the standard.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Use curl for transfers by either setting &lt;code&gt;-curl&lt;/code&gt; in the command line or by adding &lt;code&gt;curl=yes&lt;/code&gt; in the config&lt;/p&gt; 
+&lt;h3&gt;v3.10.0: Spammed updates to some providers&lt;/h3&gt; 
+&lt;p&gt;This issue arises when using the &lt;code&gt;use&lt;/code&gt; parameter in the config and using one of these providers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Cloudflare&lt;/li&gt; 
+ &lt;li&gt;Hetzner&lt;/li&gt; 
+ &lt;li&gt;Digitalocean&lt;/li&gt; 
+ &lt;li&gt;Infomaniak&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Fix&lt;/strong&gt;: v3.11.2&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Workaround&lt;/strong&gt;: Use the &lt;code&gt;usev4&lt;/code&gt;/&lt;code&gt;usev6&lt;/code&gt; parameters instead of &lt;code&gt;use&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;TROUBLESHOOTING&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Enable debugging and verbose messages: &lt;code&gt;ddclient --daemon=0 --debug --verbose&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Do you need to specify a proxy? If so, just add a &lt;code&gt;proxy=your.isp.proxy&lt;/code&gt; to the &lt;code&gt;ddclient.conf&lt;/code&gt; file.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Define the IP address of your router with &lt;code&gt;fwv4=xxx.xxx.xxx.xxx&lt;/code&gt; in &lt;code&gt;/etc/ddclient/ddclient.conf&lt;/code&gt; and then try &lt;code&gt;$ ddclient --daemon=0 --query&lt;/code&gt; to see if the router status web page can be understood.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Need support for another router/firewall? Define the router yourself with:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;usev4=fwv4
+fwv4=url-to-your-router-status-page
+fwv4-skip=&quot;regular expression matching any string preceding your IP address, if necessary&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;ddclient does something like this to provide builtin support for common routers. For example, the Linksys routers could have been added with:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;usev4=fwv4
+fwv4=192.168.1.1/Status.htm
+fwv4-skip=WAN.*?IP Address
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;OR &lt;a href=&quot;https://github.com/ddclient/ddclient/issues/new&quot;&gt;create a new issue&lt;/a&gt; containing the output from:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;curl --include --location http://url.of.your.firewall/ip-status-page
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;so that we can add a new firewall definition to a future release of ddclient.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Some broadband routers require the use of a password when ddclient accesses its status page to determine the router&#39;s WAN IP address. If this is the case for your router, add&lt;/p&gt; &lt;pre&gt;&lt;code&gt;fw-login=your-router-login
+fw-password=your-router-password
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;to the beginning of your ddclient.conf file. Note that some routers use either &#39;root&#39; or &#39;admin&#39; as their login while some others accept anything.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;ppp&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using a ppp connection, you can easily update your DynDNS entry with each connection, with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;## configure pppd to update DynDNS with each connection
+cp sample-etc_ppp_ip-up.local /etc/ppp/ip-up.local
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ppp interface.&lt;/p&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;cron&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you have not configured ddclient to use daemon-mode, you&#39;ll need to configure cron to force an update once a month so that the dns entry will not become stale.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;## configure cron to force an update twice a month
+cp sample-etc_cron.d_ddclient /etc/cron.d/ddclient
+vi /etc/cron.d/ddclient
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;dhcpcd&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using dhcpcd-1.3.17 or thereabouts, you can easily update your DynDNS entry automatically every time your lease is obtained or renewed by creating an executable file named: &lt;code&gt;/etc/dhcpc/dhcpcd-{your-interface}.exe&lt;/code&gt; ie.: &lt;code&gt;cp sample-etc_dhcpc_dhcpcd-eth0.exe /etc/dhcpc/dhcpcd-{your-interface}.exe&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;In my case, it is named dhcpcd-eth0.exe and contains the lines:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;#!/bin/sh
+PATH=/usr/bin:/root/bin:${PATH}
+logger -t dhcpcd IP address changed to $1
+ddclient --proxy fasthttp.sympatico.ca --wildcard --ip $1 | logger -t ddclient
+exit 0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Other DHCP clients may have another method of calling out to programs for updating DNS entries.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ethernet interface.&lt;/p&gt; 
+&lt;h2&gt;USING DDCLIENT WITH &lt;code&gt;dhclient&lt;/code&gt;&lt;/h2&gt; 
+&lt;p&gt;If you are using the ISC DHCP client (dhclient), you can update your DynDNS entry automatically every time your lease is obtained or renewed by creating an executable file named: &lt;code&gt;/etc/dhclient-exit-hooks&lt;/code&gt; ie.: &lt;code&gt;cp sample-etc_dhclient-exit-hooks /etc/dhclient-exit-hooks&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Edit &lt;code&gt;/etc/dhclient-exit-hooks&lt;/code&gt; to change any options required.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you may just configure ddclient to operate as a daemon and monitor your ethernet interface.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>glpi-project/glpi-agent</title>
+      <link>https://github.com/glpi-project/glpi-agent</link>
+      <description>&lt;p&gt;GLPI Agent&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;img src=&quot;https://raw.githubusercontent.com/glpi-project/glpi-agent/develop/share/html/logo.png&quot; alt=&quot;GLPI Agent&quot; width=&quot;32&quot; height=&quot;32&quot;&gt; GLPI Agent&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-ci.yml/badge.svg?sanitize=true&quot; alt=&quot;GLPI Agent CI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-packaging.yml&quot;&gt;&lt;img src=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-packaging.yml/badge.svg?sanitize=true&quot; alt=&quot;GLPI Agent Packaging&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/glpi-project/glpi-agent/develop/#download&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/glpi-project/glpi-agent/total.svg?sanitize=true&quot; alt=&quot;Github All Releases&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/GLPI_PROJECT&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/GLPI_PROJECT.svg?style=social&amp;amp;label=Follow&quot; alt=&quot;Twitter Follow&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Summary&lt;/h2&gt; 
+&lt;p&gt;The GLPI Agent is a generic management agent. It can perform a certain number of tasks, according to its own execution plan, or on behalf of a GLPI server acting as a control point.&lt;/p&gt; 
+&lt;h2&gt;Description&lt;/h2&gt; 
+&lt;p&gt;This agent is based on a fork of &lt;a href=&quot;https://github.com/fusioninventory/fusioninventory-agent&quot;&gt;FusionInventory agent&lt;/a&gt; and so works mainly like FusionInventory agent. It introduces new features and a new protocol to communicate directly with a GLPI server and its native inventory feature. Anyway it also keeps the compatibility with &lt;a href=&quot;https://github.com/fusioninventory/fusioninventory-for-glpi&quot;&gt;FusionInventory for GLPI plugin&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Release: See &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/releases&quot;&gt;our github releases&lt;/a&gt; for official win32, MacOSX &amp;amp; linux packages.&lt;/li&gt; 
+ &lt;li&gt;Development builds: 
+  &lt;ul&gt; 
+   &lt;li&gt;nightly builds for last &#39;develop&#39; branch commits: &lt;a href=&quot;http://nightly.glpi-project.org/glpi-agent&quot;&gt;GLPI-Agent nightly builds&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;with a github account, you can also access artifacts for any other branches supporting &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/actions/workflows/glpi-agent-packaging.yml?query=is%3Asuccess+event%3Apush+-branch%3Adevelop&quot;&gt;&quot;GLPI Agent Packaging&quot; workflow&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;The GLPI Agent has its &lt;a href=&quot;https://github.com/glpi-project/doc-agent&quot;&gt;dedicated documentation project&lt;/a&gt; where any contribution will also be appreciated.&lt;/p&gt; 
+&lt;p&gt;The documentation itself is &lt;a href=&quot;https://glpi-agent.readthedocs.io/&quot;&gt;readable online&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://glpi-agent.readthedocs.io/en/latest/?badge=latest&quot;&gt;&lt;img src=&quot;https://readthedocs.org/projects/glpi-agent/badge/?version=latest&quot; alt=&quot;Documentation Status&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Dependencies&lt;/h2&gt; 
+&lt;h3&gt;Core&lt;/h3&gt; 
+&lt;p&gt;Minimum perl version: 5.8&lt;/p&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;File::Which&lt;/li&gt; 
+ &lt;li&gt;LWP::UserAgent&lt;/li&gt; 
+ &lt;li&gt;Net::IP&lt;/li&gt; 
+ &lt;li&gt;Text::Template&lt;/li&gt; 
+ &lt;li&gt;UNIVERSAL::require&lt;/li&gt; 
+ &lt;li&gt;XML::LibXML&lt;/li&gt; 
+ &lt;li&gt;Cpanel::JSON::XS&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Compress::Zlib, for message compression&lt;/li&gt; 
+ &lt;li&gt;HTTP::Daemon, for web interface&lt;/li&gt; 
+ &lt;li&gt;IO::Socket::SSL, for HTTPS support&lt;/li&gt; 
+ &lt;li&gt;LWP::Protocol::https, for HTTPS support&lt;/li&gt; 
+ &lt;li&gt;Proc::Daemon, for daemon mode (Unix only)&lt;/li&gt; 
+ &lt;li&gt;Proc::PID::File, for daemon mode (Unix only)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Inventory task&lt;/h3&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::CUPS, for printers detection&lt;/li&gt; 
+ &lt;li&gt;Parse::EDID, for EDID data parsing&lt;/li&gt; 
+ &lt;li&gt;DateTime, for reliable timezone name extraction&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional programs:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;dmidecode, for DMI data retrieval&lt;/li&gt; 
+ &lt;li&gt;lspci, for PCI bus scanning&lt;/li&gt; 
+ &lt;li&gt;hdparm, for additional disk drive info retrieval&lt;/li&gt; 
+ &lt;li&gt;monitor-get-edid-using-vbe, monitor-get-edid or get-edid, for EDID data access&lt;/li&gt; 
+ &lt;li&gt;ssh-keyscan, for host SSH public key retrieval&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Network discovery tasks&lt;/h3&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Thread::Queue&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::NBName, for NetBios method support&lt;/li&gt; 
+ &lt;li&gt;Net::SNMP, for SNMP method support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional programs:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;arp, for arp table lookup method support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Network inventory tasks&lt;/h3&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::SNMP&lt;/li&gt; 
+ &lt;li&gt;Thread::Queue&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Crypt::DES, for SNMPv3 support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Wake on LAN task&lt;/h3&gt; 
+&lt;p&gt;Optional Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::Write::Layer2, for ethernet method support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Deploy task&lt;/h3&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Digest::SHA&lt;/li&gt; 
+ &lt;li&gt;File::Copy::Recursive&lt;/li&gt; 
+ &lt;li&gt;Cpanel::JSON::XS&lt;/li&gt; 
+ &lt;li&gt;URI::Escape&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Mandatory Perl modules for P2P Support:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Net::Ping&lt;/li&gt; 
+ &lt;li&gt;Parallel::ForkManager&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;MSI Packaging&lt;/h3&gt; 
+&lt;p&gt;Tools:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/glpi-project/dmidecode&quot;&gt;dmidecode&lt;/a&gt; modified to be built with mingw32&lt;/li&gt; 
+ &lt;li&gt;hdparm&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.7-zip.org/&quot;&gt;7zip&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Mandatory Perl modules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Perl::Dist::Strawberry&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;MacOSX Packaging&lt;/h3&gt; 
+&lt;p&gt;Tools:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/glpi-project/dmidecode/tree/macosx&quot;&gt;dmidecode&lt;/a&gt; modified to be built on macosx&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/munki/munki-pkg&quot;&gt;munkipkg&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Xcode&lt;/li&gt; 
+ &lt;li&gt;productbuild&lt;/li&gt; 
+ &lt;li&gt;hdiutil&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Public databases&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Pci.ids&lt;/li&gt; 
+ &lt;li&gt;Usb.ids&lt;/li&gt; 
+ &lt;li&gt;SysObject.ids: &lt;a href=&quot;https://github.com/glpi-project/sysobject.ids&quot;&gt;sysobject.ids&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Related contribs&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/glpi-project/glpi-agent/develop/CONTRIB.md&quot;&gt;CONTRIB&lt;/a&gt; to find references to GLPI Agent related scritps/files&lt;/p&gt; 
+&lt;h2&gt;Contacts&lt;/h2&gt; 
+&lt;p&gt;Project websites:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;main site: &lt;a href=&quot;https://glpi-project.org/&quot;&gt;https://glpi-project.org/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;forum: &lt;a href=&quot;https://forum.glpi-project.org/&quot;&gt;https://forum.glpi-project.org/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;github: &lt;a href=&quot;http://github.com/glpi-project/glpi-agent&quot;&gt;http://github.com/glpi-project/glpi-agent&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Project Telegram channel:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://t.me/glpien&quot;&gt;https://t.me/glpien&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please report any issues on project &lt;a href=&quot;https://github.com/glpi-project/glpi-agent/issues&quot;&gt;github issue tracker&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Active authors&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Guillaume Bougard &lt;a href=&quot;mailto:gbougard@teclib.com&quot;&gt;gbougard@teclib.com&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Copyright 2006-2010 &lt;a href=&quot;https://www.ocsinventory-ng.org/&quot;&gt;OCS Inventory contributors&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Copyright 2010-2019 &lt;a href=&quot;https://fusioninventory.org&quot;&gt;FusionInventory Team&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Copyright 2011-2021 &lt;a href=&quot;https://www.teclib-edition.com/&quot;&gt;Teclib Editions&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.gnu.org/licenses/old-licenses/gpl-2.0.en.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-GPL%20v2-blue.svg?sanitize=true&quot; alt=&quot;License: GPL v2&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This software is licensed under the terms of GPLv2+, see LICENSE file for details.&lt;/p&gt; 
+&lt;h2&gt;Additional pieces of software&lt;/h2&gt; 
+&lt;p&gt;The glpi-injector script is based on fusioninventory-injector script:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;author: Pascal Danek&lt;/li&gt; 
+ &lt;li&gt;copyright: 2005 Pascal Danek&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;GLPI::Agent::Task::Inventory::Vmsystem contains code from imvirt:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;url: &lt;a href=&quot;http://micky.ibh.net/~liske/imvirt.html&quot;&gt;http://micky.ibh.net/~liske/imvirt.html&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;author: Thomas Liske &lt;a href=&quot;mailto:liske@ibh.de&quot;&gt;liske@ibh.de&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;copyright: 2008 IBH IT-Service GmbH &lt;a href=&quot;http://www.ibh.de/&quot;&gt;http://www.ibh.de/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;License: GPLv2+&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>jimsalterjrs/sanoid</title>
+      <link>https://github.com/jimsalterjrs/sanoid</link>
+      <description>&lt;p&gt;These are policy-driven snapshot management and replication tools which use OpenZFS for underlying next-gen storage. (Btrfs support plans are shelved unless and until btrfs becomes reliable.)&lt;/p&gt;&lt;hr&gt;&lt;table align=&quot;center&quot;&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td border=&quot;1&quot; width=&quot;750&quot;&gt; &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;http://www.openoid.net/wp-content/themes/openoid/images/sanoid_logo.png&quot; alt=&quot;sanoid logo&quot; title=&quot;sanoid logo&quot;&gt; &lt;/p&gt; &lt;img src=&quot;https://openoid.net/gplv3-127x51.png&quot; width=&quot;127&quot; height=&quot;51&quot; align=&quot;right&quot;&gt; &lt;p align=&quot;left&quot;&gt;Sanoid is provided to you completely free and libre, now and in perpetuity, via the GPL v3.0 license. If you find the project useful, please consider either a recurring or one-time donation at &lt;a href=&quot;https://www.patreon.com/PracticalZFS&quot; target=&quot;_blank&quot;&gt;Patreon&lt;/a&gt; or &lt;a href=&quot;https://www.paypal.com/donate/?hosted_button_id=5BLPNV86D4S9N&quot; target=&quot;_blank&quot;&gt;PayPal&lt;/a&gt;—your contributions will support both this project and the Practical ZFS &lt;a href=&quot;https://discourse.practicalzfs.com/&quot; target=&quot;_blank&quot;&gt;forum&lt;/a&gt;. &lt;/p&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;Sanoid is a policy-driven snapshot management tool for ZFS filesystems. When combined with the Linux KVM hypervisor, you can use it to make your systems &lt;a href=&quot;https://openoid.net/transcend&quot; target=&quot;_blank&quot;&gt;functionally immortal&lt;/a&gt; via automated snapshot management and over-the-air replication.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://youtu.be/ZgowLNBsu00&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;http://www.openoid.net/sanoid_video_launcher.png&quot; alt=&quot;sanoid rollback demo&quot; title=&quot;sanoid rollback demo&quot;&gt;&lt;/a&gt;&lt;br clear=&quot;all&quot;&gt;&lt;sup&gt;(Real time demo: rolling back a full-scale cryptomalware infection in seconds!)&lt;/sup&gt;&lt;/p&gt; 
+&lt;p&gt;More prosaically, you can use Sanoid to create, automatically thin, and monitor snapshots and pool health from a single eminently human-readable TOML config file at /etc/sanoid/sanoid.conf. (Sanoid also requires a &quot;defaults&quot; file located at /etc/sanoid/sanoid.defaults.conf, which is not user-editable.) A typical Sanoid system would have a single cron job but see INSTALL.md for more details:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;* * * * * TZ=UTC /usr/local/bin/sanoid --cron
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;Note&lt;/code&gt;: Using UTC as timezone is recommended to prevent problems with daylight saving times&lt;/p&gt; 
+&lt;p&gt;And its /etc/sanoid/sanoid.conf might look something like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;[data/home]
+	use_template = production
+[data/images]
+	use_template = production
+	recursive = yes
+	process_children_only = yes
+[data/images/win7]
+	hourly = 4
+
+#############################
+# templates below this line #
+#############################
+
+[template_production]
+        frequently = 0
+        hourly = 36
+        daily = 30
+        monthly = 3
+        yearly = 0
+        autosnap = yes
+        autoprune = yes
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Which would be enough to tell sanoid to take and keep 36 hourly snapshots, 30 dailies, 3 monthlies, and no yearlies for all datasets under data/images (but not data/images itself, since process_children_only is set). Except in the case of data/images/win7, which follows the same template (since it&#39;s a child of data/images) but only keeps 4 hourlies for whatever reason.&lt;/p&gt; 
+&lt;p&gt;For more full details on sanoid.conf settings see &lt;a href=&quot;https://github.com/jimsalterjrs/sanoid/wiki/Sanoid#options&quot;&gt;Wiki page&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Be aware that if you don&#39;t specify some interval options the defaults will be used (from /etc/sanoid/sanoid.defaults.conf)&lt;/p&gt; 
+&lt;h5&gt;Sanoid Command Line Options&lt;/h5&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;--cron&lt;/p&gt; &lt;p&gt;This will process your sanoid.conf file, create snapshots, then purge expired ones.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--configdir&lt;/p&gt; &lt;p&gt;Specify a location for the config file named sanoid.conf. Defaults to /etc/sanoid&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--cache-dir&lt;/p&gt; &lt;p&gt;Specify a directory to store the zfs snapshot cache. Defaults to /var/cache/sanoid&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--run-dir&lt;/p&gt; &lt;p&gt;Specify a directory for temporary files such as lock files. Defaults to /var/run/sanoid&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--take-snapshots&lt;/p&gt; &lt;p&gt;This will process your sanoid.conf file, create snapshots, but it will NOT purge expired ones. (Note that snapshots taken are atomic in an individual dataset context, &lt;i&gt;not&lt;/i&gt; a global context - snapshots of pool/dataset1 and pool/dataset2 will each be internally consistent and atomic, but one may be a few filesystem transactions &quot;newer&quot; than the other.)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--prune-snapshots&lt;/p&gt; &lt;p&gt;This will process your sanoid.conf file, it will NOT create snapshots, but it will purge expired ones.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--force-prune&lt;/p&gt; &lt;p&gt;Purges expired snapshots even if a send/recv is in progress&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--monitor-snapshots&lt;/p&gt; &lt;p&gt;This option is designed to be run by a Nagios monitoring system. It reports on the health of your snapshots.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--monitor-health&lt;/p&gt; &lt;p&gt;This option is designed to be run by a Nagios monitoring system. It reports on the health of the zpool your filesystems are on. It only monitors filesystems that are configured in the sanoid.conf file.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--monitor-capacity&lt;/p&gt; &lt;p&gt;This option is designed to be run by a Nagios monitoring system. It reports on the capacity of the zpool your filesystems are on. It only monitors pools that are configured in the sanoid.conf file.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--force-update&lt;/p&gt; &lt;p&gt;This clears out sanoid&#39;s zfs snapshot listing cache. This is normally not needed.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--version&lt;/p&gt; &lt;p&gt;This prints the version number, and exits.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--quiet&lt;/p&gt; &lt;p&gt;Suppress non-error output.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--verbose&lt;/p&gt; &lt;p&gt;This prints additional information during the sanoid run.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--debug&lt;/p&gt; &lt;p&gt;This prints out quite a lot of additional information during a sanoid run, and is normally not needed.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--readonly&lt;/p&gt; &lt;p&gt;Skip creation/deletion of snapshots (Simulate).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--help&lt;/p&gt; &lt;p&gt;Show help message.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Sanoid script hooks&lt;/h3&gt; 
+&lt;p&gt;There are three script types which can optionally be executed at various stages in the lifecycle of a snapshot:&lt;/p&gt; 
+&lt;h4&gt;&lt;code&gt;pre_snapshot_script&lt;/code&gt;&lt;/h4&gt; 
+&lt;p&gt;Will be executed before the snapshot(s) of a single dataset are taken. The following environment variables are passed:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Env vars&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SCRIPT&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;The type of script being executed, one of &lt;code&gt;pre&lt;/code&gt;, &lt;code&gt;post&lt;/code&gt;, or &lt;code&gt;prune&lt;/code&gt;. Allows for one script to be used for multiple tasks&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_TARGET&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;DEPRECATED&lt;/strong&gt; The dataset about to be snapshot (only the first dataset will be provided)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_TARGETS&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Comma separated list of all datasets to be snapshotted (currently only a single dataset, multiple datasets will be possible later with atomic groups)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SNAPNAME&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;DEPRECATED&lt;/strong&gt; The name of the snapshot that will be taken (only the first name will be provided, does not include the dataset name)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SNAPNAMES&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Comma separated list of all snapshot names that will be taken (does not include the dataset name)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_TYPES&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Comma separated list of all snapshot types to be taken (yearly, monthly, weekly, daily, hourly, frequently)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;If the script returns a non-zero exit code, the snapshot(s) will not be taken unless &lt;code&gt;no_inconsistent_snapshot&lt;/code&gt; is false.&lt;/p&gt; 
+&lt;h4&gt;&lt;code&gt;post_snapshot_script&lt;/code&gt;&lt;/h4&gt; 
+&lt;p&gt;Will be executed when:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The pre-snapshot script succeeded or&lt;/li&gt; 
+ &lt;li&gt;The pre-snapshot script failed and &lt;code&gt;force_post_snapshot_script&lt;/code&gt; is true.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Env vars&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SCRIPT&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_TARGET&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;DEPRECATED&lt;/strong&gt; as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_TARGETS&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SNAPNAME&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;DEPRECATED&lt;/strong&gt; as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SNAPNAMES&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_TYPES&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_PRE_FAILURE&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;This will indicate if the pre-snapshot script failed&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;&lt;code&gt;pruning_script&lt;/code&gt;&lt;/h4&gt; 
+&lt;p&gt;Will be executed after a snapshot is successfully deleted. The following environment variables will be passed:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Env vars&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SCRIPT&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_TARGET&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;SANOID_SNAPNAME&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;as above&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;example&lt;/h4&gt; 
+&lt;p&gt;&lt;strong&gt;sanoid.conf&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;...
+[sanoid-test-0]
+	use_template = production
+	recursive = yes
+	pre_snapshot_script = /tmp/debug.sh
+	post_snapshot_script = /tmp/debug.sh
+	pruning_script = /tmp/debug.sh
+...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;verbose sanoid output&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;...
+executing pre_snapshot_script &#39;/tmp/debug.sh&#39; on dataset &#39;sanoid-test-0&#39;
+taking snapshot sanoid-test-0@autosnap_2020-02-12_14:49:33_yearly
+taking snapshot sanoid-test-0@autosnap_2020-02-12_14:49:33_monthly
+taking snapshot sanoid-test-0@autosnap_2020-02-12_14:49:33_daily
+taking snapshot sanoid-test-0@autosnap_2020-02-12_14:49:33_hourly
+executing post_snapshot_script &#39;/tmp/debug.sh&#39; on dataset &#39;sanoid-test-0&#39;
+...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;pre script env variables&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;SANOID_SCRIPT=pre
+SANOID_TARGET=sanoid-test-0/b/bb
+SANOID_TARGETS=sanoid-test-0/b/bb
+SANOID_SNAPNAME=autosnap_2020-02-12_14:49:32_yearly
+SANOID_SNAPNAMES=autosnap_2020-02-12_14:49:32_yearly,autosnap_2020-02-12_14:49:32_monthly,autosnap_2020-02-12_14:49:32_daily,autosnap_2020-02-12_14:49:32_hourly
+SANOID_TYPES=yearly,monthly,daily,hourly
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;post script env variables&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;SANOID_SCRIPT=post
+SANOID_TARGET=sanoid-test-0/b/bb
+SANOID_TARGETS=sanoid-test-0/b/bb
+SANOID_SNAPNAME=autosnap_2020-02-12_14:49:32_yearly
+SANOID_SNAPNAMES=autosnap_2020-02-12_14:49:32_yearly,autosnap_2020-02-12_14:49:32_monthly,autosnap_2020-02-12_14:49:32_daily,autosnap_2020-02-12_14:49:32_hourly
+SANOID_TYPES=yearly,monthly,daily,hourly
+SANOID_PRE_FAILURE=0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr&gt; 
+&lt;h1&gt;Syncoid&lt;/h1&gt; 
+&lt;p&gt;Sanoid also includes a replication tool, syncoid, which facilitates the asynchronous incremental replication of ZFS filesystems. A typical syncoid command might look like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;syncoid data/images/vm backup/images/vm
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Which would replicate the specified ZFS filesystem (aka dataset) from the data pool to the backup pool on the local system, or&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;syncoid data/images/vm root@remotehost:backup/images/vm
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Which would push-replicate the specified ZFS filesystem from the local host to remotehost over an SSH tunnel, or&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;syncoid root@remotehost:data/images/vm backup/images/vm
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Which would pull-replicate the filesystem from the remote host to the local system over an SSH tunnel.&lt;/p&gt; 
+&lt;p&gt;Syncoid supports recursive replication (replication of a dataset and all its child datasets) and uses mbuffer buffering, lzop compression, and pv progress bars if the utilities are available on the systems used. If ZFS supports resumable send/receive streams on both the source and target those will be enabled as default.&lt;/p&gt; 
+&lt;p&gt;As of 1.4.18, syncoid also automatically supports and enables resume of interrupted replication when both source and target support this feature.&lt;/p&gt; 
+&lt;h5&gt;Syncoid Dataset Properties&lt;/h5&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;syncoid:sync&lt;/p&gt; &lt;p&gt;Available values:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;true&lt;/code&gt; (default if unset)&lt;/p&gt; &lt;p&gt;This dataset will be synchronised to all hosts.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;false&lt;/code&gt;&lt;/p&gt; &lt;p&gt;This dataset will not be synchronised to any hosts - it will be skipped. This can be useful for preventing certain datasets from being transferred when recursively handling a tree.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;host1,host2,...&lt;/code&gt;&lt;/p&gt; &lt;p&gt;A comma separated list of hosts. This dataset will only be synchronised by hosts listed in the property.&lt;/p&gt; &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: this check is performed by the host running &lt;code&gt;syncoid&lt;/code&gt;, thus the local hostname must be present for inclusion during a push operation // the remote hostname must be present for a pull.&lt;/p&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: this will also prevent syncoid from handling the dataset if given explicitly on the command line.&lt;/p&gt; &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: syncing a child of a no-sync dataset will currently result in a critical error.&lt;/p&gt; &lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: empty properties will be handled as if they were unset.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h5&gt;Syncoid Command Line Options&lt;/h5&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;[source]&lt;/p&gt; &lt;p&gt;This is the source dataset. It can be either local or remote.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;[destination]&lt;/p&gt; &lt;p&gt;This is the destination dataset. It can be either local or remote.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--identifier=&lt;/p&gt; &lt;p&gt;Adds the given identifier to the snapshot and hold name after &quot;syncoid_&quot; prefix and before the hostname. This enables the use case of reliable replication to multiple targets from the same host. The following chars are allowed: a-z, A-Z, 0-9, _, -, : and . .&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;-r --recursive&lt;/p&gt; &lt;p&gt;This will also transfer child datasets.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--skip-parent&lt;/p&gt; &lt;p&gt;This will skip the syncing of the parent dataset. Does nothing without &#39;--recursive&#39; option.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--compress 
+   &lt;compression type&gt;&lt;/compression&gt;&lt;/p&gt; &lt;p&gt;Compression method to use for network transfer. Currently accepted options: gzip, pigz-fast, pigz-slow, zstd-fast, zstd-slow, lz4, xz, lzo (default) &amp;amp; none. If the selected compression method is unavailable on the source and destination, no compression will be used.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--source-bwlimit &amp;lt;limit t|g|m|k&amp;gt;&lt;/p&gt; &lt;p&gt;This is the bandwidth limit in bytes (kbytes, mbytes, etc) per second imposed upon the source. This is mainly used if the target does not have mbuffer installed, but bandwidth limits are desired.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--target-bwlimit &amp;lt;limit t|g|m|k&amp;gt;&lt;/p&gt; &lt;p&gt;This is the bandwidth limit in bytes (kbytes, mbytes, etc) per second imposed upon the target. This is mainly used if the source does not have mbuffer installed, but bandwidth limits are desired.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-command-checks&lt;/p&gt; &lt;p&gt;Does not check the existence of commands before attempting the transfer, providing administrators a way to run the tool with minimal overhead and maximum speed, at risk of potentially failed replication, or other possible edge cases. It assumes all programs are available, and should not be used in most situations. This is an not an officially supported run mode.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-stream&lt;/p&gt; &lt;p&gt;This argument tells syncoid to use -i incrementals, not -I. This updates the target with the newest snapshot from the source, without replicating the intermediate snapshots in between. (If used for an initial synchronization, will do a full replication from newest snapshot and exit immediately, rather than starting with the oldest and then doing an immediate -i to the newest.)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-sync-snap&lt;/p&gt; &lt;p&gt;This argument tells syncoid to restrict itself to existing snapshots, instead of creating a semi-ephemeral syncoid snapshot at execution time. Especially useful in multi-target (A-&amp;gt;B, A-&amp;gt;C) replication schemes, where you might otherwise accumulate a large number of foreign syncoid snapshots.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--keep-sync-snap&lt;/p&gt; &lt;p&gt;This argument tells syncoid to skip pruning old snapshots created and used by syncoid for replication if &#39;--no-sync-snap&#39; isn&#39;t specified.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--create-bookmark&lt;/p&gt; &lt;p&gt;This argument tells syncoid to create a zfs bookmark for the newest snapshot after it got replicated successfully. The bookmark name will be equal to the snapshot name. Only works in combination with the --no-sync-snap option. This can be very useful for irregular replication where the last matching snapshot on the source was already deleted but the bookmark remains so a replication is still possible.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--use-hold This argument tells syncoid to add a hold to the newest snapshot on the source and target after replication succeeds and to remove the hold after the next successful replication. Setting a hold prevents the snapshots from being destroyed. The hold name includes the identifier if set. This allows for separate holds in case of replication to multiple targets.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--preserve-recordsize&lt;/p&gt; &lt;p&gt;This argument tells syncoid to set the recordsize on the target before writing any data to it matching the one set on the replication src. This only applies to initial sends.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--preserve-properties&lt;/p&gt; &lt;p&gt;This argument tells syncoid to get all locally set dataset properties from the source and apply all supported ones on the target before writing any data. It&#39;s similar to the &#39;-p&#39; flag for zfs send but also works for encrypted datasets in non raw sends. This only applies to initial sends.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--delete-target-snapshots&lt;/p&gt; &lt;p&gt;With this argument snapshots which are missing on the source will be destroyed on the target. Use this if you only want to handle snapshots on the source. Note that snapshot deletion is only done after a successful synchronization. If no new snapshots are found, no synchronization is done and no deletion either.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-clone-rollback&lt;/p&gt; &lt;p&gt;Do not rollback clones on target&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-rollback&lt;/p&gt; &lt;p&gt;Do not rollback anything (clones or snapshots) on target host&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--exclude=REGEX&lt;/p&gt; &lt;p&gt;&lt;strong&gt;DEPRECATION NOTICE:&lt;/strong&gt; &lt;code&gt;--exclude&lt;/code&gt; has been deprecated and will be removed in a future release. Please use &lt;code&gt;--exclude-datasets&lt;/code&gt; instead.&lt;/p&gt; &lt;p&gt;The given regular expression will be matched against all datasets which would be synced by this run and excludes them. This argument can be specified multiple times. The provided regex pattern is matched against the dataset name only; this option does not affect which snapshots are synchronized. If both &lt;code&gt;--exclude&lt;/code&gt; and &lt;code&gt;--exclude-datasets&lt;/code&gt; are provided, then &lt;code&gt;--exclude&lt;/code&gt; is ignored.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--exclude-datasets=REGEX&lt;/p&gt; &lt;p&gt;The given regular expression will be matched against all datasets which would be synced by this run and excludes them. This argument can be specified multiple times. The provided regex pattern is matched against the dataset name only; this option does not affect which snapshots are synchronized.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--exclude-snaps=REGEX&lt;/p&gt; &lt;p&gt;Exclude specific snapshots that match the given regular expression. The provided regex pattern is matched against the snapshot name only. Can be specified multiple times. If a snapshot matches both the exclude-snaps and include-snaps patterns, then it will be excluded.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--include-snaps=REGEX&lt;/p&gt; &lt;p&gt;Only include snapshots that match the given regular expression. The provided regex pattern is matched against the snapshot name only. Can be specified multiple times. If a snapshot matches both the exclude-snaps and include-snaps patterns, then it will be excluded.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-resume&lt;/p&gt; &lt;p&gt;This argument tells syncoid to not use resumable zfs send/receive streams.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--force-delete&lt;/p&gt; &lt;p&gt;Remove target datasets recursively (WARNING: this will also affect child datasets with matching snapshots/bookmarks), if there are no matching snapshots/bookmarks. Also removes conflicting snapshots if the replication would fail because of a snapshot which has the same name between source and target but different contents.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-clone-handling&lt;/p&gt; &lt;p&gt;This argument tells syncoid to not recreate clones on the target on initial sync, and do a normal replication instead.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--dumpsnaps&lt;/p&gt; &lt;p&gt;This prints a list of snapshots during the run.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--no-privilege-elevation&lt;/p&gt; &lt;p&gt;Bypass the root check and assume syncoid has the necessary permissions (for use with ZFS permission delegation).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--sshport&lt;/p&gt; &lt;p&gt;Allow sync to/from boxes running SSH on non-standard ports.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--sshcipher&lt;/p&gt; &lt;p&gt;Instruct ssh to use a particular cipher set.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--sshoption&lt;/p&gt; &lt;p&gt;Passes option to ssh. This argument can be specified multiple times.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--sshkey&lt;/p&gt; &lt;p&gt;Use specified identity file as per ssh -i.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--insecure-direct-connection=IP:PORT[,IP:PORT,[TIMEOUT,[mbuffer]]]&lt;/p&gt; &lt;p&gt;WARNING: This is an insecure option as the data is not encrypted while being sent over the network. Only use if you trust the complete network path. Use a direct tcp connection (with socat and busybox nc/mbuffer) for the actual zfs send/recv stream. All control commands are still executed via the ssh connection. The first address pair is used for connecting to the target host from the source host and the second pair is for listening on the target host. If the later isn&#39;t provided the same as the former is used. This can be used for saturating high throughput connection like &amp;gt;= 10GBe network which isn&#39;t easy with the overhead off ssh. It can also be useful for encrypted datasets to lower the cpu usage needed for replication but be aware that metadata is NOT ENCRYPTED in this case. The default timeout is 60 seconds and can be overridden by providing it as third argument. By default busybox nc is used for the listeing tcp socket, if mbuffer is preferred specify its name as fourth argument but be aware that mbuffer listens on all interfaces and uses an optionally provided ip address for access restriction (This option can&#39;t be used for relaying between two remote hosts)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--quiet&lt;/p&gt; &lt;p&gt;Suppress non-error output.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--debug&lt;/p&gt; &lt;p&gt;This prints out quite a lot of additional information during a syncoid run, and is normally not needed.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--help&lt;/p&gt; &lt;p&gt;Show help message.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--version&lt;/p&gt; &lt;p&gt;Print the version and exit.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;--monitor-version&lt;/p&gt; &lt;p&gt;This doesn&#39;t do anything right now.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Note that the sync snapshots syncoid creates are not atomic in a global context: sync snapshots of pool/dataset1 and pool/dataset2 will each be internally consistent, but one may be a few filesystem transactions &quot;newer&quot; than the other. (This does not affect the consistency of snapshots already taken in other ways, which syncoid replicates in the overall stream unless --no-stream is specified. So if you want to manually zfs snapshot -R pool@1 before replicating with syncoid, the global atomicity of pool/dataset1@1 and pool/dataset2@1 will still be intact.)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>Perl/perl5</title>
+      <link>https://github.com/Perl/perl5</link>
+      <description>&lt;p&gt;🐪 The Perl programming language&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Perl is Copyright (C) 1993 - 2025 by Larry Wall and others.&lt;/p&gt; 
+&lt;p&gt;All rights reserved.&lt;/p&gt; 
+&lt;h1&gt;ABOUT PERL&lt;/h1&gt; 
+&lt;p&gt;Perl is a general-purpose programming language originally developed for text manipulation and now used for a wide range of tasks including system administration, web development, network programming, GUI development, and more.&lt;/p&gt; 
+&lt;p&gt;The language is intended to be practical (easy to use, efficient, complete) rather than beautiful (tiny, elegant, minimal). Its major features are that it&#39;s easy to use, supports both procedural and object-oriented (OO) programming, has powerful built-in support for text processing, and has one of the world&#39;s most impressive collections of third-party modules.&lt;/p&gt; 
+&lt;p&gt;For an introduction to the language&#39;s features, see pod/perlintro.pod.&lt;/p&gt; 
+&lt;p&gt;For a discussion of the important changes in this release, see pod/perldelta.pod.&lt;/p&gt; 
+&lt;p&gt;There are also many Perl books available, covering a wide variety of topics, from various publishers. See pod/perlbook.pod for more information.&lt;/p&gt; 
+&lt;h1&gt;INSTALLATION&lt;/h1&gt; 
+&lt;p&gt;If you&#39;re using a relatively modern operating system and want to install this version of Perl locally, run the following commands:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./Configure -des -Dprefix=$HOME/localperl
+make test
+make install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will configure and compile perl for your platform, run the regression tests, and install perl in a subdirectory &quot;localperl&quot; of your home directory.&lt;/p&gt; 
+&lt;p&gt;If you run into any trouble whatsoever or you need to install a customized version of Perl, you should read the detailed instructions in the &quot;INSTALL&quot; file that came with this distribution. Additionally, there are a number of &quot;README&quot; files with hints and tips about building and using Perl on a wide variety of platforms, some more common than others.&lt;/p&gt; 
+&lt;p&gt;Once you have Perl installed, a wealth of documentation is available to you through the &#39;perldoc&#39; tool. To get started, run this command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;perldoc perl
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;IF YOU RUN INTO TROUBLE&lt;/h1&gt; 
+&lt;p&gt;Perl is a large and complex system that&#39;s used for everything from knitting to rocket science. If you run into trouble, it&#39;s quite likely that someone else has already solved the problem you&#39;re facing. Once you&#39;ve exhausted the documentation, please report bugs to us at the GitHub issue tracker at &lt;a href=&quot;https://github.com/Perl/perl5/issues&quot;&gt;https://github.com/Perl/perl5/issues&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;While it was current when we made it available, Perl is constantly evolving and there may be a more recent version that fixes bugs you&#39;ve run into or adds new features that you might find useful.&lt;/p&gt; 
+&lt;p&gt;You can always find the latest version of perl on a CPAN (Comprehensive Perl Archive Network) site near you at &lt;a href=&quot;https://www.cpan.org/src/&quot;&gt;https://www.cpan.org/src/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you want to submit a simple patch to the perl source, see the &quot;SUPER QUICK PATCH GUIDE&quot; in pod/perlhack.pod.&lt;/p&gt; 
+&lt;p&gt;Just a personal note: I want you to know that I create nice things like this because it pleases the Author of my story. If this bothers you, then your notion of Authorship needs some revision. But you can use perl anyway. :-)&lt;/p&gt; 
+&lt;p&gt;The author.&lt;/p&gt; 
+&lt;h1&gt;LICENSING&lt;/h1&gt; 
+&lt;p&gt;This program is free software; you can redistribute it and/or modify it under the terms of either:&lt;/p&gt; 
+&lt;p&gt;a. the GNU General Public License as published by the Free Software Foundation; either version 1, or (at your option) any later version, or&lt;/p&gt; 
+&lt;p&gt;b. the &quot;Artistic License&quot; which comes with this Kit.&lt;/p&gt; 
+&lt;p&gt;This program is distributed in the hope that it will be useful, but WITHOUT ANY WARRANTY; without even the implied warranty of MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE. See either the GNU General Public License or the Artistic License for more details.&lt;/p&gt; 
+&lt;p&gt;You should have received a copy of the Artistic License with this Kit, in the file named &quot;Artistic&quot;. If not, I&#39;ll be glad to provide one.&lt;/p&gt; 
+&lt;p&gt;You should also have received a copy of the GNU General Public License along with this program in the file named &quot;Copying&quot;. If not, write to the Free Software Foundation, Inc., 51 Franklin Street, Fifth Floor, Boston, MA 02110-1301, USA or visit their web page on the internet at &lt;a href=&quot;https://www.gnu.org/copyleft/gpl.html&quot;&gt;https://www.gnu.org/copyleft/gpl.html&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For those of you that choose to use the GNU General Public License, my interpretation of the GNU General Public License is that no Perl script falls under the terms of the GPL unless you explicitly put said script under the terms of the GPL yourself. Furthermore, any object code linked with perl does not automatically fall under the terms of the GPL, provided such object code only adds definitions of subroutines and variables, and does not otherwise impair the resulting interpreter from executing any standard Perl script. I consider linking in C subroutines in this manner to be the moral equivalent of defining subroutines in the Perl language itself. You may sell such an object file as proprietary provided that you provide or offer to provide the Perl source, as specified by the GNU General Public License. (This is merely an alternate way of specifying input to the program.) You may also sell a binary produced by the dumping of a running Perl script that belongs to you, provided that you provide or offer to provide the Perl source as specified by the GPL. (The fact that a Perl interpreter and your code are in the same binary file is, in this case, a form of mere aggregation.) This is my interpretation of the GPL. If you still have concerns or difficulties understanding my intent, feel free to contact me. Of course, the Artistic License spells all this out for your protection, so you may prefer to use that.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LMS-Community/slimserver</title>
+      <link>https://github.com/LMS-Community/slimserver</link>
+      <description>&lt;p&gt;Server for Squeezebox and compatible players. This server is also called Lyrion Music Server.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a name=&quot;readme-top&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/LMS-Community/slimserver/actions/workflows/00_smoketest.yaml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/LMS-Community/slimserver/00_smoketest.yaml?style=flat&quot; alt=&quot;Build passing&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://perl.org/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Written_in-perl-orange?logo=perl&quot; alt=&quot;Perl&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/graphs/contributors&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/contributors/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Contributors&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/network/members&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/forks/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Forks&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Stargazers&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Issues&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/pulls&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues-pr/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Pull requests&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/lmscommunity/lyrionmusicserver&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/lmscommunity/lyrionmusicserver?style=flat&quot; alt=&quot;Docker pulls&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;br&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://github.com/LMS-Community/slimserver&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver-platforms/public/9.0/win32/res/SqueezeCenter.ico&quot; alt=&quot;Logo&quot; width=&quot;128&quot; height=&quot;128&quot;&gt; &lt;/a&gt; 
+ &lt;h3 align=&quot;center&quot;&gt;Lyrion Music Server&lt;/h3&gt; 
+ &lt;p align=&quot;center&quot;&gt; Streaming audio server &lt;br&gt; &lt;a href=&quot;https://lyrion.org&quot;&gt;&lt;strong&gt;Explore the docs »&lt;/strong&gt;&lt;/a&gt; &lt;br&gt; &lt;br&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues/new?labels=bug&quot;&gt;Report Bug&lt;/a&gt; · &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues/new?labels=enhancement&quot;&gt;Request Feature&lt;/a&gt; &lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;About The Project&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lyrion.org&quot;&gt;&lt;img src=&quot;https://lyrion.org/assets/screenshot.png&quot; alt=&quot;LMS Screen Shot&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Lyrion Music Server (aka. LMS, fka. Logitech Mediaserver, SlimServer, SqueezeCenter, SqueezeboxServer, SliMP3) is the server software that powers audio players from &lt;a href=&quot;https://www.logi.com&quot;&gt;Logitech&lt;/a&gt; (formerly known as SlimDevices), including &lt;a href=&quot;https://lms-community.github.io/players-and-controllers/hardware-comparison/&quot;&gt;Squeezebox 3rd Generation, Squeezebox Boom, Squeezebox Receiver, Transporter, Squeezebox2, Squeezebox and SLIMP3&lt;/a&gt;, and many software emulators like &lt;a href=&quot;https://sourceforge.net/projects/lmsclients/files/&quot;&gt;Squeezelite and SqueezePlay&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;With the help of many plugins, Lyrion Music Server can stream not only your local music collection, but content from many music services and internet radio stations to your players.&lt;/p&gt; 
+&lt;p&gt;Lyrion Music Server is written in Perl. It runs on pretty much any platform that Perl runs on, including Linux, Mac OSX, Solaris and Windows.&lt;/p&gt; 
+&lt;p&gt;Enjoy the music on your Squeezebox!&lt;/p&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.1/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;LMS runs on almost anything! Whether you have a Windows, macOS or Linux system, whether this is a single board computer (such as a Raspberry Pi), desktop, laptop or even a NAS, LMS will most likely run on it. Go to the &lt;a href=&quot;https://lyrion.org/getting-started/&quot;&gt;Getting started documentation&lt;/a&gt; for installation instructions.&lt;/p&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.1/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are &lt;strong&gt;greatly appreciated&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag &quot;enhancement&quot;. Don&#39;t forget to give the project a star! Thanks again!&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the Project&lt;/li&gt; 
+ &lt;li&gt;Create your Feature Branch (&lt;code&gt;git checkout -b feature/AmazingFeature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Commit your Changes (&lt;code&gt;git commit -m &#39;Add some AmazingFeature&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Push to the Branch (&lt;code&gt;git push origin feature/AmazingFeature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Open a Pull Request&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.1/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>so-fancy/diff-so-fancy</title>
+      <link>https://github.com/so-fancy/diff-so-fancy</link>
+      <description>&lt;p&gt;Good-lookin&#39; diffs. Actually… nah… The best-lookin&#39; diffs. 🎉&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;diff-so-fancy &lt;a href=&quot;https://circleci.com/gh/so-fancy/diff-so-fancy&quot;&gt;&lt;img src=&quot;https://circleci.com/gh/so-fancy/diff-so-fancy.svg?style=shield&quot; alt=&quot;Circle CI build&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/so-fancy/diff-so-fancy&quot;&gt;&lt;img src=&quot;https://travis-ci.org/so-fancy/diff-so-fancy.svg?branch=master&quot; alt=&quot;TravisCI build&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/stevemao/diff-so-fancy/branch/master&quot;&gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/github/so-fancy/diff-so-fancy?branch=master&amp;amp;svg=true&quot; alt=&quot;AppVeyor build&quot;&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;diff-so-fancy&lt;/code&gt; strives to make your diffs &lt;strong&gt;human&lt;/strong&gt; readable instead of machine readable. This helps improve code quality and helps you spot defects faster.&lt;/p&gt; 
+&lt;h2&gt;Screenshot&lt;/h2&gt; 
+&lt;p&gt;Vanilla &lt;code&gt;git diff&lt;/code&gt; vs &lt;code&gt;git&lt;/code&gt; and &lt;code&gt;diff-so-fancy&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/diff-so-fancy.png&quot; alt=&quot;diff-highlight vs diff-so-fancy&quot;&gt;&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Simply copy the &lt;code&gt;diff-so-fancy&lt;/code&gt; script from the latest release into your &lt;code&gt;$PATH&lt;/code&gt; and you&#39;re done. Alternately to test development features you can clone this repo and then put the &lt;code&gt;diff-so-fancy&lt;/code&gt; script (symlink will work) into your &lt;code&gt;$PATH&lt;/code&gt;. The &lt;code&gt;lib/&lt;/code&gt; directory will need to be kept relative to the core script.&lt;/p&gt; 
+&lt;p&gt;If you are using a ZSH framework like &lt;a href=&quot;https://github.com/jandamm/zgenom&quot;&gt;zgenom&lt;/a&gt; or &lt;a href=&quot;https://ohmyz.sh&quot;&gt;oh-my-zsh&lt;/a&gt;, refer to &lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/pro-tips.md&quot;&gt;Zsh plugin support for diff-so-fancy&lt;/a&gt; for detailed installation instructions.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;diff-so-fancy&lt;/code&gt; is also available from the &lt;a href=&quot;https://www.npmjs.com/package/diff-so-fancy&quot;&gt;NPM registry&lt;/a&gt;, &lt;a href=&quot;https://formulae.brew.sh/formula/diff-so-fancy&quot;&gt;brew&lt;/a&gt;, as a package on &lt;a href=&quot;https://github.com/NixOS/nixpkgs/raw/master/pkgs/applications/version-management/diff-so-fancy/default.nix&quot;&gt;Nix&lt;/a&gt;, &lt;a href=&quot;https://packages.fedoraproject.org/pkgs/diff-so-fancy/diff-so-fancy/&quot;&gt;Fedora&lt;/a&gt;, in the &lt;a href=&quot;https://archlinux.org/packages/extra/any/diff-so-fancy/&quot;&gt;Arch extra repo&lt;/a&gt;, and as &lt;a href=&quot;https://github.com/aos/dsf-debian&quot;&gt;ppa:aos for Debian/Ubuntu Linux&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Issues relating to packaging (&#39;installation does not work&#39;, &#39;version is out of date&#39;, etc.) should be directed to those packages&#39; own repositories/issue trackers where applicable. Issues relating to packaging (&quot;installation does not work&quot;, &quot;version is out of date&quot;, etc.) should be directed to those packages&#39; repositories/issue trackers where applicable.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Windows users may need to install &lt;a href=&quot;https://sourceforge.net/projects/mingw/files/&quot;&gt;MinGW&lt;/a&gt; or the &lt;a href=&quot;https://docs.microsoft.com/en-us/windows/wsl/install-win10&quot;&gt;Windows subsystem for Linux&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;h3&gt;With git&lt;/h3&gt; 
+&lt;p&gt;Configure git to use &lt;code&gt;diff-so-fancy&lt;/code&gt; for all diff output:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global core.pager &quot;diff-so-fancy | less --tabs=4 -RF&quot;
+git config --global interactive.diffFilter &quot;diff-so-fancy --patch&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Improved colors for the highlighted bits&lt;/h3&gt; 
+&lt;p&gt;The default Git colors are not optimal. The colors used for the screenshot above were:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global color.ui true
+
+git config --global color.diff-highlight.oldNormal    &quot;red bold&quot;
+git config --global color.diff-highlight.oldHighlight &quot;red bold 52&quot;
+git config --global color.diff-highlight.newNormal    &quot;green bold&quot;
+git config --global color.diff-highlight.newHighlight &quot;green bold 22&quot;
+
+git config --global color.diff.meta       &quot;11&quot;
+git config --global color.diff.frag       &quot;magenta bold&quot;
+git config --global color.diff.func       &quot;146 bold&quot;
+git config --global color.diff.commit     &quot;yellow bold&quot;
+git config --global color.diff.old        &quot;red bold&quot;
+git config --global color.diff.new        &quot;green bold&quot;
+git config --global color.diff.whitespace &quot;red reverse&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;With diff&lt;/h3&gt; 
+&lt;p&gt;Use &lt;code&gt;-u&lt;/code&gt; with &lt;code&gt;diff&lt;/code&gt; for unified output, and pipe the output to &lt;code&gt;diff-so-fancy&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff -u file_a file_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It also supports the recursive mode of diff with &lt;code&gt;-r&lt;/code&gt; or &lt;code&gt;--recursive&lt;/code&gt; as &lt;strong&gt;first argument&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff -r -u folder_a folder_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff --recursive -u folder_a folder_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Options&lt;/h2&gt; 
+&lt;h3&gt;markEmptyLines&lt;/h3&gt; 
+&lt;p&gt;Should the first block of an empty line be colored. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.markEmptyLines false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;changeHunkIndicators&lt;/h3&gt; 
+&lt;p&gt;Simplify git header chunks to a more human readable format. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.changeHunkIndicators false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;stripLeadingSymbols&lt;/h3&gt; 
+&lt;p&gt;Should the pesky &lt;code&gt;+&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt; at line-start be removed. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.stripLeadingSymbols false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;useUnicodeRuler&lt;/h3&gt; 
+&lt;p&gt;By default, the separator for the file header uses Unicode line-drawing characters. If this is causing output errors on your terminal, set this to &lt;code&gt;false&lt;/code&gt; to use ASCII characters instead. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.useUnicodeRuler false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;rulerWidth&lt;/h3&gt; 
+&lt;p&gt;By default, the separator for the file header spans the full width of the terminal. Use this setting to set the width of the file header manually.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global diff-so-fancy.rulerWidth 80
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;The diff-so-fancy team&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Person&lt;/th&gt; 
+   &lt;th&gt;Role&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@scottchiefbaker&lt;/td&gt; 
+   &lt;td&gt;Project lead&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@OJFord&lt;/td&gt; 
+   &lt;td&gt;Bug triage&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@GenieTim&lt;/td&gt; 
+   &lt;td&gt;Travis OSX fixes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@AOS&lt;/td&gt; 
+   &lt;td&gt;Debian packager&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@Stevemao/@Paul Irish&lt;/td&gt; 
+   &lt;td&gt;NPM release team&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Pull requests are quite welcome, and should target the &lt;a href=&quot;https://github.com/so-fancy/diff-so-fancy/tree/next&quot;&gt;&lt;code&gt;next&lt;/code&gt; branch&lt;/a&gt;. We are also looking for any feedback or ideas on how to make &lt;code&gt;diff-so-fancy&lt;/code&gt; even &lt;em&gt;fancier&lt;/em&gt;.&lt;/p&gt; 
+&lt;h3&gt;Other documentation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/pro-tips.md&quot;&gt;Pro-tips on advanced usage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/reporting-bugs.md&quot;&gt;Reporting Bugs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/hacking-and-testing.md&quot;&gt;Hacking and Testing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/history.md&quot;&gt;History&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dandavison/delta&quot;&gt;Delta&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jesseduffield/lazygit&quot;&gt;Lazygit&lt;/a&gt; with diff-so-fancy &lt;a href=&quot;https://github.com/jesseduffield/lazygit/raw/master/docs/Custom_Pagers.md#diff-so-fancy&quot;&gt;integration&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>znuny/Znuny</title>
+      <link>https://github.com/znuny/Znuny</link>
+      <description>&lt;p&gt;Znuny/Znuny LTS is a fork of the ((OTRS)) Community Edition, one of the most flexible web-based ticketing systems used for Customer Service, Help Desk, IT Service Management.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://www.znuny.org&quot;&gt;&lt;img align=&quot;center&quot; src=&quot;https://raw.githubusercontent.com/znuny/Znuny/dev/var/httpd/htdocs/skins/Agent/default/img/logo.png&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://download.znuny.org/releases/znuny-latest-7.1.tar.gz&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/tag/znuny/Znuny?filter=rel-7_1_*&amp;amp;label=latest%20release&amp;amp;color=ff9b00&quot;&gt;&lt;/a&gt; &lt;br&gt; &lt;a href=&quot;https://github.com/znuny/Znuny/actions&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/znuny/Znuny/ci.yaml?label=CI&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/znuny/Znuny/actions&quot;&gt;&lt;img src=&quot;https://badge.proxy.znuny.com/Znuny/rel-7_1&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://translations.znuny.org/engage/znuny/&quot;&gt;&lt;img src=&quot;https://translations.znuny.org/widgets/znuny/-/znuny/svg-badge.svg?sanitize=true&quot; alt=&quot;Translation status&quot;&gt;&lt;/a&gt; &lt;br&gt; &lt;a href=&quot;https://github.com/znuny/Znuny/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues-raw/znuny/Znuny?&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/znuny/Znuny/issues?q=is%3Aissue+is%3Aclosed&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues-closed-raw/znuny/Znuny?color=#44CC44&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/znuny/Znuny/pulls&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues-pr-raw/znuny/Znuny?&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/znuny/Znuny/pulls?q=is%3Apr+is%3Aclosed&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues-pr-closed-raw/znuny/Znuny?color=brightgreen&quot;&gt;&lt;/a&gt; &lt;br&gt; &lt;a href=&quot;https://github.com/znuny/Znuny&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/languages/count/znuny/Znuny?style=flat&amp;amp;label=languages&amp;amp;color=brightgreen&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/znuny/Znuny/graphs/contributors&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/contributors/znuny/Znuny?&quot;&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/XTud3WWZTs&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/836533233885773825?style=flat&quot;&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;hr&gt; 
+&lt;h1&gt;Znuny&lt;/h1&gt; 
+&lt;p&gt;Znuny is a continuation of the ((OTRS)) Community Edition (version 6.0.30) which was declared end of life (EOL) at the end of December 2020.&lt;/p&gt; 
+&lt;p&gt;The primary goal for this project is to provide a maintained and stable version of the well known ticket system and improve it with new features.&lt;/p&gt; 
+&lt;p&gt;The second goal is to reestablish a connection to the community.&lt;/p&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;p&gt;The project is distributed under the GNU General Public License (GPL v3) - see the accompanying &lt;a href=&quot;https://raw.githubusercontent.com/znuny/Znuny/dev/COPYING&quot;&gt;COPYING&lt;/a&gt; file for general license information. If you need more details you can have a look &lt;a href=&quot;https://snyk.io/learn/what-is-gpl-license-gplv3-explained/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Documentation&lt;/h1&gt; 
+&lt;p&gt;You can find documentation &lt;a href=&quot;https://doc.znuny.org/&quot;&gt;here&lt;/a&gt;. The source code of Znuny is publicly available on &lt;a href=&quot;https://github.com/znuny/znuny&quot;&gt;GitHub&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You want to get in touch?&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.znuny.org&quot;&gt;Project website&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://community.znuny.org&quot;&gt;Community forum&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discord.gg/XTud3WWZTs&quot;&gt;Discord Server&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.znuny.com&quot;&gt;Commercial services&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Software requirements&lt;/h1&gt; 
+&lt;p&gt;Operating system&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Linux (Debian or Red Hat preferred)&lt;/li&gt; 
+ &lt;li&gt;Perl 5.16.0 or higher&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Web server&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Apache 2 + mod_perl2 or higher (recommended)&lt;/li&gt; 
+ &lt;li&gt;Web server with CGI support (CGI is not recommended)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Databases&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;MySQL 8.0 or higher&lt;/li&gt; 
+ &lt;li&gt;MariaDB 10.3 or higher&lt;/li&gt; 
+ &lt;li&gt;PostgreSQL 12.0 or higher&lt;/li&gt; 
+ &lt;li&gt;Oracle 19c or higher&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Browsers&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;These browsers are NOT supported: 
+  &lt;ul&gt; 
+   &lt;li&gt;Internet Explorer before version 11&lt;/li&gt; 
+   &lt;li&gt;Firefox before version 31&lt;/li&gt; 
+   &lt;li&gt;Safari before version 6&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Vendor&lt;/h1&gt; 
+&lt;p&gt;This project is mainly funded by Znuny GmbH, Berlin. If you need professional support or consulting, feel free to contact us.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.znuny.com&quot;&gt;Znuny Website&lt;/a&gt;&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>rjbs/Email-Sender</title>
+      <link>https://github.com/rjbs/Email-Sender</link>
+      <description>&lt;p&gt;a perl library for sending email&lt;/p&gt;&lt;hr&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
