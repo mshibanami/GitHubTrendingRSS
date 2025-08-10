@@ -14,9 +14,9 @@ enum MainError: Error {
 }
 
 let parallelDownloadChunk = 4
-let downloadManager = DownloadManager()
-let gitHubPageParser = GitHubPageParser()
-let gitHubDownloader = GitHubDownloader(
+nonisolated(unsafe) let downloadManager = DownloadManager()
+nonisolated(unsafe) let gitHubPageParser = GitHubPageParser()
+nonisolated(unsafe) let gitHubDownloader = GitHubDownloader(
     downloadManager: downloadManager,
     gitHubPageParser: gitHubPageParser,
     clientID: Const.gitHubClientID,
@@ -34,17 +34,17 @@ let siteInformation = SiteSourceMaker.Information(
     gitHubRepositoryURL: Const.gitHubRepositoryURL.absoluteString
 )
 
-let siteGenerator = SiteSourceMaker(
+nonisolated(unsafe) let siteGenerator = SiteSourceMaker(
     environment: environment,
     information: siteInformation
 )
 
-let feedManager = FeedFileCreator(
+nonisolated(unsafe) let feedManager = FeedFileCreator(
     outputDirectory: Const.outputDirectory,
     siteGenerator: siteGenerator
 )
 
-@MainActor func start() throws -> AnyPublisher<Void, Error> {
+func start() throws -> AnyPublisher<Void, Error> {
     return Publishers
         .CombineLatest(
             gitHubDownloader.fetchTopTrendingPage(),
