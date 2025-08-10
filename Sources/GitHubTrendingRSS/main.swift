@@ -44,7 +44,7 @@ let feedManager = FeedFileCreator(
     siteGenerator: siteGenerator
 )
 
-func start() throws -> AnyPublisher<Void, Error> {
+@MainActor func start() throws -> AnyPublisher<Void, Error> {
     return Publishers
         .CombineLatest(
             gitHubDownloader.fetchTopTrendingPage(),

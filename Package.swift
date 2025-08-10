@@ -1,4 +1,4 @@
-// swift-tools-version:5.10
+// swift-tools-version:6.1
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
 import PackageDescription
@@ -32,7 +32,7 @@ let package = Package(
                 "SwiftSoup",
                 "SwiftAsciidoctor",
                 .product(name: "Algorithms", package: "swift-algorithms"),
-            ]
+            ],
         ),
         .testTarget(
             name: "GitHubTrendingRSSTests",
@@ -41,5 +41,5 @@ let package = Package(
             ]
         ),
     ],
-    swiftLanguageVersions: [.v5]
+    swiftLanguageModes: [.v6]
 )

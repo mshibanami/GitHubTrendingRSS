@@ -33,8 +33,8 @@ public class Const {
 
     public static let googleAnalyticsTrackingCode = "UA-46019833-3"
 
-    public private(set) static var gitHubClientID: String!
-    public private(set) static var gitHubClientSecret: String!
+    nonisolated(unsafe) public private(set) static var gitHubClientID: String!
+    nonisolated(unsafe) public private(set) static var gitHubClientSecret: String!
 
     public static let popularLanguages = [
         "all",

@@ -2,7 +2,7 @@
 
 import Foundation
 
-public struct LanguageTrendingLink: PageLinkable {
+public struct LanguageTrendingLink: PageLinkable, Sendable {
     public var displayName: String
     public var href: String
 
