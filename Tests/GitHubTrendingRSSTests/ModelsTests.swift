@@ -78,8 +78,8 @@ final class ModelsTests: XCTestCase {
         repo.readMe?.userID = "blueedgetechno"
         repo.readMe?.repositoryName = "windows11"
         let html = repo.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis)!
-        XCTAssertTrue(html.contains(#"<input type="checkbox" checked disabled>"#))
-        XCTAssertTrue(html.contains(#"<input type="checkbox" disabled>"#))
+        XCTAssertTrue(html.contains(#"<input type="checkbox" checked disabled />"#))
+        XCTAssertTrue(html.contains(#"<input type="checkbox" disabled />"#))
     }
 
     func testSanitizedSVGImage1() throws {
