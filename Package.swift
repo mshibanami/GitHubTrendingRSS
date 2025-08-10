@@ -6,7 +6,7 @@ import PackageDescription
 let package = Package(
     name: "GitHubTrendingRSS",
     platforms: [
-        .macOS(.v10_15),
+        .macOS(.v13),
     ],
     dependencies: [
         .package(url: "https://github.com/hartbit/Yaap", from: "1.0.0"),
@@ -33,11 +33,17 @@ let package = Package(
                 "SwiftAsciidoctor",
                 .product(name: "Algorithms", package: "swift-algorithms"),
             ],
+            resources: [
+                .copy("Resources"),
+            ]
         ),
         .testTarget(
             name: "GitHubTrendingRSSTests",
             dependencies: [
                 "GitHubTrendingRSSKit",
+            ],
+            resources: [
+                .copy("TestResources"),
             ]
         ),
     ],

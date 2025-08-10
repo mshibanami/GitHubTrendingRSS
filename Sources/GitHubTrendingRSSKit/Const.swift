@@ -19,17 +19,12 @@ public class Const {
         .appendingPathComponent(outputDirectoryName)
 
     public static var resourcesRootURL: URL {
-        let url = URL(fileURLWithPath: #file)
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .appendingPathComponent("Resources")
-
-        guard url.hasDirectoryPath else {
-            fatalError("Test resources folder doesn't exist: \(url.absoluteString)")
+        guard let resourcesURL = Bundle.module.url(forResource: "Resources", withExtension: nil) else {
+            fatalError("Resources folder not found")
         }
-        return url
+        return resourcesURL
     }
+
 
     public static let googleAnalyticsTrackingCode = "UA-46019833-3"
 

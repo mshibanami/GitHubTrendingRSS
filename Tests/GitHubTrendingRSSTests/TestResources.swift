@@ -11,18 +11,11 @@ class TestResources {
         case language(name: String)
     }
 
-    static var rootURL: URL {
-        let url = URL(fileURLWithPath: #file)
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .deletingLastPathComponent()
-            .appendingPathComponent("TestResources")
-
-        guard url.hasDirectoryPath else {
-            fatalError("Test resources folder doesn't exist: \(url.absoluteString)")
+    public static var rootURL: URL {
+        guard let testResourceURL = Bundle.module.url(forResource: "TestResources", withExtension: nil) else {
+            fatalError("Resources folder not found")
         }
-
-        return url
+        return testResourceURL
     }
 
     static func trendingPage(of pageType: TrendingPageType) -> String {
