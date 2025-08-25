@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub R Daily Trending</title>
+    <description>Daily Trending of R in GitHub</description>
+    <pubDate>Mon, 25 Aug 2025 01:37:51 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>FantasyFootballAnalytics/ffanalytics</title>
+      <link>https://github.com/FantasyFootballAnalytics/ffanalytics</link>
+      <description>&lt;p&gt;ffanalytics R package&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ffanalytics&lt;/h1&gt; 
+&lt;p&gt;This package allows users to scrape projected stats from several sites that have publicly available projections. Once data is scraped the user can then use functions within the package to calculate projected points and produce rankings. The package relies heavily on the vocabulary from the &lt;code&gt;tidyverse&lt;/code&gt; and users will better be able to use the package if they familiarize themselves with the &lt;code&gt;tidyverse&lt;/code&gt; way of creating code.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Version 3 of the package&lt;/strong&gt;:&lt;/p&gt; 
+&lt;p&gt;Summer of 2022 we incremented to version 3.0 of the package. There are several things worth highlighting:&lt;/p&gt; 
+&lt;p&gt;Breaking changes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;add_risk()&lt;/code&gt; is no longer exported and is superseded by &lt;code&gt;add_uncertainty()&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Several helper functions are no-longer exported&lt;/li&gt; 
+ &lt;li&gt;When loading &lt;code&gt;ffanalytics&lt;/code&gt;, no other packages load with it (i.e., we removed all packages from the &quot;Depends&quot; field). Previously, calling &lt;code&gt;library(ffanalytics)&lt;/code&gt; also loaded &lt;code&gt;dplyr&lt;/code&gt;, &lt;code&gt;tidyr&lt;/code&gt;, and several other packages.&lt;/li&gt; 
+ &lt;li&gt;We no longer use the projection_sources &lt;code&gt;R6&lt;/code&gt; object internally&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Updates:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Individual scrapes are now self-contained internally (e.g. &lt;code&gt;ffanalytics:::scrape_cbs()&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Rate limits have been added to all scrapes (typically waiting 2 seconds between pages)&lt;/li&gt; 
+ &lt;li&gt;The &lt;code&gt;projections_table&lt;/code&gt; function has a new argument: &lt;code&gt;avg_type = c(&quot;average&quot;, &quot;robust&quot;, &quot;weighted&quot;)&lt;/code&gt;. By default the &lt;code&gt;projections_table&lt;/code&gt; function will compute all average types, but one or two can be specified.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Installation of the &lt;code&gt;ffanalytics&lt;/code&gt; package can be done directly from github:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;FantasyFootballAnalytics/ffanalytics&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Projection sources&lt;/h2&gt; 
+&lt;p&gt;The following sources are available for scraping:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For seasonal data: CBS, ESPN, FantasyPros, FantasySharks, FFToday, NumberFire, FantasyFootballNerd, NFL, RTSports, Walterfootball&lt;/li&gt; 
+ &lt;li&gt;For weekly data: CBS, ESPN, FantasyPros, FantasySharks, FFToday, FleaFlicker, NumberFire, FantasyFootballNerd, NFL&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Although the scrape functions allows the user to specify season and week, scraping historical periods will not be successful.&lt;/p&gt; 
+&lt;h2&gt;Scraping data&lt;/h2&gt; 
+&lt;p&gt;The main function for scraping data is &lt;code&gt;scrape_data&lt;/code&gt;. This function will pull data from the sources specified, for the positions specified in the season and week specified. To pull data for QBs, RBs, WRs, TEs and DSTs from CBS, NFL and NumberFire for the 2022 season the user would run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;my_scrape &amp;lt;- scrape_data(src = c(&quot;CBS&quot;, &quot;NFL&quot;, &quot;NumberFire&quot;), 
+                         pos = c(&quot;QB&quot;, &quot;RB&quot;, &quot;WR&quot;, &quot;TE&quot;, &quot;DST&quot;),
+                         season = NULL, # NULL grabs the current season
+                         week = NULL) # NULL grabs the current week
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;my_scrape&lt;/code&gt; will be a list of tibbles, one for each position scraped, which contains the data for each source for that position. In the &lt;code&gt;tibble&lt;/code&gt; the &lt;code&gt;data_src&lt;/code&gt; column specifies the source of the data.&lt;/p&gt; 
+&lt;h2&gt;Calculating projections&lt;/h2&gt; 
+&lt;p&gt;Once data is scraped the projected points can be calculated. this is done with the &lt;code&gt;projections_table&lt;/code&gt; function:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;my_projections &amp;lt;-  projections_table(my_scrape)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will calculate projections using the default settings. You can provide additional parameters for the &lt;code&gt;projections_table&lt;/code&gt; function to customize the calculations. See &lt;code&gt;?projections_table&lt;/code&gt; for details.&lt;/p&gt; 
+&lt;h2&gt;Adding additional information&lt;/h2&gt; 
+&lt;p&gt;To add rankings information, risk value and ADP/AAV data use the &lt;code&gt;add_ecr&lt;/code&gt;, &lt;code&gt;add_uncertainty&lt;/code&gt; (superseding &lt;code&gt;add_risk&lt;/code&gt;), &lt;code&gt;add_adp&lt;/code&gt;, and &lt;code&gt;add_aav&lt;/code&gt; functions:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;my_projections &amp;lt;- my_projections %&amp;gt;% 
+  add_ecr() %&amp;gt;% 
+  add_adp() %&amp;gt;% 
+  add_aav() %&amp;gt;%
+  add_uncertainty() 
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Note that &lt;code&gt;add_ecr&lt;/code&gt; will need to be called before &lt;code&gt;add_uncertainty&lt;/code&gt; to ensure that the ECR data is available for the uncertainty calculation.&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;add_adp&lt;/code&gt; and &lt;code&gt;add_aav&lt;/code&gt; allows to specify sources for ADP and AAV. See &lt;code&gt;?add_adp&lt;/code&gt;, and &lt;code&gt;?add_aav&lt;/code&gt; for details.&lt;/p&gt; 
+&lt;h2&gt;Player data&lt;/h2&gt; 
+&lt;p&gt;Player data is pulled from MFL when the package loads and stored in the &lt;code&gt;player_table&lt;/code&gt; object. To add player data to the projections table use &lt;code&gt;add_player_info&lt;/code&gt;, which adds the player names, teams, positions, age, and experience to the data set.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;my_projections &amp;lt;- my_projections %&amp;gt;% 
+  add_player_info()
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>satijalab/seurat</title>
+      <link>https://github.com/satijalab/seurat</link>
+      <description>&lt;p&gt;R toolkit for single cell genomics&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Seurat&quot; alt=&quot;CRAN Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Seurat&quot; alt=&quot;CRAN Downloads&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Seurat v5&lt;/h1&gt; 
+&lt;p&gt;Seurat is an R toolkit for single cell genomics, developed and maintained by the Satija Lab at NYGC.&lt;/p&gt; 
+&lt;p&gt;We are excited to release Seurat v5! This updates introduces new functionality for spatial, multimodal, and scalable single-cell analysis.&lt;/p&gt; 
+&lt;p&gt;Seurat v5 is backwards-compatible with previous versions, so that users will continue to be able to re-run existing workflows.&lt;/p&gt; 
+&lt;p&gt;Instructions, documentation, and tutorials can be found at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://satijalab.org/seurat&quot;&gt;https://satijalab.org/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat is also hosted on GitHub, you can view and clone the repository at&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;https://github.com/satijalab/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat has been successfully installed on Mac OS X, Linux, and Windows, using the devtools package to install directly from GitHub&lt;/p&gt; 
+&lt;p&gt;Improvements and new features will be added on a regular basis, please post on the &lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;github page&lt;/a&gt; with any questions or if you would like to contribute&lt;/p&gt; 
+&lt;p&gt;For a version history/changelog, please see the &lt;a href=&quot;https://github.com/satijalab/seurat/raw/master/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

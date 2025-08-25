@@ -1,0 +1,1479 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Objective-C Daily Trending</title>
+    <description>Daily Trending of Objective-C in GitHub</description>
+    <pubDate>Mon, 25 Aug 2025 01:36:49 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>sparkle-project/Sparkle</title>
+      <link>https://github.com/sparkle-project/Sparkle</link>
+      <description>&lt;p&gt;A software update framework for macOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Sparkle 2 &lt;img src=&quot;https://github.com/sparkle-project/Sparkle/workflows/Build%20%26%20Tests/badge.svg?branch=2.x&quot; alt=&quot;Build Status&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/SwiftPM-compatible-4BC51D.svg?style=flat&quot; alt=&quot;SwiftPM&quot; /&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org/pods/Sparkle&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/Sparkle.svg?cacheSeconds=86400&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;Secure and reliable software update framework for macOS.&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/Resources/Screenshot.png&quot; width=&quot;732&quot; alt=&quot;Sparkle shows familiar update window with release notes&quot; /&gt; 
+&lt;p&gt;Sparkle 2 adds support for application sandboxing, custom user interfaces, updating external bundles, and a more modern architecture which includes faster and more reliable installs.&lt;/p&gt; 
+&lt;p&gt;Pre-releases when available can be found on the &lt;a href=&quot;https://github.com/sparkle-project/Sparkle/releases&quot;&gt;Sparkle&#39;s Releases&lt;/a&gt; or on your favorite package manager. More nightly builds can be downloaded by selecting a recent &lt;a href=&quot;https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x&quot;&gt;workflow run&lt;/a&gt; and downloading the corresponding Sparkle-distribution artifact.&lt;/p&gt; 
+&lt;p&gt;The current status for future versions of Sparkle is tracked by &lt;a href=&quot;https://github.com/sparkle-project/Sparkle/milestones&quot;&gt;its roadmap&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Please visit &lt;a href=&quot;http://sparkle-project.org&quot;&gt;Sparkle&#39;s website&lt;/a&gt; for up to date documentation on using and migrating over to Sparkle 2. Refer to &lt;a href=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/CHANGELOG&quot;&gt;Changelog&lt;/a&gt; for a more detailed list of changes. More internal design documents to the project can be found in the repository under &lt;a href=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/Documentation/&quot;&gt;Documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Seamless. There&#39;s no mention of Sparkle; your icons and app name are used.&lt;/li&gt; 
+ &lt;li&gt;Secure. Updates are verified using EdDSA signatures and Apple Code Signing. Supports Sandboxed applications in Sparkle 2.&lt;/li&gt; 
+ &lt;li&gt;Fast. Supports delta updates which only patch files that have changed and atomic-safe installs.&lt;/li&gt; 
+ &lt;li&gt;Easy to install. Sparkle requires no code in your app, and only needs static files on a web server.&lt;/li&gt; 
+ &lt;li&gt;Customizable. Sparkle 2 supports plugging in a custom UI for updates.&lt;/li&gt; 
+ &lt;li&gt;Flexible. Supports applications, package installers, preference panes, and other plug-ins. Sparkle 2 supports updating external bundles.&lt;/li&gt; 
+ &lt;li&gt;Handles permissions, quarantine, and automatically asks for authentication if needed.&lt;/li&gt; 
+ &lt;li&gt;Uses RSS-based appcasts for release information. Appcasts are a de-facto standard supported by 3rd party update-tracking programs and websites.&lt;/li&gt; 
+ &lt;li&gt;Stays hidden until second launch for better first impressions.&lt;/li&gt; 
+ &lt;li&gt;Truly self-updating — the user can choose to automatically download and install all updates in the background.&lt;/li&gt; 
+ &lt;li&gt;Ability to use channels for beta updates (in Sparkle 2), add phased rollouts to users, and mark updates as critical or major.&lt;/li&gt; 
+ &lt;li&gt;Progress and status notifications for the host app.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Runtime: macOS 10.13 or later.&lt;/li&gt; 
+ &lt;li&gt;Build: Latest major Xcode (stable or beta, whichever is latest) and one major version less.&lt;/li&gt; 
+ &lt;li&gt;HTTPS server for serving updates (see &lt;a href=&quot;http://sparkle-project.org/documentation/app-transport-security/&quot;&gt;App Transport Security&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://sparkle-project.org/documentation/&quot;&gt;getting started guide&lt;/a&gt;. No code is necessary, but a bit of configuration is required.&lt;/p&gt; 
+&lt;h3&gt;Troubleshooting&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Please check &lt;strong&gt;Console.app&lt;/strong&gt; for logs under your application. Sparkle prints detailed information there about all problems it encounters. It often also suggests solutions to the problems, so please read Sparkle&#39;s log messages carefully.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Use the &lt;code&gt;generate_appcast&lt;/code&gt; tool which creates appcast files, correct signatures, and delta updates automatically.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Make sure the URL specified in &lt;a href=&quot;https://sparkle-project.org/documentation/customization/&quot;&gt;&lt;code&gt;SUFeedURL&lt;/code&gt;&lt;/a&gt; is valid (typos/404s are a common error!), and that it uses modern TLS (&lt;a href=&quot;https://www.ssllabs.com/ssltest/&quot;&gt;test it&lt;/a&gt;).&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;API symbols&lt;/h3&gt; 
+&lt;p&gt;Sparkle is built with &lt;code&gt;-fvisibility=hidden -fvisibility-inlines-hidden&lt;/code&gt; which means no symbols are exported by default. If you are adding a symbol to the public API you must decorate the declaration with the &lt;code&gt;SU_EXPORT&lt;/code&gt; macro (grep the source code for examples).&lt;/p&gt; 
+&lt;h3&gt;Building the distribution package&lt;/h3&gt; 
+&lt;p&gt;You do not usually need to build a Sparkle distribution unless you&#39;re making changes to Sparkle itself.&lt;/p&gt; 
+&lt;p&gt;To build a Sparkle distribution, &lt;code&gt;cd&lt;/code&gt; to the root of the Sparkle source tree and run &lt;code&gt;make release&lt;/code&gt;. Sparkle-&lt;em&gt;VERSION&lt;/em&gt;.tar.xz will be created and revealed in Finder after the build has completed.&lt;/p&gt; 
+&lt;p&gt;Alternatively, build the Distribution scheme in the Xcode UI.&lt;/p&gt; 
+&lt;h3&gt;Code of Conduct&lt;/h3&gt; 
+&lt;p&gt;We pledge to have an open and welcoming environment. See our &lt;a href=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/CODE_OF_CONDUCT.md&quot;&gt;Code of Conduct&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>PojavLauncherTeam/PojavLauncher_iOS</title>
+      <link>https://github.com/PojavLauncherTeam/PojavLauncher_iOS</link>
+      <description>&lt;p&gt;A Minecraft: Java Edition Launcher for Android and iOS based on Boardwalk. This repository contains source code for iOS/iPadOS platform.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;PojavLauncher for iOS&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions/workflows/development.yml&quot;&gt;&lt;img src=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions/workflows/development.yml/badge.svg?branch=main&quot; alt=&quot;Development build&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://crowdin.com/project/pojavlauncher&quot;&gt;&lt;img src=&quot;https://badges.crowdin.net/pojavlauncher/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/pojavlauncher-724163890803638273&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/724163890803638273.svg?label=&amp;amp;logo=discord&amp;amp;logoColor=ffffff&amp;amp;color=7389D8&amp;amp;labelColor=6A7EC2&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;p&gt;PojavLauncher is a Minecraft: Java Edition launcher for Android, iOS, and iPadOS, based off of zhuowei&#39;s &lt;a href=&quot;https://github.com/zhuowei/Boardwalk&quot;&gt;Boardwalk&lt;/a&gt; project.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Supports most versions of Minecraft: Java Edition, from the very first beta to the newest snapshots.&lt;/li&gt; 
+ &lt;li&gt;Supports Forge, Fabric, OptiFine, and Quilt for you to customize the experience with supported mods.&lt;/li&gt; 
+ &lt;li&gt;Includes customizable on-screen controls, keyboard and mouse support, and game controller support.&lt;/li&gt; 
+ &lt;li&gt;Optimized for jailbroken and TrollStore devices to enable better capabilities.&lt;/li&gt; 
+ &lt;li&gt;Microsoft account and demo mode support for logging into Minecraft.&lt;/li&gt; 
+ &lt;li&gt;...and much more!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This repository contains the code for our iOS and iPadOS port of PojavLauncher. Looking for &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher&quot;&gt;Android?&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Getting started with PojavLauncher&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://pojavlauncherteam.github.io/INSTALL.html#ios&quot;&gt;PojavLauncher Website&lt;/a&gt; has extensive documentation on how to install, set up, and play! For those who wish to install quickly, here&#39;s the basics:&lt;/p&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;p&gt;At the minimum, you&#39;ll need one of the following devices on &lt;strong&gt;iOS 14.0&lt;/strong&gt; and later:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iPhone 6s and later&lt;/li&gt; 
+ &lt;li&gt;iPad (5th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Air (2nd generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad mini (4th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Pro (all models)&lt;/li&gt; 
+ &lt;li&gt;iPod touch (7th generation)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;However, we recommend one of the following devices on &lt;strong&gt;iOS 14.0&lt;/strong&gt; and later:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iPhone XS and later, excluding iPhone XR and iPhone SE (2nd generation)&lt;/li&gt; 
+ &lt;li&gt;iPad (10th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Air (4th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad mini (6th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Pro (all models, except for 9.7-inch)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Recommended devices provide a smoother and more enjoyable gameplay experience compared to other supported devices.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;tvOS support is in development.&lt;/li&gt; 
+ &lt;li&gt;iOS 17.x and iOS 18.x is supported. However, a computer is required. These methods will ultilized usage of pymobiledevice3. Python 3.11.(x) must be properly set up on your computer. For more information, please check out the official Wiki: &lt;a href=&quot;https://pojavlauncherteam.github.io/JIT.html#what-are-the-methods-to-enable-jit&quot;&gt;https://pojavlauncherteam.github.io/JIT.html#what-are-the-methods-to-enable-jit&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Setting up to sideload&lt;/h3&gt; 
+&lt;p&gt;PojavLauncher can be sideloaded in many ways. Our recommended solution is to install &lt;a href=&quot;https://github.com/opa334/TrollStore&quot;&gt;TrollStore&lt;/a&gt; if your iOS version supports it. Installing with TrollStore allows you to permenantly sign the application, automatically enable JIT, and increase memory limits.&lt;/p&gt; 
+&lt;p&gt;For iOS/iPadOS 17.0: Unfortunately,the above process will not work. It is required that you must use &lt;a href=&quot;https://github.com/JJTech0130/TrollRestore&quot;&gt;TrollRestore&lt;/a&gt;. Any versions above iOS/iPadOS 17.0 will NOT be supported (as of December 23, 2024).&lt;/p&gt; 
+&lt;p&gt;If you cannot, &lt;a href=&quot;https://altstore.io&quot;&gt;AltStore&lt;/a&gt; and &lt;a href=&quot;https://sidestore.io&quot;&gt;SideStore&lt;/a&gt; are your next best options.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Signing services that do not use your UDID (and use distribution certificates) are not supported, as PojavLauncher requires capabilities they do not allow. However, if you do managed to gain access to a Development certificate, due to it having the necessary entitlement (being com.apple.security.get-task-allow) to attach a debugger to the running process (enabling JIT), you may use a Development certificate.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Only install sideloading software and PojavLauncher from trusted sources. We are not responsible for any harm caused by using unofficial software.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Jailbreaks also benefit from permenant signing, autoJIT, and increased memory limits, however we do not recommend them for regular use.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Installing PojavLauncher&lt;/h3&gt; 
+&lt;h4&gt;Release build (TrollStore)&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download an IPA of PojavLauncher in &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/releases&quot;&gt;Releases&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the package in TrollStore using the share menu.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Release build (AltStore/SideStore trusted source)&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Add &lt;code&gt;PojavLauncher Repository&lt;/code&gt; from the Trusted Sources menu.&lt;/li&gt; 
+ &lt;li&gt;Tap &lt;code&gt;FREE&lt;/code&gt; to begin installing.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Nightly builds&lt;/h4&gt; 
+&lt;p&gt;&lt;em&gt;These builds can contain game-breaking bugs. Use with caution.&lt;/em&gt;&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download an IPA build of PojavLauncher in the &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions&quot;&gt;Actions tab&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the downloaded IPA in your sideloading app to install.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Enabling JIT&lt;/h3&gt; 
+&lt;p&gt;PojavLauncher makes use of &lt;strong&gt;just-in-time compilation&lt;/strong&gt;, or JIT, to provide usable speeds for the end user. JIT is not supported on iOS without the application being debugged, so workarounds are required to enable it. You can use this chart to determine the best solution for you and your setup.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Application&lt;/th&gt; 
+   &lt;th&gt;AltStore&lt;/th&gt; 
+   &lt;th&gt;SideStore&lt;/th&gt; 
+   &lt;th&gt;TrollStore&lt;/th&gt; 
+   &lt;th&gt;Jitterbug&lt;/th&gt; 
+   &lt;th&gt;Jailbroken&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Requires ext-device&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;If VPN unavailable&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Requires Wi-Fi&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Auto enabled&lt;/td&gt; 
+   &lt;td&gt;Yes(*)&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;(*) AltServer running on the local network is required.&lt;/p&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;p&gt;PojavLauncher is amazing, and surprisingly stable, and it wouldn&#39;t be this way without the commmunity that helped and contribute to the project! Some notable names:&lt;/p&gt; 
+&lt;p&gt;@khanhduytran0 - Lead iOS port developer&lt;br /&gt; @crystall1nedev - Lead iOS port developer&lt;br /&gt; @artdeell&lt;br /&gt; @Mathius-Boulay&lt;br /&gt; @zhuowei&lt;br /&gt; @jkcoxson&lt;br /&gt; @Diatrus&lt;/p&gt; 
+&lt;h2&gt;Third party components and their licenses&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/caciocavallo&quot;&gt;Caciocavallo&lt;/a&gt;: &lt;a href=&quot;https://github.com/PojavLauncherTeam/caciocavallo/raw/master/LICENSE&quot;&gt;GNU GPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://code.google.com/p/jsr-305&quot;&gt;jsr305&lt;/a&gt;: &lt;a href=&quot;http://opensource.org/licenses/BSD-3-Clause&quot;&gt;3-Clause BSD License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/zhuowei/Boardwalk&quot;&gt;Boardwalk&lt;/a&gt;: &lt;a href=&quot;https://github.com/zhuowei/Boardwalk/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ptitSeb/gl4es&quot;&gt;GL4ES&lt;/a&gt; by @lunixbochs @ptitSeb: &lt;a href=&quot;https://github.com/ptitSeb/gl4es/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gitlab.freedesktop.org/mesa/mesa&quot;&gt;Mesa 3D Graphics Library&lt;/a&gt;: &lt;a href=&quot;https://docs.mesa3d.org/license.html&quot;&gt;MIT License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/metalangle&quot;&gt;MetalANGLE&lt;/a&gt; by @kakashidinho and ANGLE team: &lt;a href=&quot;https://github.com/kakashidinho/metalangle/raw/master/LICENSE&quot;&gt;BSD 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/KhronosGroup/MoltenVK&quot;&gt;MoltenVK&lt;/a&gt;: &lt;a href=&quot;https://github.com/KhronosGroup/MoltenVK/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kcat/openal-soft&quot;&gt;openal-soft&lt;/a&gt;: &lt;a href=&quot;https://github.com/kcat/openal-soft/raw/master/COPYING&quot;&gt;LGPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.azul.com/downloads/?package=jdk&quot;&gt;Azul Zulu JDK&lt;/a&gt;: &lt;a href=&quot;https://openjdk.java.net/legal/gplv2+ce.html&quot;&gt;GNU GPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/lwjgl3&quot;&gt;LWJGL3&lt;/a&gt;: &lt;a href=&quot;https://github.com/LWJGL/lwjgl3/raw/master/LICENSE.md&quot;&gt;BSD-3 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/lwjglx&quot;&gt;LWJGLX&lt;/a&gt; (LWJGL2 API compatibility layer for LWJGL3): unknown license.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/DBNumberedSlider&quot;&gt;DBNumberedSlider&lt;/a&gt;: &lt;a href=&quot;https://github.com/immago/DBNumberedSlider/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/fishhook&quot;&gt;fishhook&lt;/a&gt;: &lt;a href=&quot;https://github.com/facebook/fishhook/raw/main/LICENSE&quot;&gt;BSD-3 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/shaderc&quot;&gt;shaderc&lt;/a&gt; (used by Vulkan rendering mods): &lt;a href=&quot;https://github.com/google/shaderc/raw/main/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mozilla-mobile/firefox-ios/tree/b2f89ac40835c5988a1a3eb642982544e00f0f90/ThirdParty/NRFileManager&quot;&gt;NRFileManager&lt;/a&gt;: &lt;a href=&quot;https://www.mozilla.org/en-US/MPL/2.0&quot;&gt;MPL-2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rileytestut/AltKit&quot;&gt;AltKit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/abbeycode/UnzipKit&quot;&gt;UnzipKit&lt;/a&gt;: &lt;a href=&quot;https://github.com/abbeycode/UnzipKit/raw/master/LICENSE&quot;&gt;BSD-2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/xpn/DyldDeNeuralyzer&quot;&gt;DyldDeNeuralyzer&lt;/a&gt;: bypasses Library Validation for loading external runtime&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://mc-heads.net&quot;&gt;MCHeads&lt;/a&gt; for providing Minecraft avatars.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Special thanks to MacStadium!&lt;/h2&gt; 
+&lt;p&gt;This project is listed under the MacStadium Open Source Program, which allows all of us developers to keep on moving forward even without physical access to a Mac.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/55281754/183129754-c3736bb9-d528-4af7-9351-a12b3be7549e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;!-- sillysock was here --&gt;</description>
+    </item>
+    
+    <item>
+      <title>darlinghq/darling</title>
+      <link>https://github.com/darlinghq/darling</link>
+      <description>&lt;p&gt;Darwin/macOS emulation layer for Linux&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Darling&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://darlinghq.org/img/darling250.png&quot; alt=&quot;Darling logo&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Darling is a runtime environment for macOS applications.&lt;/p&gt; 
+&lt;p&gt;Please note that most GUI applications will not run at the moment.&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;Packages for some distributions are available for download under &lt;a href=&quot;https://github.com/darlinghq/darling/releases&quot;&gt;releases&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Build Instructions&lt;/h2&gt; 
+&lt;p&gt;For build instructions, visit &lt;a href=&quot;https://docs.darlinghq.org/build-instructions.html&quot;&gt;Darling Docs&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Prefixes&lt;/h3&gt; 
+&lt;p&gt;Darling has support for DPREFIXes, which are very similar to WINEPREFIXes. They are virtual “chroot” environments with an macOS-like filesystem structure, where you can install software safely. The default DPREFIX location is &lt;code&gt;~/.darling&lt;/code&gt;, but this can be changed by exporting an identically named environment variable. A prefix is automatically created and initialized on first use.&lt;/p&gt; 
+&lt;p&gt;Please note that we use &lt;code&gt;overlayfs&lt;/code&gt; for creating prefixes, and so we cannot support putting prefix on a filesystem like NFS or eCryptfs. In particular, the default prefix location won&#39;t work if you have an encrypted home directory.&lt;/p&gt; 
+&lt;h3&gt;Hello world&lt;/h3&gt; 
+&lt;p&gt;Let&#39;s start with a Hello world:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ darling shell echo Hello world
+Hello world
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Congratulations, you have printed Hello world through Darling&#39;s OS X system call emulation and runtime libraries.&lt;/p&gt; 
+&lt;h3&gt;Installing software&lt;/h3&gt; 
+&lt;p&gt;You can install &lt;code&gt;.pkg&lt;/code&gt; packages with the installer tool available inside shell. It is a somewhat limited cousin of OS X&#39;s installer:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ darling shell
+Darling [~]$ installer -pkg mc-4.8.7-0.pkg -target /
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The Midnight Commander package from the above example is &lt;a href=&quot;https://darling-misc.s3.eu-central-1.amazonaws.com/mc-4.8.7-0.pkg&quot;&gt;available for download&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You can uninstall and list packages with the &lt;code&gt;uninstaller&lt;/code&gt; command.&lt;/p&gt; 
+&lt;h3&gt;Working with DMG images&lt;/h3&gt; 
+&lt;p&gt;DMG images can be attached and detached from inside &lt;code&gt;darling shell&lt;/code&gt; with &lt;code&gt;hdiutil&lt;/code&gt;. This is how you can install Xcode along with its toolchain and SDKs (note that Xcode itself doesn&#39;t run yet):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Darling [~]$ hdiutil attach Xcode_7.2.dmg
+/Volumes/Xcode_7.2
+Darling [~]$ cp -r /Volumes/Xcode_7.2/Xcode.app /Applications
+Darling [~]$ export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk
+Darling [~]$ echo &#39;void main() { puts(&quot;Hello world&quot;); }&#39; &amp;gt; helloworld.c
+Darling [~]$ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang helloworld.c -o helloworld
+Darling [~]$ ./helloworld
+Hello world
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Congratulations, you have just compiled and run your own Hello world application with Apple&#39;s toolchain.&lt;/p&gt; 
+&lt;h3&gt;Working with XIP archives&lt;/h3&gt; 
+&lt;p&gt;Xcode is now distributed in &lt;code&gt;.xip&lt;/code&gt; files. These can be installed using &lt;code&gt;unxip&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cd /Applications
+unxip Xcode_11.3.xip
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>iziz/libPhoneNumber-iOS</title>
+      <link>https://github.com/iziz/libPhoneNumber-iOS</link>
+      <description>&lt;p&gt;iOS port from libphonenumber (Google&#39;s phone number handling library)&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;http://cocoapods.org/?q=libPhoneNumber-iOS&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/libPhoneNumber-iOS.svg?style=flat&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/?q=libPhoneNumber-iOS&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/libPhoneNumber-iOS.svg?style=flat&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/iziz/libPhoneNumber-iOS&quot;&gt;&lt;img src=&quot;https://travis-ci.org/iziz/libPhoneNumber-iOS.svg?branch=master&quot; alt=&quot;Travis&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/iziz/libPhoneNumber-iOS?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/iziz/libPhoneNumber-iOS/badge.svg?branch=master&amp;amp;service=github&quot; alt=&quot;Coveralls&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;&lt;strong&gt;libPhoneNumber for iOS&lt;/strong&gt;&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;NBPhoneNumberUtil&lt;/li&gt; 
+ &lt;li&gt;NBAsYouTypeFormatter&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;ARC only&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Update Log&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/iziz/libPhoneNumber-iOS/wiki/Update-Log&quot;&gt;https://github.com/iziz/libPhoneNumber-iOS/wiki/Update-Log&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Issue&lt;/h2&gt; 
+&lt;p&gt;You can check phone number validation using below link. &lt;a href=&quot;https://rawgit.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/demo-compiled.html&quot;&gt;https://rawgit.com/googlei18n/libphonenumber/master/javascript/i18n/phonenumbers/demo-compiled.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Please report, if the above results are different from this iOS library. Otherwise, please create issue to following link below to request additional telephone numbers formatting rule. &lt;a href=&quot;https://github.com/google/libphonenumber/issues&quot;&gt;https://github.com/google/libphonenumber/issues&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Metadata in this library was generated from that. so, you should change it first. :)&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;h4&gt;Using &lt;a href=&quot;http://cocoapods.org/?q=libPhoneNumber-iOS&quot;&gt;CocoaPods&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;source &#39;https://github.com/CocoaPods/Specs.git&#39;
+pod &#39;libPhoneNumber-iOS&#39;, &#39;~&amp;gt; 0.8&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Installing libPhoneNumber Geocoding Features&lt;/h5&gt; 
+&lt;pre&gt;&lt;code&gt;pod &#39;libPhoneNumberGeocoding&#39;, :git =&amp;gt; &#39;https://github.com/CocoaPods/Specs.git&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Using &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt;&lt;/h4&gt; 
+&lt;p&gt;Carthage is a decentralized dependency manager that automates the process of adding frameworks to your Cocoa application.&lt;/p&gt; 
+&lt;p&gt;You can install Carthage with &lt;a href=&quot;http://brew.sh/&quot;&gt;Homebrew&lt;/a&gt; using the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ brew update
+$ brew install carthage
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To integrate libPhoneNumber into your Xcode project using Carthage, specify it in your &lt;code&gt;Cartfile&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ogdl&quot;&gt;github &quot;iziz/libPhoneNumber-iOS&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And set the &lt;strong&gt;Embedded Content Contains Swift&lt;/strong&gt; to &quot;Yes&quot; in your build settings.&lt;/p&gt; 
+&lt;h4&gt;Setting up manually&lt;/h4&gt; 
+&lt;p&gt;Add source files to your projects from libPhoneNumber - Add &quot;Contacts.framework&quot;&lt;/p&gt; 
+&lt;p&gt;See sample test code from&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[libPhoneNumber-iOS/libPhoneNumberTests/ ... Test.m] (&lt;a href=&quot;https://github.com/iziz/libPhoneNumber-iOS/tree/master/libPhoneNumberTests&quot;&gt;https://github.com/iziz/libPhoneNumber-iOS/tree/master/libPhoneNumberTests&lt;/a&gt;)&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Usage - &lt;strong&gt;NBPhoneNumberUtil&lt;/strong&gt;&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-obj-c&quot;&gt; NBPhoneNumberUtil *phoneUtil = [NBPhoneNumberUtil sharedInstance];
+ NSError *anError = nil;
+ NBPhoneNumber *myNumber = [phoneUtil parse:@&quot;6766077303&quot;
+                              defaultRegion:@&quot;AT&quot; error:&amp;amp;anError];
+ if (anError == nil) {
+     NSLog(@&quot;isValidPhoneNumber ? [%@]&quot;, [phoneUtil isValidNumber:myNumber] ? @&quot;YES&quot;:@&quot;NO&quot;);
+
+     // E164          : +436766077303
+     NSLog(@&quot;E164          : %@&quot;, [phoneUtil format:myNumber
+                                       numberFormat:NBEPhoneNumberFormatE164
+                                              error:&amp;amp;anError]);
+     // INTERNATIONAL : +43 676 6077303
+     NSLog(@&quot;INTERNATIONAL : %@&quot;, [phoneUtil format:myNumber
+                                       numberFormat:NBEPhoneNumberFormatINTERNATIONAL
+                                              error:&amp;amp;anError]);
+     // NATIONAL      : 0676 6077303
+     NSLog(@&quot;NATIONAL      : %@&quot;, [phoneUtil format:myNumber
+                                       numberFormat:NBEPhoneNumberFormatNATIONAL
+                                              error:&amp;amp;anError]);
+     // RFC3966       : tel:+43-676-6077303
+     NSLog(@&quot;RFC3966       : %@&quot;, [phoneUtil format:myNumber
+                                       numberFormat:NBEPhoneNumberFormatRFC3966
+                                              error:&amp;amp;anError]);
+ } else {
+     NSLog(@&quot;Error : %@&quot;, [anError localizedDescription]);
+ }
+
+ NSLog (@&quot;extractCountryCode [%@]&quot;, [phoneUtil extractCountryCode:@&quot;823213123123&quot; nationalNumber:nil]);
+
+ NSString *nationalNumber = nil;
+ NSNumber *countryCode = [phoneUtil extractCountryCode:@&quot;823213123123&quot; nationalNumber:&amp;amp;nationalNumber];
+
+ NSLog (@&quot;extractCountryCode [%@] [%@]&quot;, countryCode, nationalNumber);
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Output&lt;/h5&gt; 
+&lt;pre&gt;&lt;code&gt;2014-07-06 12:39:37.240 libPhoneNumberTest[1581:60b] isValidPhoneNumber ? [YES]
+2014-07-06 12:39:37.242 libPhoneNumberTest[1581:60b] E164          : +436766077303
+2014-07-06 12:39:37.243 libPhoneNumberTest[1581:60b] INTERNATIONAL : +43 676 6077303
+2014-07-06 12:39:37.243 libPhoneNumberTest[1581:60b] NATIONAL      : 0676 6077303
+2014-07-06 12:39:37.244 libPhoneNumberTest[1581:60b] RFC3966       : tel:+43-676-6077303
+2014-07-06 12:39:37.244 libPhoneNumberTest[1581:60b] extractCountryCode [82]
+2014-07-06 12:39:37.245 libPhoneNumberTest[1581:60b] extractCountryCode [82] [3213123123]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;with Swift&lt;/h4&gt; 
+&lt;h5&gt;Case (1) with Framework&lt;/h5&gt; 
+&lt;pre&gt;&lt;code&gt;import libPhoneNumberiOS
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Case (2) with Bridging-Header&lt;/h5&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-obj-c&quot;&gt;// Manually added
+#import &quot;NBPhoneNumberUtil.h&quot;
+#import &quot;NBPhoneNumber.h&quot;
+
+// CocoaPods (check your library path)
+#import &quot;libPhoneNumber_iOS/NBPhoneNumberUtil.h&quot;
+#import &quot;libPhoneNumber_iOS/NBPhoneNumber.h&quot;
+
+// add more if you want...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Case (3) with CocoaPods&lt;/h5&gt; 
+&lt;p&gt;import libPhoneNumber_iOS&lt;/p&gt; 
+&lt;h5&gt;- in swift class file&lt;/h5&gt; 
+&lt;h6&gt;2.x&lt;/h6&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;override func viewDidLoad() {
+    super.viewDidLoad()
+
+    guard let phoneUtil = NBPhoneNumberUtil.sharedInstance() else {
+        return
+    }
+
+    do {
+        let phoneNumber: NBPhoneNumber = try phoneUtil.parse(&quot;01065431234&quot;, defaultRegion: &quot;KR&quot;)
+        let formattedString: String = try phoneUtil.format(phoneNumber, numberFormat: .E164)
+
+        NSLog(&quot;[%@]&quot;, formattedString)
+    }
+    catch let error as NSError {
+        print(error.localizedDescription)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage - &lt;strong&gt;NBAsYouTypeFormatter&lt;/strong&gt;&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-obj-c&quot;&gt; NBAsYouTypeFormatter *f = [[NBAsYouTypeFormatter alloc] initWithRegionCode:@&quot;US&quot;];
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;6&quot;]); // &quot;6&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;5&quot;]); // &quot;65&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;0&quot;]); // &quot;650&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;2&quot;]); // &quot;650 2&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;5&quot;]); // &quot;650 25&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;3&quot;]); // &quot;650 253&quot;
+
+    // Note this is how a US local number (without area code) should be formatted.
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;2&quot;]); // &quot;650 2532&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;2&quot;]); // &quot;650 253 22&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;2&quot;]); // &quot;650 253 222&quot;
+    NSLog(@&quot;%@&quot;, [f inputDigit:@&quot;2&quot;]); // &quot;650 253 2222&quot;
+    // Can remove last digit
+    NSLog(@&quot;%@&quot;, [f removeLastDigit]); // &quot;650 253 222&quot;
+
+    NSLog(@&quot;%@&quot;, [f inputString:@&quot;16502532222&quot;]); // 1 650 253 2222
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;libPhoneNumberGeocoding&lt;/h2&gt; 
+&lt;p&gt;For more information on libPhoneNumberGeocoding and its usage, please visit &lt;a href=&quot;https://github.com/iziz/libPhoneNumber-iOS/raw/master/libPhoneNumberGeocoding/README.md&quot;&gt;libPhoneNumberGeocoding&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h2&gt;libPhoneNumberShortNumber&lt;/h2&gt; 
+&lt;p&gt;For more information on libPhoneNumberShortNumber and its usage, please visit &lt;a href=&quot;https://github.com/iziz/libPhoneNumber-iOS/raw/master/libPhoneNumberShortNumber/README.md&quot;&gt;libPhoneNumberShortNumber&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h5&gt;Visit &lt;a href=&quot;https://github.com/google/libphonenumber&quot;&gt;libphonenumber&lt;/a&gt; for more information or mail (&lt;a href=&quot;mailto:zen.isis@gmail.com&quot;&gt;zen.isis@gmail.com&lt;/a&gt;)&lt;/h5&gt;</description>
+    </item>
+    
+    <item>
+      <title>gnachman/iTerm2</title>
+      <link>https://github.com/gnachman/iTerm2</link>
+      <description>&lt;p&gt;iTerm2 is a terminal emulator for Mac OS X that does amazing things.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;This site hosts code for &lt;a href=&quot;https://iterm2.com&quot;&gt;iTerm2&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/gnachman/iTerm2&quot;&gt;&lt;img src=&quot;https://travis-ci.org/gnachman/iTerm2.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://coveralls.io/github/gnachman/iTerm2?branch=master&quot;&gt;&lt;img src=&quot;https://coveralls.io/repos/github/gnachman/iTerm2/badge.svg?branch=master&quot; alt=&quot;Coverage Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://iterm2.com/bugs&quot;&gt;File a bug report here!&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Issues are on &lt;a href=&quot;https://gitlab.com/gnachman/iterm2/issues&quot;&gt;Gitlab&lt;/a&gt; because Github barely supports issue attachments.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gitlab.com/gnachman/iterm2/wikis/HowToBuild&quot;&gt;How do I build this thing?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gitlab.com/gnachman/iterm2/-/wikis/How-to-Contribute&quot;&gt;How do I contribute changes?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://iterm2.com/downloads.html&quot;&gt;Downloads&lt;/a&gt; &lt;/li&gt;
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>segmentio/analytics-ios</title>
+      <link>https://github.com/segmentio/analytics-ios</link>
+      <description>&lt;p&gt;The hassle-free way to integrate analytics into any iOS application.&lt;/p&gt;&lt;hr&gt;&lt;h2&gt;⚠️ End-of-Support Announcement for Analytics-iOS - March 2026 ⚠️&lt;/h2&gt; 
+&lt;p&gt;The end-of-support (EoS) for the Analytics-iOS SDK is scheduled for March 2026.&lt;/p&gt; 
+&lt;p&gt;Segment&#39;s future development efforts concentrate on the new &lt;a href=&quot;https://segment.com/docs/connections/sources/catalog/libraries/mobile/apple/&quot;&gt;Analytics-Swift&lt;/a&gt; SDK. If you&#39;d like to migrate to Analytics-Swift, see the &lt;a href=&quot;https://segment.com/docs/connections/sources/catalog/libraries/mobile/apple/migration/&quot;&gt;migration guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Analytics&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://circleci.com/gh/segmentio/analytics-ios&quot;&gt;&lt;img src=&quot;https://circleci.com/gh/segmentio/analytics-ios.svg?style=shield&amp;amp;circle-token=31c5b3e5edeb404b30141ead9dcef3eb37d16d4d&quot; alt=&quot;Circle CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org//pods/Analytics&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/Analytics.svg?style=flat&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/Analytics&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/Analytics.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/segmentio/analytics-ios&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/segmentio/analytics-ios/branch/master/graph/badge.svg?sanitize=true&quot; alt=&quot;codecov&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SwiftPM-Compatible-F05138.svg?sanitize=true&quot; alt=&quot;SwiftPM Compatible&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;analytics-ios is an iOS client for Segment.&lt;/p&gt; 
+&lt;p&gt;Special thanks to &lt;a href=&quot;https://github.com/tonyxiao&quot;&gt;Tony Xiao&lt;/a&gt;, &lt;a href=&quot;https://github.com/lhasiuk&quot;&gt;Lee Hasiuk&lt;/a&gt; and &lt;a href=&quot;https://github.com/cristianbica&quot;&gt;Cristian Bica&lt;/a&gt; for their contributions to the library!&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://user-images.githubusercontent.com/16131737/53752615-e66b8000-3e63-11e9-98f6-f478c7076537.png&quot; /&gt; 
+ &lt;p&gt;&lt;b&gt;&lt;i&gt;You can&#39;t fix what you can&#39;t measure&lt;/i&gt;&lt;/b&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;Analytics helps you measure your users, product, and business. It unlocks insights into your app&#39;s funnel, core business metrics, and whether you have product-market fit.&lt;/p&gt; 
+&lt;h2&gt;How to get started&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Collect analytics data&lt;/strong&gt; from your app(s). 
+  &lt;ul&gt; 
+   &lt;li&gt;The top 200 Segment companies collect data from 5+ source types (web, mobile, server, CRM, etc.).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Send the data to analytics tools&lt;/strong&gt; (for example, Google Analytics, Amplitude, Mixpanel). 
+  &lt;ul&gt; 
+   &lt;li&gt;Over 250+ Segment companies send data to eight categories of destinations such as analytics tools, warehouses, email marketing and remarketing systems, session recording, and more.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Explore your data&lt;/strong&gt; by creating metrics (for example, new signups, retention cohorts, and revenue generation). 
+  &lt;ul&gt; 
+   &lt;li&gt;The best Segment companies use retention cohorts to measure product market fit. Netflix has 70% paid retention after 12 months, 30% after 7 years.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;a href=&quot;https://segment.com&quot;&gt;Segment&lt;/a&gt; collects analytics data and allows you to send it to more than 250 apps (such as Google Analytics, Mixpanel, Optimizely, Facebook Ads, Slack, Sentry) just by flipping a switch. You only need one Segment code snippet, and you can turn integrations on and off at will, with no additional code. &lt;a href=&quot;https://app.segment.com/signup&quot;&gt;Sign up with Segment today&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Why?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Power all your analytics apps with the same data&lt;/strong&gt;. Instead of writing code to integrate all of your tools individually, send data to Segment, once.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Install tracking for the last time&lt;/strong&gt;. We&#39;re the last integration you&#39;ll ever need to write. You only need to instrument Segment once. Reduce all of your tracking code and advertising tags into a single set of API calls.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Send data from anywhere&lt;/strong&gt;. Send Segment data from any device, and we&#39;ll transform and send it on to any tool.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Query your data in SQL&lt;/strong&gt;. Slice, dice, and analyze your data in detail with Segment SQL. We&#39;ll transform and load your customer behavioral data directly from your apps into Amazon Redshift, Google BigQuery, or Postgres. Save weeks of engineering time by not having to invent your own data warehouse and ETL pipeline.&lt;/p&gt; &lt;p&gt;For example, you can capture data on any app:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;analytics.track(&#39;Order Completed&#39;, { price: 99.84 })
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Then, query the resulting data in SQL:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;select * from app.order_completed
+order by price desc
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;🚀 Startup Program&lt;/h3&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://segment.com/startups&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/16131737/53128952-08d3d400-351b-11e9-9730-7da35adda781.png&quot; /&gt;&lt;/a&gt; 
+&lt;/div&gt; If you are part of a new startup (&amp;lt;$5M raised, &amp;lt;2 years since founding), we just launched a new startup program for you. You can get a Segment Team plan (up to 
+&lt;b&gt;$25,000 value&lt;/b&gt; in Segment credits) for free up to 2 years — 
+&lt;a href=&quot;https://segment.com/startups/&quot;&gt;apply here&lt;/a&gt;! 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Analytics is available through &lt;a href=&quot;http://cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt; and &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &quot;Analytics&quot;, &quot;3.7.0&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Note: Segment &lt;em&gt;strongly&lt;/em&gt; recommends that you use a dynamic framework to manage your project dependencies. If you prefer static libraries, you can add &lt;code&gt;use_modular_headers!&lt;/code&gt; or &lt;code&gt;use_frameworks! :linkage =&amp;gt; :static&lt;/code&gt; in your Podfile. However, you must then &lt;em&gt;manually update&lt;/em&gt; all of your dependencies on a regular schedule.&lt;/p&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;github &quot;segmentio/analytics-ios&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Swift Package Manager (SPM)&lt;/h3&gt; 
+&lt;p&gt;To add analytics-ios via Swift Package Mangaer, it is possible to add it one of two ways:&lt;/p&gt; 
+&lt;h4&gt;Xcode&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/917994/119199146-69765200-ba3f-11eb-9173-93cfb5f3cabd.png&quot; alt=&quot;Xcode Add SPM Package&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/917994/119199143-68ddbb80-ba3f-11eb-9bf2-5dc11c208abd.png&quot; alt=&quot;ChoosePackageRepository&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/917994/119199139-67ac8e80-ba3f-11eb-9941-fc541030f3df.png&quot; alt=&quot;ChoosePackageOptions&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Package.swift&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;import PackageDescription
+
+let package = Package(
+    name: &quot;MyApplication&quot;,
+    dependencies: [
+        // Add a package containing Analytics as the name along with the git url
+        .package(
+            name: &quot;Segment&quot;,
+            url: &quot;git@github.com:segmentio/analytics-ios.git&quot;
+        )
+    ],
+    targets: [
+        name: &quot;MyApplication&quot;,
+        dependencies: [&quot;Segment&quot;] // Add Analytics as a dependency of your application
+    ]
+)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Note: Segment recommends that you use Xcode to add your package.&lt;/p&gt; 
+&lt;h2&gt;Quickstart&lt;/h2&gt; 
+&lt;p&gt;Refer to the Quickstart documentation at &lt;a href=&quot;https://segment.com/docs/libraries/ios/quickstart/&quot;&gt;https://segment.com/docs/libraries/ios/quickstart&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;More detailed documentation is available at &lt;a href=&quot;https://segment.com/docs/libraries/ios/&quot;&gt;https://segment.com/docs/libraries/ios&lt;/a&gt;.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>stripe/stripe-terminal-ios</title>
+      <link>https://github.com/stripe/stripe-terminal-ios</link>
+      <description>&lt;p&gt;Stripe Terminal iOS SDK&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Stripe Terminal iOS SDK&lt;/h1&gt; 
+&lt;p&gt;Stripe Terminal enables you to build your own in-person checkout to accept payments in the physical world. Built on Stripe&#39;s payments network, Terminal helps you unify your online and offline payment channels. With the Stripe Terminal iOS SDK, you can connect to &lt;a href=&quot;https://stripe.com/docs/terminal/designing-integration&quot;&gt;pre-certified card readers&lt;/a&gt; from your iOS app and drive a customized in-store checkout flow. The Stripe Terminal iOS SDK is a proprietary, closed-source library maintained by Stripe, and the proprietary source code is Stripe&#39;s confidential information and is not made publicly available.&lt;/p&gt; 
+&lt;p&gt;Get started with our &lt;a href=&quot;https://stripe.com/docs/terminal/sdk/ios&quot;&gt;integration guides&lt;/a&gt; and &lt;a href=&quot;https://stripe.com/docs/terminal/integration-builder&quot;&gt;sample integration&lt;/a&gt;, or browse the &lt;a href=&quot;https://stripe.dev/stripe-terminal-ios/docs/index.html&quot;&gt;SDK reference documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Upgrading from an older version of the SDK? See our &lt;a href=&quot;https://stripe.com/docs/terminal/sdk-migration-guide&quot;&gt;migration guide&lt;/a&gt; for guidance.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;The Stripe Terminal iOS SDK is compatible with apps supporting iOS 14 and above.&lt;/p&gt; 
+&lt;h2&gt;Try the example app&lt;/h2&gt; 
+&lt;p&gt;The iOS SDK includes an open-source example app, which you can use to familiarize yourself with the SDK and reader before starting your own integration.&lt;/p&gt; 
+&lt;p&gt;To build the example app from source, you&#39;ll need to:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Navigate to the &lt;code&gt;Example&lt;/code&gt; folder, and open &lt;code&gt;Example.xcworkspace&lt;/code&gt; (make sure to open the &lt;strong&gt;&lt;code&gt;.xcworkspace&lt;/code&gt;&lt;/strong&gt; and not the &lt;code&gt;.xcodeproj&lt;/code&gt;).&lt;/li&gt; 
+ &lt;li&gt;Navigate to our &lt;a href=&quot;https://github.com/stripe/example-terminal-backend&quot;&gt;example backend&lt;/a&gt; and click the button to deploy it on Heroku.&lt;/li&gt; 
+ &lt;li&gt;In &lt;code&gt;AppDelegate.swift&lt;/code&gt;, set the URL of the Heroku app you just deployed.&lt;/li&gt; 
+ &lt;li&gt;Build and run the app. The SDK comes with a simple reader simulator, so you can get started without any physical hardware.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;We support CocoaPods and Swift Package Manager. If you prefer to install the library manually, please use the latest version from our &lt;a href=&quot;https://github.com/stripe/stripe-terminal-ios/releases&quot;&gt;releases&lt;/a&gt; page.&lt;/p&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;p&gt;In Xcode, select &lt;strong&gt;File &amp;gt; Swift Packages &amp;gt; Add Package Dependency&lt;/strong&gt; and enter &lt;a href=&quot;https://github.com/stripe/stripe-terminal-ios&quot;&gt;https://github.com/stripe/stripe-terminal-ios&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;If you haven&#39;t already, install the latest version of &lt;a href=&quot;https://guides.cocoapods.org/using/getting-started.html&quot;&gt;CocoaPods&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add this line to your Podfile:&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;pod &#39;StripeTerminal&#39;, &#39;~&amp;gt; 4.0&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt;Run the following command:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;pod install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;From now on, don&#39;t forget to use the &lt;code&gt;*.xcworkspace&lt;/code&gt; file to open your project in Xcode, instead of the &lt;code&gt;.xcodeproj&lt;/code&gt; file.&lt;/p&gt; 
+&lt;p&gt;In the future, to update to the latest compatible version of the SDK, just run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;pod update StripeTerminal
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Manual&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Navigate to our &lt;a href=&quot;https://github.com/stripe/stripe-terminal-ios/releases&quot;&gt;releases&lt;/a&gt; page, download StripeTerminal.xcframework.zip, and unzip it.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Drag &lt;code&gt;StripeTerminal.xcframework&lt;/code&gt; to the Frameworks, Libraries, and Embedded Content section of your Xcode project’s General settings. Make sure to select &quot;Copy items if needed&quot;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;When new versions of the SDK are released, repeat the above steps to update your installation.&lt;/p&gt; 
+&lt;h3&gt;Configure your app&lt;/h3&gt; 
+&lt;p&gt;Location services must be enabled in order to use the iOS SDK. Add the following key-value pair to your app&#39;s &lt;code&gt;Info.plist&lt;/code&gt; file:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Privacy - Location When In Use Usage Description 
+  &lt;ul&gt; 
+   &lt;li&gt;Key: &lt;code&gt;NSLocationWhenInUseUsageDescription&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Value: &quot;Location access is required in order to accept payments.&quot;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: Stripe needs to know where payments occur to reduce risks associated with those charges and to minimize disputes. If the SDK can’t determine the iOS device’s location, payments are disabled until location access is restored.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;For your app to run in the background and remain connected to the reader, add this key-value pair to your &lt;code&gt;Info.plist&lt;/code&gt; file:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Required background modes 
+  &lt;ul&gt; 
+   &lt;li&gt;Key: &lt;code&gt;UIBackgroundModes&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Value: &lt;code&gt;bluetooth-central&lt;/code&gt; (Uses Bluetooth LE accessories)&lt;/li&gt; 
+   &lt;li&gt;Note the value is actually an array that you will need to add &lt;code&gt;bluetooth-central&lt;/code&gt; to.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For your app to pass validation when submitting to the App Store, add the following key-value pairs as well:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Privacy - Bluetooth Always Usage Description 
+  &lt;ul&gt; 
+   &lt;li&gt;Key: &lt;code&gt;NSBluetoothAlwaysUsageDescription&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Value: &quot;This app uses Bluetooth to connect to supported card readers.&quot;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Previous API References&lt;/h2&gt; 
+&lt;p&gt;We maintain an archive of the API reference for the previous major version.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://stripe.dev/stripe-terminal-ios/3.9.0/index.html&quot;&gt;3.9.0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://stripe.dev/stripe-terminal-ios/2.23.0/index.html&quot;&gt;2.23.0&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>razorpay/razorpay-pod</title>
+      <link>https://github.com/razorpay/razorpay-pod</link>
+      <description>&lt;p&gt;📱 CocoaPod implementation of Razorpay&#39;s Payment SDK. Refer for instructions:&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;razorpay-pod&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cocoapods.org/pods/razorpay-pod&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/razorpay-pod.svg?style=flat&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/razorpay-pod&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/razorpay-pod.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/razorpay-pod&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/razorpay-pod.svg?style=flat&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?sanitize=true&quot; alt=&quot;SPM compatible&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This repository implements pod for Razorpay&#39;s iOS Framework.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;To run the example project, clone the repo, and run &lt;code&gt;pod install&lt;/code&gt; from the Example directory first.&lt;/p&gt; 
+&lt;h2&gt;Installation | Docs&lt;/h2&gt; 
+&lt;h3&gt;Note:&lt;/h3&gt; 
+&lt;p&gt;If your integrating this on Objective-C please replace the line&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;#import &amp;lt;Razorpay/Razorpay.h&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;with&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# import &amp;lt;Razorpay/Razorpay-Swift.h&amp;gt; in your viewcontroller.m file
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;razorpay-pod is available through &lt;a href=&quot;http://cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt;. To install it, simply add the following line to your Podfile&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &#39;razorpay-pod&#39;, &#39;1.2.5&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Note:&lt;/h3&gt; 
+&lt;p&gt;for older cocoapod versions check &lt;a href=&quot;https://github.com/razorpay/razorpay-pod/raw/1.1.12/CHANGELOG.md&quot;&gt;CHANGELOG&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Refer to the documentation from &lt;a href=&quot;https://razorpay.com/docs/payment-gateway/ios-integration/standard/&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Swift Package Manager (iOS 13+)&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.swift.org/package-manager/&quot;&gt;Swift Package Manager&lt;/a&gt; razorpay-pod is also distributed as Swift Package, follow the below steps for installing the package in your iOS app.&lt;/p&gt; 
+&lt;h3&gt;Installation:&lt;/h3&gt; 
+&lt;p&gt;Click File -&amp;gt; Swift Packages -&amp;gt; Add Package Dependency, enter &lt;a href=&quot;https://github.com/razorpay/razorpay-pod&quot;&gt;razorpay-pod repo&#39;s URL&lt;/a&gt;. You can also select the dependency rule to select major and minor versions of package and also from a specific branch or commit.&lt;/p&gt; 
+&lt;p&gt;Refer to our documentation &lt;a href=&quot;https://razorpay.com/docs/payments/payment-gateway/ios-integration/standard/&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/razorpay/razorpay-pod/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING&lt;/a&gt; document. Thank you, &lt;a href=&quot;https://github.com/razorpay/razorpay-pod/graphs/contributors&quot;&gt;contributors&lt;/a&gt;!&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;razorpay-pod is free software, and may be redistributed under the terms specified in the &lt;a href=&quot;https://raw.githubusercontent.com/razorpay/razorpay-pod/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file.&lt;/p&gt; 
+&lt;p&gt;We &lt;span&gt;❤️&lt;/span&gt; open source software! See &lt;a href=&quot;https://razorpay.com/integrations&quot; title=&quot;List of our supported integrations&quot;&gt;our other supported plugins / SDKs&lt;/a&gt; or [contact us](mailto:&lt;a href=&quot;mailto:integrations@razorpay.com&quot;&gt;integrations@razorpay.com&lt;/a&gt;?subject=Help with iOS Integration using CocoaPods) to help you with integrations.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>braintree/braintree-ios-drop-in</title>
+      <link>https://github.com/braintree/braintree-ios-drop-in</link>
+      <description>&lt;p&gt;Braintree Drop-in for iOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Braintree iOS Drop-in SDK&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?sanitize=true&quot; alt=&quot;Swift Package Manager compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org/pods/BraintreeDropIn&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/BraintreeDropIn.svg?style=flat&quot; alt=&quot;CocoaPods compatible&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/braintree/braintree-ios-drop-in/actions/workflows/release.yml&quot;&gt;&lt;img src=&quot;https://github.com/braintree/braintree-ios-drop-in/actions/workflows/release.yml/badge.svg?sanitize=true&quot; alt=&quot;Release&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Welcome to Braintree&#39;s Drop-in SDK for iOS!&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/Images/client-sdk-ios-series-light.png&quot; alt=&quot;Drop-in light theme&quot; title=&quot;Drop-in light theme&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;The Braintree iOS Drop-in SDK permits a deployment target of iOS 12.0 or higher.&lt;/strong&gt; It requires Xcode 15.0+ and Swift 5.9+.&lt;/p&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/#getting-started&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/#documentation&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/#versions&quot;&gt;Versions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/#demo&quot;&gt;Demo App&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/#help&quot;&gt;Help&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/#feedback&quot;&gt;Feedback&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;We recommend using &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;Swift Package Manager&lt;/a&gt; or &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods&quot;&gt;CocoaPods&lt;/a&gt; to integrate the Braintree Drop-in SDK with your project.&lt;/p&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;p&gt;&lt;em&gt;This feature is only available in v9. v9.Y.0 requires Xcode 15.0+.&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;To add the &lt;code&gt;BraintreeDropIn&lt;/code&gt; package to your Xcode project, select File &amp;gt; Swift Packages &amp;gt; Add Package Dependency and enter &lt;code&gt;https://github.com/braintree/braintree-ios-drop-in&lt;/code&gt; as the repository URL. Tick the checkbox for &lt;code&gt;BraintreeDropIn&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;If you look at your app target, you will see that the &lt;code&gt;BraintreeDropIn&lt;/code&gt; library is automatically linked as a framework to your app (see General &amp;gt; Frameworks, Libraries, and Embedded Content).&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Note&lt;/em&gt;: There is a &lt;a href=&quot;https://forums.swift.org/t/swift-package-binary-framework-issue/41922&quot;&gt;known SPM issue&lt;/a&gt; for apps with app extensions that use Swift Packages with binary dependencies. The issue occurs when uploading a build to App Store Connect. You can read the report on Swift Forums and follow &lt;a href=&quot;https://github.com/braintree/braintree-ios-drop-in/issues/317#issuecomment-815005747&quot;&gt;this workaround&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;p&gt;Add to your &lt;code&gt;Podfile&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;pod &#39;BraintreeDropIn&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then run &lt;code&gt;pod install&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;See our &lt;a href=&quot;https://github.com/braintree/braintree-ios-drop-in/raw/main/BraintreeDropIn.podspec&quot;&gt;&lt;code&gt;Podspec&lt;/code&gt;&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Note:&lt;/em&gt; If you are using version 8.x.x of the Braintree Drop-in iOS SDK in Xcode 12, you may see the warning &lt;code&gt;The iOS Simulator deployment target is set to 8.0, but the range of supported deployment target versions is 9.0 to 14.0.99&lt;/code&gt;. This will not prevent your app from compiling. This is a &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/issues/7314&quot;&gt;CocoaPods issue&lt;/a&gt; with a known workaround.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;h3&gt;Import BraintreeDropIn&lt;/h3&gt; 
+&lt;p&gt;Add the below import statement to any class where you are using BraintreeDropIn.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;import BraintreeDropIn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Show Drop-in&lt;/h3&gt; 
+&lt;p&gt;Present &lt;code&gt;BTDropInController&lt;/code&gt; to collect the customer&#39;s payment information and receive the &lt;code&gt;nonce&lt;/code&gt; to send to your server. Saved payment methods will appear if you specified a &lt;code&gt;customer_id&lt;/code&gt; when creating your client token.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;func showDropIn(clientTokenOrTokenizationKey: String) {
+    let request =  BTDropInRequest()
+    let dropIn = BTDropInController(authorization: clientTokenOrTokenizationKey, request: request)
+    { (controller, result, error) in
+        if (error != nil) {
+            print(&quot;ERROR&quot;)
+        } else if (result?.isCanceled == true) {
+            print(&quot;CANCELED&quot;)
+        } else if let result = result {
+            // Use the BTDropInResult properties to update your UI
+            let selectedPaymentMethodType = result.paymentMethodType
+            let selectedPaymentMethod = result.paymentMethod
+            let selectedPaymentMethodIcon = result.paymentIcon
+            let selectedPaymentMethodDescription = result.paymentDescription
+        }
+        controller.dismiss(animated: true, completion: nil)
+    }
+    self.present(dropIn!, animated: true, completion: nil)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Apple Pay + Drop-in&lt;/h3&gt; 
+&lt;p&gt;Apple Pay is enabled by default in Drop-in. Drop-in will show Apple Pay as a payment option as long as it is enabled in the control panel and the device supports it. To opt out, set &lt;code&gt;applePayDisabled = true&lt;/code&gt; on your &lt;code&gt;BTDropInRequest&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; If your customer selects Apple Pay as their preferred payment method then &lt;code&gt;result.paymentMethodType == .applePay&lt;/code&gt; and the &lt;code&gt;result.paymentMethod&lt;/code&gt; will be &lt;code&gt;nil&lt;/code&gt;. Selecting Apple Pay does not display the Apple Pay sheet or create a nonce. After you receive the &lt;code&gt;BTDropInResult&lt;/code&gt;, you will need to:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Display a &lt;code&gt;PKPaymentButton&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Present a &lt;code&gt;PKPaymentAuthorizationViewController&lt;/code&gt; when the customer taps the button.&lt;/li&gt; 
+ &lt;li&gt;Tokenize the &lt;code&gt;PKPayment&lt;/code&gt; and send the resulting nonce to your server to create a transaction.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Use &lt;code&gt;BTApplePayClient&lt;/code&gt; to tokenize the customer&#39;s Apple Pay information - &lt;a href=&quot;https://developer.paypal.com/braintree/docs/guides/apple-pay/client-side/ios/v5&quot;&gt;view our official docs for more information&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;3D Secure + Drop-in&lt;/h3&gt; 
+&lt;p&gt;The Drop-in supports 3D Secure verification. You must have 3D Secure enabled in the Control Panel. Create a &lt;code&gt;BTThreeDSecureRequest&lt;/code&gt;, setting as many fields on it as possible; the more fields that are set, the less likely it is that a user will be be presented with a challenge. Set the &lt;code&gt;BTThreeDSecureRequest&lt;/code&gt; on &lt;code&gt;BTDropInRequest&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let request = BTDropInRequest()
+
+let threeDSecureRequest = BTThreeDSecureRequest()
+threeDSecureRequest.threeDSecureRequestDelegate = self
+
+threeDSecureRequest.amount = 1.00
+threeDSecureRequest.email = &quot;test@example.com&quot;
+threeDSecureRequest.requested = .version2
+
+let address = BTThreeDSecurePostalAddress()
+address.givenName = &quot;Jill&quot;
+address.surname = &quot;Doe&quot;
+address.phoneNumber = &quot;5551234567&quot;
+address.streetAddress = &quot;555 Smith St&quot;
+address.extendedAddress = &quot;#2&quot;
+address.locality = &quot;Chicago&quot;
+address.region = &quot;IL&quot;
+address.postalCode = &quot;12345&quot;
+address.countryCodeAlpha2 = &quot;US&quot;
+threeDSecureRequest.billingAddress = address
+
+// Optional additional information.
+// For best results, provide as many of these elements as possible.
+let additionalInformation = BTThreeDSecureAdditionalInformation()
+additionalInformation.shippingAddress = address
+threeDSecureRequest.additionalInformation = additionalInformation
+
+request.threeDSecureRequest = threeDSecureRequest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Managing payment methods&lt;/h3&gt; 
+&lt;p&gt;By default, if you initialize the Drop-in with a client token generated with a customer ID, Drop-in will add payment methods to that customer within the Braintree Vault. You can optionally allow the deletion of payment methods for that customer by enabling &lt;code&gt;vaultManager&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let request =  BTDropInRequest()
+request.vaultManager = true
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Fetch most recent payment method&lt;/h3&gt; 
+&lt;p&gt;If your user already has an existing payment method, you may not need to show the Drop-in UI. You can check if they have an existing payment method using &lt;code&gt;BTDropInResult.mostRecentPaymentMethod&lt;/code&gt;. Note that you must use a client token that was created with a &lt;code&gt;customer_id&lt;/code&gt;. &lt;code&gt;BTDropInResult&lt;/code&gt; makes it easy to get a description and icon of the payment method.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/Images/saved-single-payment-method.png&quot; alt=&quot;Example payment method icon and description&quot; title=&quot;Example payment method icon and description&quot; /&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;BTDropInResult.mostRecentPaymentMethod(forClientToken: authorization) { result, error in
+  guard let result = result, error == nil else {
+    // either an error occurred or the customer doesn&#39;t have any vaulted payment methods
+    return
+  }
+
+  if result.paymentOptionType == .applePay {
+    // Apple Pay is the most recently selected option
+    // Note that result.paymentMethod will be nil in this case; display Apple Pay button and tokenize using `BTApplePayClient`
+  }
+
+  // Update your UI
+  let type = result.paymentMethodType
+  let icon = result.paymentIcon
+  let description = result.paymentDescription
+
+  // Use the payment method to transact
+  let paymentMethod = result.paymentMethod
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Localization&lt;/h3&gt; 
+&lt;p&gt;Drop-in is currently localized for &lt;a href=&quot;https://github.com/braintree/braintree-ios-drop-in/tree/main/Sources/BraintreeDropIn/Resources&quot;&gt;22 languages&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Color Schemes&lt;/h3&gt; 
+&lt;p&gt;Drop-in is fully customizable, but we also provide &lt;code&gt;Light&lt;/code&gt;, &lt;code&gt;Dark&lt;/code&gt; and &lt;code&gt;Dynamic&lt;/code&gt; color schemes. The dynamic color scheme will switch between light and dark based on whether the device is in light or dark mode. The &lt;code&gt;Dynamic&lt;/code&gt; scheme is only available in iOS 13 or higher. Drop-in will use the &lt;code&gt;Light&lt;/code&gt; color scheme by default.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let uiCustomization = BTDropInUICustomization(colorScheme: .dark)
+
+let dropInRequest = BTDropInRequest()
+dropInRequest.uiCustomization = uiCustomization
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/braintree/braintree-ios-drop-in/main/Images/client-sdk-ios-series-dark.png&quot; alt=&quot;Drop-in dark theme&quot; title=&quot;Drop-in dark theme&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Customization&lt;/h3&gt; 
+&lt;p&gt;Use &lt;code&gt;BTDropInUICustomization&lt;/code&gt; to customize the appearance of Drop-in.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let uiCustomization = BTDropInUICustomization(colorScheme: .dynamic)
+uiCustomization.fontFamily = &quot;Helvetica&quot;
+uiCustomization.boldFontFamily = &quot;Helvetica Bold&quot;
+
+let dropInRequest = BTDropInRequest()
+dropInRequest.uiCustomization = uiCustomization
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Accessibility&lt;/h3&gt; 
+&lt;h4&gt;Dynamic Type&lt;/h4&gt; 
+&lt;p&gt;Dynamic type is enabled by default for both system and custom fonts. We strongly encourage you to leave this feature on, but if you wish to disable it, you may do so by setting &lt;code&gt;disableDynamicType&lt;/code&gt; to &lt;code&gt;true&lt;/code&gt; on &lt;code&gt;BTDropInUICustomization&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let uiCustomization = BTDropInUICustomization(colorScheme: .light)
+uiCustomization.disableDynamicType = true
+
+let dropInRequest = BTDropInRequest()
+dropInRequest.uiCustomization = uiCustomization
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;VoiceOver&lt;/h4&gt; 
+&lt;p&gt;Drop-in UI elements support VoiceOver.&lt;/p&gt; 
+&lt;h4&gt;SwiftUI&lt;/h4&gt; 
+&lt;p&gt;Drop-in does not officially support SwiftUI at this time.&lt;/p&gt; 
+&lt;h3&gt;More Information&lt;/h3&gt; 
+&lt;p&gt;Start with &lt;a href=&quot;https://developer.paypal.com/braintree/docs/start/hello-client/ios/v5&quot;&gt;&lt;strong&gt;&#39;Hello, Client!&#39;&lt;/strong&gt;&lt;/a&gt; for instructions on basic setup and usage.&lt;/p&gt; 
+&lt;p&gt;Also see our &lt;a href=&quot;https://braintree.github.io/braintree-ios-drop-in/current/&quot;&gt;&lt;strong&gt;reference documentation&lt;/strong&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Versions&lt;/h2&gt; 
+&lt;p&gt;This SDK abides by our Client SDK Deprecation Policy. For more information on the potential statuses of an SDK check our &lt;a href=&quot;https://developer.paypal.com/braintree/docs/guides/client-sdk/deprecation-policy/ios/v5&quot;&gt;developer docs&lt;/a&gt;.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Major version number&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+   &lt;th&gt;Released&lt;/th&gt; 
+   &lt;th&gt;Deprecated&lt;/th&gt; 
+   &lt;th&gt;Unsupported&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;9.x.x&lt;/td&gt; 
+   &lt;td&gt;Active&lt;/td&gt; 
+   &lt;td&gt;April 2021&lt;/td&gt; 
+   &lt;td&gt;TBA&lt;/td&gt; 
+   &lt;td&gt;TBA&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;8.x.x&lt;/td&gt; 
+   &lt;td&gt;Deprecated&lt;/td&gt; 
+   &lt;td&gt;Februrary 2020&lt;/td&gt; 
+   &lt;td&gt;April 2022&lt;/td&gt; 
+   &lt;td&gt;TBA&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;7.x.x&lt;/td&gt; 
+   &lt;td&gt;Unsupported&lt;/td&gt; 
+   &lt;td&gt;December 2018&lt;/td&gt; 
+   &lt;td&gt;April 2021&lt;/td&gt; 
+   &lt;td&gt;April 2022&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Versions 6 and below are unsupported.&lt;/p&gt; 
+&lt;h2&gt;Demo&lt;/h2&gt; 
+&lt;p&gt;A demo app is included in this project. Running the demo app requires Xcode 15.0+. Open BraintreeDropIn.xcworkspace and run the Demo scheme to view it.&lt;/p&gt; 
+&lt;p&gt;The demo app uses Swift Package Manager to fetch dependencies. Xcode will download dependencies automatically when you open the workspace. Deleting derived data will delete the dependencies. Go to &lt;strong&gt;File -&amp;gt; Swift Packages -&amp;gt; Resolve Package Versions&lt;/strong&gt; to re-download them.&lt;/p&gt; 
+&lt;h2&gt;Help&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Read the headers&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://developer.paypal.com/braintree/docs/start/hello-client/ios/v5&quot;&gt;Read the docs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Find a bug? &lt;a href=&quot;https://github.com/braintree/braintree-ios-drop-in/issues&quot;&gt;Open an issue&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Want to contribute? &lt;a href=&quot;https://help.github.com/articles/creating-a-pull-request&quot;&gt;submit a pull request&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Feedback&lt;/h2&gt; 
+&lt;p&gt;The Braintree iOS Drop-in SDK is in active development, we welcome your feedback!&lt;/p&gt; 
+&lt;p&gt;Here are a few ways to get in touch:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/braintree/braintree-ios-drop-in/issues&quot;&gt;GitHub Issues&lt;/a&gt; - For generally applicable issues and feedback&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.braintreepayments.com&quot;&gt;Braintree Support&lt;/a&gt; - For personal support at any phase of integration&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The Braintree iOS Drop-in SDK is open source and available under the MIT license. See the &lt;a href=&quot;https://github.com/braintree/braintree-ios-drop-in/raw/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for more info.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>FLEXTool/FLEX</title>
+      <link>https://github.com/FLEXTool/FLEX</link>
+      <description>&lt;p&gt;An in-app debugging and exploration tool for iOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;FLEX&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cocoapods.org/?q=FLEX&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/FLEX.svg?sanitize=true&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Flipboard/FLEX/raw/master/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/FLEX.svg?sanitize=true&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/FLEX.svg?sanitize=true&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/ryanolsonk&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/contact-@ryanolsonk-blue.svg?style=flat&quot; alt=&quot;Twitter: @ryanolsonk&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/Flipboard/FLEX&quot;&gt;&lt;img src=&quot;https://travis-ci.org/Flipboard/FLEX.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;FLEX (Flipboard Explorer) is a set of in-app debugging and exploration tools for iOS development. When presented, FLEX shows a toolbar that lives in a window above your application. From this toolbar, you can view and modify nearly every piece of state in your running application.&lt;/p&gt; 
+&lt;img alt=&quot;Demo&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70185687-e842c800-16af-11ea-8ef9-9e071380a462.gif&quot; /&gt; 
+&lt;h2&gt;Give Yourself Debugging Superpowers&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Inspect and modify views in the hierarchy.&lt;/li&gt; 
+ &lt;li&gt;See the properties and ivars on any object.&lt;/li&gt; 
+ &lt;li&gt;Dynamically modify many properties and ivars.&lt;/li&gt; 
+ &lt;li&gt;Dynamically call instance and class methods.&lt;/li&gt; 
+ &lt;li&gt;Observe detailed network request history with timing, headers, and full responses.&lt;/li&gt; 
+ &lt;li&gt;Add your own simulator keyboard shortcuts.&lt;/li&gt; 
+ &lt;li&gt;View system log messages (e.g. from &lt;code&gt;NSLog&lt;/code&gt;).&lt;/li&gt; 
+ &lt;li&gt;Access any live object via a scan of the heap.&lt;/li&gt; 
+ &lt;li&gt;View the file system within your app&#39;s sandbox.&lt;/li&gt; 
+ &lt;li&gt;Browse SQLite/Realm databases in the file system.&lt;/li&gt; 
+ &lt;li&gt;Trigger 3D touch in the simulator using the control, shift, and command keys.&lt;/li&gt; 
+ &lt;li&gt;Explore all classes in your app and linked systems frameworks (public and private).&lt;/li&gt; 
+ &lt;li&gt;Quickly access useful objects such as &lt;code&gt;[UIApplication sharedApplication]&lt;/code&gt;, the app delegate, the root view controller on the key window, and more.&lt;/li&gt; 
+ &lt;li&gt;Dynamically view and modify &lt;code&gt;NSUserDefaults&lt;/code&gt; values.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Unlike many other debugging tools, FLEX runs entirely inside your app, so you don&#39;t need to be connected to LLDB/Xcode or a different remote debugging server. It works well in the simulator and on physical devices.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;In the iOS simulator, you can use keyboard shortcuts to activate FLEX. &lt;code&gt;f&lt;/code&gt; will toggle the FLEX toolbar. Hit the &lt;code&gt;?&lt;/code&gt; key for a full list of shortcuts. You can also show FLEX programmatically:&lt;/p&gt; 
+&lt;p&gt;Short version:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// Objective-C
+[[FLEXManager sharedManager] showExplorer];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;// Swift
+FLEXManager.shared.showExplorer()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;More complete version:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;#if DEBUG
+#import &quot;FLEXManager.h&quot;
+#endif
+
+...
+
+- (void)handleSixFingerQuadrupleTap:(UITapGestureRecognizer *)tapRecognizer
+{
+#if DEBUG
+    if (tapRecognizer.state == UIGestureRecognizerStateRecognized) {
+        // This could also live in a handler for a keyboard shortcut, debug menu item, etc.
+        [[FLEXManager sharedManager] showExplorer];
+    }
+#endif
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Aside: tvOS&lt;/h4&gt; 
+&lt;p&gt;FLEX itself does not support tvOS out of the box. However, others have taken it upon themselves to port FLEX to tvOS. If you need tvOS support, seek out one of these forks. &lt;a href=&quot;https://github.com/lechium/FLEX/tree/tvos&quot;&gt;Here is one such fork.&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Feature Examples&lt;/h2&gt; 
+&lt;h3&gt;Modify Views&lt;/h3&gt; 
+&lt;p&gt;Once a view is selected, you can tap on the info bar below the toolbar to present more details about the view. From there, you can modify properties and call methods.&lt;/p&gt; 
+&lt;img alt=&quot;Modify Views&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271816-c5c2b480-176c-11ea-8bf4-2c5a755bc392.gif&quot; /&gt; 
+&lt;h3&gt;Network History&lt;/h3&gt; 
+&lt;p&gt;When enabled, network debugging allows you to view all requests made using NSURLConnection or NSURLSession. Settings allow you to adjust what kind of response bodies get cached and the maximum size limit of the response cache. You can choose to have network debugging enabled automatically on app launch. This setting is persisted across launches.&lt;/p&gt; 
+&lt;img alt=&quot;Network History&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271876-e5f27380-176c-11ea-98ef-24170205b706.gif&quot; /&gt; 
+&lt;h3&gt;All Objects on the Heap&lt;/h3&gt; 
+&lt;p&gt;FLEX queries malloc for all the live allocated memory blocks and searches for ones that look like objects. You can see everything from here.&lt;/p&gt; 
+&lt;img alt=&quot;Heap/Live Objects Explorer&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271850-d83cee00-176c-11ea-9750-ee3a479c6769.gif&quot; /&gt; 
+&lt;h3&gt;Explore-at-address&lt;/h3&gt; 
+&lt;p&gt;If you get your hands on an arbitrary address, you can try explore the object at that address, and FLEX will open it if it can verify the address points to a valid object. If FLEX isn&#39;t sure, it&#39;ll warn you and refuse to dereference the pointer. If you know better, however, you can choose to explore it anyway by choosing &quot;Unsafe Explore&quot;&lt;/p&gt; 
+&lt;img alt=&quot;Address Explorer&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271798-bb081f80-176c-11ea-806d-9d74ac293641.gif&quot; /&gt; 
+&lt;h3&gt;Simulator Keyboard Shortcuts&lt;/h3&gt; 
+&lt;p&gt;Default keyboard shortcuts allow you to activate the FLEX tools, scroll with the arrow keys, and close modals using the escape key. You can also add custom keyboard shortcuts via &lt;code&gt;-[FLEXManager registerSimulatorShortcutWithKey:modifiers:action:description]&lt;/code&gt;&lt;/p&gt; 
+&lt;img alt=&quot;Simulator Keyboard Shortcuts&quot; width=&quot;40%&quot; height=&quot;40%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70272984-d3793980-176e-11ea-89a2-66d187d71b4c.png&quot; /&gt; 
+&lt;h3&gt;File Browser&lt;/h3&gt; 
+&lt;p&gt;View the file system within your app&#39;s bundle or sandbox container. FLEX shows file sizes, image previews, and pretty prints &lt;code&gt;.json&lt;/code&gt; and &lt;code&gt;.plist&lt;/code&gt; files. You can rename and delete files and folders. You can &quot;share&quot; any file if you want to inspect them outside of your app.&lt;/p&gt; 
+&lt;img alt=&quot;File Browser&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271831-d115e000-176c-11ea-8078-ada291f980f3.gif&quot; /&gt; 
+&lt;h3&gt;SQLite Browser&lt;/h3&gt; 
+&lt;p&gt;SQLite database files (with either &lt;code&gt;.db&lt;/code&gt; or &lt;code&gt;.sqlite&lt;/code&gt; extensions), or &lt;a href=&quot;https://realm.io&quot;&gt;Realm&lt;/a&gt; database files can be explored using FLEX. The database browser lets you view all tables, and individual tables can be sorted by tapping column headers.&lt;/p&gt; 
+&lt;img alt=&quot;SQLite Browser&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271881-ea1e9100-176c-11ea-9a42-01618311c869.gif&quot; /&gt; 
+&lt;h3&gt;3D Touch in the Simulator&lt;/h3&gt; 
+&lt;p&gt;Using a combination of the command, control, and shift keys, you can simulate different levels of 3D touch pressure in the simulator. Each key contributes 1/3 of maximum possible force. Note that you need to move the touch slightly to get pressure updates.&lt;/p&gt; 
+&lt;img alt=&quot;Simulator 3D Touch&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://cloud.githubusercontent.com/assets/1422245/11786615/5d4ef96c-a23c-11e5-975e-67275341e439.gif&quot; /&gt; 
+&lt;h3&gt;Explore Loaded Libraries&lt;/h3&gt; 
+&lt;p&gt;Go digging for all things public and private. To learn more about a class, you can create an instance of it and explore its default state. You can also type in a class name to jump to that class directly if you know which class you&#39;re looking for.&lt;/p&gt; 
+&lt;img alt=&quot;Loaded Libraries Exploration&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271868-dffc9280-176c-11ea-8704-a0c05b75cc5f.gif&quot; /&gt; 
+&lt;h3&gt;NSUserDefaults Editing&lt;/h3&gt; 
+&lt;p&gt;FLEX allows you to edit defaults that are any combination of strings, numbers, arrays, and dictionaries. The input is parsed as &lt;code&gt;JSON&lt;/code&gt;. If other kinds of objects are set for a defaults key (i.e. &lt;code&gt;NSDate&lt;/code&gt;), you can view them but not edit them.&lt;/p&gt; 
+&lt;img alt=&quot;NSUserDefaults Editing&quot; width=&quot;36%&quot; height=&quot;36%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70271889-edb21800-176c-11ea-92b4-71e07d2b6ce7.gif&quot; /&gt; 
+&lt;h3&gt;Learning from Other Apps&lt;/h3&gt; 
+&lt;p&gt;The code injection is left as an exercise for the reader. &lt;span&gt;😇&lt;/span&gt;&lt;/p&gt; 
+&lt;p float=&quot;left&quot;&gt; &lt;img alt=&quot;Springboard Lock Screen&quot; width=&quot;25%&quot; height=&quot;25%&quot; src=&quot;https://engineering.flipboard.com/assets/flex/flex-readme-reverse-1.png&quot; /&gt; &lt;img alt=&quot;Springboard Home Screen&quot; width=&quot;25%&quot; height=&quot;25%&quot; src=&quot;https://engineering.flipboard.com/assets/flex/flex-readme-reverse-2.png&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;FLEX requires an app that targets iOS 9 or higher. To run the Example project, open a Terminal window in the Example/ folder and run &lt;code&gt;pod install&lt;/code&gt;, then open the generated workspace.&lt;/p&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;p&gt;FLEX is available on &lt;a href=&quot;https://cocoapods.org/pods/FLEX&quot;&gt;CocoaPods&lt;/a&gt;. Simply add the following line to your podfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &#39;FLEX&#39;, :configurations =&amp;gt; [&#39;Debug&#39;]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;p&gt;Add the following to your Cartfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;github &quot;flipboard/FLEX&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Buck&lt;/h3&gt; 
+&lt;p&gt;If you&#39;re using Buck, you may want to silence some of the warnings emitted by FLEX. You will need to build FLEX as an &lt;code&gt;apple_library&lt;/code&gt; and pass the &lt;code&gt;-Wno-unsupported-availability-guard&lt;/code&gt; flag, as well as the other warning flags below to disable any other warnings FLEX may have.&lt;/p&gt; 
+&lt;h3&gt;Manual&lt;/h3&gt; 
+&lt;p&gt;Manually add the files in &lt;code&gt;Classes/&lt;/code&gt; to your Xcode project, or just drag in the entire &lt;code&gt;FLEX/&lt;/code&gt; folder. Be sure to exclude FLEX from &lt;code&gt;Release&lt;/code&gt; builds or your app will be rejected.&lt;/p&gt; 
+&lt;h5&gt;Silencing warnings&lt;/h5&gt; 
+&lt;p&gt;Add the following flags to to &lt;strong&gt;Other Warnings Flags&lt;/strong&gt; in &lt;strong&gt;Build Settings:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;-Wno-deprecated-declarations&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;-Wno-strict-prototypes&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;-Wno-unsupported-availability-guard&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;p&gt;Include the dependency in the &lt;code&gt;depdendencies&lt;/code&gt; value of your &lt;code&gt;Package.swift&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;dependencies: [
+    .package(url: &quot;https://github.com/FLEXTool/FLEX.git&quot;, .upToNextMajor(from: &quot;4.3.0&quot;))
+]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Next, include the library in your target:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;.target(
+    name: &quot;YourDependency&quot;,
+    dependencies: [
+        &quot;FLEX&quot;
+    ]
+)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Excluding FLEX from Release (App Store) Builds&lt;/h2&gt; 
+&lt;p&gt;FLEX makes it easy to explore the internals of your app, so it is not something you should expose to your users. Fortunately, it is easy to exclude FLEX files from Release builds. The strategies differ depending on how you integrated FLEX in your project, and are described below.&lt;/p&gt; 
+&lt;p&gt;Wrap the places in your code where you integrate FLEX with an &lt;code&gt;#if DEBUG&lt;/code&gt; statement to ensure the tool is only accessible in your &lt;code&gt;Debug&lt;/code&gt; builds and to avoid errors in your &lt;code&gt;Release&lt;/code&gt; builds. For more help with integrating FLEX, see the example project.&lt;/p&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;p&gt;CocoaPods automatically excludes FLEX from release builds if you only specify the Debug configuration for FLEX in your Podfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &#39;FLEX&#39;, :configurations =&amp;gt; [&#39;Debug&#39;]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Do NOT add &lt;code&gt;FLEX.framework&lt;/code&gt; to the embedded binaries of your target, as it would otherwise be included in all builds (therefore also in release ones).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Instead, add &lt;code&gt;$(PROJECT_DIR)/Carthage/Build/iOS&lt;/code&gt; to your target &lt;em&gt;Framework Search Paths&lt;/em&gt; (this setting might already be present if you already included other frameworks with Carthage). This makes it possible to import the FLEX framework from your source files. It does not harm if this setting is added for all configurations, but it should at least be added for the debug one.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add a &lt;em&gt;Run Script Phase&lt;/em&gt; to your target (inserting it after the existing &lt;code&gt;Link Binary with Libraries&lt;/code&gt; phase, for example), and which will embed &lt;code&gt;FLEX.framework&lt;/code&gt; in debug builds only:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;if [ &quot;$CONFIGURATION&quot; == &quot;Debug&quot; ]; then
+  /usr/local/bin/carthage copy-frameworks
+fi
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Finally, add &lt;code&gt;$(SRCROOT)/Carthage/Build/iOS/FLEX.framework&lt;/code&gt; as input file of this script phase.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;img width=&quot;75%&quot; height=&quot;75%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70274062-0d4b3f80-1771-11ea-94ea-ca7e7b5ca244.jpg&quot; /&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;p&gt;In Xcode, navigate to &lt;code&gt;Build Settings &amp;gt; Build Options &amp;gt; Excluded Source File Names&lt;/code&gt;. For your &lt;code&gt;Release&lt;/code&gt; configuration, set it to &lt;code&gt;FLEX*&lt;/code&gt; like this to exclude all files with the &lt;code&gt;FLEX&lt;/code&gt; prefix:&lt;/p&gt; 
+&lt;img width=&quot;75%&quot; height=&quot;75%&quot; src=&quot;https://user-images.githubusercontent.com/1234765/98673373-8545c080-2357-11eb-9587-0743998e23ba.png&quot; /&gt; 
+&lt;h3&gt;FLEX files added manually to a project&lt;/h3&gt; 
+&lt;p&gt;In Xcode, navigate to &lt;code&gt;Build Settings &amp;gt; Build Options &amp;gt; Excluded Source File Names&lt;/code&gt;. For your &lt;code&gt;Release&lt;/code&gt; configuration, set it to &lt;code&gt;FLEX*&lt;/code&gt; like this to exclude all files with the &lt;code&gt;FLEX&lt;/code&gt; prefix:&lt;/p&gt; 
+&lt;img width=&quot;75%&quot; height=&quot;75%&quot; src=&quot;https://user-images.githubusercontent.com/8371943/70281926-e21d1c00-1781-11ea-92eb-aee340791da8.png&quot; /&gt; 
+&lt;h2&gt;Additional Notes&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;When setting fields of type &lt;code&gt;id&lt;/code&gt; or values in &lt;code&gt;NSUserDefaults&lt;/code&gt;, FLEX attempts to parse the input string as &lt;code&gt;JSON&lt;/code&gt;. This allows you to use a combination of strings, numbers, arrays, and dictionaries. If you want to set a string value, it must be wrapped in quotes. For ivars or properties that are explicitly typed as &lt;code&gt;NSStrings&lt;/code&gt;, quotes are not required.&lt;/li&gt; 
+ &lt;li&gt;You may want to disable the exception breakpoint while using FLEX. Certain functions that FLEX uses throw exceptions when they get input they can&#39;t handle (i.e. &lt;code&gt;NSGetSizeAndAlignment()&lt;/code&gt;). FLEX catches these to avoid crashing, but your breakpoint will get hit if it is active.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Thanks &amp;amp; Credits&lt;/h2&gt; 
+&lt;p&gt;FLEX builds on ideas and inspiration from open source tools that came before it. The following resources have been particularly helpful:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/NSExceptional/MirrorKit&quot;&gt;MirrorKit&lt;/a&gt;: an Objective-C wrapper around the Objective-C runtime.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/domesticcatsoftware/DCIntrospect&quot;&gt;DCIntrospect&lt;/a&gt;: view hierarchy debugging for the iOS simulator.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/square/PonyDebugger&quot;&gt;PonyDebugger&lt;/a&gt;: network, core data, and view hierarchy debugging using the Chrome Developer Tools interface.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.mikeash.com/pyblog/&quot;&gt;Mike Ash&lt;/a&gt;: well written, informative blog posts on all things obj-c and more. The links below were very useful for this project:&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mikeash/MAObjCRuntime&quot;&gt;MAObjCRuntime&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.mikeash.com/pyblog/friday-qa-2013-02-08-lets-build-key-value-coding.html&quot;&gt;Let&#39;s Build Key Value Coding&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.mikeash.com/pyblog/friday-qa-2013-09-27-arm64-and-you.html&quot;&gt;ARM64 and You&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/heardrwt/RHObjectiveBeagle&quot;&gt;RHObjectiveBeagle&lt;/a&gt;: a tool for scanning the heap for live objects. It should be noted that the source code of RHObjectiveBeagle was not consulted due to licensing concerns.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.opensource.apple.com/source/lldb/lldb-179.1/examples/darwin/heap_find/heap/heap_find.cpp&quot;&gt;heap_find.cpp&lt;/a&gt;: an example of enumerating malloc blocks for finding objects on the heap.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gist.github.com/samdmarshall/17f4e66b5e2e579fd396&quot;&gt;Gist&lt;/a&gt; from &lt;a href=&quot;https://github.com/samdmarshall&quot;&gt;@samdmarshall&lt;/a&gt;: another example of enumerating malloc blocks.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.sealiesoftware.com/blog/archive/2013/09/24/objc_explain_Non-pointer_isa.html&quot;&gt;Non-pointer isa&lt;/a&gt;: an explanation of changes to the isa field on iOS for ARM64 and mention of the useful &lt;code&gt;objc_debug_isa_class_mask&lt;/code&gt; variable.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/nicklockwood/GZIP&quot;&gt;GZIP&lt;/a&gt;: A library for compressing/decompressing data on iOS using libz.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ccgus/fmdb&quot;&gt;FMDB&lt;/a&gt;: This is an Objective-C wrapper around SQLite.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/indragiek/InAppViewDebugger&quot;&gt;InAppViewDebugger&lt;/a&gt;: The inspiration and reference implementation for FLEX 4&#39;s 3D view explorer, by @indragiek.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Please see our &lt;a href=&quot;https://github.com/Flipboard/FLEX/raw/master/CONTRIBUTING.md&quot;&gt;Contributing Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;TODO&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Swift runtime introspection (swift classes, swift objects on the heap, etc.)&lt;/li&gt; 
+ &lt;li&gt;Add new NSUserDefault key/value pairs on the fly&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>AliSoftware/OHHTTPStubs</title>
+      <link>https://github.com/AliSoftware/OHHTTPStubs</link>
+      <description>&lt;p&gt;Stub your network requests easily! Test your apps with fake network data and custom response time, response code and headers!&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OHHTTPStubs&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cocoadocs.org/docsets/OHHTTPStubs&quot;&gt;&lt;img src=&quot;http://cocoapod-badges.herokuapp.com/p/OHHTTPStubs/badge.png&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Swift-2.x%2F3.x%2F4.x%2F5.x-orange.svg?sanitize=true&quot; alt=&quot;Language: Swift-2.x/3.x/4.x/5.x&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/AliSoftware/OHHTTPStubs&quot;&gt;&lt;img src=&quot;https://travis-ci.org/AliSoftware/OHHTTPStubs.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cocoadocs.org/docsets/OHHTTPStubs&quot;&gt;&lt;img src=&quot;http://cocoapod-badges.herokuapp.com/v/OHHTTPStubs/badge.png&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/carthage-supported-4BC51D.svg?style=flat&quot; alt=&quot;Carthage Supported&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/spm-supported-4BC51D.svg?style=flat&quot; alt=&quot;Swift Package Manager Supported&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is a library designed to stub your network requests very easily. It can help you:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;test your apps with &lt;strong&gt;fake network data&lt;/strong&gt; (stubbed from file) and &lt;strong&gt;simulate slow networks&lt;/strong&gt;, to check your application behavior in bad network conditions&lt;/li&gt; 
+ &lt;li&gt;write &lt;strong&gt;unit tests&lt;/strong&gt; that use fake network data from your fixtures.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;It works with &lt;code&gt;NSURLConnection&lt;/code&gt;, &lt;code&gt;NSURLSession&lt;/code&gt;, &lt;code&gt;AFNetworking&lt;/code&gt;, &lt;code&gt;Alamofire&lt;/code&gt; or any networking framework that use Cocoa&#39;s URL Loading System.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=TRTU3UEWEHV92&quot; title=&quot;Donate&quot;&gt;&lt;img alt=&quot;Donate&quot; src=&quot;https://www.paypalobjects.com/webstatic/mktg/merchant_portal/button/donate.en.png&quot; height=&quot;32px&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;Documentation &amp;amp; Usage Examples&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; headers are fully documented using Appledoc-like / Headerdoc-like comments in the header files. You can also &lt;a href=&quot;http://cocoadocs.org/docsets/OHHTTPStubs&quot;&gt;read the &lt;strong&gt;online documentation&lt;/strong&gt; here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Basic example&lt;/h2&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;In Objective-C&lt;/summary&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;[HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+  return [request.URL.host isEqualToString:@&quot;mywebservice.com&quot;];
+} withStubResponse:^HTTPStubsResponse*(NSURLRequest *request) {
+  // Stub it with our &quot;wsresponse.json&quot; stub file (which is in same bundle as self)
+  NSString* fixture = OHPathForFile(@&quot;wsresponse.json&quot;, self.class);
+  return [HTTPStubsResponse responseWithFileAtPath:fixture
+            statusCode:200 headers:@{@&quot;Content-Type&quot;:@&quot;application/json&quot;}];
+}];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt; 
+&lt;details open=&quot;1&quot;&gt; 
+ &lt;summary&gt;In Swift&lt;/summary&gt; 
+ &lt;p&gt;This example is using the Swift helpers found in &lt;code&gt;OHHTTPStubsSwift.swift&lt;/code&gt; provided by the &lt;code&gt;OHHTTPStubs/Swift&lt;/code&gt; subspec or &lt;code&gt;OHHTTPStubs&lt;/code&gt; package.&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;stub(condition: isHost(&quot;mywebservice.com&quot;)) { _ in
+  // Stub it with our &quot;wsresponse.json&quot; stub file (which is in same bundle as self)
+  let stubPath = OHPathForFile(&quot;wsresponse.json&quot;, type(of: self))
+  return fixture(filePath: stubPath!, headers: [&quot;Content-Type&quot;:&quot;application/json&quot;])
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: if you&#39;re using &lt;code&gt;OHHTTPStubs&lt;/code&gt;&#39;s Swiftier API (&lt;code&gt;OHHTTPStubsSwift.swift&lt;/code&gt; and the &lt;code&gt;Swift&lt;/code&gt; subspec or &lt;code&gt;OHTTPStubsSwift&lt;/code&gt; package), you can also compose the matcher functions like this: &lt;code&gt;stub(isScheme(&quot;http&quot;) &amp;amp;&amp;amp; isHost(&quot;myhost&quot;)) { … }&lt;/code&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;More examples &amp;amp; Help Topics&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For a lot more examples, see the dedicated &quot;&lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki/Usage-Examples&quot;&gt;Usage Examples&lt;/a&gt;&quot; wiki page.&lt;/li&gt; 
+ &lt;li&gt;The wiki also contain &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki&quot;&gt;some articles that can help you get started&lt;/a&gt; with (and troubleshoot if needed) &lt;code&gt;OHHTTPStubs&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Recording requests to replay them later&lt;/h2&gt; 
+&lt;p&gt;Instead of writing the content of the stubs you want to use manually, you can use tools like &lt;a href=&quot;https://github.com/capitalone/SWHttpTrafficRecorder&quot;&gt;SWHttpTrafficRecorder&lt;/a&gt; to record network requests into files. This way you can later use those files as stub responses.&lt;br /&gt; This tool can record all three formats that are supported by &lt;code&gt;OHHTTPStubs&lt;/code&gt; (the &lt;code&gt;HTTPMessage&lt;/code&gt; format, the simple response boby/content file, and the &lt;code&gt;Mocktail&lt;/code&gt; format).&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;(There are also other ways to perform a similar task, including using &lt;code&gt;curl -is &amp;lt;url&amp;gt; &amp;gt;foo.response&lt;/code&gt; to generate files compatible with the &lt;code&gt;HTTPMessage&lt;/code&gt; format, or using other network recording libraries similar to &lt;code&gt;SWHttpTrafficRecorder&lt;/code&gt;).&lt;/em&gt;&lt;/p&gt; 
+&lt;h1&gt;Compatibility&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is compatible with &lt;strong&gt;iOS5+&lt;/strong&gt;, &lt;strong&gt;OS X 10.7+&lt;/strong&gt;, &lt;strong&gt;tvOS&lt;/strong&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; also works with &lt;code&gt;NSURLSession&lt;/code&gt; as well as any network library wrapping them.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is &lt;strong&gt;fully compatible with Swift 3.x, 4.x and Swift 5.x&lt;/strong&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://developer.apple.com/swift/blog/?id=25&quot;&gt;Nullability annotations&lt;/a&gt; have also been added to the ObjC API to allow a cleaner API when used from Swift even if you don&#39;t use the dedicated Swift API wrapper provided by &lt;code&gt;OHHTTPStubsSwift.swift&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Updating to Version 9.0+&lt;/b&gt;&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;All classes dropped the &lt;code&gt;OH&lt;/code&gt; prefix (&lt;code&gt;OHHHTTPStubs&lt;/code&gt; -&amp;gt; &lt;code&gt;HTTPStubs&lt;/code&gt;, &lt;code&gt;OHHTTPStubsResponse&lt;/code&gt; -&amp;gt; &lt;code&gt;HTTPStubsResponse&lt;/code&gt;, etc).&lt;/li&gt; 
+  &lt;li&gt;The &lt;code&gt;OHPathHelpers&lt;/code&gt; class was renamed &lt;code&gt;HTTPStubsPathHelpers&lt;/code&gt;.&lt;/li&gt; 
+  &lt;li&gt;No method and module names were changed.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h1&gt;Installing in your projects&lt;/h1&gt; 
+&lt;h2&gt;CocoaPods&lt;/h2&gt; 
+&lt;p&gt;Using &lt;a href=&quot;https://guides.cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt; is the recommended way.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;If you &lt;strong&gt;intend to use &lt;code&gt;OHHTTPStubs&lt;/code&gt; from Objective-C only&lt;/strong&gt;, add &lt;code&gt;pod &#39;OHHTTPStubs&#39;&lt;/code&gt; to your &lt;code&gt;Podfile&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;If you &lt;strong&gt;intend to use &lt;code&gt;OHHTTPStubs&lt;/code&gt; from Swift&lt;/strong&gt;, add &lt;code&gt;pod &#39;OHHTTPStubs/Swift&#39;&lt;/code&gt; to your &lt;code&gt;Podfile&lt;/code&gt; instead.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &#39;OHHTTPStubs/Swift&#39; # includes the Default subspec, with support for NSURLSession &amp;amp; JSON, and the Swiftier API wrappers
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;All available subspecs&lt;/h3&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is split into subspecs so that when using Cocoapods, you can get only what you need, no more, no less.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The default subspec includes &lt;code&gt;NSURLSession&lt;/code&gt;, &lt;code&gt;JSON&lt;/code&gt;, and &lt;code&gt;OHPathHelpers&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;The &lt;code&gt;Swift&lt;/code&gt; subspec adds the Swiftier API to that default subspec&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;HTTPMessage&lt;/code&gt; and &lt;code&gt;Mocktail&lt;/code&gt; are opt-in subspecs: list them explicitly if you need them&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHPathHelpers&lt;/code&gt; doesn&#39;t depend on &lt;code&gt;Core&lt;/code&gt; and can be used independently of &lt;code&gt;OHHTTPStubs&lt;/code&gt; altogether&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;List of all the subspecs &amp;amp; their dependencies&lt;/summary&gt; 
+ &lt;p&gt;Here&#39;s a list of which subspecs are included for each of the different lines you could use in your &lt;code&gt;Podfile&lt;/code&gt;:&lt;/p&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Subspec&lt;/th&gt; 
+    &lt;th align=&quot;center&quot;&gt;Core&lt;/th&gt; 
+    &lt;th align=&quot;center&quot;&gt;NSURLSession&lt;/th&gt; 
+    &lt;th align=&quot;center&quot;&gt;JSON&lt;/th&gt; 
+    &lt;th align=&quot;center&quot;&gt;Swift&lt;/th&gt; 
+    &lt;th align=&quot;center&quot;&gt;OHPathHelpers&lt;/th&gt; 
+    &lt;th align=&quot;center&quot;&gt;HTTPMessage&lt;/th&gt; 
+    &lt;th align=&quot;center&quot;&gt;Mocktail&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Default&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Swift&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Core&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/NSURLSession&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/JSON&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/OHPathHelpers&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/HTTPMessage&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Mocktail&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;✅&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Swift Package Manager&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is compatible with Swift Package Manager, and provides 2 targets for consumption: &lt;code&gt;OHHTTPStubs&lt;/code&gt; and &lt;code&gt;OHHTTPStubsSwift&lt;/code&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is equivalent to the &lt;code&gt;OHHTTPStubs&lt;/code&gt; subspec.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubsSwift&lt;/code&gt; is equivalent to the &lt;code&gt;OHHTTPStubs/Swift&lt;/code&gt; subspec.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;Note: We currently do not have support for the HTTPMessage or Mocktail subspecs in Swift Package Manager. If you are interested in these, please open an issue to explain your needs.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Carthage&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is also compatible with Carthage. Just add it to your &lt;code&gt;Cartfile&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Note: The &lt;code&gt;OHHTTPStubs.framework&lt;/code&gt; built with Carthage will include &lt;strong&gt;all&lt;/strong&gt; features of &lt;code&gt;OHHTTPStubs&lt;/code&gt; turned on (in other words, all subspecs of the pod), including &lt;code&gt;NSURLSession&lt;/code&gt; and &lt;code&gt;JSON&lt;/code&gt; support, &lt;code&gt;OHPathHelpers&lt;/code&gt;, &lt;code&gt;HTTPMessage&lt;/code&gt; and &lt;code&gt;Mocktail&lt;/code&gt; support, and the Swiftier API.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Using the right Swift version for your project&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; supports Swift 3.0 (Xcode 8+), Swift 3.1 (Xcode 8.3+), Swift 3.2 (Xcode 9.0+), Swift 4.0 (Xcode 9.0+), Swift 4.1 (Xcode 9.3+), Swift 4.2 (Xcode 10+), Swift 5.0 (Xcode 10.2), and Swift 5.1 (Xcode 11) however we are only testing Swift 4.x (using Xcode 9.1 and 10.1) and Swift 5.x (using Xcode 10.2 AND 11) in CI.&lt;/p&gt; 
+&lt;p&gt;Here are some details about the correct setup you need depending on how you integrated &lt;code&gt;OHHTTPStubs&lt;/code&gt; into your project.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;CocoaPods: nothing to do&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;If you use CocoaPods version &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/releases/tag/1.1.0.beta.1&quot;&gt;&lt;code&gt;1.1.0.beta.1&lt;/code&gt;&lt;/a&gt; or later, then CocoaPods will compile &lt;code&gt;OHHTTPStubs&lt;/code&gt; with the right Swift Version matching the one you use for your project automatically. You have nothing to do! 🎉&lt;/p&gt; 
+ &lt;p&gt;For more info, see &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/pull/5540&quot;&gt;CocoaPods/CocoaPods#5540&lt;/a&gt; and &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/pull/5760&quot;&gt;CocoaPods/CocoaPods#5760&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Carthage: choose the right version&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;The project is set up with &lt;code&gt;SWIFT_VERSION=5.0&lt;/code&gt; on &lt;code&gt;master&lt;/code&gt;.&lt;/p&gt; 
+ &lt;p&gt;This means that the framework on &lt;code&gt;master&lt;/code&gt; will build using:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Swift 5.1 on Xcode 11&lt;/li&gt; 
+  &lt;li&gt;Swift 5.0 on Xcode 10.2&lt;/li&gt; 
+  &lt;li&gt;Swift 4.2 on Xcode 10.1&lt;/li&gt; 
+  &lt;li&gt;Swift 4.0 on Xcode 9.1&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;If you want Carthage to build the framework with Swift 3.x you can:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;either use an older Xcode version&lt;/li&gt; 
+  &lt;li&gt;or use the previous version of &lt;code&gt;OHHTTPStubs&lt;/code&gt; (6.2.0) — whose &lt;code&gt;master&lt;/code&gt; branch uses &lt;code&gt;3.0&lt;/code&gt;&lt;/li&gt; 
+  &lt;li&gt;or fork the repo just to change the &lt;code&gt;SWIFT_VERSION&lt;/code&gt; build setting to &lt;code&gt;3.0&lt;/code&gt;&lt;/li&gt; 
+  &lt;li&gt;or build the framework passing a &lt;code&gt;SWIFT_VERSION&lt;/code&gt; to carthage via &lt;code&gt;XCODE_XCCONFIG_FILE=&amp;lt;config file declaring SWIFT_VERSION&amp;gt; carthage build&lt;/code&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h1&gt;Special Considerations&lt;/h1&gt; 
+&lt;h2&gt;Using OHHTTPStubs in your unit tests&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is ideal to write unit tests that normally would perform network requests. But if you use it in your unit tests, don&#39;t forget to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;remove any stubs you installed after each test — to avoid those stubs to still be installed when executing the next Test Case — by calling &lt;code&gt;[HTTPStubs removeAllStubs]&lt;/code&gt; in your &lt;code&gt;tearDown&lt;/code&gt; method. &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki/Remove-stubs-after-each-test&quot;&gt;see this wiki page for more info&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;be sure to wait until the request has received its response before doing your assertions and letting the test case finish (like for any asynchronous test). &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki/OHHTTPStubs-and-asynchronous-tests&quot;&gt;see this wiki page for more info&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Automatic loading&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is automatically loaded and installed (at the time the library is loaded in memory), both for:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;requests made using &lt;code&gt;NSURLConnection&lt;/code&gt; or &lt;code&gt;[NSURLSession sharedSession]&lt;/code&gt; — &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/raw/master/OHHTTPStubs/Sources/OHHTTPStubs.m#L107-L113&quot;&gt;thanks to this code&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;requests made using a &lt;code&gt;NSURLSession&lt;/code&gt; that was created via &lt;code&gt;[NSURLSession sessionWithConfiguration:…]&lt;/code&gt; and using either &lt;code&gt;[NSURLSessionConfiguration defaultSessionConfiguration]&lt;/code&gt; or &lt;code&gt;[NSURLSessionConfiguration ephemeralSessionConfiguration]&lt;/code&gt; configuration — thanks to &lt;a href=&quot;http://nshipster.com/method-swizzling/&quot;&gt;method swizzling&lt;/a&gt; done &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/raw/master/OHHTTPStubs/Sources/NSURLSession/HTTPStubs+NSURLSessionConfiguration.m&quot;&gt;here in the code&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you need to disable (and re-enable) &lt;code&gt;OHHTTPStubs&lt;/code&gt; — globally or per &lt;code&gt;NSURLSession&lt;/code&gt; — you can use &lt;code&gt;[HTTPStubs setEnabled:]&lt;/code&gt; / &lt;code&gt;[HTTPStubs setEnabled:forSessionConfiguration:]&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Known limitations&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; &lt;strong&gt;can&#39;t work on background sessions&lt;/strong&gt; (sessions created using &lt;code&gt;[NSURLSessionConfiguration backgroundSessionConfiguration]&lt;/code&gt;) because background sessions don&#39;t allow the use of custom &lt;code&gt;NSURLProtocols&lt;/code&gt; and are handled by the iOS Operating System itself.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; don&#39;t simulate data upload. The &lt;code&gt;NSURLProtocolClient&lt;/code&gt; &lt;code&gt;@protocol&lt;/code&gt; does not provide a way to signal the delegate that data has been &lt;strong&gt;sent&lt;/strong&gt; (only that some has been loaded), so any data in the &lt;code&gt;HTTPBody&lt;/code&gt; or &lt;code&gt;HTTPBodyStream&lt;/code&gt; of an &lt;code&gt;NSURLRequest&lt;/code&gt;, or data provided to &lt;code&gt;-[NSURLSession uploadTaskWithRequest:fromData:];&lt;/code&gt; will be ignored, and more importantly, the &lt;code&gt;-URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:&lt;/code&gt; delegate method will never be called when you stub the request using &lt;code&gt;OHHTTPStubs&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHTTPStubs&lt;/code&gt; &lt;strong&gt;has a known issue with redirects&lt;/strong&gt; that we believe is an Apple bug. It has been discussed &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/issues/230&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/issues/280&quot;&gt;here&lt;/a&gt;. The actual result of this bug is that redirects with a zero second delay may nondeterministically end up with a null response.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;As far as I know, there&#39;s nothing we can do about those three limitations. Please let me know if you know a solution that would make that possible anyway.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Submitting to the App Store&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; &lt;strong&gt;can be used&lt;/strong&gt; on apps submitted &lt;strong&gt;on the App Store&lt;/strong&gt;. It does not use any private API and nothing prevents you from shipping it.&lt;/p&gt; 
+&lt;p&gt;But you generally only use stubs during the development phase and want to remove your stubs when submitting to the App Store. So be careful to only include &lt;code&gt;OHHTTPStubs&lt;/code&gt; when needed (only in your test targets, or only inside &lt;code&gt;#if DEBUG&lt;/code&gt; sections, or by using &lt;a href=&quot;https://guides.cocoapods.org/syntax/podfile.html#pod&quot;&gt;per-Build-Configuration pods&lt;/a&gt;) to avoid forgetting to remove it when the time comes that you release for the App Store and you want your requests to hit the real network!&lt;/p&gt; 
+&lt;h1&gt;License and Credits&lt;/h1&gt; 
+&lt;p&gt;This project and library has been created by Olivier Halligon (&lt;a href=&quot;https://twitter.com/aligatr&quot;&gt;@aligatr&lt;/a&gt; on Twitter) and is under the MIT License.&lt;/p&gt; 
+&lt;p&gt;It has been inspired by &lt;a href=&quot;https://web-beta.archive.org/web/20161219003951/http://www.infinite-loop.dk/blog/2011/09/using-nsurlprotocol-for-injecting-test-data/&quot;&gt;this article from InfiniteLoop.dk&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;I would also like to thank:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Sébastien Duperron (&lt;a href=&quot;https://github.com/Liquidsoul&quot;&gt;@Liquidsoul&lt;/a&gt;) for helping me maintaining this library, triaging and responding to issues and PRs&lt;/li&gt; 
+ &lt;li&gt;Kevin Harwood (&lt;a href=&quot;https://github.com/kcharwood&quot;&gt;@kcharwood&lt;/a&gt;) for migrating the code to &lt;code&gt;NSInputStream&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Jinlian Wang (&lt;a href=&quot;https://github.com/JinlianWang&quot;&gt;@JinlianWang&lt;/a&gt;) for adding Mocktail support&lt;/li&gt; 
+ &lt;li&gt;and everyone else who contributed to this project on GitHub somehow.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you want to support the development of this library, feel free to &lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=TRTU3UEWEHV92&quot; title=&quot;Donate&quot;&gt;&lt;img alt=&quot;Donate&quot; src=&quot;https://www.paypalobjects.com/webstatic/mktg/merchant_portal/button/donate.en.png&quot; height=&quot;25px&quot; /&gt;&lt;/a&gt;. Thanks to all contributors so far!&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>square/SquarePointOfSaleSDK-iOS</title>
+      <link>https://github.com/square/SquarePointOfSaleSDK-iOS</link>
+      <description>&lt;p&gt;A simple library for letting Point of Sale take in-store payments for your app using the Point of Sale API.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Square Point of Sale SDK&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/square/SquarePointOfSaleSDK-iOS&quot;&gt;&lt;img src=&quot;https://travis-ci.org/square/SquarePointOfSaleSDK-iOS.svg?branch=master&quot; alt=&quot;CI Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/carthage-%E2%9C%93-e2c245.svg?sanitize=true&quot; alt=&quot;Carthage Compatibility&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoadocs.org/docsets/SquarePointOfSaleSDK&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/SquarePointOfSaleSDK.svg?sanitize=true&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoadocs.org/docsets/SquarePointOfSaleSDK&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/SquarePointOfSaleSDK.svg?sanitize=true&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoadocs.org/docsets/SquarePointOfSaleSDK&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/SquarePointOfSaleSDK.svg?sanitize=true&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The Square Point of Sale SDK lets you quickly and easily add support to your application for completing in-store payments using Square Point of Sale.&lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A &lt;a href=&quot;https://squareup.com/signup?v=developers&quot;&gt;Square developer account&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Xcode 12.0 or later.&lt;/li&gt; 
+ &lt;li&gt;iOS 12 or later.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;It is not currently possible to process a fake credit card payment with the Point of Sale API. If you are testing your integration, you can process small card payments (as low as $1) and then &lt;a href=&quot;https://squareup.com/help/us/en/article/5060&quot;&gt;issue refunds from Square Point of Sale&lt;/a&gt;. Please visit &lt;a href=&quot;https://www.squareup.com/activate&quot;&gt;squareup.com/activate&lt;/a&gt; to ensure your account is enabled for payment processing.&lt;/p&gt; 
+&lt;h2&gt;Getting started&lt;/h2&gt; 
+&lt;h3&gt;Add the SDK to your project&lt;/h3&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;platform :ios, &#39;12.0&#39;
+pod &#39;SquarePointOfSaleSDK&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Be sure to call &lt;code&gt;pod update&lt;/code&gt; and use &lt;code&gt;pod install --repo-update&lt;/code&gt; to ensure you have the most recent version of the SDK installed.&lt;/p&gt; 
+&lt;p&gt;Drag Pods/SquarePointOfSaleSDK.xcodeproj to your project, and add SquarePointOfSaleSDK as a build dependency.&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;github &quot;Square/SquarePointOfSaleSDK-iOS&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;SPM&lt;/a&gt;&lt;/h4&gt; 
+&lt;p&gt;To add the SquarePointOfSaleSDK package to your Xcode project, select File &amp;gt; Swift Packages &amp;gt; Add Package Dependency and enter&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;&quot;https://github.com/square/SquarePointOfSaleSDK-iOS&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;Update your Info.plist&lt;/h3&gt; 
+&lt;p&gt;To get started with the Square Point of Sale SDK, you&#39;ll need to configure your &lt;code&gt;Info.plist&lt;/code&gt; file with a few changes.&lt;/p&gt; 
+&lt;p&gt;First, navigate to your project&#39;s settings in Xcode and click the &quot;Info&quot; tab. Under &lt;code&gt;Custom iOS Target Properties&lt;/code&gt;:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Add a new entry with key &lt;code&gt;LSApplicationQueriesSchemes&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Set the &quot;Type&quot; to &lt;code&gt;Array&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Add the value &lt;code&gt;square-commerce-v1&lt;/code&gt; to the array.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Next, create a &lt;a href=&quot;https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1&quot;&gt;URL scheme&lt;/a&gt; so that Square Point of Sale can re-open your app after a customer finishes a transaction. If your app already has a URL scheme, you can use that.&lt;/p&gt; 
+&lt;p&gt;Finally, open the &quot;URL Types&quot; section and click the &quot;+&quot; to add a new URL type. Set the values to the following:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Property&lt;/th&gt; 
+   &lt;th&gt;Value&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Identifier&lt;/td&gt; 
+   &lt;td&gt;Square&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;URL Schemes&lt;/td&gt; 
+   &lt;td&gt;&lt;em&gt;Your URL Scheme&lt;/em&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Role&lt;/td&gt; 
+   &lt;td&gt;Editor&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;It should look like this:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/square/SquarePointOfSaleSDK-iOS/master/Resources/README/url-scheme.png&quot; alt=&quot;URL Scheme&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Register your app with Square&lt;/h3&gt; 
+&lt;p&gt;Go to the &lt;a href=&quot;https://connect.squareup.com/apps&quot;&gt;Square Developer Portal&lt;/a&gt; and create a new application.&lt;/p&gt; 
+&lt;p&gt;Under the &lt;code&gt;Point of Sale API&lt;/code&gt; tab, add your app&#39;s &lt;a href=&quot;https://developer.apple.com/library/content/documentation/IDEs/Conceptual/AppDistributionGuide/ConfiguringYourApp/ConfiguringYourApp.html#//apple_ref/doc/uid/TP40012582-CH28-SW16&quot;&gt;bundle identifier&lt;/a&gt; and &lt;a href=&quot;https://developer.apple.com/library/content/documentation/iPhone/Conceptual/iPhoneOSProgrammingGuide/Inter-AppCommunication/Inter-AppCommunication.html#//apple_ref/doc/uid/TP40007072-CH6-SW1&quot;&gt;URL scheme&lt;/a&gt;, then click &quot;Save&quot;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/square/SquarePointOfSaleSDK-iOS/master/Resources/README/api.png&quot; alt=&quot;Point of Sale API&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Get your &lt;code&gt;Application ID&lt;/code&gt; from the &lt;code&gt;Credentials&lt;/code&gt; tab.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/square/SquarePointOfSaleSDK-iOS/master/Resources/README/credentials.png&quot; alt=&quot;Credentials&quot; /&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;h3&gt;Swift&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Import Declaration:&lt;/strong&gt; &lt;code&gt;import SquarePointOfSaleSDK&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;// Replace with your app&#39;s URL scheme.
+let callbackURL = URL(string: &quot;&amp;lt;# Your URL Scheme #&amp;gt;://&quot;)!
+
+// Your client ID is the same as your Square Application ID.
+// Note: You only need to set your client ID once, before creating your first request.
+SCCAPIRequest.setApplicationID(&quot;&amp;lt;# Application ID #&amp;gt;&quot;)
+
+do {
+    // Specify the amount of money to charge.
+    let money = try SCCMoney(amountCents: 100, currencyCode: &quot;USD&quot;)
+
+    // Create the request.
+    let apiRequest =
+        try SCCAPIRequest(
+                callbackURL: callbackURL,
+                amount: money,
+                userInfoString: nil,
+                locationID: nil,
+                notes: &quot;Coffee&quot;,
+                customerID: nil,
+                supportedTenderTypes: .all,
+                clearsDefaultFees: false,
+                returnsAutomaticallyAfterPayment: false,
+                disablesKeyedInCardEntry: false,
+                skipsReceipt: false
+        )
+
+    // Open Point of Sale to complete the payment.
+    try SCCAPIConnection.perform(apiRequest)
+
+} catch let error as NSError {
+    print(error.localizedDescription)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Finally, implement the UIApplication delegate method as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -&amp;gt; Bool {
+    guard SCCAPIResponse.isSquareResponse(url) else {
+        return true
+    }
+
+    do {
+        let response = try SCCAPIResponse(responseURL: url)
+
+        if let error = response.error {
+            // Handle a failed request.
+            print(error.localizedDescription)
+        } else {
+            // Handle a successful request.
+        }
+
+    } catch let error as NSError {
+        // Handle unexpected errors.
+        print(error.localizedDescription)
+    }
+
+    return true
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;Objective C&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Import Declaration:&lt;/strong&gt; &lt;code&gt;@import SquarePointOfSaleSDK;&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// Replace with your app&#39;s callback URL.
+NSURL *const callbackURL = [NSURL URLWithString:@&quot;&amp;lt;#Your URL Scheme#&amp;gt;://&quot;];
+
+// Specify the amount of money to charge.
+SCCMoney *const amount = [SCCMoney moneyWithAmountCents:100 currencyCode:@&quot;USD&quot; error:NULL];
+
+// Your client ID is the same as your Square Application ID.
+// Note: You only need to set your client ID once, before creating your first request.
+[SCCAPIRequest setClientID:&amp;lt;#Client ID#&amp;gt;];
+
+SCCAPIRequest *request = [SCCAPIRequest requestWithCallbackURL:callbackURL
+                                                        amount:amount
+                                                userInfoString:nil
+                                                    locationID:nil
+                                                         notes:@&quot;Coffee&quot;
+                                                    customerID:nil
+                                          supportedTenderTypes:SCCAPIRequestTenderTypeAll
+                                             clearsDefaultFees:NO
+                               returnAutomaticallyAfterPayment:NO
+                                                         error:&amp;amp;error];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When you&#39;re ready to charge the customer, bring Point of Sale into the foreground to complete the payment:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;[SCCAPIConnection performRequest:request error:&amp;amp;error];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Finally, implement the relevant UIApplication delegate.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;- (BOOL)application:(UIApplication *)application openURL:(NSURL *)URL options:(NSDictionary&amp;lt;NSString *,id&amp;gt; *)options;
+{
+    if ([SCCAPIResponse isSquareResponse:url]) {
+        SCCAPIResponse *const response = [SCCAPIResponse responseWithResponseURL:URL error:&amp;amp;decodeError];
+        ...
+        return YES;
+    }
+    return NO;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We’re glad you’re interested in Square Point of Sale SDK, and we’d love to see where you take it. Please read our &lt;a href=&quot;https://raw.githubusercontent.com/square/SquarePointOfSaleSDK-iOS/master/Contributing.md&quot;&gt;contributing guidelines&lt;/a&gt; prior to submitting a Pull Request.&lt;/p&gt; 
+&lt;h2&gt;Releasing&lt;/h2&gt; 
+&lt;p&gt;First create a new tag:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git tag XYZ
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Push the tag to Github&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git push --tags
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Generate a new release on Github.com and upload an archive of the binary using:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;bundle exec pod gen &amp;amp;&amp;amp;  carthage build --no-skip-current --platform ios --use-xcframeworks &amp;amp;&amp;amp; carthage archive SquarePointOfSaleSDK &amp;amp;&amp;amp; bundle exec pod trunk push SquarePointOfSaleSDK.podspec --allow-warnings
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;If you are having trouble with using this SDK in your project, please create a question on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/square-connect&quot;&gt;Stack Overflow&lt;/a&gt; with the &lt;code&gt;square-connect&lt;/code&gt; tag. Our team monitors that tag and will be able to help you. If you think there is something wrong with the SDK itself, please create an issue.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Copyright 2021 Square, Inc.&lt;/p&gt; 
+&lt;p&gt;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;http://www.apache.org/licenses/LICENSE-2.0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>muxinc/mux-stats-sdk-avplayer</title>
+      <link>https://github.com/muxinc/mux-stats-sdk-avplayer</link>
+      <description>&lt;p&gt;Mux integration with `AVPlayer` for native iOS, tvOS, and visionOS applications&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;mux-stats-sdk-avplayer&lt;/h1&gt; 
+&lt;p&gt;Mux integration with &lt;code&gt;AVPlayer&lt;/code&gt; and &lt;code&gt;AVPlayerLayer&lt;/code&gt; for iOS native applications.&lt;/p&gt; 
+&lt;p&gt;This integration is built on top of &lt;a href=&quot;https://github.com/muxinc/stats-sdk-objc&quot;&gt;Mux&#39;s core Objective-C library&lt;/a&gt;, allowing thinner wrappers for each new player, such as any third-party players that do not use (or expose) an underlying &lt;code&gt;AVPlayer&lt;/code&gt; and/or &lt;code&gt;AVPlayerLayer&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Integration Instructions&lt;/h2&gt; 
+&lt;p&gt;Full integration instructions can be found here: &lt;a href=&quot;https://docs.mux.com/docs/avplayer-integration-guide&quot;&gt;https://docs.mux.com/docs/avplayer-integration-guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Sample apps&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Examples/DemoApp - CocoaPods &amp;amp; Objective C demo&lt;/li&gt; 
+ &lt;li&gt;Examples/MUXSDKStatsExampleSPM - Swift Package Manager demo&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
