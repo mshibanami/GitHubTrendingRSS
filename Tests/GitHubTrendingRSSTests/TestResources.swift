@@ -4,7 +4,6 @@ import Foundation
 import XCTest
 @testable import GitHubTrendingRSSKit
 
-// TODO: refactor after https://bugs.swift.org/browse/SR-2866 was solved
 class TestResources {
     enum TrendingPageType {
         case top
