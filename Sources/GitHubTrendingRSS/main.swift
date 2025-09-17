@@ -73,6 +73,7 @@ func start() throws -> AnyPublisher<Void, Error> {
                                 return Fail(error: error).eraseToAnyPublisher()
                             }
                         }
+                        .retry(3)
                         .handleEvents(
                             receiveOutput: { repositories in
                                 guard let repositories else {
