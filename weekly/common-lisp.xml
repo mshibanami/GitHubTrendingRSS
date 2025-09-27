@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub Common Lisp Weekly Trending</title>
+    <description>Weekly Trending of Common Lisp in GitHub</description>
+    <pubDate>Sat, 27 Sep 2025 01:41:29 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>dimitri/pgloader</title>
+      <link>https://github.com/dimitri/pgloader</link>
+      <description>&lt;p&gt;Migrate to PostgreSQL in a single command!&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;PGLoader&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/dimitri/pgloader&quot;&gt;&lt;img src=&quot;https://travis-ci.org/dimitri/pgloader.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/dimitri/pgloader?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/Join%20Chat.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/dimitri/pgloader&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://pgloader.readthedocs.io/en/latest/&quot;&gt;&lt;img src=&quot;https://readthedocs.org/projects/pgloader/badge/?version=latest&amp;amp;style=plastic&quot; alt=&quot;Read The Docs Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;pgloader is a data loading tool for PostgreSQL, using the &lt;code&gt;COPY&lt;/code&gt; command.&lt;/p&gt; 
+&lt;p&gt;Its main advantage over just using &lt;code&gt;COPY&lt;/code&gt; or &lt;code&gt;\copy&lt;/code&gt;, and over using a &lt;em&gt;Foreign Data Wrapper&lt;/em&gt;, is its transaction behaviour, where &lt;em&gt;pgloader&lt;/em&gt; will keep a separate file of rejected data, but continue trying to &lt;code&gt;copy&lt;/code&gt; good data in your database.&lt;/p&gt; 
+&lt;p&gt;The default PostgreSQL behaviour is transactional, which means that &lt;em&gt;any&lt;/em&gt; erroneous line in the input data (file or remote database) will stop the entire bulk load for the table.&lt;/p&gt; 
+&lt;p&gt;pgloader also implements data reformatting, a typical example of that being the transformation of MySQL datestamps &lt;code&gt;0000-00-00&lt;/code&gt; and &lt;code&gt;0000-00-00 00:00:00&lt;/code&gt; to PostgreSQL &lt;code&gt;NULL&lt;/code&gt; value (because our calendar never had a &lt;em&gt;year zero&lt;/em&gt;).&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Full documentation is available online, including manual pages of all the pgloader sub-commands. Check out &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/&quot;&gt;https://pgloader.readthedocs.io/&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ pgloader --help
+pgloader [ option ... ] SOURCE TARGET
+  --help -h                       boolean  Show usage and exit.
+  --version -V                    boolean  Displays pgloader version and exit.
+  --quiet -q                      boolean  Be quiet
+  --verbose -v                    boolean  Be verbose
+  --debug -d                      boolean  Display debug level information.
+  --client-min-messages           string   Filter logs seen at the console (default: &quot;warning&quot;)
+  --log-min-messages              string   Filter logs seen in the logfile (default: &quot;notice&quot;)
+  --summary -S                    string   Filename where to copy the summary
+  --root-dir -D                   string   Output root directory. (default: #P&quot;/tmp/pgloader/&quot;)
+  --upgrade-config -U             boolean  Output the command(s) corresponding to .conf file for v2.x
+  --list-encodings -E             boolean  List pgloader known encodings and exit.
+  --logfile -L                    string   Filename where to send the logs.
+  --load-lisp-file -l             string   Read user code from files
+  --dry-run                       boolean  Only check database connections, don&#39;t load anything.
+  --on-error-stop                 boolean  Refrain from handling errors properly.
+  --no-ssl-cert-verification      boolean  Instruct OpenSSL to bypass verifying certificates.
+  --context -C                    string   Command Context Variables
+  --with                          string   Load options
+  --set                           string   PostgreSQL options
+  --field                         string   Source file fields specification
+  --cast                          string   Specific cast rules
+  --type                          string   Force input source type
+  --encoding                      string   Source expected encoding
+  --before                        string   SQL script to run before loading the data
+  --after                         string   SQL script to run after loading the data
+  --self-upgrade                  string   Path to pgloader newer sources
+  --regress                       boolean  Drive regression testing
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;You can either give a command file to pgloader or run it all from the command line, see the &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/tutorial/tutorial.html#pgloader-quick-start&quot;&gt;pgloader quick start&lt;/a&gt; on &lt;a href=&quot;https://pgloader.readthedocs.io&quot;&gt;https://pgloader.readthedocs.io&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ ./build/bin/pgloader --help
+$ ./build/bin/pgloader &amp;lt;file.load&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, for a full migration from SQLite:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb newdb
+$ pgloader ./test/sqlite/sqlite.db postgresql:///newdb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or for a full migration from MySQL, including schema definition (tables, indexes, foreign keys, comments) and parallel loading of the corrected data:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb pagila
+$ pgloader mysql://user@localhost/sakila postgresql:///pagila
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;LICENCE&lt;/h2&gt; 
+&lt;p&gt;pgloader is available under &lt;a href=&quot;http://www.postgresql.org/about/licence/&quot;&gt;The PostgreSQL Licence&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;INSTALL&lt;/h2&gt; 
+&lt;p&gt;Please see full documentation at &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/install.html&quot;&gt;https://pgloader.readthedocs.io/&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you&#39;re using debian, it&#39;s already available:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ apt-get install pgloader
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you&#39;re using docker, you can use the latest version built by the CI at each commit to the master branch:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ docker pull ghcr.io/dimitri/pgloader:latest
+$ docker run --rm -it ghcr.io/dimitri/pgloader:latest pgloader --version
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>atlas-engineer/nyxt</title>
+      <link>https://github.com/atlas-engineer/nyxt</link>
+      <description>&lt;p&gt;Nyxt - the hacker&#39;s browser.&lt;/p&gt;&lt;hr&gt;&lt;ul&gt; 
+ &lt;li&gt;Nyxt browser #+html: &lt;img src=&quot;https://nyxt-browser.com/static/image/nyxt_256x256.png&quot; align=&quot;right&quot; /&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;Nyxt&lt;/em&gt; [nýkst] is a keyboard-driven web browser designed for hackers. Inspired by Emacs and Vim, it has familiar keybindings ([[https://en.wikipedia.org/wiki/Emacs][Emacs]], [[https://en.wikipedia.org/wiki/Vim_(text_editor)][vi]], [[https://en.wikipedia.org/wiki/IBM_Common_User_Access][CUA]]), and is infinitely extensible in Lisp.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Attention:&lt;/em&gt; Nyxt is under active development. Please feel free to [[https://github.com/atlas-engineer/nyxt/issues][report]] bugs, instabilities or feature wishes.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Features For an exhaustive description of all of the features, please refer to the manual.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;** Fast tab switching&lt;/p&gt; 
+&lt;p&gt;Switch easily between your open tabs via fuzzy search. If you are looking for &lt;del&gt;&lt;a href=&quot;https://www.example.com&quot;&gt;https://www.example.com&lt;/a&gt;&lt;/del&gt;, you could type in &lt;del&gt;ele&lt;/del&gt;, &lt;del&gt;exa&lt;/del&gt;, &lt;del&gt;epl&lt;/del&gt;, or any other matching series of letters.&lt;/p&gt; 
+&lt;p&gt;#+html: &lt;img src=&quot;https://nyxt-browser.com/static/image/switch-buffer.png&quot; align=&quot;center&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;** Multiple marking&lt;/p&gt; 
+&lt;p&gt;Commands can accept multiple inputs, allowing you to quickly perform an operation against multiple objects. In the example below we simultaneously open several bookmarks.&lt;/p&gt; 
+&lt;p&gt;#+html: &lt;img src=&quot;https://nyxt-browser.com/static/image/multi-select.png&quot; align=&quot;center&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;** Powerful bookmarks&lt;/p&gt; 
+&lt;p&gt;Bookmark a page with tags. Search bookmarks with compound queries. Capture more data about your bookmarks, and group and wrangle them in any way you like.&lt;/p&gt; 
+&lt;p&gt;#+html: &lt;img src=&quot;https://nyxt-browser.com/static/image/bookmark.png&quot; align=&quot;center&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;** Multi tab search&lt;/p&gt; 
+&lt;p&gt;Search multiple tabs at the same time, and view all the results in a single window. Jump quickly through your open tabs to find what you need.&lt;/p&gt; 
+&lt;p&gt;#+html: &lt;img src=&quot;https://nyxt-browser.com/static/image/multi-search.png&quot; align=&quot;center&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;** History as a tree&lt;/p&gt; 
+&lt;p&gt;History is represented as a tree that you can traverse. Smarter than the &quot;forwards-backwards&quot; abstraction found in other browsers, the tree makes sure you never lose track of where you&#39;ve been.&lt;/p&gt; 
+&lt;p&gt;#+html: &lt;img src=&quot;https://nyxt-browser.com/static/image/history.png&quot; align=&quot;center&quot; /&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Installation&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Supported platforms:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;GNU/Linux&lt;/li&gt; 
+ &lt;li&gt;macOS (in development)&lt;/li&gt; 
+ &lt;li&gt;Windows (in development)&lt;/li&gt; 
+ &lt;li&gt;FreeBSD (unofficial)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;** GNU/Linux&lt;/p&gt; 
+&lt;p&gt;The Nyxt team maintains the following distribution means:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;[[https://flathub.org/apps/engineer.atlas.Nyxt][Nyxt on Flathub]]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;[[https://repology.org/project/nyxt/versions][Non-official distribution means are supported by the community as well]]. We&#39;re not accountable for their quality, so we kindly ask to report issues to the maintainers of those packaging efforts.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Contributing&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please refer to the [[file:developer-manual.org][developer&#39;s documentation]].&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

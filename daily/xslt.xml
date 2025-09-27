@@ -1,0 +1,232 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub XSLT Daily Trending</title>
+    <description>Daily Trending of XSLT in GitHub</description>
+    <pubDate>Sat, 27 Sep 2025 01:40:05 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>briankavanaugh/APA-7th-Edition</title>
+      <link>https://github.com/briankavanaugh/APA-7th-Edition</link>
+      <description>&lt;p&gt;Microsoft Word XSD for generating APA 7th edition references&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;APA 7th Edition for Microsoft Word&lt;/h1&gt; 
+&lt;p&gt;Until (unless) Microsoft gets around to adding a template for the latest version, this is the APA 7th Edition XSLT modified by Mike Slagle, plus the two additional fixes posted in the comments found &lt;a href=&quot;https://answers.microsoft.com/en-us/msoffice/forum/all/apa-7th-edition-in-ms-word/486fc70e-b7c7-40df-89bb-f8fc07169d40&quot;&gt;here&lt;/a&gt;. This way, if other changes are needed, this file can be updated.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt;: These files are provided as a courtesy to those needing a better option for APA 7 than what Microsoft currently provides. I did not create the template. If there are issues, take the time to make the changes necessary (if possible; there are limitations to what can be done) and submit a pull request.&lt;/p&gt; 
+&lt;h2&gt;How to Use&lt;/h2&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;h4&gt;Manual Method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Windows Explorer, copy the file APASeventhEdition.xsl to C:\Users&amp;lt;your_user_name&amp;gt;\AppData\Roaming\Microsoft\Bibliography\Style&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Bat file method / Cmd method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word&lt;/li&gt; 
+ &lt;li&gt;Copy the APASeventhEdition.bat file and allow it to run.&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Note: The bat file simply runs the following line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl https://raw.githubusercontent.com/briankavanaugh/APA-7th-Edition/main/APASeventhEdition.xsl -o &quot;%appdata%\Microsoft\Bibliography\Style\APASeventhEdition.xsl&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;MacOS&lt;/h3&gt; 
+&lt;h4&gt;Manual method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Finder, copy the file APASeventhEdition.xsl to &lt;em&gt;two&lt;/em&gt; locations: 
+  &lt;ol&gt; 
+   &lt;li&gt;HD/Applications/Microsoft Word.app/Contents/Resources/Style/ (note that you will have to right-click and &quot;View Contents&quot; on the app icon at HD/Applications/Microsoft Word.app/)&lt;/li&gt; 
+   &lt;li&gt;HD/Users/&amp;lt;your_user_name&amp;gt;/Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft/Office/Style/&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Shell script method / terminal method&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;The file asks for elevated priveliges using &lt;code&gt;sudo&lt;/code&gt;. Only run files you trust and understand the contents of.&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word and ensure it is closed before proceeding&lt;/li&gt; 
+ &lt;li&gt;Copy the &lt;code&gt;APASeventhEdition.sh&lt;/code&gt; file to a local folder&lt;/li&gt; 
+ &lt;li&gt;Open the terminal (Search &quot;Terminal through spotlight)&lt;/li&gt; 
+ &lt;li&gt;Navigate to the folder containing the shell script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;cd /path/to/your/file&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Run the script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;bash APASeventhEdition.sh&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Enter password when prompted. The terminal stay blank while password is entered. Once entered, press enter&lt;/li&gt; 
+   &lt;li&gt;The files should be placed in their corresponding folders&lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Optionally:&lt;/em&gt; run the script with the &lt;code&gt;--persist&lt;/code&gt; flag to create a LaunchDaemon. The LaunchDaemon will copy the files into their respective folders at reboot to combat issue where Microsoft AutoUpdater removes the files: &lt;code&gt;bash APASeventhEdition.sh --persist&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Notes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The bash file will use the &lt;code&gt;curl&lt;/code&gt; command to retrieve the file from github at the specified link and place it in &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Then it will copy the stylesheet into the two specified folders.&lt;/li&gt; 
+ &lt;li&gt;If the &lt;code&gt;--persist&lt;/code&gt; flag is used a LaunchDaemon is created. This will copy the file from the &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt; folder to the two Word-folders every time the computer is rebooted.&lt;/li&gt; 
+ &lt;li&gt;Be aware, that the LaunchDaemon is run at boot and has root privileges to avoid user interaction. &lt;strong&gt;Always read the script before running it.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;I do not have a Mac to test this on. The script was run successfully on a Mac with Office installed.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Disclaimer&lt;/h2&gt; 
+&lt;p&gt;(same as Mike&#39;s) I am only providing this file and the necessary location for it for education purposes. If any installations of MS Office are corrupted as a result of using this file, I am not responsible to address or repair any issues.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>LOLBAS-Project/LOLBAS</title>
+      <link>https://github.com/LOLBAS-Project/LOLBAS</link>
+      <description>&lt;p&gt;Living Off The Land Binaries And Scripts - (LOLBins and LOLScripts)&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/actions/workflows/yaml-linting.yml/badge.svg?branch=master&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/LOLBAS-Project/LOLBAS/yaml-linting.yml?branch=master&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS&quot;&gt; &lt;img src=&quot;https://lolbas-project.github.io/assets/lolbas-count.svg?sanitize=true&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/stargazers&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/stars/LOLBAS-Project/LOLBAS?style=social&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;h1&gt;Living Off The Land Binaries and Scripts (and now also Libraries)&lt;/h1&gt; 
+&lt;img src=&quot;https://github.com/api0cradle/LOLBAS/raw/master/Logo/LOLBAS.png&quot; height=&quot;250&quot; /&gt; 
+&lt;p&gt;All the different files can be found behind a fancy frontend here: &lt;a href=&quot;https://lolbas-project.github.io&quot;&gt;https://lolbas-project.github.io&lt;/a&gt; (thanks @ConsciousHacker for this bit of eyecandy and the team over at &lt;a href=&quot;https://gtfobins.github.io/&quot;&gt;https://gtfobins.github.io/&lt;/a&gt;). This repo serves as a place where we maintain the YML files that are used by the fancy frontend.&lt;/p&gt; 
+&lt;h2&gt;Goal&lt;/h2&gt; 
+&lt;p&gt;The goal of the LOLBAS project is to document every binary, script, and library that can be used for Living Off The Land techniques.&lt;/p&gt; 
+&lt;h2&gt;Criteria&lt;/h2&gt; 
+&lt;p&gt;A LOLBin/Lib/Script must:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Be a Microsoft-signed file, either native to the OS or downloaded from Microsoft.&lt;/li&gt; 
+ &lt;li&gt;Have extra &quot;unexpected&quot; functionality. It is not interesting to document intended use cases. 
+  &lt;ul&gt; 
+   &lt;li&gt;Exceptions are application whitelisting bypasses&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Have functionality that would be useful to an APT or red team&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Interesting functionality can include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Executing code 
+  &lt;ul&gt; 
+   &lt;li&gt;Arbitrary code execution&lt;/li&gt; 
+   &lt;li&gt;Pass-through execution of other programs (unsigned) or scripts (via a LOLBin)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Compiling code&lt;/li&gt; 
+ &lt;li&gt;File operations 
+  &lt;ul&gt; 
+   &lt;li&gt;Downloading&lt;/li&gt; 
+   &lt;li&gt;Upload&lt;/li&gt; 
+   &lt;li&gt;Copy&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Persistence 
+  &lt;ul&gt; 
+   &lt;li&gt;Pass-through persistence utilizing existing LOLBin&lt;/li&gt; 
+   &lt;li&gt;Persistence (e.g. hide data in ADS, execute at logon)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;UAC bypass&lt;/li&gt; 
+ &lt;li&gt;Credential theft&lt;/li&gt; 
+ &lt;li&gt;Dumping process memory&lt;/li&gt; 
+ &lt;li&gt;Surveillance (e.g. keylogger, network trace)&lt;/li&gt; 
+ &lt;li&gt;Log evasion/modification&lt;/li&gt; 
+ &lt;li&gt;DLL side-loading/hijacking without being relocated elsewhere in the filesystem.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We do not approve binaries that allows for netntlm coercing, since most Windows binaries allows for that. Only exception is binaries that allows that on other than default ports (such as rpcping) or can allow direct credential theft.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you have found a new LOLBin or LOLScript that you would like to contribute, please review the contributing guidelines located here: &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/raw/master/CONTRIBUTING.md&quot;&gt;https://github.com/LOLBAS-Project/LOLBAS/blob/master/CONTRIBUTING.md&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A template for the required format has been provided here: &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/raw/master/YML-Template.yml&quot;&gt;https://github.com/LOLBAS-Project/LOLBAS/blob/master/YML-Template.yml&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;The History of the LOLBin&lt;/h2&gt; 
+&lt;p&gt;The phrase &quot;Living off the land&quot; was coined by Christopher Campbell (@obscuresec) &amp;amp; Matt Graeber (@mattifestation) at &lt;a href=&quot;https://www.youtube.com/watch?v=j-r6UonEkUw&quot;&gt;DerbyCon 3&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The term LOLBins came from a Twitter discussion on what to call binaries that can be used by an attacker to perform actions beyond their original purpose. Philip Goh (@MathCasualty) &lt;a href=&quot;https://twitter.com/MathCasualty/status/969174982579273728&quot;&gt;proposed LOLBins&lt;/a&gt;. A highly scientific internet poll ensued, and after a general consensus (69%) was reached, the name was &lt;a href=&quot;https://twitter.com/Oddvarmoe/status/985432848961343488&quot;&gt;made official&lt;/a&gt;. Jimmy (@bohops) &lt;a href=&quot;https://twitter.com/bohops/status/984828803120881665&quot;&gt;followed up with LOLScripts&lt;/a&gt;. No poll was taken.&lt;/p&gt; 
+&lt;p&gt;Common hashtags for these files are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;#LOLBin&lt;/li&gt; 
+ &lt;li&gt;#LOLBins&lt;/li&gt; 
+ &lt;li&gt;#LOLScript&lt;/li&gt; 
+ &lt;li&gt;#LOLScripts&lt;/li&gt; 
+ &lt;li&gt;#LOLLib&lt;/li&gt; 
+ &lt;li&gt;#LOLLibs&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Our primary maintainer (@oddvarmoe) of this project did a talk at DerbyCon 2018 called: #Lolbins Nothing to LOL about! - &lt;a href=&quot;https://www.youtube.com/watch?v=NiYTdmZ8GR4&quot;&gt;https://www.youtube.com/watch?v=NiYTdmZ8GR4&lt;/a&gt; This talk goes over the history of this project.&lt;/p&gt; 
+&lt;h2&gt;Maintainers&lt;/h2&gt; 
+&lt;p&gt;The following folks help maintain the LOLBAS Project on their personal time:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Oddvar Moe (&lt;a href=&quot;https://twitter.com/Oddvarmoe&quot;&gt;@oddvarmoe&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Jimmy Bayne (&lt;a href=&quot;https://twitter.com/bohops&quot;&gt;@bohops&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Conor Richard (&lt;a href=&quot;https://twitter.com/xenosCR&quot;&gt;@xenosCR&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Chris &#39;Lopi&#39; Spehn (&lt;a href=&quot;https://twitter.com/ConsciousHacker&quot;&gt;@ConsciousHacker&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Liam (&lt;a href=&quot;https://twitter.com/liamsomerville&quot;&gt;@liamsomerville&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Wietze (&lt;a href=&quot;https://twitter.com/@Wietze&quot;&gt;@Wietze&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Jose Hernandez (&lt;a href=&quot;https://twitter.com/_josehelps&quot;&gt;@_josehelps&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Thanks&lt;/h2&gt; 
+&lt;p&gt;As with many open-source projects, this one is the product of a community and we would like to thank ours:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The domain &lt;a href=&quot;http://lolbins.com&quot;&gt;http://lolbins.com&lt;/a&gt; has been registered by an unknown individual and redirected it to the old version of this project.&lt;/li&gt; 
+ &lt;li&gt;The domain &lt;a href=&quot;http://lolbas-project.com&quot;&gt;http://lolbas-project.com&lt;/a&gt; has been registered by Jimmy (@bohops).&lt;/li&gt; 
+ &lt;li&gt;The logos for the project were created by Adam Nadrowski (@_sup_mane). We #@&amp;amp;!!@#! love them.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Notice&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Please refer to NOTICE.md for license information&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>usnistgov/oscal-content</title>
+      <link>https://github.com/usnistgov/oscal-content</link>
+      <description>&lt;p&gt;NIST SP 800-53 content and other OSCAL content examples&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://gitter.im/usnistgov-OSCAL/Lobby&quot;&gt;&lt;img src=&quot;https://img.shields.io/gitter/room/usnistgov-OSCAL/Lobby&quot; alt=&quot;Gitter&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://github.com/usnistgov/oscal-content/workflows/Process%20Content/badge.svg?branch=main&quot; alt=&quot;Process Content&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;OSCAL Examples&lt;/h1&gt; 
+&lt;p&gt;This directory contains numerous OSCAL examples in XML, JSON, and YAML formats based on &lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/github.com/usnistgov/OSCAL/releases/latest&quot;&gt;the latest OSCAL stable release&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;These files are maintained by a Continuous Integration and Continuous Deployment (CI/CD) process that automatically converts source content into the alternate formats found in the many subdirectories of this repository. As a result, these example files should not be modified. Instead, the source of the file should be edited in the &lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/src&quot;&gt;src&lt;/a&gt; subdirectories.&lt;/p&gt; 
+&lt;p&gt;The structure and contents of the examples directory are as follows:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/examples&quot;&gt;examples&lt;/a&gt;: This directory contains sample OSCAL content organized by OSCAL model.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev4&quot;&gt;nist.gov/SP800-53/rev4&lt;/a&gt;: This directory contains OSCAL examples of the catalog, and low, moderate, and high baselines defined by NIST Special Publication (SP) &lt;a href=&quot;https://csrc.nist.gov/publications/detail/sp/800-53/rev-4/final&quot;&gt;800-53 Revision 4&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5&quot;&gt;nist.gov/SP800-53/rev5&lt;/a&gt;: This directory contains OSCAL examples of the catalog, and low, moderate, and high baselines defined by NIST Special Publication (SP) &lt;a href=&quot;https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final&quot;&gt;800-53 Revision 5&lt;/a&gt; and &lt;a href=&quot;https://csrc.nist.gov/publications/detail/sp/800-53b/final&quot;&gt;SP 800-53B&lt;/a&gt; respectively.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/src&quot;&gt;src&lt;/a&gt;: This directory contains the source files for all the OSCAL examples located in this repository.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/build&quot;&gt;build&lt;/a&gt;: This directory includes &lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/build/README.md&quot;&gt;instructions&lt;/a&gt; and tools to build OSCAL dependencies, generate, convert, and check example content in this repository for release.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>uri-templates/uritemplate-test</title>
+      <link>https://github.com/uri-templates/uritemplate-test</link>
+      <description>&lt;p&gt;Tests for URI Template implementations&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;URI Template Tests&lt;/h1&gt; 
+&lt;p&gt;This is a set of tests for implementations of &lt;a href=&quot;https://datatracker.ietf.org/doc/html/rfc6570&quot;&gt;RFC6570&lt;/a&gt; - URI Template. It is designed to be reused by any implementation, to improve interoperability and implementation quality.&lt;/p&gt; 
+&lt;p&gt;If your project uses Git for version control, you can make uritemplate-tests into a &lt;a href=&quot;http://help.github.com/submodules/&quot;&gt;submodule&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Test Format&lt;/h2&gt; 
+&lt;p&gt;Each test file is a &lt;a href=&quot;http://tools.ietf.org/html/RFC6627&quot;&gt;JSON&lt;/a&gt; document containing an object whose properties are groups of related tests. Alternatively, all tests are available in XML as well, with the XML files being generated by transform-json-tests.xslt which uses json2xml.xslt as a general-purpose JSON-to-XML parsing library.&lt;/p&gt; 
+&lt;p&gt;Each group, in turn, is an object with three children:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;level - the level of the tests covered, as per the RFC (optional; if absent, assume level 4).&lt;/li&gt; 
+ &lt;li&gt;variables - an object representing the variables that are available to the tests in the suite&lt;/li&gt; 
+ &lt;li&gt;testcases - a list of testcases, where each case is a two-member list, the first being the template, the second being the result of expanding the template with the provided variables.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Note that the result string can be a few different things:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;string - if the second member is a string, the result of expansion is expected to match it, character-for-character.&lt;/li&gt; 
+ &lt;li&gt;list - if the second member is a list of strings, the result of expansion is expected to match one of them; this allows for templates that can expand into different, equally-acceptable URIs.&lt;/li&gt; 
+ &lt;li&gt;false - if the second member is boolean false, expansion is expected to fail (i.e., the template was invalid).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;{
+  &quot;Level 1 Examples&quot; : 
+  {
+    &quot;level&quot;: 1,
+    &quot;variables&quot;: {
+       &quot;var&quot;   : &quot;value&quot;,
+       &quot;hello&quot; : &quot;Hello World!&quot;
+     },
+     &quot;testcases&quot; : [
+        [&quot;{var}&quot;, &quot;value&quot;],
+        [&quot;{hello}&quot;, &quot;Hello%20World%21&quot;]
+     ]
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Tests Included&lt;/h2&gt; 
+&lt;p&gt;The following test files are included:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;spec-examples.json - The complete set of example templates from the RFC&lt;/li&gt; 
+ &lt;li&gt;spec-examples-by-section.json - The examples, section by section&lt;/li&gt; 
+ &lt;li&gt;extended-tests.json - more complex test cases&lt;/li&gt; 
+ &lt;li&gt;negative-tests.json - invalid templates&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For all these test files, XML versions with the names *.xml can be generated with the transform-json-tests.xslt XSLT stylesheet. The XSLT contains the names of the above test files as a parameter, and can be started with any XML as input (i.e., the XML input is ignored).&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Copyright 2011-2012 The Authors&lt;/p&gt; 
+&lt;p&gt;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   http://www.apache.org/licenses/LICENSE-2.0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the License for the specific language governing permissions and limitations under the License.&lt;/p&gt;</description>
+    </item>
+    
+  </channel>
+</rss>

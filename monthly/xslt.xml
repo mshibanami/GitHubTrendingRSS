@@ -1,0 +1,528 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0">
+  <channel>
+    <title>GitHub XSLT Monthly Trending</title>
+    <description>Monthly Trending of XSLT in GitHub</description>
+    <pubDate>Sat, 27 Sep 2025 02:00:38 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>briankavanaugh/APA-7th-Edition</title>
+      <link>https://github.com/briankavanaugh/APA-7th-Edition</link>
+      <description>&lt;p&gt;Microsoft Word XSD for generating APA 7th edition references&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;APA 7th Edition for Microsoft Word&lt;/h1&gt; 
+&lt;p&gt;Until (unless) Microsoft gets around to adding a template for the latest version, this is the APA 7th Edition XSLT modified by Mike Slagle, plus the two additional fixes posted in the comments found &lt;a href=&quot;https://answers.microsoft.com/en-us/msoffice/forum/all/apa-7th-edition-in-ms-word/486fc70e-b7c7-40df-89bb-f8fc07169d40&quot;&gt;here&lt;/a&gt;. This way, if other changes are needed, this file can be updated.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt;: These files are provided as a courtesy to those needing a better option for APA 7 than what Microsoft currently provides. I did not create the template. If there are issues, take the time to make the changes necessary (if possible; there are limitations to what can be done) and submit a pull request.&lt;/p&gt; 
+&lt;h2&gt;How to Use&lt;/h2&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;h4&gt;Manual Method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Windows Explorer, copy the file APASeventhEdition.xsl to C:\Users&amp;lt;your_user_name&amp;gt;\AppData\Roaming\Microsoft\Bibliography\Style&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Bat file method / Cmd method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word&lt;/li&gt; 
+ &lt;li&gt;Copy the APASeventhEdition.bat file and allow it to run.&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Note: The bat file simply runs the following line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl https://raw.githubusercontent.com/briankavanaugh/APA-7th-Edition/main/APASeventhEdition.xsl -o &quot;%appdata%\Microsoft\Bibliography\Style\APASeventhEdition.xsl&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;MacOS&lt;/h3&gt; 
+&lt;h4&gt;Manual method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Finder, copy the file APASeventhEdition.xsl to &lt;em&gt;two&lt;/em&gt; locations: 
+  &lt;ol&gt; 
+   &lt;li&gt;HD/Applications/Microsoft Word.app/Contents/Resources/Style/ (note that you will have to right-click and &quot;View Contents&quot; on the app icon at HD/Applications/Microsoft Word.app/)&lt;/li&gt; 
+   &lt;li&gt;HD/Users/&amp;lt;your_user_name&amp;gt;/Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft/Office/Style/&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Shell script method / terminal method&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;The file asks for elevated priveliges using &lt;code&gt;sudo&lt;/code&gt;. Only run files you trust and understand the contents of.&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word and ensure it is closed before proceeding&lt;/li&gt; 
+ &lt;li&gt;Copy the &lt;code&gt;APASeventhEdition.sh&lt;/code&gt; file to a local folder&lt;/li&gt; 
+ &lt;li&gt;Open the terminal (Search &quot;Terminal through spotlight)&lt;/li&gt; 
+ &lt;li&gt;Navigate to the folder containing the shell script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;cd /path/to/your/file&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Run the script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;bash APASeventhEdition.sh&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Enter password when prompted. The terminal stay blank while password is entered. Once entered, press enter&lt;/li&gt; 
+   &lt;li&gt;The files should be placed in their corresponding folders&lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Optionally:&lt;/em&gt; run the script with the &lt;code&gt;--persist&lt;/code&gt; flag to create a LaunchDaemon. The LaunchDaemon will copy the files into their respective folders at reboot to combat issue where Microsoft AutoUpdater removes the files: &lt;code&gt;bash APASeventhEdition.sh --persist&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Notes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The bash file will use the &lt;code&gt;curl&lt;/code&gt; command to retrieve the file from github at the specified link and place it in &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Then it will copy the stylesheet into the two specified folders.&lt;/li&gt; 
+ &lt;li&gt;If the &lt;code&gt;--persist&lt;/code&gt; flag is used a LaunchDaemon is created. This will copy the file from the &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt; folder to the two Word-folders every time the computer is rebooted.&lt;/li&gt; 
+ &lt;li&gt;Be aware, that the LaunchDaemon is run at boot and has root privileges to avoid user interaction. &lt;strong&gt;Always read the script before running it.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;I do not have a Mac to test this on. The script was run successfully on a Mac with Office installed.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Disclaimer&lt;/h2&gt; 
+&lt;p&gt;(same as Mike&#39;s) I am only providing this file and the necessary location for it for education purposes. If any installations of MS Office are corrupted as a result of using this file, I am not responsible to address or repair any issues.&lt;/p&gt;</description>
+    </item>
+    
+    <item>
+      <title>codingo/BibWord</title>
+      <link>https://github.com/codingo/BibWord</link>
+      <description>&lt;p&gt;Microsoft Word and Bibliography Styles extender.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://github.com/codingo/BibWord/raw/master/BibWord.png&quot; alt=&quot;Microsoft Word Citation and Bibliography Styles&quot; title=&quot;BibWord&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/codingo_&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/twitter-@codingo__-blue.svg?sanitize=true&quot; alt=&quot;Twitter&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Credit / Foreward&lt;/h1&gt; 
+&lt;p&gt;This work is only made possible by the original work of Yves Dhondt (&lt;a href=&quot;mailto:yves.dhondt@gmail.com&quot;&gt;yves.dhondt@gmail.com&lt;/a&gt;) and his original project, found at &lt;a href=&quot;https://bibword.codeplex.com/&quot;&gt;https://bibword.codeplex.com/&lt;/a&gt;. I have created this project to preserve this work as it will otherwise disappear with the closure of CodePlex and I found it invaluable in my own studies. I will aim to keep this up to date (feel free to raise issues) however should the original project be migrated to another source I will be closing this in favor of one maintained by its original author.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To get the style files find the desired file using the above links. Once found, look for a button labelled &quot;Raw&quot;. Either right-click this button and select &quot;save linked content as&quot; or, or click the button and right-click to save-as. Note that once downloaded, ensure that the filename extension is &lt;code&gt;.xsl&lt;/code&gt;, some browsers will append &lt;code&gt;.txt&lt;/code&gt;. Windows, by default hides file extensions.&lt;/p&gt; 
+&lt;p&gt;To use the bibliography styles, they have to be copied into the Microsoft Word bibliography style directory. This directory can vary depending on where Word is installed. Once the styles are copied to the directory, they will show up every time Microsoft Word is opened.&lt;/p&gt; 
+&lt;p&gt;It should be noted that on a 64 bit machine you have &quot;Program Files&quot; and &quot;Program Files (x86)&quot;. For the majority of cases the style folder will be located within &lt;em&gt;Program Files x86&lt;/em&gt;. Locations where files should then be installed are as follows:&lt;/p&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;h4&gt;Word 2007&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&amp;lt;winword.exe directory&amp;gt;\Bibliography\Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2010&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&amp;lt;winword.exe directory&amp;gt;\Bibliography\Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2010 (32 bit systems)&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;%programfiles%\Microsoft Office\Office14\Bibliography\Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2016 (Office 365)&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;C:\Users&amp;lt;currentusername&amp;gt;\AppData\Roaming\Microsoft\Bibliography\Style or %AppData%\Microsoft\Templates\LiveContent\15\Managed\Word Document Bibliography Styles&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Mac OS&lt;/h3&gt; 
+&lt;h4&gt;Word 2008 and Word 2011&lt;/h4&gt; 
+&lt;p&gt;To use the bibliography styles, right-click on Microsoft Word 2008 and select show package contents. Put the files in:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Contents/Resources/Style/ On most Macs with Microsoft Word 2008 this will be: /Applications/Microsoft Office 2008/Microsoft Word.app/Contents/Resources/Style/&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2016 for Mac (version 15.17.0 and up)&lt;/h4&gt; 
+&lt;p&gt;To use the bibliography styles, place them in the following folder&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;/Library/AppSupport/Microsoft/Office365/Citations/ More information can be found here: &lt;a href=&quot;https://msdn.microsoft.com/VBA/Word-VBA/articles/create-custom-bibliography-styles?f=255&amp;amp;MSPPError=-2147217396&quot;&gt;https://msdn.microsoft.com/VBA/Word-VBA/articles/create-custom-bibliography-styles?f=255&amp;amp;MSPPError=-2147217396&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Office 365&lt;/h4&gt; 
+&lt;p&gt;For the latest releases of Office 365 these need to be placed within the application at:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;/Applications/Microsoft Word.app/Contents/Resources/Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;To do this, open Finder, right click on /Application/Microsoft Word (or /Application/Microsoft Word.app - depending on your Finder Preferences), then click Show Package Contents to see the folders within the .app file.&lt;/p&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;h3&gt;Why is a new style not showing up in Word when I add it to the Style directory?&lt;/h3&gt; 
+&lt;p&gt;The list of available reference styles gets loaded only once. So when you add a new style to the style directory, you need to restart Word.&lt;/p&gt; 
+&lt;h3&gt;In Word 2008, new styles are only added for citations. How can I use the new styles for bibliographies?&lt;/h3&gt; 
+&lt;p&gt;Add the bibliography using one of the four predefined styles. Then go to the citation toolbox and select the style you want. This will update all the citations and bibliographies in your text to the new style.&lt;/p&gt; 
+&lt;h3&gt;Why does it take Word so long to show the dropdown list with style names the first time?&lt;/h3&gt; 
+&lt;p&gt;Word has to retrieve the style names of every XSL in the style directory the first time. Hence, the more styles you put in the directory, the more time Word needs to fill the drop down list.&lt;/p&gt; 
+&lt;h3&gt;Why do I get &#39;BO&#39; instead of a number when using certain styles?&lt;/h3&gt; 
+&lt;p&gt;&#39;BO&#39; is often printed when the BibOrder number is not available. Use the BibWord Extender tool on the document to add the missing numbers.&lt;/p&gt; 
+&lt;h3&gt;Why do certain styles have a * at the end of their name?&lt;/h3&gt; 
+&lt;p&gt;Although the usage of a * is not mandatory, it often indicates that part of the functionality of the style can only be used in combination with the BibWord Extender tool.&lt;/p&gt; 
+&lt;h3&gt;Can I request to get a certain style?&lt;/h3&gt; 
+&lt;p&gt;No. Using BibWord, you really should try to create the style yourself. Keep in mind that even if you find someone prepared to create the style for you that you will have to provide him/her with detailed information about the formatting guidelines for your style. Messages containing &quot;I need style x.&quot; will most likely be ignored.&lt;/p&gt; 
+&lt;h3&gt;Can I (not) link my in-text citations to their bibliography entries?&lt;/h3&gt; 
+&lt;p&gt;Yes. Set the value of citation_as_link to &#39;yes&#39; if you want in-text citations to link to their specific bibliography entry, or to any other value if you do not.&lt;/p&gt; 
+&lt;h3&gt;Can I change the surrounding brackets for in-text citations?&lt;/h3&gt; 
+&lt;p&gt;Yes. You can change the surrounding brackets by changing the values of openbracket and closebracket&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;&amp;lt;openbracket&amp;gt;(&amp;lt;/openbracket&amp;gt;
+&amp;lt;closebracket&amp;gt;)&amp;lt;/closebracket&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How do I get my in-text citations in superscript?&lt;/h3&gt; 
+&lt;p&gt;In-text citations inherit the style of their surroundings. Only limited formatting (bold, underline, italic) can be applied to them through the reference style. For any further formatting, such as superscript, a character style has to be applied to all CITATION fields.&lt;/p&gt; 
+&lt;p&gt;The following macro creates a character style called In-Text Citation if it does not yet exist. When the style is newly created, it sets the font to superscript. Then the style is applied to all CITATION fields in the document. By changing/updating the style In-Text Citation you can then update the formatting of all citations&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub ApplyCitationStyle()
+    Dim stylename As String
+    Dim exists As Boolean
+    Dim s As Style
+    Dim fld As Field
+                
+    stylename = &quot;In-Text Citation&quot;
+        
+    &#39; Check if the style already exists.
+    exists = False
+        
+    For Each s In ActiveDocument.Styles
+        If s.NameLocal = stylename Then
+           exists = True
+           Exit For
+        End If
+    Next
+    
+    &#39; If the style did not exist yet, create it.
+    If exists = False Then
+        Set s = ActiveDocument.Styles.Add(stylename, wdStyleTypeCharacter)
+        s.BaseStyle = ActiveDocument.Styles(wdStyleDefaultParagraphFont).BaseStyle
+        s.Font.Superscript = True
+    End If
+    
+    &#39; Now that the style really exists, select it.
+    Set s = ActiveDocument.Styles(stylename)
+     
+    &#39; Apply the style to all in-text citations.
+    For Each fld In ActiveDocument.Fields
+        If fld.Type = wdFieldCitation Then
+            fld.Select
+            Selection.Style = s
+        End If
+    Next
+
+End Sub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How do I convert all my in-text citations to static text in one go?&lt;/h3&gt; 
+&lt;p&gt;You can use the following macro to convert all in-text citations:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub CitationsToStaticText()
+    Dim fld As Field
+            
+    &#39; Go over all stories, including main, footnotes, ...
+    For Each sr In ActiveDocument.StoryRanges
+        &#39; Find all citation fields and convert them to static text.
+        For Each fld In sr.Fields
+            If fld.Type = wdFieldCitation Then
+                fld.Select
+                WordBasic.BibliographyCitationToText
+            End If
+        Next
+    Next
+
+End Sub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Is there an easy way to get rid of sources which are not cited in the text?&lt;/h3&gt; 
+&lt;p&gt;You can use the following macro to remove all uncited sources from a document:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub RemoveUnusedCitations()
+    &#39; Get the number of sources.
+    idx = ActiveDocument.Bibliography.Sources.Count
+    
+    &#39; Remmove unused sources starting from the last one.
+    Do While (idx &amp;gt; 0)
+        If ActiveDocument.Bibliography.Sources(idx).Cited = False Then
+            ActiveDocument.Bibliography.Sources(idx).Delete
+        End If
+        idx = idx - 1
+    Loop
+End Sub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How do I set the indentation of my bibliography?&lt;/h3&gt; 
+&lt;p&gt;Add a bibliography to your document. Open the &#39;Styles&#39; pane (CTRL+ALT+SHIFT+S) and look for a style called &#39;Bibliography&#39; (or a localized translation of the word &#39;Bibliography&#39;). Change the indentation settings there. That way, whenever your bibliography gets updated, the indentation will remain correct.&lt;/p&gt; 
+&lt;h3&gt;Is it possible to group several citations? Currently I have something like (1)(2) and I want (1,2).&lt;/h3&gt; 
+&lt;p&gt;Yes. You can add a second source to a citation by using the &#39;\m&#39; switch and the tag of the source you want to add. In Word 2007, if you want to add a source with tag &#39;Bee99&#39; to an existing citation, right click the citation and select &#39;Edit Field...&#39;. It will show you something like &#39;CITATION Gup97 \l 2060&#39;. To add the extra source, change it to &#39;CITATION Gup97 \l 2060 \m Bee99&#39;. For more information, also see the Microsoft Office online help topic on the CITATION field code.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you can put your cursor inside any in-text citation, then go to &#39;References&#39; tab in the ribbon and click &#39;Insert Citation&#39;.&lt;/p&gt; 
+&lt;p&gt;To change the separator between two grouped in-text citations, BibWord uses the separator element.&lt;/p&gt; 
+&lt;h3&gt;Only the name of the first author is displayed correctly, all other author names are abbreviated. Is this a bug?&lt;/h3&gt; 
+&lt;p&gt;No. You probably made a mistake when entering the different author names. You should enter them one by one in the dialog that comes up when clicking the &quot;Edit...&quot; button next to the author field. That way you will not make a mistake.&lt;/p&gt; 
+&lt;p&gt;If you really want to enter them as a string, then be aware that the correct format is &quot;Last1, First1 Middle1; Last2, First2 Middle2; ...&quot;. So the names are separated by a &quot;;&quot; while name parts are separated by a &quot;,&quot;.&lt;/p&gt; 
+&lt;p&gt;Note that there is a bug in Word where sometimes the name conversion goes wrong.&lt;/p&gt; 
+&lt;h3&gt;When using a numbered style (e.g. IEEE), the number is wrapped over multiple lines. Is this a bug?&lt;/h3&gt; 
+&lt;p&gt;No. Numbered styles are mostly represented using a 2 column table where the first column contains the number and the second column contains the text. The text wrap you see is caused by the first column not being wide enough. You can simple solve this by positioning your cursor on the the table border between the first and second column and drag it to the right.&lt;/p&gt; 
+&lt;p&gt;This can also be used to add extra white space after the number if you set the halign element to left of the first column.&lt;/p&gt; 
+&lt;h3&gt;My in-text citations are displayed in bold. How do I change this?&lt;/h3&gt; 
+&lt;p&gt;If you link your in-text citation to your bibliography, Word formats the link using the &#39;Heading 2 Character style&#39;. So if that style is configured to use bold, so will the in-text citation. Assuming you cannot or do not want to change that style, there are two possible solutions:&lt;/p&gt; 
+&lt;h4&gt;Disable linking between in-text citations and bibliographies.&lt;/h4&gt; 
+&lt;p&gt;This can be done easily be setting the value of citation_as_link to &#39;no&#39; in the xsl file.&lt;/p&gt; 
+&lt;h4&gt;Format each in-text citation with another character style.&lt;/h4&gt; 
+&lt;p&gt;This way you will be able to keep using the links between in-text citations and bibliographies. To ease this job, you could use the following macro which you can run every time you insert an in-text citation or once at the end.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub ApplyCitationStyle()
+    Dim stylename As String
+    Dim exists As Boolean
+    Dim s As Style
+    Dim fld As Field
+                
+    stylename = &quot;In-Text Citation&quot;
+        
+    &#39; Check if the style already exists.
+    exists = False
+        
+    For Each s In ActiveDocument.Styles
+        If s.NameLocal = stylename Then
+           exists = True
+           Exit For
+        End If
+    Next
+    
+    &#39; If the style did not exist yet, create it.
+    If exists = False Then
+        Set s = ActiveDocument.Styles.Add(stylename, wdStyleTypeCharacter)
+        s.BaseStyle = ActiveDocument.Styles(wdStyleDefaultParagraphFont).BaseStyle
+        s.Font.Bold = False
+    End If
+    
+    &#39; Now that the style really exists, select it.
+    Set s = ActiveDocument.Styles(stylename)
+     
+    &#39; Apply the style to all in-text citations.
+    For Each fld In ActiveDocument.Fields
+        If fld.Type = wdFieldCitation Then
+            fld.Select
+            Selection.Style = s
+        End If
+    Next
+
+End Sub
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+    <item>
+      <title>jrsteensen/OpenHornet</title>
+      <link>https://github.com/jrsteensen/OpenHornet</link>
+      <description>&lt;p&gt;OpenHornet 1:1 F/A-18C Simulator Repository&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://github.com/jrsteensen/OpenHornet/raw/master/images/Logo/open_hornet_horizontal_final.png&quot; alt=&quot;OH logo&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/jrsteensen/OpenHornet&quot; alt=&quot;GitHub release (with filter)&quot; /&gt; &lt;a href=&quot;https://creativecommons.org/licenses/by-nc-sa/4.0/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-BY--NC--SA_4.0-blue?logo=creativecommons&quot; alt=&quot;Static Badge&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/stars/jrsteensen/OpenHornet&quot; alt=&quot;GitHub Repo stars&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/downloads/jrsteensen/OpenHornet/total&quot; alt=&quot;GitHub all releases&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://openhornet.com/#awb-oc__2834&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/donate_to_openhornet-yellow?logo=paypal&quot; alt=&quot;Donate&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/openhornet&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/392833351238811648?logo=discord&amp;amp;label=discord&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.openhornet.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/website-blue?logo=internetarchive&quot; alt=&quot;Website&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.youtube.com/@OpenHornet&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/youtube-blue?logo=youtube&quot; alt=&quot;YouTube&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.facebook.com/profile.php?id=100092714572837&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/facebook-blue?logo=facebook&quot; alt=&quot;Facebook&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.tiktok.com/@openhornet7&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/tiktok-blue?logo=tiktok&quot; alt=&quot;TikTok&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/contributors-anon/jrsteensen/OpenHornet&quot; alt=&quot;GitHub contributors&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/commit-activity/t/jrsteensen/OpenHornet&quot; alt=&quot;GitHub commit activity (branch)&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/watchers/jrsteensen/OpenHornet&quot; alt=&quot;GitHub watchers&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/forks/jrsteensen/OpenHornet&quot; alt=&quot;GitHub forks&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;The OpenHornet Project is a F/A-18C OFP 13C Lot 20 1:1 Replica Simulator, consisting of a physical structure and electrical/software interfaces to a PC to be driven by Digital Combat Simulator (DCS).&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;If you have any questions, visit our Discord server and ask questions. The Discord server will be an invaluable resource for you as your progress through the journey of your build.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/jrsteensen/OpenHornet/raw/master/images/Glareshields.2019.10.21.PNG&quot; alt=&quot;Overall Screen Grab&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Looking for Software?&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jrsteensen/OpenHornet-Software&quot;&gt;OpenHornet GitHub Software Repository&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Design Software Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Mechanical CAD Software Required: Fusion360&lt;/li&gt; 
+ &lt;li&gt;Electrical CAD Software Required: KiCAD 7&lt;/li&gt; 
+ &lt;li&gt;Microsoft Office (or compatible)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/jrsteensen/OpenHornet/wiki/Contributing&quot;&gt;Want to contribute?&lt;/a&gt; Let&#39;s discuss what you want to work on in Discord or in an issue!&lt;/p&gt; 
+&lt;h2&gt;References, Information, and How-Tos&lt;/h2&gt; 
+&lt;h3&gt;GitHub Repository File Structure&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;OpenHornet
+├── .github (Contains issue templates, funding info, and GitHub actions.)
+├── artwork (Subdivided into end items, contains stickers, placards, etc.)
+├── ECAD (All PCBs and electrical design files. See folder README file for details.)
+├── images (Contains images for use in the wiki or other OH documentation.)
+├── reference (Contains reference models or geometry.)
+├── release (Contains all files that makeup the release package. See folder README file for details.)
+├── utils (Contains fonts or other similar required resources for development)
+├── .gitignore (File that instructs the git repository to ignore certain file types.)
+├── CODE_OF_CONDUCT.md (Our contributor code of conduct.)
+├── CONTRIBUTING.md (A file that just redirects you to the contributing wiki entry.)
+├── ISSUE_TEMPLATE.md (The generic repository issue template, in case an issue doesn&#39;t fall into one 
+|                      of our three predetermined categories)
+├── LICENSE.md (License file for the OpenHornet repository)
+├── PULL_REQUEST_TEMPLATE.md (The repository pull request template.)
+└── README.md (This file)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Important Links&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openhornet.com/start-here/&quot;&gt;OpenHornet Start Here Page&lt;/a&gt; - Seriously. Start here.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openhornet.com/faq/&quot;&gt;OpenHornet FAQ&lt;/a&gt; - You guessed it! The FAQ!&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jrsteensen/OpenHornet&quot;&gt;OpenHornet GitHub&lt;/a&gt; - OpenHornet&#39;s GitHub repository for everything other than MCAD. Where you can find the latest under-development files.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openhornet.com/category/tutorials/&quot;&gt;OpenHornet Tutorials&lt;/a&gt; - Tutorials for OpenHornet.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jrsteensen/OpenHornet/issues&quot;&gt;OpenHornet Issues&lt;/a&gt; - Go here to file a bug/enhancement/obsolescence report.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openhornet.com/openhornet-authorized-vendors/&quot;&gt;OpenHornet Authorized Vendors&lt;/a&gt; - These are vendors who are licensed to sell OpenHornet parts and assemblies. By purchasing from them, you also support OpenHornet as well!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;OpenHornet MCAD Model&lt;/h3&gt; 
+&lt;p&gt;These links will allow you to download a local copy of the OH MCAD model, for reference or so you can modify things for your personal pit. If you would like to contribute to the raw MCAD, talk to Noctum in the OH Discord. You will need to prove a basic level of proficiency and be known within the discord community before access will be granted.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] These links will download the latest &amp;amp; greatest (most likely in development and unstable) MCAD. Always verify fusion parts against release package manufacturing files prior to use, and they are used at the user&#39;s own risk.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://a360.co/3SuPQGs&quot;&gt;Top Level&lt;/a&gt; - This is HUGE. Consider downloading individual consoles instead.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://a360.co/3LHxMXd&quot;&gt;Upper Instrument Panel (UIP)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://a360.co/3SbD7sc&quot;&gt;Lower Instrument Panel (LIP)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://a360.co/3dBR57I&quot;&gt;Left Console (LC)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://a360.co/37pBiWj&quot;&gt;Right Console (RC)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://a360.co/3LKM3mc&quot;&gt;Center Tub (CT)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Branches&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Master branch is the stable release branch.&lt;/li&gt; 
+ &lt;li&gt;vX.X.X is the latest working branch that will become the next release. It may or may not be functional as is.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Authors and Acknowledgment&lt;/h2&gt; 
+&lt;h3&gt;Core Development Team&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Erik Scott (RandomTroubledMind): &lt;em&gt;Project Founder, Mechanical Design&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;John Steensen (Noctum): &lt;em&gt;Co-Founder, Systems/Mechanical Design Lead&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Oscar Arias (Amanuense): &lt;em&gt;Electrical/Software Design Lead&lt;/em&gt; (Retired from OH)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Contributor Team&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Exprezzo&lt;/li&gt; 
+ &lt;li&gt;Sandra&lt;/li&gt; 
+ &lt;li&gt;Ben-F111&lt;/li&gt; 
+ &lt;li&gt;Lazarus&lt;/li&gt; 
+ &lt;li&gt;Russell&lt;/li&gt; 
+ &lt;li&gt;Arribe VCAW-1&lt;/li&gt; 
+ &lt;li&gt;Stang&lt;/li&gt; 
+ &lt;li&gt;[OCS] CrazyCanuck&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Honorable Mentions&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Logo Design&lt;/strong&gt;: NegativeONE&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Development Builders/Testers&lt;/strong&gt;: Ajmilner, Arribe VCAW-1, Ben-F111, BlaBlaCZ, bnepethomas, Dave the boss 918, DG, DotDotDotBH, Exprezzo, Higgins, Krikeee, Lazarus, Otso, Rampage2010, Russell, Sandra, Splash, Thib-O, tonyg, TripRodriguez, Yannick&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Ultimate Supporters&lt;/strong&gt;: Sandra, Higgins, Chaps, [OCS] CrazyCanuck, Arribe VCAW-1, FL370Pilot, CorgiStyle, Swaney409, DenzilLee, ssgcline, Tyler | &quot;Soapbox&quot; - F-15E&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Elite Supporters&lt;/strong&gt;: thib_o54, ChrisTiger#001, Nodar, Matt&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Donators&lt;/strong&gt;: AJMilner, bnepethomas, Carbine, Crosshairs, Exprezzo, Goutch, Higgins, hrnet940, hunstone, icemarkom, jcstreek, jkkicks, kika, Nik S, Rampage2010, Russell, Sandra, SrSosio, Swaney409, Tekadept + many more…&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Inactive Dev Contributors&lt;/strong&gt;: Balz Reber (Balse), Magic_Man, Bullant, Gaberun24, Damien022, Baago, Caviar4, NegativeONE, Ravell&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Subject Matter Expert&lt;/strong&gt;: FlyNavy75, Sixtigers, USMARINE108, Luft101, Lex&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>LOLBAS-Project/LOLBAS</title>
+      <link>https://github.com/LOLBAS-Project/LOLBAS</link>
+      <description>&lt;p&gt;Living Off The Land Binaries And Scripts - (LOLBins and LOLScripts)&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/actions/workflows/yaml-linting.yml/badge.svg?branch=master&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/LOLBAS-Project/LOLBAS/yaml-linting.yml?branch=master&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS&quot;&gt; &lt;img src=&quot;https://lolbas-project.github.io/assets/lolbas-count.svg?sanitize=true&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/stargazers&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/stars/LOLBAS-Project/LOLBAS?style=social&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;h1&gt;Living Off The Land Binaries and Scripts (and now also Libraries)&lt;/h1&gt; 
+&lt;img src=&quot;https://github.com/api0cradle/LOLBAS/raw/master/Logo/LOLBAS.png&quot; height=&quot;250&quot; /&gt; 
+&lt;p&gt;All the different files can be found behind a fancy frontend here: &lt;a href=&quot;https://lolbas-project.github.io&quot;&gt;https://lolbas-project.github.io&lt;/a&gt; (thanks @ConsciousHacker for this bit of eyecandy and the team over at &lt;a href=&quot;https://gtfobins.github.io/&quot;&gt;https://gtfobins.github.io/&lt;/a&gt;). This repo serves as a place where we maintain the YML files that are used by the fancy frontend.&lt;/p&gt; 
+&lt;h2&gt;Goal&lt;/h2&gt; 
+&lt;p&gt;The goal of the LOLBAS project is to document every binary, script, and library that can be used for Living Off The Land techniques.&lt;/p&gt; 
+&lt;h2&gt;Criteria&lt;/h2&gt; 
+&lt;p&gt;A LOLBin/Lib/Script must:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Be a Microsoft-signed file, either native to the OS or downloaded from Microsoft.&lt;/li&gt; 
+ &lt;li&gt;Have extra &quot;unexpected&quot; functionality. It is not interesting to document intended use cases. 
+  &lt;ul&gt; 
+   &lt;li&gt;Exceptions are application whitelisting bypasses&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Have functionality that would be useful to an APT or red team&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Interesting functionality can include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Executing code 
+  &lt;ul&gt; 
+   &lt;li&gt;Arbitrary code execution&lt;/li&gt; 
+   &lt;li&gt;Pass-through execution of other programs (unsigned) or scripts (via a LOLBin)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Compiling code&lt;/li&gt; 
+ &lt;li&gt;File operations 
+  &lt;ul&gt; 
+   &lt;li&gt;Downloading&lt;/li&gt; 
+   &lt;li&gt;Upload&lt;/li&gt; 
+   &lt;li&gt;Copy&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Persistence 
+  &lt;ul&gt; 
+   &lt;li&gt;Pass-through persistence utilizing existing LOLBin&lt;/li&gt; 
+   &lt;li&gt;Persistence (e.g. hide data in ADS, execute at logon)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;UAC bypass&lt;/li&gt; 
+ &lt;li&gt;Credential theft&lt;/li&gt; 
+ &lt;li&gt;Dumping process memory&lt;/li&gt; 
+ &lt;li&gt;Surveillance (e.g. keylogger, network trace)&lt;/li&gt; 
+ &lt;li&gt;Log evasion/modification&lt;/li&gt; 
+ &lt;li&gt;DLL side-loading/hijacking without being relocated elsewhere in the filesystem.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We do not approve binaries that allows for netntlm coercing, since most Windows binaries allows for that. Only exception is binaries that allows that on other than default ports (such as rpcping) or can allow direct credential theft.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you have found a new LOLBin or LOLScript that you would like to contribute, please review the contributing guidelines located here: &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/raw/master/CONTRIBUTING.md&quot;&gt;https://github.com/LOLBAS-Project/LOLBAS/blob/master/CONTRIBUTING.md&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A template for the required format has been provided here: &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/raw/master/YML-Template.yml&quot;&gt;https://github.com/LOLBAS-Project/LOLBAS/blob/master/YML-Template.yml&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;The History of the LOLBin&lt;/h2&gt; 
+&lt;p&gt;The phrase &quot;Living off the land&quot; was coined by Christopher Campbell (@obscuresec) &amp;amp; Matt Graeber (@mattifestation) at &lt;a href=&quot;https://www.youtube.com/watch?v=j-r6UonEkUw&quot;&gt;DerbyCon 3&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The term LOLBins came from a Twitter discussion on what to call binaries that can be used by an attacker to perform actions beyond their original purpose. Philip Goh (@MathCasualty) &lt;a href=&quot;https://twitter.com/MathCasualty/status/969174982579273728&quot;&gt;proposed LOLBins&lt;/a&gt;. A highly scientific internet poll ensued, and after a general consensus (69%) was reached, the name was &lt;a href=&quot;https://twitter.com/Oddvarmoe/status/985432848961343488&quot;&gt;made official&lt;/a&gt;. Jimmy (@bohops) &lt;a href=&quot;https://twitter.com/bohops/status/984828803120881665&quot;&gt;followed up with LOLScripts&lt;/a&gt;. No poll was taken.&lt;/p&gt; 
+&lt;p&gt;Common hashtags for these files are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;#LOLBin&lt;/li&gt; 
+ &lt;li&gt;#LOLBins&lt;/li&gt; 
+ &lt;li&gt;#LOLScript&lt;/li&gt; 
+ &lt;li&gt;#LOLScripts&lt;/li&gt; 
+ &lt;li&gt;#LOLLib&lt;/li&gt; 
+ &lt;li&gt;#LOLLibs&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Our primary maintainer (@oddvarmoe) of this project did a talk at DerbyCon 2018 called: #Lolbins Nothing to LOL about! - &lt;a href=&quot;https://www.youtube.com/watch?v=NiYTdmZ8GR4&quot;&gt;https://www.youtube.com/watch?v=NiYTdmZ8GR4&lt;/a&gt; This talk goes over the history of this project.&lt;/p&gt; 
+&lt;h2&gt;Maintainers&lt;/h2&gt; 
+&lt;p&gt;The following folks help maintain the LOLBAS Project on their personal time:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Oddvar Moe (&lt;a href=&quot;https://twitter.com/Oddvarmoe&quot;&gt;@oddvarmoe&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Jimmy Bayne (&lt;a href=&quot;https://twitter.com/bohops&quot;&gt;@bohops&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Conor Richard (&lt;a href=&quot;https://twitter.com/xenosCR&quot;&gt;@xenosCR&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Chris &#39;Lopi&#39; Spehn (&lt;a href=&quot;https://twitter.com/ConsciousHacker&quot;&gt;@ConsciousHacker&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Liam (&lt;a href=&quot;https://twitter.com/liamsomerville&quot;&gt;@liamsomerville&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Wietze (&lt;a href=&quot;https://twitter.com/@Wietze&quot;&gt;@Wietze&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Jose Hernandez (&lt;a href=&quot;https://twitter.com/_josehelps&quot;&gt;@_josehelps&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Thanks&lt;/h2&gt; 
+&lt;p&gt;As with many open-source projects, this one is the product of a community and we would like to thank ours:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The domain &lt;a href=&quot;http://lolbins.com&quot;&gt;http://lolbins.com&lt;/a&gt; has been registered by an unknown individual and redirected it to the old version of this project.&lt;/li&gt; 
+ &lt;li&gt;The domain &lt;a href=&quot;http://lolbas-project.com&quot;&gt;http://lolbas-project.com&lt;/a&gt; has been registered by Jimmy (@bohops).&lt;/li&gt; 
+ &lt;li&gt;The logos for the project were created by Adam Nadrowski (@_sup_mane). We #@&amp;amp;!!@#! love them.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Notice&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Please refer to NOTICE.md for license information&lt;/li&gt; 
+&lt;/ul&gt;</description>
+    </item>
+    
+    <item>
+      <title>OpenSCAP/openscap</title>
+      <link>https://github.com/OpenSCAP/openscap</link>
+      <description>&lt;p&gt;NIST Certified SCAP 1.2 toolkit&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OpenSCAP&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/OpenSCAP/openscap/actions/workflows/build.yml&quot;&gt;&lt;img src=&quot;https://github.com/OpenSCAP/openscap/actions/workflows/build.yml/badge.svg?branch=main&quot; alt=&quot;Gating&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/OpenSCAP/openscap?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/OpenSCAP/openscap.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/OpenSCAP/openscap&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Open Source Security Compliance Solution&lt;/p&gt; 
+&lt;h2&gt;About&lt;/h2&gt; 
+&lt;p&gt;The &lt;code&gt;oscap&lt;/code&gt; program is a command line tool that allows users to load, scan, validate, edit, and export SCAP documents.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Homepage of the project: &lt;a href=&quot;http://www.open-scap.org&quot;&gt;www.open-scap.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;User Manual: &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/main/docs/manual/manual.adoc&quot;&gt;OpenSCAP User Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Compilation, testing and debugging: &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/main/docs/developer/developer.adoc&quot;&gt;OpenSCAP Developer Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;For new contributors: &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/main/docs/contribute/contribute.adoc&quot;&gt;How to contribute&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome all contributions to the OpenSCAP project. If you would like to contribute, either by fixing existing issues or adding new features, please check out our &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/main/docs/contribute/contribute.adoc&quot;&gt;contribution guide&lt;/a&gt; to get started. If you would like to discuss anything, ask questions, or if you need additional help getting started, you can either send a message to our libera.chat IRC channel, &lt;strong&gt;#openscap&lt;/strong&gt;, or to our &lt;a href=&quot;https://www.redhat.com/mailman/listinfo/open-scap-list&quot;&gt;mailing list&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Microsoft Windows Support&lt;/h2&gt; 
+&lt;p&gt;The Microsoft Windows support &lt;a href=&quot;https://raw.githubusercontent.com/OpenSCAP/openscap/main/docs/windows.md&quot;&gt;is officially void&lt;/a&gt; as of Febuary 1, 2022.&lt;/p&gt; 
+&lt;h2&gt;Use cases&lt;/h2&gt; 
+&lt;h3&gt;SCAP Content Validation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The following example shows how to validate a given source data stream; all components within the data stream are validated (XCCDF, OVAL, OCIL, CPE, and possibly other components):&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap ds sds-validate scap-ds.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Scanning&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate all definitions within the given OVAL Definition file, run the following command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap oval eval --results oval-results.xml scap-oval.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where scap-oval.xml is the OVAL Definition file and oval-results.xml is the OVAL Result file.&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate all definitions from the OVAL component that are part of a particular data stream within a SCAP data stream collection, run the following command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap oval eval --datastream-id ds.xml --oval-id xccdf.xml --results oval-results.xml scap-ds.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where ds.xml is the given data stream, xccdf.xml is an XCCDF file specifying the OVAL component, oval-results.xml is the OVAL Result file, and scap-ds.xml is a file representing the SCAP data stream collection.&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate a specific profile in an XCCDF file run this command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf eval --profile Desktop --results xccdf-results.xml --cpe cpe-dictionary.xml scap-xccdf.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where scap-xccdf.xml is the XCCDF document, Desktop is the selected profile from the XCCDF document, xccdf-results.xml is a file storing the scan results, and cpe-dictionary.xml is the CPE dictionary.&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To evaluate a specific XCCDF benchmark that is part of a data stream within a SCAP data stream collection run the following command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf eval --datastream-id ds.xml --xccdf-id xccdf.xml --results xccdf-results.xml scap-ds.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;where scap-ds.xml is a file representing the SCAP data stream collection, ds.xml is the particular data stream, xccdf.xml is ID of the component-ref pointing to the desired XCCDF document, and xccdf-results.xml is a file containing the scan results.&lt;/em&gt;&lt;/p&gt; 
+&lt;h3&gt;Document generation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;without XCCDF rules&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf generate guide XCCDF-FILE &amp;gt; XCCDF-GUIDE-FILE
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;with XCCDF rules&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf generate guide --profile PROFILE XCCDF-FILE &amp;gt; XCCDF-GUIDE-FILE
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;generate report from scanning&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;oscap xccdf generate report XCCDF-RESULT-FILE &amp;gt; XCCDF-REPORT-FILE
+&lt;/code&gt;&lt;/pre&gt;</description>
+    </item>
+    
+  </channel>
+</rss>
