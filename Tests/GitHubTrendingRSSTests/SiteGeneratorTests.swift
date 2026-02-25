@@ -39,14 +39,17 @@ final class SiteGeneratorTests: XCTestCase {
     }
 
     func testGenerateRSS() throws {
+        var repoWithOpenGraph = Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world")
+        repoWithOpenGraph.openGraphImageUrl = URL(string: "https://example.com/hello-world.png")
         let html = try maker.makeRSS(
             from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
             period: .weekly,
             repositories: [
-                Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"),
+                repoWithOpenGraph,
                 Repository(pageLink: RepositoryPageLink(href: "foo/bar"), summary: "foo bar"),
             ], supportedEmojis: supportedEmojis
         )
-        print(html)
+        XCTAssertTrue(html.contains("hello-world.png"))
+        XCTAssertTrue(html.contains("<media:content url=\"https://example.com/hello-world.png\" medium=\"image\" />"))
     }
 }

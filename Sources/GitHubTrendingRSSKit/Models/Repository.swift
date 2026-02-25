@@ -9,6 +9,8 @@ public struct Repository {
     public let pageLink: RepositoryPageLink
     public let summary: String
     public var readMe: APIReadMe?
+    public var openGraphImageUrl: URL?
+    public var usesCustomOpenGraphImage: Bool = false
 
     private let asciidoctor = SwiftAsciidoctor()
 

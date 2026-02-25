@@ -17,18 +17,29 @@ public class DownloadManager {
 
     public init() {}
 
-    public func fetch(url: URL, header: [String: String] = [:], basicAuthInfo: BasicAuthInfo? = nil) -> AnyPublisher<String, Swift.Error> {
+    public func fetch(
+        url: URL,
+        httpMethod: String = "GET",
+        httpBody: Data? = nil,
+        header: [String: String] = [:],
+        basicAuthInfo: BasicAuthInfo? = nil,
+        bearerToken: String? = nil
+    ) -> AnyPublisher<String, Swift.Error> {
         return Result.Publisher(())
             .flatMap { _ -> AnyPublisher<String, Swift.Error> in
                 let session = URLSession.shared
 
                 var request = URLRequest(url: url)
+                request.httpMethod = httpMethod
+                request.httpBody = httpBody
                 for keyValue in header {
                     request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
                 }
                 do {
                     if let basicAuthInfo = try basicAuthInfo?.makeHeaderValue() {
                         request.addValue(basicAuthInfo, forHTTPHeaderField: "Authorization")
+                    } else if let bearerToken {
+                        request.addValue("bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
                     }
                 } catch {
                     return Fail(error: error).eraseToAnyPublisher()

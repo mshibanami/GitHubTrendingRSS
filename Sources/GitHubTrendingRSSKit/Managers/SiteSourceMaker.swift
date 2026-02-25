@@ -72,7 +72,8 @@ public class SiteSourceMaker {
                     userID: $0.pageLink.userID,
                     repositoryName: $0.pageLink.repositoryName,
                     url: $0.pageLink.url.absoluteString,
-                    pageLink: $0.pageLink
+                    pageLink: $0.pageLink,
+                    openGraphImageUrl: $0.openGraphImageUrl?.absoluteString
                 )
             },
             "periods": Period.allCases.map(\.rawValue),

@@ -22,9 +22,14 @@ nonisolated(unsafe) let gitHubDownloader = GitHubDownloader(
     clientID: Const.gitHubClientID,
     clientSecret: Const.gitHubClientSecret
 )
+nonisolated(unsafe) let graphQLManager = GitHubGraphQLManager(
+    downloadManager: downloadManager,
+    apiToken: Const.gitHubClientSecret
+)
 
 let environment = Environment(
-    loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
+    loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)])
+)
 
 let siteInformation = SiteSourceMaker.Information(
     pageTitle: Const.pageTitle,
@@ -57,12 +62,35 @@ func start() throws -> AnyPublisher<Void, Error> {
 
             let fetchRepositoriesByPeriod: [[AnyPublisher<Void, Error>]] = Period.allCases.map { period in
                 languageLinks.map { link in
-                    let fetchRepository = gitHubDownloader
+                    return gitHubDownloader
                         .fetchRepositories(
                             ofLink: link,
                             period: period,
                             includesReadMeIfExists: Const.popularLanguages.contains(link.name)
                         )
+                        .flatMap { repositories -> AnyPublisher<[Repository], Error> in
+                            if repositories.isEmpty {
+                                return Result.Publisher(repositories).eraseToAnyPublisher()
+                            }
+                            let reposQueryInfo = repositories.map { (owner: $0.pageLink.userID, name: $0.pageLink.repositoryName) }
+
+                            return graphQLManager.fetchRepositoriesOGImages(repositories: reposQueryInfo)
+                                .map { ogDataMap in
+                                    var updatedRepositories = repositories
+                                    for i in 0..<updatedRepositories.count {
+                                        if let ogNode = ogDataMap["repo_\\(i)"] {
+                                            updatedRepositories[i].openGraphImageUrl = ogNode.openGraphImageUrl
+                                            updatedRepositories[i].usesCustomOpenGraphImage = ogNode.usesCustomOpenGraphImage
+                                        }
+                                    }
+                                    return updatedRepositories
+                                }
+                                .catch { error -> AnyPublisher<[Repository], Error> in
+                                    NSLog("⚠️ Failed to fetch GraphQL for \(link.name): \(error). Proceeding without OG Images.")
+                                    return Result.Publisher(repositories).eraseToAnyPublisher()
+                                }
+                                .eraseToAnyPublisher()
+                        }
                         .map { $0 as [Repository]? }
                         .catch { error -> AnyPublisher<[Repository]?, Error> in
                             if let error = error as? DownloadManager.Error,
@@ -86,10 +114,10 @@ func start() throws -> AnyPublisher<Void, Error> {
                                     period: period,
                                     supportedEmojis: supportedEmojis
                                 )
-                            })
+                            }
+                        )
                         .map { _ in () }
                         .eraseToAnyPublisher()
-                    return fetchRepository
                 }
             }
 
