@@ -2,27 +2,25 @@ name: Fetch and Generate RSS Feeds
 
 on:
   schedule:
-    - cron:  '0 1 * * *'
+    - cron: "0 1 * * *"
   repository_dispatch:
   workflow_dispatch:
 
 jobs:
   build:
-
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v4
-    - name: Setup Swift
-      uses: swift-actions/setup-swift@v2
-      with:
-        swift-version: '6.1'
-    - name: Build
-      env:
-        USER_GITHUB_CLIENT_ID: ${{ secrets.USER_GITHUB_CLIENT_ID }}
-        USER_GITHUB_CLIENT_SECRET: ${{ secrets.USER_GITHUB_CLIENT_SECRET }}
-      run: ./build.sh
-    - name: Deploy
-      env:
-        USER_GITHUB_TOKEN: ${{ secrets.USER_GITHUB_TOKEN }}
-      run: ./deploy.sh
+      - uses: actions/checkout@v4
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6.1"
+      - name: Build
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./build.sh
+      - name: Deploy
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        run: ./deploy.sh

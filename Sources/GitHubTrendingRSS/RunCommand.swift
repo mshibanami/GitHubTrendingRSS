@@ -11,13 +11,10 @@ class RunCommand: Command {
     @Option(name: "configuration", shorthand: "c", documentation: "(Dummy. Reserved by Swift.)")
     var configuration: String = ""
 
-    @Option(name: "client-id", documentation: "GitHub's client ID")
-    var clientID: String = ""
-
-    @Option(name: "client-secret", documentation: "GitHub's client secret")
-    var clientSecret: String = ""
+    @Option(name: "github-token", documentation: "GitHub's Personal Access Token (for GraphQL API)")
+    var githubToken: String = ""
 
     func run(outputStream: inout TextOutputStream, errorStream: inout TextOutputStream) throws {
-        Const.setup(gitHubClientID: clientID, gitHubClientSecret: clientSecret)
+        Const.setup(githubToken: githubToken)
     }
 }

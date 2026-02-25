@@ -25,11 +25,9 @@ public class Const {
         return resourcesURL
     }
 
-
     public static let googleAnalyticsTrackingCode = "UA-46019833-3"
 
-    nonisolated(unsafe) public private(set) static var gitHubClientID: String!
-    nonisolated(unsafe) public private(set) static var gitHubClientSecret: String!
+    public private(set) nonisolated(unsafe) static var githubToken: String!
 
     public static let popularLanguages = [
         "all",
@@ -70,8 +68,7 @@ public class Const {
         "xslt",
     ]
 
-    public static func setup(gitHubClientID: String, gitHubClientSecret: String) {
-        self.gitHubClientID = gitHubClientID
-        self.gitHubClientSecret = gitHubClientSecret
+    public static func setup(githubToken: String) {
+        self.githubToken = githubToken
     }
 }

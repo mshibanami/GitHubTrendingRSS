@@ -19,12 +19,11 @@ nonisolated(unsafe) let gitHubPageParser = GitHubPageParser()
 nonisolated(unsafe) let gitHubDownloader = GitHubDownloader(
     downloadManager: downloadManager,
     gitHubPageParser: gitHubPageParser,
-    clientID: Const.gitHubClientID,
-    clientSecret: Const.gitHubClientSecret
+    githubToken: Const.githubToken
 )
 nonisolated(unsafe) let graphQLManager = GitHubGraphQLManager(
     downloadManager: downloadManager,
-    apiToken: Const.gitHubClientSecret
+    apiToken: Const.githubToken
 )
 
 let environment = Environment(

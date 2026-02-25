@@ -13,22 +13,19 @@ public class GitHubDownloader {
 
     let downloadManager: DownloadManager
     let gitHubPageParser: GitHubPageParser
-    private let basicAuthInfo: BasicAuthInfo
+    private let githubToken: String
 
-    public init(downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, clientID: String, clientSecret: String) {
+    public init(downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, githubToken: String) {
         self.downloadManager = downloadManager
         self.gitHubPageParser = gitHubPageParser
-        basicAuthInfo = BasicAuthInfo(
-            userName: Const.gitHubClientID,
-            password: Const.gitHubClientSecret
-        )
+        self.githubToken = githubToken
     }
 
     public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, includesReadMeIfExists: Bool) -> AnyPublisher<[Repository], Swift.Error> {
         let fetchRepositories = downloadManager
             .fetch(
                 url: languageTrendingLink.url(ofPeriod: period),
-                basicAuthInfo: basicAuthInfo
+                bearerToken: githubToken
             )
             .tryMap { [weak self] page -> [Repository] in
                 guard let self else {
@@ -78,7 +75,7 @@ public class GitHubDownloader {
             return Fail(error: DownloadManager.Error.invalidURL).eraseToAnyPublisher()
         }
         return downloadManager
-            .fetch(url: url, basicAuthInfo: basicAuthInfo)
+            .fetch(url: url, bearerToken: githubToken)
             .tryMap { page in
                 guard let data = page.data(using: .utf8) else {
                     throw Error.unsupportedFormat
@@ -97,7 +94,7 @@ public class GitHubDownloader {
 
     public func fetchSupportedEmojis() -> AnyPublisher<[GitHubEmoji], Swift.Error> {
         return downloadManager
-            .fetch(url: Const.gitHubAPIEmojisURL, basicAuthInfo: basicAuthInfo)
+            .fetch(url: Const.gitHubAPIEmojisURL, bearerToken: githubToken)
             .tryMap { body -> [GitHubEmoji] in
                 guard let data = body.data(using: .utf8) else {
                     throw Error.unsupportedFormat
