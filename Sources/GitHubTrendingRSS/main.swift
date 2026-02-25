@@ -77,7 +77,7 @@ func start() throws -> AnyPublisher<Void, Error> {
                                 .map { ogDataMap in
                                     var updatedRepositories = repositories
                                     for i in 0..<updatedRepositories.count {
-                                        if let ogNode = ogDataMap["repo_\\(i)"] {
+                                        if let ogNode = ogDataMap["repo_\(i)"] {
                                             updatedRepositories[i].openGraphImageUrl = ogNode.openGraphImageUrl
                                             updatedRepositories[i].usesCustomOpenGraphImage = ogNode.usesCustomOpenGraphImage
                                         }

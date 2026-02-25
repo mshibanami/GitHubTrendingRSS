@@ -38,7 +38,7 @@ public class DownloadManager {
                 do {
                     if let basicAuthInfo = try basicAuthInfo?.makeHeaderValue() {
                         request.addValue(basicAuthInfo, forHTTPHeaderField: "Authorization")
-                    } else if let bearerToken {
+                    } else if let bearerToken, !bearerToken.isEmpty {
                         request.addValue("bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
                     }
                 } catch {
