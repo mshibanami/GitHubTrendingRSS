@@ -21,7 +21,7 @@ public struct Repository {
 
     public func makeReadMeHTML(includesSummary: Bool, supportedEmojis: [GitHubEmoji]) -> String? {
         var html: String?
-        if includesSummary {
+        if includesSummary, !summary.isEmpty {
             html = (html ?? "") + #"<p>\#(summary)</p><hr>"#
         }
 
