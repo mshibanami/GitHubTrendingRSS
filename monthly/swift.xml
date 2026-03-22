@@ -1,0 +1,1970 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Swift Monthly Trending</title>
+    <description>Monthly Trending of Swift in GitHub</description>
+    <pubDate>Sun, 22 Mar 2026 02:01:00 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>ml-explore/mlx-swift-lm</title>
+      <link>https://github.com/ml-explore/mlx-swift-lm</link>
+      <description>&lt;p&gt;LLMs and VLMs with MLX Swift&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;MLX Swift LM&lt;/h1&gt; 
+&lt;p&gt;MLX Swift LM is a Swift package to build tools and applications with large language models (LLMs) and vision language models (VLMs) in &lt;a href=&quot;https://github.com/ml-explore/mlx-swift&quot;&gt;MLX Swift&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Some key features include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Integration with the Hugging Face Hub to easily use thousands of LLMs with a single command.&lt;/li&gt; 
+ &lt;li&gt;Low-rank (LoRA) and full model fine-tuning with support for quantized models.&lt;/li&gt; 
+ &lt;li&gt;Many model architectures for both LLMs and VLMs.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For some example applications and tools that use MLX Swift LM check out the &lt;a href=&quot;https://github.com/ml-explore/mlx-swift-examples&quot;&gt;MLX Swift Examples&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Using MLX Swift LM&lt;/h1&gt; 
+&lt;p&gt;The MLXLLM, MLXVLM, MLXLMCommon, and MLXEmbedders libraries are available as Swift Packages.&lt;/p&gt; 
+&lt;p&gt;Add the following dependency to your Package.swift:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;.package(url: &quot;https://github.com/ml-explore/mlx-swift-lm/&quot;, branch: &quot;main&quot;),
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or use the latest release:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;.package(url: &quot;https://github.com/ml-explore/mlx-swift-lm/&quot;, .upToNextMinor(from: &quot;2.29.1&quot;)),
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then add one or more libraries to the target as a dependency:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;.target(
+    name: &quot;YourTargetName&quot;,
+    dependencies: [
+        .product(name: &quot;MLXLLM&quot;, package: &quot;mlx-swift-lm&quot;)
+    ]),
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, add &lt;code&gt;https://github.com/ml-explore/mlx-swift-lm/&lt;/code&gt; to the &lt;code&gt;Project Dependencies&lt;/code&gt; and set the &lt;code&gt;Dependency Rule&lt;/code&gt; to &lt;code&gt;Branch&lt;/code&gt; and &lt;code&gt;main&lt;/code&gt; in Xcode.&lt;/p&gt; 
+&lt;h1&gt;Quick Start&lt;/h1&gt; 
+&lt;p&gt;See also &lt;a href=&quot;https://raw.githubusercontent.com/ml-explore/mlx-swift-lm/main/Libraries/MLXLMCommon&quot;&gt;MLXLMCommon&lt;/a&gt;. You can get started with a wide variety of open weights LLMs and VLMs using this simplified API:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let model = try await loadModel(id: &quot;mlx-community/Qwen3-4B-4bit&quot;)
+let session = ChatSession(model)
+print(try await session.respond(to: &quot;What are two things to see in San Francisco?&quot;))
+print(try await session.respond(to: &quot;How about a great place to eat?&quot;))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or use the underlying API to control every aspect of the evaluation.&lt;/p&gt; 
+&lt;h1&gt;Documentation&lt;/h1&gt; 
+&lt;p&gt;Developers can use these examples in their own programs -- just import the swift package!&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/ml-explore/mlx-swift-lm/main/documentation/mlxlmcommon/porting&quot;&gt;Porting and implementing models&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/ml-explore/mlx-swift-lm/main/documentation/mlxlmcommon&quot;&gt;MLXLLMCommon&lt;/a&gt; -- common API for LLM and VLM&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/ml-explore/mlx-swift-lm/main/documentation/mlxllm&quot;&gt;MLXLLM&lt;/a&gt; -- large language model example implementations&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/ml-explore/mlx-swift-lm/main/documentation/mlxvlm&quot;&gt;MLXVLM&lt;/a&gt; -- vision language model example implementations&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/ml-explore/mlx-swift-lm/main/documentation/mlxembedders&quot;&gt;MLXEmbedders&lt;/a&gt; -- popular Encoders / Embedding models example implementations&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/78dadc980557b0e22b69ee1564b95e600c84b9cc9672c494d6497369d76769bc/ml-explore/mlx-swift-lm" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>exelban/stats</title>
+      <link>https://github.com/exelban/stats</link>
+      <description>&lt;p&gt;macOS system monitor in your menu bar&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Stats&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;img src=&quot;https://github.com/exelban/stats/raw/master/Stats/Supporting%20Files/Assets.xcassets/AppIcon.appiconset/icon_256x256.png&quot; width=&quot;120&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;img src=&quot;https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/stats/menus%3Fv2.3.2.png?v1&quot; alt=&quot;Stats&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;img src=&quot;https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/stats/popups%3Fv2.3.2.png?v3&quot; alt=&quot;Stats&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;macOS system monitor in your menu bar&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Manual&lt;/h3&gt; 
+&lt;p&gt;You can download the latest version &lt;a href=&quot;https://github.com/exelban/stats/releases/latest/download/Stats.dmg&quot;&gt;here&lt;/a&gt;. This will download a file called &lt;code&gt;Stats.dmg&lt;/code&gt;. Open it and move the app to the application folder.&lt;/p&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;p&gt;To install it using Homebrew, open the Terminal app and type:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install stats
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Legacy version&lt;/h3&gt; 
+&lt;p&gt;Legacy version for older systems could be found &lt;a href=&quot;https://mac-stats.com/downloads&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;Stats is supported on the released macOS version starting from macOS 11.15 (Big Sur).&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;Stats is an application that allows you to monitor your macOS system.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;CPU utilization&lt;/li&gt; 
+ &lt;li&gt;GPU utilization&lt;/li&gt; 
+ &lt;li&gt;Memory usage&lt;/li&gt; 
+ &lt;li&gt;Disk utilization&lt;/li&gt; 
+ &lt;li&gt;Network usage&lt;/li&gt; 
+ &lt;li&gt;Battery level&lt;/li&gt; 
+ &lt;li&gt;Fan&#39;s control (not maintained)&lt;/li&gt; 
+ &lt;li&gt;Sensors information (Temperature/Voltage/Power)&lt;/li&gt; 
+ &lt;li&gt;Bluetooth devices&lt;/li&gt; 
+ &lt;li&gt;Multiple time zone clock&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;FAQs&lt;/h2&gt; 
+&lt;h3&gt;How do you change the order of the menu bar icons?&lt;/h3&gt; 
+&lt;p&gt;macOS decides the order of the menu bar items not &lt;code&gt;Stats&lt;/code&gt; - it may change after the first reboot after installing Stats.&lt;/p&gt; 
+&lt;p&gt;To change the order of any menu bar icon - macOS Mojave (version 10.14) and up.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Hold down ⌘ (command key).&lt;/li&gt; 
+ &lt;li&gt;Drag the icon to the desired position on the menu bar.&lt;/li&gt; 
+ &lt;li&gt;Release ⌘ (command key)&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;How to reduce energy impact or CPU usage of Stats?&lt;/h3&gt; 
+&lt;p&gt;Stats tries to be efficient as it&#39;s possible. But reading some data periodically is not a cheap task. Each module has its own &quot;price&quot;. So, if you want to reduce energy impact from the Stats you need to disable some Stats modules. The most inefficient modules are Sensors and Bluetooth. Disabling these modules could reduce CPU usage and power efficiency by up to 50% in some cases.&lt;/p&gt; 
+&lt;h3&gt;Fan control&lt;/h3&gt; 
+&lt;p&gt;Fan control is in legacy mode. It does not receive any updates or fixes. It&#39;s not dropped from the app just because in the old Macs it works pretty acceptable. I&#39;m open to accepting fixed or improvements (via PR) for this feature in case someone would like to help with that. But have no option and time to provide support for this feature.&lt;/p&gt; 
+&lt;h3&gt;Sensors show incorrect CPU/GPU core count&lt;/h3&gt; 
+&lt;p&gt;CPU/GPU sensors are simply thermal zones (sensors) on the CPU/GPU. They have no relation to the number of cores or specific cores. For example, a CPU is typically divided into two clusters: efficiency and performance. Each cluster contains multiple temperature sensors, and Stats simply displays these sensors. However, &quot;CPU Efficient Core 1&quot; does not represent the temperature of a single efficient core—it only indicates one of the temperature sensors within the efficiency core cluster. Additionally, with each new SoC, Apple changes the sensor keys. As a result, it takes time to determine which SMC values correspond to the appropriate sensors. If anyone knows how to accurately match the sensors for Apple Silicon, please contact me.&lt;/p&gt; 
+&lt;h3&gt;App crash – what to do?&lt;/h3&gt; 
+&lt;p&gt;First, ensure that you are using the latest version of Stats. There is a high chance that a fix preventing the crash has already been released. If you are already running the latest version, check the open issues. Only if none of the existing issues address your problem should you open a new issue.&lt;/p&gt; 
+&lt;h3&gt;Why my issue was closed without any response?&lt;/h3&gt; 
+&lt;p&gt;Most probably because it&#39;s a duplicated issue and there is an answer to the question, report, or proposition. Please use a search by closed issues to get an answer. So, if your issue was closed without any response, most probably it already has a response.&lt;/p&gt; 
+&lt;h3&gt;External API&lt;/h3&gt; 
+&lt;p&gt;Stats uses some external APIs, such as:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.mac-stats.com&quot;&gt;https://api.mac-stats.com&lt;/a&gt; – For update checks and retrieving the public IP address&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.github.com&quot;&gt;https://api.github.com&lt;/a&gt; – Fallback for update checks&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Both of these APIs are used to check for updates. Additionally, an external request is required to obtain the public IP address. I do not want to use any third-party providers for retrieving the public IP address, so I use my own server for this purpose.&lt;/p&gt; 
+&lt;p&gt;If you have concerns about these requests, you have a few options:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;propose a PR that allows these features to work without an external server&lt;/li&gt; 
+ &lt;li&gt;block both of these servers using any network filtering app (if you&#39;re reading this, you&#39;re likely using something like Little Snitch, so you can easily do this). In this case do not expect to receive any updates or see your public IP in the network module.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Supported languages&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;English&lt;/li&gt; 
+ &lt;li&gt;Polski&lt;/li&gt; 
+ &lt;li&gt;Українська&lt;/li&gt; 
+ &lt;li&gt;Русский&lt;/li&gt; 
+ &lt;li&gt;中文 (简体) (thanks to &lt;a href=&quot;https://github.com/chenguokai&quot;&gt;chenguokai&lt;/a&gt;, &lt;a href=&quot;https://github.com/Tai-Zhou&quot;&gt;Tai-Zhou&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Jerry23011&quot;&gt;Jerry&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Türkçe (thanks to &lt;a href=&quot;https://github.com/yusufozgul&quot;&gt;yusufozgul&lt;/a&gt; and &lt;a href=&quot;https://github.com/setanarut&quot;&gt;setanarut&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;한국어 (thanks to &lt;a href=&quot;https://github.com/escapeanaemia&quot;&gt;escapeanaemia&lt;/a&gt; and &lt;a href=&quot;https://github.com/iamhslee&quot;&gt;iamhslee&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;German (thanks to &lt;a href=&quot;https://github.com/natterstefan&quot;&gt;natterstefan&lt;/a&gt; and &lt;a href=&quot;https://github.com/aneitel&quot;&gt;aneitel&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;中文 (繁體) (thanks to &lt;a href=&quot;https://github.com/iamch15542&quot;&gt;iamch15542&lt;/a&gt; and &lt;a href=&quot;https://github.com/jrthsr700tmax&quot;&gt;jrthsr700tmax&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Spanish (thanks to &lt;a href=&quot;https://github.com/jcconca&quot;&gt;jcconca&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Vietnamese (thanks to &lt;a href=&quot;https://github.com/xuandung38&quot;&gt;HXD.VN&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;French (thanks to &lt;a href=&quot;https://github.com/RomainLt&quot;&gt;RomainLt&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Italian (thanks to &lt;a href=&quot;https://github.com/gmcinalli&quot;&gt;gmcinalli&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Portuguese (Brazil) (thanks to &lt;a href=&quot;https://github.com/marcelochaves95&quot;&gt;marcelochaves95&lt;/a&gt; and &lt;a href=&quot;https://github.com/pedroserigatto&quot;&gt;pedroserigatto&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Norwegian Bokmål (thanks to &lt;a href=&quot;https://github.com/rubjo&quot;&gt;rubjo&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;日本語 (thanks to &lt;a href=&quot;https://github.com/treastrain&quot;&gt;treastrain&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Portuguese (Portugal) (thanks to &lt;a href=&quot;https://github.com/AdamModus&quot;&gt;AdamModus&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Czech (thanks to &lt;a href=&quot;https://github.com/mpl75&quot;&gt;mpl75&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Magyar (thanks to &lt;a href=&quot;https://github.com/moriczr&quot;&gt;moriczr&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Bulgarian (thanks to &lt;a href=&quot;https://github.com/zbrox&quot;&gt;zbrox&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Romanian (thanks to &lt;a href=&quot;https://github.com/razluta&quot;&gt;razluta&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Dutch (thanks to &lt;a href=&quot;https://github.com/ngohungphuc&quot;&gt;ngohungphuc&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Hrvatski (thanks to &lt;a href=&quot;https://github.com/milotype&quot;&gt;milotype&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Danish (thanks to &lt;a href=&quot;https://github.com/casperes1996&quot;&gt;casperes1996&lt;/a&gt; and &lt;a href=&quot;https://github.com/aleksanderbl29&quot;&gt;aleksanderbl29&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Catalan (thanks to &lt;a href=&quot;https://github.com/davidalonso&quot;&gt;davidalonso&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Indonesian (thanks to &lt;a href=&quot;https://github.com/yooody&quot;&gt;yooody&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Hebrew (thanks to &lt;a href=&quot;https://github.com/BadSugar&quot;&gt;BadSugar&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Slovenian (thanks to &lt;a href=&quot;https://github.com/zigapovhe&quot;&gt;zigapovhe&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Greek (thanks to &lt;a href=&quot;https://github.com/sudoxcess&quot;&gt;sudoxcess&lt;/a&gt; and &lt;a href=&quot;https://github.com/vaionicle&quot;&gt;vaionicle&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Persian (thanks to &lt;a href=&quot;https://github.com/ShawnAlisson&quot;&gt;ShawnAlisson&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Slovenský (thanks to &lt;a href=&quot;https://github.com/martinbernat&quot;&gt;martinbernat&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Thai (thanks to &lt;a href=&quot;https://github.com/apiphoomchu&quot;&gt;apiphoomchu&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Estonian (thanks to &lt;a href=&quot;https://github.com/postylem&quot;&gt;postylem&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Hindi (thanks to &lt;a href=&quot;https://github.com/patiljignesh&quot;&gt;patiljignesh&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Finnish (thanks to &lt;a href=&quot;https://github.com/eightscrow&quot;&gt;eightscrow&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can help by adding a new language or improving the existing translation.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/exelban/stats/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/189285554/f6de4500-d335-11e9-9bea-89158f46d803" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>steipete/CodexBar</title>
+      <link>https://github.com/steipete/CodexBar</link>
+      <description>&lt;p&gt;Show usage stats for OpenAI Codex and Claude Code, without having to login.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;CodexBar 🎚️ - May your tokens never run out.&lt;/h1&gt; 
+&lt;p&gt;Tiny macOS 14+ menu bar app that keeps your Codex, Claude, Cursor, Gemini, Antigravity, Droid (Factory), Copilot, z.ai, Kiro, Vertex AI, Augment, Amp, JetBrains AI, and OpenRouter limits visible (session + weekly where available) and shows when each window resets. One status item per provider (or Merge Icons mode with a provider switcher and optional Overview tab); enable what you use from Settings. No Dock icon, minimal UI, dynamic bar icons in the menu bar.&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/codexbar.png&quot; alt=&quot;CodexBar menu screenshot&quot; width=&quot;520&quot; /&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 14+ (Sonoma)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;GitHub Releases&lt;/h3&gt; 
+&lt;p&gt;Download: &lt;a href=&quot;https://github.com/steipete/CodexBar/releases&quot;&gt;https://github.com/steipete/CodexBar/releases&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install --cask steipete/tap/codexbar
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Linux (CLI only)&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install steipete/tap/codexbar
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or download &lt;code&gt;CodexBarCLI-v&amp;lt;tag&amp;gt;-linux-&amp;lt;arch&amp;gt;.tar.gz&lt;/code&gt; from GitHub Releases. Linux support via Omarchy: community Waybar module and TUI, driven by the &lt;code&gt;codexbar&lt;/code&gt; executable.&lt;/p&gt; 
+&lt;h3&gt;First run&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Open Settings → Providers and enable what you use.&lt;/li&gt; 
+ &lt;li&gt;Install/sign in to the provider sources you rely on (e.g. &lt;code&gt;codex&lt;/code&gt;, &lt;code&gt;claude&lt;/code&gt;, &lt;code&gt;gemini&lt;/code&gt;, browser cookies, or OAuth; Antigravity requires the Antigravity app running).&lt;/li&gt; 
+ &lt;li&gt;Optional: Settings → Providers → Codex → OpenAI cookies (Automatic or Manual) to add dashboard extras.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Providers&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/codex.md&quot;&gt;Codex&lt;/a&gt; — Local Codex CLI RPC (+ PTY fallback) and optional OpenAI web dashboard extras.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/claude.md&quot;&gt;Claude&lt;/a&gt; — OAuth API or browser cookies (+ CLI PTY fallback); session + weekly usage.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/cursor.md&quot;&gt;Cursor&lt;/a&gt; — Browser session cookies for plan + usage + billing resets.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/gemini.md&quot;&gt;Gemini&lt;/a&gt; — OAuth-backed quota API using Gemini CLI credentials (no browser cookies).&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/antigravity.md&quot;&gt;Antigravity&lt;/a&gt; — Local language server probe (experimental); no external auth.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/factory.md&quot;&gt;Droid&lt;/a&gt; — Browser cookies + WorkOS token flows for Factory usage + billing.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/copilot.md&quot;&gt;Copilot&lt;/a&gt; — GitHub device flow + Copilot internal usage API.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/zai.md&quot;&gt;z.ai&lt;/a&gt; — API token (Keychain) for quota + MCP windows.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/kimi.md&quot;&gt;Kimi&lt;/a&gt; — Auth token (JWT from &lt;code&gt;kimi-auth&lt;/code&gt; cookie) for weekly quota + 5‑hour rate limit.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/kimi-k2.md&quot;&gt;Kimi K2&lt;/a&gt; — API key for credit-based usage totals.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/kiro.md&quot;&gt;Kiro&lt;/a&gt; — CLI-based usage via &lt;code&gt;kiro-cli /usage&lt;/code&gt; command; monthly credits + bonus credits.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/vertexai.md&quot;&gt;Vertex AI&lt;/a&gt; — Google Cloud gcloud OAuth with token cost tracking from local Claude logs.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/augment.md&quot;&gt;Augment&lt;/a&gt; — Browser cookie-based authentication with automatic session keepalive; credits tracking and usage monitoring.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/amp.md&quot;&gt;Amp&lt;/a&gt; — Browser cookie-based authentication with Amp Free usage tracking.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/jetbrains.md&quot;&gt;JetBrains AI&lt;/a&gt; — Local XML-based quota from JetBrains IDE configuration; monthly credits tracking.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/openrouter.md&quot;&gt;OpenRouter&lt;/a&gt; — API token for credit-based usage tracking across multiple AI providers.&lt;/li&gt; 
+ &lt;li&gt;Open to new providers: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/provider.md&quot;&gt;provider authoring guide&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Icon &amp;amp; Screenshot&lt;/h2&gt; 
+&lt;p&gt;The menu bar icon is a tiny two-bar meter:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Top bar: 5‑hour/session window. If weekly is missing/exhausted and credits are available, it becomes a thicker credits bar.&lt;/li&gt; 
+ &lt;li&gt;Bottom bar: weekly window (hairline).&lt;/li&gt; 
+ &lt;li&gt;Errors/stale data dim the icon; status overlays indicate incidents.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Multi-provider menu bar with per-provider toggles (Settings → Providers).&lt;/li&gt; 
+ &lt;li&gt;Session + weekly meters with reset countdowns.&lt;/li&gt; 
+ &lt;li&gt;Optional Codex web dashboard enrichments (code review remaining, usage breakdown, credits history).&lt;/li&gt; 
+ &lt;li&gt;Local cost-usage scan for Codex + Claude (last 30 days).&lt;/li&gt; 
+ &lt;li&gt;Provider status polling with incident badges in the menu and icon overlay.&lt;/li&gt; 
+ &lt;li&gt;Merge Icons mode to combine providers into one status item + switcher, with an optional Overview tab for up to three providers.&lt;/li&gt; 
+ &lt;li&gt;Refresh cadence presets (manual, 1m, 2m, 5m, 15m).&lt;/li&gt; 
+ &lt;li&gt;Bundled CLI (&lt;code&gt;codexbar&lt;/code&gt;) for scripts and CI (including &lt;code&gt;codexbar cost --provider codex|claude&lt;/code&gt; for local cost usage); Linux CLI builds available.&lt;/li&gt; 
+ &lt;li&gt;WidgetKit widget mirrors the menu card snapshot.&lt;/li&gt; 
+ &lt;li&gt;Privacy-first: on-device parsing by default; browser cookies are opt-in and reused (no passwords stored).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Privacy note&lt;/h2&gt; 
+&lt;p&gt;Wondering if CodexBar scans your disk? It doesn’t crawl your filesystem; it reads a small set of known locations (browser cookies/local storage, local JSONL logs) when the related features are enabled. See the discussion and audit notes in &lt;a href=&quot;https://github.com/steipete/CodexBar/issues/12&quot;&gt;issue #12&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;macOS permissions (why they’re needed)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Full Disk Access (optional)&lt;/strong&gt;: only required to read Safari cookies/local storage for web-based providers (Codex web, Claude web, Cursor, Droid/Factory). If you don’t grant it, use Chrome/Firefox cookies or CLI-only sources instead.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Keychain access (prompted by macOS)&lt;/strong&gt;: 
+  &lt;ul&gt; 
+   &lt;li&gt;Chrome cookie import needs the “Chrome Safe Storage” key to decrypt cookies.&lt;/li&gt; 
+   &lt;li&gt;Claude OAuth credentials (written by the Claude CLI) are read from Keychain when present.&lt;/li&gt; 
+   &lt;li&gt;z.ai API token is stored in Keychain from Preferences → Providers; Copilot stores its API token in Keychain during device flow.&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;How do I prevent those keychain alerts?&lt;/strong&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Open &lt;strong&gt;Keychain Access.app&lt;/strong&gt; → login keychain → search the item (e.g., “Claude Code-credentials”).&lt;/li&gt; 
+     &lt;li&gt;Open the item → &lt;strong&gt;Access Control&lt;/strong&gt; → add &lt;code&gt;CodexBar.app&lt;/code&gt; under “Always allow access by these applications”.&lt;/li&gt; 
+     &lt;li&gt;Prefer adding just CodexBar (avoid “Allow all applications” unless you want it wide open).&lt;/li&gt; 
+     &lt;li&gt;Relaunch CodexBar after saving.&lt;/li&gt; 
+     &lt;li&gt;Reference screenshot: &lt;img src=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/keychain-allow.png&quot; alt=&quot;Keychain access control&quot; /&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;How to do the same for the browser?&lt;/strong&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Find the browser’s “Safe Storage” key (e.g., “Chrome Safe Storage”, “Brave Safe Storage”, “Firefox”, “Microsoft Edge Safe Storage”).&lt;/li&gt; 
+     &lt;li&gt;Open the item → &lt;strong&gt;Access Control&lt;/strong&gt; → add &lt;code&gt;CodexBar.app&lt;/code&gt; under “Always allow access by these applications”.&lt;/li&gt; 
+     &lt;li&gt;This removes the prompt when CodexBar decrypts cookies for that browser.&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Files &amp;amp; Folders prompts (folder/volume access)&lt;/strong&gt;: CodexBar launches provider CLIs (codex/claude/gemini/antigravity). If those CLIs read a project directory or external drive, macOS may ask CodexBar for that folder/volume (e.g., Desktop or an external volume). This is driven by the CLI’s working directory, not background disk scanning.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;What we do not request&lt;/strong&gt;: no Screen Recording, Accessibility, or Automation permissions; no passwords are stored (browser cookies are reused when you opt in).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Docs&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Providers overview: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/providers.md&quot;&gt;docs/providers.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Provider authoring: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/provider.md&quot;&gt;docs/provider.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;UI &amp;amp; icon notes: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/ui.md&quot;&gt;docs/ui.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CLI reference: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/cli.md&quot;&gt;docs/cli.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Architecture: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/architecture.md&quot;&gt;docs/architecture.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Refresh loop: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/refresh-loop.md&quot;&gt;docs/refresh-loop.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Status polling: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/status.md&quot;&gt;docs/status.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Sparkle updates: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/sparkle.md&quot;&gt;docs/sparkle.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Release checklist: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/RELEASING.md&quot;&gt;docs/RELEASING.md&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Getting started (dev)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Clone the repo and open it in Xcode or run the scripts directly.&lt;/li&gt; 
+ &lt;li&gt;Launch once, then toggle providers in Settings → Providers.&lt;/li&gt; 
+ &lt;li&gt;Install/sign in to provider sources you rely on (CLIs, browser cookies, or OAuth).&lt;/li&gt; 
+ &lt;li&gt;Optional: set OpenAI cookies (Automatic or Manual) for Codex dashboard extras.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Build from source&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;swift build -c release          # or debug for development
+./Scripts/package_app.sh        # builds CodexBar.app in-place
+CODEXBAR_SIGNING=adhoc ./Scripts/package_app.sh  # ad-hoc signing (no Apple Developer account)
+open CodexBar.app
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Dev loop:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./Scripts/compile_and_run.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Related&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;✂️ &lt;a href=&quot;https://github.com/steipete/Trimmy&quot;&gt;Trimmy&lt;/a&gt; — “Paste once, run once.” Flatten multi-line shell snippets so they paste and run.&lt;/li&gt; 
+ &lt;li&gt;🧳 &lt;a href=&quot;https://mcporter.dev&quot;&gt;MCPorter&lt;/a&gt; — TypeScript toolkit + CLI for Model Context Protocol servers.&lt;/li&gt; 
+ &lt;li&gt;🧿 &lt;a href=&quot;https://askoracle.dev&quot;&gt;oracle&lt;/a&gt; — Ask the oracle when you&#39;re stuck. Invoke GPT-5 Pro with a custom context and files.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Looking for a Windows version?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Finesssee/Win-CodexBar&quot;&gt;Win-CodexBar&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;Inspired by &lt;a href=&quot;https://github.com/ryoppippi/ccusage&quot;&gt;ccusage&lt;/a&gt; (MIT), specifically the cost usage tracking.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT • Peter Steinberger (&lt;a href=&quot;https://twitter.com/steipete&quot;&gt;steipete&lt;/a&gt;)&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e3d6339af86ad0c71e8f868a6bebb6592f0b178a879a2ac9080da452e8a540b1/steipete/CodexBar" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>StephenDev0/StikDebug</title>
+      <link>https://github.com/StephenDev0/StikDebug</link>
+      <description>&lt;p&gt;An on-device debugger/JIT enabler for iOS versions 17.4+, powered by idevice.&lt;/p&gt;&lt;hr&gt;&lt;blockquote&gt; 
+ &lt;p&gt;[!CAUTION] &lt;strong&gt;WARNING:&lt;/strong&gt; There are known critical issues with &lt;strong&gt;iOS 26.4 Developer Beta 1&lt;/strong&gt;. The &lt;code&gt;lockdownd&lt;/code&gt; service appears to be dropping connections, which interferes with how the device connects to itself (loopback/pairing issues) and prevents JIT from functioning. &lt;strong&gt;DO NOT UPDATE&lt;/strong&gt; if you rely on StikDebug. These issues and possible fixes are currently being investigated.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img width=&quot;217&quot; height=&quot;217&quot; src=&quot;https://raw.githubusercontent.com/StephenDev0/StikDebug/main/assets/StikJIT.png&quot; alt=&quot;Logo&quot; /&gt; 
+&lt;/div&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;&lt;b&gt;StikDebug&lt;/b&gt;&lt;/h1&gt; 
+ &lt;p&gt;&lt;i&gt;An on-device debugger/JIT enabler for iOS versions 17.4+ powered by &lt;a href=&quot;https://github.com/jkcoxson/idevice&quot;&gt;idevice&lt;/a&gt;.&lt;/i&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h6 align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/ZnNcrRT3M8&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Discord-join%20us-7289DA?logo=discord&amp;amp;logoColor=white&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/raw/main/LICENSE&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/license/StephenDev0/StikDebug?label=License&amp;amp;color=5865F2&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/stargazers&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/stars/StephenDev0/StikDebug?label=Stars&amp;amp;color=FEE75C&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/releases&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/StephenDev0/StikDebug?label=Latest&amp;amp;color=00BFFF&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;br /&gt; &lt;/h6&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;JIT:&lt;/strong&gt; Enable Just In Time compilation for sideloaded apps that have the &lt;code&gt;get-task-allow&lt;/code&gt; entitlement.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;App Launching:&lt;/strong&gt; Launch every app installed on your device.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Console:&lt;/strong&gt; Live app and system logs.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Scripts:&lt;/strong&gt; Manage automation scripts (mainly used for iOS 26 JIT).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;App Expiry:&lt;/strong&gt; See when apps will expire and install/remove profiles.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Device Info:&lt;/strong&gt; View detailed device metadata.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Processes:&lt;/strong&gt; Inspect running apps/processes and terminate them.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Location Simulator:&lt;/strong&gt; Simulate the GPS location of your device.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!WARNING] &lt;strong&gt;Notice:&lt;/strong&gt; StikDebug is no longer available on the App Store. Please use the official download methods below.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot; style=&quot;display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap;&quot;&gt; 
+ &lt;a href=&quot;https://stikstore.app/altdirect/?url=https://stikdebug.xyz/index.json&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/stikstore/altdirect/raw/main/assets/png/AltSource_Blue.png&quot; alt=&quot;Add AltSource&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/releases/download/3.0.1/StikDebug-3.0.1.ipa&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/stikstore/altdirect/raw/main/assets/png/Download_Blue.png&quot; alt=&quot;Download .ipa&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;iOS Version&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+   &lt;th&gt;Notes&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;1.0 – 17.3.X&lt;/td&gt; 
+   &lt;td&gt;Not supported&lt;/td&gt; 
+   &lt;td&gt;Uses Different Connection Protocols&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;17.4 – 18.x&lt;/td&gt; 
+   &lt;td&gt;Fully supported&lt;/td&gt; 
+   &lt;td&gt;Stable&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;26.0 – 26.3&lt;/td&gt; 
+   &lt;td&gt;Supported&lt;/td&gt; 
+   &lt;td&gt;Limited App Availability (Developers need to update their apps to work.)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;26.4 Developer Beta 1&lt;/td&gt; 
+   &lt;td&gt;Critical issues&lt;/td&gt; 
+   &lt;td&gt;lockdownd drops connections → JIT broken; do not update&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;iOS 26.4+ betas / future&lt;/td&gt; 
+   &lt;td&gt;Untested / partial&lt;/td&gt; 
+   &lt;td&gt;Check &lt;a href=&quot;https://discord.gg/ZnNcrRT3M8&quot;&gt;Discord&lt;/a&gt;, &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/releases&quot;&gt;releases&lt;/a&gt;, or &lt;a href=&quot;https://x.com/stephendev0&quot;&gt;@StephenDev0 on X&lt;/a&gt; for updates&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;How to Enable JIT&lt;/h2&gt; 
+&lt;p&gt;StikDebug enables &lt;strong&gt;JIT&lt;/strong&gt; for sideloaded apps on iOS 17.4+ without needing a computer after the initial pairing setup.&lt;/p&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;StikDebug installed (via AltSource, direct .ipa, or self-built)&lt;/li&gt; 
+ &lt;li&gt;A valid &lt;strong&gt;pairing file&lt;/strong&gt; (.plist / .mobiledevicepairing) for your device&lt;/li&gt; 
+ &lt;li&gt;SideStore / AltStore / similar sideload tool (for app refreshing)&lt;/li&gt; 
+ &lt;li&gt;A loopback VPN such as &lt;a href=&quot;https://apps.apple.com/us/app/localdevvpn/id6755608044&quot;&gt;LocalDevVPN&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Steps&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Obtain a pairing file&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Detailed guide: &lt;a href=&quot;https://github.com/StephenDev0/StikDebug-Guide/raw/main/pairing_file.md&quot;&gt;Pairing File Instructions&lt;/a&gt; (or ask in Discord).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Set up VPN&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Launch LocalDevVPN and enable the VPN.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Enable JIT for an app&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Launch StikDebug and tapp the &lt;code&gt;Enable JIT&lt;/code&gt; button.&lt;/li&gt; 
+   &lt;li&gt;Select your sideloaded app from the list in StikDebug.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&quot;Connection dropped&quot; or loopback errors → Check iOS version compatibility / beta warnings.&lt;/li&gt; 
+ &lt;li&gt;Heartbeat errors → Ensure that the VPN is on and that you are connecected to Wi-Fi. It may be a pairing file issue.&lt;/li&gt; 
+ &lt;li&gt;Pairing file issues → Replace file with device unlocked &amp;amp; trusted.&lt;/li&gt; 
+ &lt;li&gt;Still stuck? Join the &lt;a href=&quot;https://discord.gg/ZnNcrRT3M8&quot;&gt;Discord&lt;/a&gt; with logs/screenshots.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- 
+## Screenshots
+
+&lt;div align=&quot;center&quot;&gt;
+  &lt;img src=&quot;screenshots/pairing-import.png&quot; width=&quot;320&quot; alt=&quot;Pairing file import screen&quot;&gt;
+  &lt;img src=&quot;screenshots/app-list.png&quot; width=&quot;320&quot; alt=&quot;Sideloaded apps list&quot;&gt;
+  &lt;img src=&quot;screenshots/jit-enabled.png&quot; width=&quot;320&quot; alt=&quot;JIT successfully enabled&quot;&gt;
+  &lt;img src=&quot;screenshots/processes.png&quot; width=&quot;320&quot; alt=&quot;Process management tab&quot;&gt;
+&lt;/div&gt;
+
+(Add images to a /screenshots/ folder in the repo and uncomment when ready.)
+--&gt; 
+&lt;h2&gt;Building from Source&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] StikDebug is an open-source Xcode project written mostly in Swift. Building yourself lets you modify code, debug, or create custom versions. Requires a Mac with Xcode.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS (latest recommended)&lt;/li&gt; 
+ &lt;li&gt;Xcode 16+ (Xcode 26+ preferred for iOS 26+ support)&lt;/li&gt; 
+ &lt;li&gt;iOS device on iOS 17.4+ (for testing)&lt;/li&gt; 
+ &lt;li&gt;Git&lt;/li&gt; 
+ &lt;li&gt;Basic Xcode/Swift knowledge&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Steps&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Clone the repo&lt;/strong&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/StephenDev0/StikDebug.git
+cd StikDebug
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Open in Xcode&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Launch Xcode&lt;/li&gt; 
+   &lt;li&gt;Open &lt;code&gt;StikDebug.xcodeproj&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Configure signing&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Select the &lt;strong&gt;StikDebug&lt;/strong&gt; target&lt;/li&gt; 
+   &lt;li&gt;Go to &lt;strong&gt;Signing &amp;amp; Capabilities&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Sign in with your Apple ID (free or paid developer account)&lt;/li&gt; 
+   &lt;li&gt;Set a unique &lt;strong&gt;Bundle Identifier&lt;/strong&gt; (e.g., &lt;code&gt;com.yourname.StikDebug&lt;/code&gt;)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Build &amp;amp; install&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Select your connected device&lt;/li&gt; 
+   &lt;li&gt;Press &lt;strong&gt;Cmd + R&lt;/strong&gt; (or Product → Run)&lt;/li&gt; 
+   &lt;li&gt;Trust the certificate on device: Settings → General → VPN &amp;amp; Device Management&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;After install, follow the JIT setup steps above (pairing import, etc.).&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Thank you for your interest in contributing to this project. Contributions of all kinds are welcome.&lt;/p&gt; 
+&lt;h3&gt;Reporting Bugs&lt;/h3&gt; 
+&lt;p&gt;If you discover a bug, please open an issue and include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A clear and descriptive title&lt;/li&gt; 
+ &lt;li&gt;Steps to reproduce the issue&lt;/li&gt; 
+ &lt;li&gt;Expected behavior vs. actual behavior&lt;/li&gt; 
+ &lt;li&gt;Relevant logs, screenshots, or environment details (iOS version, device model, etc.)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Suggesting Features&lt;/h3&gt; 
+&lt;p&gt;To propose a new feature, open a feature request issue and provide:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A clear description of the feature&lt;/li&gt; 
+ &lt;li&gt;The problem it solves or the use case it addresses&lt;/li&gt; 
+ &lt;li&gt;Any relevant examples or implementation ideas&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Code Contributions (Best Practices)&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Follow normal Swift and SwiftUI style.&lt;/li&gt; 
+ &lt;li&gt;Write clear and easy to understand code.&lt;/li&gt; 
+ &lt;li&gt;Keep your changes consistent with how the project is already set up.&lt;/li&gt; 
+ &lt;li&gt;Make sure everything builds and works without errors.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We appreciate your time and effort in helping improve this project.&lt;/p&gt; 
+&lt;h2&gt;Code Help&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://deepwiki.com/stephendev0/stikdebug&quot;&gt;&lt;img src=&quot;https://deepwiki.com/badge.svg?sanitize=true&quot; alt=&quot;Ask DeepWiki&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;StikDebug is licensed under &lt;strong&gt;AGPL-3.0&lt;/strong&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/StephenDev0/StikDebug/main/LICENSE&quot;&gt;&lt;code&gt;LICENSE&lt;/code&gt;&lt;/a&gt; for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9ba0218b8284300596b4f3dfcaab95233bbfeaa92ee20042f83d19a4f4fbf9cc/StephenDev0/StikDebug" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>jordanbaird/Ice</title>
+      <link>https://github.com/jordanbaird/Ice</link>
+      <description>&lt;p&gt;Powerful menu bar manager for macOS&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/jordanbaird/Ice/main/Ice/Assets.xcassets/AppIcon.appiconset/icon_256x256.png&quot; width=&quot;200&quot; height=&quot;200&quot; /&gt; 
+ &lt;h1&gt;Ice&lt;/h1&gt; 
+&lt;/div&gt; 
+&lt;p&gt;Ice is a powerful menu bar management tool. While its primary function is hiding and showing menu bar items, it aims to cover a wide variety of additional features to make it one of the most versatile menu bar tools available.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/4423085c-4e4b-4f3d-ad0f-90a217c03470&quot; alt=&quot;Banner&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/jordanbaird/Ice/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/download-latest-brightgreen?style=flat-square&quot; alt=&quot;Download&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/badge/platform-macOS-blue?style=flat-square&quot; alt=&quot;Platform&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/requirements-macOS%2014%2B-fa4e49?style=flat-square&quot; alt=&quot;Requirements&quot; /&gt; &lt;a href=&quot;https://github.com/sponsors/jordanbaird&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Sponsor%20%E2%9D%A4%EF%B8%8F-8A2BE2?style=flat-square&quot; alt=&quot;Sponsor&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://icemenubar.app&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Website-015FBA?style=flat-square&quot; alt=&quot;Website&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/jordanbaird/Ice/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/jordanbaird/Ice?style=flat-square&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] Ice is currently in active development. Some features have not yet been implemented. Download the latest release &lt;a href=&quot;https://github.com/jordanbaird/Ice/releases/latest&quot;&gt;here&lt;/a&gt; and see the roadmap below for upcoming features.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;a href=&quot;https://www.buymeacoffee.com/jordanbaird&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png&quot; alt=&quot;Buy Me A Coffee&quot; style=&quot;height: 60px !important;width: 217px !important;&quot; /&gt; &lt;/a&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;h3&gt;Manual Installation&lt;/h3&gt; 
+&lt;p&gt;Download the &quot;Ice.zip&quot; file from the &lt;a href=&quot;https://github.com/jordanbaird/Ice/releases/latest&quot;&gt;latest release&lt;/a&gt; and move the unzipped app into your &lt;code&gt;Applications&lt;/code&gt; folder.&lt;/p&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;p&gt;Install Ice using the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;brew install --cask jordanbaird-ice
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Features/Roadmap&lt;/h2&gt; 
+&lt;h3&gt;Menu bar item management&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Hide menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; &quot;Always-hidden&quot; menu bar section&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show hidden menu bar items when hovering over the menu bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show hidden menu bar items when an empty area in the menu bar is clicked&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show hidden menu bar items by scrolling or swiping in the menu bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Automatically rehide menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Hide application menus when they overlap with shown menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Drag and drop interface to arrange individual menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Display hidden menu bar items in a separate bar (e.g. for MacBooks with the notch)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Search menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar item spacing (BETA)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Profiles for menu bar layout&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Individual spacer items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Menu bar item groups&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Show menu bar items when trigger conditions are met&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Menu bar appearance&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar tint (solid and gradient)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar shadow&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar border&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Custom menu bar shapes (rounded and/or split)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Remove background behind menu bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Rounded screen corners&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Different settings for light/dark mode&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Hotkeys&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Toggle individual menu bar sections&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show the search panel&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Enable/disable the Ice Bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show/hide section divider icons&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Toggle application menus&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Enable/disable auto rehide&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Temporarily show individual menu bar items&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Other&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Launch at login&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Automatic updates&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Menu bar widgets&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Why does Ice only support macOS 14 and later?&lt;/h2&gt; 
+&lt;p&gt;Ice uses a number of system APIs that are available starting in macOS 14. As such, there are no plans to support earlier versions of macOS.&lt;/p&gt; 
+&lt;h2&gt;Gallery&lt;/h2&gt; 
+&lt;h4&gt;Show hidden menu bar items below the menu bar&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/f1429589-6186-4e1b-8aef-592219d49b9b&quot; alt=&quot;Ice Bar&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Drag-and-drop interface to arrange menu bar items&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/095442ba-f2d0-4bb4-9632-91e26ef8d45b&quot; alt=&quot;Menu Bar Layout&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Customize the menu bar&#39;s appearance&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/8c22c185-c3d2-49bb-971e-e1fc17df04b3&quot; alt=&quot;Menu Bar Appearance&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Menu bar item search&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/d1a7df3a-4989-4077-a0b1-8e7d5a1ba5b8&quot; alt=&quot;Menu Bar Item Search&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Custom menu bar item spacing&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/b196aa7e-184a-4d4c-b040-502f4aae40a6&quot; alt=&quot;Menu Bar Item Spacing&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Ice is available under the &lt;a href=&quot;https://raw.githubusercontent.com/jordanbaird/Ice/main/LICENSE&quot;&gt;GPL-3.0 license&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/4a0013b1753d312979f76b9fd8d0009412de2800c2ad2146fffe539e51b613a6/jordanbaird/Ice" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>farouqaldori/claude-island</title>
+      <link>https://github.com/farouqaldori/claude-island</link>
+      <description>&lt;p&gt;Claude Code notifications without the context switch. A minimal, always-present session manager for macOS.&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/farouqaldori/claude-island/main/ClaudeIsland/Assets.xcassets/AppIcon.appiconset/icon_128x128.png&quot; alt=&quot;Logo&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt; 
+ &lt;h3 align=&quot;center&quot;&gt;Claude Island&lt;/h3&gt; 
+ &lt;p align=&quot;center&quot;&gt; A macOS menu bar app that brings Dynamic Island-style notifications to Claude Code CLI sessions. &lt;br /&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/farouqaldori/claude-island/releases/latest&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/farouqaldori/claude-island?style=rounded&amp;amp;color=white&amp;amp;labelColor=000000&amp;amp;label=release&quot; alt=&quot;Release Version&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/farouqaldori/claude-island/main/#&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt; &lt;img alt=&quot;GitHub Downloads&quot; src=&quot;https://img.shields.io/github/downloads/farouqaldori/claude-island/total?style=rounded&amp;amp;color=white&amp;amp;labelColor=000000&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Notch UI&lt;/strong&gt; — Animated overlay that expands from the MacBook notch&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Live Session Monitoring&lt;/strong&gt; — Track multiple Claude Code sessions in real-time&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Permission Approvals&lt;/strong&gt; — Approve or deny tool executions directly from the notch&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Chat History&lt;/strong&gt; — View full conversation history with markdown rendering&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Auto-Setup&lt;/strong&gt; — Hooks install automatically on first launch&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 15.6+&lt;/li&gt; 
+ &lt;li&gt;Claude Code CLI&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Download the latest release or build from source:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xcodebuild -scheme ClaudeIsland -configuration Release build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;How It Works&lt;/h2&gt; 
+&lt;p&gt;Claude Island installs hooks into &lt;code&gt;~/.claude/hooks/&lt;/code&gt; that communicate session state via a Unix socket. The app listens for events and displays them in the notch overlay.&lt;/p&gt; 
+&lt;p&gt;When Claude needs permission to run a tool, the notch expands with approve/deny buttons—no need to switch to the terminal.&lt;/p&gt; 
+&lt;h2&gt;Analytics&lt;/h2&gt; 
+&lt;p&gt;Claude Island uses Mixpanel to collect anonymous usage data:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;App Launched&lt;/strong&gt; — App version, build number, macOS version&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Session Started&lt;/strong&gt; — When a new Claude Code session is detected&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;No personal data or conversation content is collected.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Apache 2.0&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8d5c708d4ddf04d294b79b0882e91cbded4bf30c8c92f0d210eec1a4b712132b/farouqaldori/claude-island" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>dwarvesf/hidden</title>
+      <link>https://github.com/dwarvesf/hidden</link>
+      <description>&lt;p&gt;An ultra-light MacOS utility that helps hide menu bar icons&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;200&quot; height=&quot;200&quot; margin-right=&quot;100%&quot; src=&quot;https://github.com/dwarvesf/hidden/raw/develop/img/icon_512%402x.png?raw=true&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://webuild.community&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/webuild-community/badge/master/svg/love.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/dwarvesf/hidden/releases/latest&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/download-latest-brightgreen.svg?sanitize=true&quot; alt=&quot;download&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://img.shields.io/badge/platform-macOS-lightgrey.svg&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/platform-macOS-lightgrey.svg?sanitize=true&quot; alt=&quot;platform&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://img.shields.io/badge/requirements-macOS High Sierra+-ff69b4.svg&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/requirements-macOS High Sierra+-ff69b4.svg&quot; alt=&quot;systemrequirements&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;h2&gt;Hidden Bar&lt;/h2&gt; 
+&lt;p&gt;Hidden Bar lets you hide menu bar items to give your Mac a cleaner look.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;400&quot; src=&quot;https://raw.githubusercontent.com/dwarvesf/hidden/develop/img/screen1.png&quot; /&gt; &lt;img width=&quot;400&quot; src=&quot;https://raw.githubusercontent.com/dwarvesf/hidden/develop/img/screen2.png&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;🚀 Install&lt;/h2&gt; 
+&lt;h3&gt; App Store&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://itunes.apple.com/app/hidden-bar/id1452453066&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/dwarvesf/hidden/develop/img/appstore.svg?sanitize=true&quot; alt=&quot;AppStore&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Others&lt;/h3&gt; 
+&lt;p&gt;The Hidden Bar is notarized before distributed out side App Store. It&#39;s safe to use 👍&lt;/p&gt; 
+&lt;h4&gt;Using Homebrew&lt;/h4&gt; 
+&lt;pre&gt;&lt;code&gt;brew install --cask hiddenbar
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Manual download&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dwarvesf/hidden/releases/latest&quot;&gt;Download latest version&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Open and drag the app to the Applications folder.&lt;/li&gt; 
+ &lt;li&gt;Launch Hidden and drag the icon in your menu bar (hold CMD) to the right so it is between some other icons.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🕹 Usage&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;⌘&lt;/code&gt; + drag to move the Hidden icons around in the menu bar.&lt;/li&gt; 
+ &lt;li&gt;Click the Arrow icon to hide menu bar items.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/dwarvesf/hidden/develop/img/tutorial.gif&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;✨&lt;a href=&quot;https://github.com/dwarvesf/hidden/graphs/contributors&quot;&gt;Contributors&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;This project exists thanks to all the people who contribute. Thank you guys so much 👏&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/0&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/0&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/1&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/1&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/2&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/2&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/3&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/3&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/4&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/4&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/5&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/5&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/6&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/6&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/links/7&quot;&gt;&lt;img src=&quot;https://sourcerer.io/fame/phucledien/dwarvesf/hidden/images/7&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Please read &lt;a href=&quot;https://raw.githubusercontent.com/dwarvesf/hidden/develop/CONTRIBUTING.md&quot;&gt;this&lt;/a&gt; before you make a contribution.&lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;macOS version &amp;gt;= 10.13&lt;/p&gt; 
+&lt;h2&gt;You may also like&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dwarvesf/Blurred&quot;&gt;Blurred&lt;/a&gt; - A macOS utility that helps reduce distraction by dimming your inactive noise&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dwarvesf/micro-sniff&quot;&gt;Micro Sniff&lt;/a&gt; - An ultra-light macOS utility that notify whenever your micro-device is being used&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dwarvesf/VimMotionPublic&quot;&gt;VimMotion&lt;/a&gt; Vim style shortcut for MacOS&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT © &lt;a href=&quot;https://github.com/dwarvesf&quot;&gt;Dwarves Foundation&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/5417e1a59fe52f66aec2fe48358ff7272b4f3fbbc5d24329c8b714d1fc0286f7/dwarvesf/hidden" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Ebullioscopic/Atoll</title>
+      <link>https://github.com/Ebullioscopic/Atoll</link>
+      <description>&lt;p&gt;Dynamic Island for macOS&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Ebullioscopic/Atoll/main/.github/assets/atoll-logo.png&quot; alt=&quot;Atoll logo&quot; width=&quot;120&quot; /&gt; &lt;/p&gt; 
+&lt;h1 align=&quot;center&quot;&gt;Atoll - DynamicIsland for macOS&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://trendshift.io/repositories/15291&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://trendshift.io/api/badge/repositories/15291&quot; alt=&quot;Ebullioscopic%2FAtoll | Trendshift&quot; style=&quot;width: 250px; height: 55px;&quot; width=&quot;250&quot; height=&quot;55&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/Ebullioscopic/Atoll/stargazers&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/stars/Ebullioscopic/Atoll?style=social&quot; alt=&quot;GitHub stars&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/Ebullioscopic/Atoll/network/members&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/forks/Ebullioscopic/Atoll?style=social&quot; alt=&quot;GitHub forks&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/Ebullioscopic/Atoll/releases&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/downloads/Ebullioscopic/Atoll/total?label=Downloads&quot; alt=&quot;GitHub downloads&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://discord.gg/PaqFkRTDF8&quot;&gt; &lt;img src=&quot;https://dcbadge.limes.pink/api/server/https://discord.gg/PaqFkRTDF8?style=flat&quot; alt=&quot;Discord server&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/sponsors/Ebullioscopic&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Sponsor-Ebullioscopic-ff69b4?style=for-the-badge&amp;amp;logo=github&quot; alt=&quot;Sponsor Ebullioscopic&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/Ebullioscopic/Atoll/releases/latest&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Download-Atoll%20for%20macOS-0A84FF?style=for-the-badge&amp;amp;logo=apple&quot; alt=&quot;Download Atoll for macOS&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://www.buymeacoffee.com/kryoscopic&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Buy%20Me%20A%20Coffee-kryoscopic-FFDD00?style=for-the-badge&amp;amp;logo=buy-me-a-coffee&amp;amp;logoColor=000000&quot; alt=&quot;Buy Me a Coffee for kryoscopic&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/PaqFkRTDF8&quot;&gt;Join our Discord community&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Atoll turns the MacBook notch into a focused command surface for media, system insight, and quick utilities. It stays out of the way until needed, then expands with responsive, native SwiftUI animations.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://i.postimg.cc/t49mW5yN/Screenshot-2026-03-02-at-6-00-22-PM.png&quot; alt=&quot;Atoll lock screen&quot; width=&quot;920&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Highlights&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Media controls for Apple Music, Spotify, and more with inline previews.&lt;/li&gt; 
+ &lt;li&gt;Live Activities for media playback, Focus, screen recording, privacy indicators, downloads (beta), and battery/charging.&lt;/li&gt; 
+ &lt;li&gt;Lock screen widgets for media, timers, charging, Bluetooth devices, and weather.&lt;/li&gt; 
+ &lt;li&gt;Lightweight system insight for CPU, GPU, memory, network, and disk usage.&lt;/li&gt; 
+ &lt;li&gt;Productivity tools including timers, clipboard history, color picker, and calendar previews.&lt;/li&gt; 
+ &lt;li&gt;Customization for layouts, animations, hover behavior, and shortcut remapping.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Other Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Gesture controls for opening/closing the notch and media navigation.&lt;/li&gt; 
+ &lt;li&gt;Parallax hover interactions with smooth transitions.&lt;/li&gt; 
+ &lt;li&gt;Lock screen appearance and positioning controls for panels and widgets.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://i.postimg.cc/HkLGn6yH/846F86A4_A2F9_4CD6_BC84_1D720D377728_1_201_a.jpg&quot; alt=&quot;Atoll preview&quot; width=&quot;920&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 14.0 or later (optimised for macOS 15+).&lt;/li&gt; 
+ &lt;li&gt;MacBook with a notch (14/16‑inch MBP across Apple silicon generations).&lt;/li&gt; 
+ &lt;li&gt;Xcode 15+ to build from source.&lt;/li&gt; 
+ &lt;li&gt;Permissions as needed: Accessibility, Camera, Calendar, Screen Recording, Music.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the latest DMG &lt;a href=&quot;https://github.com/Ebullioscopic/Atoll/releases/latest&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the DMG and drag Atoll into Applications.&lt;/li&gt; 
+ &lt;li&gt;Launch Atoll and grant the requested permissions.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Hover near the notch to expand; click to enter controls.&lt;/li&gt; 
+ &lt;li&gt;Use tabs for Media, Stats, Timers, Clipboard, and more.&lt;/li&gt; 
+ &lt;li&gt;Adjust layout, appearance, and shortcuts from Settings.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Settings&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Choose appearance, animation style, and per‑feature toggles.&lt;/li&gt; 
+ &lt;li&gt;Remap global shortcuts and adjust hover behaviour.&lt;/li&gt; 
+ &lt;li&gt;Enable lock screen widgets and select data sources.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Gesture Controls&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Two-finger swipe down to open the notch when hover-to-open is disabled; swipe up to close.&lt;/li&gt; 
+ &lt;li&gt;Enable horizontal media gestures in &lt;strong&gt;Settings → General → Gesture control&lt;/strong&gt; to turn the music pane into a trackpad for previous/next or ±10 second seeks.&lt;/li&gt; 
+ &lt;li&gt;Pick the gesture skip behaviour (track vs ±10s) independently from the skip button configuration so swipes can scrub while buttons change tracks—or vice versa.&lt;/li&gt; 
+ &lt;li&gt;Horizontal swipes trigger the same haptics and button animations you see in the notch, keeping visual feedback consistent with tap interactions.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Troubleshooting (Basics)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;After granting Accessibility or Screen Recording, quit and relaunch the app.&lt;/li&gt; 
+ &lt;li&gt;If metrics are empty, enable categories in Settings → Stats.&lt;/li&gt; 
+ &lt;li&gt;Media not responding: verify player is active and Music permission is granted.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Atoll is released under the GPL v3 License. Refer to &lt;a href=&quot;https://raw.githubusercontent.com/Ebullioscopic/Atoll/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for the full terms.&lt;/p&gt; 
+&lt;h2&gt;Acknowledgments&lt;/h2&gt; 
+&lt;p&gt;Atoll builds upon the work of several open-source projects and draws inspiration from innovative macOS applications:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/TheBoredTeam/boring.notch&quot;&gt;&lt;strong&gt;Boring.Notch&lt;/strong&gt;&lt;/a&gt; - foundational codebase that provided the initial media player integration, AirDrop surface implementation, file dock functionality, and calendar event display. Major architectural patterns and notch interaction models were adapted from this project.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://tryalcove.com&quot;&gt;&lt;strong&gt;Alcove&lt;/strong&gt;&lt;/a&gt; - primary inspiration for the Minimalistic Mode interface design and the conceptual framework for lock screen widget integration that informed Atoll&#39;s compact layout strategy.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/exelban/stats&quot;&gt;&lt;strong&gt;Stats&lt;/strong&gt;&lt;/a&gt; - source implementation for CPU temperature monitoring via SMC (System Management Controller) access, frequency sampling through IOReport bindings, and per-core CPU utilisation tracking. The system metrics collection architecture derives from Stats project readers.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://open-meteo.com&quot;&gt;&lt;strong&gt;Open Meteo&lt;/strong&gt;&lt;/a&gt; - weather apis for the lock screen widgets&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/Lakr233/SkyLightWindow&quot;&gt;&lt;strong&gt;SkyLightWindow&lt;/strong&gt;&lt;/a&gt; - window rendering for Lock Screen Widgets&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Wick - Thanks Nate for allowing us to replicate the iOS like Timer design for the Lock Screen Widget&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;a href=&quot;https://github.com/Ebullioscopic/Atoll/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=Ebullioscopic/Atoll&quot; /&gt; &lt;/a&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.star-history.com/#Ebullioscopic/Atoll&amp;amp;type=timeline&amp;amp;legend=top-left&quot;&gt;&lt;img src=&quot;https://api.star-history.com/svg?repos=Ebullioscopic/Atoll&amp;amp;type=timeline&amp;amp;legend=top-left&quot; alt=&quot;Star History Chart&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Updating Existing Clones&lt;/h2&gt; 
+&lt;p&gt;If you previously cloned DynamicIsland, update the remote to track the Atoll repository:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git remote set-url origin https://github.com/Ebullioscopic/Atoll.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A heartfelt thanks to &lt;a href=&quot;https://github.com/TheBoredTeam&quot;&gt;TheBoredTeam&lt;/a&gt; for being supportive and being totally awesome, Atoll would not have been possible without Boring.Notch&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Ebullioscopic/Atoll/main/.github/assets/iosdevcentre.jpeg&quot; alt=&quot;iOS Development Centre exterior&quot; width=&quot;420&quot; /&gt; &lt;br /&gt; &lt;sub&gt;Backed by&lt;/sub&gt; &lt;br /&gt; &lt;strong&gt;iOS Development Centre&lt;/strong&gt; &lt;br /&gt; Powered by Apple and Infosys &lt;br /&gt; SRM Institute of Science and Technology, Chennai, India &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://buymeacoffee.com/kryoscopic&quot;&gt; &lt;img src=&quot;https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png&quot; alt=&quot;Buy Me A Coffee&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; Your support helps fund teaching children software development. &lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/881723326/e97e8899-74d7-4072-bab5-4d89834574f4" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>swiftlang/swift</title>
+      <link>https://github.com/swiftlang/swift</link>
+      <description>&lt;p&gt;The Swift Programming Language&lt;/p&gt;&lt;hr&gt;&lt;picture&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://www.swift.org/assets/images/swift~dark.svg&quot; /&gt; 
+ &lt;img src=&quot;https://www.swift.org/assets/images/swift.svg?sanitize=true&quot; alt=&quot;Swift logo&quot; height=&quot;70&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;h1&gt;Swift Programming Language&lt;/h1&gt; 
+&lt;h2&gt;Welcome to Swift&lt;/h2&gt; 
+&lt;p&gt;Swift is a high-performance system programming language. It has a clean and modern syntax, offers seamless access to existing C and Objective-C code and frameworks, and is memory-safe by default.&lt;/p&gt; 
+&lt;p&gt;Although inspired by Objective-C and many other languages, Swift is not itself a C-derived language. As a complete and independent language, Swift packages core features like flow control, data structures, and functions, with high-level constructs like objects, protocols, closures, and generics. Swift embraces modules, eliminating the need for headers and the code duplication they entail.&lt;/p&gt; 
+&lt;p&gt;To learn more about using the language, visit &lt;a href=&quot;https://swift.org/documentation/&quot;&gt;swift.org&lt;/a&gt;. To learn more about the compiler&#39;s internal design, see the &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/docs/README.md&quot;&gt;documentation index&lt;/a&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/#contributing-to-swift&quot;&gt;Contributing to Swift&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/#getting-started&quot;&gt;Getting Started&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/#swift-toolchains&quot;&gt;Swift Toolchains&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/#build-failures&quot;&gt;Build Failures&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/#learning-more&quot;&gt;Learning More&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing to Swift&lt;/h2&gt; 
+&lt;p&gt;Contributions to Swift are welcomed and encouraged! Please see the &lt;a href=&quot;https://swift.org/contributing/&quot;&gt;Contributing to Swift guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Before submitting the pull request, please make sure you have &lt;a href=&quot;https://github.com/apple/swift/raw/main/docs/ContinuousIntegration.md&quot;&gt;tested your changes&lt;/a&gt; and that they follow the Swift project &lt;a href=&quot;https://swift.org/contributing/#contributing-code&quot;&gt;guidelines for contributing code&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To be a truly great community, &lt;a href=&quot;https://swift.org/&quot;&gt;Swift.org&lt;/a&gt; needs to welcome developers from all walks of life, with different backgrounds, and with a wide range of experience. A diverse and friendly community will have more great ideas, more unique perspectives, and produce more great code. We will work diligently to make the Swift community welcoming to everyone.&lt;/p&gt; 
+&lt;p&gt;To give clarity of what is expected of our members, Swift has adopted the code of conduct defined by the Contributor Covenant. This document is used across many open source communities, and we think it articulates our values well. For more, see the &lt;a href=&quot;https://swift.org/code-of-conduct/&quot;&gt;Code of Conduct&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;If you are interested in:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Contributing fixes and features to the compiler: See our &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/docs/HowToGuides/FirstPullRequest.md&quot;&gt;How to Submit Your First Pull Request guide&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Building the compiler as a one-off: See our &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/docs/HowToGuides/GettingStarted.md&quot;&gt;Getting Started guide&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Building a toolchain as a one-off: Follow the &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/docs/HowToGuides/GettingStarted.md&quot;&gt;Getting Started guide&lt;/a&gt; up until the &quot;Building the project&quot; section. After that, follow the instructions in the &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/#swift-toolchains&quot;&gt;Swift Toolchains&lt;/a&gt; section below.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We also have an &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/docs/HowToGuides/FAQ.md&quot;&gt;FAQ&lt;/a&gt; that answers common questions.&lt;/p&gt; 
+&lt;h3&gt;Swift Toolchains&lt;/h3&gt; 
+&lt;h4&gt;Building&lt;/h4&gt; 
+&lt;p&gt;Swift toolchains are created using the script &lt;a href=&quot;https://github.com/apple/swift/raw/main/utils/build-toolchain&quot;&gt;build-toolchain&lt;/a&gt;. This script is used by swift.org&#39;s CI to produce snapshots and can allow for one to locally reproduce such builds for development or distribution purposes. A typical invocation looks like the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;  $ ./swift/utils/build-toolchain $BUNDLE_PREFIX
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;where &lt;code&gt;$BUNDLE_PREFIX&lt;/code&gt; is a string that will be prepended to the build date to give the bundle identifier of the toolchain&#39;s &lt;code&gt;Info.plist&lt;/code&gt;. For instance, if &lt;code&gt;$BUNDLE_PREFIX&lt;/code&gt; was &lt;code&gt;com.example&lt;/code&gt;, the toolchain produced will have the bundle identifier &lt;code&gt;com.example.YYYYMMDD&lt;/code&gt;. It will be created in the directory you run the script with a filename of the form: &lt;code&gt;swift-LOCAL-YYYY-MM-DD-a-osx.tar.gz&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Beyond building the toolchain, &lt;code&gt;build-toolchain&lt;/code&gt; also supports the following (non-exhaustive) set of useful options:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;--dry-run&lt;/code&gt;: Perform a dry run build. This is off by default.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;--test&lt;/code&gt;: Test the toolchain after it has been compiled. This is off by default.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;--distcc&lt;/code&gt;: Use distcc to speed up the build by distributing the C++ part of the swift build. This is off by default.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;--sccache&lt;/code&gt;: Use sccache to speed up subsequent builds of the compiler by caching more C++ build artifacts. This is off by default.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;More options may be added over time. Please pass &lt;code&gt;--help&lt;/code&gt; to &lt;code&gt;build-toolchain&lt;/code&gt; to see the full set of options.&lt;/p&gt; 
+&lt;h4&gt;Installing into Xcode&lt;/h4&gt; 
+&lt;p&gt;On macOS if one wants to install such a toolchain into Xcode:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Untar and copy the toolchain to one of &lt;code&gt;/Library/Developer/Toolchains/&lt;/code&gt; or &lt;code&gt;~/Library/Developer/Toolchains/&lt;/code&gt;. E.g.:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;  $ sudo tar -xzf swift-LOCAL-YYYY-MM-DD-a-osx.tar.gz -C /
+  $ tar -xzf swift-LOCAL-YYYY-MM-DD-a-osx.tar.gz -C ~/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The script also generates an archive containing debug symbols which can be installed over the main archive allowing symbolication of any compiler crashes.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;  $ sudo tar -xzf swift-LOCAL-YYYY-MM-DD-a-osx-symbols.tar.gz -C /
+  $ tar -xzf swift-LOCAL-YYYY-MM-DD-a-osx-symbols.tar.gz -C ~/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Specify the local toolchain for Xcode&#39;s use via &lt;code&gt;Xcode-&amp;gt;Toolchains&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Build Failures&lt;/h3&gt; 
+&lt;p&gt;Try the suggestions in &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/docs/HowToGuides/GettingStarted.md#troubleshooting-build-issues&quot;&gt;Troubleshooting build issues&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Make sure you are using the &lt;a href=&quot;https://raw.githubusercontent.com/swiftlang/swift/main/docs/HowToGuides/GettingStarted.md#installing-dependencies&quot;&gt;correct release&lt;/a&gt; of Xcode.&lt;/p&gt; 
+&lt;p&gt;If you have changed Xcode versions but still encounter errors that appear to be related to the Xcode version, try passing &lt;code&gt;--clean&lt;/code&gt; to &lt;code&gt;build-script&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;When a new version of Xcode is released, you can update your build without recompiling the entire project by passing &lt;code&gt;--reconfigure&lt;/code&gt; to &lt;code&gt;build-script&lt;/code&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/08a6fa624e0e0d9a6525b7e9b2eae3ed14373594b4c1dbc57b9b13470fbbbee7/swiftlang/swift" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Blaizzy/mlx-audio-swift</title>
+      <link>https://github.com/Blaizzy/mlx-audio-swift</link>
+      <description>&lt;p&gt;A modular Swift SDK for audio processing with MLX on Apple Silicon&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://trendshift.io/repositories/20684&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://trendshift.io/api/badge/repositories/20684&quot; alt=&quot;Blaizzy%2Fmlx-audio-swift | Trendshift&quot; style=&quot;width: 250px; height: 55px;&quot; width=&quot;250&quot; height=&quot;55&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;MLX Audio Swift&lt;/h1&gt; 
+&lt;p&gt;A modular Swift SDK for audio processing with MLX on Apple Silicon&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/platform-macOS%2014%2B%20%7C%20iOS%2017%2B-lightgrey&quot; alt=&quot;Platform&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/Swift-5.9%2B-orange&quot; alt=&quot;Swift&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/license-MIT-blue&quot; alt=&quot;License&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Architecture&lt;/h2&gt; 
+&lt;p&gt;MLXAudio follows a modular design allowing you to import only what you need:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;MLXAudioCore&lt;/strong&gt;: Base types, protocols, and utilities&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;MLXAudioCodecs&lt;/strong&gt;: Audio codec implementations (SNAC, Encodec, Vocos, Mimi, DACVAE)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;MLXAudioTTS&lt;/strong&gt;: Text-to-Speech models (Qwen3-TTS, Fish Audio S2 Pro, Soprano, VyvoTTS, Orpheus, Marvis TTS, Pocket TTS)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;MLXAudioSTT&lt;/strong&gt;: Speech-to-Text models (Qwen3-ASR, Voxtral Realtime, Parakeet, GLMASR)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;MLXAudioVAD&lt;/strong&gt;: Voice Activity Detection &amp;amp; Speaker Diarization (Sortformer, SmartTurn)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;MLXAudioSTS&lt;/strong&gt;: Speech-to-Speech models (LFM2.5-Audio, SAM-Audio, MossFormer2-SE)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;MLXAudioUI&lt;/strong&gt;: SwiftUI components for audio interfaces&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Add MLXAudio to your project using Swift Package Manager:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;dependencies: [
+    .package(url: &quot;https://github.com/Blaizzy/mlx-audio-swift.git&quot;, branch: &quot;main&quot;)
+]
+
+// Import only what you need
+.product(name: &quot;MLXAudioTTS&quot;, package: &quot;mlx-audio-swift&quot;),
+.product(name: &quot;MLXAudioCore&quot;, package: &quot;mlx-audio-swift&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;h3&gt;Text-to-Speech&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import MLXAudioTTS
+import MLXAudioCore
+
+// Load a TTS model from HuggingFace
+let model = try await SopranoModel.fromPretrained(&quot;mlx-community/Soprano-80M-bf16&quot;)
+
+// Generate audio
+let audio = try await model.generate(
+    text: &quot;Hello from MLX Audio Swift!&quot;,
+    parameters: GenerateParameters(
+        maxTokens: 200,
+        temperature: 0.7,
+        topP: 0.95
+    )
+)
+
+// Save to file
+try saveAudioArray(audio, sampleRate: Double(model.sampleRate), to: outputURL)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Speech-to-Text&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import MLXAudioSTT
+import MLXAudioCore
+
+// Load audio file
+let (sampleRate, audioData) = try loadAudioArray(from: audioURL)
+
+// Load STT model
+let model = try await GLMASRModel.fromPretrained(&quot;mlx-community/GLM-ASR-Nano-2512-4bit&quot;)
+
+// Transcribe
+let output = model.generate(audio: audioData)
+print(output.text)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Speaker Diarization&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import MLXAudioVAD
+import MLXAudioCore
+
+// Load audio file
+let (sampleRate, audioData) = try loadAudioArray(from: audioURL)
+
+// Load diarization model
+let model = try await SortformerModel.fromPretrained(
+    &quot;mlx-community/diar_streaming_sortformer_4spk-v2.1-fp16&quot;
+)
+
+// Detect who is speaking when
+let output = try await model.generate(audio: audioData, threshold: 0.5)
+for segment in output.segments {
+    print(&quot;Speaker \(segment.speaker): \(segment.start)s - \(segment.end)s&quot;)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Streaming Generation&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;for try await event in model.generateStream(text: text, parameters: parameters) {
+    switch event {
+    case .token(let token):
+        print(&quot;Generated token: \(token)&quot;)
+    case .audio(let audio):
+        print(&quot;Final audio shape: \(audio.shape)&quot;)
+    case .info(let info):
+        print(info.summary)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Supported Models&lt;/h2&gt; 
+&lt;h3&gt;TTS Models&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Model&lt;/th&gt; 
+   &lt;th&gt;Model README&lt;/th&gt; 
+   &lt;th&gt;HuggingFace Repo&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Qwen3-TTS&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioTTS/Models/Qwen3TTS/README.md&quot;&gt;Qwen3-TTS README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/Qwen3-TTS-12Hz-0.6B-Base-8bit&quot;&gt;mlx-community/Qwen3-TTS-12Hz-0.6B-Base-8bit&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Fish Audio S2 Pro&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioTTS/Models/FishSpeech/README.md&quot;&gt;Fish Audio S2 Pro README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/fish-audio-s2-pro-8bit&quot;&gt;mlx-community/fish-audio-s2-pro-8bit&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Soprano&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioTTS/Models/Soprano/README.md&quot;&gt;Soprano README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/Soprano-80M-bf16&quot;&gt;mlx-community/Soprano-80M-bf16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;VyvoTTS&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioTTS/Models/Qwen3/README.md&quot;&gt;VyvoTTS README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/VyvoTTS-EN-Beta-4bit&quot;&gt;mlx-community/VyvoTTS-EN-Beta-4bit&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Orpheus&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioTTS/Models/Llama/README.md&quot;&gt;Orpheus README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/orpheus-3b-0.1-ft-bf16&quot;&gt;mlx-community/orpheus-3b-0.1-ft-bf16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Marvis TTS&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioTTS/Models/Marvis/README.md&quot;&gt;Marvis TTS README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/Marvis-AI/marvis-tts-250m-v0.2-MLX-8bit&quot;&gt;Marvis-AI/marvis-tts-250m-v0.2-MLX-8bit&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Pocket TTS&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioTTS/Models/PocketTTS/README.md&quot;&gt;Pocket TTS README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/pocket-tts&quot;&gt;mlx-community/pocket-tts&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;STT Models&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Model&lt;/th&gt; 
+   &lt;th&gt;Model README&lt;/th&gt; 
+   &lt;th&gt;HuggingFace Repo&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Qwen3-ASR&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioSTT/Models/Qwen3ASR/README.md&quot;&gt;Qwen3-ASR README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/Qwen3-ASR-1.7B-bf16&quot;&gt;mlx-community/Qwen3-ASR-1.7B-bf16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Qwen3-ForcedAligner&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioSTT/Models/Qwen3ASR/README.md&quot;&gt;Qwen3-ASR README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/Qwen3-ForcedAligner-0.6B-bf16&quot;&gt;mlx-community/Qwen3-ForcedAligner-0.6B-bf16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Voxtral Realtime&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioSTT/Models/VoxtralRealtime/README.md&quot;&gt;Voxtral README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/Voxtral-Mini-4B-Realtime-2602-fp16&quot;&gt;mlx-community/Voxtral-Mini-4B-Realtime-2602-fp16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Parakeet&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioSTT/Models/Parakeet/README.md&quot;&gt;Parakeet README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/parakeet-tdt-0.6b-v3&quot;&gt;mlx-community/parakeet-tdt-0.6b-v3&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;GLMASR&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioSTT/Models/GLMASR/README.md&quot;&gt;GLMASR README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/GLM-ASR-Nano-2512-4bit&quot;&gt;mlx-community/GLM-ASR-Nano-2512-4bit&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;STS Models&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Model&lt;/th&gt; 
+   &lt;th&gt;Model README&lt;/th&gt; 
+   &lt;th&gt;HuggingFace Repo&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;LFM2.5-Audio&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioSTS/Models/LFMAudio/README.md&quot;&gt;LFM Audio README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/LFM2.5-Audio-1.5B-6bit&quot;&gt;mlx-community/LFM2.5-Audio-1.5B-6bit&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;SAM-Audio&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioSTS/Models/SAMAudio/README.md&quot;&gt;SAM Audio README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/sam-audio-large-fp16&quot;&gt;mlx-community/sam-audio-large-fp16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;MossFormer2-SE&lt;/td&gt; 
+   &lt;td&gt;—&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/starkdmi/MossFormer2-SE-fp16&quot;&gt;starkdmi/MossFormer2-SE-fp16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;VAD / Speaker Diarization Models&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Model&lt;/th&gt; 
+   &lt;th&gt;Model README&lt;/th&gt; 
+   &lt;th&gt;HuggingFace Repo&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Sortformer&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioVAD/Models/Sortformer/README.md&quot;&gt;Sortformer README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/diar_streaming_sortformer_4spk-v2.1-fp16&quot;&gt;mlx-community/diar_streaming_sortformer_4spk-v2.1-fp16&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;SmartTurn&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Sources/MLXAudioVAD/Models/SmartTurn/README.md&quot;&gt;SmartTurn README&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://huggingface.co/mlx-community/smart-turn-v3&quot;&gt;mlx-community/smart-turn-v3&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Modular architecture&lt;/strong&gt; for minimal app size - import only what you need&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Automatic model downloading&lt;/strong&gt; from HuggingFace Hub&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Native async/await support&lt;/strong&gt; for seamless Swift integration&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Streaming audio generation&lt;/strong&gt; for real-time TTS&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Type-safe Swift API&lt;/strong&gt; with comprehensive error handling&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Optimized for Apple Silicon&lt;/strong&gt; with MLX framework&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Advanced Usage&lt;/h2&gt; 
+&lt;h3&gt;Custom Generation Parameters&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let parameters = GenerateParameters(
+    maxTokens: 1200,
+    temperature: 0.7,
+    topP: 0.95,
+    repetitionPenalty: 1.5,
+    repetitionContextSize: 30
+)
+
+let audio = try await model.generate(text: &quot;Your text here&quot;, parameters: parameters)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Audio Codec Usage&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import MLXAudioCodecs
+
+// Load SNAC codec
+let snac = try await SNAC.fromPretrained(&quot;mlx-community/snac_24khz&quot;)
+
+// Encode audio to tokens
+let tokens = try snac.encode(audio)
+
+// Decode tokens back to audio
+let reconstructed = try snac.decode(tokens)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Voice Selection for Multi-Voice Models&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;// For models supporting multiple voices (like LlamaTTS/Orpheus)
+let audio = try await model.generate(
+    text: &quot;Hello!&quot;,
+    voice: &quot;tara&quot;,  // Options: tara, leah, jess, leo, dan, mia, zac, zoe
+    parameters: parameters
+)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;macOS 14+&lt;/strong&gt; or &lt;strong&gt;iOS 17+&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Apple Silicon&lt;/strong&gt; (M1 or later) recommended for optimal performance&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Xcode 15+&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Swift 5.9+&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;p&gt;Check out the &lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/Examples/VoicesApp&quot;&gt;Examples/VoicesApp&lt;/a&gt; directory for a complete SwiftUI application demonstrating:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Loading and running TTS models&lt;/li&gt; 
+ &lt;li&gt;Playing generated audio&lt;/li&gt; 
+ &lt;li&gt;UI components for model interaction&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Additional usage examples can be found in the test files.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Built on &lt;a href=&quot;https://github.com/ml-explore/mlx-swift&quot;&gt;MLX Swift&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Uses &lt;a href=&quot;https://github.com/huggingface/swift-transformers&quot;&gt;swift-transformers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Inspired by &lt;a href=&quot;https://github.com/Blaizzy/mlx-audio&quot;&gt;MLX Audio (Python)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT License - see &lt;a href=&quot;https://raw.githubusercontent.com/Blaizzy/mlx-audio-swift/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/eefda1e01b2e52c97df290cbeb63f59edfec910200a7513b9c99fd2c4bd11f77/Blaizzy/mlx-audio-swift" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>onevcat/Kingfisher</title>
+      <link>https://github.com/onevcat/Kingfisher</link>
+      <description>&lt;p&gt;A lightweight, pure-Swift library for downloading and caching images from the web.&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/onevcat/Kingfisher/master/images/logo.png&quot; alt=&quot;Kingfisher&quot; title=&quot;Kingfisher&quot; width=&quot;557&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/onevcat/Kingfisher/actions?query=workflow%3Abuild&quot;&gt;&lt;img src=&quot;https://github.com/onevcat/kingfisher/workflows/build/badge.svg?branch=master&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swiftpackageindex.com/onevcat/Kingfisher/master/documentation/kingfisher&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Swift-Doc-DE5C43.svg?style=flat&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org/pods/Kingfisher&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/tag/onevcat/Kingfisher.svg?color=blue&amp;amp;include_prereleases=&amp;amp;sort=semver&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/onevcat/Kingfisher/master/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-MIT-black&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Kingfisher is a powerful, pure-Swift library for downloading and caching images from the web. It provides you a chance to use a pure-Swift way to work with remote images in your next app.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Asynchronous image downloading and caching.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Loading image from either &lt;code&gt;URLSession&lt;/code&gt;-based networking or local provided data.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Useful image processors and filters provided.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Multiple-layer hybrid cache for both memory and disk.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Fine control on cache behavior. Customizable expiration date and size limit.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Cancelable downloading and auto-reusing previous downloaded content to improve performance.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Independent components. Use the downloader, caching system, and image processors separately as you need.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Prefetching images and showing them from the cache to boost your app.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Extensions for &lt;code&gt;UIImageView&lt;/code&gt;, &lt;code&gt;NSImageView&lt;/code&gt;, &lt;code&gt;NSButton&lt;/code&gt;, &lt;code&gt;UIButton&lt;/code&gt;, &lt;code&gt;NSTextAttachment&lt;/code&gt;, &lt;code&gt;WKInterfaceImage&lt;/code&gt;, &lt;code&gt;TVMonogramView&lt;/code&gt; and &lt;code&gt;CPListItem&lt;/code&gt; to directly set an image from a URL.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Built-in transition animation when setting images.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Customizable placeholder and indicator while loading images.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Extensible image processing and image format easily.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Low Data Mode support.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; SwiftUI support.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Swift 6 &amp;amp; Swift Concurrency (strict mode) prepared.&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Load &amp;amp; cache for Live Photo.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Kingfisher 101&lt;/h3&gt; 
+&lt;p&gt;The simplest use-case is setting an image to an image view with the &lt;code&gt;UIImageView&lt;/code&gt; extension:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import Kingfisher
+
+let url = URL(string: &quot;https://example.com/image.png&quot;)
+imageView.kf.setImage(with: url)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Kingfisher will download the image from &lt;code&gt;url&lt;/code&gt;, send it to both memory cache and disk cache, and display it in &lt;code&gt;imageView&lt;/code&gt;. When you set it with the same URL later, the image will be retrieved from the cache and shown immediately.&lt;/p&gt; 
+&lt;p&gt;It also works if you use SwiftUI:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;var body: some View {
+    KFImage(URL(string: &quot;https://example.com/image.png&quot;)!)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;A More Advanced Example&lt;/h3&gt; 
+&lt;p&gt;With the powerful options, you can do hard tasks with Kingfisher in a simple way. For example, the code below:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Downloads a high-resolution image.&lt;/li&gt; 
+ &lt;li&gt;Downsamples it to match the image view size.&lt;/li&gt; 
+ &lt;li&gt;Makes it round cornered with a given radius.&lt;/li&gt; 
+ &lt;li&gt;Shows a system indicator and a placeholder image while downloading.&lt;/li&gt; 
+ &lt;li&gt;When prepared, it animates the small thumbnail image with a &quot;fade in&quot; effect.&lt;/li&gt; 
+ &lt;li&gt;The original large image is also cached to disk for later use, to get rid of downloading it again in a detail view.&lt;/li&gt; 
+ &lt;li&gt;A console log is printed when the task finishes, either for success or failure.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let url = URL(string: &quot;https://example.com/high_resolution_image.png&quot;)
+let processor = DownsamplingImageProcessor(size: imageView.bounds.size)
+             |&amp;gt; RoundCornerImageProcessor(cornerRadius: 20)
+imageView.kf.indicatorType = .activity
+imageView.kf.setImage(
+    with: url,
+    placeholder: UIImage(named: &quot;placeholderImage&quot;),
+    options: [
+        .processor(processor),
+        .scaleFactor(UIScreen.main.scale),
+        .transition(.fade(1)),
+        .cacheOriginalImage
+    ])
+{
+    result in
+    switch result {
+    case .success(let value):
+        print(&quot;Task done for: \(value.source.url?.absoluteString ?? &quot;&quot;)&quot;)
+    case .failure(let error):
+        print(&quot;Job failed: \(error.localizedDescription)&quot;)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It is a common situation I can meet in my daily work. Think about how many lines you need to write without Kingfisher!&lt;/p&gt; 
+&lt;h3&gt;Method Chaining&lt;/h3&gt; 
+&lt;p&gt;If you are not a fan of the &lt;code&gt;kf&lt;/code&gt; extension, you can also prefer to use the &lt;code&gt;KF&lt;/code&gt; builder and chained the method invocations. The code below is doing the same thing:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;// Use `kf` extension
+imageView.kf.setImage(
+    with: url,
+    placeholder: placeholderImage,
+    options: [
+        .processor(processor),
+        .loadDiskFileSynchronously,
+        .cacheOriginalImage,
+        .transition(.fade(0.25)),
+        .lowDataMode(.network(lowResolutionURL))
+    ],
+    progressBlock: { receivedSize, totalSize in
+        // Progress updated
+    },
+    completionHandler: { result in
+        // Done
+    }
+)
+
+// Use `KF` builder
+KF.url(url)
+  .placeholder(placeholderImage)
+  .setProcessor(processor)
+  .loadDiskFileSynchronously()
+  .cacheMemoryOnly()
+  .fade(duration: 0.25)
+  .lowDataModeSource(.network(lowResolutionURL))
+  .onProgress { receivedSize, totalSize in  }
+  .onSuccess { result in  }
+  .onFailure { error in }
+  .set(to: imageView)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And even better, if later you want to switch to SwiftUI, just change the &lt;code&gt;KF&lt;/code&gt; above to &lt;code&gt;KFImage&lt;/code&gt;, and you&#39;ve done:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;struct ContentView: View {
+    var body: some View {
+        KFImage.url(url)
+          .placeholder(placeholderImage)
+          .setProcessor(processor)
+          .loadDiskFileSynchronously()
+          .cacheMemoryOnly()
+          .fade(duration: 0.25)
+          .lowDataModeSource(.network(lowResolutionURL))
+          .onProgress { receivedSize, totalSize in  }
+          .onSuccess { result in  }
+          .onFailure { error in }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;h3&gt;Kingfisher 8.0&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;(UIKit/AppKit) iOS 13.0+ / macOS 10.15+ / tvOS 13.0+ / watchOS 6.0+ / visionOS 1.0+&lt;/li&gt; 
+ &lt;li&gt;(SwiftUI) iOS 14.0+ / macOS 11.0+ / tvOS 14.0+ / watchOS 7.0+ / visionOS 1.0+&lt;/li&gt; 
+ &lt;li&gt;Swift 5.9+&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Kingfisher 7.0&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;(UIKit/AppKit) iOS 12.0+ / macOS 10.14+ / tvOS 12.0+ / watchOS 5.0+ / visionOS 1.0+&lt;/li&gt; 
+ &lt;li&gt;(SwiftUI) iOS 14.0+ / macOS 11.0+ / tvOS 14.0+ / watchOS 7.0+ / visionOS 1.0+&lt;/li&gt; 
+ &lt;li&gt;Swift 5.0+&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;p&gt;Refer to one of the following tutorials to install and use the framework:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/tutorials/kingfisher/gettingstarteduikit&quot;&gt;UIKit Tutorial&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/tutorials/kingfisher/gettingstartedswiftui&quot;&gt;SwiftUI Tutorial&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Alternatively, you can follow either of the methods below.&lt;/p&gt; 
+&lt;h4&gt;Swift Package Manager&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;File &amp;gt; Swift Packages &amp;gt; Add Package Dependency&lt;/li&gt; 
+ &lt;li&gt;Add &lt;code&gt;https://github.com/onevcat/Kingfisher.git&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Select &quot;Up to Next Major&quot; with &quot;8.0.0&quot;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;CocoaPods&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;source &#39;https://github.com/CocoaPods/Specs.git&#39;
+platform :ios, &#39;13.0&#39;
+use_frameworks!
+
+target &#39;MyApp&#39; do
+  pod &#39;Kingfisher&#39;, &#39;~&amp;gt; 8.0&#39;
+end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Pre-built Framework&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open the release page, download the latest version of Kingfisher from the assets section.&lt;/li&gt; 
+ &lt;li&gt;Drag the &lt;code&gt;Kingfisher.xcframework&lt;/code&gt; into your project and add it to the target (usually the app target).&lt;/li&gt; 
+ &lt;li&gt;Select your target, in the &quot;General&quot; Tab, find the &quot;Frameworks, Libraries, and Embedded Content&quot; section, set the &lt;code&gt;Embed Without Signing&lt;/code&gt; to Kingfisher.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Check the documentation and tutorials:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/documentation/kingfisher&quot;&gt;Documentation Home&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/documentation/kingfisher/gettingstarted&quot;&gt;Getting Started&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/tutorials/kingfisher/gettingstarteduikit&quot;&gt;UIKit Tutorial&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/tutorials/kingfisher/gettingstartedswiftui&quot;&gt;SwiftUI Tutorial&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/documentation/kingfisher/commontasks&quot;&gt;Common Tasks - General&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/documentation/kingfisher/commontasks_cache&quot;&gt;Common Tasks - Cache&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/documentation/kingfisher/commontasks_downloader&quot;&gt;Common Tasks - Downloader&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/documentation/kingfisher/commontasks_processor&quot;&gt;Common tasks - Processor&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Migrating&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/onevcat/kingfisher/master/documentation/kingfisher/migration-to-8&quot;&gt;Kingfisher 8.0 Migration&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/onevcat/Kingfisher/wiki/Kingfisher-7.0-Migration-Guide&quot;&gt;Kingfisher 7.0 Migration&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you are using an even earlier version, see the guides below to know the steps for migrating.&lt;/p&gt; 
+&lt;h2&gt;Other&lt;/h2&gt; 
+&lt;h3&gt;Future of Kingfisher&lt;/h3&gt; 
+&lt;p&gt;I want to keep Kingfisher lightweight. This framework focuses on providing a simple solution for downloading and caching images. This doesn’t mean the framework can’t be improved. Kingfisher is far from perfect, so necessary and useful updates will be made to make it better.&lt;/p&gt; 
+&lt;h3&gt;Developments and Tests&lt;/h3&gt; 
+&lt;p&gt;Any contributing and pull requests are warmly welcome. However, before you plan to implement some features or try to fix an uncertain issue, it is recommended to open a discussion first. It would be appreciated if your pull requests could build with all tests green. :)&lt;/p&gt; 
+&lt;h3&gt;About the logo&lt;/h3&gt; 
+&lt;p&gt;The logo of Kingfisher is inspired by &lt;a href=&quot;http://en.wikipedia.org/wiki/Tangram&quot;&gt;Tangram (七巧板)&lt;/a&gt;, a dissection puzzle consisting of seven flat shapes from China. I believe she&#39;s a kingfisher bird instead of a swift, but someone insists that she is a pigeon. I guess I should give her a name. Hi, guys, do you have any suggestions?&lt;/p&gt; 
+&lt;h3&gt;Contact&lt;/h3&gt; 
+&lt;p&gt;Follow and contact me on &lt;a href=&quot;http://twitter.com/onevcat&quot;&gt;Twitter&lt;/a&gt; or &lt;a href=&quot;http://weibo.com/onevcat&quot;&gt;Sina Weibo&lt;/a&gt;. If you find an issue, &lt;a href=&quot;https://github.com/onevcat/Kingfisher/issues/new&quot;&gt;open a ticket&lt;/a&gt;. Pull requests are warmly welcome as well.&lt;/p&gt; 
+&lt;h2&gt;Backers &amp;amp; Sponsors&lt;/h2&gt; 
+&lt;p&gt;Open-source projects cannot live long without your help. If you find Kingfisher to be useful, please consider supporting this project by becoming a sponsor. Your user icon or company logo shows up &lt;a href=&quot;https://onevcat.com/tabs/about/&quot;&gt;on my blog&lt;/a&gt; with a link to your home page.&lt;/p&gt; 
+&lt;p&gt;Become a sponsor through &lt;a href=&quot;https://github.com/sponsors/onevcat&quot;&gt;GitHub Sponsors&lt;/a&gt;. &lt;span&gt;❤️&lt;/span&gt;&lt;/p&gt; 
+&lt;p&gt;Special thanks to:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://img.ly/&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/1812216/106253726-271ed000-6218-11eb-98e0-c9c681925770.png&quot; alt=&quot;imgly&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.emergetools.com&quot;&gt;&lt;img src=&quot;https://github-production-user-asset-6210df.s3.amazonaws.com/1019875/254794187-d44f6f50-993f-42e3-b79c-960f69c4adc1.png&quot; alt=&quot;emergetools&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;License&lt;/h3&gt; 
+&lt;p&gt;Kingfisher is released under the MIT license. See LICENSE for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/33486016/e8588b00-61e6-11e9-898a-0b49d1c92a58" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>CLARATION/Feather</title>
+      <link>https://github.com/CLARATION/Feather</link>
+      <description>&lt;p&gt;Free on-device iOS/iPadOS application manager/installer, using certificates part of the Apple Developer Program.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Feather&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/claration/Feather/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/claration/Feather?include_prereleases&quot; alt=&quot;GitHub Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/claration/Feather/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/claration/Feather/total&quot; alt=&quot;GitHub Downloads (all assets, all releases)&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/claration/Feather/raw/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/claration/Feather?color=%23C96FAD&quot; alt=&quot;GitHub License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sponsors/khcrysalis&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=Sponsor&amp;amp;message=%E2%9D%A4&amp;amp;logo=GitHub&amp;amp;color=%23fe8e86&quot; alt=&quot;Sponsor Me&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This app allows you to install and manage applications contained in a single app, using certificate pairs and various installation techniques to allow apps to install to your device. This is an entirely stock application and uses built-in features to be able to do this!&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt;
+ &lt;picture&gt;
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;Images/Image-dark.png&quot; /&gt;
+  &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;Images/Image-light.png&quot; /&gt;
+  &lt;img alt=&quot;Feather&quot; src=&quot;https://raw.githubusercontent.com/CLARATION/Feather/main/Images/Image-light.png&quot; /&gt;
+ &lt;/picture&gt;&lt;/p&gt; 
+&lt;h3&gt;Features&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;User friendly, and clean UI.&lt;/li&gt; 
+ &lt;li&gt;Sign and install applications.&lt;/li&gt; 
+ &lt;li&gt;Supports &lt;a href=&quot;https://faq.altstore.io/distribute-your-apps/make-a-source#apps&quot;&gt;AltStore&lt;/a&gt; repositories.&lt;/li&gt; 
+ &lt;li&gt;View detailed information about apps and your certificates.&lt;/li&gt; 
+ &lt;li&gt;Configurable signing options mainly for modifying the app, such as appearance and allowing support for the files app. 
+  &lt;ul&gt; 
+   &lt;li&gt;This includes patching apps for compatibility and Liquid Glass.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Tweak support for advanced users, using &lt;a href=&quot;https://github.com/tealbathingsuit/ellekit&quot;&gt;Ellekit&lt;/a&gt; for injection. 
+  &lt;ul&gt; 
+   &lt;li&gt;Supports injecting &lt;code&gt;.deb&lt;/code&gt; and &lt;code&gt;.dylib&lt;/code&gt; files.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Actively maintained: always ensuring most apps get installed properly.&lt;/li&gt; 
+ &lt;li&gt;No tracking or analytics, ensuring user privacy.&lt;/li&gt; 
+ &lt;li&gt;Of course, open source and free.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;Visit &lt;a href=&quot;https://github.com/claration/Feather/releases&quot;&gt;releases&lt;/a&gt; and get the latest &lt;code&gt;.ipa&lt;/code&gt;.&lt;/p&gt; 
+&lt;a href=&quot;https://celloserenity.github.io/altdirect/?url=https://raw.githubusercontent.com/claration/Feather/refs/heads/main/app-repo.json&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/CelloSerenity/altdirect/raw/main/assets/png/AltSource_Blue.png?raw=true&quot; alt=&quot;Add AltSource&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; 
+&lt;a href=&quot;https://github.com/claration/Feather/releases/latest/download/Feather.ipa&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/CelloSerenity/altdirect/raw/main/assets/png/Download_Blue.png?raw=true&quot; alt=&quot;Download .ipa&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; 
+&lt;h2&gt;How does it work?&lt;/h2&gt; 
+&lt;p&gt;Visit the &lt;a href=&quot;https://raw.githubusercontent.com/CLARATION/Feather/main/HOW_IT_WORKS.md&quot;&gt;HOW IT WORKS&lt;/a&gt; page.&lt;/p&gt; 
+&lt;h2&gt;Sponsors&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;Thanks to all my &lt;a href=&quot;https://github.com/sponsors/khcrysalis&quot;&gt;sponsors&lt;/a&gt;!!&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/khcrysalis/github-sponsor-graph/main/graph.png&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;em&gt;&lt;strong&gt;&quot;samara is cute&quot; - Vendicated&lt;/strong&gt;&lt;/em&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;a href=&quot;https://star-history.com/#claration/Feather&amp;amp;Date&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://api.star-history.com/svg?repos=claration/Feather&amp;amp;type=Date&amp;amp;theme=dark&quot; /&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://api.star-history.com/svg?repos=claration/Feather&amp;amp;type=Date&quot; /&gt; 
+  &lt;img alt=&quot;Star History Chart&quot; src=&quot;https://api.star-history.com/svg?repos=claration/Feather&amp;amp;type=Date&quot; /&gt; 
+ &lt;/picture&gt; &lt;/a&gt; 
+&lt;h2&gt;Acknowledgements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khcrysalis&quot;&gt;Samara&lt;/a&gt; - The maker&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jkcoxson/idevice&quot;&gt;idevice&lt;/a&gt; - Backend for builds with this included, used for communication with &lt;code&gt;installd&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://backloop.dev/&quot;&gt;*.backloop.dev&lt;/a&gt; - localhost with public CA signed SSL certificate&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/vapor/vapor&quot;&gt;Vapor&lt;/a&gt; - A server-side Swift HTTP web framework.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/zhlynn/zsign&quot;&gt;Zsign&lt;/a&gt; - Allowing to sign on-device, reimplimented to work on other platforms such as iOS.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/LiveContainer/LiveContainer&quot;&gt;LiveContainer&lt;/a&gt; - Fixes/some help&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kean/Nuke&quot;&gt;Nuke&lt;/a&gt; - Image caching.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Lakr233/Asspp&quot;&gt;Asspp&lt;/a&gt; - Some code for setting up the http server.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/nekohaxx/plistserver&quot;&gt;plistserver&lt;/a&gt; - Hosted on &lt;a href=&quot;https://api.palera.in&quot;&gt;https://api.palera.in&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is licensed under the GPL-3.0 license. You can see the full details of the license &lt;a href=&quot;https://github.com/claration/Feather/raw/main/LICENSE&quot;&gt;here&lt;/a&gt;. It&#39;s under this specific license because I wanted to make a project that is transparent to the user thats related to certificate paired sideloading, before this project there weren&#39;t any open source projects that filled in this gap.&lt;/p&gt; 
+&lt;p&gt;By contributing to this project, you agree to license your code under the GPL-3.0 license as well (including agreeing to license exceptions), ensuring that your work, like all other contributions, remains freely accessible and open.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e0c551e998bd80d43d6f0c5546d9fc1a030dadb69832e8954a2506420604194e/CLARATION/Feather" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>automazeio/vibeproxy</title>
+      <link>https://github.com/automazeio/vibeproxy</link>
+      <description>&lt;p&gt;Native macOS menu bar app to use your Claude Code &amp; ChatGPT subscriptions with AI coding tools - no API keys needed&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;VibeProxy&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/automazeio/vibeproxy/main/icon.png&quot; width=&quot;128&quot; height=&quot;128&quot; alt=&quot;VibeProxy Icon&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://automaze.io&quot; rel=&quot;nofollow&quot;&gt;&lt;img alt=&quot;Automaze&quot; src=&quot;https://img.shields.io/badge/By-automaze.io-4b3baf&quot; style=&quot;max-width: 100%;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/automazeio/vibeproxy/raw/main/LICENSE&quot;&gt;&lt;img alt=&quot;MIT License&quot; src=&quot;https://img.shields.io/badge/License-MIT-28a745&quot; style=&quot;max-width: 100%;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://x.com/intent/follow?screen_name=aroussi&quot; rel=&quot;nofollow&quot;&gt;&lt;img alt=&quot;Follow on 𝕏&quot; src=&quot;https://img.shields.io/badge/Follow-%F0%9D%95%8F/@aroussi-1c9bf0&quot; style=&quot;max-width: 100%;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/automazeio/vibeproxy&quot;&gt;&lt;img alt=&quot;Star this repo&quot; src=&quot;https://img.shields.io/github/stars/automazeio/vibeproxy.svg?style=social&amp;amp;label=Star%20this%20repo&amp;amp;maxAge=60&quot; style=&quot;max-width: 100%;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Stop paying twice for AI.&lt;/strong&gt; VibeProxy is a beautiful native macOS menu bar app that lets you use your existing Claude Code, ChatGPT, &lt;strong&gt;Gemini&lt;/strong&gt;, &lt;strong&gt;Qwen&lt;/strong&gt;, &lt;strong&gt;Antigravity&lt;/strong&gt;, and &lt;strong&gt;Z.AI GLM&lt;/strong&gt; subscriptions with powerful AI coding tools like &lt;strong&gt;&lt;a href=&quot;https://app.factory.ai/r/FM8BJHFQ&quot;&gt;Factory Droids&lt;/a&gt;&lt;/strong&gt; – no separate API keys required.&lt;/p&gt; 
+&lt;p&gt;Built on &lt;a href=&quot;https://github.com/router-for-me/CLIProxyAPIPlus&quot;&gt;CLIProxyAPIPlus&lt;/a&gt;, it handles OAuth authentication, token management, and API routing automatically. One click to authenticate, zero friction to code.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;br /&gt; &lt;a href=&quot;https://www.loom.com/share/5cf54acfc55049afba725ab443dd3777&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/automazeio/vibeproxy/main/vibeproxy-factory-video.webp&quot; width=&quot;600&quot; height=&quot;380&quot; alt=&quot;VibeProxy Screenshot&quot; border=&quot;0&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!TIP] 📣 &lt;strong&gt;NEW: Vercel AI Gateway Integration!&lt;/strong&gt;&lt;br /&gt;Route your Claude requests through &lt;a href=&quot;https://vercel.com/docs/ai-gateway&quot;&gt;Vercel&#39;s officially sanctioned AI Gateway&lt;/a&gt; for safer access to your Claude Max subscription. No more worrying about account risks from using OAuth tokens directly!&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Latest models supported:&lt;/strong&gt; Gemini 3 Pro (via Antigravity), GPT-5.1 / GPT-5.1 Codex, Claude Sonnet 4.5 / Opus 4.5 with extended thinking, GitHub Copilot, and Z.AI GLM-4.7! 🚀&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Setup Guides:&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/automazeio/vibeproxy/main/FACTORY_SETUP.md&quot;&gt;Factory CLI Setup →&lt;/a&gt; - Use Factory Droids with your AI subscriptions&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/automazeio/vibeproxy/main/AMPCODE_SETUP.md&quot;&gt;Amp CLI Setup →&lt;/a&gt; - Use Amp CLI with fallback to your subscriptions&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/blockquote&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;🎯 &lt;strong&gt;Native macOS Experience&lt;/strong&gt; - Clean, native SwiftUI interface that feels right at home on macOS&lt;/li&gt; 
+ &lt;li&gt;🚀 &lt;strong&gt;One-Click Server Management&lt;/strong&gt; - Start/stop the proxy server from your menu bar&lt;/li&gt; 
+ &lt;li&gt;🔐 &lt;strong&gt;Easy Authentication&lt;/strong&gt; - Authenticate with Codex, Claude Code, Gemini, Qwen, Antigravity (OAuth), and Z.AI GLM (API key) directly from the app&lt;/li&gt; 
+ &lt;li&gt;🛡️ &lt;strong&gt;Vercel AI Gateway&lt;/strong&gt; - Route Claude requests through &lt;a href=&quot;https://vercel.com/docs/ai-gateway&quot;&gt;Vercel&#39;s AI Gateway&lt;/a&gt; for safer access to your Claude Max subscription without risking your account from direct OAuth token usage&lt;/li&gt; 
+ &lt;li&gt;👥 &lt;strong&gt;Multi-Account Support&lt;/strong&gt; - Connect multiple accounts per provider with automatic round-robin distribution and failover when rate-limited&lt;/li&gt; 
+ &lt;li&gt;🎚️ &lt;strong&gt;Provider Priority&lt;/strong&gt; - Enable/disable providers to control which models are available (instant hot reload)&lt;/li&gt; 
+ &lt;li&gt;📊 &lt;strong&gt;Real-Time Status&lt;/strong&gt; - Live connection status and automatic credential detection&lt;/li&gt; 
+ &lt;li&gt;🔄 &lt;strong&gt;Automatic App Updates&lt;/strong&gt; - Starting with v1.6, VibeProxy checks for updates daily and installs them seamlessly via Sparkle&lt;/li&gt; 
+ &lt;li&gt;🎨 &lt;strong&gt;Beautiful Icons&lt;/strong&gt; - Custom icons with dark mode support&lt;/li&gt; 
+ &lt;li&gt;💾 &lt;strong&gt;Self-Contained&lt;/strong&gt; - Everything bundled inside the .app (server binary, config, static files)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Requirements:&lt;/strong&gt; macOS 13+ (Ventura or later)&lt;/p&gt; 
+&lt;h3&gt;Download Pre-built Release (Recommended)&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Go to the &lt;a href=&quot;https://github.com/automazeio/vibeproxy/releases&quot;&gt;&lt;strong&gt;Releases&lt;/strong&gt;&lt;/a&gt; page&lt;/li&gt; 
+ &lt;li&gt;Download the appropriate version for your Mac: 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;Apple Silicon&lt;/strong&gt; (M1/M2/M3/M4): &lt;code&gt;VibeProxy-arm64.zip&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Intel&lt;/strong&gt;: &lt;code&gt;VibeProxy-x86_64.zip&lt;/code&gt; &lt;em&gt;(untested - please report issues)&lt;/em&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Extract and drag &lt;code&gt;VibeProxy.app&lt;/code&gt; to &lt;code&gt;/Applications&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Launch VibeProxy&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;strong&gt;Code Signed &amp;amp; Notarized&lt;/strong&gt; ✅ - No Gatekeeper warnings, installs seamlessly on macOS.&lt;/p&gt; 
+&lt;h3&gt;Build from Source&lt;/h3&gt; 
+&lt;p&gt;Want to build it yourself? See &lt;a href=&quot;https://raw.githubusercontent.com/automazeio/vibeproxy/main/INSTALLATION.md&quot;&gt;&lt;strong&gt;INSTALLATION.md&lt;/strong&gt;&lt;/a&gt; for detailed build instructions.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;h3&gt;First Launch&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Launch VibeProxy - you&#39;ll see a menu bar icon&lt;/li&gt; 
+ &lt;li&gt;Click the icon and select &quot;Open Settings&quot;&lt;/li&gt; 
+ &lt;li&gt;The server will start automatically&lt;/li&gt; 
+ &lt;li&gt;Click &quot;Connect&quot; for Claude Code, Codex, Gemini, Qwen, or Antigravity to authenticate, or &quot;Add Account&quot; for Z.AI GLM to enter your API key&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Authentication&lt;/h3&gt; 
+&lt;p&gt;When you click &quot;Connect&quot;:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Your browser opens with the OAuth page&lt;/li&gt; 
+ &lt;li&gt;Complete the authentication in the browser&lt;/li&gt; 
+ &lt;li&gt;VibeProxy automatically detects your credentials&lt;/li&gt; 
+ &lt;li&gt;Status updates to show you&#39;re connected&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Server Management&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Toggle Server&lt;/strong&gt;: Click the status (Running/Stopped) to start/stop&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Menu Bar Icon&lt;/strong&gt;: Shows active/inactive state&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Launch at Login&lt;/strong&gt;: Toggle to start VibeProxy automatically&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 13.0 (Ventura) or later&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Development&lt;/h2&gt; 
+&lt;h3&gt;Project Structure&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;VibeProxy/
+├── Sources/
+│   ├── main.swift              # App entry point
+│   ├── AppDelegate.swift       # Menu bar &amp;amp; window management
+│   ├── ServerManager.swift     # Server process control &amp;amp; auth
+│   ├── SettingsView.swift      # Main UI
+│   ├── AuthStatus.swift        # Auth file monitoring
+│   └── Resources/
+│       ├── AppIcon.iconset     # App icon
+│       ├── AppIcon.icns        # App icon
+│       ├── cli-proxy-api-plus  # CLIProxyAPIPlus binary
+│       ├── config.yaml         # CLIProxyAPIPlus config
+│       ├── icon-active.png     # Menu bar icon (active)
+│       ├── icon-inactive.png   # Menu bar icon (inactive)
+│       ├── icon-claude.png     # Claude Code service icon
+│       ├── icon-codex.png      # Codex service icon
+│       ├── icon-gemini.png     # Gemini service icon
+│       ├── icon-qwen.png       # Qwen service icon
+│       └── icon-zai.png        # Z.AI GLM service icon
+├── Package.swift               # Swift Package Manager config
+├── Info.plist                  # macOS app metadata
+├── build.sh                    # Resource bundling script
+├── create-app-bundle.sh        # App bundle creation script
+└── Makefile                    # Build automation
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Key Components&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;AppDelegate&lt;/strong&gt;: Manages the menu bar item and settings window lifecycle&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;ServerManager&lt;/strong&gt;: Controls the cli-proxy-api server process and OAuth authentication&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SettingsView&lt;/strong&gt;: SwiftUI interface with native macOS design&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;AuthStatus&lt;/strong&gt;: Monitors &lt;code&gt;~/.cli-proxy-api/&lt;/code&gt; for authentication files&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;File Monitoring&lt;/strong&gt;: Real-time updates when auth files are added/removed&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;VibeProxy is built on top of &lt;a href=&quot;https://github.com/router-for-me/CLIProxyAPIPlus&quot;&gt;CLIProxyAPIPlus&lt;/a&gt;, an excellent unified proxy server for AI services with support for third-party providers.&lt;/p&gt; 
+&lt;p&gt;Special thanks to the CLIProxyAPIPlus project for providing the core functionality that makes VibeProxy possible.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT License - see LICENSE file for details&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Report Issues&lt;/strong&gt;: &lt;a href=&quot;https://github.com/automazeio/vibeproxy/issues&quot;&gt;GitHub Issues&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Website&lt;/strong&gt;: &lt;a href=&quot;https://automaze.io&quot;&gt;automaze.io&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;© 2025 &lt;a href=&quot;https://automaze.io&quot;&gt;Automaze, Ltd.&lt;/a&gt; All rights reserved.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8c4283927a504037972ff22fabee3638f1592e67e31cf0a07b2274d4778ee73c/automazeio/vibeproxy" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>facebook/facebook-ios-sdk</title>
+      <link>https://github.com/facebook/facebook-ios-sdk</link>
+      <description>&lt;p&gt;Used to integrate the Facebook Platform with your iOS &amp; tvOS apps.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Facebook SDK for iOS&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cocoapods.org/pods/FBSDKCoreKit&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/FBSDKCoreKit.svg?sanitize=true&quot; alt=&quot;Platforms&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://circleci.com/gh/facebook/facebook-ios-sdk/tree/main&quot;&gt;&lt;img src=&quot;https://circleci.com/gh/facebook/facebook-ios-sdk/tree/main.svg?style=shield&quot; alt=&quot;circleci&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cocoapods.org/pods/FBSDKCoreKit&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/FBSDKCoreKit.svg?sanitize=true&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This open-source library allows you to integrate Facebook into your iOS app.&lt;/p&gt; 
+&lt;p&gt;Learn more about the provided samples, documentation, integrating the SDK into your app, accessing source code, and more at &lt;a href=&quot;https://developers.facebook.com/docs/ios&quot;&gt;https://developers.facebook.com/docs/ios&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Please take a moment and &lt;a href=&quot;https://docs.github.com/en/enterprise/2.15/user/articles/watching-and-unwatching-repositories&quot;&gt;subscribe to releases&lt;/a&gt; so that you can be notified about new features, deprecations, and critical fixes. To see information about the latest release, consult our &lt;a href=&quot;https://raw.githubusercontent.com/facebook/facebook-ios-sdk/main/CHANGELOG.md&quot;&gt;changelog&lt;/a&gt;.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;left&quot;&gt;&lt;span&gt;⚠&lt;/span&gt; Be Advised &lt;span&gt;⚠&lt;/span&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;left&quot;&gt;&lt;p&gt;We have begun rewriting the iOS SDK in Swift in order to modernize the code base.&lt;/p&gt;&lt;p&gt;Please monitor the changelog for updates to existing interfaces but keep in mind that some interfaces will be unstable during this process. As such, updating to a minor version may introduce compilation issues related to language interoperability. Using symbols now defined in Swift may require using &lt;code&gt;@import&lt;/code&gt; syntax from Objective-C and using C++ will likely require workarounds like creating wrappers in Objective-C.&lt;/p&gt;Please bear with us as we work towards providing an improved experience for integrating with the Facebook platform.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;TRY IT OUT&lt;/h2&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;In Xcode, select File &amp;gt; Swift Packages &amp;gt; Add Package Dependency.&lt;/li&gt; 
+ &lt;li&gt;Follow the prompts using the URL for this repository&lt;/li&gt; 
+ &lt;li&gt;Select the &lt;code&gt;Facebook&lt;/code&gt;-prefixed libraries you want to use&lt;/li&gt; 
+ &lt;li&gt;Check-out the tutorials available online at: &lt;a href=&quot;https://developers.facebook.com/docs/ios/getting-started&quot;&gt;https://developers.facebook.com/docs/ios/getting-started&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Start coding! Visit &lt;a href=&quot;https://developers.facebook.com/docs/ios&quot;&gt;https://developers.facebook.com/docs/ios&lt;/a&gt; for tutorials and reference documentation.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;iOS 14 CHANGES&lt;/h2&gt; 
+&lt;h3&gt;Data Disclosure&lt;/h3&gt; 
+&lt;p&gt;Due to the release of iOS 14, tracking events that your app collects and sends to Facebook may require you to disclosed these data types in the App Store Connect questionnaire. It is your responsibility to ensure this is reflected in your application’s privacy policy. Visit our blogpost for information on affected Facebook SDKs, APIs, and products and the Apple App Store Privacy Details article to learn more about the data types you will need to disclose.&lt;/p&gt; 
+&lt;p&gt;link to FB blogpost &lt;a href=&quot;https://developers.facebook.com/blog/post/2020/10/22/preparing-for-apple-app-store-data-disclosure-requirements/&quot;&gt;https://developers.facebook.com/blog/post/2020/10/22/preparing-for-apple-app-store-data-disclosure-requirements/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;apple store details &lt;a href=&quot;https://developer.apple.com/app-store/app-privacy-details/&quot;&gt;https://developer.apple.com/app-store/app-privacy-details/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;FEATURES&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Login - &lt;a href=&quot;https://developers.facebook.com/docs/facebook-login&quot;&gt;https://developers.facebook.com/docs/facebook-login&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Sharing - &lt;a href=&quot;https://developers.facebook.com/docs/sharing&quot;&gt;https://developers.facebook.com/docs/sharing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;App Links - &lt;a href=&quot;https://developers.facebook.com/docs/applinks&quot;&gt;https://developers.facebook.com/docs/applinks&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Graph API - &lt;a href=&quot;https://developers.facebook.com/docs/ios/graph&quot;&gt;https://developers.facebook.com/docs/ios/graph&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Analytics - &lt;a href=&quot;https://developers.facebook.com/docs/analytics&quot;&gt;https://developers.facebook.com/docs/analytics&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;GIVE FEEDBACK&lt;/h2&gt; 
+&lt;p&gt;Please report bugs or issues to our designated developer support team -- &lt;a href=&quot;https://developers.facebook.com/support/bugs/&quot;&gt;https://developers.facebook.com/support/bugs/&lt;/a&gt; -- as this will help us resolve them more quickly.&lt;/p&gt; 
+&lt;p&gt;You can also visit our &lt;a href=&quot;https://developers.facebook.com/community/&quot;&gt;Facebook Developer Community Forum&lt;/a&gt;, join the &lt;a href=&quot;https://www.facebook.com/groups/fbdevelopers/&quot;&gt;Facebook Developers Group on Facebook&lt;/a&gt;, ask questions on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/facebook-ios-sdk&quot;&gt;Stack Overflow&lt;/a&gt;, or open an issue in this repository.&lt;/p&gt; 
+&lt;h2&gt;CONTRIBUTE&lt;/h2&gt; 
+&lt;p&gt;Facebook welcomes contributions to our SDKs. Please see the &lt;a href=&quot;https://raw.githubusercontent.com/facebook/facebook-ios-sdk/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING&lt;/a&gt; file.&lt;/p&gt; 
+&lt;h2&gt;LICENSE&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/facebook/facebook-ios-sdk/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file.&lt;/p&gt; 
+&lt;p&gt;Copyright © Meta Platforms, Inc&lt;/p&gt; 
+&lt;h2&gt;SECURITY POLICY&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/facebook/facebook-ios-sdk/main/SECURITY.md&quot;&gt;SECURITY POLICY&lt;/a&gt; for more info on our bug bounty program.&lt;/p&gt; 
+&lt;h2&gt;DEVELOPER TERMS&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;By enabling Facebook integrations, including through this SDK, you can share information with Facebook, including information about people’s use of your app. Facebook will use information received in accordance with our &lt;a href=&quot;https://www.facebook.com/about/privacy/&quot;&gt;Data Use Policy&lt;/a&gt;, including to provide you with insights about the effectiveness of your ads and the use of your app. These integrations also enable us and our partners to serve ads on and off Facebook.&lt;/li&gt; 
+ &lt;li&gt;You may limit your sharing of information with us by updating the Insights control in the developer tool &lt;code&gt;https://developers.facebook.com/apps/{app_id}/settings/advanced&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;If you use a Facebook integration, including to share information with us, you agree and confirm that you have provided appropriate and sufficiently prominent notice to and obtained the appropriate consent from your users regarding such collection, use, and disclosure (including, at a minimum, through your privacy policy). You further agree that you will not share information with us about children under the age of 13.&lt;/li&gt; 
+ &lt;li&gt;You agree to comply with all applicable laws and regulations and also agree to our Terms &lt;a href=&quot;https://www.facebook.com/policies/&quot;&gt;https://www.facebook.com/policies/&lt;/a&gt;, including our Platform Policies &lt;a href=&quot;https://developers.facebook.com/policy/&quot;&gt;https://developers.facebook.com/policy/&lt;/a&gt; and Advertising Guidelines, as applicable &lt;a href=&quot;https://www.facebook.com/ad_guidelines.php&quot;&gt;https://www.facebook.com/ad_guidelines.php&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;By using the Facebook SDK for iOS you agree to these terms.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/aeb635dcc91884dd82e3dcef45b3444372d24c36e7e126c836e726c51c9dd19a/facebook/facebook-ios-sdk" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>airbnb/lottie-ios</title>
+      <link>https://github.com/airbnb/lottie-ios</link>
+      <description>&lt;p&gt;An iOS library to natively render After Effects vector animations&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Lottie for iOS&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cocoapods.org/pods/lottie-ios&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/lottie-ios.svg?style=flat&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage Compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SPM-supported-DE5C43.svg?style=flat&quot; alt=&quot;SwiftPM&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org/pods/lottie-ios&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/lottie-ios.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swiftpackageindex.com/airbnb/lottie-ios&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fairbnb%2Flottie-ios%2Fbadge%3Ftype%3Dplatforms&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swiftpackageindex.com/airbnb/lottie-ios&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fairbnb%2Flottie-ios%2Fbadge%3Ftype%3Dswift-versions&quot; alt=&quot;Swift Versions&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;View documentation, FAQ, help, examples, and more at &lt;a href=&quot;https://airbnb.io/lottie/&quot;&gt;airbnb.io/lottie&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Lottie is a cross-platform library for iOS, macOS, tvOS, visionOS, &lt;a href=&quot;https://github.com/airbnb/lottie-android&quot;&gt;Android&lt;/a&gt;, and &lt;a href=&quot;https://github.com/airbnb/lottie-web&quot;&gt;Web&lt;/a&gt; that natively renders vector-based animations and art in realtime with minimal code.&lt;/p&gt; 
+&lt;p&gt;Lottie loads and renders animations and vectors exported in the bodymovin JSON format. Bodymovin JSON can be created and exported from After Effects with &lt;a href=&quot;https://github.com/bodymovin/bodymovin&quot;&gt;bodymovin&lt;/a&gt;, Sketch with &lt;a href=&quot;https://github.com/buba447/Lottie-Sketch-Export&quot;&gt;Lottie Sketch Export&lt;/a&gt;, and from &lt;a href=&quot;https://www.haikuanimator.com&quot;&gt;Haiku&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Designers can create &lt;strong&gt;and ship&lt;/strong&gt; beautiful animations without an engineer painstakingly recreating them by hand. Since the animations are backed by JSON, they are extremely small in size but can be large in complexity! Animations can be played, resized, looped, sped up, slowed down, reversed, and even interactively scrubbed. Lottie can play or loop just a portion of the animation as well, the possibilities are endless! Animations can even be &lt;em&gt;&lt;strong&gt;changed at runtime&lt;/strong&gt;&lt;/em&gt; in various ways! Change the color, position, or any keyframable value!&lt;/p&gt; 
+&lt;p&gt;Here is just a small sampling of the power of Lottie&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/airbnb/lottie-ios/master/_Gifs/Examples1.gif&quot; alt=&quot;Example1&quot; /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/airbnb/lottie-ios/master/_Gifs/Examples2.gif&quot; alt=&quot;Example2&quot; /&gt;&lt;/p&gt; 
+&lt;img src=&quot;_Gifs/Community 2_3.gif&quot; /&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/airbnb/lottie-ios/master/_Gifs/Examples3.gif&quot; alt=&quot;Example3&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/airbnb/lottie-ios/master/_Gifs/Examples4.gif&quot; alt=&quot;Abcs&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Installing Lottie&lt;/h2&gt; 
+&lt;p&gt;Lottie supports &lt;a href=&quot;https://www.swift.org/package-manager/&quot;&gt;Swift Package Manager&lt;/a&gt;, &lt;a href=&quot;https://cocoapods.org/&quot;&gt;CocoaPods&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt; (Both dynamic and static).&lt;/p&gt; 
+&lt;h3&gt;Github Repo&lt;/h3&gt; 
+&lt;p&gt;You can pull the &lt;a href=&quot;https://github.com/airbnb/lottie-ios/&quot;&gt;Lottie Github Repo&lt;/a&gt; and include the &lt;code&gt;Lottie.xcodeproj&lt;/code&gt; to build a dynamic or static library.&lt;/p&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;p&gt;To install Lottie using &lt;a href=&quot;https://github.com/swiftlang/swift-package-manager&quot;&gt;Swift Package Manager&lt;/a&gt; you can follow the &lt;a href=&quot;https://developer.apple.com/documentation/xcode/adding_package_dependencies_to_your_app&quot;&gt;tutorial published by Apple&lt;/a&gt; using the URL for the Lottie repo with the current version:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;In Xcode, select “File” → “Add Packages...”&lt;/li&gt; 
+ &lt;li&gt;Enter &lt;a href=&quot;https://github.com/airbnb/lottie-spm.git&quot;&gt;https://github.com/airbnb/lottie-spm.git&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;or you can add the following dependency to your &lt;code&gt;Package.swift&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;.package(url: &quot;https://github.com/airbnb/lottie-spm.git&quot;, from: &quot;4.5.2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When using Swift Package Manager we recommend using the &lt;a href=&quot;https://github.com/airbnb/lottie-spm&quot;&gt;lottie-spm&lt;/a&gt; repo instead of the main lottie-ios repo. The main git repository for &lt;a href=&quot;https://github.com/airbnb/lottie-ios&quot;&gt;lottie-ios&lt;/a&gt; is somewhat large (300+ MB), and Swift Package Manager always downloads the full repository with all git history. The &lt;a href=&quot;https://github.com/airbnb/lottie-spm&quot;&gt;lottie-spm&lt;/a&gt; repo is much smaller (less than 500kb), so can be downloaded much more quickly.&lt;/p&gt; 
+&lt;p&gt;Instead of downloading the full git history of Lottie and building it from source, the lottie-spm repo just contains a pointer to the precompiled XCFramework included in the &lt;a href=&quot;https://github.com/airbnb/lottie-ios/releases/latest&quot;&gt;latest lottie-ios release&lt;/a&gt; (typically ~8MB). If you prefer to include Lottie source directly your project, you can directly depend on the main lottie-ios repo by referencing &lt;code&gt;https://github.com/airbnb/lottie-ios.git&lt;/code&gt; instead.&lt;/p&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;p&gt;Add the pod to your Podfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &#39;lottie-ios&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And then run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After installing the cocoapod into your project import Lottie with&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import Lottie
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;p&gt;Add Lottie to your Cartfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;github &quot;airbnb/lottie-ios&quot; &quot;master&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And then run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;carthage update
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In your application targets “General” tab under the “Linked Frameworks and Libraries” section, drag and drop lottie-ios.framework from the Carthage/Build/iOS directory that &lt;code&gt;carthage update&lt;/code&gt; produced.&lt;/p&gt; 
+&lt;h2&gt;Swift Version Support&lt;/h2&gt; 
+&lt;p&gt;Lottie supports Swift / Xcode versions back to the minimum version that is permitted by Apple for submissions to the App Store. You can see the most up-to-date information for which Swift versions Lottie supports on &lt;a href=&quot;https://swiftpackageindex.com/airbnb/lottie-ios&quot;&gt;Swift Package Index&lt;/a&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://swiftpackageindex.com/airbnb/lottie-ios&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fairbnb%2Flottie-ios%2Fbadge%3Ftype%3Dswift-versions&quot; alt=&quot;Swift Versions&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Privacy&lt;/h2&gt; 
+&lt;p&gt;Lottie does not collect any data. We provide this notice to help you fill out &lt;a href=&quot;https://developer.apple.com/app-store/app-privacy-details/&quot;&gt;App Privacy Details&lt;/a&gt;. We additionally provide a &lt;a href=&quot;https://github.com/airbnb/lottie-ios/raw/master/Sources/PrivacyInfo.xcprivacy&quot;&gt;privacy manifest&lt;/a&gt; which can be included in your app.&lt;/p&gt; 
+&lt;h2&gt;Security&lt;/h2&gt; 
+&lt;p&gt;We distribute XCFramework bundles for each release on &lt;a href=&quot;https://github.com/airbnb/lottie-ios/releases/latest&quot;&gt;GitHub&lt;/a&gt;. In Lottie 4.4.0 and later, these XCFramework bundles include a &lt;a href=&quot;https://developer.apple.com/documentation/xcode/verifying-the-origin-of-your-xcframeworks&quot;&gt;code signature&lt;/a&gt;. These bundles are self-signed under the name &quot;Lottie iOS&quot; and have the following fingerprint:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;89 2F 1B 43 04 7B 50 53 8F 2F 46 EA D9 29 00 DD 3D 48 11 F358 21 78 C0 61 A5 FB 20 F1 11 CB 26
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In Xcode you can verify this by selecting &lt;code&gt;Lottie.xcframework&lt;/code&gt; and confirming that it shows the following information:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/airbnb/lottie-ios/master/_Gifs/code_signature.png&quot; alt=&quot;Code Signature in Xcode&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We always appreciate contributions from the community. To make changes to the project, you can clone the repo and open &lt;code&gt;Lottie.xcworkspace&lt;/code&gt;. This workspace includes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;the Lottie framework (for iOS, macOS, and tvOS)&lt;/li&gt; 
+ &lt;li&gt;unit tests and snapshot tests (for iOS, must be run on an iPhone 8 simulator)&lt;/li&gt; 
+ &lt;li&gt;an Example iOS app that lets you browse and test over 100 sample animations included in the repo&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;All pull requests with new features or bug fixes that affect how animations render should include snapshot test cases that validate the included changes.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;To add a new sample animation to the snapshot testing suite, you can add the &lt;code&gt;.json&lt;/code&gt; file to &lt;code&gt;Tests/Samples&lt;/code&gt;. Re-run the snapshot tests to generate the new snapshot image files.&lt;/li&gt; 
+ &lt;li&gt;To update existing snapshots after making changes, you can set &lt;code&gt;isRecording = true&lt;/code&gt; in &lt;code&gt;SnapshotTests.swift&lt;/code&gt; &lt;code&gt;setUp()&lt;/code&gt; method and then re-run the snapshot tests.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The project also includes several helpful commands defined in our &lt;a href=&quot;https://github.com/airbnb/lottie-ios/raw/master/Rakefile&quot;&gt;Rakefile&lt;/a&gt;. To use these, you need to install &lt;a href=&quot;https://bundler.io/&quot;&gt;Bundler&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ sudo gem install bundle
+$ bundle install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, all Swift code should be formatted according to the &lt;a href=&quot;https://github.com/airbnb/swift&quot;&gt;Airbnb Swift Style Guide&lt;/a&gt;. After making changes, you can reformat the code automatically using &lt;a href=&quot;https://github.com/nicklockwood/SwiftFormat&quot;&gt;SwiftFormat&lt;/a&gt; and &lt;a href=&quot;https://github.com/realm/SwiftLint&quot;&gt;SwiftLint&lt;/a&gt; by running &lt;code&gt;bundle exec rake format:swift&lt;/code&gt;. Other helpful commands include:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ bundle exec rake build:all # builds all targets for all platforms
+$ bundle exec rake build&lt;span&gt;📦&lt;/span&gt;iOS # builds the Lottie package for iOS
+$ bundle exec rake test:package # tests the Lottie package
+$ bundle exec rake format:swift # reformat Swift code based on the Airbnb Swift Style Guide
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/720e841ac866b0547dfade31ba81820664465c3c5f9d0ceca773408dd1cd6a20/airbnb/lottie-ios" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>p0deje/Maccy</title>
+      <link>https://github.com/p0deje/Maccy</link>
+      <description>&lt;p&gt;Lightweight clipboard manager for macOS&lt;/p&gt;&lt;hr&gt;&lt;img width=&quot;128px&quot; src=&quot;https://maccy.app/img/maccy/Logo.png&quot; alt=&quot;Logo&quot; /&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://maccy.app&quot;&gt;Maccy&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/p0deje/Maccy/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/p0deje/Maccy/total.svg?sanitize=true&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.bitrise.io/app/716921b669780314&quot;&gt;&lt;img src=&quot;https://img.shields.io/bitrise/716921b669780314/master?token=3pMiCb5dpFzlO-7jTYtO3Q&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Maccy is a lightweight clipboard manager for macOS. It keeps the history of what you copy and lets you quickly navigate, search, and use previous clipboard contents.&lt;/p&gt; 
+&lt;p&gt;Maccy works on macOS Sonoma 14 or higher.&lt;/p&gt; 
+&lt;!-- vim-markdown-toc GFM --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#install&quot;&gt;Install&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#usage&quot;&gt;Usage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#advanced&quot;&gt;Advanced&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#ignore-copied-items&quot;&gt;Ignore Copied Items&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#ignore-custom-copy-types&quot;&gt;Ignore Custom Copy Types&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#speed-up-clipboard-check-interval&quot;&gt;Speed up Clipboard Check Interval&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#faq&quot;&gt;FAQ&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#why-doesnt-it-paste-when-i-select-an-item-in-history&quot;&gt;Why doesn&#39;t it paste when I select an item in history?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#when-assigning-a-hotkey-to-open-maccy-it-says-that-this-hotkey-is-already-used-in-some-system-setting&quot;&gt;When assigning a hotkey to open Maccy, it says that this hotkey is already used in some system setting.&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#how-to-restore-hidden-footer&quot;&gt;How to restore hidden footer?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#how-to-ignore-copies-from-universal-clipboard&quot;&gt;How to ignore copies from Universal Clipboard?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#my-keyboard-shortcut-stopped-working-in-password-fields-how-do-i-fix-this&quot;&gt;My keyboard shortcut stopped working in password fields. How do I fix this?&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#translations&quot;&gt;Translations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#motivation&quot;&gt;Motivation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- vim-markdown-toc --&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Lightweight and fast&lt;/li&gt; 
+ &lt;li&gt;Keyboard-first&lt;/li&gt; 
+ &lt;li&gt;Secure and private&lt;/li&gt; 
+ &lt;li&gt;Native UI&lt;/li&gt; 
+ &lt;li&gt;Open source and free&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Download the latest version from the &lt;a href=&quot;https://github.com/p0deje/Maccy/releases/latest&quot;&gt;releases&lt;/a&gt; page, or use &lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;brew install maccy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt; to popup Maccy or click on its icon in the menu bar.&lt;/li&gt; 
+ &lt;li&gt;Type what you want to find.&lt;/li&gt; 
+ &lt;li&gt;To select the history item you wish to copy, press &lt;kbd&gt;ENTER&lt;/kbd&gt;, or click the item, or use &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;code&gt;n&lt;/code&gt; shortcut.&lt;/li&gt; 
+ &lt;li&gt;To choose the history item and paste, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;ENTER&lt;/kbd&gt;, or &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;CLICK&lt;/kbd&gt; the item, or use &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;code&gt;n&lt;/code&gt; shortcut.&lt;/li&gt; 
+ &lt;li&gt;To choose the history item and paste without formatting, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;ENTER&lt;/kbd&gt;, or &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;CLICK&lt;/kbd&gt; the item, or use &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;code&gt;n&lt;/code&gt; shortcut.&lt;/li&gt; 
+ &lt;li&gt;To delete the history item, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;DELETE (⌫)&lt;/kbd&gt;.&lt;/li&gt; 
+ &lt;li&gt;To see the full text of the history item, wait a couple of seconds for tooltip.&lt;/li&gt; 
+ &lt;li&gt;To pin the history item so that it remains on top of the list, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;P&lt;/kbd&gt;. The item will be moved to the top with a random but permanent keyboard shortcut. To unpin it, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;P&lt;/kbd&gt; again.&lt;/li&gt; 
+ &lt;li&gt;To clear all unpinned items, select &lt;em&gt;Clear&lt;/em&gt; in the menu, or press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;DELETE (⌫)&lt;/kbd&gt;. To clear all items including pinned, select &lt;em&gt;Clear&lt;/em&gt; in the menu with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; pressed, or press &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;DELETE (⌫)&lt;/kbd&gt;.&lt;/li&gt; 
+ &lt;li&gt;To disable Maccy and ignore new copies, click on the menu icon with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; pressed.&lt;/li&gt; 
+ &lt;li&gt;To ignore only the next copy, click on the menu icon with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; pressed.&lt;/li&gt; 
+ &lt;li&gt;To customize the behavior, check &quot;Preferences…&quot; window, or press &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kbd&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Advanced&lt;/h2&gt; 
+&lt;h3&gt;Ignore Copied Items&lt;/h3&gt; 
+&lt;p&gt;You can tell Maccy to ignore all copied items:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;defaults write org.p0deje.Maccy ignoreEvents true # default is false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This is useful if you have some workflow for copying sensitive data. You can set &lt;code&gt;ignoreEvents&lt;/code&gt; to true, copy the data and set &lt;code&gt;ignoreEvents&lt;/code&gt; back to false.&lt;/p&gt; 
+&lt;p&gt;You can also click the menu icon with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; pressed. To ignore only the next copy, click with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; pressed.&lt;/p&gt; 
+&lt;h3&gt;Ignore Custom Copy Types&lt;/h3&gt; 
+&lt;p&gt;By default Maccy will ignore certain copy types that are considered to be confidential or temporary. The default list always include the following types:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;org.nspasteboard.TransientType&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;org.nspasteboard.ConcealedType&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;org.nspasteboard.AutoGeneratedType&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Also, default configuration includes the following types but they can be removed or overwritten:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;com.agilebits.onepassword&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;com.typeit4me.clipping&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;de.petermaurer.TransientPasteboardType&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Pasteboard generator type&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;net.antelle.keeweb&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can add additional custom types using settings. To find what custom types are used by an application, you can use free application &lt;a href=&quot;https://github.com/sindresorhus/Pasteboard-Viewer&quot;&gt;Pasteboard-Viewer&lt;/a&gt;. Simply download the application, open it, copy something from the application you want to ignore and look for any custom types in the left sidebar. &lt;a href=&quot;https://github.com/p0deje/Maccy/issues/125&quot;&gt;Here is an example of using this approach to ignore Adobe InDesign&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Speed up Clipboard Check Interval&lt;/h3&gt; 
+&lt;p&gt;By default, Maccy checks clipboard every 500 ms, which should be enough for most users. If you want to speed it up, you can change it with &lt;code&gt;defaults&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;defaults write org.p0deje.Maccy clipboardCheckInterval 0.1 # 100 ms
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;h3&gt;Why doesn&#39;t it paste when I select an item in history?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Make sure you have &quot;Paste automatically&quot; enabled in Preferences.&lt;/li&gt; 
+ &lt;li&gt;Make sure &quot;Maccy&quot; is added to System Settings -&amp;gt; Privacy &amp;amp; Security -&amp;gt; Accessibility.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;When assigning a hotkey to open Maccy, it says that this hotkey is already used in some system setting.&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open System settings -&amp;gt; Keyboard -&amp;gt; Keyboard Shortcuts.&lt;/li&gt; 
+ &lt;li&gt;Find where that hotkey is used. For example, &quot;Convert text to simplified Chinese&quot; is under Services -&amp;gt; Text.&lt;/li&gt; 
+ &lt;li&gt;Disable that hotkey or remove assigned combination (&lt;a href=&quot;https://github.com/p0deje/Maccy/assets/576152/446719e6-c3e5-4eb0-95fb-5a811066487f&quot;&gt;screenshot&lt;/a&gt;).&lt;/li&gt; 
+ &lt;li&gt;Restart Maccy.&lt;/li&gt; 
+ &lt;li&gt;Assign hotkey in Maccy settings.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;How to restore hidden footer?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open Maccy window.&lt;/li&gt; 
+ &lt;li&gt;Press &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kbd&gt; to open preferences.&lt;/li&gt; 
+ &lt;li&gt;Enable footer in Appearance section.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;If for some reason it doesn&#39;t work, run the following command in Terminal.app:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;defaults write org.p0deje.Maccy showFooter 1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How to ignore copies from &lt;a href=&quot;https://support.apple.com/en-us/102430&quot;&gt;Universal Clipboard&lt;/a&gt;?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open Preferences -&amp;gt; Ignore -&amp;gt; Pasteboard Types.&lt;/li&gt; 
+ &lt;li&gt;Add &lt;code&gt;com.apple.is-remote-clipboard&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;My keyboard shortcut stopped working in password fields. How do I fix this?&lt;/h3&gt; 
+&lt;p&gt;If your shortcut produces a character (like &lt;code&gt;Option+C&lt;/code&gt; → &quot;ç&quot;), macOS security may block it in password fields. Use &lt;a href=&quot;https://karabiner-elements.pqrs.org/&quot;&gt;Karabiner-Elements&lt;/a&gt; to remap your shortcut to a different combination like &lt;code&gt;Cmd+Shift+C&lt;/code&gt;. &lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/docs/keyboard-shortcut-password-fields.md&quot;&gt;See detailed solution&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Translations&lt;/h2&gt; 
+&lt;p&gt;The translations are hosted in &lt;a href=&quot;https://hosted.weblate.org/engage/maccy/&quot;&gt;Weblate&lt;/a&gt;. You can use it to suggest changes in translations and localize the application to a new language.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://hosted.weblate.org/engage/maccy/&quot;&gt;&lt;img src=&quot;https://hosted.weblate.org/widget/maccy/multi-auto.svg?sanitize=true&quot; alt=&quot;Translation status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Motivation&lt;/h2&gt; 
+&lt;p&gt;There are dozens of similar applications out there, so why build another? Over the past years since I moved from Linux to macOS, I struggled to find a clipboard manager that is as free and simple as &lt;a href=&quot;http://parcellite.sourceforge.net&quot;&gt;Parcellite&lt;/a&gt;, but I couldn&#39;t. So I&#39;ve decided to build one.&lt;/p&gt; 
+&lt;p&gt;Also, I wanted to learn Swift and get acquainted with macOS application development.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/LICENSE&quot;&gt;MIT&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a7007ff89e5b676ef28402807d4488d60a47dfb021db5a4eaccc003c992d929c/p0deje/Maccy" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ronitsingh10/FineTune</title>
+      <link>https://github.com/ronitsingh10/FineTune</link>
+      <description>&lt;p&gt;FineTune, a macOS menu bar app for per-app volume control, multi-device output, audio routing, and 10-band EQ. Free and open-source alternative to SoundSource.&lt;/p&gt;&lt;hr&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/assets/icon.png&quot; width=&quot;170&quot; height=&quot;170&quot; alt=&quot;FineTune app icon&quot; align=&quot;left&quot; /&gt; 
+&lt;h3&gt;FineTune&lt;/h3&gt; 
+&lt;p&gt;Control the volume of every app independently, boost quiet ones up to 4x, route audio to different speakers, and shape your sound with EQ and headphone correction. Lives in your menu bar. Free and open-source.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ronitsingh10/FineTune/releases/download/v1.4.1/FineTune-1.4.1.dmg&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/assets/download-badge.svg?sanitize=true&quot; alt=&quot;Download for macOS&quot; height=&quot;48&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;br clear=&quot;all&quot; /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/ronitsingh10/FineTune/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/ronitsingh10/FineTune?style=for-the-badge&amp;amp;labelColor=1c1c1e&amp;amp;color=0A84FF&amp;amp;logo=github&amp;amp;logoColor=white&quot; alt=&quot;Latest Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ronitsingh10/FineTune/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/ronitsingh10/FineTune/total?style=for-the-badge&amp;amp;labelColor=1c1c1e&amp;amp;color=3a3a3c&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-GPLv3-3a3a3c?style=for-the-badge&amp;amp;labelColor=1c1c1e&quot; alt=&quot;License: GPL v3&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.apple.com/macos/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/macOS-15%2B-3a3a3c?style=for-the-badge&amp;amp;labelColor=1c1c1e&amp;amp;logo=apple&amp;amp;logoColor=white&quot; alt=&quot;macOS 15+&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/assets/screenshot-main.png&quot; alt=&quot;FineTune showing per-app volume control with EQ and multi-device output&quot; width=&quot;750&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Homebrew&lt;/strong&gt; (recommended)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install --cask finetune
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Manual&lt;/strong&gt; — &lt;a href=&quot;https://github.com/ronitsingh10/FineTune/releases/latest&quot;&gt;Download latest release&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Install FineTune and launch it from your Applications folder&lt;/li&gt; 
+ &lt;li&gt;Grant &lt;strong&gt;Screen &amp;amp; System Audio Recording&lt;/strong&gt; permission when prompted&lt;/li&gt; 
+ &lt;li&gt;Click the FineTune icon in your menu bar. Apps playing audio appear automatically.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;That&#39;s it. Adjust sliders, route audio, and explore EQ from the menu bar.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Want FineTune to auto-switch to a specific device when you connect it? Open edit mode (pencil icon) and drag it above the built-in speakers. This is a one-time setup. Your preferred order is saved permanently.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;h3&gt;🎚 Volume Control&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Per-app volume&lt;/strong&gt; — Individual sliders and mute for each application&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Per-app volume boost&lt;/strong&gt; — 2x / 3x / 4x gain presets&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Pinned apps&lt;/strong&gt; — Keep apps visible in the menu bar even when they&#39;re not playing, so you can configure volume, EQ, and routing in advance&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Ignore apps&lt;/strong&gt; — Completely disengage FineTune from specific apps. Tears down the audio tap so the app returns to normal macOS audio&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;🔀 Audio Routing&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Multi-device output&lt;/strong&gt; — Route audio to multiple devices simultaneously&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Audio routing&lt;/strong&gt; — Send apps to different outputs or follow system default&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Device priority&lt;/strong&gt; — Choose which device FineTune switches to when a new device connects; auto-fallback on disconnect&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Auto-restore&lt;/strong&gt; — When a device reconnects, apps automatically return to it with their volume, routing, and EQ intact&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;🎛 EQ &amp;amp; Correction&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;10-band EQ&lt;/strong&gt; — 20 presets across 5 categories&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;AutoEQ headphone correction&lt;/strong&gt; — Search thousands of headphone profiles or import your own ParametricEQ.txt files for per-device frequency response correction&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;🖥 Devices &amp;amp; System&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Input device control&lt;/strong&gt; — Monitor and adjust microphone levels&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Bluetooth device management&lt;/strong&gt; — Connect paired devices directly from the menu bar&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Monitor speaker control&lt;/strong&gt; — Adjust volume on external displays via DDC&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Menu bar app&lt;/strong&gt; — Lightweight, always accessible&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;URL schemes&lt;/strong&gt; — Automate volume, mute, device routing, and more from scripts&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/assets/screenshot-main.png&quot; alt=&quot;FineTune showing per-app volume control with EQ and multi-device output&quot; width=&quot;400&quot; /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/assets/screenshot-edit-mode.png&quot; alt=&quot;FineTune edit mode showing device priority, Bluetooth pairing, and app pin/ignore controls&quot; width=&quot;400&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/assets/screenshot-autoeq.png&quot; alt=&quot;FineTune AutoEQ headphone correction picker with search and favorites&quot; width=&quot;400&quot; /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/assets/screenshot-settings.png&quot; alt=&quot;FineTune settings panel&quot; width=&quot;400&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/guide/autoeq.md&quot;&gt;AutoEQ &amp;amp; Headphone Correction&lt;/a&gt;&lt;/strong&gt; — Apply frequency correction from the &lt;a href=&quot;https://github.com/jaakkopasanen/AutoEq&quot;&gt;AutoEQ&lt;/a&gt; project, import &lt;a href=&quot;https://sourceforge.net/projects/equalizerapo/&quot;&gt;EqualizerAPO&lt;/a&gt; profiles, or browse &lt;a href=&quot;https://www.autoeq.app/&quot;&gt;autoeq.app&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/guide/url-schemes.md&quot;&gt;URL Schemes&lt;/a&gt;&lt;/strong&gt; — Automate FineTune from Terminal, &lt;a href=&quot;https://support.apple.com/guide/shortcuts-mac&quot;&gt;Shortcuts&lt;/a&gt;, &lt;a href=&quot;https://raycast.com&quot;&gt;Raycast&lt;/a&gt;, or scripts&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/guide/troubleshooting.md&quot;&gt;Troubleshooting&lt;/a&gt;&lt;/strong&gt; — Permission issues, missing apps, audio problems&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Star this repo&lt;/strong&gt; — Help others discover FineTune&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Report bugs&lt;/strong&gt; — &lt;a href=&quot;https://github.com/ronitsingh10/FineTune/issues&quot;&gt;Open an issue&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Contribute code&lt;/strong&gt; — See &lt;a href=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Build from Source&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/ronitsingh10/FineTune.git
+cd FineTune
+open FineTune.xcodeproj
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 15.0 (Sequoia) or later&lt;/li&gt; 
+ &lt;li&gt;Audio capture permission (prompted on first launch)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ronitsingh10/FineTune/main/LICENSE&quot;&gt;GPL v3&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/1ea8e282259e1e86eff75c71774e4c1cd835e75d276630c081842859fe914938/ronitsingh10/FineTune" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Caldis/Mos</title>
+      <link>https://github.com/Caldis/Mos</link>
+      <description>&lt;p&gt;一个用于在 macOS 上平滑你的鼠标滚动效果或单独设置滚动方向的小工具, 让你的滚轮爽如触控板 | A lightweight tool used to smooth scrolling and set scroll direction independently for your mouse on macOS&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;http://mos.caldis.me/&quot;&gt; &lt;img width=&quot;320&quot; src=&quot;https://github.com/Caldis/Mos/raw/master/dmg/dmg-icon.png?raw=true&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;h1&gt;Mos&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/Xcode-9.0%2B-blue.svg?sanitize=true&quot; alt=&quot;Xcode 9.0+&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/Swift-4.0%2B-orange.svg?sanitize=true&quot; alt=&quot;Swift 4.0+&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;一个用于在MacOS上平滑你的鼠标滚动效果的小工具, 让你的滚轮爽如触控板。&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/Caldis/Mos/raw/master/README.md&quot;&gt;中文&lt;/a&gt; | &lt;a href=&quot;https://github.com/Caldis/Mos/raw/master/README.enUS.md&quot;&gt;English&lt;/a&gt; | &lt;a href=&quot;https://github.com/Caldis/Mos/raw/master/README.ru.md&quot;&gt;Русский&lt;/a&gt; | &lt;a href=&quot;https://github.com/Caldis/Mos/raw/master/README.id.md&quot;&gt;Indonesia&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;主页&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;http://mos.caldis.me/&quot;&gt;http://mos.caldis.me/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;特性&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;平滑你的鼠标滚动体验, 并可自定义加速度与曲线, 也可按滚动方向分别处理&lt;/li&gt; 
+ &lt;li&gt;支持分离触控板/鼠标事件, 可按垂直/水平方向分别设置平滑与反向&lt;/li&gt; 
+ &lt;li&gt;支持自订鼠标快捷键, 绑定各种系统快捷键&lt;/li&gt; 
+ &lt;li&gt;支持按应用处理不同的配置策略&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;下载及安装&lt;/h2&gt; 
+&lt;h3&gt;Homebrew安装&lt;/h3&gt; 
+&lt;p&gt;Mos可通过&lt;a href=&quot;https://brew.sh&quot;&gt;Homebrew&lt;/a&gt;来安装:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ brew install --cask mos@beta
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;应用将被安装至 &lt;code&gt;/Applications/Mos.app&lt;/code&gt;。&lt;/p&gt; 
+&lt;p&gt;若有新版本,可用以下命令升级:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ brew update
+$ brew upgrade mos@beta
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;重新启动应用即可。&lt;/p&gt; 
+&lt;h3&gt;手动安装&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Caldis/Mos/releases/&quot;&gt;GithubRelease&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;帮助&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Caldis/Mos/wiki&quot;&gt;Wiki&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;鸣谢&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/danielgindi/Charts&quot;&gt;Charts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.iconfont.cn&quot;&gt;iconfont.cn&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Clipy/LoginServiceKit&quot;&gt;LoginServiceKit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/galambalazs/smoothscroll-for-websites&quot;&gt;Smoothscroll-for-websites&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;贡献&lt;/h2&gt; 
+&lt;p&gt;如果您觉得 Mos 的本地化做的有任何不妥之处, 欢迎您提交任何关于文本修改的意见, 您可以通过提交 Github Issue 的方式告诉我们, 如果您善于编码, 我们非常欢迎您提交一个 PR !&lt;/p&gt; 
+&lt;p&gt;我们欢迎任何形式的贡献，有任何建议或意见您可以给我们 &lt;a href=&quot;https://github.com/Caldis/Mos/issues&quot;&gt;提问&lt;/a&gt;。&lt;/p&gt; 
+&lt;h2&gt;LICENSE&lt;/h2&gt; 
+&lt;p&gt;Copyright (c) 2017 Caldis rights reserved.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://creativecommons.org/licenses/by-nc/3.0/cn/&quot;&gt;署名-非商业性使用协议&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;And you can not upload it to the App Store.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d4c5c664c816690c877bc60285c3811b5df80f904161f6f0a69e428634024402/Caldis/Mos" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

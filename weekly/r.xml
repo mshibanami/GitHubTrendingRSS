@@ -1,0 +1,288 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub R Weekly Trending</title>
+    <description>Weekly Trending of R in GitHub</description>
+    <pubDate>Sun, 22 Mar 2026 01:50:41 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>jinworks/CellChat</title>
+      <link>https://github.com/jinworks/CellChat</link>
+      <description>&lt;p&gt;R toolkit for inference, visualization and analysis of cell-cell communication from single-cell and spatially resolved transcriptomics&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://github.com/jinworks/CellChat/raw/main/CellChat_Logo.png&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Update&lt;/h2&gt; 
+&lt;p&gt;CellChat v3 (Spatial CellChat) is an updated version that&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;enables the &lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/SpatialCellChat/raw/master/tutorial/SpatialCellChat_analysis_of_spatial_transcriptomics_data.html&quot;&gt;inference of cell-cell communication at single-cell resolution from spatial transcriptomics data&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;is applicable to diverse technologies of spatial transcriptomics data. We add &lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/FAQ_on_applying_CellChat_to_spatial_transcriptomics_data.html&quot;&gt;Frequently Asked Questions (FAQ) when analyzing spatially resolved transcriptomics datasets&lt;/a&gt;, particularly on how to apply Spatial CellChat to different technologies of spatial transcriptomics data, including sequencing-based and in-situ imaging-based readouts.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;CellChat v2 is a version that includes&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;inference of spatially proximal cell-cell communication between interacting cell groups from spatially resolved transcriptomics&lt;/li&gt; 
+ &lt;li&gt;expanded database CellChatDB v2 by including more than 1000 protein and non-protein interactions (e.g. metabolic and synaptic signaling) with rich annotations. A function named &lt;code&gt;updateCellChatDB&lt;/code&gt; is also provided for easily updating CellChatDB.&lt;/li&gt; 
+ &lt;li&gt;new functionalities enabling easily interface with other computational tools for single-cell data analysis and cell-cell communication analysis&lt;/li&gt; 
+ &lt;li&gt;interactive web browser function to allow exploration of CellChat outputs of spatially proximal cell-cell communication&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For the version history and detailed important changes, please see the &lt;a href=&quot;https://github.com/jinworks/CellChat/raw/master/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;A step-by-step protocol for cell-cell communication analysis using CellChat is available at &lt;a href=&quot;https://www.nature.com/articles/s41596-024-01045-4&quot;&gt;Jin et al., Nature Protocols 2024&lt;/a&gt;. Please kindly cite this paper when using CellChat version &amp;gt;= 1.5. We greatly appreciate the users&#39; support and suggestions that make it possible for us to update CellChat since we published the first version in the year of 2021.&lt;/p&gt; 
+&lt;h2&gt;Capabilities&lt;/h2&gt; 
+&lt;p&gt;In addition to infer the intercellular communication from any given scRNA-seq data and spatially resolved transcriptomics data, CellChat provides functionality for further data exploration, analysis, and visualization.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;It can quantitatively characterize and compare the inferred cell-cell communication networks using an integrated approach by combining social network analysis, pattern recognition, and manifold learning approaches.&lt;/li&gt; 
+ &lt;li&gt;It provides an easy-to-use tool for extracting and visualizing high-order information of the inferred networks. For example, it allows ready prediction of major signaling inputs and outputs for all cell populations and how these populations and signals coordinate together for functions.&lt;/li&gt; 
+ &lt;li&gt;It enables comparative analysis of cell-cell communication across different conditions and identification of altered signaling and cell populations.&lt;/li&gt; 
+ &lt;li&gt;It provides several visualization outputs to facilitate intuitive user-guided data interpretation.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To ensure efficient and scalable inference of cell-cell communication at single-cell resolution from spatial transcriptomics data, Spatial CellChat optimizes the data structure within CellChat object. To enable users still can run their previously calculated CellChat v1/v2 object and smoothly upgrade to CellChat v3, we currently deposite the source codes and tutorials of Spatial CellChat at another &lt;a href=&quot;https://github.com/jinworks/SpatialCellChat&quot;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;CellChat v3 (&lt;a href=&quot;https://github.com/jinworks/SpatialCellChat&quot;&gt;Spatial CellChat&lt;/a&gt;) R package can be easily installed from Github using devtools:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;devtools::install_github(&quot;jinworks/SpatialCellChat&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Installation of other dependencies&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://bioconductor.org/packages//release/bioc/html/BiocNeighbors.html&quot;&gt;BiocNeighbors&lt;/a&gt; using &lt;code&gt;BiocManager::install(&quot;BiocNeighbors&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/JEFworks-Lab/MERINGUE&quot;&gt;MERINGUE&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;JEFworks-Lab/MERINGUE&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/KlugerLab/ALRA&quot;&gt;ALRA&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;KlugerLab/ALRA&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/zdebruine/RcppML&quot;&gt;RcppML&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;zdebruine/RcppML&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;CellChat v1/v2 R package can be easily installed from Github using devtools:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;devtools::install_github(&quot;jinworks/CellChat&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Installation of other dependencies&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;http://renozao.github.io/NMF/devel/PAGE-INSTALLATION.html&quot;&gt;NMF (&amp;gt;= 0.23.0)&lt;/a&gt; using &lt;code&gt;install.packages(&#39;NMF&#39;)&lt;/code&gt;. Please check &lt;a href=&quot;https://github.com/sqjin/CellChat/issues/16&quot;&gt;here&lt;/a&gt; for other solutions if you encounter any issue. You might can set &lt;code&gt;Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)&lt;/code&gt; if it throws R version error.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/jokergoo/circlize&quot;&gt;circlize (&amp;gt;= 0.4.12)&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;jokergoo/circlize&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/jokergoo/ComplexHeatmap&quot;&gt;ComplexHeatmap&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install UMAP python pacakge for dimension reduction: &lt;code&gt;pip install umap-learn&lt;/code&gt;. Please check &lt;a href=&quot;https://github.com/lmcinnes/umap&quot;&gt;here&lt;/a&gt; if you encounter any issue.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Some users might have issues when installing CellChat pacakge due to different operating systems and new R version. Please check the following solutions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Installation on Mac OX with R &amp;gt; 3.6&lt;/strong&gt;: Please re-install &lt;a href=&quot;https://community.rstudio.com/t/imager-package-does-not-work-in-r-3-6-1/38119&quot;&gt;Xquartz&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Installation on Windows, Linux and Centos&lt;/strong&gt;: Please check the solution for &lt;a href=&quot;https://github.com/jinworks/CellChat/issues/5&quot;&gt;Windows&lt;/a&gt; and &lt;a href=&quot;https://github.com/jinworks/CellChat/issues/131&quot;&gt;Linux&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Tutorials&lt;/h2&gt; 
+&lt;p&gt;Please check the tutorial directory of the repo. Example datasets are publicly available at &lt;a href=&quot;https://figshare.com/projects/Example_data_for_cell-cell_communication_analysis_using_CellChat/157272&quot;&gt;figshare&lt;/a&gt;. Please check the &lt;a href=&quot;https://www.nature.com/articles/s41596-024-01045-4&quot;&gt;Jin et al., Nature Protocols 2024&lt;/a&gt; for a comprehensive protocol of cell-cell communication analysis using CellChat.&lt;/p&gt; 
+&lt;h3&gt;Analysis of single-cell transcriptomics data&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat-vignette.html&quot;&gt;Full tutorial for CellChat analysis of a single dataset with detailed explanation of each function&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Comparison_analysis_of_multiple_datasets.html&quot;&gt;Full tutorial for comparison analysis of multiple datasets&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Comparison_analysis_of_multiple_datasets_with_different_cellular_compositions.html&quot;&gt;Comparison analysis of multiple datasets with different cellular compositions&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Analysis of spatially resolved omics data&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat_analysis_of_spatial_transcriptomics_data.html&quot;&gt;Brief tutorial for CellChat analysis of a single spatially resolved transcriptomic dataset&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat_analysis_of_multiple_spatial_transcriptomics_datasets.html&quot;&gt;Brief tutorial for CellChat analysis of multiple spatially resolved transcriptomic datasets&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat_analysis_of_spatial_multiomics_data.html&quot;&gt;Brief tutorial for CellChat analysis of spatial multiomics data&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/SpatialCellChat/raw/master/tutorial/SpatialCellChat_analysis_of_spatial_transcriptomics_data.html&quot;&gt;Full tutorial for Spatial CellChat analysis of spatial transcriptomics data&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/FAQ_on_applying_CellChat_to_spatial_transcriptomics_data.html&quot;&gt;Frequently Asked Questions when analyzing spatially resolved transcriptomics datasets&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Additional utilities&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Interface_with_other_single-cell_analysis_toolkits.html&quot;&gt;Interface with other single-cell analysis toolkits (e.g., Seurat, SingleCellExperiment, Scanpy)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Update-CellChatDB.html&quot;&gt;Tutorial for updating ligand-receptor database CellChatDB&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Web-based “CellChat Explorer”&lt;/h2&gt; 
+&lt;p&gt;We build a user-friendly web-based “&lt;a href=&quot;http://www.cellchat.org/&quot;&gt;CellChat Explorer&lt;/a&gt;” that contains two major components:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Ligand-Receptor Interaction Explorer&lt;/strong&gt; that allows easy exploration of our novel ligand-receptor interaction database, a comprehensive recapitulation of known molecular compositions including multimeric complexes and co-factors. &lt;em&gt;Our database CellChatDB is a manually curated database of literature-supported ligand-receptor interactions in both &lt;strong&gt;human and mouse&lt;/strong&gt;&lt;/em&gt;. Of note, this Explorer currently only shows the original CellChatDB, but did not include the new interactions in CellChatDB v2.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Cell-Cell Communication Atlas Explorer&lt;/strong&gt; that allows easy exploration of the cell-cell communication for any given scRNA-seq dataset that has been processed by our R toolkit CellChat.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We also developed an Interactive Web Browser that allows exploration of CellChat outputs of spatially proximal cell-cell communication using a built-in function &lt;code&gt;runCellChatApp&lt;/code&gt;, and a &lt;a href=&quot;https://github.com/sqjin/CellChatShiny&quot;&gt;standalone CellChat Shiny App&lt;/a&gt; for the above Cell-Cell Communication Atlas Explorer.&lt;/p&gt; 
+&lt;h2&gt;Help, Suggestion and Contribution&lt;/h2&gt; 
+&lt;p&gt;If you have any question, comment or suggestion, please use github issue tracker to report coding related &lt;a href=&quot;https://github.com/jinworks/CellChat/issues&quot;&gt;issues&lt;/a&gt; of CellChat.&lt;/p&gt; 
+&lt;h3&gt;Before reporting an issue&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;First &lt;strong&gt;check the GitHub &lt;a href=&quot;https://github.com/jinworks/CellChat/issues&quot;&gt;issues&lt;/a&gt;&lt;/strong&gt; to see if the same or a similar issues has been reported and resolved. This relieves the developers from addressing the same issues and helps them focus on adding new features!&lt;/li&gt; 
+ &lt;li&gt;The best way to figure out the issues is &lt;strong&gt;running the sources codes&lt;/strong&gt; of the specific functions by yourself. This will also relieve the developers and helps them focus on the common issues! I am sorry, but I have to say I have no idea on many errors except that I can reproduce the issues.&lt;/li&gt; 
+ &lt;li&gt;Minimal and &lt;strong&gt;reproducible example&lt;/strong&gt; are required when filing a GitHub issue. In certain cases, please share your CellChat object and related codes to reproduce the issues.&lt;/li&gt; 
+ &lt;li&gt;Users are encouraged to discuss issues and bugs using the github &lt;a href=&quot;https://github.com/jinworks/CellChat/issues&quot;&gt;issues&lt;/a&gt; instead of email exchanges.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Contribution&lt;/h3&gt; 
+&lt;p&gt;CellChat is an open source software package and any contribution is highly appreciated!&lt;/p&gt; 
+&lt;p&gt;We use GitHub&#39;s &lt;a href=&quot;https://github.com/jinworks/CellChat/pulls&quot;&gt;Pull Request&lt;/a&gt; mechanism for reviewing and accepting submissions of any contribution. Issue a pull request on the GitHub website to request that we merge your branch&#39;s changes into CellChat&#39;s master branch. Be sure to include a description of your changes in the pull request, as well as any other information that will help the CellChat developers involved in reviewing your code.&lt;/p&gt; 
+&lt;h2&gt;System Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Hardware requirements: CellChat package requires only a standard computer with enough RAM to support the in-memory operations.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Software requirements: This package is supported for macOS, Windows and Linux. The package has been tested on macOS: Ventura (version 13.5) and Windows 10. Dependencies of CellChat package are indicated in the Description file, and can be automatically installed when installing CellChat pacakge. CellChat can be installed on a normal computer within few mins.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;About CellChat and CellChatDB&lt;/h1&gt; 
+&lt;p&gt;CellChat is an R package designed for inference, analysis, and visualization of cell-cell communication from single-cell and spatially resolved transcriptomics. CellChat aims to enable users to identify and interpret cell-cell communication within an easily interpretable framework, with the emphasis of clear, attractive, and interpretable visualizations.&lt;/p&gt; 
+&lt;p&gt;CellChatDB is a manually curated database of literature-supported ligand-receptor interactions in mutiple species, leading to a comprehensive recapitulation of known molecular interaction mechanisms including multi-subunit structure of ligand-receptor complexes and co-factors.&lt;/p&gt; 
+&lt;p&gt;If you use CellChat or CellChatDB in your research, please considering citing our papers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nature.com/articles/s41596-024-01045-4&quot;&gt;Suoqin Jin et al., CellChat for systematic analysis of cell–cell communication from single-cell transcriptomics, Nature Protocols 2024&lt;/a&gt; [CellChat v2] (Please kindly cite this paper when using CellChat version &amp;gt;= 1.5)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nature.com/articles/s41467-021-21246-9&quot;&gt;Suoqin Jin et al., Inference and analysis of cell-cell communication using CellChat, Nature Communications 2021&lt;/a&gt; [CellChat v1]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://clustrmaps.com/site/1bpq2&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://clustrmaps.com/map_v2.png?cl=ffffff&amp;amp;w=a&amp;amp;t=n&amp;amp;d=42WqeykSXznN_NSaBlpf6CtSXQxhqmIs6QusUsguFdY&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/jinworks/CellChat/main/#&quot;&gt; &lt;img src=&quot;https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjinworks%2FCellChat&amp;amp;labelColor=%233499cc&amp;amp;countColor=%2370c168&quot; /&gt; &lt;/a&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2b1ab8171b28989c89e506641f47f1953cdd0236f8094832cb143b0733bd8c8e/jinworks/CellChat" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Rdatatable/data.table</title>
+      <link>https://github.com/Rdatatable/data.table</link>
+      <description>&lt;p&gt;R&#39;s data.table package extends data.frame:&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;data.table &lt;a href=&quot;https://r-datatable.com&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Rdatatable/data.table/master/.graphics/logo.png&quot; align=&quot;right&quot; height=&quot;140&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/web/checks/check_results_data.table.html&quot;&gt;&lt;img src=&quot;https://badges.cranchecks.info/flavor/release/data.table.svg?sanitize=true&quot; alt=&quot;CRAN status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Rdatatable/data.table/actions&quot;&gt;&lt;img src=&quot;https://github.com/Rdatatable/data.table/actions/workflows/R-CMD-check.yaml/badge.svg?branch=master&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/github/Rdatatable/data.table?branch=master&quot;&gt;&lt;img src=&quot;https://codecov.io/github/Rdatatable/data.table/coverage.svg?branch=master&quot; alt=&quot;Codecov test coverage&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://rdatatable.gitlab.io/data.table/web/checks/check_results_data.table.html&quot;&gt;&lt;img src=&quot;https://gitlab.com/Rdatatable/data.table/badges/master/pipeline.svg?sanitize=true&quot; alt=&quot;GitLab CI build status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.rdocumentation.org/trends&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/data.table&quot; alt=&quot;downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitlab.com/jangorecki/rdeps&quot;&gt;&lt;img src=&quot;https://jangorecki.gitlab.io/rdeps/data.table/CRAN_usage.svg?sanitize=true&quot; alt=&quot;CRAN usage&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitlab.com/jangorecki/rdeps&quot;&gt;&lt;img src=&quot;https://jangorecki.gitlab.io/rdeps/data.table/BioC_usage.svg?sanitize=true&quot; alt=&quot;BioC usage&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitlab.com/jangorecki/rdeps&quot;&gt;&lt;img src=&quot;https://jangorecki.gitlab.io/rdeps/data.table/indirect_usage.svg?sanitize=true&quot; alt=&quot;indirect usage&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://numfocus.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/powered%20by-NumFOCUS-orange.svg?style=flat&amp;amp;colorA=E1523D&amp;amp;colorB=007D8A&quot; alt=&quot;Powered by NumFOCUS&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;&lt;code&gt;data.table&lt;/code&gt; provides a high-performance version of &lt;a href=&quot;https://www.r-project.org/about.html&quot;&gt;base R&lt;/a&gt;&#39;s &lt;code&gt;data.frame&lt;/code&gt; with syntax and feature enhancements for ease of use, convenience and programming speed.&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;data.table&lt;/code&gt; project uses a &lt;a href=&quot;https://rdatatable.gitlab.io/data.table/GOVERNANCE.html&quot;&gt;custom governance agreement&lt;/a&gt; and is fiscally sponsored by &lt;a href=&quot;https://numfocus.org/&quot;&gt;NumFOCUS&lt;/a&gt;. Consider making a &lt;a href=&quot;https://numfocus.org/project/data-table&quot;&gt;tax-deductible donation&lt;/a&gt; to help the project pay for developer time, professional services, travel, workshops, and a variety of other needs.&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://numfocus.org/project/data-table&quot;&gt; &lt;img width=&quot;25%&quot; src=&quot;https://raw.githubusercontent.com/numfocus/templates/master/images/numfocus-logo.png&quot; align=&quot;center&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;h2&gt;Why &lt;code&gt;data.table&lt;/code&gt;?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;concise syntax: fast to type, fast to read&lt;/li&gt; 
+ &lt;li&gt;fast speed&lt;/li&gt; 
+ &lt;li&gt;memory efficient&lt;/li&gt; 
+ &lt;li&gt;careful API lifecycle management&lt;/li&gt; 
+ &lt;li&gt;community&lt;/li&gt; 
+ &lt;li&gt;feature rich&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;fast and friendly delimited &lt;strong&gt;file reader&lt;/strong&gt;: &lt;strong&gt;&lt;a href=&quot;https://rdatatable.gitlab.io/data.table/reference/fread.html&quot;&gt;&lt;code&gt;?fread&lt;/code&gt;&lt;/a&gt;&lt;/strong&gt;, see also &lt;a href=&quot;https://github.com/Rdatatable/data.table/wiki/Convenience-features-of-fread&quot;&gt;convenience features for &lt;em&gt;small&lt;/em&gt; data&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;fast and feature rich delimited &lt;strong&gt;file writer&lt;/strong&gt;: &lt;strong&gt;&lt;a href=&quot;https://rdatatable.gitlab.io/data.table/reference/fwrite.html&quot;&gt;&lt;code&gt;?fwrite&lt;/code&gt;&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;low-level &lt;strong&gt;parallelism&lt;/strong&gt;: many common operations are internally parallelized to use multiple CPU threads&lt;/li&gt; 
+ &lt;li&gt;fast and scalable aggregations; e.g. 100GB in RAM (see &lt;a href=&quot;https://duckdblabs.github.io/db-benchmark/&quot;&gt;benchmarks&lt;/a&gt; on up to &lt;strong&gt;two billion rows&lt;/strong&gt;)&lt;/li&gt; 
+ &lt;li&gt;fast and feature rich joins: &lt;strong&gt;ordered joins&lt;/strong&gt; (e.g. rolling forwards, backwards, nearest and limited staleness), &lt;strong&gt;&lt;a href=&quot;https://github.com/Rdatatable/data.table/wiki/talks/EARL2014_OverlapRangeJoin_Arun.pdf&quot;&gt;overlapping range joins&lt;/a&gt;&lt;/strong&gt; (similar to &lt;code&gt;IRanges::findOverlaps&lt;/code&gt;), &lt;strong&gt;&lt;a href=&quot;https://github.com/Rdatatable/data.table/wiki/talks/ArunSrinivasanUseR2016.pdf&quot;&gt;non-equi joins&lt;/a&gt;&lt;/strong&gt; (i.e. joins using operators &lt;code&gt;&amp;gt;, &amp;gt;=, &amp;lt;, &amp;lt;=&lt;/code&gt;), &lt;strong&gt;aggregate on join&lt;/strong&gt; (&lt;code&gt;by=.EACHI&lt;/code&gt;), &lt;strong&gt;update on join&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;fast add/update/delete columns &lt;strong&gt;by reference&lt;/strong&gt; by group using no copies at all&lt;/li&gt; 
+ &lt;li&gt;fast and feature rich &lt;strong&gt;reshaping&lt;/strong&gt; data: &lt;strong&gt;&lt;a href=&quot;https://rdatatable.gitlab.io/data.table/reference/dcast.data.table.html&quot;&gt;&lt;code&gt;?dcast&lt;/code&gt;&lt;/a&gt;&lt;/strong&gt; (&lt;em&gt;pivot/wider/spread&lt;/em&gt;) and &lt;strong&gt;&lt;a href=&quot;https://rdatatable.gitlab.io/data.table/reference/melt.data.table.html&quot;&gt;&lt;code&gt;?melt&lt;/code&gt;&lt;/a&gt;&lt;/strong&gt; (&lt;em&gt;unpivot/longer/gather&lt;/em&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;any R function from any R package&lt;/strong&gt; can be used in queries not just the subset of functions made available by a database backend, also columns of type &lt;code&gt;list&lt;/code&gt; are supported&lt;/li&gt; 
+ &lt;li&gt;has &lt;strong&gt;&lt;a href=&quot;https://en.wikipedia.org/wiki/Dependency_hell&quot;&gt;no dependencies&lt;/a&gt;&lt;/strong&gt; at all other than base R itself, for simpler production/maintenance&lt;/li&gt; 
+ &lt;li&gt;the R dependency is &lt;strong&gt;as old as possible for as long as possible&lt;/strong&gt;, currently R 3.5.0 (2018), and we continuously test against that version&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;data.table&quot;)
+
+# latest development version (only if newer available)
+data.table::update_dev_pkg()
+
+# latest development version (force install)
+install.packages(&quot;data.table&quot;, repos=&quot;https://rdatatable.gitlab.io/data.table&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/Rdatatable/data.table/wiki/Installation&quot;&gt;the Installation wiki&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;Use &lt;code&gt;data.table&lt;/code&gt; subset &lt;code&gt;[&lt;/code&gt; operator the same way you would use &lt;code&gt;data.frame&lt;/code&gt; one, but...&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;no need to prefix each column with &lt;code&gt;DT$&lt;/code&gt; (like &lt;code&gt;subset()&lt;/code&gt; and &lt;code&gt;with()&lt;/code&gt; but built-in)&lt;/li&gt; 
+ &lt;li&gt;any R expression using any package is allowed in &lt;code&gt;j&lt;/code&gt; argument, not just list of columns&lt;/li&gt; 
+ &lt;li&gt;extra argument &lt;code&gt;by&lt;/code&gt; to compute &lt;code&gt;j&lt;/code&gt; expression by group&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(data.table)
+DT = as.data.table(iris)
+
+# FROM[WHERE, SELECT, GROUP BY]
+# DT  [i,     j,      by]
+
+DT[Petal.Width &amp;gt; 1.0, mean(Petal.Length), by = Species]
+#      Species       V1
+#1: versicolor 4.362791
+#2:  virginica 5.552000
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Getting started&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cran.r-project.org/package=data.table/vignettes/datatable-intro.html&quot;&gt;Introduction to data.table&lt;/a&gt; vignette&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Rdatatable/data.table/wiki/Getting-started&quot;&gt;Getting started&lt;/a&gt; wiki page&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://rdatatable.gitlab.io/data.table/reference/data.table.html#examples&quot;&gt;Examples&lt;/a&gt; produced by &lt;code&gt;example(data.table)&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Cheatsheets&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/master/datatable.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/master/pngs/datatable.png&quot; width=&quot;615&quot; height=&quot;242&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;data.table&lt;/code&gt; is widely used by the R community. It is being directly used by hundreds of CRAN and Bioconductor packages, and indirectly by thousands. It is one of the &lt;a href=&quot;https://medium.datadriveninvestor.com/most-starred-and-forked-github-repos-for-r-in-data-science-fb87a54d2a6a&quot;&gt;top most starred&lt;/a&gt; R packages on GitHub, and was highly rated by the &lt;a href=&quot;http://depsy.org/package/r/data.table&quot;&gt;Depsy project&lt;/a&gt;. If you need help, the &lt;code&gt;data.table&lt;/code&gt; community is active on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/data.table&quot;&gt;StackOverflow&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;A list of packages that significantly support, extend, or make use of &lt;code&gt;data.table&lt;/code&gt; can be found in the &lt;a href=&quot;https://github.com/Rdatatable/data.table/raw/master/Seal_of_Approval.md&quot;&gt;Seal of Approval&lt;/a&gt; document.&lt;/p&gt; 
+&lt;h3&gt;Stay up-to-date&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;click the &lt;strong&gt;Watch&lt;/strong&gt; button at the top and right of GitHub project page&lt;/li&gt; 
+ &lt;li&gt;read &lt;a href=&quot;https://github.com/Rdatatable/data.table/raw/master/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;follow &lt;a href=&quot;https://x.com/hashtag/rdatatable&quot;&gt;#rdatatable&lt;/a&gt; and the &lt;a href=&quot;https://x.com/r_data_table&quot;&gt;r_data_table&lt;/a&gt; account on X/Twitter&lt;/li&gt; 
+ &lt;li&gt;follow &lt;a href=&quot;https://fosstodon.org/tags/rdatatable&quot;&gt;#rdatatable&lt;/a&gt; and the &lt;a href=&quot;https://fosstodon.org/@r_data_table&quot;&gt;r_data_table account&lt;/a&gt; on fosstodon&lt;/li&gt; 
+ &lt;li&gt;follow the &lt;a href=&quot;https://www.linkedin.com/company/data-table-community&quot;&gt;data.table community page&lt;/a&gt; on LinkedIn&lt;/li&gt; 
+ &lt;li&gt;watch recent &lt;a href=&quot;https://github.com/Rdatatable/data.table/wiki/Presentations&quot;&gt;Presentations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;read recent &lt;a href=&quot;https://github.com/Rdatatable/data.table/wiki/Articles&quot;&gt;Articles&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;read posts on &lt;a href=&quot;https://rdatatable-community.github.io/The-Raft/&quot;&gt;The Raft&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Contributing&lt;/h3&gt; 
+&lt;p&gt;Guidelines for filing issues / pull requests: &lt;a href=&quot;https://github.com/Rdatatable/data.table/raw/master/.github/CONTRIBUTING.md&quot;&gt;Contribution Guidelines&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/fd049252984556f8cb07589c93b76576419ebd5aecd0c5a9b36a0af84b6fb7fe/Rdatatable/data.table" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>JGCRI/gcam-core</title>
+      <link>https://github.com/JGCRI/gcam-core</link>
+      <description>&lt;p&gt;GCAM -- The Global Change Analysis Model&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Global Change Analysis Model (GCAM)&lt;/h1&gt; 
+&lt;p&gt;The Joint Global Change Research Institute (JGCRI) of the Pacific Northwest National Laboratory (PNNL) is the home and primary development institution for GCAM, a multisector model for exploring consequences of and responses to global to local changes and stressors. Regional energy, water, land, and economic systems are connected to the rest of the globe through trade and interactions with environmental systems. These systems are also connected with each other. Multisector models such as GCAM capture these interconnected impacts in an economic framework in order to explore these dynamic interactions and feedbacks between regions and sectors.&lt;/p&gt; 
+&lt;p&gt;GCAM has been developed at PNNL-JGCRI for over 20 years and is a freely available community model and documented online (See below). The team at JGCRI is comprised of physical scientists, engineers, economists, energy experts, forest ecologists, agricultural scientists, and environmental system scientists who develop the model and apply it to a range of research questions. The JGCRI team works closely with the developers of other Earth system and ecosystem models to integrate the effects of human actions modeled in GCAM into their research.&lt;/p&gt; 
+&lt;h2&gt;Model Overview&lt;/h2&gt; 
+&lt;p&gt;GCAM is a dynamic-recursive model with technology-rich representations of the economy, energy sector, land use, and water linked to a reduced complexity Earth system model that can be used to explore many science and decision-relevant questions including the effects of changes in trade patterns, critical minerals &amp;amp; materials availability, and deployment of energy technologies on human and Earth systems. Regional population and labor productivity growth assumptions drive the energy and land-use systems, employing numerous technology options to produce, transform, and provide energy services, as well as to produce agriculture and forest products, and to determine land use and land cover. Using a run period extending from 1990 – 2100 (historical years through 2021) with annual results computed at 1-5 year intervals, GCAM has been used to explore the potential role of emerging energy supply technologies and the consequences of specific measures or energy technology adoption, including bioenergy; critical minerals &amp;amp; materials; hydrogen systems; nuclear energy; renewable energy technologies; carbon capture, storage, and utilization and energy use technology in buildings, industry, and the transportation sectors. GCAM outputs include projections of future energy and critical mineral supply, trade, and demand and the resulting radiative forcing and other effects of 16 greenhouse gases, aerosols, and short-lived species at 0.5×0.5 degree resolution, contingent on assumptions about future population, economy, technology, trade and other polices.&lt;/p&gt; 
+&lt;h2&gt;Community guidelines for peer-reviewed journal articles using GCAM&lt;/h2&gt; 
+&lt;p&gt;This section outlines some suggested language which the GCAM user community can employ to describe GCAM in papers in peer-reviewed journal articles, reports, or other public documents using GCAM or versions of GCAM. GCAM is under continuous development. The suggested language for the opening paragraphs of a methodology or introduction section of a paper describing GCAM is as follows:&lt;/p&gt; 
+&lt;p&gt;&quot;The Global Change Analysis Model (GCAM) is a multisector model developed and maintained at the Pacific Northwest National Laboratory’s Joint Global Change Research Institute (JGCRI, 2023) &lt;em&gt;&amp;lt;include additional citations to previous GCAM studies as relevant&amp;gt;&lt;/em&gt;. GCAM is an open-source community model. In this study, we use GCAM v NN. The documentation of the model is available at the GCAM documentation page (&lt;a href=&quot;http://jgcri.github.io/gcam-doc&quot;&gt;http://jgcri.github.io/gcam-doc&lt;/a&gt;) and the description below is a summary. GCAM includes representations of: economy, energy, agriculture, and water supply in 32 geopolitical regions across the globe; their GHG and air pollutant emissions and global GHG concentrations, radiative forcing, and temperature change; and the associated land allocation, water use, and agriculture production across 396 land sub-regions and 235 water basins. &lt;em&gt;&amp;lt;If using GCAM-USA, include without quotes: &quot;This study uses a U.S.-focused version of GCAM called GCAM-USA that includes representation of energy, economy, and water systems for the fifty states and the District of Columbia in addition to 31 regions outside of the United States.”&amp;gt;&lt;/em&gt;. The version of GCAM used in this study is available – along with full source code and instructions for use – in a public repository &lt;em&gt;&amp;lt;include citation including link to the GCAM repository with doi used in paper&amp;gt;&lt;/em&gt;.&lt;/p&gt; 
+&lt;p&gt;Subsequent paragraphs of the description might expound on particular capabilities, systems, or sectors of focus in the paper. Details in the GCAM documentation page can be used as a reference to develop these paragraphs.&lt;/p&gt; 
+&lt;p&gt;Community users of GCAM might also undertake their own model developments and/or assumptions for papers. It is recommended that these departures from the publicly available version of the model be clearly described. In addition, if these developments are substantial, we suggest making this clear by including an additional phrase (e.g. region name or name of institution) in the name of the model and explicitly calling it out in place of or immediately following the italicized portion in the above paragraphs. For example: &lt;em&gt;&quot;This study uses a modified version of GCAM/GCAM-USA called GCAM-&amp;lt;institution name&amp;gt;/GCAM-USA-&amp;lt;institution name&amp;gt;. GCAM-&amp;lt;institution name&amp;gt;/GCAM-USA-&amp;lt;institution name&amp;gt; incorporates additional details and modified assumptions from GCAM v NN as described subsequently&quot;&lt;/em&gt;.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/&quot;&gt;GCAM Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/user-guide.html&quot;&gt;Getting Started with GCAM&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gcims.pnnl.gov/community&quot;&gt;GCAM Community&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gcims.pnnl.gov/community&quot;&gt;GCAM Videos and Tutorial Slides&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/community-guide.html&quot;&gt;GCAM Citation and Co-authorship Guidelines&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Selected Publications&lt;/h2&gt; 
+&lt;p&gt;Calvin, K., Patel, P., Clarke, L., Asrar, G., Bond-Lamberty, B., Cui, R. Y., Di Vittorio, A., Dorheim, K., Edmonds, J., Hartin, C., Hejazi, M., Horowitz, R., Iyer, G., Kyle, P., Kim, S., Link, R., McJeon, H., Smith, S. J., Snyder, A., Waldhoff, S., and Wise, M.: GCAM v5.1: representing the linkages between energy, water, land, climate, and economic systems, Geosci. Model Dev., 12, 677–698, &lt;a href=&quot;https://doi.org/10.5194/gmd-12-677-2019&quot;&gt;https://doi.org/10.5194/gmd-12-677-2019&lt;/a&gt;, 2019.&lt;/p&gt; 
+&lt;p&gt;Edmonds, J., and J. Reilly (1985)Global Energy: Assessing the Future (Oxford University Press, New York) pp.317.&lt;/p&gt; 
+&lt;p&gt;Edmonds, J., M. Wise, H. Pitcher, R. Richels, T. Wigley, and C. MacCracken. (1997) “An Integrated Assessment of Climate Change and the Accelerated Introduction of Advanced Energy Technologies”, Mitigation and Adaptation Strategies for Global Change, 1, pp. 311-39&lt;/p&gt; 
+&lt;p&gt;Kim, S.H., J. Edmonds, J. Lurz, S. J. Smith, and M. Wise (2006) “The ObjECTS Framework for Integrated Assessment: Hybrid Modeling of Transportation ” Energy Journal (Special Issue #2) pp 51-80.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/references.html&quot;&gt;Full list of GCAM publications&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/47ed9e62b75393a5d8be0558a22bdedbb222ca4e8feb7db7900ff1c72dace2bb/JGCRI/gcam-core" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>r-lib/tree-sitter-r</title>
+      <link>https://github.com/r-lib/tree-sitter-r</link>
+      <description>&lt;p&gt;Tree-sitter grammar for R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;tree-sitter-r&lt;/h1&gt; 
+&lt;p&gt;An R grammar for &lt;a href=&quot;https://github.com/tree-sitter/tree-sitter&quot;&gt;tree-sitter&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;R package&lt;/h2&gt; 
+&lt;p&gt;This grammar is available as an &lt;a href=&quot;https://cran.r-project.org/web/packages/treesitter.r/index.html&quot;&gt;R package&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You&#39;ll also want the &lt;a href=&quot;https://davisvaughan.github.io/r-tree-sitter/&quot;&gt;R package providing bindings to tree-sitter&lt;/a&gt; itself.&lt;/p&gt; 
+&lt;h2&gt;Rust bindings&lt;/h2&gt; 
+&lt;p&gt;This grammar is available as a &lt;a href=&quot;https://crates.io/crates/tree-sitter-r&quot;&gt;Rust crate on crates.io&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Node bindings&lt;/h2&gt; 
+&lt;p&gt;This grammar is available as an &lt;a href=&quot;https://www.npmjs.com/package/@davisvaughan/tree-sitter-r&quot;&gt;npm package&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Note that it is currently listed as a scoped package under the name &lt;code&gt;@davisvaughan/tree-sitter-r&lt;/code&gt;. We are working with the npm team to gain ownership of the &lt;code&gt;tree-sitter-r&lt;/code&gt; package. Once that happens, we will move the npm package there instead.&lt;/p&gt; 
+&lt;h2&gt;References&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cran.r-project.org/doc/manuals/r-release/R-lang.pdf&quot;&gt;The R Draft Spec&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/wch/r-source/raw/trunk/src/main/gram.y&quot;&gt;gram.y&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Known deviations&lt;/h2&gt; 
+&lt;p&gt;This section describes known deviations from the R grammar.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;]]&lt;/code&gt; as a literal token&lt;/h3&gt; 
+&lt;p&gt;The following is valid R syntax, note how &lt;code&gt;]]&lt;/code&gt; has been split over multiple lines.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;x[[&quot;a&quot;]
+]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This applies to &lt;code&gt;]]&lt;/code&gt;, but not to &lt;code&gt;[[&lt;/code&gt;, for example, this is not valid R syntax:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;x[
+[&quot;a&quot;]]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The technical reason for this is that &lt;a href=&quot;https://github.com/wch/r-source/raw/988774e05497bcf2cfac47bfbec59d551432e3fb/src/main/gram.y#L508&quot;&gt;in the grammar&lt;/a&gt; R treats &lt;code&gt;[[&lt;/code&gt; as a single token, but &lt;code&gt;]]&lt;/code&gt; is treated as two individual &lt;code&gt;]&lt;/code&gt; tokens. Treating &lt;code&gt;]]&lt;/code&gt; as two individual &lt;code&gt;]&lt;/code&gt; tokens allows whitespace, newlines, and even comments to appear between the two &lt;code&gt;]&lt;/code&gt; tokens:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;x[[&quot;a&quot;] # comment
+]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;While we&#39;d like to precisely support the R grammar, it is also extremely useful to treat all of &lt;code&gt;(&lt;/code&gt;, &lt;code&gt;)&lt;/code&gt;, &lt;code&gt;[&lt;/code&gt;, &lt;code&gt;]&lt;/code&gt;, &lt;code&gt;[[&lt;/code&gt;, and &lt;code&gt;]]&lt;/code&gt; as literal tokens when using the tree-sitter grammar. This allows you to treat call, subset, and subset2 nodes in the same way, since they all have exactly the same node structure.&lt;/p&gt; 
+&lt;p&gt;Because treating &lt;code&gt;]]&lt;/code&gt; as a literal token is so useful, and because we&#39;ve never seen any R code &quot;in the wild&quot; written this way, this grammar does not allow whitespace, newlines, or comments between the two &lt;code&gt;]&lt;/code&gt; tokens.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/af5879cf5189d03ad68e66feea10376f1d43e5c0a8ba9362b6601b84743e27b3/r-lib/tree-sitter-r" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

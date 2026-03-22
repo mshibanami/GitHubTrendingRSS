@@ -1,0 +1,1071 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Common Lisp Monthly Trending</title>
+    <description>Monthly Trending of Common Lisp in GitHub</description>
+    <pubDate>Sun, 22 Mar 2026 01:54:28 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>dimitri/pgloader</title>
+      <link>https://github.com/dimitri/pgloader</link>
+      <description>&lt;p&gt;Migrate to PostgreSQL in a single command!&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;PGLoader&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/dimitri/pgloader&quot;&gt;&lt;img src=&quot;https://travis-ci.org/dimitri/pgloader.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/dimitri/pgloader?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&amp;amp;utm_content=badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/Join%20Chat.svg?sanitize=true&quot; alt=&quot;Join the chat at https://gitter.im/dimitri/pgloader&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://pgloader.readthedocs.io/en/latest/&quot;&gt;&lt;img src=&quot;https://readthedocs.org/projects/pgloader/badge/?version=latest&amp;amp;style=plastic&quot; alt=&quot;Read The Docs Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;pgloader is a data loading tool for PostgreSQL, using the &lt;code&gt;COPY&lt;/code&gt; command.&lt;/p&gt; 
+&lt;p&gt;Its main advantage over just using &lt;code&gt;COPY&lt;/code&gt; or &lt;code&gt;\copy&lt;/code&gt;, and over using a &lt;em&gt;Foreign Data Wrapper&lt;/em&gt;, is its transaction behaviour, where &lt;em&gt;pgloader&lt;/em&gt; will keep a separate file of rejected data, but continue trying to &lt;code&gt;copy&lt;/code&gt; good data in your database.&lt;/p&gt; 
+&lt;p&gt;The default PostgreSQL behaviour is transactional, which means that &lt;em&gt;any&lt;/em&gt; erroneous line in the input data (file or remote database) will stop the entire bulk load for the table.&lt;/p&gt; 
+&lt;p&gt;pgloader also implements data reformatting, a typical example of that being the transformation of MySQL datestamps &lt;code&gt;0000-00-00&lt;/code&gt; and &lt;code&gt;0000-00-00 00:00:00&lt;/code&gt; to PostgreSQL &lt;code&gt;NULL&lt;/code&gt; value (because our calendar never had a &lt;em&gt;year zero&lt;/em&gt;).&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Full documentation is available online, including manual pages of all the pgloader sub-commands. Check out &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/&quot;&gt;https://pgloader.readthedocs.io/&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ pgloader --help
+pgloader [ option ... ] SOURCE TARGET
+  --help -h                       boolean  Show usage and exit.
+  --version -V                    boolean  Displays pgloader version and exit.
+  --quiet -q                      boolean  Be quiet
+  --verbose -v                    boolean  Be verbose
+  --debug -d                      boolean  Display debug level information.
+  --client-min-messages           string   Filter logs seen at the console (default: &quot;warning&quot;)
+  --log-min-messages              string   Filter logs seen in the logfile (default: &quot;notice&quot;)
+  --summary -S                    string   Filename where to copy the summary
+  --root-dir -D                   string   Output root directory. (default: #P&quot;/tmp/pgloader/&quot;)
+  --upgrade-config -U             boolean  Output the command(s) corresponding to .conf file for v2.x
+  --list-encodings -E             boolean  List pgloader known encodings and exit.
+  --logfile -L                    string   Filename where to send the logs.
+  --load-lisp-file -l             string   Read user code from files
+  --dry-run                       boolean  Only check database connections, don&#39;t load anything.
+  --on-error-stop                 boolean  Refrain from handling errors properly.
+  --no-ssl-cert-verification      boolean  Instruct OpenSSL to bypass verifying certificates.
+  --context -C                    string   Command Context Variables
+  --with                          string   Load options
+  --set                           string   PostgreSQL options
+  --field                         string   Source file fields specification
+  --cast                          string   Specific cast rules
+  --type                          string   Force input source type
+  --encoding                      string   Source expected encoding
+  --before                        string   SQL script to run before loading the data
+  --after                         string   SQL script to run after loading the data
+  --self-upgrade                  string   Path to pgloader newer sources
+  --regress                       boolean  Drive regression testing
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;You can either give a command file to pgloader or run it all from the command line, see the &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/tutorial/tutorial.html#pgloader-quick-start&quot;&gt;pgloader quick start&lt;/a&gt; on &lt;a href=&quot;https://pgloader.readthedocs.io&quot;&gt;https://pgloader.readthedocs.io&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ ./build/bin/pgloader --help
+$ ./build/bin/pgloader &amp;lt;file.load&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, for a full migration from SQLite:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb newdb
+$ pgloader ./test/sqlite/sqlite.db postgresql:///newdb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or for a full migration from MySQL, including schema definition (tables, indexes, foreign keys, comments) and parallel loading of the corrected data:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb pagila
+$ pgloader mysql://user@localhost/sakila postgresql:///pagila
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;LICENCE&lt;/h2&gt; 
+&lt;p&gt;pgloader is available under &lt;a href=&quot;http://www.postgresql.org/about/licence/&quot;&gt;The PostgreSQL Licence&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;INSTALL&lt;/h2&gt; 
+&lt;p&gt;Please see full documentation at &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/install.html&quot;&gt;https://pgloader.readthedocs.io/&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you&#39;re using debian, it&#39;s already available:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ apt-get install pgloader
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you&#39;re using docker, you can use the latest version built by the CI at each commit to the master branch:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ docker pull ghcr.io/dimitri/pgloader:latest
+$ docker run --rm -it ghcr.io/dimitri/pgloader:latest pgloader --version
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/6cd4a11b895235bb1584f0e3927f1fd1958428c3adb5c16844c70db5ebbc2355/dimitri/pgloader" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>atgreen/icl</title>
+      <link>https://github.com/atgreen/icl</link>
+      <description>&lt;p&gt;Interactive Common Lisp: an enhanced REPL&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ICL - Interactive Common Lisp&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/atgreen/icl/actions/workflows/ci.yaml&quot;&gt;&lt;img src=&quot;https://github.com/atgreen/icl/actions/workflows/ci.yaml/badge.svg?sanitize=true&quot; alt=&quot;CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/atgreen/icl/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/atgreen/icl&quot; alt=&quot;Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://opensource.org/licenses/MIT&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-MIT-blue.svg?sanitize=true&quot; alt=&quot;License: MIT&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/atgreen/icl/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/platform-Linux%20%7C%20macOS%20%7C%20Windows-lightgrey&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;ICL is an enhanced REPL for Common Lisp. It provides a modern interactive experience with readline-style editing, persistent history, tab completion, and an extensible command system. ICL works in your terminal, in a web browser with package browsing and data visualization, or integrated with Emacs via SLY/SLIME.&lt;/p&gt; 
+&lt;h2&gt;Terminal REPL&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/atgreen/icl/master/assets/terminal-demo.gif&quot; alt=&quot;ICL Terminal Demo&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Syntax highlighting, paren matching, tab completion, paredit mode, and interactive inspector&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Browser REPL&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/atgreen/icl/master/assets/browser-demo.gif&quot; alt=&quot;ICL Browser Demo&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Package browser, symbol inspector, data visualization, and class hierarchy graphs&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Flame Graph Profiling&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/atgreen/icl/master/assets/flamegraph-demo.png&quot; alt=&quot;ICL Flame Graph Demo&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Interactive Speedscope flame graphs for performance profiling (SBCL only)&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Profile any expression with &lt;code&gt;,flame&lt;/code&gt; and explore the results in an interactive &lt;a href=&quot;https://www.speedscope.app/&quot;&gt;Speedscope&lt;/a&gt; visualization. Switch between Time Order, Left Heavy, and Sandwich views to identify performance bottlenecks.&lt;/p&gt; 
+&lt;h2&gt;Emacs Integration&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/atgreen/icl/master/assets/emacs-demo.gif&quot; alt=&quot;ICL Emacs Demo&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Synchronized browser visualization with SLY/SLIME - updates on C-x C-e, C-c C-c, and REPL input&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Syntax highlighting&lt;/strong&gt; - Colorized input with distinct colors for keywords, strings, comments, numbers, and symbols&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Parenthesis matching&lt;/strong&gt; - Real-time highlighting of matching parentheses as you type&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Paredit mode&lt;/strong&gt; - Structural editing with auto-close parens, safe deletion, and sexp navigation&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Multi-line input&lt;/strong&gt; - Automatically detects incomplete expressions with smart indentation&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Persistent history&lt;/strong&gt; - Command history saved across sessions&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Tab completion&lt;/strong&gt; - Complete symbols, package-qualified names, and keywords&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Command system&lt;/strong&gt; - Built-in commands prefixed with comma (e.g., &lt;code&gt;,help&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Multiple Lisp support&lt;/strong&gt; - Works with SBCL, CCL, ECL, CLISP, ABCL, Clasp, and Roswell&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Error backtraces&lt;/strong&gt; - Automatic backtrace capture with &lt;code&gt;,bt&lt;/code&gt; command to view stack traces&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Thread inspection&lt;/strong&gt; - List and inspect threads in the inferior Lisp&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Documentation lookup&lt;/strong&gt; - Quick access to function docs and apropos search&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Interactive object inspector&lt;/strong&gt; - TUI for exploring objects with keyboard navigation&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Tracing&lt;/strong&gt; - Enable/disable function tracing&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Source location&lt;/strong&gt; - Find where functions are defined&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Terminal-aware colors&lt;/strong&gt; - Automatically detects light/dark terminal background&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;AI integration&lt;/strong&gt; - Use &lt;code&gt;,explain&lt;/code&gt; to get AI-powered explanations of code, errors, and results&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Browser interface&lt;/strong&gt; - Web UI with package browser, symbol list, inspector, and xterm.js terminal&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Data visualization&lt;/strong&gt; - Visualize hash tables, classes, sets, SVG, HTML, JSON, Vega-Lite charts, Mermaid diagrams, regex railroad diagrams, and function disassembly&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Custom visualizations&lt;/strong&gt; - Define &lt;code&gt;icl-runtime:visualize&lt;/code&gt; methods for your own classes&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Flame graph profiling&lt;/strong&gt; - Interactive Speedscope visualizations for performance analysis (SBCL)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Code coverage&lt;/strong&gt; - HTML coverage reports via sb-cover (SBCL)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Emacs integration&lt;/strong&gt; - Works with SLY/SLIME for synchronized browser visualization&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Pre-built Binaries&lt;/h3&gt; 
+&lt;p&gt;Download from &lt;a href=&quot;https://github.com/atgreen/icl/releases&quot;&gt;GitHub Releases&lt;/a&gt;:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Platform&lt;/th&gt; 
+   &lt;th&gt;Formats&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux&lt;/td&gt; 
+   &lt;td&gt;RPM, DEB&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows&lt;/td&gt; 
+   &lt;td&gt;ZIP, EXE installer, MSI installer&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;a href=&quot;https://roswell.github.io/&quot;&gt;Roswell&lt;/a&gt; users can also install with &lt;code&gt;ros install atgreen/icl&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Building from Source&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;git clone https://github.com/atgreen/icl.git
+cd icl
+ocicl install
+make
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Requires SBCL, &lt;a href=&quot;https://github.com/ocicl/ocicl&quot;&gt;ocicl&lt;/a&gt;, and libfixposix-devel.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;Start ICL (auto-detects available Lisp):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;icl
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Specify a Lisp implementation:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;icl --lisp ccl
+icl --lisp ecl
+icl --lisp roswell  # Use Roswell&#39;s managed environment
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Evaluate an expression and exit:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;icl -e &#39;(+ 1 2 3)&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Load a file before starting the REPL:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;icl -l init.lisp
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Connect to an existing Slynk server:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;icl --connect localhost:4005
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Skip loading config file:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;icl --no-config
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Start with browser interface (opens IDE alongside terminal REPL):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;icl -b
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Emacs Integration&lt;/h2&gt; 
+&lt;p&gt;ICL ships an Emacs helper for SLY or SLIME that launches the browser REPL and syncs visualizations with evals.&lt;/p&gt; 
+&lt;p&gt;Minimal setup (adjust the path for your install):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-elisp&quot;&gt;(add-to-list &#39;load-path &quot;/path/to/icl/emacs&quot;)
+(require &#39;icl)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Commands:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;M-x icl&lt;/code&gt; — start ICL browser connected to the current SLY/SLIME session&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;M-x icl-stop&lt;/code&gt; — stop the ICL process&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;M-x icl-restart&lt;/code&gt; — restart ICL&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you have both SLY and SLIME installed, ICL prefers SLY by default. You can override this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-elisp&quot;&gt;(setq icl-backend &#39;slime)  ;; or &#39;sly or &#39;auto
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you install the package via RPM/DEB/Windows installer, the Emacs files are placed in a standard site-lisp directory and you can just &lt;code&gt;(require &#39;icl)&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Packaging Notes (RPM/DEB/Windows)&lt;/h3&gt; 
+&lt;p&gt;Suggested install locations for Emacs files:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;RPM: &lt;code&gt;%{_datadir}/emacs/site-lisp/icl/icl.el&lt;/code&gt; and &lt;code&gt;icl-autoloads.el&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;DEB: &lt;code&gt;/usr/share/emacs/site-lisp/icl/icl.el&lt;/code&gt; and &lt;code&gt;icl-autoloads.el&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Windows: &lt;code&gt;&amp;lt;INSTALL&amp;gt;/share/emacs/site-lisp/icl/icl.el&lt;/code&gt; and &lt;code&gt;icl-autoloads.el&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For packaging, include &lt;code&gt;icl-autoloads.el&lt;/code&gt; and add the site-lisp path to Emacs’ &lt;code&gt;load-path&lt;/code&gt; (via site-start.d or the installer), then users can:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-elisp&quot;&gt;(require &#39;icl)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Commands&lt;/h2&gt; 
+&lt;p&gt;Commands are prefixed with a comma. Type &lt;code&gt;,help&lt;/code&gt; for a full list.&lt;/p&gt; 
+&lt;h3&gt;Navigation&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,cd &amp;lt;package&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Change current package&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,pwd&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show current package&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,ls [filter]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;List symbols (filters: functions, macros, variables, classes)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,doc &amp;lt;symbol&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show documentation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,describe &amp;lt;symbol&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Full description of symbol&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,apropos &amp;lt;pattern&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Search for matching symbols&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,arglist &amp;lt;function&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show function arguments&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,source &amp;lt;symbol&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;View source in Monaco editor panel&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,edit &amp;lt;symbol&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Open source in &lt;code&gt;$EDITOR&lt;/code&gt; (alias: &lt;code&gt;,ed&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Cross-Reference (Xref)&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,callers &amp;lt;symbol&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show functions that call symbol (alias: &lt;code&gt;,xc&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,callees &amp;lt;symbol&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show functions called by symbol (alias: &lt;code&gt;,xe&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,references &amp;lt;symbol&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show code that references variable (alias: &lt;code&gt;,xr&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Inspection&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,inspect &amp;lt;expr&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Interactive object inspector (alias: &lt;code&gt;,i&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,i&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Inspect last result (&lt;code&gt;*&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,inspect-static &amp;lt;expr&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Non-interactive inspection output&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,slots &amp;lt;expr&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show slots of a class instance&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The interactive inspector (&lt;code&gt;,i&lt;/code&gt; or &lt;code&gt;,inspect&lt;/code&gt;) provides a TUI for exploring objects:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Key&lt;/th&gt; 
+   &lt;th&gt;Action&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;↑&lt;/code&gt;/&lt;code&gt;↓&lt;/code&gt; or &lt;code&gt;j&lt;/code&gt;/&lt;code&gt;k&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Navigate entries&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Enter&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Drill into selected entry&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;b&lt;/code&gt; or &lt;code&gt;Backspace&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Go back to parent object&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;q&lt;/code&gt; or &lt;code&gt;Escape&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Quit inspector&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Macros&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,macroexpand &amp;lt;form&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Expand macro once&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,macroexpand-all &amp;lt;form&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Fully expand all macros&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Development&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,load-system &amp;lt;name&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Load system via ocicl/Quicklisp/ASDF (alias: &lt;code&gt;,ql&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,libyear&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show dependency freshness metric (requires ocicl)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,changes [system]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show LLM-generated changelogs (requires ocicl)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,time &amp;lt;form&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Time expression evaluation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,load &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Load a Lisp file&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,compile-file &amp;lt;file&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Compile a file&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,disassemble &amp;lt;fn&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Disassemble a function&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Debugging&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,bt&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show backtrace from last error&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,step &amp;lt;form&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show traced function calls during evaluation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,threads&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;List all threads in inferior Lisp&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,trace &amp;lt;function&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Enable tracing&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,untrace &amp;lt;function&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Disable tracing&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,untrace-all&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Disable all tracing&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Profiling (SBCL only)&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,profile &amp;lt;form&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Profile a form with the statistical profiler&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,profile-start&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Start ongoing profiling&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,profile-stop&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Stop profiling and show results&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,profile-reset&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Reset profiler data&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,flame &amp;lt;form&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Profile and show interactive flame graph in browser&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,cover-ql &amp;lt;system&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Load system with code coverage instrumentation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,cover-load &amp;lt;path&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Load file with code coverage instrumentation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,cover-report&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Generate and display HTML coverage report&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,cover-reset&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Clear all coverage data&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The &lt;code&gt;,flame&lt;/code&gt; command (aliases: &lt;code&gt;,flamegraph&lt;/code&gt;, &lt;code&gt;,fg&lt;/code&gt;) profiles the expression and opens an interactive &lt;a href=&quot;https://www.speedscope.app/&quot;&gt;Speedscope&lt;/a&gt; flame graph in the browser. Requires browser mode (&lt;code&gt;,browser&lt;/code&gt; or &lt;code&gt;icl -b&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;,cover-*&lt;/code&gt; commands use SBCL&#39;s &lt;a href=&quot;https://www.sbcl.org/manual/#sb_002dcover&quot;&gt;sb-cover&lt;/a&gt; for code coverage analysis. Load code with &lt;code&gt;,cover-ql&lt;/code&gt; or &lt;code&gt;,cover-load&lt;/code&gt;, run your tests, then &lt;code&gt;,cover-report&lt;/code&gt; to view coverage in a Monaco editor panel with expression-level highlighting:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Green&lt;/strong&gt; - Executed code&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Red&lt;/strong&gt; - Not executed&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Yellow&lt;/strong&gt; - Partial branch coverage (only one branch taken)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Aliases: &lt;code&gt;,cql&lt;/code&gt; for &lt;code&gt;,cover-ql&lt;/code&gt;, &lt;code&gt;,cl&lt;/code&gt; for &lt;code&gt;,cover-load&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Source Viewer&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;,source&lt;/code&gt; command opens a Monaco editor panel in the browser with:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Common Lisp syntax highlighting&lt;/strong&gt; - Keywords, special variables, constants, and lambda list markers&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hover documentation&lt;/strong&gt; - Hold mouse over any symbol to see its arglist and docstring&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Multiple definitions&lt;/strong&gt; - Dropdown selector when a symbol has multiple definitions (e.g., function and compiler-macro)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Send to REPL&lt;/strong&gt; - Right-click → &quot;Send Top-Level Form to REPL&quot; or press Ctrl+Enter&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Search&lt;/strong&gt; - Right-click → &quot;Find...&quot; or Ctrl+F when editor has focus&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The Symbol Info panel also includes a &lt;strong&gt;[Source]&lt;/strong&gt; link next to [Inspect] for functions, providing quick access to source code.&lt;/p&gt; 
+&lt;h3&gt;Browser Visualization&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,browser&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Start browser-based IDE interface&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,viz &amp;lt;expr&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Visualize data in browser (class hierarchies, hash-tables, images, JSON, and more)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The &lt;code&gt;,viz&lt;/code&gt; command automatically detects the type and displays an appropriate visualization:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Class names&lt;/strong&gt;: &lt;code&gt;&#39;standard-object&lt;/code&gt; → interactive class hierarchy graph with slots&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hash-tables&lt;/strong&gt;: &lt;code&gt;*my-ht*&lt;/code&gt; → key-value table&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;FSet collections&lt;/strong&gt;: sets, maps, and bags with appropriate displays&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;JSON strings&lt;/strong&gt;: &lt;code&gt;&quot;{\&quot;key\&quot;: \&quot;value\&quot;}&quot;&lt;/code&gt; → syntax-highlighted, pretty-printed JSON&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Image byte arrays&lt;/strong&gt;: PNG, JPEG, GIF, WebP data → displayed inline&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SVG strings&lt;/strong&gt;: &lt;code&gt;&quot;&amp;lt;svg&amp;gt;...&amp;lt;/svg&amp;gt;&quot;&lt;/code&gt; → rendered SVG graphics&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;HTML strings&lt;/strong&gt;: &lt;code&gt;&quot;&amp;lt;!DOCTYPE html&amp;gt;...&quot;&lt;/code&gt; → rendered in sandboxed iframe&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Functions&lt;/strong&gt;: &lt;code&gt;#&#39;mapcar&lt;/code&gt; → disassembly output with theme-aware styling&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Venn Diagrams for FSet Sets&lt;/h4&gt; 
+&lt;p&gt;Visualize one or more &lt;a href=&quot;https://github.com/slburson/fset&quot;&gt;FSet&lt;/a&gt; sets as Venn diagrams:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;,viz *fruits*                    ; Single set as circle with members
+,viz *fruits* *red-things*       ; Two-set Venn diagram showing overlap
+,viz *set-a* *set-b* *set-c*     ; Three-set Venn diagram
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Single set&lt;/strong&gt;: Circle displaying members inside&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Two sets&lt;/strong&gt;: Classic Venn diagram with left-only, intersection, and right-only regions&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Three sets&lt;/strong&gt;: Triangle arrangement showing all 7 regions with counts&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Venn diagrams automatically refresh after each REPL evaluation to reflect data changes.&lt;/p&gt; 
+&lt;h4&gt;Class Hierarchy Graph&lt;/h4&gt; 
+&lt;p&gt;The class hierarchy graph supports interactive exploration:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Click a node&lt;/strong&gt; to see available subclasses and add them one at a time&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hover over a node&lt;/strong&gt; to highlight all ancestor classes up to the root&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Drag to pan&lt;/strong&gt;, scroll to zoom the graph&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Images&lt;/h4&gt; 
+&lt;p&gt;Visualize image data stored in byte arrays:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;;; Load an image file into a byte vector
+(defvar *img* (alexandria:read-file-into-byte-vector #P&quot;photo.png&quot;))
+,viz *img*
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Supported formats (detected by magic bytes): PNG, JPEG, GIF, WebP.&lt;/p&gt; 
+&lt;h4&gt;JSON and Code&lt;/h4&gt; 
+&lt;p&gt;JSON strings are automatically pretty-printed with syntax highlighting:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;(defvar *data* &quot;{\&quot;name\&quot;: \&quot;Alice\&quot;, \&quot;scores\&quot;: [95, 87, 92]}&quot;)
+,viz *data*
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;All visualization panels auto-refresh after REPL evaluations.&lt;/p&gt; 
+&lt;h4&gt;Custom Visualizations&lt;/h4&gt; 
+&lt;p&gt;Define methods on &lt;code&gt;icl-runtime:visualize&lt;/code&gt; to create custom visualizations for your own classes:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;;; Visualize a game board as HTML
+(defmethod icl-runtime:visualize ((obj my-game-state))
+  (list :html (render-board-html obj)))
+
+;; Visualize data as SVG chart
+(defmethod icl-runtime:visualize ((obj my-data-series))
+  (list :svg (generate-chart-svg obj)))
+
+;; Visualize config as JSON
+(defmethod icl-runtime:visualize ((obj my-config))
+  (list :json (serialize-to-json obj)))
+
+;; Visualize metrics as Vega-Lite bar chart
+(defmethod icl-runtime:visualize ((obj my-metrics))
+  (list :vega-lite
+        (format nil &quot;{\&quot;$schema\&quot;:\&quot;https://vega.github.io/schema/vega-lite/v6.json\&quot;,
+                      \&quot;data\&quot;:{\&quot;values\&quot;:~A},
+                      \&quot;mark\&quot;:\&quot;bar\&quot;,
+                      \&quot;encoding\&quot;:{\&quot;x\&quot;:{\&quot;field\&quot;:\&quot;name\&quot;,\&quot;type\&quot;:\&quot;nominal\&quot;},
+                                    \&quot;y\&quot;:{\&quot;field\&quot;:\&quot;value\&quot;,\&quot;type\&quot;:\&quot;quantitative\&quot;}}}&quot;
+                (metrics-to-json obj))))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Supported visualization types:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;(:html string)&lt;/code&gt; - Render HTML in sandboxed iframe&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;(:svg string)&lt;/code&gt; - Render SVG graphics&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;(:json string)&lt;/code&gt; - Syntax-highlighted JSON&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;(:vega-lite spec-string)&lt;/code&gt; - Render &lt;a href=&quot;https://vega.github.io/vega-lite/&quot;&gt;Vega-Lite&lt;/a&gt; chart&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;(:mermaid definition-string)&lt;/code&gt; - Render &lt;a href=&quot;https://mermaid.js.org/&quot;&gt;Mermaid&lt;/a&gt; diagram&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;(:regexp pattern-string)&lt;/code&gt; - Render regex railroad diagram via &lt;a href=&quot;https://jex.im/regulex/&quot;&gt;Regulex&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;(:image-base64 mime-type base64-string)&lt;/code&gt; - Image from base64 data&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Return &lt;code&gt;NIL&lt;/code&gt; from your method to fall back to ICL&#39;s built-in type detection.&lt;/p&gt; 
+&lt;p&gt;See &lt;code&gt;examples/vega.lisp&lt;/code&gt; for Vega-Lite, &lt;code&gt;examples/mermaid.lisp&lt;/code&gt; for Mermaid diagrams, and &lt;code&gt;examples/regexp.lisp&lt;/code&gt; for regex visualization.&lt;/p&gt; 
+&lt;h4&gt;Library Integration&lt;/h4&gt; 
+&lt;p&gt;Libraries can provide visualizations that work even when loaded before ICL connects (e.g., when attaching ICL to a running Lisp from Emacs). Define a &lt;code&gt;REGISTER-ICL-VIZ&lt;/code&gt; function in your package:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;(in-package :my-library)
+
+(defun register-icl-viz ()
+  &quot;Called by ICL to register visualizations for this library.&quot;
+  (defmethod icl-runtime:visualize ((obj my-data-structure))
+    (list :mermaid (my-struct-to-mermaid obj)))
+  (defmethod icl-runtime:visualize ((obj my-config))
+    (list :json (config-to-json obj))))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;ICL automatically discovers and calls &lt;code&gt;REGISTER-ICL-VIZ&lt;/code&gt; in all packages when &lt;code&gt;,viz&lt;/code&gt; is invoked. The &lt;code&gt;icl-runtime&lt;/code&gt; package is guaranteed to exist when your function is called. Each package is only processed once per session.&lt;/p&gt; 
+&lt;h4&gt;Security&lt;/h4&gt; 
+&lt;p&gt;Custom visualizations are protected with multiple layers of security:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;Security Measures&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;HTML&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Sanitized server-side (scripts and event handlers removed), rendered in sandboxed iframe&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Mermaid&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Rendered in strict mode (click handlers and JavaScript disabled)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Vega-Lite&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Expression functions disabled, AST-based evaluation only&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;SVG&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Protected by CSP (inline scripts and event handlers blocked)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The browser interface also enforces:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Content Security Policy (CSP)&lt;/strong&gt; - Blocks inline scripts and restricts resource loading&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;WebSocket origin validation&lt;/strong&gt; - Only accepts connections from localhost&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;X-Frame-Options: DENY&lt;/strong&gt; - Prevents clickjacking&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;These protections ensure that loading untrusted Lisp libraries with custom &lt;code&gt;visualize&lt;/code&gt; methods cannot execute arbitrary JavaScript in your browser.&lt;/p&gt; 
+&lt;p&gt;To disable these restrictions (for trusted code that requires JavaScript in visualizations), use:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;icl -b --unsafe-visualizations
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Configuration&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,show-config&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show config file location and customization options&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,reload-config&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Reload config file&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,paredit [on/off]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Toggle paredit structural editing mode&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Session&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,help&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show all commands&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,info&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show session information&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,history&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show value history variables&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,lisp [name]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show or switch Lisp backend&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,clear&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Clear terminal&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,quit&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Exit ICL&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;AI Integration&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Command&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,explain&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Explain last result or error using AI&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,explain &amp;lt;code&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Explain specific code&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;,ai-cli [name]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Show or set AI backend (gemini, claude, codex)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The &lt;code&gt;,explain&lt;/code&gt; command uses an AI CLI (auto-detected from PATH) to provide explanations of Lisp code, errors, and results. When using Gemini or Claude CLI, ICL provides an MCP server that gives the AI &lt;strong&gt;read-only&lt;/strong&gt; access to the live Lisp environment - it can query documentation, describe symbols, and search for functions, but &lt;strong&gt;cannot execute any code&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;Requires one of: &lt;a href=&quot;https://github.com/google-gemini/gemini-cli&quot;&gt;Gemini CLI&lt;/a&gt;, &lt;a href=&quot;https://github.com/anthropics/claude-code&quot;&gt;Claude CLI&lt;/a&gt;, or &lt;a href=&quot;https://github.com/openai/codex&quot;&gt;Codex CLI&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;History Variables&lt;/h2&gt; 
+&lt;p&gt;ICL maintains history of recent values and inputs:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Variable&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;icl:_&lt;/code&gt; / &lt;code&gt;icl:icl-*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Last result&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;icl:__&lt;/code&gt; / &lt;code&gt;icl:icl-**&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Second-to-last result&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;icl:___&lt;/code&gt; / &lt;code&gt;icl:icl-***&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Third-to-last result&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;icl:icl-+&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Last input form&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;icl:icl-/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Last returned values (all values)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;ICL loads a config file on startup (unless &lt;code&gt;--no-config&lt;/code&gt; is specified). This file can contain any Common Lisp code.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Config file locations:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Linux/macOS:&lt;/strong&gt; &lt;code&gt;$XDG_CONFIG_HOME/icl/config.lisp&lt;/code&gt; (default: &lt;code&gt;~/.config/icl/config.lisp&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Windows:&lt;/strong&gt; &lt;code&gt;%APPDATA%\icl\config.lisp&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;History file locations:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Linux/macOS:&lt;/strong&gt; &lt;code&gt;$XDG_STATE_HOME/icl/history&lt;/code&gt; (default: &lt;code&gt;~/.local/state/icl/history&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Windows:&lt;/strong&gt; &lt;code&gt;%LOCALAPPDATA%\icl\history&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Use &lt;code&gt;,show-config&lt;/code&gt; to see the actual paths on your system.&lt;/p&gt; 
+&lt;h3&gt;Configuration Variables&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Variable&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;*default-lisp*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Lisp implementation to use (&lt;code&gt;:sbcl&lt;/code&gt;, &lt;code&gt;:ccl&lt;/code&gt;, &lt;code&gt;:ecl&lt;/code&gt;, &lt;code&gt;:clisp&lt;/code&gt;, &lt;code&gt;:abcl&lt;/code&gt;, &lt;code&gt;:clasp&lt;/code&gt;, &lt;code&gt;:roswell&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;*prompt-string*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Prompt format string (default: &lt;code&gt;&quot;~A&amp;gt; &quot;&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;*result-prefix*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Prefix for results (default: &lt;code&gt;&quot;=&amp;gt; &quot;&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;*colors-enabled*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Enable syntax coloring (default: &lt;code&gt;t&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;*history-size*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Maximum history entries (default: &lt;code&gt;1000&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;*paredit-mode*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Enable structural editing (default: &lt;code&gt;nil&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;*ai-cli*&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;AI CLI for &lt;code&gt;,explain&lt;/code&gt; (&lt;code&gt;:gemini&lt;/code&gt;, &lt;code&gt;:claude&lt;/code&gt;, &lt;code&gt;:codex&lt;/code&gt;, or &lt;code&gt;:auto&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Customizing Lisp Invocation&lt;/h3&gt; 
+&lt;p&gt;Use &lt;code&gt;configure-lisp&lt;/code&gt; to customize how ICL invokes a Lisp implementation:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;(icl:configure-lisp impl &amp;amp;key program args eval-arg)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;code&gt;:program&lt;/code&gt;&lt;/strong&gt; - Path to the executable&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;code&gt;:args&lt;/code&gt;&lt;/strong&gt; - List of command-line arguments&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;code&gt;:eval-arg&lt;/code&gt;&lt;/strong&gt; - The eval flag (e.g., &lt;code&gt;&quot;--eval&quot;&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Example Config File&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lisp&quot;&gt;;; Use CCL instead of SBCL
+(setf icl:*default-lisp* :ccl)
+
+;; Custom SBCL with more memory
+(icl:configure-lisp :sbcl
+  :program &quot;/opt/sbcl/bin/sbcl&quot;
+  :args &#39;(&quot;--dynamic-space-size&quot; &quot;8192&quot;))
+
+;; Enable paredit mode
+(setf icl:*paredit-mode* t)
+
+;; Custom prompt
+(setf icl:*prompt-string* &quot;λ ~A&amp;gt; &quot;)
+
+;; Load commonly used systems
+(asdf:load-system :alexandria)
+
+;; Define custom utilities
+(defun reload ()
+  (asdf:load-system :my-project :force t))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Keyboard Shortcuts&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Key&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Enter&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Submit form if complete, otherwise insert newline&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+Enter&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Always insert newline (works in most terminals)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Shift+Enter&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Always insert newline (requires kitty keyboard protocol)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Tab&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Complete symbol or show completion menu&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+A&lt;/code&gt; / &lt;code&gt;Home&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Move to beginning of line&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+E&lt;/code&gt; / &lt;code&gt;End&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Move to end of line&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+F&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Forward character&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+B&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Backward character&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+N&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Next line (in multi-line input)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+P&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Previous line (in multi-line input)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+K&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Kill to end of line&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+O&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Open line (insert newline, cursor stays)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+T&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Transpose characters&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+U&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Clear entire line&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+D&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Kill word forward&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+Backspace&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Kill word backward&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+L&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Clear screen&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+D&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Delete character at cursor, or EOF if line empty (Emacs-style)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+C&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Cancel current input&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+R&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Reverse history search (substring match)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Ctrl+G&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Cancel search&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Up/Down&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Navigate history (on first/last line) or move cursor&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+P&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;History search backward (prefix match)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+N&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;History search forward (prefix match)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+Q&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Reindent current form&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+F&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Forward sexp (paredit mode only)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Alt+B&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Backward sexp (paredit mode only)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;In paredit mode, Enter only submits when the cursor is at the end of the buffer (allowing multi-line editing of balanced forms)&lt;/li&gt; 
+ &lt;li&gt;Use Alt+Enter in gnome-terminal and most other terminals. Shift+Enter only works in terminals with kitty keyboard protocol support (kitty, WezTerm, Alacritty, etc.).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Environment Variables&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Variable&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;ICL_SLYNK_PATH&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Override path to Slynk directory&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;ICL_ASDF_PATH&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Override path to bundled ASDF (for backends without ASDF)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;ICL_BACKGROUND&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Override terminal background detection (&lt;code&gt;dark&lt;/code&gt; or &lt;code&gt;light&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;NO_COLOR&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;When set to any non-empty value, disables colored output (see &lt;a href=&quot;https://no-color.org/&quot;&gt;no-color.org&lt;/a&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Supported Lisp Implementations&lt;/h2&gt; 
+&lt;p&gt;ICL aims to support multiple Common Lisp implementations. SBCL is the primary development and testing platform.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Implementation&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;SBCL&lt;/td&gt; 
+   &lt;td&gt;Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;CCL&lt;/td&gt; 
+   &lt;td&gt;Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;ECL&lt;/td&gt; 
+   &lt;td&gt;Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;ABCL&lt;/td&gt; 
+   &lt;td&gt;Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Roswell&lt;/td&gt; 
+   &lt;td&gt;Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Clasp&lt;/td&gt; 
+   &lt;td&gt;Untested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;CLISP&lt;/td&gt; 
+   &lt;td&gt;Experimental&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Architecture&lt;/h2&gt; 
+&lt;p&gt;ICL operates as a frontend that communicates with a backend Lisp process via the Slynk protocol (from SLY). This architecture allows ICL to work with any Common Lisp implementation, provide consistent features regardless of backend, and connect to remote Lisp processes.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;flowchart LR
+    subgraph Clients
+        Terminal
+        Browser
+        Emacs[&quot;Emacs&quot;]
+        AI[&quot;AI CLIs&quot;]
+    end
+
+    subgraph ICL
+        direction TB
+        Web[&quot;Web Server&quot;]
+        MCP[&quot;MCP Server&quot;]
+        Client[&quot;Slynk Client&quot;]
+    end
+
+    subgraph Lisp [&quot;Lisp Image&quot;]
+        Server[&quot;Slynk Server&quot;]
+    end
+
+    Terminal ---|stdin/stdout| ICL
+    Browser ---|HTTP/WS| Web
+    AI ---|HTTP| MCP
+    Client &amp;amp; Emacs ---|Slynk| Server
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;All connections use randomly-assigned ports on localhost. When ICL starts an inferior Lisp, it finds an available port and configures Slynk to listen there. The browser interface (started with &lt;code&gt;,browser&lt;/code&gt; or &lt;code&gt;icl -b&lt;/code&gt;) serves a Dockview-based IDE with package browser, symbol list, inspector panels, and class hierarchy visualization. The browser automatically closes when ICL terminates. The MCP server (started on-demand by &lt;code&gt;,explain&lt;/code&gt;) provides read-only AI tool integration.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT License. See LICENSE file for details.&lt;/p&gt; 
+&lt;h2&gt;Author&lt;/h2&gt; 
+&lt;p&gt;Anthony Green &lt;a href=&quot;mailto:green@moxielogic.com&quot;&gt;green@moxielogic.com&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ca3864d632a465133598fd74f642807561fc88e21aad31cf5013f2696183f301/atgreen/icl" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

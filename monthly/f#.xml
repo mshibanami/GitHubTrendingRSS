@@ -1,0 +1,515 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub F# Monthly Trending</title>
+    <description>Monthly Trending of F# in GitHub</description>
+    <pubDate>Sun, 22 Mar 2026 01:55:30 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>rfvgyhn/min-ed-launcher</title>
+      <link>https://github.com/rfvgyhn/min-ed-launcher</link>
+      <description>&lt;p&gt;Minimal Elite Dangerous Launcher&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Minimal Elite Dangerous Launcher&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/rfvgyhn/min-ed-launcher/total&quot; alt=&quot;GitHub Downloads (all assets, all releases)&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/downloads/rfvgyhn/min-ed-launcher/latest/total&quot; alt=&quot;GitHub Downloads (all assets, latest release)&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Cross-platform launcher for the game Elite Dangerous. Created mainly to avoid the long startup time of the default launcher when running on Linux. Can be used with Steam, Epic and Frontier accounts on both Windows and Linux.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://rfvgyhn.blob.core.windows.net/elite-dangerous/min-ed-launcher-demo.gif&quot; alt=&quot;preview-gif&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#usage&quot;&gt;Usage&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#setup&quot;&gt;Setup&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#steam&quot;&gt;Steam&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#epic&quot;&gt;Epic&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#frontier&quot;&gt;Frontier&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#arguments&quot;&gt;Arguments&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#shared&quot;&gt;Shared&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#min-launcher-specific&quot;&gt;Min-Launcher-Specific&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#settings&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#multi-account&quot;&gt;Multi-Account&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#frontier-account-via-steam-or-epic&quot;&gt;Frontier account via Steam or Epic&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#epic-account-via-steam&quot;&gt;Epic account via Steam&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#icon-on-linux&quot;&gt;Icon on Linux&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#troubleshooting&quot;&gt;Troubleshooting&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#cache&quot;&gt;Cache&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#build&quot;&gt;Build&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#release-artifacts&quot;&gt;Release Artifacts&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Minimal Interface&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;No waiting for a GUI to load. No waiting for the embedded web browser to load. No waiting for remote logs to be sent to FDev. For those that play on Linux, no waiting for the Wine environment.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Auto-run&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Automatically starts the game instead of you having to click the &lt;em&gt;Play&lt;/em&gt; button. The default launcher also supports this by using the &lt;code&gt;/autorun&lt;/code&gt; &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#arguments&quot;&gt;flag&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Auto-launch Processes&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Via the &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#settings&quot;&gt;Settings&lt;/a&gt; file, you can specify additional programs to launch automatically. This includes things like &lt;a href=&quot;https://github.com/DarkWanderer/Elite-Log-Agent&quot;&gt;Elite Log Agent&lt;/a&gt; and &lt;a href=&quot;https://voiceattack.com/&quot;&gt;VoiceAttack&lt;/a&gt;. Processes are automatically closed when the game closes. This means you don&#39;t have to run the programs on computer startup or have to remember to start them before you launch the game.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Auto-quit&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Automatically close the launcher when you close your game. The default launcher also supports this by using the &lt;code&gt;/autoquit&lt;/code&gt; &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#arguments&quot;&gt;flag&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Auto-restart&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Automatically restart your game. This can be useful if you&#39;re &lt;a href=&quot;https://www.reddit.com/r/EliteDangerous/comments/ggffqq/psa_2020_farming_engineering_materials_a_compiled/&quot;&gt;grinding&lt;/a&gt; for manufactured engineering materials. Off by default. For the Epic platform, this feature requires either &lt;a href=&quot;https://github.com/derrod/legendary&quot;&gt;Legendary&lt;/a&gt; or &lt;a href=&quot;https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher&quot;&gt;Heroic&lt;/a&gt;. See the &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#epic-accounts-and-the-restart-feature&quot;&gt;Epic accounts and the /restart feature&lt;/a&gt; section for more details.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Multi-Account&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Supports running your Steam, Epic and Frontier Store accounts with one game installation. See &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#multi-account&quot;&gt;details&lt;/a&gt; for how this works.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;This launcher doesn&#39;t setup/link new accounts. You&#39;ll need to either launch Elite Dangerous at least once with the default launcher or manually create and link your account(s) via the &lt;a href=&quot;https://user.frontierstore.net/user/info&quot;&gt;Linked Thirdparty Accounts&lt;/a&gt; section of Frontier&#39;s website. Linking is only required if you purchased the game via Steam or Epic.&lt;/p&gt; 
+&lt;h3&gt;Setup&lt;/h3&gt; 
+&lt;h4&gt;Steam&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the &lt;a href=&quot;https://github.com/Rfvgyhn/min-ed-launcher/releases&quot;&gt;latest release&lt;/a&gt; for your operating system&lt;/li&gt; 
+ &lt;li&gt;Extract executable from the zip/tar archive&lt;/li&gt; 
+ &lt;li&gt;Place &lt;code&gt;MinEdLauncher&lt;/code&gt; in your Elite Dangerous install location so that it&#39;s in the same folder as &lt;code&gt;EDLaunch.exe&lt;/code&gt;. &lt;code&gt;MinEdLauncher.Bootstrap&lt;/code&gt; is for Epic only and may be ignored. To find your install directory: 
+  &lt;ol&gt; 
+   &lt;li&gt;Right click &lt;em&gt;Elite Dangerous&lt;/em&gt; in your Steam library&lt;/li&gt; 
+   &lt;li&gt;Select &lt;em&gt;properties&lt;/em&gt;&lt;/li&gt; 
+   &lt;li&gt;In the &lt;em&gt;Local Files&lt;/em&gt; tab, click &lt;em&gt;Browse Local Files...&lt;/em&gt;&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Update your launch options to point to &lt;code&gt;MinEdLauncher&lt;/code&gt;. 
+  &lt;ol&gt; 
+   &lt;li&gt; &lt;p&gt;Right click &lt;em&gt;Elite Dangerous&lt;/em&gt; in your Steam library&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;Select &lt;em&gt;properties&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;In the &lt;em&gt;general&lt;/em&gt; tab, click &lt;em&gt;Set Launch Options&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;strong&gt;Windows users&lt;/strong&gt; - Set the value to &lt;code&gt;cmd /c &quot;MinEdLauncher.exe %command% /autorun /autoquit&quot;&lt;/code&gt;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Linux users&lt;/strong&gt; - The command will depend on which terminal emulator you use. Examples for &lt;a href=&quot;https://github.com/alacritty/alacritty&quot;&gt;alacritty&lt;/a&gt;, &lt;a href=&quot;https://wiki.gnome.org/Apps/Terminal&quot;&gt;gnome-terminal&lt;/a&gt; (Gnome), &lt;a href=&quot;https://konsole.kde.org/&quot;&gt;konsole&lt;/a&gt; (KDE/Steam Deck) and &lt;a href=&quot;https://gitlab.gnome.org/chergert/ptyxis&quot;&gt;Ptyxis&lt;/a&gt; (Bazzite) are below.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;alacritty -e ./MinEdLauncher %command% /autorun /autoquit
+&lt;/code&gt;&lt;/pre&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;gnome-terminal -- ./MinEdLauncher %command% /autorun /autoquit
+&lt;/code&gt;&lt;/pre&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;LD_LIBRARY_PATH=&quot;&quot; konsole -e env LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH&quot; ./MinEdLauncher %command% /autorun /autoquit
+&lt;/code&gt;&lt;/pre&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;LD_LIBRARY_PATH=&quot;&quot; ptyxis -- env LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH&quot; ./MinEdLauncher %command% /autorun /autoquit
+&lt;/code&gt;&lt;/pre&gt; 
+    &lt;blockquote&gt; 
+     &lt;p&gt;[!NOTE]&lt;br /&gt; Konsole and Ptyxis don&#39;t launch when started from the Steam runtime environment. Unsetting LD_LIBRARY_PATH allows them to launch but also causes Proton to run using system libraries causing undefined behavior. Resetting LD_LIBRARY_PATH inside the terminal emulator window solves this.&lt;/p&gt; 
+    &lt;/blockquote&gt; &lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Launch your game as you normally would in Steam&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Epic&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the &lt;a href=&quot;https://github.com/Rfvgyhn/min-ed-launcher/releases&quot;&gt;latest release&lt;/a&gt; for your operating system&lt;/li&gt; 
+ &lt;li&gt;Extract executable from the zip/tar archive&lt;/li&gt; 
+ &lt;li&gt;Place &lt;code&gt;MinEdLauncher&lt;/code&gt; in your Elite Dangerous install location so that it&#39;s in the same folder as &lt;code&gt;EDLaunch.exe&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h5&gt;Windows&lt;/h5&gt; 
+&lt;p&gt;Either configure the Epic client and use the provided Bootstrap exe or use &lt;a href=&quot;https://github.com/derrod/legendary&quot;&gt;legendary&lt;/a&gt; to launch the game&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Epic Client&lt;/p&gt; 
+  &lt;ol&gt; 
+   &lt;li&gt;Delete or rename &lt;code&gt;EDLaunch.exe&lt;/code&gt; (e.g. &lt;code&gt;EDLaunch.exe.bak&lt;/code&gt;)&lt;/li&gt; 
+   &lt;li&gt;Copy and rename &lt;code&gt;MinEdLauncher.Bootstrap.exe&lt;/code&gt; to &lt;code&gt;EDLaunch.exe&lt;/code&gt;. This step is required because Epic doesn&#39;t allow changing the game&#39;s startup application. If someone knows how to modify the game&#39;s manifest file (&lt;code&gt;EliteDangerous/.egstore/*.manifest&lt;/code&gt;), this could be avoided. Please open a &lt;a href=&quot;https://github.com/Rfvgyhn/min-ed-launcher/issues&quot;&gt;new issue&lt;/a&gt; if you can help with this. This also means any time the game updates or you verify your game files, you&#39;ll have to replace &lt;code&gt;EDLaunch.exe&lt;/code&gt; with &lt;code&gt;MinEdLauncher.Bootstrap.exe&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;Update your launch options to auto start your preferred product 
+    &lt;ol&gt; 
+     &lt;li&gt;Click &lt;em&gt;Settings&lt;/em&gt; in the Epic Games Launcher&lt;/li&gt; 
+     &lt;li&gt;Scroll down to the &lt;em&gt;Manage Games&lt;/em&gt; section and click &lt;em&gt;Elite Dangerous&lt;/em&gt;&lt;/li&gt; 
+     &lt;li&gt;Check &lt;em&gt;Additional Command Line Arguments&lt;/em&gt;&lt;/li&gt; 
+     &lt;li&gt;Set the value to &lt;code&gt;/autorun /autoquit&lt;/code&gt;&lt;/li&gt; 
+    &lt;/ol&gt; &lt;/li&gt; 
+   &lt;li&gt;Launch your game as you normally would in Epic&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Legendary&lt;/p&gt; &lt;p&gt;Use legendary&#39;s &lt;code&gt;override-exe&lt;/code&gt; argument via windows terminal&lt;/p&gt; &lt;p&gt;&lt;code&gt;legendary.exe launch 9c203b6ed35846e8a4a9ff1e314f6593 --override-exe MinEdLauncher.exe /autorun /autoquit&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h5&gt;Linux&lt;/h5&gt; 
+&lt;p&gt;This method utilizes &lt;a href=&quot;https://github.com/derrod/legendary&quot;&gt;Legendary&lt;/a&gt;.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Ensure you&#39;ve authenticated, installed Elite Dangerous via &lt;a href=&quot;https://github.com/derrod/legendary&quot;&gt;legendary&lt;/a&gt; and setup your wine prefix&lt;/li&gt; 
+ &lt;li&gt;Pass an exchange code to the launcher by either 
+  &lt;ol&gt; 
+   &lt;li&gt;Using the &lt;code&gt;--dry-run&lt;/code&gt; flag and passing the arguments directly to &lt;code&gt;MinEdLauncher&lt;/code&gt; via command substitution &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;WINEPREFIX=/your/wine/prefix /path/to/MinEdLauncher $(legendary launch --dry-run 9c203b6ed35846e8a4a9ff1e314f6593 2&amp;gt;&amp;amp;1 | grep &quot;Launch parameters&quot; | cut -d&#39;:&#39; -f 3-) /autorun /autoquit
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+   &lt;li&gt;Using the &lt;code&gt;get-token&lt;/code&gt; command and passing it to &lt;code&gt;MinEdLauncher&lt;/code&gt; via Steam and command substitution &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;steam -gameidlaunch 359320 -auth_password=$(legendary get-token 2&amp;gt;&amp;amp;1 | cut -d&#39;:&#39; -f 3- | xargs)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Frontier&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the &lt;a href=&quot;https://github.com/Rfvgyhn/min-ed-launcher/releases&quot;&gt;latest release&lt;/a&gt; for Windows&lt;/li&gt; 
+ &lt;li&gt;Extract executables from the zip archive&lt;/li&gt; 
+ &lt;li&gt;Place &lt;code&gt;MinEdLauncher.exe&lt;/code&gt; in your Elite Dangerous install location so that it&#39;s in the same folder as &lt;code&gt;EDLaunch.exe&lt;/code&gt;. &lt;code&gt;MinEdLauncher.Bootstrap&lt;/code&gt; is for Epic only and may be ignored.&lt;/li&gt; 
+ &lt;li&gt;Create a shortcut to &lt;code&gt;MinEdLauncher.exe&lt;/code&gt; by right-clicking it and selecting &lt;em&gt;create shortcut&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Right-click the newly made shortcut and select &lt;em&gt;properties&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Add the &lt;code&gt;/frontier profile-name&lt;/code&gt; argument + your other desired arguments to the end of the &lt;em&gt;Target&lt;/em&gt; textbox (e.g. &lt;code&gt;C:\path\to\MinEdLauncher.exe /frontier profile-name /autorun /autoquit&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Click &lt;em&gt;Ok&lt;/em&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;You can place this shortcut anywhere. It doesn&#39;t have to live in the Elite Dangerous install folder.&lt;/p&gt; 
+&lt;h3&gt;Arguments&lt;/h3&gt; 
+&lt;h4&gt;Shared&lt;/h4&gt; 
+&lt;p&gt;The following arguments are understood by both the vanilla launcher and the minimal launcher. Note that specifying a product flag will override whatever option you select when Steam prompts you to select a version of the game.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Argument&lt;/th&gt; 
+   &lt;th&gt;Effect&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/autoquit&lt;/td&gt; 
+   &lt;td&gt;Automatically close the launcher when the game starts&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/autorun&lt;/td&gt; 
+   &lt;td&gt;Automatically start selected product when launcher starts&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/ed&lt;/td&gt; 
+   &lt;td&gt;Select Legacy Elite Dangerous as the startup product&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/edh&lt;/td&gt; 
+   &lt;td&gt;Select Legacy Horizons as the startup product&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/eda&lt;/td&gt; 
+   &lt;td&gt;Select Elite Dangerous Arena as the startup product&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/vr&lt;/td&gt; 
+   &lt;td&gt;Tell the game that you want to play in VR mode&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;-auth_password&lt;/td&gt; 
+   &lt;td&gt;Epic exchange code. Used for authenticating with Epic&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;Min Launcher Specific&lt;/h4&gt; 
+&lt;p&gt;The following arguments are in addition to the above:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Argument&lt;/th&gt; 
+   &lt;th&gt;Effect&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/autoquit waitForExit&lt;/td&gt; 
+   &lt;td&gt;Automatically close the launcher when the game closes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/edo&lt;/td&gt; 
+   &lt;td&gt;Select Elite Dangerous Odyssey as the startup product&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/edh4&lt;/td&gt; 
+   &lt;td&gt;Select Elite Dangerous Horizons as the startup product&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/frontier profile-name&lt;/td&gt; 
+   &lt;td&gt;Use this argument to login with a Frontier Store account. &lt;code&gt;profile-name&lt;/code&gt; can be any name you want. Keep it to letters, numbers, dashes and underscores. See more details in the &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#multi-account&quot;&gt;multi-account&lt;/a&gt; section&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/restart delay&lt;/td&gt; 
+   &lt;td&gt;Restart the game after it has closed with &lt;em&gt;delay&lt;/em&gt; being the number of seconds given to cancel the restart (i.e &lt;code&gt;/restart 3&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/dryrun&lt;/td&gt; 
+   &lt;td&gt;Prints output without launching any processes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/skipInstallPrompt&lt;/td&gt; 
+   &lt;td&gt;Skips the prompt to install uninstalled products when &lt;code&gt;/autorun&lt;/code&gt; is not specified&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;/settingsOverlay path&lt;/td&gt; 
+   &lt;td&gt;Load a partial settings overlay file on top of the default &lt;code&gt;settings.json&lt;/code&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#settings-overlay&quot;&gt;Settings Overlay&lt;/a&gt; below&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h5&gt;Epic accounts and the /restart feature&lt;/h5&gt; 
+&lt;p&gt;The restart feature requires either &lt;a href=&quot;https://github.com/derrod/legendary&quot;&gt;Legendary&lt;/a&gt; or &lt;a href=&quot;https://github.com/Heroic-Games-Launcher/HeroicGamesLauncher&quot;&gt;Heroic&lt;/a&gt; to work with Epic accounts.&lt;/p&gt; 
+&lt;p&gt;After Elite launches, it invalidates the launcher&#39;s initial Epic auth token and doesn&#39;t communicate the new token which then prevents the ability to login with FDev servers a second time. To work around this, min-ed-launcher can use a more privileged Epic token (created by Legendary/Heroic) to generate the needed auth tokens. Simply logging in with Legendary or Heroic will allow min-ed-launcher to restart without re-launching.&lt;/p&gt; 
+&lt;p&gt;Once you&#39;ve logged in with either, you can go back to using the normal Epic launcher if you wish. It will require re-logging in every few days though, so it may be preferable to just stick with the alternate launchers.&lt;/p&gt; 
+&lt;h3&gt;Settings&lt;/h3&gt; 
+&lt;p&gt;The settings file controls additional settings for the launcher that go beyond what the default launcher supports. The location of this file is in the standard config location for your operating system. If this file doesn&#39;t exist, it will be created on launcher startup.&lt;/p&gt; 
+&lt;p&gt;Windows: &lt;code&gt;%LOCALAPPDATA%\min-ed-launcher\settings.json&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Linux: &lt;code&gt;$XDG_CONFIG_HOME/min-ed-launcher/settings.json&lt;/code&gt; (&lt;code&gt;~/.config&lt;/code&gt; if &lt;code&gt;$XDG_CONFIG_HOME&lt;/code&gt; isn&#39;t set)&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Key&lt;/th&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;Default&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;apiUri&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;string&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;&quot;https://api.zaonce.net&quot;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;FDev API base URI&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;watchForCrashes&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;bool&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Launch game via &lt;code&gt;WatchDog64.exe&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;gameLocation&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;string&lt;/td&gt; 
+   &lt;td&gt;&lt;em&gt;null&lt;/em&gt;&lt;/td&gt; 
+   &lt;td&gt;Path to game install folder. Auto-detected if omitted&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;language&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;string&lt;/td&gt; 
+   &lt;td&gt;&lt;em&gt;null&lt;/em&gt;&lt;/td&gt; 
+   &lt;td&gt;Game language (&lt;code&gt;en&lt;/code&gt;, or a language folder name)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;autoUpdate&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;bool&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Auto-update out-of-date games&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;checkForLauncherUpdates&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;bool&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;true&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Check for new min-ed-launcher versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;maxConcurrentDownloads&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;int&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;4&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Max simultaneous update downloads&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;forceUpdate&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;array&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;SKUs to force-update via FDev servers&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;processes&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;array&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Programs to launch before the game. See &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#process-fields&quot;&gt;process fields&lt;/a&gt; below&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;shutdownProcesses&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;array&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Programs to launch after game shutdown. Same fields as &lt;code&gt;processes&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;shutdownTimeout&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;int&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;10&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Seconds to wait before force-killing processes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;filterOverrides&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;array&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Override product filters for launch flags (e.g. &lt;code&gt;/edo&lt;/code&gt;, &lt;code&gt;/edh&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;additionalProducts&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;array&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;[]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Extra products for the authorized list&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;cacheDir&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;string&lt;/td&gt; 
+   &lt;td&gt;&lt;em&gt;(OS default)&lt;/em&gt;&lt;/td&gt; 
+   &lt;td&gt;Directory for update downloads. See &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#cache&quot;&gt;cache&lt;/a&gt; section for default location&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;gameStartDelay&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;int&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Seconds to wait after starting processes but before launching the game&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;shutdownDelay&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;int&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;0&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Seconds to wait before closing processes&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;Process fields&lt;/h4&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Field&lt;/th&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;Default&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;fileName&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;string&lt;/td&gt; 
+   &lt;td&gt;&lt;em&gt;(required)&lt;/em&gt;&lt;/td&gt; 
+   &lt;td&gt;Path to executable&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;arguments&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;string&lt;/td&gt; 
+   &lt;td&gt;&lt;em&gt;null&lt;/em&gt;&lt;/td&gt; 
+   &lt;td&gt;Command-line arguments&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;restartOnRelaunch&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;bool&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Restart the process when the game restarts via &lt;code&gt;/restart&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;keepOpen&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;bool&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;false&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Don&#39;t stop this process when the launcher exits&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] When specifying a path for &lt;code&gt;gameLocation&lt;/code&gt;, &lt;code&gt;cacheDir&lt;/code&gt; or &lt;code&gt;processes.fileName&lt;/code&gt; on Windows, it&#39;s required to escape backslashes. Make sure to use a double backslash (&lt;code&gt;\\&lt;/code&gt;) instead of a single backslash (&lt;code&gt;\&lt;/code&gt;).&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] Launching Flatpaks via &lt;code&gt;processes&lt;/code&gt; through Steam requires resetting the LD_LIBRARY_PATH env var and setting MEL_LD_LIBRARY_PATH to the host&#39;s LD_LIBRARY_PATH.&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;LD_LIBRARY_PATH=&quot;&quot; konsole -e env MEL_LD_LIBRARY_PATH=&quot;$LD_LIBRARY_PATH&quot; ./MinEdLauncher %command% /autorun /autoquit
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/blockquote&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;apiUri&quot;: &quot;https://api.zaonce.net&quot;,
+  &quot;watchForCrashes&quot;: false,
+  &quot;gameLocation&quot;: null,
+  &quot;language&quot;: &quot;en&quot;,
+  &quot;autoUpdate&quot;: true,
+  &quot;checkForLauncherUpdates&quot;: true,
+  &quot;maxConcurrentDownloads&quot;: 4,
+  &quot;forceUpdate&quot;: [&quot;PUBLIC_TEST_SERVER_OD&quot;],
+  &quot;cacheDir&quot;: &quot;C:\\path\\to\\dir&quot;,
+  &quot;gameStartDelay&quot;: 0,
+  &quot;shutdownDelay&quot;: 0,
+  &quot;processes&quot;: [
+    {
+      &quot;fileName&quot;: &quot;C:\\path\\to\\app.exe&quot;
+    },
+    {
+      &quot;fileName&quot;: &quot;C:\\path\\to\\app2.exe&quot;,
+      &quot;arguments&quot;: &quot;--arg1 --arg2&quot;,
+      &quot;restartOnRelaunch&quot;: true,
+      &quot;keepOpen&quot;: true
+    }
+  ],
+  &quot;shutdownProcesses&quot;: [
+    {
+      &quot;fileName&quot;: &quot;C:\\path\\to\\app.exe&quot;,
+      &quot;arguments&quot;: &quot;--arg1 --arg2&quot;
+    }
+  ],
+  &quot;shutdownTimeout&quot;: 10,
+  &quot;filterOverrides&quot;: [
+    { &quot;sku&quot;: &quot;FORC-FDEV-DO-1000&quot;, &quot;filter&quot;: &quot;edo&quot; },
+    { &quot;sku&quot;: &quot;FORC-FDEV-DO-38-IN-40&quot;, &quot;filter&quot;: &quot;edh4&quot; }
+  ],
+  &quot;additionalProducts&quot;: [{
+    &quot;filter&quot;: &quot;edh4&quot;,
+    &quot;directory&quot;: &quot;elite-dangerous-odyssey-64&quot;,
+    &quot;serverargs&quot;: &quot;&quot;,
+    &quot;gameargs&quot;: &quot;SeasonTwo&quot;,
+    &quot;sortkey&quot;: &quot;04&quot;,
+    &quot;product_name&quot;: &quot;Elite Dangerous: Horizons (4.0)&quot;,
+    &quot;product_sku&quot;: &quot;FORC-FDEV-DO-38-IN-40&quot;
+  }]
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Settings Overlay&lt;/h4&gt; 
+&lt;p&gt;The &lt;code&gt;/settingsOverlay &amp;lt;path&amp;gt;&lt;/code&gt; flag loads a partial JSON file on top of the default &lt;code&gt;settings.json&lt;/code&gt;. The overlay only needs to contain the keys you want to override — all other settings are inherited from the base file.&lt;/p&gt; 
+&lt;p&gt;For example, to suppress all auto-launched processes for a specific profile, create a file like:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;processes&quot;: []
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then use it with: &lt;code&gt;./MinEdLauncher /frontier alice /settingsOverlay ~/.config/min-ed-launcher/alice.json /autorun&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Merge rules:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Scalar values (bool, int, string) — overlay wins if the key is present&lt;/li&gt; 
+ &lt;li&gt;Lists (processes, shutdownProcesses, etc.) — overlay &lt;strong&gt;replaces&lt;/strong&gt; the base list if the key is present, even if empty&lt;/li&gt; 
+ &lt;li&gt;Keys not present in the overlay inherit their value from the base &lt;code&gt;settings.json&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Multi-Account&lt;/h3&gt; 
+&lt;h4&gt;Frontier account via Steam or Epic&lt;/h4&gt; 
+&lt;p&gt;By using the &lt;code&gt;/frontier profile-name&lt;/code&gt; argument, you can login with any number of Frontier accounts with a single game installation. Your launch command might look like the following&lt;/p&gt; 
+&lt;p&gt;Windows: &lt;code&gt;cmd /c &quot;MinEdLauncher.exe %command% /frontier profile-name /autorun /autoquit&quot;&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Linux: &lt;code&gt;alacritty -e ./MinEdLauncher %command% /frontier profile-name /autorun /autoquit&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#setup&quot;&gt;setup&lt;/a&gt; section above for how you might run this on your platform.&lt;/p&gt; 
+&lt;p&gt;If you have multiple frontier accounts, use a different profile name for each of them. After successfully logging in, there will be a &lt;code&gt;.cred&lt;/code&gt; file created in either &lt;code&gt;%LOCALAPPDATA%\min-ed-launcher\&lt;/code&gt; or &lt;code&gt;$XDG_CONFIG_DIR/min-ed-launcher/&lt;/code&gt; (depending on OS). This file stores your username, password and machine token. On Windows, the password and machine token are encrypted via DPAPI (same as the vanilla launcher). On Linux, no encryption happens but the file permissions are set to 600. If you login once and then decide you want to login again (refresh machine token), you can delete the appropriate &lt;code&gt;.cred&lt;/code&gt; file.&lt;/p&gt; 
+&lt;h4&gt;Epic account via Steam&lt;/h4&gt; 
+&lt;p&gt;There is rudimentary support for running your Epic account via Steam.&lt;/p&gt; 
+&lt;p&gt;In order to authenticate with an Epic account:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Get an Epic exchange code. This part is really clunky and will need to be done for every launch as the exchange code expires after one use. Get a code via &lt;a href=&quot;https://github.com/derrod/legendary&quot;&gt;Legendary&lt;/a&gt;.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;legendary get-token
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add the &lt;code&gt;-auth_password=code&lt;/code&gt; argument to your launch options. &lt;code&gt;cmd /c &quot;MinEdLauncher.exe %command% /autoquit -auth_password=code&quot;&lt;/code&gt;&lt;/p&gt; &lt;p&gt;You can also create a separate shortcut. Right click game in your Steam library and create desktop shortcut. Edit the properties of the shortcut to include the &lt;code&gt;-auth_password=code&lt;/code&gt; argument. &lt;code&gt;&quot;C:\Program Files (x86)\Steam\Steam.exe&quot; -gameidlaunch 359320 -auth_password=code&lt;/code&gt;. Then just edit this shortcut with the new exchange code each time instead of changing your Steam launch options.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] If you want to use Steam&#39;s installation, you&#39;ll need to set &lt;code&gt;gameLocation&lt;/code&gt; in your &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#settings&quot;&gt;settings&lt;/a&gt; file. For example&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;&quot;gameLocation&quot;: &quot;C:\\Program Files (x86)\\Steam\\steamapps\\common\\Elite Dangerous&quot;,
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/blockquote&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!TIP] If you&#39;re just looking to run an Epic account with Steam&#39;s game files, you can set the &lt;code&gt;gameLocation&lt;/code&gt; as noted above, use legendary as outlined in the &lt;em&gt;legendary&lt;/em&gt; section of the &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#Epic&quot;&gt;Epic setup&lt;/a&gt; and include the &lt;code&gt;--skip-version-check&lt;/code&gt; argument.&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;legendary.exe launch 9c203b6ed35846e8a4a9ff1e314f6593 --skip-version-check --override-exe MinEdLauncher.exe /autorun /autoquit
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Steam Shortcuts&lt;/h3&gt; 
+&lt;p&gt;You can create multiple shortcuts with different launch parameters. Prefer avoiding the steam protocol handler as it has some &lt;a href=&quot;https://github.com/rfvgyhn/min-ed-launcher/issues/45#issuecomment-1030312606&quot;&gt;quirks&lt;/a&gt; that make it more of a pain to use.&lt;/p&gt; 
+&lt;p&gt;Example &lt;em&gt;Target&lt;/em&gt; field for a shortcut that launches Odyssey:&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;&quot;C:\Program Files (x86)\Steam\Steam.exe&quot; -gameidlaunch 359320 /edo&lt;/code&gt;&lt;/p&gt; 
+&lt;h3&gt;Icon on Linux&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Copy the included &lt;code&gt;min-ed-launcher.svg&lt;/code&gt; file to your environment&#39;s default icon location&lt;/p&gt; &lt;p&gt;Common icon locations are &lt;code&gt;~/.local/share/icons/hicolor/scalable/apps&lt;/code&gt; and &lt;code&gt;/usr/share/icons/hicolor/scalable/apps&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Copy the included &lt;code&gt;min-ed-launcher.desktop&lt;/code&gt; file to your environment&#39;s default application launcher location&lt;/p&gt; &lt;p&gt;Common locations are &lt;code&gt;~/.local/share/applications&lt;/code&gt; and &lt;code&gt;/usr/share/applications&lt;/code&gt;&lt;/p&gt; &lt;p&gt;You may need to update your cache by running &lt;code&gt;update-desktop-database&lt;/code&gt; pointed at whereever you copied the desktop file. e.g. &lt;code&gt;update-desktop-database ~/.local/share/applications/&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Set the WM_CLASS/Application Id property in your launch options. How you do this will depend on your terminal emulator. Examples are below:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Alacritty - &lt;code&gt;alacritty --class min-ed-launcher -e ./MinEdLauncher %command% /autorun /autoquit&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;kitty - &lt;code&gt;kitty --class min-ed-launcher ./MinEdLauncher %command% /autorun /autoquit&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Troubleshooting&lt;/h3&gt; 
+&lt;p&gt;Debug logging is placed in the standard log location for your operating system:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Windows - &lt;code&gt;%LOCALAPPDATA%\min-ed-launcher\min-ed-launcher.log&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Linux - &lt;code&gt;$XDG_STATE_HOME/min-ed-launcher/min-ed-launcher.log&lt;/code&gt; (&lt;code&gt;~/.local/state&lt;/code&gt; if &lt;code&gt;$XDG_STATE_HOME&lt;/code&gt; isn&#39;t set)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Cache&lt;/h3&gt; 
+&lt;p&gt;When updating your game files, the launcher downloads updates into a temporary directory. You may delete these files at any time. The location of these files are in the standard cache location for your operating system.&lt;/p&gt; 
+&lt;p&gt;Windows: &lt;code&gt;%LOCALAPPDATA%\min-ed-launcher\cache&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Linux: &lt;code&gt;$XDG_CACHE_HOME/min-ed-launcher&lt;/code&gt; (&lt;code&gt;~/.cache&lt;/code&gt; if &lt;code&gt;$XDG_CACHE_HOME&lt;/code&gt; isn&#39;t set)&lt;/p&gt; 
+&lt;p&gt;You can override the default location by specifying the &lt;code&gt;cacheDir&lt;/code&gt; property in your &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/#settings&quot;&gt;settings&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Build&lt;/h2&gt; 
+&lt;p&gt;Two different toolchains are needed to build the entire project. .NET is used for the launcher itself and Rust is used for the bootstrapper. Since the bootstrapper is only used for users playing via Epic, you may not need to setup both.&lt;/p&gt; 
+&lt;h3&gt;Launcher&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Install the &lt;a href=&quot;https://dotnet.microsoft.com/download/dotnet&quot;&gt;.Net SDK&lt;/a&gt;&lt;/p&gt; &lt;p&gt;At least version 8. In general, min-ed-launcher follows the latest version of the SDK.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Clone repository and build&lt;/p&gt; &lt;pre&gt;&lt;code&gt;$ git clone https://github.com/rfvgyhn/min-ed-launcher
+$ cd min-ed-launcher
+$ dotnet build -c Release
+$ dotnet run -c Release --project src/MinEdLauncher/MinEdLauncher.fsproj
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If you&#39;d prefer a single, self-contained binary, use &lt;code&gt;publish&lt;/code&gt; instead of &lt;code&gt;build&lt;/code&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/publish.sh&quot;&gt;publish.sh&lt;/a&gt; or &lt;a href=&quot;https://raw.githubusercontent.com/rfvgyhn/min-ed-launcher/master/publish.ps1&quot;&gt;publish.ps1&lt;/a&gt; for more details.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Bootstrapper&lt;/h3&gt; 
+&lt;p&gt;This project is Windows specific and won&#39;t compile on other operating systems.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://www.rust-lang.org/tools/install&quot;&gt;Install Rust&lt;/a&gt;&lt;/p&gt; &lt;p&gt;In general, min-ed-launcher follows the latest &lt;em&gt;stable&lt;/em&gt; version of the compiler.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;After cloning the repo (mentioned above), compile via cargo:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;$ cargo build --release
+$ .\target\release\bootstrap.exe
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Release Artifacts&lt;/h3&gt; 
+&lt;p&gt;Run either &lt;code&gt;publish.sh&lt;/code&gt; or &lt;code&gt;publish.ps1&lt;/code&gt; depending on your OS. These scripts make use of &lt;code&gt;dotnet publish&lt;/code&gt;. Artifacts will end up in the &lt;code&gt;artifacts&lt;/code&gt;folder.&lt;/p&gt; 
+&lt;p&gt;Note that the bootstrap project specifically targets Windows and won&#39;t publish on a non-Windows machine.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8d896201697fb7f3fe4bccb1088e6316338f23b332189b2da4c422296a6ae32e/rfvgyhn/min-ed-launcher" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

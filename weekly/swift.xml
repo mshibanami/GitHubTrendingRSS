@@ -1,0 +1,1471 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Swift Weekly Trending</title>
+    <description>Weekly Trending of Swift in GitHub</description>
+    <pubDate>Sun, 22 Mar 2026 01:51:57 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>steipete/CodexBar</title>
+      <link>https://github.com/steipete/CodexBar</link>
+      <description>&lt;p&gt;Show usage stats for OpenAI Codex and Claude Code, without having to login.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;CodexBar 🎚️ - May your tokens never run out.&lt;/h1&gt; 
+&lt;p&gt;Tiny macOS 14+ menu bar app that keeps your Codex, Claude, Cursor, Gemini, Antigravity, Droid (Factory), Copilot, z.ai, Kiro, Vertex AI, Augment, Amp, JetBrains AI, and OpenRouter limits visible (session + weekly where available) and shows when each window resets. One status item per provider (or Merge Icons mode with a provider switcher and optional Overview tab); enable what you use from Settings. No Dock icon, minimal UI, dynamic bar icons in the menu bar.&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/codexbar.png&quot; alt=&quot;CodexBar menu screenshot&quot; width=&quot;520&quot; /&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 14+ (Sonoma)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;GitHub Releases&lt;/h3&gt; 
+&lt;p&gt;Download: &lt;a href=&quot;https://github.com/steipete/CodexBar/releases&quot;&gt;https://github.com/steipete/CodexBar/releases&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install --cask steipete/tap/codexbar
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Linux (CLI only)&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install steipete/tap/codexbar
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or download &lt;code&gt;CodexBarCLI-v&amp;lt;tag&amp;gt;-linux-&amp;lt;arch&amp;gt;.tar.gz&lt;/code&gt; from GitHub Releases. Linux support via Omarchy: community Waybar module and TUI, driven by the &lt;code&gt;codexbar&lt;/code&gt; executable.&lt;/p&gt; 
+&lt;h3&gt;First run&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Open Settings → Providers and enable what you use.&lt;/li&gt; 
+ &lt;li&gt;Install/sign in to the provider sources you rely on (e.g. &lt;code&gt;codex&lt;/code&gt;, &lt;code&gt;claude&lt;/code&gt;, &lt;code&gt;gemini&lt;/code&gt;, browser cookies, or OAuth; Antigravity requires the Antigravity app running).&lt;/li&gt; 
+ &lt;li&gt;Optional: Settings → Providers → Codex → OpenAI cookies (Automatic or Manual) to add dashboard extras.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Providers&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/codex.md&quot;&gt;Codex&lt;/a&gt; — Local Codex CLI RPC (+ PTY fallback) and optional OpenAI web dashboard extras.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/claude.md&quot;&gt;Claude&lt;/a&gt; — OAuth API or browser cookies (+ CLI PTY fallback); session + weekly usage.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/cursor.md&quot;&gt;Cursor&lt;/a&gt; — Browser session cookies for plan + usage + billing resets.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/gemini.md&quot;&gt;Gemini&lt;/a&gt; — OAuth-backed quota API using Gemini CLI credentials (no browser cookies).&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/antigravity.md&quot;&gt;Antigravity&lt;/a&gt; — Local language server probe (experimental); no external auth.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/factory.md&quot;&gt;Droid&lt;/a&gt; — Browser cookies + WorkOS token flows for Factory usage + billing.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/copilot.md&quot;&gt;Copilot&lt;/a&gt; — GitHub device flow + Copilot internal usage API.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/zai.md&quot;&gt;z.ai&lt;/a&gt; — API token (Keychain) for quota + MCP windows.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/kimi.md&quot;&gt;Kimi&lt;/a&gt; — Auth token (JWT from &lt;code&gt;kimi-auth&lt;/code&gt; cookie) for weekly quota + 5‑hour rate limit.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/kimi-k2.md&quot;&gt;Kimi K2&lt;/a&gt; — API key for credit-based usage totals.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/kiro.md&quot;&gt;Kiro&lt;/a&gt; — CLI-based usage via &lt;code&gt;kiro-cli /usage&lt;/code&gt; command; monthly credits + bonus credits.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/vertexai.md&quot;&gt;Vertex AI&lt;/a&gt; — Google Cloud gcloud OAuth with token cost tracking from local Claude logs.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/augment.md&quot;&gt;Augment&lt;/a&gt; — Browser cookie-based authentication with automatic session keepalive; credits tracking and usage monitoring.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/amp.md&quot;&gt;Amp&lt;/a&gt; — Browser cookie-based authentication with Amp Free usage tracking.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/jetbrains.md&quot;&gt;JetBrains AI&lt;/a&gt; — Local XML-based quota from JetBrains IDE configuration; monthly credits tracking.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/openrouter.md&quot;&gt;OpenRouter&lt;/a&gt; — API token for credit-based usage tracking across multiple AI providers.&lt;/li&gt; 
+ &lt;li&gt;Open to new providers: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/provider.md&quot;&gt;provider authoring guide&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Icon &amp;amp; Screenshot&lt;/h2&gt; 
+&lt;p&gt;The menu bar icon is a tiny two-bar meter:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Top bar: 5‑hour/session window. If weekly is missing/exhausted and credits are available, it becomes a thicker credits bar.&lt;/li&gt; 
+ &lt;li&gt;Bottom bar: weekly window (hairline).&lt;/li&gt; 
+ &lt;li&gt;Errors/stale data dim the icon; status overlays indicate incidents.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Multi-provider menu bar with per-provider toggles (Settings → Providers).&lt;/li&gt; 
+ &lt;li&gt;Session + weekly meters with reset countdowns.&lt;/li&gt; 
+ &lt;li&gt;Optional Codex web dashboard enrichments (code review remaining, usage breakdown, credits history).&lt;/li&gt; 
+ &lt;li&gt;Local cost-usage scan for Codex + Claude (last 30 days).&lt;/li&gt; 
+ &lt;li&gt;Provider status polling with incident badges in the menu and icon overlay.&lt;/li&gt; 
+ &lt;li&gt;Merge Icons mode to combine providers into one status item + switcher, with an optional Overview tab for up to three providers.&lt;/li&gt; 
+ &lt;li&gt;Refresh cadence presets (manual, 1m, 2m, 5m, 15m).&lt;/li&gt; 
+ &lt;li&gt;Bundled CLI (&lt;code&gt;codexbar&lt;/code&gt;) for scripts and CI (including &lt;code&gt;codexbar cost --provider codex|claude&lt;/code&gt; for local cost usage); Linux CLI builds available.&lt;/li&gt; 
+ &lt;li&gt;WidgetKit widget mirrors the menu card snapshot.&lt;/li&gt; 
+ &lt;li&gt;Privacy-first: on-device parsing by default; browser cookies are opt-in and reused (no passwords stored).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Privacy note&lt;/h2&gt; 
+&lt;p&gt;Wondering if CodexBar scans your disk? It doesn’t crawl your filesystem; it reads a small set of known locations (browser cookies/local storage, local JSONL logs) when the related features are enabled. See the discussion and audit notes in &lt;a href=&quot;https://github.com/steipete/CodexBar/issues/12&quot;&gt;issue #12&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;macOS permissions (why they’re needed)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Full Disk Access (optional)&lt;/strong&gt;: only required to read Safari cookies/local storage for web-based providers (Codex web, Claude web, Cursor, Droid/Factory). If you don’t grant it, use Chrome/Firefox cookies or CLI-only sources instead.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Keychain access (prompted by macOS)&lt;/strong&gt;: 
+  &lt;ul&gt; 
+   &lt;li&gt;Chrome cookie import needs the “Chrome Safe Storage” key to decrypt cookies.&lt;/li&gt; 
+   &lt;li&gt;Claude OAuth credentials (written by the Claude CLI) are read from Keychain when present.&lt;/li&gt; 
+   &lt;li&gt;z.ai API token is stored in Keychain from Preferences → Providers; Copilot stores its API token in Keychain during device flow.&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;How do I prevent those keychain alerts?&lt;/strong&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Open &lt;strong&gt;Keychain Access.app&lt;/strong&gt; → login keychain → search the item (e.g., “Claude Code-credentials”).&lt;/li&gt; 
+     &lt;li&gt;Open the item → &lt;strong&gt;Access Control&lt;/strong&gt; → add &lt;code&gt;CodexBar.app&lt;/code&gt; under “Always allow access by these applications”.&lt;/li&gt; 
+     &lt;li&gt;Prefer adding just CodexBar (avoid “Allow all applications” unless you want it wide open).&lt;/li&gt; 
+     &lt;li&gt;Relaunch CodexBar after saving.&lt;/li&gt; 
+     &lt;li&gt;Reference screenshot: &lt;img src=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/keychain-allow.png&quot; alt=&quot;Keychain access control&quot; /&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;How to do the same for the browser?&lt;/strong&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Find the browser’s “Safe Storage” key (e.g., “Chrome Safe Storage”, “Brave Safe Storage”, “Firefox”, “Microsoft Edge Safe Storage”).&lt;/li&gt; 
+     &lt;li&gt;Open the item → &lt;strong&gt;Access Control&lt;/strong&gt; → add &lt;code&gt;CodexBar.app&lt;/code&gt; under “Always allow access by these applications”.&lt;/li&gt; 
+     &lt;li&gt;This removes the prompt when CodexBar decrypts cookies for that browser.&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Files &amp;amp; Folders prompts (folder/volume access)&lt;/strong&gt;: CodexBar launches provider CLIs (codex/claude/gemini/antigravity). If those CLIs read a project directory or external drive, macOS may ask CodexBar for that folder/volume (e.g., Desktop or an external volume). This is driven by the CLI’s working directory, not background disk scanning.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;What we do not request&lt;/strong&gt;: no Screen Recording, Accessibility, or Automation permissions; no passwords are stored (browser cookies are reused when you opt in).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Docs&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Providers overview: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/providers.md&quot;&gt;docs/providers.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Provider authoring: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/provider.md&quot;&gt;docs/provider.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;UI &amp;amp; icon notes: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/ui.md&quot;&gt;docs/ui.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CLI reference: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/cli.md&quot;&gt;docs/cli.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Architecture: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/architecture.md&quot;&gt;docs/architecture.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Refresh loop: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/refresh-loop.md&quot;&gt;docs/refresh-loop.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Status polling: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/status.md&quot;&gt;docs/status.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Sparkle updates: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/sparkle.md&quot;&gt;docs/sparkle.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Release checklist: &lt;a href=&quot;https://raw.githubusercontent.com/steipete/CodexBar/main/docs/RELEASING.md&quot;&gt;docs/RELEASING.md&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Getting started (dev)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Clone the repo and open it in Xcode or run the scripts directly.&lt;/li&gt; 
+ &lt;li&gt;Launch once, then toggle providers in Settings → Providers.&lt;/li&gt; 
+ &lt;li&gt;Install/sign in to provider sources you rely on (CLIs, browser cookies, or OAuth).&lt;/li&gt; 
+ &lt;li&gt;Optional: set OpenAI cookies (Automatic or Manual) for Codex dashboard extras.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Build from source&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;swift build -c release          # or debug for development
+./Scripts/package_app.sh        # builds CodexBar.app in-place
+CODEXBAR_SIGNING=adhoc ./Scripts/package_app.sh  # ad-hoc signing (no Apple Developer account)
+open CodexBar.app
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Dev loop:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./Scripts/compile_and_run.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Related&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;✂️ &lt;a href=&quot;https://github.com/steipete/Trimmy&quot;&gt;Trimmy&lt;/a&gt; — “Paste once, run once.” Flatten multi-line shell snippets so they paste and run.&lt;/li&gt; 
+ &lt;li&gt;🧳 &lt;a href=&quot;https://mcporter.dev&quot;&gt;MCPorter&lt;/a&gt; — TypeScript toolkit + CLI for Model Context Protocol servers.&lt;/li&gt; 
+ &lt;li&gt;🧿 &lt;a href=&quot;https://askoracle.dev&quot;&gt;oracle&lt;/a&gt; — Ask the oracle when you&#39;re stuck. Invoke GPT-5 Pro with a custom context and files.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Looking for a Windows version?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Finesssee/Win-CodexBar&quot;&gt;Win-CodexBar&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;Inspired by &lt;a href=&quot;https://github.com/ryoppippi/ccusage&quot;&gt;ccusage&lt;/a&gt; (MIT), specifically the cost usage tracking.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT • Peter Steinberger (&lt;a href=&quot;https://twitter.com/steipete&quot;&gt;steipete&lt;/a&gt;)&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e3d6339af86ad0c71e8f868a6bebb6592f0b178a879a2ac9080da452e8a540b1/steipete/CodexBar" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>jordanbaird/Ice</title>
+      <link>https://github.com/jordanbaird/Ice</link>
+      <description>&lt;p&gt;Powerful menu bar manager for macOS&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/jordanbaird/Ice/main/Ice/Assets.xcassets/AppIcon.appiconset/icon_256x256.png&quot; width=&quot;200&quot; height=&quot;200&quot; /&gt; 
+ &lt;h1&gt;Ice&lt;/h1&gt; 
+&lt;/div&gt; 
+&lt;p&gt;Ice is a powerful menu bar management tool. While its primary function is hiding and showing menu bar items, it aims to cover a wide variety of additional features to make it one of the most versatile menu bar tools available.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/4423085c-4e4b-4f3d-ad0f-90a217c03470&quot; alt=&quot;Banner&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/jordanbaird/Ice/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/download-latest-brightgreen?style=flat-square&quot; alt=&quot;Download&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/badge/platform-macOS-blue?style=flat-square&quot; alt=&quot;Platform&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/requirements-macOS%2014%2B-fa4e49?style=flat-square&quot; alt=&quot;Requirements&quot; /&gt; &lt;a href=&quot;https://github.com/sponsors/jordanbaird&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Sponsor%20%E2%9D%A4%EF%B8%8F-8A2BE2?style=flat-square&quot; alt=&quot;Sponsor&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://icemenubar.app&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Website-015FBA?style=flat-square&quot; alt=&quot;Website&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/jordanbaird/Ice/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/jordanbaird/Ice?style=flat-square&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] Ice is currently in active development. Some features have not yet been implemented. Download the latest release &lt;a href=&quot;https://github.com/jordanbaird/Ice/releases/latest&quot;&gt;here&lt;/a&gt; and see the roadmap below for upcoming features.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;a href=&quot;https://www.buymeacoffee.com/jordanbaird&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png&quot; alt=&quot;Buy Me A Coffee&quot; style=&quot;height: 60px !important;width: 217px !important;&quot; /&gt; &lt;/a&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;h3&gt;Manual Installation&lt;/h3&gt; 
+&lt;p&gt;Download the &quot;Ice.zip&quot; file from the &lt;a href=&quot;https://github.com/jordanbaird/Ice/releases/latest&quot;&gt;latest release&lt;/a&gt; and move the unzipped app into your &lt;code&gt;Applications&lt;/code&gt; folder.&lt;/p&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;p&gt;Install Ice using the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;brew install --cask jordanbaird-ice
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Features/Roadmap&lt;/h2&gt; 
+&lt;h3&gt;Menu bar item management&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Hide menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; &quot;Always-hidden&quot; menu bar section&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show hidden menu bar items when hovering over the menu bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show hidden menu bar items when an empty area in the menu bar is clicked&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show hidden menu bar items by scrolling or swiping in the menu bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Automatically rehide menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Hide application menus when they overlap with shown menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Drag and drop interface to arrange individual menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Display hidden menu bar items in a separate bar (e.g. for MacBooks with the notch)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Search menu bar items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar item spacing (BETA)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Profiles for menu bar layout&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Individual spacer items&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Menu bar item groups&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Show menu bar items when trigger conditions are met&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Menu bar appearance&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar tint (solid and gradient)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar shadow&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Menu bar border&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Custom menu bar shapes (rounded and/or split)&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Remove background behind menu bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Rounded screen corners&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Different settings for light/dark mode&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Hotkeys&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Toggle individual menu bar sections&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show the search panel&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Enable/disable the Ice Bar&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Show/hide section divider icons&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Toggle application menus&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Enable/disable auto rehide&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Temporarily show individual menu bar items&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Other&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Launch at login&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; checked disabled /&gt; Automatic updates&lt;/li&gt; 
+ &lt;li&gt;&lt;input type=&quot;checkbox&quot; disabled /&gt; Menu bar widgets&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Why does Ice only support macOS 14 and later?&lt;/h2&gt; 
+&lt;p&gt;Ice uses a number of system APIs that are available starting in macOS 14. As such, there are no plans to support earlier versions of macOS.&lt;/p&gt; 
+&lt;h2&gt;Gallery&lt;/h2&gt; 
+&lt;h4&gt;Show hidden menu bar items below the menu bar&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/f1429589-6186-4e1b-8aef-592219d49b9b&quot; alt=&quot;Ice Bar&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Drag-and-drop interface to arrange menu bar items&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/095442ba-f2d0-4bb4-9632-91e26ef8d45b&quot; alt=&quot;Menu Bar Layout&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Customize the menu bar&#39;s appearance&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/8c22c185-c3d2-49bb-971e-e1fc17df04b3&quot; alt=&quot;Menu Bar Appearance&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Menu bar item search&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/d1a7df3a-4989-4077-a0b1-8e7d5a1ba5b8&quot; alt=&quot;Menu Bar Item Search&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Custom menu bar item spacing&lt;/h4&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/b196aa7e-184a-4d4c-b040-502f4aae40a6&quot; alt=&quot;Menu Bar Item Spacing&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Ice is available under the &lt;a href=&quot;https://raw.githubusercontent.com/jordanbaird/Ice/main/LICENSE&quot;&gt;GPL-3.0 license&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/4a0013b1753d312979f76b9fd8d0009412de2800c2ad2146fffe539e51b613a6/jordanbaird/Ice" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>farouqaldori/claude-island</title>
+      <link>https://github.com/farouqaldori/claude-island</link>
+      <description>&lt;p&gt;Claude Code notifications without the context switch. A minimal, always-present session manager for macOS.&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/farouqaldori/claude-island/main/ClaudeIsland/Assets.xcassets/AppIcon.appiconset/icon_128x128.png&quot; alt=&quot;Logo&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt; 
+ &lt;h3 align=&quot;center&quot;&gt;Claude Island&lt;/h3&gt; 
+ &lt;p align=&quot;center&quot;&gt; A macOS menu bar app that brings Dynamic Island-style notifications to Claude Code CLI sessions. &lt;br /&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/farouqaldori/claude-island/releases/latest&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/farouqaldori/claude-island?style=rounded&amp;amp;color=white&amp;amp;labelColor=000000&amp;amp;label=release&quot; alt=&quot;Release Version&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/farouqaldori/claude-island/main/#&quot; target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot;&gt; &lt;img alt=&quot;GitHub Downloads&quot; src=&quot;https://img.shields.io/github/downloads/farouqaldori/claude-island/total?style=rounded&amp;amp;color=white&amp;amp;labelColor=000000&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Notch UI&lt;/strong&gt; — Animated overlay that expands from the MacBook notch&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Live Session Monitoring&lt;/strong&gt; — Track multiple Claude Code sessions in real-time&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Permission Approvals&lt;/strong&gt; — Approve or deny tool executions directly from the notch&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Chat History&lt;/strong&gt; — View full conversation history with markdown rendering&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Auto-Setup&lt;/strong&gt; — Hooks install automatically on first launch&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 15.6+&lt;/li&gt; 
+ &lt;li&gt;Claude Code CLI&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Download the latest release or build from source:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xcodebuild -scheme ClaudeIsland -configuration Release build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;How It Works&lt;/h2&gt; 
+&lt;p&gt;Claude Island installs hooks into &lt;code&gt;~/.claude/hooks/&lt;/code&gt; that communicate session state via a Unix socket. The app listens for events and displays them in the notch overlay.&lt;/p&gt; 
+&lt;p&gt;When Claude needs permission to run a tool, the notch expands with approve/deny buttons—no need to switch to the terminal.&lt;/p&gt; 
+&lt;h2&gt;Analytics&lt;/h2&gt; 
+&lt;p&gt;Claude Island uses Mixpanel to collect anonymous usage data:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;App Launched&lt;/strong&gt; — App version, build number, macOS version&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Session Started&lt;/strong&gt; — When a new Claude Code session is detected&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;No personal data or conversation content is collected.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Apache 2.0&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8d5c708d4ddf04d294b79b0882e91cbded4bf30c8c92f0d210eec1a4b712132b/farouqaldori/claude-island" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>linearmouse/linearmouse</title>
+      <link>https://github.com/linearmouse/linearmouse</link>
+      <description>&lt;p&gt;The mouse and trackpad utility for Mac.&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; &lt;a href=&quot;https://linearmouse.app&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/linearmouse/linearmouse/main/logo.svg?sanitize=true&quot; width=&quot;128&quot; height=&quot;128&quot; /&gt; &lt;br /&gt; LinearMouse &lt;/a&gt; &lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/linearmouse/linearmouse/releases/latest&quot;&gt;&lt;img alt=&quot;GitHub release (latest SemVer)&quot; src=&quot;https://img.shields.io/github/v/release/linearmouse/linearmouse?sort=semver&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/linearmouse/linearmouse/releases/latest/download/LinearMouse.dmg&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/linearmouse/linearmouse/total&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/license/linearmouse/linearmouse&quot; alt=&quot;MIT License&quot; /&gt; &lt;a href=&quot;https://crowdin.com/project/linearmouse&quot;&gt;&lt;img src=&quot;https://badges.crowdin.net/linearmouse/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; The mouse and trackpad utility for Mac. &lt;/p&gt; 
+&lt;h2&gt;Get started&lt;/h2&gt; 
+&lt;p&gt;Please visit &lt;a href=&quot;https://linearmouse.app&quot;&gt;https://linearmouse.app&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contribute&lt;/h2&gt; 
+&lt;p&gt;Please read the &lt;a href=&quot;https://raw.githubusercontent.com/linearmouse/linearmouse/main/CONTRIBUTING.md&quot;&gt;contributing guide&lt;/a&gt; before making a pull request.&lt;/p&gt; 
+&lt;h2&gt;Help translate&lt;/h2&gt; 
+&lt;p&gt;Please sign up for Crowdin and join our &lt;a href=&quot;https://crowdin.com/project/linearmouse&quot;&gt;Crowdin project&lt;/a&gt; to translate LinearMouse into supported languages. It is recommended to sign in Crowdin using GitHub, so that I can add you as a co-author when I merge the pull request.&lt;/p&gt; 
+&lt;p&gt;If you want to add a new language, please &lt;a href=&quot;https://github.com/linearmouse/linearmouse/issues/new&quot;&gt;create a new issue&lt;/a&gt; and I will be happy to enable that language for you to translate.&lt;/p&gt; 
+&lt;p&gt;I&#39;m not a native English speaker, so if you find any English localization issues, feel free to correct me by &lt;a href=&quot;https://github.com/linearmouse/linearmouse/edit/main/LinearMouse/en.lproj/Localizable.strings&quot;&gt;creating a pull request&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Sponsors&lt;/h2&gt; 
+&lt;p&gt;Please visit &lt;a href=&quot;https://go.linearmouse.app/donate&quot;&gt;https://go.linearmouse.app/donate&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/noah-nuebling/mac-mouse-fix&quot;&gt;Mac Mouse Fix&lt;/a&gt; - The way to modify the pointer speed (sensitivity) is inspired by Mac Mouse Fix.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/4b82b1c20b2da2cbdffcf6e2f8118883a8810d23c4c3e2bfb300d93e4fe98fd1/linearmouse/linearmouse" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>munki/munki</title>
+      <link>https://github.com/munki/munki</link>
+      <description>&lt;p&gt;Managed software installation for macOS —&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Munki&lt;/h1&gt; 
+&lt;p&gt;&lt;em&gt;Managed software installation for macOS&lt;/em&gt;&lt;/p&gt; 
+&lt;h4&gt;Introduction&lt;/h4&gt; 
+&lt;p&gt;Munki is an open source project originated by &lt;a href=&quot;https://www.disneyanimation.com/open-source/&quot;&gt;Walt Disney Animation Studios&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Munki is a set of tools that, used together with a webserver-based repository of packages and package metadata, can be used by macOS administrators to manage software installs (and in many cases removals) on macOS client machines.&lt;/p&gt; 
+&lt;p&gt;Munki can install software packaged in the Apple package format and software distributed in &quot;drag-and-drop&quot; disk images.&lt;/p&gt; 
+&lt;p&gt;Additionally, Munki can install many Apple Software Updates on Intel Macs, and can prompt users to install pending Apple updates on both Intel and Apple silicon.&lt;/p&gt; 
+&lt;p&gt;Munki is currently in use at organizations all over the world, managing software for tens of thousands -- perhaps hundreds of thousands of Macs.&lt;/p&gt; 
+&lt;h4&gt;Get started&lt;/h4&gt; 
+&lt;p&gt;Get started with Munki here: &lt;a href=&quot;https://github.com/munki/munki/wiki/&quot;&gt;Getting Started with Munki&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Check out the &lt;a href=&quot;https://github.com/munki/munki/wiki&quot;&gt;Wiki&lt;/a&gt; for some notes and documentation, and browse and/or check out the source. See the &lt;a href=&quot;https://github.com/munki/munki/releases&quot;&gt;releases page&lt;/a&gt; for pre-built installer packages of supported releases.&lt;/p&gt; 
+&lt;p&gt;Some video learning resources are &lt;a href=&quot;https://github.com/munki/munki/wiki/More-Links-And-Tools#video-resources&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h4&gt;Get help&lt;/h4&gt; 
+&lt;p&gt;The wiki is an in-depth resource: &lt;a href=&quot;https://github.com/munki/munki/wiki&quot;&gt;https://github.com/munki/munki/wiki&lt;/a&gt;&lt;br /&gt; Frequently Asked Questions are here: &lt;a href=&quot;https://github.com/munki/munki/wiki/FAQ&quot;&gt;https://github.com/munki/munki/wiki/FAQ&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you have additional questions, or need even more help getting started, post a question to &lt;a href=&quot;https://groups.google.com/group/munki-discuss&quot;&gt;munki-discuss&lt;/a&gt;. Please don&#39;t post support questions as comments on wiki documentation pages, or as GitHub code issues.&lt;/p&gt; 
+&lt;p&gt;Issues with MunkiWebAdmin should be discussed in its group: &lt;a href=&quot;https://groups.google.com/group/munki-web-admin&quot;&gt;munki-web-admin&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/munki/munki/wiki/images/managed_software_center.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/24219473/2c07edd2-0644-4e97-9930-c3254ca153b7" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>exelban/stats</title>
+      <link>https://github.com/exelban/stats</link>
+      <description>&lt;p&gt;macOS system monitor in your menu bar&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Stats&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;img src=&quot;https://github.com/exelban/stats/raw/master/Stats/Supporting%20Files/Assets.xcassets/AppIcon.appiconset/icon_256x256.png&quot; width=&quot;120&quot; /&gt;&lt;/a&gt;&lt;/p&gt;
+&lt;p&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;img src=&quot;https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/stats/menus%3Fv2.3.2.png?v1&quot; alt=&quot;Stats&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/exelban/stats/releases&quot;&gt;&lt;img src=&quot;https://serhiy.s3.eu-central-1.amazonaws.com/Github_repo/stats/popups%3Fv2.3.2.png?v3&quot; alt=&quot;Stats&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;macOS system monitor in your menu bar&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Manual&lt;/h3&gt; 
+&lt;p&gt;You can download the latest version &lt;a href=&quot;https://github.com/exelban/stats/releases/latest/download/Stats.dmg&quot;&gt;here&lt;/a&gt;. This will download a file called &lt;code&gt;Stats.dmg&lt;/code&gt;. Open it and move the app to the application folder.&lt;/p&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;p&gt;To install it using Homebrew, open the Terminal app and type:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install stats
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Legacy version&lt;/h3&gt; 
+&lt;p&gt;Legacy version for older systems could be found &lt;a href=&quot;https://mac-stats.com/downloads&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;Stats is supported on the released macOS version starting from macOS 11.15 (Big Sur).&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;Stats is an application that allows you to monitor your macOS system.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;CPU utilization&lt;/li&gt; 
+ &lt;li&gt;GPU utilization&lt;/li&gt; 
+ &lt;li&gt;Memory usage&lt;/li&gt; 
+ &lt;li&gt;Disk utilization&lt;/li&gt; 
+ &lt;li&gt;Network usage&lt;/li&gt; 
+ &lt;li&gt;Battery level&lt;/li&gt; 
+ &lt;li&gt;Fan&#39;s control (not maintained)&lt;/li&gt; 
+ &lt;li&gt;Sensors information (Temperature/Voltage/Power)&lt;/li&gt; 
+ &lt;li&gt;Bluetooth devices&lt;/li&gt; 
+ &lt;li&gt;Multiple time zone clock&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;FAQs&lt;/h2&gt; 
+&lt;h3&gt;How do you change the order of the menu bar icons?&lt;/h3&gt; 
+&lt;p&gt;macOS decides the order of the menu bar items not &lt;code&gt;Stats&lt;/code&gt; - it may change after the first reboot after installing Stats.&lt;/p&gt; 
+&lt;p&gt;To change the order of any menu bar icon - macOS Mojave (version 10.14) and up.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Hold down ⌘ (command key).&lt;/li&gt; 
+ &lt;li&gt;Drag the icon to the desired position on the menu bar.&lt;/li&gt; 
+ &lt;li&gt;Release ⌘ (command key)&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;How to reduce energy impact or CPU usage of Stats?&lt;/h3&gt; 
+&lt;p&gt;Stats tries to be efficient as it&#39;s possible. But reading some data periodically is not a cheap task. Each module has its own &quot;price&quot;. So, if you want to reduce energy impact from the Stats you need to disable some Stats modules. The most inefficient modules are Sensors and Bluetooth. Disabling these modules could reduce CPU usage and power efficiency by up to 50% in some cases.&lt;/p&gt; 
+&lt;h3&gt;Fan control&lt;/h3&gt; 
+&lt;p&gt;Fan control is in legacy mode. It does not receive any updates or fixes. It&#39;s not dropped from the app just because in the old Macs it works pretty acceptable. I&#39;m open to accepting fixed or improvements (via PR) for this feature in case someone would like to help with that. But have no option and time to provide support for this feature.&lt;/p&gt; 
+&lt;h3&gt;Sensors show incorrect CPU/GPU core count&lt;/h3&gt; 
+&lt;p&gt;CPU/GPU sensors are simply thermal zones (sensors) on the CPU/GPU. They have no relation to the number of cores or specific cores. For example, a CPU is typically divided into two clusters: efficiency and performance. Each cluster contains multiple temperature sensors, and Stats simply displays these sensors. However, &quot;CPU Efficient Core 1&quot; does not represent the temperature of a single efficient core—it only indicates one of the temperature sensors within the efficiency core cluster. Additionally, with each new SoC, Apple changes the sensor keys. As a result, it takes time to determine which SMC values correspond to the appropriate sensors. If anyone knows how to accurately match the sensors for Apple Silicon, please contact me.&lt;/p&gt; 
+&lt;h3&gt;App crash – what to do?&lt;/h3&gt; 
+&lt;p&gt;First, ensure that you are using the latest version of Stats. There is a high chance that a fix preventing the crash has already been released. If you are already running the latest version, check the open issues. Only if none of the existing issues address your problem should you open a new issue.&lt;/p&gt; 
+&lt;h3&gt;Why my issue was closed without any response?&lt;/h3&gt; 
+&lt;p&gt;Most probably because it&#39;s a duplicated issue and there is an answer to the question, report, or proposition. Please use a search by closed issues to get an answer. So, if your issue was closed without any response, most probably it already has a response.&lt;/p&gt; 
+&lt;h3&gt;External API&lt;/h3&gt; 
+&lt;p&gt;Stats uses some external APIs, such as:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.mac-stats.com&quot;&gt;https://api.mac-stats.com&lt;/a&gt; – For update checks and retrieving the public IP address&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://api.github.com&quot;&gt;https://api.github.com&lt;/a&gt; – Fallback for update checks&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Both of these APIs are used to check for updates. Additionally, an external request is required to obtain the public IP address. I do not want to use any third-party providers for retrieving the public IP address, so I use my own server for this purpose.&lt;/p&gt; 
+&lt;p&gt;If you have concerns about these requests, you have a few options:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;propose a PR that allows these features to work without an external server&lt;/li&gt; 
+ &lt;li&gt;block both of these servers using any network filtering app (if you&#39;re reading this, you&#39;re likely using something like Little Snitch, so you can easily do this). In this case do not expect to receive any updates or see your public IP in the network module.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Supported languages&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;English&lt;/li&gt; 
+ &lt;li&gt;Polski&lt;/li&gt; 
+ &lt;li&gt;Українська&lt;/li&gt; 
+ &lt;li&gt;Русский&lt;/li&gt; 
+ &lt;li&gt;中文 (简体) (thanks to &lt;a href=&quot;https://github.com/chenguokai&quot;&gt;chenguokai&lt;/a&gt;, &lt;a href=&quot;https://github.com/Tai-Zhou&quot;&gt;Tai-Zhou&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Jerry23011&quot;&gt;Jerry&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Türkçe (thanks to &lt;a href=&quot;https://github.com/yusufozgul&quot;&gt;yusufozgul&lt;/a&gt; and &lt;a href=&quot;https://github.com/setanarut&quot;&gt;setanarut&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;한국어 (thanks to &lt;a href=&quot;https://github.com/escapeanaemia&quot;&gt;escapeanaemia&lt;/a&gt; and &lt;a href=&quot;https://github.com/iamhslee&quot;&gt;iamhslee&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;German (thanks to &lt;a href=&quot;https://github.com/natterstefan&quot;&gt;natterstefan&lt;/a&gt; and &lt;a href=&quot;https://github.com/aneitel&quot;&gt;aneitel&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;中文 (繁體) (thanks to &lt;a href=&quot;https://github.com/iamch15542&quot;&gt;iamch15542&lt;/a&gt; and &lt;a href=&quot;https://github.com/jrthsr700tmax&quot;&gt;jrthsr700tmax&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Spanish (thanks to &lt;a href=&quot;https://github.com/jcconca&quot;&gt;jcconca&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Vietnamese (thanks to &lt;a href=&quot;https://github.com/xuandung38&quot;&gt;HXD.VN&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;French (thanks to &lt;a href=&quot;https://github.com/RomainLt&quot;&gt;RomainLt&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Italian (thanks to &lt;a href=&quot;https://github.com/gmcinalli&quot;&gt;gmcinalli&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Portuguese (Brazil) (thanks to &lt;a href=&quot;https://github.com/marcelochaves95&quot;&gt;marcelochaves95&lt;/a&gt; and &lt;a href=&quot;https://github.com/pedroserigatto&quot;&gt;pedroserigatto&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Norwegian Bokmål (thanks to &lt;a href=&quot;https://github.com/rubjo&quot;&gt;rubjo&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;日本語 (thanks to &lt;a href=&quot;https://github.com/treastrain&quot;&gt;treastrain&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Portuguese (Portugal) (thanks to &lt;a href=&quot;https://github.com/AdamModus&quot;&gt;AdamModus&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Czech (thanks to &lt;a href=&quot;https://github.com/mpl75&quot;&gt;mpl75&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Magyar (thanks to &lt;a href=&quot;https://github.com/moriczr&quot;&gt;moriczr&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Bulgarian (thanks to &lt;a href=&quot;https://github.com/zbrox&quot;&gt;zbrox&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Romanian (thanks to &lt;a href=&quot;https://github.com/razluta&quot;&gt;razluta&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Dutch (thanks to &lt;a href=&quot;https://github.com/ngohungphuc&quot;&gt;ngohungphuc&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Hrvatski (thanks to &lt;a href=&quot;https://github.com/milotype&quot;&gt;milotype&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Danish (thanks to &lt;a href=&quot;https://github.com/casperes1996&quot;&gt;casperes1996&lt;/a&gt; and &lt;a href=&quot;https://github.com/aleksanderbl29&quot;&gt;aleksanderbl29&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Catalan (thanks to &lt;a href=&quot;https://github.com/davidalonso&quot;&gt;davidalonso&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Indonesian (thanks to &lt;a href=&quot;https://github.com/yooody&quot;&gt;yooody&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Hebrew (thanks to &lt;a href=&quot;https://github.com/BadSugar&quot;&gt;BadSugar&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Slovenian (thanks to &lt;a href=&quot;https://github.com/zigapovhe&quot;&gt;zigapovhe&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Greek (thanks to &lt;a href=&quot;https://github.com/sudoxcess&quot;&gt;sudoxcess&lt;/a&gt; and &lt;a href=&quot;https://github.com/vaionicle&quot;&gt;vaionicle&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Persian (thanks to &lt;a href=&quot;https://github.com/ShawnAlisson&quot;&gt;ShawnAlisson&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Slovenský (thanks to &lt;a href=&quot;https://github.com/martinbernat&quot;&gt;martinbernat&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Thai (thanks to &lt;a href=&quot;https://github.com/apiphoomchu&quot;&gt;apiphoomchu&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Estonian (thanks to &lt;a href=&quot;https://github.com/postylem&quot;&gt;postylem&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Hindi (thanks to &lt;a href=&quot;https://github.com/patiljignesh&quot;&gt;patiljignesh&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Finnish (thanks to &lt;a href=&quot;https://github.com/eightscrow&quot;&gt;eightscrow&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can help by adding a new language or improving the existing translation.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/exelban/stats/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/189285554/f6de4500-d335-11e9-9bea-89158f46d803" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>MonitorControl/MonitorControl</title>
+      <link>https://github.com/MonitorControl/MonitorControl</link>
+      <description>&lt;p&gt;🖥 Control your display&#39;s brightness &amp; volume on your Mac as if it was a native Apple Display. Use Apple Keyboard keys or custom shortcuts. Shows the native macOS OSDs.&lt;/p&gt;&lt;hr&gt;&lt;img src=&quot;https://raw.githubusercontent.com/MonitorControl/MonitorControl/main/.github/Icon-cropped.png&quot; width=&quot;200&quot; alt=&quot;App icon&quot; align=&quot;left&quot; /&gt; 
+&lt;div&gt; 
+ &lt;h3&gt;MonitorControl&lt;/h3&gt; 
+ &lt;p&gt;Controls your external display brightness and volume and shows native OSD. Use menubar extra sliders or the keyboard, including native Apple keys!&lt;/p&gt; 
+ &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/releases&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/MonitorControl/MonitorControl/main/.github/macos_badge_noborder.png&quot; width=&quot;175&quot; alt=&quot;Download for macOS&quot; /&gt;&lt;/a&gt; 
+&lt;/div&gt; 
+&lt;p&gt;&lt;br /&gt;&lt;br /&gt;&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/MonitorControl/MonitorControl/total.svg?style=flat&quot; alt=&quot;downloads&quot; /&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release-pre/MonitorControl/MonitorControl.svg?style=flat&quot; alt=&quot;latest version&quot; /&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/raw/master/License.txt&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/MonitorControl/MonitorControl.svg?style=flat&quot; alt=&quot;license&quot; /&gt;&lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/platform-macOS-blue.svg?style=flat&quot; alt=&quot;platform&quot; /&gt;&lt;/a&gt; 
+ &lt;br /&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/MonitorControl/MonitorControl/main/.github/screenshot.png&quot; width=&quot;824&quot; alt=&quot;Screenshot&quot; /&gt;&lt;br /&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!WARNING] MonitorControl v4.2.0 &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/issues/1663&quot;&gt;may crash&lt;/a&gt; on certain configurations running macOS 15 Sequoia or Tahoe. Additionally, this version will not automatically update to the &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/releases&quot;&gt;latest app version&lt;/a&gt;. To resolve the issue and ensure future updates, please upgrade manually.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;Go to &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/releases&quot;&gt;Releases&lt;/a&gt; and download the latest &lt;code&gt;.dmg&lt;/code&gt;, or you can install via Homebrew:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;brew install --cask monitorcontrol
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Major features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Control your display&#39;s brightness, volume and contrast!&lt;/li&gt; 
+ &lt;li&gt;Shows native OSD for brightness and volume.&lt;/li&gt; 
+ &lt;li&gt;Supports multiple protocols to adjust brightness: DDC for external displays (brightness, contrast, volume), native Apple protocol for Apple and built-in displays, Gamma table control for software dimming, shade control for AirPlay, Sidecar and Display Link devices and other virtual screens.&lt;/li&gt; 
+ &lt;li&gt;Supports smooth brightness transitions.&lt;/li&gt; 
+ &lt;li&gt;Seamlessly combined hardware and software dimming extends dimming beyond the minimum brightness available on your display.&lt;/li&gt; 
+ &lt;li&gt;Synchronize brightness from built-in and Apple screens - replicate Ambient light sensor and touch bar induced changes to a non-Apple external display!&lt;/li&gt; 
+ &lt;li&gt;Sync up all your displays using a single slider or keyboard shortcuts.&lt;/li&gt; 
+ &lt;li&gt;Allows dimming to full black.&lt;/li&gt; 
+ &lt;li&gt;Support for custom keyboard shortcuts as well as standard brightness and media keys on Apple keyboards.&lt;/li&gt; 
+ &lt;li&gt;Dozens of customization options to tweak the inner workings of the app to suit your hardware and needs (don&#39;t forget to enable &lt;code&gt;Show advanced settings&lt;/code&gt; in app Settings).&lt;/li&gt; 
+ &lt;li&gt;Simple, unobtrusive UI to blend in to the general aesthetics of macOS.&lt;/li&gt; 
+ &lt;li&gt;Completely FREE.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For additional features, more advanced brightness control with XDR/HDR brightness upscaling and support for more Mac models and displays, check out &lt;a href=&quot;https://github.com/waydabber/BetterDisplay#readme&quot;&gt;BetterDisplay&lt;/a&gt;!&lt;/p&gt; 
+&lt;h3&gt;Screenshots (Settings)&lt;/h3&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/MonitorControl/MonitorControl/main/.github/pref_1.png&quot; width=&quot;392&quot; alt=&quot;Screenshot&quot; /&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/MonitorControl/MonitorControl/main/.github/pref_2.png&quot; width=&quot;392&quot; alt=&quot;Screenshot&quot; /&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/MonitorControl/MonitorControl/main/.github/pref_3.png&quot; width=&quot;392&quot; alt=&quot;Screenshot&quot; /&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/MonitorControl/MonitorControl/main/.github/pref_4.png&quot; width=&quot;392&quot; alt=&quot;Screenshot&quot; /&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;How to install and use the app&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/releases&quot;&gt;Download the app&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Copy the MonitorControl app file from the .dmg file to your Applications folder&lt;/li&gt; 
+ &lt;li&gt;Click on the &lt;code&gt;MonitorControl&lt;/code&gt; app&lt;/li&gt; 
+ &lt;li&gt;Add the app to &lt;code&gt;Accessibility&lt;/code&gt; under &lt;code&gt;System Settings&lt;/code&gt; » &lt;code&gt;Privacy &amp;amp; Security&lt;/code&gt; as prompted (this is required only if you wish to use the native Apple keyboard brightness and media keys - if this is not the case, you can safely skip this step).&lt;/li&gt; 
+ &lt;li&gt;Use your keyboard or the sliders in the app menu (a brightness symbol in the macOS menubar as shown on the screenshot above) to control your displays.&lt;/li&gt; 
+ &lt;li&gt;Open &lt;code&gt;Settings…&lt;/code&gt; for customization options (enable &lt;code&gt;Show advanced settings&lt;/code&gt; for even more options).&lt;/li&gt; 
+ &lt;li&gt;You can set up custom keyboard shortcuts under the &lt;code&gt;Keyboard&lt;/code&gt; in Settings (the app uses Apple media keys by default).&lt;/li&gt; 
+ &lt;li&gt;If you have any questions, go to &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/discussions&quot;&gt;Discussions&lt;/a&gt;!&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;macOS compatibility&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;MonitorControl version&lt;/th&gt; 
+   &lt;th&gt;macOS version&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;v4.0.0&lt;/td&gt; 
+   &lt;td&gt;Catalina 10.15*&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;v3.1.1&lt;/td&gt; 
+   &lt;td&gt;Mojave 10.14&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;v2.1.0&lt;/td&gt; 
+   &lt;td&gt;Sierra 10.12&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;em&gt;* With some limitations - full functionality available on macOS 11 Big Sur or newer.&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;For macOS Sequoia and Tahoe 26 compatibility &lt;a href=&quot;https://github.com/MonitorControl/MonitorControl/releases&quot;&gt;v4.3.3 or newer&lt;/a&gt; is required!&lt;/p&gt; 
+&lt;p&gt;Please note that current versions have limited native macOS OSD support on macOS Tahoe - although the Control Center brightness or volume OSD appears, the OSD percentage value will not show or update.&lt;/p&gt; 
+&lt;h3&gt;Supported displays&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Most modern LCD displays from all major manufacturers supported implemented DDC/CI protocol via USB-C, DisplayPort, HDMI, DVI or VGA to allow for hardware backlight and volume control.&lt;/li&gt; 
+ &lt;li&gt;Apple displays and built-in displays are supported using native protocols.&lt;/li&gt; 
+ &lt;li&gt;LCD and LED Televisions usually do not implement DDC, these are supported using software alternatives to dim the image.&lt;/li&gt; 
+ &lt;li&gt;DisplayLink, Airplay, Sidecar and other virtual screens are supported via shade (overlay) control.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Notable exceptions for hardware control compatibility:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;DDC control using the built-in HDMI port of the 2018 Intel Mac mini, the built-in HDMI port of all M1 Macs (MacBook Pro 14&quot; and 16&quot;, Mac Mini, Mac Studio) and the built-in HDMI port of the entry level M2 Mac mini are not supported. Use USB-C instead or get &lt;a href=&quot;https://betterdisplay.pro&quot;&gt;BetterDisplay&lt;/a&gt; for full DDC control over HDMI with these Macs as well for free. Software-only dimming is still available for these connections.&lt;/li&gt; 
+ &lt;li&gt;Some displays (notably EIZO) use MCCS over USB or an entirely custom protocol for control. These displays are supported with software dimming only.&lt;/li&gt; 
+ &lt;li&gt;DisplayLink docks and dongles do not allow for DDC control on Macs, only software dimming is available for these connections.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing to the project&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;If you want, you can fork the code, make improvements and submit a pull request to improve the app. Accepting a PR is solely in the hands of the maintainer - before making fundamental changes expecting it to be accepted, please consult the maintainer of the project!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to build&lt;/h2&gt; 
+&lt;h3&gt;Required&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Xcode&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/realm/SwiftLint&quot;&gt;Swiftlint&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/nicklockwood/SwiftFormat&quot;&gt;SwiftFormat&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Flinesoft/BartyCrouch&quot;&gt;BartyCrouch&lt;/a&gt; (for updating localizations)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Build steps&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Clone the project via this Terminal command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;git clone https://github.com/MonitorControl/MonitorControl.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;If you want to clone one of the branches, add &lt;code&gt;--single-branch --branch [branchname]&lt;/code&gt; after the &lt;code&gt;clone&lt;/code&gt; option.&lt;/li&gt; 
+ &lt;li&gt;You&#39;re all set! Now open the &lt;code&gt;MonitorControl.xcodeproj&lt;/code&gt; with Xcode! The dependencies will automatically get downloaded once you open the project. If they don&#39;t: &lt;code&gt;File &amp;gt; Packages &amp;gt; Resolve Package Versions&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Third party dependencies&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/MonitorControl/MediaKeyTap&quot;&gt;MediaKeyTap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sindresorhus/Settings&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rnine/SimplyCoreAudio&quot;&gt;SimplyCoreAudio&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sindresorhus/KeyboardShortcuts&quot;&gt;KeyboardShortcuts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sparkle-project/Sparkle&quot;&gt;Sparkle&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/waydabber&quot;&gt;@waydabber&lt;/a&gt;, maintainer, developer of &lt;a href=&quot;https://github.com/waydabber/BetterDisplay#readme&quot;&gt;BetterDisplay&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/the0neyouseek&quot;&gt;@the0neyouseek&lt;/a&gt; - honorary maintainer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/JoniVR&quot;&gt;@JoniVR&lt;/a&gt; - honorary maintainer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/alin23&quot;&gt;@alin23&lt;/a&gt; - spearheaded M1 DDC support, developer of &lt;a href=&quot;https://lunar.fyi&quot;&gt;Lunar&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mathew-kurian/&quot;&gt;@mathew-kurian&lt;/a&gt; (original developer)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Tyilo/&quot;&gt;@Tyilo&lt;/a&gt; (fork)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Bensge/&quot;&gt;@Bensge&lt;/a&gt; - (used some code from his project &lt;a href=&quot;https://github.com/Bensge/NativeDisplayBrightness&quot;&gt;NativeDisplayBrightness&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/nhurden/&quot;&gt;@nhurden&lt;/a&gt; (for the original MediaKeyTap)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kfix/ddcctl&quot;&gt;@kfix&lt;/a&gt; (for ddcctl)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/reitermarkus&quot;&gt;@reitermarkus&lt;/a&gt; (for Intel DDC support)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.deviantart.com/javierocasio&quot;&gt;javierocasio&lt;/a&gt; (app icon background)&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/0400732a27845223ff6a127820f33443d263eca2dd0cc151b3cd3f91cc056220/MonitorControl/MonitorControl" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>iina/iina</title>
+      <link>https://github.com/iina/iina</link>
+      <description>&lt;p&gt;The modern video player for macOS.&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img height=&quot;256&quot; src=&quot;https://github.com/iina/iina/raw/master/iina/Assets.xcassets/AppIcon.appiconset/iina-icon-256.png&quot; /&gt; &lt;/p&gt; 
+&lt;h1 align=&quot;center&quot;&gt;IINA&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt;IINA is the &lt;b&gt;modern&lt;/b&gt; video player for macOS.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://iina.io/&quot;&gt;Website&lt;/a&gt; · &lt;a href=&quot;https://github.com/iina/iina/releases&quot;&gt;Releases&lt;/a&gt; · &lt;a href=&quot;https://t.me/IINAUsers&quot;&gt;Telegram Group&lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;a href=&quot;https://crowdin.com/project/iina&quot;&gt;&lt;img src=&quot;https://badges.crowdin.net/iina/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Based on &lt;a href=&quot;https://github.com/mpv-player/mpv&quot;&gt;mpv&lt;/a&gt;, which provides the best decoding capacity on macOS&lt;/li&gt; 
+ &lt;li&gt;Designed with modern versions of macOS (10.15+) in mind&lt;/li&gt; 
+ &lt;li&gt;All the features you need for video and music: subtitles, playlists, chapters…and much, much more!&lt;/li&gt; 
+ &lt;li&gt;Force Touch, picture-in-picture and advanced Touch Bar support&lt;/li&gt; 
+ &lt;li&gt;Customizable user interface including multiple color schemes and on screen controller (OSC) layout positioning&lt;/li&gt; 
+ &lt;li&gt;Standalone Music Mode designed for audio files&lt;/li&gt; 
+ &lt;li&gt;Video thumbnails&lt;/li&gt; 
+ &lt;li&gt;Online subtitle searching and intelligent local subtitle matching&lt;/li&gt; 
+ &lt;li&gt;Unlimited playback history&lt;/li&gt; 
+ &lt;li&gt;Convenient and interactive settings for video/audio filters&lt;/li&gt; 
+ &lt;li&gt;Fully customizable keyboard, mouse, trackpad, and gesture controls&lt;/li&gt; 
+ &lt;li&gt;mpv configuration files and script system for advanced users&lt;/li&gt; 
+ &lt;li&gt;Command line tool and browser extensions provided&lt;/li&gt; 
+ &lt;li&gt;In active development&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Downloading&lt;/h2&gt; 
+&lt;p&gt;You can get IINA through several sources. For the latest stable and beta releases, visit the &lt;a href=&quot;https://github.com/iina/iina/releases&quot;&gt;GitHub release page&lt;/a&gt; or the &lt;a href=&quot;https://iina.io/&quot;&gt;IINA official website&lt;/a&gt;. If you want to try out the latest features and improvements before they are officially released, you can download the nightly builds from our &lt;a href=&quot;https://iina.io/nightly/&quot;&gt;Nightly Download Page&lt;/a&gt;.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!IMPORTANT] Nightly builds are generated by GitHub automatically for every commits, which might be buggy and unusable. If you find a bug, please follow the &lt;a href=&quot;https://raw.githubusercontent.com/iina/iina/develop/#Contributing&quot;&gt;contributing section&lt;/a&gt; and file an issue.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Building&lt;/h2&gt; 
+&lt;p&gt;IINA uses mpv for media playback. To build IINA, you can either fetch copies of these libraries we have already built (using the instructions below) or build them yourself by skipping to &lt;a href=&quot;https://raw.githubusercontent.com/iina/iina/develop/#building-mpv-manually&quot;&gt;these instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Using the pre-compiled libraries&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download pre-compiled libraries by running&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;./other/download_libs.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!TIP]&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Change the URL in the shell script if you want to download arch-specific binaries. By default, it will download the universal ones. You can download other binaries from &lt;code&gt;https://iina.io/dylibs/${ARCH}/filelist.txt&lt;/code&gt; where &lt;code&gt;ARCH&lt;/code&gt; can be &lt;code&gt;universal&lt;/code&gt;, &lt;code&gt;arm64&lt;/code&gt; and &lt;code&gt;x86_64&lt;/code&gt;.&lt;/li&gt; 
+  &lt;li&gt;If you want to build an older IINA version, make sure to download the corresponding dylibs. For example, &lt;code&gt;https://iina.io/dylibs/1.2.0/universal/filelist.txt&lt;/code&gt;.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/blockquote&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt; &lt;p&gt;Open iina.xcodeproj in the &lt;a href=&quot;https://apps.apple.com/app/xcode/id497799835&quot;&gt;latest public version of Xcode&lt;/a&gt;. &lt;em&gt;IINA may not build if you use any other version.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build the project.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Building mpv manually&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Build your own copy of mpv. If you&#39;re using a package manager to manage dependencies, the steps below outline the process.&lt;/p&gt; &lt;h4&gt;With Homebrew&lt;/h4&gt; &lt;p&gt;Use our tap as it passes in the correct flags to mpv&#39;s configure script:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;brew tap iina/homebrew-mpv-iina
+brew install mpv-iina
+&lt;/code&gt;&lt;/pre&gt; &lt;h4&gt;With MacPorts&lt;/h4&gt; &lt;p&gt;Pass in these flags when installing:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;port install mpv +uchardet -bundle -rubberband configure.args=&quot;--enable-libmpv-shared --enable-lua --enable-libarchive --enable-libbluray --disable-swift --disable-rubberband&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Copy the corresponding mpv and FFmpeg header files into &lt;code&gt;deps/include/&lt;/code&gt;, replacing the current ones. You can find them on GitHub &lt;a href=&quot;https://github.com/mpv-player/mpv/tree/master/libmpv&quot;&gt;(e.g. mpv)&lt;/a&gt;, but it&#39;s recommended to copy them from the Homebrew or MacPorts installation. Always make sure the header files have the same version of the dylibs.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run &lt;code&gt;other/parse_doc.rb&lt;/code&gt;. This script will fetch the latest mpv documentation and generate &lt;code&gt;MPVOption.swift&lt;/code&gt;, &lt;code&gt;MPVCommand.swift&lt;/code&gt; and &lt;code&gt;MPVProperty.swift&lt;/code&gt;. Copy them from &lt;code&gt;other/&lt;/code&gt; to &lt;code&gt;iina/&lt;/code&gt;, replacing the current files. This is only needed when updating libmpv. Note that if the API changes, the player source code may also need to be changed.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run &lt;code&gt;other/change_lib_dependencies.rb&lt;/code&gt;. This script will deploy the dependent libraries into &lt;code&gt;deps/lib&lt;/code&gt;. If you&#39;re using a package manager to manage dependencies, invoke it like so:&lt;/p&gt; &lt;h4&gt;With Homebrew&lt;/h4&gt; &lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;other/change_lib_dependencies.rb &quot;$(brew --prefix)&quot; &quot;$(brew --prefix mpv-iina)/lib/libmpv.dylib&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;h4&gt;With MacPorts&lt;/h4&gt; &lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;port contents mpv | grep &#39;\.dylib$&#39; | xargs other/change_lib_dependencies.rb /opt/local
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Open &lt;code&gt;iina.xcodeproj&lt;/code&gt; in the &lt;a href=&quot;https://apps.apple.com/app/xcode/id497799835&quot;&gt;latest public version of Xcode&lt;/a&gt;. &lt;em&gt;IINA may not build if you use any other version.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Remove all references to &lt;code&gt;.dylib&lt;/code&gt; files from the Frameworks group in the sidebar and add all the &lt;code&gt;.dylib&lt;/code&gt; files in &lt;code&gt;deps/lib&lt;/code&gt; to that group by clicking &quot;Add Files to iina...&quot; in the context menu.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add all the imported &lt;code&gt;.dylib&lt;/code&gt; files into the &quot;Copy Dylibs&quot; phase under &quot;Build Phases&quot; tab of the iina target.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Make sure the necessary &lt;code&gt;.dylib&lt;/code&gt; files are present in the &quot;Link Binary With Libraries&quot; phase under &quot;Build Phases&quot;. Xcode should have already added all dylibs under this section.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build the project.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;IINA is always looking for contributions, whether it&#39;s through bug reports, code, or new translations.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;If you find a bug in IINA, or would like to suggest a new feature or enhancement, it&#39;d be nice if you could &lt;a href=&quot;https://github.com/iina/iina/issues&quot;&gt;search your problem first&lt;/a&gt;; while we don&#39;t mind duplicates, keeping issues unique helps us save time and consolidates effort. If you can&#39;t find your issue, feel free to &lt;a href=&quot;https://github.com/iina/iina/issues/new/choose&quot;&gt;file a new one&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you&#39;re looking to contribute code, please read &lt;a href=&quot;https://raw.githubusercontent.com/iina/iina/develop/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; — it has information on IINA&#39;s process for handling contributions, and tips on how the code is structured to make your work easier.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you&#39;d like to translate IINA to your language, please visit &lt;a href=&quot;https://translate.iina.io/&quot;&gt;IINA&#39;s instance of Crowdin&lt;/a&gt;. You can create an account for free and start translating. Please do not send a pull request to this repo directly, Crowdin will automatically sync new translations with our repo. If you want to translate IINA into a new language that is currently not on the list, feel free to open an issue.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;IINA Plugins List&lt;/h2&gt; 
+&lt;h3&gt;Official Plugins&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Online Media&lt;/strong&gt; (&lt;code&gt;iina/plugin-online-media&lt;/code&gt;) - Enhances online streaming and downloading.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;OpenSubtitles&lt;/strong&gt; (&lt;code&gt;iina/plugin-opensub&lt;/code&gt;) - Search and download subtitles.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;User Scripts&lt;/strong&gt; (&lt;code&gt;iina/plugin-userscript&lt;/code&gt;) - Run custom JavaScript snippets.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;More Seeking&lt;/strong&gt; (&lt;code&gt;iina/plugin-more-seeking&lt;/code&gt;) - Advanced seeking controls.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Community Plugins&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Jellyfin&lt;/strong&gt; (&lt;code&gt;mhajder/iina-jellyfin&lt;/code&gt;) - Browse and play media from Jellyfin servers.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Danmaku&lt;/strong&gt; (&lt;code&gt;xjbeta/iina-plugin-danmaku&lt;/code&gt;) - Overlay comments/danmaku on video.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Bookmarks&lt;/strong&gt; (&lt;code&gt;wyattowalsh/iina-plugin-bookmarks&lt;/code&gt;) - Save and manage video timestamps.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Clickable Subtitles&lt;/strong&gt; (&lt;code&gt;kerim/iina-clickable-subtitles&lt;/code&gt;) - Click subtitles to define words (macOS Look Up).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Jump to Frame&lt;/strong&gt; (&lt;code&gt;bbeny123/iina-jump-to-frame&lt;/code&gt;) - Navigate video by specific frame number.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;recorder&lt;/strong&gt; (&lt;code&gt;5thDimensionalVader/recorder-iina&lt;/code&gt;) - to clip a video using ffmpeg.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Multiple Clips&lt;/strong&gt; (&lt;code&gt;karthisnk/multi-cutter-iina&lt;/code&gt;) - multiple clip of a video using ffmpeg, with Batch Clipping, Vertical Clip, Format Selection, Preview Clip.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;💡 &lt;strong&gt;Want to build your own plugin?&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;Explore the existing plugins listed here to learn how they work. If you create a new plugin or improve an existing one, feel free to contribute back by adding it to this list via a pull request.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🚀 &lt;strong&gt;Interested in creating an IINA plugin?&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;Start by exploring the existing plugins here to understand patterns and best practices. Once you’ve built your own plugin, please contribute back by adding it to this README so others can discover and use it.&lt;/p&gt; 
+&lt;/blockquote&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/b7b5b092ad804ab80554fd05b0688df5f3d87eac7eafe53d16363f6b4d9acf2c/iina/iina" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>StephenDev0/StikDebug</title>
+      <link>https://github.com/StephenDev0/StikDebug</link>
+      <description>&lt;p&gt;An on-device debugger/JIT enabler for iOS versions 17.4+, powered by idevice.&lt;/p&gt;&lt;hr&gt;&lt;blockquote&gt; 
+ &lt;p&gt;[!CAUTION] &lt;strong&gt;WARNING:&lt;/strong&gt; There are known critical issues with &lt;strong&gt;iOS 26.4 Developer Beta 1&lt;/strong&gt;. The &lt;code&gt;lockdownd&lt;/code&gt; service appears to be dropping connections, which interferes with how the device connects to itself (loopback/pairing issues) and prevents JIT from functioning. &lt;strong&gt;DO NOT UPDATE&lt;/strong&gt; if you rely on StikDebug. These issues and possible fixes are currently being investigated.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img width=&quot;217&quot; height=&quot;217&quot; src=&quot;https://raw.githubusercontent.com/StephenDev0/StikDebug/main/assets/StikJIT.png&quot; alt=&quot;Logo&quot; /&gt; 
+&lt;/div&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;&lt;b&gt;StikDebug&lt;/b&gt;&lt;/h1&gt; 
+ &lt;p&gt;&lt;i&gt;An on-device debugger/JIT enabler for iOS versions 17.4+ powered by &lt;a href=&quot;https://github.com/jkcoxson/idevice&quot;&gt;idevice&lt;/a&gt;.&lt;/i&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h6 align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/ZnNcrRT3M8&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Discord-join%20us-7289DA?logo=discord&amp;amp;logoColor=white&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/raw/main/LICENSE&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/license/StephenDev0/StikDebug?label=License&amp;amp;color=5865F2&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/stargazers&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/stars/StephenDev0/StikDebug?label=Stars&amp;amp;color=FEE75C&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/releases&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/StephenDev0/StikDebug?label=Latest&amp;amp;color=00BFFF&amp;amp;style=for-the-badge&amp;amp;labelColor=23272A&quot; /&gt; &lt;/a&gt; &lt;br /&gt; &lt;/h6&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;JIT:&lt;/strong&gt; Enable Just In Time compilation for sideloaded apps that have the &lt;code&gt;get-task-allow&lt;/code&gt; entitlement.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;App Launching:&lt;/strong&gt; Launch every app installed on your device.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Console:&lt;/strong&gt; Live app and system logs.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Scripts:&lt;/strong&gt; Manage automation scripts (mainly used for iOS 26 JIT).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;App Expiry:&lt;/strong&gt; See when apps will expire and install/remove profiles.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Device Info:&lt;/strong&gt; View detailed device metadata.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Processes:&lt;/strong&gt; Inspect running apps/processes and terminate them.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Location Simulator:&lt;/strong&gt; Simulate the GPS location of your device.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!WARNING] &lt;strong&gt;Notice:&lt;/strong&gt; StikDebug is no longer available on the App Store. Please use the official download methods below.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot; style=&quot;display: flex; justify-content: center; align-items: center; gap: 16px; flex-wrap: wrap;&quot;&gt; 
+ &lt;a href=&quot;https://stikstore.app/altdirect/?url=https://stikdebug.xyz/index.json&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/stikstore/altdirect/raw/main/assets/png/AltSource_Blue.png&quot; alt=&quot;Add AltSource&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/releases/download/3.0.1/StikDebug-3.0.1.ipa&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://github.com/stikstore/altdirect/raw/main/assets/png/Download_Blue.png&quot; alt=&quot;Download .ipa&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;iOS Version&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+   &lt;th&gt;Notes&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;1.0 – 17.3.X&lt;/td&gt; 
+   &lt;td&gt;Not supported&lt;/td&gt; 
+   &lt;td&gt;Uses Different Connection Protocols&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;17.4 – 18.x&lt;/td&gt; 
+   &lt;td&gt;Fully supported&lt;/td&gt; 
+   &lt;td&gt;Stable&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;26.0 – 26.3&lt;/td&gt; 
+   &lt;td&gt;Supported&lt;/td&gt; 
+   &lt;td&gt;Limited App Availability (Developers need to update their apps to work.)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;26.4 Developer Beta 1&lt;/td&gt; 
+   &lt;td&gt;Critical issues&lt;/td&gt; 
+   &lt;td&gt;lockdownd drops connections → JIT broken; do not update&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;iOS 26.4+ betas / future&lt;/td&gt; 
+   &lt;td&gt;Untested / partial&lt;/td&gt; 
+   &lt;td&gt;Check &lt;a href=&quot;https://discord.gg/ZnNcrRT3M8&quot;&gt;Discord&lt;/a&gt;, &lt;a href=&quot;https://github.com/StephenDev0/StikDebug/releases&quot;&gt;releases&lt;/a&gt;, or &lt;a href=&quot;https://x.com/stephendev0&quot;&gt;@StephenDev0 on X&lt;/a&gt; for updates&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;How to Enable JIT&lt;/h2&gt; 
+&lt;p&gt;StikDebug enables &lt;strong&gt;JIT&lt;/strong&gt; for sideloaded apps on iOS 17.4+ without needing a computer after the initial pairing setup.&lt;/p&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;StikDebug installed (via AltSource, direct .ipa, or self-built)&lt;/li&gt; 
+ &lt;li&gt;A valid &lt;strong&gt;pairing file&lt;/strong&gt; (.plist / .mobiledevicepairing) for your device&lt;/li&gt; 
+ &lt;li&gt;SideStore / AltStore / similar sideload tool (for app refreshing)&lt;/li&gt; 
+ &lt;li&gt;A loopback VPN such as &lt;a href=&quot;https://apps.apple.com/us/app/localdevvpn/id6755608044&quot;&gt;LocalDevVPN&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Steps&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Obtain a pairing file&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Detailed guide: &lt;a href=&quot;https://github.com/StephenDev0/StikDebug-Guide/raw/main/pairing_file.md&quot;&gt;Pairing File Instructions&lt;/a&gt; (or ask in Discord).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Set up VPN&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Launch LocalDevVPN and enable the VPN.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Enable JIT for an app&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Launch StikDebug and tapp the &lt;code&gt;Enable JIT&lt;/code&gt; button.&lt;/li&gt; 
+   &lt;li&gt;Select your sideloaded app from the list in StikDebug.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;strong&gt;Troubleshooting&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&quot;Connection dropped&quot; or loopback errors → Check iOS version compatibility / beta warnings.&lt;/li&gt; 
+ &lt;li&gt;Heartbeat errors → Ensure that the VPN is on and that you are connecected to Wi-Fi. It may be a pairing file issue.&lt;/li&gt; 
+ &lt;li&gt;Pairing file issues → Replace file with device unlocked &amp;amp; trusted.&lt;/li&gt; 
+ &lt;li&gt;Still stuck? Join the &lt;a href=&quot;https://discord.gg/ZnNcrRT3M8&quot;&gt;Discord&lt;/a&gt; with logs/screenshots.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- 
+## Screenshots
+
+&lt;div align=&quot;center&quot;&gt;
+  &lt;img src=&quot;screenshots/pairing-import.png&quot; width=&quot;320&quot; alt=&quot;Pairing file import screen&quot;&gt;
+  &lt;img src=&quot;screenshots/app-list.png&quot; width=&quot;320&quot; alt=&quot;Sideloaded apps list&quot;&gt;
+  &lt;img src=&quot;screenshots/jit-enabled.png&quot; width=&quot;320&quot; alt=&quot;JIT successfully enabled&quot;&gt;
+  &lt;img src=&quot;screenshots/processes.png&quot; width=&quot;320&quot; alt=&quot;Process management tab&quot;&gt;
+&lt;/div&gt;
+
+(Add images to a /screenshots/ folder in the repo and uncomment when ready.)
+--&gt; 
+&lt;h2&gt;Building from Source&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] StikDebug is an open-source Xcode project written mostly in Swift. Building yourself lets you modify code, debug, or create custom versions. Requires a Mac with Xcode.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS (latest recommended)&lt;/li&gt; 
+ &lt;li&gt;Xcode 16+ (Xcode 26+ preferred for iOS 26+ support)&lt;/li&gt; 
+ &lt;li&gt;iOS device on iOS 17.4+ (for testing)&lt;/li&gt; 
+ &lt;li&gt;Git&lt;/li&gt; 
+ &lt;li&gt;Basic Xcode/Swift knowledge&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Steps&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Clone the repo&lt;/strong&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/StephenDev0/StikDebug.git
+cd StikDebug
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Open in Xcode&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Launch Xcode&lt;/li&gt; 
+   &lt;li&gt;Open &lt;code&gt;StikDebug.xcodeproj&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Configure signing&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Select the &lt;strong&gt;StikDebug&lt;/strong&gt; target&lt;/li&gt; 
+   &lt;li&gt;Go to &lt;strong&gt;Signing &amp;amp; Capabilities&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Sign in with your Apple ID (free or paid developer account)&lt;/li&gt; 
+   &lt;li&gt;Set a unique &lt;strong&gt;Bundle Identifier&lt;/strong&gt; (e.g., &lt;code&gt;com.yourname.StikDebug&lt;/code&gt;)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Build &amp;amp; install&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Select your connected device&lt;/li&gt; 
+   &lt;li&gt;Press &lt;strong&gt;Cmd + R&lt;/strong&gt; (or Product → Run)&lt;/li&gt; 
+   &lt;li&gt;Trust the certificate on device: Settings → General → VPN &amp;amp; Device Management&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;After install, follow the JIT setup steps above (pairing import, etc.).&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Thank you for your interest in contributing to this project. Contributions of all kinds are welcome.&lt;/p&gt; 
+&lt;h3&gt;Reporting Bugs&lt;/h3&gt; 
+&lt;p&gt;If you discover a bug, please open an issue and include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A clear and descriptive title&lt;/li&gt; 
+ &lt;li&gt;Steps to reproduce the issue&lt;/li&gt; 
+ &lt;li&gt;Expected behavior vs. actual behavior&lt;/li&gt; 
+ &lt;li&gt;Relevant logs, screenshots, or environment details (iOS version, device model, etc.)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Suggesting Features&lt;/h3&gt; 
+&lt;p&gt;To propose a new feature, open a feature request issue and provide:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A clear description of the feature&lt;/li&gt; 
+ &lt;li&gt;The problem it solves or the use case it addresses&lt;/li&gt; 
+ &lt;li&gt;Any relevant examples or implementation ideas&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Code Contributions (Best Practices)&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Follow normal Swift and SwiftUI style.&lt;/li&gt; 
+ &lt;li&gt;Write clear and easy to understand code.&lt;/li&gt; 
+ &lt;li&gt;Keep your changes consistent with how the project is already set up.&lt;/li&gt; 
+ &lt;li&gt;Make sure everything builds and works without errors.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We appreciate your time and effort in helping improve this project.&lt;/p&gt; 
+&lt;h2&gt;Code Help&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://deepwiki.com/stephendev0/stikdebug&quot;&gt;&lt;img src=&quot;https://deepwiki.com/badge.svg?sanitize=true&quot; alt=&quot;Ask DeepWiki&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;StikDebug is licensed under &lt;strong&gt;AGPL-3.0&lt;/strong&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/StephenDev0/StikDebug/main/LICENSE&quot;&gt;&lt;code&gt;LICENSE&lt;/code&gt;&lt;/a&gt; for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9ba0218b8284300596b4f3dfcaab95233bbfeaa92ee20042f83d19a4f4fbf9cc/StephenDev0/StikDebug" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>pointfreeco/sqlite-data</title>
+      <link>https://github.com/pointfreeco/sqlite-data</link>
+      <description>&lt;p&gt;A fast, lightweight replacement for SwiftData, powered by SQL and supporting CloudKit synchronization.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;SQLiteData&lt;/h1&gt; 
+&lt;p&gt;A &lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Performance&quot;&gt;fast&lt;/a&gt;, lightweight replacement for SwiftData, powered by SQL and supporting CloudKit synchronization.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/pointfreeco/sqlite-data/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/pointfreeco/sqlite-data/actions/workflows/ci.yml/badge.svg?sanitize=true&quot; alt=&quot;CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.pointfree.co/slack-invite&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/slack-chat-informational.svg?label=Slack&amp;amp;logo=slack&quot; alt=&quot;Slack&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fsqlite-data%2Fbadge%3Ftype%3Dswift-versions&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fswiftpackageindex.com%2Fapi%2Fpackages%2Fpointfreeco%2Fsqlite-data%2Fbadge%3Ftype%3Dplatforms&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Learn-more&quot;&gt;Learn more&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Quick-start&quot;&gt;Quick start&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Performance&quot;&gt;Performance&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#SQLite-knowledge-required&quot;&gt;SQLite knowledge required&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Demos&quot;&gt;Demos&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Documentation&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Installation&quot;&gt;Installation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#Community&quot;&gt;Community&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#License&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Learn more&lt;/h2&gt; 
+&lt;p&gt;This library was motivated and designed over the course of many episodes on &lt;a href=&quot;https://www.pointfree.co&quot;&gt;Point-Free&lt;/a&gt;, a video series exploring advanced programming topics in the Swift language, hosted by &lt;a href=&quot;https://twitter.com/mbrandonw&quot;&gt;Brandon Williams&lt;/a&gt; and &lt;a href=&quot;https://twitter.com/stephencelis&quot;&gt;Stephen Celis&lt;/a&gt;. To support the continued development of this library, &lt;a href=&quot;https://www.pointfree.co/pricing&quot;&gt;subscribe today&lt;/a&gt;.&lt;/p&gt; 
+&lt;a href=&quot;https://www.pointfree.co/collections/modern-persistence&quot;&gt; &lt;img alt=&quot;video poster image&quot; src=&quot;https://d3rccdn33rt8ze.cloudfront.net/episodes/0325.jpeg&quot; width=&quot;600&quot; /&gt; &lt;/a&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;SQLiteData is a &lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/#performance&quot;&gt;fast&lt;/a&gt;, lightweight replacement for SwiftData, including CloudKit synchronization (and even CloudKit sharing), built on top of the popular &lt;a href=&quot;https://github.com/groue/GRDB.swift&quot;&gt;GRDB&lt;/a&gt; library. To populate data from the database you can use &lt;code&gt;@Table&lt;/code&gt; and &lt;code&gt;@FetchAll&lt;/code&gt;, which are similar to SwiftData&#39;s &lt;code&gt;@Model&lt;/code&gt; and &lt;code&gt;@Query&lt;/code&gt;:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;th&gt;SQLiteData&lt;/th&gt; 
+   &lt;th&gt;SwiftData&lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr valign=&quot;top&quot;&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@FetchAll
+var items: [Item]
+
+@Table
+struct Item {
+  let id: UUID
+  var title = &quot;&quot;
+  var isInStock = true
+  var notes = &quot;&quot;
+}
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@Query
+var items: [Item]
+
+@Model
+class Item {
+  var title: String
+  var isInStock: Bool
+  var notes: String
+  init(
+    title: String = &quot;&quot;,
+    isInStock: Bool = true,
+    notes: String = &quot;&quot;
+  ) {
+    self.title = title
+    self.isInStock = isInStock
+    self.notes = notes
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;Both of the above examples fetch items from an external data store using Swift data types, and both are automatically observed by SwiftUI so that views are recomputed when the external data changes, but SQLiteData is powered directly by SQLite and is usable from UIKit, &lt;code&gt;@Observable&lt;/code&gt; models, and more.&lt;/p&gt; 
+&lt;p&gt;For more information on SQLiteData&#39;s querying capabilities, see &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/fetching&quot;&gt;Fetching model data&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Quick start&lt;/h2&gt; 
+&lt;p&gt;Before SQLiteData&#39;s property wrappers can fetch data from SQLite, you need to provide–at runtime–the default database it should use. This is typically done as early as possible in your app&#39;s lifetime, like the app entry point in SwiftUI, and is analogous to configuring model storage in SwiftData:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;th&gt;SQLiteData&lt;/th&gt; 
+   &lt;th&gt;SwiftData&lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr valign=&quot;top&quot;&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@main
+struct MyApp: App {
+  init() {
+    prepareDependencies {
+      let db = try! DatabaseQueue(
+        // Create/migrate a database
+        // connection
+      )
+      $0.defaultDatabase = db
+    }
+  }
+  // ...
+}
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@main
+struct MyApp: App {
+  let container = {
+    // Create/configure a container
+    try! ModelContainer(/* ... */)
+  }()
+
+  var body: some Scene {
+    WindowGroup {
+      ContentView()
+        .modelContainer(container)
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] For more information on preparing a SQLite database, see &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/preparingdatabase&quot;&gt;Preparing a SQLite database&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;This &lt;code&gt;defaultDatabase&lt;/code&gt; connection is used implicitly by SQLiteData&#39;s strategies, like &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/fetchall&quot;&gt;&lt;code&gt;@FetchAll&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/fetchone&quot;&gt;&lt;code&gt;@FetchOne&lt;/code&gt;&lt;/a&gt;, which are similar to SwiftData&#39;s &lt;code&gt;@Query&lt;/code&gt; macro, but more powerful:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;th&gt;SQLiteData&lt;/th&gt; 
+   &lt;th&gt;SwiftData&lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr valign=&quot;top&quot;&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@FetchAll
+var items: [Item]
+
+@FetchAll(Item.order(by: \.title))
+var items
+
+@FetchAll(Item.where(\.isInStock))
+var items
+
+
+
+@FetchAll(Item.order(by: \.isInStock))
+var items
+
+@FetchOne(Item.count())
+var itemsCount = 0
+
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@Query
+var items: [Item]
+
+@Query(sort: [SortDescriptor(\.title)])
+var items: [Item]
+
+@Query(filter: #Predicate&amp;lt;Item&amp;gt; {
+  $0.isInStock
+})
+var items: [Item]
+
+// No @Query equivalent of ordering
+// by boolean column.
+
+// No @Query equivalent of counting
+// entries in database without loading
+// all entries.
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;And you can access this database throughout your application in a way similar to how one accesses a model context, via a property wrapper:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;th&gt;SQLiteData&lt;/th&gt; 
+   &lt;th&gt;SwiftData&lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr valign=&quot;top&quot;&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@Dependency(\.defaultDatabase)
+var database
+
+let newItem = Item(/* ... */)
+try database.write { db in
+  try Item.insert { newItem }
+    .execute(db))
+}
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+   &lt;td width=&quot;415&quot;&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@Environment(\.modelContext)
+var modelContext
+
+let newItem = Item(/* ... */)
+modelContext.insert(newItem)
+try modelContext.save()
+
+&lt;/code&gt;&lt;/pre&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] For more information on how SQLiteData compares to SwiftData, see &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/comparisonwithswiftdata&quot;&gt;Comparison with SwiftData&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Further, if you want to synchronize the local database to CloudKit so that it is available on all your user&#39;s devices, simply configure a &lt;code&gt;SyncEngine&lt;/code&gt; in the entry point of the app:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;@main
+struct MyApp: App {
+  init() {
+    prepareDependencies {
+      $0.defaultDatabase = try! appDatabase()
+      $0.defaultSyncEngine = SyncEngine(
+        for: $0.defaultDatabase,
+        tables: Item.self
+      )
+    }
+  }
+  // ...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;[!NOTE] For more information on synchronizing the database to CloudKit and sharing records with iCloud users, see &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/cloudkit&quot;&gt;CloudKit Synchronization&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;This is all you need to know to get started with SQLiteData, but there&#39;s much more to learn. Read the &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata#Essentials&quot;&gt;articles&lt;/a&gt; below to learn how to best utilize this library:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/fetching&quot;&gt;Fetching model data&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/observing&quot;&gt;Observing changes to model data&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/preparingdatabase&quot;&gt;Preparing a SQLite database&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/dynamicqueries&quot;&gt;Dynamic queries&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/cloudkit&quot;&gt;CloudKit Synchronization&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/comparisonwithswiftdata&quot;&gt;Comparison with SwiftData&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Performance&lt;/h2&gt; 
+&lt;p&gt;SQLiteData leverages high-performance decoding from &lt;a href=&quot;https://github.com/pointfreeco/swift-structured-queries&quot;&gt;StructuredQueries&lt;/a&gt; to turn fetched data into your Swift domain types, and has a performance profile similar to invoking SQLite&#39;s C APIs directly.&lt;/p&gt; 
+&lt;p&gt;See the following benchmarks against &lt;a href=&quot;https://github.com/Lighter-swift/PerformanceTestSuite&quot;&gt;Lighter&#39;s performance test suite&lt;/a&gt; for a taste of how it compares:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Orders.fetchAll                           setup    rampup   duration
+   SQLite (generated by Enlighter 1.4.10) 0        0.144    7.183
+   Lighter (1.4.10)                       0        0.164    8.059
+┌──────────────────────────────────────────────────────────────────┐
+│  SQLiteData (1.0.0)                     0        0.172    8.511  │
+└──────────────────────────────────────────────────────────────────┘
+   GRDB (7.4.1, manual decoding)          0        0.376    18.819
+   SQLite.swift (0.15.3, manual decoding) 0        0.564    27.994
+   SQLite.swift (0.15.3, Codable)         0        0.863    43.261
+   GRDB (7.4.1, Codable)                  0.002    1.07     53.326
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;SQLite knowledge required&lt;/h2&gt; 
+&lt;p&gt;SQLite is one of the &lt;a href=&quot;https://www.sqlite.org/mostdeployed.html&quot;&gt;most established and widely distributed&lt;/a&gt; pieces of software in the history of software. Knowledge of SQLite is a great skill for any app developer to have, and this library does not want to conceal it from you. So, we feel that to best wield this library you should be familiar with the basics of SQLite, including schema design and normalization, SQL queries, including joins and aggregates, and performance, including indices.&lt;/p&gt; 
+&lt;p&gt;With some basic knowledge you can apply this library to your database schema in order to query for data and keep your views up-to-date when data in the database changes, and you can use &lt;a href=&quot;https://github.com/pointfreeco/swift-structured-queries&quot;&gt;StructuredQueries&lt;/a&gt; to build queries, either using its type-safe, discoverable &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/swift-structured-queries/~/documentation/structuredqueriescore&quot;&gt;query building APIs&lt;/a&gt;, or using its &lt;code&gt;#sql&lt;/code&gt; macro for writing &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/swift-structured-queries/~/documentation/structuredqueriescore/safesqlstrings&quot;&gt;safe SQL strings&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Further, this library is built on the popular and battle-tested &lt;a href=&quot;https://github.com/groue/GRDB.swift&quot;&gt;GRDB&lt;/a&gt; library for interacting with SQLite, such as executing queries and observing the database for changes.&lt;/p&gt; 
+&lt;h2&gt;Demos&lt;/h2&gt; 
+&lt;p&gt;This repo comes with &lt;em&gt;lots&lt;/em&gt; of examples to demonstrate how to solve common and complex problems with SQLiteData. Check out &lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/Examples&quot;&gt;this&lt;/a&gt; directory to see them all, including:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/Examples/CaseStudies&quot;&gt;&lt;strong&gt;Case Studies&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt; Demonstrates how to solve some common application problems in an isolated environment, in both SwiftUI and UIKit. Things like animations, dynamic queries, database transactions, and more.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/Examples/CloudKitDemo&quot;&gt;&lt;strong&gt;CloudKitDemo&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt; A simplified demo that shows how to synchronize a SQLite database to CloudKit and how to share records with other iCloud users. See our dedicated articles on &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/cloudkit&quot;&gt;CloudKit Synchronization&lt;/a&gt; and &lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/cloudkitsharing&quot;&gt;CloudKit Sharing&lt;/a&gt; for more information.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/Examples/Reminders&quot;&gt;&lt;strong&gt;Reminders&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt; A rebuild of Apple&#39;s &lt;a href=&quot;https://apps.apple.com/us/app/reminders/id1108187841&quot;&gt;Reminders&lt;/a&gt; app that uses a SQLite database to model the reminders, lists and tags. It features many advanced queries, such as searching, stats aggregation, and multi-table joins. It also features CloudKit synchronization and sharing.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/Examples/SyncUps&quot;&gt;&lt;strong&gt;SyncUps&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt; This application is a faithful reconstruction of one of Apple&#39;s more interesting sample projects, called &lt;a href=&quot;https://developer.apple.com/tutorials/app-dev-training/getting-started-with-scrumdinger&quot;&gt;Scrumdinger&lt;/a&gt;, and uses SQLite to persist the data for meetings. We have also added CloudKit synchronization so that all changes are automatically made available on all of the user&#39;s devices.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;The documentation for releases and &lt;code&gt;main&lt;/code&gt; are available here:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/main/documentation/sqlitedata/&quot;&gt;&lt;code&gt;main&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swiftpackageindex.com/pointfreeco/sqlite-data/~/documentation/sqlitedata/&quot;&gt;1.x.x&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;You can add SQLiteData to an Xcode project by adding it to your project as a package…&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/pointfreeco/sqlite-data&quot;&gt;https://github.com/pointfreeco/sqlite-data&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;…and adding the &lt;code&gt;SQLiteData&lt;/code&gt; product to your target.&lt;/p&gt; 
+&lt;p&gt;If you want to use SQLiteData in a &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;SwiftPM&lt;/a&gt; project, it&#39;s as simple as adding it to your &lt;code&gt;Package.swift&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;dependencies: [
+  .package(url: &quot;https://github.com/pointfreeco/sqlite-data&quot;, from: &quot;1.0.0&quot;)
+]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And then adding the following product to any target that needs access to the library:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;.product(name: &quot;SQLiteData&quot;, package: &quot;sqlite-data&quot;),
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;p&gt;If you want to discuss this library or have a question about how to use it to solve a particular problem, there are a number of places you can discuss with fellow &lt;a href=&quot;http://www.pointfree.co&quot;&gt;Point-Free&lt;/a&gt; enthusiasts:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;For long-form discussions, we recommend the &lt;a href=&quot;http://github.com/pointfreeco/sqlite-data/discussions&quot;&gt;discussions&lt;/a&gt; tab of this repo.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For casual chat, we recommend the &lt;a href=&quot;http://www.pointfree.co/slack-invite&quot;&gt;Point-Free Community Slack&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This library is released under the MIT license. See &lt;a href=&quot;https://raw.githubusercontent.com/pointfreeco/sqlite-data/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9a01b8a93ae7340b13b7c87b125c9c4339b8f5a36be51cbc2e1e113b3616dd70/pointfreeco/sqlite-data" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>p0deje/Maccy</title>
+      <link>https://github.com/p0deje/Maccy</link>
+      <description>&lt;p&gt;Lightweight clipboard manager for macOS&lt;/p&gt;&lt;hr&gt;&lt;img width=&quot;128px&quot; src=&quot;https://maccy.app/img/maccy/Logo.png&quot; alt=&quot;Logo&quot; /&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://maccy.app&quot;&gt;Maccy&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/p0deje/Maccy/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/p0deje/Maccy/total.svg?sanitize=true&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.bitrise.io/app/716921b669780314&quot;&gt;&lt;img src=&quot;https://img.shields.io/bitrise/716921b669780314/master?token=3pMiCb5dpFzlO-7jTYtO3Q&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Maccy is a lightweight clipboard manager for macOS. It keeps the history of what you copy and lets you quickly navigate, search, and use previous clipboard contents.&lt;/p&gt; 
+&lt;p&gt;Maccy works on macOS Sonoma 14 or higher.&lt;/p&gt; 
+&lt;!-- vim-markdown-toc GFM --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#install&quot;&gt;Install&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#usage&quot;&gt;Usage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#advanced&quot;&gt;Advanced&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#ignore-copied-items&quot;&gt;Ignore Copied Items&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#ignore-custom-copy-types&quot;&gt;Ignore Custom Copy Types&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#speed-up-clipboard-check-interval&quot;&gt;Speed up Clipboard Check Interval&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#faq&quot;&gt;FAQ&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#why-doesnt-it-paste-when-i-select-an-item-in-history&quot;&gt;Why doesn&#39;t it paste when I select an item in history?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#when-assigning-a-hotkey-to-open-maccy-it-says-that-this-hotkey-is-already-used-in-some-system-setting&quot;&gt;When assigning a hotkey to open Maccy, it says that this hotkey is already used in some system setting.&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#how-to-restore-hidden-footer&quot;&gt;How to restore hidden footer?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#how-to-ignore-copies-from-universal-clipboard&quot;&gt;How to ignore copies from Universal Clipboard?&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#my-keyboard-shortcut-stopped-working-in-password-fields-how-do-i-fix-this&quot;&gt;My keyboard shortcut stopped working in password fields. How do I fix this?&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#translations&quot;&gt;Translations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#motivation&quot;&gt;Motivation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- vim-markdown-toc --&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Lightweight and fast&lt;/li&gt; 
+ &lt;li&gt;Keyboard-first&lt;/li&gt; 
+ &lt;li&gt;Secure and private&lt;/li&gt; 
+ &lt;li&gt;Native UI&lt;/li&gt; 
+ &lt;li&gt;Open source and free&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Download the latest version from the &lt;a href=&quot;https://github.com/p0deje/Maccy/releases/latest&quot;&gt;releases&lt;/a&gt; page, or use &lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;brew install maccy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;C&lt;/kbd&gt; to popup Maccy or click on its icon in the menu bar.&lt;/li&gt; 
+ &lt;li&gt;Type what you want to find.&lt;/li&gt; 
+ &lt;li&gt;To select the history item you wish to copy, press &lt;kbd&gt;ENTER&lt;/kbd&gt;, or click the item, or use &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;code&gt;n&lt;/code&gt; shortcut.&lt;/li&gt; 
+ &lt;li&gt;To choose the history item and paste, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;ENTER&lt;/kbd&gt;, or &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;CLICK&lt;/kbd&gt; the item, or use &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;code&gt;n&lt;/code&gt; shortcut.&lt;/li&gt; 
+ &lt;li&gt;To choose the history item and paste without formatting, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;ENTER&lt;/kbd&gt;, or &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;CLICK&lt;/kbd&gt; the item, or use &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;code&gt;n&lt;/code&gt; shortcut.&lt;/li&gt; 
+ &lt;li&gt;To delete the history item, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;DELETE (⌫)&lt;/kbd&gt;.&lt;/li&gt; 
+ &lt;li&gt;To see the full text of the history item, wait a couple of seconds for tooltip.&lt;/li&gt; 
+ &lt;li&gt;To pin the history item so that it remains on top of the list, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;P&lt;/kbd&gt;. The item will be moved to the top with a random but permanent keyboard shortcut. To unpin it, press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;P&lt;/kbd&gt; again.&lt;/li&gt; 
+ &lt;li&gt;To clear all unpinned items, select &lt;em&gt;Clear&lt;/em&gt; in the menu, or press &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;DELETE (⌫)&lt;/kbd&gt;. To clear all items including pinned, select &lt;em&gt;Clear&lt;/em&gt; in the menu with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; pressed, or press &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; + &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;DELETE (⌫)&lt;/kbd&gt;.&lt;/li&gt; 
+ &lt;li&gt;To disable Maccy and ignore new copies, click on the menu icon with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; pressed.&lt;/li&gt; 
+ &lt;li&gt;To ignore only the next copy, click on the menu icon with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; pressed.&lt;/li&gt; 
+ &lt;li&gt;To customize the behavior, check &quot;Preferences…&quot; window, or press &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kbd&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Advanced&lt;/h2&gt; 
+&lt;h3&gt;Ignore Copied Items&lt;/h3&gt; 
+&lt;p&gt;You can tell Maccy to ignore all copied items:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;defaults write org.p0deje.Maccy ignoreEvents true # default is false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This is useful if you have some workflow for copying sensitive data. You can set &lt;code&gt;ignoreEvents&lt;/code&gt; to true, copy the data and set &lt;code&gt;ignoreEvents&lt;/code&gt; back to false.&lt;/p&gt; 
+&lt;p&gt;You can also click the menu icon with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; pressed. To ignore only the next copy, click with &lt;kbd&gt;OPTION (⌥)&lt;/kbd&gt; + &lt;kbd&gt;SHIFT (⇧)&lt;/kbd&gt; pressed.&lt;/p&gt; 
+&lt;h3&gt;Ignore Custom Copy Types&lt;/h3&gt; 
+&lt;p&gt;By default Maccy will ignore certain copy types that are considered to be confidential or temporary. The default list always include the following types:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;org.nspasteboard.TransientType&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;org.nspasteboard.ConcealedType&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;org.nspasteboard.AutoGeneratedType&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Also, default configuration includes the following types but they can be removed or overwritten:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;com.agilebits.onepassword&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;com.typeit4me.clipping&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;de.petermaurer.TransientPasteboardType&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Pasteboard generator type&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;net.antelle.keeweb&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can add additional custom types using settings. To find what custom types are used by an application, you can use free application &lt;a href=&quot;https://github.com/sindresorhus/Pasteboard-Viewer&quot;&gt;Pasteboard-Viewer&lt;/a&gt;. Simply download the application, open it, copy something from the application you want to ignore and look for any custom types in the left sidebar. &lt;a href=&quot;https://github.com/p0deje/Maccy/issues/125&quot;&gt;Here is an example of using this approach to ignore Adobe InDesign&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Speed up Clipboard Check Interval&lt;/h3&gt; 
+&lt;p&gt;By default, Maccy checks clipboard every 500 ms, which should be enough for most users. If you want to speed it up, you can change it with &lt;code&gt;defaults&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;defaults write org.p0deje.Maccy clipboardCheckInterval 0.1 # 100 ms
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;h3&gt;Why doesn&#39;t it paste when I select an item in history?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Make sure you have &quot;Paste automatically&quot; enabled in Preferences.&lt;/li&gt; 
+ &lt;li&gt;Make sure &quot;Maccy&quot; is added to System Settings -&amp;gt; Privacy &amp;amp; Security -&amp;gt; Accessibility.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;When assigning a hotkey to open Maccy, it says that this hotkey is already used in some system setting.&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open System settings -&amp;gt; Keyboard -&amp;gt; Keyboard Shortcuts.&lt;/li&gt; 
+ &lt;li&gt;Find where that hotkey is used. For example, &quot;Convert text to simplified Chinese&quot; is under Services -&amp;gt; Text.&lt;/li&gt; 
+ &lt;li&gt;Disable that hotkey or remove assigned combination (&lt;a href=&quot;https://github.com/p0deje/Maccy/assets/576152/446719e6-c3e5-4eb0-95fb-5a811066487f&quot;&gt;screenshot&lt;/a&gt;).&lt;/li&gt; 
+ &lt;li&gt;Restart Maccy.&lt;/li&gt; 
+ &lt;li&gt;Assign hotkey in Maccy settings.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;How to restore hidden footer?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open Maccy window.&lt;/li&gt; 
+ &lt;li&gt;Press &lt;kbd&gt;COMMAND (⌘)&lt;/kbd&gt; + &lt;kbd&gt;,&lt;/kbd&gt; to open preferences.&lt;/li&gt; 
+ &lt;li&gt;Enable footer in Appearance section.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;If for some reason it doesn&#39;t work, run the following command in Terminal.app:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;defaults write org.p0deje.Maccy showFooter 1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How to ignore copies from &lt;a href=&quot;https://support.apple.com/en-us/102430&quot;&gt;Universal Clipboard&lt;/a&gt;?&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open Preferences -&amp;gt; Ignore -&amp;gt; Pasteboard Types.&lt;/li&gt; 
+ &lt;li&gt;Add &lt;code&gt;com.apple.is-remote-clipboard&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;My keyboard shortcut stopped working in password fields. How do I fix this?&lt;/h3&gt; 
+&lt;p&gt;If your shortcut produces a character (like &lt;code&gt;Option+C&lt;/code&gt; → &quot;ç&quot;), macOS security may block it in password fields. Use &lt;a href=&quot;https://karabiner-elements.pqrs.org/&quot;&gt;Karabiner-Elements&lt;/a&gt; to remap your shortcut to a different combination like &lt;code&gt;Cmd+Shift+C&lt;/code&gt;. &lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/docs/keyboard-shortcut-password-fields.md&quot;&gt;See detailed solution&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Translations&lt;/h2&gt; 
+&lt;p&gt;The translations are hosted in &lt;a href=&quot;https://hosted.weblate.org/engage/maccy/&quot;&gt;Weblate&lt;/a&gt;. You can use it to suggest changes in translations and localize the application to a new language.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://hosted.weblate.org/engage/maccy/&quot;&gt;&lt;img src=&quot;https://hosted.weblate.org/widget/maccy/multi-auto.svg?sanitize=true&quot; alt=&quot;Translation status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Motivation&lt;/h2&gt; 
+&lt;p&gt;There are dozens of similar applications out there, so why build another? Over the past years since I moved from Linux to macOS, I struggled to find a clipboard manager that is as free and simple as &lt;a href=&quot;http://parcellite.sourceforge.net&quot;&gt;Parcellite&lt;/a&gt;, but I couldn&#39;t. So I&#39;ve decided to build one.&lt;/p&gt; 
+&lt;p&gt;Also, I wanted to learn Swift and get acquainted with macOS application development.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/p0deje/Maccy/master/LICENSE&quot;&gt;MIT&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a7007ff89e5b676ef28402807d4488d60a47dfb021db5a4eaccc003c992d929c/p0deje/Maccy" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>RoversX/LaunchNext</title>
+      <link>https://github.com/RoversX/LaunchNext</link>
+      <description>&lt;p&gt;Bring your Launchpad back in MacOS26+ ,highly customizable, powerful, free.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;LaunchNext&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Languages&lt;/strong&gt;: &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/README.md&quot;&gt;English&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.zh.md&quot;&gt;中文&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.ja.md&quot;&gt;日本語&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.ko.md&quot;&gt;한국어&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.fr.md&quot;&gt;Français&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.es.md&quot;&gt;Español&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.de.md&quot;&gt;Deutsch&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.ru.md&quot;&gt;Русский&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.hi.md&quot;&gt;हिन्दी&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.vi.md&quot;&gt;Tiếng Việt&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.it.md&quot;&gt;Italiano&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/i18n/README.cs.md&quot;&gt;Čeština&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;📥 Download&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/RoversX/LaunchNext/releases/latest&quot;&gt;Download here&lt;/a&gt;&lt;/strong&gt; - Get the latest release&lt;/p&gt; 
+&lt;p&gt;🌐 &lt;strong&gt;Website&lt;/strong&gt;: &lt;a href=&quot;https://closex.org/launchnext/&quot;&gt;closex.org/launchnext&lt;/a&gt;&lt;br /&gt; 📚 &lt;strong&gt;Docs&lt;/strong&gt;: &lt;a href=&quot;https://docs.closex.org/launchnext/&quot;&gt;docs.closex.org/launchnext&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;⭐ Consider starring &lt;a href=&quot;https://github.com/RoversX/LaunchNext&quot;&gt;LaunchNext&lt;/a&gt; and especially &lt;a href=&quot;https://github.com/ggkevinnnn/LaunchNow&quot;&gt;LaunchNow&lt;/a&gt;!&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th align=&quot;center&quot;&gt;&lt;/th&gt; 
+   &lt;th align=&quot;center&quot;&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/public/banner.webp&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/public/setting1.webp&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/public/setting2.webp&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/RoversX/LaunchNext/main/public/setting3.webp&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;MacOS Tahoe removed launchpad,and it&#39;s so hard to use, it&#39;s doesn&#39;t use your Bio GPU, please apple, at least give people an option to switch back. Before that, here is LaunchNext&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Built upon &lt;a href=&quot;https://github.com/ggkevinnnn/LaunchNow&quot;&gt;LaunchNow&lt;/a&gt; by ggkevinnnn - huge thanks to the original project!❤️&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;LaunchNow has chosen the GPL 3 license. LaunchNext follows the same licensing terms.&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;⚠️ &lt;strong&gt;If macOS blocks the app, run this in Terminal:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sudo xattr -r -d com.apple.quarantine /Applications/LaunchNext.app
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Why&lt;/strong&gt;: I can&#39;t afford Apple&#39;s developer certificate ($99/year), so macOS blocks unsigned apps. This command removes the quarantine flag to let it run. &lt;strong&gt;Only use this command on apps you trust.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h3&gt;What LaunchNext Delivers&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;One-click import from old system Launchpad&lt;/strong&gt; - directly reads your native Launchpad SQLite database (&lt;code&gt;/private$(getconf DARWIN_USER_DIR)com.apple.dock.launchpad/db/db&lt;/code&gt;) to perfectly recreate your existing folders, app positions, and layout&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Classic Launchpad experience&lt;/strong&gt; - works exactly like the beloved original interface&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Multi-language support&lt;/strong&gt; - full internationalization with English, Chinese, Japanese, French, Spanish, German, Russian, and more&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Hide icon labels&lt;/strong&gt; - clean, minimalist view when you don&#39;t need app names&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Custom icon sizes&lt;/strong&gt; - adjust icon dimensions to fit your preferences&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Smart folder management&lt;/strong&gt; - create and organize folders just like before&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Instant search and keyboard navigation&lt;/strong&gt; - find apps quickly&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;CLI / TUI support&lt;/strong&gt; - inspect and operate your layout from the terminal&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Hot Corner and native gesture support&lt;/strong&gt; - more ways to open LaunchNext quickly&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Drag apps directly to the Dock&lt;/strong&gt; - available in Next Engine + Core Animation&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Update tab with Markdown release notes&lt;/strong&gt; - richer in-app update experience&lt;/li&gt; 
+ &lt;li&gt;✅ &lt;strong&gt;Backup, controller, and voice support improvements&lt;/strong&gt; - better reliability and accessibility&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;What We Lost in macOS Tahoe&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;❌ No custom app organization&lt;/li&gt; 
+ &lt;li&gt;❌ No user-created folders&lt;/li&gt; 
+ &lt;li&gt;❌ No drag-and-drop customization&lt;/li&gt; 
+ &lt;li&gt;❌ No visual app management&lt;/li&gt; 
+ &lt;li&gt;❌ Forced categorical grouping&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Data Storage&lt;/h3&gt; 
+&lt;p&gt;Application data is safely stored in:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;~/Library/Application Support/LaunchNext/Data.store
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Native Launchpad Integration&lt;/h3&gt; 
+&lt;p&gt;Reads directly from the system Launchpad database:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;/private$(getconf DARWIN_USER_DIR)com.apple.dock.launchpad/db/db
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS 26 (Tahoe) or later&lt;/li&gt; 
+ &lt;li&gt;Apple Silicon or Intel processor&lt;/li&gt; 
+ &lt;li&gt;Xcode 26 (for building from source)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Build from Source&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Clone the repository&lt;/strong&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/RoversX/LaunchNext.git
+cd LaunchNext
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Open in Xcode&lt;/strong&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;open LaunchNext.xcodeproj
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Build and run&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Select your target device&lt;/li&gt; 
+   &lt;li&gt;Press &lt;code&gt;⌘+R&lt;/code&gt; to build and run&lt;/li&gt; 
+   &lt;li&gt;Or &lt;code&gt;⌘+B&lt;/code&gt; to build only&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Command Line Build&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Regular Build:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xcodebuild -project LaunchNext.xcodeproj -scheme LaunchNext -configuration Release
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Universal Binary Build (Intel + Apple Silicon):&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xcodebuild -project LaunchNext.xcodeproj -scheme LaunchNext -configuration Release ARCHS=&quot;arm64 x86_64&quot; ONLY_ACTIVE_ARCH=NO clean build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;h3&gt;Getting Started&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;First Launch&lt;/strong&gt;: LaunchNext automatically scans all installed applications&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Select&lt;/strong&gt;: Click to select apps, double-click to launch&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Search&lt;/strong&gt;: Type to instantly filter applications&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Organize&lt;/strong&gt;: Drag apps to create folders and custom layouts&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Automate&lt;/strong&gt;: Enable CLI in Settings if you want terminal workflows&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Import Your Launchpad&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open Settings (gear icon)&lt;/li&gt; 
+ &lt;li&gt;Click &lt;strong&gt;&quot;Import Launchpad&quot;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Your existing layout and folders are automatically imported&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Display Modes&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Compact&lt;/strong&gt;: Floating window with rounded corners&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Fullscreen&lt;/strong&gt;: Full-screen mode for maximum visibility&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Legacy Engine&lt;/strong&gt; and &lt;strong&gt;Next Engine + Core Animation&lt;/strong&gt; are available in Settings&lt;/li&gt; 
+ &lt;li&gt;LaunchNext can keep separate settings for fullscreen and compact&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Advanced Features&lt;/h2&gt; 
+&lt;h3&gt;Smart Background Interaction&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Intelligent click detection prevents accidental dismissal&lt;/li&gt; 
+ &lt;li&gt;Context-aware gesture handling&lt;/li&gt; 
+ &lt;li&gt;Search field protection&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Performance Optimization&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Icon Caching&lt;/strong&gt;: Intelligent image caching for smooth scrolling&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Lazy Loading&lt;/strong&gt;: Efficient memory usage&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Background Scanning&lt;/strong&gt;: Non-blocking app discovery&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Automation and Activation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;CLI / TUI&lt;/strong&gt;: Manage LaunchNext from the terminal&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hot Corner&lt;/strong&gt;: Open LaunchNext from a configurable screen corner&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Experimental native gestures&lt;/strong&gt;: Four-finger pinch / tap actions&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Dock drag&lt;/strong&gt;: Drag apps directly into the macOS Dock in Next Engine + Core Animation&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Update and Backup Tools&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Update tab&lt;/strong&gt;: Check for updates and read Markdown release notes inside Settings&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Backup tools&lt;/strong&gt;: Create and restore backups more safely&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Notification update&lt;/strong&gt;: Modern notification API support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Multi-Display Support&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Automatic screen detection&lt;/li&gt; 
+ &lt;li&gt;Per-display positioning&lt;/li&gt; 
+ &lt;li&gt;Seamless multi-monitor workflows&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Troubleshooting&lt;/h2&gt; 
+&lt;h3&gt;Common Issues&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Q: App won&#39;t start?&lt;/strong&gt; A: Ensure macOS 26.0+ and check system permissions.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Q: Which engine should I use?&lt;/strong&gt; A: &lt;code&gt;Next Engine + Core Animation&lt;/code&gt; is recommended for the best experience. &lt;code&gt;Legacy Engine&lt;/code&gt; is still available if you need the older compatibility path.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Q: Why doesn&#39;t the CLI command exist yet?&lt;/strong&gt; A: Enable the command line interface in Settings first. LaunchNext can install and remove the managed &lt;code&gt;launchnext&lt;/code&gt; command for you.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions! Please:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the repository&lt;/li&gt; 
+ &lt;li&gt;Create a feature branch (&lt;code&gt;git checkout -b feature/amazing-feature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Commit changes (&lt;code&gt;git commit -m &#39;Add amazing feature&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Push to branch (&lt;code&gt;git push origin feature/amazing-feature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Open a Pull Request&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Development Guidelines&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Follow Swift style conventions&lt;/li&gt; 
+ &lt;li&gt;Add meaningful comments for complex logic&lt;/li&gt; 
+ &lt;li&gt;Test on multiple macOS versions&lt;/li&gt; 
+ &lt;li&gt;Maintain backward compatibility&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;The Future of App Management&lt;/h2&gt; 
+&lt;p&gt;As Apple moves away from customizable interfaces, LaunchNext represents a push toward user control and personalization. I still hope Apple brings Launchpad back.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;LaunchNext&lt;/strong&gt; isn&#39;t just a Launchpad replacement—it&#39;s a statement that user choice matters.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;strong&gt;LaunchNext&lt;/strong&gt; - Reclaim Your App Launcher 🚀&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Built for macOS users who refuse to compromise on customization.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Development Tools&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Claude Code&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Cursor&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;OpenAI Codex CLI&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Perplexity&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Google&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Experimental gesture support is built on &lt;a href=&quot;https://github.com/Kyome22/OpenMultitouchSupport&quot;&gt;OpenMultitouchSupport&lt;/a&gt; and the fork by &lt;a href=&quot;https://github.com/KrishKrosh/OpenMultitouchSupport&quot;&gt;KrishKrosh&lt;/a&gt;.❤️&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/RoversX/LaunchNext/total&quot; alt=&quot;GitHub downloads&quot; /&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2d6a3ad335bdcfe34ef1b84b44bb67b459e01bae531eb2fc7f17f1e6ba93512b/RoversX/LaunchNext" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

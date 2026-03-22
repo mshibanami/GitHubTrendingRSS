@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub XSLT Weekly Trending</title>
+    <description>Weekly Trending of XSLT in GitHub</description>
+    <pubDate>Sun, 22 Mar 2026 01:52:56 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>briankavanaugh/APA-7th-Edition</title>
+      <link>https://github.com/briankavanaugh/APA-7th-Edition</link>
+      <description>&lt;p&gt;Microsoft Word XSD for generating APA 7th edition references&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;APA 7th Edition for Microsoft Word&lt;/h1&gt; 
+&lt;p&gt;Until (unless) Microsoft gets around to adding a template for the latest version, this is the APA 7th Edition XSLT modified by Mike Slagle, plus the two additional fixes posted in the comments found &lt;a href=&quot;https://answers.microsoft.com/en-us/msoffice/forum/all/apa-7th-edition-in-ms-word/486fc70e-b7c7-40df-89bb-f8fc07169d40&quot;&gt;here&lt;/a&gt;. This way, if other changes are needed, this file can be updated.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt;: These files are provided as a courtesy to those needing a better option for APA 7 than what Microsoft currently provides. I did not create the template. If there are issues, take the time to make the changes necessary (if possible; there are limitations to what can be done) and submit a pull request.&lt;/p&gt; 
+&lt;h2&gt;How to Use&lt;/h2&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;h4&gt;Manual Method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Windows Explorer, copy the file APASeventhEdition.xsl to C:\Users&amp;lt;your_user_name&amp;gt;\AppData\Roaming\Microsoft\Bibliography\Style&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Bat file method / Cmd method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word&lt;/li&gt; 
+ &lt;li&gt;Copy the APASeventhEdition.bat file and allow it to run.&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Note: The bat file simply runs the following line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl https://raw.githubusercontent.com/briankavanaugh/APA-7th-Edition/main/APASeventhEdition.xsl -o &quot;%appdata%\Microsoft\Bibliography\Style\APASeventhEdition.xsl&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;MacOS&lt;/h3&gt; 
+&lt;h4&gt;Manual method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Finder, copy the file APASeventhEdition.xsl to &lt;em&gt;two&lt;/em&gt; locations: 
+  &lt;ol&gt; 
+   &lt;li&gt;HD/Applications/Microsoft Word.app/Contents/Resources/Style/ (note that you will have to right-click and &quot;View Contents&quot; on the app icon at HD/Applications/Microsoft Word.app/)&lt;/li&gt; 
+   &lt;li&gt;HD/Users/&amp;lt;your_user_name&amp;gt;/Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft/Office/Style/&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Shell script method / terminal method&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;The file asks for elevated priveliges using &lt;code&gt;sudo&lt;/code&gt;. Only run files you trust and understand the contents of.&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word and ensure it is closed before proceeding&lt;/li&gt; 
+ &lt;li&gt;Copy the &lt;code&gt;APASeventhEdition.sh&lt;/code&gt; file to a local folder&lt;/li&gt; 
+ &lt;li&gt;Open the terminal (Search &quot;Terminal through spotlight)&lt;/li&gt; 
+ &lt;li&gt;Navigate to the folder containing the shell script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;cd /path/to/your/file&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Run the script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;bash APASeventhEdition.sh&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Enter password when prompted. The terminal stay blank while password is entered. Once entered, press enter&lt;/li&gt; 
+   &lt;li&gt;The files should be placed in their corresponding folders&lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Optionally:&lt;/em&gt; run the script with the &lt;code&gt;--persist&lt;/code&gt; flag to create a LaunchDaemon. The LaunchDaemon will copy the files into their respective folders at reboot to combat issue where Microsoft AutoUpdater removes the files: &lt;code&gt;bash APASeventhEdition.sh --persist&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Notes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The bash file will use the &lt;code&gt;curl&lt;/code&gt; command to retrieve the file from github at the specified link and place it in &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Then it will copy the stylesheet into the two specified folders.&lt;/li&gt; 
+ &lt;li&gt;If the &lt;code&gt;--persist&lt;/code&gt; flag is used a LaunchDaemon is created. This will copy the file from the &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt; folder to the two Word-folders every time the computer is rebooted.&lt;/li&gt; 
+ &lt;li&gt;Be aware, that the LaunchDaemon is run at boot and has root privileges to avoid user interaction. &lt;strong&gt;Always read the script before running it.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;I do not have a Mac to test this on. The script was run successfully on a Mac with Office installed.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Disclaimer&lt;/h2&gt; 
+&lt;p&gt;(same as Mike&#39;s) I am only providing this file and the necessary location for it for education purposes. If any installations of MS Office are corrupted as a result of using this file, I am not responsible to address or repair any issues.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/4ef968959688934fb822469806fa7184c89b754df3d667629806c996fb3b650a/briankavanaugh/APA-7th-Edition" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

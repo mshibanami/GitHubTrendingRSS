@@ -1,0 +1,1716 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Perl Daily Trending</title>
+    <description>Daily Trending of Perl in GitHub</description>
+    <pubDate>Sun, 22 Mar 2026 01:40:43 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>holzschu/a-shell</title>
+      <link>https://github.com/holzschu/a-shell</link>
+      <description>&lt;p&gt;A terminal for iOS, with multiple windows&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;a-shell: A terminal for iOS, with multiple windows&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Platform-iOS%2014.0+-lightgrey.svg?sanitize=true&quot; alt=&quot;Platform: iOS&quot; /&gt; &lt;a href=&quot;https://twitter.com/a_Shell_iOS&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Twitter-@a__Shell__iOS-blue.svg?style=flat&quot; alt=&quot;Twitter&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/cvYnZm69Gy&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/935519150305050644?color=5865f2&amp;amp;label=Discord&amp;amp;style=flat&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;The goal in this project is to provide a simple Unix-like terminal on iOS. It uses &lt;a href=&quot;https://github.com/holzschu/ios_system/&quot;&gt;ios_system&lt;/a&gt; for command interpretation, and includes all commands from the &lt;a href=&quot;https://github.com/holzschu/ios_system/&quot;&gt;ios_system&lt;/a&gt; ecosystem (nslookup, whois, python3, lua, pdflatex, lualatex...)&lt;/p&gt; 
+&lt;p&gt;The project uses iPadOS 13 ability to create and manage multiple windows. Each window has its own context, appearance, command history and current directory. &lt;code&gt;newWindow&lt;/code&gt; opens a new window, &lt;code&gt;exit&lt;/code&gt; closes the current window.&lt;/p&gt; 
+&lt;p&gt;For help, type &lt;code&gt;help&lt;/code&gt; in the command line. &lt;code&gt;help -l&lt;/code&gt; lists all the available commands. &lt;code&gt;help -l | grep command&lt;/code&gt; will tell you if your favorite command is already installed.&lt;/p&gt; 
+&lt;p&gt;You can change the appearance of a-Shell using &lt;code&gt;config&lt;/code&gt;. It lets you change the font, the font size, the background color, the text color and the cursor color and shape. Each window can have its own appearance. &lt;code&gt;config -p&lt;/code&gt; will make the settings for the current window permanent, that is used for all future windows. With &lt;code&gt;config -t&lt;/code&gt; you can also configure the toolbar.&lt;/p&gt; 
+&lt;p&gt;When opening a new window, a-Shell executes the file &lt;code&gt;.profile&lt;/code&gt; if it exists. You can use this mechanism to customize further, e.g. have custom environment variables or cleanup temporary files.&lt;/p&gt; 
+&lt;p&gt;For more tips on how to use a-Shell, see &lt;a href=&quot;https://bianshen00009.gitbook.io/a-guide-to-a-shell/&quot;&gt;the document&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;AppStore&lt;/h2&gt; 
+&lt;p&gt;a-Shell is now &lt;a href=&quot;https://holzschu.github.io/a-Shell_iOS/&quot;&gt;available on the AppStore&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;How to compile it?&lt;/h2&gt; 
+&lt;p&gt;If you want to compile the project yourself, you will need the following steps:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;download the entire project and its sub-modules: &lt;code&gt;git submodule update --init --recursive&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;download all the xcFrameworks: &lt;code&gt;downloadFrameworks.sh&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;this will download the standard Apple frameworks (in &lt;code&gt;xcfs/.build/artefacts/xcfs&lt;/code&gt;, with checksum control).&lt;/li&gt; 
+   &lt;li&gt;There are too many Python frameworks (more than 2000) for automatic download. You can either remove them from the &quot;Embed&quot; step in the project, or compile them: 
+    &lt;ul&gt; 
+     &lt;li&gt;You&#39;ll need the Xcode command line tools, if you don&#39;t already have them: &lt;code&gt;sudo xcode-select --install&lt;/code&gt;&lt;/li&gt; 
+     &lt;li&gt;You also need the OpenSSL libraries (libssl and libcrypto), XQuartz (freetype), and Node.js (npm) for macOS (we provide the versions for iOS and simulator).&lt;/li&gt; 
+     &lt;li&gt;change directory to &lt;code&gt;cpython&lt;/code&gt;: &lt;code&gt;cd cpython&lt;/code&gt;&lt;/li&gt; 
+     &lt;li&gt;build Python 3.11 and all the associated libraries / frameworks: &lt;code&gt;sh ./downloadAndCompile.sh&lt;/code&gt; (this step takes several hours on a 2GHz i5 MBP, YMMV).&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;a-Shell now runs on the devices. a-Shell mini can run on the devices and the simulator.&lt;/p&gt; 
+&lt;p&gt;Because Python 3.x uses functions that are only available on the iOS 14 SDK, I&#39;ve set the minimum iOS version to 14.0. It also reduces the size of the binaries, so &lt;code&gt;ios_system&lt;/code&gt; and the other frameworks have the same settings. If you need to run it on an iOS 13 device, you&#39;ll have to recompile most frameworks.&lt;/p&gt; 
+&lt;h2&gt;Home directory&lt;/h2&gt; 
+&lt;p&gt;In iOS, you cannot write in the &lt;code&gt;~&lt;/code&gt; directory, only in &lt;code&gt;~/Documents/&lt;/code&gt;, &lt;code&gt;~/Library/&lt;/code&gt; and &lt;code&gt;~/tmp&lt;/code&gt;. Most Unix programs assume the configuration files are in &lt;code&gt;$HOME&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;So a-Shell changes several environment variables so that they point to &lt;code&gt;~/Documents&lt;/code&gt;. Type &lt;code&gt;env&lt;/code&gt; to see them.&lt;/p&gt; 
+&lt;p&gt;Most configuration files (Python packages, TeX files, Clang SDK...) are in &lt;code&gt;~/Library&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Sandbox and Bookmarks&lt;/h2&gt; 
+&lt;p&gt;a-Shell uses iOS 13 ability to access directories in other Apps sandbox. Type &lt;code&gt;pickFolder&lt;/code&gt; to access a directory inside another App. Once you have selected a directory, you can do pretty much anything you want here, so be careful.&lt;/p&gt; 
+&lt;p&gt;All the directories you access with &lt;code&gt;pickFolder&lt;/code&gt; are bookmarked, so you can return to them later without &lt;code&gt;pickFolder&lt;/code&gt;. You can also bookmark the current directory with &lt;code&gt;bookmark&lt;/code&gt;. &lt;code&gt;showmarks&lt;/code&gt; will list all the existing bookmarks, &lt;code&gt;jump mark&lt;/code&gt; and &lt;code&gt;cd ~mark&lt;/code&gt; will change the current directory to this specific bookmark, &lt;code&gt;renamemark&lt;/code&gt; will let you change the name of a specific bookmark and &lt;code&gt;deletemark&lt;/code&gt; will delete a bookmark.&lt;/p&gt; 
+&lt;p&gt;A user-configurable option in Settings lets you use the commands &lt;code&gt;s&lt;/code&gt;, &lt;code&gt;g&lt;/code&gt;, &lt;code&gt;l&lt;/code&gt;, &lt;code&gt;r&lt;/code&gt; and &lt;code&gt;d&lt;/code&gt; instead or as well.&lt;/p&gt; 
+&lt;p&gt;If you are lost, &lt;code&gt;cd&lt;/code&gt; will always bring you back to &lt;code&gt;~/Documents/&lt;/code&gt;. &lt;code&gt;cd -&lt;/code&gt; will change to the previous directory.&lt;/p&gt; 
+&lt;h2&gt;Shortcuts&lt;/h2&gt; 
+&lt;p&gt;a-Shell is compatible with Apple Shortcuts, giving users full control of the Shell. You can write complex Shortcuts to download, process and release files using a-Shell commands. There are three shortcuts:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;Execute Command&lt;/code&gt;, which takes a list of commands and executes them in order. The input can also be a file or a text node, in which case the commands inside the node are executed.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Put File&lt;/code&gt; and &lt;code&gt;Get File&lt;/code&gt; are used to transfer files to and from a-Shell.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Shortcuts can be executed either &quot;In Extension&quot; or &quot;In App&quot;. &quot;In Extension&quot; means the shortcut runs in a lightweight version of the App, without no graphical user interface. It is good for light commands that do not require configuration files or system libraries (mkdir, nslookup, whois, touch, cat, echo...). &quot;In App&quot; opens the main application to execute the shortcut. It has access to all the commands, but will take longer. Once a shortcut has opened the App, you can return to the Shortcuts app by calling the command &lt;code&gt;open shortcuts://&lt;/code&gt;. The default behaviour is to try to run the commands &quot;in Extension&quot; as much as possible, based on the content of the commands. You can force a specific shortcut to run &quot;in App&quot; or &quot;in Extension&quot;, with the warning that it won&#39;t always work.&lt;/p&gt; 
+&lt;p&gt;Both kind of shortcuts run by default in the same specific directory, &lt;code&gt;$SHORTCUTS&lt;/code&gt; or &lt;code&gt;~shortcuts&lt;/code&gt;. Of course, since you can run the commands &lt;code&gt;cd&lt;/code&gt; and &lt;code&gt;jump&lt;/code&gt; in a shortcut, you can pretty much go anywhere.&lt;/p&gt; 
+&lt;h2&gt;Programming / add more commands:&lt;/h2&gt; 
+&lt;p&gt;a-Shell has several programming languages installed: Python, Lua, JS, C, C++ and TeX.&lt;/p&gt; 
+&lt;p&gt;For C and C++, you compile your programs with &lt;code&gt;clang program.c&lt;/code&gt; and it produces a webAssembly file. You can then execute it with either &lt;code&gt;wasm a.out&lt;/code&gt; or &lt;code&gt;a.out&lt;/code&gt;. You can also link multiple object files together, make a static library with &lt;code&gt;ar&lt;/code&gt;, etc. Once you are satisfied with your program, if you move it to a directory in the &lt;code&gt;$PATH&lt;/code&gt; (e.g. &lt;code&gt;~/Documents/bin&lt;/code&gt;), it will be executed if you type &lt;code&gt;program&lt;/code&gt; on the command line.&lt;/p&gt; 
+&lt;p&gt;You can also cross-compile programs on your main computer using our specific &lt;a href=&quot;https://github.com/holzschu/wasi-sdk&quot;&gt;WASI-sdk&lt;/a&gt;, and transfer the WebAssembly file to your iPad or iPhone.&lt;/p&gt; 
+&lt;p&gt;Precompiled WebAssembly commands specific for a-Shell are available here: &lt;a href=&quot;https://github.com/holzschu/a-Shell-commands&quot;&gt;https://github.com/holzschu/a-Shell-commands&lt;/a&gt; These include &lt;code&gt;zip&lt;/code&gt;, &lt;code&gt;unzip&lt;/code&gt;, &lt;code&gt;xz&lt;/code&gt;, &lt;code&gt;ffmpeg&lt;/code&gt;... You install them on your iPad using the &lt;code&gt;pkg&lt;/code&gt; command: &lt;code&gt;pkg install zip&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;We have the limitations of WebAssembly: no sockets, no forks (we do have interactive user input, now). Piping input from other commands with &lt;code&gt;command | wasm program.wasm&lt;/code&gt; works fine.&lt;/p&gt; 
+&lt;p&gt;For Python, you can install more packages with &lt;code&gt;pip install packagename&lt;/code&gt;, but only if they are pure Python. The C compiler is not yet able to produce dynamic libraries that could be used by Python.&lt;/p&gt; 
+&lt;p&gt;TeX files are not installed by default. Type any TeX command and the system will prompt you to download them. Same with LuaTeX files.&lt;/p&gt; 
+&lt;h2&gt;VoiceOver&lt;/h2&gt; 
+&lt;p&gt;If you enable VoiceOver in Settings, a-Shell will work with VoiceOver: reading commands as you type them, reading the result, letting you read the screen with your finger...&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/3be835ff099e7828c079f3b49be8ae6dd871cec703b941cd7c5be2d39f9d96d8/holzschu/a-shell" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>brendangregg/FlameGraph</title>
+      <link>https://github.com/brendangregg/FlameGraph</link>
+      <description>&lt;p&gt;Stack trace visualizer&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Flame Graphs visualize profiled code&lt;/h1&gt; 
+&lt;p&gt;Main Website: &lt;a href=&quot;http://www.brendangregg.com/flamegraphs.html&quot;&gt;http://www.brendangregg.com/flamegraphs.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Example (click to zoom):&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg&quot;&gt;&lt;img src=&quot;http://www.brendangregg.com/FlameGraphs/cpu-bash-flamegraph.svg?sanitize=true&quot; alt=&quot;Example&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Click a box to zoom the Flame Graph to this stack frame only. To search and highlight all stack frames matching a regular expression, click the &lt;em&gt;search&lt;/em&gt; button in the upper right corner or press Ctrl-F. By default, search is case sensitive, but this can be toggled by pressing Ctrl-I or by clicking the &lt;em&gt;ic&lt;/em&gt; button in the upper right corner.&lt;/p&gt; 
+&lt;p&gt;Other sites:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The Flame Graph article in ACMQ and CACM: &lt;a href=&quot;http://queue.acm.org/detail.cfm?id=2927301&quot;&gt;http://queue.acm.org/detail.cfm?id=2927301&lt;/a&gt; &lt;a href=&quot;http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract&quot;&gt;http://cacm.acm.org/magazines/2016/6/202665-the-flame-graph/abstract&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CPU profiling using Linux perf_events, DTrace, SystemTap, or ktap: &lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html&quot;&gt;http://www.brendangregg.com/FlameGraphs/cpuflamegraphs.html&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CPU profiling using XCode Instruments: &lt;a href=&quot;http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/&quot;&gt;http://schani.wordpress.com/2012/11/16/flame-graphs-for-instruments/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CPU profiling using Xperf.exe: &lt;a href=&quot;http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/&quot;&gt;http://randomascii.wordpress.com/2013/03/26/summarizing-xperf-cpu-usage-with-flame-graphs/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Memory profiling: &lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html&quot;&gt;http://www.brendangregg.com/FlameGraphs/memoryflamegraphs.html&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Other examples, updates, and news: &lt;a href=&quot;http://www.brendangregg.com/flamegraphs.html#Updates&quot;&gt;http://www.brendangregg.com/flamegraphs.html#Updates&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Flame graphs can be created in three steps:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Capture stacks&lt;/li&gt; 
+ &lt;li&gt;Fold stacks&lt;/li&gt; 
+ &lt;li&gt;flamegraph.pl&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h1&gt;1. Capture stacks&lt;/h1&gt; 
+&lt;p&gt;Stack samples can be captured using Linux perf_events, FreeBSD pmcstat (hwpmc), DTrace, SystemTap, and many other profilers. See the stackcollapse-* converters.&lt;/p&gt; 
+&lt;h3&gt;Linux perf_events&lt;/h3&gt; 
+&lt;p&gt;Using Linux perf_events (aka &quot;perf&quot;) to capture 60 seconds of 99 Hertz stack samples, both user- and kernel-level stacks, all processes:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# perf record -F 99 -a -g -- sleep 60
+# perf script &amp;gt; out.perf
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Now only capturing PID 181:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# perf record -F 99 -p 181 -g -- sleep 60
+# perf script &amp;gt; out.perf
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;DTrace&lt;/h3&gt; 
+&lt;p&gt;Using DTrace to capture 60 seconds of kernel stacks at 997 Hertz:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# dtrace -x stackframes=100 -n &#39;profile-997 /arg0/ { @[stack()] = count(); } tick-60s { exit(0); }&#39; -o out.kern_stacks
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Using DTrace to capture 60 seconds of user-level stacks for PID 12345 at 97 Hertz:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# dtrace -x ustackframes=100 -n &#39;profile-97 /pid == 12345 &amp;amp;&amp;amp; arg1/ { @[ustack()] = count(); } tick-60s { exit(0); }&#39; -o out.user_stacks
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;60 seconds of user-level stacks, including time spent in-kernel, for PID 12345 at 97 Hertz:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# dtrace -x ustackframes=100 -n &#39;profile-97 /pid == 12345/ { @[ustack()] = count(); } tick-60s { exit(0); }&#39; -o out.user_stacks
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Switch &lt;code&gt;ustack()&lt;/code&gt; for &lt;code&gt;jstack()&lt;/code&gt; if the application has a ustack helper to include translated frames (eg, node.js frames; see: &lt;a href=&quot;http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/&quot;&gt;http://dtrace.org/blogs/dap/2012/01/05/where-does-your-node-program-spend-its-time/&lt;/a&gt;). The rate for user-level stack collection is deliberately slower than kernel, which is especially important when using &lt;code&gt;jstack()&lt;/code&gt; as it performs additional work to translate frames.&lt;/p&gt; 
+&lt;h1&gt;2. Fold stacks&lt;/h1&gt; 
+&lt;p&gt;Use the stackcollapse programs to fold stack samples into single lines. The programs provided are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse.pl&lt;/code&gt;: for DTrace stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-perf.pl&lt;/code&gt;: for Linux perf_events &quot;perf script&quot; output&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-pmc.pl&lt;/code&gt;: for FreeBSD pmcstat -G stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-stap.pl&lt;/code&gt;: for SystemTap stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-instruments.pl&lt;/code&gt;: for XCode Instruments&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-vtune.pl&lt;/code&gt;: for Intel VTune profiles&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-ljp.awk&lt;/code&gt;: for Lightweight Java Profiler&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-jstack.pl&lt;/code&gt;: for Java jstack(1) output&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-gdb.pl&lt;/code&gt;: for gdb(1) stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-go.pl&lt;/code&gt;: for Golang pprof stacks&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-vsprof.pl&lt;/code&gt;: for Microsoft Visual Studio profiles&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;stackcollapse-wcp.pl&lt;/code&gt;: for wallClockProfiler output&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Usage example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;For perf_events:
+$ ./stackcollapse-perf.pl out.perf &amp;gt; out.folded
+
+For DTrace:
+$ ./stackcollapse.pl out.kern_stacks &amp;gt; out.kern_folded
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The output looks like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;unix`_sys_sysenter_post_swapgs 1401
+unix`_sys_sysenter_post_swapgs;genunix`close 5
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf 85
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;c2audit`audit_closef 26
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;c2audit`audit_setf 5
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_getstate 6
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`audit_unfalloc 2
+unix`_sys_sysenter_post_swapgs;genunix`close;genunix`closeandsetf;genunix`closef 48
+[...]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;3. flamegraph.pl&lt;/h1&gt; 
+&lt;p&gt;Use flamegraph.pl to render a SVG.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ ./flamegraph.pl out.kern_folded &amp;gt; kernel.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;An advantage of having the folded input file (and why this is separate to flamegraph.pl) is that you can use grep for functions of interest. Eg:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ grep cpuid out.kern_folded | ./flamegraph.pl &amp;gt; cpuid.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Provided Examples&lt;/h1&gt; 
+&lt;h3&gt;Linux perf_events&lt;/h3&gt; 
+&lt;p&gt;An example output from Linux &quot;perf script&quot; is included, gzip&#39;d, as example-perf-stacks.txt.gz. The resulting flame graph is example-perf.svg:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/example-perf.svg&quot;&gt;&lt;img src=&quot;http://www.brendangregg.com/FlameGraphs/example-perf.svg?sanitize=true&quot; alt=&quot;Example&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can create this using:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ gunzip -c example-perf-stacks.txt.gz | ./stackcollapse-perf.pl --all | ./flamegraph.pl --color=java --hash &amp;gt; example-perf.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This shows my typical workflow: I&#39;ll gzip profiles on the target, then copy them to my laptop for analysis. Since I have hundreds of profiles, I leave them gzip&#39;d!&lt;/p&gt; 
+&lt;p&gt;Since this profile included Java, I used the flamegraph.pl --color=java palette. I&#39;ve also used stackcollapse-perf.pl --all, which includes all annotations that help flamegraph.pl use separate colors for kernel and user level code. The resulting flame graph uses: green == Java, yellow == C++, red == user-mode native, orange == kernel.&lt;/p&gt; 
+&lt;p&gt;This profile was from an analysis of vert.x performance. The benchmark client, wrk, is also visible in the flame graph.&lt;/p&gt; 
+&lt;h3&gt;DTrace&lt;/h3&gt; 
+&lt;p&gt;An example output from DTrace is also included, example-dtrace-stacks.txt, and the resulting flame graph, example-dtrace.svg:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.brendangregg.com/FlameGraphs/example-dtrace.svg&quot;&gt;&lt;img src=&quot;http://www.brendangregg.com/FlameGraphs/example-dtrace.svg?sanitize=true&quot; alt=&quot;Example&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can generate this using:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ ./stackcollapse.pl example-stacks.txt | ./flamegraph.pl &amp;gt; example.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This was from a particular performance investigation: the Flame Graph identified that CPU time was spent in the lofs module, and quantified that time.&lt;/p&gt; 
+&lt;h1&gt;Options&lt;/h1&gt; 
+&lt;p&gt;See the USAGE message (--help) for options:&lt;/p&gt; 
+&lt;p&gt;USAGE: ./flamegraph.pl [options] infile &amp;gt; outfile.svg&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;--title TEXT     # change title text
+--subtitle TEXT  # second level title (optional)
+--width NUM      # width of image (default 1200)
+--height NUM     # height of each frame (default 16)
+--minwidth NUM   # omit smaller functions. In pixels or use &quot;%&quot; for 
+                 # percentage of time (default 0.1 pixels)
+--fonttype FONT  # font type (default &quot;Verdana&quot;)
+--fontsize NUM   # font size (default 12)
+--countname TEXT # count type label (default &quot;samples&quot;)
+--nametype TEXT  # name type label (default &quot;Function:&quot;)
+--colors PALETTE # set color palette. choices are: hot (default), mem,
+                 # io, wakeup, chain, java, js, perl, red, green, blue,
+                 # aqua, yellow, purple, orange
+--bgcolors COLOR # set background colors. gradient choices are yellow
+                 # (default), blue, green, grey; flat colors use &quot;#rrggbb&quot;
+--hash           # colors are keyed by function name hash
+--cp             # use consistent palette (palette.map)
+--reverse        # generate stack-reversed flame graph
+--inverted       # icicle graph
+--flamechart     # produce a flame chart (sort by time, do not merge stacks)
+--negate         # switch differential hues (blue&amp;lt;-&amp;gt;red)
+--notes TEXT     # add notes comment in SVG (for debugging)
+--help           # this message
+
+eg,
+./flamegraph.pl --title=&quot;Flame Graph: malloc()&quot; trace.txt &amp;gt; graph.svg
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;As suggested in the example, flame graphs can process traces of any event, such as malloc()s, provided stack traces are gathered.&lt;/p&gt; 
+&lt;h1&gt;Consistent Palette&lt;/h1&gt; 
+&lt;p&gt;If you use the &lt;code&gt;--cp&lt;/code&gt; option, it will use the $colors selection and randomly generate the palette like normal. Any future flamegraphs created using the &lt;code&gt;--cp&lt;/code&gt; option will use the same palette map. Any new symbols from future flamegraphs will have their colors randomly generated using the $colors selection.&lt;/p&gt; 
+&lt;p&gt;If you don&#39;t like the palette, just delete the palette.map file.&lt;/p&gt; 
+&lt;p&gt;This allows your to change your colorscheme between flamegraphs to make the differences REALLY stand out.&lt;/p&gt; 
+&lt;p&gt;Example:&lt;/p&gt; 
+&lt;p&gt;Say we have 2 captures, one with a problem, and one when it was working (whatever &quot;it&quot; is):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cat working.folded | ./flamegraph.pl --cp &amp;gt; working.svg
+# this generates a palette.map, as per the normal random generated look.
+
+cat broken.folded | ./flamegraph.pl --cp --colors mem &amp;gt; broken.svg
+# this svg will use the same palette.map for the same events, but a very
+# different colorscheme for any new events.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Take a look at the demo directory for an example:&lt;/p&gt; 
+&lt;p&gt;palette-example-working.svg&lt;br /&gt; palette-example-broken.svg&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8f08af2fca03a6e51ad8bd651d1da9b3a1dffcd7cf183e9a43fa1f0454b61849/brendangregg/FlameGraph" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>linux-test-project/lcov</title>
+      <link>https://github.com/linux-test-project/lcov</link>
+      <description>&lt;p&gt;LCOV&lt;/p&gt;&lt;hr&gt;&lt;hr /&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;README file for the LTP GCOV extension (LCOV) -&lt;/li&gt; 
+ &lt;li&gt;Last changes: 2026-02-10&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Description&lt;/h2&gt; 
+&lt;p&gt;LCOV is a tool to manipulate and display information about what parts of a program are actually executed (i.e. &quot;covered&quot;) while running a particular test case or set of testcases. LCOV consists of a set of Perl scripts which build on the text output of various coverage tools - e.g., gcov, llvm-cov, Coverage.py, Cobertura, Devel::Cover, Jacoco, etc. - to implement the following enhanced functionality:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;* HTML based output: coverage rates are indicated using bar
+  graphs and specific colors in a hyperlinked coverage report, intended
+  to enable the user to quickly diagnose and address coverage issues.
+
+* Support for large projects: overview pages allow quick browsing of
+  coverage data by providing a hierarchical directory structure
+  view, a flat list of all source files in the project, or a three-level
+  detail view: directory, file and source code view.
+
+* Support for multiple languages - including C/C++, Perl, and Python.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;LCOV was initially designed to support Linux kernel coverage measurements, but works as well for coverage measurements on standard user space applications.&lt;/p&gt; 
+&lt;p&gt;LCOV supports differential coverage, as well as date- and owner-binning. See: &lt;a href=&quot;https://arxiv.org/abs/2008.07947&quot;&gt;https://arxiv.org/abs/2008.07947&lt;/a&gt; or &lt;a href=&quot;https://ieeexplore.ieee.org/document/9438597&quot;&gt;https://ieeexplore.ieee.org/document/9438597&lt;/a&gt; for a detailed explanation of the concepts and several possible use models.&lt;/p&gt; 
+&lt;p&gt;A video presentation of the basic ideas can be found at &lt;a href=&quot;http://doi.org/10.5281/zenodo.4653252&quot;&gt;http://doi.org/10.5281/zenodo.4653252&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;In addition, several other features and capabilities are available. See section 6, below, for a brief description - and also see the man pages and the test cases.&lt;/p&gt; 
+&lt;h2&gt;Further README contents&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Included files&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Installing LCOV&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Dependencies&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;An example of how to access kernel coverage data&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;An example of how to access coverage data for a user space program&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;LCOV features&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Questions and Comments&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Filing a new issue&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Important files&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;README - This README file CHANGES - List of changes between releases bin/lcov - Tool for capturing LCOV coverage data bin/genhtml - Tool for creating HTML output from LCOV data bin/gendesc - Tool for creating description files as used by genhtml bin/perl2lcov - Tool to translate Perl Devel::Cover data to lcov format bin/llvm2lcov - Tool to translate LLVM &#39;llvm-cov&#39; JSON data to LCOV format bin/py2lcov - Tool to translate Python Coverage.py to lcov format bin/xml2lcov - Tool to translate Cobertura-like XML coverage data to lcov format bin/geninfo - Internal tool (creates LCOV data files) bin/genpng - Internal tool (creates png overviews of source files) lcovrc - LCOV configuration file man - Directory containing man pages for included tools example - Directory containing an example to demonstrate LCOV tests - Directory containing lcov regression tests Makefile - Makefile providing &#39;install&#39; and &#39;uninstall&#39; targets&lt;/p&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Installing LCOV&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;The LCOV package is available as either RPM or tarball from:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/linux-test-project/lcov/releases&quot;&gt;https://github.com/linux-test-project/lcov/releases&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;To install the tarball, unpack it to a directory and run:&lt;/p&gt; 
+&lt;p&gt;make install&lt;/p&gt; 
+&lt;p&gt;Use Git for the most recent (but possibly unstable) version:&lt;/p&gt; 
+&lt;p&gt;git clone &lt;a href=&quot;https://github.com/linux-test-project/lcov.git&quot;&gt;https://github.com/linux-test-project/lcov.git&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Change to the resulting lcov directory and type:&lt;/p&gt; 
+&lt;p&gt;make install&lt;/p&gt; 
+&lt;p&gt;The default install location is /usr/local. Note that you may need to have superuser permissions to write into system directories.&lt;/p&gt; 
+&lt;p&gt;To install in a different location - for example, your home directory, run:&lt;/p&gt; 
+&lt;p&gt;make PREFIX=$HOME/my_lcov install&lt;/p&gt; 
+&lt;p&gt;your PREFIX should be an absolute path.&lt;/p&gt; 
+&lt;p&gt;To run the LCOV regression test suite on your installation:&lt;/p&gt; 
+&lt;p&gt;$ cp -r $LCOV_HOME/share/test path/to/myTestDir $ cd path/to/myTestDir $ make [COVERAGE=1]&lt;/p&gt; 
+&lt;p&gt;If desired, you can collect coverage data for the LCOV module by setting the COVERAGE makefile variable. Note that the Devel::Cover package must be installed if COVERAGE is enabled or if you want to use the perl2lcov utility. To view the collected coverage information, point your browser to .../lcov_coverage/index.html after running the tests.&lt;/p&gt; 
+&lt;p&gt;Note that the testcases are primarily intended to test LCOV functionality and not to be easily readable tutorial examples.&lt;/p&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt;Dependencies:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;The lcov module is implemented primarily in Perl - and requires both a moderately up-to-date Perl installation and multiple Perl packages.&lt;/p&gt; 
+&lt;p&gt;These perl packages include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Capture::Tiny&lt;/li&gt; 
+ &lt;li&gt;DateTime&lt;/li&gt; 
+ &lt;li&gt;Devel::Cover&lt;/li&gt; 
+ &lt;li&gt;Digest::MD5&lt;/li&gt; 
+ &lt;li&gt;File::Spec&lt;/li&gt; 
+ &lt;li&gt;at least one flavor of JSON module. In order of performance/preference: 
+  &lt;ul&gt; 
+   &lt;li&gt;JSON::XS&lt;/li&gt; 
+   &lt;li&gt;Cpanel::JSON::XS&lt;/li&gt; 
+   &lt;li&gt;JSON::PP&lt;/li&gt; 
+   &lt;li&gt;JSON&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Memory::Process&lt;/li&gt; 
+ &lt;li&gt;Module::Load::Conditional&lt;/li&gt; 
+ &lt;li&gt;Scalar::Util&lt;/li&gt; 
+ &lt;li&gt;Time::HiRes&lt;/li&gt; 
+ &lt;li&gt;TimeDate&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If your system is missing any of these, then you may be able to install them via:&lt;/p&gt; 
+&lt;p&gt;$ perl -MCPAN -e &#39;install(
+ &lt;packagename&gt;
+  )&#39;
+ &lt;/packagename&gt;&lt;/p&gt; 
+&lt;p&gt;You will very likely need superuser access to be able to install Perl modules.&lt;/p&gt; 
+&lt;p&gt;Some of the applications provided with the lcov module are written in Python - and may require additional Python packages. In particular, &#39;xlsxwriter&#39; is required in order to generate any of the spreadsheet reports.&lt;/p&gt; 
+&lt;p&gt;To measure Python code coverage, users will need Python packages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Coverage.py&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In addition, contributors will need:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;perltidy&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Your platform may support other mechanisms to install and/or update required packages.&lt;/p&gt; 
+&lt;ol start=&quot;4&quot;&gt; 
+ &lt;li&gt;An example of how to access Linux kernel coverage data&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;Requirements: Follow the Linux kernel coverage setup instructions at:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://docs.kernel.org/dev-tools/gcov.html&quot;&gt;https://docs.kernel.org/dev-tools/gcov.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;As root, do the following:&lt;/p&gt; 
+&lt;p&gt;a) Resetting counters&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; lcov --zerocounters
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;b) Capturing the current coverage state to a file&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; lcov --capture --output-file kernel.info
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;c) Getting HTML output&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; genhtml kernel.info
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Point the web browser of your choice to the resulting index.html file.&lt;/p&gt; 
+&lt;ol start=&quot;5&quot;&gt; 
+ &lt;li&gt;An example of how to access coverage data for a user space program&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;a) Capture current coverage state to a file:&lt;/p&gt; 
+&lt;p&gt;i) C/C++ code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  Compile your program using the &#39;--coverage&#39; GCC or LLVM
+  option. During linking, make sure to specify &#39;--coverage&#39;:
+
+    $ gcc -o myTest --coverage simple.c
+      OR
+    $ gcc -c file1.c file2.c ... --coverage
+    $ gcc -o myOtherTest --coverage file1.o file2.o ....
+
+  Alternately, LLVM users can use the &#39;profdata path&#39; (rather than the
+  &#39;gcov path&#39;) to collect coverage data from their C/C++ code.  See
+  https://github.com/linux-test-project/lcov/discussions/234 for more
+  information.
+
+   Run your testcase at least once:
+
+    $ path/to/my/testcase/myTest
+
+   Capture the current coverage state to a file:
+
+     $ lcov --directory path/to/my/testcase --capture --output-file app.info
+
+   (LLVM users using the &#39;profdata path&#39; will use a somewhat different
+   command for this step - see the discussion referenced above.)
+
+   If you want to collect Modified Condition / Decision Coverage (MD/DC)
+   date, then:
+     - you must use gcc/14.2 (or newer), or LLVM/18 (or newer)
+     - your GCC compile- and link command line must include flag
+       &#39;-fcondition-coverage&#39;.
+     - LLVM users must use the &#39;profdata path&#39; for coverage data collection,
+       and your compile command line must include
+       &#39;-fprofile-inst-generate -fcoverage-mapping -fcoverage-mcdc&#39;.
+       See the above referenced discussion for details.
+     - your lcov and genhtml command line must include flag
+       &#39;--mcdc-coverage&#39;
+   See the &#39;--mcdc-coverage&#39; section in the genhtml and geninfo man pages.
+
+   Note that runtime coverage data exists only after the application has
+   been started and stopped at least once. Otherwise, no data will be found
+   and lcov will abort with an error mentioning that there are no
+   data/.gcda files.
+
+   The coverage runtime emits data (the .gcda files) in an atexit
+   callback.  If your application exits abnormally or crashes before
+   the callback is executed, then no coverage data will be available.
+
+   For further information on the gcc profiling mechanism, please
+   consult the gcov man page.
+
+  See &#39;man lcov&#39; for more information - especially if your build/test
+  environment is not trivial.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;ii) Python code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; - install the Coverage.py module
+
+ - execute your testcase to produce python coverage data:
+
+     $ COVERAGE_FILE=./pycov.dat coverage run --append --branch \
+         myPythonScript [my script args]
+
+ - translate Python coverage data to LCOV format:
+
+     $ py2lcov -o pycov.info [py2lcov_options] pycov.dat [x.dat]+
+
+ See &#39;py2lcov --help&#39; and the Coverage.py documentation for more
+ information.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;iii) Perl code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; - install the Devel::Cover module
+
+ - execute your testcase to produce perl coverage data:
+
+     $ perl -MDevel::Cover=-db,perlcov_db,-coverage,statement,branch,condition,subroutine,-silent,1 myPerlTest.pl [my script args]
+
+ - translate Perl coverage data to LCOV format:
+
+     $ perl2lcov --output perlcov.info perlcov_db [perl2lcov options]
+
+ See &#39;perl2lcov --help&#39; and the Devel::Cover documentation for more
+ information.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;iv) XML data (for example, generated by Cobertura):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; - translate XM coverage data to LCOV format:
+
+     $ xml2lcov --output myData.info coverage.xml [xml2lcov options]
+
+ See &#39;xml2lcov --help&#39; and the Cobertura documentation for more
+ information.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;b) Generate an HTML coverage report:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Generate an HTML report, combining all of your LCOV data files:
+
+  $ genhtml -o html_report app.info pycov.info perlcov.info
+
+Point the web browser of your choice to the resulting file:
+html_report/index.html.
+
+See &#39;man genhtml&#39; for more details.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;c) Generate a differential coverage report:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;See the example in .../example (run &quot;make test_differential&quot;)
+as well as the examples in .../tests/gendiffcov.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;6&quot;&gt; 
+ &lt;li&gt;LCOV Features:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;LCOV features and capabilities fall into 7 major categories:&lt;/p&gt; 
+&lt;p&gt;a) Categorization&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; This refers primarily to differential coverage categorization as
+ well as date- and owner-binning.  See https://arxiv.org/abs/2008.07947
+ or https://ieeexplore.ieee.org/document/9438597 for a detailed
+ description of the concepts.
+
+ Differential categorization and binning are orthogonal in the sense
+ that you can generate differential report without binning as well
+ as &#39;vanilla&#39; coverage reports with binning.  See the above papers
+ and the genhtml man page for details.
+
+ Related options:
+    --baseline-file, --diff-file, --annotate-script, --select-script
+    --date-bins, --date-labels --new-file-as-baseline,
+    --elide-path-mismatch
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;b) Error handling&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; A generic - but very simple - error handler has been added to the
+ lcov tool suite.  The error handler is used to report exceptions,
+ and provides a mechanism for the user to ignore the particular
+ message if desired.  Note that ignoring certain errors can cause
+ subsequent errors and/or can result in inconsistent or confusing
+ coverage reports.
+ See the genhtml/lcov/geninfo man pages for details.
+
+ Note that some errors are unrecoverable - and cannot be suppressed or
+ ignored.
+
+ Related options:
+    --ignore-error, --expect-message-count, --keep-going, --msg-log
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;c) Navigation and display:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; Navigation aids such as hyperlinks to the first uncovered region,
+ to the next uncovered region, etc. have been implemented.  Similarly,
+ new tables, new columns, and new links between tables enable the
+ user to identify the author of particular code (covered or not
+ covered), as well as the time period when the code was written.
+
+ Collectively, these features help the user to quickly identify the
+ cause of code coverage issues, and to then decide what to do.
+
+ An option to generate a &#39;hierarchical&#39; coverage report (which follows
+ the source code directory structure) or &#39;flat&#39; (all files in top level
+ of two-level report) as well as various other small features (tooltip
+ popups, user-specified HTML header, footer, and table labels, etc.) are
+ also available.
+
+ See the genhtml man page for some details, as well as the
+ &#39;gendiffcov/simple&#39; testcases for some examples.
+
+  Related options:
+      --baseline-title, --baseline-date, --current-date,
+      --flat, --hierarchical,
+      --show-owners, --show-noncode, --show-navigation, --show-proportion,
+      --suppress-aliases --simplify-script
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;d) Data manipulation&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; Filters are used to suppress or remove certain coverage artifacts -
+ for example, branches generated by the compiler (e.g., for exception
+ handling).  These artifacts can overwhelm the user code and obscure
+ coverage features that are interesting to the user.
+
+ Other options are used to focus on or to exclude certain sections
+ of code, as well as to do regexp replacement of file names - possibly
+ using case-insensitive comparison.
+ (Path munging is useful primarily when the build structure does
+ not exactly match the layout in your revision control system; this
+ is common in large projects with reusable components.)
+
+ During coverage data capture, the --build-directory option can be used
+ to specify a search path, to find the .gcno (compile-time coverage data)
+ file corresponding to a particular .gcda (runtime coverage data) file.
+ Similarly, the --source-directory option can be used to specify a
+ search path for source files.
+
+ See the lcov/geninfo/genhtml man pages for a detailed description of
+ the available filters and manipulation features.
+
+ Related options:
+    --include, --exclude, --erase-functions, --omit-lines,
+    --substitute, --filter
+    --build-directory --source-directory
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;e) Callbacks/customization&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; The user can supply callbacks which are used to:
+
+    i) interface with the revision control system - to determine source
+       code differences between versions and to find the author
+       and date of the most recent edits.
+       Sample scripts:
+         - Perforce:  see &#39;p4diff&#39;, &#39;p4annotate.pm&#39;, &#39;p4annotate&#39;
+         - Git: see &#39;gitdiff&#39;, &#39;gitblame.pm&#39;, &#39;gitblame&#39;
+    ii) verify that source code versions are compatible - e.g.,
+        before aggregating coverage data or displaying source code.
+        Sample scripts: &#39;get_signature&#39;, &#39;P4version.pm&#39;, &#39;getp4version&#39;,
+        &#39;gitversion&#39;, &#39;gitversion.pm&#39;, and &#39;batchGitVersion.pm&#39;
+    iii) enforce a desired code coverage criteria
+         Sample script: criteria.pm/criteria
+    iv) find source files in more complicated environments - where
+        simple substitutions become complicated or unweildy.
+    v) select a subset of coverage data to display - e.g., to
+       use in a code review which wants to concentrate on only
+       the changes caused by a particular commit or range of commits,
+       or to review changes in a particular release.
+       Sample script:  select.pm
+    vi) keep track of environment and other settings - to aid
+        infrastructure debugging in more complicated use cases.
+        Sample script:  context.pm
+    vii) compress the &#39;function detail&#39; table to improve readability
+         by shortening long C++ template and function names.
+         Sample script:  simplify.pm
+    viii) use history from previous execution to improve runtime
+         performance of current execution by improving load balancing.
+         Sample script:  history.pm
+
+ The callback may be any desired script or executable - but there
+ may be performance advantages if it is written as a Perl module.
+ See the &quot;Additional considerations&quot; and &quot;Callbacks and parallel
+ execution&quot; discussion in the genhtml man page.
+
+ See the genhtml/lcov/geninfo man pages for details.
+
+ Note that the various sample scripts are found in the source code
+ &#39;scripts&#39; directory, but are installed in the
+ $LCOV_HOME/share/lcov/support-scripts directory of the release.
+
+ Related options:
+   --annotate-script, --criteria-script, --version-script
+   --resolve-script, --select-script, --context-script
+   --simplify-script --history-script
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;f) Performance&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; lcov/genhtml/geninfo have been refactored to parallelize computation
+ across multiple cores, if requested.
+ In general, this provides speedup that is nearly linear in the number
+ of cores.
+ There is also an option to throttle parallelism to not exceed peak
+ memory consumption constraints, as well as options to enable simple
+ profile data collection - so you can see where time is going and
+ thus to hint at potential optimizations.  The &#39;spreadsheet.py&#39;
+ script can be used to view generated profile data.
+
+ There are several configuration file options which can be used to
+ tweak certain parallelization parameters to optimize performance
+ for your environment in cases that the default behaviour is suboptimal.
+ See the lcovrc man page for more information.
+
+ See the genhtml/lcov/geninfo man pages for details
+
+ Related options: --parallel, --memory, --profile, --history-script
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;g) Language/tool support&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; Added &#39;llvm2lcov&#39;, &#39;py2lcov&#39;, &#39;perl2lcov&#39; and &#39;xml2lcov&#39; scripts.
+
+   - llvm2lcov:
+
+       translates JSON coverage data generated by &#39;llvm-cov export -format=text ...&#39;
+       to lcov format.
+
+       See &quot;llvm2lcov --help&quot; for brief instruction on how to use the
+       translator.  Note that llvm2lcov uses a similar set of command line
+       and configuration file options as lcov, genhtml, and geninfo.
+
+   - py2lcov:
+
+       translates python Coverage.py XML data to lcov format.
+
+       See the Coverage.py documentation at https://coverage.readthedocs.io,
+       as well as &quot;.../py2lcov --help&quot;
+
+   - perl2lcov
+
+      translates Perl Devel::Cover data to lcov format.
+
+      See the Devel::Cover documentation at
+        https://metacpan.org/pod/Devel::Cover
+      to find out how to generate coverage data for Perl code.
+
+      See &quot;perl2lcov --help&quot; for brief instructions on how to
+      use the translator.
+      Note that perl2lcov uses a similar set of command line and
+      config file options as lcov, genhtml, and geninfo.
+
+   - xml2lcov
+
+      translates XML coverage data to lcov format.
+      The XML data may come from Cobertura or similar tools.
+
+      See &quot;xml2lcov --help&quot; for brief instructions on how to use
+      the translator.
+      See the Coburtura documentation for directions on how to
+      generate XML data.
+
+ Other languages can be integrated using a similar approach.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In general, the new features and options are implemented uniformly in lcov, genhtml, and geninfo. Most of the features can be enabled/disabled using either command line options or by setting defaults in your &#39;lcovrc&#39; file. See the lcovrc man page for details.&lt;/p&gt; 
+&lt;ol start=&quot;7&quot;&gt; 
+ &lt;li&gt;Questions and comments&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;See the included man pages for more information on how to use the LCOV tools.&lt;/p&gt; 
+&lt;p&gt;In case of further questions, feel free to open a new issue or discussion using the issue tracker on the LCOV code repository site at:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/linux-test-project/lcov&quot;&gt;https://github.com/linux-test-project/lcov&lt;/a&gt;&lt;/p&gt; 
+&lt;ol start=&quot;8&quot;&gt; 
+ &lt;li&gt;Filing a new issue&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;Before filing a new issue - and if you are using an LCOV release (as opposed to using a clone of the github repo) - please verify whether the issue is still present in the LCOV master version. See section 2, above for directions on how to clone and install the most up-to-date LCOV version.&lt;/p&gt; 
+&lt;p&gt;If possible, please include a testcase which illustrates the problem when you file an issue. Please describe your environment (platform, compiler, perl, and python versions, etc.). Please include a detailed description of the issue: what you were trying to do (your goal - not the mechanics of your procedure), what you did (the mechanics of your procedure), the result you wanted to see vs. what actually happened. Depending on the issue, your testcase may need to include source code and compile/link command lines, directions for how to run your example, the command lines used to capture and generate your lcov reports, etc. In other cases, the captured &#39;.info&#39; files may be sufficient to reproduce the issue. When in doubt: more is better than less.&lt;/p&gt; 
+&lt;p&gt;If you cannot include a testcase - e.g., because you feel that it is senstitive or proprietary - then your detailed description is even more important. Note that, without an example, it may be difficult or impossible to diagnose or fix the problem.&lt;/p&gt; 
+&lt;p&gt;Bear in mind that you are asking for help from volunteers. Your priority might not be their priority. Civility, consideration and politeness go a long way.&lt;/p&gt; 
+&lt;p&gt;Please check back and to verify the fix and close the issue once it has been addressed. Again: remember that you are asking for help from volunteers. Make sure that you are doing your part.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ae96c8a8ff0efbd1f5f71ebb17104816da4177bb69bb7fbdf6228267c4da9d4b/linux-test-project/lcov" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>so-fancy/diff-so-fancy</title>
+      <link>https://github.com/so-fancy/diff-so-fancy</link>
+      <description>&lt;p&gt;Make your diffs human readable for improved code quality and faster defect detection. 🎉&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;🎩 diff-so-fancy &lt;a href=&quot;https://circleci.com/gh/so-fancy/diff-so-fancy&quot;&gt;&lt;img src=&quot;https://circleci.com/gh/so-fancy/diff-so-fancy.svg?style=shield&quot; alt=&quot;Circle CI build&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.appveyor.com/project/stevemao/diff-so-fancy/branch/master&quot;&gt;&lt;img src=&quot;https://ci.appveyor.com/api/projects/status/github/so-fancy/diff-so-fancy?branch=master&amp;amp;svg=true&quot; alt=&quot;AppVeyor build&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;diff-so-fancy&lt;/code&gt; makes your diffs &lt;strong&gt;human&lt;/strong&gt; readable instead of machine readable. This helps improve code quality and helps you spot defects faster.&lt;/p&gt; 
+&lt;h2&gt;🖼️ Screenshot&lt;/h2&gt; 
+&lt;p&gt;Vanilla &lt;code&gt;git diff&lt;/code&gt; vs &lt;code&gt;git&lt;/code&gt; and &lt;code&gt;diff-so-fancy&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/diff-so-fancy.png&quot; alt=&quot;diff-highlight vs diff-so-fancy&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;📦 Install&lt;/h2&gt; 
+&lt;p&gt;Simply copy the &lt;code&gt;diff-so-fancy&lt;/code&gt; script from the latest &lt;a href=&quot;https://github.com/so-fancy/diff-so-fancy/releases&quot;&gt;Github release&lt;/a&gt; into your &lt;code&gt;$PATH&lt;/code&gt; and you&#39;re done. Alternately to test development features you can clone this repo and then put the &lt;code&gt;diff-so-fancy&lt;/code&gt; script (symlink will work) into your &lt;code&gt;$PATH&lt;/code&gt;. The &lt;code&gt;lib/&lt;/code&gt; directory will need to be kept relative to the core script.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;diff-so-fancy&lt;/code&gt; is also available from the &lt;a href=&quot;https://www.npmjs.com/package/diff-so-fancy&quot;&gt;NPM registry&lt;/a&gt;, &lt;a href=&quot;https://formulae.brew.sh/formula/diff-so-fancy&quot;&gt;brew&lt;/a&gt;, &lt;a href=&quot;https://packages.fedoraproject.org/pkgs/diff-so-fancy/diff-so-fancy/&quot;&gt;Fedora&lt;/a&gt;, in the &lt;a href=&quot;https://archlinux.org/packages/extra/any/diff-so-fancy/&quot;&gt;Arch extra repo&lt;/a&gt;, and as &lt;a href=&quot;https://github.com/aos/dsf-debian&quot;&gt;ppa:aos for Debian/Ubuntu Linux&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Issues relating to packaging (&quot;installation does not work&quot;, &quot;version is out of date&quot;, etc.) should be directed to those packages&#39; repositories/issue trackers where applicable.&lt;/p&gt; 
+&lt;h2&gt;✨ Usage&lt;/h2&gt; 
+&lt;h3&gt;Git&lt;/h3&gt; 
+&lt;p&gt;Configure git to use &lt;code&gt;diff-so-fancy&lt;/code&gt; for all diff output:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global core.pager &quot;diff-so-fancy | less --tabs=4 -RF&quot;
+git config --global interactive.diffFilter &quot;diff-so-fancy --patch&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Diff&lt;/h3&gt; 
+&lt;p&gt;Use &lt;code&gt;-u&lt;/code&gt; with &lt;code&gt;diff&lt;/code&gt; for unified output, and pipe the output to &lt;code&gt;diff-so-fancy&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff -u file_a file_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;We also support recursive mode with &lt;code&gt;-r&lt;/code&gt; or &lt;code&gt;--recursive&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;diff --recursive -u /path/folder_a /path/folder_b | diff-so-fancy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;⚒️ Options&lt;/h2&gt; 
+&lt;h3&gt;markEmptyLines&lt;/h3&gt; 
+&lt;p&gt;Colorize the first block of an empty line. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.markEmptyLines false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;changeHunkIndicators&lt;/h3&gt; 
+&lt;p&gt;Simplify Git header chunks to a human readable format. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.changeHunkIndicators false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;stripLeadingSymbols&lt;/h3&gt; 
+&lt;p&gt;Remove the &lt;code&gt;+&lt;/code&gt; or &lt;code&gt;-&lt;/code&gt; symbols at start of each diff line. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.stripLeadingSymbols false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;useUnicodeRuler&lt;/h3&gt; 
+&lt;p&gt;Use Unicode to draw the ruler lines. Setting this to false will use ASCII instead. (Default: true)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --bool --global diff-so-fancy.useUnicodeRuler false
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;rulerWidth&lt;/h3&gt; 
+&lt;p&gt;rulerWidth sets the width of the ruler lines. (Default: screen width)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global diff-so-fancy.rulerWidth 80
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;shortHeaders&lt;/h3&gt; 
+&lt;p&gt;Simplify the header inforation to a &lt;em&gt;single&lt;/em&gt; line for filename and line number. (Default false)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git config --global diff-so-fancy.shortHeaders true
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;👨 The diff-so-fancy team&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Person&lt;/th&gt; 
+   &lt;th&gt;Role&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@scottchiefbaker&lt;/td&gt; 
+   &lt;td&gt;Project lead&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@OJFord&lt;/td&gt; 
+   &lt;td&gt;Bug triage&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@GenieTim&lt;/td&gt; 
+   &lt;td&gt;Travis OSX fixes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@AOS&lt;/td&gt; 
+   &lt;td&gt;Debian packager&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;@Stevemao/@Paul Irish&lt;/td&gt; 
+   &lt;td&gt;NPM release team&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;🧬 Contributing&lt;/h2&gt; 
+&lt;p&gt;Pull requests are quite welcome, and should target the &lt;a href=&quot;https://github.com/so-fancy/diff-so-fancy/tree/next&quot;&gt;&lt;code&gt;next&lt;/code&gt; branch&lt;/a&gt;. We are also looking for any feedback or ideas on how to make &lt;code&gt;diff-so-fancy&lt;/code&gt; even &lt;em&gt;fancier&lt;/em&gt;.&lt;/p&gt; 
+&lt;h3&gt;Other documentation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/pro-tips.md&quot;&gt;Pro-tips for advanced users&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/reporting-bugs.md&quot;&gt;Reporting Bugs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/hacking-and-testing.md&quot;&gt;Hacking and Testing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/so-fancy/diff-so-fancy/next/history.md&quot;&gt;History&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🔃 Alternatives&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dandavison/delta&quot;&gt;Delta&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jesseduffield/lazygit&quot;&gt;Lazygit&lt;/a&gt; with diff-so-fancy &lt;a href=&quot;https://github.com/jesseduffield/lazygit/raw/master/docs/Custom_Pagers.md#diff-so-fancy&quot;&gt;integration&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🏛️ License&lt;/h2&gt; 
+&lt;p&gt;MIT&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/732166e966585978090b7bf1c673977195642e823864e096e28105a89f054d66/so-fancy/diff-so-fancy" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>lm-sensors/lm-sensors</title>
+      <link>https://github.com/lm-sensors/lm-sensors</link>
+      <description>&lt;p&gt;lm-sensors repository&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OVERVIEW OF THE LM-SENSORS PACKAGE&lt;/h1&gt; 
+&lt;p&gt;The lm-sensors package, version 3, provides user-space support for the hardware monitoring drivers in Linux 2.6.5 and later. For older kernel versions, you have to use lm-sensors version 2.&lt;/p&gt; 
+&lt;p&gt;The directories within this package:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;doc Documentation.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;etc A sample configuration file for libsensors, and a script to convert lm-sensors version 2 configuration files to work with version 3.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;lib The user-space sensors support library code (libsensors).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;prog Several supporting programs. The most important ones are:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;sensors-detect: A stand-alone program for detecting installed hardware and recommending specific modules to load.&lt;/li&gt; 
+   &lt;li&gt;sensors: A console tool to report sensor readings and set new sensor limits.&lt;/li&gt; 
+   &lt;li&gt;sensord: A daemon to watch sensor values and log problems. It includes RRD support.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;configs This directory contains sample configurations of various boards, contributed by users of lm-sensors.&lt;/p&gt; &lt;p&gt;All configuration files should now be imported from the old &lt;a href=&quot;http://www.lm-sensors.org&quot;&gt;www.lm-sensors.org&lt;/a&gt; website, however additional information about the origin of the configuration files can be found on the old site: &lt;a href=&quot;http://web.archive.org/web/20150901092438/http://www.lm-sensors.org:80/wiki/Configurations&quot;&gt;http://web.archive.org/web/20150901092438/http://www.lm-sensors.org:80/wiki/Configurations&lt;/a&gt;&lt;/p&gt; &lt;p&gt;Please contribute back a configuration of your board so other users with the same hardware won&#39;t need to recreate it again and again.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;INSTALLING LM-SENSORS&lt;/h2&gt; 
+&lt;p&gt;See the INSTALL file.&lt;/p&gt; 
+&lt;h2&gt;HARDWARE SUPPORT&lt;/h2&gt; 
+&lt;p&gt;To find out what hardware you have, just run &#39;sensors-detect&#39; as root.&lt;/p&gt; 
+&lt;p&gt;Most modern mainboards incorporate some form of hardware monitoring chips. These chips read things like chip temperatures, fan rotation speeds and voltage levels. There are quite a few different chips which can be used by mainboard builders for approximately the same results.&lt;/p&gt; 
+&lt;p&gt;Laptops, on the other hand, rarely expose any hardware monitoring chip. They often have some BIOS and/or ACPI magic to get the CPU temperature value, but that&#39;s about it. For such laptops, the lm-sensors package is of no use (sensors-detect will not find anything), and you have to use acpi instead.&lt;/p&gt; 
+&lt;p&gt;This package doesn&#39;t contain chip-specific knowledge. It will support all the hardware monitoring chips your kernel has drivers for. In other words, if you find out that you have unsupported hardware (e.g. sensors-detect told you so) then it means that you need a more recent kernel, or you even need to wait for a new kernel driver to be written. Updating the lm-sensors package itself will not help.&lt;/p&gt; 
+&lt;h2&gt;LIBSENSORS&lt;/h2&gt; 
+&lt;p&gt;The kernel drivers communicate their information through the /sys interface. Because every motherboard is different, the drivers always advert the measurements at their pins. This means that the values they report are not always immediately relevant to you. They have to be labelled properly, and sometimes they must be scaled to correspond to real-world values.&lt;/p&gt; 
+&lt;p&gt;libsensors is a (shared or static) library of access functions. It offers a simple-to-use interface for applications to access the sensor chip readings and configure them as you like. It has a configuration file where you can put all the motherboard-specific labels and conversion rules. That way, all applications do not need to duplicate the effort and can simply link with libsensors and work out of the box.&lt;/p&gt; 
+&lt;h2&gt;APPLICATIONS&lt;/h2&gt; 
+&lt;p&gt;This package contains an example console program that reports all current sensors values. This program is called &#39;sensors&#39;. You can use it as a reference implementation for more intricate programs. It also contains a daemon watching for sensor values, logging alarms and feeding an RRD database with the sensor measurements.&lt;/p&gt; 
+&lt;p&gt;This package does not contain a nice graphical monitor. See &lt;a href=&quot;http://sensors-applet.sourceforge.net/&quot;&gt;http://sensors-applet.sourceforge.net/&lt;/a&gt; &lt;a href=&quot;https://01.org/powertop/&quot;&gt;https://01.org/powertop/&lt;/a&gt; &lt;a href=&quot;https://wpitchoune.net/psensor/&quot;&gt;https://wpitchoune.net/psensor/&lt;/a&gt; &lt;a href=&quot;https://amanusk.github.io/s-tui/&quot;&gt;https://amanusk.github.io/s-tui/&lt;/a&gt; for such programs.&lt;/p&gt; 
+&lt;h2&gt;TROUBLESHOOTING&lt;/h2&gt; 
+&lt;p&gt;lm-sensors is blamed for all kinds of problems on a regular basis. While it is always possible that lm-sensors does in fact have a problem, almost everytime the problem will be elsewhere. The most likely culprit for a problem is one of the kernel drivers prividing data to lm-sensors or, rather, the sensors command (and libsensors). If you encounter problems, the following tests are recommended.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Check enabled sensors with the &#39;sensors&#39; command. Observe and, if there are errors, write down your test steps and report.&lt;/li&gt; 
+ &lt;li&gt;If any problems are observed while running the &#39;sensors&#39; command, disable (unload) kernel drivers one after another. After unloading a driver, run the &#39;sensors&#39; command again and observe if the error is gone. If it is, you found the problematic driver. Record your tests and report to the driver maintainer.&lt;/li&gt; 
+ &lt;li&gt;If problems are observed while using libsensors from another application, the same procedure applies (though it is recommended to perform the test with the sensors command first). Again, after identifying the offending driver, record and report your results to the driver maintainer.&lt;/li&gt; 
+ &lt;li&gt;If this does not help, try to run ptrace on the sensors command and/or the application using libsensors. If you find any anormalies, record your results and report.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;OTHER INFORMATION&lt;/h2&gt; 
+&lt;p&gt;The lm_sensors website can be found at &lt;a href=&quot;https://hwmon.wiki.kernel.org/lm_sensors&quot;&gt;https://hwmon.wiki.kernel.org/lm_sensors&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The developers of this package can be reached using&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;a mailing list lm-sensors 
+  &lt;at&gt;
+    vger 
+   &lt;dot&gt;
+     kernel 
+    &lt;dot&gt;
+      org (you can get information on how to subscribe, unsubscribe, and the list of archives at 
+     &lt;a href=&quot;http://vger.kernel.org/vger-lists.html#lm-sensors&quot;&gt;http://vger.kernel.org/vger-lists.html#lm-sensors&lt;/a&gt;; you do not need to be subscribed to post to the list)
+    &lt;/dot&gt;
+   &lt;/dot&gt;
+  &lt;/at&gt;&lt;/li&gt; 
+ &lt;li&gt;GitHub (see &lt;a href=&quot;https://github.com/lm-sensors/lm-sensors&quot;&gt;https://github.com/lm-sensors/lm-sensors&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Do not hesitate to contact us if you have questions, suggestions, problems, want to contribute, or just want to report it works for you. But please try to read the documentation before you ask any questions! It&#39;s all under doc/.&lt;/p&gt; 
+&lt;p&gt;The latest version of this package can always be found at: &lt;a href=&quot;https://github.com/lm-sensors/lm-sensors&quot;&gt;https://github.com/lm-sensors/lm-sensors&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;LICENSE&lt;/h2&gt; 
+&lt;p&gt;The library (libsensors) is released under the GNU Lesser General Public License (LGPL), as included in the file COPYING.LGPL. The rest of this package may be distributed according to the GNU General Public License (GPL), as included in the file COPYING.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/0b28cd9477bd22ad5ea71ba1487547acf00840168f20be1755c9072e6a735d74/lm-sensors/lm-sensors" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>dreamwidth/dreamwidth</title>
+      <link>https://github.com/dreamwidth/dreamwidth</link>
+      <description>&lt;p&gt;Dreamwidth&#39;s open source repository&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Dreamwidth&lt;/h1&gt; 
+&lt;p&gt;Please see the &lt;code&gt;LICENSE&lt;/code&gt; file for the license of this code. Note that all code committed to this repository MUST be licensed under the GPL and have proper copyright notices tagged at the top of the file.&lt;/p&gt; 
+&lt;p&gt;For more information on how to use this software, please harass someone to actually write out documentation here. :-)&lt;/p&gt; 
+&lt;p&gt;Please &lt;a href=&quot;http://wiki.dreamwidth.net/&quot;&gt;see our wiki for more information&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Thanks!&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9a325b5858c066728f29af961dcbb3d703c64d48dc40ad2fa17f8c578302e230/dreamwidth/dreamwidth" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ocpi/ocpi</title>
+      <link>https://github.com/ocpi/ocpi</link>
+      <description>&lt;p&gt;The Open Charge Point Interface (OCPI) allows for a scalable, automated roaming setup between Charge Point Operators and e-Mobility Service Providers. It supports authorisation, charge point information exchange (incl transaction events), charge detail record exchange and finally, the exchange of smart-charging commands between parties.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;This repository contains the OCPI specification, developed by the &lt;a href=&quot;https://evroaming.org/&quot;&gt;EV Roaming Foundation&lt;/a&gt;. The latest release is &lt;a href=&quot;https://evroaming.org/wp-content/uploads/2025/02/OCPI-2.3.0.pdf&quot;&gt;&lt;code&gt;OCPI 2.3.0&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The branch with the lastest fixes to the 2.3.0 documentation is &lt;a href=&quot;https://github.com/ocpi/ocpi/tree/release-2.3.0-bugfixes&quot;&gt;&lt;code&gt;release-2.3.0-bugfixes&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The branch with the latest fixes to the 2.2.1 documentation is &lt;a href=&quot;https://github.com/ocpi/ocpi/tree/release-2.2.1-bugfixes&quot;&gt;&lt;code&gt;release-2.2.1-bugfixes&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;-The branch with the latest fixes to the 2.2 documentation is &lt;a href=&quot;https://github.com/ocpi/ocpi/tree/release-2.2-bugfixes&quot;&gt;&lt;code&gt;release-2.2-bugfixes&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The branch with the latest fixes to the 2.1.1 documentation is &lt;a href=&quot;https://github.com/ocpi/ocpi/tree/release-2.1.1-bugfixes&quot;&gt;&lt;code&gt;release-2.1.1-bugfixes&lt;/code&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;master&lt;/code&gt; branch always contains the latest official release.&lt;/p&gt; 
+&lt;p&gt;Development of the next version of OCPI, new functionality, is done in the &lt;a href=&quot;https://github.com/ocpi/ocpi-3/&quot;&gt;ocpi-3 repository&lt;/a&gt;, which is only accessible to Contributors of the &lt;a href=&quot;https://evroaming.org/how-to-join/&quot;&gt;EV Roaming Foundation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;More background on OCPI, its development and its contributors can be found on the EV Roaming Foundation website.&lt;/p&gt; 
+&lt;h2&gt;Building Process&lt;/h2&gt; 
+&lt;p&gt;The OCPI Build Process has been improved. OCPI 2.0/2.1.1 was in markdown format, and diagrams where Plantuml.&lt;/p&gt; 
+&lt;p&gt;For OCPI 2.2, the text of OCPI has been converted to asciidoc. Asciidoc is easier to format the output, and chapter numbering and internal links are much easier to work with.&lt;/p&gt; 
+&lt;p&gt;The Plantuml is no longer converted to PNG images, but the SVG, making them much better readable, and even searchable in the PDF.&lt;/p&gt; 
+&lt;p&gt;In OCPI 2.0 and 2.1.1, the JSON examples contained a lot of mistakes, where outdated compared to the text, or not even valid JSON. To prevent issues with the examples in the specification, the examples are not placed in separate JSON files. At the moment, the JSON files are check if they are valid JSON.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/1844e16b165d054774987e307895f0a3be5da76fae104ed8ea033c23e9e7f28e/ocpi/ocpi" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>DGFiP/Test-Compta-Demat</title>
+      <link>https://github.com/DGFiP/Test-Compta-Demat</link>
+      <description>&lt;p&gt;Ce logiciel permet de contrôler le respect des normes des fichiers d&#39;écritures comptables (FEC) conformément aux dispositions de l&#39;article A.47 A-1 du livre des procédures fiscales.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Test-Compta-Demat&lt;/h1&gt; 
+&lt;p&gt;Copyright 2014 Direction Générale des Finances Publiques - France&lt;/p&gt; 
+&lt;p&gt;Ce logiciel permet de contrôler le respect des normes des fichiers d&#39;écritures comptables (FEC) conformément aux dispositions de l&#39;article A.47 A-1 du livre des procédures fiscales.&lt;/p&gt; 
+&lt;p&gt;Ce logiciel est régi par la licence CeCILL V2.1 soumise au droit français et respectant les principes de diffusion des logiciels libres. Vous pouvez utiliser, modifier et/ou redistribuer ce programme sous les conditions de la licence CeCILL V2.1 telle que diffusée par le CEA, le CNRS et l&#39;INRIA sur le site &quot;&lt;a href=&quot;http://www.cecill.info&quot;&gt;http://www.cecill.info&lt;/a&gt;&quot;.&lt;/p&gt; 
+&lt;h1&gt;Récupération des sources du programme&lt;/h1&gt; 
+&lt;p&gt;Pour les visualiser se rendre dans le dossier src/. Les sources utilisées sont disponibles pour adaptation sur des environnements différents. Pour cela, cloner le dépôt git (cf doc de git).&lt;/p&gt; 
+&lt;h1&gt;Récupération des distributions Windows&lt;/h1&gt; 
+&lt;p&gt;Le programme est disponible sous la forme d&#39;une distribution exécutable livrée dans une archive autoextractive.&lt;/p&gt; 
+&lt;h2&gt;Version windows 32 bits&lt;/h2&gt; 
+&lt;p&gt;Cliquer sur release pour voir les exécutables windows puis cliquer sur le bouton vert qui correspond à la version windows (x86.exe) pour le télécharger.&lt;/p&gt; 
+&lt;h2&gt;Version spécifique pour windows 64 bits :&lt;/h2&gt; 
+&lt;p&gt;Cliquer sur release pour voir les exécutables windows puis cliquer sur le bouton vert qui correspond à la version windows en 64 bits (x86_64.exe) pour le télécharger.&lt;/p&gt; 
+&lt;h1&gt;Documentations&lt;/h1&gt; 
+&lt;p&gt;voir le contenu du dossier doc : pour visualiser un pdf, il faut le télécharger (cliquer sur View Raw) puis ouvrir le fichier téléchargé.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ee8b2dabb4100e8f8218561d7e9291f126d9e2944833246c92710f3754730036/DGFiP/Test-Compta-Demat" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>OpenKore/openkore</title>
+      <link>https://github.com/OpenKore/openkore</link>
+      <description>&lt;p&gt;A free/open source client and automation tool for Ragnarok Online&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://upload.wikimedia.org/wikipedia/commons/b/b5/Kore_2g_logo.png&quot; alt=&quot;logo&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://deepwiki.com/OpenKore/openkore&quot;&gt;&lt;img src=&quot;https://deepwiki.com/badge.svg?sanitize=true&quot; alt=&quot;Ask DeepWiki&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/language-Perl-blue.svg?sanitize=true&quot; alt=&quot;Language&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/stars/OpenKore/openkore&quot; alt=&quot;Stars&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/forks/OpenKore/openkore?label=Fork&quot; alt=&quot;Fork&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/watchers/OpenKore/openkore?label=Watch&quot; alt=&quot;Watch&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/issues/OpenKore/openkore&quot; alt=&quot;Issues&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/issues-pr/OpenKore/openkore.svg?sanitize=true&quot; alt=&quot;Pull Requests&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/contributors/OpenKore/openkore.svg?sanitize=true&quot; alt=&quot;Contributors&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/OpenKore/openkore/build_XSTools.yml?branch=master&quot; alt=&quot;Github_Workflow_status&quot; /&gt; &lt;img src=&quot;https://github.com/OpenKore/openkore/actions/workflows/build_XSTools.yml/badge.svg?sanitize=true&quot; alt=&quot;Github_Workflow_CI&quot; /&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;OpenKore is a custom client and intelligent automated assistant for Ragnarok Online.&lt;/li&gt; 
+ &lt;li&gt;It is a &lt;strong&gt;free&lt;/strong&gt;, open source and cross-platform program &lt;em&gt;(Linux, Windows and MacOS are supported)&lt;/em&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Prerequisites&lt;/h2&gt; 
+&lt;p&gt;To run OpenKore you will need:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openkore.com/wiki/How_to_run_OpenKore#Requirements&quot;&gt;Read the Requirements page on our wiki&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Quickstart&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/OpenKore/openkore/archive/master.zip&quot;&gt;Download OpenKore&lt;/a&gt; and extract it. Alternatively, you could press the &lt;strong&gt;Windows Key + R&lt;/strong&gt;, type in &lt;code&gt;cmd&lt;/code&gt; &amp;amp; enter. Run the following command in the cmd to clone. &lt;em&gt;&lt;strong&gt;Note: &lt;a href=&quot;https://git-scm.com/&quot;&gt;Git&lt;/a&gt; required.&lt;/strong&gt;&lt;/em&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/OpenKore/openkore.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Configure OpenKore: &lt;a href=&quot;https://openkore.com/wiki/Category:control&quot;&gt;documentation&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Run openkore.pl &lt;em&gt;(You can run start.exe or wxstart.exe if you use Windows)&lt;/em&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;F.A.Q. (Frequently Asked Questions)&lt;/h2&gt; 
+&lt;!-- Source: https://forums.openkore.com/viewtopic.php?f=0&amp;t=11287 --&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Have a problem?&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Update your openkore or download a new one.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Still having problems?&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Search in &lt;a href=&quot;https://openkore.com/wiki/&quot;&gt;Wiki&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;Search in &lt;a href=&quot;https://forums.openkore.com/&quot;&gt;Forum&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;Search in &lt;a href=&quot;https://github.com/openkore/openkore/issues?utf8=%E2%9C%93&amp;amp;q=&quot;&gt;Github issues&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Cant find what you need? / Do not understand?&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Ask in &lt;a href=&quot;https://discord.com/invite/hdAhPM6&quot;&gt;Discord&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Is it a problem in Openkore?&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Read &lt;a href=&quot;https://github.com/OpenKore/openkore#things-to-know&quot;&gt;things to know&lt;/a&gt; before &lt;a href=&quot;https://github.com/OpenKore/openkore/issues/new&quot;&gt;reporting&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Things to know&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Make sure you&#39;ve read &lt;a href=&quot;https://github.com/OpenKore/openkore#faq-frequently-asked-questions&quot;&gt;FAQ&lt;/a&gt; especially to &lt;a href=&quot;https://github.com/OpenKore/openkore/commits/master&quot;&gt;run latest commit on master branch&lt;/a&gt; &amp;amp; checking &lt;a href=&quot;https://github.com/OpenKore/openkore/issues?utf8=%E2%9C%93&amp;amp;q=&quot;&gt;existed issue for your request.&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Please post in English.&lt;/li&gt; 
+ &lt;li&gt;Please use the issue template.&lt;/li&gt; 
+ &lt;li&gt;Please include informations about your server &amp;amp; any changes you did in your configuration.&lt;/li&gt; 
+ &lt;li&gt;Briefly explain what happened, take a screenhot &amp;amp; include the error message &lt;em&gt;(If available)&lt;/em&gt;.&lt;/li&gt; 
+ &lt;li&gt;Please be advised any developers here are doing this on their free time. Please give some time for anyone to respond.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Status of botting on Official Servers&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Server&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+   &lt;th&gt;Protection&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+   &lt;th&gt;Supporter&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.gnjoy.asia/&quot;&gt;aRO Baphomet&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Asia RO&lt;/td&gt; 
+   &lt;td&gt;CheatDefender&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://playragnarokonlinebr.com/&quot;&gt;bRO&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Brazil RO&lt;/td&gt; 
+   &lt;td&gt;EAC&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://ro.zhaouc.com/&quot;&gt;cRO&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;China RO&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://eu.4game.com/roprime/&quot;&gt;euRO Prime&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Europe RO&lt;/td&gt; 
+   &lt;td&gt;Frost Security&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://renewal.playragnarok.com/&quot;&gt;iRO Сhaos/Thor/Freya&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;International RO&lt;/td&gt; 
+   &lt;td&gt;EAC&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://roclassic.gnjoy.id/&quot;&gt;idRO Classic&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Indonesia RO&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://ro.gnjoy.id/&quot;&gt;idRO Yggdrasil&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Indonesia RO (Forever Love)&lt;/td&gt; 
+   &lt;td&gt;EAC&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://ragnarokonline.gungho.jp/&quot;&gt;jRO&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Japan RO&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://ro.gnjoy.com/&quot;&gt;kRO&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Korea RO&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://roz.gnjoy.com/&quot;&gt;kRO Zero&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Korea RO&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://rola.maxion.gg/&quot;&gt;laRO&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Latam (Landverse America)&lt;/td&gt; 
+   &lt;td&gt;Custom&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.gnjoylatam.com/&quot;&gt;ROla&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Latam RO&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://ru.4game.com/roprime/&quot;&gt;ruRO Prime&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Russia RO&lt;/td&gt; 
+   &lt;td&gt;Frost Security&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;ya4ept&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://ro.gnjoy.in.th/&quot;&gt;tRO Chaos/Thor&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Thailand RO (Online)&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://roc.gnjoy.in.th/&quot;&gt;tRO Classic&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Thailand RO (Classic)&lt;/td&gt; 
+   &lt;td&gt;nProtect&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://rolth.maxion.gg/&quot;&gt;tRO Baphomet&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Thailand (Landverse)&lt;/td&gt; 
+   &lt;td&gt;Custom&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://rolg.maxion.gg/&quot;&gt;tRO Baphomet&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Thailand (Landverse Genesis)&lt;/td&gt; 
+   &lt;td&gt;Custom&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://ro.gnjoy.com.tw/&quot;&gt;twRO&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Taiwan RO&lt;/td&gt; 
+   &lt;td&gt;CheatDefender&lt;/td&gt; 
+   &lt;td&gt;Not Working&lt;/td&gt; 
+   &lt;td&gt;N/A&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;OpenKore is developed by a &lt;a href=&quot;https://github.com/OpenKore/openkore/graphs/contributors&quot;&gt;team&lt;/a&gt; located around the world. Check out the &lt;a href=&quot;https://openkore.com/wiki/Manual&quot;&gt;documentation&lt;/a&gt; and if necessary, submit a pull request.&lt;/p&gt; 
+&lt;h2&gt;Contacts&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openkore.com/wiki/&quot;&gt;OpenKore Wiki&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://forums.openkore.com/&quot;&gt;OpenKore forum&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discord.com/invite/hdAhPM6&quot;&gt;Discord&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://RO-fan.ru/&quot;&gt;Russian Community&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;&lt;strong&gt;Warning&lt;/strong&gt;&lt;/h2&gt; 
+&lt;p&gt;Other communities or websites are not affiliated to openkore.com&lt;/p&gt; 
+&lt;h2&gt;Other Links&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openkore.com/wiki/OpenKore&quot;&gt;Openkore History&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/OpenKore/openkore/raw/master/LegacyChangelog.md&quot;&gt;Legacy Changelog&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openkore.com/wiki/roadmap&quot;&gt;Openkore RoadMap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openkore.com/wiki/Category:Feature_Request&quot;&gt;Feature Requests and TODO Wiki&lt;/a&gt; and &lt;a href=&quot;https://github.com/OpenKore/openkore/issues?q=is%3Aopen+is%3Aissue+label%3A%22feature+request%22&quot;&gt;Feature Requests GitHub&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This software is open source, licensed under the GNU General Public License, version 2. Basically, this means that you&#39;re free to use and allowed to modify and distribute this software. However, if you distribute modified versions, you &lt;strong&gt;MUST&lt;/strong&gt; also distribute the source code.&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0.html&quot;&gt;https://www.gnu.org/licenses/gpl-3.0.html&lt;/a&gt; for the full license.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/60945aa17f5aa052fc8fcee8bea456765b6cd4f8c3db50756d115da31e8b89a8/OpenKore/openkore" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>yaml/yaml-test-suite</title>
+      <link>https://github.com/yaml/yaml-test-suite</link>
+      <description>&lt;p&gt;Comprehensive, language independent Test Suite for YAML&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;YAML Test Suite&lt;/h1&gt; 
+&lt;p&gt;Comprehensive Test Suite for YAML&lt;/p&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;This repository contains data for testing the correctness of YAML processors.&lt;/p&gt; 
+&lt;p&gt;The types of data include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Metadata about the test 
+  &lt;ul&gt; 
+   &lt;li&gt;Name (short phrase)&lt;/li&gt; 
+   &lt;li&gt;Tags&lt;/li&gt; 
+   &lt;li&gt;Description&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Input YAML&lt;/li&gt; 
+ &lt;li&gt;Canonical output YAML&lt;/li&gt; 
+ &lt;li&gt;Matching JSON&lt;/li&gt; 
+ &lt;li&gt;Token stream notation&lt;/li&gt; 
+ &lt;li&gt;Event stream notation&lt;/li&gt; 
+ &lt;li&gt;Error data&lt;/li&gt; 
+ &lt;li&gt;etc&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To get a quick overview of the tests you can have a look at the &lt;a href=&quot;http://matrix.yaml.info/&quot;&gt;YAML Test Matrix&lt;/a&gt;, made from &lt;a href=&quot;https://github.com/perlpunk/yaml-test-matrix&quot;&gt;https://github.com/perlpunk/yaml-test-matrix&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You can also view the latest test results from 15 different parsers in &lt;a href=&quot;https://tinyurl.com/2p97ah8a&quot;&gt;this Google sheet&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;The tests are available in 2 forms. Files in the &lt;code&gt;src&lt;/code&gt; directory encode all the data for YAML using YAML. The data from these tests is also available in a form where each test has its own directory.&lt;/p&gt; 
+&lt;p&gt;For that, use the latest data release under &lt;a href=&quot;https://github.com/yaml/yaml-test-suite/releases&quot;&gt;https://github.com/yaml/yaml-test-suite/releases&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/yaml/yaml-test-suite -b data-YYYY-MM-DD
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;There are tests which have multiple similar subtests. Those subtests are in their own numeric directories under the parent id, e.g.:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;VJP3/
+VJP3/00
+VJP3/00/===
+VJP3/00/error
+VJP3/00/in.yaml
+VJP3/00/test.event
+VJP3/01
+...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The releases are made from the &lt;code&gt;data&lt;/code&gt; branch, which is made from the data in the YAML in the &lt;code&gt;main&lt;/code&gt; branch. You shouldn&#39;t use the data branch directly as the branch contains unreleased commits which might be wrong, and it is squashed and force pushed from time to time.&lt;/p&gt; 
+&lt;h3&gt;Special Characters&lt;/h3&gt; 
+&lt;p&gt;The YAML files use a number of non-ascii unicode characters to indicate the presence of certain characters that would be otherwise hard to read.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;␣&lt;/code&gt; is used for trailing space characters&lt;/li&gt; 
+ &lt;li&gt;Hard tabs are reresented by one of: (expanding to 4 spaces) 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;———»&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;——»&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;—»&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;»&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;↵&lt;/code&gt; us used to show trailing newline characters&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;∎&lt;/code&gt; is used at the end when there is no final newline character&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;←&lt;/code&gt; indicates a carriage return character&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;⇔&lt;/code&gt; indicates a byte order mark (BOM) character&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Also these are used in test event output:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;SPC&amp;gt;&lt;/code&gt; for a space character&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;TAB&amp;gt;&lt;/code&gt; for a tab character&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;The &lt;code&gt;data&lt;/code&gt; branch files&lt;/h2&gt; 
+&lt;p&gt;The YAML test files in the &lt;code&gt;src/&lt;/code&gt; dir are turned into data files in the &lt;code&gt;data&lt;/code&gt; branch. The &lt;code&gt;make data-update&lt;/code&gt; command generates the &lt;code&gt;data&lt;/code&gt; branch files under the &lt;code&gt;./data/&lt;/code&gt; directory. For instance, a file &lt;code&gt;src/AB3D.yaml&lt;/code&gt; will generate a &lt;code&gt;data/AB3D/&lt;/code&gt; directory.&lt;/p&gt; 
+&lt;p&gt;A YAML test file can have 1 or more tests. Originally each file had one test, and all the data files were under &lt;code&gt;data/AB3D/&lt;/code&gt;. If a YAML test file has more than one test, subdirectories are created: &lt;code&gt;data/AB3D/00/&lt;/code&gt;, &lt;code&gt;data/AB3D/01/&lt;/code&gt;, &lt;code&gt;data/AB3D/02/&lt;/code&gt;, etc.&lt;/p&gt; 
+&lt;p&gt;The test files are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;===&lt;/code&gt; -- The name/label of the test&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;in.yaml&lt;/code&gt; -- The YAML input to be parsed or loaded&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;test.event&lt;/code&gt; -- The event DSL produced by the parser test program&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;in.json&lt;/code&gt; -- The JSON value that shoiuld load the same as &lt;code&gt;in.yaml&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;out.yaml&lt;/code&gt; -- The most normal output a dumper would produce&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;error&lt;/code&gt; -- This file indicates the YAML should fail to parse&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;emit.yaml&lt;/code&gt; -- Output an emitter would produce&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Makefile Targets&lt;/h2&gt; 
+&lt;p&gt;The Makefile has a number of targets for automating the process of adding new tests and also preprocessing them into the &lt;code&gt;data&lt;/code&gt; branch.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;make data&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Create a &lt;code&gt;data&lt;/code&gt; worktree subdirectory with all the tests as data files.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;make data-update&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Update the &lt;code&gt;data&lt;/code&gt; branch directory with the latest info in the &lt;code&gt;src&lt;/code&gt; directory.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;make export&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Creates an &lt;code&gt;export.tsv&lt;/code&gt; file with all the data from the &lt;code&gt;src&lt;/code&gt; test files. This tsv data can be copied into a google spreadsheet. The &lt;a href=&quot;https://play.yaml.io/main/parser&quot;&gt;YAML parser playground&lt;/a&gt; has a button to copy a test to the same tsv form.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;make import&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Make a directory called &lt;code&gt;new&lt;/code&gt; from a file named &lt;code&gt;import.tsv&lt;/code&gt;. The &lt;code&gt;import.tsv&lt;/code&gt; file should have data copied from a google spreadsheet.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;make add-new&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Copy the new tests under &lt;code&gt;new/&lt;/code&gt; into &lt;code&gt;src/&lt;/code&gt; to make a PR for new tests.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;make testml&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Generate &lt;code&gt;.tml&lt;/code&gt; files under a &lt;code&gt;testml/&lt;/code&gt; directory for all the suite tests.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;make clean&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Remove generated files and directories.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Libaries using this test suite&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;C 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/yaml/libyaml&quot;&gt;libyaml&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/pantoniou/libfyaml&quot;&gt;libfyaml&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;C++ 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/biojppm/rapidyaml&quot;&gt;rapidyaml&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;C# 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/aaubry/YamlDotNet&quot;&gt;YamlDotNet&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;D 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/dlang-community/D-YAML&quot;&gt;dyaml&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Delphi 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/neslib/Neslib.Yaml&quot;&gt;Neslib.Yaml&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Haskell 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/haskell-hvr/HsYAML&quot;&gt;HsYAML&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Java 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://bitbucket.org/asomov/snakeyaml-engine&quot;&gt;SnakeYAML Engine&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Javascript 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/eemeli/yaml&quot;&gt;yaml&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Nim 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/flyx/NimYAML&quot;&gt;NimYAML&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Perl 5 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/perlpunk/YAML-PP-p5&quot;&gt;YAML::PP&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;PHP 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/maxbeckers/php-yaml-parser&quot;&gt;php-yaml-parser&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Scala 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/VirtusLab/scala-yaml&quot;&gt;Scala-Yaml&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If your library is using the test suite, drop us a line and we can add it here. It would also be nice if you could add a link back to this test suite.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c25f7246e9f343772a812e6b6901072be04dcbd23bbaba395ba250d0c98349ad/yaml/yaml-test-suite" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>inverse-inc/packetfence</title>
+      <link>https://github.com/inverse-inc/packetfence</link>
+      <description>&lt;p&gt;PacketFence is a fully supported, trusted, Free and Open Source network access control (NAC) solution. Boasting an impressive feature set including a captive-portal for registration and remediation, centralized wired and wireless management, powerful BYOD management options, 802.1X support, layer-2 isolation of problematic devices; PacketFence c…&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;PacketFence&lt;/h1&gt; 
+&lt;h2&gt;What is PacketFence?&lt;/h2&gt; 
+&lt;p&gt;PacketFence is a fully supported, trusted, Free and Open Source network access control (NAC) system. Boasting an impressive feature set including a captive-portal for registration and remediation, centralized wired and wireless management, 802.1X support, layer-2 isolation of problematic devices, integration with IDS solutions and vulnerability scanners; PacketFence can be used to effectively secure networks - from small to very large heterogeneous networks.&lt;/p&gt; 
+&lt;p&gt;You want to know who is on your network? You want to give different access to your network based on who is connecting? PacketFence is for you!&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Follow the instructions provided in the &lt;a href=&quot;https://packetfence.org/support/index.html#/documentation&quot;&gt;Administration Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;More Information&lt;/h2&gt; 
+&lt;p&gt;Noteworthy changes since the last release see the &lt;a href=&quot;https://github.com/inverse-inc/packetfence/raw/devel/NEWS.asciidoc&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Upgrading? See the &lt;a href=&quot;https://github.com/inverse-inc/packetfence/raw/devel/docs/PacketFence_Upgrade_Guide.asciidoc&quot;&gt;Upgrade Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For more details and developer visible changes see the &lt;a href=&quot;https://github.com/inverse-inc/packetfence&quot;&gt;project&#39;s page on Github&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;Join the &lt;a href=&quot;https://packetfence.org/support/index.html#/community&quot;&gt;community&lt;/a&gt; or request &lt;a href=&quot;https://packetfence.org/support/index.html#/commercial&quot;&gt;commercial support&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contribute&lt;/h2&gt; 
+&lt;p&gt;PacketFence is a collaborative effort in order to create the best Open Source NAC solution. There are multiple ways you can contribute to the project.&lt;/p&gt; 
+&lt;h3&gt;&lt;em&gt;You are a network vendor&lt;/em&gt;&lt;/h3&gt; 
+&lt;p&gt;Provide Inverse with switches, access points, wireless controllers, etc. so we can support even more equipment.&lt;/p&gt; 
+&lt;h3&gt;&lt;em&gt;You are a security software vendor&lt;/em&gt;&lt;/h3&gt; 
+&lt;p&gt;Provide Inverse with licenses of your software so we can integrate your IDS, Netflow analyzer, IPS, Web filter, etc. directly into PacketFence and its captive portal technology.&lt;/p&gt; 
+&lt;h3&gt;&lt;em&gt;You are a PacketFence user&lt;/em&gt;&lt;/h3&gt; 
+&lt;p&gt;You can provide:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Documentation reviews, enhancements and translations&lt;/li&gt; 
+ &lt;li&gt;Share your ideas and participate to the discussion in &lt;a href=&quot;https://packetfence.org/support/index.html#/community&quot; title=&quot;Community Mailing Lists&quot;&gt;mailing lists&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Provide Inverse with switches, access points, wireless controllers, etc. so we can support even more equipment&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;&lt;em&gt;You are a developer&lt;/em&gt;&lt;/h3&gt; 
+&lt;p&gt;You can provide:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Documentation reviews, enhancements and translations&lt;/li&gt; 
+ &lt;li&gt;Share your ideas and participate to the discussion in &lt;a href=&quot;https://packetfence.org/support/index.html#/community&quot; title=&quot;Community Mailing Lists&quot;&gt;mailing lists&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Patches for bugs or enhancements&lt;/li&gt; 
+ &lt;li&gt;Write tests&lt;/li&gt; 
+ &lt;li&gt;Handle tasks in our Roadmap&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;&lt;em&gt;You are a security researcher&lt;/em&gt;&lt;/h3&gt; 
+&lt;p&gt;Push PacketFence into new areas by leveraging the extensibility built into PacketFence. A lot of the low-level plumbing is done for you so you can focus on demoing your ideas.&lt;/p&gt; 
+&lt;p&gt;Get in touch with us on the developer &lt;a href=&quot;https://packetfence.org/support/index.html#/community&quot; title=&quot;Community Mailing Lists&quot;&gt;mailing list&lt;/a&gt; with your ideas!&lt;/p&gt; 
+&lt;h2&gt;Source&lt;/h2&gt; 
+&lt;p&gt;Feel free to fork our &lt;a href=&quot;https://github.com/inverse-inc/packetfence&quot;&gt;github repository&lt;/a&gt; if you are willing to contribute.&lt;/p&gt; 
+&lt;p&gt;Most of the development happens in branches. Once ready for integration into &lt;a href=&quot;https://github.com/inverse-inc/packetfence/tree/devel&quot;&gt;devel&lt;/a&gt;, a pull request is opened and a code review takes place. See the list of &lt;a href=&quot;https://github.com/inverse-inc/packetfence/branches&quot;&gt;all branches in the works&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Translations&lt;/h2&gt; 
+&lt;p&gt;PacketFence is available in various languages. The following list describes the official translations alongside their maintainers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;English - Inverse inc.&lt;/li&gt; 
+ &lt;li&gt;Brazilian Portuguese - Diego de Souza Lopes&lt;/li&gt; 
+ &lt;li&gt;French - Inverse inc.&lt;/li&gt; 
+ &lt;li&gt;Norwegian&lt;/li&gt; 
+ &lt;li&gt;Polish - Maciej Uhlig&lt;/li&gt; 
+ &lt;li&gt;Spanish (Spain) - Dominique Couot&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you would like to translate the software in an other language, please consult the &lt;a href=&quot;https://packetfence.org/support/faq/article/how-to-translate-packetfence-in-another-language.html&quot;&gt;FAQ&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Licensed under the GNU General Public License v2.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;a href=&quot;https://inverse.ca/&quot;&gt;Inverse inc.&lt;/a&gt; leads the development of the solution. Over the years, numerous people and organizations have contributed to the project and we would like to thank them all !&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/234f8214a72b6a58abd4ca95f7016ca79ba363a0cf6afeb93aae2d1f12758bea/inverse-inc/packetfence" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>LMS-Community/slimserver</title>
+      <link>https://github.com/LMS-Community/slimserver</link>
+      <description>&lt;p&gt;Server for Squeezebox and compatible players. This server is also called Lyrion Music Server.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a name=&quot;readme-top&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/LMS-Community/slimserver/actions/workflows/00_smoketest.yaml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/LMS-Community/slimserver/00_smoketest.yaml?style=flat&quot; alt=&quot;Build passing&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://perl.org/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Written_in-perl-orange?style=flat&quot; alt=&quot;Perl&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/graphs/contributors&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/contributors/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Contributors&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/network/members&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/forks/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Forks&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Stargazers&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Issues&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/pulls&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues-pr/LMS-Community/slimserver.svg?style=flat&quot; alt=&quot;Pull requests&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/lmscommunity/lyrionmusicserver&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/lmscommunity/lyrionmusicserver?style=flat&quot; alt=&quot;Docker pulls&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/pkgs/container/lyrionmusicserver&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fstats.lms-community.org%2Fapi%2Fpackages%2Fpulls&amp;amp;query=%24.pulls&amp;amp;label=ghcr.io%20pulls&amp;amp;style=flat&quot; alt=&quot;ghcr pulls&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;br /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://github.com/LMS-Community/slimserver&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver-platforms/public/9.0/win32/res/SqueezeCenter.ico&quot; alt=&quot;Logo&quot; width=&quot;128&quot; height=&quot;128&quot; /&gt; &lt;/a&gt; 
+ &lt;h3 align=&quot;center&quot;&gt;Lyrion Music Server&lt;/h3&gt; 
+ &lt;p align=&quot;center&quot;&gt; Streaming audio server &lt;br /&gt; &lt;a href=&quot;https://lyrion.org&quot;&gt;&lt;strong&gt;Explore the docs »&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues/new?labels=bug&quot;&gt;Report Bug&lt;/a&gt; · &lt;a href=&quot;https://github.com/LMS-Community/slimserver/issues/new?labels=enhancement&quot;&gt;Request Feature&lt;/a&gt; &lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;About The Project&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lyrion.org&quot;&gt;&lt;img src=&quot;https://lyrion.org/assets/screenshot.png&quot; alt=&quot;LMS Screen Shot&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Lyrion Music Server (aka. LMS, fka. Logitech Mediaserver, SlimServer, SqueezeCenter, SqueezeboxServer, SliMP3) is the server software that powers audio players from &lt;a href=&quot;https://www.logi.com&quot;&gt;Logitech&lt;/a&gt; (formerly known as SlimDevices), including &lt;a href=&quot;https://lms-community.github.io/players-and-controllers/hardware-comparison/&quot;&gt;Squeezebox 3rd Generation, Squeezebox Boom, Squeezebox Receiver, Transporter, Squeezebox2, Squeezebox and SLIMP3&lt;/a&gt;, and many software emulators like &lt;a href=&quot;https://sourceforge.net/projects/lmsclients/files/&quot;&gt;Squeezelite and SqueezePlay&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;With the help of many plugins, Lyrion Music Server can stream not only your local music collection, but content from many music services and internet radio stations to your players.&lt;/p&gt; 
+&lt;p&gt;Lyrion Music Server is written in Perl. It runs on pretty much any platform that Perl runs on, including Linux, Mac OSX, Solaris and Windows.&lt;/p&gt; 
+&lt;p&gt;Enjoy the music on your Squeezebox!&lt;/p&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.2/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;LMS runs on almost anything! Whether you have a Windows, macOS or Linux system, whether this is a single board computer (such as a Raspberry Pi), desktop, laptop or even a NAS, LMS will most likely run on it. Go to the &lt;a href=&quot;https://lyrion.org/getting-started/&quot;&gt;Getting started documentation&lt;/a&gt; for installation instructions.&lt;/p&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.2/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Contributions are what make the open source community such an amazing place to learn, inspire, and create. Any contributions you make are &lt;strong&gt;greatly appreciated&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;If you have a suggestion that would make this better, please fork the repo and create a pull request. You can also simply open an issue with the tag &quot;enhancement&quot;. Don&#39;t forget to give the project a star! Thanks again!&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the Project&lt;/li&gt; 
+ &lt;li&gt;Create your Feature Branch (&lt;code&gt;git checkout -b feature/AmazingFeature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Commit your Changes (&lt;code&gt;git commit -m &#39;Add some AmazingFeature&#39;&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Push to the Branch (&lt;code&gt;git push origin feature/AmazingFeature&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Open a Pull Request&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/LMS-Community/slimserver/public/9.2/#readme-top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/f6a5a0afcc0d153cccbbe9cc016e8542c5eeb7aed7c1d6a934d69ceab80c8892/LMS-Community/slimserver" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>tseemann/prokka</title>
+      <link>https://github.com/tseemann/prokka</link>
+      <description>&lt;p&gt;⚡ ♒ Rapid prokaryotic genome annotation&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/tseemann/prokka/actions/workflows/CI.yml&quot;&gt;&lt;img src=&quot;https://github.com/tseemann/prokka/actions/workflows/CI.yml/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/tseemann/prokka/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/tseemann/prokka.svg?sanitize=true&quot; alt=&quot;GitHub release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://bioconda.github.io/recipes/prokka/README.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/conda/dn/bioconda/prokka.svg?sanitize=true&quot; alt=&quot;Bioconda Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.gnu.org/licenses/gpl-3.0&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-GPL%20v3-blue.svg?sanitize=true&quot; alt=&quot;License: GPL v3&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://usegalaxy.eu/root?tool_id=prokka&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/usegalaxy-.eu-brightgreen?logo=data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABgAAAASCAYAAABB7B6eAAAABGdBTUEAALGPC/xhBQAAACBjSFJNAAB6JgAAgIQAAPoAAACA6AAAdTAAAOpgAAA6mAAAF3CculE8AAAACXBIWXMAAAsTAAALEwEAmpwYAAACC2lUWHRYTUw6Y29tLmFkb2JlLnhtcAAAAAAAPHg6eG1wbWV0YSB4bWxuczp4PSJhZG9iZTpuczptZXRhLyIgeDp4bXB0az0iWE1QIENvcmUgNS40LjAiPgogICA8cmRmOlJERiB4bWxuczpyZGY9Imh0dHA6Ly93d3cudzMub3JnLzE5OTkvMDIvMjItcmRmLXN5bnRheC1ucyMiPgogICAgICA8cmRmOkRlc2NyaXB0aW9uIHJkZjphYm91dD0iIgogICAgICAgICAgICB4bWxuczp0aWZmPSJodHRwOi8vbnMuYWRvYmUuY29tL3RpZmYvMS4wLyI+CiAgICAgICAgIDx0aWZmOlJlc29sdXRpb25Vbml0PjI8L3RpZmY6UmVzb2x1dGlvblVuaXQ+CiAgICAgICAgIDx0aWZmOkNvbXByZXNzaW9uPjE8L3RpZmY6Q29tcHJlc3Npb24+CiAgICAgICAgIDx0aWZmOk9yaWVudGF0aW9uPjE8L3RpZmY6T3JpZW50YXRpb24+CiAgICAgICAgIDx0aWZmOlBob3RvbWV0cmljSW50ZXJwcmV0YXRpb24+MjwvdGlmZjpQaG90b21ldHJpY0ludGVycHJldGF0aW9uPgogICAgICA8L3JkZjpEZXNjcmlwdGlvbj4KICAgPC9yZGY6UkRGPgo8L3g6eG1wbWV0YT4KD0UqkwAAAn9JREFUOBGlVEuLE0EQruqZiftwDz4QYT1IYM8eFkHFw/4HYX+GB3/B4l/YP+CP8OBNTwpCwFMQXAQPKtnsg5nJZpKdni6/6kzHvAYDFtRUT71f3UwAEbkLch9ogQxcBwRKMfAnM1/CBwgrbxkgPAYqlBOy1jfovlaPsEiWPROZmqmZKKzOYCJb/AbdYLso9/9B6GppBRqCrjSYYaquZq20EUKAzVpjo1FzWRDVrNay6C/HDxT92wXrAVCH3ASqq5VqEtv1WZ13Mdwf8LFyyKECNbgHHAObWhScf4Wnj9CbQpPzWYU3UFoX3qkhlG8AY2BTQt5/EA7qaEPQsgGLWied0A8VKrHAsCC1eJ6EFoUd1v6GoPOaRAtDPViUr/wPzkIFV9AaAZGtYB568VyJfijV+ZBzlVZJ3W7XHB2RESGe4opXIGzRTdjcAupOK09RA6kzr1NTrTj7V1ugM4VgPGWEw+e39CxO6JUw5XhhKihmaDacU2GiR0Ohcc4cZ+Kq3AjlEnEeRSazLs6/9b/kh4eTC+hngE3QQD7Yyclxsrf3cpxsPXn+cFdenF9aqlBXMXaDiEyfyfawBz2RqC/O9WF1ysacOpytlUSoqNrtfbS642+4D4CS9V3xb4u8P/ACI4O810efRu6KsC0QnjHJGaq4IOGUjWTo/YDZDB3xSIxcGyNlWcTucb4T3in/3IaueNrZyX0lGOrWndstOr+w21UlVFokILjJLFhPukbVY8OmwNQ3nZgNJNmKDccusSb4UIe+gtkI+9/bSLJDjqn763f5CQ5TLApmICkqwR0QnUPKZFIUnoozWcQuRbC0Km02knj0tPYx63furGs3x/iPnz83zJDVNtdP3QAAAABJRU5ErkJggg==&quot; alt=&quot;European Galaxy server&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/badge/Language-Perl_5-steelblue.svg?sanitize=true&quot; alt=&quot;Don&#39;t judge me&quot; /&gt; &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btu153&quot;&gt;&lt;img src=&quot;https://zenodo.org/badge/DOI/10.1093/bioinformatics/btu153.svg?sanitize=true&quot; alt=&quot;DOI:10.1093/bioinformatics/btu153&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Prokka: rapid prokaryotic genome annotation&lt;/h1&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;p&gt;Whole genome annotation is the process of identifying features of interest in a set of genomic DNA sequences, and labelling them with useful information. Prokka is a software tool to annotate bacterial, archaeal and viral genomes quickly and produce standards-compliant output files.&lt;/p&gt; 
+&lt;h2&gt;Bakta is the next generation of Prokka&lt;/h2&gt; 
+&lt;p&gt;Prokka has served the community well for over a decade. I can no longer maintain it, so, with my blessing and gratitude, &lt;a href=&quot;https://github.com/oschwengers&quot;&gt;Oliver Schwengers&lt;/a&gt; has taken the bacterial annotation toruch and developed &lt;a href=&quot;https://github.com/oschwengers/bakta&quot;&gt;Bakta&lt;/a&gt; which is a modern version of Prokka with better tooling and maintained databases, including &lt;code&gt;db-light&lt;/code&gt; which is in the spirit of Prokka&#39;s &quot;fast and lean&quot; approach. I recommend replacing Prokka with Bakta in your analysis pipelines going forward.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Bioconda&lt;/h3&gt; 
+&lt;p&gt;The best way to install Prokka is using Conda (&lt;a href=&quot;https://github.com/conda-forge/miniforge&quot;&gt;miniforge&lt;/a&gt;).&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;conda create -n prokka bioconda::prokka
+conda activate prokka
+prokka --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Docker&lt;/h3&gt; 
+&lt;p&gt;Maintained by &lt;a href=&quot;https://hub.docker.com/u/staphb&quot;&gt;STAPHB&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;
+docker pull staphb/prokka:latest
+docker run staphb/prokka:latest prokka --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Singularity&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;singularity build prokka.sif docker://staphb/prokka:latest
+singularity exec prokka.sif prokka -h
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Test&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Type &lt;code&gt;prokka&lt;/code&gt; and it should output its help screen.&lt;/li&gt; 
+ &lt;li&gt;Type &lt;code&gt;prokka --version&lt;/code&gt; and you should see an output like &lt;code&gt;prokka 1.x&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Type &lt;code&gt;prokka --listdb&lt;/code&gt; and it will show you what databases it has installed to use.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Invoking Prokka&lt;/h2&gt; 
+&lt;h3&gt;Beginner&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# Vanilla (but with free toppings)
+% prokka contigs.fa
+
+# Look for a folder called PROKKA_yyyymmdd (today&#39;s date) and look at stats
+% cat PROKKA_yyyymmdd/*.txt
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Moderate&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# Choose the names of the output files
+% prokka --outdir mydir --prefix mygenome contigs.fa
+
+# Visualize it in Artemis
+% art mydir/mygenome.gff
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Specialist&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# Have curated genomes I want to use to annotate from
+% prokka --proteins MG1655.gbk --outdir mutant --prefix K12_mut contigs.fa
+
+# Look at tabular features
+% less -S mutant/K12_mut.tsv
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Expert&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# It&#39;s not just for bacteria, people
+% prokka --kingdom Archaea --outdir mydir --genus Pyrococcus --locustag PYCC
+
+# Search for your favourite gene
+% exonerate --bestn 1 zetatoxin.fasta mydir/PYCC_06072012.faa | less
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Wizard&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# Watch and learn
+% prokka --outdir mydir --locustag EHEC --proteins NewToxins.faa --evalue 0.001 --gram neg --addgenes contigs.fa
+
+# Check to see if anything went really wrong
+% less mydir/EHEC_06072012.err
+
+# Add final details using Sequin
+% sequin mydir/EHEC_0607201.sqn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;NCBI Genbank submitter&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# Register your BioProject (e.g. PRJNA123456) and your locus_tag prefix (e.g. EHEC) first!
+% prokka --compliant --centre UoN --outdir PRJNA123456 --locustag EHEC --prefix EHEC-Chr1 contigs.fa
+
+# Check to see if anything went really wrong
+% less PRJNA123456/EHEC-Chr1.err
+
+# Add final details using Sequin
+% sequin PRJNA123456/EHEC-Chr1.sqn
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;European Nucleotide Archive (ENA) submitter&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# Register your BioProject (e.g. PRJEB12345) and your locus_tag (e.g. EHEC) prefix first!
+% prokka --compliant --centre UoN --outdir PRJEB12345 --locustag EHEC --prefix EHEC-Chr1 contigs.fa
+
+# Check to see if anything went really wrong
+% less PRJNA123456/EHEC-Chr1.err
+
+# Install and run Sanger Pathogen group&#39;s Prokka GFF3 to EMBL converter
+# available from https://github.com/sanger-pathogens/gff3toembl
+# Find the closest NCBI taxonomy id (e.g. 562 for Escherichia coli)
+% gff3_to_embl -i &quot;Submitter, A.&quot; \
+    -m &quot;Escherichia coli EHEC annotated using Prokka.&quot; \
+    -g linear -c PROK -n 11 -f PRJEB12345/EHEC-Chr1.embl \
+    &quot;Escherichia coli&quot; 562 PRJEB12345 &quot;Escherichia coli strain EHEC&quot; PRJEB12345/EHEC-Chr1.gff
+
+# Download and run the latest EMBL validator prior to submitting the EMBL flat file
+# from http://central.maven.org/maven2/uk/ac/ebi/ena/sequence/embl-api-validator/
+# which at the time of writing is v1.1.129
+% curl -L -O http://central.maven.org/maven2/uk/ac/ebi/ena/sequence/embl-api-validator/1.1.129/embl-api-validator-1.1.129.jar
+% java -jar embl-api-validator-1.1.129.jar -r PRJEB12345/EHEC-Chr1.embl
+
+# Compress the file ready to upload to ENA, and calculate MD5 checksum
+% gzip PRJEB12345/EHEC-Chr1.embl
+% md5sum PRJEB12345/EHEC-Chr1.embl.gz
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Crazy Person&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;# No stinking Perl script is going to control me
+% prokka \
+        --outdir $HOME/genomes/Ec_POO247 --force \
+        --prefix Ec_POO247 --addgenes --locustag ECPOOp \
+        --increment 10 --gffver 2 --centre CDC  --compliant \
+        --genus Escherichia --species coli --strain POO247 --plasmid pECPOO247 \
+        --kingdom Bacteria --gcode 11 --usegenus \
+        --proteins /opt/prokka/db/trusted/Ecocyc-17.6 \
+        --evalue 1e-9 --rfam \
+        plasmid-closed.fna
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Output Files&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Extension&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.gff&lt;/td&gt; 
+   &lt;td&gt;This is the master annotation in GFF3 format, containing both sequences and annotations. It can be viewed directly in Artemis or IGV.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.gbk&lt;/td&gt; 
+   &lt;td&gt;This is a standard Genbank file derived from the master .gff. If the input to prokka was a multi-FASTA, then this will be a multi-Genbank, with one record for each sequence.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.fna&lt;/td&gt; 
+   &lt;td&gt;Nucleotide FASTA file of the input contig sequences.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.faa&lt;/td&gt; 
+   &lt;td&gt;Protein FASTA file of the translated CDS sequences.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.ffn&lt;/td&gt; 
+   &lt;td&gt;Nucleotide FASTA file of all the prediction transcripts (CDS, rRNA, tRNA, tmRNA, misc_RNA)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.sqn&lt;/td&gt; 
+   &lt;td&gt;An ASN1 format &quot;Sequin&quot; file for submission to Genbank. It needs to be edited to set the correct taxonomy, authors, related publication etc.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.fsa&lt;/td&gt; 
+   &lt;td&gt;Nucleotide FASTA file of the input contig sequences, used by &quot;tbl2asn&quot; to create the .sqn file. It is mostly the same as the .fna file, but with extra Sequin tags in the sequence description lines.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.tbl&lt;/td&gt; 
+   &lt;td&gt;Feature Table file, used by &quot;tbl2asn&quot; to create the .sqn file.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.err&lt;/td&gt; 
+   &lt;td&gt;Unacceptable annotations - the NCBI discrepancy report.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.log&lt;/td&gt; 
+   &lt;td&gt;Contains all the output that Prokka produced during its run. This is a record of what settings you used, even if the --quiet option was enabled.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.txt&lt;/td&gt; 
+   &lt;td&gt;Statistics relating to the annotated features found.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.tsv&lt;/td&gt; 
+   &lt;td&gt;Tab-separated file of all features: locus_tag,ftype,len_bp,gene,EC_number,COG,product&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Command line options&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;General:
+  --help            This help
+  --version         Print version and exit
+  --citation        Print citation for referencing Prokka
+  --quiet           No screen output (default OFF)
+  --debug           Debug mode: keep all temporary files (default OFF)
+Setup:
+  --listdb          List all configured databases
+  --setupdb         Index all installed databases
+  --cleandb         Remove all database indices
+  --depends         List all software dependencies
+Outputs:
+  --outdir [X]      Output folder [auto] (default &#39;&#39;)
+  --force           Force overwriting existing output folder (default OFF)
+  --prefix [X]      Filename output prefix [auto] (default &#39;&#39;)
+  --addgenes        Add &#39;gene&#39; features for each &#39;CDS&#39; feature (default OFF)
+  --locustag [X]    Locus tag prefix (default &#39;PROKKA&#39;)
+  --increment [N]   Locus tag counter increment (default &#39;1&#39;)
+  --gffver [N]      GFF version (default &#39;3&#39;)
+  --compliant       Force Genbank/ENA/DDJB compliance: --genes --mincontiglen 200 --centre XXX (default OFF)
+  --centre [X]      Sequencing centre ID. (default &#39;&#39;)
+Organism details:
+  --genus [X]       Genus name (default &#39;Genus&#39;)
+  --species [X]     Species name (default &#39;species&#39;)
+  --strain [X]      Strain name (default &#39;strain&#39;)
+  --plasmid [X]     Plasmid name or identifier (default &#39;&#39;)
+Annotations:
+  --kingdom [X]     Annotation mode: Archaea|Bacteria|Mitochondria|Viruses (default &#39;Bacteria&#39;)
+  --gcode [N]       Genetic code / Translation table (set if --kingdom is set) (default &#39;0&#39;)
+  --prodigaltf [X]  Prodigal training file (default &#39;&#39;)
+  --gram [X]        Gram: -/neg +/pos (default &#39;&#39;)
+  --usegenus        Use genus-specific BLAST databases (needs --genus) (default OFF)
+  --proteins [X]    Fasta file of trusted proteins to first annotate from (default &#39;&#39;)
+  --hmms [X]        Trusted HMM to first annotate from (default &#39;&#39;)
+  --metagenome      Improve gene predictions for highly fragmented genomes (default OFF)
+  --rawproduct      Do not clean up /product annotation (default OFF)
+Computation:
+  --fast            Fast mode - skip CDS /product searching (default OFF)
+  --cpus [N]        Number of CPUs to use [0=all] (default &#39;8&#39;)
+  --mincontiglen [N] Minimum contig size [NCBI needs 200] (default &#39;1&#39;)
+  --evalue [n.n]    Similarity e-value cut-off (default &#39;1e-06&#39;)
+  --rfam            Enable searching for ncRNAs with Infernal+Rfam (SLOW!) (default &#39;0&#39;)
+  --norrna          Don&#39;t run rRNA search (default OFF)
+  --notrna          Don&#39;t run tRNA search (default OFF)
+  --rnammer         Prefer RNAmmer over Barrnap for rRNA prediction (default OFF)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Option: --proteins&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;--proteins&lt;/code&gt; option is recommended when you have good quality reference genomes and want to ensure gene naming is consistent. Some species use specific terminology which will be often lost if you rely on the default Swiss-Prot database included with Prokka.&lt;/p&gt; 
+&lt;p&gt;If you have Genbank or Protein FASTA file(s) that you want to annotate genes from as the first priority, use the &lt;code&gt;--proteins myfile.gbk&lt;/code&gt;. Please make sure it has a recognisable file extension like &lt;code&gt;.gb&lt;/code&gt; or &lt;code&gt;.gbk&lt;/code&gt; or auto-detect will fail. The use of Genbank is recommended over FASTA, because it will provide &lt;code&gt;/gene&lt;/code&gt; and &lt;code&gt;/EC_number&lt;/code&gt; annotations that a typical &lt;code&gt;.faa&lt;/code&gt; file will not provide, unless you have &lt;a href=&quot;https://raw.githubusercontent.com/tseemann/prokka/master/#fasta-database-format&quot;&gt;specially formatted it for Prokka&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Option: --prodigaltf&lt;/h3&gt; 
+&lt;p&gt;Instead of letting &lt;code&gt;prodigal&lt;/code&gt; train its gene model on the contigs you provide, you can pre-train it on some good closed reference genomes first using the &lt;code&gt;prodigal -t&lt;/code&gt; option. Once you&#39;ve done that, provide &lt;code&gt;prokka&lt;/code&gt; the training file using the &lt;code&gt;--prodgialtf&lt;/code&gt; option.&lt;/p&gt; 
+&lt;h3&gt;Option: --rawproduct&lt;/h3&gt; 
+&lt;p&gt;Prokka annotates proteins by using sequence similarity to other proteins in its database, or the databases the user provides via &lt;code&gt;--proteins&lt;/code&gt;. By default, Prokka tries to &quot;cleans&quot; the &lt;code&gt;/product&lt;/code&gt; names to ensure they are compliant with Genbank/ENA conventions. Some of the main things it does is:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;set vague names to &lt;code&gt;hypothetical protein&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;consistifies terms like &lt;code&gt;possible&lt;/code&gt;, &lt;code&gt;probable&lt;/code&gt;, &lt;code&gt;predicted&lt;/code&gt;, ... to &lt;code&gt;putative&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;removes EC, COG and locus_tag identifiers&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Full details can be found in the &lt;code&gt;cleanup_product()&lt;/code&gt; function in the &lt;code&gt;prokka&lt;/code&gt; script. If you feel your annotations are being ruined, try using the &lt;code&gt;--rawproduct&lt;/code&gt; option, and please &lt;a href=&quot;https://github.com/tseemann/prokka/issues/&quot;&gt;file an issue&lt;/a&gt; if you find an example of where it is &quot;behaving badly&quot; and I will fix it.&lt;/p&gt; 
+&lt;h2&gt;Databases&lt;/h2&gt; 
+&lt;h3&gt;The Core (BLAST+) Databases&lt;/h3&gt; 
+&lt;p&gt;Prokka uses a variety of databases when trying to assign function to the predicted CDS features. It takes a hierarchical approach to make it fast.&lt;br /&gt; A small, core set of well characterized proteins are first searched using BLAST+. This combination of small database and fast search typically completes about 70% of the workload. Then a series of slower but more sensitive HMM databases are searched using HMMER3.&lt;/p&gt; 
+&lt;p&gt;The three core databases, applied in order, are:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://isfinder.biotoul.fr/&quot;&gt;ISfinder&lt;/a&gt;: Only the tranposase (protein) sequences; the whole transposon is not annotated.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://www.ncbi.nlm.nih.gov/bioproject/313047&quot;&gt;NCBI Bacterial Antimicrobial Resistance Reference Gene Database&lt;/a&gt;: Antimicrobial resistance genes curated by NCBI.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://www.uniprot.org/uniprot/?query=reviewed:yes&quot;&gt;UniProtKB (SwissProt)&lt;/a&gt;: For each &lt;code&gt;--kingdom&lt;/code&gt; we include curated proteins with evidence that (i) from Bacteria (or Archaea or Viruses); (ii) not be &quot;Fragment&quot; entries; and (iii) have an evidence level (&quot;PE&quot;) of 2 or lower, which corresponds to experimental mRNA or proteomics evidence.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Making a Core Databases&lt;/h4&gt; 
+&lt;p&gt;If you want to modify these core databases, the included script &lt;code&gt;prokka-uniprot_to_fasta_db&lt;/code&gt;, along with the official &lt;code&gt;uniprot_sprot.dat&lt;/code&gt;, can be used to generate a new database to put in &lt;code&gt;/opt/prokka/db/kingdom/&lt;/code&gt;. If you add new ones, the command &lt;code&gt;prokka --listdb&lt;/code&gt; will show you whether it has been detected properly.&lt;/p&gt; 
+&lt;h4&gt;The Genus Databases&lt;/h4&gt; 
+&lt;p&gt;&lt;span&gt;⚠&lt;/span&gt; This is no longer recommended. Please use &lt;code&gt;--proteins&lt;/code&gt; instead.&lt;/p&gt; 
+&lt;p&gt;If you enable &lt;code&gt;--usegenus&lt;/code&gt; and also provide a Genus via &lt;code&gt;--genus&lt;/code&gt; then it will first use a BLAST database which is Genus specific. Prokka comes with a set of databases for the most common Bacterial genera; type prokka &lt;code&gt;--listdb&lt;/code&gt; to see what they are.&lt;/p&gt; 
+&lt;h4&gt;Adding a Genus Databases&lt;/h4&gt; 
+&lt;p&gt;If you have a set of Genbank files and want to create a new Genus database, Prokka comes with a tool called &lt;code&gt;prokka-genbank_to_fasta_db&lt;/code&gt; to help. For example, if you had four annotated &quot;Coccus&quot; genomes, you could do the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;% prokka-genbank_to_fasta_db Coccus1.gbk Coccus2.gbk Coccus3.gbk Coccus4.gbk &amp;gt; Coccus.faa
+% cd-hit -i Coccus.faa -o Coccus -T 0 -M 0 -g 1 -s 0.8 -c 0.9
+% rm -fv Coccus.faa Coccus.bak.clstr Coccus.clstr
+% makeblastdb -dbtype prot -in Coccus
+% mv Coccus.p* /path/to/prokka/db/genus/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;The HMM Databases&lt;/h3&gt; 
+&lt;p&gt;Prokka comes with a bunch of HMM libraries for HMMER3. They are mostly Bacteria-specific. They are searched after the core and genus databases. You can add more simply by putting them in &lt;code&gt;/opt/prokka/db/hmm&lt;/code&gt;. Type &lt;code&gt;prokka --listdb&lt;/code&gt; to confirm they are recognised.&lt;/p&gt; 
+&lt;h3&gt;FASTA database format&lt;/h3&gt; 
+&lt;p&gt;Prokka understands two annotation tag formats, a plain one and a detailed one.&lt;/p&gt; 
+&lt;p&gt;The plain one is a standard FASTA-like line with the ID after the &lt;code&gt;&amp;gt;&lt;/code&gt; sign, and the protein &lt;code&gt;/product&lt;/code&gt; after the ID (the &quot;description&quot; part of the line):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;&amp;gt;SeqID product
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The detailed one consists of a special encoded three-part description line. The parts are the &lt;code&gt;/EC_number&lt;/code&gt;, the &lt;code&gt;/gene&lt;/code&gt; code, then the &lt;code&gt;/product&lt;/code&gt; - and they are separated by a special &quot;~~~&quot; sequence:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;&amp;gt;SeqID EC_number~~~gene~~~product~~~COG
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Here are some examples. Note that not all parts need to be present, but the &quot;~~~&quot; should still be there:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;&amp;gt;YP_492693.1 2.1.1.48~~~ermC~~~rRNA adenine N-6-methyltransferase~~~COG1234
+MNEKNIKHSQNFITSKHNIDKIMTNIRLNEHDNIFEIGSGKGHFTLELVQRCNFVTAIEI
+DHKLCKTTENKLVDHDNFQVLNKDILQFKFPKNQSYKIFGNIPYNISTDIIRKIVF*
+&amp;gt;YP_492697.1 ~~~traB~~~transfer complex protein TraB~~~
+MIKKFSLTTVYVAFLSIVLSNITLGAENPGPKIEQGLQQVQTFLTGLIVAVGICAGVWIV
+LKKLPGIDDPMVKNEMFRGVGMVLAGVAVGAALVWLVPWVYNLFQ*
+&amp;gt;YP_492694.1 ~~~~~~transposase~~~
+MNYFRYKQFNKDVITVAVGYYLRYALSYRDISEILRGRGVNVHHSTVYRWVQEYAPILYQ
+QSINTAKNTLKGIECIYALYKKNRRSLQIYGFSPCHEISIMLAS*
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The same description lines apply to HMM models, except the &quot;NAME&quot; and &quot;DESC&quot; fields are used:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;NAME  PRK00001
+ACC   PRK00001
+DESC  2.1.1.48~~~ermC~~~rRNA adenine N-6-methyltransferase~~~COG1234
+LENG  284
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Where does the name &quot;Prokka&quot; come from?&lt;/strong&gt;&lt;br /&gt; Prokka is a contraction of &quot;prokaryotic annotation&quot;. It&#39;s also relatively unique within Google, and also rhymes with a native Australian marsupial called the quokka.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Can I annotate by eukaryote genome with Prokka?&lt;/strong&gt;&lt;br /&gt; No. Prokka is specifically designed for Bacteria, Archaea and Viruses. It can&#39;t handle multi-exon gene models; I would recommend using MAKER 2 for that purpose.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Why does Prokka keeps on crashing when it gets to the &quot;tbl2asn&quot; stage?&lt;/strong&gt;&lt;br /&gt; It seems that the tbl2asn program from NCBI &quot;expires&quot; after 6-12 months, and refuses to run. Unfortunately you need to install a newer version which you can download from &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;The hmmscan step seems to hang and do nothing?&lt;/strong&gt;&lt;br /&gt; The problem here is GNU Parallel. It seems the Debian package for hmmer has modified it to require the &lt;code&gt;--gnu&lt;/code&gt; option to behave in the &#39;default&#39; way. There is no clear reason for this. The only way to restore normal behaviour is to edit the prokka script and change &lt;code&gt;parallel&lt;/code&gt; to &lt;code&gt;parallel --gnu&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Why does prokka fail when it gets to hmmscan?&lt;/strong&gt;&lt;br /&gt; Unfortunately HMMER keeps changing its database format, and they aren&#39;t upward compatible. If you upgraded HMMER (from 3.0 to 3.1 say) then you need to &quot;re-press&quot; the files. This can be done as follows:&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;cd /path/to/prokka/db/hmm
+mkdir new
+for D in *.hmm ; do hmmconvert $D &amp;gt; new/$D ; done
+cd new
+for D in *.hmm ; do hmmpress $D ; done
+mv * ..
+rmdir new
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Why can&#39;t I load Prokka .GBK files into Mauve?&lt;/strong&gt;&lt;br /&gt; Mauve uses BioJava to parse GenBank files, and it is very picky about Genbank files. It does not like long contig names, like those from Velvet or Spades. One solution is to use &lt;code&gt;--centre XXX&lt;/code&gt; in Prokka and it will rename all your contigs to be NCBI (and Mauve) compliant. It does not like the ACCESSION and VERSION strings that Prokka produces via the &quot;tbl2asn&quot; tool. The following Unix command will fix them: &lt;code&gt;egrep -v &#39;^(ACCESSION|VERSION)&#39; prokka.gbk &amp;gt; mauve.gbk&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;How can I make my GFF not have the contig sequences in it?&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;sed &#39;/^##FASTA/Q&#39; prokka.gff &amp;gt; nosequence.gff
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Dependencies&lt;/h2&gt; 
+&lt;h3&gt;Mandatory&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;BioPerl&lt;/strong&gt;&lt;br /&gt; Used for input/output of various file formats&lt;br /&gt; &lt;em&gt;Stajich et al, The Bioperl toolkit: Perl modules for the life sciences. Genome Res. 2002 Oct;12(10):1611-8.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;GNU Parallel&lt;/strong&gt;&lt;br /&gt; A shell tool for executing jobs in parallel using one or more computers&lt;br /&gt; &lt;em&gt;O. Tange, GNU Parallel - The Command-Line Power Tool, ;login: The USENIX Magazine, Feb 2011:42-47.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;BLAST+&lt;/strong&gt;&lt;br /&gt; Used for similarity searching against protein sequence libraries&lt;br /&gt; &lt;em&gt;Camacho C et al. BLAST+: architecture and applications. BMC Bioinformatics. 2009 Dec 15;10:421.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Prodigal&lt;/strong&gt;&lt;br /&gt; Finds protein-coding features (CDS)&lt;br /&gt; &lt;em&gt;Hyatt D et al. Prodigal: prokaryotic gene recognition and translation initiation site identification. BMC Bioinformatics. 2010 Mar 8;11:119.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;TBL2ASN&lt;/strong&gt; Prepare sequence records for Genbank submission &lt;a href=&quot;https://www.ncbi.nlm.nih.gov/genbank/tbl2asn2/&quot;&gt;Tbl2asn home page&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Recommended&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Aragorn&lt;/strong&gt;&lt;br /&gt; Finds transfer RNA features (tRNA)&lt;br /&gt; &lt;em&gt;Laslett D, Canback B. ARAGORN, a program to detect tRNA genes and tmRNA genes in nucleotide sequences. Nucleic Acids Res. 2004 Jan 2;32(1):11-6.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Barrnap&lt;/strong&gt;&lt;br /&gt; Used to predict ribosomal RNA features (rRNA). My licence-free replacement for RNAmmmer.&lt;br /&gt; &lt;em&gt;Manuscript under preparation.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;HMMER3&lt;/strong&gt;&lt;br /&gt; Used for similarity searching against protein family profiles&lt;br /&gt; &lt;em&gt;Finn RD et al. HMMER web server: interactive sequence similarity searching. Nucleic Acids Res. 2011 Jul;39(Web Server issue):W29-37.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Optional&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;minced&lt;/strong&gt;&lt;br /&gt; Finds CRISPR arrays &lt;a href=&quot;https://github.com/ctSkennerton/minced&quot;&gt;Minced home page&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;RNAmmer&lt;/strong&gt;&lt;br /&gt; Finds ribosomal RNA features (rRNA)&lt;br /&gt; &lt;em&gt;Lagesen K et al. RNAmmer: consistent and rapid annotation of ribosomal RNA genes. Nucleic Acids Res. 2007;35(9):3100-8.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;SignalP&lt;/strong&gt;&lt;br /&gt; Finds signal peptide features in CDS (sig_peptide)&lt;br /&gt; &lt;em&gt;Petersen TN et al. SignalP 4.0: discriminating signal peptides from transmembrane regions. Nat Methods. 2011 Sep 29;8(10):785-6.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Infernal&lt;/strong&gt;&lt;br /&gt; Used for similarity searching against ncRNA family profiles&lt;br /&gt; &lt;em&gt;D. L. Kolbe, S. R. Eddy. Fast Filtering for RNA Homology Search. Bioinformatics, 27:3102-3109, 2011.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Changes&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Read the &lt;a href=&quot;https://github.com/tseemann/prokka/releases&quot;&gt;release notes&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Look at the &lt;a href=&quot;https://github.com/tseemann/prokka/commits/master&quot;&gt;Github commits&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Feedback&lt;/h2&gt; 
+&lt;p&gt;Submit problems or requests to the &lt;a href=&quot;https://github.com/tseemann/prokka/issues&quot;&gt;Issue Tracker&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Citation&lt;/h2&gt; 
+&lt;p&gt;Seemann T. &lt;em&gt;Prokka: rapid prokaryotic genome annotation&lt;/em&gt; &lt;strong&gt;Bioinformatics&lt;/strong&gt; 2014 Jul 15;30(14):2068-9. &lt;a href=&quot;http://www.ncbi.nlm.nih.gov/pubmed/24642063&quot;&gt;PMID:24642063&lt;/a&gt; &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btu153&quot;&gt;DOI:10.1093/bioinformatics/btu153&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/tseemann/prokka/master/CITATION.cff&quot;&gt;CFF&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Licence&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/tseemann/prokka/master/LICENSE&quot;&gt;GPL v3&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Author&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://tseemann.github.io/&quot;&gt;Torsten Seemann&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/dc67aadffb9752064d62bedd163c15e242008038f1bf474ef5c87ecdd29ebd03/tseemann/prokka" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
