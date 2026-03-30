@@ -4,7 +4,7 @@ import Algorithms
 import Foundation
 import SwiftSoup
 
-public class GitHubPageParser {
+public final class GitHubPageParser: Sendable {
     private static let specialLinks = [
         LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
     ]
@@ -32,9 +32,7 @@ public class GitHubPageParser {
             )
         }
         
-        let uniqueLinks = links.uniqued(on: \.name)
-        
-        return uniqueLinks
+        return links.uniqued(on: \.name)
     }
 
     public func repositories(fromTrendingPage trendingPage: String) throws -> [Repository] {
@@ -60,7 +58,8 @@ public class GitHubPageParser {
                 Repository(
                     pageLink: repositoryPageLink,
                     summary: summary
-                ))
+                )
+            )
         }
         return repositories
     }

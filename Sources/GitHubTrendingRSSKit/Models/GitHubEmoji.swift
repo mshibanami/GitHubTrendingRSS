@@ -7,8 +7,8 @@
 
 import Foundation
 
-public struct GitHubEmoji {
-    public enum ValueType {
+public struct GitHubEmoji: Sendable {
+    public enum ValueType: Sendable {
         case text(String)
         case image(URL)
     }

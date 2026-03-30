@@ -1,12 +1,10 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
-import Combine
 import Foundation
 import SwiftSoup
 
-public class GitHubDownloader {
+public final class GitHubDownloader: Sendable {
     public enum Error: Swift.Error {
-        case noSelf
         case unsupportedFormat
         case invalidURL
     }
@@ -21,87 +19,66 @@ public class GitHubDownloader {
         self.githubToken = githubToken
     }
 
-    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, includesReadMeIfExists: Bool) -> AnyPublisher<[Repository], Swift.Error> {
-        let fetchRepositories = downloadManager
-            .fetch(
-                url: languageTrendingLink.url(ofPeriod: period),
-                bearerToken: githubToken
-            )
-            .tryMap { [weak self] page -> [Repository] in
-                guard let self else {
-                    throw Error.noSelf
-                }
-                return try gitHubPageParser.repositories(fromTrendingPage: page)
-            }
-            .eraseToAnyPublisher()
+    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, includesReadMeIfExists: Bool) async throws -> [Repository] {
+        let page = try await downloadManager.fetch(
+            url: languageTrendingLink.url(ofPeriod: period),
+            bearerToken: githubToken
+        )
+        
+        let repositories = try gitHubPageParser.repositories(fromTrendingPage: page)
 
         guard includesReadMeIfExists else {
-            return fetchRepositories
+            return repositories
         }
 
-        return fetchRepositories
-            .flatMap { [weak self] repositories -> AnyPublisher<[Repository], Swift.Error> in
-                guard let self else {
-                    return Result.Publisher([]).eraseToAnyPublisher()
+        return await withTaskGroup(of: (Int, Repository).self) { group in
+            for (index, repository) in repositories.enumerated() {
+                group.addTask {
+                    var repo = repository
+                    do {
+                        repo.readMe = try await self.fetchReadMePage(pageLink: repository.pageLink)
+                    } catch {
+                        // ignore
+                    }
+                    return (index, repo)
                 }
-
-                var singles = [AnyPublisher<Repository, Never>]()
-                for repository in repositories {
-                    singles.append(
-                        fetchReadMePage(pageLink: repository.pageLink)
-                            .map {
-                                var repo = repository
-                                repo.readMe = $0
-                                return repo
-                            }
-                            .replaceError(with: repository)
-                            .eraseToAnyPublisher()
-                    )
-                }
-                return Publishers.Sequence<[AnyPublisher<Repository, Never>], Never>(sequence: singles)
-                    .flatMap { $0 }
-                    .collect()
-                    .setFailureType(to: Swift.Error.self)
-                    .eraseToAnyPublisher()
             }
-            .eraseToAnyPublisher()
+            
+            var results = [(Int, Repository)]()
+            for await result in group {
+                results.append(result)
+            }
+            return results.sorted { $0.0 < $1.0 }.map { $1 }
+        }
     }
 
-    public func fetchReadMePage(pageLink: RepositoryPageLink) -> AnyPublisher<APIReadMe, Swift.Error> {
+    public func fetchReadMePage(pageLink: RepositoryPageLink) async throws -> APIReadMe {
         guard let components = URLComponents(url: pageLink.readMeAPIEndpointURL, resolvingAgainstBaseURL: false) else {
-            return Fail(error: DownloadManager.Error.invalidURL).eraseToAnyPublisher()
+            throw DownloadManager.Error.invalidURL
         }
         guard let url = components.url else {
-            return Fail(error: DownloadManager.Error.invalidURL).eraseToAnyPublisher()
+            throw DownloadManager.Error.invalidURL
         }
-        return downloadManager
-            .fetch(url: url, bearerToken: githubToken)
-            .tryMap { page in
-                guard let data = page.data(using: .utf8) else {
-                    throw Error.unsupportedFormat
-                }
-                var decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
-                decoded.userID = pageLink.userID
-                decoded.repositoryName = pageLink.repositoryName
-                return decoded
-            }
-            .eraseToAnyPublisher()
+        let page = try await downloadManager.fetch(url: url, bearerToken: githubToken)
+        guard let data = page.data(using: .utf8) else {
+            throw Error.unsupportedFormat
+        }
+        var decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
+        decoded.userID = pageLink.userID
+        decoded.repositoryName = pageLink.repositoryName
+        return decoded
     }
 
-    public func fetchTopTrendingPage() -> AnyPublisher<String, Swift.Error> {
-        return downloadManager.fetch(url: Const.gitHubTopTrendingURL)
+    public func fetchTopTrendingPage() async throws -> String {
+        return try await downloadManager.fetch(url: Const.gitHubTopTrendingURL)
     }
 
-    public func fetchSupportedEmojis() -> AnyPublisher<[GitHubEmoji], Swift.Error> {
-        return downloadManager
-            .fetch(url: Const.gitHubAPIEmojisURL, bearerToken: githubToken)
-            .tryMap { body -> [GitHubEmoji] in
-                guard let data = body.data(using: .utf8) else {
-                    throw Error.unsupportedFormat
-                }
-                let emojiList = try JSONDecoder().decode(APIEmojiList.self, from: data)
-                return emojiList.makeEmojis()
-            }
-            .eraseToAnyPublisher()
+    public func fetchSupportedEmojis() async throws -> [GitHubEmoji] {
+        let body = try await downloadManager.fetch(url: Const.gitHubAPIEmojisURL, bearerToken: githubToken)
+        guard let data = body.data(using: .utf8) else {
+            throw Error.unsupportedFormat
+        }
+        let emojiList = try JSONDecoder().decode(APIEmojiList.self, from: data)
+        return emojiList.makeEmojis()
     }
 }

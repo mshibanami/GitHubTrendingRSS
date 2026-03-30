@@ -1,9 +1,8 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
-import Combine
 import Foundation
 
-public class DownloadManager {
+public final class DownloadManager: @unchecked Sendable {
     public enum Error: Swift.Error, Equatable {
         case unknown
         case failedFetching(statusCode: Int)
@@ -24,67 +23,60 @@ public class DownloadManager {
         header: [String: String] = [:],
         basicAuthInfo: BasicAuthInfo? = nil,
         bearerToken: String? = nil
-    ) -> AnyPublisher<String, Swift.Error> {
-        return Result.Publisher(())
-            .flatMap { _ -> AnyPublisher<String, Swift.Error> in
-                let session = URLSession.shared
+    ) async throws -> String {
+        let session = URLSession.shared
 
-                var request = URLRequest(url: url)
-                request.httpMethod = httpMethod
-                request.httpBody = httpBody
-                for keyValue in header {
-                    request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
+        var request = URLRequest(url: url)
+        request.httpMethod = httpMethod
+        request.httpBody = httpBody
+        for keyValue in header {
+            request.addValue(keyValue.value, forHTTPHeaderField: keyValue.key)
+        }
+        
+        if let basicAuthInfo = try basicAuthInfo?.makeHeaderValue() {
+            request.addValue(basicAuthInfo, forHTTPHeaderField: "Authorization")
+        } else if let bearerToken, !bearerToken.isEmpty {
+            request.addValue("bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
+        }
+
+        NSLog("-> \(request.httpMethod ?? "???"): \(url.absoluteString)")
+
+        var currentRetryCount = 0
+        while true {
+            do {
+                let (data, response) = try await session.data(for: request)
+                
+                guard let httpResponse = response as? HTTPURLResponse else {
+                    throw Error.unsupportedFormat
                 }
-                do {
-                    if let basicAuthInfo = try basicAuthInfo?.makeHeaderValue() {
-                        request.addValue(basicAuthInfo, forHTTPHeaderField: "Authorization")
-                    } else if let bearerToken, !bearerToken.isEmpty {
-                        request.addValue("bearer \(bearerToken)", forHTTPHeaderField: "Authorization")
+                
+                if httpResponse.statusCode == 200 {
+                    guard let htmlResponse = String(data: data, encoding: .utf8) else {
+                        assertionFailure()
+                        throw Error.brokenResponseData
                     }
-                } catch {
-                    return Fail(error: error).eraseToAnyPublisher()
+                    return htmlResponse
+                } else {
+                    let rateLimitRemainingKey = "X-RateLimit-Remaining"
+                    let remaining = httpResponse.value(forHTTPHeaderField: rateLimitRemainingKey) ?? "-"
+                    NSLog("<- \(httpResponse.statusCode) \(url.absoluteString) [\(rateLimitRemainingKey): \(remaining)]")
+                    throw Error.failedFetching(statusCode: httpResponse.statusCode)
                 }
-
-                NSLog("-> \(request.httpMethod ?? "???"): \(url.absoluteString)")
-                let dataTaskPublisher = session.dataTaskPublisher(for: request)
-                    .mapError { $0 as Swift.Error }
-                    .tryMap { data, response -> String in
-                        guard let response = response as? HTTPURLResponse else {
-                            throw Error.unsupportedFormat
-                        }
-                        if response.statusCode == 200 {
-                            guard let htmlResponse = String(data: data, encoding: .utf8) else {
-                                assertionFailure()
-                                throw Error.brokenResponseData
-                            }
-                            return htmlResponse
-                        } else {
-                            let rateLimitRemainingKey = "X-RateLimit-Remaining"
-                            let remaining = response.allHeaderFields[rateLimitRemainingKey] ?? "-"
-                            NSLog("<- \(response.statusCode) \(url.absoluteString) [\(rateLimitRemainingKey): \(remaining)]")
-                            throw Error.failedFetching(statusCode: response.statusCode)
-                        }
-                    }
-
-                return dataTaskPublisher.tryCatch { error -> AnyPublisher<String, Swift.Error> in
-                    switch error {
-                    case let Error.failedFetching(statusCode):
-                        switch statusCode {
-                        case 429, 403, 502:
-                            break
-                        default:
-                            throw error
-                        }
-                        fallthrough
-                    default:
-                        return dataTaskPublisher
-                            .delay(for: .init(floatLiteral: self.retryInterval), scheduler: DispatchQueue.global())
-                            .eraseToAnyPublisher()
+            } catch {
+                if currentRetryCount >= maxRetryCount {
+                    throw error
+                }
+                
+                if let err = error as? Error, case let .failedFetching(statusCode) = err {
+                    if ![429, 403, 502].contains(statusCode) {
+                        throw error
                     }
                 }
-                .eraseToAnyPublisher()
+                
+                currentRetryCount += 1
+                try await Task.sleep(nanoseconds: UInt64(retryInterval * 1_000_000_000))
             }
-            .eraseToAnyPublisher()
+        }
     }
 }
 

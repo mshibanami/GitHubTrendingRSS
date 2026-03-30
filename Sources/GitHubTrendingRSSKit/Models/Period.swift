@@ -2,7 +2,7 @@
 
 import Foundation
 
-public enum Period: String, CaseIterable {
+public enum Period: String, CaseIterable, Sendable {
     case daily
     case weekly
     case monthly

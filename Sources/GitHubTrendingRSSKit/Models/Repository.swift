@@ -5,7 +5,7 @@ import MarkdownSyntax
 import SwiftAsciidoctor
 import SwiftSoup
 
-public struct Repository {
+public struct Repository: @unchecked Sendable {
     public let pageLink: RepositoryPageLink
     public let summary: String
     public var readMe: APIReadMe?

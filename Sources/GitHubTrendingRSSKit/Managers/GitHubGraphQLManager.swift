@@ -1,9 +1,8 @@
 // Copyright (c) 2023 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
-import Combine
 import Foundation
 
-public class GitHubGraphQLManager {
+public final class GitHubGraphQLManager: @unchecked Sendable {
     public enum Error: Swift.Error {
         case invalidURL
         case noData
@@ -20,36 +19,33 @@ public class GitHubGraphQLManager {
 
     /// Fetches Open Graph Image URLs for multiple repositories.
     /// Using GraphQL Aliases to batch multiple repositories in a single request.
-    public func fetchRepositoriesOGImages(repositories: [(owner: String, name: String)]) -> AnyPublisher<[String: RepositoryNode], Swift.Error> {
+    public func fetchRepositoriesOGImages(repositories: [(owner: String, name: String)]) async throws -> [String: RepositoryNode] {
         let endpoint = URL(string: "https://api.github.com/graphql")!
         
         let query = buildBatchQuery(for: repositories)
         
         let requestBody: [String: String] = ["query": query]
         guard let httpBody = try? JSONEncoder().encode(requestBody) else {
-            return Fail(error: Error.noData).eraseToAnyPublisher()
+            throw Error.noData
         }
         
-        return downloadManager
-            .fetch(url: endpoint, httpMethod: "POST", httpBody: httpBody, bearerToken: apiToken)
-            .tryMap { page in
-                guard let data = page.data(using: .utf8) else {
-                    throw Error.noData
-                }
-                
-                let response = try JSONDecoder().decode(GraphQLResponse<[String: RepositoryNode?]>.self, from: data)
-                
-                if let errors = response.errors, !errors.isEmpty {
-                    throw Error.graphQLError(messages: errors.map(\.message))
-                }
-                
-                guard let responseData = response.data else {
-                    throw Error.noData
-                }
-                
-                return responseData.compactMapValues { $0 }
-            }
-            .eraseToAnyPublisher()
+        let page = try await downloadManager.fetch(url: endpoint, httpMethod: "POST", httpBody: httpBody, bearerToken: apiToken)
+        
+        guard let data = page.data(using: .utf8) else {
+            throw Error.noData
+        }
+        
+        let response = try JSONDecoder().decode(GraphQLResponse<[String: RepositoryNode?]>.self, from: data)
+        
+        if let errors = response.errors, !errors.isEmpty {
+            throw Error.graphQLError(messages: errors.map(\.message))
+        }
+        
+        guard let responseData = response.data else {
+            throw Error.noData
+        }
+        
+        return responseData.compactMapValues { $0 }
     }
     
     func buildBatchQuery(for repositories: [(owner: String, name: String)]) -> String {

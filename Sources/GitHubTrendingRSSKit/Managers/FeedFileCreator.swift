@@ -2,7 +2,7 @@
 
 import Foundation
 
-public class FeedFileCreator {
+public final class FeedFileCreator: @unchecked Sendable {
     public let siteGenerator: SiteSourceMaker
     public let rootOutputDirectory: URL
 

@@ -3,7 +3,7 @@
 import Foundation
 import Stencil
 
-public class SiteSourceMaker {
+public final class SiteSourceMaker: @unchecked Sendable {
     public struct Information {
         public let pageTitle: String
         public let author: String
