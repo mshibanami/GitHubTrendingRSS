@@ -14,7 +14,7 @@ final class GitHubPageParserTests: XCTestCase {
             .languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
 
         XCTAssertEqual(languageTrendingLinks.count, 720)
-        let firstTrendingLink = languageTrendingLinks.first!
+        let firstTrendingLink = try XCTUnwrap(languageTrendingLinks.first)
         XCTAssertEqual(firstTrendingLink.name, "all")
         XCTAssertEqual(firstTrendingLink.displayName, "All Languages")
         XCTAssertEqual(firstTrendingLink.url(ofPeriod: .daily).absoluteString, "https://github.com/trending?since=daily")
@@ -38,7 +38,7 @@ final class GitHubPageParserTests: XCTestCase {
         let swiftTrendingPage = TestResources.trendingPage(of: .language(name: "swift"))
         let repositories = try parser.repositories(fromTrendingPage: swiftTrendingPage)
         XCTAssertEqual(repositories.count, 25)
-        let repository = repositories.first!
+        let repository = try XCTUnwrap(repositories.first)
         XCTAssertEqual(repository.pageLink.repositoryName, "lottie-ios")
         XCTAssertEqual(repository.pageLink.href, "/airbnb/lottie-ios")
         XCTAssertEqual(repository.summary, "An iOS library to natively render After Effects vector animations")
@@ -53,9 +53,8 @@ extension Array where Element: Hashable {
             counts[element, default: 0] += 1
         }
         
-        let duplicates = counts
+        return counts
             .filter { $0.value > 1 }
             .map(\.key)
-        return duplicates
     }
 }

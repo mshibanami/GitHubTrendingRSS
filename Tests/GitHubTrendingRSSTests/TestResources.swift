@@ -10,7 +10,7 @@ class TestResources {
         case language(name: String)
     }
 
-    public static var rootURL: URL {
+    static var rootURL: URL {
         guard let testResourceURL = Bundle.module.url(forResource: "TestResources", withExtension: nil) else {
             fatalError("Resources folder not found")
         }
