@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 set -e
-cd "$(dirname "${BASH_SOURCE:-$0}")"
+cd "$(dirname "${BASH_SOURCE:-$0}")/.."
 
 BRANCH_NAME="gh-pages"
 OUTPUT_PATH="output"
@@ -13,14 +13,14 @@ if [ -z "$GITHUB_TOKEN" ]; then
     exit 1
 fi
 
-if [ -f "$OUTPUT_PATH" ]; then
+if [ ! -d "$OUTPUT_PATH" ]; then
     echo "Output folder not found: ${OUTPUT_PATH}" 1>&2
     exit 1
 fi
 
 GIT_REPO_URL="https://mshibanami:${GITHUB_TOKEN}@github.com/mshibanami/GitHubTrendingRSS.git"
 
-cd output
+cd "$OUTPUT_PATH"
 
 git init
 git config --global user.email "${GIT_USER_EMAIL}"

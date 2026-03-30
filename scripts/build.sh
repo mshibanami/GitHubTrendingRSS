@@ -2,6 +2,8 @@
 
 set -ex
 
+cd "$(dirname "${BASH_SOURCE:-$0}")/.."
+
 if [ -z "$GITHUB_TOKEN" ]; then
     echo "Please set the environment value 'GITHUB_TOKEN'." 1>&2
     exit 1
