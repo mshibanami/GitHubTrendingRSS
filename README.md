@@ -16,7 +16,6 @@ Feeds for some popular programming languages, such as Python and JavaScript, hav
 - [stencilproject / Stencil](https://github.com/stencilproject/Stencil)
 - [kylef / PathKit](https://github.com/kylef/PathKit)
 - [scinfu / SwiftSoup](https://github.com/scinfu/SwiftSoup)
-- [hebertialmeida / MarkdownSyntax](https://github.com/hebertialmeida/MarkdownSyntax)
+- [mshibanami / Docsloth](https://github.com/mshibanami/Docsloth)
 - [hartbit / Yaap](https://github.com/hartbit/Yaap)
 - [jgthms / bulma](https://github.com/jgthms/bulma)
-- [mshibanami / SwiftAsciidoctor](https://github.com/mshibanami/SwiftAsciidoctor)

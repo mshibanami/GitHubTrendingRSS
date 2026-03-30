@@ -53,7 +53,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
         )
     }
 
-    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository], supportedEmojis: [GitHubEmoji]) throws -> String {
+    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository], supportedEmojis: [GitHubEmoji]) async throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -61,21 +61,25 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         let noDescriptionHTML = #"<p style="color:#586069;"><em>No description/README provided.</em></p>"#
 
+        var repositoryContexts: [(description: String, userID: String, repositoryName: String, url: String, pageLink: RepositoryPageLink, openGraphImageUrl: String?)] = []
+        for repository in repositories {
+            let descriptionHTML = try await repository.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis) ?? noDescriptionHTML
+            repositoryContexts.append((
+                description: descriptionHTML.xmlEscaped,
+                userID: repository.pageLink.userID,
+                repositoryName: repository.pageLink.repositoryName,
+                url: repository.pageLink.url.absoluteString,
+                pageLink: repository.pageLink,
+                openGraphImageUrl: repository.openGraphImageUrl?.absoluteString
+            ))
+        }
+
         let context: [String: Any] = [
             "languageTrendingLink": languageTrendingLink,
             "information": information,
             "periodText": period.rawValue.capitalized,
             "pubDate": pubDate,
-            "repositories": repositories.map {
-                (
-                    description: ($0.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis) ?? noDescriptionHTML).xmlEscaped,
-                    userID: $0.pageLink.userID,
-                    repositoryName: $0.pageLink.repositoryName,
-                    url: $0.pageLink.url.absoluteString,
-                    pageLink: $0.pageLink,
-                    openGraphImageUrl: $0.openGraphImageUrl?.absoluteString
-                )
-            },
+            "repositories": repositoryContexts,
             "periods": Period.allCases.map(\.rawValue),
         ]
 

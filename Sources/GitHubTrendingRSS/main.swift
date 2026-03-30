@@ -48,6 +48,7 @@ let feedManager = FeedFileCreator(
 )
 
 func start() async throws {
+    try await DocslothManager.shared.setup()
     async let topTrendingPageTask = gitHubDownloader.fetchTopTrendingPage()
     async let supportedEmojisTask = gitHubDownloader.fetchSupportedEmojis()
 
@@ -89,7 +90,7 @@ func start() async throws {
                                 }
                             }
                             
-                            try feedManager.createRSSFile(
+                            try await feedManager.createRSSFile(
                                 repositories: updatedRepositories,
                                 languageTrendingLink: link,
                                 period: period,

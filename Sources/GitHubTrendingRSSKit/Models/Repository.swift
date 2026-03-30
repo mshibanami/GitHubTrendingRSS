@@ -1,8 +1,8 @@
 // Copyright (c) 2018 Manabu Nakazawa. Licensed under the MIT license. See LICENSE in the project root for license information.
 
+import DocslothAsciidoctor
+import DocslothMarkdownItGFMCJKFriendly
 import Foundation
-import MarkdownSyntax
-import SwiftAsciidoctor
 import SwiftSoup
 
 public struct Repository: @unchecked Sendable {
@@ -12,21 +12,19 @@ public struct Repository: @unchecked Sendable {
     public var openGraphImageUrl: URL?
     public var usesCustomOpenGraphImage: Bool = false
 
-    private let asciidoctor = SwiftAsciidoctor()
-
     public init(pageLink: RepositoryPageLink, summary: String) {
         self.pageLink = pageLink
         self.summary = summary
     }
 
-    public func makeReadMeHTML(includesSummary: Bool, supportedEmojis: [GitHubEmoji]) -> String? {
+    public func makeReadMeHTML(includesSummary: Bool, supportedEmojis: [GitHubEmoji]) async throws -> String? {
         var html: String?
         if includesSummary, !summary.isEmpty {
             html = (html ?? "") + #"<p>\#(summary)</p><hr>"#
         }
 
         guard let readMe,
-              let readMeHTML = renderHTML(from: readMe) else {
+              let readMeHTML = try await renderHTML(from: readMe) else {
             return html
         }
         let nomalizedReadMeHTML = normalizeEmojisInHTML(readMeHTML, supportedEmojis: supportedEmojis)
@@ -92,21 +90,16 @@ public struct Repository: @unchecked Sendable {
         return nomalized
     }
 
-    func renderHTML(from readMe: APIReadMe) -> String? {
+    func renderHTML(from readMe: APIReadMe) async throws -> String? {
         guard let content = readMe.content else {
             return nil
         }
         let html: String?
         switch readMe.fileType {
         case .markdown, .unknown:
-            html = try? Markdown(text: content, options: .unsafe).renderHtml()
+            html = try await DocslothManager.shared.markdownIt.convertToHTML(content)
         case .asciiDoc:
-            html = try? asciidoctor.convert(
-                content,
-                options: [.attributes([
-                    "showtitle": true,
-                ])]
-            )
+            html = try await DocslothManager.shared.asciidoctor.convertToHTML(content)
         }
         return html
     }

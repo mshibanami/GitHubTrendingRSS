@@ -18,7 +18,9 @@ final class SiteGeneratorTests: XCTestCase {
     private var maker: SiteSourceMaker!
     private let supportedEmojis = TestResources.supportedEmojis()
 
-    override func setUp() {
+    override func setUp() async throws {
+        try await super.setUp()
+        try await DocslothManager.shared.setup()
         maker = SiteSourceMaker(
             environment: environment,
             information: information
@@ -38,10 +40,10 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(html.contains(information.gitHubRepositoryURL))
     }
 
-    func testGenerateRSS() throws {
+    func testGenerateRSS() async throws {
         var repoWithOpenGraph = Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world")
         repoWithOpenGraph.openGraphImageUrl = URL(string: "https://example.com/hello-world.png")
-        let html = try maker.makeRSS(
+        let html = try await maker.makeRSS(
             from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
             period: .weekly,
             repositories: [
