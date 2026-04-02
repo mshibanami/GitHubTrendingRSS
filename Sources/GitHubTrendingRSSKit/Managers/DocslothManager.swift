@@ -11,7 +11,6 @@ public final class DocslothManager: Sendable {
         base: [
             "html": true,
             "linkify": true,
-            "breaks": true,
         ],
         disabledPlugins: [.sanitizeHTML]
     ))
