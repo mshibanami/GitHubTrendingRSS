@@ -1,0 +1,1390 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub R Daily Trending</title>
+    <description>Daily Trending of R in GitHub</description>
+    <pubDate>Sun, 12 Apr 2026 01:38:08 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>jalapic/engsoccerdata</title>
+      <link>https://github.com/jalapic/engsoccerdata</link>
+      <description>&lt;p&gt;English and European soccer results 1871-2022&lt;/p&gt;&lt;hr&gt;&lt;p&gt;Latest GitHub version: 2/5/2026, v0.1.8&lt;/p&gt; 
+&lt;p&gt;Feb 2026 update: beginning to update all results to end of 24/25&lt;/p&gt; 
+&lt;p&gt;Nov 2022 update: All European league datasets [England,Scotland,Italy,Germany,France,Holland,Spain,Belgium,Greece,Turkey,Portugal] (and their &lt;em&gt;current()&lt;/em&gt; functions) are up to date for the 22/23 season.&lt;/p&gt; 
+&lt;p&gt;MLS and South Africa data are still only up to 2017. Cup data is also only available up to 2017. English non-league have also not been updated.&lt;/p&gt; 
+&lt;p&gt;Any help in curating data is appreciated - please get in touch.&lt;/p&gt; 
+&lt;h4&gt;engsoccerdata&lt;/h4&gt; 
+&lt;p&gt;This R package is mainly a repository for complete soccer datasets, along with some built-in functions for analyzing parts of the data. Currently I include three English ones (League data, FA Cup data, Playoff data - described below), several European leagues (Spain, Germany, Italy, Holland, France, Belgium, Portugal, Turkey, Scotland, Greece) as well as South Africa and MLS.&lt;/p&gt; 
+&lt;p&gt;Free to use for non-commerical use. Compiled by James Curley.&lt;/p&gt; 
+&lt;p&gt;Please cite as:&lt;br /&gt; James P. Curley (2016). engsoccerdata: English Soccer Data 1871-2016. R package version 0.1.5 &lt;a href=&quot;http://dx.doi.org/10.5281/zenodo.13158&quot;&gt;&lt;img src=&quot;https://zenodo.org/badge/doi/10.5281/zenodo.13158.svg?sanitize=true&quot; alt=&quot;DOI&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you do use it on any publications, blogs, websites, etc. please note the source (i.e. me!). Also, if you do use it - I would love to see any analysis produced from it etc. Of course, I accept no responsibility for any error that may be contained herewithin.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;if you&#39;d like to get involved and help out, please let me know.&lt;/li&gt; 
+ &lt;li&gt;if you can see better ways of writing the R code, please let me know.&lt;/li&gt; 
+ &lt;li&gt;if you would like to collaborate on a project using these data, please get in touch.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Contact details: curley AT utexas DOT edu&lt;/p&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;p&gt;To install this directly into R.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;library(devtools)
+install_github(&quot;jalapic/engsoccerdata&quot;)
+
+data(package=&quot;engsoccerdata&quot;)    # lists datasets currently available
+
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you get an error message like this one&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Error in curl::curl_fetch_memory(url, handle = handle) : 
+  Problem with the SSL CA cert (path? access rights?)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;which has happened on occasions for me, try this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;library(RCurl)
+library(httr)
+set_config( config( ssl_verifypeer = 0L ) )
+
+library(devtools)
+install_github(&#39;jalapic/engsoccerdata&#39;, username = &quot;jalapic&quot;)
+library(engsoccerdata)
+
+
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;engsoccerdata&lt;/h1&gt; 
+&lt;h2&gt;Datasets&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;england - Results of all top 4 tier soccer games in England 1888-2025&lt;/li&gt; 
+ &lt;li&gt;england1939 - Contains results of abandoned 1939/40 season.&lt;/li&gt; 
+ &lt;li&gt;england_5 - Results of 5th tier (conference) from 1979/1980 - 2024/25&lt;/li&gt; 
+ &lt;li&gt;facup - Contains all FA Cup ties (not including pre-qualifying rounds) 1871-2016&lt;/li&gt; 
+ &lt;li&gt;playoffs - Incldues &#39;test-matches&#39; 1892-1897 and modern playoffs (1986/87 onwards) for top 4 tiers in England&lt;/li&gt; 
+ &lt;li&gt;spain - Top flight Spanish League match results 1929-2025&lt;/li&gt; 
+ &lt;li&gt;italy - Top flight Italian Serie A League match results 1934-2025&lt;/li&gt; 
+ &lt;li&gt;germany - Top flight German Bundesliga 1 League match results 1963-2025 &amp;amp; Bundelsiga 2 league match results 1974-2025&lt;/li&gt; 
+ &lt;li&gt;holland - Dutch Eredivisie league match results 1956-2025&lt;/li&gt; 
+ &lt;li&gt;champs - European Cup and Champions League results 1955-2017 includes qualifiers and playoffs&lt;/li&gt; 
+ &lt;li&gt;france - French Ligue 1 results 1933-2025&lt;/li&gt; 
+ &lt;li&gt;scotland - Scotland top 4 tiers 1994-2025&lt;/li&gt; 
+ &lt;li&gt;portugal - Portugal top tier 1994-2025&lt;/li&gt; 
+ &lt;li&gt;belgium - Belgium top tier 1994-2025&lt;/li&gt; 
+ &lt;li&gt;turkey - Turkey top tier 1994-2025&lt;/li&gt; 
+ &lt;li&gt;greece - Greece top tier 1994-2025&lt;/li&gt; 
+ &lt;li&gt;mls - MLS regular and postseason 1996-2016&lt;/li&gt; 
+ &lt;li&gt;safrica - South African top tier - 2004-2017&lt;/li&gt; 
+ &lt;li&gt;teamnames - dataframe of alternative names and abbreviations for each team in all league data&lt;/li&gt; 
+ &lt;li&gt;mlsconfs - available in &lt;code&gt;data-raw&lt;/code&gt; - summary of conference location of each team by year.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Help Needed !&lt;/h2&gt; 
+&lt;p&gt;I would love help in collating more results. If anyone wants to work on a particular league or competition please let me know. These are the things I&#39;d like to work on:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;English League Cup - data from the league cup is included but still is missing some fields. For instance the aet and pens and also northsouth data are missing. Data also generally needs checking.&lt;/li&gt; 
+ &lt;li&gt;European competitions - don&#39;t currently have this data&lt;/li&gt; 
+ &lt;li&gt;English Conference - need to add dates to results for seasons 1979/80-1998/98.&lt;/li&gt; 
+ &lt;li&gt;English FA Cup pre-qualifying round - also no data yet.&lt;/li&gt; 
+ &lt;li&gt;English other competitions - e.g. lower league cup competitions - no data yet.&lt;/li&gt; 
+ &lt;li&gt;Points deductions - a list of points deductions of teams in each Euro league over time to make tables more accurate&lt;/li&gt; 
+ &lt;li&gt;Tie-breaking procedures - different Euro leagues have had different tie-breaking procedures over time. Having a record of this will help with making the &lt;code&gt;maketable&lt;/code&gt; family of funcitons&lt;/li&gt; 
+ &lt;li&gt;Italian League in the early years - I think the first few seasons of the league need to be triple checked.&lt;/li&gt; 
+ &lt;li&gt;Double checking of consistency of teamnames in all leagues - e.g. French teams have split/diverged a lot since 1933, are they all named correctly?&lt;/li&gt; 
+ &lt;li&gt;Promotion/Relegation Playoff Results for European Leagues.&lt;/li&gt; 
+ &lt;li&gt;Extending results for Scotland, Portugal, Belgium, Turkey, Greece prior to 1994/1995.&lt;/li&gt; 
+ &lt;li&gt;For MLS 1996-1999, correct FT scores to account for which games ended in ties and were decided by shoot-outs.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Functions&lt;/h2&gt; 
+&lt;p&gt;Some built-in functions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;england_current().r - get results from top 4 tiers of English football from current season. Other current seasons for other datasets can be got by e.g. holland_current(), germany_current() etc.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;maketable.r - make a league table - probably the quickest way to make a league table&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;maketable_eng.r - make a league table that follows the tie-breaking and points procedures for each season.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;maketable_all.r - make a league table between dates or only for home/away results.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;games_between.r - returns all games ever played between two teams&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;games_between_sum.r - returns the summary of results between any two teams&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;alltimerecord.r - returns the all time record of any team in the league&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;score_most.r - returns the team who has been involved in the most games of each scoreline&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;score_teamX.r - Lists all matches that a team has played in that ended in a specific scoreline&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;score_team.r - List all occurrences of a specific scoreline for a specific team&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;scoreline_by_team.r - How often each team has a won,lost,drawn by a scoreline?&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;totalgoals_by_team.r - Return all instances of a team being involved in a game with n goals&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;ngoals.r - Return number of times a team has scored n goals&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;n_offs.r - Will return the scorelines that have occurred n number of times&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;opponentfreq.r - Return how often a team has played each opponent&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;opponents.r - number of unique opponents for all teams in total or by tier&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;bestwins.r - best wins for each team&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;worstlosses.r - worst losses for each team&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;homeaway.r - very useful function to get home &amp;amp; away results with each team listed in &#39;team&#39; column&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Dates are stored as YYYY-MM-DD character strings for consistency across historical sources&lt;/p&gt; 
+&lt;h2&gt;What does england.csv contain?&lt;/h2&gt; 
+&lt;p&gt;all top 4 tier games ever played 1888-2025&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;FL = Football League&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;PL = Premier League&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1888/9-1891/2 FL Division 1&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1892/3-1914/5 FL Divisions 1 &amp;amp; 2&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1919/20 FL Divisions 1 &amp;amp; 2&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1920/21 FL Divisions 1, 2 &amp;amp; 3&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1921/22-1938/9 FL Divisions 1, 2, 3a North &amp;amp; 3b South&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1939 FL Divisions 1, 2, 3a North &amp;amp; 3b South (truncated season)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1946/7-1957/8 FL Divisions 1, 2, 3a North &amp;amp; 3b South&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1958/9-1991/2 FL Divisions 1, 2, 3 &amp;amp; 4&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1992/3-2004/5 PL, FL Divisions 1, 2 &amp;amp; 3&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;2004/5-present PL, FL Championship, FL Divisions 1 &amp;amp; 2&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In the csv file, I&#39;ve used divisions 1,2,3,3a,3b, 4 as the notation I&#39;ve also used tier 1,2,3,4 - to refer to 3,3a &amp;amp; 3b all belonging to tier 3&lt;/p&gt; 
+&lt;p&gt;Dataset includes:&lt;/p&gt; 
+&lt;p&gt;teams that dropped out half way through a season:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;1919 Leeds City&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1931 Wigan Borough&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;1961 Accrington Stanley&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;includes 1919 Port Vale who replaced Leeds City mid-season&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The truncated 1939/40 season is in a separate file england1939.csv&lt;/p&gt; &lt;p&gt;Team Names used in the file are those that are currently used: e.g. Small Heath are Birmingham City, Ardwick are Manchester City, etc.&lt;/p&gt; &lt;p&gt;The modern Accrington Stanley are &#39;Accrington&#39; to distinguish from original Accrington Stanley and earlier Accrington FC&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;What does facup.csv contain?&lt;/h2&gt; 
+&lt;p&gt;This was a pain to put together. It contains every single FA Cup tie (whether played or not) from the first inception of the competition in 1871 to the 2015/16 season. It does not contain pre-qualifying rounds (yet). It is best to describe each variable name in turn to give more information:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;date - date of match/tie&lt;/li&gt; 
+ &lt;li&gt;Season - season (e.g. 1872 refers to 1872/73 season)&lt;/li&gt; 
+ &lt;li&gt;home - home team (note for games played at neutral venues this isn&#39;t relevant)&lt;/li&gt; 
+ &lt;li&gt;visitor - visiting team (note for games played at neutral venues this isn&#39;t relevant)&lt;/li&gt; 
+ &lt;li&gt;FT - final score. this is the final score even after extra time (i.e. not just after 90 minutes)&lt;/li&gt; 
+ &lt;li&gt;hgoal - number of goals scored by team in home variable&lt;/li&gt; 
+ &lt;li&gt;vgoal - number of goals scored by team in visitor variable&lt;/li&gt; 
+ &lt;li&gt;round - the round of the match (1,2,3,4,5,6, s = semi-final, f=final, 3pp = 3rd place playoff)&lt;/li&gt; 
+ &lt;li&gt;tie - initial = 1st game, replay = 1st replay, replay2 = 2nd replay, etc.&lt;/li&gt; 
+ &lt;li&gt;aet - whether the game went to extra time. note only &#39;yes&#39; or NA.&lt;/li&gt; 
+ &lt;li&gt;pen - whether the game went to penalties. note only &#39;yes&#39; or NA.&lt;/li&gt; 
+ &lt;li&gt;pens - the scoreline of the penalty shoot-out and who won&lt;/li&gt; 
+ &lt;li&gt;hp - penalties scored in a shoot-out by team in home variable&lt;/li&gt; 
+ &lt;li&gt;vp - penalties scored in a shoot-out by team in visitor variable&lt;/li&gt; 
+ &lt;li&gt;Venue - where match was played&lt;/li&gt; 
+ &lt;li&gt;attendance - attendance of the match&lt;/li&gt; 
+ &lt;li&gt;nonmatch - if a tie was not played, voided or a team disqualified&lt;/li&gt; 
+ &lt;li&gt;notes - further information about non-matches&lt;/li&gt; 
+ &lt;li&gt;neutral - was the game played at a neutral venue - &quot;yes&quot; or NA.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Important notes to above:&lt;/p&gt; 
+&lt;p&gt;I have tried to make the dataset as complete as possible. The FA Cup data is difficult as some of it is just unobtainable. For instance, I have added venues and attendances for all semis and finals and have included this information sporadically wherelse I was able to get it. I have not done a systematic application of this to early rounds. Several games in the FA Cup are played at neutral grounds or even the visiting team is allowed to play at home (e.g. if a minnow plays a big team). I have not managed to systematically check this. Also, there was a trend to play 2nd and 3rd and 4th replays at neutral venues. This could be systematically checked but I have not yet. Further, I think I have all games that ever ended in penalties added in correctly.&lt;/p&gt; 
+&lt;p&gt;Finally, team names. There are great disputes about which teams branch off from which teams in history and who should have shared history. I have tried to be consistent in naming teams with their most current name throughout (e.g. Millwall Rovers, Millwall Athletic and Millwall are all listed as the current name - Millwall), or the name that they used when they stopped playing (e.g. Mitchell St. George&#39;s are always listed as Birmingham St. George&#39;s). I have also tried to follow the same team name format as in england.csv - I think the three Accrington teams may be the only one I need to re-edit for this purpose.&lt;/p&gt; 
+&lt;h2&gt;What does playoffs.csv contain?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;all test-matches used to decide relegation/promotion between old division 1 and old division 2 1892/93 - 1897/98&lt;/li&gt; 
+ &lt;li&gt;all modern playoffs used to decide relegation/promotion since 1986/87&lt;/li&gt; 
+ &lt;li&gt;division of team in playoff is noted as well as the divisional playoffs each tie belongs to&lt;/li&gt; 
+ &lt;li&gt;all dates of matches included&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;What does spain.csv contain?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;top flight matches 1929 - present&lt;/li&gt; 
+ &lt;li&gt;The 1929 season only took place in 1929 but is denoted as 1928 Season in keeping with the package&#39;s style format. The 1929/30 season is noted as 1929&lt;/li&gt; 
+ &lt;li&gt;Promotion/relegation matches are not included - will be in a separate csv soon&lt;/li&gt; 
+ &lt;li&gt;1979/80 season does not include &quot;CD Málaga 0-3 UD Salamanca&quot; match that was annulled because of match fixing&lt;/li&gt; 
+ &lt;li&gt;1979/80 season does include &quot;CD Málaga 0-1 AD Almería&quot; that was not played but awarded 0-1 to AD Almería as CD Málaga failed to participate&lt;/li&gt; 
+ &lt;li&gt;All team names are the currently used ones - i.e. names used during the Spanish civil war are not used.&lt;/li&gt; 
+ &lt;li&gt;The 1986/87 season contains both the phase 1 round of games and the phase 2 round of games.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please refer to the spainliga rpubs below for further information.&lt;/p&gt; 
+&lt;h2&gt;Other Leagues:&lt;/h2&gt; 
+&lt;p&gt;I&#39;ve added complete all top tier results for Holland (1956-present), Germany (1963-present), Italy (1934-present), France (1933-present). Additionally all tier 2 results for Germany. Finally, we have results from the all tiers of Scotland, and top tier of Belgium, Turkey, Greece, Portugal since 1994/1995.&lt;/p&gt; 
+&lt;p&gt;These dataframes contain all league results played in regular season. They don&#39;t yet include relegation/promotion playoff fixtures. Further, I have not yet completed all final checks of the data. I believe they are error free - but if others want to test and check, I&#39;d welcome this.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;Any help in improving the quality of these datasets is appreciated.&lt;/p&gt; 
+&lt;h2&gt;List of Sources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/footballcsv/en-england&quot;&gt;https://github.com/footballcsv/en-england&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://en.wikipedia.org/wiki/The_Football_League&quot;&gt;http://en.wikipedia.org/wiki/The_Football_League&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.rsssf.com/engpaul/fla/&quot;&gt;http://www.rsssf.com/engpaul/fla/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.espn.co.uk/football/&quot;&gt;http://www.espn.co.uk/football/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.statto.com&quot;&gt;http://www.statto.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.11v11.com&quot;&gt;http://www.11v11.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.worldfootball.net&quot;&gt;http://www.worldfootball.net&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.football-data.co.uk&quot;&gt;http://www.football-data.co.uk&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.footballwebpages.co.uk/&quot;&gt;https://www.footballwebpages.co.uk/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.historicalkits.co.uk/English_Football_League/index.html&quot;&gt;http://www.historicalkits.co.uk/English_Football_League/index.html&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Shiny apps:&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jalapic.shinyapps.io/engsoccerbeta/&quot;&gt;https://jalapic.shinyapps.io/engsoccerbeta/&lt;/a&gt; #based on League Data (it&#39;s a beta, there are some hiccups)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jalapic.shinyapps.io/soccerteams/&quot;&gt;https://jalapic.shinyapps.io/soccerteams/&lt;/a&gt; #interactive ggvis chart of historical team performances&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jalapic.shinyapps.io/gamebygame/&quot;&gt;https://jalapic.shinyapps.io/gamebygame/&lt;/a&gt; #analyzing EPL teams season by season performances - using shinydashboard&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Tutorials/demos&lt;/h2&gt; 
+&lt;p&gt;(note as of May 2015, the code in these may need to change to reflect the change in names of datasets and some functions)&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://rpubs.com/jalapic/daygoals&quot;&gt;http://rpubs.com/jalapic/daygoals&lt;/a&gt; #goal scoring trends on unqiue dates in soccer history&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://rpubs.com/jalapic/facuplast8&quot;&gt;http://rpubs.com/jalapic/facuplast8&lt;/a&gt; #quick walkthrough of some of the FA Cup data&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://rpubs.com/jalapic/gpg&quot;&gt;http://rpubs.com/jalapic/gpg&lt;/a&gt; #very quick look at id-ing breakpoints in English scoring trends&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://rpubs.com/jalapic/gamebygame&quot;&gt;http://rpubs.com/jalapic/gamebygame&lt;/a&gt; #plotting game by game trends across seasons&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://rpubs.com/jalapic/seasons&quot;&gt;http://rpubs.com/jalapic/seasons&lt;/a&gt; #visualizing season to season changes in top tier performance&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://rpubs.com/jalapic/laliga&quot;&gt;http://rpubs.com/jalapic/laliga&lt;/a&gt; #visualizing historical Spanish La Liga data&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://rpubs.com/jalapic/sbs&quot;&gt;http://rpubs.com/jalapic/sbs&lt;/a&gt; #consecutive runs by team of improved league positions&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;FiveThirtyEight&lt;/h2&gt; 
+&lt;p&gt;Oliver Roeder and I have written several articles for fivethirtyeight using these data:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://fivethirtyeight.com/features/leicester-citys-stunning-rise-in-two-charts/&quot;&gt;http://fivethirtyeight.com/features/leicester-citys-stunning-rise-in-two-charts/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://fivethirtyeight.com/features/chelseas-historically-awful-start/&quot;&gt;http://fivethirtyeight.com/features/chelseas-historically-awful-start/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://fivethirtyeight.com/features/the-long-migration-of-english-football/&quot;&gt;http://fivethirtyeight.com/features/the-long-migration-of-english-football/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://fivethirtyeight.com/features/home-field-advantage-english-premier-league/&quot;&gt;http://fivethirtyeight.com/features/home-field-advantage-english-premier-league/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://fivethirtyeight.com/features/in-126-years-english-football-has-seen-13475-nil-nil-draws/&quot;&gt;http://fivethirtyeight.com/features/in-126-years-english-football-has-seen-13475-nil-nil-draws/&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Also this piece on league inequality:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://contexts.org/articles/english-soccers-mysterious-worldwide-popularity/&quot;&gt;https://contexts.org/articles/english-soccers-mysterious-worldwide-popularity/&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Media Hits&lt;/h2&gt; 
+&lt;p&gt;(listing them here so I don&#39;t forget them)&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Dec 2014 - Profile of this dataset and me in &quot;FourFourTwo&quot; Magazine - &lt;a href=&quot;https://www.scribd.com/doc/246229712/FourFourTwo-UK-2014-12&quot;&gt;https://www.scribd.com/doc/246229712/FourFourTwo-UK-2014-12&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Mar 12th 2015 - Some research on strange results occuring in a row discussed on Guardian&#39;s Football Weekly &lt;a href=&quot;https://soundcloud.com/guardianfootballweekly/football-weekly-extra-chelseas-champion-league-campaign-goes-down-the-tube&quot;&gt;https://soundcloud.com/guardianfootballweekly/football-weekly-extra-chelseas-champion-league-campaign-goes-down-the-tube&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Jul 30th 2015 - Piece by Sky Sports on homefield advantage and these data - &lt;a href=&quot;http://www.skysports.com/football/news/11661/9829828/home-advantage-is-not-as-important-as-it-once-was-finds-sky-sports-study&quot;&gt;http://www.skysports.com/football/news/11661/9829828/home-advantage-is-not-as-important-as-it-once-was-finds-sky-sports-study&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Nov 28th 2015 - I discuss home-field advantage on NPR&#39;s &quot;Only a Game&quot; - &lt;a href=&quot;http://onlyagame.wbur.org/2015/11/28/home-field-advantage-epl-curley&quot;&gt;http://onlyagame.wbur.org/2015/11/28/home-field-advantage-epl-curley&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;May 4th 2016 - I discussed this dataset and Leicester City on BBC Radio 5&#39;s &quot;Up All Night&quot; - unfortunately no audio - I got cut short because Ted Cruz decided to quit the Republican nomination.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;May 17th 2016 - Piece by John Murdoch at the Financial Times on Leicester City&#39;s unique season - &lt;a href=&quot;https://ig.ft.com/sites/leicester-premier-league-champions/&quot;&gt;https://ig.ft.com/sites/leicester-premier-league-champions/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;March 10 2017 - Discussion of PSG-Barcelona 2017 Champions League tie in historical perspective (in Portuguese) - &lt;a href=&quot;https://www.nexojornal.com.br/grafico/2017/03/10/O-que-as-bolsas-de-apostas-diziam-sobre-Barcelona-e-PSG&quot;&gt;https://www.nexojornal.com.br/grafico/2017/03/10/O-que-as-bolsas-de-apostas-diziam-sobre-Barcelona-e-PSG&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;2022 - Deutsche Welle piece on most common scorelines in soccer: &lt;a href=&quot;https://www.youtube.com/watch?v=UyaFCkgZYCI&amp;amp;ab_channel=DWKickoff%21&quot;&gt;https://www.youtube.com/watch?v=UyaFCkgZYCI&amp;amp;ab_channel=DWKickoff!&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you use these data --- please cite and let me know. I&#39;ll add a link to the links at the bottom.&lt;/p&gt; 
+&lt;h2&gt;Elsewhere&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Data in this package have been used to devise &lt;a href=&quot;https://fivethirtyeight.com/features/how-our-club-soccer-projections-work/&quot;&gt;fivethirtyeight&#39;s&lt;/a&gt; ratings and prediction models for soccer.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;A number of analyses and visualizations using these data by Prof Simon Garnier - &lt;a href=&quot;http://graphzoo.tumblr.com/&quot;&gt;http://graphzoo.tumblr.com/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;More in depth analysis by Simon on David Sumpter&#39;s Collective Behavior blog:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;http://www.collective-behavior.com/liverpool-is-still-the-most-successful-english-club-team-but-for-how-long/&quot;&gt;http://www.collective-behavior.com/liverpool-is-still-the-most-successful-english-club-team-but-for-how-long/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;http://www.collective-behavior.com/how-the-big-four-made-football-predictable/&quot;&gt;http://www.collective-behavior.com/how-the-big-four-made-football-predictable/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Prof Michael Lopez analyses home-field advantage - &lt;a href=&quot;https://statsbylopez.com/2016/05/13/on-soccers-declining-home-field-advantage/&quot;&gt;https://statsbylopez.com/2016/05/13/on-soccers-declining-home-field-advantage/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Prof Antony Unwin uses for his book &quot;Graphical Data Analysis with R&quot; - &lt;a href=&quot;http://www.gradaanwr.net/wp-content/uploads/2016/05/dataApr16.pdf&quot;&gt;http://www.gradaanwr.net/wp-content/uploads/2016/05/dataApr16.pdf&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Excellent Masters Thesis in Statistics on improving FIFA rankings by Tom Van de Wiele (&lt;a href=&quot;https://ttvand.github.io/&quot;&gt;https://ttvand.github.io/&lt;/a&gt;) here - &lt;a href=&quot;https://ttvand.github.io/MastatTomVandeWiele.pdf&quot;&gt;https://ttvand.github.io/MastatTomVandeWiele.pdf&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;3D visualization of team performance over years - &lt;a href=&quot;https://vr-data-vis.herokuapp.com/engsoccerdata/index.html&quot;&gt;https://vr-data-vis.herokuapp.com/engsoccerdata/index.html&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Joe Gallagher&#39;s blog post on home advantage - &lt;a href=&quot;https://jogall.github.io/2017-05-12-home-away-pref/&quot;&gt;https://jogall.github.io/2017-05-12-home-away-pref/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Joe Gallagher&#39;s blog post on Robin Hood teams - &lt;a href=&quot;https://jogall.github.io/2017-08-04-robin-hood-teams/&quot;&gt;https://jogall.github.io/2017-08-04-robin-hood-teams/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Andrew Clark&#39;s interactive viz of best and worst consecutive league finishes - &lt;a href=&quot;https://www.mytinyshinys.com/2017/08/04/socceriimprovers/&quot;&gt;https://www.mytinyshinys.com/2017/08/04/socceriimprovers/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Ryan Estrellado&#39;s analysis of Liverpool FC Managers - &lt;a href=&quot;https://restrellado.github.io/liverpoolfc/lfc_managers.html&quot;&gt;https://restrellado.github.io/liverpoolfc/lfc_managers.html&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://ryanestrellado.netlify.com/post/lfc-home-and-away-odds/&quot;&gt;https://ryanestrellado.netlify.com/post/lfc-home-and-away-odds/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Austin Wehrwein&#39;s modeling of soccer results - &lt;a href=&quot;http://austinwehrwein.com/soccer/&quot;&gt;http://austinwehrwein.com/soccer/&lt;/a&gt; and here &lt;a href=&quot;https://austinwehrwein.com/tutorials/xgforeveryone/&quot;&gt;https://austinwehrwein.com/tutorials/xgforeveryone/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Robert Hickman has several nice posts looking at football trivia using the data in this package - &lt;a href=&quot;https://www.robert-hickman.eu/post/five_min_trivia_invincibles/&quot;&gt;https://www.robert-hickman.eu/post/five_min_trivia_invincibles/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Stefan Gouyet looked at one-sided matches in the EPL - &lt;a href=&quot;https://worldsocceranalytics.com/2018/10/10/one-sided-matches-in-the-english-premier-league/&quot;&gt;https://worldsocceranalytics.com/2018/10/10/one-sided-matches-in-the-english-premier-league/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Xiang Ao&#39;s analysis of head to head matches between title contenders: &lt;a href=&quot;https://xiangao.netlify.app/2019/01/17/soccer-epl/&quot;&gt;https://xiangao.netlify.app/2019/01/17/soccer-epl/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;McJames et al, 2022, A Supervised Learning Approach to Rankability. Preprint &lt;a href=&quot;https://arxiv.org/pdf/2203.07364.pdf&quot;&gt;https://arxiv.org/pdf/2203.07364.pdf&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Leonardo Egidi - footBayes: an R package for football (soccer) modeling using Stan &lt;a href=&quot;https://statmodeling.stat.columbia.edu/2022/02/22/footbayes-an-r-package-for-football-soccer-modeling-using-stan/&quot;&gt;https://statmodeling.stat.columbia.edu/2022/02/22/footbayes-an-r-package-for-football-soccer-modeling-using-stan/&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Acknowledgements&lt;/h3&gt; 
+&lt;p&gt;Many thanks to the following for their assistance - apologies to anyone I have omitted (please let me know!):&lt;/p&gt; 
+&lt;p&gt;Hakon Malmedal, Joe Gallagher, Ben Dilday, Aaron Smith, Michael Thompson, Andrew Clark, S&#39;busiso Mkhondwane, Robert Hickman&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/df31404539c2f2793de2e514172e0f4ec8cd8641e2312cdcc26cbd94109f98f7/jalapic/engsoccerdata" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>satijalab/seurat</title>
+      <link>https://github.com/satijalab/seurat</link>
+      <description>&lt;p&gt;R toolkit for single cell genomics&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Seurat&quot; alt=&quot;CRAN Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Seurat&quot; alt=&quot;CRAN Downloads&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Seurat v5&lt;/h1&gt; 
+&lt;p&gt;Seurat is an R toolkit for single cell genomics, developed and maintained by the Satija Lab at NYGC.&lt;/p&gt; 
+&lt;p&gt;We are excited to release Seurat v5! This updates introduces new functionality for spatial, multimodal, and scalable single-cell analysis.&lt;/p&gt; 
+&lt;p&gt;Seurat v5 is backwards-compatible with previous versions, so that users will continue to be able to re-run existing workflows.&lt;/p&gt; 
+&lt;p&gt;Instructions, documentation, and tutorials can be found at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://satijalab.org/seurat&quot;&gt;https://satijalab.org/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat is also hosted on GitHub, you can view and clone the repository at&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;https://github.com/satijalab/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat has been successfully installed on Mac OS X, Linux, and Windows, using the devtools package to install directly from GitHub&lt;/p&gt; 
+&lt;p&gt;Improvements and new features will be added on a regular basis, please post on the &lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;github page&lt;/a&gt; with any questions or if you would like to contribute&lt;/p&gt; 
+&lt;p&gt;For a version history/changelog, please see the &lt;a href=&quot;https://github.com/satijalab/seurat/raw/master/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/374fd515b216a7eff634dfbe58171cb1472f02d71c54f83f1e0d4e65cd705d12/satijalab/seurat" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>jinworks/CellChat</title>
+      <link>https://github.com/jinworks/CellChat</link>
+      <description>&lt;p&gt;R toolkit for inference, visualization and analysis of cell-cell communication from single-cell and spatially resolved transcriptomics&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://github.com/jinworks/CellChat/raw/main/CellChat_Logo.png&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Update&lt;/h2&gt; 
+&lt;p&gt;CellChat v3 (Spatial CellChat) is an updated version that&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;enables the &lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/SpatialCellChat/raw/master/tutorial/SpatialCellChat_analysis_of_spatial_transcriptomics_data.html&quot;&gt;inference of cell-cell communication at single-cell resolution from spatial transcriptomics data&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;is applicable to diverse technologies of spatial transcriptomics data. We add &lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/FAQ_on_applying_CellChat_to_spatial_transcriptomics_data.html&quot;&gt;Frequently Asked Questions (FAQ) when analyzing spatially resolved transcriptomics datasets&lt;/a&gt;, particularly on how to apply Spatial CellChat to different technologies of spatial transcriptomics data, including sequencing-based and in-situ imaging-based readouts.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;CellChat v2 is a version that includes&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;inference of spatially proximal cell-cell communication between interacting cell groups from spatially resolved transcriptomics&lt;/li&gt; 
+ &lt;li&gt;expanded database CellChatDB v2 by including more than 1000 protein and non-protein interactions (e.g. metabolic and synaptic signaling) with rich annotations. A function named &lt;code&gt;updateCellChatDB&lt;/code&gt; is also provided for easily updating CellChatDB.&lt;/li&gt; 
+ &lt;li&gt;new functionalities enabling easily interface with other computational tools for single-cell data analysis and cell-cell communication analysis&lt;/li&gt; 
+ &lt;li&gt;interactive web browser function to allow exploration of CellChat outputs of spatially proximal cell-cell communication&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For the version history and detailed important changes, please see the &lt;a href=&quot;https://github.com/jinworks/CellChat/raw/master/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;A step-by-step protocol for cell-cell communication analysis using CellChat is available at &lt;a href=&quot;https://www.nature.com/articles/s41596-024-01045-4&quot;&gt;Jin et al., Nature Protocols 2024&lt;/a&gt;. Please kindly cite this paper when using CellChat version &amp;gt;= 1.5. We greatly appreciate the users&#39; support and suggestions that make it possible for us to update CellChat since we published the first version in the year of 2021.&lt;/p&gt; 
+&lt;h2&gt;Capabilities&lt;/h2&gt; 
+&lt;p&gt;In addition to infer the intercellular communication from any given scRNA-seq data and spatially resolved transcriptomics data, CellChat provides functionality for further data exploration, analysis, and visualization.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;It can quantitatively characterize and compare the inferred cell-cell communication networks using an integrated approach by combining social network analysis, pattern recognition, and manifold learning approaches.&lt;/li&gt; 
+ &lt;li&gt;It provides an easy-to-use tool for extracting and visualizing high-order information of the inferred networks. For example, it allows ready prediction of major signaling inputs and outputs for all cell populations and how these populations and signals coordinate together for functions.&lt;/li&gt; 
+ &lt;li&gt;It enables comparative analysis of cell-cell communication across different conditions and identification of altered signaling and cell populations.&lt;/li&gt; 
+ &lt;li&gt;It provides several visualization outputs to facilitate intuitive user-guided data interpretation.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To ensure efficient and scalable inference of cell-cell communication at single-cell resolution from spatial transcriptomics data, Spatial CellChat optimizes the data structure within CellChat object. To enable users still can run their previously calculated CellChat v1/v2 object and smoothly upgrade to CellChat v3, we currently deposite the source codes and tutorials of Spatial CellChat at another &lt;a href=&quot;https://github.com/jinworks/SpatialCellChat&quot;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;CellChat v3 (&lt;a href=&quot;https://github.com/jinworks/SpatialCellChat&quot;&gt;Spatial CellChat&lt;/a&gt;) R package can be easily installed from Github using devtools:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;devtools::install_github(&quot;jinworks/SpatialCellChat&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Installation of other dependencies&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://bioconductor.org/packages//release/bioc/html/BiocNeighbors.html&quot;&gt;BiocNeighbors&lt;/a&gt; using &lt;code&gt;BiocManager::install(&quot;BiocNeighbors&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/JEFworks-Lab/MERINGUE&quot;&gt;MERINGUE&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;JEFworks-Lab/MERINGUE&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/KlugerLab/ALRA&quot;&gt;ALRA&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;KlugerLab/ALRA&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/zdebruine/RcppML&quot;&gt;RcppML&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;zdebruine/RcppML&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;CellChat v1/v2 R package can be easily installed from Github using devtools:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;devtools::install_github(&quot;jinworks/CellChat&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Installation of other dependencies&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;http://renozao.github.io/NMF/devel/PAGE-INSTALLATION.html&quot;&gt;NMF (&amp;gt;= 0.23.0)&lt;/a&gt; using &lt;code&gt;install.packages(&#39;NMF&#39;)&lt;/code&gt;. Please check &lt;a href=&quot;https://github.com/sqjin/CellChat/issues/16&quot;&gt;here&lt;/a&gt; for other solutions if you encounter any issue. You might can set &lt;code&gt;Sys.setenv(R_REMOTES_NO_ERRORS_FROM_WARNINGS=TRUE)&lt;/code&gt; if it throws R version error.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/jokergoo/circlize&quot;&gt;circlize (&amp;gt;= 0.4.12)&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;jokergoo/circlize&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://github.com/jokergoo/ComplexHeatmap&quot;&gt;ComplexHeatmap&lt;/a&gt; using &lt;code&gt;devtools::install_github(&quot;jokergoo/ComplexHeatmap&quot;)&lt;/code&gt; if you encounter any issue.&lt;/li&gt; 
+ &lt;li&gt;Install UMAP python pacakge for dimension reduction: &lt;code&gt;pip install umap-learn&lt;/code&gt;. Please check &lt;a href=&quot;https://github.com/lmcinnes/umap&quot;&gt;here&lt;/a&gt; if you encounter any issue.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Some users might have issues when installing CellChat pacakge due to different operating systems and new R version. Please check the following solutions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Installation on Mac OX with R &amp;gt; 3.6&lt;/strong&gt;: Please re-install &lt;a href=&quot;https://community.rstudio.com/t/imager-package-does-not-work-in-r-3-6-1/38119&quot;&gt;Xquartz&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Installation on Windows, Linux and Centos&lt;/strong&gt;: Please check the solution for &lt;a href=&quot;https://github.com/jinworks/CellChat/issues/5&quot;&gt;Windows&lt;/a&gt; and &lt;a href=&quot;https://github.com/jinworks/CellChat/issues/131&quot;&gt;Linux&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Tutorials&lt;/h2&gt; 
+&lt;p&gt;Please check the tutorial directory of the repo. Example datasets are publicly available at &lt;a href=&quot;https://figshare.com/projects/Example_data_for_cell-cell_communication_analysis_using_CellChat/157272&quot;&gt;figshare&lt;/a&gt;. Please check the &lt;a href=&quot;https://www.nature.com/articles/s41596-024-01045-4&quot;&gt;Jin et al., Nature Protocols 2024&lt;/a&gt; for a comprehensive protocol of cell-cell communication analysis using CellChat.&lt;/p&gt; 
+&lt;h3&gt;Analysis of single-cell transcriptomics data&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat-vignette.html&quot;&gt;Full tutorial for CellChat analysis of a single dataset with detailed explanation of each function&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Comparison_analysis_of_multiple_datasets.html&quot;&gt;Full tutorial for comparison analysis of multiple datasets&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Comparison_analysis_of_multiple_datasets_with_different_cellular_compositions.html&quot;&gt;Comparison analysis of multiple datasets with different cellular compositions&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Analysis of spatially resolved omics data&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat_analysis_of_spatial_transcriptomics_data.html&quot;&gt;Brief tutorial for CellChat analysis of a single spatially resolved transcriptomic dataset&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat_analysis_of_multiple_spatial_transcriptomics_datasets.html&quot;&gt;Brief tutorial for CellChat analysis of multiple spatially resolved transcriptomic datasets&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/CellChat_analysis_of_spatial_multiomics_data.html&quot;&gt;Brief tutorial for CellChat analysis of spatial multiomics data&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/SpatialCellChat/raw/master/tutorial/SpatialCellChat_analysis_of_spatial_transcriptomics_data.html&quot;&gt;Full tutorial for Spatial CellChat analysis of spatial transcriptomics data&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/FAQ_on_applying_CellChat_to_spatial_transcriptomics_data.html&quot;&gt;Frequently Asked Questions when analyzing spatially resolved transcriptomics datasets&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Additional utilities&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Interface_with_other_single-cell_analysis_toolkits.html&quot;&gt;Interface with other single-cell analysis toolkits (e.g., Seurat, SingleCellExperiment, Scanpy)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://htmlpreview.github.io/?https://github.com/jinworks/CellChat/raw/master/tutorial/Update-CellChatDB.html&quot;&gt;Tutorial for updating ligand-receptor database CellChatDB&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Web-based “CellChat Explorer”&lt;/h2&gt; 
+&lt;p&gt;We build a user-friendly web-based “&lt;a href=&quot;http://www.cellchat.org/&quot;&gt;CellChat Explorer&lt;/a&gt;” that contains two major components:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Ligand-Receptor Interaction Explorer&lt;/strong&gt; that allows easy exploration of our novel ligand-receptor interaction database, a comprehensive recapitulation of known molecular compositions including multimeric complexes and co-factors. &lt;em&gt;Our database CellChatDB is a manually curated database of literature-supported ligand-receptor interactions in both &lt;strong&gt;human and mouse&lt;/strong&gt;&lt;/em&gt;. Of note, this Explorer currently only shows the original CellChatDB, but did not include the new interactions in CellChatDB v2.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Cell-Cell Communication Atlas Explorer&lt;/strong&gt; that allows easy exploration of the cell-cell communication for any given scRNA-seq dataset that has been processed by our R toolkit CellChat.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We also developed an Interactive Web Browser that allows exploration of CellChat outputs of spatially proximal cell-cell communication using a built-in function &lt;code&gt;runCellChatApp&lt;/code&gt;, and a &lt;a href=&quot;https://github.com/sqjin/CellChatShiny&quot;&gt;standalone CellChat Shiny App&lt;/a&gt; for the above Cell-Cell Communication Atlas Explorer.&lt;/p&gt; 
+&lt;h2&gt;Help, Suggestion and Contribution&lt;/h2&gt; 
+&lt;p&gt;If you have any question, comment or suggestion, please use github issue tracker to report coding related &lt;a href=&quot;https://github.com/jinworks/CellChat/issues&quot;&gt;issues&lt;/a&gt; of CellChat.&lt;/p&gt; 
+&lt;h3&gt;Before reporting an issue&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;First &lt;strong&gt;check the GitHub &lt;a href=&quot;https://github.com/jinworks/CellChat/issues&quot;&gt;issues&lt;/a&gt;&lt;/strong&gt; to see if the same or a similar issues has been reported and resolved. This relieves the developers from addressing the same issues and helps them focus on adding new features!&lt;/li&gt; 
+ &lt;li&gt;The best way to figure out the issues is &lt;strong&gt;running the sources codes&lt;/strong&gt; of the specific functions by yourself. This will also relieve the developers and helps them focus on the common issues! I am sorry, but I have to say I have no idea on many errors except that I can reproduce the issues.&lt;/li&gt; 
+ &lt;li&gt;Minimal and &lt;strong&gt;reproducible example&lt;/strong&gt; are required when filing a GitHub issue. In certain cases, please share your CellChat object and related codes to reproduce the issues.&lt;/li&gt; 
+ &lt;li&gt;Users are encouraged to discuss issues and bugs using the github &lt;a href=&quot;https://github.com/jinworks/CellChat/issues&quot;&gt;issues&lt;/a&gt; instead of email exchanges.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Contribution&lt;/h3&gt; 
+&lt;p&gt;CellChat is an open source software package and any contribution is highly appreciated!&lt;/p&gt; 
+&lt;p&gt;We use GitHub&#39;s &lt;a href=&quot;https://github.com/jinworks/CellChat/pulls&quot;&gt;Pull Request&lt;/a&gt; mechanism for reviewing and accepting submissions of any contribution. Issue a pull request on the GitHub website to request that we merge your branch&#39;s changes into CellChat&#39;s master branch. Be sure to include a description of your changes in the pull request, as well as any other information that will help the CellChat developers involved in reviewing your code.&lt;/p&gt; 
+&lt;h2&gt;System Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Hardware requirements: CellChat package requires only a standard computer with enough RAM to support the in-memory operations.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Software requirements: This package is supported for macOS, Windows and Linux. The package has been tested on macOS: Ventura (version 13.5) and Windows 10. Dependencies of CellChat package are indicated in the Description file, and can be automatically installed when installing CellChat pacakge. CellChat can be installed on a normal computer within few mins.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;About CellChat and CellChatDB&lt;/h1&gt; 
+&lt;p&gt;CellChat is an R package designed for inference, analysis, and visualization of cell-cell communication from single-cell and spatially resolved transcriptomics. CellChat aims to enable users to identify and interpret cell-cell communication within an easily interpretable framework, with the emphasis of clear, attractive, and interpretable visualizations.&lt;/p&gt; 
+&lt;p&gt;CellChatDB is a manually curated database of literature-supported ligand-receptor interactions in mutiple species, leading to a comprehensive recapitulation of known molecular interaction mechanisms including multi-subunit structure of ligand-receptor complexes and co-factors.&lt;/p&gt; 
+&lt;p&gt;If you use CellChat or CellChatDB in your research, please considering citing our papers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nature.com/articles/s41596-024-01045-4&quot;&gt;Suoqin Jin et al., CellChat for systematic analysis of cell–cell communication from single-cell transcriptomics, Nature Protocols 2024&lt;/a&gt; [CellChat v2] (Please kindly cite this paper when using CellChat version &amp;gt;= 1.5)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nature.com/articles/s41467-021-21246-9&quot;&gt;Suoqin Jin et al., Inference and analysis of cell-cell communication using CellChat, Nature Communications 2021&lt;/a&gt; [CellChat v1]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://clustrmaps.com/site/1bpq2&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://clustrmaps.com/map_v2.png?cl=ffffff&amp;amp;w=a&amp;amp;t=n&amp;amp;d=42WqeykSXznN_NSaBlpf6CtSXQxhqmIs6QusUsguFdY&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/jinworks/CellChat/main/#&quot;&gt; &lt;img src=&quot;https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fjinworks%2FCellChat&amp;amp;labelColor=%233499cc&amp;amp;countColor=%2370c168&quot; /&gt; &lt;/a&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/aa8baa5dafa637c9107f0d44005247d8d958cb954a5a2e7577b0168d411746e0/jinworks/CellChat" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>benjjneb/dada2</title>
+      <link>https://github.com/benjjneb/dada2</link>
+      <description>&lt;p&gt;Accurate sample inference from amplicon data with single nucleotide resolution&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/benjjneb/dada2/actions/workflows/pages/pages-build-deployment&quot;&gt;&lt;img src=&quot;https://github.com/benjjneb/dada2/actions/workflows/pages/pages-build-deployment/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;dada2&lt;/h1&gt; 
+&lt;p&gt;Exact sample inference from high-throughput amplicon data. Resolves real variants differing by as little as one nucleotide. Visit &lt;a href=&quot;https://benjjneb.github.io/dada2/index.html&quot;&gt;the DADA2 website&lt;/a&gt; for the most detailed and up-to-date documentation.&lt;/p&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;p&gt;The dada2 package binaries are available through Bioconductor:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-S&quot;&gt;## try http:// if https:// URLs are not supported
+if (!requireNamespace(&quot;BiocManager&quot;, quietly=TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(&quot;dada2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In order to install dada2 from source (and get the latest and greatest new features) see our &lt;a href=&quot;https://benjjneb.github.io/dada2/dada-installation.html&quot;&gt;installation from source instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Documentation&lt;/h3&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://benjjneb.github.io/dada2/tutorial.html&quot;&gt;tutorial walkthrough of the DADA2 pipeline on paired end Illumina Miseq data&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://www.bioconductor.org/packages/3.6/bioc/manuals/dada2/man/dada2.pdf&quot;&gt;dada2 R package manual&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Further documentation is available on &lt;a href=&quot;http://benjjneb.github.io/dada2/&quot;&gt;the DADA2 front page&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;DADA2 Articles&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1038/nmeth.3869&quot;&gt;DADA2: High resolution sample inference from Illumina amplicon data. Nature Methods, 2016.&lt;/a&gt; &lt;a href=&quot;http://rdcu.be/ipGh&quot;&gt;(Open Access link.)&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://f1000research.com/articles/5-1492&quot;&gt;Bioconductor workflow for microbiome data analysis: from raw reads to community analyses. F1000 Research, 2016.&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1038/ismej.2017.119&quot;&gt;Exact sequence variants should replace operational taxonomic units in marker-gene data analysis. ISMEJ, 2017.&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://dx.doi.org/10.1093/nar/gkz569&quot;&gt;High-throughput amplicon sequencing of the full-length 16S rRNA gene with single-nucleotide resolution. Nucleic Acids Research, 2019.&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Other Resources&lt;/h3&gt; 
+&lt;p&gt;Planned feature improvements are publicly catalogued at the main DADA2 development site on github, specifically on the &quot;Issues&quot; page for DADA2:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/benjjneb/dada2/issues&quot;&gt;https://github.com/benjjneb/dada2/issues&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If the feature you are hoping for is not listed, you are welcome to add it as a feature request &quot;issue&quot; on this page. This request will be publicly available and listed on the page.&lt;/p&gt; 
+&lt;p&gt;Bugs and difficulties in using DADA2 are also welcome on &lt;a href=&quot;https://github.com/benjjneb/dada2/issues&quot;&gt;the issue tracker&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/f0b35268fc9af7cd390b21806a8dadcce68864e1924dca398bc17855c3ff51b3/benjjneb/dada2" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>sqjin/CellChat</title>
+      <link>https://github.com/sqjin/CellChat</link>
+      <description>&lt;p&gt;R toolkit for inference, visualization and analysis of cell-cell communication from single-cell data&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://github.com/sqjin/CellChat/raw/master/CellChat_Logo.png&quot; /&gt; &lt;/p&gt; 
+&lt;h1&gt;CAUTION&lt;/h1&gt; 
+&lt;p&gt;We have updated CellChat to v2 and migrated CellChat to a new repository. This repository will be NOT updated and maintained any more. Please check the new repository &lt;a href=&quot;https://github.com/jinworks/CellChat&quot;&gt;jinworks/CellChat&lt;/a&gt; for the new updates, and the &lt;a href=&quot;https://biorxiv.org/cgi/content/short/2023.11.05.565674v1&quot;&gt;CellChat v2 paper&lt;/a&gt; for a comprehensive protocol of CellChat.&lt;/p&gt; 
+&lt;h1&gt;About CellChat and CellChatDB&lt;/h1&gt; 
+&lt;p&gt;CellChat is an R package designed for inference, analysis, and visualization of cell-cell communication from single-cell data. CellChat aims to enable users to identify and interpret cell-cell communication within an easily interpretable framework, with the emphasis of clear, attractive, and interpretable visualizations.&lt;/p&gt; 
+&lt;p&gt;CellChatDB is a manually curated database of literature-supported ligand-receptor interactions in mutiple species, leading to a comprehensive recapitulation of known molecular interaction mechanisms including multi-subunit structure of ligand-receptor complexes and co-factors.&lt;/p&gt; 
+&lt;p&gt;If you use CellChat in your research, please considering citing our papers:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://biorxiv.org/cgi/content/short/2023.11.05.565674v1&quot;&gt;Suoqin Jin et al., CellChat for systematic analysis of cell-cell communication from single-cell and spatially resolved transcriptomics, bioRxiv 2023&lt;/a&gt; [CellChat v2]&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.nature.com/articles/s41467-021-21246-9&quot;&gt;Suoqin Jin et al., Inference and analysis of cell-cell communication using CellChat, Nature Communications 2021&lt;/a&gt; [CellChat v1]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Capabilities&lt;/h1&gt; 
+&lt;p&gt;In addition to infer the intercellular communication from any given single-cell data, CellChat provides functionality for further data exploration, analysis, and visualization.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;It can quantitatively characterize and compare the inferred cell-cell communication networks using a systems approach by combining social network analysis, pattern recognition, and manifold learning approaches.&lt;/li&gt; 
+ &lt;li&gt;It provides an easy-to-use tool for extracting and visualizing high-order information of the inferred networks. For example, it allows ready prediction of major signaling inputs and outputs for all cell populations and how these populations and signals coordinate together for functions.&lt;/li&gt; 
+ &lt;li&gt;It enables comparative analysis of cell-cell communication across different conditions and identification of altered signaling and cell populations.&lt;/li&gt; 
+ &lt;li&gt;It provides several visualization outputs to facilitate intuitive user-guided data interpretation.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;700&quot; src=&quot;https://github.com/sqjin/CellChat/raw/master/overview_CellChat.png&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://clustrmaps.com/site/1bpq2&quot;&gt; &lt;img width=&quot;200&quot; src=&quot;https://clustrmaps.com/map_v2.png?cl=ffffff&amp;amp;w=a&amp;amp;t=n&amp;amp;d=42WqeykSXznN_NSaBlpf6CtSXQxhqmIs6QusUsguFdY&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/sqjin/CellChat/master/#&quot;&gt; &lt;img src=&quot;https://api.visitorbadge.io/api/visitors?path=https%3A%2F%2Fgithub.com%2Fsqjin%2FCellChat&amp;amp;labelColor=%233499cc&amp;amp;countColor=%2370c168&quot; /&gt; &lt;/a&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/20ac803d6411c377220ac44952a842da59a41cce3da3d7ff13cbf772c9b571a5/sqjin/CellChat" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>swirldev/swirl_courses</title>
+      <link>https://github.com/swirldev/swirl_courses</link>
+      <description>&lt;p&gt;🎓 A collection of interactive courses for the swirl R package.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;swirl courses&lt;/h1&gt; 
+&lt;p&gt;This is a collection of interactive courses for use with the &lt;a href=&quot;http://swirlstats.com&quot;&gt;swirl R package&lt;/a&gt;. You&#39;ll find instructions for installing courses further down on this page. Some courses are still in development and we&#39;d love to hear any &lt;a href=&quot;https://github.com/swirldev/swirl_courses/issues/new&quot;&gt;suggestions&lt;/a&gt; you have as you work through them.&lt;/p&gt; 
+&lt;p&gt;For more information regarding swirl, visit &lt;a href=&quot;http://swirlstats.com&quot;&gt;swirlstats.com&lt;/a&gt; or the &lt;a href=&quot;https://github.com/swirldev/swirl&quot;&gt;swirl GitHub repository&lt;/a&gt;. If you&#39;d like to write your own interactive content, please visit the &lt;a href=&quot;http://swirlstats.com/instructors.html&quot;&gt;Instructors page&lt;/a&gt; of our website.&lt;/p&gt; 
+&lt;p&gt;Here are our current offerings, organized by level of difficulty:&lt;/p&gt; 
+&lt;h4&gt;Beginner&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;R Programming&lt;/strong&gt;: The basics of programming in R&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/swirldev/R_Programming_E&quot;&gt;&lt;strong&gt;R Programming E&lt;/strong&gt;&lt;/a&gt;: Same as the original, but modified slightly for in-class use (see below ***)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swirlstats.com/scn/rpe.html&quot;&gt;&lt;strong&gt;The R Programming Environment&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- - **Data Analysis**: Basic ideas in statistics and data visualization --&gt; 
+&lt;!-- - **Mathematical Biostatistics Boot Camp**: One- and two-sample t-tests, power, and sample size --&gt; 
+&lt;!-- - **Open Intro**: A very basic introduction to statistics, data analysis, and data visualization --&gt; 
+&lt;p&gt;*** &lt;em&gt;R Programming E is identical to R Programming, except we&#39;ve eliminated the prompts for Coursera credentials at the end of each lesson and instead give students the option to send an email to their instructor notifying them of completion. Admittedly, it&#39;s sort of a hack until we come up with a more robust solution for in-class use (i.e. an instructor &quot;dashboard&quot;).&lt;/em&gt;&lt;/p&gt; 
+&lt;h4&gt;Intermediate&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Regression Models&lt;/strong&gt;: The basics of regression modeling in R&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Getting and Cleaning Data&lt;/strong&gt;: dplyr, tidyr, lubridate, oh my!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Advanced&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Statistical Inference&lt;/strong&gt;: This intermediate to advanced level course closely follows the &lt;a href=&quot;https://www.coursera.org/course/statinference&quot;&gt;Statistical Inference course&lt;/a&gt; of the Johns Hopkins &lt;a href=&quot;https://www.coursera.org/specialization/jhudatascience/1&quot;&gt;Data Science Specialization&lt;/a&gt; on Coursera. It introduces the student to basic concepts of statistical inference including probability, hypothesis testing, confidence intervals and p-values. It concludes with an initiation to topics of particular relevance to big data, issues of multiple testing and resampling.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swirlstats.com/scn/arp.html&quot;&gt;&lt;strong&gt;Advanced R Programming&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Since our users come from a variety backgrounds, it&#39;s very hard to label material as &lt;strong&gt;Beginner&lt;/strong&gt;, &lt;strong&gt;Intermediate&lt;/strong&gt;, or &lt;strong&gt;Advanced&lt;/strong&gt;. If you find something that is labelled &lt;strong&gt;Beginner&lt;/strong&gt; to be challenging, please don&#39;t be discouraged. The first step of learning anything is to acknowledge that you are capable of understanding it. True understanding will come with time and practice.&lt;/p&gt; 
+&lt;h4&gt;Course Authors&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Writing swirl Courses&lt;/strong&gt;: An interactive guides and example for swirl course authors. The first group of lessons cover basics. The rest cover special topics useful primarily as samples--points of departure for one&#39;s own material. For more comprehensive documentation about writing your own swirl courses see &lt;a href=&quot;http://swirlstats.com/swirlify/&quot;&gt;http://swirlstats.com/swirlify/&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Install and run a course automatically from swirl&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;This is the preferred method of installing courses.&lt;/strong&gt; It automates the process by allowing you to do everything right from the R console.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Make sure you have a recent version version of swirl:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;install.packages(&quot;swirl&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Enter the following from the R console, &lt;strong&gt;substituting the name of the course&lt;/strong&gt; that you wish to install:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;library(swirl)
+install_course(&quot;Course Name Here&quot;)
+swirl()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, &lt;code&gt;install_course(&quot;R Programming&quot;)&lt;/code&gt; will install the R Programming course. &lt;strong&gt;Please note that course names are case sensitive!&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;If that doesn&#39;t work for you...&lt;/p&gt; 
+&lt;h2&gt;Install and run a course manually&lt;/h2&gt; 
+&lt;p&gt;If the automatic course installation method outlined above does not work for you, then there&#39;s a simple alternative.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Find the course you want to install on the &lt;a href=&quot;https://swirlstats.com/scn/title.html&quot;&gt;Swirl Course network website&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Follow the manual installation instructions on the course page.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;If that does not work for you, consider taking a look at the &lt;a href=&quot;https://github.com/swirldev/swirl_courses/wiki/Legacy-Manual-Install-Instructions-for-Swirl-Courses&quot;&gt;legacy manual install instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Uninstall a course&lt;/h2&gt; 
+&lt;p&gt;If you&#39;d like to remove a course at any time, you can use &lt;code&gt;uninstall_course(&quot;Course Name Here&quot;)&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Using swirl in the classroom&lt;/h2&gt; 
+&lt;p&gt;Instructors around the world are using swirl in their classrooms. We think this is awesome. If you&#39;re an instructor, please feel free to do the same -- free of charge. While your students may be paying to take your course or attend your institution, we simply ask that you don&#39;t charge people &lt;em&gt;directly&lt;/em&gt; for the use of our software or instructional content.&lt;/p&gt; 
+&lt;p&gt;If you are not sure about a particular use case, don&#39;t hesitate to post a question to our &lt;a href=&quot;https://groups.google.com/forum/#!forum/swirl-discuss&quot;&gt;Google Group&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/1f4b12698c18613f9bfd52e4f6c3d3eda3d742ad3f0365f35438be204caa8d81/swirldev/swirl_courses" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>stuart-lab/signac</title>
+      <link>https://github.com/stuart-lab/signac</link>
+      <description>&lt;p&gt;R toolkit for the analysis of single-cell chromatin data&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Signac &lt;img align=&quot;right&quot; src=&quot;https://raw.githubusercontent.com/stuart-lab/signac/master/man/figures/logo.svg?sanitize=true&quot; style=&quot;height:100px;&quot; /&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/stuart-lab/signac/actions&quot;&gt;&lt;img src=&quot;https://github.com/stuart-lab/signac/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Signac&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Signac&quot; alt=&quot;CRAN
+Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Signac&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Signac&quot; alt=&quot;CRAN
+Downloads&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;Signac is a comprehensive R package for the analysis of single-cell chromatin data. Signac includes functions for quality control, normalization, dimension reduction, clustering, differential activity, and more.&lt;/p&gt; 
+&lt;p&gt;Documentation and tutorials can be found at &lt;a href=&quot;https://stuartlab.org/signac/&quot;&gt;https://stuartlab.org/signac/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the latest release of Signac from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;setRepositories(ind=1:3) # needed to automatically install Bioconductor dependencies
+install.packages(&quot;Signac&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To release the latest develop version from GitHub:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;remotes&quot;, quietly = TRUE))
+    install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;stuart-lab/signac&quot;, ref = &quot;develop&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To install the Signac v2 beta version:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;remotes&quot;, quietly = TRUE))
+    install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;stuart-lab/signac&quot;, ref = &quot;v2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Documentation for the v2 beta can be found &lt;a href=&quot;https://stuartlab.org/signac2/&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Release notes&lt;/h2&gt; 
+&lt;p&gt;For a changelog please see the &lt;a href=&quot;https://github.com/stuart-lab/signac/raw/develop/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;, also available on the &lt;a href=&quot;https://stuartlab.org/signac/news/index.html&quot;&gt;Signac website&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions to the Signac package. Please see the &lt;a href=&quot;https://github.com/stuart-lab/signac/raw/develop/CONTRIBUTING.md&quot;&gt;contribution guide&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h2&gt;Getting help&lt;/h2&gt; 
+&lt;p&gt;If you encounter a bug or have a feature request, please open an &lt;a href=&quot;https://github.com/stuart-lab/signac/issues&quot;&gt;issue&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you would like to discuss questions related to single-cell analysis, you can open a &lt;a href=&quot;https://github.com/stuart-lab/signac/discussions&quot;&gt;discussion&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Citing Signac&lt;/h2&gt; 
+&lt;p&gt;If you use the Signac package in your work please cite &lt;a href=&quot;https://doi.org/10.1038/s41592-021-01282-5&quot;&gt;Stuart et al. 2021&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@ARTICLE{signac,
+  title     = &quot;Single-cell chromatin state analysis with Signac&quot;,
+  author    = &quot;Stuart, Tim and Srivastava, Avi and Madad, Shaista and Lareau,
+               Caleb A and Satija, Rahul&quot;,
+  journal   = &quot;Nat. Methods&quot;,
+  publisher = &quot;Nature Publishing Group&quot;,
+  pages     = &quot;1--9&quot;,
+  month     =  nov,
+  year      =  2021,
+  url       = &quot;https://www.nature.com/articles/s41592-021-01282-5&quot;,
+  language  = &quot;en&quot;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Related packages&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat&quot;&gt;Seurat&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-object&quot;&gt;SeuratObject&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-data&quot;&gt;SeuratData&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/seurat-wrappers&quot;&gt;SeuratWrappers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/satijalab/azimuth&quot;&gt;Azimuth&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/833a05d631059856de0a0851ef424ed3f0a681ab6ed2480f69b4b97257b0af0a/stuart-lab/signac" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>rstudio/renv</title>
+      <link>https://github.com/rstudio/renv</link>
+      <description>&lt;p&gt;renv: Project environments for R.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;renv &lt;img src=&quot;https://raw.githubusercontent.com/rstudio/renv/main/man/figures/logo.svg?sanitize=true&quot; align=&quot;right&quot; height=&quot;115&quot; /&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lifecycle.r-lib.org/articles/stages.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?sanitize=true&quot; alt=&quot;Lifecycle:
+stable&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://CRAN.R-project.org/package=renv&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/renv&quot; alt=&quot;CRAN
+status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/rstudio/renv/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/rstudio/renv/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;The renv package&lt;sup class=&quot;footnote-ref&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/rstudio/renv/main/#fn1&quot; id=&quot;fnref1&quot;&gt;[1]&lt;/a&gt;&lt;/sup&gt; helps you create &lt;strong&gt;r&lt;/strong&gt;eproducible &lt;strong&gt;env&lt;/strong&gt;ironments for your R projects. Use renv to make your R projects more isolated, portable and reproducible.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Isolated&lt;/strong&gt;: Installing a new or updated package for one project won’t break your other projects, and vice versa. That’s because renv gives each project its own private library.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Portable&lt;/strong&gt;: Easily transport your projects from one computer to another, even across different platforms. renv makes it easy to install the packages your project depends on.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Reproducible&lt;/strong&gt;: renv records the exact package versions you depend on, and ensures those exact versions are the ones that get installed wherever you go.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Install the latest version of renv from CRAN with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;renv&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, install the development version from &lt;a href=&quot;https://rstudio.r-universe.dev/renv&quot;&gt;r-universe&lt;/a&gt; with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;renv&quot;, repos = &quot;https://rstudio.r-universe.dev&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Workflow&lt;/h2&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/renv/main/vignettes/renv.png&quot; alt=&quot;A diagram showing the most important verbs and nouns of renv. Projects start with init(), which creates a project library using packages from the system library. snapshot() updates the lockfile using the packages installed in the project library, where restore() installs packages into the project library using the metadata from the lockfile, and status() compares the lockfile to the project library. You install and update packages from CRAN and GitHub using install() and update(), but because you&#39;ll need to do this for multiple projects, renv uses cache to make this fast.&quot; width=&quot;408&quot; style=&quot;display: block; margin: auto;&quot; /&gt; 
+&lt;p&gt;Use &lt;code&gt;renv::init()&lt;/code&gt; to initialize renv in a new or existing project. This will set up a &lt;strong&gt;project library&lt;/strong&gt;, containing all the packages you’re currently using. The packages (and all the metadata needed to reinstall them) are recorded into a &lt;strong&gt;lockfile&lt;/strong&gt;, &lt;code&gt;renv.lock&lt;/code&gt;, and a &lt;code&gt;.Rprofile&lt;/code&gt; ensures that the library is used every time you open that project.&lt;/p&gt; 
+&lt;p&gt;As you continue to work on your project, you will install and upgrade packages, either using &lt;code&gt;install.packages()&lt;/code&gt; and &lt;code&gt;update.packages()&lt;/code&gt; or &lt;code&gt;renv::install()&lt;/code&gt; and &lt;code&gt;renv::update()&lt;/code&gt;. After you’ve confirmed your code works as expected, use &lt;code&gt;renv::snapshot()&lt;/code&gt; to record the packages and their sources in the lockfile.&lt;/p&gt; 
+&lt;p&gt;Later, if you need to share your code with someone else or run your code on new machine, your collaborator (or you) can call &lt;code&gt;renv::restore()&lt;/code&gt; to reinstall the specific package versions recorded in the lockfile.&lt;/p&gt; 
+&lt;h2&gt;Learning more&lt;/h2&gt; 
+&lt;p&gt;If this is your first time using renv, we strongly recommend starting with the &lt;a href=&quot;https://rstudio.github.io/renv/articles/renv.html&quot;&gt;Introduction to renv&lt;/a&gt; vignette: this will help you understand the most important verbs and nouns of renv.&lt;/p&gt; 
+&lt;p&gt;If you have a question about renv, please first check the &lt;a href=&quot;https://rstudio.github.io/renv/articles/faq.html&quot;&gt;FAQ&lt;/a&gt; to see whether your question has already been addressed. If it hasn’t, please feel free to ask on the &lt;a href=&quot;https://forum.posit.co&quot;&gt;Posit Forum&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you believe you’ve found a bug in renv, please file a bug (and, if possible, a &lt;a href=&quot;https://reprex.tidyverse.org&quot;&gt;reproducible example&lt;/a&gt;) at &lt;a href=&quot;https://github.com/rstudio/renv/issues&quot;&gt;https://github.com/rstudio/renv/issues&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr class=&quot;footnotes-sep&quot; /&gt; 
+&lt;section class=&quot;footnotes&quot;&gt; 
+ &lt;ol class=&quot;footnotes-list&quot;&gt; 
+  &lt;li id=&quot;fn1&quot; class=&quot;footnote-item&quot;&gt;&lt;p&gt;Pronounced “R” “env” &lt;a href=&quot;https://raw.githubusercontent.com/rstudio/renv/main/#fnref1&quot; class=&quot;footnote-backref&quot;&gt;↩︎&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ol&gt; 
+&lt;/section&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a1556bf5654cc3af1cbb7d596704de64de83edb4874cacc6fc3c9b65a53b7224/rstudio/renv" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>hadley/r4ds</title>
+      <link>https://github.com/hadley/r4ds</link>
+      <description>&lt;p&gt;R for data science: a book&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;R for Data Science&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/hadley/r4ds/actions/workflows/build_book.yaml&quot;&gt;&lt;img src=&quot;https://github.com/hadley/r4ds/actions/workflows/build_book.yaml/badge.svg?sanitize=true&quot; alt=&quot;Render and deploy Book to Netlify&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;This repository contains the source of &lt;a href=&quot;http://r4ds.hadley.nz&quot;&gt;R for Data Science&lt;/a&gt; book. The book is built using &lt;a href=&quot;https://quarto.org/&quot;&gt;Quarto&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Images&lt;/h2&gt; 
+&lt;h3&gt;Omnigraffle drawings&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Font: 12pt Guardian Sans Condensed / Ubuntu mono&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Export as 300 dpi png.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Website font is 18 px = 13.5 pt, so scale dpi to match font sizes: 270 = 300 * 12 / 13.5. (I also verified this empirically by screenshotting.)&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;#| echo: FALSE
+#| out.width: NULL
+knitr::include_graphics(&quot;diagrams/transform.png&quot;, dpi = 270)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Screenshots&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Make sure you&#39;re using a light theme. For small interface elements (eg. toolbars), zoom in twice.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Screenshot with Cmd + Shift + 4.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Don&#39;t need to set dpi:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;#| echo: FALSE
+#| out.width: NULL
+knitr::include_graphics(&quot;screenshots/rstudio-wg.png&quot;)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;O&#39;Reilly&lt;/h3&gt; 
+&lt;p&gt;To generate book for O&#39;Reilly, build the book then:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-{r}&quot;&gt;# pak::pak(&quot;hadley/htmlbook&quot;)
+htmlbook::convert_book()
+
+html &amp;lt;- list.files(&quot;oreilly&quot;, pattern = &quot;[.]html$&quot;, full.names = TRUE)
+file.copy(html, &quot;../r-for-data-science-2e/&quot;, overwrite = TRUE)
+
+pngs &amp;lt;- list.files(&quot;oreilly&quot;, pattern = &quot;[.]png$&quot;, full.names = TRUE, recursive = TRUE)
+dest &amp;lt;- gsub(&quot;oreilly&quot;, &quot;../r-for-data-science-2e/&quot;, pngs)
+fs::dir_create(unique(dirname(dest)))
+file.copy(pngs, dest, overwrite = TRUE)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then commit and push to atlas.&lt;/p&gt; 
+&lt;h2&gt;Code of Conduct&lt;/h2&gt; 
+&lt;p&gt;Please note that r4ds uses a &lt;a href=&quot;https://contributor-covenant.org/version/2/0/CODE_OF_CONDUCT.html&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By contributing to this book, you agree to abide by its terms.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/900800aeadabacf746eda4d59b2a7a72635284b41d0771e27ff846bdf1d11154/hadley/r4ds" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>YuLab-SMU/clusterProfiler</title>
+      <link>https://github.com/YuLab-SMU/clusterProfiler</link>
+      <description>&lt;p&gt;📊 A universal enrichment tool for interpreting omics data&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;clusterProfiler&lt;/h1&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/YuLab-SMU/clusterProfiler/devel/inst/sticker/clusterProfiler_hex.png&quot; height=&quot;200&quot; align=&quot;right&quot; /&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.repostatus.org/#active&quot;&gt;&lt;img src=&quot;http://www.repostatus.org/badges/latest/active.svg?sanitize=true&quot; alt=&quot;Project Status: Active - The project has reached a stable, usable
+state and is being actively
+developed.&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.bioconductor.org/packages/clusterProfiler&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/release%20version-4.18.4-green.svg?sanitize=true&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/guangchuangyu/clusterProfiler&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/devel%20version-4.19.4.006-green.svg?sanitize=true&quot; alt=&quot;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.bioconductor.org/packages/devel/bioc/html/clusterProfiler.html#since&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/years-in-bioc/clusterProfiler.svg?sanitize=true&quot; alt=&quot;Bioc&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.bioconductor.org/packages/devel/bioc/html/clusterProfiler.html#archives&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/availability/devel/clusterProfiler.svg?sanitize=true&quot; alt=&quot;platform&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://bioconductor.org/checkResults/devel/bioc-LATEST/clusterProfiler/&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/build/devel/bioc/clusterProfiler.svg?sanitize=true&quot; alt=&quot;Build
+Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/GuangchuangYu/clusterProfiler/&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/GuangchuangYu/clusterProfiler/branch/master/graph/badge.svg?sanitize=true&quot; alt=&quot;codecov&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!--
+[![Last-changedate](https://img.shields.io/badge/last%20change-2026--01--21-green.svg)](https://github.com/GuangchuangYu/clusterProfiler/commits/master)
+--&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://bioconductor.org/packages/clusterProfiler&quot;&gt;clusterProfiler&lt;/a&gt; supports exploring functional characteristics of both coding and non-coding genomics data for thousands of species with up-to-date gene annotation.&lt;/li&gt; 
+ &lt;li&gt;It provides a universal interface for gene functional annotation from a variety of sources and thus can be applied in diverse scenarios.&lt;/li&gt; 
+ &lt;li&gt;It provides a tidy interface to access, manipulate, and visualize enrichment results to help users achieve efficient data interpretation&lt;/li&gt; 
+ &lt;li&gt;Datasets obtained from multiple treatments and time points can be analyzed and compared in a single run, easily revealing functional consensus and differences among distinct conditions&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For details, please visit:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://yulab-smu.top/contribution-knowledge-mining/&quot;&gt;https://yulab-smu.top/contribution-knowledge-mining/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://yulab-smu.top/biomedical-knowledge-mining-book/&quot;&gt;https://yulab-smu.top/biomedical-knowledge-mining-book/&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/YuLab-SMU/clusterProfiler/devel/graphic-abstract-The-Innovation-2021.jpg&quot; width=&quot;890&quot; /&gt; 
+&lt;h2&gt;✍️ Authors&lt;/h2&gt; 
+&lt;p&gt;Guangchuang YU &lt;a href=&quot;https://yulab-smu.top&quot;&gt;https://yulab-smu.top&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;School of Basic Medical Sciences, Southern Medical University&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;If you use &lt;a href=&quot;http://bioconductor.org/packages/clusterProfiler&quot;&gt;clusterProfiler&lt;/a&gt; in published research, please cite the most appropriate paper(s) from this list:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;S Xu&lt;sup&gt;#&lt;/sup&gt;, E Hu&lt;sup&gt;#&lt;/sup&gt;, Y Cai&lt;sup&gt;#&lt;/sup&gt;, Z Xie&lt;sup&gt;#&lt;/sup&gt;, X Luo&lt;sup&gt;#&lt;/sup&gt;, L Zhan, W Tang, Q Wang, B Liu, R Wang, W Xie, T Wu, L Xie, &lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. Using clusterProfiler to characterise Multi-Omics Data. &lt;em&gt;&lt;strong&gt;Nature Protocols&lt;/strong&gt;&lt;/em&gt;. 2024, accepted. doi: &lt;a href=&quot;https://doi.org/10.1038/s41596-024-01020-z&quot;&gt;10.1038/s41596-024-01020-z&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;T Wu&lt;sup&gt;#&lt;/sup&gt;, E Hu&lt;sup&gt;#&lt;/sup&gt;, S Xu, M Chen, P Guo, Z Dai, T Feng, L Zhou, W Tang, L Zhan, X Fu, S Liu, X Bo&lt;sup&gt;*&lt;/sup&gt;, &lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. clusterProfiler 4.0: A universal enrichment tool for interpreting omics data. &lt;em&gt;&lt;strong&gt;The Innovation&lt;/strong&gt;&lt;/em&gt;. 2021, 2(3):100141. doi: &lt;a href=&quot;https://doi.org/10.1016/j.xinn.2021.100141&quot;&gt;10.1016/j.xinn.2021.100141&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. Gene Ontology Semantic Similarity Analysis Using GOSemSim. In: Kidder B. (eds) Stem Cell Transcriptional Networks. &lt;em&gt;&lt;strong&gt;Methods in Molecular Biology&lt;/strong&gt;&lt;/em&gt;. 2020, 2117:207-215. Humana, New York, NY. doi: &lt;a href=&quot;https://doi.org/10.1007/978-1-0716-0301-7_11&quot;&gt;10.1007/978-1-0716-0301-7_11&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;. Using meshes for MeSH term enrichment and semantic analyses. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2018, 34(21):3766–3767. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/bty410&quot;&gt;10.1093/bioinformatics/bty410&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;, QY He&lt;sup&gt;*&lt;/sup&gt;. ReactomePA: an R/Bioconductor package for reactome pathway analysis and visualization. &lt;em&gt;&lt;strong&gt;Molecular BioSystems&lt;/strong&gt;&lt;/em&gt;. 2016, 12(2):477-479. doi: &lt;a href=&quot;https://doi.org/10.1039/C5MB00663E&quot;&gt;10.1039/C5MB00663E&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;, LG Wang, and QY He&lt;sup&gt;*&lt;/sup&gt;. ChIPseeker: an R/Bioconductor package for ChIP peak annotation, comparison and visualization. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2015, 31(14):2382-2383. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btv145&quot;&gt;10.1093/bioinformatics/btv145&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;&lt;sup&gt;*&lt;/sup&gt;, LG Wang, GR Yan, QY He&lt;sup&gt;*&lt;/sup&gt;. DOSE: an R/Bioconductor package for Disease Ontology Semantic and Enrichment analysis. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2015, 31(4):608-609. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btu684&quot;&gt;10.1093/bioinformatics/btu684&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;, LG Wang, Y Han and QY He&lt;sup&gt;*&lt;/sup&gt;. clusterProfiler: an R package for comparing biological themes among gene clusters. &lt;em&gt;&lt;strong&gt;OMICS: A Journal of Integrative Biology&lt;/strong&gt;&lt;/em&gt;. 2012, 16(5):284-287. doi: &lt;a href=&quot;https://doi.org/10.1089/omi.2011.0118&quot;&gt;10.1089/omi.2011.0118&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;G Yu&lt;/strong&gt;, F Li, Y Qin, X Bo&lt;sup&gt;*&lt;/sup&gt;, Y Wu, S Wang&lt;sup&gt;*&lt;/sup&gt;. GOSemSim: an R package for measuring semantic similarity among GO terms and gene products. &lt;em&gt;&lt;strong&gt;Bioinformatics&lt;/strong&gt;&lt;/em&gt;. 2010, 26(7):976-978. doi: &lt;a href=&quot;https://doi.org/10.1093/bioinformatics/btq064&quot;&gt;10.1093/bioinformatics/btq064&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;!--
+&amp;#10;
+&amp;#10; r badge_custom(&quot;1st most cited paper&quot;, &quot;in OMICS&quot;, &quot;green&quot;,
+  &quot;http://online.liebertpub.com/action/showMostCitedArticles?journalCode=omi&quot;)`
+ r badge_custom(&quot;ESI&quot;, &quot;Highly Cited Paper&quot;, &quot;green&quot;)`
+ r badge_doi(&quot;10.1089/omi.2011.0118&quot;, &quot;green&quot;)`
+&amp;#10;
+------------------------------------------------------------------------
+&amp;#10;### Citation
+&amp;#10;
+&amp;#10;
+&lt;img src=&quot;https://guangchuangyu.github.io/software/citation_trend/clusterProfiler.png&quot; width=&quot;890&quot;/&gt;
+&amp;#10;
+### Download stats
+&amp;#10;r badge_download_bioc(&quot;clusterProfiler&quot;)
+r badge_bioc_download(&quot;clusterProfiler&quot;, &quot;total&quot;, &quot;blue&quot;)
+r badge_bioc_download(&quot;clusterProfiler&quot;, &quot;month&quot;, &quot;blue&quot;)
+&amp;#10;
+&lt;img src=&quot;https://guangchuangyu.github.io/software/dlstats/clusterProfiler.png&quot; width=&quot;890&quot;/&gt;
+&amp;#10;--&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ad07e2c85583fdb3037eea53e54f76c46c39810cd74a8a06aaf024b0616b7fb1/YuLab-SMU/clusterProfiler" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>tidyverse/ggplot2</title>
+      <link>https://github.com/tidyverse/ggplot2</link>
+      <description>&lt;p&gt;An implementation of the Grammar of Graphics in R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ggplot2 &lt;a href=&quot;https://ggplot2.tidyverse.org&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png&quot; align=&quot;right&quot; height=&quot;138&quot; alt=&quot;ggplot2 website&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=ggplot2&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/ggplot2&quot; alt=&quot;CRAN_Status_Badge&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/tidyverse/ggplot2&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/tidyverse/ggplot2/graph/badge.svg?sanitize=true&quot; alt=&quot;Codecov test
+coverage&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;ggplot2 is a system for declaratively creating graphics, based on &lt;a href=&quot;https://link.springer.com/book/10.1007/0-387-28695-0&quot;&gt;The Grammar of Graphics&lt;/a&gt;. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# The easiest way to get ggplot2 is to install the whole tidyverse:
+install.packages(&quot;tidyverse&quot;)
+
+# Alternatively, install just ggplot2:
+install.packages(&quot;ggplot2&quot;)
+
+# Or the development version from GitHub:
+# install.packages(&quot;pak&quot;)
+pak::pak(&quot;tidyverse/ggplot2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Cheatsheet&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/data-visualization.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png&quot; width=&quot;630&quot; height=&quot;252&quot; alt=&quot;ggplot2 cheatsheet&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;It’s hard to succinctly describe how ggplot2 works because it embodies a deep philosophy of visualisation. However, in most cases you start with &lt;code&gt;ggplot()&lt;/code&gt;, supply a dataset and aesthetic mapping (with &lt;code&gt;aes()&lt;/code&gt;). You then add on layers (like &lt;code&gt;geom_point()&lt;/code&gt; or &lt;code&gt;geom_histogram()&lt;/code&gt;), scales (like &lt;code&gt;scale_colour_brewer()&lt;/code&gt;), faceting specifications (like &lt;code&gt;facet_wrap()&lt;/code&gt;) and coordinate systems (like &lt;code&gt;coord_flip()&lt;/code&gt;).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ggplot2)
+
+ggplot(mpg, aes(displ, hwy, colour = class)) +
+  geom_point()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/README-example-1.png&quot; alt=&quot;Scatterplot of engine displacement versus highway miles per gallon, for 234 cars coloured by 7 &#39;types&#39; of car. The displacement and miles per gallon are inversely correlated.&quot; /&gt; 
+&lt;h2&gt;Lifecycle&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lifecycle.r-lib.org/articles/stages.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?sanitize=true&quot; alt=&quot;lifecycle&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;ggplot2 is now 18 years old and is used by hundreds of thousands of people to make millions of plots. That means, by-and-large, ggplot2 itself changes relatively little. When we do make changes, they will be generally to add new functions or arguments rather than changing the behaviour of existing functions, and if we do make changes to existing behaviour we will do them for compelling reasons.&lt;/p&gt; 
+&lt;p&gt;If you are looking for innovation, look to ggplot2’s rich ecosystem of extensions. See a community maintained list at &lt;a href=&quot;https://exts.ggplot2.tidyverse.org/gallery/&quot;&gt;https://exts.ggplot2.tidyverse.org/gallery/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Learning ggplot2&lt;/h2&gt; 
+&lt;p&gt;If you are new to ggplot2 you are better off starting with a systematic introduction, rather than trying to learn from reading individual documentation pages. Currently, there are several good places to start:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;a href=&quot;https://r4ds.hadley.nz/data-visualize&quot;&gt;Data Visualization&lt;/a&gt; and &lt;a href=&quot;https://r4ds.hadley.nz/communication&quot;&gt;Communication&lt;/a&gt; chapters in &lt;a href=&quot;https://r4ds.hadley.nz&quot;&gt;R for Data Science&lt;/a&gt;. R for Data Science is designed to give you a comprehensive introduction to the &lt;a href=&quot;https://tidyverse.org/&quot;&gt;tidyverse&lt;/a&gt;, and these two chapters will get you up to speed with the essentials of ggplot2 as quickly as possible.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’d like to take an online course, try &lt;a href=&quot;https://learning.oreilly.com/videos/data-visualization-in/9781491963661/&quot;&gt;Data Visualization in R With ggplot2&lt;/a&gt; by Kara Woo.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’d like to follow a webinar, try &lt;a href=&quot;https://youtu.be/h29g21z0a68&quot;&gt;Plotting Anything with ggplot2&lt;/a&gt; by Thomas Lin Pedersen.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you want to dive into making common graphics as quickly as possible, I recommend &lt;a href=&quot;https://r-graphics.org&quot;&gt;The R Graphics Cookbook&lt;/a&gt; by Winston Chang. It provides a set of recipes to solve common graphics problems.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’ve mastered the basics and want to learn more, read &lt;a href=&quot;https://ggplot2-book.org&quot;&gt;ggplot2: Elegant Graphics for Data Analysis&lt;/a&gt;. It describes the theoretical underpinnings of ggplot2 and shows you how all the pieces fit together. This book helps you understand the theory that underpins ggplot2, and will help you create new types of graphics specifically tailored to your needs.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For articles about announcements and deep-dives you can visit the &lt;a href=&quot;https://tidyverse.org/tags/ggplot2/&quot;&gt;tidyverse blog&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Getting help&lt;/h2&gt; 
+&lt;p&gt;There are two main places to get help with ggplot2:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;a href=&quot;https://forum.posit.co/&quot;&gt;Posit Community&lt;/a&gt; (formerly RStudio Community) is a friendly place to ask any questions about ggplot2.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/tagged/ggplot2?sort=frequent&amp;amp;pageSize=50&quot;&gt;Stack Overflow&lt;/a&gt; is a great source of answers to common ggplot2 questions. It is also a great place to get help, once you have created a reproducible example that illustrates your problem.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2b20dc731f0c9b034f06b65546cbbd2a17897b32237bf4e94553f9cf9b93c55f/tidyverse/ggplot2" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>posit-dev/skills</title>
+      <link>https://github.com/posit-dev/skills</link>
+      <description>&lt;p&gt;A collection of Claude Skills from Posit&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Posit Claude Skills&lt;/h1&gt; 
+&lt;p&gt;A collection of Claude Skills from Posit!&lt;/p&gt; 
+&lt;p&gt;Claude Skills extend Claude&#39;s capabilities with specialized knowledge and workflows. Skills are automatically activated by Claude based on your task and can be used in &lt;a href=&quot;http://Claude.ai&quot;&gt;Claude.ai&lt;/a&gt;, Claude Code, or via the Claude API. Learn more at the &lt;a href=&quot;https://support.claude.com/en/articles/12512180-using-skills-in-claude&quot;&gt;Claude Skills documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Available Skills&lt;/h2&gt; 
+&lt;h3&gt;Posit Developer&lt;/h3&gt; 
+&lt;p&gt;General-purpose developer skills useful across any language, project type, or context.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/posit-dev/critical-code-reviewer/&quot;&gt;critical-code-reviewer&lt;/a&gt;&lt;/strong&gt; - Conduct rigorous, adversarial code reviews identifying security holes, lazy patterns, edge case failures, and bad practices across Python, R, JavaScript/TypeScript, SQL, and front-end code&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/posit-dev/describe-design/&quot;&gt;describe-design&lt;/a&gt;&lt;/strong&gt; - Research a codebase and create architectural documentation describing how features or systems work, with Mermaid diagrams and stable code references suitable for humans and AI agents&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;GitHub&lt;/h3&gt; 
+&lt;p&gt;Skills for GitHub pull request workflows — creating PRs, addressing review feedback, and resolving threads.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/github/pr-create/&quot;&gt;pr-create&lt;/a&gt;&lt;/strong&gt; - Creates a pull request from current changes, monitors GitHub CI, and debugs any failures until CI passes&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/github/pr-threads-address/&quot;&gt;pr-threads-address&lt;/a&gt;&lt;/strong&gt; - Review all unresolved PR review threads, address them by making necessary code changes, and commit the changes appropriately&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/github/pr-threads-resolve/&quot;&gt;pr-threads-resolve&lt;/a&gt;&lt;/strong&gt; - Bulk resolve unresolved PR review threads&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Open Source&lt;/h3&gt; 
+&lt;p&gt;Skills for open-source R and Python package developers, streamlining common workflows like releases, changelogs, and contributor acknowledgments.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/open-source/create-release-checklist/&quot;&gt;create-release-checklist&lt;/a&gt;&lt;/strong&gt; - Create a release checklist and GitHub issue for an R package, with automatic version calculation and customizable checklist generation&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/open-source/release-post/&quot;&gt;release-post&lt;/a&gt;&lt;/strong&gt; - Create professional package release blog posts following Tidyverse or Shiny blog conventions, with support for both R and Python packages&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;R Package Development&lt;/h3&gt; 
+&lt;p&gt;R package development skills for working with the r-lib ecosystem and modern R package workflows.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/testing-r-packages/&quot;&gt;testing-r-packages&lt;/a&gt;&lt;/strong&gt; - Best practices for writing R package tests using testthat 3+, including test structure, expectations, fixtures, snapshots, mocking, and BDD-style testing&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/cli/&quot;&gt;cli&lt;/a&gt;&lt;/strong&gt; - Comprehensive guidance for using the cli R package for command-line interface styling, semantic messaging, and user communication with inline markup, progress indicators, and theming&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/cran-extrachecks/&quot;&gt;cran-extrachecks&lt;/a&gt;&lt;/strong&gt; - Prepare R packages for CRAN submission by checking for common ad-hoc requirements not caught by &lt;code&gt;devtools::check()&lt;/code&gt;, including documentation standards, DESCRIPTION field formatting, and URL validation&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/lifecycle/&quot;&gt;lifecycle&lt;/a&gt;&lt;/strong&gt; - Manage R package lifecycle according to tidyverse principles using the lifecycle package, covering deprecation workflows, function/argument renaming, superseding, and experimental stages&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/r-package-development/&quot;&gt;r-package-development&lt;/a&gt;&lt;/strong&gt; - R package development with devtools, testthat, and roxygen2, covering key commands, coding conventions, testing, documentation, and &lt;a href=&quot;http://NEWS.md&quot;&gt;NEWS.md&lt;/a&gt; practices&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/mirai/&quot;&gt;mirai&lt;/a&gt;&lt;/strong&gt; - Async, parallel, and distributed computing in R using mirai, covering explicit dependency passing, daemon setup, parallel mapping with &lt;code&gt;mirai_map()&lt;/code&gt;, Shiny integration, remote/HPC launchers, and migration from future/parallel&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Shiny&lt;/h3&gt; 
+&lt;p&gt;Skills for Shiny app development in both R and Python.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/brand-yml/&quot;&gt;brand-yml&lt;/a&gt;&lt;/strong&gt; - Create and apply brand.yml files for consistent styling across Shiny apps, with support for bslib (R) and ui.Theme (Python), including automatic brand discovery and theming functions for plots and tables&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/shiny/shiny-bslib/&quot;&gt;shiny-bslib&lt;/a&gt;&lt;/strong&gt; - Build modern Shiny dashboards using bslib with Bootstrap 5 layouts, cards, value boxes, navigation, theming, and modern inputs. Includes migration guide from legacy Shiny patterns&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/shiny/shiny-bslib-theming/&quot;&gt;shiny-bslib-theming&lt;/a&gt;&lt;/strong&gt; - Comprehensive theming for Shiny apps using bslib, covering bs_theme(), Bootswatch themes, custom colors, typography, Bootstrap Sass variables, custom Sass/CSS rules, dark mode, dynamic theming, and R plot theming&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Quarto&lt;/h3&gt; 
+&lt;p&gt;Skills for Quarto document creation and publishing.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/brand-yml/&quot;&gt;brand-yml&lt;/a&gt;&lt;/strong&gt; - Create and apply brand.yml files for consistent styling across Quarto projects, supporting HTML documents, dashboards, RevealJS presentations, Typst PDFs, and websites with automatic brand discovery and theme layering&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/quarto/README.md#quarto-authoring-skill&quot;&gt;authoring&lt;/a&gt;&lt;/strong&gt; - Comprehensive guidance for Quarto document authoring and R Markdown migration. Write new Quarto documents with best practices, convert R Markdown files, migrate bookdown/blogdown/xaringan/distill projects, and use Quarto-specific features like hashpipe syntax, cross-references, callouts, and extensions&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/quarto/quarto-alt-text/&quot;&gt;quarto-alt-text&lt;/a&gt;&lt;/strong&gt; - Generate accessible alt text for figures in Quarto documents using Amy Cesal&#39;s three-part formula (chart type, data description, key insight). Supports code-generated plots and static images&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Using &lt;code&gt;npx skills add&lt;/code&gt; (Any Agent)&lt;/h3&gt; 
+&lt;p&gt;Install skills from this repository into any supported coding agent (Claude Code, Codex, Cursor, Cline, and &lt;a href=&quot;https://github.com/vercel-labs/skills&quot;&gt;many more&lt;/a&gt;) using the &lt;code&gt;npx skills add&lt;/code&gt; CLI:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# List available skills without installing
+npx skills add posit-dev/skills --list
+
+# Install skills via an interactive menu
+npx skills add posit-dev/skills --all
+
+# Install specific skills by category name
+npx skills add posit-dev/skills --skill cli --skill lifecycle
+
+# Install to Claude Code only, globally
+npx skills add posit-dev/skills --agent claude-code --global
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Claude Code&lt;/h3&gt; 
+&lt;h4&gt;Method 1: Add Marketplace&lt;/h4&gt; 
+&lt;p&gt;Add this repository as a plugin marketplace in Claude Code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;/plugin marketplace add posit-dev/skills
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then browse and install the skill categories you need through the Claude Code UI.&lt;/p&gt; 
+&lt;h4&gt;Method 2: Direct Installation&lt;/h4&gt; 
+&lt;p&gt;Install specific skill categories directly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;/plugin install posit-dev@posit-dev-skills
+/plugin install github@posit-dev-skills
+/plugin install open-source@posit-dev-skills
+/plugin install r-lib@posit-dev-skills
+/plugin install shiny@posit-dev-skills
+/plugin install quarto@posit-dev-skills
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Each command installs all skills in that category.&lt;/p&gt; 
+&lt;h4&gt;Method 3: Manual Installation&lt;/h4&gt; 
+&lt;p&gt;For customization or offline use:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Clone this repository:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/posit-dev/skills.git
+cd skills
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Copy individual skills to your Claude Code skills directory:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cp -r open-source/release-post ~/.config/claude-code/skills/
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Or install all skills from a category:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;for skill in open-source/*/; do
+  cp -r &quot;$skill&quot; ~/.config/claude-code/skills/
+done
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;&lt;a href=&quot;http://Claude.ai&quot;&gt;Claude.ai&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;Skills can be uploaded to &lt;a href=&quot;http://Claude.ai&quot;&gt;Claude.ai&lt;/a&gt; following the &lt;a href=&quot;https://support.claude.com/en/articles/12512198-creating-custom-skills&quot;&gt;Creating Custom Skills guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Claude API&lt;/h3&gt; 
+&lt;p&gt;Use the &lt;a href=&quot;https://docs.claude.com/en/api/skills-guide&quot;&gt;Skills API&lt;/a&gt; to programmatically load and manage skills in your applications.&lt;/p&gt; 
+&lt;h2&gt;Using Skills&lt;/h2&gt; 
+&lt;p&gt;Once installed, Claude will automatically activate relevant skills based on your task. You don&#39;t need to explicitly invoke them.&lt;/p&gt; 
+&lt;p&gt;For example, with the &lt;code&gt;release-post&lt;/code&gt; skill installed:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;You: Help me write a release post for dplyr 1.2.0
+
+Claude: I&#39;ll help you create a release post. First, let me gather some information...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Claude will use the skill&#39;s knowledge to guide you through creating a properly formatted release post.&lt;/p&gt; 
+&lt;h2&gt;Skill Categories&lt;/h2&gt; 
+&lt;p&gt;This repository organizes skills into categories to make it easier to find and install skills relevant to your work:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Category&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;posit-dev&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;General-purpose developer skills (code review, architecture docs)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;github&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;GitHub PR workflows (create PRs, address review threads, resolve threads)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;open-source&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Open-source R/Python package workflows (releases, changelogs)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;r-lib&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;R package development with the r-lib ecosystem&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;shiny&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Shiny app development and deployment (R and Python)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;quarto&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Quarto document creation and publishing&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- Future category ideas
+
+| **tidyverse** | Tidyverse-specific package development |
+| **connect** | Posit Connect deployment and management |
+--&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions! Please see &lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for guidelines on creating new skills.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;We highly recommend using Anthropic&#39;s &lt;a href=&quot;https://github.com/anthropics/skills&quot;&gt;skill-creator&lt;/a&gt; skill&lt;/strong&gt; to help you build high-quality skills. Skills should be grouped together by category, but the category groups are flexible. Feel free to propose new categories as needed.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This repository is licensed under the MIT License. See &lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;h2&gt;Resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.anthropic.com/news/skills&quot;&gt;Claude Skills Overview&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://support.claude.com/en/articles/12512180-using-skills-in-claude&quot;&gt;Using Skills in Claude&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://support.claude.com/en/articles/12512198-creating-custom-skills&quot;&gt;Creating Custom Skills&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.claude.com/en/api/skills-guide&quot;&gt;Skills API Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/anthropics/skills&quot;&gt;Anthropic&#39;s Official Skills Repository&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;If you have questions or encounter issues, check the &lt;a href=&quot;https://support.claude.com/en/articles/12512180-using-skills-in-claude&quot;&gt;Claude Skills documentation&lt;/a&gt; or &lt;a href=&quot;https://github.com/posit-dev/skills/issues/new&quot;&gt;open an issue&lt;/a&gt; on GitHub.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;strong&gt;Built with ❤️ + ☕ + 🤖 at Posit&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c9df34df167bfa31161bce0a736f9bb9596668969dbbc2d1494e9b8518bb6cf0/posit-dev/skills" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>jokergoo/ComplexHeatmap</title>
+      <link>https://github.com/jokergoo/ComplexHeatmap</link>
+      <description>&lt;p&gt;Make Complex Heatmaps&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Make Complex Heatmaps &lt;a href=&quot;https://jokergoo.github.io/ComplexHeatmap-reference/book/&quot;&gt;&lt;img src=&quot;https://jokergoo.github.io/ComplexHeatmap-reference/book/complexheatmap-cover.jpg&quot; width=&quot;240&quot; align=&quot;right&quot; style=&quot;border:2px solid black;&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/jokergoo/ComplexHeatmap/actions&quot;&gt;&lt;img src=&quot;https://github.com/jokergoo/ComplexHeatmap/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/github/jokergoo/ComplexHeatmap&quot;&gt;&lt;img src=&quot;https://img.shields.io/codecov/c/github/jokergoo/ComplexHeatmap.svg?sanitize=true&quot; alt=&quot;codecov&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://bioconductor.org/packages/stats/bioc/ComplexHeatmap/&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/downloads/devel/ComplexHeatmap.svg?sanitize=true&quot; alt=&quot;bioc&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://bioconductor.org/packages/devel/bioc/html/ComplexHeatmap.html&quot;&gt;&lt;img src=&quot;http://www.bioconductor.org/shields/years-in-bioc/ComplexHeatmap.svg?sanitize=true&quot; alt=&quot;bioc&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;img src=&quot;http://jokergoo.github.io/complexheatmap_logo.svg?sanitize=true&quot; width=&quot;550&quot; /&gt; 
+&lt;p&gt;Complex heatmaps are efficient to visualize associations between different sources of data sets and reveal potential patterns. Here the &lt;strong&gt;ComplexHeatmap&lt;/strong&gt; package provides a highly flexible way to arrange multiple heatmaps and supports various annotation graphics.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/jokergoo/InteractiveComplexHeatmap&quot;&gt;&lt;strong&gt;InteractiveComplexHeatmap&lt;/strong&gt;&lt;/a&gt; package can directly export static complex heatmaps into an interactive Shiny app. Have a try!&lt;/p&gt; 
+&lt;h2&gt;Citation&lt;/h2&gt; 
+&lt;p&gt;Zuguang Gu, et al., &lt;a href=&quot;http://bioinformatics.oxfordjournals.org/content/early/2016/05/20/bioinformatics.btw313.abstract&quot;&gt;Complex heatmaps reveal patterns and correlations in multidimensional genomic data&lt;/a&gt;, Bioinformatics, 2016.&lt;/p&gt; 
+&lt;p&gt;Zuguang Gu. &lt;a href=&quot;https://doi.org/10.1002/imt2.43&quot;&gt;Complex Heatmap Visualization&lt;/a&gt;, iMeta, 2022.&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;ComplexHeatmap&lt;/code&gt; is available on &lt;a href=&quot;http://www.bioconductor.org/packages/devel/bioc/html/ComplexHeatmap.html&quot;&gt;Bioconductor&lt;/a&gt;, you can install it by:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;BiocManager&quot;, quietly=TRUE))
+    install.packages(&quot;BiocManager&quot;)
+BiocManager::install(&quot;ComplexHeatmap&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want the latest version, install it directly from GitHub:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(devtools)
+install_github(&quot;jokergoo/ComplexHeatmap&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;Make a single heatmap:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;Heatmap(mat, ...)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A single Heatmap with column annotations:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;ha = HeatmapAnnotation(df = anno1, anno_fun = anno2, ...)
+Heatmap(mat, ..., top_annotation = ha)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Make a list of heatmaps:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;Heatmap(mat1, ...) + Heatmap(mat2, ...)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Make a list of heatmaps and row annotations:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;ha = HeatmapAnnotation(df = anno1, anno_fun = anno2, ..., which = &quot;row&quot;)
+Heatmap(mat1, ...) + Heatmap(mat2, ...) + ha
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;The full documentations are available at &lt;a href=&quot;https://jokergoo.github.io/ComplexHeatmap-reference/book/&quot;&gt;https://jokergoo.github.io/ComplexHeatmap-reference/book/&lt;/a&gt; and the website is at &lt;a href=&quot;https://jokergoo.github.io/ComplexHeatmap&quot;&gt;https://jokergoo.github.io/ComplexHeatmap&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Blog posts&lt;/h2&gt; 
+&lt;p&gt;There are following blog posts focusing on specific topics:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2021/03/24/3d-heatmap/&quot;&gt;Make 3D heatmap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/05/06/translate-from-pheatmap-to-complexheatmap/&quot;&gt;Translate from pheatmap to ComplexHeatmap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/05/11/set-cell-width/height-in-the-heatmap/&quot;&gt;Set cell width/height in the heatmap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/05/15/interactive-complexheatmap/&quot;&gt;Interactive ComplexHeatmap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/05/31/word-cloud-as-heatmap-annotation/&quot;&gt;Word cloud as heatmap annotation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/06/19/which-heatmap-function-is-faster/&quot;&gt;Which heatmap function is faster?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/06/30/rasterization-in-complexheatmap/&quot;&gt;Rasterization in ComplexHeatmap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/07/06/block-annotation-over-several-slices/&quot;&gt;Block annotation over several slices&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jokergoo.github.io/2020/07/14/integrate-complexheatmap-with-cowplot-package/&quot;&gt;Integrate ComplexHeatmap with cowplot package&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;h3&gt;Visualize Methylation Profile with Complex Annotations&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/449218/47718635-2ec22980-dc49-11e8-9f01-37becb19e0d5.png&quot; alt=&quot;complexheatmap_example4&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Correlations between methylation, expression and other genomic features&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/449218/47718636-2ec22980-dc49-11e8-8db0-1659c27dcf40.png&quot; alt=&quot;complexheatmap_example3&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Visualize Cell Heterogeneity from Single Cell RNASeq&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/449218/47718637-2ec22980-dc49-11e8-925e-955c16cfa982.png&quot; alt=&quot;complexheatmap_example2&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Making Enhanced OncoPrint&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/449218/47718638-2ec22980-dc49-11e8-845e-21e51d3b8e73.png&quot; alt=&quot;complexheatmap_example1&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;UpSet plot&lt;/h3&gt; 
+&lt;img src=&quot;https://user-images.githubusercontent.com/449218/102615477-48c76a80-4136-11eb-98d9-3c528844fbe8.png&quot; width=&quot;500&quot; /&gt; 
+&lt;h3&gt;3D heatmap&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/449218/112284448-8c77c600-8c89-11eb-8d38-c5538900df20.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;MIT @ Zuguang Gu&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e13e91942ce95640aa68e5d4ca2b621298d02e8eebaa61aaa9e782035d28e23d/jokergoo/ComplexHeatmap" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>JGCRI/gcam-core</title>
+      <link>https://github.com/JGCRI/gcam-core</link>
+      <description>&lt;p&gt;GCAM -- The Global Change Analysis Model&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Global Change Analysis Model (GCAM)&lt;/h1&gt; 
+&lt;p&gt;The Joint Global Change Research Institute (JGCRI) of the Pacific Northwest National Laboratory (PNNL) is the home and primary development institution for GCAM, a multisector model for exploring consequences of and responses to global to local changes and stressors. Regional energy, water, land, and economic systems are connected to the rest of the globe through trade and interactions with environmental systems. These systems are also connected with each other. Multisector models such as GCAM capture these interconnected impacts in an economic framework in order to explore these dynamic interactions and feedbacks between regions and sectors.&lt;/p&gt; 
+&lt;p&gt;GCAM has been developed at PNNL-JGCRI for over 20 years and is a freely available community model and documented online (See below). The team at JGCRI is comprised of physical scientists, engineers, economists, energy experts, forest ecologists, agricultural scientists, and environmental system scientists who develop the model and apply it to a range of research questions. The JGCRI team works closely with the developers of other Earth system and ecosystem models to integrate the effects of human actions modeled in GCAM into their research.&lt;/p&gt; 
+&lt;h2&gt;Model Overview&lt;/h2&gt; 
+&lt;p&gt;GCAM is a dynamic-recursive model with technology-rich representations of the economy, energy sector, land use, and water linked to a reduced complexity Earth system model that can be used to explore many science and decision-relevant questions including the effects of changes in trade patterns, critical minerals &amp;amp; materials availability, and deployment of energy technologies on human and Earth systems. Regional population and labor productivity growth assumptions drive the energy and land-use systems, employing numerous technology options to produce, transform, and provide energy services, as well as to produce agriculture and forest products, and to determine land use and land cover. Using a run period extending from 1990 – 2100 (historical years through 2021) with annual results computed at 1-5 year intervals, GCAM has been used to explore the potential role of emerging energy supply technologies and the consequences of specific measures or energy technology adoption, including bioenergy; critical minerals &amp;amp; materials; hydrogen systems; nuclear energy; renewable energy technologies; carbon capture, storage, and utilization and energy use technology in buildings, industry, and the transportation sectors. GCAM outputs include projections of future energy and critical mineral supply, trade, and demand and the resulting radiative forcing and other effects of 16 greenhouse gases, aerosols, and short-lived species at 0.5×0.5 degree resolution, contingent on assumptions about future population, economy, technology, trade and other polices.&lt;/p&gt; 
+&lt;h2&gt;Community guidelines for peer-reviewed journal articles using GCAM&lt;/h2&gt; 
+&lt;p&gt;This section outlines some suggested language which the GCAM user community can employ to describe GCAM in papers in peer-reviewed journal articles, reports, or other public documents using GCAM or versions of GCAM. GCAM is under continuous development. The suggested language for the opening paragraphs of a methodology or introduction section of a paper describing GCAM is as follows:&lt;/p&gt; 
+&lt;p&gt;&quot;The Global Change Analysis Model (GCAM) is a multisector model developed and maintained at the Pacific Northwest National Laboratory’s Joint Global Change Research Institute (JGCRI, 2023) &lt;em&gt;&amp;lt;include additional citations to previous GCAM studies as relevant&amp;gt;&lt;/em&gt;. GCAM is an open-source community model. In this study, we use GCAM v NN. The documentation of the model is available at the GCAM documentation page (&lt;a href=&quot;http://jgcri.github.io/gcam-doc&quot;&gt;http://jgcri.github.io/gcam-doc&lt;/a&gt;) and the description below is a summary. GCAM includes representations of: economy, energy, agriculture, and water supply in 32 geopolitical regions across the globe; their GHG and air pollutant emissions and global GHG concentrations, radiative forcing, and temperature change; and the associated land allocation, water use, and agriculture production across 396 land sub-regions and 235 water basins. &lt;em&gt;&amp;lt;If using GCAM-USA, include without quotes: &quot;This study uses a U.S.-focused version of GCAM called GCAM-USA that includes representation of energy, economy, and water systems for the fifty states and the District of Columbia in addition to 31 regions outside of the United States.”&amp;gt;&lt;/em&gt;. The version of GCAM used in this study is available – along with full source code and instructions for use – in a public repository &lt;em&gt;&amp;lt;include citation including link to the GCAM repository with doi used in paper&amp;gt;&lt;/em&gt;.&lt;/p&gt; 
+&lt;p&gt;Subsequent paragraphs of the description might expound on particular capabilities, systems, or sectors of focus in the paper. Details in the GCAM documentation page can be used as a reference to develop these paragraphs.&lt;/p&gt; 
+&lt;p&gt;Community users of GCAM might also undertake their own model developments and/or assumptions for papers. It is recommended that these departures from the publicly available version of the model be clearly described. In addition, if these developments are substantial, we suggest making this clear by including an additional phrase (e.g. region name or name of institution) in the name of the model and explicitly calling it out in place of or immediately following the italicized portion in the above paragraphs. For example: &lt;em&gt;&quot;This study uses a modified version of GCAM/GCAM-USA called GCAM-&amp;lt;institution name&amp;gt;/GCAM-USA-&amp;lt;institution name&amp;gt;. GCAM-&amp;lt;institution name&amp;gt;/GCAM-USA-&amp;lt;institution name&amp;gt; incorporates additional details and modified assumptions from GCAM v NN as described subsequently&quot;&lt;/em&gt;.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/&quot;&gt;GCAM Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/user-guide.html&quot;&gt;Getting Started with GCAM&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gcims.pnnl.gov/community&quot;&gt;GCAM Community&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gcims.pnnl.gov/community&quot;&gt;GCAM Videos and Tutorial Slides&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/community-guide.html&quot;&gt;GCAM Citation and Co-authorship Guidelines&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Selected Publications&lt;/h2&gt; 
+&lt;p&gt;Calvin, K., Patel, P., Clarke, L., Asrar, G., Bond-Lamberty, B., Cui, R. Y., Di Vittorio, A., Dorheim, K., Edmonds, J., Hartin, C., Hejazi, M., Horowitz, R., Iyer, G., Kyle, P., Kim, S., Link, R., McJeon, H., Smith, S. J., Snyder, A., Waldhoff, S., and Wise, M.: GCAM v5.1: representing the linkages between energy, water, land, climate, and economic systems, Geosci. Model Dev., 12, 677–698, &lt;a href=&quot;https://doi.org/10.5194/gmd-12-677-2019&quot;&gt;https://doi.org/10.5194/gmd-12-677-2019&lt;/a&gt;, 2019.&lt;/p&gt; 
+&lt;p&gt;Edmonds, J., and J. Reilly (1985)Global Energy: Assessing the Future (Oxford University Press, New York) pp.317.&lt;/p&gt; 
+&lt;p&gt;Edmonds, J., M. Wise, H. Pitcher, R. Richels, T. Wigley, and C. MacCracken. (1997) “An Integrated Assessment of Climate Change and the Accelerated Introduction of Advanced Energy Technologies”, Mitigation and Adaptation Strategies for Global Change, 1, pp. 311-39&lt;/p&gt; 
+&lt;p&gt;Kim, S.H., J. Edmonds, J. Lurz, S. J. Smith, and M. Wise (2006) “The ObjECTS Framework for Integrated Assessment: Hybrid Modeling of Transportation ” Energy Journal (Special Issue #2) pp 51-80.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://jgcri.github.io/gcam-doc/references.html&quot;&gt;Full list of GCAM publications&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/4d54b779764255b51c4ce9bdcbf61bc63bd3755d84d4e8a6d234448d414f6fbc/JGCRI/gcam-core" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>rdpeng/ProgrammingAssignment2</title>
+      <link>https://github.com/rdpeng/ProgrammingAssignment2</link>
+      <description>&lt;p&gt;Repository for Programming Assignment 2 for R Programming on Coursera&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;Introduction&lt;/h3&gt; 
+&lt;p&gt;This second programming assignment will require you to write an R function that is able to cache potentially time-consuming computations. For example, taking the mean of a numeric vector is typically a fast operation. However, for a very long vector, it may take too long to compute the mean, especially if it has to be computed repeatedly (e.g. in a loop). If the contents of a vector are not changing, it may make sense to cache the value of the mean so that when we need it again, it can be looked up in the cache rather than recomputed. In this Programming Assignment you will take advantage of the scoping rules of the R language and how they can be manipulated to preserve state inside of an R object.&lt;/p&gt; 
+&lt;h3&gt;Example: Caching the Mean of a Vector&lt;/h3&gt; 
+&lt;p&gt;In this example we introduce the &lt;code&gt;&amp;lt;&amp;lt;-&lt;/code&gt; operator which can be used to assign a value to an object in an environment that is different from the current environment. Below are two functions that are used to create a special object that stores a numeric vector and caches its mean.&lt;/p&gt; 
+&lt;p&gt;The first function, &lt;code&gt;makeVector&lt;/code&gt; creates a special &quot;vector&quot;, which is really a list containing a function to&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;set the value of the vector&lt;/li&gt; 
+ &lt;li&gt;get the value of the vector&lt;/li&gt; 
+ &lt;li&gt;set the value of the mean&lt;/li&gt; 
+ &lt;li&gt;get the value of the mean&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;!-- --&gt; 
+&lt;pre&gt;&lt;code&gt;makeVector &amp;lt;- function(x = numeric()) {
+        m &amp;lt;- NULL
+        set &amp;lt;- function(y) {
+                x &amp;lt;&amp;lt;- y
+                m &amp;lt;&amp;lt;- NULL
+        }
+        get &amp;lt;- function() x
+        setmean &amp;lt;- function(mean) m &amp;lt;&amp;lt;- mean
+        getmean &amp;lt;- function() m
+        list(set = set, get = get,
+             setmean = setmean,
+             getmean = getmean)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The following function calculates the mean of the special &quot;vector&quot; created with the above function. However, it first checks to see if the mean has already been calculated. If so, it &lt;code&gt;get&lt;/code&gt;s the mean from the cache and skips the computation. Otherwise, it calculates the mean of the data and sets the value of the mean in the cache via the &lt;code&gt;setmean&lt;/code&gt; function.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cachemean &amp;lt;- function(x, ...) {
+        m &amp;lt;- x$getmean()
+        if(!is.null(m)) {
+                message(&quot;getting cached data&quot;)
+                return(m)
+        }
+        data &amp;lt;- x$get()
+        m &amp;lt;- mean(data, ...)
+        x$setmean(m)
+        m
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Assignment: Caching the Inverse of a Matrix&lt;/h3&gt; 
+&lt;p&gt;Matrix inversion is usually a costly computation and there may be some benefit to caching the inverse of a matrix rather than computing it repeatedly (there are also alternatives to matrix inversion that we will not discuss here). Your assignment is to write a pair of functions that cache the inverse of a matrix.&lt;/p&gt; 
+&lt;p&gt;Write the following functions:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;code&gt;makeCacheMatrix&lt;/code&gt;: This function creates a special &quot;matrix&quot; object that can cache its inverse.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cacheSolve&lt;/code&gt;: This function computes the inverse of the special &quot;matrix&quot; returned by &lt;code&gt;makeCacheMatrix&lt;/code&gt; above. If the inverse has already been calculated (and the matrix has not changed), then &lt;code&gt;cacheSolve&lt;/code&gt; should retrieve the inverse from the cache.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Computing the inverse of a square matrix can be done with the &lt;code&gt;solve&lt;/code&gt; function in R. For example, if &lt;code&gt;X&lt;/code&gt; is a square invertible matrix, then &lt;code&gt;solve(X)&lt;/code&gt; returns its inverse.&lt;/p&gt; 
+&lt;p&gt;For this assignment, assume that the matrix supplied is always invertible.&lt;/p&gt; 
+&lt;p&gt;In order to complete this assignment, you must do the following:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the GitHub repository containing the stub R files at &lt;a href=&quot;https://github.com/rdpeng/ProgrammingAssignment2&quot;&gt;https://github.com/rdpeng/ProgrammingAssignment2&lt;/a&gt; to create a copy under your own account.&lt;/li&gt; 
+ &lt;li&gt;Clone your forked GitHub repository to your computer so that you can edit the files locally on your own machine.&lt;/li&gt; 
+ &lt;li&gt;Edit the R file contained in the git repository and place your solution in that file (please do not rename the file).&lt;/li&gt; 
+ &lt;li&gt;Commit your completed R file into YOUR git repository and push your git branch to the GitHub repository under your account.&lt;/li&gt; 
+ &lt;li&gt;Submit to Coursera the URL to your GitHub repository that contains the completed R code for the assignment.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Grading&lt;/h3&gt; 
+&lt;p&gt;This assignment will be graded via peer assessment.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9f970451ddf7a094cf8e99287e010e431320f4382a34ffc6ab671bd3a1ccb191/rdpeng/ProgrammingAssignment2" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>cole-trapnell-lab/monocle3</title>
+      <link>https://github.com/cole-trapnell-lab/monocle3</link>
+      <description>&lt;h1&gt;MONOCLE 3&lt;/h1&gt; 
+&lt;p&gt;Monocle 3 is an analysis toolkit for single-cell RNA-Seq experiments. To use this package, you will need the R statistical computing environment (version 3.0 or later) and several packages available through Bioconductor and CRAN.&lt;/p&gt; 
+&lt;p&gt;Details on how to install and use Monocle 3 are available on our website:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cole-trapnell-lab.github.io/monocle3/&quot;&gt;http://cole-trapnell-lab.github.io/monocle3/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Monocle3 with BPCells counts matrix support&lt;/h2&gt; 
+&lt;p&gt;This development branch version of Monocle3 adds the ability to store the counts matrix on-disk using the BPCells package. By default, Monocle3 stores the counts matrix in-memory as a sparse matrix, as in previous versions. In order to store the matrix on-disk, you must set the matrix_control list value &lt;code&gt;matrix_class=&quot;BPCells&quot;&lt;/code&gt; in the affected commands. For example, to load a MatrixMarket file as an on-disk matrix, use the command&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cds &amp;lt;- load_mm_data(mat_path=&amp;lt;path_to_mtx_file&amp;gt;,
+                    feature_anno_path=&amp;lt;path_to_feature_anno_file&amp;gt;,
+                    cell_anno_path=&amp;lt;path_to_cell_anno_file&amp;gt;,
+                    matrix_control=list(matrix_class=&#39;BPCells&#39;))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Install Monocle3 with BPCells&lt;/h3&gt; 
+&lt;p&gt;You must install BPCells from Github before you can install this Monocle3 version, and BPCells requires an HDF5 object library for installation. After installing the HDF5 library, you install BPCells using the command&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;remotes::install_github(&quot;bnprks/BPCells/r&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/bnprks/BPCells&quot;&gt;BPCells Github site&lt;/a&gt; has additional information.&lt;/p&gt; 
+&lt;p&gt;Some Linux distributions provide the HDF5 library as an option. The BPCells site has information about installing the HDF5 library on various operating systems.&lt;/p&gt; 
+&lt;p&gt;I used Homebrew to install an HDF5 library on MacOS. I seemed to need to install the pkg-config package as well, and add a pkg-config configuration file for HDF5. Homebrew installed pkg-config in &#39;/opt/homebrew&#39; so I added the hdf5.pc file in&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;/opt/homebrew/lib/pkgconfig/hdf5.pc&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;with the contents&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;prefix=/opt/homebrew/Cellar/hdf5/1.12.2_2
+exec_prefix=${prefix}
+includedir=${prefix}/include
+libdir=/opt/homebrew/Cellar/hdf5/1.12.2_2/lib
+  
+Name: hdf5
+Description: HDF5
+URL: xx
+Version: 1.12.2_2
+Cflags: -I${includedir}
+Libs: -L${libdir} -lhdf5
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You may need to update the version strings in your hdf5.pc file.&lt;/p&gt; 
+&lt;p&gt;Monocle3 no longer uses the terra package, so it does not need to be installed.&lt;/p&gt; 
+&lt;h3&gt;Notes&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Monocle3 can use the BPCells package to store the feature-cell counts matrix on-disk rather than in-memory, which enables analysis of considerably larger data sets than before. By default, Monocle3 stores the counts matrix in-memory as a sparse matrix, as it has in the past. To store the counts matrix on-disk, use the parameter &lt;code&gt;matrix_control=list(matrix_class=&quot;BPCells&quot;)&lt;/code&gt; when you make the CDS or convert the counts matrix using one of the functions&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;load_mm_data()&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;load_mtx_data()&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;load_cellranger_data()&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;load_a549()&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;load_worm_embryo()&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;load_worm_l2()&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;convert_counts_matrix()&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;For example, to convert a dgCMatrix counts matrix to a BPCells on-disk matrix in an existing CDS, use the command &lt;code&gt;cds &amp;lt;- convert_counts_matrix(cds, matrix_control=list(matrix_class=&quot;BPCells&quot;))&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;BPCells stores the count matrix information in directories with names similar to &lt;code&gt;monocle.bpcells.20230830.4c4b1bebe4b4.tmp&lt;/code&gt;. Monocle3 tries to remove those directories when you quit R. Please do not remove them while Monocle3 is running because doing so eliminates the count matrix data. You &lt;em&gt;can&lt;/em&gt; remove them after quitting R if Monocle3 fails to remove them.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The method &lt;code&gt;new_cell_data_set()&lt;/code&gt; accepts a BPCells on-disk counts matrix.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The functions &lt;code&gt;save_monocle_objects()&lt;/code&gt; and &lt;code&gt;load_monocle_objects()&lt;/code&gt; store and load BPCells on-disk matrices when the CDS counts matrix is an on-disk BPCells matrix.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The Monocle3 &lt;code&gt;saveRDS()&lt;/code&gt; function warns the user to use &lt;code&gt;save_monocle_objects()&lt;/code&gt; when saving a CDS with a BPCells on-disk counts matrix. If you insist on using the &lt;code&gt;saveRDS()&lt;/code&gt; function, the BPCells on-disk matrix directory will not be stored and you will be unable to load it with the &lt;code&gt;readRDS()&lt;/code&gt; function.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The function &lt;code&gt;combine_cds()&lt;/code&gt; combines CDSes with mixes of dgCMatrix and BPCells on-disk counts matrices into a BPCells on-disk counts matrix. When called with the &lt;code&gt;matrix_control=list(matrix_class=&quot;BPCells&quot;)&lt;/code&gt; parameter, &lt;code&gt;combine_cds()&lt;/code&gt; combines CDSes with all dgCMatrix counts matrices into a BPCells on-disk counts matrix.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Note that when the counts matrix is stored as a BPCells on-disk matrix, the &lt;code&gt;new_cell_data_set()&lt;/code&gt; method stores a second BPCells on-disk copy of the matrix in the CDS assays slot with the name &lt;code&gt;counts_row_order&lt;/code&gt;. The &lt;code&gt;counts_row_order&lt;/code&gt; matrix is used by Monocle3 when the counts matrix is accessed intensively by row. The reason is that, by default, BPCells stores the matrix as a one-dimensional vector in column-major order, as does R. As a result, column access is fast and row access is slow. We use BPCell&#39;s ability to also store and access matrices in row-major order, which gives fast row access. However, this means that the two copies of the counts matrix must have the same count values. If you replace or change the CDS&#39;s counts matrix, you must also update the &lt;code&gt;counts_row_order&lt;/code&gt; matrix, which you can do using the function &lt;code&gt;set_cds_row_order_matrix()&lt;/code&gt;.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;The CDS assays slot is a named list where the standard, column-major order, matrix is called &lt;code&gt;counts&lt;/code&gt; and the BPCells row-major order matrix is called &lt;code&gt;counts_row_order&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;The &lt;code&gt;counts&lt;/code&gt; matrix getter and setter methods are &lt;code&gt;counts(cds)&lt;/code&gt; and &lt;code&gt;counts(cds)&amp;lt;-&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;The Monocle3 setter warns about re-setting the BPCells &lt;code&gt;counts_row_order&lt;/code&gt; matrix, unless called with the parameter &lt;code&gt;bpcells_warn=FALSE&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;The &lt;code&gt;counts_row_order&lt;/code&gt; getter method is called &lt;code&gt;counts_row_order&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;There is no corresponding &lt;code&gt;counts_row_order&lt;/code&gt; setter method&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;By default, the BPCells on-disk matrix is stored in a directory that is created where R is started. You can change the directory location using the &lt;code&gt;matrix_path&lt;/code&gt; value in the &lt;code&gt;matrix_control&lt;/code&gt; parameter.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For more information about the &lt;code&gt;matrix_control&lt;/code&gt; values, see the help document for the function &lt;code&gt;set_matrix_control()&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;I tested this version using BPCells counts matrices on the examples in the Monocle3 documentation although I did not try all of the plotting functions.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/43820e3c1d7c8b6b91e5d5fca903f5bf5717e7ce02553682ed237f723fe34c6e/cole-trapnell-lab/monocle3" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>broadinstitute/infercnv</title>
+      <link>https://github.com/broadinstitute/infercnv</link>
+      <description>&lt;p&gt;Inferring CNV from Single-Cell RNA-Seq&lt;/p&gt;&lt;hr&gt;&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;InferCNV is no longer supported. Please explore alternatives such as InferCNA (&lt;a href=&quot;https://jlaffy.github.io/infercna/&quot;&gt;https://jlaffy.github.io/infercna/&lt;/a&gt;)[&lt;a href=&quot;https://jlaffy.github.io/infercna/&quot;&gt;https://jlaffy.github.io/infercna/&lt;/a&gt;], CopyKAT (&lt;a href=&quot;https://github.com/navinlabcode/copykat&quot;&gt;https://github.com/navinlabcode/copykat&lt;/a&gt;)[&lt;a href=&quot;https://github.com/navinlabcode/copykat&quot;&gt;https://github.com/navinlabcode/copykat&lt;/a&gt;], and Numbat (&lt;a href=&quot;https://github.com/kharchenkolab/numbat&quot;&gt;https://github.com/kharchenkolab/numbat&lt;/a&gt;)[&lt;a href=&quot;https://github.com/kharchenkolab/numbat&quot;&gt;https://github.com/kharchenkolab/numbat&lt;/a&gt;]&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;Subclustering&lt;/h1&gt; 
+&lt;p&gt;Subclustering resolution is one of the primary settings that will need to be adjusted in most runs to avoid oversplitting. The tutorial below explains how it works and details about it can also be found on the &lt;a href=&quot;https://github.com/broadinstitute/infercnv/wiki/infercnv-tumor-subclusters#tumor-subclustering-by-leiden-clustering-preferred&quot;&gt;wiki&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Documentation&lt;/h1&gt; 
+&lt;h3&gt;Full documentation&lt;/h3&gt; 
+&lt;p&gt;Visit project &lt;a href=&quot;https://github.com/broadinstitute/inferCNV/wiki&quot;&gt;wiki&lt;/a&gt; for InferCNV documentation.&lt;/p&gt; 
+&lt;h3&gt;Infercnv video tutorial&lt;/h3&gt; 
+&lt;p&gt;A &lt;strong&gt;video&lt;/strong&gt; tutorial giving on overview of infercnv features and how to run an analysis can be found below &lt;strong&gt;(click on the image)&lt;/strong&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.youtube.com/watch?v=-qOcHAavZT8&quot; title=&quot;Tutorial: Running infercnv&quot;&gt;&lt;img src=&quot;http://img.youtube.com/vi/-qOcHAavZT8/0.jpg&quot; alt=&quot;Tutorial: Running infercnv&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9a7ded8d25959e60a5f609d3f0c3e898d7f789c56fafd16308ffe2b4b3cf0002/broadinstitute/infercnv" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>rstudio/shiny</title>
+      <link>https://github.com/rstudio/shiny</link>
+      <description>&lt;p&gt;Easy interactive web applications with R&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;shiny &lt;img src=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/man/figures/logo.png&quot; align=&quot;right&quot; width=&quot;120&quot; height=&quot;139&quot; alt=&quot;&quot; /&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://CRAN.R-project.org/package=shiny&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/shiny&quot; alt=&quot;CRAN&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/rstudio/shiny/actions&quot;&gt;&lt;img src=&quot;https://github.com/rstudio/shiny/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R build status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/community-shiny-blue?style=social&amp;amp;logo=rstudio&amp;amp;logoColor=75AADB&quot; alt=&quot;RStudio community&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;Easily build rich and productive interactive web apps in R — no HTML/CSS/JavaScript required.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An intuitive and extensible &lt;a href=&quot;https://en.wikipedia.org/wiki/Reactive_programming&quot;&gt;reactive programming&lt;/a&gt; model which makes it easy to transform existing R code into a &quot;live app&quot; where outputs automatically react to new user input. 
+  &lt;ul&gt; 
+   &lt;li&gt;Compared to event-based programming, reactivity allows Shiny to do the minimum amount of work when input(s) change, and allows humans to more easily reason about complex &lt;a href=&quot;https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC logic&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;A prebuilt set of highly sophisticated, customizable, and easy-to-use widgets (e.g., plots, tables, sliders, dropdowns, date pickers, and more).&lt;/li&gt; 
+ &lt;li&gt;An attractive default look based on &lt;a href=&quot;https://getbootstrap.com/&quot;&gt;Bootstrap&lt;/a&gt; which can also be easily customized with the &lt;a href=&quot;https://github.com/rstudio/bslib&quot;&gt;bslib&lt;/a&gt; package or avoided entirely with more direct R bindings to HTML/CSS/JavaScript.&lt;/li&gt; 
+ &lt;li&gt;Seamless integration with &lt;a href=&quot;https://shiny.rstudio.com/articles/interactive-docs.html&quot;&gt;R Markdown&lt;/a&gt;, making it easy to embed numerous applications natively within a larger dynamic document.&lt;/li&gt; 
+ &lt;li&gt;Tools for improving and monitoring performance, including native support for &lt;a href=&quot;https://posit.co/blog/shiny-1-1-0/&quot;&gt;async programming&lt;/a&gt;, &lt;a href=&quot;https://talks.cpsievert.me/20201117&quot;&gt;caching&lt;/a&gt;, &lt;a href=&quot;https://rstudio.github.io/shinyloadtest/&quot;&gt;load testing&lt;/a&gt;, and more.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://shiny.rstudio.com/articles/modules.html&quot;&gt;Modules&lt;/a&gt;: a framework for reducing code duplication and complexity.&lt;/li&gt; 
+ &lt;li&gt;An ability to &lt;a href=&quot;https://shiny.rstudio.com/articles/bookmarking-state.html&quot;&gt;bookmark application state&lt;/a&gt; and/or &lt;a href=&quot;https://github.com/rstudio/shinymeta&quot;&gt;generate code to reproduce output(s)&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;A rich ecosystem of extension packages for more &lt;a href=&quot;http://www.htmlwidgets.org/&quot;&gt;custom widgets&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinyvalidate&quot;&gt;input validation&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinytest&quot;&gt;unit testing&lt;/a&gt;, and more.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the stable version from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;shiny&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Once installed, load the library and run an example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(shiny)
+# Launches an app, with the app&#39;s source code included
+runExample(&quot;06_tabsets&quot;)
+# Lists more prepackaged examples
+runExample()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more examples and inspiration, check out the &lt;a href=&quot;https://shiny.rstudio.com/gallery/&quot;&gt;Shiny User Gallery&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For help with learning fundamental Shiny programming concepts, check out the &lt;a href=&quot;https://mastering-shiny.org/&quot;&gt;Mastering Shiny&lt;/a&gt; book and the &lt;a href=&quot;https://shiny.rstudio.com/tutorial/&quot;&gt;Shiny Tutorial&lt;/a&gt;. The former is currently more up-to-date with modern Shiny features, whereas the latter takes a deeper, more visual, dive into fundamental concepts.&lt;/p&gt; 
+&lt;h2&gt;Join the conversation&lt;/h2&gt; 
+&lt;p&gt;If you want to chat about Shiny, meet other developers, or help us decide what to work on next, &lt;a href=&quot;https://discord.com/invite/yMGCamUMnS&quot;&gt;join us on Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Getting Help&lt;/h2&gt; 
+&lt;p&gt;To ask a question about Shiny, please use the &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;RStudio Community website&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For bug reports, please use the &lt;a href=&quot;https://github.com/rstudio/shiny/issues&quot;&gt;issue tracker&lt;/a&gt; and also keep in mind that by &lt;a href=&quot;https://github.com/rstudio/shiny/wiki/Writing-Good-Bug-Reports&quot;&gt;writing a good bug report&lt;/a&gt;, you&#39;re more likely to get help with your problem.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions to the &lt;strong&gt;shiny&lt;/strong&gt; package. Please see our &lt;a href=&quot;https://github.com/rstudio/shiny/raw/main/.github/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; file for detailed guidelines of how to contribute.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The shiny package as a whole is licensed under the MIT License. See the &lt;a href=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for more details.&lt;/p&gt; 
+&lt;h2&gt;R version support&lt;/h2&gt; 
+&lt;p&gt;Shiny is supported on the latest release version of R, as well as the previous four minor release versions of R. For example, if the latest release R version is 4.3, then that version is supported, as well as 4.2, 4.1, 4.0, 3.6.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/f792a584fecb7b9772b7eff1fb6095997febbb134e59d33389b4d709dcad4480/rstudio/shiny" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>GreenleafLab/ArchR</title>
+      <link>https://github.com/GreenleafLab/ArchR</link>
+      <description>&lt;p&gt;ArchR : Analysis of Regulatory Chromatin in R (www.ArchRProject.com)&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.archrproject.com&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/GreenleafLab/ArchR/master/Figures/ArchR_Logo_Integrated.png&quot; alt=&quot;&quot; width=&quot;350&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.tidyverse.org/lifecycle/#maturing&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-maturing-blue.svg?sanitize=true&quot; alt=&quot;Lifecycle: maturing&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;ArchR has new features available for scATAC-seq Analysis&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Paired scATAC-seq and scRNA-seq Analysis&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;ArchR now supports paired scATAC-seq and scRNA-seq Analysis! &lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;See updates with importFeatureMatrix, addGeneExpressionMatrix, addIterativeLSI, addCombinedDims &lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For a brief tutorial of these features : &lt;a href=&quot;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html&quot;&gt;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Multiome.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Trajectory Analysis&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;ArchR now directly supports both monocle3 and Slingshot based trajectory analysis! &lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;See updates with getMonocleTrajectories, addMonocleTrajectory, addSlingShotTrajectories &lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;For a brief tutorial of these features : &lt;a href=&quot;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Trajectory.html&quot;&gt;https://greenleaflab.github.io/ArchR_2020/Ex-Analyze-Trajectory.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Additionally ArchR now enables export of a peak matrix that is compatible with STREAM!&lt;br /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;See updates with exportPeakMatrixForSTREAM &lt;br /&gt;&lt;/p&gt; 
+&lt;h3&gt;ArchR is currently in Beta and will be in active development through the peer review process.&lt;/h3&gt; 
+&lt;p&gt;ArchR is a full-featured R package for processing and analyzing single-cell ATAC-seq data. ArchR provides the most extensive suite of scATAC-seq analysis tools of any software available. Additionally, ArchR excels in both speed and resource usage, making it possible to analyze 1 million cells in 8 hours on a MacBook Pro laptop.&lt;/p&gt; 
+&lt;h3&gt;For installation instructions and full documentation, visit &lt;a href=&quot;http://www.ArchRProject.com&quot;&gt;www.ArchRProject.com&lt;/a&gt;.&lt;/h3&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/GreenleafLab/ArchR/master/Figures/ArchR_Workflow_Horizontal.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;Quick Installation of ArchR&lt;/h1&gt; 
+&lt;p&gt;For a full walk through of installation and frequently related issues please visit &lt;a href=&quot;http://www.ArchRProject.com&quot;&gt;www.ArchRProject.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;First, install devtools (for installing GitHub packages) if it isn&#39;t already installed:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;devtools&quot;, quietly = TRUE)) install.packages(&quot;devtools&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Then, install BiocManager (for installing bioconductor packages) if it isn&#39;t already installed:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;if (!requireNamespace(&quot;BiocManager&quot;, quietly = TRUE)) install.packages(&quot;BiocManager&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Then, install ArchR:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;devtools::install_github(&quot;GreenleafLab/ArchR&quot;, ref=&quot;master&quot;, repos = BiocManager::repositories())
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Lastly, install all of the ArchR dependencies that aren&#39;t installed by default:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ArchR)
+ArchR::installExtraPackages()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If any of these steps fails, you should identify the offending package and troubleshoot that individual installation before proceeding. Additionally, please see the ArchR website (&lt;a href=&quot;http://www.ArchRProject.com&quot;&gt;www.ArchRProject.com&lt;/a&gt;) where we have installation troubleshooting tips.&lt;/p&gt; 
+&lt;h1&gt;Pre-compiled ArchR environment&lt;/h1&gt; 
+&lt;p&gt;We provide two methods in which a user can manage R dependencies.&lt;/p&gt; 
+&lt;h3&gt;Using renv to manage dependencies&lt;/h3&gt; 
+&lt;p&gt;The first is by using renv to manage a project&#39;s dependencies. To utilize this, make sure that the renv package is installed and loaded. Before you are ready to use &lt;code&gt;renv&lt;/code&gt;, you must ensure that you are working on the same R version that we used for the provided renv environment. The R versions we currently support are:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;- R 4.4
+- R 4.1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Secondly, make sure that the renv package is installed and loaded.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;install.packages(&quot;renv&quot;)
+library(renv)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Set a working directory for your project&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;dir.create(path = &quot;./&amp;lt;project_name&amp;gt;&quot;, showWarnings = FALSE)
+setwd(&quot;./&amp;lt;project_name&amp;gt;&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then, lets download the lock file for the current master branch of ArchR. For R 4.4:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;download.file(url = &quot;https://pub-9ae435458ecc412abbbc9420a502ec38.r2.dev/renv.lock&quot;, destfile = &quot;./renv.lock&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For R 4.1:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;download.file(url = &quot;https://pub-9ae435458ecc412abbbc9420a502ec38.r2.dev/renv_4_1.lock&quot;, destfile = &quot;./renv.lock&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Now, we can initiate our renv project environment, utilizing the renv.lock to bootstrap a new renv environment.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;renv::init()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Using Docker to manage dependencies&lt;/h3&gt; 
+&lt;p&gt;We also provide Docker images, built off of &lt;code&gt;rocker/rstudio&lt;/code&gt;, that already have ArchR and all dependencies pre-loaded.&lt;/p&gt; 
+&lt;p&gt;The latest version can be found at:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;greenleaflab/archr:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;and other versions, including images built with differing R versions, can be found at:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;https://hub.docker.com/r/greenleaflab/archr/tags
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To utilize these images, the user can first install Docker as mentioned in their &lt;a href=&quot;https://docs.docker.com/engine/install/ubuntu/#install-using-the-repository&quot;&gt;documentation&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Following, create a container using the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker image pull greenleaflab/archr:latest
+docker run -it --rm -v &amp;lt;your_workspace&amp;gt;:/workspace -p &amp;lt;your_port_of_interest&amp;gt;:8787
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will spin up a container that has Rstudio turned on by default. Rstudio can be accessed through:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;localhost:&amp;lt;your_port_of_interest&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you would like an interactive bash console instead, the following command can instead be called:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -it --rm -v &amp;lt;your_workspace&amp;gt;:/workspace -p &amp;lt;your_port_of_interest&amp;gt;:8787 bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Issues using ArchR?&lt;/h1&gt; 
+&lt;p&gt;ArchR is currently in &lt;strong&gt;beta&lt;/strong&gt;. We expect there to be bumps in the road. If you think you have found a bug, please first install the latest version of ArchR via&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;devtools::install_github(&quot;GreenleafLab/ArchR&quot;, ref=&quot;master&quot;, repos = BiocManager::repositories())
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If this does not fix your problem, please &lt;a href=&quot;https://github.com/GreenleafLab/ArchR/issues&quot;&gt;report an issue on Github&lt;/a&gt; with the &lt;strong&gt;Bug Report&lt;/strong&gt; form.&lt;/p&gt; 
+&lt;p&gt;If you have questions about ArchR usage, please refer to the &lt;a href=&quot;https://www.archrproject.com/bookdown/index.html&quot;&gt;the searchable full user&#39;s manual&lt;/a&gt;, &lt;a href=&quot;https://www.archrproject.com/articles/Articles/faq.html&quot;&gt;the FAQ section&lt;/a&gt;, and the &lt;a href=&quot;https://greenleaf.stanford.edu/assets/pdf/&quot;&gt;publication&lt;/a&gt;. If you think the documentation on this website or in the function annotations is unclear, please &lt;a href=&quot;https://github.com/GreenleafLab/ArchR/issues&quot;&gt;submit an issue on Github&lt;/a&gt; with the &lt;strong&gt;Documentation Request&lt;/strong&gt; form. If there is a feature that you think is missing from ArchR &lt;em&gt;and you have already searched the user&#39;s manual&lt;/em&gt;, &lt;a href=&quot;https://github.com/GreenleafLab/ArchR/issues&quot;&gt;submit an issue on Github&lt;/a&gt; with the &lt;strong&gt;Feature Request&lt;/strong&gt; form. If none of these options help, &lt;a href=&quot;mailto:archr.devs@gmail.com&quot;&gt;send us an email&lt;/a&gt;. We will do our best to respond to questions that are not otherwise answered in the documentation.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/257fb99102d9676922c1b459ba55a8e6ab2c6a5298802aa82e2bcded25e281f5/GreenleafLab/ArchR" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

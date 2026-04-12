@@ -1,0 +1,1185 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Kotlin Daily Trending</title>
+    <description>Daily Trending of Kotlin in GitHub</description>
+    <pubDate>Sun, 12 Apr 2026 01:36:09 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>PortSwigger/mcp-server</title>
+      <link>https://github.com/PortSwigger/mcp-server</link>
+      <description>&lt;p&gt;MCP Server for Burp&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Burp Suite MCP Server Extension&lt;/h1&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;Integrate Burp Suite with AI Clients using the Model Context Protocol (MCP).&lt;/p&gt; 
+&lt;p&gt;For more information about the protocol visit: &lt;a href=&quot;https://modelcontextprotocol.io/&quot;&gt;modelcontextprotocol.io&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Connect Burp Suite to AI clients through MCP&lt;/li&gt; 
+ &lt;li&gt;Automatic installation for Claude Desktop&lt;/li&gt; 
+ &lt;li&gt;Comes with packaged Stdio MCP proxy server&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Install the extension in Burp Suite&lt;/li&gt; 
+ &lt;li&gt;Configure your Burp MCP server in the extension settings&lt;/li&gt; 
+ &lt;li&gt;Configure your MCP client to use the Burp SSE MCP server or stdio proxy&lt;/li&gt; 
+ &lt;li&gt;Interact with Burp through your client!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Prerequisites&lt;/h3&gt; 
+&lt;p&gt;Ensure that the following prerequisites are met before building and installing the extension:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Java&lt;/strong&gt;: Java must be installed and available in your system&#39;s PATH. You can verify this by running &lt;code&gt;java --version&lt;/code&gt; in your terminal.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;jar Command&lt;/strong&gt;: The &lt;code&gt;jar&lt;/code&gt; command must be executable and available in your system&#39;s PATH. You can verify this by running &lt;code&gt;jar --version&lt;/code&gt; in your terminal. This is required for building and installing the extension.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Building the Extension&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Clone the Repository&lt;/strong&gt;: Obtain the source code for the MCP Server Extension.&lt;/p&gt; &lt;pre&gt;&lt;code&gt;git clone https://github.com/PortSwigger/mcp-server.git
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Navigate to the Project Directory&lt;/strong&gt;: Move into the project&#39;s root directory.&lt;/p&gt; &lt;pre&gt;&lt;code&gt;cd mcp-server
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Build the JAR File&lt;/strong&gt;: Use Gradle to build the extension.&lt;/p&gt; &lt;pre&gt;&lt;code&gt;./gradlew embedProxyJar
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;This command compiles the source code and packages it into a JAR file located in &lt;code&gt;build/libs/burp-mcp-all.jar&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Loading the Extension into Burp Suite&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Open Burp Suite&lt;/strong&gt;: Launch your Burp Suite application.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Access the Extensions Tab&lt;/strong&gt;: Navigate to the &lt;code&gt;Extensions&lt;/code&gt; tab.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Add the Extension&lt;/strong&gt;: 
+  &lt;ul&gt; 
+   &lt;li&gt;Click on &lt;code&gt;Add&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;Set &lt;code&gt;Extension Type&lt;/code&gt; to &lt;code&gt;Java&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;Click &lt;code&gt;Select file ...&lt;/code&gt; and choose the JAR file built in the previous step.&lt;/li&gt; 
+   &lt;li&gt;Click &lt;code&gt;Next&lt;/code&gt; to load the extension.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Upon successful loading, the MCP Server Extension will be active within Burp Suite.&lt;/p&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;h3&gt;Configuring the Extension&lt;/h3&gt; 
+&lt;p&gt;Configuration for the extension is done through the Burp Suite UI in the &lt;code&gt;MCP&lt;/code&gt; tab.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Toggle the MCP Server&lt;/strong&gt;: The &lt;code&gt;Enabled&lt;/code&gt; checkbox controls whether the MCP server is active.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Enable config editing&lt;/strong&gt;: The &lt;code&gt;Enable tools that can edit your config&lt;/code&gt; checkbox allows the MCP server to expose tools which can edit Burp configuration files.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Advanced options&lt;/strong&gt;: You can configure the port and host for the MCP server. By default, it listens on &lt;code&gt;http://127.0.0.1:9876&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Claude Desktop Client&lt;/h3&gt; 
+&lt;p&gt;To fully utilize the MCP Server Extension with Claude, you need to configure your Claude client settings appropriately. The extension has an installer which will automatically configure the client settings for you.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Currently, Claude Desktop only support STDIO MCP Servers for the service it needs. This approach isn&#39;t ideal for desktop apps like Burp, so instead, Claude will start a proxy server that points to the Burp instance,&lt;br /&gt; which hosts a web server at a known port (&lt;code&gt;localhost:9876&lt;/code&gt;).&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Configure Claude to use the Burp MCP server&lt;/strong&gt;&lt;br /&gt; You can do this in one of two ways:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;strong&gt;Option 1: Run the installer from the extension&lt;/strong&gt; This will add the Burp MCP server to the Claude Desktop config.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;strong&gt;Option 2: Manually edit the config file&lt;/strong&gt;&lt;br /&gt; Open the file located at &lt;code&gt;~/Library/Application Support/Claude/claude_desktop_config.json&lt;/code&gt;, and replace or update it with the following:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;mcpServers&quot;: {
+    &quot;burp&quot;: {
+      &quot;command&quot;: &quot;&amp;lt;path to Java executable packaged with Burp&amp;gt;&quot;,
+      &quot;args&quot;: [
+          &quot;-jar&quot;,
+          &quot;/path/to/mcp/proxy/jar/mcp-proxy-all.jar&quot;,
+          &quot;--sse-url&quot;,
+          &quot;&amp;lt;your Burp MCP server URL configured in the extension&amp;gt;&quot;
+      ]
+    }
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Restart Claude Desktop&lt;/strong&gt; - assuming Burp is running with the extension loaded.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Manual installations&lt;/h2&gt; 
+&lt;p&gt;If you want to install the MCP server manually you can either use the extension&#39;s SSE server directly or the packaged Stdio proxy server.&lt;/p&gt; 
+&lt;h3&gt;SSE MCP Server&lt;/h3&gt; 
+&lt;p&gt;In order to use the SSE server directly you can just provide the url for the server in your client&#39;s configuration. Depending on your client and your configuration in the extension this may be with or without the &lt;code&gt;/sse&lt;/code&gt; path.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;http://127.0.0.1:9876
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;http://127.0.0.1:9876/sse
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Stdio MCP Proxy Server&lt;/h3&gt; 
+&lt;p&gt;The source code for the proxy server can be found here: &lt;a href=&quot;https://github.com/PortSwigger/mcp-proxy&quot;&gt;MCP Proxy Server&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;In order to support MCP Clients which only support Stdio MCP Servers, the extension comes packaged with a proxy server for passing requests to the SSE MCP server extension.&lt;/p&gt; 
+&lt;p&gt;If you want to use the Stdio proxy server you can use the extension&#39;s installer option to extract the proxy server jar. Once you have the jar you can add the following command and args to your client configuration:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;/path/to/packaged/burp/java -jar /path/to/proxy/jar/mcp-proxy-all.jar --sse-url http://127.0.0.1:9876
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Creating / modifying tools&lt;/h3&gt; 
+&lt;p&gt;Tools are defined in &lt;code&gt;src/main/kotlin/net/portswigger/mcp/tools/Tools.kt&lt;/code&gt;. To define new tools, create a new serializable data class with the required parameters which will come from the LLM.&lt;/p&gt; 
+&lt;p&gt;The tool name is auto-derived from its parameters data class. A description is also needed for the LLM. You can return a string (or richer PromptMessageContents) to provide data back to the LLM.&lt;/p&gt; 
+&lt;p&gt;Extend the Paginated interface to add auto-pagination support.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/554e20114cf1aa6ad444341b125c0bee27e7469e3d5a603aa7420b2a0564aa06/PortSwigger/mcp-server" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>2dust/v2rayNG</title>
+      <link>https://github.com/2dust/v2rayNG</link>
+      <description>&lt;p&gt;A V2Ray client for Android, support Xray core and v2fly core&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;v2rayNG&lt;/h1&gt; 
+&lt;p&gt;A V2Ray client for Android, support &lt;a href=&quot;https://github.com/XTLS/Xray-core&quot;&gt;Xray core&lt;/a&gt; and &lt;a href=&quot;https://github.com/v2fly/v2ray-core&quot;&gt;v2fly core&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://developer.android.com/about/versions/lollipop&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/API-24%2B-yellow.svg?style=flat&quot; alt=&quot;API&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://kotlinlang.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Kotlin-2.3.0-blue.svg?sanitize=true&quot; alt=&quot;Kotlin Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/2dust/v2rayNG/commits/master&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/commit-activity/m/2dust/v2rayNG&quot; alt=&quot;GitHub commit activity&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.codefactor.io/repository/github/2dust/v2rayng&quot;&gt;&lt;img src=&quot;https://www.codefactor.io/repository/github/2dust/v2rayng/badge&quot; alt=&quot;CodeFactor&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/2dust/v2rayNG/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/2dust/v2rayNG/latest/total?logo=github&quot; alt=&quot;GitHub Releases&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://t.me/v2rayn&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Chat%20on-Telegram-brightgreen.svg?sanitize=true&quot; alt=&quot;Chat on Telegram&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Telegram Channel&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://t.me/github_2dust&quot;&gt;github_2dust&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Usage&lt;/h3&gt; 
+&lt;h4&gt;Geoip and Geosite&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;geoip.dat and geosite.dat files are in &lt;code&gt;Android/data/com.v2ray.ang/files/assets&lt;/code&gt; (path may differ on some Android device)&lt;/li&gt; 
+ &lt;li&gt;download feature will get enhanced version in this &lt;a href=&quot;https://github.com/Loyalsoldier/v2ray-rules-dat&quot;&gt;repo&lt;/a&gt; (Note it need a working proxy)&lt;/li&gt; 
+ &lt;li&gt;latest official &lt;a href=&quot;https://github.com/Loyalsoldier/v2ray-rules-dat&quot;&gt;domain list&lt;/a&gt; and &lt;a href=&quot;https://github.com/Loyalsoldier/geoip&quot;&gt;ip list&lt;/a&gt; can be imported manually&lt;/li&gt; 
+ &lt;li&gt;possible to use third party dat file in the same folder, like &lt;a href=&quot;https://guide.v2fly.org/routing/sitedata.html#%E5%A4%96%E7%BD%AE%E7%9A%84%E5%9F%9F%E5%90%8D%E6%96%87%E4%BB%B6&quot;&gt;h2y&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;More in our &lt;a href=&quot;https://github.com/2dust/v2rayNG/wiki&quot;&gt;wiki&lt;/a&gt;&lt;/h3&gt; 
+&lt;h3&gt;Development guide&lt;/h3&gt; 
+&lt;p&gt;Android project under V2rayNG folder can be compiled directly in Android Studio, or using Gradle wrapper. But the v2ray core inside the aar is (probably) outdated.&lt;br /&gt; The aar can be compiled from the Golang project &lt;a href=&quot;https://github.com/2dust/AndroidLibV2rayLite&quot;&gt;AndroidLibV2rayLite&lt;/a&gt; or &lt;a href=&quot;https://github.com/2dust/AndroidLibXrayLite&quot;&gt;AndroidLibXrayLite&lt;/a&gt;. For a quick start, read guide for &lt;a href=&quot;https://github.com/golang/go/wiki/Mobile&quot;&gt;Go Mobile&lt;/a&gt; and &lt;a href=&quot;https://tutorialedge.net/golang/makefiles-for-go-developers/&quot;&gt;Makefiles for Go Developers&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;v2rayNG can run on Android Emulators. For WSA, VPN permission need to be granted via &lt;code&gt;appops set [package name] ACTIVATE_VPN allow&lt;/code&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/763910b454e438d84a95513296701032017eb75db862aeacf26b061e2ace3aff/2dust/v2rayNG" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>android/nowinandroid</title>
+      <link>https://github.com/android/nowinandroid</link>
+      <description>&lt;p&gt;A fully functional Android app built entirely with Kotlin and Jetpack Compose&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/images/nia-splash.jpg&quot; alt=&quot;Now in Android&quot; title=&quot;Now in Android&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=com.google.samples.apps.nowinandroid&quot;&gt;&lt;img src=&quot;https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png&quot; height=&quot;70&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Now in Android App&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Learn how this app was designed and built in the &lt;a href=&quot;https://goo.gle/nia-figma&quot;&gt;design case study&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/ArchitectureLearningJourney.md&quot;&gt;architecture learning journey&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/ModularizationLearningJourney.md&quot;&gt;modularization learning journey&lt;/a&gt;.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;This is the repository for the &lt;a href=&quot;https://developer.android.com/series/now-in-android&quot;&gt;Now in Android&lt;/a&gt; app. It is a &lt;strong&gt;work in progress&lt;/strong&gt; 🚧.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Now in Android&lt;/strong&gt; is a fully functional Android app built entirely with Kotlin and Jetpack Compose. It follows Android design and development best practices and is intended to be a useful reference for developers. As a running app, it&#39;s intended to help developers keep up-to-date with the world of Android development by providing regular news updates.&lt;/p&gt; 
+&lt;p&gt;The app is currently in development. The &lt;code&gt;prodRelease&lt;/code&gt; variant is &lt;a href=&quot;https://play.google.com/store/apps/details?id=com.google.samples.apps.nowinandroid&quot;&gt;available on the Play Store&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Features&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Now in Android&lt;/strong&gt; displays content from the &lt;a href=&quot;https://developer.android.com/series/now-in-android&quot;&gt;Now in Android&lt;/a&gt; series. Users can browse for links to recent videos, articles and other content. Users can also follow topics they are interested in, and be notified when new content is published which matches interests they are following.&lt;/p&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/images/screenshots.png&quot; alt=&quot;Screenshot showing For You screen, Interests screen and Topic detail screen&quot; title=&quot;Screenshot showing For You screen, Interests screen and Topic detail screen&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;Development Environment&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Now in Android&lt;/strong&gt; uses the Gradle build system and can be imported directly into Android Studio (make sure you are using the latest stable version available &lt;a href=&quot;https://developer.android.com/studio&quot;&gt;here&lt;/a&gt;).&lt;/p&gt; 
+&lt;p&gt;Change the run configuration to &lt;code&gt;app&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/873212/210559920-ef4a40c5-c8e0-478b-bb00-4879a8cf184a.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;demoDebug&lt;/code&gt; and &lt;code&gt;demoRelease&lt;/code&gt; build variants can be built and run (the &lt;code&gt;prod&lt;/code&gt; variants use a backend server which is not currently publicly available).&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/873212/210560507-44045dc5-b6d5-41ca-9746-f0f7acf22f8e.png&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Once you&#39;re up and running, you can refer to the learning journeys below to get a better understanding of which libraries and tools are being used, the reasoning behind the approaches to UI, testing, architecture and more, and how all of these different pieces of the project fit together to create a complete app.&lt;/p&gt; 
+&lt;h1&gt;Architecture&lt;/h1&gt; 
+&lt;p&gt;The &lt;strong&gt;Now in Android&lt;/strong&gt; app follows the &lt;a href=&quot;https://developer.android.com/topic/architecture&quot;&gt;official architecture guidance&lt;/a&gt; and is described in detail in the &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/ArchitectureLearningJourney.md&quot;&gt;architecture learning journey&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Modularization&lt;/h1&gt; 
+&lt;p&gt;The &lt;strong&gt;Now in Android&lt;/strong&gt; app has been fully modularized and you can find the detailed guidance and description of the modularization strategy used in &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/ModularizationLearningJourney.md&quot;&gt;modularization learning journey&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Build&lt;/h1&gt; 
+&lt;p&gt;The app contains the usual &lt;code&gt;debug&lt;/code&gt; and &lt;code&gt;release&lt;/code&gt; build variants.&lt;/p&gt; 
+&lt;p&gt;In addition, the &lt;code&gt;benchmark&lt;/code&gt; variant of &lt;code&gt;app&lt;/code&gt; is used to test startup performance and generate a baseline profile (see below for more information).&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;app-nia-catalog&lt;/code&gt; is a standalone app that displays the list of components that are stylized for &lt;strong&gt;Now in Android&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;The app also uses &lt;a href=&quot;https://developer.android.com/studio/build/build-variants#product-flavors&quot;&gt;product flavors&lt;/a&gt; to control where content for the app should be loaded from.&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;demo&lt;/code&gt; flavor uses static local data to allow immediate building and exploring of the UI.&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;prod&lt;/code&gt; flavor makes real network calls to a backend server, providing up-to-date content. At this time, there is not a public backend available.&lt;/p&gt; 
+&lt;p&gt;For normal development use the &lt;code&gt;demoDebug&lt;/code&gt; variant. For UI performance testing use the &lt;code&gt;demoRelease&lt;/code&gt; variant.&lt;/p&gt; 
+&lt;h1&gt;Testing&lt;/h1&gt; 
+&lt;p&gt;To facilitate testing of components, &lt;strong&gt;Now in Android&lt;/strong&gt; uses dependency injection with &lt;a href=&quot;https://developer.android.com/training/dependency-injection/hilt-android&quot;&gt;Hilt&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Most data layer components are defined as interfaces. Then, concrete implementations (with various dependencies) are bound to provide those interfaces to other components in the app. In tests, &lt;strong&gt;Now in Android&lt;/strong&gt; notably does &lt;em&gt;not&lt;/em&gt; use any mocking libraries. Instead, the production implementations can be replaced with test doubles using Hilt&#39;s testing APIs (or via manual constructor injection for &lt;code&gt;ViewModel&lt;/code&gt; tests).&lt;/p&gt; 
+&lt;p&gt;These test doubles implement the same interface as the production implementations and generally provide a simplified (but still realistic) implementation with additional testing hooks. This results in less brittle tests that may exercise more production code, instead of just verifying specific calls against mocks.&lt;/p&gt; 
+&lt;p&gt;Examples:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;In instrumentation tests, a temporary folder is used to store the user&#39;s preferences, which is wiped after each test. This allows using the real &lt;code&gt;DataStore&lt;/code&gt; and exercising all related code, instead of mocking the flow of data updates.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;There are &lt;code&gt;Test&lt;/code&gt; implementations of each repository, which implement the normal, full repository interface and also provide test-only hooks. &lt;code&gt;ViewModel&lt;/code&gt; tests use these &lt;code&gt;Test&lt;/code&gt; repositories, and thus can use the test-only hooks to manipulate the state of the &lt;code&gt;Test&lt;/code&gt; repository and verify the resulting behavior, instead of checking that specific repository methods were called.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To run the tests execute the following gradle tasks:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;testDemoDebug&lt;/code&gt; run all local tests against the &lt;code&gt;demoDebug&lt;/code&gt; variant. Screenshot tests will fail (see below for explanation). To avoid this, run &lt;code&gt;recordRoborazziDemoDebug&lt;/code&gt; prior to running unit tests.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;connectedDemoDebugAndroidTest&lt;/code&gt; run all instrumented tests against the &lt;code&gt;demoDebug&lt;/code&gt; variant.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;You should not run &lt;code&gt;./gradlew test&lt;/code&gt; or &lt;code&gt;./gradlew connectedAndroidTest&lt;/code&gt; as this will execute tests against &lt;em&gt;all&lt;/em&gt; build variants which is both unnecessary and will result in failures as only the &lt;code&gt;demoDebug&lt;/code&gt; variant is supported. No other variants have any tests (although this might change in future).&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Screenshot tests&lt;/h2&gt; 
+&lt;p&gt;A screenshot test takes a screenshot of a screen or a UI component within the app, and compares it with a previously recorded screenshot which is known to be rendered correctly.&lt;/p&gt; 
+&lt;p&gt;For example, Now in Android has &lt;a href=&quot;https://github.com/android/nowinandroid/raw/main/app/src/testDemo/kotlin/com/google/samples/apps/nowinandroid/ui/NiaAppScreenSizesScreenshotTests.kt&quot;&gt;screenshot tests&lt;/a&gt; to verify that the navigation is displayed correctly on different screen sizes (&lt;a href=&quot;https://github.com/android/nowinandroid/tree/main/app/src/testDemo/screenshots&quot;&gt;known correct screenshots&lt;/a&gt;).&lt;/p&gt; 
+&lt;p&gt;Now In Android uses &lt;a href=&quot;https://github.com/takahirom/roborazzi&quot;&gt;Roborazzi&lt;/a&gt; to run screenshot tests of certain screens and UI components. When working with screenshot tests the following gradle tasks are useful:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;verifyRoborazziDemoDebug&lt;/code&gt; run all screenshot tests, verifying the screenshots against the known correct screenshots.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;recordRoborazziDemoDebug&lt;/code&gt; record new &quot;known correct&quot; screenshots. Use this command when you have made changes to the UI and manually verified that they are rendered correctly. Screenshots will be stored in &lt;code&gt;modulename/src/test/screenshots&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;compareRoborazziDemoDebug&lt;/code&gt; create comparison images between failed tests and the known correct images. These can also be found in &lt;code&gt;modulename/src/test/screenshots&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;Note on failing screenshot tests&lt;/strong&gt;&lt;br /&gt; The known correct screenshots stored in this repository are recorded on CI using Linux. Other platforms may (and probably will) generate slightly different images, making the screenshot tests fail. When working on a non-Linux platform, a workaround to this is to run &lt;code&gt;recordRoborazziDemoDebug&lt;/code&gt; on the &lt;code&gt;main&lt;/code&gt; branch before starting work. After making changes, &lt;code&gt;verifyRoborazziDemoDebug&lt;/code&gt; will identify only legitimate changes.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;For more information about screenshot testing &lt;a href=&quot;https://www.droidcon.com/2023/11/15/easy-screenshot-testing-with-compose/&quot;&gt;check out this talk&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;UI&lt;/h1&gt; 
+&lt;p&gt;The app was designed using &lt;a href=&quot;https://m3.material.io/&quot;&gt;Material 3 guidelines&lt;/a&gt;. Learn more about the design process and obtain the design files in the &lt;a href=&quot;https://goo.gle/nia-figma&quot;&gt;Now in Android Material 3 Case Study&lt;/a&gt; (design assets &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/Now-In-Android-Design-File.pdf&quot;&gt;also available as a PDF&lt;/a&gt;).&lt;/p&gt; 
+&lt;p&gt;The Screens and UI elements are built entirely using &lt;a href=&quot;https://developer.android.com/jetpack/compose&quot;&gt;Jetpack Compose&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The app has two themes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Dynamic color - uses colors based on the &lt;a href=&quot;https://material.io/blog/announcing-material-you&quot;&gt;user&#39;s current color theme&lt;/a&gt; (if supported)&lt;/li&gt; 
+ &lt;li&gt;Default theme - uses predefined colors when dynamic color is not supported&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Each theme also supports dark mode.&lt;/p&gt; 
+&lt;p&gt;The app uses adaptive layouts to &lt;a href=&quot;https://developer.android.com/guide/topics/large-screens/support-different-screen-sizes&quot;&gt;support different screen sizes&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Find out more about the &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/docs/ArchitectureLearningJourney.md#ui-layer&quot;&gt;UI architecture here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Performance&lt;/h1&gt; 
+&lt;h2&gt;Benchmarks&lt;/h2&gt; 
+&lt;p&gt;Find all tests written using &lt;a href=&quot;https://developer.android.com/topic/performance/benchmarking/macrobenchmark-overview&quot;&gt;&lt;code&gt;Macrobenchmark&lt;/code&gt;&lt;/a&gt; in the &lt;code&gt;benchmarks&lt;/code&gt; module. This module also contains the test to generate the Baseline profile.&lt;/p&gt; 
+&lt;h2&gt;Baseline profiles&lt;/h2&gt; 
+&lt;p&gt;The baseline profile for this app is located at &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/app/src/main/baseline-prof.txt&quot;&gt;&lt;code&gt;app/src/main/baseline-prof.txt&lt;/code&gt;&lt;/a&gt;. It contains rules that enable AOT compilation of the critical user path taken during app launch. For more information on baseline profiles, read &lt;a href=&quot;https://developer.android.com/studio/profile/baselineprofiles&quot;&gt;this document&lt;/a&gt;.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;The baseline profile needs to be re-generated for release builds that touch code which changes app startup.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;To generate the baseline profile, select the &lt;code&gt;benchmark&lt;/code&gt; build variant and run the &lt;code&gt;BaselineProfileGenerator&lt;/code&gt; benchmark test on an AOSP Android Emulator. Then copy the resulting baseline profile from the emulator to &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/app/src/main/baseline-prof.txt&quot;&gt;&lt;code&gt;app/src/main/baseline-prof.txt&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Compose compiler metrics&lt;/h2&gt; 
+&lt;p&gt;Run the following command to get and analyze compose compiler metrics:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./gradlew assembleRelease -PenableComposeCompilerMetrics=true -PenableComposeCompilerReports=true
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The reports files will be added to &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/build/compose-reports&quot;&gt;build/compose-reports&lt;/a&gt;. The metrics files will also be added to &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/build/compose-metrics&quot;&gt;build/compose-metrics&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For more information on Compose compiler metrics, see &lt;a href=&quot;https://medium.com/androiddevelopers/jetpack-compose-stability-explained-79c10db270c8&quot;&gt;this blog post&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Now in Android&lt;/strong&gt; is distributed under the terms of the Apache License (Version 2.0). See the &lt;a href=&quot;https://raw.githubusercontent.com/android/nowinandroid/main/LICENSE&quot;&gt;license&lt;/a&gt; for more information.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/483402734/b3890e11-f5a7-4ea3-a192-5d8527962411" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>JetBrains/kotlin</title>
+      <link>https://github.com/JetBrains/kotlin</link>
+      <description>&lt;p&gt;The Kotlin Programming Language.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://confluence.jetbrains.com/display/ALL/JetBrains+on+GitHub&quot;&gt;&lt;img src=&quot;https://jb.gg/badges/official.svg?sanitize=true&quot; alt=&quot;official project&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://teamcity.jetbrains.com/buildConfiguration/Kotlin_KotlinPublic_Compiler?branch=%3Cdefault%3E&amp;amp;buildTypeTab=overview&amp;amp;mode=builds&quot;&gt;&lt;img src=&quot;https://img.shields.io/teamcity/http/teamcity.jetbrains.com/s/Kotlin_KotlinPublic_Compiler.svg?sanitize=true&quot; alt=&quot;TeamCity (simple build status)&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://search.maven.org/#search%7Cga%7C1%7Cg%3A%22org.jetbrains.kotlin%22&quot;&gt;&lt;img src=&quot;https://img.shields.io/maven-central/v/org.jetbrains.kotlin/kotlin-maven-plugin.svg?sanitize=true&quot; alt=&quot;Maven Central&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.apache.org/licenses/LICENSE-2.0&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-Apache%20License%202.0-blue.svg?style=flat&quot; alt=&quot;GitHub license&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://ge.jetbrains.com/scans?search.rootProjectNames=Kotlin&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Revved%20up%20by-Develocity-06A0CE?logo=Gradle&amp;amp;labelColor=02303A&quot; alt=&quot;Revved up by Develocity&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Kotlin Programming Language&lt;/h1&gt; 
+&lt;p&gt;Welcome to &lt;a href=&quot;https://kotlinlang.org/&quot;&gt;Kotlin&lt;/a&gt;!&lt;br /&gt; Kotlin is a concise multiplatform language developed by &lt;a href=&quot;https://www.jetbrains.com/&quot;&gt;JetBrains&lt;/a&gt; and &lt;a href=&quot;https://kotlinlang.org/docs/contribute.html&quot;&gt;contributors&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Some handy links:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/&quot;&gt;Kotlin Site&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/docs/tutorials/getting-started.html&quot;&gt;Getting Started Guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://play.kotlinlang.org/&quot;&gt;Try Kotlin&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/api/latest/jvm/stdlib/index.html&quot;&gt;Kotlin Standard Library&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://youtrack.jetbrains.com/issues/KT&quot;&gt;Issue Tracker&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCP7uiEZIqci43m22KDl0sNw&quot;&gt;Kotlin YouTube Channel&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discuss.kotlinlang.org/&quot;&gt;Forum&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://blog.jetbrains.com/kotlin/&quot;&gt;Kotlin Blog&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/channel/UCP7uiEZIqci43m22KDl0sNw&quot;&gt;Subscribe to Kotlin YouTube channel&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://twitter.com/kotlin&quot;&gt;Follow Kotlin on Twitter&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://slack.kotlinlang.org/&quot;&gt;Public Slack channel&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://teamcity.jetbrains.com/project.html?tab=projectOverview&amp;amp;projectId=Kotlin&quot;&gt;TeamCity CI build&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinfoundation.org/&quot;&gt;Kotlin Foundation&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Kotlin Multiplatform capabilities&lt;/h2&gt; 
+&lt;p&gt;Support for multiplatform programming is one of Kotlin’s key benefits. It reduces time spent writing and maintaining the same code for &lt;a href=&quot;https://kotlinlang.org/docs/reference/mpp-supported-platforms.html&quot;&gt;different platforms&lt;/a&gt; while retaining the flexibility and benefits of native programming.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/kotlin-multiplatform/&quot;&gt;Kotlin Multiplatform&lt;/a&gt; and &lt;a href=&quot;https://www.jetbrains.com/compose-multiplatform/&quot;&gt;Compose Multiplatform&lt;/a&gt; for sharing business logic and UI between Android, iOS, desktop, and web.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/help/kotlin-multiplatform-dev/get-started.html&quot;&gt;Get started with Kotlin Multiplatform&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/docs/reference/multiplatform.html&quot;&gt;Kotlin Multiplatform Benefits&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/docs/reference/mpp-share-on-platforms.html#share-code-on-all-platforms&quot;&gt;Share code on all platforms&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/docs/reference/mpp-share-on-platforms.html#share-code-on-similar-platforms&quot;&gt;Share code on similar platforms&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Editing Kotlin&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/docs/tutorials/getting-started.html&quot;&gt;Kotlin IntelliJ IDEA Plugin&lt;/a&gt; (&lt;a href=&quot;https://github.com/JetBrains/intellij-community/tree/master/plugins/kotlin&quot;&gt;source code&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kotlinlang.org/docs/tutorials/getting-started-eclipse.html&quot;&gt;Kotlin Eclipse Plugin&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/vkostyukov/kotlin-sublime-package&quot;&gt;Kotlin Sublime Text Package&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Build environment requirements&lt;/h2&gt; 
+&lt;p&gt;This repository is using &lt;a href=&quot;https://docs.gradle.org/current/userguide/toolchains.html&quot;&gt;Gradle toolchains&lt;/a&gt; feature to select and auto-provision required JDKs from &lt;a href=&quot;https://adoptium.net&quot;&gt;Eclipse Adoptium&lt;/a&gt; project.&lt;/p&gt; 
+&lt;p&gt;Alternatively, it is still possible to only provide required JDKs via environment variables (see &lt;a href=&quot;https://raw.githubusercontent.com/JetBrains/kotlin/master/gradle.properties#L5&quot;&gt;gradle.properties&lt;/a&gt; for supported variable names). To ensure Gradle uses only JDKs from environmental variables - disable Gradle toolchain auto-detection by passing &lt;code&gt;-Porg.gradle.java.installations.auto-detect=false&lt;/code&gt; option (or put it into &lt;code&gt;$GRADLE_USER_HOME/gradle.properties&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;On Windows you might need to add long paths setting to the repo:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git config core.longpaths true 
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Building&lt;/h2&gt; 
+&lt;p&gt;The project is built with Gradle. Run Gradle to build the project and to run the tests using the following command on Unix/macOS:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./gradlew &amp;lt;tasks-and-options&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or the following command on Windows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;gradlew &amp;lt;tasks-and-options&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;On the first project configuration gradle will download and setup the dependencies on:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;intellij-core&lt;/code&gt; is a part of command line compiler and contains only necessary APIs.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;idea-full&lt;/code&gt; is a full blown IntelliJ IDEA Community Edition to be used in the plugin module.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;These dependencies are quite large, so depending on the quality of your internet connection you might face timeouts getting them. In this case, you can increase timeout by specifying the following command line parameters on the first run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;./gradlew -Dhttp.socketTimeout=60000 -Dhttp.connectionTimeout=60000
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Important gradle tasks&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;clean&lt;/code&gt; - clean build results&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;dist&lt;/code&gt; - assembles the compiler distribution into &lt;code&gt;dist/kotlinc/&lt;/code&gt; folder&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;install&lt;/code&gt; - build and install all public artifacts into local maven repository&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;coreLibsTest&lt;/code&gt; - build and run stdlib, reflect and kotlin-test tests&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;gradlePluginTest&lt;/code&gt; - build and run gradle plugin tests&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;compilerTest&lt;/code&gt; - build and run all compiler tests&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To reproduce TeamCity build use &lt;code&gt;-Pteamcity=true&lt;/code&gt; flag. Local builds don&#39;t run proguard and have jar compression disabled by default.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;OPTIONAL:&lt;/strong&gt; Some artifacts, mainly Maven plugin ones, are built separately with Maven. Refer to &lt;a href=&quot;https://raw.githubusercontent.com/JetBrains/kotlin/master/libraries/ReadMe.md&quot;&gt;libraries/ReadMe.md&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;p&gt;To build Kotlin/Native, see &lt;a href=&quot;https://raw.githubusercontent.com/JetBrains/kotlin/master/kotlin-native/README.md#building-from-source&quot;&gt;kotlin-native/README.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;&lt;a name=&quot;working-in-idea&quot;&gt;&lt;/a&gt; Working with the project in IntelliJ IDEA&lt;/h2&gt; 
+&lt;p&gt;It is recommended to use the latest released version of Intellij IDEA (Community or Ultimate Edition). You can download IntelliJ IDEA &lt;a href=&quot;https://www.jetbrains.com/idea/download&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;After cloning the project, import the project in IntelliJ by choosing the project directory in the Open project dialog.&lt;/p&gt; 
+&lt;p&gt;For handy work with compiler tests it&#39;s recommended to use &lt;a href=&quot;https://github.com/demiurg906/test-data-helper-plugin&quot;&gt;Kotlin Compiler Test Helper&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Dependency verification&lt;/h3&gt; 
+&lt;p&gt;We have a &lt;a href=&quot;https://docs.gradle.org/current/userguide/dependency_verification.html&quot;&gt;dependencies verification&lt;/a&gt; feature enabled in the repository for all Gradle builds. Gradle will check hashes (md5 and sha256) of used dependencies and will fail builds with &lt;code&gt;Dependency verification failed&lt;/code&gt; errors when local artifacts are absent or have different hashes listed in the &lt;a href=&quot;https://github.com/JetBrains/kotlin/raw/master/gradle/verification-metadata.xml&quot;&gt;verification-metadata.xml&lt;/a&gt; file.&lt;/p&gt; 
+&lt;p&gt;It&#39;s expected that &lt;code&gt;verification-metadata.xml&lt;/code&gt; should only be updated with the commits that modify the build. There are some tips how to perform such updates:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Delete &lt;code&gt;components&lt;/code&gt; section of &lt;code&gt;verification-metadata.xml&lt;/code&gt; to avoid stockpiling of old unused dependencies. You may use the following command:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#macOS
+sed -i &#39;&#39; -e &#39;/&amp;lt;components&amp;gt;/,/&amp;lt;\/components&amp;gt;/d&#39; gradle/verification-metadata.xml
+#Linux &amp;amp; Git for Windows
+sed -i -e &#39;/&amp;lt;components&amp;gt;/,/&amp;lt;\/components&amp;gt;/d&#39; gradle/verification-metadata.xml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Re-generate dependencies with Gradle&#39;s &lt;code&gt;--write-verification-metadata&lt;/code&gt; command (verify update relates to your changes)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./gradlew --write-verification-metadata sha256 -Pkotlin.native.enabled=true resolveDependencies
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;&lt;code&gt;resolveDependencies&lt;/code&gt; task resolves dependencies for all platforms including dependencies downloaded by plugins.&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;You can also use &lt;code&gt;./scripts/update-verification-metadata.sh&lt;/code&gt; script which includes both of these steps&lt;/p&gt; 
+&lt;p&gt;Keep in mind:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;If you’re adding a dependency with OS mentioned in an artifact name (&lt;code&gt;darwin&lt;/code&gt;, &lt;code&gt;mac&lt;/code&gt;, &lt;code&gt;osx&lt;/code&gt;, &lt;code&gt;linux&lt;/code&gt;, &lt;code&gt;windows&lt;/code&gt;), remember to add them to &lt;code&gt;implicitDependencies&lt;/code&gt; configuration or update &lt;code&gt;resolveDependencies&lt;/code&gt; task if needed. &lt;code&gt;resolveDependencies&lt;/code&gt; should resolve all dependencies including dependencies for different platforms.&lt;/li&gt; 
+ &lt;li&gt;If you have a &lt;code&gt;local.properties&lt;/code&gt; file in your Kotlin project folder, make sure that it doesn&#39;t contain &lt;code&gt;kotlin.native.enabled=false&lt;/code&gt;. Otherwise, native-only dependencies may not be added to the verification metadata. This is because &lt;code&gt;local.properties&lt;/code&gt; has higher precedence than the &lt;code&gt;-Pkotlin.native.enabled=true&lt;/code&gt; specified in the Gradle command.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Using -dev versions&lt;/h2&gt; 
+&lt;p&gt;We publish &lt;code&gt;-dev&lt;/code&gt; versions frequently.&lt;/p&gt; 
+&lt;p&gt;For &lt;code&gt;-dev&lt;/code&gt; versions you can use the &lt;a href=&quot;https://redirector.kotlinlang.org/maven/bootstrap/org/jetbrains/kotlin/kotlin-compiler/maven-metadata.xml&quot;&gt;list of available versions&lt;/a&gt; and include this maven repository:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-kotlin&quot;&gt;maven(&quot;https://redirector.kotlinlang.org/maven/bootstrap&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;p&gt;Kotlin is distributed under the terms of the Apache License (Version 2.0). See &lt;a href=&quot;https://raw.githubusercontent.com/JetBrains/kotlin/master/license/README.md&quot;&gt;license folder&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;h1&gt;Contributing&lt;/h1&gt; 
+&lt;p&gt;Please be sure to review Kotlin&#39;s &lt;a href=&quot;https://raw.githubusercontent.com/JetBrains/kotlin/master/docs/contributing.md&quot;&gt;contributing guidelines&lt;/a&gt; to learn how to help the project.&lt;/p&gt; 
+&lt;h1&gt;Kotlin Foundation&lt;/h1&gt; 
+&lt;p&gt;The Kotlin Foundation is a non-profit organization whose mission is to promote and advance the Kotlin ecosystem. You can learn more about the structure and goals of the Kotlin Foundation on its &lt;a href=&quot;https://kotlinfoundation.org/&quot;&gt;official website&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/3432266/7e79bf80-7aa6-11eb-9cbd-d7bda7eaf1aa" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>element-hq/element-x-android</title>
+      <link>https://github.com/element-hq/element-x-android</link>
+      <description>&lt;p&gt;Android Matrix messenger application using the Matrix Rust Sdk and Jetpack Compose&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/element-hq/element-x-android/actions/workflows/build.yml?query=branch%3Adevelop&quot;&gt;&lt;img src=&quot;https://github.com/element-hq/element-x-android/actions/workflows/build.yml/badge.svg?query=branch%3Adevelop&quot; alt=&quot;Latest build&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://sonarcloud.io/summary/new_code?id=element-x-android&quot;&gt;&lt;img src=&quot;https://sonarcloud.io/api/project_badges/measure?project=element-x-android&amp;amp;metric=alert_status&quot; alt=&quot;Quality Gate Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://sonarcloud.io/summary/new_code?id=element-x-android&quot;&gt;&lt;img src=&quot;https://sonarcloud.io/api/project_badges/measure?project=element-x-android&amp;amp;metric=vulnerabilities&quot; alt=&quot;Vulnerabilities&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://sonarcloud.io/summary/new_code?id=element-x-android&quot;&gt;&lt;img src=&quot;https://sonarcloud.io/api/project_badges/measure?project=element-x-android&amp;amp;metric=bugs&quot; alt=&quot;Bugs&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/github/element-hq/element-x-android&quot;&gt;&lt;img src=&quot;https://codecov.io/github/element-hq/element-x-android/branch/develop/graph/badge.svg?token=ecwvia7amV&quot; alt=&quot;codecov&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://matrix.to/#/#element-x-android:matrix.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/matrix/element-x-android:matrix.org.svg?label=%23element-x-android:matrix.org&amp;amp;logo=matrix&amp;amp;server_fqdn=matrix.org&quot; alt=&quot;Element X Android Matrix room #element-x-android:matrix.org&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://localazy.com/p/element&quot;&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fconnect.localazy.com%2Fstatus%2Felement%2Fdata%3Fcontent%3Dall%26title%3Dlocalazy%26logo%3Dtrue&quot; alt=&quot;Localazy&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Element X Android&lt;/h1&gt; 
+&lt;p&gt;Element X Android is the next-generation &lt;a href=&quot;https://matrix.org/&quot;&gt;Matrix&lt;/a&gt; client provided by &lt;a href=&quot;https://element.io/&quot;&gt;Element&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Compared to the previous-generation &lt;a href=&quot;https://github.com/element-hq/element-android&quot;&gt;Element Classic&lt;/a&gt;, the application is a total rewrite, using the &lt;a href=&quot;https://github.com/matrix-org/matrix-rust-sdk&quot;&gt;Matrix Rust SDK&lt;/a&gt; underneath and targeting devices running Android 7+. The UI layer is written using &lt;a href=&quot;https://developer.android.com/jetpack/compose&quot;&gt;Jetpack Compose&lt;/a&gt;, and the navigation is managed using &lt;a href=&quot;https://github.com/bumble-tech/appyx&quot;&gt;Appyx&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=io.element.android.x&quot;&gt;&lt;img src=&quot;https://play.google.com/intl/en_us/badges/static/images/badges/en_badge_web_generic.png&quot; alt=&quot;Get it on Google Play&quot; height=&quot;80&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://f-droid.org/packages/io.element.android.x&quot;&gt;&lt;img src=&quot;https://fdroid.gitlab.io/artwork/badge/get-it-on.png&quot; alt=&quot;Get it on F-Droid&quot; height=&quot;80&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Table of contents&lt;/h2&gt; 
+&lt;!-- TOC --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#screenshots&quot;&gt;Screenshots&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#translations&quot;&gt;Translations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#rust-sdk&quot;&gt;Rust SDK&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#status&quot;&gt;Status&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#minimum-sdk-version&quot;&gt;Minimum SDK version&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#contributing&quot;&gt;Contributing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#build-instructions&quot;&gt;Build instructions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#support&quot;&gt;Support&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/#copyright-and-license&quot;&gt;Copyright and License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- END --&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;p&gt;Here are some screenshots of the application:&lt;/p&gt; 
+&lt;!--
+Commands run before taking the screenshots:
+adb shell settings put system time_12_24 24
+adb shell am broadcast -a com.android.systemui.demo -e command enter
+adb shell am broadcast -a com.android.systemui.demo -e command clock -e hhmm 1337
+adb shell am broadcast -a com.android.systemui.demo -e command network -e mobile show -e level 4
+adb shell am broadcast -a com.android.systemui.demo -e command network -e wifi show -e level 4
+adb shell am broadcast -a com.android.systemui.demo -e command notifications -e visible false
+adb shell am broadcast -a com.android.systemui.demo -e command battery -e plugged false -e level 100
+
+And to exit demo mode:
+adb shell am broadcast -a com.android.systemui.demo -e command exit
+--&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_1_light.png&quot; width=&quot;280&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_2_light.png&quot; width=&quot;280&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_3_light.png&quot; width=&quot;280&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_4_light.png&quot; width=&quot;280&quot; /&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_1_dark.png&quot; width=&quot;280&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_2_dark.png&quot; width=&quot;280&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_3_dark.png&quot; width=&quot;280&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/images-lfs/screen_4_dark.png&quot; width=&quot;280&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Translations&lt;/h2&gt; 
+&lt;p&gt;Element X Android supports many languages. You can help us to translate the app in your language by joining our &lt;a href=&quot;https://localazy.com/p/element&quot;&gt;Localazy project&lt;/a&gt;. You can also help us to improve the existing translations.&lt;/p&gt; 
+&lt;p&gt;Note that for now, we keep control on the French and German translations.&lt;/p&gt; 
+&lt;p&gt;Translations can be checked screen per screen using our tool Element X Android Gallery, available at &lt;a href=&quot;https://element-hq.github.io/element-x-android/&quot;&gt;https://element-hq.github.io/element-x-android/&lt;/a&gt;. Note that this page is updated every Tuesday.&lt;/p&gt; 
+&lt;p&gt;More instructions about translating the application can be found at &lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/CONTRIBUTING.md#strings&quot;&gt;CONTRIBUTING.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Rust SDK&lt;/h2&gt; 
+&lt;p&gt;Element X leverages the &lt;a href=&quot;https://github.com/matrix-org/matrix-rust-sdk&quot;&gt;Matrix Rust SDK&lt;/a&gt; through an FFI layer that the final client can directly import and use.&lt;/p&gt; 
+&lt;p&gt;We&#39;re doing this as a way to share code between platforms and while we&#39;ve seen promising results it&#39;s still in the experimental stage and bound to change.&lt;/p&gt; 
+&lt;h2&gt;Status&lt;/h2&gt; 
+&lt;p&gt;This project is actively developed and supported. New users are recommended to use Element X instead of the previous-generation app.&lt;/p&gt; 
+&lt;h2&gt;Minimum SDK version&lt;/h2&gt; 
+&lt;p&gt;Element X Android requires a minimum SDK version of 24 (Android 7.0, Nougat). We aim to support devices running Android 7.0 and above, which covers a wide range of devices still in use today.&lt;/p&gt; 
+&lt;p&gt;Element Android Enterprise requires a minimum SDK version of 33 (Android 13, Tiramisu). For Element Enterprise, we support only devices that still receive security updates, which means devices running Android 13 and above. Android does not have a documented support policy, but some information can be found at &lt;a href=&quot;https://endoflife.date/android&quot;&gt;https://endoflife.date/android&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Want to get actively involved in the project? You&#39;re more than welcome! A good way to start is to check the issues that are labelled with the &lt;a href=&quot;https://github.com/element-hq/element-x-android/issues?q=is%3Aissue+is%3Aopen+label%3A%22good+first+issue%22&quot;&gt;good first issue&lt;/a&gt; label. Let us know by commenting the issue that you&#39;re starting working on it.&lt;/p&gt; 
+&lt;p&gt;But first make sure to read our &lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/CONTRIBUTING.md&quot;&gt;contribution guide&lt;/a&gt; first.&lt;/p&gt; 
+&lt;p&gt;You can also come chat with the community in the Matrix &lt;a href=&quot;https://matrix.to/#/#element-x-android:matrix.org&quot;&gt;room&lt;/a&gt; dedicated to the project.&lt;/p&gt; 
+&lt;h2&gt;Build instructions&lt;/h2&gt; 
+&lt;p&gt;Just clone the project and open it in Android Studio. Make sure to select the &lt;code&gt;app&lt;/code&gt; configuration when building (as we also have sample apps in the project).&lt;/p&gt; 
+&lt;p&gt;To build against a local copy of the Rust SDK, see the &lt;a href=&quot;https://raw.githubusercontent.com/element-hq/element-x-android/develop/docs/_developer_onboarding.md#building-the-sdk-locally&quot;&gt;Developer onboarding&lt;/a&gt; instructions.&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;When you are experiencing an issue on Element X Android, please first search in &lt;a href=&quot;https://github.com/element-hq/element-x-android/issues&quot;&gt;GitHub issues&lt;/a&gt; and then in &lt;a href=&quot;https://matrix.to/#/#element-x-android:matrix.org&quot;&gt;#element-x-android:matrix.org&lt;/a&gt;. If after your research you still have a question, ask at &lt;a href=&quot;https://matrix.to/#/#element-x-android:matrix.org&quot;&gt;#element-x-android:matrix.org&lt;/a&gt;. Otherwise feel free to create a GitHub issue if you encounter a bug or a crash, by explaining clearly in detail what happened. You can also perform bug reporting from the application settings. This is especially recommended when you encounter a crash.&lt;/p&gt; 
+&lt;h2&gt;Copyright and License&lt;/h2&gt; 
+&lt;p&gt;Copyright (c) 2025 Element Creations Ltd. Copyright (c) 2022 - 2025 New Vector Ltd.&lt;/p&gt; 
+&lt;p&gt;This software is dual licensed by Element Creations Ltd (Element). It can be used either:&lt;/p&gt; 
+&lt;p&gt;(1) for free under the terms of the GNU Affero General Public License (as published by the Free Software Foundation, either version 3 of the License, or (at your option) any later version); OR&lt;/p&gt; 
+&lt;p&gt;(2) under the terms of a paid-for Element Commercial License agreement between you and Element (the terms of which may vary depending on what you and Element have agreed to).&lt;/p&gt; 
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the Licenses is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the Licenses for the specific language governing permissions and limitations under the Licenses.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/3218e480936036c6bbcc3c134ee329ee6886fff881d38fc82f8ec5282372065e/element-hq/element-x-android" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>sam1am/anyapk</title>
+      <link>https://github.com/sam1am/anyapk</link>
+      <description>&lt;p&gt;Install any apk on the device you own.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;anyapk&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Bypass Google And Install Any APK You Want On The Device You Own.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;anyapk is a lightweight Android application installer that bypasses Google&#39;s developer verification requirements by using local ADB (Android Debug Bridge) connections. Smoothly install any APK file on your device without restrictions, gatekeepers, or corporate approval.&lt;/p&gt; 
+&lt;h2&gt;Why We Made This&lt;/h2&gt; 
+&lt;p&gt;Android devices belong to their users, not corporations or governments. Yet with each passing year, installing applications on your own device becomes more restricted, more cumbersome, and more dependent on the approval of gatekeepers who do not have your best interests at heart.&lt;/p&gt; 
+&lt;p&gt;anyapk returns control to where it belongs: in your hands.&lt;/p&gt; 
+&lt;h2&gt;Manifesto: Application Freedom&lt;/h2&gt; 
+&lt;p&gt;When a corporation becomes a gatekeeper, they don&#39;t stand alone at the gate. Their partners become gatekeepers. Government jurisdictions become gatekeepers. And suddenly, what began as a &quot;quality control measure&quot; transforms into a lever of control.&lt;/p&gt; 
+&lt;p&gt;This lever has been used by repressive governments to deny citizens access to free communication tools. It has been used to block applications that challenge power structures. It has been used to enforce geographic restrictions that serve business interests rather than user needs.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Application freedom is user freedom.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Every barrier placed between you and the software you choose to run is a barrier to your digital autonomy. Every verification requirement is a chokepoint where control can be exercised. Every &quot;safety measure&quot; that requires corporate or governmental approval is a potential tool of censorship.&lt;/p&gt; 
+&lt;p&gt;We built anyapk because we believe:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Your device belongs to you&lt;/li&gt; 
+ &lt;li&gt;You have the right to run any software you choose&lt;/li&gt; 
+ &lt;li&gt;No corporation or government should stand between you and that choice&lt;/li&gt; 
+ &lt;li&gt;Technical barriers to freedom must be removed, not accepted&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you believe software should serve users rather than control them, anyapk is for you.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;One-time setup&lt;/strong&gt;: Pair once using wireless debugging, use forever&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;No root required&lt;/strong&gt;: Uses Android&#39;s built-in wireless ADB&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;No external dependencies&lt;/strong&gt;: Everything runs locally on your device&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;System-wide integration&lt;/strong&gt;: Register as an APK handler to install from any file manager&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Direct file selection&lt;/strong&gt;: Built-in file picker if you don&#39;t have a file manager handy&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Method 1: Install via APK (Recommended)&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the latest &lt;code&gt;anyapk.apk&lt;/code&gt; from the &lt;a href=&quot;https://raw.githubusercontent.com/sam1am/releases&quot;&gt;Releases&lt;/a&gt; page&lt;/li&gt; 
+ &lt;li&gt;Open the APK file on your device&lt;/li&gt; 
+ &lt;li&gt;Grant installation permissions if prompted&lt;/li&gt; 
+ &lt;li&gt;Welcome to application freedom&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Method 2: Install via ADB (The Last Time)&lt;/h3&gt; 
+&lt;p&gt;If you can&#39;t install the APK directly (due to existing restrictions), use ADB from your computer. This is the last time you&#39;ll need to do this the hard way.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Prerequisites:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A computer with ADB installed (&lt;a href=&quot;https://developer.android.com/studio/releases/platform-tools&quot;&gt;Download SDK Platform Tools&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;A USB cable&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Steps:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Enable Developer Options on your device:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Go to &lt;strong&gt;Settings → About Phone&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Tap &lt;strong&gt;Build Number&lt;/strong&gt; 7 times until you see &quot;You are now a developer!&quot;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Enable USB Debugging:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Go to &lt;strong&gt;Settings → Developer Options&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Enable &lt;strong&gt;USB debugging&lt;/strong&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Connect your device to your computer via USB&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Install anyapk using ADB:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;adb install anyapk.apk
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;You&#39;re done! You won&#39;t need ADB from your computer again.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Setup &amp;amp; Usage&lt;/h2&gt; 
+&lt;h3&gt;First-Time Setup&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Enable Developer Options&lt;/strong&gt; (if not already enabled):&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Open &lt;strong&gt;Settings → About Phone&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Tap &lt;strong&gt;Build Number&lt;/strong&gt; 7 times&lt;/li&gt; 
+   &lt;li&gt;You&#39;ll see &quot;You are now a developer!&quot;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Enable Wireless Debugging&lt;/strong&gt;:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Go to &lt;strong&gt;Settings → Developer Options&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Enable &lt;strong&gt;Wireless debugging&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Approve your WiFi network if prompted&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Pair anyapk&lt;/strong&gt; (one-time only):&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Open anyapk&lt;/li&gt; 
+   &lt;li&gt;Tap &lt;strong&gt;Enter Pairing Code&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Follow the split-screen instructions: 
+    &lt;ol&gt; 
+     &lt;li&gt;Tap the &lt;strong&gt;Recent Apps&lt;/strong&gt; button (square icon)&lt;/li&gt; 
+     &lt;li&gt;Long-press on &lt;strong&gt;Settings&lt;/strong&gt;, select &lt;strong&gt;&quot;Open in split screen view&quot;&lt;/strong&gt;&lt;/li&gt; 
+     &lt;li&gt;Select &lt;strong&gt;anyapk&lt;/strong&gt; for the other half of the screen&lt;/li&gt; 
+     &lt;li&gt;In Settings: &lt;strong&gt;Developer Options → Wireless Debugging&lt;/strong&gt;&lt;/li&gt; 
+     &lt;li&gt;Tap &lt;strong&gt;&quot;Pair device with pairing code&quot;&lt;/strong&gt;&lt;/li&gt; 
+     &lt;li&gt;Enter the pairing code and port in anyapk&lt;/li&gt; 
+     &lt;li&gt;Tap &lt;strong&gt;Pair&lt;/strong&gt;&lt;/li&gt; 
+    &lt;/ol&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Authorize the connection&lt;/strong&gt;:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;You&#39;ll see an &quot;Allow USB debugging?&quot; prompt&lt;/li&gt; 
+   &lt;li&gt;Check &lt;strong&gt;&quot;Always allow from this computer&quot;&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;Tap &lt;strong&gt;Allow&lt;/strong&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;That&#39;s it! anyapk is now permanently connected and ready to use.&lt;/p&gt; 
+&lt;h3&gt;Installing APK Files&lt;/h3&gt; 
+&lt;p&gt;Once paired, installing APK files is effortless:&lt;/p&gt; 
+&lt;h4&gt;Method 1: From Any File Manager&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open any APK file in your file manager, browser, or download folder&lt;/li&gt; 
+ &lt;li&gt;Select &lt;strong&gt;anyapk&lt;/strong&gt; as the installer&lt;/li&gt; 
+ &lt;li&gt;Tap &lt;strong&gt;Install&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Done!&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Method 2: Using anyapk&#39;s Built-in Picker&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open anyapk&lt;/li&gt; 
+ &lt;li&gt;Tap &lt;strong&gt;Select APK to Install&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Browse and select your APK file&lt;/li&gt; 
+ &lt;li&gt;Tap &lt;strong&gt;Install&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Done!&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;How It Works&lt;/h2&gt; 
+&lt;p&gt;anyapk uses LibADB Android to establish a local ADB connection via wireless debugging. Once paired, it maintains the connection and can install any APK file using the ADB install protocol - the same method developers use, but running entirely on your device.&lt;/p&gt; 
+&lt;p&gt;No internet connection required. No cloud services. No remote servers. Just you and your device.&lt;/p&gt; 
+&lt;h2&gt;Technical Details&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Language&lt;/strong&gt;: Kotlin&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Minimum Android Version&lt;/strong&gt;: Android 11 (API 30) - Required for wireless debugging&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Permissions Required&lt;/strong&gt;: 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;INTERNET&lt;/code&gt; - For local ADB socket connection&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;ACCESS_NETWORK_STATE&lt;/code&gt; - To detect network availability&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;REQUEST_INSTALL_PACKAGES&lt;/code&gt; - To initiate APK installations&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Key Dependencies&lt;/strong&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;LibADB Android 3.1.0 - Local ADB client implementation&lt;/li&gt; 
+ &lt;li&gt;Conscrypt 2.5.3 - Secure ADB communication&lt;/li&gt; 
+ &lt;li&gt;sun-security-android 1.1 - RSA key generation for ADB authentication&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Privacy&lt;/h2&gt; 
+&lt;p&gt;anyapk runs entirely on your device. It:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Does not collect any data&lt;/li&gt; 
+ &lt;li&gt;Does not connect to any remote servers&lt;/li&gt; 
+ &lt;li&gt;Does not transmit any information about you or your usage&lt;/li&gt; 
+ &lt;li&gt;Does not track installations&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Your activity is your business, not ours.&lt;/p&gt; 
+&lt;h2&gt;Troubleshooting&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;&quot;Setup Required&quot; stays visible even after enabling wireless debugging:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Make sure wireless debugging is actually ON in Developer Options&lt;/li&gt; 
+ &lt;li&gt;Try restarting anyapk&lt;/li&gt; 
+ &lt;li&gt;Verify you&#39;re on WiFi (wireless debugging requires WiFi)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;&quot;Stream closed&quot; error during installation:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Close and reopen anyapk to refresh the connection&lt;/li&gt; 
+ &lt;li&gt;Verify wireless debugging is still enabled&lt;/li&gt; 
+ &lt;li&gt;Check that the APK file isn&#39;t corrupted&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Can&#39;t find the pairing dialog in Settings:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Make sure you&#39;re in Developer Options → Wireless debugging&lt;/li&gt; 
+ &lt;li&gt;Look for &quot;Pair device with pairing code&quot; button&lt;/li&gt; 
+ &lt;li&gt;If missing, try toggling wireless debugging off and on&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Installation fails with &quot;ADB unauthorized&quot;:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Unpair the device in Settings → Wireless debugging → Paired devices&lt;/li&gt; 
+ &lt;li&gt;Restart anyapk and pair again&lt;/li&gt; 
+ &lt;li&gt;Make sure to check &quot;Always allow&quot; on the authorization prompt&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is open source under the Apache 2.0 license. Use it, modify it, share it. Free software for free people.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Contributions are welcome! Whether it&#39;s bug fixes, feature additions, or documentation improvements, help us make application freedom more accessible.&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;This is a tool built by users, for users. If it helps you, share it with others who value digital freedom.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;strong&gt;Remember&lt;/strong&gt;: Your device. Your choice. Your freedom.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/0cd2ce7ef3622cc99b3ac21edcfeae47cdf0d0f5dc5814ff6609456faa03ed59/sam1am/anyapk" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>HapeLee/legado-with-MD3</title>
+      <link>https://github.com/HapeLee/legado-with-MD3</link>
+      <description>&lt;p&gt;使用 Material Design 3 全新设计的阅读 3.0&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Legado with MD3&lt;/h1&gt; 
+&lt;p align=&quot;left&quot;&gt; &lt;a href=&quot;https://github.com/HapeLee/legado-with-MD3&quot;&gt;简体中文&lt;/a&gt; ｜ &lt;a href=&quot;https://github.com/HapeLee/legado-with-MD3/raw/main/English.md&quot;&gt;English&lt;/a&gt; &lt;/p&gt; 
+&lt;h2&gt;📖 介绍&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Legado with MD3&lt;/strong&gt; 是基于开源项目 &lt;a href=&quot;https://github.com/gedoor/legado&quot;&gt;阅读 (Legado)&lt;/a&gt; 开发的 Material Design 3 风格重构版本。&lt;/p&gt; 
+&lt;p&gt;本项目在对 UI 进行重绘的基础上，加入了多项分支独有功能，并正在逐步从传统 View 迁移至 Jetpack Compose 框架，目标是提供更加现代、流畅且一致的阅读体验。&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-caution&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-stop mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Caution&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;注意事项：&lt;/strong&gt; 由于使用 Monet 引擎重构了主题系统，官方版本的主题在此版本中不再可用。&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Android 12 以下设备：&lt;/strong&gt; 暂时无法使用自定义主题与动态取色功能。此限制将在 Jetpack Compose 迁移完成后得到解决（由于开发者精力有限，迁移过程将持续较长时间）。&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;✨ 分支特性&lt;/h2&gt; 
+&lt;p&gt;相比于官方版本，本项目具有以下独有特性：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;全新主题：&lt;/strong&gt; 全新 Material Design 3 设计界面，支持 &lt;strong&gt;预测性返回手势&lt;/strong&gt; 与 &lt;strong&gt;共享元素动画&lt;/strong&gt;。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;阅读界面：&lt;/strong&gt; 更加个性化的阅读界面与菜单配置。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;阅读记录：&lt;/strong&gt; 提供详尽的阅读记录，支持 &lt;strong&gt;时间轴&lt;/strong&gt; 与 &lt;strong&gt;章节维度&lt;/strong&gt; 统计。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;体验增强：&lt;/strong&gt; 更健全的 &lt;strong&gt;漫画阅读&lt;/strong&gt; 、 &lt;strong&gt;有声书&lt;/strong&gt; 与 &lt;strong&gt;发现&lt;/strong&gt; 等界面体验。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;书架布局：&lt;/strong&gt; 更多的书架布局选择，针对 &lt;strong&gt;平板端&lt;/strong&gt; 进行了专门的界面优化。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;实用功能：&lt;/strong&gt; 新增书籍备注、智能伴生分组（自动归类已读/未读），支持&lt;strong&gt;手柄&lt;/strong&gt;上下&lt;strong&gt;翻页&lt;/strong&gt;。&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;🛠️ 核心功能&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;多格式支持：&lt;/strong&gt; 支持本地 TXT、EPUB 阅读，智能扫描本地文件。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;高度自定义：&lt;/strong&gt; 切换字体、背景、行距、段距、加粗、简繁转换等。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;净化替换：&lt;/strong&gt; 强力去除广告，替换正文内容。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;翻页模式：&lt;/strong&gt; 覆盖、仿真、滑动、滚动等多种模式随心切换。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;完全开源：&lt;/strong&gt; 无广告，持续迭代优化。&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;❤️ 致谢&lt;/h2&gt; 
+&lt;p&gt;感谢以下优秀开源项目提供的灵感与技术支持：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/gedoor/legado&quot;&gt;gedoor/legado&lt;/a&gt; (这个项目最吊的老爹)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Luoyacheng/legado&quot;&gt;Luoyacheng/legado&lt;/a&gt; (提供了更多的扩展功能)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/komikku-app/komikku&quot;&gt;komikku-app/komikku&lt;/a&gt; (提供了界面灵感与一些 Compose 的优秀控件)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FoedusProgramme/Gramophone&quot;&gt;FoedusProgramme/Gramophone&lt;/a&gt; (提供了界面灵感与 View 系统的封面取色方法)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jordond/MaterialKolor&quot;&gt;jordond/MaterialKolor&lt;/a&gt; (基于 Jetpack Compose 优秀的取色实现)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Calvin-LL/Reorderable&quot;&gt;Calvin-LL/Reorderable&lt;/a&gt; (基于 Jetpack Compose 优秀的拖动排序实现)&lt;/li&gt; 
+ &lt;li&gt;以及更多开源项目...&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;⚠️ 免责声明&lt;/h2&gt; 
+&lt;p&gt;项目内容不代表原作者立场，与原项目作者不存在任何隶属或授权关系。&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/02a040ce32074b2d8fd6de08b7cdec394db39feb561dad4a64dfa35d19d4a136/HapeLee/legado-with-MD3" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>android/architecture-samples</title>
+      <link>https://github.com/android/architecture-samples</link>
+      <description>&lt;p&gt;A collection of samples to discuss and showcase different architectural tools and patterns for Android apps.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Android Architecture Samples&lt;/h1&gt; 
+&lt;p&gt;These samples showcase different architectural approaches to developing Android apps. In its different branches you&#39;ll find the same app (a TODO app) implemented with small differences.&lt;/p&gt; 
+&lt;p&gt;In this branch you&#39;ll find:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;User Interface built with &lt;strong&gt;&lt;a href=&quot;https://developer.android.com/jetpack/compose&quot;&gt;Jetpack Compose&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;A single-activity architecture, using &lt;strong&gt;&lt;a href=&quot;https://developer.android.com/jetpack/compose/navigation&quot;&gt;Navigation Compose&lt;/a&gt;&lt;/strong&gt;.&lt;/li&gt; 
+ &lt;li&gt;A presentation layer that contains a Compose screen (View) and a &lt;strong&gt;ViewModel&lt;/strong&gt; per screen (or feature).&lt;/li&gt; 
+ &lt;li&gt;Reactive UIs using &lt;strong&gt;&lt;a href=&quot;https://developer.android.com/kotlin/flow&quot;&gt;Flow&lt;/a&gt;&lt;/strong&gt; and &lt;strong&gt;&lt;a href=&quot;https://kotlinlang.org/docs/coroutines-overview.html&quot;&gt;coroutines&lt;/a&gt;&lt;/strong&gt; for asynchronous operations.&lt;/li&gt; 
+ &lt;li&gt;A &lt;strong&gt;data layer&lt;/strong&gt; with a repository and two data sources (local using Room and a fake remote).&lt;/li&gt; 
+ &lt;li&gt;Two &lt;strong&gt;product flavors&lt;/strong&gt;, &lt;code&gt;mock&lt;/code&gt; and &lt;code&gt;prod&lt;/code&gt;, &lt;a href=&quot;https://android-developers.googleblog.com/2015/12/leveraging-product-flavors-in-android.html&quot;&gt;to ease development and testing&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;A collection of unit, integration and e2e &lt;strong&gt;tests&lt;/strong&gt;, including &quot;shared&quot; tests that can be run on emulator/device.&lt;/li&gt; 
+ &lt;li&gt;Dependency injection using &lt;a href=&quot;https://developer.android.com/training/dependency-injection/hilt-android&quot;&gt;Hilt&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/android/architecture-samples/main/screenshots/screenshots.png&quot; alt=&quot;Screenshot&quot; /&gt; 
+&lt;h2&gt;Why a to-do app?&lt;/h2&gt; 
+&lt;p&gt;The app in this project aims to be simple enough that you can understand it quickly, but complex enough to showcase difficult design decisions and testing scenarios. For more information, see the &lt;a href=&quot;https://github.com/googlesamples/android-architecture/wiki/To-do-app-specification&quot;&gt;app&#39;s specification&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;What is it not?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A template. Check out the &lt;a href=&quot;https://github.com/android/architecture-templates&quot;&gt;Architecture Templates&lt;/a&gt; instead.&lt;/li&gt; 
+ &lt;li&gt;A UI/Material Design sample. The interface of the app is deliberately kept simple to focus on architecture. Check out the &lt;a href=&quot;https://github.com/android/compose-samples&quot;&gt;Compose Samples&lt;/a&gt; instead.&lt;/li&gt; 
+ &lt;li&gt;A real production app with network access, user authentication, etc. Check out the &lt;a href=&quot;https://github.com/android/nowinandroid&quot;&gt;Now in Android app&lt;/a&gt; instead.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Who is it for?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Intermediate developers and beginners looking for a way to structure their app in a testable and maintainable way.&lt;/li&gt; 
+ &lt;li&gt;Advanced developers looking for quick reference.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Opening a sample in Android Studio&lt;/h2&gt; 
+&lt;p&gt;To open one of the samples in Android Studio, begin by checking out one of the sample branches, and then open the root directory in Android Studio. The following series of steps illustrate how to open the sample.&lt;/p&gt; 
+&lt;p&gt;Clone the repository:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone git@github.com:android/architecture-samples.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Finally open the &lt;code&gt;architecture-samples/&lt;/code&gt; directory in Android Studio.&lt;/p&gt; 
+&lt;h3&gt;License&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;Copyright 2024 Google, Inc.
+
+Licensed to the Apache Software Foundation (ASF) under one or more contributor
+license agreements. See the NOTICE file distributed with this work for
+additional information regarding copyright ownership. The ASF licenses this
+file to you under the Apache License, Version 2.0 (the &quot;License&quot;); you may not
+use this file except in compliance with the License. You may obtain a copy of
+the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT
+WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. See the
+License for the specific language governing permissions and limitations under
+the License.
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/56f1d8c909370e0e9bbaa7c2b0d4f6704facce5296b52346f8bfa8f05ca4a01e/android/architecture-samples" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>InsertKoinIO/koin</title>
+      <link>https://github.com/InsertKoinIO/koin</link>
+      <description>&lt;p&gt;Koin - a pragmatic lightweight dependency injection framework for Kotlin &amp; Kotlin Multiplatform&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/InsertKoinIO/koin/main/docs/img/koin_main_logo.png&quot; alt=&quot;logo&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://kotlinlang.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Kotlin-2.3.20-blue.svg?style=flat&amp;amp;logo=kotlin&quot; alt=&quot;Kotlin&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://github.com/InsertKoinIO/koin/actions/workflows/build.yml/badge.svg?sanitize=true&quot; alt=&quot;Github Actions&quot; /&gt; &lt;a href=&quot;https://github.com/InsertKoinIO/koin/raw/main/LICENSE.txt&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/InsertKoinIO/koin&quot; alt=&quot;Apache 2 License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://kotlinlang.slack.com/messages/koin/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Chat-Slack-orange.svg?style=flat&amp;amp;logo=slack&quot; alt=&quot;Slack channel&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;What is KOIN? ✨&lt;/h1&gt; 
+&lt;p&gt;Koin is a pragmatic, lightweight dependency injection framework for Kotlin developers, developed by &lt;a href=&quot;https://kotzilla.io&quot;&gt;Kotzilla&lt;/a&gt; and open-source &lt;a href=&quot;https://github.com/InsertKoinIO/koin/graphs/contributors&quot;&gt;contributors&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;The pragmatic Kotlin &amp;amp; Kotlin Multiplatform Dependency Injection framework
+- Simple and Powerful -
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Setup &amp;amp; Current Version 📦&lt;/h2&gt; 
+&lt;p&gt;Follow the dedicated &lt;a href=&quot;https://insert-koin.io/docs/setup/koin&quot;&gt;setup page&lt;/a&gt; to setup Koin for your project. Here are the currently available Koin versions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Stable&lt;/strong&gt; Version : &lt;a href=&quot;https://mvnrepository.com/artifact/io.insert-koin/koin-core/4.2.0&quot;&gt;&lt;img src=&quot;https://img.shields.io/maven-central/v/io.insert-koin/koin-core/4.2.0&quot; alt=&quot;Maven Central&quot; /&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Unstable&lt;/strong&gt; Version : &lt;a href=&quot;https://mvnrepository.com/artifact/io.insert-koin/koin-core&quot;&gt;&lt;img src=&quot;https://img.shields.io/maven-central/v/io.insert-koin/koin-core&quot; alt=&quot;Maven Central&quot; /&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Take a look at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://insert-koin.io/docs/support/releases&quot;&gt;Release Upgrade Guide&lt;/a&gt; to anticipate your next version upgrade.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://insert-koin.io/docs/support/&quot;&gt;Versioning&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://insert-koin.io/docs/support/api-stability&quot;&gt;API Stability&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Community &amp;amp; Enterprise Support 💬&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Come talk on slack &lt;a href=&quot;https://kotlinlang.slack.com/?redir=%2Fmessages%2Fkoin&quot;&gt;#koin&lt;/a&gt; channel&lt;/li&gt; 
+ &lt;li&gt;Post your question on &lt;a href=&quot;https://stackoverflow.com/questions/tagged/koin&quot;&gt;Stackoverflow&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Found a bug or a problem? Open an issue on &lt;a href=&quot;https://github.com/InsertKoinIO/koin/issues&quot;&gt;Github issues&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Opt into &lt;a href=&quot;https://kotzilla.io/koin-lts&quot;&gt;Koin 3.5 LTS&lt;/a&gt; SLA-backed updates, long-term maintenance, and direct access to Kotzilla experts&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Mobile Developer Observability Tools 🛠️&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Koin Plugin&lt;/strong&gt; can be freely downloaded on &lt;a href=&quot;https://plugins.jetbrains.com/plugin/26131-koin-dependency-injection-official-/versions/stable&quot;&gt;Jetbrains Marketplace&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;The pragmatic Kotlin and Kotlin Multiplatform Dependency Injection framework now with native support for IntelliJ IDEA and Android Studio.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Kotzilla Platform&lt;/strong&gt; Free signup on &lt;a href=&quot;https://kotzilla.io&quot;&gt;Kotzilla&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;is a console-based suite with connected cloud services that visualizes your Koin module structure, monitors runtime performance and memory metrics, provides advanced debugging and tracing, and seamlessly integrates with Kotlin Multiplatform projects.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Latest News &amp;amp; Resources 🌐&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Official Website: &lt;a href=&quot;https://insert-koin.io&quot;&gt;insert-koin.io&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Twitter: &lt;a href=&quot;https://twitter.com/insertkoin_io&quot;&gt;@insertkoin_io&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Blog: &lt;a href=&quot;https://blog.insert-koin.io&quot;&gt;Koin Developers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Newsletter: &lt;a href=&quot;https://bit.ly/koin_newsletter&quot;&gt;Koin Newsletter&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Tutorials: &lt;a href=&quot;https://insert-koin.io/docs/quickstart/kotlin&quot;&gt;Koin Tutorials&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing 🛠&lt;/h2&gt; 
+&lt;p&gt;Want to help or share a proposal about Koin? Problem with a specific feature?&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Open an issue to explain the issue you want to solve &lt;a href=&quot;https://github.com/InsertKoinIO/koin/issues&quot;&gt;Open an issue&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Come talk on slack &lt;a href=&quot;https://kotlinlang.slack.com/?redir=%2Fmessages%2Fkoin-dev&quot;&gt;#koin-dev&lt;/a&gt; channel&lt;/li&gt; 
+ &lt;li&gt;After discussion to validate your ideas, you can open a PR or even a draft PR if the contribution is a big one &lt;a href=&quot;https://github.com/InsertKoinIO/koin/pulls&quot;&gt;Current PRs&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Additional readings about basic setup: &lt;a href=&quot;https://github.com/InsertKoinIO/koin/raw/master/CONTRIBUTING.adoc&quot;&gt;https://github.com/InsertKoinIO/koin/blob/master/CONTRIBUTING.adoc&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Contributors&lt;/h3&gt; 
+&lt;p&gt;Thank you all for your work! ❤️&lt;/p&gt; 
+&lt;a href=&quot;https://github.com/InsertKoinIO/koin/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=InsertKoinIO/koin&quot; /&gt; &lt;/a&gt; 
+&lt;h2&gt;OpenCollective - Sponsorship ❤️&lt;/h2&gt; 
+&lt;p&gt;Support this project by becoming a sponsor and be displayed on the offcial website. [&lt;a href=&quot;https://opencollective.com/koin#sponsor&quot;&gt;Help us and Become a sponsor!&lt;/a&gt;]&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2b9f2519b46cf033df2d58b474d81ca6b767515b6b88a9bd1005fd7df61d22f6/InsertKoinIO/koin" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>brosssh/morphe-patches</title>
+      <link>https://github.com/brosssh/morphe-patches</link>
+      <description>&lt;p&gt;🧩 Morphe patches for a few apps I care about&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;☔ Brosssh Fork of Morphe Patches&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/brosssh/morphe-patches/release.yml&quot; alt=&quot;GitHub Workflow Status (with event)&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/License-GPL%20v3-yellow.svg?sanitize=true&quot; alt=&quot;GPLv3 License&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;This repository contains patches I made for some apps I care about.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;App&lt;/th&gt; 
+   &lt;th&gt;Package&lt;/th&gt; 
+   &lt;th&gt;Patches&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Instagram&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;com.instagram.android&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Hide Ads&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Hide suggested content&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Limit feed to following profiles&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Hide navigation buttons&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Hide explore feed&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Disable reels scrolling&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Hide stories from home&lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Hide reshare/repost button&lt;/li&gt;
+    &lt;/ul&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Chargeprice&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;fr.chargeprice.app&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Unlock Premium features&lt;/li&gt;
+    &lt;/ul&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Komoot&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;de.komoot.android&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Unlock Premium features&lt;/li&gt;
+    &lt;/ul&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Mapy&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;cz.seznam.mapy&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Unlock Premium features&lt;/li&gt;
+    &lt;/ul&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Park4night&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;fr.tramb.park4night&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;
+    &lt;ul&gt;
+     &lt;li&gt;Unlock Pro features&lt;/li&gt;
+    &lt;/ul&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;How to use&lt;/h2&gt; 
+&lt;p&gt;Install Morphe manager from &lt;a href=&quot;https://morphe.software/&quot;&gt;their website&lt;/a&gt;, then simply click on this link to install my patches in the Morphe manager: &lt;a href=&quot;https://morphe.software/add-source?github=brosssh/morphe-patches&quot;&gt;https://morphe.software/add-source?github=brosssh/morphe-patches&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Alternatively, add &lt;code&gt;https://github.com/brosssh/morphe-patches&lt;/code&gt; as remote URL.&lt;/p&gt; 
+&lt;h2&gt;Here for Instagram?&lt;/h2&gt; 
+&lt;h3&gt;What patches do I have?&lt;/h3&gt; 
+&lt;p&gt;This repo contains a &lt;strong&gt;small, curated set of patches&lt;/strong&gt; focused on providing &lt;strong&gt;the most distraction-free experience possible&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Only patches that support this goal are included.&lt;/strong&gt; I intentionally keep the number of patches low so they can be better maintained and more reliable across new app versions.&lt;/p&gt; 
+&lt;h3&gt;Why should I use this instead of &lt;a href=&quot;https://github.com/crimera/piko&quot;&gt;Piko&lt;/a&gt;?&lt;/h3&gt; 
+&lt;p&gt;Well you don&#39;t really have to choose. With Morphe, patches can be combined from multiple sources. You could add patches from Piko and a specific patch from my repo.&lt;/p&gt; 
+&lt;p&gt;In general, prefer &lt;strong&gt;my repo&lt;/strong&gt; if you want &lt;strong&gt;more curated and stable patches&lt;/strong&gt; that aims to a distraction free experience, &lt;strong&gt;Piko&lt;/strong&gt; is preferred if you want &lt;strong&gt;more features&lt;/strong&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/dffca90f5cc499d6872f15bd9c0e12a135de7beb0cc749d66a0dae55465e8787/brosssh/morphe-patches" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>duckduckgo/Android</title>
+      <link>https://github.com/duckduckgo/Android</link>
+      <description>&lt;p&gt;DuckDuckGo Android App&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;DuckDuckGo Android&lt;/h1&gt; 
+&lt;p&gt;Welcome to our android application. We are excited to engage the community in development, see &lt;a href=&quot;https://raw.githubusercontent.com/duckduckgo/Android/develop/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;We are hiring!&lt;/h2&gt; 
+&lt;p&gt;DuckDuckGo is growing fast and we continue to expand our fully distributed team. We embrace diverse perspectives, and seek out passionate, self-motivated people, committed to our shared vision of raising the standard of trust online. If you are a senior software engineer capable in either iOS or Android, visit our &lt;a href=&quot;https://duckduckgo.com/hiring/#open&quot;&gt;careers&lt;/a&gt; page to find out more about our openings!&lt;/p&gt; 
+&lt;h2&gt;Building the Project&lt;/h2&gt; 
+&lt;p&gt;We use git submodules and so when you are checking out the app, you&#39;ll need to ensure the submodules are initialized properly. You can use the &lt;code&gt;--recursive&lt;/code&gt; flag when cloning the project to do this.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone --recursive https://github.com/duckduckgo/android.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, if you already have the project checked out, you can initialize the submodules manually.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git submodule update --init
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Terminology&lt;/h2&gt; 
+&lt;p&gt;We have taken steps to update our terminology and remove words with problematic racial connotations, most notably the change to &lt;code&gt;main&lt;/code&gt; branches, &lt;code&gt;allow lists&lt;/code&gt;, and &lt;code&gt;blocklists&lt;/code&gt;. Closed issues or PRs may contain deprecated terminology that should not be used going forward.&lt;/p&gt; 
+&lt;h2&gt;Contribute&lt;/h2&gt; 
+&lt;p&gt;Please refer to &lt;a href=&quot;https://raw.githubusercontent.com/duckduckgo/Android/develop/CONTRIBUTING.md&quot;&gt;contributing&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Discuss&lt;/h2&gt; 
+&lt;p&gt;Contact us at &lt;a href=&quot;https://duckduckgo.com/feedback&quot;&gt;https://duckduckgo.com/feedback&lt;/a&gt; if you have feedback, questions or want to chat. You can also use the feedback form embedded within our Mobile App - to do so please navigate to Settings and select &quot;Leave Feedback&quot;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;DuckDuckGo android is distributed under the Apache 2.0 &lt;a href=&quot;https://raw.githubusercontent.com/duckduckgo/Android/develop/LICENSE&quot;&gt;license&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/1322089b6a11fddf4745d12e13971b73653ac04a05ecbd611d136e26c0afd5b0/duckduckgo/Android" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>komikku-app/komikku</title>
+      <link>https://github.com/komikku-app/komikku</link>
+      <description>&lt;p&gt;Free and open source manga reader for Android&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://komikku-app.github.io&quot;&gt; &lt;img width=&quot;200px&quot; height=&quot;200px&quot; src=&quot;https://raw.githubusercontent.com/komikku-app/komikku/master/.github/readme-images/app-icon.png&quot; /&gt; &lt;/a&gt;
+ &lt;br /&gt; 
+ &lt;a href=&quot;https://trendshift.io/repositories/13696&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://trendshift.io/api/badge/repositories/13696&quot; alt=&quot;komikku-app%2Fkomikku | Trendshift&quot; style=&quot;width: 250px; height: 55px;&quot; width=&quot;250&quot; height=&quot;55&quot; /&gt;&lt;/a&gt; 
+ &lt;h1 align=&quot;center&quot;&gt; Komikku &lt;/h1&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Releases&lt;/th&gt; 
+    &lt;th&gt;Preview&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;
+     &lt;div align=&quot;center&quot;&gt; 
+      &lt;a href=&quot;https://github.com/komikku-app/komikku/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/komikku-app/komikku/latest/total?label=Latest%20Downloads&amp;amp;labelColor=27303D&amp;amp;color=0D1117&amp;amp;logo=github&amp;amp;logoColor=FFFFFF&amp;amp;style=flat&quot; alt=&quot;GitHub downloads&quot; /&gt;&lt;/a&gt; 
+      &lt;a href=&quot;https://github.com/komikku-app/komikku/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/komikku-app/komikku/total?label=Total%20Downloads&amp;amp;labelColor=27303D&amp;amp;color=0D1117&amp;amp;logo=github&amp;amp;logoColor=FFFFFF&amp;amp;style=flat&quot; alt=&quot;GitHub downloads&quot; /&gt;&lt;/a&gt; 
+      &lt;a href=&quot;https://github.com/komikku-app/komikku/actions/workflows/build_release.yml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/komikku-app/komikku/build_release.yml?labelColor=27303D&amp;amp;label=Stable&amp;amp;labelColor=06599d&amp;amp;color=043b69&quot; alt=&quot;Stable build&quot; /&gt;&lt;/a&gt;
+     &lt;/div&gt;&lt;/td&gt; 
+    &lt;td&gt;
+     &lt;div align=&quot;center&quot;&gt; 
+      &lt;a href=&quot;https://github.com/komikku-app/komikku-preview/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/komikku-app/komikku-preview/latest/total?label=Latest%20Downloads&amp;amp;labelColor=27303D&amp;amp;color=0D1117&amp;amp;logo=github&amp;amp;logoColor=FFFFFF&amp;amp;style=flat&quot; alt=&quot;GitHub downloads&quot; /&gt;&lt;/a&gt; 
+      &lt;a href=&quot;https://github.com/komikku-app/komikku-preview/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/komikku-app/komikku-preview/total?label=Total%20Downloads&amp;amp;labelColor=27303D&amp;amp;color=0D1117&amp;amp;logo=github&amp;amp;logoColor=FFFFFF&amp;amp;style=flat&quot; alt=&quot;GitHub downloads&quot; /&gt;&lt;/a&gt; 
+      &lt;a href=&quot;https://github.com/komikku-app/komikku-preview/actions/workflows/build_app.yml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/komikku-app/komikku-preview/build_app.yml?labelColor=27303D&amp;amp;label=Preview&amp;amp;labelColor=2c2c47&amp;amp;color=1c1c39&quot; alt=&quot;Preview build&quot; /&gt;&lt;/a&gt;
+     &lt;/div&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;em&gt;Requires Android 8.0 or higher.&lt;/em&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://discord.gg/85jB7V5AJR&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/1242381704459452488.svg?label=&amp;amp;labelColor=6A7EC2&amp;amp;color=7389D8&amp;amp;logo=discord&amp;amp;logoColor=FFFFFF&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/komikku-app/komikku/actions/workflows/build_push.yml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/komikku-app/komikku/build_push.yml?labelColor=27303D&amp;amp;label=CI&quot; alt=&quot;CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/komikku-app/komikku/master/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/komikku-app/komikku?labelColor=27303D&amp;amp;color=0877d2&quot; alt=&quot;License: Apache-2.0&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hosted.weblate.org/engage/komikku-app/&quot;&gt;&lt;img src=&quot;https://img.shields.io/weblate/progress/komikku-app?labelColor=27303D&amp;amp;color=946300&quot; alt=&quot;Translation status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;h2&gt;Download&lt;/h2&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/komikku-app/komikku/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/komikku-app/komikku.svg?maxAge=3600&amp;amp;label=Stable&amp;amp;labelColor=06599d&amp;amp;color=043b69&quot; alt=&quot;Stable&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/komikku-app/komikku-preview/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/komikku-app/komikku-preview.svg?maxAge=3600&amp;amp;label=Preview&amp;amp;labelColor=2c2c47&amp;amp;color=1c1c39&quot; alt=&quot;Preview&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;em&gt;Requires Android 8.0 or higher.&lt;/em&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/sponsors/cuong-tran&quot; title=&quot;Sponsor me on GitHub&quot;&gt;&lt;img src=&quot;https://custom-icon-badges.demolab.com/badge/-Sponsor-ea4aaa?style=for-the-badge&amp;amp;logo=heart&amp;amp;logoColor=white&quot; alt=&quot;Sponsor me on GitHub&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;div align=&quot;left&quot;&gt;
+   A free and open source manga reader which is based off TachiyomiSY &amp;amp; Mihon/Tachiyomi. This fork is meant to provide new &amp;amp; useful features while regularly take features/updates from Mihon or other forks like SY, J2K and Neko... 
+  &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/komikku-app/komikku/master/.github/readme-images/screens.png&quot; alt=&quot;screenshots of app&quot; /&gt;&lt;/p&gt; 
+  &lt;div align=&quot;left&quot;&gt; 
+   &lt;h2&gt;Features&lt;/h2&gt; 
+   &lt;h3&gt;Komikku&#39;s unique features:&lt;/h3&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt;&lt;code&gt;Suggestions&lt;/code&gt; automatically showing source-website&#39;s recommendations / suggestions / related to current entry for all sources.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Hidden categories&lt;/code&gt; to hide yours things from &lt;em&gt;nosy&lt;/em&gt; people.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Auto theme color&lt;/code&gt; based on each entry&#39;s cover for entry View &amp;amp; Reader.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;App custom theme&lt;/code&gt; with &lt;code&gt;Color palettes&lt;/code&gt; for endless color lover.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Bulk-favorite&lt;/code&gt; multiple entries all at once.&lt;/li&gt; 
+    &lt;li&gt;Source &amp;amp; Language icon on Library &amp;amp; various places. (Some language flags are not really accurate)&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Feed&lt;/code&gt; now supports &lt;strong&gt;all&lt;/strong&gt; sources, with more items (20 for now).&lt;/li&gt; 
+    &lt;li&gt;Fast browsing (for who with large library experiencing slow loading)&lt;/li&gt; 
+    &lt;li&gt;Grouped entries in Update tab (inspired by J2K).&lt;/li&gt; 
+    &lt;li&gt;Update notification with manga cover.&lt;/li&gt; 
+    &lt;li&gt;Auto &lt;code&gt;2-way sync&lt;/code&gt; progress with trackers.&lt;/li&gt; 
+    &lt;li&gt;Chips for &lt;code&gt;Saved search&lt;/code&gt; in source browse&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Panorama cover&lt;/code&gt; showing wide cover in full.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Merge multiple&lt;/code&gt; library entries together at same time.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Range-selection&lt;/code&gt; for Migration.&lt;/li&gt; 
+    &lt;li&gt;Ability to &lt;code&gt;enable/disable repo&lt;/code&gt;, with icon.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Update Error&lt;/code&gt; screen &amp;amp; migrating them away.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;to-be-updated&lt;/code&gt; screen: which entries are going to be checked with smart-update?&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Search for sources&lt;/code&gt; &amp;amp; Quick NSFW sources filter in Extensions, Browse &amp;amp; Migration screen.&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;Feed&lt;/code&gt; backup/restore/sync/re-order.&lt;/li&gt; 
+    &lt;li&gt;Long-click to add/remove single entry to/from library, everywhere.&lt;/li&gt; 
+    &lt;li&gt;Docking Read/Resume button to left/right.&lt;/li&gt; 
+    &lt;li&gt;In-app progress banner shows Library syncing / Backup restoring / Library updating progress.&lt;/li&gt; 
+    &lt;li&gt;Auto-install app update.&lt;/li&gt; 
+    &lt;li&gt;Configurable interval to refresh entries from downloaded storage.&lt;/li&gt; 
+    &lt;li&gt;Forked from SY so everything from SY.&lt;/li&gt; 
+    &lt;li&gt;Always up-to-date with Mihon &amp;amp; SY&lt;/li&gt; 
+    &lt;li&gt;More app themes &amp;amp; better UI, improvements...&lt;/li&gt; 
+   &lt;/ul&gt; 
+   &lt;details&gt; 
+    &lt;summary&gt;Features from Mihon / Tachiyomi&lt;/summary&gt; 
+    &lt;h4&gt;All up-to-date features from Mihon / Tachiyomi (original), include:&lt;/h4&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Online reading from a variety of sources&lt;/li&gt; 
+     &lt;li&gt;Local reading of downloaded content&lt;/li&gt; 
+     &lt;li&gt;A configurable reader with multiple viewers, reading directions and other settings.&lt;/li&gt; 
+     &lt;li&gt;Tracker support: &lt;a href=&quot;https://myanimelist.net/&quot;&gt;MyAnimeList&lt;/a&gt;, &lt;a href=&quot;https://anilist.co/&quot;&gt;AniList&lt;/a&gt;, &lt;a href=&quot;https://kitsu.app/&quot;&gt;Kitsu&lt;/a&gt;, &lt;a href=&quot;https://mangaupdates.com&quot;&gt;MangaUpdates&lt;/a&gt;, &lt;a href=&quot;https://shikimori.one&quot;&gt;Shikimori&lt;/a&gt;, &lt;a href=&quot;https://bgm.tv/&quot;&gt;Bangumi&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;Categories to organize your library&lt;/li&gt; 
+     &lt;li&gt;Light and dark themes&lt;/li&gt; 
+     &lt;li&gt;Schedule updating your library for new chapters&lt;/li&gt; 
+     &lt;li&gt;Create backups locally to read offline or to your desired cloud service&lt;/li&gt; 
+     &lt;li&gt;Continue reading button in library&lt;/li&gt; 
+    &lt;/ul&gt; 
+   &lt;/details&gt; 
+   &lt;details&gt; 
+    &lt;summary&gt;Features from Tachiyomi SY&lt;/summary&gt; 
+    &lt;h4&gt;All features from TachiyomiSY:&lt;/h4&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Feed tab, where you can easily view the latest entries or saved search from multiple sources at same time.&lt;/li&gt; 
+     &lt;li&gt;Automatic webtoon detection, allowing the reader to switch to webtoon mode automatically when viewing one&lt;/li&gt; 
+     &lt;li&gt;Manga recommendations, uses MAL and Anilist, as well as Neko Similar Manga for Mangadex manga (Thanks to Az, She11Shocked, Carlos, and Goldbattle)&lt;/li&gt; 
+     &lt;li&gt;Lewd filter, hide the lewd manga in your library when you want to&lt;/li&gt; 
+     &lt;li&gt;Tracking filter, filter your tracked manga so you can see them or see non-tracked manga, made by She11Shocked&lt;/li&gt; 
+     &lt;li&gt;Search tracking status in library, made by She11Shocked&lt;/li&gt; 
+     &lt;li&gt;Custom categories for sources, liked the pinned sources, but you can make your own versions and put any sources in them&lt;/li&gt; 
+     &lt;li&gt;Manga info edit&lt;/li&gt; 
+     &lt;li&gt;Manga Cover view + share and save&lt;/li&gt; 
+     &lt;li&gt;Dynamic Categories, view the library in multiple ways&lt;/li&gt; 
+     &lt;li&gt;Smart background for reading modes like LTR or Vertical, changes the background based on the page color&lt;/li&gt; 
+     &lt;li&gt;Force disable webtoon zoom&lt;/li&gt; 
+     &lt;li&gt;Hentai features enable/disable, in advanced settings&lt;/li&gt; 
+     &lt;li&gt;Quick clean titles&lt;/li&gt; 
+     &lt;li&gt;Source migration, migrate all your manga from one source to another&lt;/li&gt; 
+     &lt;li&gt;Saving searches&lt;/li&gt; 
+     &lt;li&gt;Autoscroll&lt;/li&gt; 
+     &lt;li&gt;Page preload customization&lt;/li&gt; 
+     &lt;li&gt;Customize image cache size&lt;/li&gt; 
+     &lt;li&gt;Batch import of custom sources and featured extensions&lt;/li&gt; 
+     &lt;li&gt;Advanced source settings page, searching, enable/disable all&lt;/li&gt; 
+     &lt;li&gt;Click tag for local search, long click tag for global search&lt;/li&gt; 
+     &lt;li&gt;Merge multiple of the same manga from different sources&lt;/li&gt; 
+     &lt;li&gt;Drag and drop library sorting&lt;/li&gt; 
+     &lt;li&gt;Library search engine, includes exclude, quotes as absolute, and a bunch of other ways to search&lt;/li&gt; 
+     &lt;li&gt;New E-Hentai/ExHentai features, such as language settings and watched list settings&lt;/li&gt; 
+     &lt;li&gt;Enhanced views for internal and integrated sources&lt;/li&gt; 
+     &lt;li&gt;Enhanced usability for internal and delegated sources&lt;/li&gt; 
+    &lt;/ul&gt; 
+    &lt;p&gt;Custom sources:&lt;/p&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;E-Hentai/ExHentai&lt;/li&gt; 
+    &lt;/ul&gt; 
+    &lt;p&gt;Additional features for some extensions, features include custom description, opening in app, batch add to library, and a bunch of other things based on the source:&lt;/p&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;8Muses (EroMuse)&lt;/li&gt; 
+     &lt;li&gt;HBrowse&lt;/li&gt; 
+     &lt;li&gt;Mangadex&lt;/li&gt; 
+     &lt;li&gt;NHentai&lt;/li&gt; 
+     &lt;li&gt;Puruin&lt;/li&gt; 
+     &lt;li&gt;LANraragi&lt;/li&gt; 
+    &lt;/ul&gt; 
+   &lt;/details&gt; 
+   &lt;h2&gt;Issues, Feature Requests and Contributing&lt;/h2&gt; 
+   &lt;p&gt;Pull requests are welcome. For major changes, please open an issue first to discuss what you would like to change.&lt;/p&gt; 
+   &lt;details&gt;
+    &lt;summary&gt;Issues&lt;/summary&gt; 
+    &lt;p&gt;&lt;a href=&quot;https://komikku-app.github.io/&quot;&gt;Website&lt;/a&gt;&lt;/p&gt; 
+    &lt;ol&gt; 
+     &lt;li&gt;&lt;strong&gt;Before reporting a new issue, take a look at the &lt;a href=&quot;https://komikku-app.github.io/docs/faq/general&quot;&gt;FAQ&lt;/a&gt;, the &lt;a href=&quot;https://github.com/komikku-app/komikku/releases&quot;&gt;changelog&lt;/a&gt; and the already opened &lt;a href=&quot;https://github.com/komikku-app/komikku/issues&quot;&gt;issues&lt;/a&gt;.&lt;/strong&gt;&lt;/li&gt; 
+     &lt;li&gt;If you are unsure, ask here: &lt;a href=&quot;https://discord.gg/85jB7V5AJR&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/1242381704459452488.svg?label=&amp;amp;labelColor=6A7EC2&amp;amp;color=7389D8&amp;amp;logo=discord&amp;amp;logoColor=FFFFFF&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ol&gt; 
+   &lt;/details&gt; 
+   &lt;details&gt;
+    &lt;summary&gt;Bugs&lt;/summary&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Include version (More → About → Version)&lt;/li&gt; 
+     &lt;li&gt;If not latest, try updating, it may have already been solved&lt;/li&gt; 
+     &lt;li&gt;Preview version is equal to the number of commits as seen on the main page&lt;/li&gt; 
+     &lt;li&gt;Include steps to reproduce (if not obvious from description)&lt;/li&gt; 
+     &lt;li&gt;Include screenshot (if needed)&lt;/li&gt; 
+     &lt;li&gt;If it could be device-dependent, try reproducing on another device (if possible)&lt;/li&gt; 
+     &lt;li&gt;Don&#39;t group unrelated requests into one issue&lt;/li&gt; 
+    &lt;/ul&gt; 
+    &lt;p&gt;Use the &lt;a href=&quot;https://github.com/komikku-app/komikku/issues/new/choose&quot;&gt;issue forms&lt;/a&gt; to submit a bug.&lt;/p&gt; 
+   &lt;/details&gt; 
+   &lt;details&gt;
+    &lt;summary&gt;Feature Requests&lt;/summary&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Write a detailed issue, explaining what it should do or how.&lt;/li&gt; 
+     &lt;li&gt;Include screenshot (if needed).&lt;/li&gt; 
+    &lt;/ul&gt; 
+   &lt;/details&gt; 
+   &lt;details&gt;
+    &lt;summary&gt;Contributing&lt;/summary&gt; 
+    &lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/komikku-app/komikku/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;.&lt;/p&gt; 
+   &lt;/details&gt; 
+   &lt;details&gt;
+    &lt;summary&gt;Code of Conduct&lt;/summary&gt; 
+    &lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/komikku-app/komikku/master/CODE_OF_CONDUCT.md&quot;&gt;CODE_OF_CONDUCT.md&lt;/a&gt;.&lt;/p&gt; 
+   &lt;/details&gt; 
+   &lt;div align=&quot;center&quot;&gt; 
+    &lt;h3&gt;Credits&lt;/h3&gt; 
+    &lt;p&gt;Thank you to all the people who have contributed!&lt;/p&gt; 
+    &lt;a href=&quot;https://github.com/komikku-app/komikku/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=komikku-app/komikku&quot; alt=&quot;Komikku app contributors&quot; title=&quot;Komikku app contributors&quot; width=&quot;800&quot; /&gt; &lt;/a&gt; 
+    &lt;p&gt;&lt;img src=&quot;https://count.getloli.com/get/@komikku-app?theme=capoo-2&quot; alt=&quot;Visitor Count&quot; /&gt;&lt;/p&gt; 
+    &lt;h3&gt;Disclaimer&lt;/h3&gt; 
+    &lt;p&gt;The developer(s) of this application does not have any affiliation with the content providers available, and this application hosts zero content.&lt;/p&gt; 
+    &lt;div align=&quot;left&quot;&gt; 
+     &lt;h2&gt;License&lt;/h2&gt; 
+     &lt;pre&gt;&lt;code&gt;Copyright 2015 Javier Tomás
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+http://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+&lt;/code&gt;&lt;/pre&gt; 
+    &lt;/div&gt;
+   &lt;/div&gt;
+  &lt;/div&gt;
+ &lt;/div&gt;
+&lt;/div&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/743200516/a7a4f6ec-6117-4b17-a2ee-ad747cc0135d" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>connectbot/connectbot</title>
+      <link>https://github.com/connectbot/connectbot</link>
+      <description>&lt;p&gt;ConnectBot is the first SSH client for Android.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/connectbot/connectbot/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/connectbot/connectbot/actions/workflows/ci.yml/badge.svg?branch=main&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;ConnectBot&lt;/h1&gt; 
+&lt;p&gt;ConnectBot is a &lt;a href=&quot;https://en.wikipedia.org/wiki/Secure_Shell&quot;&gt;Secure Shell&lt;/a&gt; client for Android that lets you connect to remote servers over a cryptographically secure link.&lt;/p&gt; 
+&lt;h2&gt;How to Install&lt;/h2&gt; 
+&lt;h3&gt;Google Play&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://play.google.com/store/apps/details?id=org.connectbot&quot;&gt;&lt;img src=&quot;https://developer.android.com/images/brand/en_generic_rgb_wo_60.png&quot; alt=&quot;Get it on Google Play&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;The easiest way to get ConnectBot is to &lt;a href=&quot;https://play.google.com/store/apps/details?id=org.connectbot&quot;&gt;install from Google Play Store&lt;/a&gt;. If you have installed from a downloaded APK, Google Play Store can upgrade your installed version to the latest version. However, once it has upgraded &lt;em&gt;you can&#39;t install a version from the releases on GitHub anymore&lt;/em&gt; (due to key rotation that upgrades the package signature to a more secure algorithm).&lt;/p&gt; 
+&lt;h3&gt;Download a release&lt;/h3&gt; 
+&lt;p&gt;ConnectBot can be downloaded from &lt;a href=&quot;https://github.com/connectbot/connectbot/releases&quot;&gt;releases&lt;/a&gt; on GitHub. There are two versions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;google&lt;/code&gt; — for a version that uses Google Play Services to handle upgrading the cryptography provider&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;oss&lt;/code&gt; — includes the cryptography provider in the APK which increases its size by a few megabytes.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Architecture&lt;/h2&gt; 
+&lt;h3&gt;Major dependencies&lt;/h3&gt; 
+&lt;p&gt;The ConnectBot app that uses two other libraries to provide its functionality:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/connectbot/termlib&quot;&gt;ConnectBot Terminal&lt;/a&gt; — the terminal emulator used by the app is also created and maintained by the ConnectBot author, Kenny Root.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/connectbot/sshlib&quot;&gt;ConnectBot fork of Trilead SSH-2&lt;/a&gt; — a heavily modified fork of the original Trilead SSH-2 Java library written by Christian Plattner.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Compiling&lt;/h2&gt; 
+&lt;h3&gt;Android Studio&lt;/h3&gt; 
+&lt;p&gt;ConnectBot is most easily developed in &lt;a href=&quot;https://developer.android.com/studio/&quot;&gt;Android Studio&lt;/a&gt;. You can import this project directly from its project creation screen by importing from the GitHub URL.&lt;/p&gt; 
+&lt;h3&gt;Command line&lt;/h3&gt; 
+&lt;p&gt;To compile ConnectBot using &lt;code&gt;gradlew&lt;/code&gt;, you must first specify where your Android SDK is via the &lt;code&gt;ANDROID_SDK_HOME&lt;/code&gt; environment variable. Then you can invoke the Gradle wrapper to build:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;./gradlew build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Continuous Integration&lt;/h3&gt; 
+&lt;p&gt;ConnectBot uses &lt;a href=&quot;https://github.com/connectbot/connectbot/actions&quot;&gt;GitHub Actions&lt;/a&gt; for continuous integration. The workflow is defined in &lt;code&gt;.github/workflows/ci.yml&lt;/code&gt;.&lt;/p&gt; 
+&lt;h4&gt;Running Workflows Locally with act&lt;/h4&gt; 
+&lt;p&gt;In general, simply running &lt;code&gt;./gradlew build&lt;/code&gt; should cover all the checks run in the GitHub Actions continuous integration workflow, but you can run GitHub Actions workflows locally using &lt;a href=&quot;https://github.com/nektos/act&quot;&gt;&lt;code&gt;nektos/act&lt;/code&gt;&lt;/a&gt;. This requires Docker to be installed and running.&lt;/p&gt; 
+&lt;p&gt;To run the main CI workflow (&lt;code&gt;ci.yml&lt;/code&gt;):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;act -W .github/workflows/ci.yml
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2f5066b920dd725ff24f56676b312d3593ce55d106eb7343e32fed5e7bc5ef34/connectbot/connectbot" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
