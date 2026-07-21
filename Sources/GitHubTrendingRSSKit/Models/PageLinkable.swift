@@ -7,7 +7,7 @@ public protocol PageLinkable: Hashable {
 }
 
 public extension PageLinkable {
-    func url(ofPeriod period: Period) -> URL {
+    func url(ofPeriod period: Period, spokenLanguage: SpokenLanguage = .unspecified) -> URL {
         let path = URL(string: href)!.path
 
         var components = URLComponents(
@@ -16,9 +16,13 @@ public extension PageLinkable {
         )!
 
         components.path = path
-        components.queryItems = [
+        var queryItems = [
             URLQueryItem(name: "since", value: period.rawValue),
         ]
+        if let code = spokenLanguage.code {
+            queryItems.append(URLQueryItem(name: "spoken_language_code", value: code))
+        }
+        components.queryItems = queryItems
 
         return components.url!
     }

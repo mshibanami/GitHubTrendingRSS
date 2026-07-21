@@ -54,4 +54,17 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(html.contains("hello-world.png"))
         XCTAssertTrue(html.contains("<media:content url=\"https://example.com/hello-world.png\" medium=\"image\" />"))
     }
+
+    func testGenerateRSSWithSpokenLanguage() async throws {
+        let html = try await maker.makeRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/swift"),
+            period: .daily,
+            spokenLanguage: .en,
+            repositories: [
+                Repository(pageLink: RepositoryPageLink(href: "foo/bar"), summary: "foo bar"),
+            ],
+            supportedEmojis: supportedEmojis
+        )
+        XCTAssertFalse(html.isEmpty)
+    }
 }

@@ -138,4 +138,24 @@ final class ModelsTests: XCTestCase {
         let html = try XCTUnwrap(readMeHTML)
         XCTAssertTrue(html.contains(#""https://raw.githubusercontent.com/user/repo/master/hello.svg""#))
     }
+
+    func testPageLinkableURLWithSpokenLanguage() {
+        let link = LanguageTrendingLink(displayName: "Swift", href: "/swift")
+
+        let unspecifiedURL = link.url(ofPeriod: .daily, spokenLanguage: .unspecified)
+        XCTAssertEqual(unspecifiedURL.absoluteString, "https://github.com/swift?since=daily")
+
+        let enURL = link.url(ofPeriod: .daily, spokenLanguage: .en)
+        XCTAssertEqual(enURL.absoluteString, "https://github.com/swift?since=daily&spoken_language_code=en")
+    }
+
+    func testSpokenLanguageOutputDirectory() {
+        let baseURL = URL(fileURLWithPath: "/tmp/output")
+
+        let unspecifiedDir = SpokenLanguage.unspecified.outputDirectory(relativeTo: baseURL, period: .daily)
+        XCTAssertEqual(unspecifiedDir.path, "/tmp/output/daily")
+
+        let enDir = SpokenLanguage.en.outputDirectory(relativeTo: baseURL, period: .weekly)
+        XCTAssertEqual(enDir.path, "/tmp/output/en/weekly")
+    }
 }

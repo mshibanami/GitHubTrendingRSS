@@ -59,56 +59,80 @@ func start() async throws {
         throw MainError.noLanguageTrendingLinks
     }
 
-    for period in Period.allCases {
-        let chunkedLinks = languageLinks.chunked(into: parallelDownloadChunk)
-        
-        for chunk in chunkedLinks {
-            await withTaskGroup(of: Void.self) { group in
-                for link in chunk {
-                    group.addTask {
-                        do {
-                            let repositories = try await gitHubDownloader.fetchRepositories(
-                                ofLink: link,
+    for spokenLanguage in SpokenLanguage.allCases {
+        for period in Period.allCases {
+            let chunkedLinks = languageLinks.chunked(into: parallelDownloadChunk)
+            
+            for chunk in chunkedLinks {
+                await withTaskGroup(of: Void.self) { group in
+                    for link in chunk {
+                        group.addTask {
+                            await processFeed(
+                                link: link,
                                 period: period,
-                                includesReadMeIfExists: Const.popularLanguages.contains(link.name)
+                                spokenLanguage: spokenLanguage,
+                                supportedEmojis: supportedEmojis,
+                                gitHubDownloader: gitHubDownloader,
+                                graphQLManager: graphQLManager,
+                                feedManager: feedManager
                             )
-                            
-                            var updatedRepositories = repositories
-                            if !repositories.isEmpty {
-                                let reposQueryInfo = repositories.map { (owner: $0.pageLink.userID, name: $0.pageLink.repositoryName) }
-                                
-                                do {
-                                    let ogDataMap = try await graphQLManager.fetchRepositoriesOGImages(repositories: reposQueryInfo)
-                                    for i in 0..<updatedRepositories.count {
-                                        if let ogNode = ogDataMap["repo_\(i)"] {
-                                            updatedRepositories[i].openGraphImageUrl = ogNode.openGraphImageUrl
-                                            updatedRepositories[i].usesCustomOpenGraphImage = ogNode.usesCustomOpenGraphImage
-                                        }
-                                    }
-                                } catch {
-                                    NSLog("⚠️ Failed to fetch GraphQL for \(link.name): \(error). Proceeding without OG Images.")
-                                }
-                            }
-                            
-                            try await feedManager.createRSSFile(
-                                repositories: updatedRepositories,
-                                languageTrendingLink: link,
-                                period: period,
-                                supportedEmojis: supportedEmojis
-                            )
-                        } catch {
-                            if let error = error as? DownloadManager.Error,
-                               error == .failedFetching(statusCode: 504) || error == .failedFetching(statusCode: 502) {
-                                // ignore
-                            } else {
-                                NSLog("⚠️ Failed to fetch repositories of \(link.name). Error: \(error)")
-                            }
                         }
                     }
                 }
             }
+        }
+    }
+    
+    _ = try? feedManager.createRSSListFile(languageLinks: languageLinks)
+}
+
+private func processFeed(
+    link: LanguageTrendingLink,
+    period: Period,
+    spokenLanguage: SpokenLanguage,
+    supportedEmojis: [GitHubEmoji],
+    gitHubDownloader: GitHubDownloader,
+    graphQLManager: GitHubGraphQLManager,
+    feedManager: FeedFileCreator
+) async {
+    do {
+        let repositories = try await gitHubDownloader.fetchRepositories(
+            ofLink: link,
+            period: period,
+            spokenLanguage: spokenLanguage,
+            includesReadMeIfExists: Const.popularLanguages.contains(link.name)
+        )
+        
+        var updatedRepositories = repositories
+        if !repositories.isEmpty {
+            let reposQueryInfo = repositories.map { (owner: $0.pageLink.userID, name: $0.pageLink.repositoryName) }
             
-            _ = try? feedManager.createRSSListFile(languageLinks: languageLinks)
+            do {
+                let ogDataMap = try await graphQLManager.fetchRepositoriesOGImages(repositories: reposQueryInfo)
+                for i in 0..<updatedRepositories.count {
+                    if let ogNode = ogDataMap["repo_\(i)"] {
+                        updatedRepositories[i].openGraphImageUrl = ogNode.openGraphImageUrl
+                        updatedRepositories[i].usesCustomOpenGraphImage = ogNode.usesCustomOpenGraphImage
+                    }
+                }
+            } catch {
+                NSLog("⚠️ Failed to fetch GraphQL for \(link.name): \(error). Proceeding without OG Images.")
+            }
+        }
+        
+        try await feedManager.createRSSFile(
+            repositories: updatedRepositories,
+            languageTrendingLink: link,
+            period: period,
+            spokenLanguage: spokenLanguage,
+            supportedEmojis: supportedEmojis
+        )
+    } catch {
+        if let error = error as? DownloadManager.Error,
+           error == .failedFetching(statusCode: 504) || error == .failedFetching(statusCode: 502) {
+            // ignore
+        } else {
+            NSLog("⚠️ Failed to fetch repositories of \(link.name) (\(spokenLanguage.rawValue)). Error: \(error)")
         }
     }
 }

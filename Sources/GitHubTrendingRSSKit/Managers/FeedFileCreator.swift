@@ -11,16 +11,17 @@ public final class FeedFileCreator: @unchecked Sendable {
         rootOutputDirectory = outputDirectory
     }
 
-    @discardableResult public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period, supportedEmojis: [GitHubEmoji]) async throws -> URL {
+    @discardableResult public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period, spokenLanguage: SpokenLanguage, supportedEmojis: [GitHubEmoji]) async throws -> URL {
         let fileManager = FileManager.default
         let feedHTML = try await siteGenerator.makeRSS(
             from: languageTrendingLink,
             period: period,
+            spokenLanguage: spokenLanguage,
             repositories: repositories,
             supportedEmojis: supportedEmojis
         )
 
-        let outputDirectory = rootOutputDirectory.appendingPathComponent(period.rawValue)
+        let outputDirectory = spokenLanguage.outputDirectory(relativeTo: rootOutputDirectory, period: period)
 
         try fileManager.createDirectory(
             at: outputDirectory,

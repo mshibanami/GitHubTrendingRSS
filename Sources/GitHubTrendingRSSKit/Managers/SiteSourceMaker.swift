@@ -53,7 +53,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
         )
     }
 
-    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, repositories: [Repository], supportedEmojis: [GitHubEmoji]) async throws -> String {
+    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, spokenLanguage: SpokenLanguage = .unspecified, repositories: [Repository], supportedEmojis: [GitHubEmoji]) async throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
@@ -76,6 +76,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         let context: [String: Any] = [
             "languageTrendingLink": languageTrendingLink,
+            "spokenLanguage": spokenLanguage,
             "information": information,
             "periodText": period.rawValue.capitalized,
             "pubDate": pubDate,
