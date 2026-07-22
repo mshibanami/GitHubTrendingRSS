@@ -22,7 +22,7 @@ public struct GraphQLError: Decodable {
     }
 }
 
-public struct RepositoryNode: Decodable {
+public struct RepositoryNode: Decodable, Sendable {
     public let openGraphImageUrl: URL
     public let usesCustomOpenGraphImage: Bool
     public let id: String

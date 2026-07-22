@@ -5,7 +5,7 @@
 
 import Foundation
 
-public struct APIReadMe: Codable {
+public struct APIReadMe: Codable, Sendable {
     public enum FileType: CaseIterable {
         case unknown
         case markdown

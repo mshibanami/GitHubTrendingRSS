@@ -13,6 +13,8 @@ public final class GitHubDownloader: Sendable {
     let gitHubPageParser: GitHubPageParser
     private let githubToken: String
 
+    private let readMeCache: AsyncCache<URL, APIReadMe> = AsyncCache()
+
     public init(downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, githubToken: String) {
         self.downloadManager = downloadManager
         self.gitHubPageParser = gitHubPageParser
@@ -59,14 +61,18 @@ public final class GitHubDownloader: Sendable {
         guard let url = components.url else {
             throw DownloadManager.Error.invalidURL
         }
-        let page = try await downloadManager.fetch(url: url, bearerToken: githubToken)
-        guard let data = page.data(using: .utf8) else {
-            throw Error.unsupportedFormat
+        let userID = pageLink.userID
+        let repositoryName = pageLink.repositoryName
+        return try await readMeCache.value(for: url) {
+            let page = try await self.downloadManager.fetch(url: url, bearerToken: self.githubToken)
+            guard let data = page.data(using: .utf8) else {
+                throw Error.unsupportedFormat
+            }
+            var decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
+            decoded.userID = userID
+            decoded.repositoryName = repositoryName
+            return decoded
         }
-        var decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
-        decoded.userID = pageLink.userID
-        decoded.repositoryName = pageLink.repositoryName
-        return decoded
     }
 
     public func fetchTopTrendingPage() async throws -> String {

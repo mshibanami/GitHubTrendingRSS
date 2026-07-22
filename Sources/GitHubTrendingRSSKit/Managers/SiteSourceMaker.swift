@@ -23,6 +23,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
     let information: Information
     let environment: Environment
 
+    private let descriptionHTMLCache: AsyncCache<String, String?> = AsyncCache()
+
     public init(environment: Environment, information: Information) {
         self.environment = environment
         self.information = information
@@ -63,7 +65,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         var repositoryContexts: [(description: String, userID: String, repositoryName: String, url: String, pageLink: RepositoryPageLink, openGraphImageUrl: String?)] = []
         for repository in repositories {
-            let descriptionHTML = try await repository.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis) ?? noDescriptionHTML
+            let cacheKey = "\(repository.pageLink.url.absoluteString)|hasReadMe:\(repository.readMe != nil)"
+            let renderedHTML = try await descriptionHTMLCache.value(for: cacheKey) {
+                try await repository.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis)
+            }
+            let descriptionHTML = renderedHTML ?? noDescriptionHTML
             repositoryContexts.append((
                 description: descriptionHTML.xmlEscaped,
                 userID: repository.pageLink.userID,

@@ -110,7 +110,8 @@ private func processFeed(
             do {
                 let ogDataMap = try await graphQLManager.fetchRepositoriesOGImages(repositories: reposQueryInfo)
                 for i in 0..<updatedRepositories.count {
-                    if let ogNode = ogDataMap["repo_\(i)"] {
+                    let pageLink = updatedRepositories[i].pageLink
+                    if let ogNode = ogDataMap["\(pageLink.userID)/\(pageLink.repositoryName)"] {
                         updatedRepositories[i].openGraphImageUrl = ogNode.openGraphImageUrl
                         updatedRepositories[i].usesCustomOpenGraphImage = ogNode.usesCustomOpenGraphImage
                     }
