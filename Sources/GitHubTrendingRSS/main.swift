@@ -12,7 +12,13 @@ enum MainError: Error {
     case noLanguageTrendingLinks
 }
 
-let parallelDownloadChunk = 4
+struct FeedTarget: Sendable {
+    let spokenLanguage: SpokenLanguage
+    let period: Period
+    let link: LanguageTrendingLink
+}
+
+let maxConcurrentFeedGenerations = 16
 let downloadManager = DownloadManager()
 let gitHubPageParser = GitHubPageParser()
 let gitHubDownloader = GitHubDownloader(
@@ -53,60 +59,53 @@ func start() async throws {
     async let supportedEmojisTask = gitHubDownloader.fetchSupportedEmojis()
 
     let (topTrendingPage, supportedEmojis) = try await (topTrendingPageTask, supportedEmojisTask)
-    
+
     let languageLinks = try gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
     guard !languageLinks.isEmpty else {
         throw MainError.noLanguageTrendingLinks
     }
 
-    for spokenLanguage in SpokenLanguage.allCases {
-        for period in Period.allCases {
-            let chunkedLinks = languageLinks.chunked(into: parallelDownloadChunk)
-            
-            for chunk in chunkedLinks {
-                await withTaskGroup(of: Void.self) { group in
-                    for link in chunk {
-                        group.addTask {
-                            await processFeed(
-                                link: link,
-                                period: period,
-                                spokenLanguage: spokenLanguage,
-                                supportedEmojis: supportedEmojis,
-                                gitHubDownloader: gitHubDownloader,
-                                graphQLManager: graphQLManager,
-                                feedManager: feedManager
-                            )
-                        }
-                    }
-                }
+    let feedTargets: [FeedTarget] = SpokenLanguage.allCases.flatMap { spokenLanguage in
+        Period.allCases.flatMap { period in
+            languageLinks.map { link in
+                FeedTarget(spokenLanguage: spokenLanguage, period: period, link: link)
             }
         }
     }
-    
+
+    try await feedTargets.forEachConcurrent(maxConcurrency: maxConcurrentFeedGenerations) { target in
+        await processFeed(
+            target: target,
+            supportedEmojis: supportedEmojis,
+            gitHubDownloader: gitHubDownloader,
+            graphQLManager: graphQLManager,
+            feedManager: feedManager
+        )
+    }
+
     _ = try? feedManager.createRSSListFile(languageLinks: languageLinks)
 }
 
 private func processFeed(
-    link: LanguageTrendingLink,
-    period: Period,
-    spokenLanguage: SpokenLanguage,
+    target: FeedTarget,
     supportedEmojis: [GitHubEmoji],
     gitHubDownloader: GitHubDownloader,
     graphQLManager: GitHubGraphQLManager,
     feedManager: FeedFileCreator
 ) async {
+    let link = target.link
     do {
         let repositories = try await gitHubDownloader.fetchRepositories(
             ofLink: link,
-            period: period,
-            spokenLanguage: spokenLanguage,
+            period: target.period,
+            spokenLanguage: target.spokenLanguage,
             includesReadMeIfExists: Const.popularLanguages.contains(link.name)
         )
-        
+
         var updatedRepositories = repositories
         if !repositories.isEmpty {
             let reposQueryInfo = repositories.map { (owner: $0.pageLink.userID, name: $0.pageLink.repositoryName) }
-            
+
             do {
                 let ogDataMap = try await graphQLManager.fetchRepositoriesOGImages(repositories: reposQueryInfo)
                 for i in 0..<updatedRepositories.count {
@@ -120,12 +119,12 @@ private func processFeed(
                 NSLog("⚠️ Failed to fetch GraphQL for \(link.name): \(error). Proceeding without OG Images.")
             }
         }
-        
+
         try await feedManager.createRSSFile(
             repositories: updatedRepositories,
             languageTrendingLink: link,
-            period: period,
-            spokenLanguage: spokenLanguage,
+            period: target.period,
+            spokenLanguage: target.spokenLanguage,
             supportedEmojis: supportedEmojis
         )
     } catch {
@@ -133,7 +132,7 @@ private func processFeed(
            error == .failedFetching(statusCode: 504) || error == .failedFetching(statusCode: 502) {
             // ignore
         } else {
-            NSLog("⚠️ Failed to fetch repositories of \(link.name) (\(spokenLanguage.rawValue)). Error: \(error)")
+            NSLog("⚠️ Failed to fetch repositories of \(link.name) (\(target.spokenLanguage.rawValue)). Error: \(error)")
         }
     }
 }
