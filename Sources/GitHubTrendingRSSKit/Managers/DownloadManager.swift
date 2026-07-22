@@ -47,18 +47,17 @@ public final class DownloadManager: @unchecked Sendable {
             authorization: Self.makeAuthorizationHeaderValue(basicAuthInfo: basicAuthInfo, bearerToken: bearerToken)
         )
 
-        NSLog("-> \(request.httpMethod ?? "???"): \(url.absoluteString)")
-
         let gate = await gateRegistry.gate(forHost: url.host ?? "")
         var currentRetryCount = 0
         while true {
             do {
-                try await gate.cooldown.waitUntilReady()
                 return try await gate.semaphore.withPermit {
-                    try await performRequest(request, gate: gate)
+                    try await gate.cooldown.waitUntilReady()
+                    return try await performRequest(request, gate: gate)
                 }
             } catch {
                 if currentRetryCount >= maxRetryCount {
+                    NSLog("🛑 Giving up after \(currentRetryCount) retries: \(url.absoluteString)")
                     throw error
                 }
 
@@ -71,6 +70,7 @@ public final class DownloadManager: @unchecked Sendable {
                 }
 
                 currentRetryCount += 1
+                NSLog("🔁 Will retry (\(currentRetryCount)/\(maxRetryCount)): \(url.absoluteString)")
                 if shouldSleepFixedInterval {
                     try await Task.sleep(nanoseconds: UInt64(retryInterval * 1_000_000_000))
                 }
@@ -80,6 +80,7 @@ public final class DownloadManager: @unchecked Sendable {
 
     private func performRequest(_ request: URLRequest, gate: HostRequestGate) async throws -> String {
         let url = request.url!
+        NSLog("-> \(request.httpMethod ?? "???"): \(url.absoluteString)")
         let (data, response) = try await session.data(for: request)
 
         guard let httpResponse = response as? HTTPURLResponse else {
@@ -100,6 +101,7 @@ public final class DownloadManager: @unchecked Sendable {
 
             if [429, 403].contains(statusCode) {
                 let cooldown = Self.retryAfterInterval(from: httpResponse) ?? retryInterval
+                NSLog("⏸ Rate limited: pausing requests to \(url.host ?? "?") for \(Int(cooldown))s")
                 await gate.cooldown.beginCooldown(for: cooldown)
             }
             throw Error.failedFetching(statusCode: statusCode)
