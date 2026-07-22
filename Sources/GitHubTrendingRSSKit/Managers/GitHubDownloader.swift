@@ -19,9 +19,9 @@ public final class GitHubDownloader: Sendable {
         self.githubToken = githubToken
     }
 
-    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, includesReadMeIfExists: Bool) async throws -> [Repository] {
+    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, spokenLanguage: SpokenLanguage = .unspecified, includesReadMeIfExists: Bool) async throws -> [Repository] {
         let page = try await downloadManager.fetch(
-            url: languageTrendingLink.url(ofPeriod: period),
+            url: languageTrendingLink.url(ofPeriod: period, spokenLanguage: spokenLanguage),
             bearerToken: githubToken
         )
         
