@@ -19,7 +19,9 @@ struct FeedTarget: Sendable {
 }
 
 let maxConcurrentFeedGenerations = 16
-let downloadManager = DownloadManager()
+let downloadManager = DownloadManager(
+    maxConcurrentRequestsByHost: [Const.gitHubBaseURL.host ?? "github.com": 2]
+)
 let gitHubPageParser = GitHubPageParser()
 let gitHubDownloader = GitHubDownloader(
     downloadManager: downloadManager,

@@ -14,11 +14,20 @@ public final class DownloadManager: @unchecked Sendable {
     var maxRetryCount = 10
     var retryInterval: TimeInterval = 2 * 60
 
-    private let session: URLSession
-    private let requestSemaphore: AsyncSemaphore
+    static let maxCooldownInterval: TimeInterval = 15 * 60
 
-    public init(maxConcurrentRequests: Int = 8, session: URLSession = .shared) {
-        requestSemaphore = AsyncSemaphore(limit: maxConcurrentRequests)
+    private let session: URLSession
+    private let gateRegistry: HostRequestGateRegistry
+
+    public init(
+        maxConcurrentRequests: Int = 8,
+        maxConcurrentRequestsByHost: [String: Int] = [:],
+        session: URLSession = .shared
+    ) {
+        gateRegistry = HostRequestGateRegistry(
+            defaultLimit: maxConcurrentRequests,
+            limitsByHost: maxConcurrentRequestsByHost
+        )
         self.session = session
     }
 
@@ -40,45 +49,76 @@ public final class DownloadManager: @unchecked Sendable {
 
         NSLog("-> \(request.httpMethod ?? "???"): \(url.absoluteString)")
 
+        let gate = await gateRegistry.gate(forHost: url.host ?? "")
         var currentRetryCount = 0
         while true {
             do {
-                return try await requestSemaphore.withPermit {
-                    let (data, response) = try await session.data(for: request)
-
-                    guard let httpResponse = response as? HTTPURLResponse else {
-                        throw Error.unsupportedFormat
-                    }
-
-                    if httpResponse.statusCode == 200 {
-                        guard let htmlResponse = String(data: data, encoding: .utf8) else {
-                            assertionFailure()
-                            throw Error.brokenResponseData
-                        }
-                        return htmlResponse
-                    } else {
-                        let rateLimitRemainingKey = "X-RateLimit-Remaining"
-                        let remaining = httpResponse.value(forHTTPHeaderField: rateLimitRemainingKey) ?? "-"
-                        let statusCode = httpResponse.statusCode
-                        NSLog("<- \(statusCode) \(url.absoluteString) [\(rateLimitRemainingKey): \(remaining)]")
-                        throw Error.failedFetching(statusCode: httpResponse.statusCode)
-                    }
+                try await gate.cooldown.waitUntilReady()
+                return try await gate.semaphore.withPermit {
+                    try await performRequest(request, gate: gate)
                 }
             } catch {
                 if currentRetryCount >= maxRetryCount {
                     throw error
                 }
 
+                var shouldSleepFixedInterval = true
                 if let err = error as? Error, case let .failedFetching(statusCode) = err {
                     if ![429, 403, 502].contains(statusCode) {
                         throw error
                     }
+                    shouldSleepFixedInterval = statusCode == 502
                 }
 
                 currentRetryCount += 1
-                try await Task.sleep(nanoseconds: UInt64(retryInterval * 1_000_000_000))
+                if shouldSleepFixedInterval {
+                    try await Task.sleep(nanoseconds: UInt64(retryInterval * 1_000_000_000))
+                }
             }
         }
+    }
+
+    private func performRequest(_ request: URLRequest, gate: HostRequestGate) async throws -> String {
+        let url = request.url!
+        let (data, response) = try await session.data(for: request)
+
+        guard let httpResponse = response as? HTTPURLResponse else {
+            throw Error.unsupportedFormat
+        }
+
+        if httpResponse.statusCode == 200 {
+            guard let htmlResponse = String(data: data, encoding: .utf8) else {
+                assertionFailure()
+                throw Error.brokenResponseData
+            }
+            return htmlResponse
+        } else {
+            let statusCode = httpResponse.statusCode
+            let rateLimitRemainingKey = "X-RateLimit-Remaining"
+            let remaining = httpResponse.value(forHTTPHeaderField: rateLimitRemainingKey) ?? "-"
+            NSLog("<- \(statusCode) \(url.absoluteString) [\(rateLimitRemainingKey): \(remaining)]")
+
+            if [429, 403].contains(statusCode) {
+                let cooldown = Self.retryAfterInterval(from: httpResponse) ?? retryInterval
+                await gate.cooldown.beginCooldown(for: cooldown)
+            }
+            throw Error.failedFetching(statusCode: statusCode)
+        }
+    }
+
+    static func retryAfterInterval(from response: HTTPURLResponse) -> TimeInterval? {
+        if let retryAfter = response.value(forHTTPHeaderField: "Retry-After"),
+           let seconds = TimeInterval(retryAfter), seconds > 0 {
+            return min(seconds, maxCooldownInterval)
+        }
+        if let reset = response.value(forHTTPHeaderField: "X-RateLimit-Reset"),
+           let epoch = TimeInterval(reset) {
+            let interval = epoch - Date().timeIntervalSince1970
+            if interval > 0 {
+                return min(interval, maxCooldownInterval)
+            }
+        }
+        return nil
     }
 
     private func makeRequest(
