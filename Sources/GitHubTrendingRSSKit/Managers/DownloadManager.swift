@@ -22,11 +22,13 @@ public final class DownloadManager: @unchecked Sendable {
     public init(
         maxConcurrentRequests: Int = 8,
         maxConcurrentRequestsByHost: [String: Int] = [:],
+        minRequestIntervalByHost: [String: TimeInterval] = [:],
         session: URLSession = .shared
     ) {
         gateRegistry = HostRequestGateRegistry(
             defaultLimit: maxConcurrentRequests,
-            limitsByHost: maxConcurrentRequestsByHost
+            limitsByHost: maxConcurrentRequestsByHost,
+            minRequestIntervalsByHost: minRequestIntervalByHost
         )
         self.session = session
     }
@@ -53,6 +55,7 @@ public final class DownloadManager: @unchecked Sendable {
             do {
                 return try await gate.semaphore.withPermit {
                     try await gate.cooldown.waitUntilReady()
+                    try await gate.pacer?.waitTurn()
                     return try await performRequest(request, gate: gate)
                 }
             } catch {

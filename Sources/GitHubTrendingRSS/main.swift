@@ -18,9 +18,11 @@ struct FeedTarget: Sendable {
     let link: LanguageTrendingLink
 }
 
-let maxConcurrentFeedGenerations = 16
+let maxConcurrentLanguageGenerations = 16
+let gitHubHost = Const.gitHubBaseURL.host ?? "github.com"
 let downloadManager = DownloadManager(
-    maxConcurrentRequestsByHost: [Const.gitHubBaseURL.host ?? "github.com": 2]
+    maxConcurrentRequestsByHost: [gitHubHost: 2],
+    minRequestIntervalByHost: [gitHubHost: 0.75]
 )
 let gitHubPageParser = GitHubPageParser()
 let gitHubDownloader = GitHubDownloader(
@@ -67,17 +69,9 @@ func start() async throws {
         throw MainError.noLanguageTrendingLinks
     }
 
-    let feedTargets: [FeedTarget] = SpokenLanguage.allCases.flatMap { spokenLanguage in
-        Period.allCases.flatMap { period in
-            languageLinks.map { link in
-                FeedTarget(spokenLanguage: spokenLanguage, period: period, link: link)
-            }
-        }
-    }
-
-    try await feedTargets.forEachConcurrent(maxConcurrency: maxConcurrentFeedGenerations) { target in
-        await processFeed(
-            target: target,
+    try await languageLinks.forEachConcurrent(maxConcurrency: maxConcurrentLanguageGenerations) { link in
+        await processLanguage(
+            link: link,
             supportedEmojis: supportedEmojis,
             gitHubDownloader: gitHubDownloader,
             graphQLManager: graphQLManager,
@@ -88,13 +82,97 @@ func start() async throws {
     _ = try? feedManager.createRSSListFile(languageLinks: languageLinks)
 }
 
+private func processLanguage(
+    link: LanguageTrendingLink,
+    supportedEmojis: [GitHubEmoji],
+    gitHubDownloader: GitHubDownloader,
+    graphQLManager: GitHubGraphQLManager,
+    feedManager: FeedFileCreator
+) async {
+    let periodsLongestFirst: [Period] = [.monthly, .weekly, .daily]
+    let filteredSpokenLanguages = SpokenLanguage.allCases.filter { $0 != .unspecified }
+    var skipRemainingPeriods = false
+
+    for period in periodsLongestFirst {
+        if skipRemainingPeriods {
+            await writeEmptyFeeds(
+                link: link,
+                period: period,
+                spokenLanguages: SpokenLanguage.allCases,
+                supportedEmojis: supportedEmojis,
+                feedManager: feedManager
+            )
+            continue
+        }
+
+        let outcome = await processFeed(
+            target: FeedTarget(spokenLanguage: .unspecified, period: period, link: link),
+            supportedEmojis: supportedEmojis,
+            gitHubDownloader: gitHubDownloader,
+            graphQLManager: graphQLManager,
+            feedManager: feedManager
+        )
+
+        if case .fetched(isEmpty: true) = outcome {
+            NSLog("⏭ \(link.name): no trending repositories (\(period.rawValue)); skipping variant fetches")
+            await writeEmptyFeeds(
+                link: link,
+                period: period,
+                spokenLanguages: filteredSpokenLanguages,
+                supportedEmojis: supportedEmojis,
+                feedManager: feedManager
+            )
+            skipRemainingPeriods = true
+        } else {
+            for spokenLanguage in filteredSpokenLanguages {
+                await processFeed(
+                    target: FeedTarget(spokenLanguage: spokenLanguage, period: period, link: link),
+                    supportedEmojis: supportedEmojis,
+                    gitHubDownloader: gitHubDownloader,
+                    graphQLManager: graphQLManager,
+                    feedManager: feedManager
+                )
+            }
+        }
+    }
+}
+
+private func writeEmptyFeeds(
+    link: LanguageTrendingLink,
+    period: Period,
+    spokenLanguages: [SpokenLanguage],
+    supportedEmojis: [GitHubEmoji],
+    feedManager: FeedFileCreator
+) async {
+    for spokenLanguage in spokenLanguages {
+        do {
+            try await feedManager.createRSSFile(
+                repositories: [],
+                languageTrendingLink: link,
+                period: period,
+                spokenLanguage: spokenLanguage,
+                supportedEmojis: supportedEmojis
+            )
+        } catch {
+            NSLog("⚠️ Failed to create an empty RSS file of \(link.name) "
+                + "(\(spokenLanguage.rawValue), \(period.rawValue)). Error: \(error)")
+        }
+    }
+}
+
+private enum FeedGenerationOutcome {
+    case fetched(isEmpty: Bool)
+    case failed
+}
+
+@discardableResult
 private func processFeed(
     target: FeedTarget,
     supportedEmojis: [GitHubEmoji],
     gitHubDownloader: GitHubDownloader,
     graphQLManager: GitHubGraphQLManager,
     feedManager: FeedFileCreator
-) async {
+) async -> FeedGenerationOutcome {
     let link = target.link
     do {
         let repositories = try await gitHubDownloader.fetchRepositories(
@@ -129,6 +207,7 @@ private func processFeed(
             spokenLanguage: target.spokenLanguage,
             supportedEmojis: supportedEmojis
         )
+        return .fetched(isEmpty: repositories.isEmpty)
     } catch {
         if let error = error as? DownloadManager.Error,
            error == .failedFetching(statusCode: 504) || error == .failedFetching(statusCode: 502) {
@@ -136,6 +215,7 @@ private func processFeed(
         } else {
             NSLog("⚠️ Failed to fetch repositories of \(link.name) (\(target.spokenLanguage.rawValue)). Error: \(error)")
         }
+        return .failed
     }
 }
 
