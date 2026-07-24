@@ -1,0 +1,435 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Scala Monthly Trending</title>
+    <description>Monthly Trending of Scala in GitHub</description>
+    <pubDate>Fri, 24 Jul 2026 01:47:49 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>apache/gluten</title>
+      <link>https://github.com/apache/gluten</link>
+      <description>&lt;p&gt;Gluten is a middle layer responsible for offloading JVM-based SQL engines&#39; execution to native engines.&lt;/p&gt;&lt;hr&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/gluten-logo.svg?sanitize=true&quot; alt=&quot;Gluten&quot; width=&quot;200&quot; /&gt; 
+&lt;h1&gt;Apache Gluten&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;A Middle Layer for Offloading JVM-based SQL Engines&#39; Execution to Native Engines&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.bestpractices.dev/projects/8452&quot;&gt;&lt;img src=&quot;https://www.bestpractices.dev/projects/8452/badge&quot; alt=&quot;OpenSSF Best Practices&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;1. Introduction&lt;/h2&gt; 
+&lt;h3&gt;Background&lt;/h3&gt; 
+&lt;p&gt;Apache Spark is a mature and stable project that has been under continuous development for many years. It is one of the most widely used frameworks for scaling out the processing of petabyte-scale datasets. Over time, the Spark community has had to address significant performance challenges, which required a variety of optimizations. A major milestone came with Spark 2.0, where Whole-Stage Code Generation replaced the Volcano Model, delivering up to a 2× speedup. Since then, most subsequent improvements have focused on the query plan level, while the performance of individual operators has almost stopped improving.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/47296334/199853029-b6d0ea19-f8e4-4f62-9562-2838f7f159a7.png&quot; width=&quot;700&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;In recent years, several native SQL engines have been developed, such as ClickHouse and Velox. With features like native execution, columnar data formats, and vectorized data processing, these engines can outperform Spark’s JVM-based SQL engine. However, they currently don&#39;t directly support Spark SQL execution.&lt;/p&gt; 
+&lt;h3&gt;Design Overview&lt;/h3&gt; 
+&lt;p&gt;“Gluten” is Latin for &quot;glue&quot;. The main goal of the Gluten project is to glue native engines to Spark SQL. Thus, we can benefit from the high performance of native engines and the high scalability enabled by the Spark ecosystem.&lt;/p&gt; 
+&lt;p&gt;The basic design principle is to reuse Spark’s control flow, while offloading compute-intensive data processing to the native side. More specifically:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Transform Spark’s physical plan to Substrait plan, then transform it to native engine&#39;s plan.&lt;/li&gt; 
+ &lt;li&gt;Offload performance-critical data processing to native engine.&lt;/li&gt; 
+ &lt;li&gt;Define clear JNI interfaces for native SQL engines.&lt;/li&gt; 
+ &lt;li&gt;Allow easy switching between available native backends.&lt;/li&gt; 
+ &lt;li&gt;Reuse Spark’s distributed control flow.&lt;/li&gt; 
+ &lt;li&gt;Manage data sharing between JVM and native.&lt;/li&gt; 
+ &lt;li&gt;Provide extensibility to support more native engines.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Target Users&lt;/h3&gt; 
+&lt;p&gt;Gluten&#39;s target users include anyone who wants to fundamentally accelerate Spark SQL. As a plugin to Spark, Gluten requires no changes to the DataFrame API or SQL queries; users only need to configure it correctly.&lt;/p&gt; 
+&lt;h2&gt;2. Architecture&lt;/h2&gt; 
+&lt;p&gt;The overview chart is shown below. &lt;a href=&quot;https://substrait.io/&quot;&gt;Substrait&lt;/a&gt; provides a well-defined, cross-language specification for data compute operations. Spark’s physical plan is transformed into a Substrait plan, which is then passed to the native side through a JNI call. On the native side, a chain of native operators is constructed and offloaded to the native engine. Gluten returns the results as a ColumnarBatch, and Spark’s Columnar API (introduced in Spark 3.0) is used during execution. Gluten adopts the Apache Arrow data format as its underlying representation.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/47296334/199617207-1140698a-4d53-462d-9bc7-303d14be060b.png&quot; width=&quot;700&quot; /&gt; &lt;/p&gt; Currently, Gluten supports only ClickHouse and Velox backends. Velox is a C++ database acceleration library which provides reusable, extensible and high-performance data processing components. In addition, Gluten is designed to be extensible, allowing support for additional backends in the future. 
+&lt;p&gt;Gluten&#39;s key components:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Query Plan Conversion&lt;/strong&gt;: Converts Spark&#39;s physical plan to Substrait plan.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Unified Memory Management&lt;/strong&gt;: Manages native memory allocation.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Columnar Shuffle&lt;/strong&gt;: Handles shuffling of Gluten&#39;s columnar data. The shuffle service of Spark core is reused, while a columnar exchange operator is implemented to support Gluten&#39;s columnar data format.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Fallback Mechanism&lt;/strong&gt;: Provides fallback to vanilla Spark for unsupported operators. Gluten&#39;s ColumnarToRow (C2R) and RowToColumnar (R2C) convert data between Gluten&#39;s columnar format and Spark&#39;s internal row format to support fallback transitions.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Metrics&lt;/strong&gt;: Collected from Gluten native engine to help monitor execution, identify bugs, and diagnose performance bottlenecks. The metrics are displayed in Spark UI.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Shim Layer&lt;/strong&gt;: Ensures compatibility with multiple Spark versions. Gluten supports the latest 3–4 Spark releases during its development cycle, and currently supports Spark 3.3, 3.4, 3.5, 4.0, and 4.1.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;3. User Guide&lt;/h2&gt; 
+&lt;p&gt;Below is a basic configuration to enable Gluten in Spark.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;export GLUTEN_JAR=/PATH/TO/GLUTEN_JAR
+spark-shell \
+  --master yarn --deploy-mode client \
+  --conf spark.plugins=org.apache.gluten.GlutenPlugin \
+  --conf spark.memory.offHeap.enabled=true \
+  --conf spark.memory.offHeap.size=20g \
+  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
+  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
+  --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager
+  ...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;There are two ways to acquire Gluten jar for the above configuration.&lt;/p&gt; 
+&lt;h3&gt;Use Released JAR&lt;/h3&gt; 
+&lt;p&gt;Please download the tar package &lt;a href=&quot;https://gluten.apache.org/downloads/&quot;&gt;here&lt;/a&gt;, then extract Gluten JAR from it. Additionally, Gluten provides nightly builds based on the main branch for early testing. The nightly build JARs are available at &lt;a href=&quot;https://nightlies.apache.org/gluten/&quot;&gt;Apache Gluten Nightlies&lt;/a&gt;. They have been verified on Centos 7/8/9, Ubuntu 20.04/22.04.&lt;/p&gt; 
+&lt;h3&gt;Build From Source&lt;/h3&gt; 
+&lt;p&gt;For &lt;strong&gt;Velox&lt;/strong&gt; backend, please refer to &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/Velox.md&quot;&gt;Velox.md&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/build-guide.md&quot;&gt;build-guide.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For &lt;strong&gt;ClickHouse&lt;/strong&gt; backend, please refer to &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/ClickHouse.md&quot;&gt;ClickHouse.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The Gluten JAR will be generated under &lt;code&gt;/PATH/TO/GLUTEN/package/target/&lt;/code&gt; after the build.&lt;/p&gt; 
+&lt;h3&gt;Configurations&lt;/h3&gt; 
+&lt;p&gt;Common configurations used by Gluten are listed in &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/Configuration.md&quot;&gt;Configuration.md&lt;/a&gt;. Velox specific configurations are listed in &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-configuration.md&quot;&gt;velox-configuration.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The Gluten Velox backend honors some Spark configurations, ignores others, and many are transparent to it. See &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-spark-configuration.md&quot;&gt;velox-spark-configuration.md&lt;/a&gt; for details, and &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-parquet-write-configuration.md&quot;&gt;velox-parquet-write-configuration.md&lt;/a&gt; for Parquet write configurations.&lt;/p&gt; 
+&lt;h2&gt;4. Resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gluten.apache.org/&quot;&gt;Gluten website&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/facebookincubator/velox&quot;&gt;Velox repository&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Kyligence/ClickHouse&quot;&gt;ClickHouse repository&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=0Q6gHT_N-1U&quot;&gt;Gluten Intro Video at Data AI Summit 2022&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://medium.com/intel-analytics-software/accelerate-spark-sql-queries-with-gluten-9000b65d1b4e&quot;&gt;Gluten Intro Article on Medium&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cn.kyligence.io/blog/gluten-spark/&quot;&gt;Gluten Intro Article on Kyligence.io (Chinese)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://engineering.fb.com/2023/03/09/open-source/velox-open-source-execution-engine/&quot;&gt;Velox Intro from Meta&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;5. Contribution&lt;/h2&gt; 
+&lt;p&gt;Welcome to contribute to the Gluten project! See &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for guidelines on how to make contributions.&lt;/p&gt; 
+&lt;h2&gt;6. Community&lt;/h2&gt; 
+&lt;p&gt;Gluten successfully became an Apache Incubator project in March 2024 and graduated as an Apache Top-Level Project in March 2026. Here are several ways to connect with the community.&lt;/p&gt; 
+&lt;h3&gt;GitHub&lt;/h3&gt; 
+&lt;p&gt;Welcome to report issues or start discussions in GitHub. Please search the GitHub issue list before creating a new one to avoid duplication.&lt;/p&gt; 
+&lt;h3&gt;Mailing List&lt;/h3&gt; 
+&lt;p&gt;For any technical discussions, please email &lt;a href=&quot;mailto:dev@gluten.apache.org&quot;&gt;dev@gluten.apache.org&lt;/a&gt;. You can browse the &lt;a href=&quot;https://lists.apache.org/list.html?dev@gluten.apache.org&quot;&gt;archives&lt;/a&gt; to view past discussions, or &lt;a href=&quot;mailto:dev-subscribe@gluten.apache.org&quot;&gt;subscribe to the mailing list&lt;/a&gt; to receive updates.&lt;/p&gt; 
+&lt;h3&gt;Slack Channel (English)&lt;/h3&gt; 
+&lt;p&gt;Request an invitation to the ASF Slack workspace via &lt;a href=&quot;https://github.com/apache/gluten/discussions/8429&quot;&gt;this page&lt;/a&gt;. Once invited, you can join the &lt;strong&gt;gluten&lt;/strong&gt; channel.&lt;/p&gt; 
+&lt;p&gt;The ASF Slack login entry: &lt;a href=&quot;https://the-asf.slack.com/&quot;&gt;https://the-asf.slack.com/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;WeChat Group (Chinese)&lt;/h3&gt; 
+&lt;p&gt;Please contact weitingchen at &lt;a href=&quot;http://apache.org&quot;&gt;apache.org&lt;/a&gt; or zhangzc at &lt;a href=&quot;http://apache.org&quot;&gt;apache.org&lt;/a&gt; to request an invitation to the WeChat group. It is for Chinese-language communication.&lt;/p&gt; 
+&lt;h2&gt;7. Performance&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/tools/workload/tpch&quot;&gt;TPC-H&lt;/a&gt; is used to evaluate Gluten&#39;s performance. Please note that the results below do not reflect the latest performance.&lt;/p&gt; 
+&lt;h3&gt;Velox Backend&lt;/h3&gt; 
+&lt;p&gt;The Gluten Velox backend demonstrated an overall speedup of 2.71x, with up to a 14.53x speedup observed in a single query.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/velox_decision_support_bench1_22queries_performance.png&quot; alt=&quot;Performance&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;Tested in Jun. 2023. Test environment: single node with 2TB data, using Spark 3.3.2 as the baseline and with Gluten integrated into the same Spark version.&lt;/sub&gt;&lt;/p&gt; 
+&lt;h3&gt;ClickHouse Backend&lt;/h3&gt; 
+&lt;p&gt;ClickHouse backend demonstrated an average speedup of 2.12x, with up to 3.48x speedup observed in a single query.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/clickhouse_decision_support_bench1_22queries_performance.png&quot; alt=&quot;Performance&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;Test environment: a 8-nodes AWS cluster with 1TB data, using Spark 3.1.1 as the baseline and with Gluten integrated into the same Spark version.&lt;/sub&gt;&lt;/p&gt; 
+&lt;h2&gt;8. Qualification Tool&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/tools/qualification-tool/README.md&quot;&gt;Qualification Tool&lt;/a&gt; is a utility to analyze Spark event log files and assess the compatibility and performance of SQL workloads with Gluten. This tool helps users understand how their workloads can benefit from Gluten.&lt;/p&gt; 
+&lt;h2&gt;9. License&lt;/h2&gt; 
+&lt;p&gt;Gluten is licensed under &lt;a href=&quot;https://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache License Version 2.0&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;10. Acknowledgements&lt;/h2&gt; 
+&lt;p&gt;Gluten was initiated by Intel and Kyligence in 2022. Several other companies are also actively contributing to its development, including BIGO, Meituan, Alibaba Cloud, NetEase, Baidu, Microsoft, IBM, Google, etc.&lt;/p&gt; 
+&lt;a href=&quot;https://github.com/apache/gluten/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=apache/gluten&amp;amp;columns=25&quot; /&gt; &lt;/a&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/00b88ddc58635b4756d946b7c7ca87c4dcfe9bf685c1fbad49ced20fd78f7cff/apache/gluten" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>microsoft/SynapseML</title>
+      <link>https://github.com/microsoft/SynapseML</link>
+      <description>&lt;p&gt;Simple and Distributed Machine Learning&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://mmlspark.azureedge.net/icons/mmlspark.svg?sanitize=true&quot; alt=&quot;SynapseML&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;Synapse Machine Learning&lt;/h1&gt; 
+&lt;p&gt;SynapseML (previously known as MMLSpark), is an open-source library that simplifies the creation of massively scalable machine learning (ML) pipelines. SynapseML provides simple, composable, and distributed APIs for a wide variety of different machine learning tasks such as text analytics, vision, anomaly detection, and many others. SynapseML is built on the &lt;a href=&quot;https://spark.apache.org/&quot;&gt;Apache Spark distributed computing framework&lt;/a&gt; and shares the same API as the &lt;a href=&quot;https://spark.apache.org/mllib/&quot;&gt;SparkML/MLLib library&lt;/a&gt;, allowing you to seamlessly embed SynapseML models into existing Apache Spark workflows.&lt;/p&gt; 
+&lt;p&gt;With SynapseML, you can build scalable and intelligent systems to solve challenges in domains such as anomaly detection, computer vision, deep learning, text analytics, and others. SynapseML can train and evaluate models on single-node, multi-node, and elastically resizable clusters of computers. This lets you scale your work without wasting resources. SynapseML is usable across Python, R, Scala, Java, and .NET. Furthermore, its API abstracts over a wide variety of databases, file systems, and cloud data stores to simplify experiments no matter where data is located.&lt;/p&gt; 
+&lt;p&gt;SynapseML requires Scala 2.12, Spark 3.4+, and Python 3.8+.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Topics&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Links&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Build&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://msdata.visualstudio.com/A365/_build/latest?definitionId=17563&amp;amp;branchName=master&quot;&gt;&lt;img src=&quot;https://msdata.visualstudio.com/A365/_apis/build/status/microsoft.SynapseML?branchName=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/Microsoft/SynapseML&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/Microsoft/SynapseML/branch/master/graph/badge.svg?sanitize=true&quot; alt=&quot;codecov&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/psf/black&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/code%20style-black-000000.svg?sanitize=true&quot; alt=&quot;Code style: black&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Version&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/Microsoft/SynapseML/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/version-1.1.3-blue&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Microsoft/SynapseML/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/release-notes-blue&quot; alt=&quot;Release Notes&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#sbt&quot;&gt;&lt;img src=&quot;https://mmlspark.blob.core.windows.net/icons/badges/master_version3.svg?sanitize=true&quot; alt=&quot;Snapshot Version&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Docs&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://aka.ms/spark&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SynapseML-Website-blue&quot; alt=&quot;Website&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://mmlspark.blob.core.windows.net/docs/1.1.3/scala/index.html#package&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=api%20docs&amp;amp;message=scala&amp;amp;color=blue&amp;amp;logo=scala&quot; alt=&quot;Scala Docs&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://mmlspark.blob.core.windows.net/docs/1.1.3/pyspark/index.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=api%20docs&amp;amp;message=python&amp;amp;color=blue&amp;amp;logo=python&quot; alt=&quot;PySpark Docs&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://arxiv.org/abs/1810.08744&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/academic-paper-7fdcf7&quot; alt=&quot;Academic Paper&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Support&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://gitter.im/Microsoft/MMLSpark?utm_source=badge&amp;amp;utm_medium=badge&amp;amp;utm_campaign=pr-badge&quot;&gt;&lt;img src=&quot;https://badges.gitter.im/Microsoft/MMLSpark.svg?sanitize=true&quot; alt=&quot;Gitter&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;mailto:synapseml-support@microsoft.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/mail-synapseml--support-brightgreen&quot; alt=&quot;Mail&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Binder&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://mybinder.org/v2/gh/microsoft/SynapseML/v1.1.3?labpath=notebooks%2Ffeatures&quot;&gt;&lt;img src=&quot;https://mybinder.org/badge_logo.svg?sanitize=true&quot; alt=&quot;Binder&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Usage&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://pepy.tech/project/synapseml&quot;&gt;&lt;img src=&quot;https://static.pepy.tech/badge/synapseml&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- markdownlint-disable MD033 --&gt; 
+&lt;details open&gt; 
+ &lt;summary&gt; &lt;strong&gt;&lt;em&gt;Table of Contents&lt;/em&gt;&lt;/strong&gt; &lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#synapse-machine-learning&quot;&gt;Synapse Machine Learning&lt;/a&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#documentation-and-examples&quot;&gt;Documentation and Examples&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#setup-and-installation&quot;&gt;Setup and installation&lt;/a&gt; 
+     &lt;ul&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#microsoft-fabric&quot;&gt;Microsoft Fabric&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#synapse-analytics&quot;&gt;Synapse Analytics&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#databricks&quot;&gt;Databricks&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#python-standalone&quot;&gt;Python Standalone&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#spark-submit&quot;&gt;Spark Submit&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#sbt&quot;&gt;SBT&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#apache-livy-and-hdinsight&quot;&gt;Apache Livy and HDInsight&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#docker&quot;&gt;Docker&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#r&quot;&gt;R&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#building-from-source&quot;&gt;Building from source&lt;/a&gt;&lt;/li&gt; 
+     &lt;/ul&gt; &lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#papers&quot;&gt;Papers&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#learn-more&quot;&gt;Learn More&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#contributing--feedback&quot;&gt;Contributing &amp;amp; feedback&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#other-relevant-projects&quot;&gt;Other relevant projects&lt;/a&gt;&lt;/li&gt; 
+   &lt;/ul&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;!-- markdownlint-enable MD033 --&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;!-- markdownlint-disable MD033 --&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/Readme/vw-blue-dark-orange.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/Readme/cog_services_on_spark_2.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/Readme/decision_tree_recolor.png&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/Readme/mmlspark_serving_recolor.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/Vowpal%20Wabbit/Overview/&quot;&gt;&lt;strong&gt;Vowpal Wabbit on Spark&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/&quot;&gt;&lt;strong&gt;The Cognitive Services for Big Data&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/LightGBM/Overview/&quot;&gt;&lt;strong&gt;LightGBM on Spark&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Deploy%20Models/Overview/&quot;&gt;&lt;strong&gt;Spark Serving&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Fast, Sparse, and Effective Text Analytics&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Leverage the Microsoft Cognitive Services at Unprecedented Scales in your existing SparkML pipelines&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Train Gradient Boosted Machines with LightGBM&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Serve any Spark Computation as a Web Service with Sub-Millisecond Latency&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/Readme/microservice_recolor.png&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/emails/onnxai-ar21_crop.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/emails/scales.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;800&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/Readme/bindings.png&quot; /&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/AI%20Services/Overview/#arbitrary-web-apis&quot;&gt;&lt;strong&gt;HTTP on Spark&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/Deep%20Learning/ONNX/&quot;&gt;&lt;strong&gt;ONNX on Spark&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/Responsible%20AI/Interpreting%20Model%20Predictions/&quot;&gt;&lt;strong&gt;Responsible AI&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Reference/Developer%20Setup/#packagepython&quot;&gt;&lt;strong&gt;Spark Binding Autogeneration&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;An Integration Between Spark and the HTTP Protocol, enabling Distributed Microservice Orchestration&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Distributed and Hardware Accelerated Model Inference on Spark&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Understand Opaque-box Models and Measure Dataset Biases&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Automatically Generate Spark bindings for PySpark and SparklyR&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;150&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/emails/isolation%20forest%203.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;150&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/emails/cyberml.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;150&quot; src=&quot;https://mmlspark.blob.core.windows.net/graphics/emails/conditional_knn.svg?sanitize=true&quot; /&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/Anomaly%20Detection/Quickstart%20-%20Isolation%20Forests/&quot;&gt;&lt;strong&gt;Isolation Forest on Spark&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/Other%20Algorithms/Cyber%20ML/&quot;&gt;&lt;strong&gt;CyberML&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Explore%20Algorithms/Other%20Algorithms/Quickstart%20-%20Exploring%20Art%20Across%20Cultures/&quot;&gt;&lt;strong&gt;Conditional KNN&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Distributed Nonlinear Outlier Detection&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Machine Learning Tools for Cyber Security&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Scalable KNN Models with Conditional Queries&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- markdownlint-enable MD033 --&gt; 
+&lt;h2&gt;Documentation and Examples&lt;/h2&gt; 
+&lt;p&gt;For quickstarts, documentation, demos, and examples please see our &lt;a href=&quot;https://aka.ms/spark&quot;&gt;website&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Setup and installation&lt;/h2&gt; 
+&lt;p&gt;First select the correct platform that you are installing SynapseML into:&lt;/p&gt; 
+&lt;!--ts--&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#synapse-machine-learning&quot;&gt;Synapse Machine Learning&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#documentation-and-examples&quot;&gt;Documentation and Examples&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#setup-and-installation&quot;&gt;Setup and installation&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#microsoft-fabric&quot;&gt;Microsoft Fabric&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#synapse-analytics&quot;&gt;Synapse Analytics&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#databricks&quot;&gt;Databricks&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#python-standalone&quot;&gt;Python Standalone&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#spark-submit&quot;&gt;Spark Submit&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#sbt&quot;&gt;SBT&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#apache-livy-and-hdinsight&quot;&gt;Apache Livy and HDInsight&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#docker&quot;&gt;Docker&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#r&quot;&gt;R&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#building-from-source&quot;&gt;Building from source&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#papers&quot;&gt;Papers&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#learn-more&quot;&gt;Learn More&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#contributing--feedback&quot;&gt;Contributing &amp;amp; feedback&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/#other-relevant-projects&quot;&gt;Other relevant projects&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--te--&gt; 
+&lt;h3&gt;Microsoft Fabric&lt;/h3&gt; 
+&lt;p&gt;In Microsoft Fabric notebooks SynapseML is already installed. To change the version please place the following in the first cell of your notebook.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;%%configure -f
+{
+  &quot;name&quot;: &quot;synapseml&quot;,
+  &quot;conf&quot;: {
+      &quot;spark.jars.packages&quot;: &quot;com.microsoft.azure:synapseml_2.12:&amp;lt;THE_SYNAPSEML_VERSION_YOU_WANT&amp;gt;&quot;,
+      &quot;spark.jars.repositories&quot;: &quot;https://mmlspark.azureedge.net/maven&quot;,
+      &quot;spark.jars.excludes&quot;: &quot;org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12,com.fasterxml.jackson.core:jackson-databind&quot;,
+      &quot;spark.yarn.user.classpath.first&quot;: &quot;true&quot;,
+      &quot;spark.sql.parquet.enableVectorizedReader&quot;: &quot;false&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Synapse Analytics&lt;/h3&gt; 
+&lt;p&gt;In Azure Synapse notebooks please place the following in the first cell of your notebook.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For Spark 3.5 Pools:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;%%configure -f
+{
+  &quot;name&quot;: &quot;synapseml&quot;,
+  &quot;conf&quot;: {
+      &quot;spark.jars.packages&quot;: &quot;com.microsoft.azure:synapseml_2.12:1.1.3&quot;,
+      &quot;spark.jars.repositories&quot;: &quot;https://mmlspark.azureedge.net/maven&quot;,
+      &quot;spark.jars.excludes&quot;: &quot;org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12,com.fasterxml.jackson.core:jackson-databind&quot;,
+      &quot;spark.yarn.user.classpath.first&quot;: &quot;true&quot;,
+      &quot;spark.sql.parquet.enableVectorizedReader&quot;: &quot;false&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For Spark 3.4 Pools:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;%%configure -f
+{
+  &quot;name&quot;: &quot;synapseml&quot;,
+  &quot;conf&quot;: {
+      &quot;spark.jars.packages&quot;: &quot;com.microsoft.azure:synapseml_2.12:1.0.15&quot;,
+      &quot;spark.jars.repositories&quot;: &quot;https://mmlspark.azureedge.net/maven&quot;,
+      &quot;spark.jars.excludes&quot;: &quot;org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12,com.fasterxml.jackson.core:jackson-databind&quot;,
+      &quot;spark.yarn.user.classpath.first&quot;: &quot;true&quot;,
+      &quot;spark.sql.parquet.enableVectorizedReader&quot;: &quot;false&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For Spark 3.3 Pools:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;%%configure -f
+{
+  &quot;name&quot;: &quot;synapseml&quot;,
+  &quot;conf&quot;: {
+      &quot;spark.jars.packages&quot;: &quot;com.microsoft.azure:synapseml_2.12:0.11.4-spark3.3&quot;,
+      &quot;spark.jars.repositories&quot;: &quot;https://mmlspark.azureedge.net/maven&quot;,
+      &quot;spark.jars.excludes&quot;: &quot;org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12,com.fasterxml.jackson.core:jackson-databind&quot;,
+      &quot;spark.yarn.user.classpath.first&quot;: &quot;true&quot;,
+      &quot;spark.sql.parquet.enableVectorizedReader&quot;: &quot;false&quot;
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To install at the pool level instead of the notebook level &lt;a href=&quot;https://techcommunity.microsoft.com/t5/azure-synapse-analytics-blog/how-to-set-spark-pyspark-custom-configs-in-synapse-workspace/ba-p/2114434&quot;&gt;add the spark properties listed above to the pool configuration&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Databricks&lt;/h3&gt; 
+&lt;p&gt;To install SynapseML on the &lt;a href=&quot;http://community.cloud.databricks.com&quot;&gt;Databricks cloud&lt;/a&gt;, create a new &lt;a href=&quot;https://docs.databricks.com/user-guide/libraries.html#libraries-from-maven-pypi-or-spark-packages&quot;&gt;library from Maven coordinates&lt;/a&gt; in your workspace.&lt;/p&gt; 
+&lt;p&gt;For the coordinates use: &lt;code&gt;com.microsoft.azure:synapseml_2.12:1.1.3&lt;/code&gt; with the resolver: &lt;code&gt;https://mmlspark.azureedge.net/maven&lt;/code&gt;. Ensure this library is attached to your target cluster(s).&lt;/p&gt; 
+&lt;p&gt;Finally, ensure that your Spark cluster has at least Spark 3.2 and Scala 2.12. If you encounter Netty dependency issues please use DBR 10.1.&lt;/p&gt; 
+&lt;p&gt;You can use SynapseML in both your Scala and PySpark notebooks. To get started with our example notebooks import the following databricks archive:&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;https://mmlspark.blob.core.windows.net/dbcs/SynapseMLExamplesv1.1.3.dbc&lt;/code&gt;&lt;/p&gt; 
+&lt;h3&gt;Python Standalone&lt;/h3&gt; 
+&lt;p&gt;To try out SynapseML on a Python (or Conda) installation you can get Spark installed via pip with &lt;code&gt;pip install pyspark&lt;/code&gt;. You can then use &lt;code&gt;pyspark&lt;/code&gt; as in the above example, or from python:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import pyspark
+spark = pyspark.sql.SparkSession.builder.appName(&quot;MyApp&quot;) \
+            .config(&quot;spark.jars.packages&quot;, &quot;com.microsoft.azure:synapseml_2.12:1.1.3&quot;) \
+            .getOrCreate()
+import synapse.ml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Spark Submit&lt;/h3&gt; 
+&lt;p&gt;SynapseML can be conveniently installed on existing Spark clusters via the &lt;code&gt;--packages&lt;/code&gt; option, examples:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;spark-shell --packages com.microsoft.azure:synapseml_2.12:1.1.3
+pyspark --packages com.microsoft.azure:synapseml_2.12:1.1.3
+spark-submit --packages com.microsoft.azure:synapseml_2.12:1.1.3 MyApp.jar
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;SBT&lt;/h3&gt; 
+&lt;p&gt;If you are building a Spark application in Scala, add the following lines to your &lt;code&gt;build.sbt&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-scala&quot;&gt;libraryDependencies += &quot;com.microsoft.azure&quot; % &quot;synapseml_2.12&quot; % &quot;1.1.3&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Apache Livy and HDInsight&lt;/h3&gt; 
+&lt;p&gt;To install SynapseML from within a Jupyter notebook served by Apache Livy the following configure magic can be used. You will need to start a new session after this configure cell is executed.&lt;/p&gt; 
+&lt;p&gt;Excluding certain packages from the library may be necessary due to current issues with Livy 0.5.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;%%configure -f
+{
+    &quot;name&quot;: &quot;synapseml&quot;,
+    &quot;conf&quot;: {
+        &quot;spark.jars.packages&quot;: &quot;com.microsoft.azure:synapseml_2.12:1.1.3&quot;,
+        &quot;spark.jars.excludes&quot;: &quot;org.scala-lang:scala-reflect,org.apache.spark:spark-tags_2.12,org.scalactic:scalactic_2.12,org.scalatest:scalatest_2.12,com.fasterxml.jackson.core:jackson-databind&quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Docker&lt;/h3&gt; 
+&lt;p&gt;The easiest way to evaluate SynapseML is via our pre-built Docker container. To do so, run the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -it -p 8888:8888 -e ACCEPT_EULA=yes mcr.microsoft.com/mmlspark/release jupyter notebook
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Navigate to &lt;a href=&quot;http://localhost:8888/&quot;&gt;http://localhost:8888/&lt;/a&gt; in your web browser to run the sample notebooks. See the &lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Reference/Docker%20Setup/&quot;&gt;documentation&lt;/a&gt; for more on Docker use.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;To read the EULA for using the docker image, run &lt;code&gt;docker run -it -p 8888:8888 mcr.microsoft.com/mmlspark/release eula&lt;/code&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;R&lt;/h3&gt; 
+&lt;p&gt;To try out SynapseML using the R autogenerated wrappers &lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Reference/R%20Setup/&quot;&gt;see our instructions&lt;/a&gt;. Note: This feature is still under development and some necessary custom wrappers may be missing.&lt;/p&gt; 
+&lt;h3&gt;Building from source&lt;/h3&gt; 
+&lt;p&gt;SynapseML has recently transitioned to a new build infrastructure. For detailed developer docs please see the &lt;a href=&quot;https://microsoft.github.io/SynapseML/docs/Reference/Developer%20Setup/&quot;&gt;Developer Readme&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you are an existing synapsemldeveloper, you will need to reconfigure your development setup. We now support platform independent development and better integrate with intellij and SBT. If you encounter issues please reach out to our support email!&lt;/p&gt; 
+&lt;h2&gt;Papers&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/2009.08044&quot;&gt;Large Scale Intelligent Microservices&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/2007.07177&quot;&gt;Conditional Image Retrieval&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1810.08744&quot;&gt;MMLSpark: Unifying Machine Learning Ecosystems at Massive Scales&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/1804.04031&quot;&gt;Flexible and Scalable Deep Learning with SynapseML&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://arxiv.org/abs/2309.03926&quot;&gt;Large-Scale Automatic Audiobook Creation&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Learn More&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Visit our &lt;a href=&quot;https://microsoft.github.io/SynapseML/&quot; title=&quot;aka.ms/spark&quot;&gt;website&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Watch our keynote demos at &lt;a href=&quot;https://youtu.be/T_fs4C0aqD0?t=425&quot;&gt;the Spark+AI Summit 2019&lt;/a&gt;, &lt;a href=&quot;https://youtu.be/N3ozCZXeOeU?t=472&quot;&gt;the Spark+AI European Summit 2018&lt;/a&gt;, &lt;a href=&quot;https://databricks.com/sparkaisummit/north-america/spark-summit-2018-keynotes#Intelligent-cloud&quot; title=&quot;Developing for the Intelligent Cloud and Intelligent Edge&quot;&gt;the Spark+AI Summit 2018&lt;/a&gt; and &lt;a href=&quot;https://databricks.com/session/mmlspark-lessons-from-building-a-sparkml-compatible-machine-learning-library-for-apache-spark&quot; title=&quot;MMLSpark: Lessons from Building a SparkML-Compatible Machine Learning Library for Apache Spark&quot;&gt;SynapseML at the Spark Summit&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;See how SynapseML is used to &lt;a href=&quot;https://www.microsoft.com/en-us/ai/ai-lab-stories?activetab=pivot1:primaryr3&quot; title=&quot;Identifying snow leopards with AI&quot;&gt;help endangered species&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Explore generative adversarial artwork in &lt;a href=&quot;https://www.microsoft.com/en-us/ai/ai-lab-stories?activetab=pivot1:primaryr4&quot; title=&quot;Generative art at the MET&quot;&gt;our collaboration with The MET and MIT&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Explore &lt;a href=&quot;https://blogs.technet.microsoft.com/machinelearning/2018/03/05/image-data-support-in-apache-spark/&quot; title=&quot;Image Data Support in Apache Spark&quot;&gt;our collaboration with Apache Spark&lt;/a&gt; on image analysis.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing &amp;amp; feedback&lt;/h2&gt; 
+&lt;p&gt;This project has adopted the &lt;a href=&quot;https://opensource.microsoft.com/codeofconduct/&quot;&gt;Microsoft Open Source Code of Conduct&lt;/a&gt;. For more information see the &lt;a href=&quot;https://opensource.microsoft.com/codeofconduct/faq/&quot;&gt;Code of Conduct FAQ&lt;/a&gt; or contact &lt;a href=&quot;mailto:opencode@microsoft.com&quot;&gt;opencode@microsoft.com&lt;/a&gt; with any additional questions or comments.&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/SynapseML/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for contribution guidelines.&lt;/p&gt; 
+&lt;p&gt;To give feedback and/or report an issue, open a &lt;a href=&quot;https://help.github.com/articles/creating-an-issue/&quot;&gt;GitHub Issue&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Other relevant projects&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/VowpalWabbit/vowpal_wabbit&quot;&gt;Vowpal Wabbit&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/lightgbm-org/LightGBM&quot;&gt;LightGBM&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/Microsoft/DMTK&quot;&gt;DMTK: Microsoft Distributed Machine Learning Toolkit&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/recommenders-team/Recommenders&quot;&gt;Recommenders&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/alipay/jpmml-sparkml-lightgbm&quot;&gt;JPMML-SparkML plugin for converting SynapseML LightGBM models to PMML&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/Microsoft/CNTK&quot;&gt;Microsoft Cognitive Toolkit&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;Apache®, Apache Spark, and Spark® are either registered trademarks or trademarks of the Apache Software Foundation in the United States and/or other countries.&lt;/em&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/93381875/33205d62-ea44-4b66-80b9-f3f67c0d05be" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

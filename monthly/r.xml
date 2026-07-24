@@ -1,0 +1,259 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub R Monthly Trending</title>
+    <description>Monthly Trending of R in GitHub</description>
+    <pubDate>Fri, 24 Jul 2026 01:46:25 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>rdpeng/ProgrammingAssignment2</title>
+      <link>https://github.com/rdpeng/ProgrammingAssignment2</link>
+      <description>&lt;p&gt;Repository for Programming Assignment 2 for R Programming on Coursera&lt;/p&gt;&lt;hr&gt;&lt;h3&gt;Introduction&lt;/h3&gt; 
+&lt;p&gt;This second programming assignment will require you to write an R function that is able to cache potentially time-consuming computations. For example, taking the mean of a numeric vector is typically a fast operation. However, for a very long vector, it may take too long to compute the mean, especially if it has to be computed repeatedly (e.g. in a loop). If the contents of a vector are not changing, it may make sense to cache the value of the mean so that when we need it again, it can be looked up in the cache rather than recomputed. In this Programming Assignment you will take advantage of the scoping rules of the R language and how they can be manipulated to preserve state inside of an R object.&lt;/p&gt; 
+&lt;h3&gt;Example: Caching the Mean of a Vector&lt;/h3&gt; 
+&lt;p&gt;In this example we introduce the &lt;code&gt;&amp;lt;&amp;lt;-&lt;/code&gt; operator which can be used to assign a value to an object in an environment that is different from the current environment. Below are two functions that are used to create a special object that stores a numeric vector and caches its mean.&lt;/p&gt; 
+&lt;p&gt;The first function, &lt;code&gt;makeVector&lt;/code&gt; creates a special &quot;vector&quot;, which is really a list containing a function to&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;set the value of the vector&lt;/li&gt; 
+ &lt;li&gt;get the value of the vector&lt;/li&gt; 
+ &lt;li&gt;set the value of the mean&lt;/li&gt; 
+ &lt;li&gt;get the value of the mean&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;!-- --&gt; 
+&lt;pre&gt;&lt;code&gt;makeVector &amp;lt;- function(x = numeric()) {
+        m &amp;lt;- NULL
+        set &amp;lt;- function(y) {
+                x &amp;lt;&amp;lt;- y
+                m &amp;lt;&amp;lt;- NULL
+        }
+        get &amp;lt;- function() x
+        setmean &amp;lt;- function(mean) m &amp;lt;&amp;lt;- mean
+        getmean &amp;lt;- function() m
+        list(set = set, get = get,
+             setmean = setmean,
+             getmean = getmean)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The following function calculates the mean of the special &quot;vector&quot; created with the above function. However, it first checks to see if the mean has already been calculated. If so, it &lt;code&gt;get&lt;/code&gt;s the mean from the cache and skips the computation. Otherwise, it calculates the mean of the data and sets the value of the mean in the cache via the &lt;code&gt;setmean&lt;/code&gt; function.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cachemean &amp;lt;- function(x, ...) {
+        m &amp;lt;- x$getmean()
+        if(!is.null(m)) {
+                message(&quot;getting cached data&quot;)
+                return(m)
+        }
+        data &amp;lt;- x$get()
+        m &amp;lt;- mean(data, ...)
+        x$setmean(m)
+        m
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Assignment: Caching the Inverse of a Matrix&lt;/h3&gt; 
+&lt;p&gt;Matrix inversion is usually a costly computation and there may be some benefit to caching the inverse of a matrix rather than computing it repeatedly (there are also alternatives to matrix inversion that we will not discuss here). Your assignment is to write a pair of functions that cache the inverse of a matrix.&lt;/p&gt; 
+&lt;p&gt;Write the following functions:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;code&gt;makeCacheMatrix&lt;/code&gt;: This function creates a special &quot;matrix&quot; object that can cache its inverse.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cacheSolve&lt;/code&gt;: This function computes the inverse of the special &quot;matrix&quot; returned by &lt;code&gt;makeCacheMatrix&lt;/code&gt; above. If the inverse has already been calculated (and the matrix has not changed), then &lt;code&gt;cacheSolve&lt;/code&gt; should retrieve the inverse from the cache.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Computing the inverse of a square matrix can be done with the &lt;code&gt;solve&lt;/code&gt; function in R. For example, if &lt;code&gt;X&lt;/code&gt; is a square invertible matrix, then &lt;code&gt;solve(X)&lt;/code&gt; returns its inverse.&lt;/p&gt; 
+&lt;p&gt;For this assignment, assume that the matrix supplied is always invertible.&lt;/p&gt; 
+&lt;p&gt;In order to complete this assignment, you must do the following:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the GitHub repository containing the stub R files at &lt;a href=&quot;https://github.com/rdpeng/ProgrammingAssignment2&quot;&gt;https://github.com/rdpeng/ProgrammingAssignment2&lt;/a&gt; to create a copy under your own account.&lt;/li&gt; 
+ &lt;li&gt;Clone your forked GitHub repository to your computer so that you can edit the files locally on your own machine.&lt;/li&gt; 
+ &lt;li&gt;Edit the R file contained in the git repository and place your solution in that file (please do not rename the file).&lt;/li&gt; 
+ &lt;li&gt;Commit your completed R file into YOUR git repository and push your git branch to the GitHub repository under your account.&lt;/li&gt; 
+ &lt;li&gt;Submit to Coursera the URL to your GitHub repository that contains the completed R code for the assignment.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Grading&lt;/h3&gt; 
+&lt;p&gt;This assignment will be graded via peer assessment.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/6bdb91a2b469a9f00143386e1c3ac4fce06ef4e5b314f157d0cd2dc0343b1183/rdpeng/ProgrammingAssignment2" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>posit-dev/skills</title>
+      <link>https://github.com/posit-dev/skills</link>
+      <description>&lt;p&gt;A collection of Claude Skills from Posit&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Posit Claude Skills&lt;/h1&gt; 
+&lt;p&gt;A collection of Claude Skills from Posit!&lt;/p&gt; 
+&lt;p&gt;Claude Skills extend Claude&#39;s capabilities with specialized knowledge and workflows. Skills are automatically activated by Claude based on your task and can be used in &lt;a href=&quot;http://Claude.ai&quot;&gt;Claude.ai&lt;/a&gt;, Claude Code, or via the Claude API. Learn more at the &lt;a href=&quot;https://support.claude.com/en/articles/12512180-using-skills-in-claude&quot;&gt;Claude Skills documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Available Skills&lt;/h2&gt; 
+&lt;h3&gt;Posit Developer&lt;/h3&gt; 
+&lt;p&gt;General-purpose developer skills useful across any language, project type, or context.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/posit-dev/critical-code-reviewer/&quot;&gt;critical-code-reviewer&lt;/a&gt;&lt;/strong&gt; - Conduct rigorous, adversarial code reviews identifying security holes, lazy patterns, edge case failures, and bad practices across Python, R, JavaScript/TypeScript, SQL, and front-end code&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/posit-dev/describe-design/&quot;&gt;describe-design&lt;/a&gt;&lt;/strong&gt; - Research a codebase and create architectural documentation describing how features or systems work, with Mermaid diagrams and stable code references suitable for humans and AI agents&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/posit-dev/new-work/&quot;&gt;new-work&lt;/a&gt;&lt;/strong&gt; - Create a todo tracking document for a new feature, bug, or task; keeps it updated with decisions, plans, and progress for the rest of the session&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/posit-dev/review-testing/&quot;&gt;review-testing&lt;/a&gt;&lt;/strong&gt; - Review test code for quality, design, and completeness after implementing a feature or fixing a bug, covering assertion completeness, mocking boundaries, fixture design, test smells, and coverage gaps&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/posit-dev/working-on/&quot;&gt;working-on&lt;/a&gt;&lt;/strong&gt; - Set an existing tracking document as the source of truth for the current session, keeping it updated with decisions and progress&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;GitHub&lt;/h3&gt; 
+&lt;p&gt;Skills for GitHub pull request workflows — creating PRs, addressing review feedback, and resolving threads.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/github/pr-create/&quot;&gt;pr-create&lt;/a&gt;&lt;/strong&gt; - Creates a pull request from current changes, monitors GitHub CI, and debugs any failures until CI passes&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/github/pr-threads-address/&quot;&gt;pr-threads-address&lt;/a&gt;&lt;/strong&gt; - Review all unresolved PR review threads, address them by making necessary code changes, and commit the changes appropriately&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/github/pr-threads-resolve/&quot;&gt;pr-threads-resolve&lt;/a&gt;&lt;/strong&gt; - Bulk resolve unresolved PR review threads&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Open Source&lt;/h3&gt; 
+&lt;p&gt;Skills for open-source R and Python package developers, streamlining common workflows like releases, changelogs, and contributor acknowledgments.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/open-source/create-release-checklist/&quot;&gt;create-release-checklist&lt;/a&gt;&lt;/strong&gt; - Create a release checklist and GitHub issue for an R package, with automatic version calculation and customizable checklist generation&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/open-source/release-post/&quot;&gt;release-post&lt;/a&gt;&lt;/strong&gt; - Create professional package release blog posts following Tidyverse or Shiny blog conventions, with support for both R and Python packages&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;R Package Development&lt;/h3&gt; 
+&lt;p&gt;R package development skills for working with the r-lib ecosystem and modern R package workflows.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/testing-r-packages/&quot;&gt;testing-r-packages&lt;/a&gt;&lt;/strong&gt; - Best practices for writing R package tests using testthat 3+, including test structure, expectations, fixtures, snapshots, mocking, and BDD-style testing&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/cli/&quot;&gt;cli&lt;/a&gt;&lt;/strong&gt; - Comprehensive guidance for using the cli R package for command-line interface styling, semantic messaging, and user communication with inline markup, progress indicators, and theming&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/cran-extrachecks/&quot;&gt;cran-extrachecks&lt;/a&gt;&lt;/strong&gt; - Prepare R packages for CRAN submission by checking for common ad-hoc requirements not caught by &lt;code&gt;devtools::check()&lt;/code&gt;, including documentation standards, DESCRIPTION field formatting, and URL validation&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/lifecycle/&quot;&gt;lifecycle&lt;/a&gt;&lt;/strong&gt; - Manage R package lifecycle according to tidyverse principles using the lifecycle package, covering deprecation workflows, function/argument renaming, superseding, and experimental stages&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/r-package-development/&quot;&gt;r-package-development&lt;/a&gt;&lt;/strong&gt; - R package development with devtools, testthat, and roxygen2, covering key commands, coding conventions, testing, documentation, and &lt;a href=&quot;http://NEWS.md&quot;&gt;NEWS.md&lt;/a&gt; practices&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/r-lib/mirai/&quot;&gt;mirai&lt;/a&gt;&lt;/strong&gt; - Async, parallel, and distributed computing in R using mirai, covering explicit dependency passing, daemon setup, parallel mapping with &lt;code&gt;mirai_map()&lt;/code&gt;, Shiny integration, remote/HPC launchers, and migration from future/parallel&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/alt-text/&quot;&gt;alt-text&lt;/a&gt;&lt;/strong&gt; - Generate and improve accessible alt text for data visualizations and images in pkgdown sites and Quarto documents, covering vignette code chunks (&lt;code&gt;fig.alt&lt;/code&gt;), static markdown images, and multi-plot chunks&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;ggsql&lt;/h3&gt; 
+&lt;p&gt;Skills for writing ggsql queries — a grammar of graphics for SQL.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/ggsql/ggsql/&quot;&gt;ggsql&lt;/a&gt;&lt;/strong&gt; - Write ggsql queries — a grammar of graphics for SQL. Use when the user wants to create, modify, or understand a ggsql visualization query&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Shiny&lt;/h3&gt; 
+&lt;p&gt;Skills for Shiny app development in both R and Python.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/brand-yml/&quot;&gt;brand-yml&lt;/a&gt;&lt;/strong&gt; - Create and apply brand.yml files for consistent styling across Shiny apps, with support for bslib (R) and ui.Theme (Python), including automatic brand discovery and theming functions for plots and tables&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/shiny/shiny-bslib/&quot;&gt;shiny-bslib&lt;/a&gt;&lt;/strong&gt; - Build modern Shiny dashboards using bslib with Bootstrap 5 layouts, cards, value boxes, navigation, theming, and modern inputs. Includes migration guide from legacy Shiny patterns&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/shiny/shiny-bslib-theming/&quot;&gt;shiny-bslib-theming&lt;/a&gt;&lt;/strong&gt; - Comprehensive theming for Shiny apps using bslib, covering bs_theme(), Bootswatch themes, custom colors, typography, Bootstrap Sass variables, custom Sass/CSS rules, dark mode, dynamic theming, and R plot theming&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Quarto&lt;/h3&gt; 
+&lt;p&gt;Skills for Quarto document creation and publishing.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/brand-yml/&quot;&gt;brand-yml&lt;/a&gt;&lt;/strong&gt; - Create and apply brand.yml files for consistent styling across Quarto projects, supporting HTML documents, dashboards, RevealJS presentations, Typst PDFs, and websites with automatic brand discovery and theme layering&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/quarto/README.md#quarto-authoring-skill&quot;&gt;authoring&lt;/a&gt;&lt;/strong&gt; - Comprehensive guidance for Quarto document authoring and R Markdown migration. Write new Quarto documents with best practices, convert R Markdown files, migrate bookdown/blogdown/xaringan/distill projects, and use Quarto-specific features like hashpipe syntax, cross-references, callouts, and extensions&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/alt-text/&quot;&gt;alt-text&lt;/a&gt;&lt;/strong&gt; - Generate and improve accessible alt text for figures in Quarto documents using Amy Cesal&#39;s three-part formula (chart type, data description, key insight). Supports code-generated plots and static images&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Using &lt;code&gt;npx skills add&lt;/code&gt; (Any Agent)&lt;/h3&gt; 
+&lt;p&gt;Install skills from this repository into any supported coding agent (Claude Code, Codex, Cursor, Cline, and &lt;a href=&quot;https://github.com/vercel-labs/skills&quot;&gt;many more&lt;/a&gt;) using the &lt;code&gt;npx skills add&lt;/code&gt; CLI:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# List available skills without installing
+npx skills add posit-dev/skills --list
+
+# Install skills via an interactive menu
+npx skills add posit-dev/skills --all
+
+# Install specific skills by category name
+npx skills add posit-dev/skills --skill cli --skill lifecycle
+
+# Install to Claude Code only, globally
+npx skills add posit-dev/skills --agent claude-code --global
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Claude Code&lt;/h3&gt; 
+&lt;h4&gt;Method 1: Add Marketplace&lt;/h4&gt; 
+&lt;p&gt;Add this repository as a plugin marketplace in Claude Code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;/plugin marketplace add posit-dev/skills
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then browse and install the skill categories you need through the Claude Code UI.&lt;/p&gt; 
+&lt;h4&gt;Method 2: Direct Installation&lt;/h4&gt; 
+&lt;p&gt;Install specific skill categories directly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;/plugin install posit-dev@posit-dev-skills
+/plugin install github@posit-dev-skills
+/plugin install open-source@posit-dev-skills
+/plugin install ggsql@posit-dev-skills
+/plugin install r-lib@posit-dev-skills
+/plugin install shiny@posit-dev-skills
+/plugin install quarto@posit-dev-skills
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Each command installs all skills in that category.&lt;/p&gt; 
+&lt;h4&gt;Method 3: Manual Installation&lt;/h4&gt; 
+&lt;p&gt;For customization or offline use:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Clone this repository:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/posit-dev/skills.git
+cd skills
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Copy individual skills to your Claude Code skills directory:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cp -r open-source/release-post ~/.config/claude-code/skills/
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Or install all skills from a category:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;for skill in open-source/*/; do
+  cp -r &quot;$skill&quot; ~/.config/claude-code/skills/
+done
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;&lt;a href=&quot;http://Claude.ai&quot;&gt;Claude.ai&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;Skills can be uploaded to &lt;a href=&quot;http://Claude.ai&quot;&gt;Claude.ai&lt;/a&gt; following the &lt;a href=&quot;https://support.claude.com/en/articles/12512198-creating-custom-skills&quot;&gt;Creating Custom Skills guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Claude API&lt;/h3&gt; 
+&lt;p&gt;Use the &lt;a href=&quot;https://docs.claude.com/en/api/skills-guide&quot;&gt;Skills API&lt;/a&gt; to programmatically load and manage skills in your applications.&lt;/p&gt; 
+&lt;h2&gt;Using Skills&lt;/h2&gt; 
+&lt;p&gt;Once installed, Claude will automatically activate relevant skills based on your task. You don&#39;t need to explicitly invoke them.&lt;/p&gt; 
+&lt;p&gt;For example, with the &lt;code&gt;release-post&lt;/code&gt; skill installed:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;You: Help me write a release post for dplyr 1.2.0
+
+Claude: I&#39;ll help you create a release post. First, let me gather some information...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Claude will use the skill&#39;s knowledge to guide you through creating a properly formatted release post.&lt;/p&gt; 
+&lt;h2&gt;Skill Categories&lt;/h2&gt; 
+&lt;p&gt;This repository organizes skills into categories to make it easier to find and install skills relevant to your work:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Category&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;posit-dev&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;General-purpose developer skills (code review, architecture docs)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;ggsql&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;ggsql query writing — a grammar of graphics for SQL&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;github&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;GitHub PR workflows (create PRs, address review threads, resolve threads)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;open-source&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Open-source R/Python package workflows (releases, changelogs)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;r-lib&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;R package development with the r-lib ecosystem&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;shiny&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Shiny app development and deployment (R and Python)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;quarto&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Quarto document creation and publishing&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- Future category ideas
+
+| **tidyverse** | Tidyverse-specific package development |
+| **connect** | Posit Connect deployment and management |
+--&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions! Please see &lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for guidelines on creating new skills.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;We highly recommend using Anthropic&#39;s &lt;a href=&quot;https://github.com/anthropics/skills&quot;&gt;skill-creator&lt;/a&gt; skill&lt;/strong&gt; to help you build high-quality skills. Skills should be grouped together by category, but the category groups are flexible. Feel free to propose new categories as needed.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This repository is licensed under the MIT License. See &lt;a href=&quot;https://raw.githubusercontent.com/posit-dev/skills/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;h2&gt;Resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.anthropic.com/news/skills&quot;&gt;Claude Skills Overview&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://support.claude.com/en/articles/12512180-using-skills-in-claude&quot;&gt;Using Skills in Claude&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://support.claude.com/en/articles/12512198-creating-custom-skills&quot;&gt;Creating Custom Skills&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.claude.com/en/api/skills-guide&quot;&gt;Skills API Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/anthropics/skills&quot;&gt;Anthropic&#39;s Official Skills Repository&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;If you have questions or encounter issues, check the &lt;a href=&quot;https://support.claude.com/en/articles/12512180-using-skills-in-claude&quot;&gt;Claude Skills documentation&lt;/a&gt; or &lt;a href=&quot;https://github.com/posit-dev/skills/issues/new&quot;&gt;open an issue&lt;/a&gt; on GitHub.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;strong&gt;Built with ❤️ + ☕ + 🤖 at Posit&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d2530fd020bd4a94ad6ef12b263c480fe9045e1ddeb36f20fac1cb8a5a956ded/posit-dev/skills" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

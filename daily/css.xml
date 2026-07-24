@@ -1,0 +1,2305 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub CSS Daily Trending</title>
+    <description>Daily Trending of CSS in GitHub</description>
+    <pubDate>Fri, 24 Jul 2026 01:37:19 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>spring-projects/spring-petclinic</title>
+      <link>https://github.com/spring-projects/spring-petclinic</link>
+      <description>&lt;p&gt;A sample Spring-based application&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Spring PetClinic Sample Application &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml&quot;&gt;&lt;img src=&quot;https://github.com/spring-projects/spring-petclinic/actions/workflows/maven-build.yml/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml&quot;&gt;&lt;img src=&quot;https://github.com/spring-projects/spring-petclinic/actions/workflows/gradle-build.yml/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gitpod.io/#https://github.com/spring-projects/spring-petclinic&quot;&gt;&lt;img src=&quot;https://gitpod.io/button/open-in-gitpod.svg?sanitize=true&quot; alt=&quot;Open in Gitpod&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/codespaces/new?hide_repo_select=true&amp;amp;ref=main&amp;amp;repo=7517918&quot;&gt;&lt;img src=&quot;https://github.com/codespaces/badge.svg?sanitize=true&quot; alt=&quot;Open in GitHub Codespaces&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Understanding the Spring Petclinic application with a few diagrams&lt;/h2&gt; 
+&lt;p&gt;See the presentation here:&lt;br /&gt; &lt;a href=&quot;https://speakerdeck.com/michaelisvy/spring-petclinic-sample-application?slide=20&quot;&gt;Spring Petclinic Sample Application (legacy slides)&lt;/a&gt;&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; These slides refer to a legacy, pre–Spring Boot version of Petclinic and may not reflect the current Spring Boot–based implementation.&lt;br /&gt; For up-to-date information, please refer to this repository and its documentation.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Run Petclinic locally&lt;/h2&gt; 
+&lt;p&gt;Spring Petclinic is a &lt;a href=&quot;https://spring.io/guides/gs/spring-boot&quot;&gt;Spring Boot&lt;/a&gt; application built using &lt;a href=&quot;https://spring.io/guides/gs/maven/&quot;&gt;Maven&lt;/a&gt; or &lt;a href=&quot;https://spring.io/guides/gs/gradle/&quot;&gt;Gradle&lt;/a&gt;. Java 17 or later is required for the build, and the application can run with Java 17 or newer.&lt;/p&gt; 
+&lt;p&gt;You first need to clone the project locally:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/spring-projects/spring-petclinic.git
+cd spring-petclinic
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you are using Maven, you can start the application on the command-line as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./mvnw spring-boot:run
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;With Gradle, the command is as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./gradlew bootRun
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can then access the Petclinic at &lt;a href=&quot;http://localhost:8080/&quot;&gt;http://localhost:8080/&lt;/a&gt;.&lt;/p&gt; 
+&lt;img width=&quot;1042&quot; alt=&quot;petclinic-screenshot&quot; src=&quot;https://cloud.githubusercontent.com/assets/838318/19727082/2aee6d6c-9b8e-11e6-81fe-e889a5ddfded.png&quot; /&gt; 
+&lt;p&gt;You can, of course, run Petclinic in your favorite IDE. See below for more details.&lt;/p&gt; 
+&lt;h2&gt;Building a Container&lt;/h2&gt; 
+&lt;p&gt;There is no &lt;code&gt;Dockerfile&lt;/code&gt; in this project. You can build a container image (if you have a docker daemon) using the Spring Boot build plugin:&lt;/p&gt; 
+&lt;h2&gt;Running the Container Image&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./mvnw spring-boot:build-image
+docker images | grep petclinic
+docker run -p 8080:8080 docker.io/library/spring-petclinic:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;In case you find a bug/suggested improvement for Spring Petclinic&lt;/h2&gt; 
+&lt;p&gt;Our issue tracker is available &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/issues&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Database configuration&lt;/h2&gt; 
+&lt;p&gt;In its default configuration, Petclinic uses an in-memory database (H2) which gets populated at startup with data. The h2 console is exposed at &lt;code&gt;http://localhost:8080/h2-console&lt;/code&gt;, and it is possible to inspect the content of the database using the &lt;code&gt;jdbc:h2:mem:&amp;lt;uuid&amp;gt;&lt;/code&gt; URL. The UUID is printed at startup to the console.&lt;/p&gt; 
+&lt;p&gt;A similar setup is provided for MySQL and PostgreSQL if a persistent database configuration is needed. Note that whenever the database type changes, the app needs to run with a different profile: &lt;code&gt;spring.profiles.active=mysql&lt;/code&gt; for MySQL or &lt;code&gt;spring.profiles.active=postgres&lt;/code&gt; for PostgreSQL. See the &lt;a href=&quot;https://docs.spring.io/spring-boot/how-to/properties-and-configuration.html#howto.properties-and-configuration.set-active-spring-profiles&quot;&gt;Spring Boot documentation&lt;/a&gt; for more detail on how to set the active profile.&lt;/p&gt; 
+&lt;p&gt;You can start MySQL or PostgreSQL locally with whatever installer works for your OS or use docker:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -e MYSQL_USER=petclinic -e MYSQL_PASSWORD=petclinic -e MYSQL_ROOT_PASSWORD=root -e MYSQL_DATABASE=petclinic -p 3306:3306 mysql:9.7
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -e POSTGRES_USER=petclinic -e POSTGRES_PASSWORD=petclinic -e POSTGRES_DB=petclinic -p 5432:5432 postgres:18.4
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Further documentation is provided for &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/resources/db/mysql/petclinic_db_setup_mysql.txt&quot;&gt;MySQL&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/resources/db/postgres/petclinic_db_setup_postgres.txt&quot;&gt;PostgreSQL&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Instead of vanilla &lt;code&gt;docker&lt;/code&gt; you can also use the provided &lt;code&gt;docker-compose.yml&lt;/code&gt; file to start the database containers. Each one has a service named after the Spring profile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker compose up mysql
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker compose up postgres
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Test Applications&lt;/h2&gt; 
+&lt;p&gt;At development time we recommend you use the test applications set up as &lt;code&gt;main()&lt;/code&gt; methods in &lt;code&gt;PetClinicIntegrationTests&lt;/code&gt; (using the default H2 database and also adding Spring Boot Devtools), &lt;code&gt;MySqlTestApplication&lt;/code&gt; and &lt;code&gt;PostgresIntegrationTests&lt;/code&gt;. These are set up so that you can run the apps in your IDE to get fast feedback and also run the same classes as integration tests against the respective database. The MySql integration tests use Testcontainers to start the database in a Docker container, and the Postgres tests use Docker Compose to do the same thing.&lt;/p&gt; 
+&lt;h2&gt;Compiling the CSS&lt;/h2&gt; 
+&lt;p&gt;There is a &lt;code&gt;petclinic.css&lt;/code&gt; in &lt;code&gt;src/main/resources/static/resources/css&lt;/code&gt;. It was generated from the &lt;code&gt;petclinic.scss&lt;/code&gt; source, combined with the &lt;a href=&quot;https://getbootstrap.com/&quot;&gt;Bootstrap&lt;/a&gt; library. If you make changes to the &lt;code&gt;scss&lt;/code&gt;, or upgrade Bootstrap, you will need to re-compile the CSS resources using the Maven profile &quot;css&quot;, i.e. &lt;code&gt;./mvnw package -P css&lt;/code&gt;. There is no build profile for Gradle to compile the CSS.&lt;/p&gt; 
+&lt;h2&gt;Working with Petclinic in your IDE&lt;/h2&gt; 
+&lt;h3&gt;Prerequisites&lt;/h3&gt; 
+&lt;p&gt;The following items should be installed in your system:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Java 17 or newer (full JDK, not a JRE)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.github.com/articles/set-up-git&quot;&gt;Git command line tool&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Your preferred IDE 
+  &lt;ul&gt; 
+   &lt;li&gt;Eclipse with the m2e plugin. Note: when m2e is available, there is a m2 icon in &lt;code&gt;Help -&amp;gt; About&lt;/code&gt; dialog. If m2e is not there, follow the installation process &lt;a href=&quot;https://www.eclipse.org/m2e/&quot;&gt;here&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://spring.io/tools&quot;&gt;Spring Tools Suite&lt;/a&gt; (STS)&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://www.jetbrains.com/idea/&quot;&gt;IntelliJ IDEA&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com&quot;&gt;VS Code&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Steps&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;On the command line run:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/spring-projects/spring-petclinic.git
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Inside Eclipse or STS:&lt;/p&gt; &lt;p&gt;Open the project via &lt;code&gt;File -&amp;gt; Import -&amp;gt; Maven -&amp;gt; Existing Maven project&lt;/code&gt;, then select the root directory of the cloned repo.&lt;/p&gt; &lt;p&gt;Then either build on the command line &lt;code&gt;./mvnw generate-resources&lt;/code&gt; or use the Eclipse launcher (right-click on project and &lt;code&gt;Run As -&amp;gt; Maven install&lt;/code&gt;) to generate the CSS. Run the application&#39;s main method by right-clicking on it and choosing &lt;code&gt;Run As -&amp;gt; Java Application&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Inside IntelliJ IDEA:&lt;/p&gt; &lt;p&gt;In the main menu, choose&amp;nbsp;&lt;code&gt;File -&amp;gt; Open&lt;/code&gt; and select the&amp;nbsp;Petclinic &lt;a href=&quot;https://raw.githubusercontent.com/spring-projects/spring-petclinic/main/pom.xml&quot;&gt;pom.xml&lt;/a&gt;. Click on the &lt;code&gt;Open&lt;/code&gt; button.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;CSS files are generated from the Maven build. You can build them on the command line &lt;code&gt;./mvnw generate-resources&lt;/code&gt; or right-click on the &lt;code&gt;spring-petclinic&lt;/code&gt; project then &lt;code&gt;Maven -&amp;gt; Generates sources and Update Folders&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;A run configuration named &lt;code&gt;PetClinicApplication&lt;/code&gt; should have been created for you if you&#39;re using a recent Ultimate version. Otherwise, run the application by right-clicking on the &lt;code&gt;PetClinicApplication&lt;/code&gt; main class and choosing &lt;code&gt;Run &#39;PetClinicApplication&#39;&lt;/code&gt;.&lt;/p&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Navigate to the Petclinic&lt;/p&gt; &lt;p&gt;Visit &lt;a href=&quot;http://localhost:8080&quot;&gt;http://localhost:8080&lt;/a&gt; in your browser.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Looking for something in particular?&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Spring Boot Configuration&lt;/th&gt; 
+   &lt;th&gt;Class or Java property files&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;The Main Class&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/java/org/springframework/samples/petclinic/PetClinicApplication.java&quot;&gt;PetClinicApplication&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Properties Files&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/resources&quot;&gt;application.properties&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Caching&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/raw/main/src/main/java/org/springframework/samples/petclinic/system/CacheConfiguration.java&quot;&gt;CacheConfiguration&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Interesting Spring Petclinic branches and forks&lt;/h2&gt; 
+&lt;p&gt;The Spring Petclinic &quot;main&quot; branch in the &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic&quot;&gt;spring-projects&lt;/a&gt; GitHub org is the &quot;canonical&quot; implementation based on Spring Boot and Thymeleaf. There are &lt;a href=&quot;https://spring-petclinic.github.io/docs/forks.html&quot;&gt;quite a few forks&lt;/a&gt; in the GitHub org &lt;a href=&quot;https://github.com/spring-petclinic&quot;&gt;spring-petclinic&lt;/a&gt;. If you are interested in using a different technology stack to implement the Pet Clinic, please join the community there.&lt;/p&gt; 
+&lt;h2&gt;Interaction with other open-source projects&lt;/h2&gt; 
+&lt;p&gt;One of the best parts about working on the Spring Petclinic application is that we have the opportunity to work in direct contact with many Open Source projects. We found bugs/suggested improvements on various topics such as Spring, Spring Data, Bean Validation and even Eclipse! In many cases, they&#39;ve been fixed/implemented in just a few days. Here is a list of them:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Name&lt;/th&gt; 
+   &lt;th&gt;Issue&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Spring JDBC: simplify usage of NamedParameterJdbcTemplate&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/14889&quot;&gt;SPR-10256&lt;/a&gt; and &lt;a href=&quot;https://github.com/spring-projects/spring-framework/issues/14890&quot;&gt;SPR-10257&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Bean Validation / Hibernate Validator: simplify Maven dependencies and backward compatibility&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://hibernate.atlassian.net/browse/HV-790&quot;&gt;HV-790&lt;/a&gt; and &lt;a href=&quot;https://hibernate.atlassian.net/browse/HV-792&quot;&gt;HV-792&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Spring Data: provide more flexibility when working with JPQL queries&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/spring-projects/spring-data-jpa/issues/704&quot;&gt;DATAJPA-292&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/spring-projects/spring-petclinic/issues&quot;&gt;issue tracker&lt;/a&gt; is the preferred channel for bug reports, feature requests and submitting pull requests.&lt;/p&gt; 
+&lt;p&gt;For pull requests, editor preferences are available in the &lt;a href=&quot;https://raw.githubusercontent.com/spring-projects/spring-petclinic/main/.editorconfig&quot;&gt;editor config&lt;/a&gt; for easy use in common text editors. Read more and download plugins at &lt;a href=&quot;https://editorconfig.org&quot;&gt;https://editorconfig.org&lt;/a&gt;. All commits must include a &lt;strong&gt;Signed-off-by&lt;/strong&gt; trailer at the end of each commit message to indicate that the contributor agrees to the Developer Certificate of Origin. For additional details, please refer to the blog post &lt;a href=&quot;https://spring.io/blog/2025/01/06/hello-dco-goodbye-cla-simplifying-contributions-to-spring&quot;&gt;Hello DCO, Goodbye CLA: Simplifying Contributions to Spring&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The Spring PetClinic sample application is released under version 2.0 of the &lt;a href=&quot;https://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache License&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d0f064aeea2a29ec526576cc35d1959b339bfa640d73a025761488c8b5ab1100/spring-projects/spring-petclinic" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>bradtraversy/50projects50days</title>
+      <link>https://github.com/bradtraversy/50projects50days</link>
+      <description>&lt;p&gt;50+ mini web projects using HTML, CSS &amp; JS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;50 Projects in 50 Days - HTML/CSS and JavaScript&lt;/h1&gt; 
+&lt;p&gt;This is the main repository for all of the projects in the course.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.traversymedia.com/50-Projects-In-50-Days&quot;&gt;Course Link&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;#&lt;/th&gt; 
+   &lt;th&gt;Project&lt;/th&gt; 
+   &lt;th&gt;Live Demo&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;01&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/expanding-cards&quot;&gt;Expanding Cards&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/expanding-cards/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;02&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/progress-steps&quot;&gt;Progress Steps&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/progress-steps/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;03&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/rotating-nav-animation&quot;&gt;Rotating Navigation Animation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/rotating-navigation-animation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;04&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/hidden-search&quot;&gt;Hidden Search Widget&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/hidden-search-widget/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;05&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/blurry-loading&quot;&gt;Blurry Loading&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/blurry-loading/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;06&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/scroll-animation&quot;&gt;Scroll Animation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/scroll-animation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;07&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/split-landing-page&quot;&gt;Split Landing Page&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/split-landing-page/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;08&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/form-input-wave&quot;&gt;Form Wave&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/form-wave/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;09&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/sound-board&quot;&gt;Sound Board&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/sound-board/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;10&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/dad-jokes&quot;&gt;Dad Jokes&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/dad-jokes/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;11&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/event-keycodes&quot;&gt;Event Keycodes&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/event-keycodes/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;12&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/faq-collapse&quot;&gt;Faq Collapse&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/faq-collapse/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;13&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/random-choice-picker&quot;&gt;Random Choice Picker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/random-choice-picker/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;14&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/animated-navigation&quot;&gt;Animated Navigation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/animated-navigation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;15&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/incrementing-counter&quot;&gt;Incrementing Counter&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/incrementing-counter/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;16&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/drink-water&quot;&gt;Drink Water&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/drink-water/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;17&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/movie-app&quot;&gt;Movie App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/movie-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;18&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/background-slider&quot;&gt;Background Slider&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/background-slider/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;19&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/theme-clock&quot;&gt;Theme Clock&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/theme-clock/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;20&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/button-ripple-effect&quot;&gt;Button Ripple Effect&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/button-ripple-effect/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;21&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/drag-n-drop&quot;&gt;Drag N Drop&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/drag-n-drop/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;22&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/drawing-app&quot;&gt;Drawing App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/drawing-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;23&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/kinetic-loader&quot;&gt;Kinetic Loader&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/kinetic-loader/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;24&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/content-placeholder&quot;&gt;Content Placeholder&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/content-placeholder/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;25&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/sticky-navigation&quot;&gt;Sticky Navbar&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/sticky-navbar/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;26&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/double-vertical-slider&quot;&gt;Double Vertical Slider&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/double-vertical-slider/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;27&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/toast-notification&quot;&gt;Toast Notification&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/toast-notification/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;28&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/github-profiles&quot;&gt;Github Profiles&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/github-profiles/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;29&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/double-click-heart&quot;&gt;Double Click Heart&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/double-click-heart/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;30&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/auto-text-effect&quot;&gt;Auto Text Effect&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/auto-text-effect/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;31&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/password-generator&quot;&gt;Password Generator&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/password-generator/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;32&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/good-cheap-fast&quot;&gt;Good Cheap Fast&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/good-cheap-fast/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;33&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/notes-app&quot;&gt;Notes App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/notes-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;34&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/animated-countdown&quot;&gt;Animated Countdown&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/animated-countdown/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;35&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/image-carousel&quot;&gt;Image Carousel&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/image-carousel/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;36&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/hoverboard&quot;&gt;Hoverboard&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/hoverboard/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;37&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/pokedex&quot;&gt;Pokedex&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/pokedex/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;38&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/mobile-tab-navigation&quot;&gt;Mobile Tab Navigation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/mobile-tab-navigation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;39&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/password-strength-background&quot;&gt;Password Strength Background&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/password-strength-background/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;40&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/3d-boxes-background&quot;&gt;3d Background Boxes&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/3d-background-boxes/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;41&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/verify-account-ui&quot;&gt;Verify Account Ui&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/verify-account-ui/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;42&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/live-user-filter&quot;&gt;Live User Filter&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/live-user-filter/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;43&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/feedback-ui-design&quot;&gt;Feedback Ui Design&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/feedback-ui-design/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;44&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/custom-range-slider&quot;&gt;Custom Range Slider&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/custom-range-slider/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;45&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/netflix-mobile-navigation&quot;&gt;Netflix Mobile Navigation&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/netflix-mobile-navigation/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;46&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/quiz-app&quot;&gt;Quiz App&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/quiz-app/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;47&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/testimonial-box-switcher&quot;&gt;Testimonial Box Switcher&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/testimonial-box-switcher/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;48&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/random-image-generator&quot;&gt;Random Image Feed&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/random-image-feed/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;49&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/todo-list&quot;&gt;Todo List&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/todo-list/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;50&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/insect-catch-game&quot;&gt;Insect Catch Game&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/insect-catch-game/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;51&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bradtraversy/50projects50days/tree/master/simple-timer&quot;&gt;Simple Timer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://50projects50days.com/projects/simple-timer/&quot;&gt;Live Demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;strong&gt;NOTE ON PULL REQUESTS&lt;/strong&gt;: All of these projects are part of the course. While I do appreciate people trying to make some things prettier or adding new features, we are only accepting pull requests and looking at issues for bug fixes so that the code stays inline with the course&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The MIT License&lt;/p&gt; 
+&lt;p&gt;Copyright (c) 2020-2021 Traversy Media &lt;a href=&quot;https://traversymedia.com&quot;&gt;https://traversymedia.com&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Permission is hereby granted, free of charge, to any person obtaining a copy of this software and associated documentation files (the &quot;Software&quot;), to deal in the Software without restriction, including without limitation the rights to use, copy, modify, merge, publish, distribute, sublicense, and/or sell copies of the Software, and to permit persons to whom the Software is furnished to do so, subject to the following conditions:&lt;/p&gt; 
+&lt;p&gt;The above copyright notice and this permission notice shall be included in all copies or substantial portions of the Software.&lt;/p&gt; 
+&lt;p&gt;🔹 Software Disclaimer 🔹&lt;/p&gt; 
+&lt;p&gt;🛠️ Provided &quot;As Is&quot; – No guarantees, use at your own risk. 📜 No Warranty – No promises on performance or fitness for any purpose. ⚖️ No Liability – Authors aren&#39;t responsible for any damages or claims. 🔄 Use Freely – But at your own discretion and responsibility.&lt;/p&gt; 
+&lt;p&gt;🚀 In short: Use it, but don’t blame us! 😃&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/347302d39950aeb05108fa3d72a8685512fc53ea2e6006345236399476b3d915/bradtraversy/50projects50days" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>nicejade/markdown-online-editor</title>
+      <link>https://github.com/nicejade/markdown-online-editor</link>
+      <description>&lt;p&gt;📝 基于 Vue2、Vditor，所构建的在线 Markdown 编辑器，支持绘制流程图、甘特图、时序图、任务列表、echarts 图表、五线谱，以及 PPT 预览、视频音频解析、HTML 自动转换为 Markdown 等功能。https://www.niceshare.site&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt;&lt;a href=&quot;https://www.niceshare.site/?ref=github.com&quot; target=&quot;_blank&quot;&gt;&lt;img width=&quot;100&quot; src=&quot;https://cdn.jsdelivr.net/gh/nicejade/markdown-online-editor/src/assets/images/logo.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1 align=&quot;center&quot;&gt; &lt;a href=&quot;https://markdown.lovejade.cn/?ref=github.com&quot;&gt;Arya - 在线 Markdown 编辑器&lt;/a&gt; &lt;/h1&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;strong&gt; 📝 基于 &lt;a href=&quot;https://site.lovejade.cn/post/5b1a221c0526c920d6dfaada&quot;&gt;Vue2&lt;/a&gt;、&lt;a href=&quot;https://github.com/Vanessa219/vditor&quot;&gt;Vditor&lt;/a&gt;，所构建的在线 Markdown 编辑器，支持绘制流程图、甘特图、时序图、任务列表、Echarts 图表、五线谱，以及 PPT 预览、视频音频解析、HTML 自动转换为 Markdown 等功能。&lt;a href=&quot;https://markdown.lovejade.cn/?ref=github.com&quot;&gt;markdown.lovejade.cn&lt;/a&gt;。 &lt;/strong&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://github.com/nicejade/markdown-online-editor&quot;&gt; &lt;img alt=&quot;GitHub package.json version&quot; src=&quot;https://img.shields.io/github/package-json/v/nicejade/markdown-online-editor&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/nicejade/markdown-online-editor&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/license/nicejade/markdown-online-editor.svg?sanitize=true&quot; alt=&quot;LICENSE&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://prettier.io/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/code_style-prettier-ff69b4.svg?style=flat&quot; alt=&quot;Prettier&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://gitmoji.dev&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/gitmoji-%2520%F0%9F%98%9C%2520%F0%9F%98%8D-FFDD67.svg?style=flat-square&quot; alt=&quot;Gitmoji&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://www.jeffjade.com/2019/05/31/155-arya-markdown-online-editor/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/chat-on%20blog-brightgreen.svg?sanitize=true&quot; alt=&quot;Arya - 在线 Markdown 编辑器&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://v2ex.com/t/623128&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/chat-on%20v2ex-brightgreen.svg?sanitize=true&quot; alt=&quot;Chat On V2ex&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://www.niceshare.site/?ref=github.com&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Author-nicejade-%23a696c8.svg?sanitize=true&quot; alt=&quot;Author nicejade&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;背景初衷&lt;/h2&gt; 
+&lt;p&gt;早期就有关注到由&lt;code&gt;黑客派&lt;/code&gt;所出品的 &lt;a href=&quot;https://github.com/Vanessa219/vditor&quot;&gt;Vditor&lt;/a&gt;：一款为未来而构建的下一代 Markdown 编辑器。然，现而今市面上所存在的 Markdown 编辑器，或多或少都存在一些问题（或功能不全，或高级功能收费...），因此基于自身所需，加之 &lt;a href=&quot;https://github.com/Vanessa219/vditor&quot;&gt;Vditor&lt;/a&gt; 的强大，就诞生了做一款&lt;a href=&quot;https://markdown.lovejade.cn/?ref=github.com&quot;&gt;在线 Markdown 编辑器&lt;/a&gt; 的念头；取其名曰 &lt;a href=&quot;https://quickapp.lovejade.cn/talking-game-of-thrones/?ref=github.com&quot;&gt;&lt;code&gt;Arya&lt;/code&gt;（二丫）&lt;/a&gt;。&lt;/p&gt; 
+&lt;h2&gt;功能支持&lt;/h2&gt; 
+&lt;ul class=&quot;task-list&quot;&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_0&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_0&quot;&gt; 🎉 通常 &lt;code&gt;Markdown&lt;/code&gt; 解析器自带的基本功能；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_1&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_1&quot;&gt; 🍀 支持&lt;strong&gt;流程图&lt;/strong&gt;、&lt;strong&gt;甘特图&lt;/strong&gt;、&lt;strong&gt;时序图&lt;/strong&gt;、&lt;strong&gt;任务列表&lt;/strong&gt;；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_2&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_2&quot;&gt; 🏁 支持粘贴 HTML 自动转换为 Markdown；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_3&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_3&quot;&gt; 💃🏻 支持插入原生 Emoji、设置常用表情列表；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_4&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_4&quot;&gt; 🚑 支持编辑内容保存&lt;strong&gt;本地存储&lt;/strong&gt;，防止意外丢失；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_5&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_5&quot;&gt; 📝 支持&lt;strong&gt;实时预览&lt;/strong&gt;，主窗口大小拖拽，字符计数；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_6&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_6&quot;&gt; 🛠 支持常用快捷键(&lt;strong&gt;Tab&lt;/strong&gt;)，及代码块添加复制；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_7&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_7&quot;&gt; ✨ 支持&lt;strong&gt;导出&lt;/strong&gt;携带样式的 PDF、PNG、JPEG 等；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_8&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_8&quot;&gt; ✨ 升级 Vditor，新增对 &lt;code&gt;echarts&lt;/code&gt; 图表的支持；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_9&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_9&quot;&gt; ✨ 注入 &lt;a href=&quot;https://revealjs.com/#/&quot;&gt;RevealJs&lt;/a&gt;，增设对 &lt;code&gt;PPT&lt;/code&gt; 预览支持；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_10&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_10&quot;&gt; 👏 支持检查并格式化 Markdown 语法，使其专业；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_11&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_11&quot;&gt; 🦑 支持五线谱、及&lt;a href=&quot;https://github.com/Vanessa219/vditor&quot;&gt;部分站点、视频、音频解析&lt;/a&gt;；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_12&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_12&quot;&gt; 🌟 增加对&lt;strong&gt;所见即所得&lt;/strong&gt;编辑模式的支持(&lt;code&gt;⌘-⇧-M&lt;/code&gt;)；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_13&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_13&quot;&gt; 🌟 新增复制到微信公众号等周边功能；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_14&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_14&quot;&gt; 🌟 支持导入本地 Markdown（&lt;code&gt;*.md&lt;/code&gt;） 文件；&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_15&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_15&quot;&gt; 🌟 支持导出 Word（&lt;code&gt;.docx&lt;/code&gt;）至本地，基于 &lt;code&gt;html-to-docx&lt;/code&gt;；&lt;/label&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;如何使用&lt;/h2&gt; 
+&lt;p&gt;清空目前 &lt;a href=&quot;https://markdown.lovejade.cn/?ref=github.com&quot;&gt;Arya&lt;/a&gt; 编辑区默认文档，即可使用。&lt;/p&gt; 
+&lt;p&gt;默认为&lt;a href=&quot;https://b3log.org/vditor/&quot;&gt;所见即所得&lt;/a&gt;模式，可通过 &lt;code&gt;⌘-⇧-M&lt;/code&gt;（&lt;code&gt;Ctrl-⇧-M&lt;/code&gt;）进行切换；或通过以下方式：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;所见即所得：&lt;code&gt;⌘-⌥-7&lt;/code&gt;（&lt;code&gt;Ctrl-alt-7&lt;/code&gt;）；&lt;/li&gt; 
+ &lt;li&gt;即时渲染：&lt;code&gt;⌘-⌥-8&lt;/code&gt;（&lt;code&gt;Ctrl-alt-8&lt;/code&gt;）；&lt;/li&gt; 
+ &lt;li&gt;分屏渲染：&lt;code&gt;⌘-⌥-9&lt;/code&gt;（&lt;code&gt;Ctrl-alt-9&lt;/code&gt;）；&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;PPT 预览&lt;/h3&gt; 
+&lt;p&gt;如果您用作 &lt;code&gt;PPT&lt;/code&gt; 预览（入口在&lt;code&gt;设置&lt;/code&gt;中），需要注意，这里暂还不能支持各种图表的渲染；您可以使用 &lt;code&gt;---&lt;/code&gt; 来定义水平方向上幻灯片，用 &lt;code&gt;--&lt;/code&gt; 来定义垂直幻灯片；更多设定可以参见 &lt;a href=&quot;https://revealjs.com/markdown/&quot;&gt;Reveal.js Markdown 文档&lt;/a&gt;。&lt;/p&gt; 
+&lt;h2&gt;如何部署？&lt;/h2&gt; 
+&lt;h3&gt;采用 &lt;a href=&quot;https://pm2.keymetrics.io/&quot;&gt;pm2&lt;/a&gt; 部署&lt;/h3&gt; 
+&lt;p&gt;PM2 是一个强大的生产环境进程管理器，它不仅支持通过命令行启动应用，还可以使用配置文件（通常名为 &lt;code&gt;ecosystem.config.js&lt;/code&gt;）来管理复杂的部署场景。您可以通过执行如下命令实现快速部署：&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 🎉 克隆项目
+git clone https://github.com/nicejade/markdown-online-editor.git
+cd markdown-online-editor
+
+# ➕ 安装依赖
+yarn
+yarn global add pm2
+
+# 🔧 构建产物
+yarn build
+
+# 🚀 部署服务
+yarn release
+
+# 🎗️ 或者
+cd dist
+npx pm2 start &quot;npx http-server -p 8866&quot; --name &quot;markdown-editor&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Docker 自托管&lt;/h3&gt; 
+&lt;p&gt;已将最新版本使用 &lt;a href=&quot;https://docs.docker.com/engine/install/&quot;&gt;Docker&lt;/a&gt;&amp;nbsp; 打包镜像并上传至 &amp;nbsp;&lt;a href=&quot;https://hub.docker.com/r/nicejade/markdown-online-editor&quot;&gt;Docker Hub&lt;/a&gt;，可通过如下方式进行使用：&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;docker run -d -p [Your-Specified-Port]:80 nicejade/markdown-online-editor:[tagname]
+
+# 示例：
+docker run -d -p 8866:80 nicejade/markdown-online-editor:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;基于如上示例，如果您在本地执行，只需打开网址——&lt;a href=&quot;http://localhost:8866/&quot;&gt;http://localhost:8866&lt;/a&gt; 即可访问。如果在服务器运行，可以通过 http://[Server-IP]:8866 来访问。构建 Docker 镜像过程，可参见：&lt;a href=&quot;https://memo.lovejade.cn/m/49a7b493bddeed71&quot;&gt;如何为 markdown-online-editor 服务构建 docker 镜像？&lt;/a&gt;。您也可以通过 &lt;strong&gt;Cloudflare Pages&lt;/strong&gt; 或 Github Pages，托管编译产物（&lt;code&gt;dist&lt;/code&gt; 目录下内容），从而实现&lt;strong&gt;无需服务器情况下快速部署&lt;/strong&gt;。&lt;/p&gt; 
+&lt;p&gt;或者&lt;strong&gt;使用 &lt;a href=&quot;https://docs.docker.com/compose/&quot;&gt;Docker Compose&lt;/a&gt;&lt;/strong&gt;：&lt;/p&gt; 
+&lt;p&gt;创建一个 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件，并在其中定义服务（其中 version: &#39;3&#39; 指定了 Docker Compose 文件的版本；您可以根据实际情况进行调整）：&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;version: &#39;3&#39;
+services:
+  markdown-editor:
+    image: nicejade/markdown-online-editor:latest
+    ports:
+      - &#39;8866:80&#39;
+    restart: always
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;在包含 &lt;code&gt;docker-compose.yml&lt;/code&gt; 文件的目录中，运行以下命令启动服务：&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker-compose up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;这将在后台启动服务，并且效果与下面的 &amp;nbsp;&lt;code&gt;docker run&lt;/code&gt;&amp;nbsp; 命令相同。使用 Docker Compose 可以更方便地管理多个容器，并且配置更易读和维护。&lt;/p&gt; 
+&lt;h3&gt;Cloudflare Pages 托管&lt;/h3&gt; 
+&lt;p&gt;可直接托管在 &lt;strong&gt;Cloudflare Pages&lt;/strong&gt;，实现&lt;strong&gt;零服务器&lt;/strong&gt;部署。&lt;/p&gt; 
+&lt;ol start=&quot;0&quot;&gt; 
+ &lt;li&gt;在 GitHub 中 fork 仓库。&lt;/li&gt; 
+ &lt;li&gt;在 Cloudflare 中的 Workers - Workers 和 Pages 中新建 Pages 项目，绑定 github 后选择导入现有 Git 存储库，选择你的 fork 仓库与分支。&lt;/li&gt; 
+ &lt;li&gt;按下述参数配置构建： 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;框架预设&lt;/strong&gt;：无&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;构建命令（Build command）&lt;/strong&gt;：&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;yarn install &amp;amp;&amp;amp; yarn build
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;构建输出目录（Build output directory）&lt;/strong&gt;：&lt;pre&gt;&lt;code&gt;dist
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;在 &lt;strong&gt;Environment variables&lt;/strong&gt;（生产 / 预览环境都建议添加）里新增： 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;NODE_VERSION&lt;/code&gt; = &lt;code&gt;18&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;YARN_NODE_LINKER&lt;/code&gt; = &lt;code&gt;node-modules&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;YARN_ENABLE_IMMUTABLE_INSTALLS&lt;/code&gt; = &lt;code&gt;false&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;NODE_OPTIONS&lt;/code&gt; = &lt;code&gt;--openssl-legacy-provider&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;保存即可自动构建并上线。后续每次 &lt;code&gt;git push&lt;/code&gt; 会触发重新部署。&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;如何开发&lt;/h2&gt; 
+&lt;h3&gt;先决条件&lt;/h3&gt; 
+&lt;p&gt;说明用户在安装和使用前，需要准备的一些先决条件，譬如：您需要安装或升级 &amp;nbsp;&lt;a href=&quot;https://nodejs.org/en/&quot;&gt;Node.js&lt;/a&gt;（&amp;gt;=&amp;nbsp;&lt;code&gt;16.*&lt;/code&gt;，&amp;lt; &lt;code&gt;18.*&lt;/code&gt;），推荐使用 &amp;nbsp;&lt;a href=&quot;https://pnpm.io/&quot;&gt;pnpm&lt;/a&gt;&amp;nbsp; 或 &amp;nbsp;&lt;a href=&quot;https://www.jeffjade.com/2017/12/30/135-npm-vs-yarn-detial-memo/&quot;&gt;yarn&lt;/a&gt;&amp;nbsp; 作为首选包管理工具。&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# 🎉 克隆项目
+git clone https://github.com/nicejade/markdown-online-editor.git
+cd markdown-online-editor
+
+# ➕ 安装依赖
+yarn
+
+# 🚧 开始开发
+yarn start
+
+# 🚀 部署 Github Pages(需修改 commands/deploy.sh)
+yarn deploy
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;特别鸣谢&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://markdown.lovejade.cn/?ref=github.com&quot;&gt;Arya&lt;/a&gt; 的产生，得益于 &lt;a href=&quot;https://github.com/b3log/vditor&quot;&gt;Vditor&lt;/a&gt;：一款浏览器端的 Markdown 编辑器，同时也离不开 &lt;a href=&quot;https://github.com/nicejade/markdown-online-editor/raw/master/package.json#L25-L64&quot;&gt;Vue、Reveal.js 等开源库&lt;/a&gt;的支持，感谢 🙌。&lt;/p&gt; 
+&lt;h2&gt;相关链接&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.niceshare.site/?ref=github.com&quot;&gt;逍遥自在轩&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.jeffjade.com/nicelinks?ref=github.com&quot;&gt;晚晴幽草轩&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://share.lovejade.cn/?ref=github.com&quot;&gt;玉桃文飨轩&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.lovejade.cn/?ref=github.com&quot;&gt;清风明月轩&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fine.niceshare.site/?ref=github.com&quot;&gt;缘知随心庭&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://quickapp.lovejade.cn/?ref=github.com&quot;&gt;静轩之别苑&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://forum.lovejade.cn/?ref=github.com&quot;&gt;悠然宜想亭&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://segmentfault.com/u/jeffjade&quot;&gt;SegmentFault&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://x.com/MarshalXuan&quot;&gt;X（Twitter）&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/@MarshalXuan&quot;&gt;@MarshalXuan&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.star-history.com/#nicejade/markdown-online-editor&amp;amp;type=date&amp;amp;legend=top-left&quot;&gt;&lt;img src=&quot;https://api.star-history.com/svg?repos=nicejade/markdown-online-editor&amp;amp;type=date&amp;amp;legend=top-left&quot; alt=&quot;nicejade markdown-online-editor Star History Chart&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;http://opensource.org/licenses/MIT&quot;&gt;MIT&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Copyright (c) 2018-present, &lt;a href=&quot;https://www.thebettersites.com&quot;&gt;nicejade&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ea717d632f8d6e1d753e9196b0b1d14b5ac86fcb068d43f0ec554c24f172b2d6/nicejade/markdown-online-editor" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>AnubisNekhet/AnuPpuccin</title>
+      <link>https://github.com/AnubisNekhet/AnuPpuccin</link>
+      <description>&lt;p&gt;Personal theme for Obsidian&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt;AnuPpuccin&lt;/h1&gt; 
+&lt;h3 align=&quot;center&quot;&gt;Personal theme for &lt;a href=&quot;https://obsidian.md&quot;&gt;Obsidian&lt;/a&gt; :3&lt;/h3&gt;
+&lt;br /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-preview.webp&quot; /&gt; &lt;/p&gt; 
+&lt;br /&gt; 
+&lt;h3 align=&quot;center&quot;&gt;Voted &lt;b&gt;Best Theme&lt;/b&gt; in &lt;a href=&quot;https://forum.obsidian.md/t/gems-of-the-year-2022-winners/54903&quot;&gt;Gems of the Year 2022&lt;/a&gt; awards 🎉 &lt;/h3&gt; 
+&lt;h2 align=&quot;center&quot;&gt;Notice&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt;AnuPpuccin is currently on hiatus!&lt;br /&gt;I have been busy with endsems and projects, thus I haven&#39;t been able to dedicate time to fix bugs and issues and I&#39;m really sorry for that 😅. Thank you for your understanding!&lt;/p&gt; 
+&lt;h2&gt;Preface&lt;/h2&gt; 
+&lt;p&gt;Please do note that I&#39;ve made this theme for myself, and it may not fit your use cases. However, I&#39;ve made most of the configuration completely optional so that the experience remains as close to vanilla if you choose to do so. Most of the in-application variables are recolored so that your custom snippets can be used easily with the theme. This theme makes heavy use of the &lt;a href=&quot;https://github.com/mgmeyers/obsidian-style-settings&quot;&gt;style settings&lt;/a&gt; plugin, which controls most of the features in the theme. The theme is perfectly usable even without style settings, but it&#39;s only a fraction of what it actually is with the plugin. &lt;br /&gt;&lt;br /&gt; I will respond to feature/code removal only if there is substantial evidence of it being a direct copy of the original code and not just a simple imitation. (Please keep this point in mind before accusing me of being a low-effort theme developer.)&lt;/p&gt; 
+&lt;h3&gt;If you like my theme:&lt;/h3&gt; 
+&lt;p&gt;I&#39;ve made this theme primarily for my own purposes and it&#39;s completely free, but if you do like it enough to consider throwing a few coins in my hat, here&#39;s a link.&lt;br /&gt; &lt;a href=&quot;https://www.buymeacoffee.com/anubisnekhet&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png&quot; alt=&quot;Buy Me A Coffee&quot; style=&quot;height: 60px !important;width: 217px !important;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;AnuPpuccin is licensed under the GPL-3.0 license which allows you to modify the code freely, however the Copyright and license notices must be preserved in your CSS. If you redistribute a part of my code, please credit my theme in your CSS file, and specify which code you are using. &lt;strong&gt;Please keep my &lt;a href=&quot;https://www.buymeacoffee.com/anubisnekhet&quot;&gt;Buy Me a Coffee link&lt;/a&gt; in your README if you do so.&lt;/strong&gt;&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;h2&gt;Installation&lt;/h2&gt;&lt;/summary&gt; 
+ &lt;h3&gt;Normal Installation&lt;/h3&gt; Go to your theme folder (
+ &lt;code&gt;.obsidian/themes&lt;/code&gt;) and run:
+ &lt;br /&gt;
+ &lt;br /&gt; 
+ &lt;pre&gt;&lt;code&gt;git clone https://github.com/AnubisNekhet/AnuPpuccin.git&lt;/code&gt;&lt;/pre&gt; 
+ &lt;h3&gt;Updating&lt;/h3&gt; Go to your AnuPuccin folder (
+ &lt;code&gt;.obsidian/themes/Anuppuccin&lt;/code&gt;) and run:
+ &lt;br /&gt;
+ &lt;br /&gt; 
+ &lt;pre&gt;&lt;code&gt;git pull&lt;/code&gt;&lt;/pre&gt; 
+ &lt;h3&gt;Building&lt;/h3&gt; Clone the github repo and run 
+ &lt;code&gt;sass src/base.scss theme.css&lt;/code&gt; in the root folder. 
+&lt;/details&gt; 
+&lt;h2&gt;Community Contributions&lt;/h2&gt; 
+&lt;p&gt;AnuPpuccin has a &lt;a href=&quot;https://github.com/AnubisNekhet/AnuPpuccin/discussions/categories/snippets&quot;&gt;Discussions&lt;/a&gt; page dedicated to snippets that add a personal touch to your obsidian setup. If you want to share your customizations, feel free to do so!&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;h3&gt;Custom palette&lt;/h3&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-colorscheme-preview.webp&quot; /&gt; &lt;/p&gt; The theme supports various palettes (5 in the base theme and even more if you use the 
+&lt;a href=&quot;https://github.com/AnubisNekhet/AnuPpuccin/raw/main/snippets/extended-colorschemes.css&quot;&gt;extended colorschemes&lt;/a&gt; snippet) which include many popular colorschemes such as Catppuccin and Dracula. These are heavily integrated into the theme as they are directly used to stylize various UI elements. 
+&lt;h3&gt;Layouts&lt;/h3&gt; 
+&lt;p&gt;Anuppuccin currently supports 2 layout variants.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-layout-preview.webp&quot; /&gt; &lt;/p&gt; 
+&lt;h3&gt;Rainbow folders&lt;/h3&gt; 
+&lt;p&gt;The theme comes with a toggleable rainbow folder snippet which color-codes your folders as per their order in the filesystem.&lt;br /&gt; It&#39;s great if you need to easily distinguish between folders or if you want to make your vault look a bit prettier (Both in my case 😛)&lt;br /&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-rainbow-preview.webp&quot; /&gt; &lt;/p&gt; 
+&lt;h4&gt;Full rainbow theme&lt;/h4&gt; 
+&lt;p&gt;This snippet makes the rainbow theme apply to the first layer of the root directory, aka only direct children.&lt;br /&gt; You can choose if it applies to root files as well and customise the indentation border color.&lt;br /&gt;&lt;/p&gt; 
+&lt;h4&gt;Simple rainbow theme&lt;/h4&gt; 
+&lt;p&gt;This snippet makes the rainbow theme apply to every folder in your filesystem, and the order is determined by the children&#39;s place in the parent folder.&lt;br /&gt; You can toggle if the recolor applies to the title, the collapse border, the collapse icon and you can append a small icon to the folder title as well.&lt;br /&gt;&lt;/p&gt; 
+&lt;h3&gt;Alternate tabs&lt;/h3&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-preview-tabs.webp&quot; /&gt; &lt;/p&gt; 
+&lt;h3&gt;Customisable Decorations&lt;/h3&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-decorations-preview.webp&quot; /&gt; &lt;/p&gt; Bold and italic colors can be toggled on and off and can be customised according to the palette as well. 
+&lt;h3&gt;Callouts&lt;/h3&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-callout-preview.webp&quot; /&gt; &lt;/p&gt; The theme comes with many custom callout styles (which can be toggled so they won&#39;t interfere with your own callout snippet).
+&lt;br /&gt; The snippet also includes support for using the colors of your selected palette which means that the callouts don&#39;t ever look out of place :)
+&lt;br /&gt; If you use the admonition plugin/have custom callout colors, they won&#39;t be affected by the recolor as it only targets vanilla callouts. However, you can make them use AnuPpuccin&#39;s palette to support dynamic per-palette theming.
+&lt;br /&gt; 
+&lt;h3&gt;Custom checkboxes &amp;amp; Speech bubbles&lt;/h3&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-checkbox-preview.webp&quot; width=&quot;50%&quot; /&gt; &lt;/p&gt; Anuppuccin&#39;s custom checkboxes try to mimic the original checkbox design as much as possible, while still being optional incase you want to use your own checkbox snippet. Speech bubbles have been provided which are useful for language learners and RPG vault users alike.
+&lt;br /&gt;Custom checkboxes have been designed to match those provided by the 
+&lt;a href=&quot;https://github.com/ceciliamay/obsidianmd-theme-primary&quot;&gt;Primary&lt;/a&gt; theme for ease of migration and consistency. 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Syntax&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [ ]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Unchecked&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [x]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Checked&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [&amp;gt;]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Rescheduled&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [&amp;lt;]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Scheduled&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [!]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Important&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [-]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Cancelled&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [/]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;In Progress&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [?]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Question&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [*]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Star&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [n]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Note&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [l]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Location&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [i]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Information&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [I]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Idea&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [S]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Amount&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [p]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Pro&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [c]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Con&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [b]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Bookmark&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [&quot;]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Quote&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [u]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Up&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [d]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Down&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [w]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Win&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [k]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Key&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [f]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Fire&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [0]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 0&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [1]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 1&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [2]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 2&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [3]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 3&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [4]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 4&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [5]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 5&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [6]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 6&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [7]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 7&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [8]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 8&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [9]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Speech bubble 9&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Colorful Frames&lt;/h3&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/gh-colorful-frames-preview.webp&quot; /&gt; &lt;/p&gt; Adapted from Kepano&#39;s 
+&lt;a href=&quot;https://github.com/kepano/obsidian-minimal&quot;&gt;Minimal&lt;/a&gt; theme, colorful frames add some pop to your vault by displaying your accent color on the top-most bar. 
+&lt;h3&gt;Simplified markdown embeds&lt;/h3&gt; 
+&lt;p&gt;Markdown embeds have an alternate styling with an animated variant which can be toggled globally using style settings or individually using alt names for embeds, for example: &lt;code&gt;![[embed|alt-name]]&lt;/code&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Embed style&lt;/th&gt; 
+   &lt;th&gt;Alt name&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Seamless&lt;/td&gt; 
+   &lt;td&gt;seamless&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Colorschemes used&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Colorschemes that aren&#39;t in the base theme can be used through the &lt;a href=&quot;https://github.com/AnubisNekhet/AnuPpuccin/raw/main/snippets/extended-colorschemes.css&quot;&gt;extended colorschemes&lt;/a&gt; snippet. &lt;br /&gt; &lt;strong&gt;Important&lt;/strong&gt;: Some colorschemes have been been modified to fit the Catppuccin color value style, which means there will be some changes made to make the theme feel more natural.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Theme&lt;/th&gt; 
+   &lt;th&gt;Light Mode&lt;/th&gt; 
+   &lt;th&gt;Dark Mode&lt;/th&gt; 
+   &lt;th&gt;Extra Notes&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/kognise/obsidian-atom&quot;&gt;Atom&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Accent value is hardcoded into the theme.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/catppuccin/catppuccin&quot;&gt;Catppuccin&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;There are 4 variants of the dark theme, namely: Frappe, Macchiato, Mocha and Mocha Old.&lt;br /&gt;The light theme is called Latte.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Coffee&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Custom colorscheme&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Biscuit-Colorscheme/biscuit&quot;&gt;Biscuit&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/sainnhe/everforest&quot;&gt;Everforest&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/dracula/dracula-theme&quot;&gt;Dracula&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/morhetz/gruvbox&quot;&gt;Gruvbox&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/arcticicestudio/nord&quot;&gt;Nord&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;A custom darker variant of the dark theme is included as well. &lt;br /&gt; Accent value is hardcoded into the theme.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Notion&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/rebelot/kanagawa.nvim&quot;&gt;Kanagawa&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/rose-pine/rose-pine-theme&quot;&gt;Rosé Pine&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;The second variant of the dark theme, namely Rosé Pine dawn hasn&#39;t been implemented yet.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/KraXen72/rosebox&quot;&gt;Rosebox&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Accent value is hardcoded into the theme.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/caro401/royal-velvet&quot;&gt;Royal Velvet&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Sandy Beaches&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Provided by &lt;a href=&quot;https://github.com/melnhh&quot;&gt;melnhh&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/altercation/solarized&quot;&gt;Solarized&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://codeberg.org/rini/thorns&quot;&gt;thorns&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;h3&gt;Previews&lt;/h3&gt;&lt;/summary&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Atom&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/atom-light.webp&quot; /&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/atom-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Catppuccin&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Latte&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/catppuccin-latte.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Frappe&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/catppuccin-frappe.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Macchiato&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/catppuccin-macchiato.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Mocha&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/catppuccin-mocha.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Mocha Old&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/catppuccin-mocha-old.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Generic&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Dark&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/generic-dark.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;AMOLED Dark&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/amoled-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Coffee&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/coffee-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Biscuit&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/biscuit-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Everforest&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/everforest-light.webp&quot; /&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/everforest-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Dracula&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/dracula-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Gruvbox&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/gruvbox-light.webp&quot; /&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/gruvbox-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Nord&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Nord Light&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/nord-light-original.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Nord Dark&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/nord-dark.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Nord Darker (Custom Palette)&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/nord-darker.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Notion&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/notion-light.webp&quot; /&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/notion-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Kanagawa&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/kanagawa-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Rosebox&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/rosebox-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Rosé Pine&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Rosé Pine Dawn&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/rosepine-light.webp&quot; /&gt; 
+  &lt;h4 align=&quot;center&quot;&gt;Rosé Pine&lt;/h4&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/rosepine-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Royal Velvet&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/royal-velvet.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Sandy Beaches&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/sandy-beaches-light.webp&quot; /&gt; 
+ &lt;/details&gt; 
+ &lt;details&gt; 
+  &lt;summary&gt;&lt;h4&gt;Solarized&lt;/h4&gt;&lt;/summary&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/solarized-light.webp&quot; /&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/AnubisNekhet/AnuPpuccin/main/assets/colorschemes/solarized-dark.webp&quot; /&gt; 
+ &lt;/details&gt; 
+&lt;/details&gt; 
+&lt;p&gt;Note: Themes are toggled via style settings, the default themes are &lt;strong&gt;Latte&lt;/strong&gt; for light mode and &lt;strong&gt;Mocha&lt;/strong&gt; for dark mode.&lt;/p&gt; 
+&lt;h3&gt;Custom CSS Classes&lt;/h3&gt; 
+&lt;p&gt;Inserting these css classes into your note frontmatter will style your notes individually.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;CSS Class&lt;/th&gt; 
+   &lt;th&gt;Function&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;heading-normal-toggle&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Disables color in headings&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;decorations-normal-toggle&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Disables color in text decorations like &lt;strong&gt;bold&lt;/strong&gt; and &lt;em&gt;italic&lt;/em&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;hide-metadata&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Hides metadata&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;metadata-button&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Enables custom metadata button&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Integrations&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Excalidraw&lt;/li&gt; 
+ &lt;li&gt;Kanban&lt;/li&gt; 
+ &lt;li&gt;Style Settings&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Minimal Features&lt;/h4&gt; 
+&lt;p&gt;AnuPpuccin does not come with any code provided by &lt;a href=&quot;https://github.com/kepano/obsidian-minimal&quot;&gt;Minimal&lt;/a&gt;, however it does contain styling and style settings support for certain features that can be compiled via CSS. You can buy Kepano a coffee here: &lt;a href=&quot;https://www.buymeacoffee.com/kepano&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://cdn.buymeacoffee.com/buttons/v2/default-yellow.png&quot; alt=&quot;Buy Me A Coffee&quot; style=&quot;height: 60px !important;width: 217px !important;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Recommended Fonts&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Interface&lt;/strong&gt;: &lt;a href=&quot;https://fonts.google.com/specimen/Overpass&quot;&gt;Overpass&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Text&lt;/strong&gt;: &lt;a href=&quot;https://fonts.google.com/specimen/Rubik&quot;&gt;Rubik&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Headings&lt;/strong&gt;: &lt;a href=&quot;https://fonts.google.com/noto/specimen/Noto+Serif&quot;&gt;Noto Serif&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Special thanks to:&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/pryley&quot;&gt;Paul Ryley&lt;/a&gt; for countless contributions to the theme and amazing sense of design in general.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/chuckharmston&quot;&gt;Chuck Harmston&lt;/a&gt; for his amazing alternate tabs snippet.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/melnhh&quot;&gt;melnhh&lt;/a&gt; and Lunairee for their amazing colorschemes.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/EdualcLaiv&quot;&gt;EdualcLaiv&lt;/a&gt; for porting Royal Velvet to AnuPpuccin.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/xotea&quot;&gt;xotea&lt;/a&gt; for theming framework tweaks.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/raisabelatrix&quot;&gt;raisabelatrix&lt;/a&gt; for &lt;a href=&quot;https://gist.github.com/raisabelatrix/eb383f7e19b59f951430c2f3c6ed80b0&quot;&gt;rainbow tags&lt;/a&gt; variables.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits and Acknowledgements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kepano&quot;&gt;@kepano&#39;s&lt;/a&gt; &lt;a href=&quot;https://github.com/kepano/obsidian-minimal&quot;&gt;Minimal&lt;/a&gt; for the inspiration for &lt;a href=&quot;https://github.com/AnubisNekhet/AnuPpuccin/raw/main/src/modules/Features/colorful-frame.scss&quot;&gt;colorful frames&lt;/a&gt; and partial inspiration for style settings menus design, as well as style settings for the Minimal Cards snippet&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ceciliamay&quot;&gt;@ceciliamay&#39;s&lt;/a&gt; &lt;a href=&quot;https://github.com/ceciliamay/obsidianmd-theme-primary&quot;&gt;Primary&lt;/a&gt; for inspiration for &lt;a href=&quot;https://github.com/AnubisNekhet/AnuPpuccin/raw/main/src/modules/Features/custom-checkboxes.scss&quot;&gt;custom checkboxes&lt;/a&gt; and &lt;a href=&quot;https://github.com/AnubisNekhet/AnuPpuccin/raw/main/src/modules/Features/floating-title.scss&quot;&gt;floating vault title&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/SlRvb&quot;&gt;@SlRvb&lt;/a&gt; for &lt;a href=&quot;https://github.com/SlRvb/Obsidian--ITS-Theme&quot;&gt;ITS&lt;/a&gt; frontmatter styling inspiration.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Akifyss&quot;&gt;@Akifyss&lt;/a&gt; for their &lt;a href=&quot;https://github.com/Akifyss/obsidian-border&quot;&gt;border theme&lt;/a&gt; layout design.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/59512bc1d65f87e574d0b004202a6c4afa82c7475d7cf159157d277590337daa/AnubisNekhet/AnuPpuccin" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ConardLi/garden-skills</title>
+      <link>https://github.com/ConardLi/garden-skills</link>
+      <description>&lt;p&gt;ConardLi&#39;s open-source Skills collection, featuring web design, knowledge retrieval, image generation, and more.&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;Garden Skills&lt;/h1&gt; 
+ &lt;p&gt;&lt;strong&gt;A curated collection of production-ready &lt;a href=&quot;https://support.claude.com/en/articles/12512176-what-are-skills&quot;&gt;Agent Skills&lt;/a&gt; for Claude Code, Cursor, Codex, and other AI coding agents.&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a id=&quot;skills-gallery&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#web-video-presentation&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-video-presentation-skill.webp&quot; alt=&quot;Web Video Presentation Skill&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt; &lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#web-video-presentation&quot;&gt;&lt;strong&gt;web-video-presentation&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt;&lt;sub&gt;Web video / presentation&lt;/sub&gt; &lt;/td&gt; 
+    &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#web-design-engineer&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design-skill.webp&quot; alt=&quot;Web Design Skill&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt; &lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#web-design-engineer&quot;&gt;&lt;strong&gt;web-design-engineer&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt;&lt;sub&gt;Design / frontend&lt;/sub&gt; &lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#gpt-image-2&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/gpt-image-2-skill.webp&quot; alt=&quot;GPT Image 2 Skill&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt; &lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#gpt-image-2&quot;&gt;&lt;strong&gt;gpt-image-2&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt;&lt;sub&gt;Image generation / prompting&lt;/sub&gt; &lt;/td&gt; 
+    &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#beautiful-article&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/banner.webp&quot; alt=&quot;Beautiful Article Skill&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt; &lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#beautiful-article&quot;&gt;&lt;strong&gt;beautiful-article&lt;/strong&gt;&lt;/a&gt; &lt;br /&gt;&lt;sub&gt;Any source → beautiful article&lt;/sub&gt; &lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/ConardLi/garden-skills?style=flat-square&amp;amp;color=blue&quot; alt=&quot;License: MIT&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ConardLi/garden-skills/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/ConardLi/garden-skills?style=flat-square&quot; alt=&quot;GitHub stars&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#contributing&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/PRs-welcome-brightgreen?style=flat-square&quot; alt=&quot;PRs welcome&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#skills-gallery&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/skills-5-orange?style=flat-square&quot; alt=&quot;Skills count&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://agentskills.io&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/spec-SKILL.md-black?style=flat-square&quot; alt=&quot;Spec&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/README.md&quot;&gt;English&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/README.zh-CN.md&quot;&gt;中文文档&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/README.ja-JP.md&quot;&gt;日本語&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Table of contents&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Install&lt;/th&gt; 
+   &lt;th&gt;Use&lt;/th&gt; 
+   &lt;th&gt;Contribute&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#install&quot;&gt;Install&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-a--skills-cli-npx&quot;&gt;&lt;code&gt;skills&lt;/code&gt; CLI (npx)&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-b--claude-code-plugin-marketplace&quot;&gt;Claude Code plugin marketplace&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-c--pinned-zip-from-releases&quot;&gt;Pinned &lt;code&gt;.zip&lt;/code&gt; from Releases&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-d--manual-copy-into-your-project&quot;&gt;Manual copy&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-e--git-submodule&quot;&gt;Git submodule&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#compatibility&quot;&gt;Compatibility&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#what-is-a-skill&quot;&gt;What is a Skill?&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#contributing&quot;&gt;Contributing&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#acknowledgments&quot;&gt;Acknowledgments&lt;/a&gt;&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#license&quot;&gt;License&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation&quot;&gt;&lt;code&gt;web-video-presentation&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-video-presentation-skill.webp&quot; alt=&quot;Web Video Presentation Skill&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; Web Video / Presentation Engineering&lt;br /&gt; &lt;strong&gt;Best for:&lt;/strong&gt; turning scripts, articles, lessons, product demos, and talks into click-driven 16:9 web presentations that can be screen-recorded as cinematic videos.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;web-video-presentation&lt;/code&gt; builds record-ready Vite + React + TypeScript presentations that behave like video production surfaces. The workflow turns raw articles into narration scripts, maps script beats to full-screen scenes, pauses at required checkpoints, and can optionally synthesize narration audio after the visual outline is approved.&lt;/p&gt; 
+&lt;p&gt;Highlights:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Fixed 1920×1080 stage that scales to the viewport for stable screen recording&lt;/li&gt; 
+ &lt;li&gt;Click / keyboard driven &lt;code&gt;(chapter, step)&lt;/code&gt; cursor, with one narration beat per visual step&lt;/li&gt; 
+ &lt;li&gt;Hard collaboration checkpoints for script, theme, outline, implementation mode, and optional audio&lt;/li&gt; 
+ &lt;li&gt;Hidden hover-only progress controls so the stage stays clean while recording&lt;/li&gt; 
+ &lt;li&gt;Theme-token architecture with &lt;strong&gt;23 built-in themes&lt;/strong&gt;, each with its own design signature — editorial, terminal, engineering, Swiss International, and more&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Pluggable TTS&lt;/strong&gt; — provider-agnostic audio runner; ships &lt;strong&gt;two built-in providers&lt;/strong&gt; (MiniMax &lt;code&gt;mmx-cli&lt;/code&gt; + OpenAI TTS via curl) plus a contract + ready-to-paste snippets for ElevenLabs / edge-tts / Azure / Google Cloud / macOS &lt;code&gt;say&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Scaffolded Vite + React + TypeScript project with reusable stage primitives and recording guidance&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/README.md#theme-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-video/creative-voltage.webp&quot; alt=&quot;creative-voltage preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;creative-voltage&lt;/code&gt;&lt;br /&gt;creative talks&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/README.md#theme-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-video/blueprint.webp&quot; alt=&quot;blueprint preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;blueprint&lt;/code&gt;&lt;br /&gt;tech architecture&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/README.md#theme-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-video/swiss-ikb.webp&quot; alt=&quot;swiss-ikb preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;swiss-ikb&lt;/code&gt;&lt;br /&gt;data reports&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/README.md#theme-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-video/chalk-garden.webp&quot; alt=&quot;chalk-garden preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;chalk-garden&lt;/code&gt;&lt;br /&gt;popular science&lt;/sub&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/README.md#theme-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-video/gallery.webp&quot; alt=&quot;Theme gallery — 23 built-in themes for web-video-presentation&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;↑ All 23 themes at a glance — &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/README.md#theme-gallery&quot;&gt;&lt;b&gt;open the full gallery&lt;/b&gt;&lt;/a&gt; for live 16:9 previews, design signatures, and best-for tags.&lt;/sub&gt;&lt;/p&gt; 
+&lt;p&gt;Links: &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/README.md&quot;&gt;README&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-video-presentation/SKILL.md&quot;&gt;SKILL.md&lt;/a&gt; · 
+ &lt;!-- DOWNLOAD:web-video-presentation:start --&gt;&lt;a href=&quot;https://github.com/ConardLi/garden-skills/releases/download/web-video-presentation-v1.2.2/web-video-presentation-1.2.2.zip&quot;&gt;Download v1.2.2 .zip&lt;/a&gt;
+ &lt;!-- DOWNLOAD:web-video-presentation:end --&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer&quot;&gt;&lt;code&gt;web-design-engineer&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design-skill.webp&quot; alt=&quot;Web Design Skill&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; Design / Frontend&lt;br /&gt; &lt;strong&gt;Best for:&lt;/strong&gt; web pages, landing pages, dashboards, interactive prototypes, HTML slide decks, animations, UI mockups, data visualizations, and design-system explorations.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;web-design-engineer&lt;/code&gt; turns AI-generated web artifacts from merely functional into polished, deliberate, and visually memorable front-end work. It treats the agent as a design engineer: first understanding product context, then declaring a design system, showing an early v0, building the full experience, and verifying the result.&lt;/p&gt; 
+&lt;p&gt;Highlights:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Converts the brief into a five-dial Design Read covering variance, motion, density, asset dependence, and brand fidelity&lt;/li&gt; 
+ &lt;li&gt;Distinguishes extension, preserve, and overhaul redesign modes before changing an existing product&lt;/li&gt; 
+ &lt;li&gt;Runs executable browser acceptance only when the user explicitly requests acceptance, QA, or browser testing&lt;/li&gt; 
+ &lt;li&gt;Pushes beyond generic AI UI patterns with an anti-cliché blocklist and stronger visual judgment&lt;/li&gt; 
+ &lt;li&gt;Ships a &lt;strong&gt;Design Direction Advisor (six differentiated schools) + 25 anchored style recipes&lt;/strong&gt; (Linear / Aesop / Pentagram / Bloomberg / Stripe Press / Mid-Century, etc.) — each recipe carries concrete palette, typography, signature moves, and anti-patterns ready to paste into the design-system declaration&lt;/li&gt; 
+ &lt;li&gt;Covers HTML / CSS / JavaScript / React prototypes, with guidance for responsive layout, motion, and interaction polish&lt;/li&gt; 
+ &lt;li&gt;Includes practical implementation rules for inline React + Babel, CSS tokens, &lt;code&gt;oklch()&lt;/code&gt; color work, container queries, and reduced-motion handling&lt;/li&gt; 
+ &lt;li&gt;Ships an advanced patterns reference for device frames, slide engines, animation timelines, dashboards, and other reusable web artifacts&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/aesop.webp&quot; alt=&quot;aesop preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;aesop&lt;/code&gt;&lt;br /&gt;apothecary pages&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/muji-kenya-hara.webp&quot; alt=&quot;muji-kenya-hara preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;muji-kenya-hara&lt;/code&gt;&lt;br /&gt;object catalogues&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/monocle-magazine.webp&quot; alt=&quot;monocle-magazine preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;monocle-magazine&lt;/code&gt;&lt;br /&gt;magazine contents&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/stripe-press.webp&quot; alt=&quot;stripe-press preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;stripe-press&lt;/code&gt;&lt;br /&gt;book detail&lt;/sub&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/bloomberg-terminal.webp&quot; alt=&quot;bloomberg-terminal preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;bloomberg-terminal&lt;/code&gt;&lt;br /&gt;trading dashboards&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/linear.webp&quot; alt=&quot;linear preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;linear&lt;/code&gt;&lt;br /&gt;dev tool landing&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/vercel-mesh.webp&quot; alt=&quot;vercel-mesh preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;vercel-mesh&lt;/code&gt;&lt;br /&gt;deploy hero&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/tufte-dataink.webp&quot; alt=&quot;tufte-dataink preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;tufte-dataink&lt;/code&gt;&lt;br /&gt;data narratives&lt;/sub&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/mid-century-modern.webp&quot; alt=&quot;mid-century-modern preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;mid-century-modern&lt;/code&gt;&lt;br /&gt;poster homage&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/y2k-retrofuturism.webp&quot; alt=&quot;y2k-retrofuturism preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;y2k-retrofuturism&lt;/code&gt;&lt;br /&gt;Y2K portal&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/bloomberg-businessweek-turley.webp&quot; alt=&quot;bloomberg-businessweek-turley preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;businessweek-turley&lt;/code&gt;&lt;br /&gt;editorial covers&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/web-design/active-theory.webp&quot; alt=&quot;active-theory preview&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;code&gt;active-theory&lt;/code&gt;&lt;br /&gt;cinematic launch&lt;/sub&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;&lt;sub&gt;↑ 12 of 25 anchored recipes — &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md#style-recipe-gallery&quot;&gt;&lt;b&gt;open the full gallery&lt;/b&gt;&lt;/a&gt; for all 25 working artefacts (apothecary pages, trading workstations, magazine covers, Y2K portals, mid-century posters …) with signature moves and best-for tags.&lt;/sub&gt;&lt;/p&gt; 
+&lt;p&gt;Links: &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/README.md&quot;&gt;README&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/web-design-engineer/SKILL.md&quot;&gt;SKILL.md&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/website/web-design-website&quot;&gt;Website&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/demo/web-design-demo&quot;&gt;Demo&lt;/a&gt; · 
+ &lt;!-- DOWNLOAD:web-design-engineer:start --&gt;&lt;a href=&quot;https://github.com/ConardLi/garden-skills/releases/download/web-design-engineer-v1.3.0/web-design-engineer-1.3.0.zip&quot;&gt;Download v1.3.0 .zip&lt;/a&gt;
+ &lt;!-- DOWNLOAD:web-design-engineer:end --&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/gpt-image-2&quot;&gt;&lt;code&gt;gpt-image-2&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/gpt-image-2-skill.webp&quot; alt=&quot;GPT Image 2 Skill&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; Image Generation / Prompt Engineering&lt;br /&gt; &lt;strong&gt;Best for:&lt;/strong&gt; posters, UI mockups, product visuals, infographics, academic figures, technical diagrams, comics, avatars, storyboards, branding boards, and image-editing workflows.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;gpt-image-2&lt;/code&gt; is a focused image-generation skill for GPT Image 2 and OpenAI-compatible image APIs. It is designed to work across different agent environments: fully local Garden generation, host-native image-tool delegation, or prompt-only advisor mode when no image tool is available.&lt;/p&gt; 
+&lt;p&gt;Highlights:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Supports three runtime modes: &lt;strong&gt;Mode A Garden local&lt;/strong&gt;, &lt;strong&gt;Mode B host-native delegation&lt;/strong&gt;, and &lt;strong&gt;Mode C advisor-only prompt writing&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Starts every task with mode detection so the skill does not silently choose the wrong execution path&lt;/li&gt; 
+ &lt;li&gt;Provides 18 visual categories and 79 structured prompt templates under &lt;code&gt;references/&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Covers both image generation and image editing through dedicated workflows and scripts&lt;/li&gt; 
+ &lt;li&gt;Saves prompts and generated images under &lt;code&gt;garden-gpt-image-2/&lt;/code&gt; in Garden mode for reuse, review, and versioning&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Selected live cases&lt;/h4&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/editing-workflows%2Fbackground-replacement%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/editing-workflows/background-replacement/1-thumb.webp&quot; alt=&quot;Background replacement case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;background-replacement&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Portrait edit with Times Square relighting.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/ui-mockups%2Fchat-interface-scene%2F3&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/ui-mockups/chat-interface-scene/3-thumb.webp&quot; alt=&quot;AI assistant UI mockup case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;chat-interface-scene&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Claude-style assistant product screenshot.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/ui-mockups%2Flive-commerce-ui%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/ui-mockups/live-commerce-ui/1-thumb.webp&quot; alt=&quot;Live commerce UI case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;live-commerce-ui&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Celebrity livestream commerce interface.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/ui-mockups%2Fproduct-card-overlay%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/ui-mockups/product-card-overlay/1-thumb.webp&quot; alt=&quot;Product card overlay case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;product-card-overlay&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Skincare landing-page hero.&lt;/sub&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/infographics%2Fbento-grid-infographic%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/infographics/bento-grid-infographic/1-thumb.webp&quot; alt=&quot;Bento grid infographic case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;bento-grid-infographic&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;High-density iPhone 16 Pro explainer.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/technical-diagrams%2Fsystem-architecture%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/technical-diagrams/system-architecture/1-thumb.webp&quot; alt=&quot;System architecture diagram case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;system-architecture&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Multi-tenant AI SaaS production diagram.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/slides-and-visual-docs%2Fdense-explainer-slides%2F2&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/slides-and-visual-docs/dense-explainer-slides/2-thumb.webp&quot; alt=&quot;Dense explainer slide case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;dense-explainer-slides&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;AI Agent mechanism in one page.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/maps%2Ffood-map%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/maps/food-map/1-thumb.webp&quot; alt=&quot;Food map case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;food-map&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;City-walk editorial food guide.&lt;/sub&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/product-visuals%2Fexploded-view-poster%2F2&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/product-visuals/exploded-view-poster/2-thumb.webp&quot; alt=&quot;Exploded product poster case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;exploded-view-poster&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Vision Pro 2 optical and compute teardown.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/academic-figures%2Fneural-network-architecture%2F2&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/academic-figures/neural-network-architecture/2-thumb.webp&quot; alt=&quot;Neural network architecture case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;neural-network-architecture&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;ViT-B/16 model figure for papers.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/branding-and-packaging%2Fcosmetic-packaging%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/branding-and-packaging/cosmetic-packaging/1-thumb.webp&quot; alt=&quot;Cosmetic packaging case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;cosmetic-packaging&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Premium skincare gift-box composition.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt; &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case/storyboards-and-sequences%2Fanime-key-visual%2F1&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/gpt-image-2-101@main/public/case/storyboards-and-sequences/anime-key-visual/1-thumb.webp&quot; alt=&quot;Anime key visual case&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;strong&gt;&lt;code&gt;anime-key-visual&lt;/code&gt;&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Game-launch key art with crop-safe layout.&lt;/sub&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;&lt;sub&gt;↑ 12 selected cases from the 160+ public case library — &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/gpt-image-2/README.md#case-gallery&quot;&gt;&lt;b&gt;open the skill gallery&lt;/b&gt;&lt;/a&gt; for more templates, or browse the &lt;a href=&quot;https://gpt-image2.mmh1.top/#/case&quot;&gt;live website&lt;/a&gt;.&lt;/sub&gt;&lt;/p&gt; 
+&lt;p&gt;Links: &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/gpt-image-2/README.md&quot;&gt;README&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/gpt-image-2/SKILL.md&quot;&gt;SKILL.md&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/website/gpt-image2-website&quot;&gt;Website&lt;/a&gt; · 
+ &lt;!-- DOWNLOAD:gpt-image-2:start --&gt;&lt;a href=&quot;https://github.com/ConardLi/garden-skills/releases/download/gpt-image-2-v1.0.4/gpt-image-2-1.0.4.zip&quot;&gt;Download v1.0.4 .zip&lt;/a&gt;
+ &lt;!-- DOWNLOAD:gpt-image-2:end --&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/kb-retriever&quot;&gt;&lt;code&gt;kb-retriever&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/kb-retriever-skill.webp&quot; alt=&quot;Kb Retriever Skill&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; Retrieval / Local Knowledge Base&lt;br /&gt; &lt;strong&gt;Best for:&lt;/strong&gt; answering questions from a local &lt;code&gt;knowledge/&lt;/code&gt; directory, searching structured documentation, and extracting evidence from Markdown, text, PDF, and Excel files without flooding the agent context.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;kb-retriever&lt;/code&gt; is a local knowledge-base retriever built around careful, progressive search. Instead of loading whole files, it navigates hierarchical index files, narrows the candidate set, processes complex file types correctly, and answers with sources.&lt;/p&gt; 
+&lt;p&gt;Highlights:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Uses layered &lt;code&gt;data_structure.md&lt;/code&gt; files to navigate the knowledge base before searching content&lt;/li&gt; 
+ &lt;li&gt;Enforces a &lt;strong&gt;learn-before-process&lt;/strong&gt; rule for PDF and Excel files, using the included reference docs before extraction or analysis&lt;/li&gt; 
+ &lt;li&gt;Combines precise keyword search, local windowed reads, synonyms, and iterative refinement&lt;/li&gt; 
+ &lt;li&gt;Bounds retrieval to at most 5 search rounds so exploration stays controlled&lt;/li&gt; 
+ &lt;li&gt;Includes workflows for &lt;code&gt;grep&lt;/code&gt;, &lt;code&gt;pdftotext&lt;/code&gt;, &lt;code&gt;pdfplumber&lt;/code&gt;, and &lt;code&gt;pandas&lt;/code&gt;, with source-aware answer formatting&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Links: &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/kb-retriever/README.md&quot;&gt;README&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/kb-retriever/SKILL.md&quot;&gt;SKILL.md&lt;/a&gt; · 
+ &lt;!-- DOWNLOAD:kb-retriever:start --&gt;&lt;a href=&quot;https://github.com/ConardLi/garden-skills/releases/download/kb-retriever-v1.0.1/kb-retriever-1.0.1.zip&quot;&gt;Download v1.0.1 .zip&lt;/a&gt;
+ &lt;!-- DOWNLOAD:kb-retriever:end --&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/beautiful-article&quot;&gt;&lt;code&gt;beautiful-article&lt;/code&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/banner.webp&quot; alt=&quot;Beautiful Article Skill&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Category:&lt;/strong&gt; Editorial · Any source → beautiful article&lt;br /&gt; &lt;strong&gt;Best for:&lt;/strong&gt; turning URLs, PDFs, DOCX, Markdown, plain text, screenshots, and pasted notes into a &lt;strong&gt;polished, share-ready article&lt;/strong&gt; — long-form, briefings, explainers, tutorials, post-mortems, visual essays, dialogue transcripts.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;beautiful-article&lt;/code&gt; is an editorial harness skill: it does not just &quot;make a webpage&quot;, it edits and designs the source material into a polished article that is easier to read, share, and archive than the original. The skill flows through a small &lt;code&gt;source → plan → double-confirmation → build → final review → repair&lt;/code&gt; loop and pauses at three hard checkpoints so the user keeps editorial control over article type, theme, layout, image strategy, cover, and delivery format.&lt;/p&gt; 
+&lt;p&gt;Highlights:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Article first&lt;/strong&gt; — the focus is the &lt;em&gt;article&lt;/em&gt;: better reading, better pacing, better aesthetics. Delivery is a self-contained file (HTML, optional PDF), but that&#39;s a delivery detail, not the goal&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Reacticle component protocol&lt;/strong&gt; — prose-first semantic components (Hero / Lead / Section / Quote / Callout / Image / Formula / CodeBlock / Table…) plus a theme-token-only &lt;code&gt;Raw&lt;/code&gt; free layer; the underlying React library lives at &lt;a href=&quot;https://github.com/ConardLi/reacticle&quot;&gt;&lt;code&gt;ConardLi/reacticle&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;10 article types with bundled retention ratios&lt;/strong&gt; — &lt;code&gt;longform · ~100%&lt;/code&gt; / &lt;code&gt;tutorial · ~90%&lt;/code&gt; / &lt;code&gt;full-report · ~80%&lt;/code&gt; / &lt;code&gt;explainer · ~80%&lt;/code&gt; / &lt;code&gt;dialogue · ~80%&lt;/code&gt; / &lt;code&gt;review · ~70%&lt;/code&gt; / &lt;code&gt;essay · ~70%&lt;/code&gt; / &lt;code&gt;briefing · ~50%&lt;/code&gt; / &lt;code&gt;visual-essay · ~40%&lt;/code&gt; / &lt;code&gt;interactive-explainer · ~25% excerpt + 75% AI-rebuild&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;11 authoring theme profiles&lt;/strong&gt; (&lt;code&gt;tufte&lt;/code&gt;, &lt;code&gt;press&lt;/code&gt;, &lt;code&gt;bayer&lt;/code&gt;, &lt;code&gt;bodoni&lt;/code&gt;, &lt;code&gt;vignelli&lt;/code&gt;, &lt;code&gt;sottsass&lt;/code&gt;, &lt;code&gt;freddie&lt;/code&gt;, &lt;code&gt;andy&lt;/code&gt;, &lt;code&gt;fuller&lt;/code&gt;, &lt;code&gt;knuth&lt;/code&gt;, &lt;code&gt;shannon&lt;/code&gt;) — each is a Markdown contract for the agent rather than a CSS file&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Hard collaboration checkpoints&lt;/strong&gt; with item-by-item decision capture (no silent defaults), plus a 3:4 book-style cover, default-on TOC, and language-aware translation step&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Per-node quality protocol&lt;/strong&gt; — main-agent inline checks for plan, sub-agent reviewers for first spread / sections / final review, repair as minimal slices&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Theme gallery&lt;/h4&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/tufte.webp&quot; alt=&quot;tufte&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;tufte&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/press.webp&quot; alt=&quot;press&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;press&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/bayer.webp&quot; alt=&quot;bayer&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;bayer&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/bodoni.webp&quot; alt=&quot;bodoni&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;bodoni&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/vignell.webp&quot; alt=&quot;vignelli&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;vignelli&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/sottsass.webp&quot; alt=&quot;sottsass&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;sottsass&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/freddie.webp&quot; alt=&quot;freddie&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;freddie&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+   &lt;td width=&quot;25%&quot; align=&quot;center&quot;&gt;&lt;img src=&quot;https://cdn.jsdelivr.net/gh/ConardLi/assets@main/imgs/article/andy.webp&quot; alt=&quot;andy&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;andy&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;Links: &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/beautiful-article/README.md&quot;&gt;README&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/skills/beautiful-article/SKILL.md&quot;&gt;SKILL.md&lt;/a&gt; · 
+ &lt;!-- DOWNLOAD:beautiful-article:start --&gt;&lt;a href=&quot;https://github.com/ConardLi/garden-skills/releases/download/beautiful-article-v0.1.0/beautiful-article-0.1.0.zip&quot;&gt;Download v0.1.0 .zip&lt;/a&gt;
+ &lt;!-- DOWNLOAD:beautiful-article:end --&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;There are five supported install paths. Pick the one that fits your stack:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;#&lt;/th&gt; 
+   &lt;th&gt;Method&lt;/th&gt; 
+   &lt;th&gt;Best for&lt;/th&gt; 
+   &lt;th&gt;Pinned version?&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;A&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-a--skills-cli-npx&quot;&gt;&lt;code&gt;skills&lt;/code&gt; CLI (&lt;code&gt;npx skills add&lt;/code&gt;)&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Any agent, one-line install, pick &amp;amp; choose skills&lt;/td&gt; 
+   &lt;td&gt;✅ via tag URL&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;B&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-b--claude-code-plugin-marketplace&quot;&gt;Claude Code plugin marketplace&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Claude Code users who want to subscribe to plugin packs&lt;/td&gt; 
+   &lt;td&gt;✅ via marketplace version&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;C&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-c--pinned-zip-from-releases&quot;&gt;Pinned &lt;code&gt;.zip&lt;/code&gt; from GitHub Releases&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;CI / air-gapped envs / reproducible installs&lt;/td&gt; 
+   &lt;td&gt;✅ ✅ (immutable)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;D&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-d--manual-copy-into-your-project&quot;&gt;Manual copy after &lt;code&gt;git clone&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Local hacking on the skill itself&lt;/td&gt; 
+   &lt;td&gt;❌ (tracks &lt;code&gt;main&lt;/code&gt;)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;E&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/#option-e--git-submodule&quot;&gt;Git submodule&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Vendored into a larger project, want upstream updates&lt;/td&gt; 
+   &lt;td&gt;✅ via submodule SHA&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Each skill section above also has a &lt;strong&gt;&lt;code&gt;Download v&amp;lt;version&amp;gt; .zip&lt;/code&gt;&lt;/strong&gt; link in its &quot;Links:&quot; row that points at the current pinned release artifact. Those URLs are auto-rewritten by &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/scripts/release/update-readme.mjs&quot;&gt;&lt;code&gt;scripts/release/update-readme.mjs&lt;/code&gt;&lt;/a&gt; on every release, so they always advertise the latest immutable version.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Option A · &lt;code&gt;skills&lt;/code&gt; CLI (npx)&lt;/h3&gt; 
+&lt;p&gt;The fastest agent-agnostic path. Uses the standard &lt;a href=&quot;https://www.npmjs.com/package/skills&quot;&gt;&lt;code&gt;npx skills&lt;/code&gt; CLI&lt;/a&gt;, which auto-detects your agent (Claude Code, Cursor, Codex, etc.) and drops the skill into the right directory.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Install all four skills (latest)
+npx skills add ConardLi/garden-skills
+
+# Install just one skill (latest)
+npx skills add ConardLi/garden-skills -s web-design-engineer
+
+# Install globally (~/.skills) instead of per-project (./.skills)
+npx skills add ConardLi/garden-skills -s gpt-image-2 --global
+
+# Target a specific agent
+npx skills add ConardLi/garden-skills -s kb-retriever -a claude-code
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Defaults to the latest commit on &lt;code&gt;main&lt;/code&gt;.&lt;/strong&gt; That&#39;s what you want 95% of the time — the CLI tracks each skill&#39;s most recent published &lt;code&gt;SKILL.md&lt;/code&gt; straight from the source tree.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;&lt;strong&gt;Want a pinned version? (CI / production)&lt;/strong&gt; Use a tag-scoped &lt;code&gt;tree/&lt;/code&gt; URL — this points at the exact commit a release was cut from:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Pin one skill to a specific release
+npx skills add ConardLi/garden-skills/tree/web-design-engineer-v1.0.0/skills/web-design-engineer
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For each skill, the current pinned &lt;code&gt;.zip&lt;/code&gt; URL is also shown inline in its &quot;Links:&quot; row above (the &lt;code&gt;Download v&amp;lt;version&amp;gt; .zip&lt;/code&gt; link).&lt;/p&gt; 
+&lt;p&gt;Useful sub-commands:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx skills list                 # what&#39;s installed
+npx skills find web-design      # search registries
+npx skills update               # bump everything
+npx skills remove kb-retriever  # uninstall
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Option B · Claude Code plugin marketplace&lt;/h3&gt; 
+&lt;p&gt;If you use &lt;a href=&quot;https://docs.anthropic.com/en/docs/claude-code&quot;&gt;Claude Code&lt;/a&gt;, you can subscribe to the marketplace and install plugin packs that bundle one or more skills together:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;/plugin marketplace add ConardLi/garden-skills
+/plugin install presentation-skills@garden-skills
+/plugin install web-design-skills@garden-skills
+/plugin install knowledge-base-skills@garden-skills
+/plugin install image-generation-skills@garden-skills
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Plugin packs are declared in &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/.claude-plugin/marketplace.json&quot;&gt;&lt;code&gt;.claude-plugin/marketplace.json&lt;/code&gt;&lt;/a&gt;:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Plugin pack&lt;/th&gt; 
+   &lt;th&gt;Skills included&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;presentation-skills&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;web-video-presentation&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;web-design-skills&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;web-design-engineer&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;knowledge-base-skills&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;kb-retriever&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;image-generation-skills&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;gpt-image-2&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Option C · Pinned &lt;code&gt;.zip&lt;/code&gt; from Releases&lt;/h3&gt; 
+&lt;p&gt;Every formal release publishes an immutable &lt;code&gt;.zip&lt;/code&gt; (with a SHA-256 checksum) to &lt;a href=&quot;https://github.com/ConardLi/garden-skills/releases&quot;&gt;GitHub Releases&lt;/a&gt;. Pin to this from CI, Dockerfiles, or air-gapped installers when you need the exact bytes to never move under you.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Replace &amp;lt;skill&amp;gt; and &amp;lt;version&amp;gt; with the version you want.
+SKILL=web-design-engineer
+VERSION=1.0.0
+
+curl -fsSL -o &quot;${SKILL}.zip&quot; \
+  &quot;https://github.com/ConardLi/garden-skills/releases/download/${SKILL}-v${VERSION}/${SKILL}-${VERSION}.zip&quot;
+
+# Verify the checksum (highly recommended for unattended installs)
+curl -fsSL -o &quot;${SKILL}.zip.sha256&quot; \
+  &quot;https://github.com/ConardLi/garden-skills/releases/download/${SKILL}-v${VERSION}/${SKILL}-${VERSION}.zip.sha256&quot;
+shasum -a 256 -c &quot;${SKILL}.zip.sha256&quot;
+
+# Drop the folder into the agent&#39;s skills directory
+unzip -q &quot;${SKILL}.zip&quot; -d .claude/skills/   # or .agents/skills/, .codex/skills/, ...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A floating &quot;always-latest&quot; URL is also available — useful for one-off installs:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;https://github.com/ConardLi/garden-skills/releases/latest/download/&amp;lt;skill&amp;gt;-&amp;lt;version&amp;gt;.zip
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Pinned URLs for every skill are listed inline in this README&lt;/strong&gt; — see the &quot;Download&quot; line under each skill&#39;s &quot;Links&quot; entry above. They are kept in sync automatically by the release pipeline.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Option D · Manual copy into your project&lt;/h3&gt; 
+&lt;p&gt;Clone the repo and copy the skill folder you want — handy if you want to fork or hack on the skill itself.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/ConardLi/garden-skills.git
+cp -r garden-skills/skills/web-design-engineer  your-project/.claude/skills/
+# Cursor / generic agent:
+cp -r garden-skills/skills/web-design-engineer  your-project/.agents/skills/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The agent discovers the skill the next time it scans the workspace.&lt;/p&gt; 
+&lt;h3&gt;Option E · Git submodule&lt;/h3&gt; 
+&lt;p&gt;For vendoring into a larger project where you want to track upstream updates:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git submodule add https://github.com/ConardLi/garden-skills.git vendor/garden-skills
+ln -s ../../vendor/garden-skills/skills/web-design-engineer .claude/skills/web-design-engineer
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Pin to a release tag for reproducibility:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd vendor/garden-skills
+git checkout web-design-engineer-v1.0.0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Agent / Runtime&lt;/th&gt; 
+   &lt;th&gt;Skill location&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Claude Code&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;.claude/skills/&amp;lt;name&amp;gt;/&lt;/code&gt; or via plugin marketplace&lt;/td&gt; 
+   &lt;td&gt;✅ Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;&lt;a href=&quot;http://Claude.ai&quot;&gt;Claude.ai&lt;/a&gt;&lt;/strong&gt; (web)&lt;/td&gt; 
+   &lt;td&gt;Settings → Capabilities → Skills&lt;/td&gt; 
+   &lt;td&gt;✅ Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Cursor&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;.agents/skills/&amp;lt;name&amp;gt;/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;✅ Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Codex CLI&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;.codex/skills/&amp;lt;name&amp;gt;/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;✅ Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Gemini CLI&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;extension manifest&lt;/td&gt; 
+   &lt;td&gt;✅ Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;OpenCode&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;.opencode/skills/&amp;lt;name&amp;gt;/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;✅ Tested&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;The &lt;code&gt;SKILL.md&lt;/code&gt; format is portable by design — if your agent supports skills, copy the folder into the directory it scans, and it should work. PRs welcome to extend this matrix.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;What is a Skill?&lt;/h2&gt; 
+&lt;p&gt;A &lt;strong&gt;Skill&lt;/strong&gt; is a self-contained folder the agent can load on-demand. It&#39;s just a &lt;code&gt;SKILL.md&lt;/code&gt; (YAML frontmatter + instructions), optionally accompanied by reference docs, scripts, and assets:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;&amp;lt;skill-name&amp;gt;/
+├── SKILL.md      ← required: when to use it + how to do it
+├── README.md     ← human-facing docs
+├── references/   ← optional: extended docs the agent loads on demand
+├── scripts/      ← optional: deterministic executable helpers
+└── assets/       ← optional: templates, fonts, icons
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The agent decides whether to activate the skill from the &lt;code&gt;description&lt;/code&gt; line in the frontmatter — so the description is the contract between you and the agent. For the full spec, see &lt;a href=&quot;https://agentskills.io&quot;&gt;agentskills.io&lt;/a&gt; and &lt;a href=&quot;https://github.com/anthropics/skills&quot;&gt;Anthropic&#39;s reference repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Bug reports, new skills, and tooling improvements are all welcome.&lt;/p&gt; 
+&lt;p&gt;The maintainer-facing docs — repository layout, release process, version rules, CI workflow, troubleshooting — live in &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/CONTRIBUTING.md&quot;&gt;&lt;strong&gt;&lt;code&gt;CONTRIBUTING.md&lt;/code&gt;&lt;/strong&gt;&lt;/a&gt; (&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/CONTRIBUTING.zh-CN.md&quot;&gt;中文&lt;/a&gt;). Read that first if you want to add a skill or cut a release.&lt;/p&gt; 
+&lt;p&gt;Quick orientation:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/ConardLi/garden-skills.git
+cd garden-skills
+npm run list      # show all skills + manifest status
+npm run validate  # the same check CI runs on every PR
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Acknowledgments&lt;/h2&gt; 
+&lt;p&gt;This collection stands on the shoulders of:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.anthropic.com&quot;&gt;Anthropic&lt;/a&gt;&lt;/strong&gt; for the &lt;a href=&quot;https://agentskills.io&quot;&gt;Agent Skills spec&lt;/a&gt; and the &lt;a href=&quot;https://github.com/anthropics/skills&quot;&gt;&lt;code&gt;anthropics/skills&lt;/code&gt;&lt;/a&gt; reference repository.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.anthropic.com/news/claude-design-anthropic-labs&quot;&gt;Claude Design&lt;/a&gt;&lt;/strong&gt; — the system prompt that inspired &lt;code&gt;web-design-engineer&lt;/code&gt;. The original is preserved in &lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/dist/prompt/claude-design-system-prompt.md&quot;&gt;&lt;code&gt;dist/prompt/claude-design-system-prompt.md&lt;/code&gt;&lt;/a&gt; for reference.&lt;/li&gt; 
+ &lt;li&gt;The broader OSS skill community — see &lt;a href=&quot;https://github.com/travisvn/awesome-claude-skills&quot;&gt;&lt;code&gt;travisvn/awesome-claude-skills&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://github.com/obra/superpowers&quot;&gt;&lt;code&gt;obra/superpowers&lt;/code&gt;&lt;/a&gt; for further discovery.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Connect&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;平台&lt;/th&gt; 
+   &lt;th&gt;账号名称&lt;/th&gt; 
+   &lt;th&gt;链接&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;X/Twitter&lt;/td&gt; 
+   &lt;td&gt;code秘密花园&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://x.com/GardenConardLi&quot;&gt;https://x.com/GardenConardLi&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;B 站&lt;/td&gt; 
+   &lt;td&gt;code秘密花园&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://space.bilibili.com/474921808&quot;&gt;https://space.bilibili.com/474921808&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;抖音&lt;/td&gt; 
+   &lt;td&gt;code秘密花园&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://v.douyin.com/i5b33Xfv/&quot;&gt;https://v.douyin.com/i5b33Xfv/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;YouTube&lt;/td&gt; 
+   &lt;td&gt;code秘密花园&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.youtube.com/@garden-conard&quot;&gt;https://www.youtube.com/@garden-conard&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;小红书&lt;/td&gt; 
+   &lt;td&gt;code秘密花园&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.xiaohongshu.com/user/profile/5af45e78f7e8b903d6e04618&quot;&gt;https://www.xiaohongshu.com/user/profile/5af45e78f7e8b903d6e04618&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;公众号&lt;/td&gt; 
+   &lt;td&gt;code秘密花园&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://cdn.jsdelivr.net/gh/ConardLi/easy-dataset@main/public/imgs/weichat.jpg&quot;&gt;https://cdn.jsdelivr.net/gh/ConardLi/easy-dataset@main/public/imgs/weichat.jpg&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;GitHub&lt;/td&gt; 
+   &lt;td&gt;ConardLi&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ConardLi&quot;&gt;https://github.com/ConardLi&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;个人网站&lt;/td&gt; 
+   &lt;td&gt;Easy AI&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://mmh1.top&quot;&gt;https://mmh1.top&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ConardLi/garden-skills/main/LICENSE&quot;&gt;MIT&lt;/a&gt; © &lt;a href=&quot;https://github.com/ConardLi&quot;&gt;ConardLi&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c6d857a38c1eb9fe4a2342e76118fba388284c5458fc4c531490ca285bbf1cf4/ConardLi/garden-skills" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>jothepro/doxygen-awesome-css</title>
+      <link>https://github.com/jothepro/doxygen-awesome-css</link>
+      <description>&lt;p&gt;Custom CSS theme for doxygen html-documentation with lots of customization parameters.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Doxygen Awesome&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/jothepro/doxygen-awesome-css/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/jothepro/doxygen-awesome-css&quot; alt=&quot;GitHub release (latest by date)&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/jothepro/doxygen-awesome-css/raw/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/jothepro/doxygen-awesome-css&quot; alt=&quot;GitHub&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/stars/jothepro/doxygen-awesome-css&quot; alt=&quot;GitHub Repo stars&quot; /&gt;&lt;/p&gt; 
+&lt;div class=&quot;title_screenshot&quot;&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/img/screenshot.png&quot; alt=&quot;Screenshot of Doxygen Awesome CSS&quot; /&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;&lt;strong&gt;Doxygen Awesome&lt;/strong&gt; is a custom CSS theme for &lt;a href=&quot;https://github.com/doxygen/doxygen&quot;&gt;Doxygen&lt;/a&gt; HTML documentation with many customization options.&lt;/p&gt; 
+&lt;h2&gt;Motivation&lt;/h2&gt; 
+&lt;p&gt;I really like how the Doxygen HTML documentation is structured, but IMHO it looks a bit outdated.&lt;/p&gt; 
+&lt;p&gt;This theme is an attempt to modernize the visuals of Doxygen without changing its overall layout too much.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;🌈 Clean, modern design&lt;/li&gt; 
+ &lt;li&gt;🚀 Highly customizable by adjusting CSS variables&lt;/li&gt; 
+ &lt;li&gt;🧩 No changes to the HTML structure of Doxygen are required&lt;/li&gt; 
+ &lt;li&gt;📱 Improved mobile usability&lt;/li&gt; 
+ &lt;li&gt;🌘 Dark mode support!&lt;/li&gt; 
+ &lt;li&gt;🥇 Works best with &lt;strong&gt;Doxygen 1.9.1&lt;/strong&gt; - &lt;strong&gt;1.9.4&lt;/strong&gt; and &lt;strong&gt;1.9.6&lt;/strong&gt; - &lt;strong&gt;1.16.1&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;p&gt;Some websites using this theme:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://jothepro.github.io/doxygen-awesome-css/&quot;&gt;Documentation of this repository&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.wxwidgets.org/3.2/&quot;&gt;wxWidgets&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.opencv.org/5.x/&quot;&gt;OpenCV 5.x&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.zephyrproject.org/latest/doxygen/html/index.html&quot;&gt;Zephyr&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://leomccormack.github.io/Spatial_Audio_Framework/index.html&quot;&gt;Spatial Audio Framework (SAF)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.randolf.ca/c++/docs/&quot;&gt;Randolf Richardson&#39;s C++ classes&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://a4z.github.io/libsl3/&quot;&gt;libsl3&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://dumux.org/docs/doxygen/master/&quot;&gt;DuMu&lt;sup&gt;x&lt;/sup&gt;&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://openremise.at/&quot;&gt;OpenRemise&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To use the theme when generating your documentation, bring the required CSS and JS files from this repository into your project.&lt;/p&gt; 
+&lt;p&gt;This can be done in several ways:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;manually copying the files&lt;/li&gt; 
+ &lt;li&gt;adding the project as a Git submodule&lt;/li&gt; 
+ &lt;li&gt;downloading the project with CMake FetchContent&lt;/li&gt; 
+ &lt;li&gt;adding the project as an npm/xpm dependency&lt;/li&gt; 
+ &lt;li&gt;installing the theme system-wide&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;All theme files are located in the root of this repository and start with the prefix &lt;code&gt;doxygen-awesome-&lt;/code&gt;. You may not need all of them. Follow the installation instructions to determine which files are required for your setup.&lt;/p&gt; 
+&lt;h3&gt;Git submodule&lt;/h3&gt; 
+&lt;p&gt;For projects that use Git, add the repository as a submodule and check out the desired release:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;git submodule add https://github.com/jothepro/doxygen-awesome-css.git
+cd doxygen-awesome-css
+git checkout v2.4.2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;CMake with FetchContent&lt;/h3&gt; 
+&lt;p&gt;For projects that build with CMake, the &lt;code&gt;FetchContent&lt;/code&gt; module can be used to download the repository at configuration time.&lt;/p&gt; 
+&lt;p&gt;Add the following snippet to your &lt;code&gt;CMakeLists.txt&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-cmake&quot;&gt;include(FetchContent)
+FetchContent_Declare(
+    doxygen-awesome-css
+    URL https://github.com/jothepro/doxygen-awesome-css/archive/refs/heads/main.zip
+)
+FetchContent_MakeAvailable(doxygen-awesome-css)
+
+# Save the location the files were cloned into
+# This allows us to get the path to doxygen-awesome.css
+FetchContent_GetProperties(doxygen-awesome-css SOURCE_DIR AWESOME_CSS_DIR)
+
+# Generate the Doxyfile
+set(DOXYFILE_IN ${CMAKE_CURRENT_SOURCE_DIR}/doc/Doxyfile.in)
+set(DOXYFILE_OUT ${CMAKE_CURRENT_BINARY_DIR}/Doxyfile)
+configure_file(${DOXYFILE_IN} ${DOXYFILE_OUT} @ONLY)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This downloads the latest main (but any other revision could be used) and unpacks in the build folder. The &lt;code&gt;Doxyfile.in&lt;/code&gt; can reference this location in the &lt;code&gt;HTML_EXTRA_STYLESHEET&lt;/code&gt; field&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;HTML_EXTRA_STYLESHEET  = @AWESOME_CSS_DIR@/doxygen-awesome.css
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When the configure stage of CMake is run, the &lt;code&gt;Doxyfile.in&lt;/code&gt; is rendered to Doxyfile and Doxygen can be run as usual.&lt;/p&gt; 
+&lt;h3&gt;npm/xpm dependency&lt;/h3&gt; 
+&lt;p&gt;In the npm ecosystem, this project can be added as a development dependency to your project:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;cd your-project
+npm install https://github.com/jothepro/doxygen-awesome-css#v2.4.2 --save-dev
+
+ls -l node_modules/@jothepro/doxygen-awesome-css
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Similarly, in the &lt;a href=&quot;https://xpack.github.io&quot;&gt;xPack&lt;/a&gt; ecosystem, this project can be added as a development dependency to an &lt;a href=&quot;https://xpack.github.io/xpm/&quot;&gt;&lt;code&gt;xpm&lt;/code&gt;&lt;/a&gt; managed project.&lt;/p&gt; 
+&lt;h3&gt;System-wide&lt;/h3&gt; 
+&lt;p&gt;You can even install the theme system-wide by running &lt;code&gt;make install&lt;/code&gt;. The files will be installed to &lt;code&gt;/usr/local/share/&lt;/code&gt; by default, but you can customize the install location with &lt;code&gt;make PREFIX=/my/custom/path install&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Choosing a layout&lt;/h3&gt; 
+&lt;p&gt;There are two layout options. Choose one of them and configure Doxygen accordingly:&lt;/p&gt; 
+&lt;div class=&quot;tabbed&quot;&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;b class=&quot;tab-title&quot;&gt;Base Theme&lt;/b&gt;&lt;/p&gt;
+   &lt;div class=&quot;darkmode_inverted_image&quot;&gt; 
+    &lt;img src=&quot;https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/img/theme-variants-base.drawio.svg?sanitize=true&quot; alt=&quot;&quot; /&gt;
+    &lt;p&gt;&lt;/p&gt; 
+   &lt;/div&gt; Comes with the typical Doxygen titlebar. Optionally the treeview in the sidebar can be enabled. &lt;p&gt;Required files: &lt;code&gt;doxygen-awesome.css&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Required &lt;code&gt;Doxyfile&lt;/code&gt; configuration:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;GENERATE_TREEVIEW      = YES # optional. Also works without treeview
+DISABLE_INDEX = NO
+FULL_SIDEBAR = NO
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css
+HTML_COLORSTYLE        = LIGHT # required with Doxygen &amp;gt;= 1.9.5
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;b class=&quot;tab-title&quot;&gt;Sidebar-Only Theme&lt;/b&gt;&lt;/p&gt;
+   &lt;div class=&quot;darkmode_inverted_image&quot;&gt; 
+    &lt;img src=&quot;https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/img/theme-variants-sidebar-only.drawio.svg?sanitize=true&quot; alt=&quot;&quot; /&gt;
+    &lt;p&gt;&lt;/p&gt; 
+   &lt;/div&gt; Hides the top titlebar to give more space to the content. The treeview must be enabled in order for this theme to work. &lt;p&gt;Required files: &lt;code&gt;doxygen-awesome.css&lt;/code&gt;, &lt;code&gt;doxygen-awesome-sidebar-only.css&lt;/code&gt;&lt;/p&gt; &lt;p&gt;Required &lt;code&gt;Doxyfile&lt;/code&gt; configuration:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;
+GENERATE_TREEVIEW      = YES # required!
+DISABLE_INDEX          = NO
+FULL_SIDEBAR           = NO
+HTML_EXTRA_STYLESHEET  = doxygen-awesome-css/doxygen-awesome.css \
+                        doxygen-awesome-css/doxygen-awesome-sidebar-only.css
+HTML_COLORSTYLE        = LIGHT # required with Doxygen &amp;gt;= 1.9.5
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;p&gt;@warning&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;This theme is not compatible with the &lt;code&gt;FULL_SIDEBAR = YES&lt;/code&gt; option provided by Doxygen!&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;HTML_COLORSTYLE&lt;/code&gt; must be set to &lt;code&gt;LIGHT&lt;/code&gt; since Doxygen 1.9.5!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Further installation instructions&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/docs/extensions.md&quot;&gt;Installing extensions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/docs/customization.md&quot;&gt;Customizing the theme (colors, spacing, border-radius, ...)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/docs/tricks.md&quot;&gt;Tips and Tricks for further configuration&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Browser support&lt;/h2&gt; 
+&lt;p&gt;Tested with&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Chrome 140, Chrome 140 for Android, Chrome 141 for iOS&lt;/li&gt; 
+ &lt;li&gt;Safari 26, Safari for iOS 26&lt;/li&gt; 
+ &lt;li&gt;Firefox 143, Firefox 142 for Android, Firefox 143 for iOS&lt;/li&gt; 
+ &lt;li&gt;Edge 140&lt;/li&gt; 
+ &lt;li&gt;Opera One 122&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The theme does not strive to be backward compatible with (significantly) older browser versions.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;Thanks for all the bug reports and inspiring feedback on GitHub!&lt;/p&gt; 
+&lt;p&gt;Special thanks to all the contributors: &lt;br /&gt;&lt;br /&gt; &lt;a href=&quot;https://github.com/jothepro/doxygen-awesome-css/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=jothepro/doxygen-awesome-css&quot; /&gt; &lt;/a&gt;&lt;/p&gt; 
+&lt;div class=&quot;section_buttons&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th style=&quot;text-align:right&quot;&gt;Read Next&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:right&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/jothepro/doxygen-awesome-css/main/docs/extensions.md&quot;&gt;Extensions&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/348492097/4f16df80-88fb-11eb-9d31-4015ff22c452" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>hkhcoder/vprofile-project</title>
+      <link>https://github.com/hkhcoder/vprofile-project</link>
+      <description>&lt;h1&gt;Prerequisites&lt;/h1&gt; 
+&lt;h1&gt;&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;JDK 17 or 21&lt;/li&gt; 
+ &lt;li&gt;Maven 3.9&lt;/li&gt; 
+ &lt;li&gt;MySQL 8&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Technologies&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Spring MVC&lt;/li&gt; 
+ &lt;li&gt;Spring Security&lt;/li&gt; 
+ &lt;li&gt;Spring Data JPA&lt;/li&gt; 
+ &lt;li&gt;Maven&lt;/li&gt; 
+ &lt;li&gt;JSP&lt;/li&gt; 
+ &lt;li&gt;Tomcat&lt;/li&gt; 
+ &lt;li&gt;MySQL&lt;/li&gt; 
+ &lt;li&gt;Memcached&lt;/li&gt; 
+ &lt;li&gt;Rabbitmq&lt;/li&gt; 
+ &lt;li&gt;ElasticSearch&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Database&lt;/h1&gt; 
+&lt;p&gt;Here,we used Mysql DB sql dump file:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;/src/main/resources/db_backup.sql&lt;/li&gt; 
+ &lt;li&gt;db_backup.sql file is a mysql dump file.we have to import this dump to mysql db server&lt;/li&gt; 
+ &lt;li&gt; 
+  &lt;blockquote&gt; 
+   &lt;p&gt;mysql -u &amp;lt;user_name&amp;gt; -p accounts &amp;lt; db_backup.sql&lt;/p&gt; 
+  &lt;/blockquote&gt; &lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/6469576bdaac1d738605a0932160f45436a191a6787666e9f17b51b0910860fa/hkhcoder/vprofile-project" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>kepano/obsidian-minimal</title>
+      <link>https://github.com/kepano/obsidian-minimal</link>
+      <description>&lt;p&gt;A distraction-free and highly customizable theme for Obsidian.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/cover.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Find detailed documentation at &lt;a href=&quot;https://minimal.guide&quot;&gt;minimal.guide&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Minimal is an &lt;a href=&quot;https://obsidian.md/&quot;&gt;Obsidian&lt;/a&gt; theme for desktop, mobile and tablet. Customize colors, fonts and more with the companion plugins &lt;a href=&quot;https://community.obsidian.md/plugins/obsidian-minimal-settings&quot;&gt;Minimal Theme Settings&lt;/a&gt; and &lt;a href=&quot;https://community.obsidian.md/plugins/obsidian-hider&quot;&gt;Hider&lt;/a&gt;. Winner of Obsidian&#39;s official &lt;a href=&quot;https://forum.obsidian.md/t/best-of-2020-awards-results/11217&quot;&gt;Best Theme award&lt;/a&gt; ✨&lt;/p&gt; 
+&lt;h2&gt;About Minimal&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#screenshots&quot;&gt;Screenshots&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#installation&quot;&gt;Installation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#companion-plugins&quot;&gt;Companion plugins&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#settings&quot;&gt;Settings&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#color-schemes&quot;&gt;Color schemes&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#plugin-support&quot;&gt;Plugin support&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#helper-filters-and-classes&quot;&gt;Helper classes&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#alternate-checkboxes&quot;&gt;Alternate checkboxes&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#hotkeys&quot;&gt;Hotkeys&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#contributing&quot;&gt;Contributing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#developers&quot;&gt;Developers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#disclaimer&quot;&gt;Disclaimer&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Screenshots&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Background styles&lt;/strong&gt; include low contrast, high contrast, and a true black option ideal for OLED devices&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/docs/Images/minimal-variants.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Helper classes&lt;/strong&gt; for tables and card layouts allow you to create powerful workflows&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/docs/Images/minimal-movies.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Combining &lt;strong&gt;focus mode&lt;/strong&gt; with &lt;strong&gt;image grid&lt;/strong&gt; and &lt;strong&gt;image width&lt;/strong&gt; options allows you to immerse yourself in visual projects&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/docs/Images/minimal-img-grid.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Minimal includes support for popular plugins like &lt;strong&gt;Calendar&lt;/strong&gt;, &lt;strong&gt;Dataview&lt;/strong&gt;, &lt;strong&gt;Kanban&lt;/strong&gt;, &lt;strong&gt;Outliner&lt;/strong&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#plugin-support&quot;&gt;and more&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/docs/Images/minimal-plugins.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the theme&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Open Obsidian Settings&lt;/li&gt; 
+ &lt;li&gt;Go to &lt;code&gt;Appearance&lt;/code&gt; and click &lt;code&gt;Manage&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Under community themes search for &quot;Minimal&quot; and click &lt;code&gt;Use&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To install the companion plugin&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Go to &lt;code&gt;Community plugins&lt;/code&gt; and turn off &lt;code&gt;Restricted mode&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Under community plugins search for &quot;Minimal Theme Settings&quot; and click &lt;code&gt;Install&lt;/code&gt;, then &lt;code&gt;Enable&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Have a question? Join the &lt;a href=&quot;https://discord.com/channels/686053708261228577/931008597557649410&quot;&gt;Minimal channel&lt;/a&gt; on the official &lt;a href=&quot;https://discord.gg/veuWUTm&quot;&gt;Obsidian Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Companion plugins&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kepano/obsidian-minimal-settings&quot;&gt;Minimal Theme Settings plugin&lt;/a&gt; allows you to customize color schemes, fonts, &lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#hotkeys&quot;&gt;hotkeys&lt;/a&gt;, and access the main feature toggles. This plugin is highly recommended for all users of Minimal.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kepano/obsidian-hider&quot;&gt;Hider plugin&lt;/a&gt; is recommended to hide Obsidian UI elements such as window frame, scrollbars, tooltips, etc. When using Hider to turn off the main toolbar (AKA app ribbon), it can be accessed by hovering over the bottom left edge of the window.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mgmeyers/obsidian-style-settings&quot;&gt;Style Settings plugin&lt;/a&gt; allows you to create a custom color scheme. This plugin is optional.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Settings&lt;/h2&gt; 
+&lt;p&gt;The following settings can be accessed using &lt;a href=&quot;https://github.com/kepano/obsidian-minimal-settings&quot;&gt;Minimal Theme Settings&lt;/a&gt; plugin. Many of these settings below can be toggled with &lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#hotkeys&quot;&gt;hotkeys&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Interface colors and fonts&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Background+contrast&quot;&gt;Background contrast&lt;/a&gt; — includes true black dark mode for OLED devices&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Color+schemes&quot;&gt;Color scheme&lt;/a&gt; — includes Catppuccin, Dracula, Everforest, Gruvbox, macOS, Nord, Solarized, &lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#color-schemes&quot;&gt;and more&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Line+width&quot;&gt;Line width&lt;/a&gt; — set normal line width and maximum width within a pane&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can also use the Style Settings plugin for even deeper customization&lt;/p&gt; 
+&lt;h3&gt;Features&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Text+labels+for+primary+navigation&quot;&gt;Text labels for primary navigation&lt;/a&gt; — adds text labels the top left navigation, note that a translation snippet is necessary for languages other than English &lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#localization&quot;&gt;more on localization&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Focus+mode&quot;&gt;Focus mode&lt;/a&gt; — hides title bar and status bar&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Colorful+frame&quot;&gt;Colorful frame&lt;/a&gt; — use accent color for the top area of the app window&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Colorful+headings&quot;&gt;Colorful headings&lt;/a&gt; — use different colors for each heading&lt;/li&gt; 
+ &lt;li&gt;Hide workspace borders — removes dividing lines for a more minimal appearance&lt;/li&gt; 
+ &lt;li&gt;Trim filenames — file names are trimmed to a single line&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Layout options&lt;/h3&gt; 
+&lt;p&gt;Controls images, tables and iframes. These settings can also be enabled on a per-file basis using &lt;a href=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/#helper-filters-and-classes&quot;&gt;helper classes&lt;/a&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Block+types/Image+grids&quot;&gt;Image grids&lt;/a&gt; — turns consecutive images into columns. To make a new row, add an extra line break between images.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://minimal.guide/Features/Block+width&quot;&gt;Block widths&lt;/a&gt; — controls the width of elements by type.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Color schemes&lt;/h2&gt; 
+&lt;h3&gt;Preset color schemes&lt;/h3&gt; 
+&lt;p&gt;Minimal offers color schemes that can be separately selected for light and dark mode using the &lt;a href=&quot;https://github.com/kepano/obsidian-minimal-settings&quot;&gt;Minimal Theme Settings&lt;/a&gt; plugin. Color schemes include Dracula, Everforest, Gruvbox, macOS, Nord, Notion, Solarized, and Things.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/docs/Images/minimal-color-schemes.gif&quot; alt=&quot;Minimal Theme Settings&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Custom color schemes&lt;/h3&gt; 
+&lt;p&gt;You can use the Style Settings plugin to customize your color scheme. To see your changes more easily, open Style Settings in a new pane by using the command palette (&lt;code&gt;CMD + P&lt;/code&gt; by default). Using Style Settings you can customize Minimal&#39;s colors, font sizes, font styles, and many more details.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kepano/obsidian-minimal/master/docs/Images/minimal-style-settings.gif&quot; alt=&quot;Style Settings&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Plugin support&lt;/h2&gt; 
+&lt;p&gt;Most plugins work well with Minimal, but the following plugins have received special love and attention:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/liamcain/obsidian-calendar-plugin&quot;&gt;Calendar&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/phibr0/obsidian-charts&quot;&gt;Charts&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/delashum/obsidian-checklist-plugin&quot;&gt;Checklist&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/blacksmithgu/obsidian-dataview&quot;&gt;Dataview&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/phibr0/obsidian-dictionary&quot;&gt;Dictionary&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/zsviczian/obsidian-excalidraw-plugin&quot;&gt;Excalidraw&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/denolehov/obsidian-git&quot;&gt;Git&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kepano/obsidian-hider&quot;&gt;Hider&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mgmeyers/obsidian-kanban&quot;&gt;Kanban&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/vslinko/obsidian-outliner&quot;&gt;Outliner&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/chhoumann/quickadd&quot;&gt;QuickAdd&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Helper filters and classes&lt;/h2&gt; 
+&lt;h2&gt;Image filters&lt;/h2&gt; 
+&lt;p&gt;Image filters can be added to create the following effects. Use them by adding the filter name at the end of the image link, e.g. &lt;code&gt;![[image.jpeg#invert]]&lt;/code&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Filter&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;#invert&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Invert images in dark mode — ideal for charts and handwriting on light backgrounds&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;#invertW&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Invert images in light mode — ideal for charts and handwriting on dark backgrounds&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;#circle&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Crop image to a circle&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;#outline&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Add outline around image&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;CSS helper classes&lt;/h2&gt; 
+&lt;p&gt;CSS helper classes can be added on a per-file basis using the &lt;code&gt;cssClasses&lt;/code&gt; &lt;a href=&quot;https://help.obsidian.md/Advanced+topics/YAML+front+matter&quot;&gt;YAML front matter key&lt;/a&gt;. These classes are composable, so you can include more than one to combine effects.&lt;/p&gt; 
+&lt;p&gt;For example, use the following code at the top of your file to enable cards layout:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;---
+cssClasses: cards
+---
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Image grids&lt;/h3&gt; 
+&lt;p&gt;Turns consecutive images into columns. To make a new row, add an extra line break between images. &lt;a href=&quot;https://minimal.guide/Block+types/Image+grids&quot;&gt;Learn more.&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Class&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;img-grid&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Activate image grids&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Line width control for tables, images and iframes&lt;/h3&gt; 
+&lt;p&gt;Controls the width of elements by type. &lt;a href=&quot;https://github.com/kepano/obsidian-minimal/releases/tag/4.2.0&quot;&gt;Learn more.&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Class&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-100&lt;/code&gt;, &lt;code&gt;img-100&lt;/code&gt;, &lt;code&gt;iframe-100&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Fill 100% of the pane width&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-max&lt;/code&gt;, &lt;code&gt;img-max&lt;/code&gt;, &lt;code&gt;iframe-max&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Fill the max line width (default 88%)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-wide&lt;/code&gt;, &lt;code&gt;img-wide&lt;/code&gt;, &lt;code&gt;iframe-wide&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Fill the wide line width&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Cards&lt;/h3&gt; 
+&lt;p&gt;Using &lt;code&gt;cards&lt;/code&gt; transforms Dataview tables into cards. Compatible with table width classes. Note that &lt;code&gt;cards&lt;/code&gt; must be present for the other classes to work. &lt;a href=&quot;%5Burl%5D(https://minimal.guide/Block+types/Cards)&quot;&gt;Learn more.&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Class&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards&lt;/code&gt; (required)&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Set all Dataview tables to card layout&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards-align-bottom&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Align the last element of a card to the bottom&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards-cover&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Images are resized to fill the defined space&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards-16-9&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Fit images in cards to 16:9 ratio&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards-1-1&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Fit images in cards to 1:1 ratio (square)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards-2-1&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Fit images in cards to 2:1 ratio&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards-2-3&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Fit images in cards to 2:3 ratio&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;cards-cols-1&lt;/code&gt; to &lt;code&gt;8&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Force a specific number of columns (from 1 to 8)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Tables and Dataview&lt;/h3&gt; 
+&lt;p&gt;Controls the row and column styling for tables. &lt;a href=&quot;https://github.com/kepano/obsidian-minimal/releases/tag/4.1.7&quot;&gt;Learn more.&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Class&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-nowrap&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Disable line wrapping in table cells&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-wrap&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Force line wrapping in table cells&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-numbers&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Add row numbers to tables&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-tabular&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use tabular figures in tables&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-small&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use small font size in tables&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-tiny&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use tiny font size in tables&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;table-lines&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Add borders around all table cells&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;row-lines&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Add borders between table rows&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;col-lines&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Add borders between table columns&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;row-alt&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Add striped background to alternating table rows&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;col-alt&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Add striped background to alternating table columns&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Embeds and transclusions&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Class&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;embed-strict&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Transclusions appear seamlessly in the flow of text&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Alternate checkboxes&lt;/h2&gt; 
+&lt;p&gt;Minimal supports a wide number of checkbox styles. These allow you to call out tasks that are incomplete, canceled, rescheduled, etc. &lt;a href=&quot;https://minimal.guide/Block+types/Checklists&quot;&gt;See screenshots and details&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Syntax&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [ ]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;to-do&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [/]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;incomplete&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [x]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;done&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [-]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;canceled&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [&amp;gt;]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;forwarded&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [&amp;lt;]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;scheduling&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [?]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;question&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [!]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;important&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [*]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;star&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [&quot;]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;quote&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [l]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;location&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [b]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;bookmark&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [i]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;information&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [S]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;savings&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [I]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;idea&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [p]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;pros&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [c]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;cons&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [f]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;fire&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [k]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;key&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [w]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;win&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [u]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;up&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;- [d]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;down&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Hotkeys&lt;/h2&gt; 
+&lt;p&gt;Hotkeys are only available when using the Minimal Theme Settings plugin.&lt;/p&gt; 
+&lt;h3&gt;Background and borders&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Switch between light and dark mode&lt;/li&gt; 
+ &lt;li&gt;Cycle between light mode styles&lt;/li&gt; 
+ &lt;li&gt;Cycle between dark mode styles&lt;/li&gt; 
+ &lt;li&gt;Toggle sidebar borders&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Layout control&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Toggle image grids&lt;/li&gt; 
+ &lt;li&gt;Cycle between image width options&lt;/li&gt; 
+ &lt;li&gt;Cycle between table width options&lt;/li&gt; 
+ &lt;li&gt;Cycle between iframe width options&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Misc&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Toggle focus mode&lt;/li&gt; 
+ &lt;li&gt;Toggle colorful headings&lt;/li&gt; 
+ &lt;li&gt;Increase and decrease body font size&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you would like add support for a plugin, or have found a bug you&#39;d like to help fix, don&#39;t hesitate to open a pull request. Have a question? Join the &lt;a href=&quot;https://discord.com/channels/686053708261228577/931008597557649410&quot;&gt;Minimal channel&lt;/a&gt; on the official &lt;a href=&quot;https://discord.gg/veuWUTm&quot;&gt;Obsidian Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Plugin support&lt;/h3&gt; 
+&lt;p&gt;Plugin authors and developers can add support for Minimal theme by submitting a pull request. See the &lt;a href=&quot;https://github.com/kepano/obsidian-minimal/tree/master/src/scss/plugins&quot;&gt;src/scss/plugins&lt;/a&gt; folder with examples of snippets for plugins that are currently supported.&lt;/p&gt; 
+&lt;h2&gt;Developers&lt;/h2&gt; 
+&lt;h3&gt;Build instructions&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Set up&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;npm install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Define local path&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;To build directly into your Obsidian vault rename &lt;code&gt;.env.example&lt;/code&gt; to &lt;code&gt;.env&lt;/code&gt; and update &lt;code&gt;OBSIDIAN_PATH&lt;/code&gt; to the local path of your Obsidian theme folder.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;To run&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;npm run dev    # watch and rebuild on changes
+npm run build  # one-off build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This builds two files: &lt;code&gt;theme.css&lt;/code&gt;, the minified distribution file (for the community themes store) which is also copied to your vault for live reload, and &lt;code&gt;Minimal.css&lt;/code&gt;, an unminified copy saved to the project root.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;h3&gt;Minimal for Desktop and Mobile&lt;/h3&gt; 
+&lt;p&gt;Minimal for Obsidian apps is licensed under the MIT License which allows you to modify and redistribute the code, however you must preserve the copyright and license notice in your CSS file. This includes any code you may extract as standalone snippets.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;If you would like to distribute a fork of Minimal or part of its code, please keep my &lt;a href=&quot;https://www.buymeacoffee.com/kepano&quot;&gt;Buy me a coffee&lt;/a&gt; link present in your Readme.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Minimal is frequently updated to stay current with the latest version of Obsidian. To make it easy to stay current with the latest improvements, I recommend using &lt;a href=&quot;https://docs.github.com/en/get-started/quickstart/fork-a-repo&quot;&gt;Github&#39;s fork feature&lt;/a&gt; so that you can merge the latest changes into your fork. If you have any questions don&#39;t hesitate to reach me in the Obsidian Discord group.&lt;/p&gt; 
+&lt;h3&gt;Minimal for Obsidian Publish&lt;/h3&gt; 
+&lt;p&gt;Minimal for Obsidian Publish is a separate version of Minimal which follows the same design principles but is optimized for web. It is also MIT licensed and available at &lt;a href=&quot;https://minimal.guide/publish/download&quot;&gt;minimal.guide&lt;/a&gt; or the &lt;a href=&quot;https://github.com/kepano/obsidian-minimal-publish&quot;&gt;obsidian-minimal-publish&lt;/a&gt; repo.&lt;/p&gt; 
+&lt;h2&gt;Disclaimer&lt;/h2&gt; 
+&lt;p&gt;This theme is provided as is, and is designed for my personal use of Obsidian on macOS. As such it is not thoroughly tested across all operating systems and use cases.&lt;/p&gt; 
+&lt;p&gt;This theme modifies significant parts of the Obsidian interface, so it may break with future updates. It may also be incompatible with other bits of custom CSS you have.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/282550237/a52fe15b-0111-4ebb-a945-9d0c6d4cf557" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>TryGhost/Source</title>
+      <link>https://github.com/TryGhost/Source</link>
+      <description>&lt;p&gt;The default theme for Ghost&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Source&lt;/h1&gt; 
+&lt;p&gt;The default theme for &lt;a href=&quot;http://github.com/tryghost/ghost/&quot;&gt;Ghost&lt;/a&gt;. This is the latest development version of Source! If you&#39;re just looking to download the latest release, head over to the &lt;a href=&quot;https://github.com/TryGhost/Source/releases&quot;&gt;releases&lt;/a&gt; page.&lt;/p&gt; 
+&lt;p&gt;&amp;nbsp;&lt;/p&gt; 
+&lt;h1&gt;First time using a Ghost theme?&lt;/h1&gt; 
+&lt;p&gt;Ghost uses a simple templating language called &lt;a href=&quot;http://handlebarsjs.com/&quot;&gt;Handlebars&lt;/a&gt; for its themes.&lt;/p&gt; 
+&lt;p&gt;This theme has lots of code comments to help explain what&#39;s going on just by reading the code. Once you feel comfortable with how everything works, we also have full &lt;a href=&quot;https://ghost.org/docs/themes/&quot;&gt;theme API documentation&lt;/a&gt; which explains every possible Handlebars helper and template.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;The main files are:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;default.hbs&lt;/code&gt; - The parent template file, which includes your global header/footer&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;home.hbs&lt;/code&gt; - The homepage&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;index.hbs&lt;/code&gt; - The main template to generate a list of posts&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;post.hbs&lt;/code&gt; - The template used to render individual posts&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;page.hbs&lt;/code&gt; - Used for individual pages&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;tag.hbs&lt;/code&gt; - Used for tag archives, eg. &quot;all posts tagged with &lt;code&gt;news&lt;/code&gt;&quot;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;author.hbs&lt;/code&gt; - Used for author archives, eg. &quot;all posts written by Jamie&quot;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;One neat trick is that you can also create custom one-off templates by adding the slug of a page to a template file. For example:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;page-about.hbs&lt;/code&gt; - Custom template for an &lt;code&gt;/about/&lt;/code&gt; page&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;tag-news.hbs&lt;/code&gt; - Custom template for &lt;code&gt;/tag/news/&lt;/code&gt; archive&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;author-ali.hbs&lt;/code&gt; - Custom template for &lt;code&gt;/author/ali/&lt;/code&gt; archive&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Development&lt;/h1&gt; 
+&lt;p&gt;Source styles are compiled using Gulp/PostCSS to polyfill future CSS spec. You&#39;ll need &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node&lt;/a&gt; and &lt;a href=&quot;https://pnpm.io/&quot;&gt;pnpm&lt;/a&gt;. After that, from the theme&#39;s root directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# install dependencies
+pnpm install
+
+# run development server
+pnpm dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Now you can edit &lt;code&gt;/assets/css/&lt;/code&gt; files, which will be compiled to &lt;code&gt;/assets/built/&lt;/code&gt; automatically.&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;zip&lt;/code&gt; Gulp task packages the theme files into &lt;code&gt;dist/&amp;lt;theme-name&amp;gt;.zip&lt;/code&gt;, which you can then upload to your site.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# create .zip file
+pnpm zip
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;PostCSS Features Used&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Autoprefixer - Don&#39;t worry about writing browser prefixes of any kind, it&#39;s all done automatically with support for the latest 2 major versions of every browser.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;SVG Icons&lt;/h1&gt; 
+&lt;p&gt;Source uses inline SVG icons, included via Handlebars partials. You can find all icons inside &lt;code&gt;/partials/icons&lt;/code&gt;. To use an icon just include the name of the relevant file, eg. To include the SVG icon in &lt;code&gt;/partials/icons/rss.hbs&lt;/code&gt; - use &lt;code&gt;{{&amp;gt; &quot;icons/rss&quot;}}&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;You can add your own SVG icons in the same manner.&lt;/p&gt; 
+&lt;h1&gt;Translations&lt;/h1&gt; 
+&lt;p&gt;Please see &lt;a href=&quot;https://github.com/TryGhost/Themes/raw/main/packages/theme-translations/README.md&quot;&gt;@TryGhost/Themes/theme-translations/README.md&lt;/a&gt; for how to build, edit, or contribute translations.&lt;/p&gt; 
+&lt;h1&gt;Copyright &amp;amp; License&lt;/h1&gt; 
+&lt;p&gt;Copyright (c) 2013-2026 Ghost Foundation - Released under the &lt;a href=&quot;https://raw.githubusercontent.com/TryGhost/Source/main/LICENSE&quot;&gt;MIT license&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2010eb9cfc4f2bc2bac1068dcc117ba3c36bcdac0b8fcb1214b19d8a0fc44170/TryGhost/Source" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>FreeCodeCampChina/freecodecamp.cn</title>
+      <link>https://github.com/FreeCodeCampChina/freecodecamp.cn</link>
+      <description>&lt;p&gt;FCC China open source codebase and curriculum. Learn to code and help nonprofits.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://fcc.asia/images/fcc-code.png&quot; alt=&quot;&quot; /&gt; 扫码加入 FCC-China 社群&lt;/p&gt; 
+&lt;h3&gt;FreeCodeCampChina&#39;s open source codebase and curriculum&lt;/h3&gt; 
+&lt;p&gt;freeCodeCamp is a friendly open source community where you learn to code and help nonprofits.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;We help our campers build job-worthy portfolios of real apps used by real people, while helping nonprofits.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;You start by working through our self-paced, browser-based full stack JavaScript curriculum.&lt;/p&gt; 
+&lt;h3&gt;By working through our curriculum, you can earn four certifications:&lt;/h3&gt; 
+&lt;h5&gt;1. Front End Certification&lt;/h5&gt; 
+&lt;p&gt;The first section will teach you the basics of how webpages work and also introduce you to JavaScript programming.&lt;/p&gt; 
+&lt;p&gt;Skills you&#39;ll practice include &lt;code&gt;HTML&lt;/code&gt;, &lt;code&gt;CSS&lt;/code&gt;, &lt;code&gt;JavaScript&lt;/code&gt;, &lt;code&gt;jQuery&lt;/code&gt; and &lt;code&gt;Bootstrap&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;To earn this certification, you&#39;ll build &lt;strong&gt;10 front-end projects&lt;/strong&gt; and implement many &lt;strong&gt;JavaScript algorithms&lt;/strong&gt;.&lt;/p&gt; 
+&lt;h5&gt;2. Data Visualization Certification&lt;/h5&gt; 
+&lt;p&gt;The second section builds upon the first and introduces you to more advanced topics such as &lt;code&gt;Sass&lt;/code&gt;, &lt;code&gt;React&lt;/code&gt; and &lt;code&gt;D3&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;To earn this certification, you&#39;ll build &lt;strong&gt;5 React-apps&lt;/strong&gt; and &lt;strong&gt;5 Data visualization apps&lt;/strong&gt; using &lt;code&gt;D3.js&lt;/code&gt;.&lt;/p&gt; 
+&lt;h5&gt;3. Back End Certification&lt;/h5&gt; 
+&lt;p&gt;The third section introduces you to back end development using &lt;code&gt;Node.js&lt;/code&gt;, &lt;code&gt;Express,&lt;/code&gt; and &lt;code&gt;MongoDB&lt;/code&gt;. It also teaches you about the important concept of source control using &lt;code&gt;Git&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;To earn this certification, you&#39;ll build &lt;strong&gt;5 APIs&lt;/strong&gt; and &lt;strong&gt;5 full stack apps&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;We will accept solutions implemented in &lt;em&gt;any&lt;/em&gt; programming language, as long as both a live demo and the source code are publicly accessible.&lt;/p&gt; 
+&lt;h5&gt;4. Full Stack Certification&lt;/h5&gt; 
+&lt;p&gt;The fourth section is where you&#39;ll get &lt;strong&gt;real-world experience&lt;/strong&gt; by working on projects for &lt;strong&gt;nonprofits&lt;/strong&gt;. We&#39;ll pair you with another camper, an agile project manager, and a stakeholder from a nonprofit organization. Together, you&#39;ll plan, build and maintain apps that help that nonprofit carry out its mission more effectively.&lt;/p&gt; 
+&lt;p&gt;For this certification, you&#39;ll work on &lt;strong&gt;two projects from scratch&lt;/strong&gt; and then &lt;strong&gt;maintain/upgrade two existing projects&lt;/strong&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;This code is running live at &lt;a href=&quot;https://freecodecamp.cn&quot;&gt;freeCodeCamp.cn&lt;/a&gt;. We also have &lt;a href=&quot;https://gitter.im/FreeCodeCamp/chinese&quot;&gt;Gitter chat rooms&lt;/a&gt;, a &lt;a href=&quot;https://medium.freecodecamp.org&quot;&gt;Medium publication&lt;/a&gt;, an &lt;a href=&quot;https://forum.freecodecamp.org&quot;&gt;interactive forum&lt;/a&gt;, a &lt;a href=&quot;https://forum.freecodecamp.org/c/wiki&quot;&gt;wiki knowledgebase&lt;/a&gt;, and even a &lt;a href=&quot;https://youtube.com/freecodecamp&quot;&gt;YouTube channel&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://freecodecamp.cn/signin&quot;&gt;Join our community here&lt;/a&gt;.&lt;/h3&gt; 
+&lt;h2&gt;Found a bug?&lt;/h2&gt; 
+&lt;p&gt;Do not file an issue until you have followed these steps:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Read the &lt;a href=&quot;https://forum.freecodecamp.org/t/how-to-report-a-bug/19543&quot;&gt;Help I&#39;ve Found a Bug&lt;/a&gt; article and follow its instructions.&lt;/li&gt; 
+ &lt;li&gt;Ask for confirmation in the appropriate &lt;a href=&quot;https://forum.freecodecamp.org/t/free-code-camp-official-chat-rooms/19390/2&quot;&gt;Help Room&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Please &lt;em&gt;do not&lt;/em&gt; open an issue without a 3rd party confirmation of your problem.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome pull requests from freeCodeCamp campers (our students) and seasoned JavaScript developers alike! Please follow &lt;a href=&quot;https://raw.githubusercontent.com/FreeCodeCampChina/freecodecamp.cn/dev/CONTRIBUTING.md&quot;&gt;these steps&lt;/a&gt; to contribute.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Copyright (c) 2017 freeCodeCamp.&lt;/p&gt; 
+&lt;p&gt;The content of this repository bound by the following LICENSE(S)&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The computer software is licensed under the &lt;a href=&quot;https://raw.githubusercontent.com/FreeCodeCampChina/freecodecamp.cn/dev/LICENSE.md&quot;&gt;BSD-3-Clause&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;The curricular content as in the &lt;code&gt;./seed/challenges&lt;/code&gt; or subdirectories and our wiki are licensed under the &lt;a href=&quot;https://raw.githubusercontent.com/FreeCodeCampChina/freecodecamp.cn/dev/LICENSE-freeCodeCamp-Curriculum.md&quot;&gt;CC-BY-SA-4.0&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;The translation of this website follows the license of &lt;a href=&quot;https://raw.githubusercontent.com/FreeCodeCampChina/freecodecamp.cn/dev/LICENSE-freeCodeCamp-Translation.md&quot;&gt;CC-BY-NC-4.0&lt;/a&gt;，Do not use (it) for commercial/business purpose. &lt;a rel=&quot;license&quot; href=&quot;https://creativecommons.org/licenses/by-nc/4.0/deed.zh&quot;&gt;&lt;img alt=&quot;知识共享许可协议&quot; style=&quot;border-width:0&quot; src=&quot;https://i.creativecommons.org/l/by-nc/4.0/80x15.png&quot; /&gt;&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/b6d8df505071a6b0f8660e242cd528f47270c8c70b8ac1f3aa54dc999e4787fe/FreeCodeCampChina/freecodecamp.cn" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1188 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Haskell Weekly Trending</title>
+    <description>Weekly Trending of Haskell in GitHub</description>
+    <pubDate>Fri, 24 Jul 2026 01:40:11 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>hadolint/hadolint</title>
+      <link>https://github.com/hadolint/hadolint</link>
+      <description>&lt;p&gt;Dockerfile linter, validate inline bash, written in Haskell&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Hadolint - Haskell Dockerfile Linter&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://tldrlegal.com/l/gpl-3.0&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-GPL--3-blue.svg?sanitize=true&quot; alt=&quot;GPL-3 licensed&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/hadolint/hadolint/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/hadolint/hadolint?logo=github&quot; alt=&quot;GitHub release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hackage.haskell.org/package/hadolint&quot;&gt;&lt;img src=&quot;https://img.shields.io/hackage/v/hadolint?logo=haskell&quot; alt=&quot;Hackage version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/hadolint/hadolint/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/hadolint/hadolint/total?logo=github&quot; alt=&quot;GitHub downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/hadolint/hadolint&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/hadolint/hadolint?logo=docker&quot; alt=&quot;Docker pulls&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/hadolint/hadolint/actions/workflows/haskell.yml&quot;&gt;&lt;img src=&quot;https://github.com/hadolint/hadolint/actions/workflows/haskell.yml/badge.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img align=&quot;right&quot; alt=&quot;pipecat&quot; width=&quot;150&quot; src=&quot;https://hadolint.github.io/hadolint/img/cat_container.png&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;A smarter Dockerfile linter that helps you build &lt;a href=&quot;https://docs.docker.com/engine/userguide/eng-image/dockerfile_best-practices&quot;&gt;best practice&lt;/a&gt; Docker images. The linter parses the Dockerfile into an AST and performs rules on top of the AST. It stands on the shoulders of &lt;a href=&quot;https://github.com/koalaman/shellcheck&quot;&gt;ShellCheck&lt;/a&gt; to lint the Bash code inside &lt;code&gt;RUN&lt;/code&gt; instructions.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://hadolint.github.io/hadolint&quot;&gt;🌐 &lt;strong&gt;Check the online version on hadolint.github.io/hadolint&lt;/strong&gt;&lt;/a&gt; &lt;a href=&quot;https://hadolint.github.io/hadolint&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/screenshot.png&quot; alt=&quot;Screenshot&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#how-to-use&quot;&gt;How to use&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#install&quot;&gt;Install&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#cli&quot;&gt;CLI&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#configure&quot;&gt;Configure&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#non-posix-shells&quot;&gt;Non-Posix Shells&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#ignoring-rules&quot;&gt;Ignoring Rules&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#inline-ignores&quot;&gt;Inline ignores&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#global-ignores&quot;&gt;Global ignores&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#linting-labels&quot;&gt;Linting Labels&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#note-on-dealing-with-variables-in-labels&quot;&gt;Note on dealing with variables in labels&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#integrations&quot;&gt;Integrations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#rules&quot;&gt;Rules&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#develop&quot;&gt;Develop&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#setup&quot;&gt;Setup&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#repl&quot;&gt;REPL&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#tests&quot;&gt;Tests&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#ast&quot;&gt;AST&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#building-against-custom-libraries&quot;&gt;Building against custom libraries&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/#alternatives&quot;&gt;Alternatives&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to use&lt;/h2&gt; 
+&lt;p&gt;You can run &lt;code&gt;hadolint&lt;/code&gt; locally to lint your Dockerfile.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;hadolint &amp;lt;Dockerfile&amp;gt;
+hadolint --ignore DL3003 --ignore DL3006 &amp;lt;Dockerfile&amp;gt; # exclude specific rules
+hadolint --trusted-registry my-company.com:500 &amp;lt;Dockerfile&amp;gt; # Warn when using untrusted FROM images
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Docker comes to the rescue, providing an easy way how to run &lt;code&gt;hadolint&lt;/code&gt; on most platforms. Just pipe your &lt;code&gt;Dockerfile&lt;/code&gt; to &lt;code&gt;docker run&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run --rm -i hadolint/hadolint &amp;lt; Dockerfile
+# OR
+docker run --rm -i ghcr.io/hadolint/hadolint &amp;lt; Dockerfile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or using &lt;a href=&quot;https://podman.io/&quot;&gt;Podman&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;podman run --rm -i docker.io/hadolint/hadolint &amp;lt; Dockerfile
+# OR
+podman run --rm -i ghcr.io/hadolint/hadolint &amp;lt; Dockerfile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or using Windows PowerShell:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;cat .\Dockerfile | docker run --rm -i hadolint/hadolint
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;You can download prebuilt binaries for OSX, Windows and Linux from the latest &lt;a href=&quot;https://github.com/hadolint/hadolint/releases/latest&quot;&gt;release page&lt;/a&gt;. However, if this does not work for you, please fall back to container (Docker), &lt;code&gt;brew&lt;/code&gt; or source installation.&lt;/p&gt; 
+&lt;p&gt;On OSX, you can use &lt;a href=&quot;https://brew.sh/&quot;&gt;brew&lt;/a&gt; to install &lt;code&gt;hadolint&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install hadolint
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;On Windows, you can use &lt;a href=&quot;https://github.com/lukesampson/scoop&quot;&gt;scoop&lt;/a&gt; to install &lt;code&gt;hadolint&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-batch&quot;&gt;scoop install hadolint
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;On distributions that have &lt;code&gt;nix&lt;/code&gt; installed, you can use the &lt;code&gt;hadolint&lt;/code&gt; package to run ad-hoc shells or permanently install &lt;code&gt;hadolint&lt;/code&gt; into your environment.&lt;/p&gt; 
+&lt;p&gt;As mentioned earlier, &lt;code&gt;hadolint&lt;/code&gt; is available as a container image:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker pull hadolint/hadolint
+# OR
+docker pull ghcr.io/hadolint/hadolint
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you need a container with shell access, use the Debian or Alpine variants:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker pull hadolint/hadolint:latest-debian
+# OR
+docker pull hadolint/hadolint:latest-alpine
+# OR
+docker pull ghcr.io/hadolint/hadolint:latest-debian
+# OR
+docker pull ghcr.io/hadolint/hadolint:latest-alpine
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also build &lt;code&gt;hadolint&lt;/code&gt; locally. You need &lt;a href=&quot;https://www.haskell.org/downloads/&quot;&gt;Haskell&lt;/a&gt; and the &lt;a href=&quot;https://www.haskell.org/cabal/&quot;&gt;cabal&lt;/a&gt; build tool to build the binary.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/hadolint/hadolint \
+  &amp;amp;&amp;amp; cd hadolint \
+  &amp;amp;&amp;amp; cabal configure \
+  &amp;amp;&amp;amp; cabal build \
+  &amp;amp;&amp;amp; cabal install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want the &lt;a href=&quot;https://github.com/michaellzc/vscode-hadolint&quot;&gt;VS Code Hadolint&lt;/a&gt; extension to use Hadolint in a container, you can use the following &lt;a href=&quot;https://github.com/hadolint/hadolint/issues/691#issuecomment-932116329&quot;&gt;wrapper script&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;#!/bin/bash
+dockerfile=&quot;$1&quot;
+shift
+docker run --rm -i hadolint/hadolint hadolint &quot;$@&quot; - &amp;lt; &quot;$dockerfile&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;CLI&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;hadolint --help
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;hadolint - Dockerfile Linter written in Haskell
+
+Usage: hadolint [-v|--version] [-c|--config FILENAME] [DOCKERFILE...]
+                [--file-path-in-report FILEPATHINREPORT] [--no-fail]
+                [--no-color] [-V|--verbose] [-f|--format ARG] [--error RULECODE]
+                [--warning RULECODE] [--info RULECODE] [--style RULECODE]
+                [--ignore RULECODE]
+                [--trusted-registry REGISTRY (e.g. docker.io)]
+                [--require-label LABELSCHEMA (e.g. maintainer:text)]
+                [--strict-labels] [--disable-ignore-pragma]
+                [-t|--failure-threshold THRESHOLD]
+  Lint Dockerfile for errors and best practices
+
+Available options:
+  -h,--help                Show this help text
+  -v,--version             Show version
+  -c,--config FILENAME     Path to the configuration file
+  --file-path-in-report FILEPATHINREPORT
+                           The file path referenced in the generated report.
+                           This only applies for the &#39;checkstyle&#39;, &#39;codeclimate&#39;,
+                           &#39;sonarqube&#39;, &#39;junit&#39; and &#39;gitlab_codeclimate&#39; formats
+                           and is useful when running Hadolint with Docker to set
+                           the correct file path.
+  --no-fail                Don&#39;t exit with a failure status code when any rule
+                           is violated
+  --no-color               Don&#39;t colorize output
+  -V,--verbose             Enables verbose logging of hadolint&#39;s output to
+                           stderr
+  -f,--format ARG          The output format for the results [tty | json |
+                           checkstyle | codeclimate | gitlab_codeclimate | gnu |
+                           codacy | sonarqube | sarif | junit] (default: tty)
+  --error RULECODE         Make the rule `RULECODE` have the level `error`
+  --warning RULECODE       Make the rule `RULECODE` have the level `warning`
+  --info RULECODE          Make the rule `RULECODE` have the level `info`
+  --style RULECODE         Make the rule `RULECODE` have the level `style`
+  --ignore RULECODE        A rule to ignore. If present, the ignore list in the
+                           config file is ignored
+  --trusted-registry REGISTRY (e.g. docker.io)
+                           A docker registry to allow to appear in FROM
+                           instructions
+  --require-label LABELSCHEMA (e.g. maintainer:text)
+                           The option --require-label=label:format makes
+                           Hadolint check that the label `label` conforms to
+                           format requirement `format`
+  --strict-labels          Do not permit labels other than specified in
+                           `label-schema`
+  --disable-ignore-pragma  Disable inline ignore pragmas `# hadolint
+                           ignore=DLxxxx`
+  -t,--failure-threshold THRESHOLD
+                           Exit with failure code only when rules with a
+                           severity equal to or above THRESHOLD are violated.
+                           Accepted values: [error | warning | info | style |
+                           ignore | none] (default: info)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Configure&lt;/h2&gt; 
+&lt;p&gt;Configuration files can be used globally or per project. Hadolint looks for configuration files in the following locations or their platform specific equivalents in this order and uses the first one exclusively:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;$PWD/.hadolint.yaml&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;$XDG_CONFIG_HOME/hadolint.yaml&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;$HOME/.config/hadolint.yaml&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;$HOME/.hadolint/hadolint.yaml or $HOME/hadolint/config.yaml&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;$HOME/.hadolint.yaml&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In windows, the &lt;code&gt;%LOCALAPPDATA%&lt;/code&gt; environment variable is used instead of &lt;code&gt;XDG_CONFIG_HOME&lt;/code&gt;. Config files can have either &lt;code&gt;yaml&lt;/code&gt; or &lt;code&gt;yml&lt;/code&gt; extensions.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;hadolint&lt;/code&gt; full &lt;code&gt;yaml&lt;/code&gt; config file schema&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;failure-threshold: string               # name of threshold level (error | warning | info | style | ignore | none)
+format: string                          # Output format (tty | json | checkstyle | codeclimate | gitlab_codeclimate | gnu | codacy | sonarqube | sarif | junit)
+ignored: [string]                       # list of rules
+label-schema:                           # See Linting Labels below for specific label-schema details
+  author: string                        # Your name
+  contact: string                       # email address
+  created: timestamp                    # rfc3339 datetime
+  version: string                       # semver
+  documentation: string                 # url
+  git-revision: string                  # hash
+  license: string                       # spdx
+no-color: boolean                       # true | false
+no-fail: boolean                        # true | false
+override:
+  error: [string]                       # list of rules
+  warning: [string]                     # list of rules
+  info: [string]                        # list of rules
+  style: [string]                       # list of rules
+strict-labels: boolean                  # true | false
+disable-ignore-pragma: boolean          # true | false
+trustedRegistries: string | [string]    # registry or list of registries
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;hadolint&lt;/code&gt; supports specifying the ignored rules using a configuration file. The configuration file should be in &lt;code&gt;yaml&lt;/code&gt; format. This is one valid configuration file as an example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;ignored:
+  - DL3000
+  - SC1010
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Additionally, &lt;code&gt;hadolint&lt;/code&gt; can warn you when images from untrusted repositories are being used in Dockerfiles, you can append the &lt;code&gt;trustedRegistries&lt;/code&gt; keys to the configuration file, as shown below:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;ignored:
+  - DL3000
+  - SC1010
+
+trustedRegistries:
+  - docker.io
+  - my-company.com:5000
+  - &quot;*.gcr.io&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want to override the severity of specific rules, you can do that too:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;override:
+  error:
+    - DL3001
+    - DL3002
+  warning:
+    - DL3042
+    - DL3033
+  info:
+    - DL3032
+  style:
+    - DL3015
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;failure-threshold&lt;/code&gt; Exit with failure code only when rules with a severity above THRESHOLD are violated (Available in v2.6.0+)&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;failure-threshold: info
+override:
+  warning:
+    - DL3042
+    - DL3033
+  info:
+    - DL3032
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Additionally, you can pass a custom configuration file in the command line with the &lt;code&gt;--config&lt;/code&gt; option&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;hadolint --config /path/to/config.yaml Dockerfile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To pass a custom configuration file (using relative or absolute path) to a container, use the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run --rm -i -v /your/path/to/hadolint.yaml:/.config/hadolint.yaml hadolint/hadolint &amp;lt; Dockerfile
+# OR
+docker run --rm -i -v /your/path/to/hadolint.yaml:/.config/hadolint.yaml ghcr.io/hadolint/hadolint &amp;lt; Dockerfile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In addition to config files, Hadolint can be configured with environment variables.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;NO_COLOR=1                               # Set or unset. See https://no-color.org
+HADOLINT_NOFAIL=1                        # Truthy value e.g. 1, true or yes
+HADOLINT_VERBOSE=1                       # Truthy value e.g. 1, true or yes
+HADOLINT_FORMAT=json                     # Output format (tty | json | checkstyle | codeclimate | gitlab_codeclimate | gnu | codacy | sarif | junit )
+HADOLINT_FAILURE_THRESHOLD=info          # threshold level (error | warning | info | style | ignore | none)
+HADOLINT_OVERRIDE_ERROR=DL3010,DL3020    # comma separated list of rule codes
+HADOLINT_OVERRIDE_WARNING=DL3010,DL3020  # comma separated list of rule codes
+HADOLINT_OVERRIDE_INFO=DL3010,DL3020     # comma separated list of rule codes
+HADOLINT_OVERRIDE_STYLE=DL3010,DL3020    # comma separated list of rule codes
+HADOLINT_IGNORE=DL3010,DL3020            # comma separated list of rule codes
+HADOLINT_STRICT_LABELS=1                 # Truthy value e.g. 1, true or yes
+HADOLINT_DISABLE_IGNORE_PRAGMA=1         # Truthy value e.g. 1, true or yes
+HADOLINT_TRUSTED_REGISTRIES=docker.io    # comma separated list of registry urls
+HADOLINT_REQUIRE_LABELS=maintainer:text  # comma separated list of label schema items
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Non-Posix Shells&lt;/h2&gt; 
+&lt;p&gt;When using base images with non-posix shells as default (e.g. Windows based images) a special pragma &lt;code&gt;hadolint shell&lt;/code&gt; can specify which shell the base image uses, so that Hadolint can automatically ignore all shell-specific rules.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-Dockerfile&quot;&gt;FROM mcr.microsoft.com/windows/servercore:ltsc2022
+# hadolint shell=powershell
+RUN Get-Process notepad | Stop-Process
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Ignoring Rules&lt;/h2&gt; 
+&lt;h3&gt;Inline ignores&lt;/h3&gt; 
+&lt;p&gt;It is also possible to ignore rules by adding a special comment directly above the Dockerfile statement for which you want to make an exception for. Such comments look like &lt;code&gt;# hadolint ignore=DL3001,SC1081&lt;/code&gt;. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;# hadolint ignore=DL3006
+FROM ubuntu
+
+# hadolint ignore=DL3003,SC1035 # We accept these issues, because ...
+RUN cd /tmp &amp;amp;&amp;amp; echo &quot;hello!&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The comment &quot;inline ignores&quot; applies only to the statement following it.&lt;/p&gt; 
+&lt;p&gt;Comments are allowed after the &lt;code&gt;ignore=...&lt;/code&gt;, you need an extra &lt;code&gt;#&lt;/code&gt;&lt;/p&gt; 
+&lt;h3&gt;Global ignores&lt;/h3&gt; 
+&lt;p&gt;Rules can also be ignored on a per-file basis using the global ignore pragma. It works just like inline ignores, except that it applies to the whole file instead of just the next line.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;# hadolint global ignore=DL3003,DL3006,SC1035 # We accept these issues, because ...
+FROM ubuntu
+
+RUN cd /tmp &amp;amp;&amp;amp; echo &quot;foo&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Linting Labels&lt;/h2&gt; 
+&lt;p&gt;Hadolint is able to check if specific labels are present and conform to a predefined label schema. First, a label schema must be defined either via the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;hadolint --require-label author:text --require-label version:semver Dockerfile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or via the config file:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;label-schema:
+  author: text
+  contact: email
+  created: rfc3339
+  version: semver
+  documentation: url
+  git-revision: hash
+  license: spdx
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The value of a label can be either of &lt;code&gt;text&lt;/code&gt;, &lt;code&gt;url&lt;/code&gt;, &lt;code&gt;semver&lt;/code&gt;, &lt;code&gt;hash&lt;/code&gt; or &lt;code&gt;rfc3339&lt;/code&gt;:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Schema&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;text&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Anything&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;rfc3339&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A time, formatted according to &lt;a href=&quot;https://www.ietf.org/rfc/rfc3339.txt&quot;&gt;RFC 3339&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;semver&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A &lt;a href=&quot;https://semver.org/&quot;&gt;semantic version&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;url&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;A URI as described in &lt;a href=&quot;https://www.ietf.org/rfc/rfc3986.txt&quot;&gt;RFC 3986&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;hash&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Either a short or a long &lt;a href=&quot;https://git-scm.com/book/en/v2/Git-Tools-Revision-Selection&quot;&gt;Git hash&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;spdx&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;An &lt;a href=&quot;https://spdx.org/licenses/&quot;&gt;SPDX license identifier&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;email&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;An email address conforming to &lt;a href=&quot;https://www.ietf.org/rfc/rfc5322.txt&quot;&gt;RFC 5322&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;By default, Hadolint ignores any label that is not specified in the label schema. To warn against such additional labels, turn on strict labels, using the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;hadolint --strict-labels --require-label version:semver Dockerfile
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;or the config file:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;strict-labels: true
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When strict labels is enabled, but no label schema is specified, &lt;code&gt;hadolint&lt;/code&gt; will warn if any label is present.&lt;/p&gt; 
+&lt;h3&gt;Note on dealing with variables in labels&lt;/h3&gt; 
+&lt;p&gt;It is a common pattern to fill the value of a label not statically, but rather dynamically at build time by using a variable:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-dockerfile&quot;&gt;FROM debian:buster
+ARG VERSION=&quot;du-jour&quot;
+LABEL version=&quot;${VERSION}&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To allow this, the label schema must specify &lt;code&gt;text&lt;/code&gt; as value for that label:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;label-schema:
+  version: text
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Integrations&lt;/h2&gt; 
+&lt;p&gt;To get most of &lt;code&gt;hadolint&lt;/code&gt;, it is useful to integrate it as a check in your CI or into your editor, or as a pre-commit hook, to lint your &lt;code&gt;Dockerfile&lt;/code&gt; as you write it. See our &lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/docs/INTEGRATION.md&quot;&gt;Integration&lt;/a&gt; docs.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/docs/INTEGRATION.md#code-review&quot;&gt;Code Review Platform Integrations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/docs/INTEGRATION.md#continuous-integration&quot;&gt;Continuous Integrations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/docs/INTEGRATION.md#editors&quot;&gt;Editor Integrations&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/hadolint/hadolint/master/docs/INTEGRATION.md#version-control&quot;&gt;Version Control Integrations&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Rules&lt;/h2&gt; 
+&lt;p&gt;An incomplete list of implemented rules. Click on the error code to get more detailed information.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Rules with the prefix &lt;code&gt;DL&lt;/code&gt; are from &lt;code&gt;hadolint&lt;/code&gt;. Have a look at &lt;code&gt;Rules.hs&lt;/code&gt; to find the implementation of the rules.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Rules with the &lt;code&gt;SC&lt;/code&gt; prefix are from &lt;strong&gt;ShellCheck&lt;/strong&gt; (only the most common rules are listed, there are dozens more).&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please &lt;a href=&quot;https://github.com/hadolint/hadolint/issues/new&quot;&gt;create an issue&lt;/a&gt; if you have an idea for a good rule.&lt;/p&gt; 
+&lt;!--lint disable maximum-line-length--&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Rule&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Default Severity&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL1001&quot;&gt;DL1001&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Ignore&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Please refrain from using inline ignore pragmas &lt;code&gt;# hadolint ignore=DLxxxx&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3000&quot;&gt;DL3000&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use absolute WORKDIR.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3001&quot;&gt;DL3001&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;For some bash commands it makes no sense running them in a Docker container like ssh, vim, shutdown, service, ps, free, top, kill, mount, ifconfig.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3002&quot;&gt;DL3002&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Last user should not be root.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3003&quot;&gt;DL3003&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use WORKDIR to switch to a directory.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3004&quot;&gt;DL3004&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Do not use sudo as it leads to unpredictable behavior. Use a tool like gosu to enforce root.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3006&quot;&gt;DL3006&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Always tag the version of an image explicitly.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3007&quot;&gt;DL3007&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Using latest is prone to errors if the image will ever update. Pin the version explicitly to a release tag.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3008&quot;&gt;DL3008&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Pin versions in &lt;code&gt;apt-get install&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3009&quot;&gt;DL3009&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Delete the apt-get lists after installing something.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3010&quot;&gt;DL3010&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use ADD for extracting archives into an image.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3011&quot;&gt;DL3011&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Valid UNIX ports range from 0 to 65535.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3012&quot;&gt;DL3012&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Multiple &lt;code&gt;HEALTHCHECK&lt;/code&gt; instructions.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3013&quot;&gt;DL3013&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Pin versions in pip.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3014&quot;&gt;DL3014&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use the &lt;code&gt;-y&lt;/code&gt; switch.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3015&quot;&gt;DL3015&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Avoid additional packages by specifying &lt;code&gt;--no-install-recommends&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3016&quot;&gt;DL3016&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Pin versions in &lt;code&gt;npm&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3018&quot;&gt;DL3018&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Pin versions in &lt;code&gt;apk add&lt;/code&gt;. Instead of &lt;code&gt;apk add &amp;lt;package&amp;gt;&lt;/code&gt; use &lt;code&gt;apk add &amp;lt;package&amp;gt;=&amp;lt;version&amp;gt;&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3019&quot;&gt;DL3019&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use the &lt;code&gt;--no-cache&lt;/code&gt; switch to avoid the need to use &lt;code&gt;--update&lt;/code&gt; and remove &lt;code&gt;/var/cache/apk/*&lt;/code&gt; when done installing packages.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3020&quot;&gt;DL3020&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use &lt;code&gt;COPY&lt;/code&gt; instead of &lt;code&gt;ADD&lt;/code&gt; for files and folders.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3021&quot;&gt;DL3021&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;COPY&lt;/code&gt; with more than 2 arguments requires the last argument to end with &lt;code&gt;/&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3022&quot;&gt;DL3022&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;COPY --from&lt;/code&gt; should reference a previously defined &lt;code&gt;FROM&lt;/code&gt; alias&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3023&quot;&gt;DL3023&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;COPY --from&lt;/code&gt; cannot reference its own &lt;code&gt;FROM&lt;/code&gt; alias&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3024&quot;&gt;DL3024&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;FROM&lt;/code&gt; aliases (stage names) must be unique&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3025&quot;&gt;DL3025&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use arguments JSON notation for CMD and ENTRYPOINT arguments&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3026&quot;&gt;DL3026&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use only an allowed registry in the &lt;code&gt;FROM image&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3027&quot;&gt;DL3027&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Do not use &lt;code&gt;apt&lt;/code&gt; as it is meant to be an end-user tool, use &lt;code&gt;apt-get&lt;/code&gt; or &lt;code&gt;apt-cache&lt;/code&gt; instead&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3028&quot;&gt;DL3028&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Pin versions in gem install. Instead of &lt;code&gt;gem install &amp;lt;gem&amp;gt;&lt;/code&gt; use &lt;code&gt;gem install &amp;lt;gem&amp;gt;:&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3029&quot;&gt;DL3029&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Do not use --platform flag with FROM.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3030&quot;&gt;DL3030&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use the &lt;code&gt;-y&lt;/code&gt; switch to avoid manual input &lt;code&gt;yum install -y &amp;lt;package&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3032&quot;&gt;DL3032&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;yum clean all&lt;/code&gt; missing after yum command.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3033&quot;&gt;DL3033&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Specify version with &lt;code&gt;yum install -y &amp;lt;package&amp;gt;-&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3034&quot;&gt;DL3034&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Non-interactive switch missing from &lt;code&gt;zypper&lt;/code&gt; command: &lt;code&gt;zypper install -y&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3035&quot;&gt;DL3035&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Do not use &lt;code&gt;zypper dist-upgrade&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3036&quot;&gt;DL3036&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;zypper clean&lt;/code&gt; missing after zypper use.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3037&quot;&gt;DL3037&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Specify version with &lt;code&gt;zypper install -y &amp;lt;package&amp;gt;[=]&amp;lt;version&amp;gt;&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3038&quot;&gt;DL3038&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use the &lt;code&gt;-y&lt;/code&gt; switch to avoid manual input &lt;code&gt;dnf install -y &amp;lt;package&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3040&quot;&gt;DL3040&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;dnf clean all&lt;/code&gt; missing after dnf command.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3041&quot;&gt;DL3041&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Specify version with &lt;code&gt;dnf install -y &amp;lt;package&amp;gt;-&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3042&quot;&gt;DL3042&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Avoid cache directory with &lt;code&gt;pip install --no-cache-dir &amp;lt;package&amp;gt;&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3043&quot;&gt;DL3043&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;ONBUILD&lt;/code&gt;, &lt;code&gt;FROM&lt;/code&gt; or &lt;code&gt;MAINTAINER&lt;/code&gt; triggered from within &lt;code&gt;ONBUILD&lt;/code&gt; instruction.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3044&quot;&gt;DL3044&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Do not refer to an environment variable within the same &lt;code&gt;ENV&lt;/code&gt; statement where it is defined.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3045&quot;&gt;DL3045&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;COPY&lt;/code&gt; to a relative destination without &lt;code&gt;WORKDIR&lt;/code&gt; set.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3046&quot;&gt;DL3046&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;useradd&lt;/code&gt; without flag &lt;code&gt;-l&lt;/code&gt; and high UID will result in excessively large Image.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3047&quot;&gt;DL3047&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;wget&lt;/code&gt; without flag &lt;code&gt;--progress&lt;/code&gt; will result in excessively bloated build logs when downloading larger files.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3048&quot;&gt;DL3048&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Style&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Invalid Label Key&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3049&quot;&gt;DL3049&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; is missing.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3050&quot;&gt;DL3050&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Superfluous label(s) present.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3051&quot;&gt;DL3051&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; is empty.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3052&quot;&gt;DL3052&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; is not a valid URL.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3053&quot;&gt;DL3053&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; is not a valid time format - must conform to RFC3339.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3054&quot;&gt;DL3054&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; is not a valid SPDX license identifier.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3055&quot;&gt;DL3055&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; is not a valid git hash.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3056&quot;&gt;DL3056&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; does not conform to semantic versioning.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3057&quot;&gt;DL3057&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Ignore&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;HEALTHCHECK&lt;/code&gt; instruction missing.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3058&quot;&gt;DL3058&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Label &lt;code&gt;&amp;lt;label&amp;gt;&lt;/code&gt; is not a valid email format - must conform to RFC5322.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3059&quot;&gt;DL3059&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Multiple consecutive &lt;code&gt;RUN&lt;/code&gt; instructions. Consider consolidation.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3060&quot;&gt;DL3060&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;yarn cache clean&lt;/code&gt; missing after &lt;code&gt;yarn install&lt;/code&gt; was run.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3061&quot;&gt;DL3061&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Invalid instruction order. Dockerfile must begin with &lt;code&gt;FROM&lt;/code&gt;, &lt;code&gt;ARG&lt;/code&gt; or comment.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3062&quot;&gt;DL3062&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Pin versions in go install. Instead of &lt;code&gt;go install &amp;lt;package&amp;gt;&lt;/code&gt; use &lt;code&gt;go install &amp;lt;package&amp;gt;@&amp;lt;version&amp;gt;&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3063&quot;&gt;DL3063&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Stage name should not be a reserved word&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3066&quot;&gt;DL3066&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Info&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Non-numeric user-id may not be resolvable by host system&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL3067&quot;&gt;DL3067&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Do not copy an entire filesystem from another stage&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL4000&quot;&gt;DL4000&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;MAINTAINER&lt;/code&gt; is deprecated.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL4001&quot;&gt;DL4001&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Either use Wget or Curl but not both.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL4003&quot;&gt;DL4003&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Multiple &lt;code&gt;CMD&lt;/code&gt; instructions found.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL4004&quot;&gt;DL4004&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Error&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Multiple &lt;code&gt;ENTRYPOINT&lt;/code&gt; instructions found.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL4005&quot;&gt;DL4005&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use &lt;code&gt;SHELL&lt;/code&gt; to change the default shell.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/hadolint/hadolint/wiki/DL4006&quot;&gt;DL4006&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Warning&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Set the &lt;code&gt;SHELL&lt;/code&gt; option -o pipefail before &lt;code&gt;RUN&lt;/code&gt; with a pipe in it&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1000&quot;&gt;SC1000&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;$&lt;/code&gt; is not used specially and should therefore be escaped.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1001&quot;&gt;SC1001&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;This &lt;code&gt;\c&lt;/code&gt; will be a regular &lt;code&gt;&#39;c&#39;&lt;/code&gt; in this context.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1007&quot;&gt;SC1007&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Remove space after &lt;code&gt;=&lt;/code&gt; if trying to assign a value (or for empty string, use &lt;code&gt;var=&#39;&#39; ...&lt;/code&gt;).&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1010&quot;&gt;SC1010&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use semicolon or linefeed before &lt;code&gt;done&lt;/code&gt; (or quote to make it literal).&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1018&quot;&gt;SC1018&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;This is a unicode non-breaking space. Delete it and retype as space.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1035&quot;&gt;SC1035&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;You need a space here&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1045&quot;&gt;SC1045&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;It&#39;s not &lt;code&gt;foo &amp;amp;; bar&lt;/code&gt;, just &lt;code&gt;foo &amp;amp; bar&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1065&quot;&gt;SC1065&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Trying to declare parameters? Don&#39;t. Use &lt;code&gt;()&lt;/code&gt; and refer to params as &lt;code&gt;$1&lt;/code&gt;, &lt;code&gt;$2&lt;/code&gt; etc.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1066&quot;&gt;SC1066&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Don&#39;t use $ on the left side of assignments.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1068&quot;&gt;SC1068&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Don&#39;t put spaces around the &lt;code&gt;=&lt;/code&gt; in assignments.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1077&quot;&gt;SC1077&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;For command expansion, the tick should slant left (` vs ´).&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1078&quot;&gt;SC1078&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Did you forget to close this double-quoted string?&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1079&quot;&gt;SC1079&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;This is actually an end quote, but due to next char, it looks suspect.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1081&quot;&gt;SC1081&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Scripts are case sensitive. Use &lt;code&gt;if&lt;/code&gt;, not &lt;code&gt;If&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1083&quot;&gt;SC1083&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;This &lt;code&gt;{/}&lt;/code&gt; is literal. Check expression (missing &lt;code&gt;;/\n&lt;/code&gt;?) or quote it.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1086&quot;&gt;SC1086&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Don&#39;t use &lt;code&gt;$&lt;/code&gt; on the iterator name in for loops.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1087&quot;&gt;SC1087&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Braces are required when expanding arrays, as in &lt;code&gt;${array[idx]}&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1091&quot;&gt;SC1091&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Not following: Reasons include: file not found, no permissions, not included on the command line, not allowing shellcheck to follow files with -x, etc.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1095&quot;&gt;SC1095&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;You need a space or linefeed between the function name and body.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1097&quot;&gt;SC1097&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Unexpected &lt;code&gt;==&lt;/code&gt;. For assignment, use &lt;code&gt;=&lt;/code&gt;. For comparison, use &lt;code&gt;[ .. ]&lt;/code&gt; or &lt;code&gt;[[ .. ]]&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1098&quot;&gt;SC1098&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Quote/escape special characters when using &lt;code&gt;eval&lt;/code&gt;, e.g. &lt;code&gt;eval &quot;a=(b)&quot;&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC1099&quot;&gt;SC1099&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;You need a space before the &lt;code&gt;#&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2002&quot;&gt;SC2002&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Useless cat. Consider &lt;code&gt;cmd &amp;lt; file | ..&lt;/code&gt; or &lt;code&gt;cmd file | ..&lt;/code&gt; instead.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2015&quot;&gt;SC2015&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Note that &lt;code&gt;A &amp;amp;&amp;amp; B || C&lt;/code&gt; is not if-then-else. C may run when A is true.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2026&quot;&gt;SC2026&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;This word is outside of quotes. Did you intend to &#39;nest &#39;&quot;&#39;single quotes&#39;&quot;&#39; instead&#39;?&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2028&quot;&gt;SC2028&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;echo&lt;/code&gt; won&#39;t expand escape sequences. Consider &lt;code&gt;printf&lt;/code&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2035&quot;&gt;SC2035&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use &lt;code&gt;./*glob*&lt;/code&gt; or &lt;code&gt;-- *glob*&lt;/code&gt; so names with dashes won&#39;t become options.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2039&quot;&gt;SC2039&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;In POSIX sh, something is undefined.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2046&quot;&gt;SC2046&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Quote this to prevent word splitting&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2086&quot;&gt;SC2086&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Double quote to prevent globbing and word splitting.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2140&quot;&gt;SC2140&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Word is in the form &lt;code&gt;&quot;A&quot;B&quot;C&quot;&lt;/code&gt; (B indicated). Did you mean &lt;code&gt;&quot;ABC&quot;&lt;/code&gt; or &lt;code&gt;&quot;A\&quot;B\&quot;C&quot;&lt;/code&gt;?&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2154&quot;&gt;SC2154&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;var is referenced but not assigned.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2155&quot;&gt;SC2155&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Declare and assign separately to avoid masking return values.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://github.com/koalaman/shellcheck/wiki/SC2164&quot;&gt;SC2164&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Use &lt;code&gt;cd ... || exit&lt;/code&gt; in case &lt;code&gt;cd&lt;/code&gt; fails.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!--lint enable maximum-line-length--&gt; 
+&lt;h2&gt;Develop&lt;/h2&gt; 
+&lt;p&gt;If you are an experienced Haskeller, we would be very grateful if you would tear our code apart in a review.&lt;/p&gt; 
+&lt;p&gt;To compile, you will need a recent Haskell environment and &lt;code&gt;cabal-install&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Setup&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Clone repository&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone --recursive git@github.com:hadolint/hadolint.git
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Install dependencies and compile source&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cabal configure
+cabal update
+cabal build
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;(Optional) Install Hadolint on your system&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cabal install
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;REPL&lt;/h3&gt; 
+&lt;p&gt;The easiest way to try out the parser is using the REPL.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# start the repl
+cabal repl
+# overload strings to be able to use Text
+:set -XOverloadedStrings
+# import parser library
+import Language.Docker
+# parse instruction and look at AST representation
+parseText &quot;FROM debian:jessie&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Tests&lt;/h3&gt; 
+&lt;p&gt;Compile with unit tests and run them:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cabal configure --enable-tests
+cabal build --enable-tests
+cabal test
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run integration tests:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./integration_test.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;AST&lt;/h3&gt; 
+&lt;p&gt;Dockerfile syntax is fully described in the &lt;a href=&quot;http://docs.docker.com/engine/reference/builder/&quot;&gt;Dockerfile reference&lt;/a&gt;. Just take a look at &lt;a href=&quot;https://www.stackage.org/haddock/nightly-2022-11-15/language-docker-12.0.0/Language-Docker-Syntax.html&quot;&gt;Syntax.hs&lt;/a&gt; in the &lt;code&gt;language-docker&lt;/code&gt; project to see the AST definition.&lt;/p&gt; 
+&lt;h3&gt;Building against custom libraries&lt;/h3&gt; 
+&lt;p&gt;Hadolint uses many libraries to do the dirty work. In particular, language-docker is used to parse Dockerfiles and produce an AST which then can be analyzed. To build Hadolint against a custom version of such libraries, do the following. This example uses language-docker, but it would work with any other library as well.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;In the same directory (e.g. &lt;code&gt;/home/user/repos&lt;/code&gt;) clone Hadolint and language-docker git repositories&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd /home/user/repos
+git clone https://github.com/hadolint/hadolint.git
+git clone https://github.com/hadolint/language-docker.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt; &lt;p&gt;Make your modifications to language-docker&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;In the Hadolint repo, edit the &lt;code&gt;cabal.project&lt;/code&gt; file, such that the &lt;code&gt;packages&lt;/code&gt; property points to the other repo too&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;[...]
+packages:
+  .
+  ../language-docker
+[...]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;4&quot;&gt; 
+ &lt;li&gt;Recompile Hadolint and run the tests&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd /home/user/repos/hadolint
+cabal configure --enable-tests
+cabal build --enable-tests
+cabal test
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Alternatives&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;replicatedhq/&lt;a href=&quot;https://github.com/replicatedhq/dockerfilelint&quot;&gt;dockerfilelint&lt;/a&gt;, the other linter used by the &lt;a href=&quot;https://github.com/github/super-linter/raw/main/README.md#supported-linters&quot;&gt;super-linter&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;RedCoolBeans/&lt;a href=&quot;https://github.com/RedCoolBeans/dockerlint/&quot;&gt;dockerlint&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;projectatomic/&lt;a href=&quot;https://github.com/projectatomic/dockerfile_lint/&quot;&gt;dockerfile_lint&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- References --&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/999ef8a6d021ea10da51ad355e5d8710c99402626fa5d59d1e24168656161829/hadolint/hadolint" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>simplex-chat/simplexmq</title>
+      <link>https://github.com/simplex-chat/simplexmq</link>
+      <description>&lt;p&gt;⚙️ SimpleXMQ - A reference implementation of the SimpleX Messaging Protocol for simplex queues over public networks.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;SimpleXMQ&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/simplex-chat/simplexmq/actions/workflows/build.yml&quot;&gt;&lt;img src=&quot;https://github.com/simplex-chat/simplexmq/actions/workflows/build.yml/badge.svg?sanitize=true&quot; alt=&quot;GitHub build&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/simplex-chat/simplexmq/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/simplex-chat/simplexmq&quot; alt=&quot;GitHub release&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;📢 SimpleXMQ v1 is released - with many security, privacy and efficiency improvements, new functionality - see &lt;a href=&quot;https://github.com/simplex-chat/simplexmq/releases/tag/v1.0.0&quot;&gt;release notes&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt;: v1 is not backwards compatible, but it has the version negotiation built into all protocol layers for forwards compatibility of this version and backwards compatibility of the future versions, that will be backwards compatible for at least two versions back.&lt;/p&gt; 
+&lt;p&gt;If you have a server deployed please deploy a new server to a new host and retire the previous version once it is no longer used.&lt;/p&gt; 
+&lt;h2&gt;Message broker for unidirectional (simplex) queues&lt;/h2&gt; 
+&lt;p&gt;SimpleXMQ is a message broker for managing message queues and sending messages over public network. It consists of SMP server, SMP client library and SMP agent that implement &lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/protocol/simplex-messaging.md&quot;&gt;SMP protocol&lt;/a&gt; for client-server communication and &lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/protocol/agent-protocol.md&quot;&gt;SMP agent protocol&lt;/a&gt; to manage duplex connections via simplex queues on multiple SMP servers.&lt;/p&gt; 
+&lt;p&gt;SMP protocol is inspired by &lt;a href=&quot;https://redis.io/topics/protocol&quot;&gt;Redis serialization protocol&lt;/a&gt;, but it is much simpler - it currently has only 10 client commands and 8 server responses.&lt;/p&gt; 
+&lt;p&gt;SimpleXMQ is implemented in Haskell - it benefits from robust software transactional memory (STM) and concurrency primitives that Haskell provides.&lt;/p&gt; 
+&lt;h2&gt;SimpleXMQ roadmap&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;SimpleX service protocol and application template - to enable users building services and chat bots that work over SimpleX protocol stack. The first such service will be a notification service for a mobile app.&lt;/li&gt; 
+ &lt;li&gt;SMP queue redundancy and rotation in SMP agent connections.&lt;/li&gt; 
+ &lt;li&gt;SMP agents synchronization to share connections and messages between multiple agents (it would allow using multiple devices for &lt;a href=&quot;https://github.com/simplex-chat/simplex-chat&quot;&gt;simplex-chat&lt;/a&gt;).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Components&lt;/h2&gt; 
+&lt;h3&gt;SMP server&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/apps/smp-server/Main.hs&quot;&gt;SMP server&lt;/a&gt; can be run on any Linux distribution, including low power/low memory devices. OpenSSL library is required for initialization.&lt;/p&gt; 
+&lt;p&gt;To initialize the server use &lt;code&gt;smp-server init -n &amp;lt;fqdn&amp;gt;&lt;/code&gt; (or &lt;code&gt;smp-server init --ip &amp;lt;ip&amp;gt;&lt;/code&gt; for IP based address) command - it will generate keys and certificates for TLS transport. The fingerprint of offline certificate is used as part of the server address to protect client/server connection against man-in-the-middle attacks: &lt;code&gt;smp://&amp;lt;fingerprint&amp;gt;@&amp;lt;hostname&amp;gt;[:5223]&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;SMP server uses in-memory persistence with an optional append-only log of created queues that allows to re-start the server without losing the connections. This log is compacted on every server restart, permanently removing suspended and removed queues.&lt;/p&gt; 
+&lt;p&gt;To enable store log, initialize server using &lt;code&gt;smp-server -l&lt;/code&gt; command, or modify &lt;code&gt;smp-server.ini&lt;/code&gt; created during initialization (uncomment &lt;code&gt;enable = on&lt;/code&gt; option in the store log section). Use &lt;code&gt;smp-server --help&lt;/code&gt; for other usage tips.&lt;/p&gt; 
+&lt;p&gt;Starting from version 2.3.0, when store log is enabled, the server would also enable saving undelivered messages on exit and restoring them on start. This can be disabled via a separate setting &lt;code&gt;restore_messages&lt;/code&gt; in &lt;code&gt;smp-server.ini&lt;/code&gt; file. Saving messages would only work if the server is stopped with SIGINT signal (keyboard interrupt), if it is stopped with SIGTERM signal the messages would not be saved.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Please note:&lt;/strong&gt; On initialization SMP server creates a chain of two certificates: a self-signed CA certificate (&quot;offline&quot;) and a server certificate used for TLS handshake (&quot;online&quot;). &lt;strong&gt;You should store CA certificate private key securely and delete it from the server. If server TLS credential is compromised this key can be used to sign a new one, keeping the same server identity and established connections.&lt;/strong&gt; CA private key location by default is &lt;code&gt;/etc/opt/simplex/ca.key&lt;/code&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;SMP server implements &lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/protocol/simplex-messaging.md&quot;&gt;SMP protocol&lt;/a&gt;.&lt;/p&gt; 
+&lt;h4&gt;Running SMP server on MacOS&lt;/h4&gt; 
+&lt;p&gt;SMP server requires OpenSSL library for initialization. On MacOS OpenSSL library may be replaced with LibreSSL, which doesn&#39;t support required algorithms. Before initializing SMP server verify you have OpenSSL installed:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;openssl version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If it says &quot;LibreSSL&quot;, please install original OpenSSL:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;brew update
+brew install openssl
+echo &#39;PATH=&quot;/opt/homebrew/opt/openssl@3/bin:$PATH&quot;&#39; &amp;gt;&amp;gt; ~/.zprofile # or follow whatever instructions brew suggests
+. ~/.zprofile # or restart your terminal to start a new session
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Now &lt;code&gt;openssl version&lt;/code&gt; should be saying &quot;OpenSSL&quot;. You can now run &lt;code&gt;smp-server init&lt;/code&gt; to initialize your SMP server.&lt;/p&gt; 
+&lt;h3&gt;SMP client library&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/src/Simplex/Messaging/Client.hs&quot;&gt;SMP client&lt;/a&gt; is a Haskell library to connect to SMP servers that allows to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;execute commands with a functional API.&lt;/li&gt; 
+ &lt;li&gt;receive messages and other notifications via STM queue.&lt;/li&gt; 
+ &lt;li&gt;automatically send keep-alive commands.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;SMP agent&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/src/Simplex/Messaging/Agent.hs&quot;&gt;SMP agent library&lt;/a&gt; can be used to run SMP agent as part of another application and to communicate with the agent via STM queues, without serializing and parsing commands and responses.&lt;/p&gt; 
+&lt;p&gt;Haskell type &lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/src/Simplex/Messaging/Agent/Protocol.hs&quot;&gt;ACommand&lt;/a&gt; represents SMP agent protocol to communicate via STM queues.&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/simplex-chat/simplex-chat&quot;&gt;simplex-chat&lt;/a&gt; terminal UI for the example of integrating SMP agent into another application.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/apps/smp-agent/Main.hs&quot;&gt;SMP agent executable&lt;/a&gt; can be used to run a standalone SMP agent process that implements plaintext &lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/protocol/agent-protocol.md&quot;&gt;SMP agent protocol&lt;/a&gt; via TCP port 5224, so it can be used via telnet. It can be deployed in private networks to share access to the connections between multiple applications and services.&lt;/p&gt; 
+&lt;h2&gt;Using SMP server and SMP agent&lt;/h2&gt; 
+&lt;p&gt;You can either run your own SMP server locally or deploy using &lt;a href=&quot;https://cloud.linode.com/stackscripts/748014&quot;&gt;Linode StackScript&lt;/a&gt;, or try local SMP agent with the deployed servers:&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;smp://u2dS9sG8nMNURyZwqASV4yROM28Er0luVTx5X1CsMrU=@smp4.simplex.im&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;smp://hpq7_4gGJiilmz5Rf-CswuU5kZGkm_zOIooSw6yALRg=@smp5.simplex.im&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;smp://PQUV2eL0t7OStZOoAsPEV2QYWt4-xilbakvGUGOItUo=@smp6.simplex.im&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;It&#39;s the easiest to try SMP agent via a prototype &lt;a href=&quot;https://github.com/simplex-chat/simplex-chat&quot;&gt;simplex-chat&lt;/a&gt; terminal UI.&lt;/p&gt; 
+&lt;h2&gt;Deploy SMP/XFTP servers on Linux&lt;/h2&gt; 
+&lt;p&gt;You can run your SMP/XFTP server as a Linux process, optionally using a service manager for booting and restarts.&lt;/p&gt; 
+&lt;p&gt;Notice that &lt;code&gt;smp-server&lt;/code&gt; and &lt;code&gt;xftp-server&lt;/code&gt; requires &lt;code&gt;openssl&lt;/code&gt; as run-time dependency (it is used to generate server certificates during initialization). Install it with your packet manager:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;# For Ubuntu
+apt update &amp;amp;&amp;amp; apt install openssl
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Install binaries&lt;/h3&gt; 
+&lt;h4&gt;Using Docker&lt;/h4&gt; 
+&lt;p&gt;On Linux, you can deploy smp and xftp server using Docker. This will download image from &lt;a href=&quot;https://hub.docker.com/r/simplexchat&quot;&gt;Docker Hub&lt;/a&gt;.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Create directories for persistent Docker configuration:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;mkdir -p $HOME/simplex/{xftp,smp}/{config,logs} &amp;amp;&amp;amp; mkdir -p $HOME/simplex/xftp/files
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run your Docker container.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;smp-server&lt;/code&gt;&lt;/p&gt; &lt;p&gt;You must change &lt;strong&gt;your_ip_or_domain&lt;/strong&gt;. &lt;code&gt;-e &quot;pass=password&quot;&lt;/code&gt; is optional variable to password-protect your &lt;code&gt;smp&lt;/code&gt; server:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;docker run -d \
+    -e &quot;ADDR=your_ip_or_domain&quot; \
+    -e &quot;PASS=password&quot; \
+    -p 5223:5223 \
+    -v $HOME/simplex/smp/config:/etc/opt/simplex:z \
+    -v $HOME/simplex/smp/logs:/var/opt/simplex:z \
+    simplexchat/smp-server:latest
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;xftp-server&lt;/code&gt;&lt;/p&gt; &lt;p&gt;You must change &lt;strong&gt;your_ip_or_domain&lt;/strong&gt; and &lt;strong&gt;maximum_storage&lt;/strong&gt;.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;docker run -d \
+    -e &quot;ADDR=your_ip_or_domain&quot; \
+    -e &quot;QUOTA=maximum_storage&quot; \
+    -p 443:443 \
+    -v $HOME/simplex/xftp/config:/etc/opt/simplex-xftp:z \
+    -v $HOME/simplex/xftp/logs:/var/opt/simplex-xftp:z \
+    -v $HOME/simplex/xftp/files:/srv/xftp:z \
+    simplexchat/xftp-server:latest
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Using installation script&lt;/h4&gt; 
+&lt;p&gt;&lt;strong&gt;Please note&lt;/strong&gt; that currently, only Ubuntu distribution is supported.&lt;/p&gt; 
+&lt;p&gt;You can install and setup servers automatically using our script:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/install.sh -o simplex-server-install.sh &amp;amp;&amp;amp;\
+if echo &#39;53fcdb4ceab324316e2c4cda7e84dbbb344f32550a65975a7895425e5a1be757 simplex-server-install.sh&#39; | sha256sum -c; then
+  chmod +x ./simplex-server-install.sh
+  ./simplex-server-install.sh
+  rm ./simplex-server-install.sh
+else
+  echo &quot;SHA-256 checksum is incorrect!&quot;
+  rm ./simplex-server-install.sh
+fi
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Build from source&lt;/h3&gt; 
+&lt;h4&gt;Using Docker&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Please note:&lt;/strong&gt; to build the app use source code from &lt;a href=&quot;https://github.com/simplex-chat/simplexmq/tree/stable&quot;&gt;stable branch&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;On Linux, you can build smp server using Docker.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Build your images:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;git clone https://github.com/simplex-chat/simplexmq
+cd simplexmq
+git checkout stable
+DOCKER_BUILDKIT=1 docker build -t local/smp-server --build-arg APP=&quot;smp-server&quot; --build-arg APP_PORT=&quot;5223&quot; . # For xmp-server
+DOCKER_BUILDKIT=1 docker build -t local/xftp-server --build-arg APP=&quot;xftp-server&quot; --build-arg APP_PORT=&quot;443&quot; . # For xftp-server
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Create directories for persistent Docker configuration:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;mkdir -p $HOME/simplex/{xftp,smp}/{config,logs} &amp;amp;&amp;amp; mkdir -p $HOME/simplex/xftp/files
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run your Docker container.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;smp-server&lt;/code&gt;&lt;/p&gt; &lt;p&gt;You must change &lt;strong&gt;your_ip_or_domain&lt;/strong&gt;. &lt;code&gt;-e &quot;pass=password&quot;&lt;/code&gt; is optional variable to password-protect your &lt;code&gt;smp&lt;/code&gt; server:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;docker run -d \
+    -e &quot;ADDR=your_ip_or_domain&quot; \
+    -e &quot;PASS=password&quot; \
+    -p 5223:5223 \
+    -v $HOME/simplex/smp/config:/etc/opt/simplex:z \
+    -v $HOME/simplex/smp/logs:/var/opt/simplex:z \
+    simplexchat/smp-server:latest
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;&lt;code&gt;xftp-server&lt;/code&gt;&lt;/p&gt; &lt;p&gt;You must change &lt;strong&gt;your_ip_or_domain&lt;/strong&gt; and &lt;strong&gt;maximum_storage&lt;/strong&gt;.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;docker run -d \
+    -e &quot;ADDR=your_ip_or_domain&quot; \
+    -e &quot;QUOTA=maximum_storage&quot; \
+    -p 443:443 \
+    -v $HOME/simplex/xftp/config:/etc/opt/simplex-xftp:z \
+    -v $HOME/simplex/xftp/logs:/var/opt/simplex-xftp:z \
+    -v $HOME/simplex/xftp/files:/srv/xftp:z \
+    simplexchat/xftp-server:latest
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Using your distribution&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Install dependencies and build tools (&lt;code&gt;GHC&lt;/code&gt;, &lt;code&gt;cabal&lt;/code&gt; and dev libs):&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;# On Ubuntu. Depending on your distribution, use your package manager to determine package names.
+sudo apt-get update &amp;amp;&amp;amp; apt-get install -y build-essential curl libffi-dev libffi7 libgmp3-dev libgmp10 libncurses-dev libncurses5 libtinfo5 pkg-config zlib1g-dev libnuma-dev libssl-dev
+export BOOTSTRAP_HASKELL_GHC_VERSION=9.6.3
+export BOOTSTRAP_HASKELL_CABAL_VERSION=3.10.3.0
+curl --proto &#39;=https&#39; --tlsv1.2 -sSf https://get-ghcup.haskell.org | BOOTSTRAP_HASKELL_NONINTERACTIVE=1 sh
+ghcup set ghc &quot;${BOOTSTRAP_HASKELL_GHC_VERSION}&quot;
+ghcup set cabal &quot;${BOOTSTRAP_HASKELL_CABAL_VERSION}&quot;
+source ~/.ghcup/env
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build the project:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;git clone https://github.com/simplex-chat/simplexmq
+cd simplexmq
+git checkout stable
+cabal update
+cabal build exe:smp-server exe:xftp-server
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;List compiled binaries:&lt;/p&gt; &lt;p&gt;&lt;code&gt;smp-server&lt;/code&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;cabal list-bin exe:smp-server
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;&lt;code&gt;xftp-server&lt;/code&gt;&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;cabal list-bin exe:xftp-server
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Initialize SMP server with &lt;code&gt;smp-server init [-l] -n &amp;lt;fqdn&amp;gt;&lt;/code&gt; or &lt;code&gt;smp-server init [-l] --ip &amp;lt;ip&amp;gt;&lt;/code&gt; - depending on how you initialize it, either FQDN or IP will be used for server&#39;s address.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Run &lt;code&gt;smp-server start&lt;/code&gt; to start SMP server, or you can configure a service manager to run it as a service.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Optionally, &lt;code&gt;smp-server&lt;/code&gt; can be setup for having an onion address in &lt;code&gt;tor&lt;/code&gt; network. See: &lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/scripts/tor/&quot;&gt;&lt;code&gt;scripts/tor&lt;/code&gt;&lt;/a&gt;. In this case, the server address can have both public and onion hostname pointing to the same server, to allow two people connect when only one of them is using Tor. The server address would be: &lt;code&gt;smp://&amp;lt;fingerprint&amp;gt;@&amp;lt;public_hostname&amp;gt;,&amp;lt;onion_hostname&amp;gt;&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/#smp-server&quot;&gt;this section&lt;/a&gt; for more information. Run &lt;code&gt;smp-server -h&lt;/code&gt; and &lt;code&gt;smp-server init -h&lt;/code&gt; for explanation of commands and options.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cloud.linode.com/stackscripts/748014&quot;&gt;&lt;img alt=&quot;Linode&quot; src=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/img/linode.svg?sanitize=true&quot; align=&quot;right&quot; width=&quot;200&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Deploy SMP server on Linode&lt;/h2&gt; 
+&lt;p&gt;* You can use free credit Linode offers when &lt;a href=&quot;https://www.linode.com/&quot;&gt;creating a new account&lt;/a&gt; to deploy an SMP server.&lt;/p&gt; 
+&lt;p&gt;Deployment on Linode is performed via StackScripts, which serve as recipes for Linode instances, also called Linodes. To deploy SMP server on Linode:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Create a Linode account or login with an already existing one.&lt;/li&gt; 
+ &lt;li&gt;Open &lt;a href=&quot;https://cloud.linode.com/stackscripts/748014&quot;&gt;SMP server StackScript&lt;/a&gt; and click &quot;Deploy New Linode&quot;.&lt;/li&gt; 
+ &lt;li&gt;You can optionally configure the following parameters: 
+  &lt;ul&gt; 
+   &lt;li&gt;SMP Server store log flag for queue persistence on server restart, recommended.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://www.linode.com/docs/guides/getting-started-with-the-linode-api#get-an-access-token&quot;&gt;Linode API token&lt;/a&gt; to attach server address etc. as tags to Linode and to add A record to your 2nd level domain (e.g. &lt;code&gt;example.com&lt;/code&gt; &lt;a href=&quot;https://cloud.linode.com/domains/create&quot;&gt;domain should be created&lt;/a&gt; in your account prior to deployment). The API token access scopes: 
+    &lt;ul&gt; 
+     &lt;li&gt;read/write for &quot;linodes&quot;&lt;/li&gt; 
+     &lt;li&gt;read/write for &quot;domains&quot;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;Domain name to use instead of Linode IP address, e.g. &lt;code&gt;smp1.example.com&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Choose the region and plan, Shared CPU Nanode with 1Gb is sufficient.&lt;/li&gt; 
+ &lt;li&gt;Provide ssh key to be able to connect to your Linode via ssh. If you haven&#39;t provided a Linode API token this step is required to login to your Linode and get the server&#39;s fingerprint either from the welcome message or from the file &lt;code&gt;/etc/opt/simplex/fingerprint&lt;/code&gt; after server starts. See &lt;a href=&quot;https://www.linode.com/docs/guides/use-public-key-authentication-with-ssh/&quot;&gt;Linode&#39;s guide on ssh&lt;/a&gt; .&lt;/li&gt; 
+ &lt;li&gt;Deploy your Linode. After it starts wait for SMP server to start and for tags to appear (if a Linode API token was provided). It may take up to 5 minutes depending on the connection speed on the Linode. Connecting Linode IP address to provided domain name may take some additional time.&lt;/li&gt; 
+ &lt;li&gt;Get &lt;code&gt;address&lt;/code&gt; and &lt;code&gt;fingerprint&lt;/code&gt; either from Linode tags (click on a tag and copy it&#39;s value from the browser search panel) or via ssh.&lt;/li&gt; 
+ &lt;li&gt;Great, your own SMP server is ready! If you provided FQDN use &lt;code&gt;smp://&amp;lt;fingerprint&amp;gt;@&amp;lt;fqdn&amp;gt;&lt;/code&gt; as SMP server address in the client, otherwise use &lt;code&gt;smp://&amp;lt;fingerprint&amp;gt;@&amp;lt;ip_address&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please submit an &lt;a href=&quot;https://github.com/simplex-chat/simplexmq/issues&quot;&gt;issue&lt;/a&gt; if any problems occur.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://marketplace.digitalocean.com/apps/simplex-server&quot;&gt;&lt;img alt=&quot;DigitalOcean&quot; src=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/img/digitalocean.png&quot; align=&quot;right&quot; width=&quot;300&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Deploy SMP server on DigitalOcean&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🚧 DigitalOcean snapshot is currently not up to date, it will soon be updated 🏗️&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;* When creating a DigitalOcean account you can use &lt;a href=&quot;https://try.digitalocean.com/freetrialoffer/&quot;&gt;this link&lt;/a&gt; to get free credit. (You would still be required either to provide your credit card details or make a confirmation pre-payment with PayPal)&lt;/p&gt; 
+&lt;p&gt;To deploy SMP server use &lt;a href=&quot;https://marketplace.digitalocean.com/apps/simplex-server&quot;&gt;SimpleX Server 1-click app&lt;/a&gt; from DigitalOcean marketplace:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Create a DigitalOcean account or login with an already existing one.&lt;/li&gt; 
+ &lt;li&gt;Click &#39;Create SimpleX server Droplet&#39; button.&lt;/li&gt; 
+ &lt;li&gt;Choose the region and plan according to your requirements (Basic plan should be sufficient).&lt;/li&gt; 
+ &lt;li&gt;Finalize Droplet creation.&lt;/li&gt; 
+ &lt;li&gt;Open &quot;Console&quot; on your Droplet management page to get SMP server fingerprint - either from the welcome message or from &lt;code&gt;/etc/opt/simplex/fingerprint&lt;/code&gt;. Alternatively you can manually SSH to created Droplet, see &lt;a href=&quot;https://docs.digitalocean.com/products/droplets/how-to/connect-with-ssh/&quot;&gt;DigitalOcean instruction&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Great, your own SMP server is ready! Use &lt;code&gt;smp://&amp;lt;fingerprint&amp;gt;@&amp;lt;ip_address&amp;gt;&lt;/code&gt; as SMP server address in the client.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please submit an &lt;a href=&quot;https://github.com/simplex-chat/simplexmq/issues&quot;&gt;issue&lt;/a&gt; if any problems occur.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Please note:&lt;/strong&gt; SMP server uses server address as a Common Name for server certificate generated during initialization. If you would like your server address to be FQDN instead of IP address, you can log in to your Droplet and run the commands below to re-initialize the server. Alternatively you can use &lt;a href=&quot;https://cloud.linode.com/stackscripts/748014&quot;&gt;Linode StackScript&lt;/a&gt; which allows this parameterization.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;smp-server delete
+smp-server init [-l] -n &amp;lt;fqdn&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;SMP server design&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/design/server.svg?sanitize=true&quot; alt=&quot;SMP server design&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;SMP agent design&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/design/agent2.svg?sanitize=true&quot; alt=&quot;SMP agent design&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/simplex-chat/simplexmq/stable/LICENSE&quot;&gt;AGPL v3&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/30be0917188284523167c6c3f0f9ade36048204194788000d5a27c3d84dd9fa9/simplex-chat/simplexmq" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

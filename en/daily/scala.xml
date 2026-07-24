@@ -1,0 +1,799 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Scala Daily Trending</title>
+    <description>Daily Trending of Scala in GitHub</description>
+    <pubDate>Fri, 24 Jul 2026 01:48:51 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>apache/gluten</title>
+      <link>https://github.com/apache/gluten</link>
+      <description>&lt;p&gt;Gluten is a middle layer responsible for offloading JVM-based SQL engines&#39; execution to native engines.&lt;/p&gt;&lt;hr&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/gluten-logo.svg?sanitize=true&quot; alt=&quot;Gluten&quot; width=&quot;200&quot; /&gt; 
+&lt;h1&gt;Apache Gluten&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;A Middle Layer for Offloading JVM-based SQL Engines&#39; Execution to Native Engines&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.bestpractices.dev/projects/8452&quot;&gt;&lt;img src=&quot;https://www.bestpractices.dev/projects/8452/badge&quot; alt=&quot;OpenSSF Best Practices&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;1. Introduction&lt;/h2&gt; 
+&lt;h3&gt;Background&lt;/h3&gt; 
+&lt;p&gt;Apache Spark is a mature and stable project that has been under continuous development for many years. It is one of the most widely used frameworks for scaling out the processing of petabyte-scale datasets. Over time, the Spark community has had to address significant performance challenges, which required a variety of optimizations. A major milestone came with Spark 2.0, where Whole-Stage Code Generation replaced the Volcano Model, delivering up to a 2× speedup. Since then, most subsequent improvements have focused on the query plan level, while the performance of individual operators has almost stopped improving.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/47296334/199853029-b6d0ea19-f8e4-4f62-9562-2838f7f159a7.png&quot; width=&quot;700&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;In recent years, several native SQL engines have been developed, such as ClickHouse and Velox. With features like native execution, columnar data formats, and vectorized data processing, these engines can outperform Spark’s JVM-based SQL engine. However, they currently don&#39;t directly support Spark SQL execution.&lt;/p&gt; 
+&lt;h3&gt;Design Overview&lt;/h3&gt; 
+&lt;p&gt;“Gluten” is Latin for &quot;glue&quot;. The main goal of the Gluten project is to glue native engines to Spark SQL. Thus, we can benefit from the high performance of native engines and the high scalability enabled by the Spark ecosystem.&lt;/p&gt; 
+&lt;p&gt;The basic design principle is to reuse Spark’s control flow, while offloading compute-intensive data processing to the native side. More specifically:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Transform Spark’s physical plan to Substrait plan, then transform it to native engine&#39;s plan.&lt;/li&gt; 
+ &lt;li&gt;Offload performance-critical data processing to native engine.&lt;/li&gt; 
+ &lt;li&gt;Define clear JNI interfaces for native SQL engines.&lt;/li&gt; 
+ &lt;li&gt;Allow easy switching between available native backends.&lt;/li&gt; 
+ &lt;li&gt;Reuse Spark’s distributed control flow.&lt;/li&gt; 
+ &lt;li&gt;Manage data sharing between JVM and native.&lt;/li&gt; 
+ &lt;li&gt;Provide extensibility to support more native engines.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Target Users&lt;/h3&gt; 
+&lt;p&gt;Gluten&#39;s target users include anyone who wants to fundamentally accelerate Spark SQL. As a plugin to Spark, Gluten requires no changes to the DataFrame API or SQL queries; users only need to configure it correctly.&lt;/p&gt; 
+&lt;h2&gt;2. Architecture&lt;/h2&gt; 
+&lt;p&gt;The overview chart is shown below. &lt;a href=&quot;https://substrait.io/&quot;&gt;Substrait&lt;/a&gt; provides a well-defined, cross-language specification for data compute operations. Spark’s physical plan is transformed into a Substrait plan, which is then passed to the native side through a JNI call. On the native side, a chain of native operators is constructed and offloaded to the native engine. Gluten returns the results as a ColumnarBatch, and Spark’s Columnar API (introduced in Spark 3.0) is used during execution. Gluten adopts the Apache Arrow data format as its underlying representation.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/47296334/199617207-1140698a-4d53-462d-9bc7-303d14be060b.png&quot; width=&quot;700&quot; /&gt; &lt;/p&gt; Currently, Gluten supports only ClickHouse and Velox backends. Velox is a C++ database acceleration library which provides reusable, extensible and high-performance data processing components. In addition, Gluten is designed to be extensible, allowing support for additional backends in the future. 
+&lt;p&gt;Gluten&#39;s key components:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Query Plan Conversion&lt;/strong&gt;: Converts Spark&#39;s physical plan to Substrait plan.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Unified Memory Management&lt;/strong&gt;: Manages native memory allocation.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Columnar Shuffle&lt;/strong&gt;: Handles shuffling of Gluten&#39;s columnar data. The shuffle service of Spark core is reused, while a columnar exchange operator is implemented to support Gluten&#39;s columnar data format.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Fallback Mechanism&lt;/strong&gt;: Provides fallback to vanilla Spark for unsupported operators. Gluten&#39;s ColumnarToRow (C2R) and RowToColumnar (R2C) convert data between Gluten&#39;s columnar format and Spark&#39;s internal row format to support fallback transitions.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Metrics&lt;/strong&gt;: Collected from Gluten native engine to help monitor execution, identify bugs, and diagnose performance bottlenecks. The metrics are displayed in Spark UI.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Shim Layer&lt;/strong&gt;: Ensures compatibility with multiple Spark versions. Gluten supports the latest 3–4 Spark releases during its development cycle, and currently supports Spark 3.3, 3.4, 3.5, 4.0, and 4.1.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;3. User Guide&lt;/h2&gt; 
+&lt;p&gt;Below is a basic configuration to enable Gluten in Spark.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;export GLUTEN_JAR=/PATH/TO/GLUTEN_JAR
+spark-shell \
+  --master yarn --deploy-mode client \
+  --conf spark.plugins=org.apache.gluten.GlutenPlugin \
+  --conf spark.memory.offHeap.enabled=true \
+  --conf spark.memory.offHeap.size=20g \
+  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
+  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
+  --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager
+  ...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;There are two ways to acquire Gluten jar for the above configuration.&lt;/p&gt; 
+&lt;h3&gt;Use Released JAR&lt;/h3&gt; 
+&lt;p&gt;Please download the tar package &lt;a href=&quot;https://gluten.apache.org/downloads/&quot;&gt;here&lt;/a&gt;, then extract Gluten JAR from it. Additionally, Gluten provides nightly builds based on the main branch for early testing. The nightly build JARs are available at &lt;a href=&quot;https://nightlies.apache.org/gluten/&quot;&gt;Apache Gluten Nightlies&lt;/a&gt;. They have been verified on Centos 7/8/9, Ubuntu 20.04/22.04.&lt;/p&gt; 
+&lt;h3&gt;Build From Source&lt;/h3&gt; 
+&lt;p&gt;For &lt;strong&gt;Velox&lt;/strong&gt; backend, please refer to &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/Velox.md&quot;&gt;Velox.md&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/build-guide.md&quot;&gt;build-guide.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For &lt;strong&gt;ClickHouse&lt;/strong&gt; backend, please refer to &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/ClickHouse.md&quot;&gt;ClickHouse.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The Gluten JAR will be generated under &lt;code&gt;/PATH/TO/GLUTEN/package/target/&lt;/code&gt; after the build.&lt;/p&gt; 
+&lt;h3&gt;Configurations&lt;/h3&gt; 
+&lt;p&gt;Common configurations used by Gluten are listed in &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/Configuration.md&quot;&gt;Configuration.md&lt;/a&gt;. Velox specific configurations are listed in &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-configuration.md&quot;&gt;velox-configuration.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The Gluten Velox backend honors some Spark configurations, ignores others, and many are transparent to it. See &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-spark-configuration.md&quot;&gt;velox-spark-configuration.md&lt;/a&gt; for details, and &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-parquet-write-configuration.md&quot;&gt;velox-parquet-write-configuration.md&lt;/a&gt; for Parquet write configurations.&lt;/p&gt; 
+&lt;h2&gt;4. Resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gluten.apache.org/&quot;&gt;Gluten website&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/facebookincubator/velox&quot;&gt;Velox repository&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Kyligence/ClickHouse&quot;&gt;ClickHouse repository&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=0Q6gHT_N-1U&quot;&gt;Gluten Intro Video at Data AI Summit 2022&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://medium.com/intel-analytics-software/accelerate-spark-sql-queries-with-gluten-9000b65d1b4e&quot;&gt;Gluten Intro Article on Medium&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cn.kyligence.io/blog/gluten-spark/&quot;&gt;Gluten Intro Article on Kyligence.io (Chinese)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://engineering.fb.com/2023/03/09/open-source/velox-open-source-execution-engine/&quot;&gt;Velox Intro from Meta&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;5. Contribution&lt;/h2&gt; 
+&lt;p&gt;Welcome to contribute to the Gluten project! See &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for guidelines on how to make contributions.&lt;/p&gt; 
+&lt;h2&gt;6. Community&lt;/h2&gt; 
+&lt;p&gt;Gluten successfully became an Apache Incubator project in March 2024 and graduated as an Apache Top-Level Project in March 2026. Here are several ways to connect with the community.&lt;/p&gt; 
+&lt;h3&gt;GitHub&lt;/h3&gt; 
+&lt;p&gt;Welcome to report issues or start discussions in GitHub. Please search the GitHub issue list before creating a new one to avoid duplication.&lt;/p&gt; 
+&lt;h3&gt;Mailing List&lt;/h3&gt; 
+&lt;p&gt;For any technical discussions, please email &lt;a href=&quot;mailto:dev@gluten.apache.org&quot;&gt;dev@gluten.apache.org&lt;/a&gt;. You can browse the &lt;a href=&quot;https://lists.apache.org/list.html?dev@gluten.apache.org&quot;&gt;archives&lt;/a&gt; to view past discussions, or &lt;a href=&quot;mailto:dev-subscribe@gluten.apache.org&quot;&gt;subscribe to the mailing list&lt;/a&gt; to receive updates.&lt;/p&gt; 
+&lt;h3&gt;Slack Channel (English)&lt;/h3&gt; 
+&lt;p&gt;Request an invitation to the ASF Slack workspace via &lt;a href=&quot;https://github.com/apache/gluten/discussions/8429&quot;&gt;this page&lt;/a&gt;. Once invited, you can join the &lt;strong&gt;gluten&lt;/strong&gt; channel.&lt;/p&gt; 
+&lt;p&gt;The ASF Slack login entry: &lt;a href=&quot;https://the-asf.slack.com/&quot;&gt;https://the-asf.slack.com/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;WeChat Group (Chinese)&lt;/h3&gt; 
+&lt;p&gt;Please contact weitingchen at &lt;a href=&quot;http://apache.org&quot;&gt;apache.org&lt;/a&gt; or zhangzc at &lt;a href=&quot;http://apache.org&quot;&gt;apache.org&lt;/a&gt; to request an invitation to the WeChat group. It is for Chinese-language communication.&lt;/p&gt; 
+&lt;h2&gt;7. Performance&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/tools/workload/tpch&quot;&gt;TPC-H&lt;/a&gt; is used to evaluate Gluten&#39;s performance. Please note that the results below do not reflect the latest performance.&lt;/p&gt; 
+&lt;h3&gt;Velox Backend&lt;/h3&gt; 
+&lt;p&gt;The Gluten Velox backend demonstrated an overall speedup of 2.71x, with up to a 14.53x speedup observed in a single query.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/velox_decision_support_bench1_22queries_performance.png&quot; alt=&quot;Performance&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;Tested in Jun. 2023. Test environment: single node with 2TB data, using Spark 3.3.2 as the baseline and with Gluten integrated into the same Spark version.&lt;/sub&gt;&lt;/p&gt; 
+&lt;h3&gt;ClickHouse Backend&lt;/h3&gt; 
+&lt;p&gt;ClickHouse backend demonstrated an average speedup of 2.12x, with up to 3.48x speedup observed in a single query.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/clickhouse_decision_support_bench1_22queries_performance.png&quot; alt=&quot;Performance&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;Test environment: a 8-nodes AWS cluster with 1TB data, using Spark 3.1.1 as the baseline and with Gluten integrated into the same Spark version.&lt;/sub&gt;&lt;/p&gt; 
+&lt;h2&gt;8. Qualification Tool&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/tools/qualification-tool/README.md&quot;&gt;Qualification Tool&lt;/a&gt; is a utility to analyze Spark event log files and assess the compatibility and performance of SQL workloads with Gluten. This tool helps users understand how their workloads can benefit from Gluten.&lt;/p&gt; 
+&lt;h2&gt;9. License&lt;/h2&gt; 
+&lt;p&gt;Gluten is licensed under &lt;a href=&quot;https://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache License Version 2.0&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;10. Acknowledgements&lt;/h2&gt; 
+&lt;p&gt;Gluten was initiated by Intel and Kyligence in 2022. Several other companies are also actively contributing to its development, including BIGO, Meituan, Alibaba Cloud, NetEase, Baidu, Microsoft, IBM, Google, etc.&lt;/p&gt; 
+&lt;a href=&quot;https://github.com/apache/gluten/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=apache/gluten&amp;amp;columns=25&quot; /&gt; &lt;/a&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/00b88ddc58635b4756d946b7c7ca87c4dcfe9bf685c1fbad49ced20fd78f7cff/apache/gluten" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ergoplatform/ergo</title>
+      <link>https://github.com/ergoplatform/ergo</link>
+      <description>&lt;p&gt;Ergo protocol description &amp; reference client implementation&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;em&gt;The World still needs for better money. Join us in this quest.&lt;/em&gt;&lt;/p&gt; 
+&lt;h1&gt;Ergo&lt;/h1&gt; 
+&lt;p&gt;Welcome to the repository for the &lt;a href=&quot;https://ergoplatform.org/&quot;&gt;Ergo Platform&lt;/a&gt;. Ergo is a Proof-of-Work cryptocurrency protocol that has been designed to offer a secure environment for new kinds of money, peer-to-peer interactions, trust-minimized financial tooling and derivatives. This repository contains the reference client, also known as the node, for Ergo.&lt;/p&gt; 
+&lt;p&gt;The reference client is primarily written in Scala. While certain components of the protocol are implemented in other languages (for instance, &lt;a href=&quot;https://github.com/ergoplatform/sigma-rust&quot;&gt;sigma-rust&lt;/a&gt; is a Rust-based implementation of the ErgoScript cryptocurrency scripting language), the reference client provides the most complete and comprehensive implementation of the Ergo protocol at the moment.&lt;/p&gt; 
+&lt;h2&gt;Key Features of Ergo&lt;/h2&gt; 
+&lt;p&gt;Ergo, while sharing some commonalities with Bitcoin as a UTXO Proof-of-Work cryptocurrency, stands out due to its unique design and features. It has been built from the ground up to achieve its goals , introducing several innovative elements:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;ErgoScript&lt;/strong&gt;: A powerful contract language in the multi-stage extended UTXO model. More details can be found in the &lt;a href=&quot;https://ergoplatform.org/docs/ErgoScript.pdf&quot;&gt;ErgoScript whitepaper&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Autolykos2&lt;/strong&gt;: A memory-hard Proof-of-Work function, providing enhanced security. Learn more about it &lt;a href=&quot;https://docs.ergoplatform.com/ErgoPow.pdf&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Support for Stateless Clients: Ergo supports asymmetric stateless clients, based on &lt;a href=&quot;https://eprint.iacr.org/2016/994&quot;&gt;this paper&lt;/a&gt;, and includes features like NiPoPoWs and hybrid modes.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Advanced Transactional Language&lt;/strong&gt;: Ergo introduces an &lt;a href=&quot;https://github.com/ScorexFoundation/sigmastate-interpreter&quot;&gt;alternative transactional language&lt;/a&gt; that is more powerful than Bitcoin Script and is designed to be safe against heavy validation attacks.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Innovative Fee Model&lt;/strong&gt;: Ergo implements an alternative fee model with a &lt;a href=&quot;https://fc18.ifca.ai/bitcoin/papers/bitcoin18-final18.pdf&quot;&gt;mandatory storage-rent component&lt;/a&gt; (also known as demurrage). It provides truly fixed supply in the long-term, protection from UTXO dust bloating, and additional rewards stream for miners.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Specifications&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://ergoplatform.org/docs/whitepaper.pdf&quot;&gt;white paper&lt;/a&gt; - a brief description of the protocol&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://ergoplatform.org/docs/ErgoScript.pdf&quot;&gt;ErgoScript white paper&lt;/a&gt; - describes ErgoScript, a Cryptocurrency Scripting Language Supporting Noninteractive Zero-Knowledge Proofs used in Ergo&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;More papers can be found at &lt;a href=&quot;https://docs.ergoplatform.com/documents/&quot;&gt;docs.ergoplatform.com/documents&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Security Assumptions&lt;/h2&gt; 
+&lt;p&gt;The Ergo client operates under certain assumptions about its environment:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The execution environment is trusted. Although the seed is stored in an encrypted file, and the client&#39;s wallet attempts to purge the secret key from memory as soon as it is no longer needed, the client does not have defenses against side-channel attacks, memory scans, etc.&lt;/li&gt; 
+ &lt;li&gt;Clocks are expected to be synchronized to a reasonable degree. If a block&#39;s timestamp is more than 20 minutes into the future, the block will be temporarily rejected. The client does not utilize NTP or other time synchronization protocols.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Building and Running the Node and UI&lt;/h2&gt; 
+&lt;p&gt;For instructions on how to build and run the node and UI, refer to the &lt;a href=&quot;https://docs.ergoplatform.com/node/install/&quot;&gt;official documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;By default, the node processes all blocks from the genesis block. However, there are other options available that may be more suitable for hardware with limited resources.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Bootstrapping with a UTXO set snapshot:&lt;/strong&gt; This works similarly to Ethereum&#39;s snap-sync. The node first downloads a UTXO set snapshot from a secure point in the past, then downloads blocks following the UTXO set snapshot and applies them to the set. For more details and security proofs, refer to the &lt;a href=&quot;https://eprint.iacr.org/2018/129.pdf&quot;&gt;&quot;Multi-mode cryptocurrency systems&quot; paper&lt;/a&gt;. To enable this feature add the following to your configuration file:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;
+ergo {
+  ...
+  node.utxo.utxoBootstrap = true
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The UTXO set snapshot bootstrapping can be further optimized by combining it with NiPoPoW (Non-Interactive Proofs of Proof-of-Work). This method allows for syncing the headers-chain in logarithmic time, as opposed to the linear time required by the standard SPV sync for headers. For more details, refer to the &lt;a href=&quot;https://eprint.iacr.org/2017/963.pdf&quot;&gt;NiPoPoW paper&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;
+ergo{
+  ...
+  node.nipopow.nipopowBootstrap = true
+  node.utxo.utxoBootstrap = true
+  ...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The stateless mode provides full-node security without the need to hold the entire UTXO set. This is achieved through the methods detailed in the &lt;a href=&quot;https://eprint.iacr.org/2016/994.pdf&quot;&gt;&quot;Improving Authenticated Dynamic Dictionaries, with Applications to Cryptocurrencies&quot; paper&lt;/a&gt;. In this mode, it&#39;s possible to download and validate an arbitrary-sized suffix of the blockchain. Here&#39;s an example of how to configure this mode:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;ergo {
+   ...
+   node.stateType = &quot;digest&quot;
+   node.blocksToKeep = 2160 # store and process last three days only
+   node.nipopow.nipopowBootstrap = true   # compatible with NiPoPoWs 
+   ...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more detailed information on different modes of node operation, please visit &lt;a href=&quot;https://docs.ergoplatform.com/node/modes&quot;&gt;docs.ergoplatform.com/node/modes&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Testing Procedures&lt;/h2&gt; 
+&lt;p&gt;Ergo utilizes three types of tests:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Unit and property tests: These can be run using the &lt;code&gt;sbt test&lt;/code&gt; command.&lt;/li&gt; 
+ &lt;li&gt;Integration tests: These tests require Docker to be installed. Run them with the &lt;code&gt;sudo sbt it:test&lt;/code&gt; command.&lt;/li&gt; 
+ &lt;li&gt;Bootstrapping tests: These tests are time-consuming as they verify that the node is syncing with the main network in various modes. Docker is also required for these tests. Run them with the &lt;code&gt;sudo sbt it2:test&lt;/code&gt; command.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Setting up the Project in an IDE&lt;/h2&gt; 
+&lt;p&gt;You can use either &lt;a href=&quot;https://www.jetbrains.com/idea/&quot;&gt;IntelliJ IDEA&lt;/a&gt; (Community or Ultimate edition) or &lt;a href=&quot;https://code.visualstudio.com/&quot;&gt;VSCode&lt;/a&gt; with the &lt;a href=&quot;https://scalameta.org/metals/&quot;&gt;Metals&lt;/a&gt; extension.&lt;/p&gt; 
+&lt;p&gt;Ensure that the project can be built with sbt before opening it in an IDE. You may need to resolve any dependency errors first.&lt;/p&gt; 
+&lt;p&gt;To open the project in IntelliJ IDEA, select File / Open and navigate to the project folder. This will initiate the Project Import Wizard, which uses the SBT configuration (build.sbt file) to generate the project configuration files for IDEA. You can view the project configuration in the &lt;code&gt;File / Project Structure...&lt;/code&gt; dialog. If the import is successful, you should be able to compile the project in the IDE.&lt;/p&gt; 
+&lt;h2&gt;Modules&lt;/h2&gt; 
+&lt;p&gt;This repository has modular structure, so only parts which are needed for an application could be used:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ergoplatform/ergo/master/avldb/README.md&quot;&gt;avldb&lt;/a&gt; - implementation of authenticated AVL+ tree used in Ergo, with persistence&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ergoplatform/ergo/master/ergo-core/README.md&quot;&gt;ergo-core&lt;/a&gt; - functionality needed for an SPV client (P2P messages, block section stuctures, PoW, NiPoPoW)&lt;/li&gt; 
+ &lt;li&gt;ergo-wallet - Java and Scala functionalities to sign and verify transactions&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Using IntelliJ IDEA be sure to set Build Tools / sbt -&amp;gt; &lt;code&gt;sbt shell&lt;/code&gt; / &lt;code&gt;use for&lt;/code&gt; / builds, to avoid compilation errors&lt;/p&gt; 
+&lt;h2&gt;Contributing to Ergo&lt;/h2&gt; 
+&lt;p&gt;Ergo is an open-source project and we welcome contributions from developers and testers! Join the discussion over &lt;a href=&quot;https://discord.gg/kj7s7nb&quot;&gt;Ergo Discord&lt;/a&gt; in #development channel, or Telegram: &lt;a href=&quot;https://t.me/ErgoDevelopers&quot;&gt;https://t.me/ErgoDevelopers&lt;/a&gt;. Please also check out our &lt;a href=&quot;https://docs.ergoplatform.com/contribute/&quot;&gt;Contributing documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Frequently Asked Questions&lt;/h2&gt; 
+&lt;p&gt;For common queries, please refer to our &lt;a href=&quot;https://raw.githubusercontent.com/ergoplatform/ergo/master/FAQ.md&quot;&gt;Frequently Asked Questions&lt;/a&gt; page.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/b634d07b049885797c332ef26641880404f20e761b9ff6f29a925956484d4140/ergoplatform/ergo" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>NVIDIA/cudf-spark</title>
+      <link>https://github.com/NVIDIA/cudf-spark</link>
+      <description>&lt;p&gt;NVIDIA cuDF for Apache Spark plugin - accelerate Apache Spark with GPUs&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;RAPIDS Accelerator For Apache Spark&lt;/h1&gt; 
+&lt;p&gt;NOTE: For the latest stable &lt;a href=&quot;https://github.com/nvidia/spark-rapids/raw/main/README.md&quot;&gt;README.md&lt;/a&gt; ensure you are on the main branch.&lt;/p&gt; 
+&lt;p&gt;The RAPIDS Accelerator for Apache Spark provides a set of plugins for &lt;a href=&quot;https://spark.apache.org&quot;&gt;Apache Spark&lt;/a&gt; that leverage GPUs to accelerate processing via the &lt;a href=&quot;https://rapids.ai&quot;&gt;RAPIDS&lt;/a&gt; libraries.&lt;/p&gt; 
+&lt;p&gt;Documentation on the current release can be found &lt;a href=&quot;https://nvidia.github.io/cudf-spark/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To get started and try the plugin out use the &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/getting-started/overview.html&quot;&gt;getting started guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://deepwiki.com/NVIDIA/spark-rapids&quot;&gt;&lt;img src=&quot;https://deepwiki.com/badge.svg?sanitize=true&quot; alt=&quot;Ask DeepWiki&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;p&gt;The SQL plugin tries to produce results that are bit for bit identical with Apache Spark. Operator compatibility is documented &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/docs/compatibility.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Tuning&lt;/h2&gt; 
+&lt;p&gt;To get started tuning your job and get the most performance out of it please start with the &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/tuning-guide.html&quot;&gt;tuning guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;The plugin has a set of Spark configs that control its behavior and are documented &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/docs/configs.md&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Issues &amp;amp; Questions&lt;/h2&gt; 
+&lt;p&gt;We use github to track bugs, feature requests, and answer questions. File an &lt;a href=&quot;https://github.com/NVIDIA/spark-rapids/issues/new/choose&quot;&gt;issue&lt;/a&gt; for a bug or feature request. Ask or answer a question on the &lt;a href=&quot;https://github.com/NVIDIA/spark-rapids/discussions&quot;&gt;discussion board&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;The jar files for the most recent release can be retrieved from the &lt;a href=&quot;https://nvidia.github.io/cudf-spark/docs/download.html&quot;&gt;download&lt;/a&gt; page.&lt;/p&gt; 
+&lt;h2&gt;Building From Source&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/CONTRIBUTING.md#building-from-source&quot;&gt;build instructions in the contributing guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Testing&lt;/h2&gt; 
+&lt;p&gt;Tests are described &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/tests/README.md&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Integration&lt;/h2&gt; 
+&lt;p&gt;The RAPIDS Accelerator For Apache Spark does provide some APIs for doing zero copy data transfer into other GPU enabled applications. It is described &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/additional-functionality/ml-integration.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Currently, we are working with XGBoost to try to provide this integration out of the box.&lt;/p&gt; 
+&lt;p&gt;You may need to disable RMM caching when exporting data to an ML library as that library will likely want to use all of the GPU&#39;s memory and if it is not aware of RMM it will not have access to any of the memory that RMM is holding.&lt;/p&gt; 
+&lt;h2&gt;Qualification and Profiling tools&lt;/h2&gt; 
+&lt;p&gt;The Qualification and Profiling tools have been moved to &lt;a href=&quot;https://github.com/NVIDIA/spark-rapids-tools&quot;&gt;nvidia/spark-rapids-tools&lt;/a&gt; repo.&lt;/p&gt; 
+&lt;p&gt;Please refer to &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/qualification/overview.html&quot;&gt;Qualification tool documentation&lt;/a&gt; and &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/profiling/overview.html&quot;&gt;Profiling tool documentation&lt;/a&gt; for more details on how to use the tools.&lt;/p&gt; 
+&lt;h2&gt;Dependency for External Projects&lt;/h2&gt; 
+&lt;p&gt;If you need to develop some functionality on top of RAPIDS Accelerator For Apache Spark (we currently limit support to GPU-accelerated UDFs) we recommend you declare our distribution artifact as a &lt;code&gt;provided&lt;/code&gt; dependency.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.nvidia&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;rapids-4-spark_2.12&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;26.08.0-SNAPSHOT&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/fd1c6d8ef2c5ddadbdaeed09c65d7d4ad8dd59105e7ac9f383344f16e7b9f5b2/NVIDIA/cudf-spark" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ucb-bar/gemmini</title>
+      <link>https://github.com/ucb-bar/gemmini</link>
+      <description>&lt;p&gt;Berkeley&#39;s Spatial Array Generator&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;1000&quot; src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/full-logo.svg?sanitize=true&quot; /&gt; &lt;/p&gt; 
+&lt;h1&gt;Gemmini&lt;/h1&gt; 
+&lt;p&gt;The Gemmini project is developing a full-system, full-stack DNN hardware exploration and evaluation platform. Gemmini enables architects to make useful insights into how different components of the system and software stack (outside of just the accelerator itself) interact to affect overall DNN performance.&lt;/p&gt; 
+&lt;p&gt;Gemmini is part of the &lt;a href=&quot;https://github.com/ucb-bar/chipyard&quot;&gt;Chipyard&lt;/a&gt; ecosystem, and was developed using the &lt;a href=&quot;https://www.chisel-lang.org/&quot;&gt;Chisel&lt;/a&gt; hardware description language.&lt;/p&gt; 
+&lt;p&gt;This document is intended to provide information for beginners wanting to try out Gemmini, as well as more advanced in-depth information for those who might want to start hacking on Gemmini&#39;s source code.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/gemmini-system.png&quot; alt=&quot;Gemmini&#39;s high-level architecture&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;Quick Start&lt;/h1&gt; 
+&lt;p&gt;We provide here a quick guide to installing Gemmini&#39;s dependencies (Chipyard and Spike), building Gemmini hardware and software, and then running that software on our hardware simulators.&lt;/p&gt; 
+&lt;h2&gt;Dependencies&lt;/h2&gt; 
+&lt;p&gt;Before beginning, install the &lt;a href=&quot;https://chipyard.readthedocs.io/en/latest/Chipyard-Basics/Initial-Repo-Setup.html#default-requirements-installation&quot;&gt;Chipyard dependencies&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Installing Chipyard and Spike&lt;/h2&gt; 
+&lt;p&gt;Run these steps to install Chipyard and Spike (make sure to checkout the correct Chipyard and Spike commits as shown below):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;git clone https://github.com/ucb-bar/chipyard.git
+cd chipyard
+./build-setup.sh
+
+source env.sh
+
+cd generators/gemmini
+make -C software/libgemmini install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Building Gemmini Software&lt;/h2&gt; 
+&lt;p&gt;Run the steps below to compile Gemmini programs, including large DNN models like ResNet50, and small matrix-multiplication tests.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;cd chipyard/generators/gemmini/software/gemmini-rocc-tests
+./build.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Afterwards, you&#39;ll find RISC-V binaries in &lt;code&gt;build/&lt;/code&gt;, for &quot;baremetal&quot; environments, Linux environments, and &quot;proxy-kernel&quot; environments.&lt;/p&gt; 
+&lt;p&gt;Linux binaries are meant to be executed on SoCs that run Linux. These binaries are dynamically linked, and support all syscalls. Typically, our users run them on &lt;a href=&quot;https://fires.im/&quot;&gt;FireSim&lt;/a&gt; simulators.&lt;/p&gt; 
+&lt;p&gt;Baremetal binaries are meant to be run in an environment without any operating system available. They lack support for most syscalls, and do not support virtual memory either. Our users typically run them on cycle-accurate simulators like Verilator or VCS.&lt;/p&gt; 
+&lt;p&gt;&quot;Proxy-kernel&quot; binaries are meant to be run on a stripped down version of Linux, called the &lt;a href=&quot;https://github.com/riscv-software-src/riscv-pk&quot;&gt;&quot;RISC-V Proxy Kernel.&quot;&lt;/a&gt; These binaries support virtual memory, and are typically run on cycle-accurate simulators like Verilator.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Warning:&lt;/strong&gt; Proxy-kernel binaries have limited heap space, so some Gemmini programs that work correctly in baremetal or Linux environments may fail on the proxy-kernel.&lt;/p&gt; 
+&lt;h2&gt;Building Gemmini Hardware and Cycle-Accurate Simulators&lt;/h2&gt; 
+&lt;p&gt;Run the instructions below to build a cycle-accurate Gemmini simulator using Verilator.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;cd chipyard/sims/verilator
+make CONFIG=GemminiRocketConfig
+
+# Or, if you want a simulator that can generate waveforms, run this:
+make debug CONFIG=GemminiRocketConfig
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After running this, in addition to the cycle-accurate simulator, you will be able to find the Verilog description of your SoC in &lt;code&gt;generated-src/&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Using Gemmini Functional Simulators&lt;/h2&gt; 
+&lt;p&gt;Spike typically runs &lt;em&gt;much&lt;/em&gt; faster than cycle-accurate simulators like Verilator or VCS. However, Spike can only verify functional correctness; it cannot give accurate performance metrics or profiling information.&lt;/p&gt; 
+&lt;h2&gt;Run Simulators&lt;/h2&gt; 
+&lt;p&gt;Run the instructions below to run the Gemmini RISCV binaries that we built previously, using the simulators that we built above:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;cd chipyard/sims/verilator
+
+# Run a large DNN workload in the functional simulator
+spike --extension=gemmini pk ../../generators/gemmini/software/gemmini-rocc-tests/build/imagenet/resnet50-pk
+
+# Run a small DNN workload in the functional simulator
+spike --extension=gemmini ../../generators/gemmini/software/gemmini-rocc-tests/build/imagenet/resnet50-baremetal
+
+# Run a smaller workload in baremetal mode, on a cycle-accurate simulator
+make CONFIG=GemminiRocketConfig run-binary BINARY=../../generators/gemmini/software/gemmini-rocc-tests/build/bareMetalC/template-baremetal
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Next steps&lt;/h2&gt; 
+&lt;p&gt;Check out our &lt;a href=&quot;https://sites.google.com/berkeley.edu/gemmini-tutorial-mlsys-2022&quot;&gt;MLSys 2022 tutorial&lt;/a&gt; (or our earlier but more out-of-date &lt;a href=&quot;https://sites.google.com/berkeley.edu/gemminitutorialiiswc2021/&quot;&gt;IISWC 2021 tutorial&lt;/a&gt;) to learn how to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;build different types of diverse accelerators using Gemmini.&lt;/li&gt; 
+ &lt;li&gt;add custom datatypes to Gemmini.&lt;/li&gt; 
+ &lt;li&gt;write your own Gemmini programs.&lt;/li&gt; 
+ &lt;li&gt;profile your workloads using Gemmini&#39;s performance counters.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Also, consider learning about &lt;a href=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/fires.im&quot;&gt;FireSim&lt;/a&gt;, a platform for FPGA-accelerated cycle-accurate simulation. We use FireSim to run end-to-end DNN workloads that would take too long to run on Verilator/VCS. FireSim also allows users to check that their Gemmini hardware/software will work when running on a Linux environment.&lt;/p&gt; 
+&lt;p&gt;Or, continue reading the rest of this document for descriptions of Gemmini&#39;s architecture, ISA, and configuration parameters.&lt;/p&gt; 
+&lt;h1&gt;Architecture&lt;/h1&gt; 
+&lt;p&gt;Gemmini is implemented as a RoCC accelerator with non-standard RISC-V custom instructions. The Gemmini unit uses the RoCC port of a Rocket or BOOM &lt;em&gt;tile&lt;/em&gt;, and by default connects to the memory system through the System Bus (i.e., directly to the L2 cache).&lt;/p&gt; 
+&lt;p&gt;At the heart of the accelerator lies a systolic array which performs matrix multiplications. By default, the matrix multiplication support both &lt;em&gt;output-stationary&lt;/em&gt; and &lt;em&gt;weight-stationary&lt;/em&gt; dataflows, which programmers can pick between at runtime. However, the dataflow can also be hardened at elaboration time.&lt;/p&gt; 
+&lt;p&gt;The systolic array&#39;s inputs and outputs are stored in an explicity managed scratchpad, made up of banked SRAMs. A DMA engine facilitates the transfer of data between main memory (which is visible to the host CPU) and the scratchpad.&lt;/p&gt; 
+&lt;p&gt;Because weight-stationary dataflows require an accumulator outside the systolic array, we add a final SRAM bank, equipped with adder units, which can be conceptually considered an extension of the scratchpad memory space. The systolic array can store results to any address in the accumulator, and can also read new inputs from any address in the accumulator. The DMA engine can also tranfer data directly between the accumulator and main memory, which is often necessary to load in biases.&lt;/p&gt; 
+&lt;p&gt;Gemmini also includes peripheral circuitry to optionally apply activation functions such as ReLU or ReLU6, scale results down by powers-of-2 to support quantized workloads, or to transpose matrices before feeding them into the systolic array to support the output-stationary dataflow.&lt;/p&gt; 
+&lt;h2&gt;Generator Parameters&lt;/h2&gt; 
+&lt;p&gt;Major parameters of interest include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Systolic array dimensions (&lt;code&gt;tileRows&lt;/code&gt;, &lt;code&gt;tileColumns&lt;/code&gt;, &lt;code&gt;meshRows&lt;/code&gt;, &lt;code&gt;meshColumns&lt;/code&gt;): The systolic array is composed of a 2-level hierarchy, in which each tile is fully combinational, while a mesh of tiles has pipeline registers between each tile.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/gemmini-systolic-array.png&quot; alt=&quot;Gemmini&#39;s systolic two-tiered hierarchy&quot; /&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Dataflow parameters (&lt;code&gt;dataflow&lt;/code&gt;): Determine whether the systolic array in Gemmini is output-stationary or weight-stationary, or whether it supports both dataflows so that programmers may choose between them at runtime.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Scratchpad and accumulator memory parameters (&lt;code&gt;sp_banks&lt;/code&gt;, &lt;code&gt;sp_capacity&lt;/code&gt;, &lt;code&gt;acc_capacity&lt;/code&gt;): Determine the properties of the Gemmini scratchpad memory: overall capacity of the scratchpad or accumulators (in KiB), and the number of banks the scratchpad is divided into.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Type parameters (&lt;code&gt;inputType&lt;/code&gt;, &lt;code&gt;outputType&lt;/code&gt;, &lt;code&gt;accType&lt;/code&gt;): Determine the data-types flowing through different parts of a Gemmini accelerator. For example, &lt;code&gt;inputType&lt;/code&gt; may be an 8-bit fixed-point number, while &lt;code&gt;accType&lt;/code&gt;, which determines the type of partial accumulations in a matrix multiplication, may be a 32-bit integer. &lt;code&gt;outputType&lt;/code&gt; only determines the type of the data passed between two processing elements (PEs); for example, an 8-bit multiplication may produce a 16-bit result which must be shared between PEs in a systolic array.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Examples of possible datatypes are: 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;code&gt;SInt(8.W)&lt;/code&gt; for a signed 8-bit integer&lt;/li&gt; 
+     &lt;li&gt;&lt;code&gt;UInt(32.W)&lt;/code&gt; for an unsigned 32-bit integer&lt;/li&gt; 
+     &lt;li&gt;&lt;code&gt;Float(8, 24)&lt;/code&gt; for a single-precision IEEE floating point number&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;If your datatype is a floating-point number, then you might also want to change the &lt;code&gt;pe_latency&lt;/code&gt; parameter, which specifies how many shift registers to add inside the PEs. This might be necessary if your datatype cannot complete a multiply-accumulate operation within a single cycle.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Access-execute queue parameters (&lt;code&gt;ld_queue_length&lt;/code&gt;, &lt;code&gt;st_queue_length&lt;/code&gt;, &lt;code&gt;ex_queue_length&lt;/code&gt;, &lt;code&gt;rob_entries&lt;/code&gt;): To implement access-execute decoupling, a Gemmini accelerator has a load instruction queue, a store instruction queue, and an execute instruction queue. The relative sizes of these queue determine the level of access-execute decoupling. Gemmini also implements a reorder buffer (ROB) - the number of entries in the ROB determines possible dependency management limitations.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;DMA parameters (&lt;code&gt;dma_maxbytes&lt;/code&gt;, &lt;code&gt;dma_buswidth&lt;/code&gt;, &lt;code&gt;mem_pipeline&lt;/code&gt;): Gemmini implements a DMA to move data from main memory to the Gemmini scratchpad, and from the Gemmini accumulators to main memory. The size of these DMA transactions is determined by the DMA parameters. These DMA parameters are tightly coupled with Rocket Chip SoC system parameters: in particular &lt;code&gt;dma_buswidth&lt;/code&gt; is associated with the &lt;code&gt;SystemBusKey&lt;/code&gt; &lt;code&gt;beatBytes&lt;/code&gt; parameter, and &lt;code&gt;dma_maxbytes&lt;/code&gt; is associated with &lt;code&gt;cacheblockbytes&lt;/code&gt; Rocket Chip parameters.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;There are also optional features, which can be either enabled or left out of Gemmini at elaboration-time. For example:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Scaling during &quot;move-in&quot; operations (&lt;code&gt;mvin_scale_args&lt;/code&gt;, &lt;code&gt;mvin_scale_acc_args&lt;/code&gt;): When data is being moved in from DRAM or main memory into Gemmini&#39;s local scratchpad memory, it can optionally be multiplied by a scaling factor. These parameters specify what the datatype of the scaling factor is, and how the scaling is actually done. If these are set to &lt;code&gt;None&lt;/code&gt;, then this optional feature will be disabled at elaboration time. If both the scratchpad inputs are accumulator inputs are to be scaled in the same say, then the &lt;code&gt;mvin_scale_shared&lt;/code&gt; parameter can be set to &lt;code&gt;true&lt;/code&gt; so that the multipliers and functional units are shared.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Major Components&lt;/h2&gt; 
+&lt;p&gt;This subsection is aimed towards those who wish to start hacking on Gemmini&#39;s RTL. Here, we briefly describe Gemmini&#39;s main hardware components, and how they fit together. If you have no interest in changing Gemmini&#39;s hardware (besides just changing configuration parameters), then feel free to skip this section.&lt;/p&gt; 
+&lt;h3&gt;Decoupled Access/Execute&lt;/h3&gt; 
+&lt;p&gt;Gemmini is a decoupled access/execute architecture, which means that &quot;memory-access&quot; and &quot;execute&quot; instructions happen concurrently, in different regions of the hardware. We divide the hardware broadly into three &quot;controllers&quot;: one for &quot;execute&quot; instructions, another for &quot;load&quot; instructions, and a third for &quot;store&quot; instructions. Each of these controllers consume direct ISA commands from the programmer, decode this commands, and execute them, while sharing access to the scratchpad and acccumulator SRAMs.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;ExecuteController&lt;/code&gt;: This module is responsible for executing &quot;execute&quot;-type ISA commands, such as matrix multiplications. It includes a systolic array for dot-products, and a transposer.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;LoadController&lt;/code&gt;: This module is responsible for all instructions that move data from main memory into Gemmini&#39;s private scratchpad or accumulator.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;code&gt;StoreController&lt;/code&gt;: This module is responsible for all instructions that move data from Gemmini&#39;s private SRAMs into main memory. This module is also responsible for &quot;max-pooling&quot; instructions, because Gemmini performs pooling when moving unpooled data from the private SRAMs into main memory.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Scratchpad and Accumulator&lt;/h3&gt; 
+&lt;p&gt;Gemmini stores inputs and outputs for the systolic array in a set of private SRAMs, which we call the &quot;scratchpad&quot; and the &quot;accumulator&quot;. Typically, inputs are stored in the scratchpad, while partial sums and final results are stored in the the accumulator.&lt;/p&gt; 
+&lt;p&gt;The scratchpad and accumulator are both instantiated within &lt;code&gt;Scratchpad.scala&lt;/code&gt;. The scratchpad banks are implemented by the &lt;code&gt;ScratchpadBank&lt;/code&gt; module, and the accumulator banks are implemented by the &lt;code&gt;AccumulatorMem&lt;/code&gt; module.&lt;/p&gt; 
+&lt;p&gt;Each row of the scratchpad and accumulator SRAMs is &lt;code&gt;DIM&lt;/code&gt; &quot;elements&quot; wide, where &lt;code&gt;DIM&lt;/code&gt; is the number of PEs along the width of the systolic array. Each &quot;element&quot; represents a single scalar value that Gemmini operates upon.&lt;/p&gt; 
+&lt;p&gt;Each &quot;element&quot; in the scratchpad is of type &lt;code&gt;inputType&lt;/code&gt; (which, in the default config, is an 8-bit integer). Each &quot;element&quot; in the acccumulator is of type &lt;code&gt;accType&lt;/code&gt; (which, in the default config, is a 32-bit integer).&lt;/p&gt; 
+&lt;p&gt;So, for example, in the default config, which has a 16x16 systolic array, the scratchpad banks have a row-width of &lt;code&gt;16*bits(inputType)=128&lt;/code&gt; bits, and the accumulatorr banks have a row-width of &lt;code&gt;16*bits(accType)=512&lt;/code&gt; bits.&lt;/p&gt; 
+&lt;p&gt;Both inputs and outputs to the scratchpad must be of type &lt;code&gt;inputType&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Both inputs and outputs from the accumulator can be either of type &lt;code&gt;accType&lt;/code&gt; &lt;em&gt;or&lt;/em&gt; &lt;code&gt;inputType&lt;/code&gt;. If &lt;code&gt;inputType&lt;/code&gt; values are input to the accumulator, they will be cast up to &lt;code&gt;accType&lt;/code&gt;. If &lt;code&gt;inputType&lt;/code&gt; values are output from the accumulator, they will first be &quot;scaled&quot; down to be of type &lt;code&gt;inputType&lt;/code&gt;. The exact &quot;scaling&quot; function can be configured as the as the user wishes, but in the default config, the scaling function is a simple multiplication by a &lt;code&gt;float32&lt;/code&gt; value that casts an &lt;code&gt;int32&lt;/code&gt; down to an &lt;code&gt;int8&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;The scratchpad banks are very simple, comprising little more than an SRAM and a queue.&lt;/p&gt; 
+&lt;p&gt;The accumulator banks are a bit more complex: in addition to the underlying SRAM, they also include a set of adders to support in-place accumulations. In addition, they have a set of &quot;scalers&quot; (described above), and activation function units. The scaling and activation functions are applied when the programmer wishes to transform &lt;code&gt;accType&lt;/code&gt; values down to &lt;code&gt;inputType&lt;/code&gt; values while reading data out of the accumulator. This is typically done to transform the partial-sum outputs of one layer into the low-bitwidth quantized inputs of the next layer.&lt;/p&gt; 
+&lt;h3&gt;Systolic Array and Transposer&lt;/h3&gt; 
+&lt;p&gt;&lt;code&gt;MeshWithDelays&lt;/code&gt;, which is instantiated within the &lt;code&gt;ExecuteController&lt;/code&gt;, contains the systolic array (&lt;code&gt;Mesh&lt;/code&gt;), a transposer (&lt;code&gt;Transposer&lt;/code&gt;), and a set of delay registers which shift the inputs to the systolic array. The &lt;code&gt;MeshWithDelays&lt;/code&gt; module takes in three matrices one row at a time per cycle (&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;B&lt;/code&gt;, and &lt;code&gt;D&lt;/code&gt;), and outputs the result &lt;code&gt;C = A * B + D&lt;/code&gt; one row at a time per cycle.&lt;/p&gt; 
+&lt;p&gt;In the weight-stationary mode, the &lt;code&gt;B&lt;/code&gt; values are &quot;preloaded&quot; into the systolic array, and &lt;code&gt;A&lt;/code&gt; and &lt;code&gt;D&lt;/code&gt; values are fed through. In the output-stationary mode, the &lt;code&gt;D&lt;/code&gt; values are &quot;preloaded&quot; into the systolic array, and &lt;code&gt;A&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt; values are fed through.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;B&lt;/code&gt;, and &lt;code&gt;D&lt;/code&gt; are all of type &lt;code&gt;inputType&lt;/code&gt;, while &lt;code&gt;C&lt;/code&gt; is of type &lt;code&gt;outputType&lt;/code&gt;. If the programmer wishes to write &lt;code&gt;C&lt;/code&gt; into the scratchpad, then &lt;code&gt;C&lt;/code&gt; is cast down to &lt;code&gt;inputType&lt;/code&gt;. However, if the programmer instead wishes to write &lt;code&gt;C&lt;/code&gt; into the accumulator, then &lt;code&gt;C&lt;/code&gt; is cast up to &lt;code&gt;accType&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Note that in the weight-stationary mode, an &lt;code&gt;inputType&lt;/code&gt; D usually has insufficient bitwidth to accurately represent partial sums. Therefore, in the weight-stationary mode, &lt;code&gt;D&lt;/code&gt; is usually just the 0-matrix, while the &lt;code&gt;accType&lt;/code&gt; accumulator SRAMs are used to accumulate partial sum outputs of the systolic array instead.&lt;/p&gt; 
+&lt;p&gt;The inputs (&lt;code&gt;A&lt;/code&gt;, &lt;code&gt;B&lt;/code&gt;, and &lt;code&gt;D&lt;/code&gt;) must be delayed with shift-registers so that each input from one matrix reaches the correct PE at exactly the right time to be multiplied-and-accumulated with the correct input from another matrix. The diagram below shows an example of a 2x2 output-stationary matmul (ignoring &lt;code&gt;D&lt;/code&gt;), with the appropriate delay registers at the inputs and outputs of the systolic array:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/delay-registers.png&quot; alt=&quot;Systolic array with delay registers&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;The systolic array itself (implemented in &lt;code&gt;Mesh.scala&lt;/code&gt;), is composed of a two-tier hierarchy of &lt;code&gt;Tiles&lt;/code&gt; and &lt;code&gt;PEs&lt;/code&gt;. The &lt;code&gt;Mesh&lt;/code&gt; is composed of a set of &lt;code&gt;Tiles&lt;/code&gt;, separated by pipeline registers. Every &lt;code&gt;Tile&lt;/code&gt; is composed of a combinational set of &lt;code&gt;PEs&lt;/code&gt;, where each PE performs a single matmul operation, with either the weight-stationary, or output-stationary dataflow.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/gemmini-systolic-array.png&quot; alt=&quot;Systolic array&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;The &lt;code&gt;MeshWithDelays&lt;/code&gt; module also includes a number of counters and configuration registers. &lt;code&gt;MeshWithDelays&lt;/code&gt; assumes that every matmul operation will be exactly of size &lt;code&gt;DIM x DIM&lt;/code&gt;, where &lt;code&gt;DIM&lt;/code&gt; is the number of PEs across the width of the systolic array itself (16 in the default config). These counters count up to &lt;code&gt;DIM&lt;/code&gt;, and then update the configuration registers from the inputs to &lt;code&gt;MeshWithDelays&lt;/code&gt;. These configuration registers control which of &lt;code&gt;A&lt;/code&gt; and &lt;code&gt;B&lt;/code&gt; are to be transposed before being fed into the systolic array. They also control whether the preloaded values in the systolic array are to be maintained for the next matmul, or whether they are to be overwritten and replaced.&lt;/p&gt; 
+&lt;p&gt;The transposer itself is implemented as a very simple systolic array, which transports inputs from left-to-right for &lt;code&gt;DIM&lt;/code&gt; cycles, and then down-to-up for another &lt;code&gt;DIM&lt;/code&gt; cycles. This is illustrated in the diagram below:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/transposer.png&quot; alt=&quot;Transposer&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Note that for output-stationary matmuls, the transposer is used even when the programmer does not request a transposition. This is because the systolic array expects inputs from the same row of &lt;code&gt;A&lt;/code&gt; to enter the same PE in the output-stationary mode, but all values in a single row of &lt;code&gt;A&lt;/code&gt; are stored within the same scratchpad SRAM row. Therefore, the rows have to be transposed after being read out of the scratchpad, so that elements on the same row can be fed into the same PE one-after-another, rather than being fed into adjacent PEs.&lt;/p&gt; 
+&lt;h3&gt;DMA&lt;/h3&gt; 
+&lt;p&gt;Gemmini includes two DMAs, one for reading data from main memory into Gemmini&#39;s private SRAMs, and another for moving data from Gemmini&#39;s private SRAMs into main memory. Both these modules are implemented in &lt;code&gt;DMA.scala&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Both DMAs operate on virtual addresses, and share access to a TLB to translate these into physical main memory addresses. If the TLB misses, it transparently falls back to a PTW that is shared with Gemmini&#39;s host CPU.&lt;/p&gt; 
+&lt;p&gt;After physical addresses are obtained from Gemmini&#39;s private TLB, the DMAs break large memory requests up into smaller &lt;a href=&quot;https://sifive.cdn.prismic.io/sifive%2Fcab05224-2df1-4af8-adee-8d9cba3378cd_tilelink-spec-1.8.0.pdf&quot;&gt;TileLink&lt;/a&gt; read and write requests. To satisfy the TileLink protocol, each memory request must be aligned to the number of bytes requested from/to main memory, and the size of each memory request (in bytes) must be a power of 2. The DMAs generally attempt to minimize the number of TileLink requests as much as possible, even if this requires reading a larger total amount of data from main memory. Empirically, we have found that an excessive number TileLink requests can limit performance more than reading a small amount of extra data.&lt;/p&gt; 
+&lt;p&gt;The DMAWriter, which writes data from private SRAMs to main memory, also includes a set of &lt;code&gt;&amp;gt;&lt;/code&gt; comparators that are used for max-pooling data during a memory-write operation.&lt;/p&gt; 
+&lt;h3&gt;ROB&lt;/h3&gt; 
+&lt;p&gt;Due to Gemmini&#39;s decoupled access-execute architecture, instructions in the &lt;code&gt;LoadController&lt;/code&gt;, &lt;code&gt;StoreController&lt;/code&gt;, and &lt;code&gt;ExecuteController&lt;/code&gt; may operate concurrently and out-of-order with respect to instructions in other controllers. Gemmini includes an ROB which is meant to detect hazards between instructions in different controllers. The instructions in the ROB are only issued to their respective controllers once they have no dependencies on instructions in other controllers.&lt;/p&gt; 
+&lt;p&gt;Note that instructions that are destined for the same controller are issued in-order. The ROB does not check hazards between instructions within the same controller, because each controller is obligated to handle it&#39;s own dependencies and hazards internally, assuming that it receives it&#39;s own instructions in program-order.&lt;/p&gt; 
+&lt;h3&gt;Matmul and Conv Loop Unrollers&lt;/h3&gt; 
+&lt;p&gt;Gemmini&#39;s systolic array can only operate on matmuls that are up to &lt;code&gt;DIMxDIM&lt;/code&gt; elements large. When performing matmuls and convolutions that are larger than this, programmers must tile their matmuls into a sequence of smaller &lt;code&gt;DIMxDIM&lt;/code&gt; matmuls.&lt;/p&gt; 
+&lt;p&gt;However, tiling these operations efficiently can be difficult for programmers, due to CPU and loop overheads, and the difficulty of unrolling and pipelining software loops.&lt;/p&gt; 
+&lt;p&gt;To alleviate this difficulty, Gemmini&#39;s ISA includes high-level CISC-type instructions, which automatically tile and unroll large matmuls and convolutions. These are implemented in the &lt;code&gt;LoopMatmul&lt;/code&gt; and &lt;code&gt;LoopConv&lt;/code&gt; modules.&lt;/p&gt; 
+&lt;p&gt;These modules are implemented as FSMs, which double-buffer matmul/conv tiles to maximize performance, and which monitor the proportion of load/store/execute instructions in the ROB to maximize overlap between memory accesses and dot-product computations. For example, if the ROB is dominated by matmul instructions, without leaving any slots for incoming load instructions, then the FSMs will pause the issuing of matmul instructions to allow more space for concurrent load instructions in Gemmini&#39;s datapath.&lt;/p&gt; 
+&lt;h1&gt;Software&lt;/h1&gt; 
+&lt;p&gt;The Gemmini ISA is specified in the &lt;code&gt;ISA&lt;/code&gt; section below. The ISA includes configuration instructions, data movement instructions (from main memory to/from Gemmini&#39;s private memory), and matrix multiplication execution instructions.&lt;/p&gt; 
+&lt;p&gt;Since Gemmini instructions are not exposed through the GNU binutils assembler, several C macros are provided in order to construct the instruction encodings to call these instructions.&lt;/p&gt; 
+&lt;p&gt;The Gemmini generator includes a C library which wraps the calls to the custom Gemmini instructions into common DNN operators like matmuls, convolutions (with or without pooling), matrix-additions, etc. The &lt;code&gt;software&lt;/code&gt; directory of the generator includes the aforementioned library and macros, as well as baremetal tests, and some FireMarshal workloads to run the tests in a Linux environment. In particular, the C library can be found in the &lt;code&gt;software/gemmini-rocc-tests/include/gemmini.h&lt;/code&gt; file.&lt;/p&gt; 
+&lt;p&gt;The Gemmini generator generates a C header file based on the generator parameters. This header files gets compiled together with the C library to tune library performance. The generated header file can be found under &lt;code&gt;software/gemmini-rocc-tests/include/gemmini_params.h&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;Gemmini can also be used to run ONNX-specified neural-networks through a port of Microsoft&#39;s ONNX-Runtime framework. The port is included as the &lt;a href=&quot;https://github.com/pranav-prakash/onnxruntime-riscv&quot;&gt;onnxruntime-riscv&lt;/a&gt; repository submoduled in the &lt;code&gt;software&lt;/code&gt; directory. To start using ONNX-Runtime, run &lt;code&gt;git submodule update --init --recursive software/onnxruntime-riscv&lt;/code&gt;, and read the documentation &lt;a href=&quot;https://github.com/pranav-prakash/onnxruntime-riscv/raw/systolic/systolic_runner/docs&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Build and Run Gemmini Tests&lt;/h2&gt; 
+&lt;p&gt;To build the Gemmini tests:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;cd software/gemmini-rocc-tests/
+./build.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Afterwards, the test binaries will be found in &lt;code&gt;software/gemmini-rocc-tests/build&lt;/code&gt;. Binaries whose names end in &lt;code&gt;-baremetal&lt;/code&gt; are meant to be run in a bare-metal environment, while binaries whose names end in &lt;code&gt;-linux&lt;/code&gt; are meant to run in a Linux environment. You can run the tests either on a cycle-accurate RTL simulator, or on a (much faster) functional ISA simulator called Spike.&lt;/p&gt; 
+&lt;p&gt;We use a special extension of Spike, found &lt;a href=&quot;https://github.com/ucb-bar/libgemmini&quot;&gt;here&lt;/a&gt;, which has support for Gemmini instructions. If you are using Chipyard, you can easily build Spike by running &lt;code&gt;./scripts/build-toolchains.sh riscv-tools&lt;/code&gt; from Chipyard&#39;s root directory, then by running &lt;code&gt;make -C software/libgemmini install&lt;/code&gt; in the Gemmini directory. Then, to run the &lt;code&gt;mvin_mvout&lt;/code&gt; test, which simply moves a matrix into Gemmini&#39;s scratchpad before moving it back out into main memory, run the following commands:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;cd build/bareMetalC
+spike --extension=gemmini mvin_mvout-baremetal
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Writing Your Own Gemmini Tests&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;software/gemmini-rocc-tests/bareMetalC/template.c&lt;/code&gt; is a template Gemmini test that you can base your own Gemmini tests off of. To write your own Gemmini test, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;cd software/gemmini-rocc-tests/
+cp bareMetalC/template.c bareMetalC/my_test.c
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then, add &lt;code&gt;my_test&lt;/code&gt; to the &lt;code&gt;tests&lt;/code&gt; list at the top of &lt;code&gt;bareMetalC/Makefile&lt;/code&gt;. Afterwards, running &lt;code&gt;./build.sh&lt;/code&gt; will install &lt;code&gt;my_test-baremetal&lt;/code&gt; in &lt;code&gt;build/bareMetalC&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;DNN Tests&lt;/h2&gt; 
+&lt;p&gt;Example DNNs, such as ResNet50, can be found in &lt;code&gt;software/gemmini-rocc-tests/imagenet&lt;/code&gt; and &lt;code&gt;software/gemmini-rocc-tests/mlps&lt;/code&gt;. These tests are built and run the same way as the other tests described above, but they typically take too long to run in a software simulator like VCS or Verilator. We recommend instead that you run these tests through &lt;a href=&quot;https://fires.im/&quot;&gt;Firesim&lt;/a&gt;, an FPGA-accelerated simulation platform, which will reduce your runtime from days to minutes.&lt;/p&gt; 
+&lt;p&gt;Note that the DNN tests rely upon our C library of common DNN operators (found in &lt;code&gt;gemmini.h&lt;/code&gt;). They call very few direct Gemmini ISA instructions, and mostly call the wrappers around them found in the C library.&lt;/p&gt; 
+&lt;h1&gt;Memory Addressing Scheme&lt;/h1&gt; 
+&lt;p&gt;Gemmini&#39;s private memory is &quot;row-addressed&quot;, where each row is &lt;code&gt;DIM&lt;/code&gt; elements wide, where &lt;code&gt;DIM&lt;/code&gt; is the number of PEs across the width of the systolic array (16 in the default config). These elements will be of type &lt;code&gt;inputType&lt;/code&gt; in the scratchpad, and of type &lt;code&gt;accType&lt;/code&gt; in the accumulator.&lt;/p&gt; 
+&lt;p&gt;Every private Gemmini memory address is 32 bits long. The three most signficant bits are reserved, and have special meanings:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Bit 31 (the MSB) is 0 if we are addressing the scratchpad, and 1 if we are addressing the accumulator.&lt;/li&gt; 
+ &lt;li&gt;Bit 30 is ignored if we are addressing the scratchpad, or if we are reading from the accumulator. If, instead, we are writing to the accumulator, then bit 30 is 0 if we want to overwrite the data at that address, and 1 if we want to accumulate on top of the data already at that address.&lt;/li&gt; 
+ &lt;li&gt;Bit 29 is ignored if we are addressing the scratchpad, or if we are writing to the accumulator. If, instead, we are reading from the accumulator, then bit 29 is 0 if we want to read scaled-down &lt;code&gt;inputType&lt;/code&gt; data from the accumulator, and 1 if we want to read &lt;code&gt;accType&lt;/code&gt; data from the accumulator. 
+  &lt;ul&gt; 
+   &lt;li&gt;If bit 29 is 1 for an accumulator read address, then we do not apply activation functions or scaling to the output of the accumulator.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The memory addressing scheme for a Gemmini config with a 2x2 systolic array is illustrated below:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/memory-addressing.png&quot; alt=&quot;Gemmini&#39;s memory addressing scheme&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Gemmini accesses main memory addresses (which are also visible to the CPU) through their software-visible virtual addresses. Physical translation addresses are handled by Gemmini, transparently to the programmer.&lt;/p&gt; 
+&lt;h1&gt;ISA&lt;/h1&gt; 
+&lt;p&gt;This section describes Gemmini&#39;s assembly-level ISA which is made up of custom RISC-V instructions.&lt;/p&gt; 
+&lt;h2&gt;Data Movement&lt;/h2&gt; 
+&lt;h3&gt;&lt;code&gt;mvin&lt;/code&gt; Move Data From Main Memory to Scratchpad&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;mvin rs1, rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1&lt;/code&gt; = virtual DRAM address (byte addressed) to load into scratchpad&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[31:0]&lt;/code&gt; = local scratchpad or accumulator address&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[47:32]&lt;/code&gt; = number of columns to load in&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[63:48]&lt;/code&gt; = number of rows to load in. Must be less than or equal to &lt;code&gt;DIM&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 2&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; Scratchpad[rs2] &amp;lt;= DRAM[Translate[rs1]]&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Loads a 2D matrix from main memory into Gemmini&#39;s private memory.&lt;/li&gt; 
+ &lt;li&gt;Load is sequential from the rs1/rs2 base addresses.&lt;/li&gt; 
+ &lt;li&gt;Main memory stride must be set by the &lt;code&gt;config_mvin&lt;/code&gt; command.&lt;/li&gt; 
+ &lt;li&gt;If the number of columns we load in are greater than &lt;code&gt;DIM&lt;/code&gt;, then multiple submatrices will be moved in. The private-memory stride between these submatrices is set by the &lt;code&gt;config_mvin&lt;/code&gt; command.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The figure below illustrates how the &lt;code&gt;mvin&lt;/code&gt; command works:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/mvin.png&quot; alt=&quot;Gemmini&#39;s mvin command&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;In addition, the figure below illustrates the special case where the number of columns moved-in is greater than &lt;code&gt;DIM&lt;/code&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/block-mvin.png&quot; alt=&quot;Gemmini&#39;s mvin command with many cols&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;There are actually &lt;strong&gt;three&lt;/strong&gt; &lt;code&gt;mvin&lt;/code&gt; instructions in Gemmini: &lt;code&gt;mvin&lt;/code&gt;, &lt;code&gt;mvin2&lt;/code&gt;, and &lt;code&gt;mvin3&lt;/code&gt;. &lt;code&gt;mvin2&lt;/code&gt; and &lt;code&gt;mvin3&lt;/code&gt; are completely identical to &lt;code&gt;mvin&lt;/code&gt;, except that they have their own independent set of configuration registers. When calling &lt;code&gt;config_mvin&lt;/code&gt; (described below), the programmer can choose which &lt;code&gt;mvin&lt;/code&gt; instruction they want to configure.&lt;/li&gt; 
+ &lt;li&gt;The reason we have three &lt;code&gt;mvin&lt;/code&gt; instructions is so that the programmer can overlap loads for A, B, and D matrices (for a &lt;code&gt;A*B+D&lt;/code&gt; matmul), where A, B, and D may all have different main-memory-strides.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;&lt;code&gt;mvout&lt;/code&gt; Move Data from Scratchpad to L2/DRAM&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;mvout rs1, rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1&lt;/code&gt; = virtual DRAM address (byte addressed) to write to from scratchpad&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[31:0]&lt;/code&gt; = local scratchpad address&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[47:32]&lt;/code&gt; = number of columns to store&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[63:48]&lt;/code&gt; = number of rows to store&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 3&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; DRAM[Translate[rs1]] &amp;lt;= Scratchpad[rs2]&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Stores a 2D matrix from the scratchpad to main-memory&lt;/li&gt; 
+ &lt;li&gt;Store is sequential from the rs1/rs2 base addresses. Stride must be set by the &lt;code&gt;config_mvout&lt;/code&gt; command&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;h3&gt;&lt;code&gt;config_ex&lt;/code&gt; configures the Execute pipeline&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;config_ex rs1 rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[1:0]&lt;/code&gt; must be &lt;code&gt;00&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[2]&lt;/code&gt; determines if output (0) or weight (1) stationary&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[3]&lt;/code&gt; = activation function: either relu (1) or no activation function (0)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[8]&lt;/code&gt; = should A be transposed?&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[9]&lt;/code&gt; = should B be transposed?&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[31:16]&lt;/code&gt; = the stride (in scratchpad addresses) by which the rows of A are fed into the systolic array. &quot;A&quot; in this context refers to the left-hand matrix A in the matmul represented by A * B = C. If this stride is 1, then we feed consecutive rows in the scratchpad, starting from the starting address of A, into the systolic array as the A matrix. If the stride is 2, then we feed every other row into the systolic array instead.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[63:32]&lt;/code&gt; = the scalar value by which we scale the &lt;code&gt;accType&lt;/code&gt; output of the accumulator down to &lt;code&gt;inputType&lt;/code&gt; values when reading from the accumulator. 
+  &lt;ul&gt; 
+   &lt;li&gt;In the default config, &lt;code&gt;rs1[63:32]&lt;/code&gt; is of type &lt;code&gt;float32&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[31:0]&lt;/code&gt; = the number of bits by which the accumulated result of a matmul is right-shifted when leaving the systolic array 
+  &lt;ul&gt; 
+   &lt;li&gt;This parameter is only relevant in output-stationary mode, when partial sums must be accumulated within the systolic array itself, and scaled-down when leaving the systolic array and being written into the scratchpad.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 0&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; mode &amp;lt;= rs1(2); shift &amp;lt;= rs2; A_stride &amp;lt;= rs1[31:16]&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;As of now, certain combinations of transpose options cannot be performed unless the right dataflow is chosen. This limitation may be lifted in the future.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Dataflow&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Transpose A&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Transpose B&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Permitted?&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;OS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;OS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;OS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;OS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;WS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;WS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;WS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;WS&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;Yes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;&lt;code&gt;config_mvin&lt;/code&gt; configures the Load pipeline&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;config_mvin rs1 rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[1:0]&lt;/code&gt; must be &lt;code&gt;01&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[2]&lt;/code&gt; is 0 if &lt;code&gt;mvin&lt;/code&gt;s to the accumulator are of type &lt;code&gt;accType&lt;/code&gt;, and 1 if they are &lt;code&gt;inputType&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[4:3]&lt;/code&gt; is 0 if the stride is being set for &lt;code&gt;mvin&lt;/code&gt;, 1 if the stride is being set for &lt;code&gt;mvin2&lt;/code&gt;, and 2 if the stride is being set for &lt;code&gt;mvin3&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[31:16]&lt;/code&gt; is the scratchpad-memory stride (also called the &quot;private-memory stride&quot; above)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[63:32]&lt;/code&gt; is the &quot;scale&quot; by which to multiply data as it&#39;s being moved in to the scratchpad. This is ignored if Gemmini isn&#39;t configured to have the ability to scale values during &lt;code&gt;mvin&lt;/code&gt;s.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2&lt;/code&gt; is the main-memory stride in bytes&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 0&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; stride &amp;lt;= rs2; scale &amp;lt;= rs1[63:32]&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;config_mvout&lt;/code&gt; configures the Store pipeline&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;config_mvout rs1 rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[1:0]&lt;/code&gt; must be &lt;code&gt;10&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2&lt;/code&gt; = the stride in bytes&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 0&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;During &lt;code&gt;mvout&lt;/code&gt; operations, Gemmini can also perform max-pooling. &lt;strong&gt;This is an experimental feature, and is subject to change.&lt;/strong&gt; This feature assumes that data is stored in the scratchpad or accumulator in NHWC format. The parameters controlling this feature are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[5:4]&lt;/code&gt; = max-pooling stride. If this is 0, then max-pooling is deactivated.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[7:6]&lt;/code&gt; = max-pooling window size&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[9:8]&lt;/code&gt; = upper zero-padding&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[11:10]&lt;/code&gt; = left zero-padding&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[31:24]&lt;/code&gt; = output dimension of image after pooling&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[39:32]&lt;/code&gt; = number of pooled rows to output&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[47:40]&lt;/code&gt; = number of pooled columns to output&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[55:48]&lt;/code&gt; = number of unpooled rows to pool&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[63:56]&lt;/code&gt; = number of unpooled columns to pool&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; stride &amp;lt;= rs2; max-pooling parameters &amp;lt;= rs1&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;config_norm&lt;/code&gt; configures normalization commands&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;config_norm rs1 rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;config_norm&lt;/code&gt; is an &lt;strong&gt;experimental&lt;/strong&gt; command added primarily to support an integer-only variant of BERT called &lt;a href=&quot;https://arxiv.org/abs/2101.01321&quot;&gt;I-BERT&lt;/a&gt; on Gemmini. The command allows users to set scalar constants that are used by I-BERT&#39;s GELU, layernorm, and softmax variants.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;flush&lt;/code&gt; flushes the TLB&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;flush rs1&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1&lt;/code&gt; = If &lt;code&gt;rs1[0]&lt;/code&gt; is 1, then the current TLB request is skipped (if it has hit a page-fault and is waiting for an interrupt). Otherwise, the current TLB request is repeated.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Notes:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;This instruction executes &lt;em&gt;as soon as it is received&lt;/em&gt; without waiting for other instructions which may be queued up. It is the programmer&#39;s responsibility to insert fences if necessary.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Core Matmul Sequences&lt;/h2&gt; 
+&lt;p&gt;Every single matrix multiply operation is a combination of &lt;code&gt;matmul.preload&lt;/code&gt; and &lt;code&gt;matmul.compute&lt;/code&gt; (due to the length of a single instruction, it was split into two instructions). &lt;code&gt;matmul.preload&lt;/code&gt; should precede the &lt;code&gt;matmul.compute&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;//// OS matmul example ////
+// rs1 = InputD
+// rs2 = OutputC
+// rs3 = InputA
+// rs4 = InputB
+// matmul InputA InputB OutputC InputD
+1. matmul.preload $rs1 $rs2
+2. matmul.compute $rs3 $rs4
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Action:&lt;/strong&gt; Scratchpad[rs2] &amp;lt;= Scratchpad[rs3] * Scratchpad[rs4] + Scratchpad[rs1]&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Notes on addressing:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For B or D, the address can be replaced with all high bits to input a 0 matrix instead.&lt;/li&gt; 
+ &lt;li&gt;For A, the address can be replaced with all high bits to input a matrix with undefined garbage data instead.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Preloading&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;matmul.preload rs1, rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[31:0]&lt;/code&gt; = local scratchpad address of D matrix (when output-stationary), or B matrix (when weight-stationary)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[47:32]&lt;/code&gt; = number of columns of D/B matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[63:48]&lt;/code&gt; = number of rows of D/B matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[31:0]&lt;/code&gt; = local scratchpad address of C matrix. If this is set to all high bits, then C will not be written to the scratchpad or accumulator.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[47:32]&lt;/code&gt; = number of columns of C matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[63:48]&lt;/code&gt; = number of rows of C matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 6&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Commit Behavior:&lt;/strong&gt; This instruction commits on the cycle after the systolic array receives it. The systolic array remains idle until the subsequent OS/WS specific instructions are seen.&lt;/p&gt; 
+&lt;h3&gt;Computing&lt;/h3&gt; 
+&lt;h4&gt;Explicitly Preloaded&lt;/h4&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;matmul.compute.preloaded rs1, rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[31:0]&lt;/code&gt; = local scratchpad address (systolic array single-axis addressed) of A matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[47:32]&lt;/code&gt; = number of columns of A matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1[63:48]&lt;/code&gt; = number of rows of A matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[31:0]&lt;/code&gt; = local scratchpad address (systolic array single-axis addressed) of B matrix (when output-stationary), or D matrix (when weight-stationary)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[47:32]&lt;/code&gt; = number of columns of B/D matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs2[63:48]&lt;/code&gt; = number of rows of B/D matrix&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 4&lt;/li&gt; 
+ &lt;li&gt;This instruction will compute on the value preloaded (D if output-stationary, or B if weight-stationary)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Re-use Previous Preloads&lt;/h4&gt; 
+&lt;p&gt;&lt;strong&gt;Format:&lt;/strong&gt; &lt;code&gt;matmul.compute.accumulated rs1, rs2&lt;/code&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;funct&lt;/code&gt; = 5&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rs1&lt;/code&gt; and &lt;code&gt;rs2&lt;/code&gt; have the same encoding as the &lt;code&gt;matmul.compute.preloaded&lt;/code&gt; encoding&lt;/li&gt; 
+ &lt;li&gt;If output-stationary, this instruction will compute on the previously computed result (C) in the systolic array, accumulating on top of it&lt;/li&gt; 
+ &lt;li&gt;If weight-stationary, this instruction will compute on the previously preloaded weights (B) in the systolic array&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Loop Instructions&lt;/h2&gt; 
+&lt;p&gt;Gemmini includes CISC-type instructions which can perform matmuls and convolutions on data that is much larger than &lt;code&gt;DIMxDIM&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;There&#39;s nothing these CISC instructions do which a programmer couldn&#39;t do by tiling and looping through the other ISA instructions described above; however, these CISC instructions may achieve higher throughput than such tiled loops written by non-expert programmers. The CISC instructions should be considered performance enhancers; they do not give the accelerator any new functionality that it wouldn&#39;t have otherwise.&lt;/p&gt; 
+&lt;p&gt;The CISC instructions have too many operands to fit into a single RISC-V custom instruction. Therefore, they are implemented as a sequence of many RISC-V custom instructions which must be called consecutively by the programmer.&lt;/p&gt; 
+&lt;p&gt;These instructions can be found &lt;code&gt;software/gemmini-rocc-tests/include/gemmini.h&lt;/code&gt;, together with example usages. We list below their arguments.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;These loop instructions are experimental and subject to change.&lt;/strong&gt;&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;gemmini_loop_ws&lt;/code&gt; Matmul Loop (WS Dataflow)&lt;/h3&gt; 
+&lt;p&gt;This instruction calculates &lt;code&gt;A * B + D = C&lt;/code&gt;, but &lt;code&gt;A&lt;/code&gt;, &lt;code&gt;B&lt;/code&gt;, &lt;code&gt;D&lt;/code&gt;, and &lt;code&gt;C&lt;/code&gt; can all be larger than &lt;code&gt;DIMxDIM&lt;/code&gt;. &lt;code&gt;A&lt;/code&gt;, and &lt;code&gt;B&lt;/code&gt; must be of type &lt;code&gt;inputType&lt;/code&gt;, but both &lt;code&gt;D&lt;/code&gt; and &lt;code&gt;C&lt;/code&gt; can be &lt;em&gt;either&lt;/em&gt; &lt;code&gt;inputType&lt;/code&gt; or &lt;code&gt;accType&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;The sizes of these matrices are represented by &lt;code&gt;I&lt;/code&gt;, &lt;code&gt;J&lt;/code&gt;, and &lt;code&gt;K&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;scratchpad rows of A = I * K * DIM
+scratchpad rows of B = K * J * DIM
+accumulator rows of D = I * J * DIM
+accumulator rows of C = I * J * DIM
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;However, the total number of scratchpad rows taken up by a single &lt;code&gt;gemmini_loop_ws&lt;/code&gt; must be at most &lt;strong&gt;half&lt;/strong&gt; of the total scratchpad size, because Gemmini performs double-buffering during CISC instructions. To compute larger matrix multiplies, the loop instructions must also be tiled within an outer loop.&lt;/p&gt; 
+&lt;p&gt;To support outer-tiling of the &lt;code&gt;gemmini_loop_ws&lt;/code&gt; instruction, we include an argument called &lt;code&gt;ex_accumulate&lt;/code&gt;, which determines whether to perform a matmul on top of the partial sums that already exist within the accumulator (from previous calls to &lt;code&gt;gemmini_loop_ws&lt;/code&gt; within the same outer-loop).&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;gemmini_loop_conv_ws&lt;/code&gt; Conv Loop (WS Dataflow)&lt;/h3&gt; 
+&lt;p&gt;Gemmini also includes a CISC instruction for convolutions, implemented similarly to the matmul CISC instruction. &lt;code&gt;gemmini_loop_conv_ws&lt;/code&gt; will perform a convolution with the WS dataflow, and also supports features such as max-pooling, transpose convolutions, and various preprocessing transformations on the weight and input data.&lt;/p&gt; 
+&lt;p&gt;Like &lt;code&gt;gemmini_loop_ws&lt;/code&gt;, the inputs to a single &lt;code&gt;gemmini_loop_conv_ws&lt;/code&gt; call must fit within half of Gemmini&#39;s private memory, to support double-buffering. If the programmer would like to perform larger convolutions, they must tile and wrap &lt;code&gt;gemmini_loop_conv_ws&lt;/code&gt; within an outer-loop.&lt;/p&gt; 
+&lt;h1&gt;Citing Gemmini&lt;/h1&gt; 
+&lt;p&gt;If Gemmini helps you in your academic research, you are encouraged to cite our paper. Here is an example bibtex:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;@INPROCEEDINGS{gemmini-dac,
+  author={Genc, Hasan and Kim, Seah and Amid, Alon and Haj-Ali, Ameer and Iyer, Vighnesh and Prakash, Pranav and Zhao, Jerry and Grubb, Daniel and Liew, Harrison and Mao, Howard and Ou, Albert and Schmidt, Colin and Steffl, Samuel and Wright, John and Stoica, Ion and Ragan-Kelley, Jonathan and Asanovic, Krste and Nikolic, Borivoje and Shao, Yakun Sophia},
+  booktitle={Proceedings of the 58th Annual Design Automation Conference (DAC)}, 
+  title={Gemmini: Enabling Systematic Deep-Learning Architecture Evaluation via Full-Stack Integration}, 
+  year={2021},
+  volume={},
+  number={},
+  pages={}
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Acknowledgements&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;This project was, in part, funded by the U.S. Government under the DARPA RTML program (contract FA8650-20-2-7006). The views and conclusions contained in this document are those of the authors and should not be interpreted as representing the official policies, either expressed or implied, of the U.S. Government.&lt;/li&gt; 
+ &lt;li&gt;The Gemmini &lt;a href=&quot;https://raw.githubusercontent.com/ucb-bar/gemmini/master/img/full-logo.svg&quot;&gt;logo&lt;/a&gt; was designed by Dima Nikiforov (&lt;a href=&quot;https://github.com/CobbledSteel&quot;&gt;@CobbledSteel&lt;/a&gt;).&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/7cb56d86cd01a00e32bc5f8db82a9dcf786bf3c65cf877f3beac3b25006d69b6/ucb-bar/gemmini" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>apache/livy</title>
+      <link>https://github.com/apache/livy</link>
+      <description>&lt;p&gt;Apache Livy is an open source REST interface for interacting with Apache Spark from anywhere.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Apache Livy&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/apache/livy/actions/workflows/unit-tests.yaml&quot;&gt;&lt;img src=&quot;https://github.com/apache/livy/actions/workflows/unit-tests.yaml/badge.svg?branch=master&quot; alt=&quot;Unit Tests&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/apache/livy/actions/workflows/integration-tests.yaml&quot;&gt;&lt;img src=&quot;https://github.com/apache/livy/actions/workflows/integration-tests.yaml/badge.svg?branch=master&quot; alt=&quot;Integration Tests&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Apache Livy is an open source REST interface for interacting with &lt;a href=&quot;https://spark.apache.org&quot;&gt;Apache Spark&lt;/a&gt; from anywhere. It supports executing snippets of code or programs in a Spark context that runs locally or in &lt;a href=&quot;https://hadoop.apache.org/docs/current/hadoop-yarn/hadoop-yarn-site/YARN.html&quot;&gt;Apache Hadoop YARN&lt;/a&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Interactive Scala, Python and R shells&lt;/li&gt; 
+ &lt;li&gt;Batch submissions in Scala, Java, Python&lt;/li&gt; 
+ &lt;li&gt;Multiple users can share the same server (impersonation support)&lt;/li&gt; 
+ &lt;li&gt;Can be used for submitting jobs from anywhere with REST&lt;/li&gt; 
+ &lt;li&gt;Does not require any code change to your programs&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/apache/livy/pulls&quot;&gt;Pull requests&lt;/a&gt; are welcomed! But before you begin, please check out the &lt;a href=&quot;https://livy.apache.org/community/#Contributing&quot;&gt;Contributing&lt;/a&gt; section on the &lt;a href=&quot;https://livy.apache.org/community/&quot;&gt;Community&lt;/a&gt; page of our website.&lt;/p&gt; 
+&lt;h2&gt;Online Documentation&lt;/h2&gt; 
+&lt;p&gt;Guides and documentation on getting started using Livy, example code snippets, and Livy API documentation can be found at &lt;a href=&quot;https://livy.apache.org&quot;&gt;livy.apache.org&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Before Building Livy&lt;/h2&gt; 
+&lt;p&gt;To build Livy, you will need:&lt;/p&gt; 
+&lt;p&gt;Debian/Ubuntu:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;mvn (from &lt;code&gt;maven&lt;/code&gt; package or maven3 tarball)&lt;/li&gt; 
+ &lt;li&gt;openjdk-8-jdk (or Oracle JDK 8)&lt;/li&gt; 
+ &lt;li&gt;Python 3.x+&lt;/li&gt; 
+ &lt;li&gt;R 3.x&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Redhat/CentOS:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;mvn (from &lt;code&gt;maven&lt;/code&gt; package or maven3 tarball)&lt;/li&gt; 
+ &lt;li&gt;java-1.8.0-openjdk (or Oracle JDK 8)&lt;/li&gt; 
+ &lt;li&gt;Python 3.x+&lt;/li&gt; 
+ &lt;li&gt;R 3.x&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;MacOS:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Xcode command line tools&lt;/li&gt; 
+ &lt;li&gt;Oracle&#39;s JDK 1.8&lt;/li&gt; 
+ &lt;li&gt;Maven (Homebrew)&lt;/li&gt; 
+ &lt;li&gt;Python 3.x+&lt;/li&gt; 
+ &lt;li&gt;R 3.x&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Required python packages for building Livy:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;cloudpickle&lt;/li&gt; 
+ &lt;li&gt;requests&lt;/li&gt; 
+ &lt;li&gt;requests-kerberos&lt;/li&gt; 
+ &lt;li&gt;flake8&lt;/li&gt; 
+ &lt;li&gt;flaky&lt;/li&gt; 
+ &lt;li&gt;pytest&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To run Livy, you will also need a Spark installation. You can get Spark releases at &lt;a href=&quot;https://spark.apache.org/downloads.html&quot;&gt;https://spark.apache.org/downloads.html&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Livy requires Spark 3.0+. You can switch to a different version of Spark by setting the &lt;code&gt;SPARK_HOME&lt;/code&gt; environment variable in the Livy server process, without needing to rebuild Livy.&lt;/p&gt; 
+&lt;h2&gt;Building Livy&lt;/h2&gt; 
+&lt;p&gt;Livy is built using &lt;a href=&quot;http://maven.apache.org&quot;&gt;Apache Maven&lt;/a&gt;. To check out and build Livy, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/apache/livy.git
+cd livy
+mvn package
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also use the provided &lt;a href=&quot;https://raw.githubusercontent.com/apache/livy/master/dev/docker/livy-dev-base/Dockerfile&quot;&gt;Dockerfile&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/apache/livy.git
+cd livy
+docker build -t livy-ci dev/docker/livy-dev-base/
+docker run --rm -it -v $(pwd):/workspace -v $HOME/.m2:/root/.m2 livy-ci mvn package -Pspark3 -Pscala-2.12
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The &lt;code&gt;docker run&lt;/code&gt; command maps the maven repository to your host machine&#39;s maven cache so subsequent runs will not need to download dependencies.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;By default Livy is built against Apache Spark 3.3.4, but the version of Spark used when running Livy does not need to match the version used to build Livy. Livy internally handles the differences between different Spark versions.&lt;/p&gt; 
+&lt;p&gt;The Livy package itself does not contain a Spark distribution. It will work with any supported version of Spark without needing to rebuild.&lt;/p&gt; 
+&lt;h3&gt;Build Profiles&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Flag&lt;/th&gt; 
+   &lt;th&gt;Purpose&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;-Phadoop2&lt;/td&gt; 
+   &lt;td&gt;Choose Hadoop2 based build dependencies&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;-Pthriftserver&lt;/td&gt; 
+   &lt;td&gt;Build and test Livy Thrift Server modules&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;-Pspark3&lt;/td&gt; 
+   &lt;td&gt;Choose Spark 3.x based build dependencies&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;-Pscala-2.12&lt;/td&gt; 
+   &lt;td&gt;Choose Scala 2.12 based build dependencies&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/1052ba3581ee63d8c1eea1d3036fcd3fd34ef70cdc3e9632f3b66e6485b55551/apache/livy" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

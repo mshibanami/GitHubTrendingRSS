@@ -1,0 +1,381 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub Perl Daily Trending</title>
+    <description>Daily Trending of Perl in GitHub</description>
+    <pubDate>Fri, 24 Jul 2026 01:46:23 GMT</pubDate>
+    <link>http://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>linux-test-project/lcov</title>
+      <link>https://github.com/linux-test-project/lcov</link>
+      <description>&lt;p&gt;LCOV&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;================================================= README file for the LTP GCOV extension (LCOV)&lt;/h1&gt; 
+&lt;p&gt;Last changes: 2026-05-30&lt;/p&gt; 
+&lt;h1&gt;Description&lt;/h1&gt; 
+&lt;p&gt;LCOV is a tool to manipulate and display information about what parts of a program are actually executed (&lt;em&gt;i.e.&lt;/em&gt; &quot;covered&quot;) while running a particular test case or set of testcases. LCOV consists of a set of Perl scripts which build on the text output of various coverage tools - &lt;em&gt;e.g.&lt;/em&gt;, gcov, llvm-cov, &lt;a href=&quot;http://Coverage.py&quot;&gt;Coverage.py&lt;/a&gt;, Cobertura, Devel::Cover, Jacoco, etc. - to implement the following enhanced functionality:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;HTML based output&lt;/strong&gt;: coverage rates are indicated using bar graphs and specific colors in a hyperlinked coverage report, intended to enable the user to quickly diagnose and address coverage issues.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Support for large projects&lt;/strong&gt;: overview pages allow quick browsing of coverage data by providing a hierarchical directory structure view, a flat list of all source files in the project, or a three-level detail view: directory, file and source code view.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Support for multiple languages&lt;/strong&gt; - including C/C++, Perl, and Python.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;LCOV was initially designed to support Linux kernel coverage measurements, but works as well for coverage measurements on standard user space applications.&lt;/p&gt; 
+&lt;p&gt;LCOV supports differential coverage, as well as date- and owner-binning. See:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://arxiv.org/abs/2008.07947&quot;&gt;https://arxiv.org/abs/2008.07947&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;or&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://ieeexplore.ieee.org/document/9438597&quot;&gt;https://ieeexplore.ieee.org/document/9438597&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;for a detailed explanation of the concepts and several possible use models.&lt;/p&gt; 
+&lt;p&gt;A video presentation of the basic ideas can be found at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://doi.org/10.5281/zenodo.4653252&quot;&gt;http://doi.org/10.5281/zenodo.4653252&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In addition, several other features and capabilities are available. See section 6, below, for a brief description - and also see the man pages and the test cases.&lt;/p&gt; 
+&lt;p&gt;.. _table-of-contents:&lt;/p&gt; 
+&lt;h1&gt;Table of Contents&lt;/h1&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;code&gt;Included files &amp;lt;#section-1-included-files&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Installing LCOV &amp;lt;#section-2-installing-lcov&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Dependencies &amp;lt;#section-3-dependencies&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;How to access coverage data for a user space program &amp;lt;#section-4-user-space&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;How to access Linux kernel coverage data &amp;lt;#section-5-linux-kernel&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;LCOV Features &amp;lt;#section-6-lcov-features&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Questions and comments &amp;lt;#section-7-questions-comments&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Filing a new issue &amp;lt;#section-8-filing-issue&amp;gt;&lt;/code&gt;_&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;.. _section-1-included-files:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Included files =================&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;================= ========================================================== README.rst This README file bin/lcov Tool to capture and manipulate LCOV coverage data bin/genhtml Tool to generate HTML report from LCOV data bin/perl2lcov Tool to translate Perl &lt;code&gt;Devel::Cover&lt;/code&gt; data to lcov format bin/llvm2lcov Tool to translate LLVM &lt;code&gt;llvm-cov&lt;/code&gt; JSON data to LCOV format bin/py2lcov Tool to translate Python &lt;code&gt;Coverage.py&lt;/code&gt; to lcov format bin/xml2lcov Tool to translate Cobertura-like XML coverage data to lcov format bin/geninfo Internal tool (creates LCOV data files) bin/gendesc Tool for creating description files as used by genhtml bin/genpng Internal tool (creates png overviews of source files) lcovrc Sample LCOV configuration file docs Directory containing documentation source example Directory containing examples which demonstrate LCOV features scripts Example callback implementations - see &lt;code&gt;section 4.e &amp;lt;#section-4e-callbacks&amp;gt;&lt;/code&gt;_, below tests Directory containing lcov regression tests Makefile Makefile providing &#39;install&#39; and &#39;uninstall&#39; targets ================= ==========================================================&lt;/p&gt; 
+&lt;p&gt;.. _section-2-installing-lcov:&lt;/p&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Installing LCOV ==================&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;The LCOV package is available as either RPM or tarball from:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/linux-test-project/lcov/releases&quot;&gt;https://github.com/linux-test-project/lcov/releases&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;To install the tarball, unpack it to a directory and run::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;make install [LCOV_NO_DOC=1]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If &lt;code&gt;LCOV_NO_DOC&lt;/code&gt; is defined, then the install process will not build or install documentation. (By default, documentation is built and installed.)&lt;/p&gt; 
+&lt;p&gt;Use Git for the most recent (but possibly unstable) version::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/linux-test-project/lcov.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Change to the resulting lcov directory and type::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;make install [LCOV_NO_DOC=1]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The default install location is /usr/local. Note that you may need to have superuser permissions to write into system directories.&lt;/p&gt; 
+&lt;p&gt;To install in a different location - for example, your home directory, run::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;make PREFIX=$HOME/my_lcov install [LCOV_NO_DOC=1]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Your PREFIX should be an absolute path.&lt;/p&gt; 
+&lt;p&gt;After installation, the LCOV documentation can be found in both &lt;code&gt;man&lt;/code&gt; and &lt;code&gt;html&lt;/code&gt; formats.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;man&lt;/strong&gt;: $ export MANPATH=$MANPATH:$LCOV_HOME/share/lcov/man $ man lcov # or &#39;man genhtml&#39;, &#39;man llvm2lcov&#39;, etc.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;html&lt;/strong&gt; point your browser to &lt;code&gt;$LCOV_HOME/share/lcov/html/index.html&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To run the LCOV regression test suite on your installation::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ cp -r $LCOV_HOME/share/test path/to/myTestDir
+$ cd path/to/myTestDir
+$ make [COVERAGE=1]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If desired, you can collect coverage data for the LCOV module by setting the COVERAGE makefile variable. Note that the Devel::Cover package must be installed if COVERAGE is enabled or if you want to use the perl2lcov utility. To view the collected coverage information, point your browser to &lt;code&gt;.../lcov_coverage/index.html&lt;/code&gt; after running the tests.&lt;/p&gt; 
+&lt;p&gt;Note that the testcases are primarily intended to test LCOV functionality and not to be easily readable tutorial examples.&lt;/p&gt; 
+&lt;p&gt;.. _section-3-dependencies:&lt;/p&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt;Dependencies ===============&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;The lcov module is implemented primarily in Perl - and requires both a moderately up-to-date Perl installation and multiple Perl packages.&lt;/p&gt; 
+&lt;p&gt;These perl packages include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Capture::Tiny&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;DateTime&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Devel::Cover&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Devel::StackTrace&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Digest::MD5&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;File::Spec&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;at least one flavor of JSON module. In order of performance/preference:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;JSON::XS&lt;/li&gt; 
+   &lt;li&gt;Cpanel::JSON::XS&lt;/li&gt; 
+   &lt;li&gt;JSON::PP&lt;/li&gt; 
+   &lt;li&gt;JSON&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Memory::Process&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Module::Load::Conditional&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Scalar::Util&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Time::HiRes&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;TimeDate&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If your system is missing any of these, then you may be able to install them via::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ perl -MCPAN -e &#39;install(&amp;lt;packageName&amp;gt;)&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You will very likely need superuser access to be able to install Perl modules.&lt;/p&gt; 
+&lt;p&gt;To execute &lt;code&gt;make install ...&lt;/code&gt; or &lt;code&gt;make doc&lt;/code&gt;, you will need:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;sphinx-build&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Some of the applications provided with the lcov module are written in Python - and may require additional Python packages. In particular, &#39;xlsxwriter&#39; is required in order to generate any of the spreadsheet reports.&lt;/p&gt; 
+&lt;p&gt;To measure Python code coverage, users will need Python packages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://Coverage.py&quot;&gt;Coverage.py&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In addition, contributors will need:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;perltidy&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Your platform may support other mechanisms to install and/or update required packages.&lt;/p&gt; 
+&lt;p&gt;.. _section-4-user-space:&lt;/p&gt; 
+&lt;ol start=&quot;4&quot;&gt; 
+ &lt;li&gt;How to access coverage data for a user space program =======================================================&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;a) Capture current coverage state to a file:&lt;/p&gt; 
+&lt;p&gt;i) C/C++ code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  Compile your program using the &#39;--coverage&#39; GCC or LLVM
+  option. During linking, make sure to specify &#39;--coverage&#39;::
+
+      $ gcc -o myTest --coverage simple.c
+
+  or::
+
+      $ gcc -c file1.c file2.c ... --coverage
+      $ gcc -o myOtherTest --coverage file1.o file2.o ....
+
+  Alternately, LLVM users can use the &#39;profdata path&#39; (rather than the
+  &#39;gcov path&#39;) to collect coverage data from their C/C++ code. See
+  https://github.com/linux-test-project/lcov/discussions/234 for more
+  information.
+
+  Run your testcase at least once::
+
+      $ path/to/my/testcase/myTest
+
+  Capture the current coverage state to a file::
+
+      $ lcov --directory path/to/my/testcase --capture --output-file app.info
+
+  (LLVM users using the &#39;profdata path&#39; will use a somewhat different
+  command for this step - see the discussion referenced above.)
+
+  If you want to collect Modified Condition / Decision Coverage (MD/DC)
+  data, then:
+
+  - you must use ``gcc/14.2`` (or newer), or ``LLVM/18`` (or newer)
+  - your GCC compile- and link command line must include flag
+    ``-fcondition-coverage``.
+  - LLVM users must use the &#39;profdata path&#39; for coverage data collection,
+    and your compile command line must include
+    ``-fprofile-inst-generate -fcoverage-mapping -fcoverage-mcdc``.
+    See the above referenced discussion for details.
+  - your lcov and genhtml command line must include flag
+    ``--mcdc-coverage``
+
+  See the ``--mcdc-coverage`` section in the genhtml and geninfo man pages.
+
+  Note that runtime coverage data exists only after the application has
+  been started and stopped at least once. Otherwise, no data will be found
+  and lcov will abort with an error mentioning that there are no
+  data/.gcda files.
+
+  The coverage runtime emits data (the .gcda files) in an atexit
+  callback. If your application exits abnormally or crashes before
+  the callback is executed, then no coverage data will be available.
+
+  For further information on the gcc profiling mechanism, please
+  consult the gcov man page.
+
+  See &#39;man lcov&#39; for more information - especially if your build/test
+  environment is not trivial.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;ii) Python code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  - install the Coverage.py module
+
+  - execute your testcase to produce python coverage data::
+
+        $ COVERAGE_FILE=./pycov.dat coverage run --append --branch \
+            myPythonScript [my script args]
+
+  - translate Python coverage data to LCOV format::
+
+        $ py2lcov -o pycov.info [py2lcov_options] pycov.dat [x.dat]+
+
+  See &#39;py2lcov --help&#39; and the Coverage.py documentation for more
+  information.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;iii) Perl code:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  - install the Devel::Cover module
+
+  - execute your testcase to produce perl coverage data::
+
+        $ perl -MDevel::Cover=-db,perlcov_db,-coverage,statement,branch,condition,subroutine,-silent,1 myPerlTest.pl [my script args]
+
+  - translate Perl coverage data to LCOV format::
+
+        $ perl2lcov --output perlcov.info perlcov_db [perl2lcov options]
+
+  See ``perl2lcov --help`` and the ``Devel::Cover`` documentation for more
+  information.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;iv) XML data (for example, generated by Cobertura):&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  - translate XML coverage data to LCOV format::
+
+        $ xml2lcov --output myData.info coverage.xml [xml2lcov options]
+
+  See ``xml2lcov --help`` and the Cobertura documentation for more
+  information.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;b) Generate an HTML coverage report:&lt;/p&gt; 
+&lt;p&gt;Generate an HTML report, combining all of your LCOV data files::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   $ genhtml -o html_report app.info pycov.info perlcov.info
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Point the web browser of your choice to the resulting file: html_report/index.html.&lt;/p&gt; 
+&lt;p&gt;See &#39;man genhtml&#39; for more details.&lt;/p&gt; 
+&lt;p&gt;c) Generate a differential coverage report:&lt;/p&gt; 
+&lt;p&gt;See the example in &lt;code&gt;.../example&lt;/code&gt; (run &lt;code&gt;make test_differential&lt;/code&gt;) as well as the examples in &lt;code&gt;.../tests/genhtml&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;.. _section-5-linux-kernel:&lt;/p&gt; 
+&lt;ol start=&quot;5&quot;&gt; 
+ &lt;li&gt;How to access Linux kernel coverage data ===========================================&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;Requirements: Follow the Linux kernel coverage setup instructions at:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://docs.kernel.org/dev-tools/gcov.html&quot;&gt;https://docs.kernel.org/dev-tools/gcov.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;As root, do the following:&lt;/p&gt; 
+&lt;p&gt;a) Resetting counters::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   lcov --zerocounters
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;b) Capturing the current coverage state to a file::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   lcov --capture --output-file kernel.info
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;c) Getting HTML output::&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   genhtml kernel.info
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Point the web browser of your choice to the resulting index.html file.&lt;/p&gt; 
+&lt;p&gt;.. _section-6-lcov-features:&lt;/p&gt; 
+&lt;ol start=&quot;6&quot;&gt; 
+ &lt;li&gt;LCOV Features ================&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;LCOV features and capabilities fall into 7 major categories:&lt;/p&gt; 
+&lt;p&gt;a) Categorization&lt;/p&gt; 
+&lt;p&gt;This refers primarily to differential coverage categorization as well as date- and owner-binning. See &lt;a href=&quot;https://arxiv.org/abs/2008.07947&quot;&gt;https://arxiv.org/abs/2008.07947&lt;/a&gt; or &lt;a href=&quot;https://ieeexplore.ieee.org/document/9438597&quot;&gt;https://ieeexplore.ieee.org/document/9438597&lt;/a&gt; for a detailed description of the concepts.&lt;/p&gt; 
+&lt;p&gt;Differential categorization and binning are orthogonal in the sense that you can generate differential report without binning as well as &#39;vanilla&#39; coverage reports with binning. See the above papers and the genhtml man page for details.&lt;/p&gt; 
+&lt;p&gt;Related options:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; ``--baseline-file``, ``--diff-file``, ``--annotate-script``, ``--select-script``,
+ ``--date-bins``, ``--date-labels``, ``--new-file-as-baseline``,
+ ``--elide-path-mismatch``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;b) Error handling&lt;/p&gt; 
+&lt;p&gt;A generic - but very simple - error handler has been added to the lcov tool suite. The error handler is used to report exceptions, and provides a mechanism for the user to ignore the particular message if desired. Note that ignoring certain errors can cause subsequent errors and/or can result in inconsistent or confusing coverage reports. See the genhtml/lcov/geninfo man pages for details.&lt;/p&gt; 
+&lt;p&gt;Note that some errors are unrecoverable - and cannot be suppressed or ignored.&lt;/p&gt; 
+&lt;p&gt;If environment variable &lt;code&gt;LCOV_SHOW_LOCATION&lt;/code&gt; is set to a non-zero integer, then the error manager will emit more detailed debugging information into the error log. Higher values generate more information. More detail is useful to developers in case of a bug in lcov - but is unlikely to helpful to regular users.&lt;/p&gt; 
+&lt;p&gt;Related options:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; ``--ignore-error``, ``--expect-message-count``, ``--keep-going``, ``--msg-log``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;c) Navigation and display&lt;/p&gt; 
+&lt;p&gt;Navigation aids such as hyperlinks to the first uncovered region, to the next uncovered region, etc. have been implemented. Similarly, new tables, new columns, and new links between tables enable the user to identify the author of particular code (covered or not covered), as well as the time period when the code was written.&lt;/p&gt; 
+&lt;p&gt;Collectively, these features help the user to quickly identify the cause of code coverage issues, and to then decide what to do.&lt;/p&gt; 
+&lt;p&gt;An option to generate a &#39;hierarchical&#39; coverage report (which follows the source code directory structure) or &#39;flat&#39; (all files in top level of two-level report) as well as various other small features (tooltip popups, user-specified HTML header, footer, and table labels, etc.) are also available.&lt;/p&gt; 
+&lt;p&gt;See the genhtml man page for some details, as well as the &#39;gendiffcov/simple&#39; testcases for some examples.&lt;/p&gt; 
+&lt;p&gt;Related options:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; ``--baseline-title``, ``--baseline-date``, ``--current-date``,
+ ``--flat``, ``--hierarchical``,
+ ``--show-owners``, ``--show-noncode``, ``--show-navigation``,
+ ``--show-proportion``,
+ ``--suppress-aliases``, ``--simplify-script``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;d) Data manipulation&lt;/p&gt; 
+&lt;p&gt;Filters are used to suppress or remove certain coverage artifacts - for example, branches generated by the compiler (&lt;em&gt;e.g.&lt;/em&gt;, for exception handling). These artifacts can overwhelm the user code and obscure coverage features that are interesting to the user.&lt;/p&gt; 
+&lt;p&gt;Other options are used to focus on or to exclude certain sections of code and/or particular expressions, as well as to do regexp replacement of file names - possibly using case-insensitive comparison. (Path munging is useful primarily when the build structure does not exactly match the layout in your revision control system; this is common in large projects with reusable components.)&lt;/p&gt; 
+&lt;p&gt;During coverage data capture, the --build-directory option can be used to specify a search path, to find the .gcno (compile-time coverage data) file corresponding to a particular .gcda (runtime coverage data) file. Similarly, the --source-directory option can be used to specify a search path for source files.&lt;/p&gt; 
+&lt;p&gt;See the lcov/geninfo/genhtml man pages for a detailed description of the available filters and manipulation features.&lt;/p&gt; 
+&lt;p&gt;Related options:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; ``--include``, ``--exclude``, ``--erase-functions``, ``--omit-lines``,
+ ``--substitute``, ``--filter``, ``--build-directory``,
+ ``--source-directory``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;.. _section-4e-callbacks:&lt;/p&gt; 
+&lt;p&gt;e) Callbacks/customization&lt;/p&gt; 
+&lt;p&gt;The user can supply callbacks which are used to:&lt;/p&gt; 
+&lt;p&gt;i) interface with the revision control system - to determine source code differences between versions and to find the author and date of the most recent edits.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  Sample scripts:
+
+  - Perforce: see ``p4diff``, ``p4annotate.pm``, ``p4annotate``
+  - Git: see ``gitdiff``, ``gitblame.pm``, ``gitblame``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;ii) verify that source code versions are compatible - &lt;em&gt;e.g.&lt;/em&gt;, before aggregating coverage data or displaying source code.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   Sample scripts: ``get_signature``, ``P4version.pm``, ``getp4version``,
+   ``gitversion``, ``gitversion.pm``, and ``batchGitVersion.pm``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;iii) enforce a desired code coverage criteria&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;    Sample script: ``criteria.pm``, ``criteria``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;iv) find source files in more complicated environments - where simple substitutions become complicated or unwieldy.&lt;/p&gt; 
+&lt;p&gt;v) select a subset of coverage data to display - &lt;em&gt;e.g.&lt;/em&gt;, to use in a code review which wants to concentrate on only the changes caused by a particular commit or range of commits, or to review changes in a particular release.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;  Sample script: ``select.pm``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;vi) keep track of environment and other settings - to aid infrastructure debugging in more complicated use cases.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   Sample script: ``context.pm``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;vii) compress the &#39;function detail&#39; table to improve readability by shortening long C++ template and function names.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;    Sample script: ``simplify.pm``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;viii) use history from previous execution to improve runtime performance of current execution by improving load balancing.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;     Sample script: ``history.pm``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;ix) mark particular branch expressions and/or MC/DC conditions as &#39;unreachable&#39; - so they are excluded from the coverage DB.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;   Sample script: ``unreach.pm``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The callback may be any desired script or executable - but there may be performance advantages if it is written as a Perl module. See the &quot;Additional considerations&quot; and &quot;Callbacks and parallel execution&quot; discussion in the genhtml man page.&lt;/p&gt; 
+&lt;p&gt;See the genhtml/lcov/geninfo man pages for details.&lt;/p&gt; 
+&lt;p&gt;Note that the various sample scripts are found in the source code &#39;scripts&#39; directory, but are installed in the $LCOV_HOME/share/lcov/support-scripts directory of the release.&lt;/p&gt; 
+&lt;p&gt;Related options:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt; ``--annotate-script``, ``--criteria-script``, ``--version-script``,
+ ``--resolve-script``, ``--select-script``, ``--context-script``,
+ ``--simplify-script``, ``--history-script``, ``--unreachable-script``
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;f) Performance&lt;/p&gt; 
+&lt;p&gt;lcov/genhtml/geninfo have been refactored to parallelize computation across multiple cores, if requested. In general, this provides speedup that is nearly linear in the number of cores. There is also an option to throttle parallelism to not exceed peak memory consumption constraints, as well as options to enable simple profile data collection - so you can see where time is going and thus to hint at potential optimizations. The &#39;&lt;a href=&quot;http://spreadsheet.py&quot;&gt;spreadsheet.py&lt;/a&gt;&#39; script can be used to view generated profile data.&lt;/p&gt; 
+&lt;p&gt;There are several configuration file options which can be used to tweak certain parallelization parameters to optimize performance for your environment in cases that the default behaviour is suboptimal. See the lcovrc man page for more information.&lt;/p&gt; 
+&lt;p&gt;See the genhtml/lcov/geninfo man pages for details&lt;/p&gt; 
+&lt;p&gt;Related options: &lt;code&gt;--parallel&lt;/code&gt;, &lt;code&gt;--memory&lt;/code&gt;, &lt;code&gt;--profile&lt;/code&gt;, &lt;code&gt;--history-script&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;g) Language/tool support&lt;/p&gt; 
+&lt;p&gt;Added &lt;code&gt;llvm2lcov&lt;/code&gt;, &lt;code&gt;py2lcov&lt;/code&gt;, &lt;code&gt;perl2lcov&lt;/code&gt; and &lt;code&gt;xml2lcov&lt;/code&gt; scripts.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;llvm2lcov&lt;/strong&gt;:&lt;/p&gt; &lt;p&gt;translates JSON coverage data generated by &lt;code&gt;llvm-cov export -format=text ...&lt;/code&gt; to lcov format.&lt;/p&gt; &lt;p&gt;See &lt;code&gt;llvm2lcov --help&lt;/code&gt; for brief instruction on how to use the translator. Note that llvm2lcov uses a similar set of command line and configuration file options as lcov, genhtml, and geninfo.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;py2lcov&lt;/strong&gt;:&lt;/p&gt; &lt;p&gt;translates python &lt;code&gt;Coverage.py&lt;/code&gt; XML data to lcov format.&lt;/p&gt; &lt;p&gt;See the &lt;a href=&quot;http://Coverage.py&quot;&gt;Coverage.py&lt;/a&gt; documentation at &lt;a href=&quot;https://coverage.readthedocs.io&quot;&gt;https://coverage.readthedocs.io&lt;/a&gt;, as well as &lt;code&gt;.../py2lcov --help&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;perl2lcov&lt;/strong&gt;:&lt;/p&gt; &lt;p&gt;translates Perl &lt;code&gt;Devel::Cover&lt;/code&gt; data to lcov format.&lt;/p&gt; &lt;p&gt;See the Devel::Cover documentation at &lt;a href=&quot;https://metacpan.org/pod/Devel::Cover&quot;&gt;https://metacpan.org/pod/Devel::Cover&lt;/a&gt; to find out how to generate coverage data for Perl code.&lt;/p&gt; &lt;p&gt;See &lt;code&gt;perl2lcov --help&lt;/code&gt; for brief instructions on how to use the translator. Note that perl2lcov uses a similar set of command line and config file options as lcov, genhtml, and geninfo.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;xml2lcov&lt;/strong&gt;:&lt;/p&gt; &lt;p&gt;translates XML coverage data to lcov format. The XML data may come from Cobertura or similar tools.&lt;/p&gt; &lt;p&gt;See &lt;code&gt;xml2lcov --help&lt;/code&gt; for brief instructions on how to use the translator. See the Cobertura documentation for directions on how to generate XML data.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Other languages can be integrated using a similar approach.&lt;/p&gt; 
+&lt;p&gt;In general, the new features and options are implemented uniformly in lcov, genhtml, and geninfo. Most of the features can be enabled/disabled using either command line options or by setting defaults in your &#39;lcovrc&#39; file. See the lcovrc man page for details.&lt;/p&gt; 
+&lt;p&gt;.. _section-7-questions-comments:&lt;/p&gt; 
+&lt;ol start=&quot;7&quot;&gt; 
+ &lt;li&gt;Questions and comments =========================&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;See the included man pages for more information on how to use the LCOV tools.&lt;/p&gt; 
+&lt;p&gt;In case of further questions, feel free to open a new issue or discussion using the issue tracker on the LCOV code repository site at:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/linux-test-project/lcov&quot;&gt;https://github.com/linux-test-project/lcov&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;.. _section-8-filing-issue:&lt;/p&gt; 
+&lt;ol start=&quot;8&quot;&gt; 
+ &lt;li&gt;Filing a new issue =====================&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;code&gt;Back to Table of Contents &amp;lt;#table-of-contents&amp;gt;&lt;/code&gt;_&lt;/p&gt; 
+&lt;p&gt;Before filing a new issue - and if you are using an LCOV release (as opposed to using a clone of the github repo) - please verify whether the issue is still present in the LCOV master version. See section 2, above for directions on how to clone and install the most up-to-date LCOV version.&lt;/p&gt; 
+&lt;p&gt;If possible, please include a testcase which illustrates the problem when you file an issue. Please describe your environment (platform, compiler, perl, and python versions, etc.). Please include a detailed description of the issue: what you were trying to do (your goal - not the mechanics of your procedure), what you did (the mechanics of your procedure), the result you wanted to see vs. what actually happened. Depending on the issue, your testcase may need to include source code and compile/link command lines, directions for how to run your example, the command lines used to capture and generate your lcov reports, etc. In other cases, the captured &#39;.info&#39; files may be sufficient to reproduce the issue. When in doubt: more is better than less.&lt;/p&gt; 
+&lt;p&gt;If you cannot include a testcase - &lt;em&gt;e.g.&lt;/em&gt;, because you feel that it is sensitive or proprietary - then your detailed description is even more important. Note that, without an example, it may be difficult or impossible to diagnose or fix the problem.&lt;/p&gt; 
+&lt;p&gt;Bear in mind that you are asking for help from volunteers. Your priority might not be their priority. Civility, consideration and politeness go a long way.&lt;/p&gt; 
+&lt;p&gt;Please check back and verify the fix and close the issue once it has been addressed. Again: remember that you are asking for help from volunteers. Make sure that you are doing your part.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a2a4844330da301f6f9091813f8a1e36e93811d49c679eff687cc1ae0a899fe5/linux-test-project/lcov" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
