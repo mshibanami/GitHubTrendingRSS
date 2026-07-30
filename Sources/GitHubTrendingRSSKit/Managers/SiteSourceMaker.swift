@@ -76,7 +76,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
                 repositoryName: repository.pageLink.repositoryName,
                 url: repository.pageLink.url.absoluteString,
                 pageLink: repository.pageLink,
-                openGraphImageUrl: repository.openGraphImageUrl?.absoluteString
+                openGraphImageUrl: repository.openGraphImageUrl?.absoluteString.xmlEscaped
             ))
         }
 

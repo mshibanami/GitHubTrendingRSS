@@ -20,6 +20,8 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./scripts/build.sh
+      - name: Validate generated RSS feeds
+        run: ./scripts/validate_feeds.sh
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
