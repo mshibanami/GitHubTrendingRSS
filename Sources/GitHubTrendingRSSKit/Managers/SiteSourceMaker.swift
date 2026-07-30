@@ -71,7 +71,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             }
             let descriptionHTML = renderedHTML ?? noDescriptionHTML
             repositoryContexts.append((
-                description: descriptionHTML.xmlEscaped,
+                description: descriptionHTML.xml10Sanitized.xmlEscaped,
                 userID: repository.pageLink.userID,
                 repositoryName: repository.pageLink.repositoryName,
                 url: repository.pageLink.url.absoluteString,

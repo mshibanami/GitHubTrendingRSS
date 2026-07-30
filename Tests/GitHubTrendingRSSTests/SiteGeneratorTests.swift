@@ -70,6 +70,24 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(XMLParser(data: Data(rss.utf8)).parse())
     }
 
+    func testGenerateRSSRemovesInvalidXML10CharactersFromDescription() async throws {
+        let repository = Repository(
+            pageLink: RepositoryPageLink(href: "hello/world"),
+            summary: "before\u{0013}\u{0016}after"
+        )
+
+        let rss = try await maker.makeRSS(
+            from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
+            period: .daily,
+            repositories: [repository],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertFalse(rss.contains("\u{0013}"))
+        XCTAssertFalse(rss.contains("\u{0016}"))
+        XCTAssertTrue(XMLParser(data: Data(rss.utf8)).parse())
+    }
+
     func testGenerateRSSWithSpokenLanguage() async throws {
         let html = try await maker.makeRSS(
             from: LanguageTrendingLink(displayName: "Swift", href: "/swift"),
