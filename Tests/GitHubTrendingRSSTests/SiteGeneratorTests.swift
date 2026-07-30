@@ -55,6 +55,21 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(html.contains("<media:content url=\"https://example.com/hello-world.png\" medium=\"image\" />"))
     }
 
+    func testGenerateRSSEscapesOpenGraphImageURLForXML() async throws {
+        var repository = Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world")
+        repository.openGraphImageUrl = URL(string: "https://example.com/image.png?width=1200&height=630")
+
+        let rss = try await maker.makeRSS(
+            from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
+            period: .daily,
+            repositories: [repository],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(rss.contains("https://example.com/image.png?width=1200&amp;height=630"))
+        XCTAssertTrue(XMLParser(data: Data(rss.utf8)).parse())
+    }
+
     func testGenerateRSSWithSpokenLanguage() async throws {
         let html = try await maker.makeRSS(
             from: LanguageTrendingLink(displayName: "Swift", href: "/swift"),
