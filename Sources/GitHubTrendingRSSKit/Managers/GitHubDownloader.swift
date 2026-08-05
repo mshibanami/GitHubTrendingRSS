@@ -14,6 +14,7 @@ public final class GitHubDownloader: Sendable {
     private let githubToken: String
 
     private let readMeCache: AsyncCache<URL, APIReadMe> = AsyncCache()
+    private let profileReadMeCache: AsyncCache<URL, APIReadMe?> = AsyncCache()
 
     public init(downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, githubToken: String) {
         self.downloadManager = downloadManager
@@ -51,6 +52,95 @@ public final class GitHubDownloader: Sendable {
                 results.append(result)
             }
             return results.sorted { $0.0 < $1.0 }.map { $1 }
+        }
+    }
+
+    public func fetchDevelopers(
+        ofLink languageTrendingLink: LanguageTrendingLink,
+        period: Period,
+        includesProfileReadMeIfExists: Bool,
+        graphQLManager: GitHubGraphQLManager? = nil
+    ) async throws -> [Developer] {
+        let page = try await downloadManager.fetch(
+            url: languageTrendingLink.developerURL(ofPeriod: period),
+            bearerToken: githubToken
+        )
+
+        var developers = try gitHubPageParser.developers(fromTrendingPage: page)
+
+        if let graphQLManager {
+            let usernames = developers.map(\.username)
+            if let userInfos = try? await graphQLManager.fetchDevelopersInfo(usernames: usernames) {
+                developers = developers.map { dev -> Developer in
+                    var updatedDev = dev
+                    if let info = userInfos[dev.username] {
+                        updatedDev.bio = info.bio
+                        updatedDev.company = info.company
+                        updatedDev.location = info.location
+                        updatedDev.followersCount = info.followers?.totalCount
+                        updatedDev.publicReposCount = info.repositories?.totalCount
+                        updatedDev.websiteURL = info.websiteUrl
+                        updatedDev.twitterUsername = info.twitterUsername
+                        if let pinnedNodes = info.pinnedItems?.nodes {
+                            updatedDev.pinnedRepositories = pinnedNodes.compactMap { node in
+                                DeveloperPinnedRepository(
+                                    name: node.name,
+                                    url: node.url,
+                                    summary: node.description,
+                                    stargazerCount: node.stargazerCount
+                                )
+                            }
+                        }
+                    }
+                    return updatedDev
+                }
+            }
+        }
+
+        guard includesProfileReadMeIfExists else {
+            return developers
+        }
+
+        return await withTaskGroup(of: (Int, Developer).self) { group in
+            for (index, developer) in developers.enumerated() {
+                group.addTask {
+                    var dev = developer
+                    do {
+                        dev.profileReadMe = try await self.fetchProfileReadMePage(username: developer.username)
+                    } catch {
+                        // ignore
+                    }
+                    return (index, dev)
+                }
+            }
+
+            var results = [(Int, Developer)]()
+            for await result in group {
+                results.append(result)
+            }
+            return results.sorted { $0.0 < $1.0 }.map { $1 }
+        }
+    }
+
+    public func fetchProfileReadMePage(username: String) async throws -> APIReadMe? {
+        guard let url = URL(string: "https://api.github.com/repos/\(username)/\(username)/readme") else {
+            return nil
+        }
+        return try await profileReadMeCache.value(for: url) {
+            do {
+                let page = try await self.downloadManager.fetch(url: url, bearerToken: self.githubToken)
+                guard let data = page.data(using: .utf8) else {
+                    return nil
+                }
+                var decoded = try JSONDecoder().decode(APIReadMe.self, from: data)
+                decoded.userID = username
+                decoded.repositoryName = username
+                return decoded
+            } catch let DownloadManager.Error.failedFetching(statusCode) where statusCode == 404 {
+                return nil
+            } catch {
+                return nil
+            }
         }
     }
 

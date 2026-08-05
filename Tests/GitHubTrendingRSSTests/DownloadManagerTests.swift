@@ -173,6 +173,51 @@ final class DownloadManagerTests: XCTestCase {
         let attempts = await attemptCounter.nextAttempt(for: "request") - 1
         XCTAssertEqual(attempts, 3, "The initial attempt plus maxRetryCount retries")
     }
+
+    func testFetchProfileReadMePageSuccess() async throws {
+        let json = """
+        {
+            "name": "README.md",
+            "path": "README.md",
+            "sha": "123",
+            "url": "https://api.github.com/repos/testuser/testuser/contents/README.md?ref=main",
+            "content": "\(Data("# Test Profile".utf8).base64EncodedString())"
+        }
+        """
+        MockURLProtocol.handler = { _ in
+            return (statusCode: 200, data: Data(json.utf8))
+        }
+
+        let downloadManager = DownloadManager(session: Self.makeMockSession())
+        let downloader = GitHubDownloader(
+            downloadManager: downloadManager,
+            gitHubPageParser: GitHubPageParser(),
+            githubToken: "dummy"
+        )
+
+        let readMe = try await downloader.fetchProfileReadMePage(username: "testuser")
+        XCTAssertNotNil(readMe)
+        XCTAssertEqual(readMe?.name, "README.md")
+        XCTAssertEqual(readMe?.userID, "testuser")
+        XCTAssertEqual(readMe?.repositoryName, "testuser")
+        XCTAssertEqual(readMe?.content, "# Test Profile")
+    }
+
+    func testFetchProfileReadMePage404ReturnsNil() async throws {
+        MockURLProtocol.handler = { _ in
+            return (statusCode: 404, data: Data())
+        }
+
+        let downloadManager = DownloadManager(session: Self.makeMockSession())
+        let downloader = GitHubDownloader(
+            downloadManager: downloadManager,
+            gitHubPageParser: GitHubPageParser(),
+            githubToken: "dummy"
+        )
+
+        let readMe = try await downloader.fetchProfileReadMePage(username: "nonexistentuser")
+        XCTAssertNil(readMe)
+    }
 }
 
 class MockURLProtocol: URLProtocol, @unchecked Sendable {
