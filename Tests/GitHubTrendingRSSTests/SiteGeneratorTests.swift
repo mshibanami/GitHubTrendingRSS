@@ -167,5 +167,36 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("<title>GitHub Swift Daily Trending Developers</title>"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
+
+    func testMakeDeveloperRSSReflectsGraphQLMetadataChangesInCache() async throws {
+        let devWithoutGraphQL = Developer(
+            username: "user1",
+            displayName: "User One",
+            avatarURL: nil,
+            popularRepository: nil
+        )
+
+        let xml1 = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [devWithoutGraphQL],
+            supportedEmojis: supportedEmojis
+        )
+        XCTAssertFalse(xml1.contains("Pinned Repositories"))
+
+        var devWithGraphQL = devWithoutGraphQL
+        devWithGraphQL.pinnedRepositories = [
+            DeveloperPinnedRepository(name: "pinned1", url: URL(string: "https://github.com/user1/pinned1")!, summary: "desc", stargazerCount: 10)
+        ]
+
+        let xml2 = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [devWithGraphQL],
+            supportedEmojis: supportedEmojis
+        )
+        XCTAssertTrue(xml2.contains("Pinned Repositories"))
+        XCTAssertTrue(xml2.contains("pinned1"))
+    }
 }
 

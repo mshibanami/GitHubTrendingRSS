@@ -110,7 +110,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
         var developerContexts: [[String: Any]] = []
         for developer in developers {
             let popRepoHref = developer.popularRepository?.href ?? ""
-            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)"
+            let pinnedList = developer.pinnedRepositories.map(\.name).joined(separator: ",")
+            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")"
             let descriptionHTML = try await descriptionHTMLCache.value(for: cacheKey) {
                 try await self.buildDeveloperDescriptionHTML(developer: developer, supportedEmojis: supportedEmojis)
             } ?? ""

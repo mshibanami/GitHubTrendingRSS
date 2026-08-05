@@ -74,14 +74,18 @@ public final class GitHubPageParser: Sendable {
 
         for article in developerArticles {
             let usernameTag = try? article.select("p.f4 a").first()
-            var username = usernameTag?.trimmedText ?? ""
-
             let displayNameTag = try? article.select("h1.h3 a").first()
-            let displayName = displayNameTag?.trimmedText ?? ""
 
-            if username.isEmpty, let href = try? displayNameTag?.attr("href") {
+            var username = ""
+            if let href = try? (usernameTag ?? displayNameTag)?.attr("href"), !href.isEmpty {
                 username = href.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
             }
+            if username.isEmpty {
+                username = (usernameTag?.trimmedText ?? "")
+                    .trimmingCharacters(in: CharacterSet(charactersIn: "@ \t\n\r"))
+            }
+
+            let displayName = displayNameTag?.trimmedText ?? ""
 
             guard !username.isEmpty else {
                 continue

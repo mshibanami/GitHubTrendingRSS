@@ -57,6 +57,21 @@ final class GitHubPageParserTests: XCTestCase {
         XCTAssertEqual(first.popularRepository?.href, "/Astro-Han/karpathy-llm-wiki")
         XCTAssertTrue(first.popularRepository?.summary?.contains("Agent Skills-compatible LLM wiki") == true)
     }
+
+    func testParseDevelopersWithAtPrefixAndFormatting() throws {
+        let html = """
+        <div class="Box">
+          <article class="Box-row d-flex" id="pa-user1">
+            <h1 class="h3 lh-condensed"><a href="/user1">User One</a></h1>
+            <p class="f4 text-normal mb-1"><a href="/user1">@user1</a></p>
+          </article>
+        </div>
+        """
+        let developers = try parser.developers(fromTrendingPage: html)
+        XCTAssertEqual(developers.count, 1)
+        XCTAssertEqual(developers.first?.username, "user1")
+        XCTAssertEqual(developers.first?.displayName, "User One")
+    }
 }
 
 extension Array where Element: Hashable {

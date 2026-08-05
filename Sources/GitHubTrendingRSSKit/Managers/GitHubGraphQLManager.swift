@@ -182,6 +182,8 @@ public actor GitHubGraphQLManager {
             let escapedUsername = username
                 .replacingOccurrences(of: "\\", with: "\\\\")
                 .replacingOccurrences(of: "\"", with: "\\\"")
+                .replacingOccurrences(of: "\n", with: "")
+                .replacingOccurrences(of: "\r", with: "")
             query += """
               user_\(index): user(login: "\(escapedUsername)") {
                 bio
