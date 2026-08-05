@@ -90,17 +90,22 @@ public final class DownloadManager: @unchecked Sendable {
             throw Error.unsupportedFormat
         }
 
-        if httpResponse.statusCode == 200 {
+        let statusCode = httpResponse.statusCode
+        let rateLimitRemainingKey = "X-RateLimit-Remaining"
+        let remaining = httpResponse.value(forHTTPHeaderField: rateLimitRemainingKey)
+
+        if statusCode == 200 {
             guard let htmlResponse = String(data: data, encoding: .utf8) else {
                 assertionFailure()
                 throw Error.brokenResponseData
             }
+            if let remaining {
+                NSLog("<- 200 \(url.absoluteString) [\(rateLimitRemainingKey): \(remaining)]")
+            }
             return htmlResponse
         } else {
-            let statusCode = httpResponse.statusCode
-            let rateLimitRemainingKey = "X-RateLimit-Remaining"
-            let remaining = httpResponse.value(forHTTPHeaderField: rateLimitRemainingKey) ?? "-"
-            NSLog("<- \(statusCode) \(url.absoluteString) [\(rateLimitRemainingKey): \(remaining)]")
+            let remainingText = remaining ?? "-"
+            NSLog("<- \(statusCode) \(url.absoluteString) [\(rateLimitRemainingKey): \(remainingText)]")
 
             if [429, 403].contains(statusCode) {
                 let cooldown = Self.retryAfterInterval(from: httpResponse) ?? retryInterval

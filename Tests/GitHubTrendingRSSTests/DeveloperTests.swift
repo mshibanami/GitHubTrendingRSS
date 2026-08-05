@@ -9,9 +9,9 @@ final class DeveloperTests: XCTestCase {
         try await DocslothManager.shared.setup()
     }
 
-    func testDeveloperInitialization() {
+    func testDeveloperInitialization() throws {
         let popRepo = DeveloperPopularRepository(name: "repo", href: "/user/repo", summary: "summary")
-        let pinnedRepo = DeveloperPinnedRepository(name: "pinned", url: URL(string: "https://github.com/user/pinned")!, summary: "pinned summary", stargazerCount: 42)
+        let pinnedRepo = try DeveloperPinnedRepository(name: "pinned", url: XCTUnwrap(URL(string: "https://github.com/user/pinned")), summary: "pinned summary", stargazerCount: 42)
 
         let developer = Developer(
             username: "user",
@@ -90,8 +90,8 @@ final class DeveloperTests: XCTestCase {
 
         let html = try await developer.makeReadMeHTML(supportedEmojis: TestResources.supportedEmojis())
         XCTAssertNotNil(html)
-        XCTAssertTrue(html!.contains("Hello World"))
-        XCTAssertTrue(html!.contains("<img") || html!.contains("octocat"))
+        XCTAssertTrue(try XCTUnwrap(html?.contains("Hello World")))
+        XCTAssertTrue(try XCTUnwrap(html?.contains("<img")) || html!.contains("octocat"))
     }
 
     func testMakeReadMeHTMLWithNilReadMeReturnsNil() async throws {

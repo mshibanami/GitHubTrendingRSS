@@ -7,22 +7,42 @@ on:
   workflow_dispatch:
 
 jobs:
-  build:
+  fetch:
     runs-on: macos-latest
-
+    strategy:
+      matrix:
+        target: [repos, developers]
     steps:
       - uses: actions/checkout@v4
       - name: Setup Swift
         uses: swift-actions/setup-swift@v2
         with:
           swift-version: "6.2"
-      - name: Build
+      - name: Build and Fetch Feeds
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./scripts/build.sh
+        run: ./scripts/build.sh --target ${{ matrix.target }}
+      - name: Upload Artifacts
+        uses: actions/upload-artifact@v4
+        with:
+          name: output-${{ matrix.target }}
+          path: output/
+
+  deploy:
+    needs: fetch
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Download Artifacts
+        uses: actions/download-artifact@v4
+        with:
+          pattern: output-*
+          merge-multiple: true
+          path: output/
       - name: Validate generated RSS feeds
         run: ./scripts/validate_feeds.sh
       - name: Deploy
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./scripts/deploy.sh
+

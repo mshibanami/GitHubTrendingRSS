@@ -60,4 +60,3 @@ public struct Developer: @unchecked Sendable {
         return try await profileReadMe.makeHTML(supportedEmojis: supportedEmojis)
     }
 }
-

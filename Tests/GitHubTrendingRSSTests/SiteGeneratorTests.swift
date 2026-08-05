@@ -102,13 +102,13 @@ final class SiteGeneratorTests: XCTestCase {
     }
 
     func testMakeDeveloperRSS() async throws {
-        let dev = Developer(
+        let dev = try Developer(
             username: "testuser",
             displayName: "Test User",
             avatarURL: URL(string: "https://avatars.githubusercontent.com/u/1234?v=4"),
             popularRepository: DeveloperPopularRepository(name: "cool-repo", href: "/testuser/cool-repo", summary: "cool summary"),
             pinnedRepositories: [
-                DeveloperPinnedRepository(name: "pinned-repo", url: URL(string: "https://github.com/testuser/pinned-repo")!, summary: "pinned description", stargazerCount: 99)
+                DeveloperPinnedRepository(name: "pinned-repo", url: XCTUnwrap(URL(string: "https://github.com/testuser/pinned-repo")), summary: "pinned description", stargazerCount: 99),
             ],
             isSponsorable: true,
             bio: "Developer bio",
@@ -185,8 +185,8 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertFalse(xml1.contains("Pinned Repositories"))
 
         var devWithGraphQL = devWithoutGraphQL
-        devWithGraphQL.pinnedRepositories = [
-            DeveloperPinnedRepository(name: "pinned1", url: URL(string: "https://github.com/user1/pinned1")!, summary: "desc", stargazerCount: 10)
+        devWithGraphQL.pinnedRepositories = try [
+            DeveloperPinnedRepository(name: "pinned1", url: XCTUnwrap(URL(string: "https://github.com/user1/pinned1")), summary: "desc", stargazerCount: 10),
         ]
 
         let xml2 = try await maker.makeDeveloperRSS(
@@ -199,4 +199,3 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml2.contains("pinned1"))
     }
 }
-

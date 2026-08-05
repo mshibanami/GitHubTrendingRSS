@@ -121,4 +121,3 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertNil(data["user_1"] ?? nil)
     }
 }
-

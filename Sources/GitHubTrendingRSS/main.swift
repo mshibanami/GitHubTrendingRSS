@@ -6,7 +6,10 @@ import GitHubTrendingRSSKit
 import PathKit
 import Stencil
 
-RunCommand().parseAndRun()
+let runCommand = RunCommand()
+runCommand.parseAndRun()
+
+let fetchTarget = FetchTarget(rawValue: runCommand.target)
 
 enum MainError: Error {
     case noLanguageTrendingLinks
@@ -57,7 +60,7 @@ let feedManager = FeedFileCreator(
     siteGenerator: siteGenerator
 )
 
-func start() async throws {
+func start(target: FetchTarget) async throws {
     try await DocslothManager.shared.setup()
     async let topTrendingPageTask = gitHubDownloader.fetchTopTrendingPage()
     async let supportedEmojisTask = gitHubDownloader.fetchSupportedEmojis()
@@ -75,11 +78,14 @@ func start() async throws {
             supportedEmojis: supportedEmojis,
             gitHubDownloader: gitHubDownloader,
             graphQLManager: graphQLManager,
-            feedManager: feedManager
+            feedManager: feedManager,
+            target: target
         )
     }
 
-    _ = try? feedManager.createRSSListFile(languageLinks: languageLinks)
+    if target.shouldFetchRepos {
+        _ = try? feedManager.createRSSListFile(languageLinks: languageLinks)
+    }
 }
 
 private func processLanguage(
@@ -87,23 +93,42 @@ private func processLanguage(
     supportedEmojis: [GitHubEmoji],
     gitHubDownloader: GitHubDownloader,
     graphQLManager: GitHubGraphQLManager,
-    feedManager: FeedFileCreator
+    feedManager: FeedFileCreator,
+    target: FetchTarget
 ) async {
-    async let repoTask: () = processRepoLanguage(
-        link: link,
-        supportedEmojis: supportedEmojis,
-        gitHubDownloader: gitHubDownloader,
-        graphQLManager: graphQLManager,
-        feedManager: feedManager
-    )
-    async let devTask: () = processDeveloperLanguage(
-        link: link,
-        supportedEmojis: supportedEmojis,
-        gitHubDownloader: gitHubDownloader,
-        graphQLManager: graphQLManager,
-        feedManager: feedManager
-    )
-    _ = await (repoTask, devTask)
+    if target.shouldFetchRepos, target.shouldFetchDevelopers {
+        async let repoTask: () = processRepoLanguage(
+            link: link,
+            supportedEmojis: supportedEmojis,
+            gitHubDownloader: gitHubDownloader,
+            graphQLManager: graphQLManager,
+            feedManager: feedManager
+        )
+        async let devTask: () = processDeveloperLanguage(
+            link: link,
+            supportedEmojis: supportedEmojis,
+            gitHubDownloader: gitHubDownloader,
+            graphQLManager: graphQLManager,
+            feedManager: feedManager
+        )
+        _ = await (repoTask, devTask)
+    } else if target.shouldFetchRepos {
+        await processRepoLanguage(
+            link: link,
+            supportedEmojis: supportedEmojis,
+            gitHubDownloader: gitHubDownloader,
+            graphQLManager: graphQLManager,
+            feedManager: feedManager
+        )
+    } else if target.shouldFetchDevelopers {
+        await processDeveloperLanguage(
+            link: link,
+            supportedEmojis: supportedEmojis,
+            gitHubDownloader: gitHubDownloader,
+            graphQLManager: graphQLManager,
+            feedManager: feedManager
+        )
+    }
 }
 
 private func processRepoLanguage(
@@ -334,7 +359,7 @@ private func processDeveloperFeed(
 }
 
 do {
-    try await start()
+    try await start(target: fetchTarget)
     NSLog("🎉 Finished fetching & generating feeds successfully")
     exit(0)
 } catch {

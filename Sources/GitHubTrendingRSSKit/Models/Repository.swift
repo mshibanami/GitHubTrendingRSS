@@ -32,4 +32,3 @@ public struct Repository: @unchecked Sendable {
         return html
     }
 }
-
