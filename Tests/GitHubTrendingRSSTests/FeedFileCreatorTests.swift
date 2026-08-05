@@ -52,4 +52,27 @@ final class FeedFileCreatorTests: XCTestCase {
         XCTAssertEqual(urlEn.path, tempDir.appendingPathComponent("en/daily/all.xml").path)
         XCTAssertTrue(FileManager.default.fileExists(atPath: urlEn.path))
     }
+
+    func testCreateDeveloperRSSFile() async throws {
+        let maker = SiteSourceMaker(environment: environment, information: information)
+        let creator = FeedFileCreator(outputDirectory: tempDir, siteGenerator: maker)
+        let link = LanguageTrendingLink(displayName: "Swift", href: "/trending/swift")
+
+        let dev = Developer(
+            username: "testuser",
+            displayName: "Test User",
+            avatarURL: nil,
+            popularRepository: nil
+        )
+
+        let fileURL = try await creator.createDeveloperRSSFile(
+            developers: [dev],
+            languageTrendingLink: link,
+            period: .daily,
+            supportedEmojis: []
+        )
+
+        XCTAssertEqual(fileURL.path, tempDir.appendingPathComponent("developers/daily/swift.xml").path)
+        XCTAssertTrue(FileManager.default.fileExists(atPath: fileURL.path))
+    }
 }

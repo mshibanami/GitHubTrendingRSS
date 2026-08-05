@@ -95,4 +95,135 @@ public final class SiteSourceMaker: @unchecked Sendable {
             context: context
         )
     }
+
+    public func makeDeveloperRSS(
+        from languageTrendingLink: LanguageTrendingLink,
+        period: Period,
+        developers: [Developer],
+        supportedEmojis: [GitHubEmoji]
+    ) async throws -> String {
+        let formatter = DateFormatter()
+        formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
+        formatter.timeZone = TimeZone(secondsFromGMT: 0)
+        let pubDate = formatter.string(from: Date())
+
+        var developerContexts: [[String: Any]] = []
+        for developer in developers {
+            let popRepoHref = developer.popularRepository?.href ?? ""
+            let pinnedList = developer.pinnedRepositories.map(\.name).joined(separator: ",")
+            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")"
+            let descriptionHTML = try await descriptionHTMLCache.value(for: cacheKey) {
+                try await self.buildDeveloperDescriptionHTML(developer: developer, supportedEmojis: supportedEmojis)
+            } ?? ""
+
+            let title = developer.displayName != developer.username
+                ? "\(developer.displayName) (\(developer.username))"
+                : developer.username
+
+            var devDict: [String: Any] = [
+                "title": title.xml10Sanitized.xmlEscaped,
+                "link": "https://github.com/\(developer.username)".xmlEscaped,
+                "username": developer.username,
+                "displayName": developer.displayName,
+                "description": descriptionHTML.xml10Sanitized.xmlEscaped,
+            ]
+            if let avatarURL = developer.avatarURL {
+                devDict["avatarURL"] = avatarURL.absoluteString.xmlEscaped
+            }
+            developerContexts.append(devDict)
+        }
+
+        let context: [String: Any] = [
+            "languageTrendingLink": languageTrendingLink,
+            "information": information,
+            "periodText": period.rawValue.capitalized,
+            "pubDate": pubDate,
+            "developers": developerContexts,
+            "periods": Period.allCases.map(\.rawValue),
+        ]
+
+        return try environment.renderTemplate(
+            name: "developer_rss_template.xml",
+            context: context
+        )
+    }
+
+    private func buildDeveloperDescriptionHTML(developer: Developer, supportedEmojis: [GitHubEmoji]) async throws -> String {
+        var html = ""
+
+        if let avatarURL = developer.avatarURL {
+            html += #"<p><img src="\#(avatarURL.absoluteString.xmlEscaped)" width="48" height="48" alt="@\#(developer.username.xmlEscaped)" style="border-radius: 50%; vertical-align: middle; margin-right: 8px;" /> "#
+        } else {
+            html += "<p>"
+        }
+        html += #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">\#(developer.displayName.xmlEscaped)</a></strong> (\#(developer.username.xmlEscaped))</p>"#
+
+        if let bio = developer.bio, !bio.isEmpty {
+            html += "<p><em>\(bio.xmlEscaped)</em></p>"
+        }
+
+        if developer.isSponsorable {
+            html += "<p>💖 <strong>Sponsorable</strong></p>"
+        }
+
+        var details = [String]()
+        if let company = developer.company, !company.isEmpty {
+            details.append("🏢 \(company.xmlEscaped)")
+        }
+        if let location = developer.location, !location.isEmpty {
+            details.append("📍 \(location.xmlEscaped)")
+        }
+        if let followersCount = developer.followersCount {
+            details.append("👥 \(followersCount) followers")
+        }
+        if let publicReposCount = developer.publicReposCount {
+            details.append("📦 \(publicReposCount) repos")
+        }
+        if let websiteURL = developer.websiteURL {
+            details.append("🔗 <a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>")
+        }
+        if let twitterUsername = developer.twitterUsername, !twitterUsername.isEmpty {
+            details.append("🐦 @\(twitterUsername.xmlEscaped)")
+        }
+        if !details.isEmpty {
+            html += "<p>" + details.joined(separator: " | ") + "</p>"
+        }
+
+        if let popRepo = developer.popularRepository {
+            let href: String
+            if popRepo.href.hasPrefix("http://") || popRepo.href.hasPrefix("https://") {
+                href = popRepo.href
+            } else if popRepo.href.hasPrefix("/") {
+                href = "https://github.com" + popRepo.href
+            } else {
+                href = "https://github.com/" + popRepo.href
+            }
+            html += "<h4>🔥 Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
+            if let summary = popRepo.summary, !summary.isEmpty {
+                html += "<br>\(summary.xmlEscaped)"
+            }
+            html += "</p>"
+        }
+
+        if !developer.pinnedRepositories.isEmpty {
+            html += "<h4>📌 Pinned Repositories</h4><ul>"
+            for pinned in developer.pinnedRepositories {
+                html += "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
+                if let stars = pinned.stargazerCount {
+                    html += " ⭐ \(stars)"
+                }
+                if let summary = pinned.summary, !summary.isEmpty {
+                    html += "<br>\(summary.xmlEscaped)"
+                }
+                html += "</li>"
+            }
+            html += "</ul>"
+        }
+
+        if let profileReadMeHTML = try await developer.makeReadMeHTML(supportedEmojis: supportedEmojis) {
+            html += "<hr>" + profileReadMeHTML
+        }
+
+        return html
+    }
 }

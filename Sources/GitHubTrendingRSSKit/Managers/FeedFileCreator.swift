@@ -64,4 +64,42 @@ public final class FeedFileCreator: @unchecked Sendable {
 
         return fileURL
     }
+
+    @discardableResult public func createDeveloperRSSFile(
+        developers: [Developer],
+        languageTrendingLink: LanguageTrendingLink,
+        period: Period,
+        supportedEmojis: [GitHubEmoji]
+    ) async throws -> URL {
+        let fileManager = FileManager.default
+        let feedHTML = try await siteGenerator.makeDeveloperRSS(
+            from: languageTrendingLink,
+            period: period,
+            developers: developers,
+            supportedEmojis: supportedEmojis
+        )
+
+        let outputDirectory = rootOutputDirectory
+            .appendingPathComponent("developers")
+            .appendingPathComponent(period.rawValue)
+
+        try fileManager.createDirectory(
+            at: outputDirectory,
+            withIntermediateDirectories: true,
+            attributes: nil
+        )
+
+        let fileName = "\(languageTrendingLink.name).xml"
+        let fileURL = outputDirectory.appendingPathComponent(fileName)
+
+        guard fileManager.createFile(
+            atPath: fileURL.path,
+            contents: feedHTML.data(using: .utf8),
+            attributes: nil
+        ) else {
+            throw NSError()
+        }
+
+        return fileURL
+    }
 }

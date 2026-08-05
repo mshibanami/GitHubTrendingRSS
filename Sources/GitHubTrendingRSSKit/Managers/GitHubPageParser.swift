@@ -63,4 +63,75 @@ public final class GitHubPageParser: Sendable {
         }
         return repositories
     }
+
+    public func developers(fromTrendingPage trendingPage: String) throws -> [Developer] {
+        guard let parsed = try? SwiftSoup.parse(trendingPage) else {
+            throw RSSError.unsupportedFormat
+        }
+
+        let developerArticles = try parsed.select("article.Box-row")
+        var developers = [Developer]()
+
+        for article in developerArticles {
+            let usernameTag = try? article.select("p.f4 a").first()
+            let displayNameTag = try? article.select("h1.h3 a").first()
+
+            var username = ""
+            if let href = try? (usernameTag ?? displayNameTag)?.attr("href"), !href.isEmpty {
+                username = href.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            }
+            if username.isEmpty {
+                username = (usernameTag?.trimmedText ?? "")
+                    .trimmingCharacters(in: CharacterSet(charactersIn: "@ \t\n\r"))
+            }
+
+            let displayName = displayNameTag?.trimmedText ?? ""
+
+            guard !username.isEmpty else {
+                continue
+            }
+
+            let finalDisplayName = displayName.isEmpty ? username : displayName
+
+            var avatarURL: URL?
+            if let avatarSrc = try? article.select("img.avatar-user").attr("src"),
+               !avatarSrc.isEmpty {
+                avatarURL = URL(string: avatarSrc)
+            }
+
+            var popularRepository: DeveloperPopularRepository?
+            if let popRepoArticle = try? article.select("article").first(),
+               let popRepoATag = try? popRepoArticle.select("h1.h4 a").first(),
+               let popRepoHref = try? popRepoATag.attr("href"), !popRepoHref.isEmpty {
+                let repoName: String
+                if let text = popRepoATag.trimmedText, !text.isEmpty {
+                    repoName = text
+                } else if let lastPathComponent = URL(string: popRepoHref)?.lastPathComponent, !lastPathComponent.isEmpty {
+                    repoName = lastPathComponent
+                } else {
+                    repoName = popRepoHref
+                }
+                let popRepoSummary = try? popRepoArticle.select("div.f6.color-fg-muted.mt-1").first()?.trimmedText
+                popularRepository = DeveloperPopularRepository(
+                    name: repoName,
+                    href: popRepoHref,
+                    summary: (popRepoSummary?.isEmpty == false) ? popRepoSummary : nil
+                )
+            }
+
+            let isSponsorable = (try? article.select("a[href*='/sponsors/']").first()) != nil
+
+            developers.append(
+                Developer(
+                    username: username,
+                    displayName: finalDisplayName,
+                    avatarURL: avatarURL,
+                    popularRepository: popularRepository,
+                    isSponsorable: isSponsorable
+                )
+            )
+        }
+
+        return developers
+    }
 }

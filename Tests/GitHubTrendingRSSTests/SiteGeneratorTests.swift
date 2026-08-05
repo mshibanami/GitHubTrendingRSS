@@ -100,4 +100,103 @@ final class SiteGeneratorTests: XCTestCase {
         )
         XCTAssertFalse(html.isEmpty)
     }
+
+    func testMakeDeveloperRSS() async throws {
+        let dev = Developer(
+            username: "testuser",
+            displayName: "Test User",
+            avatarURL: URL(string: "https://avatars.githubusercontent.com/u/1234?v=4"),
+            popularRepository: DeveloperPopularRepository(name: "cool-repo", href: "/testuser/cool-repo", summary: "cool summary"),
+            pinnedRepositories: [
+                DeveloperPinnedRepository(name: "pinned-repo", url: URL(string: "https://github.com/testuser/pinned-repo")!, summary: "pinned description", stargazerCount: 99)
+            ],
+            isSponsorable: true,
+            bio: "Developer bio",
+            company: "Test Corp",
+            location: "Tokyo",
+            followersCount: 50,
+            publicReposCount: 15,
+            websiteURL: URL(string: "https://test.com"),
+            twitterUsername: "test_tw"
+        )
+
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [dev],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(xml.contains("Test User (testuser)"))
+        XCTAssertTrue(xml.contains("https://github.com/testuser"))
+        XCTAssertTrue(xml.contains("cool-repo"))
+        XCTAssertTrue(xml.contains("pinned-repo"))
+        XCTAssertTrue(xml.contains("Sponsorable"))
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
+    }
+
+    func testMakeDeveloperRSSEscapesSpecialCharacters() async throws {
+        let dev = Developer(
+            username: "user_special",
+            displayName: "Bob & Alice <Devs>",
+            avatarURL: URL(string: "https://avatars.githubusercontent.com/u/1234?v=4&s=96"),
+            popularRepository: DeveloperPopularRepository(name: "repo & <tool>", href: "/user_special/repo", summary: "summary & <desc>"),
+            bio: "Bio with & and <tag>",
+            company: "Acme & Co <HQ>",
+            location: "Tokyo & Kyoto"
+        )
+
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [dev],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse(), "Generated Developer RSS XML with special characters should be valid XML")
+    }
+
+    func testMakeDeveloperRSSWithEmptyDevelopers() async throws {
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(xml.contains("<title>GitHub Swift Daily Trending Developers</title>"))
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
+    }
+
+    func testMakeDeveloperRSSReflectsGraphQLMetadataChangesInCache() async throws {
+        let devWithoutGraphQL = Developer(
+            username: "user1",
+            displayName: "User One",
+            avatarURL: nil,
+            popularRepository: nil
+        )
+
+        let xml1 = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [devWithoutGraphQL],
+            supportedEmojis: supportedEmojis
+        )
+        XCTAssertFalse(xml1.contains("Pinned Repositories"))
+
+        var devWithGraphQL = devWithoutGraphQL
+        devWithGraphQL.pinnedRepositories = [
+            DeveloperPinnedRepository(name: "pinned1", url: URL(string: "https://github.com/user1/pinned1")!, summary: "desc", stargazerCount: 10)
+        ]
+
+        let xml2 = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [devWithGraphQL],
+            supportedEmojis: supportedEmojis
+        )
+        XCTAssertTrue(xml2.contains("Pinned Repositories"))
+        XCTAssertTrue(xml2.contains("pinned1"))
+    }
 }
+

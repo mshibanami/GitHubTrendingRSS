@@ -17,4 +17,26 @@ public struct LanguageTrendingLink: PageLinkable, Sendable {
         self.displayName = displayName
         self.href = href
     }
+
+    public func developerURL(ofPeriod period: Period) -> URL {
+        let path: String
+        if href == Const.gitHubTopTrendingURL.path {
+            path = "/trending/developers"
+        } else {
+            let language = URL(string: href)!.lastPathComponent
+            path = "/trending/developers/\(language)"
+        }
+
+        var components = URLComponents(
+            url: Const.gitHubBaseURL,
+            resolvingAgainstBaseURL: false
+        )!
+
+        components.path = path
+        components.queryItems = [
+            URLQueryItem(name: "since", value: period.rawValue),
+        ]
+
+        return components.url!
+    }
 }

@@ -89,6 +89,30 @@ private func processLanguage(
     graphQLManager: GitHubGraphQLManager,
     feedManager: FeedFileCreator
 ) async {
+    async let repoTask: () = processRepoLanguage(
+        link: link,
+        supportedEmojis: supportedEmojis,
+        gitHubDownloader: gitHubDownloader,
+        graphQLManager: graphQLManager,
+        feedManager: feedManager
+    )
+    async let devTask: () = processDeveloperLanguage(
+        link: link,
+        supportedEmojis: supportedEmojis,
+        gitHubDownloader: gitHubDownloader,
+        graphQLManager: graphQLManager,
+        feedManager: feedManager
+    )
+    _ = await (repoTask, devTask)
+}
+
+private func processRepoLanguage(
+    link: LanguageTrendingLink,
+    supportedEmojis: [GitHubEmoji],
+    gitHubDownloader: GitHubDownloader,
+    graphQLManager: GitHubGraphQLManager,
+    feedManager: FeedFileCreator
+) async {
     let periodsLongestFirst: [Period] = [.monthly, .weekly, .daily]
     let filteredSpokenLanguages = SpokenLanguage.allCases.filter { $0 != .unspecified }
     var skipRemainingPeriods = false
@@ -133,6 +157,43 @@ private func processLanguage(
                     feedManager: feedManager
                 )
             }
+        }
+    }
+}
+
+private func processDeveloperLanguage(
+    link: LanguageTrendingLink,
+    supportedEmojis: [GitHubEmoji],
+    gitHubDownloader: GitHubDownloader,
+    graphQLManager: GitHubGraphQLManager,
+    feedManager: FeedFileCreator
+) async {
+    let periodsLongestFirst: [Period] = [.monthly, .weekly, .daily]
+    var skipRemainingPeriods = false
+
+    for period in periodsLongestFirst {
+        if skipRemainingPeriods {
+            await writeEmptyDeveloperFeeds(
+                link: link,
+                period: period,
+                supportedEmojis: supportedEmojis,
+                feedManager: feedManager
+            )
+            continue
+        }
+
+        let outcome = await processDeveloperFeed(
+            link: link,
+            period: period,
+            supportedEmojis: supportedEmojis,
+            gitHubDownloader: gitHubDownloader,
+            graphQLManager: graphQLManager,
+            feedManager: feedManager
+        )
+
+        if case .fetched(isEmpty: true) = outcome {
+            NSLog("⏭ \(link.name): no trending developers (\(period.rawValue)); skipping remaining periods")
+            skipRemainingPeriods = true
         }
     }
 }
@@ -214,6 +275,59 @@ private func processFeed(
             // ignore
         } else {
             NSLog("⚠️ Failed to fetch repositories of \(link.name) (\(target.spokenLanguage.rawValue)). Error: \(error)")
+        }
+        return .failed
+    }
+}
+
+private func writeEmptyDeveloperFeeds(
+    link: LanguageTrendingLink,
+    period: Period,
+    supportedEmojis: [GitHubEmoji],
+    feedManager: FeedFileCreator
+) async {
+    do {
+        try await feedManager.createDeveloperRSSFile(
+            developers: [],
+            languageTrendingLink: link,
+            period: period,
+            supportedEmojis: supportedEmojis
+        )
+    } catch {
+        NSLog("⚠️ Failed to create an empty Developer RSS file of \(link.name) (\(period.rawValue)). Error: \(error)")
+    }
+}
+
+@discardableResult
+private func processDeveloperFeed(
+    link: LanguageTrendingLink,
+    period: Period,
+    supportedEmojis: [GitHubEmoji],
+    gitHubDownloader: GitHubDownloader,
+    graphQLManager: GitHubGraphQLManager,
+    feedManager: FeedFileCreator
+) async -> FeedGenerationOutcome {
+    do {
+        let developers = try await gitHubDownloader.fetchDevelopers(
+            ofLink: link,
+            period: period,
+            includesProfileReadMeIfExists: Const.popularLanguages.contains(link.name),
+            graphQLManager: graphQLManager
+        )
+
+        try await feedManager.createDeveloperRSSFile(
+            developers: developers,
+            languageTrendingLink: link,
+            period: period,
+            supportedEmojis: supportedEmojis
+        )
+        return .fetched(isEmpty: developers.isEmpty)
+    } catch {
+        if let error = error as? DownloadManager.Error,
+           error == .failedFetching(statusCode: 504) || error == .failedFetching(statusCode: 502) {
+            // ignore
+        } else {
+            NSLog("⚠️ Failed to fetch developers of \(link.name) (\(period.rawValue)). Error: \(error)")
         }
         return .failed
     }

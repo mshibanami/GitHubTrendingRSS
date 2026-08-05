@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    <title>GitHub {{ languageTrendingLink.displayName }} {{ periodText }} Trending Developers</title>
+    <description>{{ periodText }} Trending Developers of {{ languageTrendingLink.displayName }} in GitHub</description>
+    <pubDate>{{ pubDate }}</pubDate>
+    <link>{{ information.rssHomeURL }}</link>
+    {% for dev in developers %}
+    <item>
+      <title>{{ dev.title }}</title>
+      <link>{{ dev.link }}</link>
+      <description>{{ dev.description }}</description>
+      {% if dev.avatarURL %}
+      <media:content url="{{ dev.avatarURL }}" medium="image" />
+      {% endif %}
+    </item>
+    {% endfor %}
+  </channel>
+</rss>

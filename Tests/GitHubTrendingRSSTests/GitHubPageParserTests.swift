@@ -43,6 +43,35 @@ final class GitHubPageParserTests: XCTestCase {
         XCTAssertEqual(repository.pageLink.href, "/airbnb/lottie-ios")
         XCTAssertEqual(repository.summary, "An iOS library to natively render After Effects vector animations")
     }
+
+    func testParseDevelopers() throws {
+        let html = TestResources.trendingDevelopersPage()
+        let developers = try parser.developers(fromTrendingPage: html)
+        XCTAssertEqual(developers.count, 25)
+
+        let first = try XCTUnwrap(developers.first)
+        XCTAssertEqual(first.username, "Astro-Han")
+        XCTAssertEqual(first.displayName, "AstroHan")
+        XCTAssertEqual(first.avatarURL?.absoluteString, "https://avatars.githubusercontent.com/u/255364436?s=96&v=4")
+        XCTAssertEqual(first.popularRepository?.name, "karpathy-llm-wiki")
+        XCTAssertEqual(first.popularRepository?.href, "/Astro-Han/karpathy-llm-wiki")
+        XCTAssertTrue(first.popularRepository?.summary?.contains("Agent Skills-compatible LLM wiki") == true)
+    }
+
+    func testParseDevelopersWithAtPrefixAndFormatting() throws {
+        let html = """
+        <div class="Box">
+          <article class="Box-row d-flex" id="pa-user1">
+            <h1 class="h3 lh-condensed"><a href="/user1">User One</a></h1>
+            <p class="f4 text-normal mb-1"><a href="/user1">@user1</a></p>
+          </article>
+        </div>
+        """
+        let developers = try parser.developers(fromTrendingPage: html)
+        XCTAssertEqual(developers.count, 1)
+        XCTAssertEqual(developers.first?.username, "user1")
+        XCTAssertEqual(developers.first?.displayName, "User One")
+    }
 }
 
 extension Array where Element: Hashable {
