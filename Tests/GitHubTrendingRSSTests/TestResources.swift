@@ -31,6 +31,13 @@ class TestResources {
         )
     }
 
+    static func trendingDevelopersPage() -> String {
+        return try! String(
+            contentsOf: rootURL.appendingPathComponent("github.com_trending_developers.html"),
+            encoding: .utf8
+        )
+    }
+
     static func supportedEmojis() -> [GitHubEmoji] {
         let data = try! Data(contentsOf: rootURL.appendingPathComponent("api.github.com_emojis.json"))
         let emojiList = try! JSONDecoder().decode(APIEmojiList.self, from: data)
