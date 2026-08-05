@@ -13,7 +13,7 @@ jobs:
       matrix:
         target: [repos, developers]
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Setup Swift
         uses: swift-actions/setup-swift@v2
         with:
@@ -22,23 +22,30 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./scripts/build.sh --target ${{ matrix.target }}
+      - name: Package Output
+        run: tar -czf output-${{ matrix.target }}.tar.gz output
       - name: Upload Artifacts
-        uses: actions/upload-artifact@v4
+        uses: actions/upload-artifact@v7
         with:
-          name: output-${{ matrix.target }}
-          path: output/
+          path: output-${{ matrix.target }}.tar.gz
+          archive: false
+          if-no-files-found: error
 
   deploy:
     needs: fetch
     runs-on: macos-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v6
       - name: Download Artifacts
-        uses: actions/download-artifact@v4
+        uses: actions/download-artifact@v8
         with:
-          pattern: output-*
+          pattern: output-*.tar.gz
           merge-multiple: true
-          path: output/
+          path: artifacts/
+      - name: Extract Artifacts
+        run: |
+          tar -xzf artifacts/output-repos.tar.gz
+          tar -xzf artifacts/output-developers.tar.gz
       - name: Validate generated RSS feeds
         run: ./scripts/validate_feeds.sh
       - name: Deploy
