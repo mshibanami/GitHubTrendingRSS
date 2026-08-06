@@ -131,7 +131,32 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("https://github.com/testuser"))
         XCTAssertTrue(xml.contains("cool-repo"))
         XCTAssertTrue(xml.contains("pinned-repo"))
-        XCTAssertTrue(xml.contains("Sponsorable"))
+        XCTAssertTrue(xml.contains("https://x.com/test_tw"))
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
+    }
+
+    func testMakeDeveloperRSSLinkifiesMentionsAndTwitter() async throws {
+        let dev = Developer(
+            username: "john",
+            displayName: "John Doe",
+            avatarURL: nil,
+            popularRepository: nil,
+            bio: "Engineer @prisma and @facebook",
+            company: "@google",
+            twitterUsername: "john_tw"
+        )
+
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [dev],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://github.com/prisma&quot;&gt;@prisma&lt;/a&gt;"))
+        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://github.com/facebook&quot;&gt;@facebook&lt;/a&gt;"))
+        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://github.com/google&quot;&gt;@google&lt;/a&gt;"))
+        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://x.com/john_tw&quot;&gt;@john_tw&lt;/a&gt;"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 

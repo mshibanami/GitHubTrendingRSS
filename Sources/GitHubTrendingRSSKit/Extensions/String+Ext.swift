@@ -34,4 +34,18 @@ public extension String {
         }
         return String(dropFirst(prefix.count))
     }
+
+    func linkifyingGitHubMentions() -> String {
+        let pattern = #"(?:^|(?<=[^a-zA-Z0-9_.-]))@([a-zA-Z0-9](?:[a-zA-Z0-9-]{0,37}[a-zA-Z0-9])?)"#
+        guard let regex = try? NSRegularExpression(pattern: pattern) else {
+            return self
+        }
+        let range = NSRange(location: 0, length: utf16.count)
+        return regex.stringByReplacingMatches(
+            in: self,
+            options: [],
+            range: range,
+            withTemplate: #"<a href="https://github.com/$1">@$1</a>"#
+        )
+    }
 }

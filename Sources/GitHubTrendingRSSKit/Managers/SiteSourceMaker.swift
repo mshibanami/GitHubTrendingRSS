@@ -167,7 +167,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         if let bio = developer.bio, !bio.isEmpty {
-            html += "<p><em>\(bio.xmlEscaped)</em></p>"
+            html += "<p><em>\(bio.xmlEscaped.linkifyingGitHubMentions())</em></p>"
         }
 
         if developer.isSponsorable {
@@ -176,7 +176,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         var details = [String]()
         if let company = developer.company, !company.isEmpty {
-            details.append("🏢 \(company.xmlEscaped)")
+            details.append("🏢 \(company.xmlEscaped.linkifyingGitHubMentions())")
         }
         if let location = developer.location, !location.isEmpty {
             details.append("📍 \(location.xmlEscaped)")
@@ -184,14 +184,12 @@ public final class SiteSourceMaker: @unchecked Sendable {
         if let followersCount = developer.followersCount {
             details.append("👥 \(followersCount) followers")
         }
-        if let publicReposCount = developer.publicReposCount {
-            details.append("📦 \(publicReposCount) repos")
-        }
         if let websiteURL = developer.websiteURL {
             details.append("🔗 <a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>")
         }
         if let twitterUsername = developer.twitterUsername, !twitterUsername.isEmpty {
-            details.append("🐦 @\(twitterUsername.xmlEscaped)")
+            let cleanTwitter = twitterUsername.prefixDeleted(prefix: "@")
+            details.append("🐦 <a href=\"https://x.com/\(cleanTwitter.xmlEscaped)\">@\(cleanTwitter.xmlEscaped)</a>")
         }
         if !details.isEmpty {
             html += "<p>" + details.joined(separator: " · ") + "</p>"
@@ -208,7 +206,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             }
             html += "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let summary = popRepo.summary, !summary.isEmpty {
-                html += "<br>\(summary.xmlEscaped)"
+                html += "<br>\(summary.xmlEscaped.linkifyingGitHubMentions())"
             }
             html += "</p>"
         }
@@ -221,7 +219,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
                     html += " ⭐ \(stars)"
                 }
                 if let summary = pinned.summary, !summary.isEmpty {
-                    html += "<br>\(summary.xmlEscaped)"
+                    html += "<br>\(summary.xmlEscaped.linkifyingGitHubMentions())"
                 }
                 html += "</li>"
             }
