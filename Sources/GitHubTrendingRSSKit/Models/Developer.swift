@@ -19,6 +19,7 @@ public struct Developer: @unchecked Sendable {
     public var publicReposCount: Int?
     public var websiteURL: URL?
     public var twitterUsername: String?
+    public var socialAccounts: [SocialAccount]
     public var profileReadMe: APIReadMe?
 
     public init(
@@ -35,6 +36,7 @@ public struct Developer: @unchecked Sendable {
         publicReposCount: Int? = nil,
         websiteURL: URL? = nil,
         twitterUsername: String? = nil,
+        socialAccounts: [SocialAccount] = [],
         profileReadMe: APIReadMe? = nil
     ) {
         self.username = username
@@ -50,6 +52,7 @@ public struct Developer: @unchecked Sendable {
         self.publicReposCount = publicReposCount
         self.websiteURL = websiteURL
         self.twitterUsername = twitterUsername
+        self.socialAccounts = socialAccounts
         self.profileReadMe = profileReadMe
     }
 
@@ -58,5 +61,17 @@ public struct Developer: @unchecked Sendable {
             return nil
         }
         return try await profileReadMe.makeHTML(supportedEmojis: supportedEmojis)
+    }
+}
+
+public struct SocialAccount: Sendable, Equatable {
+    public let provider: String
+    public let url: URL
+    public let displayName: String
+
+    public init(provider: String, url: URL, displayName: String) {
+        self.provider = provider
+        self.url = url
+        self.displayName = displayName
     }
 }

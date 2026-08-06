@@ -172,6 +172,60 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
+    func testMakeDeveloperRSSRendersSocialAccountsWithSVG() async throws {
+        let blueskyURL = try XCTUnwrap(URL(string: "https://bsky.app/profile/sample.bsky.social"))
+        let youtubeURL = try XCTUnwrap(URL(string: "https://youtube.com/@sample_channel"))
+        let dev = Developer(
+            username: "sampleuser",
+            displayName: "Sample User",
+            avatarURL: nil,
+            popularRepository: nil,
+            socialAccounts: [
+                SocialAccount(provider: "BLUESKY", url: blueskyURL, displayName: "sample.bsky.social"),
+                SocialAccount(provider: "YOUTUBE", url: youtubeURL, displayName: "@sample_channel"),
+            ]
+        )
+
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            period: .daily,
+            developers: [dev],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(xml.contains("bsky.app"))
+        XCTAssertTrue(xml.contains("youtube.com"))
+        XCTAssertTrue(xml.contains("width=&quot;20&quot; height=&quot;20&quot;"))
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
+    }
+
+    func testMakeDeveloperRSSFallbackToGenericSVGForUnknownSocialDomain() async throws {
+        let websiteURL = try XCTUnwrap(URL(string: "https://custom-domain.example.com"))
+        let blogURL = try XCTUnwrap(URL(string: "https://myblog.example.org"))
+        let dev = Developer(
+            username: "generic_dev",
+            displayName: "Generic Dev",
+            avatarURL: nil,
+            popularRepository: nil,
+            websiteURL: websiteURL,
+            socialAccounts: [
+                SocialAccount(provider: "GENERIC", url: blogURL, displayName: "My Blog"),
+            ]
+        )
+
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            period: .daily,
+            developers: [dev],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(xml.contains("custom-domain.example.com"))
+        XCTAssertTrue(xml.contains("myblog.example.org"))
+        XCTAssertTrue(xml.contains("stroke=&quot;#57606a&quot;"))
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
+    }
+
     func testMakeDeveloperRSSEscapesSpecialCharacters() async throws {
         let dev = Developer(
             username: "user_special",

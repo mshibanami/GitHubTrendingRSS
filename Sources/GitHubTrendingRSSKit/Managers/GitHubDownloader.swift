@@ -81,6 +81,15 @@ public final class GitHubDownloader: Sendable {
                         updatedDev.publicReposCount = info.repositories?.totalCount
                         updatedDev.websiteURL = info.websiteUrl
                         updatedDev.twitterUsername = info.twitterUsername
+                        if let socialNodes = info.socialAccounts?.nodes {
+                            updatedDev.socialAccounts = socialNodes.compactMap { node in
+                                SocialAccount(
+                                    provider: node.provider,
+                                    url: node.url,
+                                    displayName: node.displayName
+                                )
+                            }
+                        }
                         if let pinnedNodes = info.pinnedItems?.nodes {
                             updatedDev.pinnedRepositories = pinnedNodes.compactMap { node in
                                 DeveloperPinnedRepository(

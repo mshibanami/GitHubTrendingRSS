@@ -197,6 +197,13 @@ public actor GitHubGraphQLManager {
                 }
                 websiteUrl
                 twitterUsername
+                socialAccounts(first: 10) {
+                  nodes {
+                    provider
+                    url
+                    displayName
+                  }
+                }
                 pinnedItems(first: 6, types: [REPOSITORY]) {
                   nodes {
                     ... on Repository {

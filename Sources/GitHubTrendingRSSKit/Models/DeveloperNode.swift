@@ -40,6 +40,7 @@ public struct DeveloperNode: Decodable, Sendable {
     public let repositories: TotalCountContainer?
     public let websiteUrl: URL?
     public let twitterUsername: String?
+    public let socialAccounts: SocialAccountsContainer?
     public let pinnedItems: PinnedItemsContainer?
 
     public init(
@@ -50,6 +51,7 @@ public struct DeveloperNode: Decodable, Sendable {
         repositories: TotalCountContainer? = nil,
         websiteUrl: URL? = nil,
         twitterUsername: String? = nil,
+        socialAccounts: SocialAccountsContainer? = nil,
         pinnedItems: PinnedItemsContainer? = nil
     ) {
         self.bio = bio
@@ -59,6 +61,27 @@ public struct DeveloperNode: Decodable, Sendable {
         self.repositories = repositories
         self.websiteUrl = websiteUrl
         self.twitterUsername = twitterUsername
+        self.socialAccounts = socialAccounts
         self.pinnedItems = pinnedItems
+    }
+}
+
+public struct SocialAccountNode: Decodable, Sendable {
+    public let provider: String
+    public let url: URL
+    public let displayName: String
+
+    public init(provider: String, url: URL, displayName: String) {
+        self.provider = provider
+        self.url = url
+        self.displayName = displayName
+    }
+}
+
+public struct SocialAccountsContainer: Decodable, Sendable {
+    public let nodes: [SocialAccountNode]?
+
+    public init(nodes: [SocialAccountNode]?) {
+        self.nodes = nodes
     }
 }

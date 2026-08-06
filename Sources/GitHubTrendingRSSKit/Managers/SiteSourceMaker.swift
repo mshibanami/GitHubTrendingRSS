@@ -111,7 +111,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
         for developer in developers {
             let popRepoHref = developer.popularRepository?.href ?? ""
             let pinnedList = developer.pinnedRepositories.map(\.name).joined(separator: ",")
-            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")"
+            let socialList = developer.socialAccounts.map { "\($0.provider):\($0.url.absoluteString)" }.joined(separator: ",")
+            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
             let descriptionHTML = try await descriptionHTMLCache.value(for: cacheKey) {
                 try await self.buildDeveloperDescriptionHTML(developer: developer, supportedEmojis: supportedEmojis)
             } ?? ""
@@ -185,11 +186,25 @@ public final class SiteSourceMaker: @unchecked Sendable {
             details.append("👥 \(followersCount) followers")
         }
         if let websiteURL = developer.websiteURL {
-            details.append("🔗 <a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>")
+            let isIncludedInSocial = developer.socialAccounts.contains(where: { $0.url.absoluteString == websiteURL.absoluteString })
+            if !isIncludedInSocial {
+                let icon = socialIconSVG(provider: "generic", url: websiteURL)
+                details.append("\(icon)<a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>")
+            }
         }
-        if let twitterUsername = developer.twitterUsername, !twitterUsername.isEmpty {
+
+        if !developer.socialAccounts.isEmpty {
+            for account in developer.socialAccounts {
+                let icon = socialIconSVG(provider: account.provider, url: account.url)
+                let label = account.displayName.isEmpty ? account.url.absoluteString : account.displayName
+                details.append("\(icon)<a href=\"\(account.url.absoluteString.xmlEscaped)\">\(label.xmlEscaped)</a>")
+            }
+        } else if let twitterUsername = developer.twitterUsername, !twitterUsername.isEmpty {
             let cleanTwitter = twitterUsername.prefixDeleted(prefix: "@")
-            details.append("🐦 <a href=\"https://x.com/\(cleanTwitter.xmlEscaped)\">@\(cleanTwitter.xmlEscaped)</a>")
+            if let twitterURL = URL(string: "https://x.com/\(cleanTwitter)") {
+                let icon = socialIconSVG(provider: "twitter", url: twitterURL)
+                details.append("\(icon)<a href=\"\(twitterURL.absoluteString.xmlEscaped)\">@\(cleanTwitter.xmlEscaped)</a>")
+            }
         }
         if !details.isEmpty {
             html += "<p>" + details.joined(separator: " · ") + "</p>"
@@ -231,5 +246,52 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         return html
+    }
+
+    private func iconName(provider: String, url: URL) -> String {
+        let p = provider.lowercased()
+        let host = url.host?.lowercased() ?? ""
+
+        if p == "bluesky" || host.contains("bsky.app") || host.contains("bluesky") {
+            return "bluesky"
+        } else if p == "youtube" || host.contains("youtube.com") || host.contains("youtu.be") {
+            return "youtube"
+        } else if p == "twitter" || p == "x" || host.contains("twitter.com") || host.contains("x.com") {
+            return "twitter"
+        } else if p == "mastodon" || host.contains("mastodon") || host.contains("mstdn") {
+            return "mastodon"
+        } else if p == "linkedin" || host.contains("linkedin.com") {
+            return "linkedin"
+        } else if p == "instagram" || host.contains("instagram.com") {
+            return "instagram"
+        } else if p == "twitch" || host.contains("twitch.tv") {
+            return "twitch"
+        } else if p == "tiktok" || host.contains("tiktok.com") {
+            return "tiktok"
+        } else if p == "facebook" || host.contains("facebook.com") {
+            return "facebook"
+        } else {
+            return "generic"
+        }
+    }
+
+    private nonisolated(unsafe) static var svgIconCache: [String: String] = [:]
+    private static let svgIconCacheLock = NSLock()
+
+    private func socialIconSVG(provider: String, url: URL) -> String {
+        let name = iconName(provider: provider, url: url)
+        Self.svgIconCacheLock.lock()
+        if let cached = Self.svgIconCache[name] {
+            Self.svgIconCacheLock.unlock()
+            return cached
+        }
+        Self.svgIconCacheLock.unlock()
+
+        let iconURL = Const.resourcesRootURL.appendingPathComponent("icons/\(name).svg")
+        let content = (try? String(contentsOf: iconURL, encoding: .utf8))?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
+        Self.svgIconCacheLock.lock()
+        Self.svgIconCache[name] = content
+        Self.svgIconCacheLock.unlock()
+        return content
     }
 }

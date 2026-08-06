@@ -66,6 +66,12 @@ final class GitHubGraphQLManagerTests: XCTestCase {
             "repositories": { "totalCount": 20 },
             "websiteUrl": "https://example.com",
             "twitterUsername": "acme_dev",
+            "socialAccounts": {
+                "nodes": [
+                    { "provider": "BLUESKY", "url": "https://bsky.app/profile/sample.bsky.social", "displayName": "sample.bsky.social" },
+                    { "provider": "YOUTUBE", "url": "https://youtube.com/@sample_user", "displayName": "@sample_user" }
+                ]
+            },
             "pinnedItems": {
                 "nodes": [
                     {
@@ -87,6 +93,9 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertEqual(node.repositories?.totalCount, 20)
         XCTAssertEqual(node.websiteUrl?.absoluteString, "https://example.com")
         XCTAssertEqual(node.twitterUsername, "acme_dev")
+        XCTAssertEqual(node.socialAccounts?.nodes?.count, 2)
+        XCTAssertEqual(node.socialAccounts?.nodes?.first?.provider, "BLUESKY")
+        XCTAssertEqual(node.socialAccounts?.nodes?.first?.url.absoluteString, "https://bsky.app/profile/sample.bsky.social")
         XCTAssertEqual(node.pinnedItems?.nodes?.count, 1)
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.name, "cool-project")
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.stargazerCount, 50)
