@@ -55,6 +55,18 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(html.contains("<media:content url=\"https://example.com/hello-world.png\" medium=\"image\" />"))
     }
 
+    func testGenerateRSSForAllLanguagesOmitsAllLanguagesInTitle() async throws {
+        let rss = try await maker.makeRSS(
+            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            period: .daily,
+            repositories: [],
+            supportedEmojis: supportedEmojis
+        )
+        XCTAssertTrue(rss.contains("<title>GitHub Daily Trending</title>"))
+        XCTAssertTrue(rss.contains("<description>Daily Trending in GitHub</description>"))
+        XCTAssertFalse(rss.contains("All Languages"))
+    }
+
     func testGenerateRSSEscapesOpenGraphImageURLForXML() async throws {
         var repository = Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world")
         repository.openGraphImageUrl = URL(string: "https://example.com/image.png?width=1200&height=630")
@@ -190,6 +202,20 @@ final class SiteGeneratorTests: XCTestCase {
         )
 
         XCTAssertTrue(xml.contains("<title>GitHub Swift Daily Trending Developers</title>"))
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
+    }
+
+    func testMakeDeveloperRSSForAllLanguagesOmitsAllLanguagesInTitle() async throws {
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            period: .daily,
+            developers: [],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertTrue(xml.contains("<title>GitHub Daily Trending Developers</title>"))
+        XCTAssertTrue(xml.contains("<description>Daily Trending Developers in GitHub</description>"))
+        XCTAssertFalse(xml.contains("All Languages"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 

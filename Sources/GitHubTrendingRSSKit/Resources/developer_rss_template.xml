@@ -1,8 +1,13 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
   <channel>
+    {% if languageTrendingLink.displayName == "All Languages" %}
+    <title>GitHub {{ periodText }} Trending Developers</title>
+    <description>{{ periodText }} Trending Developers in GitHub</description>
+    {% else %}
     <title>GitHub {{ languageTrendingLink.displayName }} {{ periodText }} Trending Developers</title>
     <description>{{ periodText }} Trending Developers of {{ languageTrendingLink.displayName }} in GitHub</description>
+    {% endif %}
     <pubDate>{{ pubDate }}</pubDate>
     <link>{{ information.rssHomeURL }}</link>
     {% for dev in developers %}
