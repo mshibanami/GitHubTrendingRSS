@@ -75,4 +75,15 @@ final class FeedFileCreatorTests: XCTestCase {
         XCTAssertEqual(fileURL.path, tempDir.appendingPathComponent("developers/daily/swift.xml").path)
         XCTAssertTrue(FileManager.default.fileExists(atPath: fileURL.path))
     }
+
+    func testCopyAssetsDirectory() throws {
+        let maker = SiteSourceMaker(environment: environment, information: information)
+        let creator = FeedFileCreator(outputDirectory: tempDir, siteGenerator: maker)
+
+        try creator.copyAssetsDirectory()
+
+        let copiedAssetsDir = tempDir.appendingPathComponent("assets")
+        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.appendingPathComponent("icons/linkedin.svg").path))
+    }
 }

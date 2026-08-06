@@ -62,6 +62,7 @@ let feedManager = FeedFileCreator(
 
 func start(target: FetchTarget) async throws {
     try await DocslothManager.shared.setup()
+    try feedManager.copyAssetsDirectory()
     async let topTrendingPageTask = gitHubDownloader.fetchTopTrendingPage()
     async let supportedEmojisTask = gitHubDownloader.fetchSupportedEmojis()
 

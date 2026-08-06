@@ -51,6 +51,8 @@ public final class FeedFileCreator: @unchecked Sendable {
             attributes: nil
         )
 
+        try copyAssetsDirectory()
+
         let html = try siteGenerator.makeHomeHTML(from: languageLinks)
         let fileURL = rootOutputDirectory.appendingPathComponent("index.html")
 
@@ -63,6 +65,24 @@ public final class FeedFileCreator: @unchecked Sendable {
         }
 
         return fileURL
+    }
+
+    public func copyAssetsDirectory() throws {
+        let fileManager = FileManager.default
+        let sourceAssetsURL = Const.resourcesRootURL.appendingPathComponent("assets")
+        let destinationAssetsURL = rootOutputDirectory.appendingPathComponent("assets")
+
+        guard fileManager.fileExists(atPath: sourceAssetsURL.path) else {
+            return
+        }
+
+        try fileManager.createDirectory(at: rootOutputDirectory, withIntermediateDirectories: true, attributes: nil)
+
+        if fileManager.fileExists(atPath: destinationAssetsURL.path) {
+            try fileManager.removeItem(at: destinationAssetsURL)
+        }
+
+        try fileManager.copyItem(at: sourceAssetsURL, to: destinationAssetsURL)
     }
 
     @discardableResult public func createDeveloperRSSFile(

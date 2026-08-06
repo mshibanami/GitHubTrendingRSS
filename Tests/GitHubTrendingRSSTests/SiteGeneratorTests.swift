@@ -172,9 +172,10 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
-    func testMakeDeveloperRSSRendersSocialAccountsWithSVG() async throws {
+    func testMakeDeveloperRSSRendersSocialAccountsWithAssetURL() async throws {
         let blueskyURL = try XCTUnwrap(URL(string: "https://bsky.app/profile/sample.bsky.social"))
         let youtubeURL = try XCTUnwrap(URL(string: "https://youtube.com/@sample_channel"))
+        let linkedinURL = try XCTUnwrap(URL(string: "https://www.linkedin.com/in/sampleuser"))
         let dev = Developer(
             username: "sampleuser",
             displayName: "Sample User",
@@ -183,6 +184,7 @@ final class SiteGeneratorTests: XCTestCase {
             socialAccounts: [
                 SocialAccount(provider: "BLUESKY", url: blueskyURL, displayName: "sample.bsky.social"),
                 SocialAccount(provider: "YOUTUBE", url: youtubeURL, displayName: "@sample_channel"),
+                SocialAccount(provider: "LINKEDIN", url: linkedinURL, displayName: "in/sampleuser"),
             ]
         )
 
@@ -195,6 +197,10 @@ final class SiteGeneratorTests: XCTestCase {
 
         XCTAssertTrue(xml.contains("bsky.app"))
         XCTAssertTrue(xml.contains("youtube.com"))
+        XCTAssertTrue(xml.contains("linkedin.com"))
+        XCTAssertTrue(xml.contains("assets/icons/bluesky.svg"))
+        XCTAssertTrue(xml.contains("assets/icons/youtube.svg"))
+        XCTAssertTrue(xml.contains("assets/icons/linkedin.svg"))
         XCTAssertTrue(xml.contains("width=&quot;20&quot; height=&quot;20&quot;"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
@@ -222,7 +228,7 @@ final class SiteGeneratorTests: XCTestCase {
 
         XCTAssertTrue(xml.contains("custom-domain.example.com"))
         XCTAssertTrue(xml.contains("myblog.example.org"))
-        XCTAssertTrue(xml.contains("stroke=&quot;#57606a&quot;"))
+        XCTAssertTrue(xml.contains("assets/icons/generic.svg"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 

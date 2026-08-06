@@ -188,21 +188,21 @@ public final class SiteSourceMaker: @unchecked Sendable {
         if let websiteURL = developer.websiteURL {
             let isIncludedInSocial = developer.socialAccounts.contains(where: { $0.url.absoluteString == websiteURL.absoluteString })
             if !isIncludedInSocial {
-                let icon = socialIconSVG(provider: "generic", url: websiteURL)
+                let icon = socialIconImageHTML(provider: "generic", url: websiteURL)
                 details.append("\(icon)<a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>")
             }
         }
 
         if !developer.socialAccounts.isEmpty {
             for account in developer.socialAccounts {
-                let icon = socialIconSVG(provider: account.provider, url: account.url)
+                let icon = socialIconImageHTML(provider: account.provider, url: account.url)
                 let label = account.displayName.isEmpty ? account.url.absoluteString : account.displayName
                 details.append("\(icon)<a href=\"\(account.url.absoluteString.xmlEscaped)\">\(label.xmlEscaped)</a>")
             }
         } else if let twitterUsername = developer.twitterUsername, !twitterUsername.isEmpty {
             let cleanTwitter = twitterUsername.prefixDeleted(prefix: "@")
             if let twitterURL = URL(string: "https://x.com/\(cleanTwitter)") {
-                let icon = socialIconSVG(provider: "twitter", url: twitterURL)
+                let icon = socialIconImageHTML(provider: "twitter", url: twitterURL)
                 details.append("\(icon)<a href=\"\(twitterURL.absoluteString.xmlEscaped)\">@\(cleanTwitter.xmlEscaped)</a>")
             }
         }
@@ -275,23 +275,10 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
     }
 
-    private nonisolated(unsafe) static var svgIconCache: [String: String] = [:]
-    private static let svgIconCacheLock = NSLock()
-
-    private func socialIconSVG(provider: String, url: URL) -> String {
+    private func socialIconImageHTML(provider: String, url: URL) -> String {
         let name = iconName(provider: provider, url: url)
-        Self.svgIconCacheLock.lock()
-        if let cached = Self.svgIconCache[name] {
-            Self.svgIconCacheLock.unlock()
-            return cached
-        }
-        Self.svgIconCacheLock.unlock()
-
-        let iconURL = Const.resourcesRootURL.appendingPathComponent("icons/\(name).svg")
-        let content = (try? String(contentsOf: iconURL, encoding: .utf8))?.trimmingCharacters(in: .whitespacesAndNewlines) ?? ""
-        Self.svgIconCacheLock.lock()
-        Self.svgIconCache[name] = content
-        Self.svgIconCacheLock.unlock()
-        return content
+        let cleanBaseURL = information.rssHomeURL.hasSuffix("/") ? String(information.rssHomeURL.dropLast()) : information.rssHomeURL
+        let iconURL = "\(cleanBaseURL)/assets/icons/\(name).svg"
+        return #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="vertical-align: text-bottom; margin-right: 4px; display: inline-block;" />"#
     }
 }
