@@ -127,7 +127,7 @@ final class SiteGeneratorTests: XCTestCase {
             supportedEmojis: supportedEmojis
         )
 
-        XCTAssertTrue(xml.contains("Test User (testuser)"))
+        XCTAssertTrue(xml.contains("Test User (@testuser)"))
         XCTAssertTrue(xml.contains("https://github.com/testuser"))
         XCTAssertTrue(xml.contains("cool-repo"))
         XCTAssertTrue(xml.contains("pinned-repo"))

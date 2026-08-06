@@ -117,8 +117,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
             } ?? ""
 
             let title = developer.displayName != developer.username
-                ? "\(developer.displayName) (\(developer.username))"
-                : developer.username
+                ? "\(developer.displayName) (@\(developer.username))"
+                : "@\(developer.username)"
 
             var devDict: [String: Any] = [
                 "title": title.xml10Sanitized.xmlEscaped,
@@ -151,12 +151,20 @@ public final class SiteSourceMaker: @unchecked Sendable {
     private func buildDeveloperDescriptionHTML(developer: Developer, supportedEmojis: [GitHubEmoji]) async throws -> String {
         var html = ""
 
-        if let avatarURL = developer.avatarURL {
-            html += #"<p><img src="\#(avatarURL.absoluteString.xmlEscaped)" width="48" height="48" alt="@\#(developer.username.xmlEscaped)" style="border-radius: 50%; vertical-align: middle; margin-right: 8px;" /> "#
+        let nameHTML: String
+        if developer.displayName != developer.username {
+            nameHTML = #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">\#(developer.displayName.xmlEscaped)</a></strong><br><span style="color: #57606a;">@\#(developer.username.xmlEscaped)</span>"#
         } else {
-            html += "<p>"
+            nameHTML = #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">@\#(developer.username.xmlEscaped)</a></strong>"#
         }
-        html += #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">\#(developer.displayName.xmlEscaped)</a></strong> (\#(developer.username.xmlEscaped))</p>"#
+
+        if let avatarURL = developer.avatarURL {
+            html += #"<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">"#
+            html += #"<img src="\#(avatarURL.absoluteString.xmlEscaped)" width="48" height="48" alt="@\#(developer.username.xmlEscaped)" style="border-radius: 50%; flex-shrink: 0;" />"#
+            html += "<div>\(nameHTML)</div></div>"
+        } else {
+            html += #"<div style="margin-bottom: 12px;">\(nameHTML)</div>"#
+        }
 
         if let bio = developer.bio, !bio.isEmpty {
             html += "<p><em>\(bio.xmlEscaped)</em></p>"
@@ -186,7 +194,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             details.append("🐦 @\(twitterUsername.xmlEscaped)")
         }
         if !details.isEmpty {
-            html += "<p>" + details.joined(separator: " | ") + "</p>"
+            html += "<p>" + details.joined(separator: " · ") + "</p>"
         }
 
         if let popRepo = developer.popularRepository {
@@ -198,7 +206,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             } else {
                 href = "https://github.com/" + popRepo.href
             }
-            html += "<h4>🔥 Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
+            html += "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let summary = popRepo.summary, !summary.isEmpty {
                 html += "<br>\(summary.xmlEscaped)"
             }
@@ -206,7 +214,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         if !developer.pinnedRepositories.isEmpty {
-            html += "<h4>📌 Pinned Repositories</h4><ul>"
+            html += "<h4>Pinned Repositories</h4><ul>"
             for pinned in developer.pinnedRepositories {
                 html += "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
                 if let stars = pinned.stargazerCount {
