@@ -62,8 +62,8 @@ final class SiteGeneratorTests: XCTestCase {
             repositories: [],
             supportedEmojis: supportedEmojis
         )
-        XCTAssertTrue(rss.contains("<title>GitHub Daily Trending</title>"))
-        XCTAssertTrue(rss.contains("<description>Daily Trending in GitHub</description>"))
+        XCTAssertTrue(rss.contains("<title>GitHub Daily Trending Repositories</title>"))
+        XCTAssertTrue(rss.contains("<description>Daily Trending Repositories on GitHub</description>"))
         XCTAssertFalse(rss.contains("All Languages"))
     }
 
@@ -274,7 +274,7 @@ final class SiteGeneratorTests: XCTestCase {
         )
 
         XCTAssertTrue(xml.contains("<title>GitHub Daily Trending Developers</title>"))
-        XCTAssertTrue(xml.contains("<description>Daily Trending Developers in GitHub</description>"))
+        XCTAssertTrue(xml.contains("<description>Daily Trending Developers on GitHub</description>"))
         XCTAssertFalse(xml.contains("All Languages"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
