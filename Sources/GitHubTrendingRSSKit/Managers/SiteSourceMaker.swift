@@ -160,11 +160,12 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         if let avatarURL = developer.avatarURL {
-            html += #"<div style="display: flex; align-items: center; gap: 12px; margin-bottom: 12px;">"#
-            html += #"<img src="\#(avatarURL.absoluteString.xmlEscaped)" width="48" height="48" alt="@\#(developer.username.xmlEscaped)" style="border-radius: 50%; flex-shrink: 0;" />"#
-            html += "<div>\(nameHTML)</div></div>"
+            html += #"<table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 12px;"><tr>"#
+            html += #"<td style="vertical-align: middle; padding-right: 12px;"><img src="\#(avatarURL.absoluteString.xmlEscaped)" width="48" height="48" alt="@\#(developer.username.xmlEscaped)" style="border-radius: 50%;" /></td>"#
+            html += #"<td style="vertical-align: middle;">\#(nameHTML)</td>"#
+            html += "</tr></table>"
         } else {
-            html += #"<div style="margin-bottom: 12px;">\(nameHTML)</div>"#
+            html += #"<div style="margin-bottom: 12px;">\#(nameHTML)</div>"#
         }
 
         if let bio = developer.bio, !bio.isEmpty {
