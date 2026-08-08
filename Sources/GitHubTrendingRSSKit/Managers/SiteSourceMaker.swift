@@ -208,7 +208,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
             }
         }
         if !details.isEmpty {
-            html += "<p>" + details.joined(separator: " · ") + "</p>"
+            let listItems = details.map { "<li style=\"list-style-type: none;\">\($0)</li>" }.joined()
+            html += "<ul style=\"list-style-type: none;\">\(listItems)</ul>"
         }
 
         if let popRepo = developer.popularRepository {
