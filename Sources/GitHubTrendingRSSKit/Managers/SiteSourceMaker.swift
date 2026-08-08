@@ -281,6 +281,6 @@ public final class SiteSourceMaker: @unchecked Sendable {
         let name = iconName(provider: provider, url: url)
         let cleanBaseURL = information.rssHomeURL.hasSuffix("/") ? String(information.rssHomeURL.dropLast()) : information.rssHomeURL
         let iconURL = "\(cleanBaseURL)/assets/icons/\(name).svg"
-        return #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="vertical-align: text-bottom; margin-right: 4px; display: inline-block;" />"#
+        return #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin-right: 4px; display: inline-block;" />"#
     }
 }
