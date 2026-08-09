@@ -15,11 +15,13 @@ public struct Developer: @unchecked Sendable {
     public var bio: String?
     public var company: String?
     public var location: String?
+    public var email: String?
     public var followersCount: Int?
     public var publicReposCount: Int?
     public var websiteURL: URL?
     public var twitterUsername: String?
     public var socialAccounts: [SocialAccount]
+    public var organizations: [DeveloperOrganization]
     public var profileReadMe: APIReadMe?
 
     public init(
@@ -37,7 +39,9 @@ public struct Developer: @unchecked Sendable {
         websiteURL: URL? = nil,
         twitterUsername: String? = nil,
         socialAccounts: [SocialAccount] = [],
-        profileReadMe: APIReadMe? = nil
+        profileReadMe: APIReadMe? = nil,
+        email: String? = nil,
+        organizations: [DeveloperOrganization] = []
     ) {
         self.username = username
         self.displayName = displayName
@@ -48,11 +52,13 @@ public struct Developer: @unchecked Sendable {
         self.bio = bio
         self.company = company
         self.location = location
+        self.email = email
         self.followersCount = followersCount
         self.publicReposCount = publicReposCount
         self.websiteURL = websiteURL
         self.twitterUsername = twitterUsername
         self.socialAccounts = socialAccounts
+        self.organizations = organizations
         self.profileReadMe = profileReadMe
     }
 

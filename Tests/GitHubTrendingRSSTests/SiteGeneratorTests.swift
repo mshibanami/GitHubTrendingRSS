@@ -129,7 +129,15 @@ final class SiteGeneratorTests: XCTestCase {
             followersCount: 50,
             publicReposCount: 15,
             websiteURL: URL(string: "https://test.com"),
-            twitterUsername: "test_tw"
+            twitterUsername: "test_tw",
+            email: "test@example.com",
+            organizations: [
+                DeveloperOrganization(
+                    login: "test-org",
+                    name: "Test Organization",
+                    url: try XCTUnwrap(URL(string: "https://github.com/test-org"))
+                ),
+            ]
         )
 
         let xml = try await maker.makeDeveloperRSS(
@@ -144,6 +152,15 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("cool-repo"))
         XCTAssertTrue(xml.contains("pinned-repo"))
         XCTAssertTrue(xml.contains("https://x.com/test_tw"))
+        XCTAssertTrue(xml.contains("mailto:test@example.com"))
+        XCTAssertTrue(xml.contains("test@example.com"))
+        XCTAssertTrue(xml.contains("assets/icons/mail.png"))
+        XCTAssertTrue(xml.contains("https://github.com/test-org"))
+        XCTAssertTrue(xml.contains("Test Organization"))
+        XCTAssertTrue(xml.contains("15 public repositories"))
+        XCTAssertTrue(xml.contains("assets/icons/building.png"))
+        XCTAssertTrue(xml.contains("assets/icons/map-pin.png"))
+        XCTAssertTrue(xml.contains("assets/icons/users-round.png"))
         XCTAssertTrue(xml.contains("assets/icons/twitter.png"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
@@ -211,10 +228,11 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertFalse(xml.contains("assets/icons/linkedin.svg"))
         XCTAssertFalse(xml.contains("assets/icons/orcid.svg"))
         XCTAssertTrue(xml.contains("width=&quot;20&quot; height=&quot;20&quot;"))
+        XCTAssertTrue(xml.contains("vertical-align: middle;"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
-    func testMakeDeveloperRSSOmitsIconForUnknownSocialDomain() async throws {
+    func testMakeDeveloperRSSUsesGenericLinkIconForUnknownSocialDomain() async throws {
         let websiteURL = try XCTUnwrap(URL(string: "https://custom-domain.example.com"))
         let blogURL = try XCTUnwrap(URL(string: "https://myblog.example.org"))
         let dev = Developer(
@@ -237,7 +255,8 @@ final class SiteGeneratorTests: XCTestCase {
 
         XCTAssertTrue(xml.contains("custom-domain.example.com"))
         XCTAssertTrue(xml.contains("myblog.example.org"))
-        XCTAssertFalse(xml.contains("assets/icons/"))
+        XCTAssertTrue(xml.contains("assets/icons/link.png"))
+        XCTAssertFalse(xml.contains("assets/icons/link.svg"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 

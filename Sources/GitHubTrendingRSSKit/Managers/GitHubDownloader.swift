@@ -77,6 +77,7 @@ public final class GitHubDownloader: Sendable {
                         updatedDev.bio = info.bio
                         updatedDev.company = info.company
                         updatedDev.location = info.location
+                        updatedDev.email = info.email
                         updatedDev.followersCount = info.followers?.totalCount
                         updatedDev.publicReposCount = info.repositories?.totalCount
                         updatedDev.websiteURL = info.websiteUrl
@@ -87,6 +88,15 @@ public final class GitHubDownloader: Sendable {
                                     provider: node.provider,
                                     url: node.url,
                                     displayName: node.displayName
+                                )
+                            }
+                        }
+                        if let organizationNodes = info.organizations?.nodes {
+                            updatedDev.organizations = organizationNodes.map { node in
+                                DeveloperOrganization(
+                                    login: node.login,
+                                    name: node.name,
+                                    url: node.url
                                 )
                             }
                         }

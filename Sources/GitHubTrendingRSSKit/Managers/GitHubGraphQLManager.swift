@@ -189,6 +189,7 @@ public actor GitHubGraphQLManager {
                 bio
                 company
                 location
+                email
                 followers {
                   totalCount
                 }
@@ -202,6 +203,13 @@ public actor GitHubGraphQLManager {
                     provider
                     url
                     displayName
+                  }
+                }
+                organizations(first: 10) {
+                  nodes {
+                    login
+                    name
+                    url
                   }
                 }
                 pinnedItems(first: 6, types: [REPOSITORY]) {
