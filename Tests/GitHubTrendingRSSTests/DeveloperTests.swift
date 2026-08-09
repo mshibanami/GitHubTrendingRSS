@@ -24,6 +24,7 @@ final class DeveloperTests: XCTestCase {
             company: "Company",
             location: "Location",
             followersCount: 100,
+            followingCount: 20,
             publicReposCount: 10,
             websiteURL: URL(string: "https://example.com"),
             twitterUsername: "user_twitter",
@@ -42,6 +43,7 @@ final class DeveloperTests: XCTestCase {
         XCTAssertEqual(developer.company, "Company")
         XCTAssertEqual(developer.location, "Location")
         XCTAssertEqual(developer.followersCount, 100)
+        XCTAssertEqual(developer.followingCount, 20)
         XCTAssertEqual(developer.publicReposCount, 10)
         XCTAssertEqual(developer.websiteURL?.absoluteString, "https://example.com")
         XCTAssertEqual(developer.twitterUsername, "user_twitter")

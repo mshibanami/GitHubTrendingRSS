@@ -33,36 +33,16 @@ public struct DeveloperNode: Decodable, Sendable {
         }
     }
 
-    public struct OrganizationNode: Decodable, Sendable {
-        public let login: String
-        public let name: String?
-        public let url: URL
-
-        public init(login: String, name: String?, url: URL) {
-            self.login = login
-            self.name = name
-            self.url = url
-        }
-    }
-
-    public struct OrganizationsContainer: Decodable, Sendable {
-        public let nodes: [OrganizationNode]?
-
-        public init(nodes: [OrganizationNode]?) {
-            self.nodes = nodes
-        }
-    }
-
     public let bio: String?
     public let company: String?
     public let location: String?
     public let email: String?
     public let followers: TotalCountContainer?
+    public let following: TotalCountContainer?
     public let repositories: TotalCountContainer?
     public let websiteUrl: URL?
     public let twitterUsername: String?
     public let socialAccounts: SocialAccountsContainer?
-    public let organizations: OrganizationsContainer?
     public let pinnedItems: PinnedItemsContainer?
 
     public init(
@@ -71,11 +51,11 @@ public struct DeveloperNode: Decodable, Sendable {
         location: String? = nil,
         email: String? = nil,
         followers: TotalCountContainer? = nil,
+        following: TotalCountContainer? = nil,
         repositories: TotalCountContainer? = nil,
         websiteUrl: URL? = nil,
         twitterUsername: String? = nil,
         socialAccounts: SocialAccountsContainer? = nil,
-        organizations: OrganizationsContainer? = nil,
         pinnedItems: PinnedItemsContainer? = nil
     ) {
         self.bio = bio
@@ -83,11 +63,11 @@ public struct DeveloperNode: Decodable, Sendable {
         self.location = location
         self.email = email
         self.followers = followers
+        self.following = following
         self.repositories = repositories
         self.websiteUrl = websiteUrl
         self.twitterUsername = twitterUsername
         self.socialAccounts = socialAccounts
-        self.organizations = organizations
         self.pinnedItems = pinnedItems
     }
 }

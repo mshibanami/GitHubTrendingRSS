@@ -112,8 +112,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             let popRepoHref = developer.popularRepository?.href ?? ""
             let pinnedList = developer.pinnedRepositories.map(\.name).joined(separator: ",")
             let socialList = developer.socialAccounts.map { "\($0.provider):\($0.url.absoluteString)" }.joined(separator: ",")
-            let organizationList = developer.organizations.map { "\($0.login):\($0.url.absoluteString)" }.joined(separator: ",")
-            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)|orgs:\(organizationList)"
+            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|following:\(developer.followingCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
             let descriptionHTML = try await descriptionHTMLCache.value(for: cacheKey) {
                 try await self.buildDeveloperDescriptionHTML(developer: developer, supportedEmojis: supportedEmojis)
             } ?? ""
@@ -186,21 +185,9 @@ public final class SiteSourceMaker: @unchecked Sendable {
             let icon = iconImageHTML(name: "map-pin")
             details.append("\(icon)\(location.xmlEscaped)")
         }
-        if let followersCount = developer.followersCount {
-            let icon = iconImageHTML(name: "users-round")
-            details.append("\(icon)\(followersCount) followers")
-        }
-        if let publicReposCount = developer.publicReposCount {
-            details.append("📦 \(publicReposCount) public repositories")
-        }
         if let email = developer.email?.trimmingCharacters(in: .whitespacesAndNewlines), !email.isEmpty {
             let icon = iconImageHTML(name: "mail")
             details.append("\(icon)<a href=\"mailto:\(email.xmlEscaped)\">\(email.xmlEscaped)</a>")
-        }
-        for organization in developer.organizations {
-            let label = organization.name?.isEmpty == false ? organization.name! : organization.login
-            let icon = iconImageHTML(name: "building")
-            details.append("\(icon)<a href=\"\(organization.url.absoluteString.xmlEscaped)\">\(label.xmlEscaped)</a>")
         }
         if let websiteURL = developer.websiteURL {
             let isIncludedInSocial = developer.socialAccounts.contains(where: { $0.url.absoluteString == websiteURL.absoluteString })
@@ -224,8 +211,21 @@ public final class SiteSourceMaker: @unchecked Sendable {
             }
         }
         if !details.isEmpty {
-            let listItems = details.map { "<li style=\"list-style-type: none;\">\($0)</li>" }.joined()
+            let listItems = details.map { "<li style=\"list-style-type: none; margin-bottom: 4px;\">\($0)</li>" }.joined()
             html += "<ul style=\"list-style-type: none; padding-left: 0;\">\(listItems)</ul>"
+        }
+
+        var relationshipStats = [String]()
+        if let followersCount = developer.followersCount {
+            let followersURL = "https://github.com/\(developer.username.xmlEscaped)?tab=followers"
+            relationshipStats.append("<a href=\"\(followersURL)\"><strong>\(formatCount(followersCount))</strong> followers</a>")
+        }
+        if let followingCount = developer.followingCount {
+            let followingURL = "https://github.com/\(developer.username.xmlEscaped)?tab=following"
+            relationshipStats.append("<a href=\"\(followingURL)\"><strong>\(formatCount(followingCount))</strong> following</a>")
+        }
+        if !relationshipStats.isEmpty {
+            html += "<p>\(relationshipStats.joined(separator: " · "))</p>"
         }
 
         if let popRepo = developer.popularRepository {
@@ -264,6 +264,30 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         return html
+    }
+
+    private func formatCount(_ count: Int) -> String {
+        let absoluteCount = abs(count)
+        let units: [(divisor: Double, suffix: String)] = [
+            (1_000_000_000_000, "T"),
+            (1_000_000_000, "B"),
+            (1_000_000, "M"),
+            (1_000, "k"),
+        ]
+        guard let unitIndex = units.firstIndex(where: { Double(absoluteCount) >= $0.divisor }) else {
+            return "\(count)"
+        }
+
+        var selectedUnitIndex = unitIndex
+        var rounded = (Double(count) / units[selectedUnitIndex].divisor * 10).rounded() / 10
+        if abs(rounded) >= 1_000, selectedUnitIndex > 0 {
+            selectedUnitIndex -= 1
+            rounded = (Double(count) / units[selectedUnitIndex].divisor * 10).rounded() / 10
+        }
+        if rounded.rounded() == rounded {
+            return "\(Int(rounded))\(units[selectedUnitIndex].suffix)"
+        }
+        return "\(rounded)\(units[selectedUnitIndex].suffix)"
     }
 
     private func iconName(provider: String, url: URL) -> String? {

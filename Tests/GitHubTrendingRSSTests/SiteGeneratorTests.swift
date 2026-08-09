@@ -126,18 +126,12 @@ final class SiteGeneratorTests: XCTestCase {
             bio: "Developer bio",
             company: "Test Corp",
             location: "Tokyo",
-            followersCount: 50,
+            followersCount: 1_200,
+            followingCount: 63,
             publicReposCount: 15,
             websiteURL: URL(string: "https://test.com"),
             twitterUsername: "test_tw",
-            email: "test@example.com",
-            organizations: [
-                DeveloperOrganization(
-                    login: "test-org",
-                    name: "Test Organization",
-                    url: try XCTUnwrap(URL(string: "https://github.com/test-org"))
-                ),
-            ]
+            email: "test@example.com"
         )
 
         let xml = try await maker.makeDeveloperRSS(
@@ -155,12 +149,17 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("mailto:test@example.com"))
         XCTAssertTrue(xml.contains("test@example.com"))
         XCTAssertTrue(xml.contains("assets/icons/mail.png"))
-        XCTAssertTrue(xml.contains("https://github.com/test-org"))
-        XCTAssertTrue(xml.contains("Test Organization"))
-        XCTAssertTrue(xml.contains("15 public repositories"))
         XCTAssertTrue(xml.contains("assets/icons/building.png"))
         XCTAssertTrue(xml.contains("assets/icons/map-pin.png"))
-        XCTAssertTrue(xml.contains("assets/icons/users-round.png"))
+        XCTAssertTrue(xml.contains("https://github.com/testuser?tab=followers"))
+        XCTAssertTrue(xml.contains("https://github.com/testuser?tab=following"))
+        XCTAssertTrue(xml.contains("&lt;strong&gt;1.2k&lt;/strong&gt; followers"))
+        XCTAssertTrue(xml.contains("&lt;strong&gt;63&lt;/strong&gt; following"))
+        XCTAssertFalse(xml.contains("1,200 followers"))
+        XCTAssertFalse(xml.contains("assets/icons/users-round.png"))
+        let statsRange = try XCTUnwrap(xml.range(of: "&lt;strong&gt;1.2k&lt;/strong&gt; followers"))
+        let popularRepositoryRange = try XCTUnwrap(xml.range(of: "Popular Repository"))
+        XCTAssertLessThan(statsRange.lowerBound, popularRepositoryRange.lowerBound)
         XCTAssertTrue(xml.contains("assets/icons/twitter.png"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }

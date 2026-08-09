@@ -79,6 +79,7 @@ public final class GitHubDownloader: Sendable {
                         updatedDev.location = info.location
                         updatedDev.email = info.email
                         updatedDev.followersCount = info.followers?.totalCount
+                        updatedDev.followingCount = info.following?.totalCount
                         updatedDev.publicReposCount = info.repositories?.totalCount
                         updatedDev.websiteURL = info.websiteUrl
                         updatedDev.twitterUsername = info.twitterUsername
@@ -88,15 +89,6 @@ public final class GitHubDownloader: Sendable {
                                     provider: node.provider,
                                     url: node.url,
                                     displayName: node.displayName
-                                )
-                            }
-                        }
-                        if let organizationNodes = info.organizations?.nodes {
-                            updatedDev.organizations = organizationNodes.map { node in
-                                DeveloperOrganization(
-                                    login: node.login,
-                                    name: node.name,
-                                    url: node.url
                                 )
                             }
                         }

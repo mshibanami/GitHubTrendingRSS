@@ -54,8 +54,9 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertTrue(query.contains("user_0: user(login: \"Astro-Han\")"))
         XCTAssertTrue(query.contains("user_1: user(login: \"lalalune\")"))
         XCTAssertTrue(query.contains("email"))
-        XCTAssertTrue(query.contains("organizations(first: 10)"))
+        XCTAssertTrue(query.contains("following"))
         XCTAssertTrue(query.contains("name"))
+        XCTAssertFalse(query.contains("organizations"))
         XCTAssertTrue(query.contains("pinnedItems(first: 6, types: [REPOSITORY])"))
     }
 
@@ -67,6 +68,7 @@ final class GitHubGraphQLManagerTests: XCTestCase {
             "location": "Tokyo",
             "email": "dev@example.com",
             "followers": { "totalCount": 100 },
+            "following": { "totalCount": 20 },
             "repositories": { "totalCount": 20 },
             "websiteUrl": "https://example.com",
             "twitterUsername": "acme_dev",
@@ -74,15 +76,6 @@ final class GitHubGraphQLManagerTests: XCTestCase {
                 "nodes": [
                     { "provider": "BLUESKY", "url": "https://bsky.app/profile/sample.bsky.social", "displayName": "sample.bsky.social" },
                     { "provider": "YOUTUBE", "url": "https://youtube.com/@sample_user", "displayName": "@sample_user" }
-                ]
-            },
-            "organizations": {
-                "nodes": [
-                    {
-                        "login": "acme",
-                        "name": "Acme Inc.",
-                        "url": "https://github.com/acme"
-                    }
                 ]
             },
             "pinnedItems": {
@@ -104,15 +97,13 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertEqual(node.location, "Tokyo")
         XCTAssertEqual(node.email, "dev@example.com")
         XCTAssertEqual(node.followers?.totalCount, 100)
+        XCTAssertEqual(node.following?.totalCount, 20)
         XCTAssertEqual(node.repositories?.totalCount, 20)
         XCTAssertEqual(node.websiteUrl?.absoluteString, "https://example.com")
         XCTAssertEqual(node.twitterUsername, "acme_dev")
         XCTAssertEqual(node.socialAccounts?.nodes?.count, 2)
         XCTAssertEqual(node.socialAccounts?.nodes?.first?.provider, "BLUESKY")
         XCTAssertEqual(node.socialAccounts?.nodes?.first?.url.absoluteString, "https://bsky.app/profile/sample.bsky.social")
-        XCTAssertEqual(node.organizations?.nodes?.first?.login, "acme")
-        XCTAssertEqual(node.organizations?.nodes?.first?.name, "Acme Inc.")
-        XCTAssertEqual(node.organizations?.nodes?.first?.url.absoluteString, "https://github.com/acme")
         XCTAssertEqual(node.pinnedItems?.nodes?.count, 1)
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.name, "cool-project")
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.stargazerCount, 50)

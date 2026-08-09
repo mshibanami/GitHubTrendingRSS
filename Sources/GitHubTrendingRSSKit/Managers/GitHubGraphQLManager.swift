@@ -193,6 +193,9 @@ public actor GitHubGraphQLManager {
                 followers {
                   totalCount
                 }
+                following {
+                  totalCount
+                }
                 repositories {
                   totalCount
                 }
@@ -203,13 +206,6 @@ public actor GitHubGraphQLManager {
                     provider
                     url
                     displayName
-                  }
-                }
-                organizations(first: 10) {
-                  nodes {
-                    login
-                    name
-                    url
                   }
                 }
                 pinnedItems(first: 6, types: [REPOSITORY]) {

@@ -17,11 +17,11 @@ public struct Developer: @unchecked Sendable {
     public var location: String?
     public var email: String?
     public var followersCount: Int?
+    public var followingCount: Int?
     public var publicReposCount: Int?
     public var websiteURL: URL?
     public var twitterUsername: String?
     public var socialAccounts: [SocialAccount]
-    public var organizations: [DeveloperOrganization]
     public var profileReadMe: APIReadMe?
 
     public init(
@@ -35,13 +35,13 @@ public struct Developer: @unchecked Sendable {
         company: String? = nil,
         location: String? = nil,
         followersCount: Int? = nil,
+        followingCount: Int? = nil,
         publicReposCount: Int? = nil,
         websiteURL: URL? = nil,
         twitterUsername: String? = nil,
         socialAccounts: [SocialAccount] = [],
         profileReadMe: APIReadMe? = nil,
-        email: String? = nil,
-        organizations: [DeveloperOrganization] = []
+        email: String? = nil
     ) {
         self.username = username
         self.displayName = displayName
@@ -54,11 +54,11 @@ public struct Developer: @unchecked Sendable {
         self.location = location
         self.email = email
         self.followersCount = followersCount
+        self.followingCount = followingCount
         self.publicReposCount = publicReposCount
         self.websiteURL = websiteURL
         self.twitterUsername = twitterUsername
         self.socialAccounts = socialAccounts
-        self.organizations = organizations
         self.profileReadMe = profileReadMe
     }
 
