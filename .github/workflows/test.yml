@@ -11,5 +11,9 @@ jobs:
         uses: swift-actions/setup-swift@v2
         with:
           swift-version: "6.2"
+      - name: Install librsvg
+        run: brew install librsvg
+      - name: Convert icons to PNG
+        run: ./scripts/convert_icons_to_png.sh
       - name: Test
         run: ./scripts/test.sh

@@ -144,6 +144,7 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("cool-repo"))
         XCTAssertTrue(xml.contains("pinned-repo"))
         XCTAssertTrue(xml.contains("https://x.com/test_tw"))
+        XCTAssertTrue(xml.contains("assets/icons/twitter.png"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
@@ -172,19 +173,21 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
-    func testMakeDeveloperRSSRendersSocialAccountsWithAssetURL() async throws {
-        let blueskyURL = try XCTUnwrap(URL(string: "https://bsky.app/profile/sample.bsky.social"))
+    func testMakeDeveloperRSSRendersSocialAccountsWithPNGAssetURL() async throws {
+        let xURL = try XCTUnwrap(URL(string: "https://x.com/sampleuser"))
         let youtubeURL = try XCTUnwrap(URL(string: "https://youtube.com/@sample_channel"))
         let linkedinURL = try XCTUnwrap(URL(string: "https://www.linkedin.com/in/sampleuser"))
+        let orcidURL = try XCTUnwrap(URL(string: "https://orcid.org/0000-0000-0000-0000"))
         let dev = Developer(
             username: "sampleuser",
             displayName: "Sample User",
             avatarURL: nil,
             popularRepository: nil,
             socialAccounts: [
-                SocialAccount(provider: "BLUESKY", url: blueskyURL, displayName: "sample.bsky.social"),
+                SocialAccount(provider: "X", url: xURL, displayName: "@sampleuser"),
                 SocialAccount(provider: "YOUTUBE", url: youtubeURL, displayName: "@sample_channel"),
                 SocialAccount(provider: "LINKEDIN", url: linkedinURL, displayName: "in/sampleuser"),
+                SocialAccount(provider: "ORCID", url: orcidURL, displayName: "0000-0000-0000-0000"),
             ]
         )
 
@@ -195,17 +198,23 @@ final class SiteGeneratorTests: XCTestCase {
             supportedEmojis: supportedEmojis
         )
 
-        XCTAssertTrue(xml.contains("bsky.app"))
+        XCTAssertTrue(xml.contains("x.com"))
         XCTAssertTrue(xml.contains("youtube.com"))
         XCTAssertTrue(xml.contains("linkedin.com"))
-        XCTAssertTrue(xml.contains("assets/icons/bluesky.svg"))
-        XCTAssertTrue(xml.contains("assets/icons/youtube.svg"))
-        XCTAssertTrue(xml.contains("assets/icons/linkedin.svg"))
+        XCTAssertTrue(xml.contains("orcid.org"))
+        XCTAssertTrue(xml.contains("assets/icons/twitter.png"))
+        XCTAssertTrue(xml.contains("assets/icons/youtube.png"))
+        XCTAssertTrue(xml.contains("assets/icons/linkedin.png"))
+        XCTAssertTrue(xml.contains("assets/icons/orcid.png"))
+        XCTAssertFalse(xml.contains("assets/icons/twitter.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/youtube.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/linkedin.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/orcid.svg"))
         XCTAssertTrue(xml.contains("width=&quot;20&quot; height=&quot;20&quot;"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
-    func testMakeDeveloperRSSFallbackToGenericSVGForUnknownSocialDomain() async throws {
+    func testMakeDeveloperRSSOmitsIconForUnknownSocialDomain() async throws {
         let websiteURL = try XCTUnwrap(URL(string: "https://custom-domain.example.com"))
         let blogURL = try XCTUnwrap(URL(string: "https://myblog.example.org"))
         let dev = Developer(
@@ -228,7 +237,7 @@ final class SiteGeneratorTests: XCTestCase {
 
         XCTAssertTrue(xml.contains("custom-domain.example.com"))
         XCTAssertTrue(xml.contains("myblog.example.org"))
-        XCTAssertTrue(xml.contains("assets/icons/generic.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 

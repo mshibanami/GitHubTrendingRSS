@@ -84,6 +84,7 @@ final class FeedFileCreatorTests: XCTestCase {
 
         let copiedAssetsDir = tempDir.appendingPathComponent("assets")
         XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.path))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.appendingPathComponent("icons/linkedin.svg").path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.appendingPathComponent("icons/linkedin.png").path))
+        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.appendingPathComponent("icons/orcid.png").path))
     }
 }

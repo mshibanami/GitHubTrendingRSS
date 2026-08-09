@@ -250,37 +250,51 @@ public final class SiteSourceMaker: @unchecked Sendable {
         return html
     }
 
-    private func iconName(provider: String, url: URL) -> String {
+    private func iconName(provider: String, url: URL) -> String? {
         let p = provider.lowercased()
         let host = url.host?.lowercased() ?? ""
 
-        if p == "bluesky" || host.contains("bsky.app") || host.contains("bluesky") {
+        if p == "deviantart" || host.contains("deviantart") {
+            return "deviantart"
+        } else if p == "dribbble" || host.contains("dribbble.com") {
+            return "dribbble"
+        } else if p == "bluesky" || host.contains("bsky.app") || host.contains("bluesky") {
             return "bluesky"
-        } else if p == "youtube" || host.contains("youtube.com") || host.contains("youtu.be") {
-            return "youtube"
-        } else if p == "twitter" || p == "x" || host.contains("twitter.com") || host.contains("x.com") {
-            return "twitter"
-        } else if p == "mastodon" || host.contains("mastodon") || host.contains("mstdn") {
-            return "mastodon"
-        } else if p == "linkedin" || host.contains("linkedin.com") {
-            return "linkedin"
-        } else if p == "instagram" || host.contains("instagram.com") {
-            return "instagram"
-        } else if p == "twitch" || host.contains("twitch.tv") {
-            return "twitch"
-        } else if p == "tiktok" || host.contains("tiktok.com") {
-            return "tiktok"
         } else if p == "facebook" || host.contains("facebook.com") {
             return "facebook"
+        } else if p == "instagram" || host.contains("instagram.com") {
+            return "instagram"
+        } else if p == "orcid" || host == "orcid.org" || host.hasSuffix(".orcid.org") {
+            return "orcid"
+        } else if p == "linkedin" || host.contains("linkedin.com") {
+            return "linkedin"
+        } else if p == "mastodon" || host.contains("mastodon") || host.contains("mstdn") {
+            return "mastodon"
+        } else if p == "pinterest" || host.contains("pinterest.") {
+            return "pinterest"
+        } else if p == "reddit" || host.contains("reddit.com") {
+            return "reddit"
+        } else if p == "tiktok" || host.contains("tiktok.com") {
+            return "tiktok"
+        } else if p == "twitch" || host.contains("twitch.tv") {
+            return "twitch"
+        } else if p == "whatsapp" || host.contains("whatsapp.com") {
+            return "whatsapp"
+        } else if p == "youtube" || host.contains("youtube.com") || host.contains("youtu.be") {
+            return "youtube"
+        } else if p == "x" || p == "twitter" || host == "x.com" || host.hasSuffix(".x.com") || host.contains("twitter.com") {
+            return "twitter"
         } else {
-            return "generic"
+            return nil
         }
     }
 
     private func socialIconImageHTML(provider: String, url: URL) -> String {
-        let name = iconName(provider: provider, url: url)
+        guard let name = iconName(provider: provider, url: url) else {
+            return ""
+        }
         let cleanBaseURL = information.rssHomeURL.hasSuffix("/") ? String(information.rssHomeURL.dropLast()) : information.rssHomeURL
-        let iconURL = "\(cleanBaseURL)/assets/icons/\(name).svg"
+        let iconURL = "\(cleanBaseURL)/assets/icons/\(name).png"
         return #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin: 0 4px 0 0; padding: 0; display: inline-block;" />"#
     }
 }
