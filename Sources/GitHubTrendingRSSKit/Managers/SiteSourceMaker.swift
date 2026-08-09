@@ -152,16 +152,15 @@ public final class SiteSourceMaker: @unchecked Sendable {
     private func buildDeveloperDescriptionHTML(developer: Developer, supportedEmojis: [GitHubEmoji]) async throws -> String {
         var html = ""
 
-        let nameHTML: String
-        if developer.displayName != developer.username {
-            nameHTML = #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">\#(developer.displayName.xmlEscaped)</a></strong><br><span style="color: #57606a;">@\#(developer.username.xmlEscaped)</span>"#
+        let nameHTML = if developer.displayName != developer.username {
+            #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">\#(developer.displayName.xmlEscaped)</a></strong><br><span style="color: #57606a;">@\#(developer.username.xmlEscaped)</span>"#
         } else {
-            nameHTML = #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">@\#(developer.username.xmlEscaped)</a></strong>"#
+            #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">@\#(developer.username.xmlEscaped)</a></strong>"#
         }
 
         if let avatarURL = developer.avatarURL {
             html += #"<table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 12px;"><tr>"#
-            html += #"<td style="vertical-align: middle; padding-right: 12px;"><img src="\#(avatarURL.absoluteString.xmlEscaped)" width="48" height="48" alt="@\#(developer.username.xmlEscaped)" style="border-radius: 50%;" /></td>"#
+            html += #"<td style="vertical-align: middle; padding-right: 12px;"><img src="\#(avatarURL.absoluteString.xmlEscaped)" width="96" height="96" alt="@\#(developer.username.xmlEscaped)" style="margin: 0; padding: 0; border-radius: 50%;" /></td>"#
             html += #"<td style="vertical-align: middle;">\#(nameHTML)</td>"#
             html += "</tr></table>"
         } else {
@@ -174,6 +173,19 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         if developer.isSponsorable {
             html += "<p>💖 <strong>Sponsorable</strong></p>"
+        }
+
+        var relationshipStats = [String]()
+        if let followersCount = developer.followersCount {
+            let followersURL = "https://github.com/\(developer.username.xmlEscaped)?tab=followers"
+            relationshipStats.append("<a href=\"\(followersURL)\"><strong>\(formatCount(followersCount))</strong> followers</a>")
+        }
+        if let followingCount = developer.followingCount {
+            let followingURL = "https://github.com/\(developer.username.xmlEscaped)?tab=following"
+            relationshipStats.append("<a href=\"\(followingURL)\"><strong>\(formatCount(followingCount))</strong> following</a>")
+        }
+        if !relationshipStats.isEmpty {
+            html += "<p>\(relationshipStats.joined(separator: " · "))</p>"
         }
 
         var details = [String]()
@@ -214,28 +226,14 @@ public final class SiteSourceMaker: @unchecked Sendable {
             let listItems = details.map { "<li style=\"list-style-type: none; margin-bottom: 4px;\">\($0)</li>" }.joined()
             html += "<ul style=\"list-style-type: none; padding-left: 0;\">\(listItems)</ul>"
         }
-
-        var relationshipStats = [String]()
-        if let followersCount = developer.followersCount {
-            let followersURL = "https://github.com/\(developer.username.xmlEscaped)?tab=followers"
-            relationshipStats.append("<a href=\"\(followersURL)\"><strong>\(formatCount(followersCount))</strong> followers</a>")
-        }
-        if let followingCount = developer.followingCount {
-            let followingURL = "https://github.com/\(developer.username.xmlEscaped)?tab=following"
-            relationshipStats.append("<a href=\"\(followingURL)\"><strong>\(formatCount(followingCount))</strong> following</a>")
-        }
-        if !relationshipStats.isEmpty {
-            html += "<p>\(relationshipStats.joined(separator: " · "))</p>"
-        }
-
+        
         if let popRepo = developer.popularRepository {
-            let href: String
-            if popRepo.href.hasPrefix("http://") || popRepo.href.hasPrefix("https://") {
-                href = popRepo.href
+            let href: String = if popRepo.href.hasPrefix("http://") || popRepo.href.hasPrefix("https://") {
+                popRepo.href
             } else if popRepo.href.hasPrefix("/") {
-                href = "https://github.com" + popRepo.href
+                "https://github.com" + popRepo.href
             } else {
-                href = "https://github.com/" + popRepo.href
+                "https://github.com/" + popRepo.href
             }
             html += "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let summary = popRepo.summary, !summary.isEmpty {
