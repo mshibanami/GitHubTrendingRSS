@@ -429,6 +429,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
             return "dribbble"
         } else if p == "bluesky" || host.contains("bsky.app") || host.contains("bluesky") {
             return "bluesky"
+        } else if p == "discord" || host.contains("discord.com") || host.contains("discord.gg") || host.contains("discord") {
+            return "discord"
         } else if p == "facebook" || host.contains("facebook.com") {
             return "facebook"
         } else if p == "instagram" || host.contains("instagram.com") {
@@ -439,10 +441,20 @@ public final class SiteSourceMaker: @unchecked Sendable {
             return "linkedin"
         } else if p == "mastodon" || host.contains("mastodon") || host.contains("mstdn") {
             return "mastodon"
+        } else if p == "patreon" || host.contains("patreon.com") {
+            return "patreon"
         } else if p == "pinterest" || host.contains("pinterest.") {
             return "pinterest"
         } else if p == "reddit" || host.contains("reddit.com") {
             return "reddit"
+        } else if p == "stackoverflow" || p == "stack_overflow" || host.contains("stackoverflow.com") {
+            return "stackoverflow"
+        } else if p == "substack" || host.contains("substack.com") {
+            return "substack"
+        } else if p == "telegram" || host.contains("telegram") || host.contains("t.me") {
+            return "telegram"
+        } else if p == "threads" || host.contains("threads.net") || host.contains("threads.com") {
+            return "threads"
         } else if p == "tiktok" || host.contains("tiktok.com") {
             return "tiktok"
         } else if p == "twitch" || host.contains("twitch.tv") {

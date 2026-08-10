@@ -299,6 +299,12 @@ final class SiteGeneratorTests: XCTestCase {
         let youtubeURL = try XCTUnwrap(URL(string: "https://youtube.com/@sample_channel"))
         let linkedinURL = try XCTUnwrap(URL(string: "https://www.linkedin.com/in/sampleuser"))
         let orcidURL = try XCTUnwrap(URL(string: "https://orcid.org/0000-0000-0000-0000"))
+        let telegramURL = try XCTUnwrap(URL(string: "https://t.me/sampleuser"))
+        let discordURL = try XCTUnwrap(URL(string: "https://discord.gg/sampleuser"))
+        let patreonURL = try XCTUnwrap(URL(string: "https://patreon.com/sampleuser"))
+        let stackoverflowURL = try XCTUnwrap(URL(string: "https://stackoverflow.com/users/123/sampleuser"))
+        let substackURL = try XCTUnwrap(URL(string: "https://sampleuser.substack.com"))
+        let threadsURL = try XCTUnwrap(URL(string: "https://threads.net/@sampleuser"))
         let dev = Developer(
             username: "sampleuser",
             displayName: "Sample User",
@@ -309,6 +315,12 @@ final class SiteGeneratorTests: XCTestCase {
                 SocialAccount(provider: "YOUTUBE", url: youtubeURL, displayName: "@sample_channel"),
                 SocialAccount(provider: "LINKEDIN", url: linkedinURL, displayName: "in/sampleuser"),
                 SocialAccount(provider: "ORCID", url: orcidURL, displayName: "0000-0000-0000-0000"),
+                SocialAccount(provider: "TELEGRAM", url: telegramURL, displayName: "t.me/sampleuser"),
+                SocialAccount(provider: "DISCORD", url: discordURL, displayName: "discord.gg/sampleuser"),
+                SocialAccount(provider: "PATREON", url: patreonURL, displayName: "patreon.com/sampleuser"),
+                SocialAccount(provider: "STACKOVERFLOW", url: stackoverflowURL, displayName: "stackoverflow.com/users/123"),
+                SocialAccount(provider: "SUBSTACK", url: substackURL, displayName: "sampleuser.substack.com"),
+                SocialAccount(provider: "THREADS", url: threadsURL, displayName: "@sampleuser"),
             ]
         )
 
@@ -325,14 +337,32 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("youtube.com"))
         XCTAssertTrue(xml.contains("linkedin.com"))
         XCTAssertTrue(xml.contains("orcid.org"))
+        XCTAssertTrue(xml.contains("t.me"))
+        XCTAssertTrue(xml.contains("discord.gg"))
+        XCTAssertTrue(xml.contains("patreon.com"))
+        XCTAssertTrue(xml.contains("stackoverflow.com"))
+        XCTAssertTrue(xml.contains("substack.com"))
+        XCTAssertTrue(xml.contains("threads.net"))
         XCTAssertTrue(xml.contains("assets/icons/twitter.png"))
         XCTAssertTrue(xml.contains("assets/icons/youtube.png"))
         XCTAssertTrue(xml.contains("assets/icons/linkedin.png"))
         XCTAssertTrue(xml.contains("assets/icons/orcid.png"))
+        XCTAssertTrue(xml.contains("assets/icons/telegram.png"))
+        XCTAssertTrue(xml.contains("assets/icons/discord.png"))
+        XCTAssertTrue(xml.contains("assets/icons/patreon.png"))
+        XCTAssertTrue(xml.contains("assets/icons/stackoverflow.png"))
+        XCTAssertTrue(xml.contains("assets/icons/substack.png"))
+        XCTAssertTrue(xml.contains("assets/icons/threads.png"))
         XCTAssertFalse(xml.contains("assets/icons/twitter.svg"))
         XCTAssertFalse(xml.contains("assets/icons/youtube.svg"))
         XCTAssertFalse(xml.contains("assets/icons/linkedin.svg"))
         XCTAssertFalse(xml.contains("assets/icons/orcid.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/telegram.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/discord.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/patreon.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/stackoverflow.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/substack.svg"))
+        XCTAssertFalse(xml.contains("assets/icons/threads.svg"))
         XCTAssertTrue(xml.contains("width=&quot;20&quot; height=&quot;20&quot;"))
         XCTAssertTrue(xml.contains("vertical-align: middle;"))
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
