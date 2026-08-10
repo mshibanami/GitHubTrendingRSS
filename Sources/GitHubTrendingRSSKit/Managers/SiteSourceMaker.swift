@@ -271,7 +271,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             html +=
                 "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let stars = popRepo.stargazerCount {
-                html += " \(iconImageHTML(name: "star"))\(stars)"
+                html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(stars)"
             }
             if let summary = popRepo.summary, !summary.isEmpty {
                 html +=
@@ -295,7 +295,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
                 html +=
                     "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
                 if let stars = pinned.stargazerCount {
-                    html += " \(iconImageHTML(name: "star"))\(stars)"
+                    html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(stars)"
                 }
                 if let summary = pinned.summary, !summary.isEmpty {
                     html +=
@@ -415,12 +415,12 @@ public final class SiteSourceMaker: @unchecked Sendable {
         return iconImageHTML(name: name)
     }
 
-    private func iconImageHTML(name: String) -> String {
+    private func iconImageHTML(name: String, verticalAlign: String = "middle") -> String {
         let cleanBaseURL =
             information.rssHomeURL.hasSuffix("/")
             ? String(information.rssHomeURL.dropLast()) : information.rssHomeURL
         let iconURL = "\(cleanBaseURL)/assets/icons/\(name).png"
         return
-            #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin: 0 4px 0 0; padding: 0; display: inline-block; vertical-align: middle;" />"#
+            #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin: 0 4px 0 0; padding: 0; display: inline-block; vertical-align: \#(verticalAlign.xmlEscaped);" />"#
     }
 }
