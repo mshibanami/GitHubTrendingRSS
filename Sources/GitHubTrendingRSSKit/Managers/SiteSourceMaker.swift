@@ -279,11 +279,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
             html +=
                 "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let stars = popRepo.stargazerCount {
-                html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(formatCount(stars))"
+                html += " \(iconImageHTML(name: "star"))\(formatCount(stars))"
             }
             if let forks = popRepo.forkCount {
                 html +=
-                    " \(iconImageHTML(name: "git-fork", verticalAlign: "text-bottom"))\(formatCount(forks))"
+                    " \(iconImageHTML(name: "git-fork"))\(formatCount(forks))"
             }
             if let summary = popRepo.summary, !summary.isEmpty {
                 html +=
@@ -317,11 +317,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
                     "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
                 if let stars = pinned.stargazerCount {
                     html +=
-                        " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(formatCount(stars))"
+                        " \(iconImageHTML(name: "star"))\(formatCount(stars))"
                 }
                 if let forks = pinned.forkCount {
                     html +=
-                        " \(iconImageHTML(name: "git-fork", verticalAlign: "text-bottom"))\(formatCount(forks))"
+                        " \(iconImageHTML(name: "git-fork"))\(formatCount(forks))"
                 }
                 if let summary = pinned.summary, !summary.isEmpty {
                     html +=
@@ -338,11 +338,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
                     "<li><a href=\"\(href.xmlEscaped)\"><strong>\(popular.name.xmlEscaped)</strong></a>"
                 if let stars = popular.stargazerCount {
                     html +=
-                        " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(formatCount(stars))"
+                        " \(iconImageHTML(name: "star"))\(formatCount(stars))"
                 }
                 if let forks = popular.forkCount {
                     html +=
-                        " \(iconImageHTML(name: "git-fork", verticalAlign: "text-bottom"))\(formatCount(forks))"
+                        " \(iconImageHTML(name: "git-fork"))\(formatCount(forks))"
                 }
                 if let summary = popular.summary, !summary.isEmpty {
                     html +=
