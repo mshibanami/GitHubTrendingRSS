@@ -147,6 +147,26 @@ final class SiteGeneratorTests: XCTestCase {
                     summary: "pinned description", stargazerCount: 99
                 ),
             ],
+            popularRepositories: [
+                DeveloperPopularRepository(
+                    name: "cool-repo",
+                    url: XCTUnwrap(URL(string: "https://github.com/testuser/cool-repo")),
+                    summary: "duplicate popular description",
+                    stargazerCount: 1_234
+                ),
+                DeveloperPopularRepository(
+                    name: "pinned-repo",
+                    url: XCTUnwrap(URL(string: "https://github.com/testuser/pinned-repo")),
+                    summary: "duplicate pinned popular description",
+                    stargazerCount: 99
+                ),
+                DeveloperPopularRepository(
+                    name: "popular-repo",
+                    url: XCTUnwrap(URL(string: "https://github.com/testuser/popular-repo")),
+                    summary: "popular description",
+                    stargazerCount: 500
+                ),
+            ],
             isSponsorable: true,
             bio: "Developer bio",
             company: "Test Corp",
@@ -170,17 +190,26 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("https://github.com/testuser"))
         XCTAssertTrue(xml.contains("cool-repo"))
         XCTAssertTrue(xml.contains("pinned-repo"))
+        XCTAssertTrue(xml.contains("popular-repo"))
         XCTAssertTrue(xml.contains("assets/icons/star.png"))
         XCTAssertTrue(xml.contains("1234"))
         XCTAssertTrue(xml.contains("99"))
         XCTAssertFalse(xml.contains("⭐️"))
+        XCTAssertTrue(xml.contains("Other Repositories (Pinned)"))
+        XCTAssertTrue(xml.contains("Other Repositories (Popular)"))
         XCTAssertFalse(xml.contains("duplicate pinned description"))
+        XCTAssertFalse(xml.contains("duplicate popular description"))
+        XCTAssertFalse(xml.contains("duplicate pinned popular description"))
+        XCTAssertTrue(xml.contains("popular description"))
+        XCTAssertTrue(xml.contains("&lt;p&gt;Developer bio&lt;/p&gt;"))
+        XCTAssertFalse(xml.contains("&lt;em&gt;Developer bio&lt;/em&gt;"))
         XCTAssertTrue(xml.contains("https://x.com/test_tw"))
         XCTAssertTrue(xml.contains("mailto:test@example.com"))
         XCTAssertTrue(xml.contains("test@example.com"))
         XCTAssertTrue(xml.contains("assets/icons/mail.png"))
         XCTAssertTrue(xml.contains("assets/icons/building.png"))
         XCTAssertTrue(xml.contains("assets/icons/map-pin.png"))
+        XCTAssertTrue(xml.contains("margin: 0 8px 0 0;"))
         XCTAssertFalse(xml.contains("https://github.com/testuser?tab=followers"))
         XCTAssertFalse(xml.contains("https://github.com/testuser?tab=following"))
         XCTAssertTrue(xml.contains("&lt;strong&gt;1.2k&lt;/strong&gt; followers"))
@@ -404,13 +433,21 @@ final class SiteGeneratorTests: XCTestCase {
             developers: [devWithoutGraphQL],
             supportedEmojis: supportedEmojis
         )
-        XCTAssertFalse(xml1.contains("Pinned Repositories"))
+        XCTAssertFalse(xml1.contains("Other Repositories (Pinned)"))
 
         var devWithGraphQL = devWithoutGraphQL
         devWithGraphQL.pinnedRepositories = try [
             DeveloperPinnedRepository(
                 name: "pinned1", url: XCTUnwrap(URL(string: "https://github.com/user1/pinned1")),
                 summary: "desc", stargazerCount: 10
+            ),
+        ]
+        devWithGraphQL.popularRepositories = try [
+            DeveloperPopularRepository(
+                name: "popular1",
+                url: XCTUnwrap(URL(string: "https://github.com/user1/popular1")),
+                summary: "popular desc",
+                stargazerCount: 20
             ),
         ]
 
@@ -420,7 +457,9 @@ final class SiteGeneratorTests: XCTestCase {
             developers: [devWithGraphQL],
             supportedEmojis: supportedEmojis
         )
-        XCTAssertTrue(xml2.contains("Pinned Repositories"))
+        XCTAssertTrue(xml2.contains("Other Repositories (Pinned)"))
+        XCTAssertTrue(xml2.contains("Other Repositories (Popular)"))
         XCTAssertTrue(xml2.contains("pinned1"))
+        XCTAssertTrue(xml2.contains("popular1"))
     }
 }

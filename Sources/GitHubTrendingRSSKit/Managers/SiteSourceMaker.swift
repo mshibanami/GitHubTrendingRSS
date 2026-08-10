@@ -129,10 +129,13 @@ public final class SiteSourceMaker: @unchecked Sendable {
             let pinnedList = developer.pinnedRepositories.map {
                 "\($0.url.absoluteString)|\($0.summary ?? "")|\($0.stargazerCount ?? -1)"
             }.joined(separator: ",")
+            let popularList = developer.popularRepositories.map {
+                "\($0.href)|\($0.summary ?? "")|\($0.stargazerCount ?? -1)"
+            }.joined(separator: ",")
             let socialList = developer.socialAccounts.map { "\($0.provider):\($0.url.absoluteString)" }
                 .joined(separator: ",")
             let cacheKey =
-                "dev:\(developer.username)|pop:\(popRepoHref)|popStars:\(popRepoStars)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|following:\(developer.followingCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
+                "dev:\(developer.username)|pop:\(popRepoHref)|popStars:\(popRepoStars)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|popular:\(popularList)|followers:\(developer.followersCount ?? -1)|following:\(developer.followingCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
             let descriptionHTML =
                 try await descriptionHTMLCache.value(for: cacheKey) {
                     try await self.buildDeveloperDescriptionHTML(
@@ -197,7 +200,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         if let bio = developer.bio, !bio.isEmpty {
             html +=
-                "<p><em>\(descriptionTextHTML(bio, supportedEmojis: supportedEmojis, linkifyingMentions: true))</em></p>"
+                "<p>\(descriptionTextHTML(bio, supportedEmojis: supportedEmojis, linkifyingMentions: true))</p>"
         }
 
         if developer.isSponsorable {
@@ -217,17 +220,17 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         var details = [String]()
         if let company = developer.company, !company.isEmpty {
-            let icon = iconImageHTML(name: "building")
+            let icon = iconImageHTML(name: "building", rightMargin: 8)
             details.append(
                 "\(icon)\(descriptionTextHTML(company, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
             )
         }
         if let location = developer.location, !location.isEmpty {
-            let icon = iconImageHTML(name: "map-pin")
+            let icon = iconImageHTML(name: "map-pin", rightMargin: 8)
             details.append("\(icon)\(descriptionTextHTML(location, supportedEmojis: supportedEmojis))")
         }
         if let email = developer.email?.trimmingCharacters(in: .whitespacesAndNewlines), !email.isEmpty {
-            let icon = iconImageHTML(name: "mail")
+            let icon = iconImageHTML(name: "mail", rightMargin: 8)
             details.append("\(icon)<a href=\"mailto:\(email.xmlEscaped)\">\(email.xmlEscaped)</a>")
         }
         if let websiteURL = developer.websiteURL {
@@ -235,7 +238,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
                 $0.url.absoluteString == websiteURL.absoluteString
             })
             if !isIncludedInSocial {
-                let icon = socialIconImageHTML(provider: "generic", url: websiteURL)
+                let icon = socialIconImageHTML(provider: "generic", url: websiteURL, rightMargin: 8)
                 details.append(
                     "\(icon)<a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>"
                 )
@@ -244,7 +247,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         if !developer.socialAccounts.isEmpty {
             for account in developer.socialAccounts {
-                let icon = socialIconImageHTML(provider: account.provider, url: account.url)
+                let icon = socialIconImageHTML(
+                    provider: account.provider,
+                    url: account.url,
+                    rightMargin: 8
+                )
                 let label = account.displayName.isEmpty ? account.url.absoluteString : account.displayName
                 details.append(
                     "\(icon)<a href=\"\(account.url.absoluteString.xmlEscaped)\">\(label.xmlEscaped)</a>"
@@ -253,7 +260,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
         } else if let twitterUsername = developer.twitterUsername, !twitterUsername.isEmpty {
             let cleanTwitter = twitterUsername.prefixDeleted(prefix: "@")
             if let twitterURL = URL(string: "https://x.com/\(cleanTwitter)") {
-                let icon = socialIconImageHTML(provider: "twitter", url: twitterURL)
+                let icon = socialIconImageHTML(provider: "twitter", url: twitterURL, rightMargin: 8)
                 details.append(
                     "\(icon)<a href=\"\(twitterURL.absoluteString.xmlEscaped)\">@\(cleanTwitter.xmlEscaped)</a>"
                 )
@@ -290,7 +297,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             return !isSameGitHubRepository(pinned.url, popularRepositoryURL)
         }
         if !pinnedRepositories.isEmpty {
-            html += "<h4>Pinned Repositories</h4><ul>"
+            html += "<h4>Other Repositories (Pinned)</h4><ul>"
             for pinned in pinnedRepositories {
                 html +=
                     "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
@@ -298,6 +305,33 @@ public final class SiteSourceMaker: @unchecked Sendable {
                     html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(stars)"
                 }
                 if let summary = pinned.summary, !summary.isEmpty {
+                    html +=
+                        "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
+                }
+                html += "</li>"
+            }
+            html += "</ul>"
+        }
+
+        let popularRepositories = developer.popularRepositories.filter { popular in
+            guard let popularURL = URL(string: gitHubRepositoryURL(from: popular.href)) else {
+                return false
+            }
+            if let popularRepositoryURL, isSameGitHubRepository(popularURL, popularRepositoryURL) {
+                return false
+            }
+            return !pinnedRepositories.contains { isSameGitHubRepository(popularURL, $0.url) }
+        }
+        if !popularRepositories.isEmpty {
+            html += "<h4>Other Repositories (Popular)</h4><ul>"
+            for popular in popularRepositories.prefix(6) {
+                let href = gitHubRepositoryURL(from: popular.href)
+                html +=
+                    "<li><a href=\"\(href.xmlEscaped)\"><strong>\(popular.name.xmlEscaped)</strong></a>"
+                if let stars = popular.stargazerCount {
+                    html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(stars)"
+                }
+                if let summary = popular.summary, !summary.isEmpty {
                     html +=
                         "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
                 }
@@ -362,9 +396,13 @@ public final class SiteSourceMaker: @unchecked Sendable {
         guard let rhsURL = URL(string: rhs) else {
             return false
         }
-        return lhs.host?.caseInsensitiveCompare(rhsURL.host ?? "") == .orderedSame
+        return isSameGitHubRepository(lhs, rhsURL)
+    }
+
+    private func isSameGitHubRepository(_ lhs: URL, _ rhs: URL) -> Bool {
+        return lhs.host?.caseInsensitiveCompare(rhs.host ?? "") == .orderedSame
             && lhs.path.trimmingCharacters(in: CharacterSet(charactersIn: "/")).caseInsensitiveCompare(
-                rhsURL.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+                rhs.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
             ) == .orderedSame
     }
 
@@ -408,19 +446,23 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
     }
 
-    private func socialIconImageHTML(provider: String, url: URL) -> String {
+    private func socialIconImageHTML(provider: String, url: URL, rightMargin: Int = 4) -> String {
         guard let name = iconName(provider: provider, url: url) else {
             return ""
         }
-        return iconImageHTML(name: name)
+        return iconImageHTML(name: name, rightMargin: rightMargin)
     }
 
-    private func iconImageHTML(name: String, verticalAlign: String = "middle") -> String {
+    private func iconImageHTML(
+        name: String,
+        verticalAlign: String = "middle",
+        rightMargin: Int = 4
+    ) -> String {
         let cleanBaseURL =
             information.rssHomeURL.hasSuffix("/")
             ? String(information.rssHomeURL.dropLast()) : information.rssHomeURL
         let iconURL = "\(cleanBaseURL)/assets/icons/\(name).png"
         return
-            #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin: 0 4px 0 0; padding: 0; display: inline-block; vertical-align: \#(verticalAlign.xmlEscaped);" />"#
+            #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin: 0 \#(rightMargin)px 0 0; padding: 0; display: inline-block; vertical-align: \#(verticalAlign.xmlEscaped);" />"#
     }
 }
