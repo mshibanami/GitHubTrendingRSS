@@ -71,6 +71,11 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertTrue(query.contains("name"))
         XCTAssertFalse(query.contains("organizations"))
         XCTAssertTrue(query.contains("pinnedItems(first: 6, types: [REPOSITORY])"))
+        XCTAssertTrue(query.contains("popularRepositories: repositories("))
+        XCTAssertTrue(query.contains("ownerAffiliations: OWNER"))
+        XCTAssertTrue(query.contains("privacy: PUBLIC"))
+        XCTAssertTrue(query.contains("isFork: false"))
+        XCTAssertTrue(query.contains("orderBy: {field: STARGAZERS, direction: DESC}"))
     }
 
     func testDecodeDeveloperNode() throws {
@@ -100,6 +105,16 @@ final class GitHubGraphQLManagerTests: XCTestCase {
                         "stargazerCount": 50
                     }
                 ]
+            },
+            "popularRepositories": {
+                "nodes": [
+                    {
+                        "name": "popular-project",
+                        "url": "https://github.com/acme/popular-project",
+                        "description": "A popular project",
+                        "stargazerCount": 500
+                    }
+                ]
             }
         }
         """.data(using: .utf8)!
@@ -123,6 +138,9 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertEqual(node.pinnedItems?.nodes?.count, 1)
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.name, "cool-project")
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.stargazerCount, 50)
+        XCTAssertEqual(node.popularRepositories?.nodes?.count, 1)
+        XCTAssertEqual(node.popularRepositories?.nodes?.first?.name, "popular-project")
+        XCTAssertEqual(node.popularRepositories?.nodes?.first?.stargazerCount, 500)
     }
 
     func testDecodeGraphQLPartialResponseWithErrors() throws {

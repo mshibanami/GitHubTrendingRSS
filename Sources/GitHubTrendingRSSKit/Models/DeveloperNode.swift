@@ -33,6 +33,28 @@ public struct DeveloperNode: Decodable, Sendable {
         }
     }
 
+    public struct PopularRepositoryNode: Decodable, Sendable {
+        public let name: String
+        public let url: URL
+        public let description: String?
+        public let stargazerCount: Int?
+
+        public init(name: String, url: URL, description: String?, stargazerCount: Int?) {
+            self.name = name
+            self.url = url
+            self.description = description
+            self.stargazerCount = stargazerCount
+        }
+    }
+
+    public struct PopularRepositoriesContainer: Decodable, Sendable {
+        public let nodes: [PopularRepositoryNode]?
+
+        public init(nodes: [PopularRepositoryNode]?) {
+            self.nodes = nodes
+        }
+    }
+
     public let bio: String?
     public let company: String?
     public let location: String?
@@ -44,6 +66,7 @@ public struct DeveloperNode: Decodable, Sendable {
     public let twitterUsername: String?
     public let socialAccounts: SocialAccountsContainer?
     public let pinnedItems: PinnedItemsContainer?
+    public let popularRepositories: PopularRepositoriesContainer?
 
     public init(
         bio: String? = nil,
@@ -56,7 +79,8 @@ public struct DeveloperNode: Decodable, Sendable {
         websiteUrl: URL? = nil,
         twitterUsername: String? = nil,
         socialAccounts: SocialAccountsContainer? = nil,
-        pinnedItems: PinnedItemsContainer? = nil
+        pinnedItems: PinnedItemsContainer? = nil,
+        popularRepositories: PopularRepositoriesContainer? = nil
     ) {
         self.bio = bio
         self.company = company
@@ -69,6 +93,7 @@ public struct DeveloperNode: Decodable, Sendable {
         self.twitterUsername = twitterUsername
         self.socialAccounts = socialAccounts
         self.pinnedItems = pinnedItems
+        self.popularRepositories = popularRepositories
     }
 }
 

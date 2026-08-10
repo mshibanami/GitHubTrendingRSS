@@ -14,4 +14,13 @@ public struct DeveloperPopularRepository: Hashable, Sendable {
         self.summary = summary
         self.stargazerCount = stargazerCount
     }
+
+    public init(name: String, url: URL, summary: String?, stargazerCount: Int? = nil) {
+        self.init(
+            name: name,
+            href: url.absoluteString,
+            summary: summary,
+            stargazerCount: stargazerCount
+        )
+    }
 }

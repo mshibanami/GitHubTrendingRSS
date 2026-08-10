@@ -230,6 +230,20 @@ public actor GitHubGraphQLManager {
                     }
                   }
                 }
+                popularRepositories: repositories(
+                  first: 12
+                  ownerAffiliations: OWNER
+                  privacy: PUBLIC
+                  isFork: false
+                  orderBy: {field: STARGAZERS, direction: DESC}
+                ) {
+                  nodes {
+                    name
+                    url
+                    description
+                    stargazerCount
+                  }
+                }
               }
             
             """

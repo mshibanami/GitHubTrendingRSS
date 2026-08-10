@@ -11,6 +11,7 @@ public struct Developer: @unchecked Sendable {
     public let avatarURL: URL?
     public var popularRepository: DeveloperPopularRepository?
     public var pinnedRepositories: [DeveloperPinnedRepository]
+    public var popularRepositories: [DeveloperPopularRepository]
     public let isSponsorable: Bool
     public var bio: String?
     public var company: String?
@@ -30,6 +31,7 @@ public struct Developer: @unchecked Sendable {
         avatarURL: URL?,
         popularRepository: DeveloperPopularRepository?,
         pinnedRepositories: [DeveloperPinnedRepository] = [],
+        popularRepositories: [DeveloperPopularRepository] = [],
         isSponsorable: Bool = false,
         bio: String? = nil,
         company: String? = nil,
@@ -48,6 +50,7 @@ public struct Developer: @unchecked Sendable {
         self.avatarURL = avatarURL
         self.popularRepository = popularRepository
         self.pinnedRepositories = pinnedRepositories
+        self.popularRepositories = popularRepositories
         self.isSponsorable = isSponsorable
         self.bio = bio
         self.company = company

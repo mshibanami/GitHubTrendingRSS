@@ -107,6 +107,16 @@ public final class GitHubDownloader: Sendable {
                                 )
                             }
                         }
+                        if let popularNodes = info.popularRepositories?.nodes {
+                            updatedDev.popularRepositories = popularNodes.map { node in
+                                DeveloperPopularRepository(
+                                    name: node.name,
+                                    url: node.url,
+                                    summary: node.description,
+                                    stargazerCount: node.stargazerCount
+                                )
+                            }
+                        }
                     }
                     return updatedDev
                 }
