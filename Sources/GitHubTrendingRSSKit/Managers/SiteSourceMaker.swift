@@ -11,7 +11,10 @@ public final class SiteSourceMaker: @unchecked Sendable {
         public let googleAnalyticsTrackingCode: String
         public let gitHubRepositoryURL: String
 
-        public init(pageTitle: String, author: String, rssHomeURL: String, googleAnalyticsTrackingCode: String, gitHubRepositoryURL: String) {
+        public init(
+            pageTitle: String, author: String, rssHomeURL: String, googleAnalyticsTrackingCode: String,
+            gitHubRepositoryURL: String
+        ) {
             self.pageTitle = pageTitle
             self.author = author
             self.rssHomeURL = rssHomeURL
@@ -55,29 +58,41 @@ public final class SiteSourceMaker: @unchecked Sendable {
         )
     }
 
-    public func makeRSS(from languageTrendingLink: LanguageTrendingLink, period: Period, spokenLanguage: SpokenLanguage = .unspecified, repositories: [Repository], supportedEmojis: [GitHubEmoji]) async throws -> String {
+    public func makeRSS(
+        from languageTrendingLink: LanguageTrendingLink, period: Period,
+        spokenLanguage: SpokenLanguage = .unspecified, repositories: [Repository],
+        supportedEmojis: [GitHubEmoji]
+    ) async throws -> String {
         let formatter = DateFormatter()
         formatter.dateFormat = "E, dd MMM YYYY HH:mm:ss 'GMT'"
         formatter.timeZone = TimeZone(secondsFromGMT: 0)
         let pubDate = formatter.string(from: Date())
 
-        let noDescriptionHTML = #"<p style="color:#586069;"><em>No description/README provided.</em></p>"#
+        let noDescriptionHTML =
+            #"<p style="color:#586069;"><em>No description/README provided.</em></p>"#
 
-        var repositoryContexts: [(description: String, userID: String, repositoryName: String, url: String, pageLink: RepositoryPageLink, openGraphImageUrl: String?)] = []
+        var repositoryContexts:
+            [(
+                description: String, userID: String, repositoryName: String, url: String,
+                pageLink: RepositoryPageLink, openGraphImageUrl: String?
+            )] = []
         for repository in repositories {
-            let cacheKey = "\(repository.pageLink.url.absoluteString)|hasReadMe:\(repository.readMe != nil)"
+            let cacheKey =
+                "\(repository.pageLink.url.absoluteString)|hasReadMe:\(repository.readMe != nil)"
             let renderedHTML = try await descriptionHTMLCache.value(for: cacheKey) {
                 try await repository.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis)
             }
             let descriptionHTML = renderedHTML ?? noDescriptionHTML
-            repositoryContexts.append((
-                description: descriptionHTML.xml10Sanitized.xmlEscaped,
-                userID: repository.pageLink.userID,
-                repositoryName: repository.pageLink.repositoryName,
-                url: repository.pageLink.url.absoluteString,
-                pageLink: repository.pageLink,
-                openGraphImageUrl: repository.openGraphImageUrl?.absoluteString.xmlEscaped
-            ))
+            repositoryContexts.append(
+                (
+                    description: descriptionHTML.xml10Sanitized.xmlEscaped,
+                    userID: repository.pageLink.userID,
+                    repositoryName: repository.pageLink.repositoryName,
+                    url: repository.pageLink.url.absoluteString,
+                    pageLink: repository.pageLink,
+                    openGraphImageUrl: repository.openGraphImageUrl?.absoluteString.xmlEscaped
+                )
+            )
         }
 
         let context: [String: Any] = [
@@ -110,16 +125,25 @@ public final class SiteSourceMaker: @unchecked Sendable {
         var developerContexts: [[String: Any]] = []
         for developer in developers {
             let popRepoHref = developer.popularRepository?.href ?? ""
-            let pinnedList = developer.pinnedRepositories.map(\.name).joined(separator: ",")
-            let socialList = developer.socialAccounts.map { "\($0.provider):\($0.url.absoluteString)" }.joined(separator: ",")
-            let cacheKey = "dev:\(developer.username)|pop:\(popRepoHref)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|following:\(developer.followingCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
-            let descriptionHTML = try await descriptionHTMLCache.value(for: cacheKey) {
-                try await self.buildDeveloperDescriptionHTML(developer: developer, supportedEmojis: supportedEmojis)
-            } ?? ""
+            let popRepoStars = developer.popularRepository?.stargazerCount ?? -1
+            let pinnedList = developer.pinnedRepositories.map {
+                "\($0.url.absoluteString)|\($0.summary ?? "")|\($0.stargazerCount ?? -1)"
+            }.joined(separator: ",")
+            let socialList = developer.socialAccounts.map { "\($0.provider):\($0.url.absoluteString)" }
+                .joined(separator: ",")
+            let cacheKey =
+                "dev:\(developer.username)|pop:\(popRepoHref)|popStars:\(popRepoStars)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|followers:\(developer.followersCount ?? -1)|following:\(developer.followingCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
+            let descriptionHTML =
+                try await descriptionHTMLCache.value(for: cacheKey) {
+                    try await self.buildDeveloperDescriptionHTML(
+                        developer: developer, supportedEmojis: supportedEmojis
+                    )
+                } ?? ""
 
-            let title = developer.displayName != developer.username
-                ? "\(developer.displayName) (@\(developer.username))"
-                : "@\(developer.username)"
+            let title =
+                developer.displayName != developer.username
+                    ? "\(developer.displayName) (@\(developer.username))"
+                    : "@\(developer.username)"
 
             var devDict: [String: Any] = [
                 "title": title.xml10Sanitized.xmlEscaped,
@@ -149,18 +173,22 @@ public final class SiteSourceMaker: @unchecked Sendable {
         )
     }
 
-    private func buildDeveloperDescriptionHTML(developer: Developer, supportedEmojis: [GitHubEmoji]) async throws -> String {
+    private func buildDeveloperDescriptionHTML(developer: Developer, supportedEmojis: [GitHubEmoji])
+    async throws -> String {
         var html = ""
 
-        let nameHTML = if developer.displayName != developer.username {
-            #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">\#(developer.displayName.xmlEscaped)</a></strong><br><span style="color: #57606a;">@\#(developer.username.xmlEscaped)</span>"#
-        } else {
-            #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">@\#(developer.username.xmlEscaped)</a></strong>"#
-        }
+        let nameHTML =
+            if developer.displayName != developer.username {
+                #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">\#(developer.displayName.xmlEscaped)</a></strong><br><span style="color: #57606a;">@\#(developer.username.xmlEscaped)</span>"#
+            } else {
+                #"<strong><a href="https://github.com/\#(developer.username.xmlEscaped)">@\#(developer.username.xmlEscaped)</a></strong>"#
+            }
 
         if let avatarURL = developer.avatarURL {
-            html += #"<table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 12px;"><tr>"#
-            html += #"<td style="vertical-align: middle; padding-right: 12px;"><img src="\#(avatarURL.absoluteString.xmlEscaped)" width="96" height="96" alt="@\#(developer.username.xmlEscaped)" style="margin: 0; padding: 0; border-radius: 50%;" /></td>"#
+            html +=
+                #"<table cellpadding="0" cellspacing="0" border="0" style="margin-bottom: 12px;"><tr>"#
+            html +=
+                #"<td style="vertical-align: middle; padding-right: 12px;"><img src="\#(avatarURL.absoluteString.xmlEscaped)" width="96" height="96" alt="@\#(developer.username.xmlEscaped)" style="margin: 0; padding: 0; border-radius: 50%;" /></td>"#
             html += #"<td style="vertical-align: middle;">\#(nameHTML)</td>"#
             html += "</tr></table>"
         } else {
@@ -168,7 +196,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         if let bio = developer.bio, !bio.isEmpty {
-            html += "<p><em>\(descriptionTextHTML(bio, supportedEmojis: supportedEmojis, linkifyingMentions: true))</em></p>"
+            html +=
+                "<p><em>\(descriptionTextHTML(bio, supportedEmojis: supportedEmojis, linkifyingMentions: true))</em></p>"
         }
 
         if developer.isSponsorable {
@@ -189,7 +218,9 @@ public final class SiteSourceMaker: @unchecked Sendable {
         var details = [String]()
         if let company = developer.company, !company.isEmpty {
             let icon = iconImageHTML(name: "building")
-            details.append("\(icon)\(descriptionTextHTML(company, supportedEmojis: supportedEmojis, linkifyingMentions: true))")
+            details.append(
+                "\(icon)\(descriptionTextHTML(company, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
+            )
         }
         if let location = developer.location, !location.isEmpty {
             let icon = iconImageHTML(name: "map-pin")
@@ -200,10 +231,14 @@ public final class SiteSourceMaker: @unchecked Sendable {
             details.append("\(icon)<a href=\"mailto:\(email.xmlEscaped)\">\(email.xmlEscaped)</a>")
         }
         if let websiteURL = developer.websiteURL {
-            let isIncludedInSocial = developer.socialAccounts.contains(where: { $0.url.absoluteString == websiteURL.absoluteString })
+            let isIncludedInSocial = developer.socialAccounts.contains(where: {
+                $0.url.absoluteString == websiteURL.absoluteString
+            })
             if !isIncludedInSocial {
                 let icon = socialIconImageHTML(provider: "generic", url: websiteURL)
-                details.append("\(icon)<a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>")
+                details.append(
+                    "\(icon)<a href=\"\(websiteURL.absoluteString.xmlEscaped)\">\(websiteURL.absoluteString.xmlEscaped)</a>"
+                )
             }
         }
 
@@ -211,44 +246,60 @@ public final class SiteSourceMaker: @unchecked Sendable {
             for account in developer.socialAccounts {
                 let icon = socialIconImageHTML(provider: account.provider, url: account.url)
                 let label = account.displayName.isEmpty ? account.url.absoluteString : account.displayName
-                details.append("\(icon)<a href=\"\(account.url.absoluteString.xmlEscaped)\">\(label.xmlEscaped)</a>")
+                details.append(
+                    "\(icon)<a href=\"\(account.url.absoluteString.xmlEscaped)\">\(label.xmlEscaped)</a>"
+                )
             }
         } else if let twitterUsername = developer.twitterUsername, !twitterUsername.isEmpty {
             let cleanTwitter = twitterUsername.prefixDeleted(prefix: "@")
             if let twitterURL = URL(string: "https://x.com/\(cleanTwitter)") {
                 let icon = socialIconImageHTML(provider: "twitter", url: twitterURL)
-                details.append("\(icon)<a href=\"\(twitterURL.absoluteString.xmlEscaped)\">@\(cleanTwitter.xmlEscaped)</a>")
+                details.append(
+                    "\(icon)<a href=\"\(twitterURL.absoluteString.xmlEscaped)\">@\(cleanTwitter.xmlEscaped)</a>"
+                )
             }
         }
         if !details.isEmpty {
-            let listItems = details.map { "<li style=\"list-style-type: none; margin-bottom: 4px;\">\($0)</li>" }.joined()
+            let listItems = details.map {
+                "<li style=\"list-style-type: none; margin-bottom: 4px;\">\($0)</li>"
+            }.joined()
             html += "<ul style=\"list-style-type: none; padding-left: 0;\">\(listItems)</ul>"
         }
-        
+
         if let popRepo = developer.popularRepository {
-            let href: String = if popRepo.href.hasPrefix("http://") || popRepo.href.hasPrefix("https://") {
-                popRepo.href
-            } else if popRepo.href.hasPrefix("/") {
-                "https://github.com" + popRepo.href
-            } else {
-                "https://github.com/" + popRepo.href
+            let href = gitHubRepositoryURL(from: popRepo.href)
+            html +=
+                "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
+            if let stars = popRepo.stargazerCount {
+                html += " \(iconImageHTML(name: "star"))\(stars)"
             }
-            html += "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let summary = popRepo.summary, !summary.isEmpty {
-                html += "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
+                html +=
+                    "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
             }
             html += "</p>"
         }
 
-        if !developer.pinnedRepositories.isEmpty {
+        let popularRepositoryURL = developer.popularRepository.map {
+            gitHubRepositoryURL(from: $0.href)
+        }
+        let pinnedRepositories = developer.pinnedRepositories.filter { pinned in
+            guard let popularRepositoryURL else {
+                return true
+            }
+            return !isSameGitHubRepository(pinned.url, popularRepositoryURL)
+        }
+        if !pinnedRepositories.isEmpty {
             html += "<h4>Pinned Repositories</h4><ul>"
-            for pinned in developer.pinnedRepositories {
-                html += "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
+            for pinned in pinnedRepositories {
+                html +=
+                    "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
                 if let stars = pinned.stargazerCount {
-                    html += " ⭐ \(stars)"
+                    html += " \(iconImageHTML(name: "star"))\(stars)"
                 }
                 if let summary = pinned.summary, !summary.isEmpty {
-                    html += "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
+                    html +=
+                        "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
                 }
                 html += "</li>"
             }
@@ -297,6 +348,26 @@ public final class SiteSourceMaker: @unchecked Sendable {
         return "\(rounded)\(units[selectedUnitIndex].suffix)"
     }
 
+    private func gitHubRepositoryURL(from href: String) -> String {
+        if href.hasPrefix("http://") || href.hasPrefix("https://") {
+            return href
+        }
+        if href.hasPrefix("/") {
+            return "https://github.com" + href
+        }
+        return "https://github.com/" + href
+    }
+
+    private func isSameGitHubRepository(_ lhs: URL, _ rhs: String) -> Bool {
+        guard let rhsURL = URL(string: rhs) else {
+            return false
+        }
+        return lhs.host?.caseInsensitiveCompare(rhsURL.host ?? "") == .orderedSame
+            && lhs.path.trimmingCharacters(in: CharacterSet(charactersIn: "/")).caseInsensitiveCompare(
+                rhsURL.path.trimmingCharacters(in: CharacterSet(charactersIn: "/"))
+            ) == .orderedSame
+    }
+
     private func iconName(provider: String, url: URL) -> String? {
         let p = provider.lowercased()
         let host = url.host?.lowercased() ?? ""
@@ -329,7 +400,8 @@ public final class SiteSourceMaker: @unchecked Sendable {
             return "whatsapp"
         } else if p == "youtube" || host.contains("youtube.com") || host.contains("youtu.be") {
             return "youtube"
-        } else if p == "x" || p == "twitter" || host == "x.com" || host.hasSuffix(".x.com") || host.contains("twitter.com") {
+        } else if p == "x" || p == "twitter" || host == "x.com" || host.hasSuffix(".x.com")
+            || host.contains("twitter.com") {
             return "twitter"
         } else {
             return "link"
@@ -344,8 +416,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
     }
 
     private func iconImageHTML(name: String) -> String {
-        let cleanBaseURL = information.rssHomeURL.hasSuffix("/") ? String(information.rssHomeURL.dropLast()) : information.rssHomeURL
+        let cleanBaseURL =
+            information.rssHomeURL.hasSuffix("/")
+            ? String(information.rssHomeURL.dropLast()) : information.rssHomeURL
         let iconURL = "\(cleanBaseURL)/assets/icons/\(name).png"
-        return #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin: 0 4px 0 0; padding: 0; display: inline-block; vertical-align: middle;" />"#
+        return
+            #"<img src="\#(iconURL.xmlEscaped)" width="20" height="20" alt="\#(name.xmlEscaped)" style="margin: 0 4px 0 0; padding: 0; display: inline-block; vertical-align: middle;" />"#
     }
 }

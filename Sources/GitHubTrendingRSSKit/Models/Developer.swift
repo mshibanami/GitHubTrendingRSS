@@ -9,7 +9,7 @@ public struct Developer: @unchecked Sendable {
     public let username: String
     public let displayName: String
     public let avatarURL: URL?
-    public let popularRepository: DeveloperPopularRepository?
+    public var popularRepository: DeveloperPopularRepository?
     public var pinnedRepositories: [DeveloperPinnedRepository]
     public let isSponsorable: Bool
     public var bio: String?

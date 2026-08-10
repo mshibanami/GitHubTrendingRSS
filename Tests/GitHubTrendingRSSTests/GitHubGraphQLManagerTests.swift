@@ -18,20 +18,27 @@ final class GitHubGraphQLManagerTests: XCTestCase {
             openGraphImageUrl
             usesCustomOpenGraphImage
             id
+            stargazerCount
           }
           repo_1: repository(owner: "vuejs", name: "vue") {
             openGraphImageUrl
             usesCustomOpenGraphImage
             id
+            stargazerCount
           }
         }
         """
-        XCTAssertEqual(query.trimmingCharacters(in: .whitespacesAndNewlines), expected.trimmingCharacters(in: .whitespacesAndNewlines))
+        XCTAssertEqual(
+            query.trimmingCharacters(in: .whitespacesAndNewlines),
+            expected.trimmingCharacters(in: .whitespacesAndNewlines)
+        )
     }
 
     func testDecodeBatchQueryResponse() throws {
         let data = TestResources.getData(ofFileName: "api.github.com_graphql_batch_response.json")
-        let response = try JSONDecoder().decode(GraphQLResponse<[String: RepositoryNode?]>.self, from: data)
+        let response = try JSONDecoder().decode(
+            GraphQLResponse<[String: RepositoryNode?]>.self, from: data
+        )
         XCTAssertNil(response.errors)
 
         let repos = try XCTUnwrap(response.data)
@@ -39,12 +46,18 @@ final class GitHubGraphQLManagerTests: XCTestCase {
 
         let repo0Optional = try XCTUnwrap(repos["repo_0"])
         let repo0 = try XCTUnwrap(repo0Optional)
-        XCTAssertEqual(repo0.openGraphImageUrl.absoluteString, "https://opengraph.githubassets.com/dbdb7c9a03dabaa2e52463f68846ac5ea6830d3f326e266518b92f9bc0237e8b/swiftlang/swift")
+        XCTAssertEqual(
+            repo0.openGraphImageUrl.absoluteString,
+            "https://opengraph.githubassets.com/dbdb7c9a03dabaa2e52463f68846ac5ea6830d3f326e266518b92f9bc0237e8b/swiftlang/swift"
+        )
         XCTAssertFalse(repo0.usesCustomOpenGraphImage)
 
         let repo1Optional = try XCTUnwrap(repos["repo_1"])
         let repo1 = try XCTUnwrap(repo1Optional)
-        XCTAssertEqual(repo1.openGraphImageUrl.absoluteString, "https://opengraph.githubassets.com/4a95d64df8f4beb813af3dca2b07b851592c6a28adc4075e03a4d73a1167561c/microsoft/vscode")
+        XCTAssertEqual(
+            repo1.openGraphImageUrl.absoluteString,
+            "https://opengraph.githubassets.com/4a95d64df8f4beb813af3dca2b07b851592c6a28adc4075e03a4d73a1167561c/microsoft/vscode"
+        )
         XCTAssertFalse(repo1.usesCustomOpenGraphImage)
     }
 
@@ -103,7 +116,10 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertEqual(node.twitterUsername, "acme_dev")
         XCTAssertEqual(node.socialAccounts?.nodes?.count, 2)
         XCTAssertEqual(node.socialAccounts?.nodes?.first?.provider, "BLUESKY")
-        XCTAssertEqual(node.socialAccounts?.nodes?.first?.url.absoluteString, "https://bsky.app/profile/sample.bsky.social")
+        XCTAssertEqual(
+            node.socialAccounts?.nodes?.first?.url.absoluteString,
+            "https://bsky.app/profile/sample.bsky.social"
+        )
         XCTAssertEqual(node.pinnedItems?.nodes?.count, 1)
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.name, "cool-project")
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.stargazerCount, 50)
@@ -128,7 +144,9 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         }
         """.data(using: .utf8)!
 
-        let response = try JSONDecoder().decode(GraphQLResponse<[String: DeveloperNode?]>.self, from: json)
+        let response = try JSONDecoder().decode(
+            GraphQLResponse<[String: DeveloperNode?]>.self, from: json
+        )
         XCTAssertNotNil(response.data)
         XCTAssertEqual(response.errors?.count, 1)
 

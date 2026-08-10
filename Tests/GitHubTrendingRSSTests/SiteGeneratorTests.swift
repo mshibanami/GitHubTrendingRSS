@@ -6,7 +6,9 @@ import Stencil
 import XCTest
 
 final class SiteGeneratorTests: XCTestCase {
-    private let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
+    private let environment = Environment(
+        loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)])
+    )
     private let information = SiteSourceMaker.Information(
         pageTitle: "page title",
         author: "spring water",
@@ -41,7 +43,9 @@ final class SiteGeneratorTests: XCTestCase {
     }
 
     func testGenerateRSS() async throws {
-        var repoWithOpenGraph = Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world")
+        var repoWithOpenGraph = Repository(
+            pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"
+        )
         repoWithOpenGraph.openGraphImageUrl = URL(string: "https://example.com/hello-world.png")
         let html = try await maker.makeRSS(
             from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
@@ -52,12 +56,18 @@ final class SiteGeneratorTests: XCTestCase {
             ], supportedEmojis: supportedEmojis
         )
         XCTAssertTrue(html.contains("hello-world.png"))
-        XCTAssertTrue(html.contains("<media:content url=\"https://example.com/hello-world.png\" medium=\"image\" />"))
+        XCTAssertTrue(
+            html.contains(
+                "<media:content url=\"https://example.com/hello-world.png\" medium=\"image\" />"
+            )
+        )
     }
 
     func testGenerateRSSForAllLanguagesOmitsAllLanguagesInTitle() async throws {
         let rss = try await maker.makeRSS(
-            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            from: LanguageTrendingLink(
+                displayName: "All Languages", href: Const.gitHubTopTrendingURL.path
+            ),
             period: .daily,
             repositories: [],
             supportedEmojis: supportedEmojis
@@ -68,8 +78,12 @@ final class SiteGeneratorTests: XCTestCase {
     }
 
     func testGenerateRSSEscapesOpenGraphImageURLForXML() async throws {
-        var repository = Repository(pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world")
-        repository.openGraphImageUrl = URL(string: "https://example.com/image.png?width=1200&height=630")
+        var repository = Repository(
+            pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"
+        )
+        repository.openGraphImageUrl = URL(
+            string: "https://example.com/image.png?width=1200&height=630"
+        )
 
         let rss = try await maker.makeRSS(
             from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
@@ -118,9 +132,20 @@ final class SiteGeneratorTests: XCTestCase {
             username: "testuser",
             displayName: "Test User",
             avatarURL: URL(string: "https://avatars.githubusercontent.com/u/1234?v=4"),
-            popularRepository: DeveloperPopularRepository(name: "cool-repo", href: "/testuser/cool-repo", summary: "cool summary"),
+            popularRepository: DeveloperPopularRepository(
+                name: "cool-repo", href: "/testuser/cool-repo", summary: "cool summary",
+                stargazerCount: 1_234
+            ),
             pinnedRepositories: [
-                DeveloperPinnedRepository(name: "pinned-repo", url: XCTUnwrap(URL(string: "https://github.com/testuser/pinned-repo")), summary: "pinned description", stargazerCount: 99),
+                DeveloperPinnedRepository(
+                    name: "cool-repo", url: XCTUnwrap(URL(string: "https://github.com/testuser/cool-repo")),
+                    summary: "duplicate pinned description", stargazerCount: 1_234
+                ),
+                DeveloperPinnedRepository(
+                    name: "pinned-repo",
+                    url: XCTUnwrap(URL(string: "https://github.com/testuser/pinned-repo")),
+                    summary: "pinned description", stargazerCount: 99
+                ),
             ],
             isSponsorable: true,
             bio: "Developer bio",
@@ -145,6 +170,11 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("https://github.com/testuser"))
         XCTAssertTrue(xml.contains("cool-repo"))
         XCTAssertTrue(xml.contains("pinned-repo"))
+        XCTAssertTrue(xml.contains("assets/icons/star.png"))
+        XCTAssertTrue(xml.contains("1234"))
+        XCTAssertTrue(xml.contains("99"))
+        XCTAssertFalse(xml.contains("⭐️"))
+        XCTAssertFalse(xml.contains("duplicate pinned description"))
         XCTAssertTrue(xml.contains("https://x.com/test_tw"))
         XCTAssertTrue(xml.contains("mailto:test@example.com"))
         XCTAssertTrue(xml.contains("test@example.com"))
@@ -182,10 +212,18 @@ final class SiteGeneratorTests: XCTestCase {
             supportedEmojis: supportedEmojis
         )
 
-        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://github.com/prisma&quot;&gt;@prisma&lt;/a&gt;"))
-        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://github.com/facebook&quot;&gt;@facebook&lt;/a&gt;"))
-        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://github.com/google&quot;&gt;@google&lt;/a&gt;"))
-        XCTAssertTrue(xml.contains("&lt;a href=&quot;https://x.com/john_tw&quot;&gt;@john_tw&lt;/a&gt;"))
+        XCTAssertTrue(
+            xml.contains("&lt;a href=&quot;https://github.com/prisma&quot;&gt;@prisma&lt;/a&gt;")
+        )
+        XCTAssertTrue(
+            xml.contains("&lt;a href=&quot;https://github.com/facebook&quot;&gt;@facebook&lt;/a&gt;")
+        )
+        XCTAssertTrue(
+            xml.contains("&lt;a href=&quot;https://github.com/google&quot;&gt;@google&lt;/a&gt;")
+        )
+        XCTAssertTrue(
+            xml.contains("&lt;a href=&quot;https://x.com/john_tw&quot;&gt;@john_tw&lt;/a&gt;")
+        )
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
@@ -243,7 +281,9 @@ final class SiteGeneratorTests: XCTestCase {
         )
 
         let xml = try await maker.makeDeveloperRSS(
-            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            from: LanguageTrendingLink(
+                displayName: "All Languages", href: Const.gitHubTopTrendingURL.path
+            ),
             period: .daily,
             developers: [dev],
             supportedEmojis: supportedEmojis
@@ -281,7 +321,9 @@ final class SiteGeneratorTests: XCTestCase {
         )
 
         let xml = try await maker.makeDeveloperRSS(
-            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            from: LanguageTrendingLink(
+                displayName: "All Languages", href: Const.gitHubTopTrendingURL.path
+            ),
             period: .daily,
             developers: [dev],
             supportedEmojis: supportedEmojis
@@ -299,7 +341,9 @@ final class SiteGeneratorTests: XCTestCase {
             username: "user_special",
             displayName: "Bob & Alice <Devs>",
             avatarURL: URL(string: "https://avatars.githubusercontent.com/u/1234?v=4&s=96"),
-            popularRepository: DeveloperPopularRepository(name: "repo & <tool>", href: "/user_special/repo", summary: "summary & <desc>"),
+            popularRepository: DeveloperPopularRepository(
+                name: "repo & <tool>", href: "/user_special/repo", summary: "summary & <desc>"
+            ),
             bio: "Bio with & and <tag>",
             company: "Acme & Co <HQ>",
             location: "Tokyo & Kyoto"
@@ -312,7 +356,10 @@ final class SiteGeneratorTests: XCTestCase {
             supportedEmojis: supportedEmojis
         )
 
-        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse(), "Generated Developer RSS XML with special characters should be valid XML")
+        XCTAssertTrue(
+            XMLParser(data: Data(xml.utf8)).parse(),
+            "Generated Developer RSS XML with special characters should be valid XML"
+        )
     }
 
     func testMakeDeveloperRSSWithEmptyDevelopers() async throws {
@@ -329,7 +376,9 @@ final class SiteGeneratorTests: XCTestCase {
 
     func testMakeDeveloperRSSForAllLanguagesOmitsAllLanguagesInTitle() async throws {
         let xml = try await maker.makeDeveloperRSS(
-            from: LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            from: LanguageTrendingLink(
+                displayName: "All Languages", href: Const.gitHubTopTrendingURL.path
+            ),
             period: .daily,
             developers: [],
             supportedEmojis: supportedEmojis
@@ -359,7 +408,10 @@ final class SiteGeneratorTests: XCTestCase {
 
         var devWithGraphQL = devWithoutGraphQL
         devWithGraphQL.pinnedRepositories = try [
-            DeveloperPinnedRepository(name: "pinned1", url: XCTUnwrap(URL(string: "https://github.com/user1/pinned1")), summary: "desc", stargazerCount: 10),
+            DeveloperPinnedRepository(
+                name: "pinned1", url: XCTUnwrap(URL(string: "https://github.com/user1/pinned1")),
+                summary: "desc", stargazerCount: 10
+            ),
         ]
 
         let xml2 = try await maker.makeDeveloperRSS(

@@ -16,18 +16,23 @@ public final class GitHubDownloader: Sendable {
     private let readMeCache: AsyncCache<URL, APIReadMe> = AsyncCache()
     private let profileReadMeCache: AsyncCache<URL, APIReadMe?> = AsyncCache()
 
-    public init(downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, githubToken: String) {
+    public init(
+        downloadManager: DownloadManager, gitHubPageParser: GitHubPageParser, githubToken: String
+    ) {
         self.downloadManager = downloadManager
         self.gitHubPageParser = gitHubPageParser
         self.githubToken = githubToken
     }
 
-    public func fetchRepositories(ofLink languageTrendingLink: LanguageTrendingLink, period: Period, spokenLanguage: SpokenLanguage = .unspecified, includesReadMeIfExists: Bool) async throws -> [Repository] {
+    public func fetchRepositories(
+        ofLink languageTrendingLink: LanguageTrendingLink, period: Period,
+        spokenLanguage: SpokenLanguage = .unspecified, includesReadMeIfExists: Bool
+    ) async throws -> [Repository] {
         let page = try await downloadManager.fetch(
             url: languageTrendingLink.url(ofPeriod: period, spokenLanguage: spokenLanguage),
             bearerToken: githubToken
         )
-        
+
         let repositories = try gitHubPageParser.repositories(fromTrendingPage: page)
 
         guard includesReadMeIfExists else {
@@ -46,7 +51,7 @@ public final class GitHubDownloader: Sendable {
                     return (index, repo)
                 }
             }
-            
+
             var results = [(Int, Repository)]()
             for await result in group {
                 results.append(result)
@@ -106,6 +111,32 @@ public final class GitHubDownloader: Sendable {
                     return updatedDev
                 }
             }
+
+            let popularRepositories = developers.compactMap {
+                developer -> (owner: String, name: String)? in
+                guard let popularRepository = developer.popularRepository,
+                      let repositoryPath = Self.gitHubRepositoryPath(from: popularRepository.href) else {
+                    return nil
+                }
+                return repositoryPath
+            }
+            if !popularRepositories.isEmpty,
+               let repositoryInfo = try? await graphQLManager.fetchRepositoriesOGImages(
+                   repositories: popularRepositories
+               ) {
+                developers = developers.map { developer in
+                    var updatedDeveloper = developer
+                    guard var popularRepository = updatedDeveloper.popularRepository,
+                          let repositoryPath = Self.gitHubRepositoryPath(from: popularRepository.href),
+                          let stargazerCount = repositoryInfo["\(repositoryPath.owner)/\(repositoryPath.name)"]?
+                              .stargazerCount else {
+                        return updatedDeveloper
+                    }
+                    popularRepository.stargazerCount = stargazerCount
+                    updatedDeveloper.popularRepository = popularRepository
+                    return updatedDeveloper
+                }
+            }
         }
 
         guard includesProfileReadMeIfExists else {
@@ -156,7 +187,10 @@ public final class GitHubDownloader: Sendable {
     }
 
     public func fetchReadMePage(pageLink: RepositoryPageLink) async throws -> APIReadMe {
-        guard let components = URLComponents(url: pageLink.readMeAPIEndpointURL, resolvingAgainstBaseURL: false) else {
+        guard
+            let components = URLComponents(
+                url: pageLink.readMeAPIEndpointURL, resolvingAgainstBaseURL: false
+            ) else {
             throw DownloadManager.Error.invalidURL
         }
         guard let url = components.url else {
@@ -181,11 +215,32 @@ public final class GitHubDownloader: Sendable {
     }
 
     public func fetchSupportedEmojis() async throws -> [GitHubEmoji] {
-        let body = try await downloadManager.fetch(url: Const.gitHubAPIEmojisURL, bearerToken: githubToken)
+        let body = try await downloadManager.fetch(
+            url: Const.gitHubAPIEmojisURL, bearerToken: githubToken
+        )
         guard let data = body.data(using: .utf8) else {
             throw Error.unsupportedFormat
         }
         let emojiList = try JSONDecoder().decode(APIEmojiList.self, from: data)
         return emojiList.makeEmojis()
+    }
+
+    private static func gitHubRepositoryPath(from href: String) -> (owner: String, name: String)? {
+        let url: URL?
+        if href.hasPrefix("http://") || href.hasPrefix("https://") {
+            url = URL(string: href)
+        } else if href.hasPrefix("/") {
+            url = URL(string: "https://github.com" + href)
+        } else {
+            url = URL(string: "https://github.com/" + href)
+        }
+        guard let url else {
+            return nil
+        }
+        let pathComponents = url.pathComponents.filter { $0 != "/" }
+        guard pathComponents.count >= 2 else {
+            return nil
+        }
+        return (owner: pathComponents[0], name: pathComponents[1])
     }
 }

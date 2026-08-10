@@ -6,10 +6,12 @@ public struct DeveloperPopularRepository: Hashable, Sendable {
     public let name: String
     public let href: String
     public let summary: String?
+    public var stargazerCount: Int?
 
-    public init(name: String, href: String, summary: String?) {
+    public init(name: String, href: String, summary: String?, stargazerCount: Int? = nil) {
         self.name = name
         self.href = href
         self.summary = summary
+        self.stargazerCount = stargazerCount
     }
 }

@@ -35,7 +35,8 @@ public actor GitHubGraphQLManager {
     /// "owner/name". Already-cached repositories are served from the cache and
     /// only the remaining ones are batched into a single GraphQL request using
     /// aliases.
-    public func fetchRepositoriesOGImages(repositories: [(owner: String, name: String)]) async throws -> [String: RepositoryNode] {
+    public func fetchRepositoriesOGImages(repositories: [(owner: String, name: String)]) async throws
+    -> [String: RepositoryNode] {
         var result: [String: RepositoryNode] = [:]
         var misses: [(owner: String, name: String)] = []
         for repo in repositories {
@@ -103,7 +104,8 @@ public actor GitHubGraphQLManager {
         return result
     }
 
-    private func queryOGImages(of repositories: [(owner: String, name: String)]) async throws -> [String: RepositoryNode?] {
+    private func queryOGImages(of repositories: [(owner: String, name: String)]) async throws
+    -> [String: RepositoryNode?] {
         let endpoint = URL(string: "https://api.github.com/graphql")!
 
         let query = buildBatchQuery(for: repositories)
@@ -113,13 +115,17 @@ public actor GitHubGraphQLManager {
             throw Error.noData
         }
 
-        let page = try await downloadManager.fetch(url: endpoint, httpMethod: "POST", httpBody: httpBody, bearerToken: apiToken)
+        let page = try await downloadManager.fetch(
+            url: endpoint, httpMethod: "POST", httpBody: httpBody, bearerToken: apiToken
+        )
 
         guard let data = page.data(using: .utf8) else {
             throw Error.noData
         }
 
-        let response = try JSONDecoder().decode(GraphQLResponse<[String: RepositoryNode?]>.self, from: data)
+        let response = try JSONDecoder().decode(
+            GraphQLResponse<[String: RepositoryNode?]>.self, from: data
+        )
 
         if let responseData = response.data {
             return responseData
@@ -141,13 +147,17 @@ public actor GitHubGraphQLManager {
             throw Error.noData
         }
 
-        let page = try await downloadManager.fetch(url: endpoint, httpMethod: "POST", httpBody: httpBody, bearerToken: apiToken)
+        let page = try await downloadManager.fetch(
+            url: endpoint, httpMethod: "POST", httpBody: httpBody, bearerToken: apiToken
+        )
 
         guard let data = page.data(using: .utf8) else {
             throw Error.noData
         }
 
-        let response = try JSONDecoder().decode(GraphQLResponse<[String: DeveloperNode?]>.self, from: data)
+        let response = try JSONDecoder().decode(
+            GraphQLResponse<[String: DeveloperNode?]>.self, from: data
+        )
 
         if let responseData = response.data {
             return responseData
@@ -168,6 +178,7 @@ public actor GitHubGraphQLManager {
                 openGraphImageUrl
                 usesCustomOpenGraphImage
                 id
+                stargazerCount
               }
             
             """
@@ -179,11 +190,12 @@ public actor GitHubGraphQLManager {
     nonisolated func buildBatchUserQuery(usernames: [String]) -> String {
         var query = "query GetMultipleUsers {\n"
         for (index, username) in usernames.enumerated() {
-            let escapedUsername = username
-                .replacingOccurrences(of: "\\", with: "\\\\")
-                .replacingOccurrences(of: "\"", with: "\\\"")
-                .replacingOccurrences(of: "\n", with: "")
-                .replacingOccurrences(of: "\r", with: "")
+            let escapedUsername =
+                username
+                    .replacingOccurrences(of: "\\", with: "\\\\")
+                    .replacingOccurrences(of: "\"", with: "\\\"")
+                    .replacingOccurrences(of: "\n", with: "")
+                    .replacingOccurrences(of: "\r", with: "")
             query += """
               user_\(index): user(login: "\(escapedUsername)") {
                 bio
