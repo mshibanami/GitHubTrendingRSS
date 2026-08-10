@@ -190,17 +190,17 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("https://github.com/testuser"))
         XCTAssertTrue(xml.contains("cool-repo"))
         XCTAssertTrue(xml.contains("pinned-repo"))
-        XCTAssertTrue(xml.contains("popular-repo"))
+        XCTAssertFalse(xml.contains("popular-repo"))
         XCTAssertTrue(xml.contains("assets/icons/star.png"))
         XCTAssertTrue(xml.contains("1234"))
         XCTAssertTrue(xml.contains("99"))
         XCTAssertFalse(xml.contains("⭐️"))
         XCTAssertTrue(xml.contains("Other Repositories (Pinned)"))
-        XCTAssertTrue(xml.contains("Other Repositories (Popular)"))
+        XCTAssertFalse(xml.contains("Other Repositories (Popular)"))
         XCTAssertFalse(xml.contains("duplicate pinned description"))
         XCTAssertFalse(xml.contains("duplicate popular description"))
         XCTAssertFalse(xml.contains("duplicate pinned popular description"))
-        XCTAssertTrue(xml.contains("popular description"))
+        XCTAssertFalse(xml.contains("popular description"))
         XCTAssertTrue(xml.contains("&lt;p&gt;Developer bio&lt;/p&gt;"))
         XCTAssertFalse(xml.contains("&lt;em&gt;Developer bio&lt;/em&gt;"))
         XCTAssertTrue(xml.contains("https://x.com/test_tw"))
@@ -458,8 +458,28 @@ final class SiteGeneratorTests: XCTestCase {
             supportedEmojis: supportedEmojis
         )
         XCTAssertTrue(xml2.contains("Other Repositories (Pinned)"))
-        XCTAssertTrue(xml2.contains("Other Repositories (Popular)"))
+        XCTAssertFalse(xml2.contains("Other Repositories (Popular)"))
         XCTAssertTrue(xml2.contains("pinned1"))
-        XCTAssertTrue(xml2.contains("popular1"))
+        XCTAssertFalse(xml2.contains("popular1"))
+
+        var devOnlyPopular = devWithoutGraphQL
+        devOnlyPopular.popularRepositories = try [
+            DeveloperPopularRepository(
+                name: "popular1",
+                url: XCTUnwrap(URL(string: "https://github.com/user1/popular1")),
+                summary: "popular desc",
+                stargazerCount: 20
+            ),
+        ]
+
+        let xml3 = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [devOnlyPopular],
+            supportedEmojis: supportedEmojis
+        )
+        XCTAssertFalse(xml3.contains("Other Repositories (Pinned)"))
+        XCTAssertTrue(xml3.contains("Other Repositories (Popular)"))
+        XCTAssertTrue(xml3.contains("popular1"))
     }
 }

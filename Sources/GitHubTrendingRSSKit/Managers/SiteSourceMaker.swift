@@ -296,6 +296,15 @@ public final class SiteSourceMaker: @unchecked Sendable {
             }
             return !isSameGitHubRepository(pinned.url, popularRepositoryURL)
         }
+        let popularRepositories = developer.popularRepositories.filter { popular in
+            guard let popularURL = URL(string: gitHubRepositoryURL(from: popular.href)) else {
+                return false
+            }
+            if let popularRepositoryURL, isSameGitHubRepository(popularURL, popularRepositoryURL) {
+                return false
+            }
+            return !pinnedRepositories.contains { isSameGitHubRepository(popularURL, $0.url) }
+        }
         if !pinnedRepositories.isEmpty {
             html += "<h4>Other Repositories (Pinned)</h4><ul>"
             for pinned in pinnedRepositories {
@@ -311,18 +320,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
                 html += "</li>"
             }
             html += "</ul>"
-        }
-
-        let popularRepositories = developer.popularRepositories.filter { popular in
-            guard let popularURL = URL(string: gitHubRepositoryURL(from: popular.href)) else {
-                return false
-            }
-            if let popularRepositoryURL, isSameGitHubRepository(popularURL, popularRepositoryURL) {
-                return false
-            }
-            return !pinnedRepositories.contains { isSameGitHubRepository(popularURL, $0.url) }
-        }
-        if !popularRepositories.isEmpty {
+        } else if !popularRepositories.isEmpty {
             html += "<h4>Other Repositories (Popular)</h4><ul>"
             for popular in popularRepositories.prefix(6) {
                 let href = gitHubRepositoryURL(from: popular.href)
