@@ -189,6 +189,41 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
     }
 
+    func testMakeDeveloperRSSExpandsGitHubEmojiShortcodesInDescriptions() async throws {
+        let dev = try Developer(
+            username: "emoji-dev",
+            displayName: "Emoji Dev",
+            avatarURL: nil,
+            popularRepository: DeveloperPopularRepository(
+                name: "popular",
+                href: "/emoji-dev/popular",
+                summary: "Popular :fast_forward:"
+            ),
+            pinnedRepositories: [
+                DeveloperPinnedRepository(
+                    name: "pinned",
+                    url: XCTUnwrap(URL(string: "https://github.com/emoji-dev/pinned")),
+                    summary: "Pinned :fast_forward:",
+                    stargazerCount: nil
+                ),
+            ],
+            bio: "Bio :fast_forward:",
+            company: "Company :fast_forward:",
+            location: "Location :fast_forward:"
+        )
+
+        let xml = try await maker.makeDeveloperRSS(
+            from: LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
+            period: .daily,
+            developers: [dev],
+            supportedEmojis: supportedEmojis
+        )
+
+        XCTAssertFalse(xml.contains(":fast_forward:"))
+        XCTAssertEqual(xml.components(separatedBy: "⏩").count - 1, 5)
+        XCTAssertTrue(XMLParser(data: Data(xml.utf8)).parse())
+    }
+
     func testMakeDeveloperRSSRendersSocialAccountsWithPNGAssetURL() async throws {
         let xURL = try XCTUnwrap(URL(string: "https://x.com/sampleuser"))
         let youtubeURL = try XCTUnwrap(URL(string: "https://youtube.com/@sample_channel"))

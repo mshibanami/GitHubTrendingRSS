@@ -17,6 +17,28 @@ public struct GitHubEmoji: Sendable {
     public var value: ValueType
 }
 
+extension String {
+    func replacingGitHubEmojiShortcodes(supportedEmojis: [GitHubEmoji]) -> String {
+        var normalized = self
+        for emoji in supportedEmojis {
+            let target = ":" + emoji.id + ":"
+            normalized = normalized.replacingOccurrences(of: target, with: emoji.html)
+        }
+        return normalized
+    }
+}
+
+extension GitHubEmoji {
+    var html: String {
+        switch value {
+        case let .text(text):
+            return "<span>\(text)</span>"
+        case let .image(url):
+            return "<img alt='\(id)' src='\(url.absoluteString)' />"
+        }
+    }
+}
+
 public extension APIEmojiList {
     func makeEmojis() -> [GitHubEmoji] {
         return value.compactMap { key, value -> GitHubEmoji? in

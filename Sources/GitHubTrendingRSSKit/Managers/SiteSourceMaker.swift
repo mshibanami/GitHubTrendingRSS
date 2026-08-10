@@ -168,7 +168,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         if let bio = developer.bio, !bio.isEmpty {
-            html += "<p><em>\(bio.xmlEscaped.linkifyingGitHubMentions())</em></p>"
+            html += "<p><em>\(descriptionTextHTML(bio, supportedEmojis: supportedEmojis, linkifyingMentions: true))</em></p>"
         }
 
         if developer.isSponsorable {
@@ -191,11 +191,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
         var details = [String]()
         if let company = developer.company, !company.isEmpty {
             let icon = iconImageHTML(name: "building")
-            details.append("\(icon)\(company.xmlEscaped.linkifyingGitHubMentions())")
+            details.append("\(icon)\(descriptionTextHTML(company, supportedEmojis: supportedEmojis, linkifyingMentions: true))")
         }
         if let location = developer.location, !location.isEmpty {
             let icon = iconImageHTML(name: "map-pin")
-            details.append("\(icon)\(location.xmlEscaped)")
+            details.append("\(icon)\(descriptionTextHTML(location, supportedEmojis: supportedEmojis))")
         }
         if let email = developer.email?.trimmingCharacters(in: .whitespacesAndNewlines), !email.isEmpty {
             let icon = iconImageHTML(name: "mail")
@@ -237,7 +237,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
             }
             html += "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let summary = popRepo.summary, !summary.isEmpty {
-                html += "<br>\(summary.xmlEscaped.linkifyingGitHubMentions())"
+                html += "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
             }
             html += "</p>"
         }
@@ -250,7 +250,7 @@ public final class SiteSourceMaker: @unchecked Sendable {
                     html += " ⭐ \(stars)"
                 }
                 if let summary = pinned.summary, !summary.isEmpty {
-                    html += "<br>\(summary.xmlEscaped.linkifyingGitHubMentions())"
+                    html += "<br>\(descriptionTextHTML(summary, supportedEmojis: supportedEmojis, linkifyingMentions: true))"
                 }
                 html += "</li>"
             }
@@ -262,6 +262,17 @@ public final class SiteSourceMaker: @unchecked Sendable {
         }
 
         return html
+    }
+
+    private func descriptionTextHTML(
+        _ text: String,
+        supportedEmojis: [GitHubEmoji],
+        linkifyingMentions: Bool = false
+    ) -> String {
+        let emojiNormalized = text
+            .xmlEscaped
+            .replacingGitHubEmojiShortcodes(supportedEmojis: supportedEmojis)
+        return linkifyingMentions ? emojiNormalized.linkifyingGitHubMentions() : emojiNormalized
     }
 
     private func formatCount(_ count: Int) -> String {

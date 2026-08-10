@@ -161,12 +161,7 @@ public struct APIReadMe: Codable, Sendable {
     }
 
     private func normalizeEmojisInHTML(_ readMeHTML: String, supportedEmojis: [GitHubEmoji]) -> String {
-        var normalized = readMeHTML
-        for emoji in supportedEmojis {
-            let target = ":" + emoji.id + ":"
-            normalized = normalized.replacingOccurrences(of: target, with: emoji.html)
-        }
-        return normalized
+        readMeHTML.replacingGitHubEmojiShortcodes(supportedEmojis: supportedEmojis)
     }
 
     private func renderHTML() async throws -> String? {
@@ -181,16 +176,5 @@ public struct APIReadMe: Codable, Sendable {
             html = try await DocslothManager.shared.asciidoctor.convertToHTML(content)
         }
         return html
-    }
-}
-
-private extension GitHubEmoji {
-    var html: String {
-        switch value {
-        case let .text(text):
-            return "<span>\(text)</span>"
-        case let .image(url):
-            return "<img alt='\(id)' src='\(url.absoluteString)' />"
-        }
     }
 }
