@@ -7,12 +7,13 @@ public extension String {
         var sanitized = ""
         for scalar in unicodeScalars {
             let value = scalar.value
-            let isValid = value == 0x9
-                || value == 0xA
-                || value == 0xD
-                || (0x20...0xD7FF).contains(value)
-                || (0xE000...0xFFFD).contains(value)
-                || (0x10000...0x10FFFF).contains(value)
+            let isValid =
+                value == 0x9
+                    || value == 0xA
+                    || value == 0xD
+                    || (0x20...0xD7FF).contains(value)
+                    || (0xE000...0xFFFD).contains(value)
+                    || (0x10000...0x10FFFF).contains(value)
             if isValid {
                 sanitized.unicodeScalars.append(scalar)
             }

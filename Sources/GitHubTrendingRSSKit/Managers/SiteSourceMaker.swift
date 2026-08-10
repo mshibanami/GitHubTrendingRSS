@@ -126,16 +126,17 @@ public final class SiteSourceMaker: @unchecked Sendable {
         for developer in developers {
             let popRepoHref = developer.popularRepository?.href ?? ""
             let popRepoStars = developer.popularRepository?.stargazerCount ?? -1
+            let popRepoForks = developer.popularRepository?.forkCount ?? -1
             let pinnedList = developer.pinnedRepositories.map {
-                "\($0.url.absoluteString)|\($0.summary ?? "")|\($0.stargazerCount ?? -1)"
+                "\($0.url.absoluteString)|\($0.summary ?? "")|\($0.stargazerCount ?? -1)|\($0.forkCount ?? -1)"
             }.joined(separator: ",")
             let popularList = developer.popularRepositories.map {
-                "\($0.href)|\($0.summary ?? "")|\($0.stargazerCount ?? -1)"
+                "\($0.href)|\($0.summary ?? "")|\($0.stargazerCount ?? -1)|\($0.forkCount ?? -1)"
             }.joined(separator: ",")
             let socialList = developer.socialAccounts.map { "\($0.provider):\($0.url.absoluteString)" }
                 .joined(separator: ",")
             let cacheKey =
-                "dev:\(developer.username)|pop:\(popRepoHref)|popStars:\(popRepoStars)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|popular:\(popularList)|followers:\(developer.followersCount ?? -1)|following:\(developer.followingCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
+                "dev:\(developer.username)|pop:\(popRepoHref)|popStars:\(popRepoStars)|popForks:\(popRepoForks)|hasReadMe:\(developer.profileReadMe != nil)|pinned:\(pinnedList)|popular:\(popularList)|followers:\(developer.followersCount ?? -1)|following:\(developer.followingCount ?? -1)|repos:\(developer.publicReposCount ?? -1)|company:\(developer.company ?? "")|bio:\(developer.bio ?? "")|email:\(developer.email ?? "")|tw:\(developer.twitterUsername ?? "")|web:\(developer.websiteURL?.absoluteString ?? "")|social:\(socialList)"
             let descriptionHTML =
                 try await descriptionHTMLCache.value(for: cacheKey) {
                     try await self.buildDeveloperDescriptionHTML(
@@ -278,7 +279,11 @@ public final class SiteSourceMaker: @unchecked Sendable {
             html +=
                 "<h4>Popular Repository</h4><p><a href=\"\(href.xmlEscaped)\"><strong>\(popRepo.name.xmlEscaped)</strong></a>"
             if let stars = popRepo.stargazerCount {
-                html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(stars)"
+                html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(formatCount(stars))"
+            }
+            if let forks = popRepo.forkCount {
+                html +=
+                    " \(iconImageHTML(name: "git-fork", verticalAlign: "text-bottom"))\(formatCount(forks))"
             }
             if let summary = popRepo.summary, !summary.isEmpty {
                 html +=
@@ -311,7 +316,12 @@ public final class SiteSourceMaker: @unchecked Sendable {
                 html +=
                     "<li><a href=\"\(pinned.url.absoluteString.xmlEscaped)\"><strong>\(pinned.name.xmlEscaped)</strong></a>"
                 if let stars = pinned.stargazerCount {
-                    html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(stars)"
+                    html +=
+                        " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(formatCount(stars))"
+                }
+                if let forks = pinned.forkCount {
+                    html +=
+                        " \(iconImageHTML(name: "git-fork", verticalAlign: "text-bottom"))\(formatCount(forks))"
                 }
                 if let summary = pinned.summary, !summary.isEmpty {
                     html +=
@@ -327,7 +337,12 @@ public final class SiteSourceMaker: @unchecked Sendable {
                 html +=
                     "<li><a href=\"\(href.xmlEscaped)\"><strong>\(popular.name.xmlEscaped)</strong></a>"
                 if let stars = popular.stargazerCount {
-                    html += " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(stars)"
+                    html +=
+                        " \(iconImageHTML(name: "star", verticalAlign: "text-bottom"))\(formatCount(stars))"
+                }
+                if let forks = popular.forkCount {
+                    html +=
+                        " \(iconImageHTML(name: "git-fork", verticalAlign: "text-bottom"))\(formatCount(forks))"
                 }
                 if let summary = popular.summary, !summary.isEmpty {
                     html +=

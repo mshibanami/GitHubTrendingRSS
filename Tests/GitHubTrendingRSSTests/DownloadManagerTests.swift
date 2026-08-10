@@ -74,7 +74,9 @@ final class DownloadManagerTests: XCTestCase {
         try await withThrowingTaskGroup(of: Void.self) { group in
             for i in 0..<10 {
                 group.addTask {
-                    let result = try await manager.fetch(url: XCTUnwrap(URL(string: "https://mock.example/\(i)")))
+                    let result = try await manager.fetch(
+                        url: XCTUnwrap(URL(string: "https://mock.example/\(i)"))
+                    )
                     XCTAssertEqual(result, "ok")
                 }
             }
@@ -110,13 +112,17 @@ final class DownloadManagerTests: XCTestCase {
 
         try await withThrowingTaskGroup(of: Void.self) { group in
             group.addTask {
-                let result = try await manager.fetch(url: XCTUnwrap(URL(string: "https://mock.example/retry")))
+                let result = try await manager.fetch(
+                    url: XCTUnwrap(URL(string: "https://mock.example/retry"))
+                )
                 XCTAssertEqual(result, "retried")
                 await completionRecorder.record("retry")
             }
             group.addTask {
                 try? await Task.sleep(nanoseconds: 100_000_000)
-                let result = try await manager.fetch(url: XCTUnwrap(URL(string: "https://mock.example/fast")))
+                let result = try await manager.fetch(
+                    url: XCTUnwrap(URL(string: "https://mock.example/fast"))
+                )
                 XCTAssertEqual(result, "fast")
                 await completionRecorder.record("fast")
             }
@@ -221,7 +227,8 @@ final class DownloadManagerTests: XCTestCase {
 }
 
 class MockURLProtocol: URLProtocol, @unchecked Sendable {
-    nonisolated(unsafe) static var handler: (@Sendable (URLRequest) async throws -> (statusCode: Int, data: Data))?
+    nonisolated(unsafe) static var handler:
+        (@Sendable (URLRequest) async throws -> (statusCode: Int, data: Data))?
 
     override class func canInit(with request: URLRequest) -> Bool {
         true

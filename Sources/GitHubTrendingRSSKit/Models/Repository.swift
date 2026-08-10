@@ -17,7 +17,8 @@ public struct Repository: @unchecked Sendable {
         self.summary = summary
     }
 
-    public func makeReadMeHTML(includesSummary: Bool, supportedEmojis: [GitHubEmoji]) async throws -> String? {
+    public func makeReadMeHTML(includesSummary: Bool, supportedEmojis: [GitHubEmoji]) async throws
+    -> String? {
         var html: String?
         if includesSummary, !summary.isEmpty {
             html = (html ?? "") + #"<p>\#(summary)</p><hr>"#

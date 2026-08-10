@@ -11,7 +11,10 @@ final class DeveloperTests: XCTestCase {
 
     func testDeveloperInitialization() throws {
         let popRepo = DeveloperPopularRepository(name: "repo", href: "/user/repo", summary: "summary")
-        let pinnedRepo = try DeveloperPinnedRepository(name: "pinned", url: XCTUnwrap(URL(string: "https://github.com/user/pinned")), summary: "pinned summary", stargazerCount: 42)
+        let pinnedRepo = try DeveloperPinnedRepository(
+            name: "pinned", url: XCTUnwrap(URL(string: "https://github.com/user/pinned")),
+            summary: "pinned summary", stargazerCount: 42
+        )
 
         let developer = Developer(
             username: "user",
@@ -33,7 +36,9 @@ final class DeveloperTests: XCTestCase {
 
         XCTAssertEqual(developer.username, "user")
         XCTAssertEqual(developer.displayName, "User Name")
-        XCTAssertEqual(developer.avatarURL?.absoluteString, "https://avatars.githubusercontent.com/u/1?v=4")
+        XCTAssertEqual(
+            developer.avatarURL?.absoluteString, "https://avatars.githubusercontent.com/u/1?v=4"
+        )
         XCTAssertEqual(developer.popularRepository?.name, "repo")
         XCTAssertEqual(developer.pinnedRepositories.count, 1)
         XCTAssertEqual(developer.pinnedRepositories.first?.name, "pinned")

@@ -68,12 +68,15 @@ func start(target: FetchTarget) async throws {
 
     let (topTrendingPage, supportedEmojis) = try await (topTrendingPageTask, supportedEmojisTask)
 
-    let languageLinks = try gitHubPageParser.languageTrendingLinks(fromTopTrendingPage: topTrendingPage)
+    let languageLinks = try gitHubPageParser.languageTrendingLinks(
+        fromTopTrendingPage: topTrendingPage
+    )
     guard !languageLinks.isEmpty else {
         throw MainError.noLanguageTrendingLinks
     }
 
-    try await languageLinks.forEachConcurrent(maxConcurrency: maxConcurrentLanguageGenerations) { link in
+    try await languageLinks.forEachConcurrent(maxConcurrency: maxConcurrentLanguageGenerations) {
+        link in
         await processLanguage(
             link: link,
             supportedEmojis: supportedEmojis,
@@ -164,7 +167,9 @@ private func processRepoLanguage(
         )
 
         if case .fetched(isEmpty: true) = outcome {
-            NSLog("⏭ \(link.name): no trending repositories (\(period.rawValue)); skipping variant fetches")
+            NSLog(
+                "⏭ \(link.name): no trending repositories (\(period.rawValue)); skipping variant fetches"
+            )
             await writeEmptyFeeds(
                 link: link,
                 period: period,
@@ -218,7 +223,9 @@ private func processDeveloperLanguage(
         )
 
         if case .fetched(isEmpty: true) = outcome {
-            NSLog("⏭ \(link.name): no trending developers (\(period.rawValue)); skipping remaining periods")
+            NSLog(
+                "⏭ \(link.name): no trending developers (\(period.rawValue)); skipping remaining periods"
+            )
             skipRemainingPeriods = true
         }
     }
@@ -241,8 +248,10 @@ private func writeEmptyFeeds(
                 supportedEmojis: supportedEmojis
             )
         } catch {
-            NSLog("⚠️ Failed to create an empty RSS file of \(link.name) "
-                + "(\(spokenLanguage.rawValue), \(period.rawValue)). Error: \(error)")
+            NSLog(
+                "⚠️ Failed to create an empty RSS file of \(link.name) "
+                    + "(\(spokenLanguage.rawValue), \(period.rawValue)). Error: \(error)"
+            )
         }
     }
 }
@@ -271,10 +280,14 @@ private func processFeed(
 
         var updatedRepositories = repositories
         if !repositories.isEmpty {
-            let reposQueryInfo = repositories.map { (owner: $0.pageLink.userID, name: $0.pageLink.repositoryName) }
+            let reposQueryInfo = repositories.map {
+                (owner: $0.pageLink.userID, name: $0.pageLink.repositoryName)
+            }
 
             do {
-                let ogDataMap = try await graphQLManager.fetchRepositoriesOGImages(repositories: reposQueryInfo)
+                let ogDataMap = try await graphQLManager.fetchRepositoriesOGImages(
+                    repositories: reposQueryInfo
+                )
                 for i in 0..<updatedRepositories.count {
                     let pageLink = updatedRepositories[i].pageLink
                     if let ogNode = ogDataMap["\(pageLink.userID)/\(pageLink.repositoryName)"] {
@@ -300,7 +313,9 @@ private func processFeed(
            error == .failedFetching(statusCode: 504) || error == .failedFetching(statusCode: 502) {
             // ignore
         } else {
-            NSLog("⚠️ Failed to fetch repositories of \(link.name) (\(target.spokenLanguage.rawValue)). Error: \(error)")
+            NSLog(
+                "⚠️ Failed to fetch repositories of \(link.name) (\(target.spokenLanguage.rawValue)). Error: \(error)"
+            )
         }
         return .failed
     }
@@ -320,7 +335,9 @@ private func writeEmptyDeveloperFeeds(
             supportedEmojis: supportedEmojis
         )
     } catch {
-        NSLog("⚠️ Failed to create an empty Developer RSS file of \(link.name) (\(period.rawValue)). Error: \(error)")
+        NSLog(
+            "⚠️ Failed to create an empty Developer RSS file of \(link.name) (\(period.rawValue)). Error: \(error)"
+        )
     }
 }
 

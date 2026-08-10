@@ -14,7 +14,10 @@ class RunCommand: Command {
     @Option(name: "github-token", documentation: "GitHub's Personal Access Token (for GraphQL API)")
     var githubToken: String = ""
 
-    @Option(name: "target", shorthand: "t", documentation: "Target feeds to fetch: 'all', 'repos', or 'developers'")
+    @Option(
+        name: "target", shorthand: "t",
+        documentation: "Target feeds to fetch: 'all', 'repos', or 'developers'"
+    )
     var target: String = "all"
 
     func run(outputStream: inout TextOutputStream, errorStream: inout TextOutputStream) throws {

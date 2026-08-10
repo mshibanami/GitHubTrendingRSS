@@ -16,12 +16,16 @@ public struct DeveloperNode: Decodable, Sendable {
         public let url: URL
         public let description: String?
         public let stargazerCount: Int?
+        public let forkCount: Int?
 
-        public init(name: String, url: URL, description: String?, stargazerCount: Int?) {
+        public init(
+            name: String, url: URL, description: String?, stargazerCount: Int?, forkCount: Int? = nil
+        ) {
             self.name = name
             self.url = url
             self.description = description
             self.stargazerCount = stargazerCount
+            self.forkCount = forkCount
         }
     }
 
@@ -38,12 +42,16 @@ public struct DeveloperNode: Decodable, Sendable {
         public let url: URL
         public let description: String?
         public let stargazerCount: Int?
+        public let forkCount: Int?
 
-        public init(name: String, url: URL, description: String?, stargazerCount: Int?) {
+        public init(
+            name: String, url: URL, description: String?, stargazerCount: Int?, forkCount: Int? = nil
+        ) {
             self.name = name
             self.url = url
             self.description = description
             self.stargazerCount = stargazerCount
+            self.forkCount = forkCount
         }
     }
 

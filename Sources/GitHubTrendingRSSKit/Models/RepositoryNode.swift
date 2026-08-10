@@ -27,16 +27,19 @@ public struct RepositoryNode: Decodable, Sendable {
     public let usesCustomOpenGraphImage: Bool
     public let id: String
     public let stargazerCount: Int?
+    public let forkCount: Int?
 
     public init(
         openGraphImageUrl: URL,
         usesCustomOpenGraphImage: Bool,
         id: String,
-        stargazerCount: Int? = nil
+        stargazerCount: Int? = nil,
+        forkCount: Int? = nil
     ) {
         self.openGraphImageUrl = openGraphImageUrl
         self.usesCustomOpenGraphImage = usesCustomOpenGraphImage
         self.id = id
         self.stargazerCount = stargazerCount
+        self.forkCount = forkCount
     }
 }

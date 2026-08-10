@@ -6,7 +6,9 @@ import Stencil
 import XCTest
 
 final class FeedFileCreatorTests: XCTestCase {
-    private let environment = Environment(loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)]))
+    private let environment = Environment(
+        loader: FileSystemLoader(paths: [Path(Const.resourcesRootURL.path)])
+    )
     private let information = SiteSourceMaker.Information(
         pageTitle: "page title",
         author: "spring water",
@@ -30,7 +32,9 @@ final class FeedFileCreatorTests: XCTestCase {
     func testCreateRSSFilePaths() async throws {
         let maker = SiteSourceMaker(environment: environment, information: information)
         let creator = FeedFileCreator(outputDirectory: tempDir, siteGenerator: maker)
-        let link = LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path)
+        let link = LanguageTrendingLink(
+            displayName: "All Languages", href: Const.gitHubTopTrendingURL.path
+        )
 
         let urlUnspecified = try await creator.createRSSFile(
             repositories: [],
@@ -84,7 +88,15 @@ final class FeedFileCreatorTests: XCTestCase {
 
         let copiedAssetsDir = tempDir.appendingPathComponent("assets")
         XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.path))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.appendingPathComponent("icons/linkedin.png").path))
-        XCTAssertTrue(FileManager.default.fileExists(atPath: copiedAssetsDir.appendingPathComponent("icons/orcid.png").path))
+        XCTAssertTrue(
+            FileManager.default.fileExists(
+                atPath: copiedAssetsDir.appendingPathComponent("icons/linkedin.png").path
+            )
+        )
+        XCTAssertTrue(
+            FileManager.default.fileExists(
+                atPath: copiedAssetsDir.appendingPathComponent("icons/orcid.png").path
+            )
+        )
     }
 }

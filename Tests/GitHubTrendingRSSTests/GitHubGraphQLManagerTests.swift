@@ -19,12 +19,14 @@ final class GitHubGraphQLManagerTests: XCTestCase {
             usesCustomOpenGraphImage
             id
             stargazerCount
+            forkCount
           }
           repo_1: repository(owner: "vuejs", name: "vue") {
             openGraphImageUrl
             usesCustomOpenGraphImage
             id
             stargazerCount
+            forkCount
           }
         }
         """
@@ -102,7 +104,8 @@ final class GitHubGraphQLManagerTests: XCTestCase {
                         "name": "cool-project",
                         "url": "https://github.com/acme/cool-project",
                         "description": "A very cool project",
-                        "stargazerCount": 50
+                        "stargazerCount": 50,
+                        "forkCount": 12
                     }
                 ]
             },
@@ -112,7 +115,8 @@ final class GitHubGraphQLManagerTests: XCTestCase {
                         "name": "popular-project",
                         "url": "https://github.com/acme/popular-project",
                         "description": "A popular project",
-                        "stargazerCount": 500
+                        "stargazerCount": 500,
+                        "forkCount": 34
                     }
                 ]
             }
@@ -138,9 +142,11 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertEqual(node.pinnedItems?.nodes?.count, 1)
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.name, "cool-project")
         XCTAssertEqual(node.pinnedItems?.nodes?.first?.stargazerCount, 50)
+        XCTAssertEqual(node.pinnedItems?.nodes?.first?.forkCount, 12)
         XCTAssertEqual(node.popularRepositories?.nodes?.count, 1)
         XCTAssertEqual(node.popularRepositories?.nodes?.first?.name, "popular-project")
         XCTAssertEqual(node.popularRepositories?.nodes?.first?.stargazerCount, 500)
+        XCTAssertEqual(node.popularRepositories?.nodes?.first?.forkCount, 34)
     }
 
     func testDecodeGraphQLPartialResponseWithErrors() throws {

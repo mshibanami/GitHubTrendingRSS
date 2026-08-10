@@ -7,20 +7,27 @@ public struct DeveloperPopularRepository: Hashable, Sendable {
     public let href: String
     public let summary: String?
     public var stargazerCount: Int?
+    public var forkCount: Int?
 
-    public init(name: String, href: String, summary: String?, stargazerCount: Int? = nil) {
+    public init(
+        name: String, href: String, summary: String?, stargazerCount: Int? = nil, forkCount: Int? = nil
+    ) {
         self.name = name
         self.href = href
         self.summary = summary
         self.stargazerCount = stargazerCount
+        self.forkCount = forkCount
     }
 
-    public init(name: String, url: URL, summary: String?, stargazerCount: Int? = nil) {
+    public init(
+        name: String, url: URL, summary: String?, stargazerCount: Int? = nil, forkCount: Int? = nil
+    ) {
         self.init(
             name: name,
             href: url.absoluteString,
             summary: summary,
-            stargazerCount: stargazerCount
+            stargazerCount: stargazerCount,
+            forkCount: forkCount
         )
     }
 }

@@ -7,13 +7,15 @@ import Foundation
 public final class DocslothManager: Sendable {
     public static let shared = DocslothManager()
 
-    public let markdownIt = MarkdownIt(options: .init(
-        base: [
-            "html": true,
-            "linkify": true,
-        ],
-        disabledPlugins: [.sanitizeHTML]
-    ))
+    public let markdownIt = MarkdownIt(
+        options: .init(
+            base: [
+                "html": true,
+                "linkify": true,
+            ],
+            disabledPlugins: [.sanitizeHTML]
+        )
+    )
     public let asciidoctor = Asciidoctor()
 
     private init() {}

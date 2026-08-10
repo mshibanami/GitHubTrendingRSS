@@ -55,7 +55,9 @@ public struct APIReadMe: Codable, Sendable {
         guard let userID, let repositoryName, let branchName else {
             return nil
         }
-        return URL(string: "https://raw.githubusercontent.com/\(userID)/\(repositoryName)/\(branchName)/")
+        return URL(
+            string: "https://raw.githubusercontent.com/\(userID)/\(repositoryName)/\(branchName)/"
+        )
     }
 
     public var fileType: FileType {
@@ -114,10 +116,11 @@ public struct APIReadMe: Codable, Sendable {
             return normalizedReadMeHTML
         }
 
-        guard let blobToRawRegex = try? NSRegularExpression(
-            pattern: "(https://github.com/[^/]+/[^/]+/)blob(/.+)",
-            options: []
-        ) else {
+        guard
+            let blobToRawRegex = try? NSRegularExpression(
+                pattern: "(https://github.com/[^/]+/[^/]+/)blob(/.+)",
+                options: []
+            ) else {
             assertionFailure()
             return normalizedReadMeHTML
         }

@@ -46,7 +46,9 @@ public final class DownloadManager: @unchecked Sendable {
             httpMethod: httpMethod,
             httpBody: httpBody,
             header: header,
-            authorization: Self.makeAuthorizationHeaderValue(basicAuthInfo: basicAuthInfo, bearerToken: bearerToken)
+            authorization: Self.makeAuthorizationHeaderValue(
+                basicAuthInfo: basicAuthInfo, bearerToken: bearerToken
+            )
         )
 
         let gate = await gateRegistry.gate(forHost: url.host ?? "")
@@ -150,7 +152,9 @@ public final class DownloadManager: @unchecked Sendable {
         return request
     }
 
-    private static func makeAuthorizationHeaderValue(basicAuthInfo: BasicAuthInfo?, bearerToken: String?) -> String? {
+    private static func makeAuthorizationHeaderValue(
+        basicAuthInfo: BasicAuthInfo?, bearerToken: String?
+    ) -> String? {
         if let basicAuthInfo {
             return basicAuthInfo.makeHeaderValue()
         } else if let bearerToken, !bearerToken.isEmpty {

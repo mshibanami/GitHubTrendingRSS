@@ -179,6 +179,7 @@ public actor GitHubGraphQLManager {
                 usesCustomOpenGraphImage
                 id
                 stargazerCount
+                forkCount
               }
             
             """
@@ -227,6 +228,7 @@ public actor GitHubGraphQLManager {
                       url
                       description
                       stargazerCount
+                      forkCount
                     }
                   }
                 }
@@ -242,6 +244,7 @@ public actor GitHubGraphQLManager {
                     url
                     description
                     stargazerCount
+                    forkCount
                   }
                 }
               }

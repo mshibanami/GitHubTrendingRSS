@@ -11,7 +11,8 @@ public final class GitHubPageParser: Sendable {
 
     public init() {}
 
-    public func languageTrendingLinks(fromTopTrendingPage topTrendingPage: String) throws -> [LanguageTrendingLink] {
+    public func languageTrendingLinks(fromTopTrendingPage topTrendingPage: String) throws
+    -> [LanguageTrendingLink] {
         let parsed = try SwiftSoup.parse(topTrendingPage)
 
         let selectMenuLists = (try? parsed.select("div.select-menu-list"))?.array() ?? []
@@ -21,17 +22,19 @@ public final class GitHubPageParser: Sendable {
             throw RSSError.unsupportedFormat
         }
 
-        let links = GitHubPageParser.specialLinks + linkTags.compactMap { link -> LanguageTrendingLink? in
-            guard let title = link.trimmedText,
-                  let href = try? link.attr("href") else {
-                return nil
-            }
-            return LanguageTrendingLink(
-                displayName: title,
-                href: href
-            )
-        }
-        
+        let links =
+            GitHubPageParser.specialLinks
+                + linkTags.compactMap { link -> LanguageTrendingLink? in
+                    guard let title = link.trimmedText,
+                          let href = try? link.attr("href") else {
+                        return nil
+                    }
+                    return LanguageTrendingLink(
+                        displayName: title,
+                        href: href
+                    )
+                }
+
         return links.uniqued(on: \.name)
     }
 
@@ -106,12 +109,14 @@ public final class GitHubPageParser: Sendable {
                 let repoName: String
                 if let text = popRepoATag.trimmedText, !text.isEmpty {
                     repoName = text
-                } else if let lastPathComponent = URL(string: popRepoHref)?.lastPathComponent, !lastPathComponent.isEmpty {
+                } else if let lastPathComponent = URL(string: popRepoHref)?.lastPathComponent,
+                          !lastPathComponent.isEmpty {
                     repoName = lastPathComponent
                 } else {
                     repoName = popRepoHref
                 }
-                let popRepoSummary = try? popRepoArticle.select("div.f6.color-fg-muted.mt-1").first()?.trimmedText
+                let popRepoSummary = try? popRepoArticle.select("div.f6.color-fg-muted.mt-1").first()?
+                    .trimmedText
                 popularRepository = DeveloperPopularRepository(
                     name: repoName,
                     href: popRepoHref,

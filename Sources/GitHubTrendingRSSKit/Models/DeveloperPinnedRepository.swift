@@ -7,11 +7,13 @@ public struct DeveloperPinnedRepository: Hashable, Sendable {
     public let url: URL
     public let summary: String?
     public let stargazerCount: Int?
+    public let forkCount: Int?
 
-    public init(name: String, url: URL, summary: String?, stargazerCount: Int?) {
+    public init(name: String, url: URL, summary: String?, stargazerCount: Int?, forkCount: Int? = nil) {
         self.name = name
         self.url = url
         self.summary = summary
         self.stargazerCount = stargazerCount
+        self.forkCount = forkCount
     }
 }

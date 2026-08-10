@@ -10,7 +10,9 @@ public class Const {
     public static let gitHubAPIEmojisURL = URL(string: "\(gitHubAPIBaseURL)/emojis")!
     public static let gitHubTopTrendingURL = URL(string: "\(gitHubBaseURL)/trending")!
     public static let gitHubBaseURL = URL(string: "https://github.com")!
-    public static let gitHubRepositoryURL = URL(string: "https://github.com/mshibanami/GitHubTrendingRSS")!
+    public static let gitHubRepositoryURL = URL(
+        string: "https://github.com/mshibanami/GitHubTrendingRSS"
+    )!
     public static let pageTitle = "GitHub Trending RSS"
     public static let author = "Manabu Nakazawa"
 

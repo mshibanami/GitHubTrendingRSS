@@ -134,17 +134,17 @@ final class SiteGeneratorTests: XCTestCase {
             avatarURL: URL(string: "https://avatars.githubusercontent.com/u/1234?v=4"),
             popularRepository: DeveloperPopularRepository(
                 name: "cool-repo", href: "/testuser/cool-repo", summary: "cool summary",
-                stargazerCount: 1_234
+                stargazerCount: 1_234, forkCount: 456
             ),
             pinnedRepositories: [
                 DeveloperPinnedRepository(
                     name: "cool-repo", url: XCTUnwrap(URL(string: "https://github.com/testuser/cool-repo")),
-                    summary: "duplicate pinned description", stargazerCount: 1_234
+                    summary: "duplicate pinned description", stargazerCount: 1_234, forkCount: 456
                 ),
                 DeveloperPinnedRepository(
                     name: "pinned-repo",
                     url: XCTUnwrap(URL(string: "https://github.com/testuser/pinned-repo")),
-                    summary: "pinned description", stargazerCount: 99
+                    summary: "pinned description", stargazerCount: 99, forkCount: 78
                 ),
             ],
             popularRepositories: [
@@ -192,8 +192,11 @@ final class SiteGeneratorTests: XCTestCase {
         XCTAssertTrue(xml.contains("pinned-repo"))
         XCTAssertFalse(xml.contains("popular-repo"))
         XCTAssertTrue(xml.contains("assets/icons/star.png"))
-        XCTAssertTrue(xml.contains("1234"))
+        XCTAssertTrue(xml.contains("assets/icons/git-fork.png"))
+        XCTAssertTrue(xml.contains("1.2k"))
+        XCTAssertTrue(xml.contains("456"))
         XCTAssertTrue(xml.contains("99"))
+        XCTAssertTrue(xml.contains("78"))
         XCTAssertFalse(xml.contains("⭐️"))
         XCTAssertTrue(xml.contains("Other Repositories (Pinned)"))
         XCTAssertFalse(xml.contains("Other Repositories (Popular)"))

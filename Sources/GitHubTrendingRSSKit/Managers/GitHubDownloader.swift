@@ -103,7 +103,8 @@ public final class GitHubDownloader: Sendable {
                                     name: node.name,
                                     url: node.url,
                                     summary: node.description,
-                                    stargazerCount: node.stargazerCount
+                                    stargazerCount: node.stargazerCount,
+                                    forkCount: node.forkCount
                                 )
                             }
                         }
@@ -113,7 +114,8 @@ public final class GitHubDownloader: Sendable {
                                     name: node.name,
                                     url: node.url,
                                     summary: node.description,
-                                    stargazerCount: node.stargazerCount
+                                    stargazerCount: node.stargazerCount,
+                                    forkCount: node.forkCount
                                 )
                             }
                         }
@@ -138,11 +140,15 @@ public final class GitHubDownloader: Sendable {
                     var updatedDeveloper = developer
                     guard var popularRepository = updatedDeveloper.popularRepository,
                           let repositoryPath = Self.gitHubRepositoryPath(from: popularRepository.href),
-                          let stargazerCount = repositoryInfo["\(repositoryPath.owner)/\(repositoryPath.name)"]?
-                              .stargazerCount else {
+                          let repoNode = repositoryInfo["\(repositoryPath.owner)/\(repositoryPath.name)"] else {
                         return updatedDeveloper
                     }
-                    popularRepository.stargazerCount = stargazerCount
+                    if let stargazerCount = repoNode.stargazerCount {
+                        popularRepository.stargazerCount = stargazerCount
+                    }
+                    if let forkCount = repoNode.forkCount {
+                        popularRepository.forkCount = forkCount
+                    }
                     updatedDeveloper.popularRepository = popularRepository
                     return updatedDeveloper
                 }

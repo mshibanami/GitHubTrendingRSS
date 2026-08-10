@@ -53,17 +53,19 @@ public extension APIEmojiList {
                 unicodeStrings.append("FE0F")
             }
 
-            let unicodeScalars = unicodeStrings
-                .compactMap { unicodeString -> Unicode.Scalar? in
-                    guard let hex = UInt32(unicodeString, radix: 16),
-                          let scalar = Unicode.Scalar(hex) else {
-                        return nil
+            let unicodeScalars =
+                unicodeStrings
+                    .compactMap { unicodeString -> Unicode.Scalar? in
+                        guard let hex = UInt32(unicodeString, radix: 16),
+                              let scalar = Unicode.Scalar(hex) else {
+                            return nil
+                        }
+                        return scalar
                     }
-                    return scalar
-                }
-            let value: GitHubEmoji.ValueType = unicodeScalars.isEmpty
-                ? .image(fallbackURL)
-                : .text(String.UnicodeScalarView(unicodeScalars).description)
+            let value: GitHubEmoji.ValueType =
+                unicodeScalars.isEmpty
+                    ? .image(fallbackURL)
+                    : .text(String.UnicodeScalarView(unicodeScalars).description)
             return GitHubEmoji(id: key, value: value)
         }
     }

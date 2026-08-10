@@ -11,7 +11,10 @@ public final class FeedFileCreator: @unchecked Sendable {
         rootOutputDirectory = outputDirectory
     }
 
-    @discardableResult public func createRSSFile(repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period, spokenLanguage: SpokenLanguage, supportedEmojis: [GitHubEmoji]) async throws -> URL {
+    @discardableResult public func createRSSFile(
+        repositories: [Repository], languageTrendingLink: LanguageTrendingLink, period: Period,
+        spokenLanguage: SpokenLanguage, supportedEmojis: [GitHubEmoji]
+    ) async throws -> URL {
         let fileManager = FileManager.default
         let feedHTML = try await siteGenerator.makeRSS(
             from: languageTrendingLink,
@@ -21,7 +24,9 @@ public final class FeedFileCreator: @unchecked Sendable {
             supportedEmojis: supportedEmojis
         )
 
-        let outputDirectory = spokenLanguage.outputDirectory(relativeTo: rootOutputDirectory, period: period)
+        let outputDirectory = spokenLanguage.outputDirectory(
+            relativeTo: rootOutputDirectory, period: period
+        )
 
         try fileManager.createDirectory(
             at: outputDirectory,
@@ -32,11 +37,12 @@ public final class FeedFileCreator: @unchecked Sendable {
         let fileName = "\(languageTrendingLink.name).xml"
         let fileURL = outputDirectory.appendingPathComponent(fileName)
 
-        guard fileManager.createFile(
-            atPath: fileURL.path,
-            contents: feedHTML.data(using: .utf8),
-            attributes: nil
-        ) else {
+        guard
+            fileManager.createFile(
+                atPath: fileURL.path,
+                contents: feedHTML.data(using: .utf8),
+                attributes: nil
+            ) else {
             throw NSError()
         }
 
@@ -56,11 +62,12 @@ public final class FeedFileCreator: @unchecked Sendable {
         let html = try siteGenerator.makeHomeHTML(from: languageLinks)
         let fileURL = rootOutputDirectory.appendingPathComponent("index.html")
 
-        guard fileManager.createFile(
-            atPath: fileURL.path,
-            contents: html.data(using: .utf8),
-            attributes: nil
-        ) else {
+        guard
+            fileManager.createFile(
+                atPath: fileURL.path,
+                contents: html.data(using: .utf8),
+                attributes: nil
+            ) else {
             throw NSError()
         }
 
@@ -76,7 +83,9 @@ public final class FeedFileCreator: @unchecked Sendable {
             return
         }
 
-        try fileManager.createDirectory(at: rootOutputDirectory, withIntermediateDirectories: true, attributes: nil)
+        try fileManager.createDirectory(
+            at: rootOutputDirectory, withIntermediateDirectories: true, attributes: nil
+        )
 
         if fileManager.fileExists(atPath: destinationAssetsURL.path) {
             try fileManager.removeItem(at: destinationAssetsURL)
@@ -99,9 +108,10 @@ public final class FeedFileCreator: @unchecked Sendable {
             supportedEmojis: supportedEmojis
         )
 
-        let outputDirectory = rootOutputDirectory
-            .appendingPathComponent("developers")
-            .appendingPathComponent(period.rawValue)
+        let outputDirectory =
+            rootOutputDirectory
+                .appendingPathComponent("developers")
+                .appendingPathComponent(period.rawValue)
 
         try fileManager.createDirectory(
             at: outputDirectory,
@@ -112,11 +122,12 @@ public final class FeedFileCreator: @unchecked Sendable {
         let fileName = "\(languageTrendingLink.name).xml"
         let fileURL = outputDirectory.appendingPathComponent(fileName)
 
-        guard fileManager.createFile(
-            atPath: fileURL.path,
-            contents: feedHTML.data(using: .utf8),
-            attributes: nil
-        ) else {
+        guard
+            fileManager.createFile(
+                atPath: fileURL.path,
+                contents: feedHTML.data(using: .utf8),
+                attributes: nil
+            ) else {
             throw NSError()
         }
 
