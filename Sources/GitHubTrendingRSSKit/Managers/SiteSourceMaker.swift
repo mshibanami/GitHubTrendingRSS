@@ -177,12 +177,10 @@ public final class SiteSourceMaker: @unchecked Sendable {
 
         var relationshipStats = [String]()
         if let followersCount = developer.followersCount {
-            let followersURL = "https://github.com/\(developer.username.xmlEscaped)?tab=followers"
-            relationshipStats.append("<a href=\"\(followersURL)\"><strong>\(formatCount(followersCount))</strong> followers</a>")
+            relationshipStats.append("<strong>\(formatCount(followersCount))</strong> followers")
         }
         if let followingCount = developer.followingCount {
-            let followingURL = "https://github.com/\(developer.username.xmlEscaped)?tab=following"
-            relationshipStats.append("<a href=\"\(followingURL)\"><strong>\(formatCount(followingCount))</strong> following</a>")
+            relationshipStats.append("<strong>\(formatCount(followingCount))</strong> following")
         }
         if !relationshipStats.isEmpty {
             html += "<p>\(relationshipStats.joined(separator: " · "))</p>"
