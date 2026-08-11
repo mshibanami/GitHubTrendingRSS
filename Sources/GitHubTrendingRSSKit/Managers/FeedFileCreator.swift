@@ -49,7 +49,7 @@ public final class FeedFileCreator: @unchecked Sendable {
         return fileURL
     }
 
-    public func createRSSListFile(languageLinks: [LanguageTrendingLink]) throws -> URL {
+    public func createFeedManifestFile(languageLinks: [LanguageTrendingLink]) throws -> URL {
         let fileManager = FileManager.default
         try fileManager.createDirectory(
             at: rootOutputDirectory,
@@ -57,15 +57,16 @@ public final class FeedFileCreator: @unchecked Sendable {
             attributes: nil
         )
 
-        try copyAssetsDirectory()
-
-        let html = try siteGenerator.makeHomeHTML(from: languageLinks)
-        let fileURL = rootOutputDirectory.appendingPathComponent("index.html")
+        let manifest = FeedManifest(languageTrendingLinks: languageLinks)
+        let encoder = JSONEncoder()
+        encoder.outputFormatting = [.prettyPrinted, .sortedKeys]
+        let data = try encoder.encode(manifest)
+        let fileURL = rootOutputDirectory.appendingPathComponent("feed-manifest.json")
 
         guard
             fileManager.createFile(
                 atPath: fileURL.path,
-                contents: html.data(using: .utf8),
+                contents: data,
                 attributes: nil
             ) else {
             throw NSError()

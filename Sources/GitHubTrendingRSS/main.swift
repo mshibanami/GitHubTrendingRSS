@@ -88,7 +88,7 @@ func start(target: FetchTarget) async throws {
     }
 
     if target.shouldFetchRepos {
-        _ = try? feedManager.createRSSListFile(languageLinks: languageLinks)
+        _ = try feedManager.createFeedManifestFile(languageLinks: languageLinks)
     }
 }
 

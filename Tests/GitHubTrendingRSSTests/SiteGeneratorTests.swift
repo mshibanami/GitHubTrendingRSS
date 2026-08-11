@@ -29,19 +29,6 @@ final class SiteGeneratorTests: XCTestCase {
         )
     }
 
-    func testGenerateRSSListHTML() throws {
-        let html = try maker.makeHomeHTML(from: [
-            LanguageTrendingLink(displayName: "Hello", href: "/mshibanami/hello"),
-            LanguageTrendingLink(displayName: "World", href: "/mshibanami/world"),
-        ])
-
-        XCTAssertTrue(html.contains(information.pageTitle))
-        XCTAssertTrue(html.contains(information.author))
-        XCTAssertTrue(html.contains(information.rssHomeURL))
-        XCTAssertTrue(html.contains(information.googleAnalyticsTrackingCode))
-        XCTAssertTrue(html.contains(information.gitHubRepositoryURL))
-    }
-
     func testGenerateRSS() async throws {
         var repoWithOpenGraph = Repository(
             pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"

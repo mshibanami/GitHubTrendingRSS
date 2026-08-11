@@ -33,31 +33,6 @@ public final class SiteSourceMaker: @unchecked Sendable {
         self.information = information
     }
 
-    public func makeHomeHTML(from languageTrendingLinks: [LanguageTrendingLink]) throws -> String {
-        let formatter = DateFormatter()
-        formatter.dateFormat = "d MMMM, yyyy"
-        formatter.timeZone = TimeZone(secondsFromGMT: 0)
-        let latestBuildDate = formatter.string(from: Date())
-        let context: [String: Any] = [
-            "information": information,
-            "latestBuildDate": latestBuildDate,
-            "languageTrendingLinks": languageTrendingLinks.map {
-                (
-                    link: $0,
-                    urlEncodedName: $0.name.addingPercentEncoding(withAllowedCharacters: .urlHostAllowed)!
-                )
-            },
-            "periods": Period.allCases.map {
-                (name: $0.rawValue, capitalizedName: $0.rawValue.capitalized)
-            },
-        ]
-
-        return try environment.renderTemplate(
-            name: "home_template.html",
-            context: context
-        )
-    }
-
     public func makeRSS(
         from languageTrendingLink: LanguageTrendingLink, period: Period,
         spokenLanguage: SpokenLanguage = .unspecified, repositories: [Repository],

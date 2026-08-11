@@ -17,3 +17,26 @@ jobs:
         run: ./scripts/convert_icons_to_png.sh
       - name: Test
         run: ./scripts/test.sh
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install Website Dependencies
+        working-directory: website
+        run: corepack pnpm install --frozen-lockfile
+      - name: Check Website Formatting
+        working-directory: website
+        run: corepack pnpm format:check
+      - name: Generate Local Website Data
+        working-directory: website
+        run: corepack pnpm prepare:generated
+      - name: Check Website
+        working-directory: website
+        run: corepack pnpm check
+      - name: Build Website
+        env:
+          VITE_BASE_PATH: /GitHubTrendingRSS/
+        working-directory: website
+        run: corepack pnpm build

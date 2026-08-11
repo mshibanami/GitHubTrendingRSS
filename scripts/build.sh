@@ -32,6 +32,4 @@ done
 
 rm -rf output
 swift run GitHubTrendingRSS --configuration=release --github-token="${GITHUB_TOKEN}" --target="${TARGET}"
-cp -r static output
-
 

@@ -80,6 +80,32 @@ final class FeedFileCreatorTests: XCTestCase {
         XCTAssertTrue(FileManager.default.fileExists(atPath: fileURL.path))
     }
 
+    func testCreateFeedManifestFile() throws {
+        let maker = SiteSourceMaker(environment: environment, information: information)
+        let creator = FeedFileCreator(outputDirectory: tempDir, siteGenerator: maker)
+        let links = [
+            LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
+            LanguageTrendingLink(displayName: "Swift", href: "/trending/swift")
+        ]
+
+        let fileURL = try creator.createFeedManifestFile(languageLinks: links)
+
+        XCTAssertEqual(fileURL.path, tempDir.appendingPathComponent("feed-manifest.json").path)
+        let data = try Data(contentsOf: fileURL)
+        let manifest = try JSONDecoder().decode(FeedManifest.self, from: data)
+        XCTAssertEqual(manifest.languages.map(\.slug), ["all", "swift"])
+        XCTAssertEqual(manifest.languages[0].displayName, "All Languages")
+        XCTAssertEqual(manifest.languages[1].feeds.daily, "daily/swift.xml")
+    }
+
+    func testFeedManifestUsesStableEnglishDate() {
+        let date = Date(timeIntervalSince1970: 0)
+        let manifest = FeedManifest(languageTrendingLinks: [], date: date)
+
+        XCTAssertEqual(manifest.generatedAt, "1970-01-01T00:00:00Z")
+        XCTAssertEqual(manifest.latestBuildDate, "1 January, 1970")
+    }
+
     func testCopyAssetsDirectory() throws {
         let maker = SiteSourceMaker(environment: environment, information: information)
         let creator = FeedFileCreator(outputDirectory: tempDir, siteGenerator: maker)

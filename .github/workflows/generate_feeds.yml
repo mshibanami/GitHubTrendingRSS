@@ -1,4 +1,4 @@
-name: Fetch and Generate RSS Feeds
+name: Generate feeds and deploy website
 
 on:
   schedule:
@@ -26,33 +26,70 @@ jobs:
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         run: ./scripts/build.sh --target ${{ matrix.target }}
-      - name: Package Output
-        run: tar -czf output-${{ matrix.target }}.tar.gz output
-      - name: Upload Artifacts
+      - name: Validate Feed Output
+        run: ./scripts/validate_feeds.sh output
+      - name: Upload Feed Artifact
         uses: actions/upload-artifact@v7
         with:
-          path: output-${{ matrix.target }}.tar.gz
-          archive: false
+          name: feed-${{ matrix.target }}
+          path: output
           if-no-files-found: error
 
-  deploy:
+  website:
     needs: fetch
-    runs-on: macos-latest
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+      pages: write
+      id-token: write
+    concurrency:
+      group: github-pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
-      - name: Download Artifacts
+      - name: Download Repository Feed Artifact
         uses: actions/download-artifact@v8
         with:
-          pattern: output-*.tar.gz
-          merge-multiple: true
-          path: artifacts/
-      - name: Extract Artifacts
-        run: |
-          tar -xzf artifacts/output-repos.tar.gz
-          tar -xzf artifacts/output-developers.tar.gz
-      - name: Validate generated RSS feeds
-        run: ./scripts/validate_feeds.sh
-      - name: Deploy
+          name: feed-repos
+          path: .artifacts/repos
+      - name: Download Developer Feed Artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: feed-developers
+          path: .artifacts/developers
+      - name: Prepare Website Feed Files
+        run: bash ./scripts/prepare_website_feeds.sh .artifacts
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+      - name: Enable Corepack
+        run: corepack enable
+      - name: Install Website Dependencies
+        working-directory: website
+        run: corepack pnpm install --frozen-lockfile
+      - name: Check Website Formatting
+        working-directory: website
+        run: corepack pnpm format:check
+      - name: Check Website
+        working-directory: website
+        run: corepack pnpm check
+      - name: Build Website
         env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./scripts/deploy.sh
+          VITE_BASE_PATH: /GitHubTrendingRSS/
+        working-directory: website
+        run: corepack pnpm build
+      - name: Validate Website Output
+        run: node scripts/validate_website_output.mjs website/dist
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: website/dist
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

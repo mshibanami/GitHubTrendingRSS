@@ -1,0 +1,30 @@
+{
+  "plugins": ["prettier-plugin-svelte", "prettier-plugin-tailwindcss"],
+  "tailwindStylesheet": "./src/app.css",
+  "overrides": [
+    {
+      "files": ["apps/web/**/*.{js,mjs,ts,mts,cjs,svelte,tsx}"],
+      "options": {
+        "tailwindStylesheet": "./apps/web/src/app.css"
+      }
+    },
+    {
+      "files": ["apps/extension/**/*.{js,mjs,ts,mts,cjs,svelte,tsx}"],
+      "options": {
+        "tailwindStylesheet": "./apps/extension/src/app.css"
+      }
+    },
+    {
+      "files": ["**/*.{js,mjs,ts,mts,cjs,svelte,tsx,jsx}"],
+      "options": {
+        "semi": true,
+        "trailingComma": "all",
+        "singleQuote": true,
+        "printWidth": 100,
+        "tabWidth": 2,
+        "useTabs": false,
+        "endOfLine": "lf"
+      }
+    }
+  ]
+}
