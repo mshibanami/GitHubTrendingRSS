@@ -29,7 +29,7 @@
               {feed.language.displayName}
             </h2>
             <span
-              class="inline-flex shrink-0 self-start items-center rounded-full text-[0.65rem] text-[#7b8494]"
+              class="inline-flex shrink-0 items-center self-start rounded-full text-[0.65rem] text-[#7b8494]"
               aria-label={`${feed.entryCount} entries`}>{feed.entryCount} entries</span
             >
           </div>
