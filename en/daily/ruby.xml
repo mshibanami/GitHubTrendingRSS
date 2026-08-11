@@ -1,0 +1,2074 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Ruby Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Ruby on GitHub</description>
+    
+    <pubDate>Tue, 11 Aug 2026 03:17:10 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>faker-ruby/faker</title>
+      <link>https://github.com/faker-ruby/faker</link>
+      <description>&lt;p&gt;A library for generating fake data such as names, addresses, and phone numbers.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Faker &lt;a href=&quot;https://rubygems.org/gems/faker&quot;&gt;&lt;img src=&quot;https://img.shields.io/gem/v/faker.svg?sanitize=true&quot; alt=&quot;Gem Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/faker-ruby/faker/actions&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/faker-ruby/faker/.github/workflows/ruby.yml?branch=main&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://rubygems.org/gems/faker&quot;&gt;&lt;img src=&quot;https://img.shields.io/gem/dt/faker.svg?sanitize=true&quot; alt=&quot;Total Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://rubygems.org/gems/faker&quot;&gt;&lt;img src=&quot;https://img.shields.io/gem/dtv/faker.svg?sanitize=true&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://user-images.githubusercontent.com/36028424/40263395-4318481e-5b44-11e8-92e5-3dcc1ce169b3.png&quot; width=&quot;400&quot; /&gt; 
+ &lt;p&gt;Generate (almost) realistic fake data for testing, demos, and populating your database during development.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Quick links&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;📖 &lt;strong&gt;&lt;a href=&quot;https://www.rubydoc.info/gems/faker/&quot;&gt;Read the documentation for the latest version&lt;/a&gt;.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;📢 &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/CHANGELOG.md&quot;&gt;See what&#39;s changed in recent versions&lt;/a&gt;.&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Internet: Email addresses, Passwords, Domains, etc.&lt;/li&gt; 
+ &lt;li&gt;Date and Time: Travel back in time or to the future.&lt;/li&gt; 
+ &lt;li&gt;Person: Names, Genders, Bios, Job titles, and more.&lt;/li&gt; 
+ &lt;li&gt;Number and String: Random numbers and strings.&lt;/li&gt; 
+ &lt;li&gt;Location: Addresses, Zip Codes, Street Names, States, and Countries.&lt;/li&gt; 
+ &lt;li&gt;Finance: Account Details, Transactions, and Crypto Addresses.&lt;/li&gt; 
+ &lt;li&gt;Localization - Customize faker with over 40 locales to generate realistic-looking Names, Addresses, and Phone Numbers.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; The generated names, addresses, emails, phone numbers, and/or other data might return valid information. Please be careful when using faker in your tests.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;For a complete list of the generators, see &lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/GENERATORS.md&quot;&gt;Generators&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Start by including &lt;code&gt;faker&lt;/code&gt; in your Gemfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;gem &#39;faker&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then run &lt;code&gt;bundle install&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;require &#39;faker&#39;
+
+Faker::Name.name                      #=&amp;gt; &quot;Christophe Bartell&quot;
+Faker::Internet.password              #=&amp;gt; &quot;Vg5mSvY1UeRg7&quot;
+Faker::Internet.email                 #=&amp;gt; &quot;eliza@mann.test&quot;
+Faker::Address.full_address           #=&amp;gt; &quot;5479 William Way, East Sonnyhaven, LA 63637&quot;
+Faker::Markdown.emphasis              #=&amp;gt; &quot;Quo qui aperiam. Amet corrupti distinctio. Sit quia *dolor.*&quot;
+Faker::Lorem.paragraph                #=&amp;gt; &quot;Recusandae minima consequatur. Expedita sequi blanditiis. Ut fuga et.&quot;
+Faker::Alphanumeric.alpha(number: 10) #=&amp;gt; &quot;zlvubkrwga&quot;
+Faker::ProgrammingLanguage.name       #=&amp;gt; &quot;Ruby&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#faker----&quot;&gt;Faker &lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#quick-links&quot;&gt;Quick links&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#getting-started&quot;&gt;Getting Started&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#usage&quot;&gt;Usage&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#table-of-contents&quot;&gt;Table of Contents&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#notes&quot;&gt;Notes&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#ensuring-unique-values&quot;&gt;Ensuring unique values&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#deterministic-random&quot;&gt;Deterministic Random&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#localization&quot;&gt;Localization&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#minitest-and-faker--222&quot;&gt;Minitest and Faker &amp;gt;= 2.22&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#generators&quot;&gt;Generators&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#contributing&quot;&gt;Contributing&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#versioning&quot;&gt;Versioning&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#inspiration&quot;&gt;Inspiration&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#in-the-media&quot;&gt;In the media&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Notes&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;While Faker generates data at random, returned values are not guaranteed to be unique by default. To explicitly specify when you require unique values, see &lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#ensuring-unique-values&quot;&gt;Ensuring Unique Values&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Values also can be deterministic if you use the deterministic feature, see &lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/#deterministic-random&quot;&gt;Deterministic Random&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;This is the &lt;code&gt;main&lt;/code&gt; branch of Faker and may contain changes that are not yet released. The list of all versions is &lt;a href=&quot;https://github.com/stympy/faker/releases&quot;&gt;available here&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Ensuring unique values&lt;/h3&gt; 
+&lt;p&gt;To ensure Faker generates unique values, prefix your method call with &lt;code&gt;unique&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;Faker::Name.unique.name # This will return a unique name every time it is called
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If too many unique values are requested from a generator that has a limited number of potential values, a &lt;code&gt;Faker::UniqueGenerator::RetryLimitExceeded&lt;/code&gt; exception may be raised. It is possible to clear the record of unique values that have been returned, for example between tests.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;Faker::Name.unique.clear     # Clears used values for Faker::Name
+Faker::UniqueGenerator.clear # Clears used values for all generators
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also give some already-used values to the unique generator if you have collisions with the generated data (i.e., using FactoryBot with random and manually set values).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;# Faker::&amp;lt;generator&amp;gt;.unique.exclude(method, arguments, list)
+
+# Add &#39;azerty&#39; and &#39;wxcvbn&#39; to the string generator with 6 char length
+Faker::Lorem.unique.exclude :string, [number: 6], %w[azerty wxcvbn]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Deterministic Random&lt;/h3&gt; 
+&lt;p&gt;Faker supports seeding of its pseudo-random number generator (PRNG) to provide deterministic output of repeated method calls.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;Faker::Config.random = Random.new(42)
+Faker::Lorem.word              #=&amp;gt; &quot;velit&quot;
+Faker::Lorem.word              #=&amp;gt; &quot;quisquam&quot;
+
+Faker::Config.random = Random.new(42)
+Faker::Lorem.word              #=&amp;gt; &quot;velit&quot;
+Faker::Lorem.word              #=&amp;gt; &quot;quisquam&quot;
+
+Faker::Config.random = nil     # seeds the PRNG using default entropy sources
+Faker::Config.random.seed      #=&amp;gt; 185180369676275068918401850258677722187
+Faker::Lorem.word              #=&amp;gt; &quot;ipsam&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Localization&lt;/h3&gt; 
+&lt;p&gt;You may want Faker to print information depending on your location in the world. To assist you in this, Faker uses the &lt;code&gt;I18n&lt;/code&gt; gem to store strings and formats to represent the names and postal codes of the area of your choosing.&lt;/p&gt; 
+&lt;p&gt;Just set the locale you want as shown below, and Faker will take care of the rest.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;Faker::Config.locale = &#39;es&#39;
+# or
+Faker::Config.locale = :es
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To override Faker&#39;s locales, and set it on threaded server environments check out the &lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/lib/locales/README.md&quot;&gt;locales README&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Minitest and Faker &amp;gt;= 2.22&lt;/h3&gt; 
+&lt;p&gt;To prevent Faker (version &amp;gt;= 2.22) from &lt;a href=&quot;https://github.com/faker-ruby/faker/issues/2534&quot;&gt;generating duplicate values&lt;/a&gt; when using Minitest, you might need to add the following to the &lt;code&gt;test_helper.rb&lt;/code&gt; or &lt;code&gt;rails_helper.rb&lt;/code&gt; file:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;Faker::Config.random = Random.new
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Generators&lt;/h2&gt; 
+&lt;p&gt;To see the full list, check out the &lt;a href=&quot;https://raw.githubusercontent.com/faker-ruby/faker/main/GENERATORS.md&quot;&gt;GENERATORS&lt;/a&gt; document.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: We are not accepting proposals for new generators and locales. The &lt;a href=&quot;https://github.com/faker-ruby/faker/raw/main/CONTRIBUTING.md&quot;&gt;Contributing&lt;/a&gt; guide has a few notes about this decision.&lt;/p&gt; 
+&lt;p&gt;Take a look at the &lt;a href=&quot;https://github.com/faker-ruby/faker/raw/main/CONTRIBUTING.md&quot;&gt;Contributing&lt;/a&gt; document for instructions on setting up the repo on your machine, opening bug reports, understanding the codebase, and creating a good pull request.&lt;/p&gt; 
+&lt;p&gt;There is a &lt;a href=&quot;https://discord.gg/RMumTwB&quot;&gt;Discord channel&lt;/a&gt; to discuss anything regarding improvements or feature requests. This is not actively monitored by the current maintainers.&lt;/p&gt; 
+&lt;p&gt;Thank you, contributors!&lt;/p&gt; 
+&lt;h2&gt;Versioning&lt;/h2&gt; 
+&lt;p&gt;Faker follows Semantic Versioning 2.0 as defined at &lt;a href=&quot;https://semver.org&quot;&gt;https://semver.org&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Inspiration&lt;/h2&gt; 
+&lt;p&gt;Faker was inspired by &lt;a href=&quot;https://metacpan.org/pod/Data::Faker&quot;&gt;Perl&#39;s Data::Faker library&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;In the media&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;📰 &lt;a href=&quot;https://arxiv.org/pdf/2312.01680&quot;&gt;With Great Humor Comes Great Developer Engagement&lt;/a&gt; - KTH Royal Institute of Technology research&lt;/li&gt; 
+ &lt;li&gt;🎧 &lt;a href=&quot;https://www.deutschlandfunk.de/computer-und-kommunikation-4-5-2024-komplette-sendung-dlf-16492b03-100.html&quot;&gt;Computer und Kommunikation 4.5.2024, komplette Sendung&lt;/a&gt; - Deutschland Funk Radio Interview&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This code is free to use under the terms of the MIT license.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ba0d8b6280f150b4c05a8eb33989fe4075691088461916fd20a66dc0a8f3a7c5/faker-ruby/faker" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>rubysec/ruby-advisory-db</title>
+      <link>https://github.com/rubysec/ruby-advisory-db</link>
+      <description>&lt;p&gt;A database of vulnerable Ruby Gems&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Ruby Advisory Database&lt;/h1&gt; 
+&lt;p&gt;The Ruby Advisory Database is a community effort to compile all security advisories that are relevant to Ruby libraries. We expect others to create the data, such as getting CVE&#39;s, GHSA&#39;s, OSVDB&#39;s, cvss&#39;, or original vulnerability information. More details at &lt;a href=&quot;https://raw.githubusercontent.com/rubysec/ruby-advisory-db/master/docs/external-data-improvements.md&quot;&gt;HERE&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You can check your own Gemfile.locks against this database by using &lt;a href=&quot;https://github.com/rubysec/bundler-audit&quot;&gt;bundler-audit&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Support Ruby Security!&lt;/h2&gt; 
+&lt;p&gt;Do you know about a vulnerability that isn&#39;t listed in this database? Open an issue or submit a PR.&lt;/p&gt; 
+&lt;h2&gt;Directory Structure&lt;/h2&gt; 
+&lt;p&gt;The database is a list of directories that match the names of Ruby libraries on &lt;a href=&quot;https://rubygems.org/&quot;&gt;rubygems.org&lt;/a&gt;. Within each directory are one or more advisory files for the Ruby library. These advisory files are named using the advisories&#39; &lt;a href=&quot;https://cve.mitre.org/&quot;&gt;CVE&lt;/a&gt; identifier number.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;gems/:
+  actionpack/:
+    CVE-2014-0130.yml  CVE-2014-7818.yml  CVE-2014-7829.yml  CVE-2015-7576.yml
+    CVE-2015-7581.yml  CVE-2016-0751.yml  CVE-2016-0752.yml
+rubies/:
+  jruby/:
+    ...
+  mruby/:
+    ...
+  ruby/:
+    ...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;&lt;code&gt;gems/&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;gems/&lt;/code&gt; directory contains sub-directories that match the names of the Ruby libraries on &lt;a href=&quot;https://rubygems.org/&quot;&gt;rubygems.org&lt;/a&gt;. Within each directory are one or more advisory files for the Ruby library. These advisory files are named using the advisories&#39; &lt;a href=&quot;https://cve.mitre.org/&quot;&gt;CVE&lt;/a&gt; or &lt;a href=&quot;https://help.github.com/en/articles/about-maintainer-security-advisories&quot;&gt;GHSA&lt;/a&gt; ID.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;rubies/&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;rubies/&lt;/code&gt; directory contains sub-directories for each Ruby implementation. Within each directory are one or more advisory files for the Ruby implementation. These advisory files are named using the advisories&#39; &lt;a href=&quot;https://cve.mitre.org/&quot;&gt;CVE&lt;/a&gt; or &lt;a href=&quot;https://help.github.com/en/articles/about-maintainer-security-advisories&quot;&gt;GHSA&lt;/a&gt; ID.&lt;/p&gt; 
+&lt;h2&gt;Examples&lt;/h2&gt; 
+&lt;p&gt;Each advisory file contains the advisory information in &lt;a href=&quot;http://www.yaml.org/&quot;&gt;YAML&lt;/a&gt; format. Here are some example advisories:&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;gems/actionpack/CVE-2023-22795.yml&lt;/code&gt;&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;---
+gem: actionpack
+cve: 2023-22795
+ghsa: 8xww-x3g3-6jcv
+url: https://github.com/rails/rails/releases/tag/v7.0.4.1
+title: ReDoS based DoS vulnerability in Action Dispatch
+date: 2023-01-18
+description: |
+  There is a possible regular expression based DoS vulnerability in Action
+  Dispatch related to the If-None-Match header. This vulnerability has been
+  assigned the CVE identifier CVE-2023-22795.
+
+  Versions Affected: All
+  Not affected: None
+  Fixed Versions: 6.1.7.1, 7.0.4.1
+
+  # Impact
+
+  A specially crafted HTTP If-None-Match header can cause the regular
+  expression engine to enter a state of catastrophic backtracking, when on a
+  version of Ruby below 3.2.0. This can cause the process to use large amounts
+  of CPU and memory, leading to a possible DoS vulnerability All users running
+  an affected release should either upgrade or use one of the workarounds
+  immediately.
+
+  # Workarounds
+
+  We recommend that all users upgrade to one of the FIXED versions. In the
+  meantime, users can mitigate this vulnerability by using a load balancer or
+  other device to filter out malicious If-None-Match headers before they reach
+  the application.
+
+  Users on Ruby 3.2.0 or greater are not affected by this vulnerability.
+patched_versions:
+  - &quot;~&amp;gt; 5.2.8&quot;
+  - &quot;~&amp;gt; 6.1.7, &amp;gt;= 6.1.7.1&quot;
+  - &quot;&amp;gt;= 7.0.4.1&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;&lt;code&gt;rubies/ruby/CVE-2022-28739.yml&lt;/code&gt;&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;---
+engine: ruby
+cve: 2022-28739
+url: https://www.ruby-lang.org/en/news/2022/04/12/buffer-overrun-in-string-to-float-cve-2022-28739/
+title: Buffer overrun in String-to-Float conversion
+date: 2022-04-12
+description: |
+  A buffer-overrun vulnerability is discovered in a conversion algorithm from a
+  String to a Float. This vulnerability has been assigned the CVE identifier
+  CVE-2022-28739. We strongly recommend upgrading Ruby.
+
+  Due to a bug in an internal function that converts a String to a Float, some
+  conversion methods like Kernel#Float and String#to_f could cause buffer
+  over-read. A typical consequence is a process termination due to segmentation
+  fault, but in a limited circumstances, it may be exploitable for illegal
+  memory read.
+
+  Please update Ruby to 2.6.10, 2.7.6, 3.0.4, or 3.1.2.
+patched_versions:
+  - ~&amp;gt; 2.6.10
+  - ~&amp;gt; 2.7.6
+  - ~&amp;gt; 3.0.4
+  - &#39;&amp;gt;= 3.1.2&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;YAML Schema&lt;/h2&gt; 
+&lt;h3&gt;&lt;code&gt;gems&lt;/code&gt;&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;gem&lt;/code&gt; [String] (required): Name of the affected gem.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;library&lt;/code&gt; [String] (optional): Name of the ruby library which the affected gem belongs to.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;framework&lt;/code&gt; [String] (optional): Name of the framework which the affected gem belongs to. (e.g. rails)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;platform&lt;/code&gt; [String] (optional): If this vulnerability is platform-specific, name of platform this vulnerability affects (e.g. jruby)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cve&lt;/code&gt; [String] (optional): Common Vulnerabilities and Exposures (CVE) ID.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;osvdb&lt;/code&gt; [Integer] (optional): Open Sourced Vulnerability Database (OSVDB) ID.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;ghsa&lt;/code&gt; [String] (optional): GitHub Security Advisory (GHSA) ID.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;url&lt;/code&gt; [String] (required): The URL to the full advisory.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;title&lt;/code&gt; [String] (required): The title of the advisory or individual vulnerability. It must be a single line sentence. 
+  &lt;ul&gt; 
+   &lt;li&gt;Line wrap &lt;code&gt;title:&lt;/code&gt; field at 80.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;date&lt;/code&gt; [Date] (required): The public disclosure date of the advisory.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;description&lt;/code&gt; [String] (required): One or more paragraphs describing the vulnerability. It may contain multiple paragraphs. 
+  &lt;ul&gt; 
+   &lt;li&gt;Used &lt;code&gt;description: |&lt;/code&gt; if it is more than one sentence/line.&lt;/li&gt; 
+   &lt;li&gt;Line wrap &lt;code&gt;descriptions:&lt;/code&gt; field at 80.&lt;/li&gt; 
+   &lt;li&gt;Do not include &quot;POC&quot;, &quot;PoC&quot;, or &quot;Proof of Concept&quot; heading sections (any casing) in the &lt;code&gt;description:&lt;/code&gt; field.&lt;/li&gt; 
+   &lt;li&gt;Not use &quot;\n&quot; or &quot;%&quot; in &lt;code&gt;description:&lt;/code&gt; field.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cvss_v2&lt;/code&gt; [Float] (optional): The &lt;a href=&quot;https://www.first.org/cvss/v2/guide&quot;&gt;CVSSv2&lt;/a&gt; score for the vulnerability.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cvss_v3&lt;/code&gt; [Float] (optional): The &lt;a href=&quot;https://www.first.org/cvss/v3.1/user-guide&quot;&gt;CVSSv3&lt;/a&gt; score for the vulnerability.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cvss_v4&lt;/code&gt; [Float] (optional): The &lt;a href=&quot;https://www.first.org/cvss/v4.0/user-guide&quot;&gt;CVSSv4&lt;/a&gt; score for the vulnerability.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;unaffected_versions&lt;/code&gt; [Array&amp;lt;String&amp;gt;] (optional): The version requirements for the unaffected versions of the Ruby library. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;unaffected_versions&lt;/code&gt; version ranges must be quoted (ex: &lt;code&gt;&quot;&amp;gt;= 1.2.3&quot;&lt;/code&gt;).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;patched_versions&lt;/code&gt; [Array&amp;lt;String&amp;gt;] (optional): The version requirements for the patched versions of the Ruby library. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;patched_versions version ranges must be quoted (ex: &lt;/code&gt;&quot;&amp;gt;= 1.2.3&quot;`).&lt;/li&gt; 
+   &lt;li&gt;Omit &lt;code&gt;patched_versions:&lt;/code&gt; if you have no patched version identifiers.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;related&lt;/code&gt; [Hash&amp;lt;Array&amp;lt;String&amp;gt;&amp;gt;] (optional): Sometimes an advisory references many urls and other identifiers. Supported keys: &lt;code&gt;cve&lt;/code&gt;, &lt;code&gt;ghsa&lt;/code&gt;, &lt;code&gt;osvdb&lt;/code&gt;, and &lt;code&gt;url&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;All supported keys are 4 blanks from left margin.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;cve&lt;/code&gt;, &lt;code&gt;ghsa&lt;/code&gt;, and &lt;code&gt;osvdb&lt;/code&gt; related fields are not URLs.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;notes&lt;/code&gt; [String] (optional): Internal notes regarding the vulnerability&#39;s inclusion in this database.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;&lt;code&gt;rubies&lt;/code&gt;&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;engine&lt;/code&gt; [&lt;code&gt;ruby&lt;/code&gt; | &lt;code&gt;mruby&lt;/code&gt; | &lt;code&gt;jruby&lt;/code&gt; | &lt;code&gt;truffleruby&lt;/code&gt;] (required): Name of the affected Ruby implementation.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;platform&lt;/code&gt; [String] (optional): If this vulnerability is platform-specific, name of platform this vulnerability affects (e.g. jruby)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cve&lt;/code&gt; [String] (optional): Common Vulnerabilities and Exposures (CVE) ID.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;osvdb&lt;/code&gt; [Integer] (optional): Open Sourced Vulnerability Database (OSVDB) ID.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;ghsa&lt;/code&gt; [String] (optional): GitHub Security Advisory (GHSA) ID.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;url&lt;/code&gt; [String] (required): The URL to the full advisory.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;title&lt;/code&gt; [String] (required): The title of the advisory or individual vulnerability. It must be a single line sentence. 
+  &lt;ul&gt; 
+   &lt;li&gt;Line wrap &lt;code&gt;title:&lt;/code&gt; field at 80.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;date&lt;/code&gt; [Date] (required): The public disclosure date of the advisory.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;description&lt;/code&gt; [String] (required): One or more paragraphs describing the vulnerability. It may contain multiple paragraphs. 
+  &lt;ul&gt; 
+   &lt;li&gt;Used &lt;code&gt;description: |&lt;/code&gt; (not &lt;code&gt;|-&lt;/code&gt;) if it is more than one sentence/line.&lt;/li&gt; 
+   &lt;li&gt;Line wrap &lt;code&gt;descriptions:&lt;/code&gt; field at 80.&lt;/li&gt; 
+   &lt;li&gt;Not use &quot;\n&quot; or &quot;%&quot; in &lt;code&gt;description:&lt;/code&gt; field.&lt;/li&gt; 
+   &lt;li&gt;Do not include &quot;POC&quot;, &quot;PoC&quot;, or &quot;Proof of Concept&quot; heading sections (any casing) in the &lt;code&gt;description:&lt;/code&gt; field.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cvss_v2&lt;/code&gt; [Float] (optional): The &lt;a href=&quot;https://www.first.org/cvss/v2/guide&quot;&gt;CVSSv2&lt;/a&gt; score for the vulnerability.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cvss_v3&lt;/code&gt; [Float] (optional): The &lt;a href=&quot;https://www.first.org/cvss/v3.1/user-guide&quot;&gt;CVSSv3&lt;/a&gt; score for the vulnerability.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cvss_v4&lt;/code&gt; [Float] (optional): The &lt;a href=&quot;https://www.first.org/cvss/v4.0/user-guide&quot;&gt;CVSSv4&lt;/a&gt; score for the vulnerability.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;unaffected_versions&lt;/code&gt; [Array&amp;lt;String&amp;gt;] (optional): The version requirements for the unaffected versions of the Ruby implementation. 
+  &lt;ul&gt; 
+   &lt;li&gt;Field &lt;code&gt;unaffected_versions&lt;/code&gt; are 2 blanks from left margin.* &lt;code&gt;cve&lt;/code&gt;, &lt;code&gt;ghsa&lt;/code&gt;, and &lt;code&gt;osvdb&lt;/code&gt; related fields are not URLs.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;patched_versions&lt;/code&gt; [Array&amp;lt;String&amp;gt;] (optional): The version requirements for the patched versions of the Ruby implementation. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;patched_versions&lt;/code&gt;/&lt;code&gt;unaffected_versions&lt;/code&gt; version ranges must be quoted (ex: &lt;code&gt;&quot;&amp;gt;= 1.2.3&quot;&lt;/code&gt;).&lt;/li&gt; 
+   &lt;li&gt;Field &lt;code&gt;patched_versions&lt;/code&gt;are 2 blanks from left margin.&lt;/li&gt; 
+   &lt;li&gt;Omit patched_versions: if you have no patched version identifiers.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;related&lt;/code&gt; [Hash&amp;lt;Array&amp;lt;String&amp;gt;&amp;gt;] (optional): Sometimes an advisory references many urls and other identifiers. Supported keys: &lt;code&gt;cve&lt;/code&gt;, &lt;code&gt;ghsa&lt;/code&gt;, &lt;code&gt;osvdb&lt;/code&gt;, and &lt;code&gt;url&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;All supported keys are 4 blanks from left margin.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;cve&lt;/code&gt;, &lt;code&gt;ghsa&lt;/code&gt;, and &lt;code&gt;osvdb&lt;/code&gt; related fields are not URLs.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;notes&lt;/code&gt; [String] (optional): Internal notes regarding the vulnerability&#39;s inclusion in this database.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;General Contributing Guidelines&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Advisory file name 
+  &lt;ul&gt; 
+   &lt;li&gt;Preference is CVE, then GHSA, then OSVDB, in that order.&lt;/li&gt; 
+   &lt;li&gt;Should be equal to root &lt;code&gt;url:&lt;/code&gt; field value.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;For post-2016 advisories, use only &quot;published&quot; or &quot;reserved&quot; CVEs which are found at one of these web sites: 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://nvd.nist.gov/vuln/search&quot;&gt;https://nvd.nist.gov/vuln/search&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://www.cve.org/CVERecord&quot;&gt;https://www.cve.org/CVERecord&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;When present, the CVE should be used in the primary &quot;url:&quot;, &quot;cve:&quot;, and &quot;related:&quot;/&quot;url:&quot; fields.&lt;/li&gt; 
+ &lt;li&gt;All text should be wrapped at 80 columns. 
+  &lt;ul&gt; 
+   &lt;li&gt;YAML must be indented by 2 spaces.&lt;/li&gt; 
+   &lt;li&gt;Ruby YAML does not like embedded &quot;:&quot; characters.&lt;/li&gt; 
+   &lt;li&gt;For more info: 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://github.com/rubysec/ruby-advisory-db/raw/master/.github/workflows/ruby.yml&quot;&gt;Github Action workflow&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;rspec spec/schema_validation_spec.rb&lt;/code&gt; for additional lint checks.&lt;/li&gt; 
+ &lt;li&gt;Check all URLs for dead links. 
+  &lt;ul&gt; 
+   &lt;li&gt;If a URL is dead, check if &lt;a href=&quot;https://web.archive.org&quot;&gt;https://web.archive.org&lt;/a&gt; has a copy, and link to that.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Tests&lt;/h2&gt; 
+&lt;p&gt;Prior to submitting a pull request, run the tests:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;bundle install
+bundle exec rspec
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;GitHub Security Advisory Sync (GHSA)&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The usual GHSA/SYNC workflow is: 
+  &lt;ol&gt; 
+   &lt;li&gt; &lt;p&gt;Run &quot;GH_API_TOKEN=&lt;code&gt;GITHUB_TOKEN_VALUE&lt;/code&gt; bundle exec rake sync_github_advisories&quot; ruby script.&lt;/p&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;The rake task will write YAML files for any missing advisories. 
+      &lt;ul&gt; 
+       &lt;li&gt;Then it runs &quot;./lib/rad-ignores.sh&quot; shell script to ignore duplicate advisories.&lt;/li&gt; 
+       &lt;li&gt;Then it runs &quot;yamllint&quot; for all gems and rubies yml files.&lt;/li&gt; 
+      &lt;/ul&gt; &lt;/li&gt; 
+     &lt;li&gt;More details follow this paragraph.&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;Run &quot;rake&quot; to run the lint checks.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;If new or modified advisories, submit a PR to the repo.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;CAVEAT: Between steps 2 and 5, you might need to manually edit the files.&lt;/p&gt; &lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;There is a script that will create initial YAML files for RubyGem advisories which are in the &lt;a href=&quot;https://developer.github.com/v4/object/securityadvisory/&quot;&gt;GitHub Security Advisory API&lt;/a&gt;, but are not already in this dataset. This script can be periodically run to ensure this repo has all the data that is present in the GitHub Security Advisory data.&lt;/p&gt; 
+&lt;p&gt;The GitHub Security Advisory API requires a token to access it.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;It can be a completely scope-less token (recommended); it does not require any permissions at all.&lt;/li&gt; 
+ &lt;li&gt;Get yours at: &lt;a href=&quot;https://github.com/settings/tokens&quot;&gt;https://github.com/settings/tokens&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To run the GitHub Security Advisory sync to retrieve all advisories, start by executing the rake task:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;GH_API_TOKEN=&quot;your GitHub API Token&quot; bundle exec rake sync_github_advisories
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or, to only retrieve advisories for a single gem:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;GH_API_TOKEN=&quot;your GitHub API Token&quot; bundle exec rake sync_github_advisories[gem_name]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Rails LTS&lt;/h2&gt; 
+&lt;p&gt;The maintainers of &lt;a href=&quot;https://railslts.com/&quot;&gt;Rails LTS&lt;/a&gt; have &lt;a href=&quot;https://github.com/rubysec/ruby-advisory-db/pull/847&quot;&gt;asked us not to track the Rails LTS versions&lt;/a&gt;. If you are using &lt;a href=&quot;https://railslts.com/&quot;&gt;Rails LTS&lt;/a&gt; and &lt;a href=&quot;https://github.com/rubysec/bundler-audit&quot;&gt;bundler-audit&lt;/a&gt;, it is advised that you should add the &lt;a href=&quot;https://makandracards.com/railslts/474590-list-cves-addressed-rails-lts&quot;&gt;List of CVEs addressed by Rails LTS&lt;/a&gt; to your &lt;code&gt;.bundler-audit.yml&lt;/code&gt; file under &lt;code&gt;ignore:&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Policy on Generative AI Contributions&lt;/h2&gt; 
+&lt;p&gt;To safeguard project security and respect our maintainers&#39; volunteer time, a human-in-the-loop is strictly required for all submissions. While AI tools are permitted as assistants, contributors must personally review, understand, and take full responsibility for their work. Any contributions that appear to be unreviewed machine output will be closed immediately, and repeat offenders will be banned from the project and reported.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;Please see &lt;a href=&quot;https://github.com/rubysec/ruby-advisory-db/raw/master/CONTRIBUTORS.md&quot;&gt;CONTRIBUTORS.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;This database also includes data from the &lt;a href=&quot;https://en.wikipedia.org/wiki/Open_Source_Vulnerability_Database&quot;&gt;Open Sourced Vulnerability Database&lt;/a&gt; developed by the Open Security Foundation (OSF) and its contributors.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/920ce7888ec92c78e66148628b020356a771415addd7f71f016e04a1b8eb2245/rubysec/ruby-advisory-db" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ruby/ruby</title>
+      <link>https://github.com/ruby/ruby</link>
+      <description>&lt;p&gt;The Ruby Programming Language&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/ruby/ruby/actions?query=workflow%3A%22MinGW%22&quot;&gt;&lt;img src=&quot;https://github.com/ruby/ruby/workflows/MinGW/badge.svg?sanitize=true&quot; alt=&quot;Actions Status: MinGW&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ruby/ruby/actions?query=workflow%3A%22Ubuntu%22&quot;&gt;&lt;img src=&quot;https://github.com/ruby/ruby/workflows/Ubuntu/badge.svg?sanitize=true&quot; alt=&quot;Actions Status: Ubuntu&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ruby/ruby/actions?query=workflow%3A%22Windows%22&quot;&gt;&lt;img src=&quot;https://github.com/ruby/ruby/workflows/Windows/badge.svg?sanitize=true&quot; alt=&quot;Actions Status: Windows&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.travis-ci.com/ruby/ruby&quot;&gt;&lt;img src=&quot;https://app.travis-ci.com/ruby/ruby.svg?branch=master&quot; alt=&quot;Travis Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;rdoc-ref:README.ja.md&quot;&gt;日本語&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;What is Ruby?&lt;/h1&gt; 
+&lt;p&gt;Ruby is an interpreted object-oriented programming language often used for web development. It also offers many scripting features to process plain text and serialized files, or manage system tasks. It is simple, straightforward, and extensible.&lt;/p&gt; 
+&lt;h2&gt;Features of Ruby&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Simple Syntax&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Normal&lt;/strong&gt; Object-oriented Features (e.g. class, method calls)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Advanced&lt;/strong&gt; Object-oriented Features (e.g. mix-in, singleton-method)&lt;/li&gt; 
+ &lt;li&gt;Operator Overloading&lt;/li&gt; 
+ &lt;li&gt;Exception Handling&lt;/li&gt; 
+ &lt;li&gt;Iterators and Closures&lt;/li&gt; 
+ &lt;li&gt;Garbage Collection&lt;/li&gt; 
+ &lt;li&gt;Dynamic Loading of Object Files (on some architectures)&lt;/li&gt; 
+ &lt;li&gt;Highly Portable (works on many Unix-like/POSIX compatible platforms as well as Windows, macOS, etc.) cf. &lt;a href=&quot;https://docs.ruby-lang.org/en/master/maintainers_md.html#label-Platform+Maintainers&quot;&gt;https://docs.ruby-lang.org/en/master/maintainers_md.html#label-Platform+Maintainers&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to get Ruby&lt;/h2&gt; 
+&lt;p&gt;For a complete list of ways to install Ruby, including using third-party tools like rvm, see:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.ruby-lang.org/en/downloads/&quot;&gt;https://www.ruby-lang.org/en/downloads/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can download release packages and the snapshot of the repository. If you want to download whole versions of Ruby, please visit &lt;a href=&quot;https://www.ruby-lang.org/en/downloads/releases/&quot;&gt;https://www.ruby-lang.org/en/downloads/releases/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Download with Git&lt;/h3&gt; 
+&lt;p&gt;The mirror of the Ruby source tree can be checked out with the following command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ git clone https://github.com/ruby/ruby.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;There are some other branches under development. Try the following command to see the list of branches:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ git ls-remote https://github.com/ruby/ruby.git
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You may also want to use &lt;a href=&quot;https://git.ruby-lang.org/ruby.git&quot;&gt;https://git.ruby-lang.org/ruby.git&lt;/a&gt; (actual master of Ruby source) if you are a committer.&lt;/p&gt; 
+&lt;h2&gt;How to build&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://docs.ruby-lang.org/en/master/contributing/building_ruby_md.html&quot;&gt;Building Ruby&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Ruby home page&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.ruby-lang.org/&quot;&gt;https://www.ruby-lang.org/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.ruby-lang.org/en/master/index.html&quot;&gt;English&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.ruby-lang.org/ja/master/index.html&quot;&gt;Japanese&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Mailing list&lt;/h2&gt; 
+&lt;p&gt;There is a mailing list to discuss Ruby. To subscribe to this list, please send the following phrase:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;join
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;in the mail subject (not body) to the address &lt;a href=&quot;mailto:ruby-talk-request@ml.ruby-lang.org?subject=join&quot;&gt;ruby-talk-request@ml.ruby-lang.org&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Copying&lt;/h2&gt; 
+&lt;p&gt;See the file &lt;a href=&quot;rdoc-ref:COPYING&quot;&gt;COPYING&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Feedback&lt;/h2&gt; 
+&lt;p&gt;Questions about the Ruby language can be asked on the &lt;a href=&quot;https://www.ruby-lang.org/en/community/mailing-lists&quot;&gt;Ruby-Talk&lt;/a&gt; mailing list or on websites like &lt;a href=&quot;https://stackoverflow.com&quot;&gt;https://stackoverflow.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Bugs should be reported at &lt;a href=&quot;https://bugs.ruby-lang.org&quot;&gt;https://bugs.ruby-lang.org&lt;/a&gt;. Read &lt;a href=&quot;https://docs.ruby-lang.org/en/master/contributing/reporting_issues_md.html&quot;&gt;&quot;Reporting Issues&quot;&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://docs.ruby-lang.org/en/master/contributing/contributing_md.html&quot;&gt;&quot;Contributing to Ruby&quot;&lt;/a&gt;, which includes setup and build instructions.&lt;/p&gt; 
+&lt;h2&gt;The Author&lt;/h2&gt; 
+&lt;p&gt;Ruby was originally designed and developed by Yukihiro Matsumoto (Matz) in 1995.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;mailto:matz@ruby-lang.org&quot;&gt;matz@ruby-lang.org&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ee8025e70d266be9895e603c2d63174302bd370cf4b8bb09e20e1210b90af85b/ruby/ruby" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ruby/debug</title>
+      <link>https://github.com/ruby/debug</link>
+      <description>&lt;p&gt;Debugging functionality for Ruby&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/ruby/debug/actions/workflows/ruby.yml?query=branch%3Amaster&quot;&gt;&lt;img src=&quot;https://github.com/ruby/debug/actions/workflows/ruby.yml/badge.svg?branch=master&quot; alt=&quot;Ruby&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ruby/debug/actions/workflows/protocol.yml&quot;&gt;&lt;img src=&quot;https://github.com/ruby/debug/actions/workflows/protocol.yml/badge.svg?sanitize=true&quot; alt=&quot;Protocol&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;debug.rb&lt;/h1&gt; 
+&lt;p&gt;This library provides debugging functionality to Ruby (MRI) 2.7 and later.&lt;/p&gt; 
+&lt;p&gt;This debug.rb is the replacement of traditional lib/debug.rb standard library, which is implemented by &lt;code&gt;set_trace_func&lt;/code&gt;. New debug.rb has several advantages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Fast: No performance penalty on non-stepping mode and non-breakpoints.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#remote-debugging&quot;&gt;Remote debugging&lt;/a&gt;: Support remote debugging natively.&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;UNIX domain socket (UDS)&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;TCP/IP&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;Integration with rich debugger frontends&lt;/p&gt; 
+    &lt;table&gt; 
+     &lt;thead&gt; 
+      &lt;tr&gt; 
+       &lt;th&gt;Frontend&lt;/th&gt; 
+       &lt;th&gt;&lt;a href=&quot;https://github.com/ruby/debug#invoke-as-a-remote-debuggee&quot;&gt;Console&lt;/a&gt;&lt;/th&gt; 
+       &lt;th&gt;&lt;a href=&quot;https://github.com/ruby/debug#vscode-integration&quot;&gt;VSCode&lt;/a&gt;&lt;/th&gt; 
+       &lt;th&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#chrome-devtool-integration&quot;&gt;Chrome DevTool&lt;/a&gt;&lt;/th&gt; 
+      &lt;/tr&gt; 
+     &lt;/thead&gt; 
+     &lt;tbody&gt; 
+      &lt;tr&gt; 
+       &lt;td&gt;Connection&lt;/td&gt; 
+       &lt;td&gt;UDS, TCP/IP&lt;/td&gt; 
+       &lt;td&gt;UDS, TCP/IP&lt;/td&gt; 
+       &lt;td&gt;TCP/IP&lt;/td&gt; 
+      &lt;/tr&gt; 
+      &lt;tr&gt; 
+       &lt;td&gt;Requirement&lt;/td&gt; 
+       &lt;td&gt;None&lt;/td&gt; 
+       &lt;td&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=KoichiSasada.vscode-rdbg&quot;&gt;vscode-rdbg&lt;/a&gt;&lt;/td&gt; 
+       &lt;td&gt;Chrome&lt;/td&gt; 
+      &lt;/tr&gt; 
+     &lt;/tbody&gt; 
+    &lt;/table&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Extensible: application can introduce debugging support in several ways:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;By &lt;code&gt;rdbg&lt;/code&gt; command&lt;/li&gt; 
+   &lt;li&gt;By loading libraries with &lt;code&gt;-r&lt;/code&gt; command line option&lt;/li&gt; 
+   &lt;li&gt;By calling Ruby&#39;s method explicitly&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Misc&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Support threads (almost done) and Ractors (TODO).&lt;/li&gt; 
+   &lt;li&gt;Support suspending and entering the debug console with &lt;code&gt;Ctrl-C&lt;/code&gt; at most of timing.&lt;/li&gt; 
+   &lt;li&gt;Show parameters on backtrace command.&lt;/li&gt; 
+   &lt;li&gt;Support recording and replay debugging.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Installation&lt;/h1&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ gem install debug
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, specify &lt;code&gt;-Ipath/to/debug/lib&lt;/code&gt; in &lt;code&gt;RUBYOPT&lt;/code&gt;, or as a Ruby command-line option This is especially useful for debugging this gem during development.&lt;/p&gt; 
+&lt;p&gt;If using Bundler, add the following to your Gemfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;gem &quot;debug&quot;, &quot;&amp;gt;= 1.0.0&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;(The version constraint is important; &lt;code&gt;debug &amp;lt; 1.0.0&lt;/code&gt; is an older, abandoned gem that is completely different from this product.)&lt;/p&gt; 
+&lt;h1&gt;HOW TO USE&lt;/h1&gt; 
+&lt;p&gt;To use the debugger, you will do roughly the following steps:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Set breakpoints.&lt;/li&gt; 
+ &lt;li&gt;Run a program with the debugger.&lt;/li&gt; 
+ &lt;li&gt;At the breakpoint, enter the debugger console.&lt;/li&gt; 
+ &lt;li&gt;Use debug commands. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#evaluate&quot;&gt;Evaluate Ruby expressions&lt;/a&gt; (e.g. &lt;code&gt;p lvar&lt;/code&gt; to see the local variable &lt;code&gt;lvar&lt;/code&gt;).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#information&quot;&gt;Query the program status&lt;/a&gt; (e.g. &lt;code&gt;info&lt;/code&gt; to see information about the current frame).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#control-flow&quot;&gt;Control program flow&lt;/a&gt; (e.g. move to another line with &lt;code&gt;step&lt;/code&gt;, to the next line with &lt;code&gt;next&lt;/code&gt;).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#breakpoint&quot;&gt;Set another breakpoint&lt;/a&gt; (e.g. &lt;code&gt;catch Exception&lt;/code&gt; to set a breakpoint that&#39;ll be triggered when &lt;code&gt;Exception&lt;/code&gt; is raised).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#trace&quot;&gt;Activate tracing in your program&lt;/a&gt; (e.g. &lt;code&gt;trace call&lt;/code&gt; to trace method calls).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#configuration-1&quot;&gt;Change the configuration&lt;/a&gt; (e.g. &lt;code&gt;config set no_color true&lt;/code&gt; to disable coloring).&lt;/li&gt; 
+   &lt;li&gt;Continue the program (&lt;code&gt;c&lt;/code&gt; or &lt;code&gt;continue&lt;/code&gt;) and goto 3.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Invoke with the debugger&lt;/h2&gt; 
+&lt;p&gt;There are several ways to invoke the debugger, depending on your needs, preferences, and the environment.&lt;/p&gt; 
+&lt;h3&gt;Modify source code with &lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#bindingbreak-method&quot;&gt;&lt;code&gt;binding.break&lt;/code&gt;&lt;/a&gt; (similar to &lt;code&gt;binding.pry&lt;/code&gt; or &lt;code&gt;binding.irb&lt;/code&gt;)&lt;/h3&gt; 
+&lt;p&gt;If you can modify the source code, you can use the debugger by adding &lt;code&gt;require &#39;debug&#39;&lt;/code&gt; at the top of your program and putting &lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#bindingbreak-method&quot;&gt;&lt;code&gt;binding.break&lt;/code&gt;&lt;/a&gt; method into lines where you want to stop as breakpoints. This is similar to how &lt;code&gt;binding.pry&lt;/code&gt; and &lt;code&gt;binding.irb&lt;/code&gt; work.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;binding.break&lt;/code&gt; has two aliases which do the same thing:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;binding.b&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;debugger&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;After that, run the program as usual and you will enter the debug console at breakpoints you inserted.&lt;/p&gt; 
+&lt;p&gt;The following is an example of the &lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#bindingbreak-method&quot;&gt;&lt;code&gt;binding.break&lt;/code&gt;&lt;/a&gt; method.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ cat target.rb                        # Sample program
+require &#39;debug&#39;
+
+a = 1
+b = 2
+binding.break                          # Program will stop here
+c = 3
+d = 4
+binding.break                          # Program will stop here
+p [a, b, c, d]
+
+$ ruby target.rb                       # Run the program normally.
+DEBUGGER: Session start (pid: 7604)
+[1, 10] in target.rb
+      1| require &#39;debug&#39;
+      2|
+      3| a = 1
+      4| b = 2
+=&amp;gt;    5| binding.break                 # Now you can see it stops at this line
+      6| c = 3
+      7| d = 4
+      8| binding.break
+      9| p [a, b, c, d]
+     10|
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:5
+
+(rdbg) info locals                     # You can show local variables
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:5
+%self =&amp;gt; main
+a =&amp;gt; 1
+b =&amp;gt; 2
+c =&amp;gt; nil
+d =&amp;gt; nil
+
+(rdbg) continue                        # Continue the execution
+[3, 11] in target.rb
+      3| a = 1
+      4| b = 2
+      5| binding.break
+      6| c = 3
+      7| d = 4
+=&amp;gt;    8| binding.break                 # Again the program stops here
+      9| p [a, b, c, d]
+     10|
+     11| __END__
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:8
+
+(rdbg) info locals                     # And you can see the updated local variables
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:8
+%self =&amp;gt; main
+a =&amp;gt; 1
+b =&amp;gt; 2
+c =&amp;gt; 3
+d =&amp;gt; 4
+
+(rdbg) continue
+[1, 2, 3, 4]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Invoke the program from the debugger as a traditional debuggers&lt;/h3&gt; 
+&lt;p&gt;If you don&#39;t want to modify the source code, you can use the &lt;code&gt;rdbg&lt;/code&gt; command (or &lt;code&gt;bundle exec rdbg&lt;/code&gt;) to run the program with the debugger. This is similar to how you&#39;d launch a program with &lt;code&gt;ruby program.rb&lt;/code&gt;. Then you can set breakpoints with the debug command &lt;code&gt;break&lt;/code&gt; (&lt;code&gt;b&lt;/code&gt; for short).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ cat target.rb                        # Sample program
+a = 1
+b = 2
+c = 3
+d = 4
+p [a, b, c, d]
+
+$ rdbg target.rb                       # run like `ruby target.rb`
+DEBUGGER: Session start (pid: 7656)
+[1, 7] in target.rb
+=&amp;gt;    1| a = 1
+      2| b = 2
+      3| c = 3
+      4| d = 4
+      5| p [a, b, c, d]
+      6|
+      7| __END__
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:1
+
+(rdbg)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;rdbg&lt;/code&gt; command suspends the program at the beginning of the given script (&lt;code&gt;target.rb&lt;/code&gt; in this case) and you can use debug commands to control execution from there. &lt;code&gt;(rdbg)&lt;/code&gt; is the console prompt. Let&#39;s set breakpoints on line 3 and line 5 with &lt;code&gt;break&lt;/code&gt; command (&lt;code&gt;b&lt;/code&gt; for short).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;(rdbg) break 3                         # set breakpoint at line 3
+#0  BP - Line  /mnt/c/ko1/src/rb/ruby-debug/target.rb:3 (line)
+
+(rdbg) b 5                             # set breakpoint at line 5
+#1  BP - Line  /mnt/c/ko1/src/rb/ruby-debug/target.rb:5 (line)
+
+(rdbg) break                           # show all registered breakpoints
+#0  BP - Line  /mnt/c/ko1/src/rb/ruby-debug/target.rb:3 (line)
+#1  BP - Line  /mnt/c/ko1/src/rb/ruby-debug/target.rb:5 (line)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can see that two breakpoints are registered. Let&#39;s continue the program by using the &lt;code&gt;continue&lt;/code&gt; command.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;(rdbg) continue
+[1, 7] in target.rb
+      1| a = 1
+      2| b = 2
+=&amp;gt;    3| c = 3
+      4| d = 4
+      5| p [a, b, c, d]
+      6|
+      7| __END__
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:3
+
+Stop by #0  BP - Line  /mnt/c/ko1/src/rb/ruby-debug/target.rb:3 (line)
+
+(rdbg)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can see that we stopped at line 3. Let&#39;s see the local variables with the &lt;code&gt;info&lt;/code&gt; command, and continue execution with the &lt;code&gt;continue&lt;/code&gt;. The program will then suspend at line 5 and you can use the &lt;code&gt;info&lt;/code&gt; command again.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;(rdbg) info
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:3
+%self =&amp;gt; main
+a =&amp;gt; 1
+b =&amp;gt; 2
+c =&amp;gt; nil
+d =&amp;gt; nil
+
+(rdbg) continue
+[1, 7] in target.rb
+      1| a = 1
+      2| b = 2
+      3| c = 3
+      4| d = 4
+=&amp;gt;    5| p [a, b, c, d]
+      6|
+      7| __END__
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:5
+
+Stop by #1  BP - Line  /mnt/c/ko1/src/rb/ruby-debug/target.rb:5 (line)
+
+(rdbg) info
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:5
+%self =&amp;gt; main
+a =&amp;gt; 1
+b =&amp;gt; 2
+c =&amp;gt; 3
+d =&amp;gt; 4
+
+(rdbg) continue
+[1, 2, 3, 4]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;NOTE: When using &lt;code&gt;rdbg&lt;/code&gt; you can suspend your application with &lt;code&gt;C-c&lt;/code&gt; (SIGINT) and enter the debug console. It will help if you want to know what the program is doing.&lt;/p&gt; 
+&lt;h3&gt;Use &lt;code&gt;rdbg&lt;/code&gt; with commands written in Ruby&lt;/h3&gt; 
+&lt;p&gt;If you want to run an executable written in Ruby like &lt;code&gt;rake&lt;/code&gt;, &lt;code&gt;rails&lt;/code&gt;, &lt;code&gt;bundle&lt;/code&gt;, &lt;code&gt;rspec&lt;/code&gt;, and so on, you can use &lt;code&gt;rdbg -c&lt;/code&gt; option.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Without the &lt;code&gt;-c&lt;/code&gt; option, &lt;code&gt;rdbg &amp;lt;name&amp;gt;&lt;/code&gt; means that &lt;code&gt;&amp;lt;name&amp;gt;&lt;/code&gt; is a Ruby script and it is invoked like &lt;code&gt;ruby &amp;lt;name&amp;gt;&lt;/code&gt; with the debugger.&lt;/li&gt; 
+ &lt;li&gt;With the &lt;code&gt;-c&lt;/code&gt; option, &lt;code&gt;rdbg -c &amp;lt;name&amp;gt;&lt;/code&gt; means that &lt;code&gt;&amp;lt;name&amp;gt;&lt;/code&gt; is an executable in &lt;code&gt;PATH&lt;/code&gt; and simply invokes it with the debugger.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Examples:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;rdbg -c -- rails server&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rdbg -c -- bundle exec ruby foo.rb&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rdbg -c -- bundle exec rake test&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;rdbg -c -- ruby target.rb&lt;/code&gt; is the same as &lt;code&gt;rdbg target.rb&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;NOTE: &lt;code&gt;--&lt;/code&gt; is needed to separate the command line options for &lt;code&gt;rdbg&lt;/code&gt; from the executable being invoked, and its options. For example, &lt;code&gt;rdbg -c rake -T&lt;/code&gt; would be parsed as &lt;code&gt;rdbg -c -T -- rake&lt;/code&gt;, which is incorrect. It should be &lt;code&gt;rdbg -c -- rake -T&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;NOTE: If you want to use Bundler (&lt;code&gt;bundle&lt;/code&gt; executable), you need to add &lt;code&gt;gem &#39;debug&#39;&lt;/code&gt; to your &lt;code&gt;Gemfile&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Using VSCode&lt;/h3&gt; 
+&lt;p&gt;Like other languages, you can use this debugger on the VSCode.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Install &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=KoichiSasada.vscode-rdbg&quot;&gt;VSCode rdbg Ruby Debugger - Visual Studio Marketplace&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Open &lt;code&gt;.rb&lt;/code&gt; file (e.g. &lt;code&gt;target.rb&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Register breakpoints with &quot;Toggle breakpoint&quot; in the Run menu (or type F9 key)&lt;/li&gt; 
+ &lt;li&gt;Choose &quot;Start debugging&quot; in &quot;Run&quot; menu (or type F5 key)&lt;/li&gt; 
+ &lt;li&gt;You will see a dialog &quot;Debug command line&quot; and you can choose your favorite command line you want to run.&lt;/li&gt; 
+ &lt;li&gt;Chosen command line is invoked with &lt;code&gt;rdbg -c&lt;/code&gt;, and VSCode shows the details at breakpoints.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Please refer to &lt;a href=&quot;https://code.visualstudio.com/docs/editor/debugging&quot;&gt;Debugging in Visual Studio Code&lt;/a&gt; for operations on VSCode.&lt;/p&gt; 
+&lt;p&gt;You can configure the extension in &lt;code&gt;.vscode/launch.json&lt;/code&gt;. Please see the extension page for more details.&lt;/p&gt; 
+&lt;h2&gt;Remote debugging&lt;/h2&gt; 
+&lt;p&gt;You can use this debugger as a remote debugger. For example, it will help in the following situations:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Your application does not run on TTY, and it is hard to use &lt;code&gt;binding.pry&lt;/code&gt; or &lt;code&gt;binding.irb&lt;/code&gt;. 
+  &lt;ul&gt; 
+   &lt;li&gt;Your application is running on a Docker container, and there is no TTY.&lt;/li&gt; 
+   &lt;li&gt;Your application is running as a daemon.&lt;/li&gt; 
+   &lt;li&gt;Your application uses pipe for &lt;code&gt;STDIN&lt;/code&gt; or &lt;code&gt;STDOUT&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Your application is running as a daemon and you want to query the running status (checking a backtrace and so on).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can run your application as a remote debuggee, and the remote debugger console can attach to the debuggee anytime.&lt;/p&gt; 
+&lt;h3&gt;Invoke as a remote debuggee&lt;/h3&gt; 
+&lt;p&gt;There are multiple ways to run your program as a debuggee:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Stop at program start&lt;/th&gt; 
+   &lt;th&gt;&lt;a href=&quot;https://github.com/ruby/debug#rdbg---open-or-rdbg--o-for-short&quot;&gt;&lt;code&gt;rdbg&lt;/code&gt; option&lt;/a&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;a href=&quot;https://github.com/ruby/debug#require-debugopen-in-a-program&quot;&gt;require&lt;/a&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;a href=&quot;https://github.com/ruby/debug#start-by-method&quot;&gt;debugger API&lt;/a&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;rdbg --open&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;require &quot;debug/open&quot;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;DEBUGGER__.open&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;rdbg --open --nonstop&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;require &quot;debug/open_nonstop&quot;&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;DEBUGGER__.open(nonstop: true)&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;&lt;code&gt;rdbg --open&lt;/code&gt; (or &lt;code&gt;rdbg -O&lt;/code&gt; for short)&lt;/h4&gt; 
+&lt;p&gt;Launch a script with &lt;code&gt;rdbg --open target.rb&lt;/code&gt; to run &lt;code&gt;target.rb&lt;/code&gt; as a debuggee program. It also opens the network port and suspends at the beginning of &lt;code&gt;target.rb&lt;/code&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ rdbg --open target.rb
+DEBUGGER: Session start (pid: 7773)
+DEBUGGER: Debugger can attach via UNIX domain socket (/home/ko1/.ruby-debug-sock/ruby-debug-ko1-7773)
+DEBUGGER: wait for debugger connection...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;By default, &lt;code&gt;rdbg --open&lt;/code&gt; uses UNIX domain socket and generates the path name automatically (&lt;code&gt;/home/ko1/.ruby-debug-sock/ruby-debug-ko1-7773&lt;/code&gt; in this case).&lt;/p&gt; 
+&lt;p&gt;You can connect to the debuggee with &lt;code&gt;rdbg --attach&lt;/code&gt; command (&lt;code&gt;rdbg -A&lt;/code&gt; for short).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ rdbg -A
+[1, 7] in target.rb
+=&amp;gt;    1| a = 1
+      2| b = 2
+      3| c = 3
+      4| d = 4
+      5| p [a, b, c, d]
+      6|
+      7| __END__
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:1
+
+(rdbg:remote)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If there are no other files in the default directory, &lt;code&gt;rdbg --attach&lt;/code&gt; will automatically connect to the UNIX domain socket listed. If there are multiple files, you need to specify which to use.&lt;/p&gt; 
+&lt;p&gt;When &lt;code&gt;rdbg --attach&lt;/code&gt; connects to the debuggee, you can use any debug commands (set breakpoints, continue the program, and so on) like the local debug console. When a debuggee program exits, the remote console will also terminate.&lt;/p&gt; 
+&lt;p&gt;NOTE: If you use the &lt;code&gt;quit&lt;/code&gt; command, only the remote console exits and the debuggee program continues to run (and you can connect it again). If you want to exit the debuggee program, use &lt;code&gt;kill&lt;/code&gt; command.&lt;/p&gt; 
+&lt;p&gt;If you want to use TCP/IP for remote debugging, you need to specify the port and host with &lt;code&gt;--port&lt;/code&gt; like &lt;code&gt;rdbg --open --port 12345&lt;/code&gt; and it binds to &lt;code&gt;localhost:12345&lt;/code&gt;. You can add an optional &lt;code&gt;--port_range&lt;/code&gt; to try multiple ports in a reliable way. For example, &lt;code&gt;rdbg --open --port 12345 --port_range 10&lt;/code&gt; will try to bind to 12345, 12346, 12347,… until it finds an available port.&lt;/p&gt; 
+&lt;p&gt;To connect to the debuggee, you need to specify the port.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ rdbg --attach 12345
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want to choose the host to bind, you can use &lt;code&gt;--host&lt;/code&gt; option. Messages communicated between the debugger and the debuggee are &lt;em&gt;NOT&lt;/em&gt; encrypted so please use remote debugging carefully.&lt;/p&gt; 
+&lt;h4&gt;&lt;code&gt;require &#39;debug/open&#39;&lt;/code&gt; in a program&lt;/h4&gt; 
+&lt;p&gt;If you can modify the program, you can open the debugging port by adding &lt;code&gt;require &#39;debug/open&#39;&lt;/code&gt; in the program.&lt;/p&gt; 
+&lt;p&gt;If you don&#39;t want to stop the program at the beginning, you can also use &lt;code&gt;require &#39;debug/open_nonstop&#39;&lt;/code&gt;. Using &lt;code&gt;debug/open_nonstop&lt;/code&gt; is useful if you want to open a backdoor to the application. However, it is also dangerous because it can become another vulnerability. Please use it carefully.&lt;/p&gt; 
+&lt;p&gt;By default, UNIX domain socket is used for the debugging port. To use TCP/IP, you can set the &lt;code&gt;RUBY_DEBUG_PORT&lt;/code&gt; environment variable.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ RUBY_DEBUG_PORT=12345 ruby target.rb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Integration with external debugger frontend&lt;/h3&gt; 
+&lt;p&gt;You can attach with external debugger frontend with VSCode and Chrome.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ rdbg --open=[frontend] target.rb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will open a debug port and the &lt;code&gt;[frontend]&lt;/code&gt; can attach to the port.&lt;/p&gt; 
+&lt;h4&gt;VSCode integration&lt;/h4&gt; 
+&lt;p&gt;(&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=KoichiSasada.vscode-rdbg&quot;&gt;vscode-rdbg v0.0.9&lt;/a&gt; or later is required)&lt;/p&gt; 
+&lt;p&gt;If you don&#39;t run a debuggee Ruby process on VSCode, you can attach it to VSCode later with the following steps.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;rdbg --open=vscode&lt;/code&gt; opens the debug port and tries to invoke the VSCode (&lt;code&gt;code&lt;/code&gt; executable).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ rdbg --open=vscode target.rb
+DEBUGGER: Debugger can attach via UNIX domain socket (/tmp/ruby-debug-sock-1000/ruby-debug-ko1-27706)
+DEBUGGER: wait for debugger connection...
+Launching: code /tmp/ruby-debug-vscode-20211014-27706-gd7e85/ /tmp/ruby-debug-vscode-20211014-27706-gd7e85/README.rb
+DEBUGGER: Connected.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It tries to invoke the new VSCode window and VSCode will attach to the debuggee Ruby program automatically.&lt;/p&gt; 
+&lt;p&gt;You can also use &lt;code&gt;open vscode&lt;/code&gt; in a REPL.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ rdbg target.rb
+[1, 8] in target.rb
+     1|
+=&amp;gt;   2| p a = 1
+     3| p b = 2
+     4| p c = 3
+     5| p d = 4
+     6| p e = 5
+     7|
+     8| __END__
+=&amp;gt;#0    &amp;lt;main&amp;gt; at target.rb:2
+(rdbg) open vscode    # command
+DEBUGGER: wait for debugger connection...
+DEBUGGER: Debugger can attach via UNIX domain socket (/tmp/ruby-debug-sock-1000/ruby-debug-ko1-28337)
+Launching: code /tmp/ruby-debug-vscode-20211014-28337-kg9dm/ /tmp/ruby-debug-vscode-20211014-28337-kg9dm/README.rb
+DEBUGGER: Connected.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If the machine which runs the Ruby process doesn&#39;t have a &lt;code&gt;code&lt;/code&gt; executable on &lt;code&gt;$PATH&lt;/code&gt;, the following message will be shown:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;(rdbg) open vscode
+DEBUGGER: wait for debugger connection...
+DEBUGGER: Debugger can attach via UNIX domain socket (/tmp/ruby-debug-sock-1000/ruby-debug-ko1-455)
+Launching: code /tmp/ruby-debug-vscode-20211014-455-gtjpwi/ /tmp/ruby-debug-vscode-20211014-455-gtjpwi/README.rb
+DEBUGGER: Can not invoke the command.
+Use the command-line on your terminal (with modification if you need).
+
+  code /tmp/ruby-debug-vscode-20211014-455-gtjpwi/ /tmp/ruby-debug-vscode-20211014-455-gtjpwi/README.rb
+
+If your application is running on a SSH remote host, please try:
+
+  code --remote ssh-remote+[SSH hostname] /tmp/ruby-debug-vscode-20211014-455-gtjpwi/ /tmp/ruby-debug-vscode-20211014-455-gtjpwi/README.rb
+
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Note that you can attach with &lt;code&gt;rdbg --attach&lt;/code&gt; and continue REPL debugging.&lt;/p&gt; 
+&lt;h4&gt;Chrome DevTool integration&lt;/h4&gt; 
+&lt;p&gt;Using &lt;code&gt;rdbg --open=chrome&lt;/code&gt; will show the following message:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ rdbg target.rb --open=chrome
+DEBUGGER: Debugger can attach via TCP/IP (127.0.0.1:43633)
+DEBUGGER: With Chrome browser, type the following URL in the address-bar:
+
+   devtools://devtools/bundled/inspector.html?v8only=true&amp;amp;panel=sources&amp;amp;ws=127.0.0.1:57231/b32a55cd-2eb5-4c5c-87d8-b3dfc59d80ef
+
+DEBUGGER: wait for debugger connection...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Type the following in the address bar on Chrome browser, and you can continue the debugging with chrome browser:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-txt&quot;&gt;devtools://devtools/bundled/inspector.html?v8only=true&amp;amp;panel=sources&amp;amp;ws=127.0.0.1:57231/b32a55cd-2eb5-4c5c-87d8-b3dfc59d80ef`
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Similar to VSCode, you can use &lt;code&gt;open chrome&lt;/code&gt; to open the debugger in Chrome.&lt;/p&gt; 
+&lt;p&gt;For more information about how to use Chrome debugging, &lt;a href=&quot;https://developer.chrome.com/docs/devtools/&quot;&gt;see the devtools docs&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;You can configure the debugger&#39;s behavior with debug commands and environment variables. When the debug session is started, some &lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/#initial-scripts&quot;&gt;initialization scripts&lt;/a&gt; (e.g., &lt;code&gt;~/.rdbgrc&lt;/code&gt;) are loaded, allowing you to configure the debugger&#39;s behavior to your needs and preferences.&lt;/p&gt; 
+&lt;h3&gt;Configuration list&lt;/h3&gt; 
+&lt;p&gt;You can configure the debugger&#39;s behavior with environment variables and &lt;code&gt;config&lt;/code&gt; command. Each configuration has an environment variable and a name which can be specified by &lt;code&gt;config&lt;/code&gt; command.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;# configuration example
+config set log_level INFO
+config set no_color true
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;UI&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_LOG_LEVEL&lt;/code&gt; (&lt;code&gt;log_level&lt;/code&gt;): Log level same as Logger (default: WARN)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SHOW_SRC_LINES&lt;/code&gt; (&lt;code&gt;show_src_lines&lt;/code&gt;): Show n lines source code on breakpoint (default: 10)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SHOW_SRC_LINES_FRAME&lt;/code&gt; (&lt;code&gt;show_src_lines_frame&lt;/code&gt;): Show n lines source code on frame operations (default: 1)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SHOW_EVALEDSRC&lt;/code&gt; (&lt;code&gt;show_evaledsrc&lt;/code&gt;): Show actually evaluated source (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SHOW_FRAMES&lt;/code&gt; (&lt;code&gt;show_frames&lt;/code&gt;): Show n frames on breakpoint (default: 2)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_USE_SHORT_PATH&lt;/code&gt; (&lt;code&gt;use_short_path&lt;/code&gt;): Show shorten PATH (like $(Gem)/foo.rb) (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NO_COLOR&lt;/code&gt; (&lt;code&gt;no_color&lt;/code&gt;): Do not use colorize (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NO_SIGINT_HOOK&lt;/code&gt; (&lt;code&gt;no_sigint_hook&lt;/code&gt;): Do not suspend on SIGINT (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NO_RELINE&lt;/code&gt; (&lt;code&gt;no_reline&lt;/code&gt;): Do not use Reline library (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NO_HINT&lt;/code&gt; (&lt;code&gt;no_hint&lt;/code&gt;): Do not show the hint on the REPL (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NO_LINENO&lt;/code&gt; (&lt;code&gt;no_lineno&lt;/code&gt;): Do not show line numbers (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NO_REPEAT&lt;/code&gt; (&lt;code&gt;no_repeat&lt;/code&gt;): Do not repeat last line when empty line (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_IRB_CONSOLE&lt;/code&gt; (&lt;code&gt;irb_console&lt;/code&gt;): Use IRB as the console (default: false)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;CONTROL&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SKIP_PATH&lt;/code&gt; (&lt;code&gt;skip_path&lt;/code&gt;): Skip showing/entering frames for given paths&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SKIP_NOSRC&lt;/code&gt; (&lt;code&gt;skip_nosrc&lt;/code&gt;): Skip on no source code lines (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_KEEP_ALLOC_SITE&lt;/code&gt; (&lt;code&gt;keep_alloc_site&lt;/code&gt;): Keep allocation site and p, pp shows it (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_POSTMORTEM&lt;/code&gt; (&lt;code&gt;postmortem&lt;/code&gt;): Enable postmortem debug (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_FORK_MODE&lt;/code&gt; (&lt;code&gt;fork_mode&lt;/code&gt;): Control which process activates a debugger after fork (both/parent/child) (default: both)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SIGDUMP_SIG&lt;/code&gt; (&lt;code&gt;sigdump_sig&lt;/code&gt;): Sigdump signal (default: false)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;BOOT&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NONSTOP&lt;/code&gt; (&lt;code&gt;nonstop&lt;/code&gt;): Nonstop mode (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_STOP_AT_LOAD&lt;/code&gt; (&lt;code&gt;stop_at_load&lt;/code&gt;): Stop at just loading location (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_INIT_SCRIPT&lt;/code&gt; (&lt;code&gt;init_script&lt;/code&gt;): debug command script path loaded at first stop&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_COMMANDS&lt;/code&gt; (&lt;code&gt;commands&lt;/code&gt;): debug commands invoked at first stop. Commands should be separated by &lt;code&gt;;;&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_NO_RC&lt;/code&gt; (&lt;code&gt;no_rc&lt;/code&gt;): ignore loading ~/.rdbgrc(.rb) (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_HISTORY_FILE&lt;/code&gt; (&lt;code&gt;history_file&lt;/code&gt;): history file (default: ${XDG_STATE_HOME-~/.local/state}/rdbg/history)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SAVE_HISTORY&lt;/code&gt; (&lt;code&gt;save_history&lt;/code&gt;): maximum save history lines (default: 10000)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;REMOTE&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_OPEN&lt;/code&gt; (&lt;code&gt;open&lt;/code&gt;): Open remote port (same as &lt;code&gt;rdbg --open&lt;/code&gt; option)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_PORT&lt;/code&gt; (&lt;code&gt;port&lt;/code&gt;): TCP/IP remote debugging: port&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_PORT_RANGE&lt;/code&gt; (&lt;code&gt;port_range&lt;/code&gt;): TCP/IP remote debugging: length of port range&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_HOST&lt;/code&gt; (&lt;code&gt;host&lt;/code&gt;): TCP/IP remote debugging: host (default: 127.0.0.1)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SOCK_PATH&lt;/code&gt; (&lt;code&gt;sock_path&lt;/code&gt;): UNIX Domain Socket remote debugging: socket path&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SOCK_DIR&lt;/code&gt; (&lt;code&gt;sock_dir&lt;/code&gt;): UNIX Domain Socket remote debugging: socket directory&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_LOCAL_FS_MAP&lt;/code&gt; (&lt;code&gt;local_fs_map&lt;/code&gt;): Specify local fs map&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SKIP_BP&lt;/code&gt; (&lt;code&gt;skip_bp&lt;/code&gt;): Skip breakpoints if no clients are attached (default: false)&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_COOKIE&lt;/code&gt; (&lt;code&gt;cookie&lt;/code&gt;): Cookie for negotiation&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_SESSION_NAME&lt;/code&gt; (&lt;code&gt;session_name&lt;/code&gt;): Session name for differentiating multiple sessions&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_CHROME_PATH&lt;/code&gt; (&lt;code&gt;chrome_path&lt;/code&gt;): Platform dependent path of Chrome (For more information, See &lt;a href=&quot;https://github.com/ruby/debug/pull/334/files#diff-5fc3d0a901379a95bc111b86cf0090b03f857edfd0b99a0c1537e26735698453R55-R64&quot;&gt;here&lt;/a&gt;)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;OBSOLETE&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;RUBY_DEBUG_PARENT_ON_FORK&lt;/code&gt; (&lt;code&gt;parent_on_fork&lt;/code&gt;): Keep debugging parent process on fork (default: false)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;There are other environment variables:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;NO_COLOR&lt;/code&gt;: If the value is set, set &lt;code&gt;RUBY_DEBUG_NO_COLOR&lt;/code&gt; (&lt;a href=&quot;https://no-color.org/&quot;&gt;NO_COLOR: disabling ANSI color output in various Unix commands&lt;/a&gt;).&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;RUBY_DEBUG_ENABLE&lt;/code&gt;: If the value is &lt;code&gt;0&lt;/code&gt;, do not enable debug.gem feature.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;RUBY_DEBUG_ADDED_RUBYOPT&lt;/code&gt;: Remove this value from &lt;code&gt;RUBYOPT&lt;/code&gt; at first. This feature helps loading debug.gem with &lt;code&gt;RUBYOPT=&#39;-r debug/...&#39;&lt;/code&gt;, and you don&#39;t want to derive it to child processes. In this case, you can set &lt;code&gt;RUBY_DEBUG_ADDED_RUBYOPT=&#39;-r debug/...&#39;&lt;/code&gt; (same value), and this string will be deleted from &lt;code&gt;RUBYOPT&lt;/code&gt; at first.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;RUBY_DEBUG_EDITOR&lt;/code&gt; or &lt;code&gt;EDITOR&lt;/code&gt;: An editor used by &lt;code&gt;edit&lt;/code&gt; debug command.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;RUBY_DEBUG_BB&lt;/code&gt;: Define &lt;code&gt;Kernel#bb&lt;/code&gt; method which is alias of &lt;code&gt;Kernel#debugger&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Initial scripts&lt;/h3&gt; 
+&lt;p&gt;If there is a &lt;code&gt;~/.rdbgrc&lt;/code&gt; file it is loaded as an initialization script (which contains debug commands) when the debug session is started.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;RUBY_DEBUG_INIT_SCRIPT&lt;/code&gt; environment variable can specify the initial script file.&lt;/li&gt; 
+ &lt;li&gt;You can specify the initial script with &lt;code&gt;rdbg -x initial_script&lt;/code&gt; (like gdb&#39;s &lt;code&gt;-x&lt;/code&gt; option).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Initial scripts are useful to write your favorite configurations. For example, you can set breakpoints with &lt;code&gt;break file:123&lt;/code&gt; in &lt;code&gt;~/.rdbgrc&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;If there is a &lt;code&gt;~/.rdbgrc.rb&lt;/code&gt; file it is also loaded as a Ruby script when the debug session is started.&lt;/p&gt; 
+&lt;h2&gt;Debug command on the debug console&lt;/h2&gt; 
+&lt;p&gt;On the debug console, you can use the following debug commands.&lt;/p&gt; 
+&lt;p&gt;There are additional features:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; without debug command is almost the same as &lt;code&gt;pp &amp;lt;expr&amp;gt;&lt;/code&gt;. 
+  &lt;ul&gt; 
+   &lt;li&gt;If the input line &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; does &lt;em&gt;NOT&lt;/em&gt; start with any debug command, the line &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; will be evaluated as a Ruby expression, and the result will be printed with &lt;code&gt;pp&lt;/code&gt; method. So that the input &lt;code&gt;foo.bar&lt;/code&gt; is the same as &lt;code&gt;pp foo.bar&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;If &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; is recognized as a debug command, of course, it is not evaluated as a Ruby expression but is executed as debug command. For example, you can not evaluate such single-letter local variables &lt;code&gt;i&lt;/code&gt;, &lt;code&gt;b&lt;/code&gt;, &lt;code&gt;n&lt;/code&gt;, &lt;code&gt;c&lt;/code&gt; because they are single-letter debug commands. Use &lt;code&gt;p i&lt;/code&gt; instead.&lt;/li&gt; 
+   &lt;li&gt;For consistency, the author (Koichi Sasada) recommends using the &lt;code&gt;p&lt;/code&gt;, &lt;code&gt;pp&lt;/code&gt;, or &lt;code&gt;eval&lt;/code&gt; command to evaluate the Ruby expression every time.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Enter&lt;/code&gt; without any input repeats the last command (useful when repeating &lt;code&gt;step&lt;/code&gt;s) for some commands.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;Ctrl-D&lt;/code&gt; is equal to &lt;code&gt;quit&lt;/code&gt; command.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.google.com/spreadsheets/d/1TlmmUDsvwK4sSIyoMv-io52BUUz__R5wpu-ComXlsw0/edit?usp=sharing&quot;&gt;debug command compare sheet - Google Sheets&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can use the following debug commands. Each command should be written in 1 line. The &lt;code&gt;[…]&lt;/code&gt; notation means this part can be eliminated. For example, &lt;code&gt;s[tep]&lt;/code&gt; means &lt;code&gt;s&lt;/code&gt; or &lt;code&gt;step&lt;/code&gt; is a valid command. &lt;code&gt;ste&lt;/code&gt; is not valid. The &lt;code&gt;&amp;lt;…&amp;gt;&lt;/code&gt; notation means the argument.&lt;/p&gt; 
+&lt;h3&gt;Control flow&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;s[tep]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Step in. Resume the program until next breakable point.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;s[tep] &amp;lt;n&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Step in, resume the program at &lt;code&gt;&amp;lt;n&amp;gt;&lt;/code&gt;th breakable point.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;n[ext]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Step over. Resume the program until next line.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;n[ext] &amp;lt;n&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Step over, same as &lt;code&gt;step &amp;lt;n&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;fin[ish]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Finish this frame. Resume the program until the current frame is finished.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;fin[ish] &amp;lt;n&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Finish &lt;code&gt;&amp;lt;n&amp;gt;&lt;/code&gt;th frames.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;u[ntil]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Similar to &lt;code&gt;next&lt;/code&gt; command, but only stop later lines or the end of the current frame.&lt;/li&gt; 
+   &lt;li&gt;Similar to gdb&#39;s &lt;code&gt;advance&lt;/code&gt; command.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;u[ntil] &amp;lt;[file:]line&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Run til the program reaches given location or the end of the current frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;u[ntil] &amp;lt;name&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Run til the program invokes a method &lt;code&gt;&amp;lt;name&amp;gt;&lt;/code&gt;. &lt;code&gt;&amp;lt;name&amp;gt;&lt;/code&gt; can be a regexp with &lt;code&gt;/name/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;c&lt;/code&gt; or &lt;code&gt;cont&lt;/code&gt; or &lt;code&gt;continue&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Resume the program.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;q[uit]&lt;/code&gt; or &lt;code&gt;Ctrl-D&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Finish debugger (with the debuggee process on non-remote debugging).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;q[uit]!&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Same as q[uit] but without the confirmation prompt.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;kill&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Stop the debuggee process with &lt;code&gt;Kernel#exit!&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;kill!&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Same as kill but without the confirmation prompt.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;sigint&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Execute SIGINT handler registered by the debuggee.&lt;/li&gt; 
+   &lt;li&gt;Note that this command should be used just after stop by &lt;code&gt;SIGINT&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Breakpoint&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show all breakpoints.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] &amp;lt;line&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Set breakpoint on &lt;code&gt;&amp;lt;line&amp;gt;&lt;/code&gt; at the current frame&#39;s file.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] &amp;lt;file&amp;gt;:&amp;lt;line&amp;gt;&lt;/code&gt; or &lt;code&gt;&amp;lt;file&amp;gt; &amp;lt;line&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Set breakpoint on &lt;code&gt;&amp;lt;file&amp;gt;:&amp;lt;line&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] &amp;lt;class&amp;gt;#&amp;lt;name&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Set breakpoint on the method &lt;code&gt;&amp;lt;class&amp;gt;#&amp;lt;name&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] &amp;lt;expr&amp;gt;.&amp;lt;name&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Set breakpoint on the method &lt;code&gt;&amp;lt;expr&amp;gt;.&amp;lt;name&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] ... if: &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;break if &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; is true at specified location.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] ... pre: &amp;lt;command&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;break and run &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt; before stopping.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] ... do: &amp;lt;command&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;break and run &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt;, and continue.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] ... path: &amp;lt;path&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;break if the path matches to &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt;. &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt; can be a regexp with &lt;code&gt;/regexp/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;b[reak] if: &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;break if: &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; is true at any lines.&lt;/li&gt; 
+   &lt;li&gt;Note that this feature is super slow.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;catch &amp;lt;Error&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Set breakpoint on raising &lt;code&gt;&amp;lt;Error&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;catch ... if: &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;stops only if &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; is true as well.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;catch ... pre: &amp;lt;command&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;runs &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt; before stopping.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;catch ... do: &amp;lt;command&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;stops and run &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt;, and continue.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;catch ... path: &amp;lt;path&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;stops if the exception is raised from a &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt;. &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt; can be a regexp with &lt;code&gt;/regexp/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;watch @ivar&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Stop the execution when the result of current scope&#39;s &lt;code&gt;@ivar&lt;/code&gt; is changed.&lt;/li&gt; 
+   &lt;li&gt;Note that this feature is super slow.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;watch ... if: &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;stops only if &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; is true as well.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;watch ... pre: &amp;lt;command&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;runs &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt; before stopping.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;watch ... do: &amp;lt;command&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;stops and run &lt;code&gt;&amp;lt;command&amp;gt;&lt;/code&gt;, and continue.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;watch ... path: &amp;lt;path&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;stops if the path matches &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt;. &lt;code&gt;&amp;lt;path&amp;gt;&lt;/code&gt; can be a regexp with &lt;code&gt;/regexp/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;del[ete]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;delete all breakpoints.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;del[ete] &amp;lt;bpnum&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;delete specified breakpoint.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Information&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;bt&lt;/code&gt; or &lt;code&gt;backtrace&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show backtrace (frame) information.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;bt &amp;lt;num&amp;gt;&lt;/code&gt; or &lt;code&gt;backtrace &amp;lt;num&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Only shows first &lt;code&gt;&amp;lt;num&amp;gt;&lt;/code&gt; frames.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;bt /regexp/&lt;/code&gt; or &lt;code&gt;backtrace /regexp/&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Only shows frames with method name or location info that matches &lt;code&gt;/regexp/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;bt &amp;lt;num&amp;gt; /regexp/&lt;/code&gt; or &lt;code&gt;backtrace &amp;lt;num&amp;gt; /regexp/&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Only shows first &lt;code&gt;&amp;lt;num&amp;gt;&lt;/code&gt; frames with method name or location info that matches &lt;code&gt;/regexp/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;l[ist]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show current frame&#39;s source code.&lt;/li&gt; 
+   &lt;li&gt;Next &lt;code&gt;list&lt;/code&gt; command shows the successor lines.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;l[ist] -&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show predecessor lines as opposed to the &lt;code&gt;list&lt;/code&gt; command.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;l[ist] &amp;lt;start&amp;gt;&lt;/code&gt; or &lt;code&gt;l[ist] &amp;lt;start&amp;gt;-&amp;lt;end&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show current frame&#39;s source code from the line 
+    &lt;start&gt;
+      to 
+     &lt;end&gt;
+       if given.
+     &lt;/end&gt;
+    &lt;/start&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;whereami&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show the current frame with source code.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;edit&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Open the current file on the editor (use &lt;code&gt;EDITOR&lt;/code&gt; environment variable).&lt;/li&gt; 
+   &lt;li&gt;Note that edited file will not be reloaded.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;edit &amp;lt;file&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Open 
+    &lt;file&gt;
+      on the editor.
+    &lt;/file&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show information about current frame (local/instance variables and defined constants).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo]&lt;/code&gt; 
+  &lt;subcommand&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt;&lt;code&gt;info&lt;/code&gt; has the following sub-commands.&lt;/li&gt; 
+    &lt;li&gt;Sub-commands can be specified with few letters which is unambiguous, like &lt;code&gt;l&lt;/code&gt; for &#39;locals&#39;.&lt;/li&gt; 
+   &lt;/ul&gt; 
+  &lt;/subcommand&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo] l or locals or local_variables&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show information about the current frame (local variables)&lt;/li&gt; 
+   &lt;li&gt;It includes &lt;code&gt;self&lt;/code&gt; as &lt;code&gt;%self&lt;/code&gt; and a return value as &lt;code&gt;_return&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo] i or ivars or instance_variables&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show information about instance variables about &lt;code&gt;self&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;info ivars &amp;lt;expr&amp;gt;&lt;/code&gt; shows the instance variables of the result of &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo] c or consts or constants&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show information about accessible constants except toplevel constants.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;info consts &amp;lt;expr&amp;gt;&lt;/code&gt; shows the constants of a class/module of the result of &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo] g or globals or global_variables&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show information about global variables&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo] th or threads&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show all threads (same as &lt;code&gt;th[read]&lt;/code&gt;).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo] b or breakpoints or w or watchpoints&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show all breakpoints and watchpoints.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;i[nfo] ... /regexp/&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Filter the output with &lt;code&gt;/regexp/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;o[utline]&lt;/code&gt; or &lt;code&gt;ls&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show you available methods, constants, local variables, and instance variables in the current scope.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;o[utline] &amp;lt;expr&amp;gt;&lt;/code&gt; or &lt;code&gt;ls &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show you available methods and instance variables of the given object.&lt;/li&gt; 
+   &lt;li&gt;If the object is a class/module, it also lists its constants.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;display&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show display setting.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;display &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show the result of &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; at every suspended timing.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;undisplay&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Remove all display settings.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;undisplay &amp;lt;displaynum&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Remove a specified display setting.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Frame control&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;f[rame]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show the current frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;f[rame] &amp;lt;framenum&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Specify a current frame. Evaluation are run on specified frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;up&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Specify the upper frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;down&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Specify the lower frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Evaluate&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;p &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Evaluate like &lt;code&gt;p &amp;lt;expr&amp;gt;&lt;/code&gt; on the current frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;pp &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Evaluate like &lt;code&gt;pp &amp;lt;expr&amp;gt;&lt;/code&gt; on the current frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;eval &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Evaluate &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; on the current frame.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;irb&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Activate and switch to &lt;code&gt;irb:rdbg&lt;/code&gt; console&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Trace&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;trace&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show available tracers list.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace line&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Add a line tracer. It indicates line events.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace call&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Add a call tracer. It indicate call/return events.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace exception&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Add an exception tracer. It indicates raising exceptions.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace object &amp;lt;expr&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Add an object tracer. It indicates that an object by &lt;code&gt;&amp;lt;expr&amp;gt;&lt;/code&gt; is passed as a parameter or a receiver on method call.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace ... /regexp/&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Indicates only matched events to &lt;code&gt;/regexp/&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace ... into: &amp;lt;file&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Save trace information into: &lt;code&gt;&amp;lt;file&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace off &amp;lt;num&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Disable tracer specified by &lt;code&gt;&amp;lt;num&amp;gt;&lt;/code&gt; (use &lt;code&gt;trace&lt;/code&gt; command to check the numbers).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;trace off [line|call|pass]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Disable all tracers. If &lt;code&gt;&amp;lt;type&amp;gt;&lt;/code&gt; is provided, disable specified type tracers.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;record&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show recording status.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;record [on|off]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Start/Stop recording.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;step back&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Start replay. Step back with the last execution log.&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;s[tep]&lt;/code&gt; does stepping forward with the last log.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;step reset&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Stop replay .&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Thread control&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;th[read]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show all threads.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;th[read] &amp;lt;thnum&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Switch thread specified by &lt;code&gt;&amp;lt;thnum&amp;gt;&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Configuration&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;config&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show all configuration with description.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;config &amp;lt;name&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show current configuration of 
+    &lt;name&gt;
+     .
+    &lt;/name&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;config set &amp;lt;name&amp;gt; &amp;lt;val&amp;gt;&lt;/code&gt; or &lt;code&gt;config &amp;lt;name&amp;gt; = &amp;lt;val&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Set 
+    &lt;name&gt;
+      to 
+     &lt;val&gt;
+      .
+     &lt;/val&gt;
+    &lt;/name&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;config append &amp;lt;name&amp;gt; &amp;lt;val&amp;gt;&lt;/code&gt; or &lt;code&gt;config &amp;lt;name&amp;gt; &amp;lt;&amp;lt; &amp;lt;val&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Append &lt;code&gt;&amp;lt;val&amp;gt;&lt;/code&gt; to &lt;code&gt;&amp;lt;name&amp;gt;&lt;/code&gt; if it is an array.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;config unset &amp;lt;name&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Set 
+    &lt;name&gt;
+      to default.
+    &lt;/name&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;source &amp;lt;file&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Evaluate lines in &lt;code&gt;&amp;lt;file&amp;gt;&lt;/code&gt; as debug commands.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;open&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;open debuggee port on UNIX domain socket and wait for attaching.&lt;/li&gt; 
+   &lt;li&gt;Note that &lt;code&gt;open&lt;/code&gt; command is EXPERIMENTAL.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;open [&amp;lt;host&amp;gt;:]&amp;lt;port&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;open debuggee port on TCP/IP with given &lt;code&gt;[&amp;lt;host&amp;gt;:]&amp;lt;port&amp;gt;&lt;/code&gt; and wait for attaching.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;open vscode&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;open debuggee port for VSCode and launch VSCode if available.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;open chrome&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;open debuggee port for Chrome and wait for attaching.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Help&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;h[elp]&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show help for all commands.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;h[elp] &amp;lt;command&amp;gt;&lt;/code&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Show help for the given command.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Using IRB as the Debug Console&lt;/h3&gt; 
+&lt;p&gt;Starting from version &lt;code&gt;v1.9&lt;/code&gt;, you can now use IRB as the debug console. This integration brings additional features such as:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Autocompletion&lt;/li&gt; 
+ &lt;li&gt;Support for multi-line input&lt;/li&gt; 
+ &lt;li&gt;Access to commands not available in &lt;code&gt;debug&lt;/code&gt;, like &lt;code&gt;show_source&lt;/code&gt; or &lt;code&gt;show_doc&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.ruby-lang.org/en/master/IRB.html#module-IRB-label-Command+Aliases&quot;&gt;Configurable command aliases&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To switch to the IRB console, simply use the &lt;code&gt;irb&lt;/code&gt; command in the debug console.&lt;/p&gt; 
+&lt;p&gt;Once activated, you&#39;ll notice the prompt changes to:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;irb:rdbg(main):001&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want to make IRB the default console for all sessions, configure the &lt;code&gt;irb_console&lt;/code&gt; setting by either:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Setting the &lt;code&gt;RUBY_DEBUG_IRB_CONSOLE=true&lt;/code&gt; environment variable&lt;/li&gt; 
+ &lt;li&gt;Or adding &lt;code&gt;config set irb_console 1&lt;/code&gt; to your &lt;code&gt;~/.rdbgrc&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;To disable the IRB console in the current session, execute &lt;code&gt;config set irb_console 0&lt;/code&gt; in the console.&lt;/p&gt; 
+&lt;h2&gt;Debugger API&lt;/h2&gt; 
+&lt;h3&gt;Start debugging&lt;/h3&gt; 
+&lt;h4&gt;Start by requiring a library&lt;/h4&gt; 
+&lt;p&gt;You can start debugging without &lt;code&gt;rdbg&lt;/code&gt; command by requiring the following libraries:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;require &#39;debug&#39;&lt;/code&gt;: Same as &lt;code&gt;rdbg --nonstop --no-sigint-hook&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;require &#39;debug/start&#39;&lt;/code&gt;: Same as &lt;code&gt;rdbg&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;require &#39;debug/open&#39;&lt;/code&gt;: Same as &lt;code&gt;rdbg --open&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;require &#39;debug/open_nonstop&#39;&lt;/code&gt;: Same as &lt;code&gt;rdbg --open --nonstop&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You need to require one of them at the very beginning of the application. Using &lt;code&gt;ruby -r&lt;/code&gt; (for example &lt;code&gt;ruby -r debug/start target.rb&lt;/code&gt;) is another way to invoke with debugger.&lt;/p&gt; 
+&lt;p&gt;NOTE: Until Ruby 3.0, there is old &lt;code&gt;lib/debug.rb&lt;/code&gt; in the standard library. &lt;code&gt;lib/debug.rb&lt;/code&gt; was not maintained well in recent years, and the purpose of this library is to rewrite old &lt;code&gt;lib/debug.rb&lt;/code&gt; with recent techniques.&lt;/p&gt; 
+&lt;p&gt;So, if this gem is not installed, or if the &lt;code&gt;Gemfile&lt;/code&gt; doesn&#39;t include this gem and &lt;code&gt;bundle exec&lt;/code&gt; is used, you will see the following output:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;$ ruby -r debug -e0
+.../2.7.3/lib/ruby/2.7.0/x86_64-linux/continuation.so: warning: callcc is obsolete; use Fiber instead
+Debug.rb
+Emacs support available.
+
+.../2.7.3/lib/ruby/2.7.0/rubygems/core_ext/kernel_require.rb:162:    if RUBYGEMS_ACTIVATION_MONITOR.respond_to?(:mon_owned?)
+(rdb:1)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Start by method&lt;/h4&gt; 
+&lt;p&gt;After loading &lt;code&gt;debug/session&lt;/code&gt;, you can start a debug session with the following methods. They are convenient if you want to specify debug configurations in your program.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;DEBUGGER__.start(**kw)&lt;/code&gt;: start debug session with local console.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;DEBUGGER__.open(**kw)&lt;/code&gt;: open debug port with configuration (without configurations open with UNIX domain socket).&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;DEBUGGER__.open_unix(**kw)&lt;/code&gt;: open debug port with UNIX domain socket.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;DEBUGGER__.open_tcp(**kw)&lt;/code&gt;: open debug port with TCP/IP.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;require &#39;debug/session&#39;
+DEBUGGER__.start(no_color: true,    # disable colorize
+                 log_level: &#39;INFO&#39;) # Change log_level to INFO
+
+... # your application code
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;&lt;code&gt;binding.break&lt;/code&gt; method&lt;/h3&gt; 
+&lt;p&gt;&lt;code&gt;binding.break&lt;/code&gt; (or &lt;code&gt;binding.b&lt;/code&gt;) sets a breakpoint at that line. It also has several keywords.&lt;/p&gt; 
+&lt;p&gt;If &lt;code&gt;do: &#39;command&#39;&lt;/code&gt; is specified, the debugger suspends the program, runs the &lt;code&gt;command&lt;/code&gt; as a debug command, and continues the program. It is useful if you only want to call a debug command and don&#39;t want to stop there. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;def initialize
+  @a = 1
+  binding.b do: &#39;info \n watch @a&#39;
+end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In this case, execute the &lt;code&gt;info&lt;/code&gt; command, then register a watch breakpoint for &lt;code&gt;@a&lt;/code&gt; and continue to run. You can also use &lt;code&gt;;;&lt;/code&gt; instead of &lt;code&gt;\n&lt;/code&gt; to separate your commands.&lt;/p&gt; 
+&lt;p&gt;If &lt;code&gt;pre: &#39;command&#39;&lt;/code&gt; is specified, the debugger suspends the program and runs the &lt;code&gt;command&lt;/code&gt; as a debug command, and keeps suspended. It is useful if you have operations before suspend. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;def foo
+  binding.b pre: &#39;p bar()&#39;
+  ...
+end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In this case, you can see the result of &lt;code&gt;bar()&lt;/code&gt; every time you stop there.&lt;/p&gt; 
+&lt;h2&gt;rdbg command help&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-console&quot;&gt;exe/rdbg [options] -- [debuggee options]
+
+Debug console mode:
+    -n, --nonstop                    Do not stop at the beginning of the script.
+    -e DEBUG_COMMAND                 Execute debug command at the beginning of the script.
+    -x, --init-script=FILE           Execute debug command in the FILE.
+        --no-rc                      Ignore ~/.rdbgrc
+        --no-color                   Disable colorize
+        --no-sigint-hook             Disable to trap SIGINT
+    -c, --command                    Enable command mode.
+                                     The first argument should be a command name in $PATH.
+                                     Example: &#39;rdbg -c bundle exec rake test&#39;
+
+    -O, --open=[FRONTEND]            Start remote debugging with opening the network port.
+                                     If TCP/IP options are not given, a UNIX domain socket will be used.
+                                     If FRONTEND is given, prepare for the FRONTEND.
+                                     Now rdbg, vscode and chrome is supported.
+        --sock-path=SOCK_PATH        UNIX Domain socket path
+        --port=PORT                  Listening TCP/IP port
+        --port-range=PORT_RANGE      Number of ports to try to connect to
+        --host=HOST                  Listening TCP/IP host
+        --cookie=COOKIE              Set a cookie for connection
+        --session-name=NAME          Session name
+
+  Debug console mode runs Ruby program with the debug console.
+
+  &#39;rdbg target.rb foo bar&#39;                starts like &#39;ruby target.rb foo bar&#39;.
+  &#39;rdbg -- -r foo -e bar&#39;                 starts like &#39;ruby -r foo -e bar&#39;.
+  &#39;rdbg -c rake test&#39;                     starts like &#39;rake test&#39;.
+  &#39;rdbg -c -- rake test -t&#39;               starts like &#39;rake test -t&#39;.
+  &#39;rdbg -c bundle exec rake test&#39;         starts like &#39;bundle exec rake test&#39;.
+  &#39;rdbg -O target.rb foo bar&#39;             starts and accepts attaching with UNIX domain socket.
+  &#39;rdbg -O --port 1234 target.rb foo bar&#39; starts accepts attaching with TCP/IP localhost:1234.
+  &#39;rdbg -O --port 1234 -- -r foo -e bar&#39;  starts accepts attaching with TCP/IP localhost:1234.
+  &#39;rdbg target.rb -O chrome --port 1234&#39;  starts and accepts connecting from Chrome Devtools with localhost:1234.
+
+Attach mode:
+    -A, --attach                     Attach to debuggee process.
+
+  Attach mode attaches the remote debug console to the debuggee process.
+
+  &#39;rdbg -A&#39;           tries to connect via UNIX domain socket.
+                      If there are multiple processes are waiting for the
+                      debugger connection, list possible debuggee names.
+  &#39;rdbg -A path&#39;      tries to connect via UNIX domain socket with given path name.
+  &#39;rdbg -A port&#39;      tries to connect to localhost:port via TCP/IP.
+  &#39;rdbg -A host port&#39; tries to connect to host:port via TCP/IP.
+
+Other options:
+    -v                               Show version number
+        --version                    Show version number and exit
+    -h, --help                       Print help
+        --util=NAME                  Utility mode (used by tools)
+        --stop-at-load               Stop immediately when the debugging feature is loaded.
+
+NOTE
+  All messages communicated between a debugger and a debuggee are *NOT* encrypted.
+  Please use the remote debugging feature carefully.
+
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Additional Resources&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://st0012.dev/from-byebug-to-ruby-debug&quot;&gt;From byebug to ruby/debug&lt;/a&gt; by Stan Lo - A migration guide for &lt;code&gt;byebug&lt;/code&gt; users.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://st0012.dev/ruby-debug-cheatsheet&quot;&gt;ruby/debug cheatsheet&lt;/a&gt; by Stan Lo&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Contributing&lt;/h1&gt; 
+&lt;p&gt;Bug reports and pull requests are welcome on GitHub at &lt;a href=&quot;&quot;&gt;https://github.com/ruby/debug&lt;/a&gt;. This debugger is not mature so your feedback will help us.&lt;/p&gt; 
+&lt;p&gt;Please also check the &lt;a href=&quot;https://raw.githubusercontent.com/ruby/debug/master/CONTRIBUTING.md&quot;&gt;contributing guideline&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Acknowledgement&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Some tests are based on &lt;a href=&quot;https://github.com/deivid-rodriguez/byebug&quot;&gt;deivid-rodriguez/byebug: Debugging in Ruby 2&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Several codes in &lt;code&gt;server_cdp.rb&lt;/code&gt; are based on &lt;a href=&quot;https://github.com/geoffreylitt/ladybug&quot;&gt;geoffreylitt/ladybug: Visual Debugger&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/96ad2b02aa066ed4b86fc500f85f9b64fd58ade788c48d890d102f36c0802344/ruby/debug" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>dependabot/dependabot-core</title>
+      <link>https://github.com/dependabot/dependabot-core</link>
+      <description>&lt;p&gt;🤖 Dependabot&#39;s core logic for creating update PRs.&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://user-images.githubusercontent.com/7659/174594540-5e29e523-396a-465b-9a6e-6cab5b15a568.svg&quot; /&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://user-images.githubusercontent.com/7659/174594559-0b3ddaa7-e75b-4f10-9dee-b51431a9fd4c.svg&quot; /&gt; 
+  &lt;img src=&quot;https://user-images.githubusercontent.com/7659/174594540-5e29e523-396a-465b-9a6e-6cab5b15a568.svg?sanitize=true&quot; alt=&quot;Dependabot&quot; width=&quot;336&quot; /&gt; 
+ &lt;/picture&gt; &lt;/h1&gt; 
+&lt;p&gt;Welcome to the public home of Dependabot &lt;img alt=&quot;dependabot&quot; src=&quot;https://github.githubassets.com/images/icons/emoji/dependabot.png?v8&quot; /&gt;.&lt;/p&gt; 
+&lt;h1&gt;Table of Contents&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#what-is-dependabot-core&quot;&gt;What is Dependabot-Core?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#how-to-run-dependabot&quot;&gt;How to run Dependabot&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#contributing-to-dependabot&quot;&gt;Contributing to Dependabot&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#reporting-issues-and-feature-requests&quot;&gt;Reporting Issues and Feature Requests&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#submitting-pull-requests&quot;&gt;Submitting Pull Requests&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#new-ecosystems&quot;&gt;New Ecosystems&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#development-guide&quot;&gt;Development Guide&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#getting-a-development-environment-running&quot;&gt;Getting a Development Environment Running&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#debugging-problems&quot;&gt;Debugging Problems&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#running-tests&quot;&gt;Running Tests&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#profiling&quot;&gt;Profiling&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#architecture-and-code-layout&quot;&gt;Architecture and Code Layout&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#trademarks&quot;&gt;Trademarks&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#notes-for-project-maintainers&quot;&gt;Notes for Project Maintainers&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;What is Dependabot-Core?&lt;/h1&gt; 
+&lt;p&gt;Dependabot-Core is the library at the heart of &lt;a href=&quot;https://docs.github.com/en/code-security/dependabot&quot;&gt;Dependabot&lt;/a&gt; security / version updates.&lt;/p&gt; 
+&lt;p&gt;Use it to generate automated pull requests updating dependencies for projects written in Ruby, JavaScript, Python, PHP, Dart, Elixir, Elm, Go, Rust, Java, Julia, and .NET. It can also update git submodules, Docker files, Opentofu, Terraform files and Pre-Commit hooks. Features include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Check for the latest version of a dependency &lt;em&gt;that&#39;s resolvable given a project&#39;s other dependencies&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Generate updated manifest and lockfiles for a new dependency version&lt;/li&gt; 
+ &lt;li&gt;Generate PR descriptions that include the updated dependency&#39;s changelogs, release notes, and commits&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;How to run Dependabot&lt;/h1&gt; 
+&lt;p&gt;Most people are familiar with the Dependabot service that runs on &lt;a href=&quot;http://GitHub.com&quot;&gt;GitHub.com&lt;/a&gt; and GitHub Enterprise. Enabling that is as simple as &lt;a href=&quot;https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuring-dependabot-version-updates&quot;&gt;checking a &lt;code&gt;dependabot.yml&lt;/code&gt; configuration file in to your repository&#39;s &lt;code&gt;.github&lt;/code&gt; directory&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;However, if you want to run a custom version of Dependabot or run it on another platform, you&#39;re not left out in the cold. This repo provides the logic necessary for hosting your own standalone Dependabot. It currently supports opening Pull Requests against repositories hosted on GitHub, Github Enterprise, Azure DevOps, GitLab, BitBucket, and AWS CodeCommit.&lt;/p&gt; 
+&lt;p&gt;Dependabot-Core is a library, so you&#39;ll need an entrypoint script of some kind. Here are a few examples to help you get started.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; If you&#39;re looking to run Dependabot locally for development/debugging purposes, see the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#development-guide&quot;&gt;Development Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Dependabot CLI&lt;/h2&gt; 
+&lt;p&gt;The open-source &lt;a href=&quot;https://github.com/dependabot/cli&quot;&gt;Dependabot CLI&lt;/a&gt; is our recommended entrypoint for standalone use cases.&lt;/p&gt; 
+&lt;p&gt;We use it in production here at GitHub, and advanced users can also leverage it to run a self-hosted version of Dependabot within their own projects / CI systems.&lt;/p&gt; 
+&lt;p&gt;It creates dependency diffs but does not create PRs. So you will need to wire that up yourself. To aid with that, we created the &lt;a href=&quot;https://github.com/dependabot/example-cli-usage&quot;&gt;example-cli-usage&lt;/a&gt; repo which demonstrates how to turn those diffs into actual PR&#39;s.&lt;/p&gt; 
+&lt;h2&gt;Write your own Ruby-based tool&lt;/h2&gt; 
+&lt;p&gt;Alternatively, because Dependabot-Core is a Ruby library, you can write your own ruby-based wrapper that leverages the Dependabot-core code. The tricky bit is Dependabot assumes it&#39;s running in an isolated, throw-away environment so you&#39;ll need to handle all that yourself. For example protecting against security risks of arbitrary code execution exfiltrating credentials, ensuring the appropriate version of Go or Python or whatever language you need is available, and handling when Dependabot makes changes to its runtime environment.&lt;/p&gt; 
+&lt;h2&gt;Dependabot on CI&lt;/h2&gt; 
+&lt;p&gt;In an environment such as GitHub where Dependabot runs in a container, if you want to change your build or installation process depending on whether it&#39;s running within the context of the Dependabot container, you can check the existence of the &lt;code&gt;DEPENDABOT&lt;/code&gt; environment variable.&lt;/p&gt; 
+&lt;h1&gt;Contributing to Dependabot&lt;/h1&gt; 
+&lt;h2&gt;Reporting issues and Feature Requests&lt;/h2&gt; 
+&lt;p&gt;👋 Want to give us feedback on Dependabot, or contribute to it? That&#39;s great - thank you so much!&lt;/p&gt; 
+&lt;h3&gt;Reproducible Example&lt;/h3&gt; 
+&lt;p&gt;Most bug reports should be accompanied by a link to a public repository that reproduces the problem. Bug reports that cannot be reproduced on a public repo using the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#cli-tool&quot;&gt;CLI tool&lt;/a&gt; or &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#dry-run-script&quot;&gt;dry-run script&lt;/a&gt; may be closed as &quot;cannot reproduce&quot;.&lt;/p&gt; 
+&lt;h3&gt;No &quot;+1&quot; Comments&lt;/h3&gt; 
+&lt;p&gt;Our issue tracker is quite active, and as a result there&#39;s a good chance someone already filed the same issue. If so, please upvote that issue, because we use 👍 reactions on issues as one signal to gauge the impact of a feature request or bug.&lt;/p&gt; 
+&lt;p&gt;However, please do not leave comments that contribute nothing new to the discussion. For details, see &lt;a href=&quot;https://go.dev/wiki/NoPlusOne&quot;&gt;https://go.dev/wiki/NoPlusOne&lt;/a&gt;. This is open source, if you see something you want fixed, we are happy to coach you through contributing a pull request to fix it.&lt;/p&gt; 
+&lt;h3&gt;Don&#39;t file issues about Security Alerts or Dependency Graph&lt;/h3&gt; 
+&lt;p&gt;The issue-tracker is meant solely for issues related to Dependabot&#39;s updating logic. Issues about &lt;a href=&quot;https://docs.github.com/en/code-security/dependabot/dependabot-alerts/about-dependabot-alerts&quot;&gt;security alerts&lt;/a&gt; or &lt;a href=&quot;https://docs.github.com/en/code-security/supply-chain-security/understanding-your-software-supply-chain/about-the-dependency-graph&quot;&gt;Dependency Graph&lt;/a&gt; should instead be filed as a &lt;a href=&quot;https://github.com/orgs/community/discussions/categories/code-security&quot;&gt;Code Security discussion&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;A good rule of thumb is that if you have questions about the &lt;em&gt;diff&lt;/em&gt; in a PR, it belongs here.&lt;/p&gt; 
+&lt;h3&gt;Disclosing Security Issues&lt;/h3&gt; 
+&lt;p&gt;If you believe you have found a security vulnerability in Dependabot, please review &lt;a href=&quot;https://github.com/dependabot/dependabot-core/security/policy&quot;&gt;our security policy&lt;/a&gt; for details about disclosing them to the GitHub Bug Bounty program, so we can work to resolve the issue before it is disclosed publicly.&lt;/p&gt; 
+&lt;h2&gt;Submitting Pull Requests&lt;/h2&gt; 
+&lt;p&gt;Want to contribute to Dependabot? That&#39;s great - thank you so much!&lt;/p&gt; 
+&lt;p&gt;Contribution workflow:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Fork the project.&lt;/li&gt; 
+ &lt;li&gt;Get the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#getting-a-development-environment-running&quot;&gt;development environment running&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Make your feature addition or bug fix.&lt;/li&gt; 
+ &lt;li&gt;Add &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#running-tests&quot;&gt;tests for it&lt;/a&gt;. This is important so we don&#39;t break it in a future version unintentionally.&lt;/li&gt; 
+ &lt;li&gt;Send a pull request. The tests will run on it automatically, so don&#39;t worry if you couldn&#39;t get them running locally.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Please refer to the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING&lt;/a&gt; guidelines for more information.&lt;/p&gt; 
+&lt;h2&gt;New Ecosystems&lt;/h2&gt; 
+&lt;p&gt;If you&#39;re interested in contributing support for a new ecosystem, please refer to the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/CONTRIBUTING.md#contributing-new-ecosystems&quot;&gt;contributing guidelines&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;h1&gt;Development Guide&lt;/h1&gt; 
+&lt;h2&gt;Getting a Development Environment Running&lt;/h2&gt; 
+&lt;p&gt;The first step to debugging a problem or writing a new feature is getting a development environment going. We provide a custom &lt;a href=&quot;https://www.docker.com/products/docker-desktop/&quot;&gt;Docker-based&lt;/a&gt; developer shell that bakes in all required dependencies. In most cases this is the best way to work with the project.&lt;/p&gt; 
+&lt;p&gt;The developer shell uses volume mounts to incorporate your local changes to Dependabot&#39;s source code. This way you can edit locally using your favorite editor and the changes are immediately reflected within the docker container for performing &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#debugging-problems&quot;&gt;dry-runs&lt;/a&gt; or executing &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#running-tests&quot;&gt;tests&lt;/a&gt;. Note: See caveat about &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#making-changes-to-native-package-manager-helpers&quot;&gt;editing the native package manager helper scripts&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Quickstart&lt;/h3&gt; 
+&lt;p&gt;The script to launch the developer shell builds the docker images from scratch if it can&#39;t find them locally. This can take a while.&lt;/p&gt; 
+&lt;p&gt;Skip the wait by pulling the pre-built image for the ecosystem you want to work on. The image name uses the &lt;a href=&quot;https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem&quot;&gt;YAML ecosystem name&lt;/a&gt; to specify the ecosystem. For example, for Go Modules, the YAML name is &lt;code&gt;gomod&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;$ docker pull ghcr.io/dependabot/dependabot-updater-gomod
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note:&lt;/strong&gt; Pre-built images are currently only available for AMD64 / Intel architecture. They &lt;em&gt;will&lt;/em&gt; run on ARM, but 2x-3x slower than if you &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#building-images-from-scratch&quot;&gt;manually build ARM-specific images&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Next, run the developer shell, specifying the desired ecosystem &lt;em&gt;using the top-level directory name of the ecosystem in this project&lt;/em&gt;. For example, for Go Modules, the top-level directory is named &lt;code&gt;go_modules&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;$ bin/docker-dev-shell go_modules
+=&amp;gt; running docker development shell
+[dependabot-core-dev] ~ $ cd go_modules &amp;amp;&amp;amp; rspec spec # to run tests for a particular package
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Building Images from Scratch&lt;/h3&gt; 
+&lt;p&gt;Normally the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#quickstart&quot;&gt;Quickstart&lt;/a&gt; is all you need, but occasionally you&#39;ll need to rebuild the underlying images.&lt;/p&gt; 
+&lt;p&gt;For example, while we don&#39;t yet publish ARM-specific images, if you &lt;em&gt;are&lt;/em&gt; working on an ARM-based platform, we recommend manually building the images because the resulting containers run much faster.&lt;/p&gt; 
+&lt;p&gt;The developer shell runs within a Dependabot Development docker image, which is built on top of an ecosystem image.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;flowchart LR
+    A[&quot;docker-dev-shell script&quot;] --&amp;gt; B(&quot;Dependabot Development docker image&quot;)
+    B --&amp;gt; C(&quot;Dependabot Updater Ecosystem docker image (ecosystem specific)&quot;)
+    C --&amp;gt; D(&quot;Dependabot Updater Core docker image&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Changes to the docker files for any of these images requires building one or more of the images locally in order to be reflected in the development shell.&lt;/p&gt; 
+&lt;p&gt;The simple but slow way is to delete any existing images and then run &lt;code&gt;bin/docker-dev-shell&lt;/code&gt; which automatically builds missing images.&lt;/p&gt; 
+&lt;p&gt;The faster way is to pull all the pre-built images that are dependencies of the image you actually need to build. To (re)build a specific one:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;The Updater core image:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;$ docker pull ghcr.io/dependabot/dependabot-updater-core # OR
+$ docker build -f Dockerfile.updater-core . --tag=dependabot-manual-build/updater-core # recommended on ARM
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Each language/ecosystem sits on top of the core image. You need to rebuild whichever one you’re working on so it picks up your new core bits. For instance, if you’re working on &lt;strong&gt;Go Modules&lt;/strong&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;The Updater ecosystem image:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;$ docker pull ghcr.io/dependabot/dependabot-updater-gomod # OR
+$ script/build go_modules # recommended on ARM
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Or explicitly:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;$ docker build \
+--platform linux/amd64 \
+--file go_modules/Dockerfile \
+--build-arg UPDATER_CORE_IMAGE=dependabot-manual-build/updater-core \
+--tag dependabot-manual-build/updater-gomod \
+.
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Spin-up the development container using the &lt;code&gt;--rebuild&lt;/code&gt; flag:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;$ bin/docker-dev-shell go_modules --rebuild
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;If successful, you should be inside the shell:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;=&amp;gt; running docker development shell
+[dependabot-core-dev] ~ $
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Once inside the shell, you can run tests, e.g.:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;rspec common/spec/dependabot/file_fetchers/base_exclude_spec.rb
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Making Changes to native Package Manager helpers&lt;/h3&gt; 
+&lt;p&gt;Several Dependabot packages make use of &#39;native helpers&#39;, small executables in their host language.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Changes to these files are not automatically reflected inside the development container.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Once you have made any edits to the helper files, run the appropriate build script to update the installed version with your changes like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ bin/docker-dev-shell bundler
+=&amp;gt; running docker development shell
+$ bundler/helpers/v2/build
+$ bin/dry-run.rb bundler dependabot/demo --dir=&quot;/ruby&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To view logs and stdout from the native package manager helpers, see &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#debugging-native-package-manager-helpers&quot;&gt;debugging native helpers&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Debugging Problems&lt;/h1&gt; 
+&lt;p&gt;The first step to debugging is getting the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#getting-a-development-environment-running&quot;&gt;development environment running&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Within the development environment, you have two options for simulating a dependency update job: You can use the newly-developed &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#cli-tool&quot;&gt;CLI tool&lt;/a&gt; or the original &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#dry-run-script&quot;&gt;Dry-run script&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;CLI tool&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://github.com/dependabot/cli&quot;&gt;Dependabot CLI&lt;/a&gt; is a newly-developed tool that incorporates the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#private-registry-credential-management&quot;&gt;GitHub Credentials Proxy&lt;/a&gt; to more realistically simulate what&#39;s happening within the Dependabot-at-GitHub service when talking to private registries.&lt;/p&gt; 
+&lt;p&gt;It has a &lt;a href=&quot;https://github.com/dependabot/cli#debugging-with-the-cli&quot;&gt;dedicated debugging guide&lt;/a&gt;, including support for dropping into the Ruby debugger.&lt;/p&gt; 
+&lt;h2&gt;Dry-Run Script&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: Before running the dry-run script, you&#39;ll need to &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#getting-a-development-environment-running&quot;&gt;get the development environment running&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;You can use the &lt;code&gt;bin/dry-run.rb&lt;/code&gt; script to simulate a dependency update job, printing the diff that would be generated to the terminal. It takes two positional arguments: the &lt;a href=&quot;https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#package-ecosystem&quot;&gt;package manager&lt;/a&gt; and the GitHub repo name (including the account):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ bin/docker-dev-shell go_modules
+=&amp;gt; running docker development shell
+$ bin/dry-run.rb go_modules rsc/quote
+=&amp;gt; fetching dependency files
+=&amp;gt; parsing dependency files
+=&amp;gt; updating 2 dependencies
+...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Helpful options to speed up dry-run testing&lt;/h3&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#dry-run-script&quot;&gt;Dry-Run script&lt;/a&gt; supports many other options, all of which are documented at the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/bin/dry-run.rb&quot;&gt;top of the script&#39;s source code&lt;/a&gt;. For example:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;code&gt;LOCAL_GITHUB_ACCESS_TOKEN=&quot;fake-GitHub-PAT&quot;&lt;/code&gt; allows specifying a &lt;a href=&quot;https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/creating-a-personal-access-token&quot;&gt;GitHub Personal Access Token (PAT)&lt;/a&gt; to avoid rate-limiting.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;--dir=&quot;path/to/subdir/containing/manifest&lt;/code&gt; is required if the manifest file is located in a subdirectory.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;--dep=&quot;dep-name-that-I-want-to-test&quot;&lt;/code&gt; allows specifying a single dep to try to update and all others are ignored.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;--cache=files&lt;/code&gt; allows caching remote dep files locally for faster re-runs when testing local logic changes.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;--updater-options=feature_flag_name&lt;/code&gt; allows passing in feature flags.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Here&#39;s an example of how to string all these together&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;  LOCAL_GITHUB_ACCESS_TOKEN=github_pat_123_fake_string \
+  bin/dry-run.rb docker jeffwidman/secrets-store-driver \
+  --dir &quot;/manifest_staging/charts/secrets-store-provider&quot; \
+  --cache=files \
+  --dep=&quot;secrets-store&quot; \
+  --updater-options=kubernetes_updates
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Adding debug breakpoints&lt;/h3&gt; 
+&lt;p&gt;You can add a &lt;code&gt;debugger&lt;/code&gt; statement anywhere in the ruby code, for example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;      def latest_resolvable_version
+        debugger
+        latest_version_finder.latest_version
+      end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When you execute the job, the Ruby debugger will open. It should look something like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;[11, 20] in ~/go_modules/lib/dependabot/go_modules/update_checker.rb
+    11|   module GoModules
+    12|     class UpdateChecker &amp;lt; Dependabot::UpdateCheckers::Base
+    13|       require_relative &quot;update_checker/latest_version_finder&quot;
+    14|
+    15|       def latest_resolvable_version
+=&amp;gt;  16|         debugger
+    17|         latest_version_finder.latest_version
+    18|       end
+    19|
+    20|       # This is currently used to short-circuit latest_resolvable_version,
+=&amp;gt;#0    Dependabot::GoModules::UpdateChecker#latest_resolvable_version at ~/go_modules/lib/dependabot/go_modules/update_checker.rb:16
+  #1    Dependabot::GoModules::UpdateChecker#latest_version at ~/go_modules/lib/dependabot/go_modules/update_checker.rb:24
+  # and 9 frames (use `bt&#39; command for all frames)
+(rdbg)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;At this prompt, you can run &lt;a href=&quot;https://github.com/ruby/debug&quot;&gt;debugger commands&lt;/a&gt; to navigate around, or enter methods and variables to see what they contain. Try entering &lt;code&gt;dependency&lt;/code&gt; to see what dependency Dependabot is currently working on.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt; While in the debugger, changes made to the source code will not be picked up. You will have to end your debugging session and restart it.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Debugging Native Package Manager Helpers&lt;/h3&gt; 
+&lt;p&gt;When you&#39;re debugging an issue you often need to peek inside these scripts that run in a separate process.&lt;/p&gt; 
+&lt;p&gt;Print all log statements from native helpers using &lt;code&gt;DEBUG_HELPERS=true&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;DEBUG_HELPERS=true bin/dry-run.rb bundler dependabot/demo --dir=&quot;/ruby&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Pause execution to debug a single native helper function using &lt;code&gt;DEBUG_FUNCTION=&amp;lt;function name&amp;gt;&lt;/code&gt;. The function maps to a native helper function name, for example, one of the functions in &lt;code&gt;bundler/helpers/v2/lib/functions.rb&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;When this function is being executed a &lt;code&gt;debugger&lt;/code&gt; is inserted, pausing execution of the &lt;code&gt;bin/dry-run.rb&lt;/code&gt; script, this leaves the current updates &lt;code&gt;tmp&lt;/code&gt; directory in place allowing you to &lt;code&gt;cd&lt;/code&gt; into the directory and run the native helper function directly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt; DEBUG_FUNCTION=parsed_gemfile bin/dry-run.rb bundler dependabot/demo --dir=&quot;/ruby&quot;
+=&amp;gt; fetching dependency files
+=&amp;gt; dumping fetched dependency files: ./dry-run/dependabot/demo/ruby
+=&amp;gt; parsing dependency files
+$ cd /home/dependabot/dependabot-core/tmp/dependabot_TEMP/ruby &amp;amp;&amp;amp; echo &quot;{\&quot;function\&quot;:\&quot;parsed_gemfile\&quot;,\&quot;args\&quot;:{\&quot;gemfile_name\&quot;:\&quot;Gemfile\&quot;,\&quot;lockfile_name\&quot;:\&quot;Gemfile.lock\&quot;,\&quot;dir\&quot;:\&quot;/home/dependabot/dependabot-core/tmp/dependabot_TEMP/ruby\&quot;}}&quot; | BUNDLER_VERSION=1.17.3 BUNDLE_GEMFILE=/opt/bundler/v1/Gemfile GEM_HOME=/opt/bundler/v1/.bundle bundle exec ruby /opt/bundler/v1/run.rb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Copy and run the &lt;code&gt;cd...&lt;/code&gt; command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd /home/dependabot/dependabot-core/tmp/dependabot_TEMP/ruby &amp;amp;&amp;amp; echo &quot;{\&quot;function\&quot;:\&quot;parsed_gemfile\&quot;,\&quot;args\&quot;:{\&quot;gemfile_name\&quot;:\&quot;Gemfile\&quot;,\&quot;lockfile_name\&quot;:\&quot;Gemfile.lock\&quot;,\&quot;dir\&quot;:\&quot;/home/dependabot/dependabot-core/tmp/dependabot_TEMP/ruby\&quot;}}&quot; | BUNDLER_VERSION=1.17.3 BUNDLE_GEMFILE=/opt/bundler/v1/Gemfile GEM_HOME=/opt/bundler/v1/.bundle bundle exec ruby /opt/bundler/v1/run.rb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This should log out the output of the &lt;code&gt;parsed_gemfile&lt;/code&gt; function:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;{&quot;result&quot;:[{&quot;name&quot;:&quot;business&quot;,&quot;requirement&quot;:&quot;~&amp;gt; 1.0.0&quot;,&quot;groups&quot;:[&quot;default&quot;],&quot;source&quot;:null,&quot;type&quot;:&quot;runtime&quot;},{&quot;name&quot;:&quot;uk_phone_numbers&quot;,&quot;requirement&quot;:&quot;~&amp;gt; 0.1.0&quot;,&quot;groups&quot;:[&quot;default&quot;],&quot;source&quot;:null,&quot;type&quot;:&quot;runtime&quot;}]}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Keep in mind that unlike changes to the ruby source, changes on your host machine to the native helpers source code are not synced to the development container. So you have two choices for editing the native helper:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;You can directly edit the temporary copy of the native helper within the development container, for example: &lt;code&gt;vi /opt/bundler/v1/lib/functions/file_parser.rb&lt;/code&gt;. And then re-run the &lt;code&gt;cd...&lt;/code&gt; command. This is the fastest way to debug, but any changes won&#39;t be saved outside the container.&lt;/li&gt; 
+ &lt;li&gt;You can edit your local copy, and then &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#making-changes-to-native-package-manager-helpers&quot;&gt;rebuild the native helper&lt;/a&gt;. This will require re-running the dry-run script to pickup the change.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Debugging Ignore Conditions&lt;/h3&gt; 
+&lt;p&gt;Most of the ecosystems in Dependabot-Core support &lt;code&gt;ignore&lt;/code&gt; conditions which allow a user to specify dependency names or versions to exclude from upgrades. The docs for the Dependabot service at GitHub &lt;a href=&quot;https://docs.github.com/en/code-security/dependabot/dependabot-version-updates/configuration-options-for-the-dependabot.yml-file#ignore&quot;&gt;describe the feature in more detail&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#cli-tool&quot;&gt;Dependabot CLI&lt;/a&gt; supports passing in ignore conditions as part of the job definition. See &lt;a href=&quot;https://github.com/dependabot/cli#scenario-file&quot;&gt;the example&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#dry-run-script&quot;&gt;dry-run script&lt;/a&gt; supports passing in one or more ignore conditions via the env var &lt;code&gt;IGNORE_CONDITIONS&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;IGNORE_CONDITIONS=&#39;[{&quot;dependency-name&quot;:&quot;*&quot;,&quot;update-types&quot;: [&quot;version-update:semver-major&quot;]}]&#39; \
+bin/dry-run.rb docker test_org/test-dependabot`
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Debugging Security Updates&lt;/h3&gt; 
+&lt;p&gt;Many of the ecosystems in Dependabot-Core support &lt;a href=&quot;https://docs.github.com/en/code-security/dependabot/dependabot-security-updates/about-dependabot-security-updates&quot;&gt;security updates&lt;/a&gt;. These are a special form of version update where a dependency name and range of vulnerable versions are passed in. Dependabot-Core will try to upgrade any instance of that dependency to the &lt;em&gt;minimum&lt;/em&gt; non-vulnerable version. This is in contrast to a normal version update which tries to update to the &lt;em&gt;latest&lt;/em&gt; version.&lt;/p&gt; 
+&lt;p&gt;The env var &lt;code&gt;SECURITY_ADVISORIES&lt;/code&gt; allows passing one or more security alert notifications to the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#dry-run-script&quot;&gt;dry-run script&lt;/a&gt; in order to simulate a security update:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;SECURITY_ADVISORIES=&#39;[{&quot;dependency-name&quot;:&quot;buffer&quot;,&quot;patched-versions&quot;:[],&quot;unaffected-versions&quot;:[],&quot;affected-versions&quot;:[&quot;&amp;lt;= 2.0.0&quot;]}]&#39; \
+bin/dry-run.rb pub dart-lang/pub-dev --dir &quot;/app&quot; --cache=files --dep=&quot;buffer&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Visual Studio Code and Docker&lt;/h3&gt; 
+&lt;p&gt;There&#39;s built-in support for leveraging Visual Studio Code&#39;s &lt;a href=&quot;https://code.visualstudio.com/docs/devcontainers/containers&quot;&gt;ability for debugging&lt;/a&gt; inside a Docker container. After installing the recommended &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers&quot;&gt;&lt;code&gt;Dev Containers&lt;/code&gt; extension&lt;/a&gt;, simply press &lt;code&gt;Ctrl+Shift+P&lt;/code&gt; (&lt;code&gt;⇧⌘P&lt;/code&gt; on macOS) and select &lt;code&gt;Dev Containers: Reopen in Container&lt;/code&gt;. You can also access the dropdown by clicking on the green button in the bottom-left corner of the editor. If the development Docker image isn&#39;t present on your machine, it will be built automatically. Once that&#39;s finished, start the &lt;code&gt;Debug Dry Run&lt;/code&gt; configuration &lt;code&gt;(F5)&lt;/code&gt; and you&#39;ll be prompted to select a package manager and a repository to perform a dry run on. Feel free to place breakpoints on the code.&lt;/p&gt; 
+&lt;p&gt;There is also support to debug individual test runs by running the &lt;code&gt;Debug Tests&lt;/code&gt; configuration &lt;code&gt;(F5)&lt;/code&gt; and you&#39;ll be prompted to select an ecosystem and provide an rspec path.&lt;/p&gt; 
+&lt;p&gt;⚠️ The &lt;code&gt;Clone Repository ...&lt;/code&gt; commands of the Remote Containers extension are currently missing some functionality and are therefore not supported. You have to clone the repository manually and use the &lt;code&gt;Reopen in Container&lt;/code&gt; or &lt;code&gt;Open Folder in Container...&lt;/code&gt; command.&lt;/p&gt; 
+&lt;h2&gt;Running Tests&lt;/h2&gt; 
+&lt;p&gt;Once you get the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#getting-a-development-environment-running&quot;&gt;development environment for a particular ecosystem&lt;/a&gt; going, execute the tests for that ecosystem by running &lt;code&gt;rspec spec&lt;/code&gt; inside that ecosystem&#39;s folder, e.g.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ cd go_modules
+$ rspec spec
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also limit the tests to only the file you&#39;re working on, or only tests that previously failed, for example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ rspec spec/dependabot/file_updaters/elixir --only-failures
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Style is enforced by &lt;a href=&quot;https://rubocop.org/&quot;&gt;RuboCop&lt;/a&gt;. To check for style violations, simply run &lt;code&gt;rubocop&lt;/code&gt; in each of the packages, e.g.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;$ cd go_modules
+$ rubocop
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Profiling&lt;/h2&gt; 
+&lt;p&gt;You can profile a &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/#dry-run-script&quot;&gt;dry-run&lt;/a&gt; by passing the &lt;code&gt;--profile&lt;/code&gt; flag when running it, or tag an &lt;code&gt;rspec&lt;/code&gt; test with &lt;code&gt;:profile&lt;/code&gt;. This will generate a &lt;code&gt;stackprof-&amp;lt;datetime&amp;gt;.dump&lt;/code&gt; file in the &lt;code&gt;tmp/&lt;/code&gt; folder, and you can generate a flamegraph from this by running:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;stackprof --d3-flamegraph tmp/stackprof-&amp;lt;data or spec name&amp;gt;.dump &amp;gt; tmp/flamegraph.html
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Architecture and Code Layout&lt;/h1&gt; 
+&lt;p&gt;Dependabot-Core is a collection of Ruby packages (gems), which contain the logic for updating dependencies in several languages.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;dependabot-common&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;The &lt;code&gt;common&lt;/code&gt; package contains all general-purpose/shared functionality. For instance, the code for creating pull requests for the different supported platforms lives here, as does most of the logic for handling Git dependencies (as most languages support Git dependencies in one way or another). There are also base classes defined for each of the major concerns required to implement support for a language or package manager.&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;dependabot-{package-manager}&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;There is a gem for each package manager or language that Dependabot supports. At a minimum, each of these gems will implement the following classes:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Service&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;FileFetcher&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Fetches the relevant dependency files for a project (e.g., the &lt;code&gt;Gemfile&lt;/code&gt; and &lt;code&gt;Gemfile.lock&lt;/code&gt;). See the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/common/lib/dependabot/file_fetchers/README.md&quot;&gt;README&lt;/a&gt; for more details.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;FileParser&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Parses a dependency file and extracts a list of dependencies for a project. See the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/common/lib/dependabot/file_parsers/README.md&quot;&gt;README&lt;/a&gt; for more details.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;UpdateChecker&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Checks whether a given dependency is up-to-date. See the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/common/lib/dependabot/update_checkers/README.md&quot;&gt;README&lt;/a&gt; for more details.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;FileUpdater&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Updates a dependency file to use the latest version of a given dependency. See the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/common/lib/dependabot/file_updaters/README.md&quot;&gt;README&lt;/a&gt; for more details.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;MetadataFinder&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Looks up metadata about a dependency, such as its GitHub URL. See the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/common/lib/dependabot/metadata_finders/README.md&quot;&gt;README&lt;/a&gt; for more details.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Version&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Describes the logic for comparing dependency versions. See the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/hex/lib/dependabot/hex/version.rb&quot;&gt;hex Version class&lt;/a&gt; for an example.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Requirement&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Describes the format of a dependency requirement (e.g. &lt;code&gt;&amp;gt;= 1.2.3&lt;/code&gt;). See the &lt;a href=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/hex/lib/dependabot/hex/requirement.rb&quot;&gt;hex Requirement class&lt;/a&gt; for an example.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The high-level flow looks like this:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/dependabot/dependabot-core/main/architecture.svg?sanitize=true&quot; alt=&quot;Dependabot high-level architecture diagram&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;&lt;code&gt;dependabot-omnibus&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;This is a &quot;meta&quot; gem, that simply depends on all the others. If you want to automatically include support for all languages, you can just include this gem and you&#39;ll get all you need.&lt;/p&gt; 
+&lt;h2&gt;Private Registry Credential Management&lt;/h2&gt; 
+&lt;p&gt;For many ecosystems, Dependabot-Core supports private registries. Sometimes this happens by passing the private registry credentials directly to the native package managers (&lt;code&gt;npm&lt;/code&gt;, &lt;code&gt;pip&lt;/code&gt;, &lt;code&gt;bundler&lt;/code&gt;, etc), other times it happens within the Dependabot-Core Ruby code.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;sequenceDiagram
+    Private Registry Credentials-&amp;gt;&amp;gt;Dependabot-Core:&amp;lt;br /&amp;gt;
+    Dependabot-Core-&amp;gt;&amp;gt;Native Package Managers:&amp;lt;br /&amp;gt;
+    Native Package Managers-&amp;gt;&amp;gt;Package Registries:&amp;lt;br /&amp;gt;
+    Dependabot-Core-&amp;gt;&amp;gt;Package Registries:&amp;lt;br /&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;While simple and straightforward, this is a security risk for ecosystems that allow running untrusted code within their manifest files. For example &lt;code&gt;setup.py&lt;/code&gt; and &lt;code&gt;.gemspec&lt;/code&gt; allow running native Python and Ruby code. If a package in the dependency tree gets hacked, an attacker could push a malicious manifest that forces the native package manager to expose the creds.&lt;/p&gt; 
+&lt;p&gt;To guard against this, for the Dependabot service that Github runs, we wrap Dependabot-Core with a credential proxy so those private registry secrets are never exposed to Dependabot-Core.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;sequenceDiagram
+    Dependabot-Core-&amp;gt;&amp;gt;Credentials Proxy: All requests are unauthenticated
+    Credentials Proxy-&amp;gt;&amp;gt;Package Registries: Creds are injected by the Proxy
+    Note left of Dependabot-Core: The Dependabot Service&amp;lt;br /&amp;gt; that GitHub Runs
+    Package Registries-&amp;gt;&amp;gt;Credentials Proxy: Creds are stripped by the Proxy
+    Credentials Proxy-&amp;gt;&amp;gt;Dependabot-Core: Dependabot-Core never sees private registry credentials
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This also means if Dependabot-Core ever has a security vulnerability, those creds are still not at risk of being exposed.&lt;/p&gt; 
+&lt;h1&gt;Trademarks&lt;/h1&gt; 
+&lt;p&gt;This project may contain trademarks or logos for projects, products, or services. Authorized use of GitHub trademarks or logos is subject to and must follow &lt;a href=&quot;https://github.com/logos&quot;&gt;GitHub Logos and Usage&lt;/a&gt;. Use of GitHub trademarks or logos in modified versions of this project must not cause confusion or imply GitHub sponsorship. Any use of third-party trademarks or logos are subject to those third-party’s policies.&lt;/p&gt; 
+&lt;h1&gt;History&lt;/h1&gt; 
+&lt;p&gt;Dependabot and dependabot-core started life as &lt;a href=&quot;https://github.com/gocardless/bump&quot;&gt;Bump&lt;/a&gt; and &lt;a href=&quot;https://github.com/gocardless/bump-core&quot;&gt;Bump Core&lt;/a&gt;, back when @hmarr and @greysteil were working at &lt;a href=&quot;https://gocardless.com&quot;&gt;GoCardless&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Dependabot became a part of GitHub in 2019!&lt;/p&gt; 
+&lt;h1&gt;Notes for project maintainers&lt;/h1&gt; 
+&lt;details&gt;
+ &lt;summary&gt;&lt;span&gt;📖&lt;/span&gt; Release guide&lt;/summary&gt; 
+ &lt;p&gt; &lt;/p&gt;
+ &lt;p&gt;Publish a new release to RubyGems by running the &lt;a href=&quot;https://github.com/dependabot/dependabot-core/actions/workflows/gems-bump-version.yml&quot;&gt;&lt;code&gt;Gems - Bump Version&lt;/code&gt;&lt;/a&gt; workflow and following the instructions on the job summary.&lt;/p&gt; 
+ &lt;p&gt;In a nutshell the process will be:&lt;/p&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;Run the action to generate a version bump PR.&lt;/li&gt; 
+  &lt;li&gt;Merge the PR.&lt;/li&gt; 
+  &lt;li&gt;Tag that merge commit as a new release using the format &lt;code&gt;v1.2.3&lt;/code&gt;. The job summary contains a URL pre-populated with the correct version for the title and tag.&lt;/li&gt; 
+  &lt;li&gt;Once the release is tagged, another GitHub Action workflow automatically pushes it to RubyGems.&lt;/li&gt; 
+ &lt;/ol&gt; 
+ &lt;p&gt;&lt;/p&gt; 
+&lt;/details&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/6e0e1ce87597f8bb186a3d4f1ffd19e7496f0034e597c0861545d25abea085dc/dependabot/dependabot-core" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Homebrew/brew</title>
+      <link>https://github.com/Homebrew/brew</link>
+      <description>&lt;p&gt;🍺 The Package Manager for Everywhere&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;🍺 Homebrew&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/Homebrew/brew/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/Homebrew/brew.svg?sanitize=true&quot; alt=&quot;Latest GitHub release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Homebrew/brew/raw/HEAD/LICENSE.txt&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/Homebrew/brew&quot; alt=&quot;BSD-2-Clause License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sponsors/Homebrew&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/sponsors/homebrew?label=GitHub%20Sponsors&quot; alt=&quot;GitHub Sponsors&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://opencollective.com/homebrew&quot;&gt;&lt;img src=&quot;https://img.shields.io/opencollective/all/homebrew?label=Open%20Collective&quot; alt=&quot;Open Collective backers and sponsors&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://brew.sh&quot;&gt;Homebrew&#39;s homepage at &lt;code&gt;brew.sh&lt;/code&gt;&lt;/a&gt; for installation instructions, what homebrew does, packages, &lt;code&gt;brew bundle&lt;/code&gt; and more.&lt;/p&gt; 
+&lt;img src=&quot;https://brew.sh/assets/img/brew-install.gif&quot; alt=&quot;Homebrew install demo&quot; width=&quot;580&quot; height=&quot;424&quot; /&gt; 
+&lt;h2&gt;💸 Donations&lt;/h2&gt; 
+&lt;p&gt;Homebrew is a non-profit project run entirely by volunteers, not employees. We need your funds to pay for software, hardware and hosting around continuous integration and future improvements to the project. Every donation will be spent on making Homebrew better for our users.&lt;/p&gt; 
+&lt;p&gt;Please consider a regular donation through &lt;a href=&quot;https://github.com/sponsors/Homebrew&quot;&gt;GitHub Sponsors&lt;/a&gt;, &lt;a href=&quot;https://opencollective.com/homebrew&quot;&gt;Open Collective&lt;/a&gt; or &lt;a href=&quot;https://www.patreon.com/homebrew&quot;&gt;Patreon&lt;/a&gt;. Homebrew is fiscally hosted by the &lt;a href=&quot;https://opencollective.com/opensource&quot;&gt;Open Source Collective&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;📚 Documentation&lt;/h2&gt; 
+&lt;p&gt;Read the Homebrew manual with &lt;a href=&quot;https://docs.brew.sh/Manpage&quot;&gt;&lt;code&gt;man brew&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Read &lt;a href=&quot;https://docs.brew.sh/Installation&quot;&gt;installation&lt;/a&gt;, &lt;a href=&quot;https://docs.brew.sh/Troubleshooting&quot;&gt;troubleshooting&lt;/a&gt;, &lt;a href=&quot;https://github.com/Homebrew/brew/raw/HEAD/docs/How-To-Open-a-Homebrew-Pull-Request.md&quot;&gt;contribution&lt;/a&gt; including the &lt;a href=&quot;https://docs.brew.sh/FAQ&quot;&gt;FAQ&lt;/a&gt; on &lt;a href=&quot;https://docs.brew.sh/&quot;&gt;&lt;code&gt;docs.brew.sh&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Read the &lt;a href=&quot;https://brew.sh/blog/&quot;&gt;Homebrew Blog&lt;/a&gt; for release notes, project updates and announcements.&lt;/p&gt; 
+&lt;h2&gt;📦 Packages&lt;/h2&gt; 
+&lt;p&gt;Find &lt;a href=&quot;https://formulae.brew.sh/formula/&quot;&gt;formulae&lt;/a&gt;, &lt;a href=&quot;https://formulae.brew.sh/cask/&quot;&gt;casks&lt;/a&gt;, dependencies, versions and package metadata on &lt;a href=&quot;https://formulae.brew.sh&quot;&gt;&lt;code&gt;formulae.brew.sh&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;View anonymised install, build and operating system usage data at &lt;a href=&quot;https://formulae.brew.sh/analytics/&quot;&gt;&lt;code&gt;formulae.brew.sh/analytics&lt;/code&gt;&lt;/a&gt;. Read how Homebrew uses &lt;a href=&quot;https://docs.brew.sh/Analytics&quot;&gt;Anonymous Analytics&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;🔧 Get Help&lt;/h2&gt; 
+&lt;p&gt;First, please run &lt;code&gt;brew update&lt;/code&gt; and run (and &lt;strong&gt;read&lt;/strong&gt;) &lt;code&gt;brew doctor&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Second, read the &lt;a href=&quot;https://docs.brew.sh/Troubleshooting&quot;&gt;Troubleshooting Checklist&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;If you don&#39;t read these it will take us far longer to help you with your problem.&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;After this, if you still need help, please ask in &lt;a href=&quot;https://github.com/orgs/Homebrew/discussions&quot;&gt;Homebrew/discussions&lt;/a&gt; or follow (and &lt;strong&gt;read&lt;/strong&gt;) the &lt;a href=&quot;https://github.com/Homebrew/brew/issues/new/choose&quot;&gt;Homebrew/brew new issue chooser&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;💬 Social&lt;/h2&gt; 
+&lt;p&gt;Follow Homebrew on &lt;a href=&quot;https://fosstodon.org/@homebrew&quot;&gt;Mastodon&lt;/a&gt;, &lt;a href=&quot;https://bsky.app/profile/brew.sh&quot;&gt;Bluesky&lt;/a&gt;, &lt;a href=&quot;https://x.com/MacHomebrew&quot;&gt;𝕏 (Twitter)&lt;/a&gt; or subscribe to the &lt;a href=&quot;https://buttondown.email/homebrew&quot;&gt;newsletter&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;🤝 Contributing&lt;/h2&gt; 
+&lt;p&gt;We&#39;d love you to join us and &amp;gt;10,000 others by contributing to Homebrew!&lt;/p&gt; 
+&lt;p&gt;First, please read our &lt;a href=&quot;https://raw.githubusercontent.com/Homebrew/brew/main/CONTRIBUTING.md&quot;&gt;Contribution Guide&lt;/a&gt; and &lt;a href=&quot;https://github.com/Homebrew/.github/raw/HEAD/CODE_OF_CONDUCT.md#code-of-conduct&quot;&gt;Code of Conduct&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;A good starting point for contributing is:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;brew tap --force homebrew/core&lt;/code&gt; or &lt;code&gt;brew tap --force homebrew/cask&lt;/code&gt; (depending on whether you&#39;d rather work on formulae or casks)&lt;/li&gt; 
+ &lt;li&gt;perform a strict audit on a package you use e.g. &lt;code&gt;brew audit --strict ffmpeg&lt;/code&gt; for FFmpeg&lt;/li&gt; 
+ &lt;li&gt;if no warnings, run &lt;code&gt;brew audit --strict&lt;/code&gt; to run on all packages and pick one to fix&lt;/li&gt; 
+ &lt;li&gt;read through the warnings and fix them until &lt;code&gt;brew audit --strict &amp;lt;package&amp;gt;&lt;/code&gt; shows no results&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.brew.sh/How-To-Open-a-Homebrew-Pull-Request&quot;&gt;submit a pull request&lt;/a&gt; with your fixes&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Alternatively, for something more substantial, check out one of the open issues in &lt;a href=&quot;https://github.com/homebrew/brew/issues&quot;&gt;Homebrew/brew&lt;/a&gt;, &lt;a href=&quot;https://github.com/homebrew/homebrew-core/issues&quot;&gt;Homebrew/homebrew-core&lt;/a&gt; or &lt;a href=&quot;https://github.com/homebrew/homebrew-cask/issues&quot;&gt;Homebrew/homebrew-cask&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you&#39;ve had inspiration for a new feature or bug fix: we don&#39;t need you to open an issue first, just &lt;a href=&quot;https://docs.brew.sh/How-To-Open-a-Homebrew-Pull-Request&quot;&gt;open a pull request&lt;/a&gt; with your implementation and we&#39;ll review it.&lt;/p&gt; 
+&lt;p&gt;Good luck!&lt;/p&gt; 
+&lt;h2&gt;🔐 Security&lt;/h2&gt; 
+&lt;p&gt;Please see &lt;a href=&quot;https://github.com/Homebrew/.github/raw/HEAD/SECURITY.md&quot;&gt;our security policy&lt;/a&gt; for how to report security issues and what is in scope.&lt;/p&gt; 
+&lt;h2&gt;👥 Who We Are&lt;/h2&gt; 
+&lt;p&gt;Homebrew&#39;s &lt;a href=&quot;https://docs.brew.sh/Homebrew-Governance#project-leader&quot;&gt;Project Leader&lt;/a&gt; is &lt;a href=&quot;https://github.com/MikeMcQuaid&quot;&gt;Mike McQuaid&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Homebrew&#39;s &lt;a href=&quot;https://docs.brew.sh/Homebrew-Governance#lead-maintainer&quot;&gt;Lead Maintainers&lt;/a&gt; are &lt;a href=&quot;https://github.com/bevanjkay&quot;&gt;Bevan Kay&lt;/a&gt;, &lt;a href=&quot;https://github.com/carlocab&quot;&gt;Carlo Cabrera&lt;/a&gt;, &lt;a href=&quot;https://github.com/issyl0&quot;&gt;Issy Long&lt;/a&gt;, &lt;a href=&quot;https://github.com/krehel&quot;&gt;Justin Krehel&lt;/a&gt;, &lt;a href=&quot;https://github.com/cho-m&quot;&gt;Michael Cho&lt;/a&gt;, &lt;a href=&quot;https://github.com/MikeMcQuaid&quot;&gt;Mike McQuaid&lt;/a&gt;, &lt;a href=&quot;https://github.com/nandahkrishna&quot;&gt;Nanda H Krishna&lt;/a&gt;, &lt;a href=&quot;https://github.com/p-linnane&quot;&gt;Patrick Linnane&lt;/a&gt;, &lt;a href=&quot;https://github.com/chenrui333&quot;&gt;Rui Chen&lt;/a&gt;, &lt;a href=&quot;https://github.com/ZhongRuoyu&quot;&gt;Ruoyu Zhong&lt;/a&gt;, &lt;a href=&quot;https://github.com/samford&quot;&gt;Sam Ford&lt;/a&gt; and &lt;a href=&quot;https://github.com/SMillerDev&quot;&gt;Sean Molenaar&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Homebrew&#39;s other Maintainers are &lt;a href=&quot;https://github.com/andrew&quot;&gt;Andrew Nesbitt&lt;/a&gt;, &lt;a href=&quot;https://github.com/botantony&quot;&gt;Anton Melnikov&lt;/a&gt;, &lt;a href=&quot;https://github.com/Bo98&quot;&gt;Bo Anderson&lt;/a&gt;, &lt;a href=&quot;https://github.com/branchv&quot;&gt;Branch Vincent&lt;/a&gt;, &lt;a href=&quot;https://github.com/alebcay&quot;&gt;Caleb Xu&lt;/a&gt;, &lt;a href=&quot;https://github.com/daeho-ro&quot;&gt;Daeho Ro&lt;/a&gt;, &lt;a href=&quot;https://github.com/dduugg&quot;&gt;Douglas Eichelberger&lt;/a&gt;, &lt;a href=&quot;https://github.com/dtrodrigues&quot;&gt;Dustin Rodrigues&lt;/a&gt;, &lt;a href=&quot;https://github.com/fxcoudert&quot;&gt;FX Coudert&lt;/a&gt;, &lt;a href=&quot;https://github.com/khipp&quot;&gt;Klaus Hipp&lt;/a&gt;, &lt;a href=&quot;https://github.com/reitermarkus&quot;&gt;Markus Reiter&lt;/a&gt;, &lt;a href=&quot;https://github.com/iMichka&quot;&gt;Michka Popoff&lt;/a&gt;, &lt;a href=&quot;https://github.com/Rylan12&quot;&gt;Rylan Polster&lt;/a&gt;, &lt;a href=&quot;https://github.com/stefanb&quot;&gt;Stefan Baebler&lt;/a&gt;, &lt;a href=&quot;https://github.com/Moisan&quot;&gt;Thierry Moisan&lt;/a&gt; and &lt;a href=&quot;https://github.com/woodruffw&quot;&gt;William Woodruff&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Homebrew was originally created by &lt;a href=&quot;https://github.com/mxcl&quot;&gt;Max Howell&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;📜 License&lt;/h2&gt; 
+&lt;p&gt;Code is under the &lt;a href=&quot;https://raw.githubusercontent.com/Homebrew/brew/main/LICENSE.txt&quot;&gt;BSD 2-clause &quot;Simplified&quot; License&lt;/a&gt;. Documentation is under the &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;Creative Commons Attribution license&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;💛 Sponsors&lt;/h2&gt; 
+&lt;p&gt;Our macOS continuous integration infrastructure is hosted by &lt;a href=&quot;https://www.macstadium.com/customers/homebrew&quot;&gt;MacStadium&#39;s Orka&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.macstadium.com&quot;&gt;&lt;img src=&quot;https://cloud.githubusercontent.com/assets/125011/22776032/097557ac-eea6-11e6-8ba8-eff22dfd58f1.png&quot; alt=&quot;Powered by MacStadium&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Secure password storage and syncing is provided by &lt;a href=&quot;https://1password.com/teams/&quot;&gt;1Password for Teams&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://1password.com&quot;&gt;&lt;img src=&quot;https://i.1password.com/akb/featured/1password-icon.svg?sanitize=true&quot; alt=&quot;1Password&quot; height=&quot;64&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://brew.sh&quot;&gt;https://brew.sh&lt;/a&gt;&#39;s DNS is &lt;a href=&quot;https://dnsimple.com/resolving/homebrew&quot;&gt;resolving with DNSimple&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://dnsimple.com/resolving/homebrew#gh-light-mode-only&quot;&gt;&lt;img src=&quot;https://cdn.dnsimple.com/assets/resolving-with-us/logo-light.png&quot; alt=&quot;DNSimple&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://dnsimple.com/resolving/homebrew#gh-dark-mode-only&quot;&gt;&lt;img src=&quot;https://cdn.dnsimple.com/assets/resolving-with-us/logo-dark.png&quot; alt=&quot;DNSimple&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Homebrew is generously supported by &lt;a href=&quot;https://github.com/joshuabaer&quot;&gt;Joshua Baer&lt;/a&gt;, &lt;a href=&quot;https://github.com/ydnar&quot;&gt;Randy Reddig&lt;/a&gt;, &lt;a href=&quot;https://github.com/Codecademy&quot;&gt;Codecademy&lt;/a&gt;, &lt;a href=&quot;https://github.com/icanbwell&quot;&gt;b.well&lt;/a&gt;, &lt;a href=&quot;https://github.com/Workbrew&quot;&gt;Workbrew&lt;/a&gt;, &lt;a href=&quot;https://github.com/github&quot;&gt;GitHub&lt;/a&gt;, &lt;a href=&quot;https://github.com/customink&quot;&gt;Custom Ink&lt;/a&gt;, &lt;a href=&quot;https://github.com/SAP&quot;&gt;SAP&lt;/a&gt; and many other users and organisations via &lt;a href=&quot;https://github.com/sponsors/Homebrew&quot;&gt;GitHub Sponsors&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/github&quot;&gt;&lt;img src=&quot;https://github.com/github.png?size=64&quot; alt=&quot;GitHub&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/29f455cf5d14ffb2fd8a4cef0002e8672af46ee889a6fbff8aaa2e8fa18c0abe/Homebrew/brew" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>e621ng/e621ng</title>
+      <link>https://github.com/e621ng/e621ng</link>
+      <description>&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/e621ng/e621ng/master/public/images/github-logo.svg?sanitize=true&quot; width=&quot;150&quot; height=&quot;150&quot; align=&quot;left&quot; /&gt; 
+ &lt;div align=&quot;left&quot;&gt; 
+  &lt;h3&gt;E621&lt;/h3&gt; 
+  &lt;a href=&quot;https://github.com/e621ng/e621ng/releases&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/e621ng/e621ng?label=version&amp;amp;style=flat-square&quot; alt=&quot;Releases&quot; /&gt; &lt;/a&gt;
+  &lt;br /&gt; 
+  &lt;a href=&quot;https://github.com/e621ng/e621ng/issues&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/issues/e621ng/e621ng?label=open%20issues&amp;amp;style=flat-square&quot; alt=&quot;Issues&quot; /&gt; &lt;/a&gt;
+  &lt;br /&gt; 
+  &lt;a href=&quot;https://github.com/e621ng/e621ng/pulls&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/issues-pr/e621ng/e621ng?style=flat-square&quot; alt=&quot;Pull Requests&quot; /&gt; &lt;/a&gt;
+  &lt;br /&gt; 
+  &lt;a href=&quot;https://github.com/e621ng/e621ng/commits/master/&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/check-runs/e621ng/e621ng/master?style=flat-square&quot; alt=&quot;GitHub branch check runs&quot; /&gt; &lt;/a&gt;
+  &lt;br /&gt; 
+ &lt;/div&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;h2&gt;Installation (Easy mode - For development environments)&lt;/h2&gt; 
+&lt;h3&gt;Prerequisites&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Latest version of Docker (&lt;a href=&quot;https://docs.docker.com/get-docker&quot;&gt;download&lt;/a&gt;).&lt;/li&gt; 
+ &lt;li&gt;Latest version of Docker Compose (&lt;a href=&quot;https://docs.docker.com/compose/install&quot;&gt;download&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Git (&lt;a href=&quot;https://git-scm.com/downloads&quot;&gt;download&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you are on Windows Docker Compose is already included, you do not need to install it yourself. If you are on Linux/MacOS you can probably use your package manager.&lt;/p&gt; 
+&lt;h3&gt;Installation&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download and install the &lt;a href=&quot;https://raw.githubusercontent.com/e621ng/e621ng/master/#prerequisites&quot;&gt;prerequisites&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Clone the repo with &lt;code&gt;git clone https://github.com/e621ng/e621ng.git&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;cd&lt;/code&gt; into the repo.&lt;/li&gt; 
+ &lt;li&gt;Copy the sample environment file with &lt;code&gt;cp .env.sample .env&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;WSL Only: Run the following commands:&lt;pre&gt;&lt;code&gt;git config core.fileMode false
+cp -ru hooks/ .git
+&lt;/code&gt;&lt;/pre&gt; This will resolve permission issues, and set up a hook that will reset file permissions to what they are supposed to be in the future.&lt;br /&gt; If you are not using WSL, this is likely not a problem for you.&lt;/li&gt; 
+ &lt;li&gt;Run the following commands:&lt;pre&gt;&lt;code&gt;docker compose run --rm e621 /app/bin/setup
+docker compose up
+&lt;/code&gt;&lt;/pre&gt; After running the commands once only &lt;code&gt;docker compose up&lt;/code&gt; is needed to bring up the containers.&lt;/li&gt; 
+ &lt;li&gt;To confirm the installation worked, open the web browser of your choice and enter &lt;code&gt;http://localhost:3000&lt;/code&gt; into the address bar and see if the website loads correctly. An admin account has been created automatically, the username and password are &lt;code&gt;admin&lt;/code&gt; and &lt;code&gt;hexerade&lt;/code&gt; respectively.&lt;/li&gt; 
+ &lt;li&gt;By default, the site will lack any content. For testing purposes, you can generate some using the following command:&lt;pre&gt;&lt;code&gt;docker exec -it e621ng-e621-1 /app/bin/populate
+&lt;/code&gt;&lt;/pre&gt; The command can be run multiple times to generate more content.&lt;br /&gt; Environmental variables are available to customize what kind of content is generated.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Note: When gems or js packages are updated you need to execute &lt;code&gt;docker compose build&lt;/code&gt; to reflect them in the container.&lt;/p&gt; 
+&lt;h3&gt;Local DText gem&lt;/h3&gt; 
+&lt;p&gt;You may want to test changes made to the &lt;a href=&quot;https://github.com/e621ng/dtext&quot;&gt;DText gem&lt;/a&gt; on a local instance. You are recommended to reconsider and rethink your life choices.&lt;/p&gt; 
+&lt;p&gt;If you are sure that you want to do this, follow these steps.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Clone the repo into a &lt;code&gt;vendor&lt;/code&gt; directory. Example: &lt;code&gt;~/e621ng/vendor/dtext/&lt;/code&gt;. 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;cd ~/e621ng&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;mkdir vendor &amp;amp;&amp;amp; cd vendor&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;git clone https://github.com/e621ng/dtext.git&lt;/code&gt; (substitute your local fork as needed)&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Rebuild the container 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;cd ~/e621ng&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;docker compose build --no-cache&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Reset the Gemfile.lock: &lt;code&gt;git checkout HEAD -- Gemfile.lock&lt;/code&gt;&lt;br /&gt; This is not required, but it will prevent you from accidentally committing bad changes.&lt;/li&gt; 
+ &lt;li&gt;Set &lt;code&gt;LOCAL_DTEXT=true&lt;/code&gt; in the &lt;code&gt;.env&lt;/code&gt; file.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;At this point, the DText repository is set up. It will be automatically compiled whenever the docker container is started.&lt;/p&gt; 
+&lt;p&gt;It is recommended to set &lt;code&gt;LOCAL_DTEXT&lt;/code&gt; to &lt;code&gt;false&lt;/code&gt; whenever you are not actively working on anything related to the DText repo, and then rebuild the container.&lt;/p&gt; 
+&lt;h3&gt;Development environment&lt;/h3&gt; 
+&lt;p&gt;This repo provides a Dev Container configuration. You can use something like the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers&quot;&gt;Dev Container extension for VSCode&lt;/a&gt; to make use of it. Simply install it, open the folder in VSCode, and click the button in the bottom right to open the folder in the Dev Container.&lt;/p&gt; 
+&lt;h4&gt;&lt;a id=&quot;docker-troubleshooting&quot;&gt;&lt;/a&gt;I followed the above instructions but it doesn&#39;t work, what should I do?&lt;/h4&gt; 
+&lt;p&gt;Try this:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;code&gt;docker compose down -v&lt;/code&gt; to remove all volumes.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;docker compose build --no-cache&lt;/code&gt; to rebuild the image from scratch.&lt;/li&gt; 
+ &lt;li&gt;Follow the &lt;a href=&quot;https://raw.githubusercontent.com/e621ng/e621ng/master/#installation&quot;&gt;instructions&lt;/a&gt; starting from step 5.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;&lt;a id=&quot;windows-executable-bit&quot;&gt;&lt;/a&gt;Why are there a bunch of changes I can&#39;t revert?&lt;/h4&gt; 
+&lt;p&gt;You&#39;re most likely using Windows. Give this a shot, it tells Git to stop tracking file mode changes:&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;git config core.fileMode false&lt;/code&gt;&lt;/p&gt; 
+&lt;h4&gt;Truenas / Local Server Installation&lt;/h4&gt; 
+&lt;p&gt;If you decide to deploy this docker image to an external / local server, you do need to remember to change the DANBOORU_HOST variable in the docker-compose.yml file to the IP of your server. Otherwise, you will not be able to access it, or the image links will be broken.&lt;/p&gt; 
+&lt;p&gt;Specifically for Truenas/NAS boxes users: you need to use the shell itself to set the repo up, you can then manage the images/variable/config with Portainer/Dockge after it&#39;s set up.&lt;/p&gt; 
+&lt;h3&gt;&lt;a id=&quot;development-tools&quot;&gt;&lt;/a&gt;Testing and Linting&lt;/h3&gt; 
+&lt;h4&gt;Testing Suite&lt;/h4&gt; 
+&lt;p&gt;The test suite runs in parallel using &lt;code&gt;parallel_tests&lt;/code&gt;. Before running tests for the first time (or after a schema change), set up the parallel test databases:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;docker compose run --rm --entrypoint bin/rake tests parallel:create
+docker compose run --rm --entrypoint bin/rake tests parallel:load_schema
+docker compose run --rm --entrypoint bin/rake tests parallel:seed
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then run the suite:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;docker compose run --rm tests
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This defaults to 4 parallel workers. Override with &lt;code&gt;PARALLEL_TEST_PROCESSORS&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;PARALLEL_TEST_PROCESSORS=8 docker compose run --rm tests
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Linters&lt;/h4&gt; 
+&lt;p&gt;&lt;code&gt;docker compose run --rm rubocop&lt;/code&gt; to lint the ruby code &lt;code&gt;docker compose run --rm linter&lt;/code&gt; to lint javascript&lt;/p&gt; 
+&lt;h4&gt;Database&lt;/h4&gt; 
+&lt;p&gt;The postgres server accepts outside connections which you can use to access it with a local client. Use &lt;code&gt;localhost:34517&lt;/code&gt; to connect to a database named &lt;code&gt;e621_development&lt;/code&gt; with the user &lt;code&gt;e621&lt;/code&gt;. Leave the password blank, anything will work.&lt;/p&gt; 
+&lt;h2&gt;Production Setup&lt;/h2&gt; 
+&lt;p&gt;Installation follows the same steps as the docker compose file. Ubuntu 20.04 is the current installation target. There is no script that performs these steps for you, as you need to split them up to match your infrastructure. Running a single machine install in production is possible, but is likely to be somewhat sluggish due to contention in disk between postgresql and opensearch. Minimum RAM is 4GB. You will need to adjust values in config files to match how much RAM is available. If you are targeting more than a hundred thousand posts and reasonable user volumes, you probably want to procure yourself a database server. See tuning guides for postgresql and opensearch for help planning these requirements.&lt;/p&gt; 
+&lt;h3&gt;Production Troubleshooting&lt;/h3&gt; 
+&lt;p&gt;These instructions won&#39;t work for everyone. If your setup is not working, here are the steps I usually recommend to people:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Test the database. Make sure you can connect to it using psql. Make sure the tables exist. If this fails, you need to work on correctly installing PostgreSQL, importing the initial schema, and running the migrations.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Test the Rails database connection by using rails console. Run Post.count to make sure Rails can connect to the database. If this fails, you need to make sure your Danbooru configuration files are correct.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Test Nginx to make sure it&#39;s working correctly. You may need to debug your Nginx configuration file.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Check all log files.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/169334303/1c7d7014-2baf-4695-be39-39a95ebffbcc" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

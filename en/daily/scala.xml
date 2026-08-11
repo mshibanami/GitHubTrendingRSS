@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Scala Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Scala on GitHub</description>
+    
+    <pubDate>Tue, 11 Aug 2026 03:17:02 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>dasch-swiss/dsp-api</title>
+      <link>https://github.com/dasch-swiss/dsp-api</link>
+      <description>&lt;p&gt;DaSCH Service Platform API&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;DSP-API — DaSCH Service Platform API&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/dasch-swiss/dsp-api&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/tag/dasch-swiss/dsp-api?include_prereleases&amp;amp;label=Github%20tag&quot; alt=&quot;Github&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/daschswiss/knora-api&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/v/daschswiss/knora-api?label=Docker%20image&quot; alt=&quot;Docker&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/dasch-swiss/dsp-api/actions?query=workflow%3ACI&quot;&gt;&lt;img src=&quot;https://github.com/dasch-swiss/dsp-app/workflows/CI/badge.svg?sanitize=true&quot; alt=&quot;CI&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://app.dasch.swiss/&quot;&gt;DSP&lt;/a&gt; is a server application for storing, sharing, and working with primary sources and data in the humanities.&lt;/p&gt; 
+&lt;p&gt;It is developed by the &lt;a href=&quot;https://dasch.swiss&quot;&gt;Swiss National Data and Service Center for the Humanities&lt;/a&gt; at the &lt;a href=&quot;https://www.unibas.ch&quot;&gt;University of Basel&lt;/a&gt;, and is supported by the &lt;a href=&quot;https://www.sagw.ch&quot;&gt;Swiss Academy of Humanities and Social Sciences&lt;/a&gt; and the &lt;a href=&quot;https://snf.ch&quot;&gt;Swiss National Science Foundation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;DSP-API is &lt;a href=&quot;http://www.gnu.org/philosophy/free-sw.en.html&quot;&gt;free software&lt;/a&gt;, released under the &lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache License, Version 2.0&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Stores humanities data as industry-standard &lt;a href=&quot;http://www.w3.org/TR/2014/NOTE-rdf11-primer-20140624/&quot;&gt;RDF&lt;/a&gt; graphs, plus files for binary data such as digitized primary sources. 
+  &lt;ul&gt; 
+   &lt;li&gt;Designed to work with any standards-compliant RDF triplestore. Tested with &lt;a href=&quot;https://jena.apache.org/&quot;&gt;Jena Fuseki&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Based on &lt;a href=&quot;http://www.w3.org/TR/2012/REC-owl2-primer-20121211/&quot;&gt;OWL&lt;/a&gt; ontologies that express abstract, cross-disciplinary commonalities in the structure and semantics of research data.&lt;/li&gt; 
+ &lt;li&gt;Offers a generic HTTP-based API, implemented in &lt;a href=&quot;https://www.scala-lang.org/&quot;&gt;Scala&lt;/a&gt;, for querying, annotating, and linking together heterogeneous data in a unified way. 
+  &lt;ul&gt; 
+   &lt;li&gt;Handles authentication and authorization.&lt;/li&gt; 
+   &lt;li&gt;Provides automatic versioning of data.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Uses &lt;a href=&quot;https://sipi.io&quot;&gt;Sipi&lt;/a&gt;, a high-performance media server implemented in C++.&lt;/li&gt; 
+ &lt;li&gt;Designed to be be used with &lt;a href=&quot;https://docs.dasch.swiss/latest/DSP-APP/&quot;&gt;DSP-APP&lt;/a&gt;, a general-purpose, browser-based virtual research environment, as well as with custom user interfaces.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;h3&gt;For developing and testing DSP-API&lt;/h3&gt; 
+&lt;p&gt;Each developer machine should have the following prerequisites installed:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Linux or macOS&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.docker.com/products/docker-desktop&quot;&gt;Docker Desktop&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://brew.sh&quot;&gt;Homebrew&lt;/a&gt; (macOS)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://determinate.systems&quot;&gt;Nix&lt;/a&gt; (with flakes) and &lt;a href=&quot;https://direnv.net/&quot;&gt;direnv&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The build runs on &lt;a href=&quot;https://bazel.build/&quot;&gt;Bazel&lt;/a&gt; inside a &lt;a href=&quot;https://nixos.org/&quot;&gt;Nix&lt;/a&gt; dev shell defined in &lt;code&gt;flake.nix&lt;/code&gt;. The dev shell puts &lt;code&gt;bazel&lt;/code&gt; (a bazelisk wrapper pinned via &lt;code&gt;.bazelversion&lt;/code&gt;), a JDK &lt;a href=&quot;https://adoptium.net/temurin/&quot;&gt;Temurin 25&lt;/a&gt;, &lt;a href=&quot;https://just.systems/man/en/&quot;&gt;&lt;code&gt;just&lt;/code&gt;&lt;/a&gt;, and &lt;code&gt;crane&lt;/code&gt; on your &lt;code&gt;PATH&lt;/code&gt;, so you do not need to install any of these separately.&lt;/p&gt; 
+&lt;h4&gt;Nix&lt;/h4&gt; 
+&lt;p&gt;Install Nix with the &lt;a href=&quot;https://determinate.systems&quot;&gt;Determinate Systems installer&lt;/a&gt; (flakes are enabled by default):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;curl -fsSL https://install.determinate.systems/nix | sh -s -- install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;With &lt;a href=&quot;https://direnv.net/&quot;&gt;direnv&lt;/a&gt; installed, the dev shell loads automatically when you &lt;code&gt;cd&lt;/code&gt; into the repository — run &lt;code&gt;direnv allow&lt;/code&gt; once to approve it. Without direnv, prefix commands with &lt;code&gt;nix develop --command&lt;/code&gt;, for example &lt;code&gt;nix develop --command just test-unit&lt;/code&gt;.&lt;/p&gt; 
+&lt;h4&gt;EditorConfig&lt;/h4&gt; 
+&lt;p&gt;This repository contains a root-level &lt;code&gt;.editorconfig&lt;/code&gt; to keep Markdown and YAML formatting consistent (e.g., 4-space list indents in Markdown, 2-space YAML). Most editors support EditorConfig natively or via a plugin; consider enabling it and format-on-save for consistent diffs.&lt;/p&gt; 
+&lt;h3&gt;For building the documentation&lt;/h3&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/dasch-swiss/dsp-api/main/docs/Readme.md&quot;&gt;docs/Readme.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Try it out&lt;/h2&gt; 
+&lt;h3&gt;Run DSP-API&lt;/h3&gt; 
+&lt;p&gt;Create a test repository, load some test data into the triplestore, and start DSP-API:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;just stack-init-test
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Open &lt;a href=&quot;http://localhost:4200&quot;&gt;http://localhost:4200/&lt;/a&gt; in a web browser.&lt;/p&gt; 
+&lt;p&gt;On first installation, errors similar to the following can come up:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;error decoding &#39;Volumes[0]&#39;: invalid spec: :/fuseki:delegated: empty section between colons
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To solve this, you need to deactivate Docker Compose V2. This can be done in Docker Desktop either by unchecking the &quot;Use Docker Compose V2&quot; flag under &quot;Preferences &amp;gt; General&quot; or by running&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;docker-compose disable-v2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Shut down DSP-API:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;just stack-stop
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Run the automated tests&lt;/h3&gt; 
+&lt;p&gt;Automated tests are split into different modules: fast unit tests, integration tests (service/repo/Sipi tests using &lt;a href=&quot;https://www.testcontainers.org/&quot;&gt;Testcontainers&lt;/a&gt;), and end-to-end HTTP API tests.&lt;/p&gt; 
+&lt;p&gt;Run unit tests:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;just test-unit
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run integration tests:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;just test-it
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run end-to-end tests:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;just test-e2e
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run all tests:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;just test-unit test-it test-e2e
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Release Versioning Convention&lt;/h2&gt; 
+&lt;p&gt;The DSP-API release versioning follows the &lt;a href=&quot;https://semver.org&quot;&gt;Semantic Versioning&lt;/a&gt; convention:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Given a version number MAJOR.MINOR.PATCH, increment the:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;MAJOR version when you make incompatible API changes,&lt;/li&gt; 
+  &lt;li&gt;MINOR version when you add functionality in a backwards-compatible manner, and&lt;/li&gt; 
+  &lt;li&gt;PATCH version when you make backwards-compatible bug fixes.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Additionally, we will also increment the MAJOR version in the case when any kind of changes to existing data would be necessary, e.g., any changes to the &lt;a href=&quot;https://docs.dasch.swiss/latest/DSP-API/02-dsp-ontologies/knora-base/&quot;&gt;knora-base ontology&lt;/a&gt; which are not backwards compatible.&lt;/p&gt; 
+&lt;h2&gt;Issues &amp;amp; Contributions&lt;/h2&gt; 
+&lt;p&gt;If you&#39;d like to report an issue or contribute to this project, please contact us at &lt;a href=&quot;mailto:support@dasch.swiss&quot;&gt;support@dasch.swiss&lt;/a&gt; so we can align it with our planning.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8cb58b4a36dea94af561d492b1dfa04bd4433245d1f6ac9eb52e9f40cd19fb71/dasch-swiss/dsp-api" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

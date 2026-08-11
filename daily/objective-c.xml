@@ -1,0 +1,1500 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Objective-C Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Objective-C on GitHub</description>
+    
+    <pubDate>Tue, 11 Aug 2026 03:13:11 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>opa334/TrollStore</title>
+      <link>https://github.com/opa334/TrollStore</link>
+      <description>&lt;p&gt;Jailed iOS app that can install IPAs permanently with arbitary entitlements and root helpers because it trolls Apple&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;TrollStore&lt;/h1&gt; 
+&lt;p&gt;TrollStore is a permasigned jailed app that can permanently install any IPA you open in it.&lt;/p&gt; 
+&lt;p&gt;It works because of an AMFI/CoreTrust bug where iOS does not correctly verify code signatures of binaries in which there are multiple signers.&lt;/p&gt; 
+&lt;p&gt;Supported versions: 14.0 beta 2 - 16.6.1, 16.7 RC (20H18), 17.0&lt;/p&gt; 
+&lt;h2&gt;Installing TrollStore&lt;/h2&gt; 
+&lt;p&gt;For installing TrollStore, refer to the guides at &lt;a href=&quot;https://ios.cfw.guide/installing-trollstore&quot;&gt;ios.cfw.guide&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;16.7.x (excluding 16.7 RC) and 17.0.1+ will NEVER be supported (unless a third CoreTrust bug is discovered, which is unlikely).&lt;/p&gt; 
+&lt;h2&gt;Updating TrollStore&lt;/h2&gt; 
+&lt;p&gt;When a new TrollStore update is available, a button to install it will appear at the top in the TrollStore settings. After tapping the button, TrollStore will automatically download the update, install it, and respring.&lt;/p&gt; 
+&lt;p&gt;Alternatively (if anything goes wrong), you can download the TrollStore.tar file under Releases and open it in TrollStore, TrollStore will install the update and respring.&lt;/p&gt; 
+&lt;h2&gt;Uninstalling an app&lt;/h2&gt; 
+&lt;p&gt;Apps installed from TrollStore can only be uninstalled from TrollStore itself, tap an app or swipe it to the left in the &#39;Apps&#39; tab to delete it.&lt;/p&gt; 
+&lt;h2&gt;Persistence Helper&lt;/h2&gt; 
+&lt;p&gt;The CoreTrust bug used in TrollStore is only enough to install &quot;System&quot; apps, this is because FrontBoard has an additional security check (it calls libmis) every time before a user app is launched. Unfortunately it is not possible to install new &quot;System&quot; apps that stay through an icon cache reload. Therefore, when iOS reloads the icon cache, all TrollStore installed apps including TrollStore itself will revert back to &quot;User&quot; state and will no longer launch.&lt;/p&gt; 
+&lt;p&gt;The only way to work around this is to install a persistence helper into a system app, this helper can then be used to reregister TrollStore and its installed apps as &quot;System&quot; so that they become launchable again, an option for this is available in TrollStore settings.&lt;/p&gt; 
+&lt;p&gt;On jailbroken iOS 14 when TrollHelper is used for installation, it is located in /Applications and will persist as a &quot;System&quot; app through icon cache reloads, therefore TrollHelper is used as the persistence helper on iOS 14.&lt;/p&gt; 
+&lt;h2&gt;URL Scheme&lt;/h2&gt; 
+&lt;p&gt;As of version 1.3, TrollStore replaces the system URL scheme &quot;apple-magnifier&quot; (this is done so &quot;jailbreak&quot; detections can&#39;t detect TrollStore like they could if TrollStore had a unique URL scheme). This URL scheme can be used to install applications right from the browser, or to enable JIT from the app itself (only 2.0.12 and above), the format goes as follows:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;apple-magnifier://install?url=&amp;lt;URL_to_IPA&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;apple-magnifier://enable-jit?bundle-id=&amp;lt;Bundle_ID&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;On devices that don&#39;t have TrollStore (1.3+) installed, this will just open the magnifier app.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;The binaries inside an IPA can have arbitrary entitlements, fakesign them with ldid and the entitlements you want (&lt;code&gt;ldid -S&amp;lt;path/to/entitlements.plist&amp;gt; &amp;lt;path/to/binary&amp;gt;&lt;/code&gt;) and TrollStore will preserve the entitlements when resigning them with the fake root certificate on installation. This gives you a lot of possibilities, some of which are explained below.&lt;/p&gt; 
+&lt;h3&gt;Banned entitlements&lt;/h3&gt; 
+&lt;p&gt;iOS 15 on A12+ has banned the following three entitlements related to running unsigned code, these are impossible to get without a PPL bypass, apps signed with them will crash on launch.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;com.apple.private.cs.debugger&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;dynamic-codesigning&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;com.apple.private.skip-library-validation&lt;/code&gt;&lt;/p&gt; 
+&lt;h3&gt;Unsandboxing&lt;/h3&gt; 
+&lt;p&gt;Your app can run unsandboxed using one of the following entitlements:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.container-required&amp;lt;/key&amp;gt;
+&amp;lt;false/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.no-container&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.no-sandbox&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The third one is recommended if you still want a sandbox container for your application.&lt;/p&gt; 
+&lt;p&gt;You might also need the platform-application entitlement in order for these to work properly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;platform-application&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Please note that the platform-application entitlement causes side effects such as some parts of the sandbox becoming tighter, so you may need additional private entitlements to circumvent that. (For example afterwards you need an exception entitlement for every single IOKit user client class you want to access).&lt;/p&gt; 
+&lt;p&gt;In order for an app with &lt;code&gt;com.apple.private.security.no-sandbox&lt;/code&gt; and &lt;code&gt;platform-application&lt;/code&gt; to be able to access it&#39;s own data container, you might need the additional entitlement:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.storage.AppDataContainers&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Root Helpers&lt;/h3&gt; 
+&lt;p&gt;When your app is not sandboxed, you can spawn other binaries using posix_spawn, you can also spawn binaries as root with the following entitlement:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.persona-mgmt&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also add your own binaries into your app bundle.&lt;/p&gt; 
+&lt;p&gt;Afterwards you can use the &lt;a href=&quot;https://raw.githubusercontent.com/opa334/TrollStore/main/Shared/TSUtil.m#L79&quot;&gt;spawnRoot function in TSUtil.m&lt;/a&gt; to spawn the binary as root.&lt;/p&gt; 
+&lt;h3&gt;Things that are not possible using TrollStore&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Getting proper platformization (&lt;code&gt;TF_PLATFORM&lt;/code&gt; / &lt;code&gt;CS_PLATFORMIZED&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Spawning a launch daemon (Would need &lt;code&gt;CS_PLATFORMIZED&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Injecting a tweak into a system process (Would need &lt;code&gt;TF_PLATFORM&lt;/code&gt;, a userland PAC bypass and a PMAP trust level bypass)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Compilation&lt;/h3&gt; 
+&lt;p&gt;To compile TrollStore, ensure &lt;a href=&quot;https://theos.dev/docs/installation&quot;&gt;theos&lt;/a&gt; is installed. Additionaly ensure &lt;a href=&quot;https://brew.sh/&quot;&gt;brew&lt;/a&gt; is installed and install &lt;a href=&quot;https://formulae.brew.sh/formula/libarchive&quot;&gt;libarchive&lt;/a&gt; from brew.&lt;/p&gt; 
+&lt;h2&gt;Credits and Further Reading&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/alfiecg_dev/&quot;&gt;@alfiecg_dev&lt;/a&gt; - Found the CoreTrust bug that allows TrollStore to work through patchdiffing and worked on automating the bypass.&lt;/p&gt; 
+&lt;p&gt;Google Threat Analysis Group - Found the CoreTrust bug as part of an in-the-wild spyware chain and reported it to Apple.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/LinusHenze&quot;&gt;@LinusHenze&lt;/a&gt; - Found the installd bypass used to install TrollStore on iOS 14-15.6.1 via TrollHelperOTA, as well as the original CoreTrust bug used in TrollStore 1.0.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/rPTifU1lG7Q&quot;&gt;Fugu15 Presentation&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://worthdoingbadly.com/coretrust/&quot;&gt;Write-Up on the first CoreTrust bug with more information&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/15ca499506e0d445e2919265a8cd762b07ab77fb22a2309cf0d9202ccde79ce2/opa334/TrollStore" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>34306/FilzaJailedDS</title>
+      <link>https://github.com/34306/FilzaJailedDS</link>
+      <description>&lt;p&gt;Filza Jailed Darksword, support iOS 17.0-26.0.1. This repo open source the tweak inject into the Filza iPA (4.0.0 and back, 4.0.2 seems crash something)&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;FilzaJailedDS&lt;/h1&gt; 
+&lt;p&gt;Filza Jailed Darksword, support iOS 17.0-26.0.1 (except 18.7.2-18.7.7). This repo open source the tweak inject into the Filza iPA (4.0.0 and back, 4.0.2 seems crash something)&lt;/p&gt; 
+&lt;p&gt;About iPhone 17 series and iPad M5: SUPPORT ETA SOON!👌&lt;/p&gt; 
+&lt;p&gt;Note: I just change the name due to requested. But i think jailed is okay then&lt;/p&gt; 
+&lt;h1&gt;Credit&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/khanhduytran0&quot;&gt;Duy Tran&lt;/a&gt; for the sandbox hook token&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/wh1te4ever/&quot;&gt;wh1te4ever&lt;/a&gt; for the super details &lt;a href=&quot;https://github.com/wh1te4ever/darksword-kexploit-fun&quot;&gt;darksword-kfun&lt;/a&gt; with offset/XPF&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/opa334/&quot;&gt;opa334&lt;/a&gt; for the XPF/krw&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/crazymind90/&quot;&gt;CrazyMind90&lt;/a&gt; for idea how to get sbx token with krw only&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/rooootdev&quot;&gt;roootdev&lt;/a&gt; for sandbox elevate in &lt;a href=&quot;https://github.com/rooootdev/lara&quot;&gt;lara&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;And me 😄&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e0f4e87fb8cb43f7ffdb515407cbf6fbba8d290c48b51a47b0d1c594e871c85f/34306/FilzaJailedDS" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Mininglamp-OSS/octo-ios</title>
+      <link>https://github.com/Mininglamp-OSS/octo-ios</link>
+      <description>&lt;p&gt;OCTO iOS Client — Open-source enterprise IM&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/docs/assets/logo-light.png#gh-light-mode-only&quot; width=&quot;200&quot; alt=&quot;OCTO&quot; /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/docs/assets/logo-dark.png#gh-dark-mode-only&quot; width=&quot;200&quot; alt=&quot;OCTO&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;b&gt;OCTO — the open workplace built for humans × AI agents.&lt;/b&gt;&lt;br /&gt; &lt;sub&gt;Let &lt;b&gt;Lobsters&lt;/b&gt; (OpenClaw-powered digital doubles) do the &lt;i&gt;thinking&lt;/i&gt; and &lt;i&gt;doing&lt;/i&gt;. You focus on &lt;i&gt;taste&lt;/i&gt;.&lt;/sub&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/Mininglamp-OSS&quot;&gt;&lt;b&gt;🏠 OCTO Home&lt;/b&gt;&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/#-quickstart&quot;&gt;&lt;b&gt;🚀 Quickstart&lt;/b&gt;&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/#-octo-ecosystem&quot;&gt;&lt;b&gt;📦 Ecosystem&lt;/b&gt;&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/CONTRIBUTING.md&quot;&gt;&lt;b&gt;🤝 Contributing&lt;/b&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-Apache_2.0-blue.svg?sanitize=true&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/README.zh.md&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lang-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg?sanitize=true&quot; alt=&quot;简体中文&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🌐 &lt;strong&gt;Read in&lt;/strong&gt;: &lt;strong&gt;English&lt;/strong&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/README.zh.md&quot;&gt;简体中文&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h1&gt;OCTO iOS&lt;/h1&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Native iOS client&lt;/strong&gt; for the OCTO messaging platform — Swift / Objective-C, talking to &lt;code&gt;octo-server&lt;/code&gt; over REST + WebSocket.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;&lt;code&gt;octo-ios&lt;/code&gt; is the official iOS front-end for OCTO. It is a native Swift / Objective-C app (not a webview wrapper) that talks to &lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-server&quot;&gt;&lt;code&gt;octo-server&lt;/code&gt;&lt;/a&gt; over REST + WebSocket, and drives the same Lobster-agent conversation surface as &lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-web&quot;&gt;&lt;code&gt;octo-web&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-android&quot;&gt;&lt;code&gt;octo-android&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;🌟 Why OCTO iOS&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Native, not a webview.&lt;/strong&gt; UIKit + SwiftUI hybrid, uses platform features (APNS push, Share / Notification / Widget extensions, Universal Links, Shortcuts) rather than shipping a browser shell. First-class mobile UX for Lobster conversations.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Ships without secrets.&lt;/strong&gt; No &lt;code&gt;GoogleService-Info.plist&lt;/code&gt;, no signing certificates, no provisioning profiles bound to the upstream team. You bring your own Apple Developer team, your own Bundle Identifier (&lt;code&gt;com.example.octo&lt;/code&gt; placeholder → &lt;code&gt;com.yourcompany.octo&lt;/code&gt;), your own Firebase project, your own certificates. All stripped by the &lt;code&gt;octo-release&lt;/code&gt; pipeline before this repo is published.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Mirrors the web surface.&lt;/strong&gt; Same REST + WebSocket protocol as &lt;code&gt;octo-web&lt;/code&gt; / &lt;code&gt;octo-android&lt;/code&gt;, same i18n resource keys (English · 简体中文), same Lobster identity / streaming / typing indicators — so feature work can land on three clients without a protocol fork.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🚀 Quickstart&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;⚠️ Mandatory pre-flight&lt;/strong&gt; — this fork will &lt;strong&gt;not&lt;/strong&gt; build a signed or distributable &lt;code&gt;.ipa&lt;/code&gt; until you swap four placeholder artefacts:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Bundle Identifier&lt;/strong&gt; — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/README-BUNDLE-ID.md&quot;&gt;&lt;code&gt;README-BUNDLE-ID.md&lt;/code&gt;&lt;/a&gt; for the full rename checklist across the &lt;code&gt;.pbxproj&lt;/code&gt;, entitlements, and every extension target (&lt;code&gt;com.example.octo&lt;/code&gt; → your reverse-DNS).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Firebase configuration&lt;/strong&gt; — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/firebase-template.md&quot;&gt;&lt;code&gt;firebase-template.md&lt;/code&gt;&lt;/a&gt; for how to obtain and drop in your own &lt;code&gt;GoogleService-Info.plist&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Provisioning / certificates&lt;/strong&gt; — use your Apple Developer team&#39;s own signing certificate and provisioning profile; the upstream fork references none.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Universal Links&lt;/strong&gt; — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/universal-link-setup.md&quot;&gt;&lt;code&gt;universal-link-setup.md&lt;/code&gt;&lt;/a&gt; for the &lt;code&gt;apple-app-site-association&lt;/code&gt; file that your domain must host before deep-links resolve to your build.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Once those are done, open in Xcode:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/Mininglamp-OSS/octo-ios.git
+cd octo-ios
+
+# CocoaPods (if used):
+pod install
+
+# Or Swift Package Manager — handled by Xcode on open.
+
+open OCTO.xcworkspace   # or OCTO.xcodeproj
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;From CLI, a development build after signing is configured:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xcodebuild -workspace OCTO.xcworkspace \
+    -scheme OCTO \
+    -configuration Debug \
+    -destination &#39;generic/platform=iOS Simulator&#39; \
+    build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;By default the app points at &lt;code&gt;http://localhost:8080&lt;/code&gt; for &lt;code&gt;octo-server&lt;/code&gt;. Edit &lt;code&gt;OCTO/Config/Config.plist&lt;/code&gt; (or the flavour-specific equivalent) to aim at your own deployment.&lt;/p&gt; 
+&lt;h2&gt;📦 Modules / Architecture&lt;/h2&gt; 
+&lt;p&gt;Top-level layout (typical OCTO iOS tree):&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Path&lt;/th&gt; 
+   &lt;th&gt;Purpose&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Main app target — view controllers, SwiftUI views, app delegate&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/UI/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Screen surfaces: chat, channels, org, settings&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Data/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;REST + WebSocket client, local cache, Core Data / Realm models&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Agent/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Lobster-aware UI components (streaming, tool-call previews, agent identity)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Push/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;APNS registration + push routing + notification-service extension&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Resources/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Assets, localisations (&lt;code&gt;en.lproj&lt;/code&gt;, &lt;code&gt;zh-Hans.lproj&lt;/code&gt;), launch storyboards&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;ShareExtension/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Share-sheet target for forwarding content into OCTO&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;NotificationExtension/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Rich-notification + encryption-aware decryption target&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;WuKongSDK/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;WuKongIM iOS client wrapper (real-time messaging transport)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Pods/&lt;/code&gt; or &lt;code&gt;Packages/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;CocoaPods / SPM dependencies&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Runtime pillars:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Auth&lt;/strong&gt; — token / refresh-token stored in Keychain.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Transport&lt;/strong&gt; — &lt;code&gt;URLSession&lt;/code&gt; for REST; WuKongIM iOS SDK for the persistent WebSocket.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Persistence&lt;/strong&gt; — Core Data (or Realm, depending on flavour) for message cache and offline drafts; file attachments under the app container.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Push&lt;/strong&gt; — APNS device token → &lt;code&gt;octo-server&lt;/code&gt; → Firebase fan-out (optional) → Notification-Service extension decrypts the payload before display.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;UI&lt;/strong&gt; — UIKit navigation skeleton + SwiftUI screens where it pays off; Dynamic Type + Dark Mode supported by default.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;🔗 OCTO Ecosystem&lt;/h2&gt; 
+&lt;!-- shared snippet: OCTO repo matrix. Keep identical across all 9 repos. --&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph TD
+  subgraph Clients[Clients]
+    Web[octo-web&amp;lt;br/&amp;gt;Web / PC]
+    Android[octo-android&amp;lt;br/&amp;gt;Android]
+    iOS[octo-ios&amp;lt;br/&amp;gt;iOS]
+  end
+
+  subgraph Core[Core Services]
+    Server[octo-server&amp;lt;br/&amp;gt;Backend API]
+    Matter[octo-matter&amp;lt;br/&amp;gt;Task / Todo]
+    Summary[octo-smart-summary&amp;lt;br/&amp;gt;AI Summary]
+    Admin[octo-admin&amp;lt;br/&amp;gt;Admin Console]
+  end
+
+  subgraph Shared[Shared Libraries &amp;amp; Integrations]
+    Lib[octo-lib&amp;lt;br/&amp;gt;Core Go Library]
+    Adapters[octo-adapters&amp;lt;br/&amp;gt;Third-party Adapters]
+  end
+
+  Web --&amp;gt; Server
+  Android --&amp;gt; Server
+  iOS --&amp;gt; Server
+  Admin --&amp;gt; Server
+  Server --&amp;gt; Matter
+  Server --&amp;gt; Summary
+  Server --&amp;gt; Adapters
+  Server -.uses.-&amp;gt; Lib
+  Matter -.uses.-&amp;gt; Lib
+  Adapters -.uses.-&amp;gt; Lib
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Repository&lt;/th&gt; 
+   &lt;th&gt;Language&lt;/th&gt; 
+   &lt;th&gt;Role&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-server&quot;&gt;&lt;code&gt;octo-server&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;Backend API · business orchestration · Lobster agent scheduling&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-matter&quot;&gt;&lt;code&gt;octo-matter&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;Task / Todo / Matter micro-service&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-smart-summary&quot;&gt;&lt;code&gt;octo-smart-summary&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;LLM-powered conversation summarisation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-web&quot;&gt;&lt;code&gt;octo-web&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;TypeScript / React&lt;/td&gt; 
+   &lt;td&gt;Web &amp;amp; PC (Electron) client&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-android&quot;&gt;&lt;code&gt;octo-android&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Kotlin / Java&lt;/td&gt; 
+   &lt;td&gt;Native Android client&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-ios&quot;&gt;&lt;code&gt;octo-ios&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Swift / Objective-C&lt;/td&gt; 
+   &lt;td&gt;Native iOS client&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-admin&quot;&gt;&lt;code&gt;octo-admin&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;TypeScript / React&lt;/td&gt; 
+   &lt;td&gt;Admin console (tenant / org / user / channel management)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-lib&quot;&gt;&lt;code&gt;octo-lib&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;Shared core library (protocol, crypto, storage, HTTP)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-adapters&quot;&gt;&lt;code&gt;octo-adapters&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;TypeScript / Python&lt;/td&gt; 
+   &lt;td&gt;Third-party integrations (IM bridges, AI channels)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;🧭 Philosophy&lt;/h2&gt; 
+&lt;p&gt;OCTO ships under three shared principles that apply to every repository in this matrix:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Local-first.&lt;/strong&gt; Anything that can run on the user&#39;s own box — chats, embeddings, agents — should. Your data stays yours; cloud is a choice, not a requirement.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Humans judge, AI thinks and acts.&lt;/strong&gt; Humans focus on &lt;em&gt;taste&lt;/em&gt; (what matters, what&#39;s right, what to ship). Lobster agents — OpenClaw-powered digital doubles — carry the &lt;em&gt;thinking&lt;/em&gt; and &lt;em&gt;execution&lt;/em&gt; load.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Release-as-product.&lt;/strong&gt; Every open-source cut is shipped as a self-contained product, not a code dump: one squash per release, Apache 2.0, no internal baggage, reproducible from this repo alone.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;🤝 Contributing&lt;/h2&gt; 
+&lt;p&gt;We love pull requests! Before you open one, please read:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; — workflow, branch model, commit style&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/CODE_OF_CONDUCT.md&quot;&gt;CODE_OF_CONDUCT.md&lt;/a&gt; — community expectations&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For security issues please follow &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/SECURITY.md&quot;&gt;SECURITY.md&lt;/a&gt; instead of the public tracker.&lt;/p&gt; 
+&lt;h2&gt;📄 License&lt;/h2&gt; 
+&lt;p&gt;Apache License 2.0 — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for the full text and &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/NOTICE&quot;&gt;NOTICE&lt;/a&gt; for third-party attributions.&lt;/p&gt; 
+&lt;h2&gt;🙏 Acknowledgments&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;octo-ios&lt;/code&gt; owes its original scaffolding to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/TangSengDaoDao/TangSengDaoDaoiOS&quot;&gt;TangSengDaoDaoiOS&lt;/a&gt;&lt;/strong&gt; — our upstream, by the TangSengDaoDao team.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/WuKongIM/WuKongIM&quot;&gt;WuKongIM&lt;/a&gt;&lt;/strong&gt; — the real-time messaging core that &lt;code&gt;octo-server&lt;/code&gt; drives behind this client.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/NOTICE&quot;&gt;NOTICE&lt;/a&gt; for the full attribution list and third-party component licenses.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;sub&gt;Made with 🐙 by &lt;b&gt;OCTO Contributors&lt;/b&gt; · &lt;a href=&quot;https://github.com/Mininglamp-OSS&quot;&gt;Mininglamp-OSS&lt;/a&gt;&lt;/sub&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/278b8297f045e9c2c66ab309ab5d4a32e285e32df6fce239c5a65fae3b521d62/Mininglamp-OSS/octo-ios" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>PojavLauncherTeam/PojavLauncher_iOS</title>
+      <link>https://github.com/PojavLauncherTeam/PojavLauncher_iOS</link>
+      <description>&lt;p&gt;A Minecraft: Java Edition Launcher for Android and iOS based on Boardwalk. Succeeded by https://github.com/AngelAuraMC/Amethyst-iOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;PojavLauncher for iOS&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions/workflows/development.yml&quot;&gt;&lt;img src=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions/workflows/development.yml/badge.svg?branch=main&quot; alt=&quot;Development build&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://crowdin.com/project/pojavlauncher&quot;&gt;&lt;img src=&quot;https://badges.crowdin.net/pojavlauncher/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/pojavlauncher-724163890803638273&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/724163890803638273.svg?label=&amp;amp;logo=discord&amp;amp;logoColor=ffffff&amp;amp;color=7389D8&amp;amp;labelColor=6A7EC2&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Important note&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;PojavLauncher has been discontinued&lt;/strong&gt; and is no longer supported. Its successor is available &lt;a href=&quot;https://github.com/AngelAuraMC/Amethyst-iOS&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;p&gt;PojavLauncher is a Minecraft: Java Edition launcher for Android, iOS, and iPadOS, based off of zhuowei&#39;s &lt;a href=&quot;https://github.com/zhuowei/Boardwalk&quot;&gt;Boardwalk&lt;/a&gt; project.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Supports most versions of Minecraft: Java Edition, from the very first beta to the newest snapshots.&lt;/li&gt; 
+ &lt;li&gt;Supports Forge, Fabric, OptiFine, and Quilt for you to customize the experience with supported mods.&lt;/li&gt; 
+ &lt;li&gt;Includes customizable on-screen controls, keyboard and mouse support, and game controller support.&lt;/li&gt; 
+ &lt;li&gt;Optimized for jailbroken and TrollStore devices to enable better capabilities.&lt;/li&gt; 
+ &lt;li&gt;Microsoft account and demo mode support for logging into Minecraft.&lt;/li&gt; 
+ &lt;li&gt;...and much more!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This repository contains the code for our iOS and iPadOS port of PojavLauncher. Looking for &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher&quot;&gt;Android?&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Getting started with PojavLauncher&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://pojavlauncherteam.github.io/INSTALL.html#ios&quot;&gt;PojavLauncher Website&lt;/a&gt; has extensive documentation on how to install, set up, and play! For those who wish to install quickly, here&#39;s the basics:&lt;/p&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;p&gt;At the minimum, you&#39;ll need one of the following devices on &lt;strong&gt;iOS 14.0&lt;/strong&gt; and later:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iPhone 6s and later&lt;/li&gt; 
+ &lt;li&gt;iPad (5th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Air (2nd generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad mini (4th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Pro (all models)&lt;/li&gt; 
+ &lt;li&gt;iPod touch (7th generation)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;However, we recommend one of the following devices on &lt;strong&gt;iOS 14.0&lt;/strong&gt; and later:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iPhone XS and later, excluding iPhone XR and iPhone SE (2nd generation)&lt;/li&gt; 
+ &lt;li&gt;iPad (10th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Air (4th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad mini (6th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Pro (all models, except for 9.7-inch)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Recommended devices provide a smoother and more enjoyable gameplay experience compared to other supported devices.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;tvOS support is in development.&lt;/li&gt; 
+ &lt;li&gt;iOS 17.x and iOS 18.x is supported. However, a computer is required. These methods will ultilized usage of pymobiledevice3. Python 3.11.(x) must be properly set up on your computer. For more information, please check out the official Wiki: &lt;a href=&quot;https://pojavlauncherteam.github.io/JIT.html#what-are-the-methods-to-enable-jit&quot;&gt;https://pojavlauncherteam.github.io/JIT.html#what-are-the-methods-to-enable-jit&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Setting up to sideload&lt;/h3&gt; 
+&lt;p&gt;PojavLauncher can be sideloaded in many ways. Our recommended solution is to install &lt;a href=&quot;https://github.com/opa334/TrollStore&quot;&gt;TrollStore&lt;/a&gt; if your iOS version supports it. Installing with TrollStore allows you to permenantly sign the application, automatically enable JIT, and increase memory limits.&lt;/p&gt; 
+&lt;p&gt;For iOS/iPadOS 17.0: Unfortunately,the above process will not work. It is required that you must use &lt;a href=&quot;https://github.com/JJTech0130/TrollRestore&quot;&gt;TrollRestore&lt;/a&gt;. Any versions above iOS/iPadOS 17.0 will NOT be supported (as of December 23, 2024).&lt;/p&gt; 
+&lt;p&gt;If you cannot, &lt;a href=&quot;https://altstore.io&quot;&gt;AltStore&lt;/a&gt; and &lt;a href=&quot;https://sidestore.io&quot;&gt;SideStore&lt;/a&gt; are your next best options.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Signing services that do not use your UDID (and use distribution certificates) are not supported, as PojavLauncher requires capabilities they do not allow. However, if you do managed to gain access to a Development certificate, due to it having the necessary entitlement (being com.apple.security.get-task-allow) to attach a debugger to the running process (enabling JIT), you may use a Development certificate.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Only install sideloading software and PojavLauncher from trusted sources. We are not responsible for any harm caused by using unofficial software.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Jailbreaks also benefit from permenant signing, autoJIT, and increased memory limits, however we do not recommend them for regular use.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Installing PojavLauncher&lt;/h3&gt; 
+&lt;h4&gt;Release build (TrollStore)&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download an IPA of PojavLauncher in &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/releases&quot;&gt;Releases&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the package in TrollStore using the share menu.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Release build (AltStore/SideStore trusted source)&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Add &lt;code&gt;PojavLauncher Repository&lt;/code&gt; from the Trusted Sources menu.&lt;/li&gt; 
+ &lt;li&gt;Tap &lt;code&gt;FREE&lt;/code&gt; to begin installing.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Nightly builds&lt;/h4&gt; 
+&lt;p&gt;&lt;em&gt;These builds can contain game-breaking bugs. Use with caution.&lt;/em&gt;&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download an IPA build of PojavLauncher in the &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions&quot;&gt;Actions tab&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the downloaded IPA in your sideloading app to install.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Enabling JIT&lt;/h3&gt; 
+&lt;p&gt;PojavLauncher makes use of &lt;strong&gt;just-in-time compilation&lt;/strong&gt;, or JIT, to provide usable speeds for the end user. JIT is not supported on iOS without the application being debugged, so workarounds are required to enable it. You can use this chart to determine the best solution for you and your setup.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Application&lt;/th&gt; 
+   &lt;th&gt;AltStore&lt;/th&gt; 
+   &lt;th&gt;SideStore&lt;/th&gt; 
+   &lt;th&gt;TrollStore&lt;/th&gt; 
+   &lt;th&gt;Jitterbug&lt;/th&gt; 
+   &lt;th&gt;Jailbroken&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Requires ext-device&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;If VPN unavailable&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Requires Wi-Fi&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Auto enabled&lt;/td&gt; 
+   &lt;td&gt;Yes(*)&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;(*) AltServer running on the local network is required.&lt;/p&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;p&gt;PojavLauncher is amazing, and surprisingly stable, and it wouldn&#39;t be this way without the commmunity that helped and contribute to the project! Some notable names:&lt;/p&gt; 
+&lt;p&gt;@khanhduytran0 - Lead iOS port developer&lt;br /&gt; @crystall1nedev - Lead iOS port developer&lt;br /&gt; @artdeell&lt;br /&gt; @Mathius-Boulay&lt;br /&gt; @zhuowei&lt;br /&gt; @jkcoxson&lt;br /&gt; @Diatrus&lt;/p&gt; 
+&lt;h2&gt;Third party components and their licenses&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/caciocavallo&quot;&gt;Caciocavallo&lt;/a&gt;: &lt;a href=&quot;https://github.com/PojavLauncherTeam/caciocavallo/raw/master/LICENSE&quot;&gt;GNU GPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://code.google.com/p/jsr-305&quot;&gt;jsr305&lt;/a&gt;: &lt;a href=&quot;http://opensource.org/licenses/BSD-3-Clause&quot;&gt;3-Clause BSD License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/zhuowei/Boardwalk&quot;&gt;Boardwalk&lt;/a&gt;: &lt;a href=&quot;https://github.com/zhuowei/Boardwalk/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ptitSeb/gl4es&quot;&gt;GL4ES&lt;/a&gt; by @lunixbochs @ptitSeb: &lt;a href=&quot;https://github.com/ptitSeb/gl4es/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gitlab.freedesktop.org/mesa/mesa&quot;&gt;Mesa 3D Graphics Library&lt;/a&gt;: &lt;a href=&quot;https://docs.mesa3d.org/license.html&quot;&gt;MIT License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/metalangle&quot;&gt;MetalANGLE&lt;/a&gt; by @kakashidinho and ANGLE team: &lt;a href=&quot;https://github.com/kakashidinho/metalangle/raw/master/LICENSE&quot;&gt;BSD 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/KhronosGroup/MoltenVK&quot;&gt;MoltenVK&lt;/a&gt;: &lt;a href=&quot;https://github.com/KhronosGroup/MoltenVK/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kcat/openal-soft&quot;&gt;openal-soft&lt;/a&gt;: &lt;a href=&quot;https://github.com/kcat/openal-soft/raw/master/COPYING&quot;&gt;LGPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.azul.com/downloads/?package=jdk&quot;&gt;Azul Zulu JDK&lt;/a&gt;: &lt;a href=&quot;https://openjdk.java.net/legal/gplv2+ce.html&quot;&gt;GNU GPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/lwjgl3&quot;&gt;LWJGL3&lt;/a&gt;: &lt;a href=&quot;https://github.com/LWJGL/lwjgl3/raw/master/LICENSE.md&quot;&gt;BSD-3 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/lwjglx&quot;&gt;LWJGLX&lt;/a&gt; (LWJGL2 API compatibility layer for LWJGL3): unknown license.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/DBNumberedSlider&quot;&gt;DBNumberedSlider&lt;/a&gt;: &lt;a href=&quot;https://github.com/immago/DBNumberedSlider/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/fishhook&quot;&gt;fishhook&lt;/a&gt;: &lt;a href=&quot;https://github.com/facebook/fishhook/raw/main/LICENSE&quot;&gt;BSD-3 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/shaderc&quot;&gt;shaderc&lt;/a&gt; (used by Vulkan rendering mods): &lt;a href=&quot;https://github.com/google/shaderc/raw/main/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mozilla-mobile/firefox-ios/tree/b2f89ac40835c5988a1a3eb642982544e00f0f90/ThirdParty/NRFileManager&quot;&gt;NRFileManager&lt;/a&gt;: &lt;a href=&quot;https://www.mozilla.org/en-US/MPL/2.0&quot;&gt;MPL-2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rileytestut/AltKit&quot;&gt;AltKit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/abbeycode/UnzipKit&quot;&gt;UnzipKit&lt;/a&gt;: &lt;a href=&quot;https://github.com/abbeycode/UnzipKit/raw/master/LICENSE&quot;&gt;BSD-2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/xpn/DyldDeNeuralyzer&quot;&gt;DyldDeNeuralyzer&lt;/a&gt;: bypasses Library Validation for loading external runtime&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://mc-heads.net&quot;&gt;MCHeads&lt;/a&gt; for providing Minecraft avatars.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Special thanks to MacStadium!&lt;/h2&gt; 
+&lt;p&gt;This project is listed under the MacStadium Open Source Program, which allows all of us developers to keep on moving forward even without physical access to a Mac.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/55281754/183129754-c3736bb9-d528-4af7-9351-a12b3be7549e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;!-- sillysock was here --&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d3ec84f989832b5d7557eeb199867799b5fc19e1c777d856f32ce9a31368aae0/PojavLauncherTeam/PojavLauncher_iOS" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>SoCuul/SCInsta</title>
+      <link>https://github.com/SoCuul/SCInsta</link>
+      <description>&lt;p&gt;A feature-rich tweak for Instagram on iOS!&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;SCInsta&lt;/h1&gt; 
+&lt;p&gt;A feature-rich tweak for Instagram on iOS!&lt;br /&gt; &lt;code&gt;Version v1.1.1&lt;/code&gt; | &lt;code&gt;Tested on Instagram 418.2.0&lt;/code&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;⚙️ &amp;nbsp;To modify SCInsta&#39;s settings, check out &lt;a href=&quot;https://github.com/SoCuul/SCInsta#Opening-Tweak-Settings&quot;&gt;this section below&lt;/a&gt; for help&lt;br /&gt; ❓ &amp;nbsp;If you have any questions or need help with the tweak, visit the &lt;a href=&quot;https://github.com/SoCuul/SCInsta/discussions&quot;&gt;Discussions&lt;/a&gt; tab&lt;/p&gt; 
+ &lt;p&gt;✨ &amp;nbsp;If you have a feature request, &lt;a href=&quot;https://github.com/SoCuul/SCInsta/issues/new/choose&quot;&gt;click here&lt;/a&gt;&lt;br /&gt; 🐛 &amp;nbsp;If you have a bug report, &lt;a href=&quot;https://github.com/SoCuul/SCInsta/issues/new/choose&quot;&gt;click here&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;Installation&lt;/h1&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-important&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-report mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Important&lt;/p&gt;
+ &lt;p&gt;Which type of device are you planning on installing this tweak on?&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Jailbroken/TrollStore device -&amp;gt; &lt;a href=&quot;https://github.com/SoCuul/SCInsta/releases/latest&quot;&gt;Download pre-built tweak&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Standard iOS device -&amp;gt; &lt;a href=&quot;https://github.com/SoCuul/SCInsta/wiki/Building-IPA&quot;&gt;Visit the wiki to create an IPA file&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/div&gt; 
+&lt;h1&gt;Features&lt;/h1&gt; 
+&lt;h3&gt;General&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Hide ads&lt;/li&gt; 
+ &lt;li&gt;Hide Meta AI&lt;/li&gt; 
+ &lt;li&gt;Copy description&lt;/li&gt; 
+ &lt;li&gt;Do not save recent searches&lt;/li&gt; 
+ &lt;li&gt;Use detailed (native) color picker&lt;/li&gt; 
+ &lt;li&gt;Enable liquid glass buttons&lt;/li&gt; 
+ &lt;li&gt;Enable teen app icons&lt;/li&gt; 
+ &lt;li&gt;IG Notes: 
+  &lt;ul&gt; 
+   &lt;li&gt;Hide notes tray&lt;/li&gt; 
+   &lt;li&gt;Hide friends map&lt;/li&gt; 
+   &lt;li&gt;Enable note theming&lt;/li&gt; 
+   &lt;li&gt;Custom note themes&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Focus/Distractions 
+  &lt;ul&gt; 
+   &lt;li&gt;No suggested users&lt;/li&gt; 
+   &lt;li&gt;No suggested chats&lt;/li&gt; 
+   &lt;li&gt;Hide trending searches&lt;/li&gt; 
+   &lt;li&gt;Hide explore posts grid&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Feed&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Hide stories tray&lt;/li&gt; 
+ &lt;li&gt;Hide entire feed&lt;/li&gt; 
+ &lt;li&gt;No suggested posts&lt;/li&gt; 
+ &lt;li&gt;No suggested for you (accounts)&lt;/li&gt; 
+ &lt;li&gt;No suggested reels&lt;/li&gt; 
+ &lt;li&gt;No suggested threads posts&lt;/li&gt; 
+ &lt;li&gt;Disable video autoplay&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Reels&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Modify tap controls&lt;/li&gt; 
+ &lt;li&gt;Always show progress scrubber&lt;/li&gt; 
+ &lt;li&gt;Disable auto-unmuting reels&lt;/li&gt; 
+ &lt;li&gt;Confirm reel refresh&lt;/li&gt; 
+ &lt;li&gt;Hide reels header&lt;/li&gt; 
+ &lt;li&gt;Hide reels blend button&lt;/li&gt; 
+ &lt;li&gt;Disable scrolling reels&lt;/li&gt; 
+ &lt;li&gt;Prevent doom scrolling (limit maximum viewable reels)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Saving&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Download feed posts&lt;/li&gt; 
+ &lt;li&gt;Download reels&lt;/li&gt; 
+ &lt;li&gt;Download stories&lt;/li&gt; 
+ &lt;li&gt;Save profile picture&lt;/li&gt; 
+ &lt;li&gt;&lt;em&gt;Customize finger count for long-press&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;em&gt;Customize hold time for long-press&lt;/em&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Stories and messages&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Keep deleted messages&lt;/li&gt; 
+ &lt;li&gt;Manually mark messages as seen&lt;/li&gt; 
+ &lt;li&gt;Disable typing status&lt;/li&gt; 
+ &lt;li&gt;Unlimited replay of direct stories&lt;/li&gt; 
+ &lt;li&gt;Disable view-once limitations&lt;/li&gt; 
+ &lt;li&gt;Disable screenshot detection&lt;/li&gt; 
+ &lt;li&gt;Disable story seen receipt&lt;/li&gt; 
+ &lt;li&gt;Disable instants creation&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Navigation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Modify tab bar icon order&lt;/li&gt; 
+ &lt;li&gt;Modify swiping between tabs&lt;/li&gt; 
+ &lt;li&gt;Hiding tabs 
+  &lt;ul&gt; 
+   &lt;li&gt;Hide feed tab&lt;/li&gt; 
+   &lt;li&gt;Hide explore tab&lt;/li&gt; 
+   &lt;li&gt;Hide reels tab&lt;/li&gt; 
+   &lt;li&gt;Hide create tab&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Confirm actions&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Confirm like: Posts/Stories&lt;/li&gt; 
+ &lt;li&gt;Confirm like: Reels&lt;/li&gt; 
+ &lt;li&gt;Confirm follow&lt;/li&gt; 
+ &lt;li&gt;Confirm repost&lt;/li&gt; 
+ &lt;li&gt;Confirm call&lt;/li&gt; 
+ &lt;li&gt;Confirm voice messages&lt;/li&gt; 
+ &lt;li&gt;Confirm follow requests&lt;/li&gt; 
+ &lt;li&gt;Confirm shh mode (disappearing messages)&lt;/li&gt; 
+ &lt;li&gt;Confirm posting comment&lt;/li&gt; 
+ &lt;li&gt;Confirm changing direct message theme&lt;/li&gt; 
+ &lt;li&gt;Confirm sticker interaction&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Optimization&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Automatically clears unneeded cache folders, reducing the size of your Instagram installation&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Opening Tweak Settings&lt;/h1&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://i.imgur.com/uPMcugZ.png&quot; /&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://i.imgur.com/ctIiL7i.png&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h1&gt;Building from source&lt;/h1&gt; 
+&lt;h3&gt;Prerequisites&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;XCode + Command-Line Developer Tools&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://brew.sh/#install&quot;&gt;Homebrew&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://formulae.brew.sh/formula/cmake#default&quot;&gt;CMake&lt;/a&gt; (&lt;code&gt;brew install cmake&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://theos.dev/docs/installation&quot;&gt;Theos&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/asdfzxcvbn/pyzule-rw?tab=readme-ov-file#install-instructions&quot;&gt;cyan&lt;/a&gt; &lt;strong&gt;*only required for sideloading&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/asdfzxcvbn/ipapatch/releases/latest&quot;&gt;ipapatch&lt;/a&gt; &lt;strong&gt;*only required for sideloading&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Setup&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Install iOS 16.2 frameworks for theos 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/xybp888/iOS-SDKs/archive/refs/heads/master.zip&quot;&gt;Click to download iOS SDKs&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Unzip, then copy the &lt;code&gt;iPhoneOS16.2.sdk&lt;/code&gt; folder into &lt;code&gt;~/theos/sdks&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Clone SCInsta repo from GitHub: &lt;code&gt;git clone --recurse-submodules https://github.com/SoCuul/SCInsta&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;For sideloading&lt;/strong&gt;: Download a decrypted Instagram IPA from a trusted source, making sure to rename it to &lt;code&gt;com.burbn.instagram.ipa&lt;/code&gt;. Then create a folder called &lt;code&gt;packages&lt;/code&gt; inside of the &lt;code&gt;SCInsta&lt;/code&gt; folder, and move the Instagram IPA file into it.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Run build script&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;$ chmod +x build.sh
+$ ./build.sh &amp;lt;sideload/rootless/rootful&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Contributing&lt;/h1&gt; 
+&lt;p&gt;Contributions to this tweak are greatly appreciated. Feel free to create a pull request if you would like to contribute.&lt;/p&gt; 
+&lt;p&gt;If you do not have the technical knowledge to contribute to the codebase, improvements to the documentation are always welcome!&lt;/p&gt; 
+&lt;h1&gt;Support the project&lt;/h1&gt; 
+&lt;p&gt;SCInsta takes a lot of time to develop, as the Instagram app is ever-changing and difficult to keep up with. Additionally, I&#39;m still a student which doesn&#39;t leave me much time to work on this tweak.&lt;/p&gt; 
+&lt;p&gt;If you&#39;d like to support my work, you can donate to my &lt;a href=&quot;https://ko-fi.com/socuul&quot;&gt;ko-fi page&lt;/a&gt;!&lt;br /&gt; There&#39;s many other ways to support this project however, by simply sharing a link to this tweak with others who would like it!&lt;/p&gt; 
+&lt;p&gt;Seeing people use this tweak is what keeps me motivated to keep working on it ❤️&lt;/p&gt; 
+&lt;h1&gt;Credits&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Huge thanks to &lt;a href=&quot;https://github.com/BandarHL&quot;&gt;@BandarHL&lt;/a&gt; for creating the original BHInstagram project, which SCInsta is based upon.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/746244601/9231059e-feb7-4f4a-88ae-9d20a15ddc7b" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>geode-sdk/ios-launcher</title>
+      <link>https://github.com/geode-sdk/ios-launcher</link>
+      <description>&lt;p&gt;Manages installing and launching Geometry Dash for iOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Geode iOS Launcher&lt;/h1&gt; 
+&lt;p&gt;Manages installing and launching &lt;strong&gt;Geometry Dash&lt;/strong&gt; with &lt;strong&gt;Geode&lt;/strong&gt; for iOS.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/screenshots/thumbnail.png&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iOS/iPadOS 14.0 or later&lt;/li&gt; 
+ &lt;li&gt;Full version of Geometry Dash installed&lt;/li&gt; 
+ &lt;li&gt;An internet connection&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Navigate to &lt;a href=&quot;https://github.com/geode-sdk/ios-launcher/releases/latest&quot;&gt;https://github.com/geode-sdk/ios-launcher/releases/latest&lt;/a&gt;, if you are not &lt;strong&gt;jailbroken&lt;/strong&gt;, download the latest &lt;strong&gt;ipa&lt;/strong&gt; file. If you wish to use the tweak and have &lt;strong&gt;TrollStore&lt;/strong&gt;, download the latest &lt;strong&gt;tipa&lt;/strong&gt; file.&lt;/li&gt; 
+ &lt;li&gt;Install the launcher by following the &lt;a href=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/INSTALL.md&quot;&gt;Installation Guide&lt;/a&gt;. You can also access this guide by going in to the &lt;strong&gt;&lt;a href=&quot;http://INSTALL.md&quot;&gt;INSTALL.md&lt;/a&gt;&lt;/strong&gt; file in this repository.&lt;/li&gt; 
+ &lt;li&gt;Enjoy using Geode!&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;If you have any further questions, or need help, be sure to join &lt;a href=&quot;https://discord.gg/9e43WMKzhp&quot;&gt;our Discord server&lt;/a&gt;!&lt;/p&gt; 
+&lt;h2&gt;Building / Development&lt;/h2&gt; 
+&lt;p&gt;To build this project, you must have the following prerequisites installed:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://theos.dev/docs/&quot;&gt;Theos&lt;/a&gt; [WSL for Windows and GNU/Linux]&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://formulae.brew.sh/formula/make&quot;&gt;make&lt;/a&gt; [Mac OS only]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;After installing these, you can compile the project by running:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone --recurse-submodules https://github.com/geode-sdk/ios-launcher
+cd ios-launcher
+make package FINALPACKAGE=1 STRIP=0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Libraries&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/LiveContainer&quot;&gt;LiveContainer&lt;/a&gt; - Made the launcher possible!&lt;/li&gt; 
+ &lt;li&gt;Feather&#39;s &lt;a href=&quot;https://github.com/khcrysalis/Zsign-Package&quot;&gt;Zsign&lt;/a&gt; fork - For signing the app and mods for allowing the launcher to load JIT-less! (Originally made by &lt;a href=&quot;https://github.com/zhlynn/zsign&quot;&gt;zhlynn&lt;/a&gt;, but forked for &lt;a href=&quot;https://github.com/khcrysalis/Feather&quot;&gt;Feather&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sgl0v/MSColorPicker&quot;&gt;MSColorPicker&lt;/a&gt; - Helper for Color Picking&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/swisspol/GCDWebServer&quot;&gt;GCDWebServer&lt;/a&gt; - For the web debug panel!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is licensed under the &lt;a href=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/LICENSE&quot;&gt;Boost Software License 1.0&lt;/a&gt;. Additionally, this project also uses code from &lt;a href=&quot;https://github.com/khanhduytran0/LiveContainer&quot;&gt;LiveContainer&lt;/a&gt;. View the &lt;a href=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/NOTICE.md&quot;&gt;NOTICE.md&lt;/a&gt; for more details.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/936793054/d358c7aa-b624-44a1-ba0e-7ed75185b1c9" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>danveloper/flash-moe</title>
+      <link>https://github.com/danveloper/flash-moe</link>
+      <description>&lt;p&gt;Running a big model on a small laptop&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Flash-MoE: Running a 397B Parameter Model on a Laptop&lt;/h1&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/danveloper/flash-moe/main/paper/flash_moe.pdf&quot;&gt;Read the paper&lt;/a&gt;&lt;/strong&gt; — Full technical details, 90+ experiments, and the story of how an AI and a human built this in 24 hours.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Pure C/Metal inference engine that runs &lt;strong&gt;Qwen3.5-397B-A17B&lt;/strong&gt; (a 397 billion parameter Mixture-of-Experts model) on a MacBook Pro with 48GB RAM at &lt;strong&gt;4.4+ tokens/second&lt;/strong&gt; with production-quality output including tool calling.&lt;/p&gt; 
+&lt;p&gt;The entire 209GB model streams from SSD through a custom Metal compute pipeline. No Python. No frameworks. Just C, Objective-C, and hand-tuned Metal shaders.&lt;/p&gt; 
+&lt;h2&gt;Results&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/danveloper/flash-moe/main/progress.png&quot; alt=&quot;Progress&quot; /&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Configuration&lt;/th&gt; 
+   &lt;th&gt;tok/s&lt;/th&gt; 
+   &lt;th&gt;Quality&lt;/th&gt; 
+   &lt;th&gt;Notes&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;4-bit experts, FMA kernel&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;4.36&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Excellent&lt;/td&gt; 
+   &lt;td&gt;Current best. Full tool calling. 209GB on disk.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;4-bit experts, baseline&lt;/td&gt; 
+   &lt;td&gt;3.90&lt;/td&gt; 
+   &lt;td&gt;Excellent&lt;/td&gt; 
+   &lt;td&gt;Before FMA kernel optimization.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2-bit experts, trust OS&lt;/td&gt; 
+   &lt;td&gt;5.74&lt;/td&gt; 
+   &lt;td&gt;Good*&lt;/td&gt; 
+   &lt;td&gt;120GB on disk. *Breaks JSON/tool calling.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2-bit peak single token&lt;/td&gt; 
+   &lt;td&gt;7.05&lt;/td&gt; 
+   &lt;td&gt;Good*&lt;/td&gt; 
+   &lt;td&gt;Warm cache burst. *Not suitable for tool use.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;*2-bit quantization produces &lt;code&gt;\name\&lt;/code&gt; instead of &lt;code&gt;&quot;name&quot;&lt;/code&gt; in JSON output, making tool calling unreliable. 4-bit is the production configuration.&lt;/p&gt; 
+&lt;h2&gt;Hardware&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Machine&lt;/strong&gt;: MacBook Pro, Apple M3 Max&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Chip&lt;/strong&gt;: 16-core CPU (12P + 4E), 40-core GPU, 16-core ANE&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Memory&lt;/strong&gt;: 48 GB unified (~400 GB/s bandwidth)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SSD&lt;/strong&gt;: 1TB Apple Fabric, &lt;strong&gt;17.5 GB/s sequential read&lt;/strong&gt; (measured)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;macOS&lt;/strong&gt;: 26.2 (Darwin 25.2.0)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Architecture&lt;/h2&gt; 
+&lt;p&gt;The model has 60 transformer layers: 45 GatedDeltaNet (linear attention) + 15 standard full attention. Each layer has 512 experts, of which K=4 are activated per token (plus one shared expert). Hidden dimension is 4096.&lt;/p&gt; 
+&lt;h3&gt;Key Techniques&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;SSD Expert Streaming&lt;/strong&gt; — Expert weights (209GB at 4-bit) are read from NVMe SSD on demand via parallel &lt;code&gt;pread()&lt;/code&gt; with GCD dispatch groups. Only the K=4 active experts per layer are loaded (~6.75MB each). The OS page cache manages caching — no custom cache needed (&quot;Trust the OS&quot; principle). Inspired by Apple&#39;s &quot;LLM in a Flash&quot; paper.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;FMA-Optimized Dequant Kernel&lt;/strong&gt; — The inner loop of the 4-bit dequantized matrix-vector multiply rearranges the math from &lt;code&gt;(nibble * scale + bias) * x&lt;/code&gt; to &lt;code&gt;fma(nibble, scale*x, bias*x)&lt;/code&gt;. Pre-computing &lt;code&gt;scale*x&lt;/code&gt; and &lt;code&gt;bias*x&lt;/code&gt; lets the GPU fused multiply-add unit do dequant+multiply in one instruction. 12% faster than the naive formulation.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Metal Compute Shaders&lt;/strong&gt; — Hand-written Metal kernels for:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;4-bit and 2-bit dequantized matrix-vector multiply (tiled, SIMD-reduced, shared input cache, FMA-optimized)&lt;/li&gt; 
+   &lt;li&gt;Fused SwiGLU activation&lt;/li&gt; 
+   &lt;li&gt;RMS normalization (two-pass: sum-of-squares reduction + apply)&lt;/li&gt; 
+   &lt;li&gt;Batched GPU attention (Q@K^T, softmax, scores@V) for full attention layers&lt;/li&gt; 
+   &lt;li&gt;GPU RoPE (fused with Q deinterleave and K normalization)&lt;/li&gt; 
+   &lt;li&gt;MoE combine + residual + sigmoid gate (fused kernel)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Deferred GPU Expert Compute&lt;/strong&gt; — CMD3 (expert forward pass) is submitted without waiting. The GPU executes it while the CPU prepares the next layer. The combine + residual + norm are also on GPU, feeding directly into the next layer&#39;s attention projections.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Accelerate BLAS for Linear Attention&lt;/strong&gt; — The GatedDeltaNet recurrence uses &lt;code&gt;cblas_sscal&lt;/code&gt;, &lt;code&gt;cblas_sgemv&lt;/code&gt;, and &lt;code&gt;cblas_sger&lt;/code&gt; for the 64-head × 128×128 state matrix update. 64% faster than scalar code.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Trust the OS&lt;/strong&gt; — No custom expert cache. The OS page cache (~35GB) manages expert data caching via standard LRU. Every custom caching approach we tested (Metal LRU, malloc cache, LZ4 compressed cache) was slower due to GPU memory pressure or overhead. The page cache achieves ~71% hit rate naturally.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Pipeline Per Layer (4.28ms average at 4-bit)&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;CMD3(prev) → CMD1: attention projections + delta-net  [1.22ms GPU]
+           → CPU: flush results                       [0.01ms CPU]
+           → CMD2: o_proj + norm + routing + shared    [0.55ms GPU]
+           → CPU: softmax + topK routing               [0.003ms]
+           → I/O: parallel pread K=4 experts           [2.41ms SSD]
+           → CMD3: expert forward + combine + norm     [0.04ms encode, DEFERRED]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Unified Memory Constraint&lt;/h3&gt; 
+&lt;p&gt;On Apple Silicon, SSD DMA and GPU compute share the same memory controller and cannot be profitably overlapped. The GPU&#39;s dequant kernels are bandwidth-saturated at ~418 GiB/s. Even small background SSD DMA causes disproportionate GPU latency spikes through memory controller arbitration. The serial pipeline (GPU → SSD → GPU) is hardware-optimal.&lt;/p&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd metal_infer
+make
+# 4-bit inference (needs packed_experts/ directory)
+./infer --prompt &quot;Explain quantum computing&quot; --tokens 100
+
+# 2-bit inference (faster but breaks tool calling)
+./infer --prompt &quot;Explain quantum computing&quot; --tokens 100 --2bit
+
+# Interactive chat with tool calling
+./chat
+
+# Per-layer timing breakdown
+./infer --prompt &quot;Hello&quot; --tokens 20 --timing
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Project Structure&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;metal_infer/
+  infer.m              # Complete inference engine (~7000 lines)
+  shaders.metal        # Metal compute kernels (~1200 lines)
+  chat.m               # Interactive chat TUI with tool calling
+  tokenizer.h          # C BPE tokenizer (single-header, 449 lines)
+  main.m               # MoE-only benchmark
+  Makefile             # Build system
+  extract_weights.py   # Creates model_weights.bin from safetensors
+  repack_experts_2bit.py  # 4-bit → 2-bit expert requantization
+  train_predictor.py   # Expert routing prediction analysis
+  model_weights.bin    # Non-expert weights (5.5GB, mmap&#39;d)
+  model_weights.json   # Tensor manifest
+  vocab.bin            # Vocabulary for token decoding
+  tokenizer.bin        # Pre-exported BPE tokenizer data
+
+repack_experts.py      # 4-bit expert packing from safetensors
+progress.py            # Results visualization (Q2/Q4 tracks)
+results.tsv            # Experiment log (58 experiments)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;What We Tried (and What Worked)&lt;/h2&gt; 
+&lt;h3&gt;Kept&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Approach&lt;/th&gt; 
+   &lt;th&gt;Result&lt;/th&gt; 
+   &lt;th&gt;Impact&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;FMA dequant kernel&lt;/td&gt; 
+   &lt;td&gt;GPU compute -12%&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;+12% tok/s&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Trust OS page cache&lt;/td&gt; 
+   &lt;td&gt;Deleted Metal LRU → +38%&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Foundational&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;GPU combine+norm in CMD3&lt;/td&gt; 
+   &lt;td&gt;Eliminates CPU round-trip&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;BLAS delta-net (Accelerate)&lt;/td&gt; 
+   &lt;td&gt;cpu_attn 0.78→0.28ms&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;+64% attn&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;F_NOCACHE for 2-bit&lt;/td&gt; 
+   &lt;td&gt;+3% from avoiding page thrash&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;2-bit only&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;GPU fused attention (RoPE)&lt;/td&gt; 
+   &lt;td&gt;+2% for full-attn layers&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Small&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;C BPE tokenizer&lt;/td&gt; 
+   &lt;td&gt;180ms vs 3500ms startup&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;20x startup&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Deferred CMD3 execution&lt;/td&gt; 
+   &lt;td&gt;GPU/CPU overlap&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Pipeline&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Discarded (58 experiments, highlights)&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Approach&lt;/th&gt; 
+   &lt;th&gt;Result&lt;/th&gt; 
+   &lt;th&gt;Why&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;LZ4 expert compression&lt;/td&gt; 
+   &lt;td&gt;-13%&lt;/td&gt; 
+   &lt;td&gt;Decompress overhead &amp;gt; warm cache savings&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;F_RDADVISE prefetch&lt;/td&gt; 
+   &lt;td&gt;net 0%&lt;/td&gt; 
+   &lt;td&gt;Unified memory: SSD DMA slows GPU -73%&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Temporal expert prediction&lt;/td&gt; 
+   &lt;td&gt;-18%&lt;/td&gt; 
+   &lt;td&gt;25% hit rate, SSD bandwidth waste&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;MLP routing predictor&lt;/td&gt; 
+   &lt;td&gt;31% accuracy&lt;/td&gt; 
+   &lt;td&gt;Worse than temporal baseline&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;GPU LUT dequant kernel&lt;/td&gt; 
+   &lt;td&gt;-2%&lt;/td&gt; 
+   &lt;td&gt;Indirect register access serializes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;GPU private buffer compression&lt;/td&gt; 
+   &lt;td&gt;-20% pipeline&lt;/td&gt; 
+   &lt;td&gt;Blit cost 4×7MB &amp;gt; matvec savings&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Spin-poll GPU wait&lt;/td&gt; 
+   &lt;td&gt;-23%&lt;/td&gt; 
+   &lt;td&gt;CPU thermal competes with GPU&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Expert file clustering&lt;/td&gt; 
+   &lt;td&gt;0%&lt;/td&gt; 
+   &lt;td&gt;NVMe ignores scatter at 7MB granularity&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;dispatch_io&lt;/td&gt; 
+   &lt;td&gt;-70%&lt;/td&gt; 
+   &lt;td&gt;dispatch_data management overhead&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;mmap expert files&lt;/td&gt; 
+   &lt;td&gt;-5x&lt;/td&gt; 
+   &lt;td&gt;Per-page fault overhead on cold data&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Speculative early routing&lt;/td&gt; 
+   &lt;td&gt;-38%&lt;/td&gt; 
+   &lt;td&gt;Cache pollution + overhead&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;MTP speculative decoding&lt;/td&gt; 
+   &lt;td&gt;break-even&lt;/td&gt; 
+   &lt;td&gt;MoE I/O scales per-token (unlike dense)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Safety&lt;/h2&gt; 
+&lt;p&gt;This is a primary development machine. The engine explicitly controls memory:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Non-expert weights: 5.5GB (mmap&#39;d, read-only)&lt;/li&gt; 
+ &lt;li&gt;Metal scratch buffers: ~200MB&lt;/li&gt; 
+ &lt;li&gt;Total: ~6GB, leaving 42GB for OS + page cache&lt;/li&gt; 
+ &lt;li&gt;No OOM risk. Expert data streams from SSD on demand.&lt;/li&gt; 
+ &lt;li&gt;No custom caches. Trust the OS.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/48b23fe9a1e0fb10eca9b8e741a3e94890f81c953d220a1fb52984fecee9b268/danveloper/flash-moe" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>roothide/Developer</title>
+      <link>https://github.com/roothide/Developer</link>
+      <description>&lt;p&gt;document for tweak Developers&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;update jailbreak apps/tweaks for roothide&lt;/h1&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;install roothide/theos&lt;/p&gt; &lt;p&gt;&lt;code&gt;bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/roothide/theos/master/bin/install-theos)&quot;&lt;/code&gt;&lt;/p&gt; &lt;p&gt;and it&#39;s always automatically synchronized and maintains 100% compatibility with the original theos.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build package for roothide&lt;/p&gt; &lt;p&gt;for those simple tweaks that don&#39;t use the file api to access jailbreak files, just&lt;/p&gt; &lt;p&gt;&lt;code&gt;make package&lt;/code&gt; with &lt;code&gt;THEOS_PACKAGE_SCHEME=roothide&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Using &lt;code&gt;roothide&lt;/code&gt; APIs if you need to use the file apis to access jailbreak files in source code&lt;/p&gt; &lt;pre&gt;&lt;code&gt;#include &amp;lt;roothide.h&amp;gt;
+
+//then using roothide api to access jailbreak files
+
+const char* c_path = jbroot(&quot;/path/to/jb/file&quot;);
+
+NSString* objc_path = jbroot(@&quot;/path/to/jb/file&quot;);
+
+std::string cpp_path = jbroot(std::string(&quot;/path/to/jb/file&quot;));
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;&lt;em&gt;&lt;strong&gt;the &lt;code&gt;jbroot&lt;/code&gt; API can be used in C/C++/Objective-C/Swift and its fully compatible with building rootful/rootless package&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; &lt;p&gt;&lt;em&gt;&lt;strong&gt;In Swift project, it&#39;s better to use a swift bridging header file for &lt;code&gt;#include &amp;lt;roothide.h&amp;gt;&lt;/code&gt; instead of using &lt;code&gt;import roothide&lt;/code&gt; in swift source files. this will ensure your project is compatible with building rootful/rootless, ref to &lt;a href=&quot;https://theos.dev/docs/swift#:~:text=Objective%2DC%20to%20Swift&quot;&gt;https://theos.dev/docs/swift#:~:text=Objective-C to Swift&lt;/a&gt;&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add these &lt;code&gt;entitlements&lt;/code&gt; to your executable/app to make them work correctly with roothide:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;&amp;lt;key&amp;gt;platform-application&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&amp;lt;key&amp;gt;com.apple.private.security.no-sandbox&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&amp;lt;key&amp;gt;com.apple.private.security.storage.AppBundles&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&amp;lt;key&amp;gt;com.apple.private.security.storage.AppDataContainers&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you want to build your project with Xcode instead of theos,&lt;br /&gt; here is the roothide sdk: &lt;a href=&quot;https://github.com/roothide/libroothide/releases/latest&quot;&gt;devkit.zip&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;roothide/theos is now compatible with building roothide packages from existing tweak projects that use rootless path macros, there is a warning message to ensure you have read this document and you can define the &lt;code&gt;DISABLE_ROOTLESS_COMPAT_WARNING&lt;/code&gt; macro to silence the message.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For more details about roothide, please refer to&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/roothide/Developer/main/roothide.md&quot;&gt;the difference between roothide and legacy rootless&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/roothide/Developer/main/entitlements.md&quot;&gt;entitlements and data sharing via files&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/roothide/Developer/main/interface.md&quot;&gt;roothide&#39;s sdk api and tools&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;support&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;roothideDev: &lt;a href=&quot;https://twitter.com/roothideDev&quot;&gt;https://twitter.com/roothideDev&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;roothide/theos-dev: &lt;a href=&quot;https://discord.gg/qaCFxr33CV&quot;&gt;https://discord.gg/qaCFxr33CV&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;more info&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;roothide discord server: &lt;a href=&quot;https://discord.gg/ZvY2Yjw8GA&quot;&gt;https://discord.gg/ZvY2Yjw8GA&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;theos dev discord server: &lt;a href=&quot;https://discord.gg/z4RTnrcbKW&quot;&gt;https://discord.gg/z4RTnrcbKW&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/89fffa828c9b75c03811130a49c7960d921e2115d582bd755b790c085c21b758/roothide/Developer" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>roothide/Bootstrap</title>
+      <link>https://github.com/roothide/Bootstrap</link>
+      <description>&lt;p&gt;A full featured bootstrap for iOS 15.0-17.0 A8-A17Pro &amp; M1+M2 using roothide&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;roothide Bootstrap&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/roothide/Bootstrap/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/roothide/Bootstrap?style=social&quot; alt=&quot;GitHub stars&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A full featured bootstrap for iOS 15.0-17.0 A8-A17Pro &amp;amp; M1+M2 using roothide.&lt;/p&gt; 
+&lt;h5&gt;&lt;em&gt;WARNING:&lt;/em&gt; By using this software, you take full responsibility for what you do with it. Any unofficial modifications to your device may cause irreparable damage. Refer to the FAQ linked in the &lt;code&gt;Usage&lt;/code&gt; section for safe usage of this software.&lt;/h5&gt; 
+&lt;p&gt;roothide Bootstrap is available to download on this repositories &lt;a href=&quot;https://github.com/roothide/Bootstrap/releases&quot;&gt;Releases&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Building&lt;/h2&gt; 
+&lt;p&gt;If you do not have access to MacOS, refer to the FAQ in the &lt;code&gt;Usage&lt;/code&gt; section to build with GitHub Actions instead.&lt;/p&gt; 
+&lt;p&gt;You&#39;ll need MacOS to build, as you require Xcode from the App Store. Simply having Xcode Command Line Tools is &lt;em&gt;insufficient&lt;/em&gt;. Here&#39;s how to build the Bootstrap:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Update/Install Theos with roothide support&lt;/p&gt; &lt;pre&gt;&lt;code&gt;bash -c &quot;$(curl -fsSL https://raw.githubusercontent.com/roothide/theos/master/bin/install-theos)&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;&lt;em&gt;If you encounter errors from a previous Theos installation, remove Theos in its entirety before continuing.&lt;/em&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Clone the GitHub repository and enter directory&lt;/p&gt; &lt;pre&gt;&lt;code&gt;git clone https://github.com/roothide/Bootstrap/ &amp;amp;&amp;amp; cd Bootstrap
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Build &lt;code&gt;Bootstrap.tipa&lt;/code&gt;&lt;/p&gt; &lt;pre&gt;&lt;code&gt;make package
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Transfer &lt;code&gt;Bootstrap.tipa&lt;/code&gt; from &lt;code&gt;./packages/&lt;/code&gt; to your device and install it with TrollStore&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;The roothide Bootstrap application &lt;strong&gt;must&lt;/strong&gt; be installed with &lt;a href=&quot;https://ios.cfw.guide/installing-trollstore/&quot;&gt;TrollStore&lt;/a&gt;. Use version &lt;code&gt;2.0.9&lt;/code&gt; or later for enabling developer mode on-device.&lt;/p&gt; 
+&lt;p&gt;By design, roothide does not inject tweaks into any 3rd applications by default. To enable tweak injection into an application, press &lt;code&gt;App List&lt;/code&gt; in the Bootstrap app, and enable the toggle of the application you want to inject into.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;For installing Bootstrap&lt;/strong&gt;, refer to the guides at &lt;a href=&quot;https://onejailbreak.com/blog/bootstrap-roothide/&quot;&gt;https://onejailbreak.com/blog/bootstrap-roothide/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Develop tweaks&lt;/h2&gt; 
+&lt;p&gt;You can refer to the developer documentation &lt;a href=&quot;https://github.com/roothide/Developer&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Discord server&lt;/h2&gt; 
+&lt;p&gt;You can join the roothide Discord server for support or general discussion &lt;a href=&quot;https://discord.gg/ZvY2Yjw8GA&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;The &quot;Our Table&quot; Icon&lt;/h2&gt; 
+&lt;p&gt;The ProcursusTeam logo was originally made by &lt;a href=&quot;https://github.com/TheAlphaStream&quot;&gt;@TheAlphaStream&lt;/a&gt;, and later edited by &lt;a href=&quot;https://github.com/sourcelocation&quot;&gt;@sourcelocation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;Huge thanks to these people, we couldn&#39;t have completed this project without their help!&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;absidue: &lt;a href=&quot;https://github.com/absidue&quot;&gt;https://github.com/absidue&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;akusio: &lt;a href=&quot;https://twitter.com/akusio_rr&quot;&gt;https://twitter.com/akusio_rr&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Alfie: &lt;a href=&quot;https://alfiecg.uk&quot;&gt;https://alfiecg.uk&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Amy While: &lt;a href=&quot;http://github.com/elihwyma&quot;&gt;http://github.com/elihwyma&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Barron: &lt;a href=&quot;https://tweaksdev22.github.io&quot;&gt;https://tweaksdev22.github.io&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;BomberFish: &lt;a href=&quot;https://twitter.com/bomberfish77&quot;&gt;https://twitter.com/bomberfish77&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;bswbw: &lt;a href=&quot;https://twitter.com/bswbw&quot;&gt;https://twitter.com/bswbw&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Capt Inc: &lt;a href=&quot;http://github.com/captinc&quot;&gt;http://github.com/captinc&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;CKatri: &lt;a href=&quot;https://procursus.social/@cameron&quot;&gt;https://procursus.social/@cameron&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Clarity: &lt;a href=&quot;http://github.com/TheRealClarity&quot;&gt;http://github.com/TheRealClarity&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Cryptic: &lt;a href=&quot;http://github.com/Cryptiiiic&quot;&gt;http://github.com/Cryptiiiic&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;dxcool223x: &lt;a href=&quot;https://twitter.com/dxcool223x&quot;&gt;https://twitter.com/dxcool223x&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Dhinakg: &lt;a href=&quot;http://github.com/dhinakg&quot;&gt;http://github.com/dhinakg&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;DuyKhanhTran: &lt;a href=&quot;https://twitter.com/TranKha50277352&quot;&gt;https://twitter.com/TranKha50277352&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;dleovl: &lt;a href=&quot;https://github.com/dleovl&quot;&gt;https://github.com/dleovl&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Elias Sfeir: &lt;a href=&quot;https://twitter.com/eliassfeir1&quot;&gt;https://twitter.com/eliassfeir1&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Ellie: &lt;a href=&quot;https://twitter.com/elliessurviving&quot;&gt;https://twitter.com/elliessurviving&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;EquationGroups: &lt;a href=&quot;https://twitter.com/equationgroups&quot;&gt;https://twitter.com/equationgroups&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Évelyne: &lt;a href=&quot;http://github.com/evelyneee&quot;&gt;http://github.com/evelyneee&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;GeoSnOw: &lt;a href=&quot;https://twitter.com/fce365&quot;&gt;https://twitter.com/fce365&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;G3n3sis: &lt;a href=&quot;https://twitter.com/G3nNuk_e&quot;&gt;https://twitter.com/G3nNuk_e&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;hayden: &lt;a href=&quot;https://procursus.social/@hayden&quot;&gt;https://procursus.social/@hayden&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Huy Nguyen: &lt;a href=&quot;https://twitter.com/little_34306&quot;&gt;https://twitter.com/little_34306&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;iAdam1n: &lt;a href=&quot;https://twitter.com/iAdam1n&quot;&gt;https://twitter.com/iAdam1n&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;iarrays: &lt;a href=&quot;https://iarrays.com&quot;&gt;https://iarrays.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;iDownloadBlog: &lt;a href=&quot;https://twitter.com/idownloadblog&quot;&gt;https://twitter.com/idownloadblog&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;iExmo: &lt;a href=&quot;https://twitter.com/iexmojailbreak&quot;&gt;https://twitter.com/iexmojailbreak&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;iRaMzi: &lt;a href=&quot;https://twitter.com/iramzi7&quot;&gt;https://twitter.com/iramzi7&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Jonathan: &lt;a href=&quot;https://twitter.com/jontelang&quot;&gt;https://twitter.com/jontelang&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Kevin: &lt;a href=&quot;https://github.com/iodes&quot;&gt;https://github.com/iodes&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;kirb: &lt;a href=&quot;http://github.com/kirb&quot;&gt;http://github.com/kirb&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;laileld: &lt;a href=&quot;https://twitter.com/h_h_x_t&quot;&gt;https://twitter.com/h_h_x_t&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Leptos: &lt;a href=&quot;https://github.com/leptos-null&quot;&gt;https://github.com/leptos-null&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;limneos: &lt;a href=&quot;https://twitter.com/limneos&quot;&gt;https://twitter.com/limneos&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Lightmann: &lt;a href=&quot;https://github.com/L1ghtmann&quot;&gt;https://github.com/L1ghtmann&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Linus Henze: &lt;a href=&quot;http://github.com/LinusHenze&quot;&gt;http://github.com/LinusHenze&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;MasterMike: &lt;a href=&quot;https://ios.cfw.guide&quot;&gt;https://ios.cfw.guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Misty: &lt;a href=&quot;https://twitter.com/miscmisty&quot;&gt;https://twitter.com/miscmisty&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Muirey03: &lt;a href=&quot;https://twitter.com/Muirey03&quot;&gt;https://twitter.com/Muirey03&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Nathan: &lt;a href=&quot;https://github.com/verygenericname&quot;&gt;https://github.com/verygenericname&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Nebula: &lt;a href=&quot;https://itsnebula.net&quot;&gt;https://itsnebula.net&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;niceios: &lt;a href=&quot;https://twitter.com/niceios&quot;&gt;https://twitter.com/niceios&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Nightwind: &lt;a href=&quot;https://twitter.com/NightwindDev&quot;&gt;https://twitter.com/NightwindDev&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Nick Chan: &lt;a href=&quot;https://nickchan.lol&quot;&gt;https://nickchan.lol&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;nzhaonan: &lt;a href=&quot;https://twitter.com/nzhaonan&quot;&gt;https://twitter.com/nzhaonan&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Oliver Tzeng: &lt;a href=&quot;https://github.com/olivertzeng&quot;&gt;https://github.com/olivertzeng&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;omrkujman: &lt;a href=&quot;https://twitter.com/omrkujman&quot;&gt;https://twitter.com/omrkujman&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;opa334: &lt;a href=&quot;http://github.com/opa334&quot;&gt;http://github.com/opa334&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;onejailbreak: &lt;a href=&quot;https://twitter.com/onejailbreak_&quot;&gt;https://twitter.com/onejailbreak_&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Phuc Do: &lt;a href=&quot;https://twitter.com/dobabaophuc&quot;&gt;https://twitter.com/dobabaophuc&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;PoomSmart: &lt;a href=&quot;https://twitter.com/poomsmart&quot;&gt;https://twitter.com/poomsmart&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;ProcursusTeam: &lt;a href=&quot;https://procursus.social/@team&quot;&gt;https://procursus.social/@team&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;roothide: &lt;a href=&quot;http://github.com/roothide&quot;&gt;http://github.com/roothide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Sam Bingner: &lt;a href=&quot;http://github.com/sbingner&quot;&gt;http://github.com/sbingner&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Shadow-: &lt;a href=&quot;http://iosjb.top/&quot;&gt;http://iosjb.top/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Snail: &lt;a href=&quot;https://twitter.com/somnusix&quot;&gt;https://twitter.com/somnusix&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;SquidGesture: &lt;a href=&quot;https://twitter.com/lclrc&quot;&gt;https://twitter.com/lclrc&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;sourcelocation: &lt;a href=&quot;http://github.com/sourcelocation&quot;&gt;http://github.com/sourcelocation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;SeanIsTethered: &lt;a href=&quot;https://github.com/jailbreakmerebooted&quot;&gt;http://github.com/jailbreakmerebooted&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;TheosTeam: &lt;a href=&quot;https://theos.dev&quot;&gt;https://theos.dev&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;tigisoftware: &lt;a href=&quot;https://twitter.com/tigisoftware&quot;&gt;https://twitter.com/tigisoftware&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;tihmstar: &lt;a href=&quot;https://twitter.com/tihmstar&quot;&gt;https://twitter.com/tihmstar&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;xina520: &lt;a href=&quot;https://twitter.com/xina520&quot;&gt;https://twitter.com/xina520&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;xybp888: &lt;a href=&quot;https://twitter.com/xybp888&quot;&gt;https://twitter.com/xybp888&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;xsf1re: &lt;a href=&quot;https://twitter.com/xsf1re&quot;&gt;https://twitter.com/xsf1re&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;yandevelop: &lt;a href=&quot;https://twitter.com/yandevelop&quot;&gt;https://twitter.com/yandevelop&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;YourRepo: &lt;a href=&quot;https://twitter.com/yourepo&quot;&gt;https://twitter.com/yourepo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;And &lt;em&gt;&lt;strong&gt;you&lt;/strong&gt;&lt;/em&gt;, the community, for giving insightful feedback and support.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/82c2443efbac3511304977dcecef6c912f5cb9f97216a84dff1ae6a098f7fc9d/roothide/Bootstrap" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Hammerspoon/hammerspoon</title>
+      <link>https://github.com/Hammerspoon/hammerspoon</link>
+      <description>&lt;p&gt;Staggeringly powerful macOS desktop automation with Lua&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Hammerspoon&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/actions?query=workflow%3ACI&quot;&gt;&lt;img src=&quot;https://github.com/Hammerspoon/hammerspoon/workflows/CI/badge.svg?sanitize=true&quot; alt=&quot;CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/github/Hammerspoon/hammerspoon?branch=master&quot;&gt;&lt;img src=&quot;https://codecov.io/github/Hammerspoon/hammerspoon/coverage.svg?branch=master&quot; alt=&quot;codecov.io&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/Hammerspoon/hammerspoon/latest/total.svg?sanitize=true&quot; alt=&quot;Downloads current release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/Hammerspoon/hammerspoon/total.svg?maxAge=2592000&quot; alt=&quot;Downloads all releases&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/tags&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/tag/Hammerspoon/hammerspoon.svg?sanitize=true&quot; alt=&quot;Latest tag&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/Hammerspoon/hammerspoon.svg?sanitize=true&quot; alt=&quot;Latest release&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Discord: &lt;a href=&quot;https://discord.gg/vxchqkRbkR&quot;&gt;Click to join&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;What is Hammerspoon?&lt;/h2&gt; 
+&lt;p&gt;This is a tool for powerful automation of OS X. At its core, Hammerspoon is just a bridge between the operating system and a Lua scripting engine.&lt;/p&gt; 
+&lt;p&gt;What gives Hammerspoon its power is a set of extensions that expose specific pieces of system functionality, to the user. With these, you can write Lua scripts to control many aspects of your OS X environment.&lt;/p&gt; 
+&lt;h2&gt;How do I install it?&lt;/h2&gt; 
+&lt;h3&gt;Manually&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Download the &lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/releases/latest&quot;&gt;latest release&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Drag &lt;code&gt;Hammerspoon.app&lt;/code&gt; from your &lt;code&gt;Downloads&lt;/code&gt; folder to &lt;code&gt;Applications&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;brew install hammerspoon --cask&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;What next?&lt;/h2&gt; 
+&lt;p&gt;Out of the box, Hammerspoon does nothing - you will need to create &lt;code&gt;~/.hammerspoon/init.lua&lt;/code&gt; and fill it with useful code. There are several resources which can help you:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.hammerspoon.org/go/&quot;&gt;Getting Started Guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.hammerspoon.org/docs/&quot;&gt;API docs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.hammerspoon.org/faq/&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/wiki/Sample-Configurations&quot;&gt;Sample Configurations&lt;/a&gt; supplied by various users&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Hammerspoon/hammerspoon/raw/master/CONTRIBUTING.md&quot;&gt;Contribution Guide&lt;/a&gt; for developers looking to get involved&lt;/li&gt; 
+ &lt;li&gt;An IRC channel for general chat/support/development (#hammerspoon on Libera)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://groups.google.com/forum/#!forum/hammerspoon/&quot;&gt;Google Group&lt;/a&gt; for support&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;What is the history of the project?&lt;/h2&gt; 
+&lt;p&gt;Hammerspoon is a fork of &lt;a href=&quot;https://github.com/mjolnirapp/mjolnir&quot;&gt;Mjolnir&lt;/a&gt;. Mjolnir aims to be a very minimal application, with its extensions hosted externally and managed using a Lua package manager. We wanted to provide a more integrated experience.&lt;/p&gt; 
+&lt;h2&gt;What is the future of the project?&lt;/h2&gt; 
+&lt;p&gt;Our intentions for Hammerspoon broadly fall into these categories:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Ever wider coverage of system APIs in Extensions&lt;/li&gt; 
+ &lt;li&gt;Tighter integration between extensions&lt;/li&gt; 
+ &lt;li&gt;Smoother user experience&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e49398cd7f3d96627cc18d1862f206eff9995b02f1595aff6218d3beed121335/Hammerspoon/hammerspoon" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>erikdoe/ocmock</title>
+      <link>https://github.com/erikdoe/ocmock</link>
+      <description>&lt;p&gt;Mock objects for Objective-C&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OCMock&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/erikdoe/ocmock/actions/workflows/build-and-test.yaml/badge.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;OCMock is an Objective-C implementation of mock objects.&lt;/p&gt; 
+&lt;p&gt;For downloads, documentation, and support please visit &lt;a href=&quot;http://ocmock.org/&quot;&gt;ocmock.org&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/2238602/4c90b000-c535-11e9-9585-7efe1f2c076a" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>CleverTap/CTNotificationService</title>
+      <link>https://github.com/CleverTap/CTNotificationService</link>
+      <description>&lt;p&gt;A simple Notification Service Extension class to add media attachments to iOS 10 rich push notifications&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;CTNotificationService&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cocoapods.org/pods/CTNotificationService&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/CTNotificationService.svg?style=flat&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codebeat.co/projects/github-com-clevertap-ctnotificationservice-master&quot;&gt;&lt;img src=&quot;https://codebeat.co/badges/45087421-b644-44fc-9a92-f2ccf61e0b16&quot; alt=&quot;codebeat badge&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?sanitize=true&quot; alt=&quot;SwiftPM compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/CTNotificationService&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/CTNotificationService.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/CTNotificationService&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/CTNotificationService.svg?style=flat&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/badge/iOS-10.0%2B-blue.svg?sanitize=true&quot; alt=&quot;iOS 10.0+&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;👋 Introduction&lt;/h2&gt; 
+&lt;p&gt;A simple Notification Service Extension class to add media attachments to iOS 10 rich push notifications. Starting with iOS 10 you can add media attachments (image, gif, video, audio) to iOS push notifications. This library provides a simple drop-in class to accomplish that.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://developer.apple.com/videos/play/wwdc2016/708/&quot;&gt;Rich push notifications&lt;/a&gt; are enabled in iOS 10 via a &lt;a href=&quot;https://developer.apple.com/reference/usernotifications/unnotificationserviceextension&quot;&gt;Notification Service Extension&lt;/a&gt;, a separate and distinct binary embedded in your app bundle.&lt;/p&gt; 
+&lt;h2&gt;📋 Requirements&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Compatible with iOS version 10.0 or above&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Configure your app for Push and add a Notification Service Extension target&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt; &lt;p&gt;Enable &lt;a href=&quot;https://developer.apple.com/notifications/&quot;&gt;push notifications&lt;/a&gt; in your main app.&lt;/p&gt; &lt;/li&gt; 
+   &lt;li&gt; &lt;p&gt;Create a Notification Service Extension in your project. To do that in your Xcode project, select File -&amp;gt; New -&amp;gt; Target and choose the Notification Service Extension template.&lt;/p&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/images/service_extension.png&quot; alt=&quot;notification service extension&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;🎉 Installation&lt;/h2&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;p&gt;Install &lt;code&gt;CTNotificationService&lt;/code&gt; in your Notification Service Extension via &lt;a href=&quot;http://cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Your &lt;code&gt;Podfile&lt;/code&gt; should look something like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;source &#39;https://github.com/CocoaPods/Specs.git&#39;
+platform :ios, &#39;10.0&#39;
+
+use_frameworks!
+
+target &#39;YOUR_NOTIFICATION_SERVICE_TARGET_NAME&#39; do  
+    pod &#39;CTNotificationService&#39;  
+end     
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then run &lt;code&gt;pod install&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/Example/Podfile&quot;&gt;See example Podfile here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;p&gt;CTNotificationService supports &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt; to package your dependencies as a framework.&lt;/p&gt; 
+&lt;p&gt;To integrate CTNotificationService into your Xcode project using Carthage, specify the following in your &lt;code&gt;Cartfile&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;github &quot;CleverTap/CTNotificationService&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run &lt;code&gt;carthage update&lt;/code&gt; to build the framework and drag the built &lt;code&gt;CTNotificationService.framework&lt;/code&gt; into your Xcode project.&lt;/p&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;p&gt;Swift Package Manager is an Xcode tool that installs project dependencies. To use it to install CTNotificationService SDK, follow these steps:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;In Xcode, navigate to &lt;strong&gt;File&amp;nbsp;-&amp;gt;&amp;nbsp;Swift Package Manager&amp;nbsp;-&amp;gt;&amp;nbsp;Add Package Dependency.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Enter&amp;nbsp;&lt;strong&gt;&lt;a href=&quot;https://github.com/CleverTap/CTNotificationService.git&quot;&gt;https://github.com/CleverTap/CTNotificationService.git&lt;/a&gt;&lt;/strong&gt; when choosing package repo and Click &lt;strong&gt;Next.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;On the next screen, Select an SDK version (by default, Xcode selects the latest stable version). Click &lt;strong&gt;Next.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;Click &lt;strong&gt;Finish&lt;/strong&gt; and ensure that the &lt;strong&gt;CTNotificationService&lt;/strong&gt; has been added to the appropriate target.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🚀 Integration&lt;/h2&gt; 
+&lt;h3&gt;Configure your Notification Service Extension to use the CTNotificationServiceExtension class&lt;/h3&gt; 
+&lt;p&gt;By default CTNotificatonServiceExtension will look for the push payload key &lt;code&gt;ct_mediaUrl&lt;/code&gt; with a value representing the url to your media file and the key &lt;code&gt;ct_mediaType&lt;/code&gt; with a value of the type of media (image, video, audio or gif).&lt;/p&gt; 
+&lt;p&gt;If you are happy with the default key names, you can simply insert &lt;code&gt;CTNotificationServiceExtension&lt;/code&gt; in place of your extension class name as the value for the NSExtension -&amp;gt; NSExtensionPrincipalClass entry in your Notfication Service Extension target Info.plist. &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/Example/NotificationService/Info.plist&quot;&gt;See example here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you can leave the NSExtensionPrincipalClass entry unchanged and instead have your NotificationService class extend the CTNotificationServiceExtension class. You can then also override the defaults to your chosen key names if you wish. &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/ExampleSwift/NotificationService/NotificationService.swift&quot;&gt;See Swift example here&lt;/a&gt; and &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/Example/NotificationService&quot;&gt;Objective-C example here&lt;/a&gt;. In that case, only override &lt;code&gt;didReceive request: contentHandler:&lt;/code&gt; as shown in the example.&lt;/p&gt; 
+&lt;p&gt;If you plan on downloading non-SSL urls please be sure to enable App Transport Security Settings -&amp;gt; Allow Arbitrary Loads -&amp;gt; true in your plist. &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/Example/NotificationService/Info.plist&quot;&gt;See plist example here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Configure your APNS payload&lt;/h3&gt; 
+&lt;p&gt;Then, when sending notifications via APNS:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Include the mutable-content flag in your payload aps entry (this key must be present in the aps payload or the system will not call your app extension)&lt;/li&gt; 
+ &lt;li&gt;Add the &lt;code&gt;ct_mediaUrl&lt;/code&gt; and &lt;code&gt;ct_mediaType&lt;/code&gt; key-values (or your custom key-values) to the payload, outside of the aps entry.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code&gt;{
+    &quot;aps&quot;: {
+        &quot;alert&quot;: {
+      		&quot;body&quot;: &quot;test message&quot;,
+      		&quot;title&quot;: &quot;test title&quot;,
+   	  	},
+        &quot;mutable-content&quot;: 1,
+   	},
+    &quot;ct_mediaType&quot;: &quot;gif&quot;,
+    &quot;ct_mediaUrl&quot;: &quot;https://www.wired.com/images_blogs/design/2013/09/davey1_1.gif&quot;,
+	...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;𝌡 Example Usage&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;See &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/ExampleSwift&quot;&gt;an example Swift project here&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;See &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/Example&quot;&gt;an example Objective-C project here&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;See &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/ExampleSwiftPM&quot;&gt;an example SwiftPM project here&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🆕 Change Log&lt;/h2&gt; 
+&lt;p&gt;Refer to the &lt;a href=&quot;https://github.com/CleverTap/CTNotificationService/raw/master/CHANGELOG.md&quot;&gt;CTNotificationService Change Log here&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/4e8cfdeb1d7624ddb94530c3f9355f8d9c5848919744085a0cb7cb7168bf7141/CleverTap/CTNotificationService" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>mixpanel/mixpanel-iphone</title>
+      <link>https://github.com/mixpanel/mixpanel-iphone</link>
+      <description>&lt;p&gt;Official iOS (Objective-C) Tracking Library for Mixpanel Analytics&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/mixpanel/mixpanel-iphone&quot;&gt;&lt;img src=&quot;https://travis-ci.org/mixpanel/mixpanel-iphone.svg?branch=yolo-travis-ci&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://isitmaintained.com/project/mixpanel/mixpanel-iphone&quot; title=&quot;Average time to resolve an issue&quot;&gt;&lt;img src=&quot;http://isitmaintained.com/badge/resolution/mixpanel/mixpanel-iphone.svg?sanitize=true&quot; alt=&quot;Average time to resolve an issue&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://isitmaintained.com/project/mixpanel/mixpanel-iphone&quot; title=&quot;Percentage of issues still open&quot;&gt;&lt;img src=&quot;http://isitmaintained.com/badge/open/mixpanel/mixpanel-iphone.svg?sanitize=true&quot; alt=&quot;Percentage of issues still open&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://mixpanel.com&quot;&gt;&lt;img src=&quot;http://img.shields.io/cocoapods/v/Mixpanel.svg?style=flat&quot; alt=&quot;CocoaPods Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://mixpanel.com&quot;&gt;&lt;img src=&quot;http://img.shields.io/cocoapods/l/Mixpanel.svg?style=flat&quot; alt=&quot;Apache License&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Table of Contents&lt;/h1&gt; 
+&lt;!-- MarkdownTOC --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#overview&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#quick-start-guide&quot;&gt;Quick Start Guide&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#1-install-mixpanel&quot;&gt;Install Mixpanel&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#2-initialize-mixpanel&quot;&gt;Initialize Mixpanel&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#3-send-data&quot;&gt;Send Data&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#4-check-for-success&quot;&gt;Check for Success&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#complete-code-example&quot;&gt;Complete Code Example&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#faq&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#i-want-to-know-more&quot;&gt;I want to know more!&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!-- /MarkdownTOC --&gt; 
+&lt;p&gt;&lt;a name=&quot;introduction&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Overview&lt;/h1&gt; 
+&lt;p&gt;The Mixpanel library for iOS is an open source project, and we&#39;d love to see your contributions! We&#39;d also love for you to come and work with us! Check out &lt;a href=&quot;https://mixpanel.com/jobs/#openings&quot;&gt;https://mixpanel.com/jobs/#openings&lt;/a&gt; for details. If you are using Swift, we recommend our &lt;strong&gt;&lt;a href=&quot;https://github.com/mixpanel/mixpanel-swift&quot;&gt;Swift Library&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;Check out our &lt;a href=&quot;https://developer.mixpanel.com/docs/ios&quot;&gt;Advanced iOS - Objective-C Guide&lt;/a&gt; for additional advanced configurations and use cases, like setting up your project with European Union data storage.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/#complete-code-example&quot;&gt;Skip to a complete code example&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Quick Start Guide&lt;/h1&gt; 
+&lt;p&gt;Caution: From v4.0.0.beta.3 to v4.1.0, we have a bug that events with ampersand(&amp;amp;) will be rejected by the server. We recommend you update to v4.1.1 or above.&lt;/p&gt; 
+&lt;h2&gt;1. Install Mixpanel&lt;/h2&gt; 
+&lt;p&gt;You can install the Mixpanel iOS - Objective-C library by using CocoaPods or Carthage. You will need your project token for initializing your library. You can get your project token from &lt;a href=&quot;https://mixpanel.com/settings/project&quot;&gt;project settings&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Installation Option 1: CocoaPods&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;If this is your first time using CocoaPods, Install CocoaPods using &lt;code&gt;gem install cocoapods&lt;/code&gt;. Otherwise, continue to Step 3.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;pod setup&lt;/code&gt; to create a local CocoaPods spec mirror.&lt;/li&gt; 
+ &lt;li&gt;Create a Podfile in your Xcode project directory by running &lt;code&gt;pod init&lt;/code&gt; in your terminal, edit the Podfile generated, and add the following line: &lt;code&gt;pod &#39;Mixpanel&#39;&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Run &lt;code&gt;pod install&lt;/code&gt; in your Xcode project directory. CocoaPods should download and install the Mixpanel library, and create a new Xcode workspace. Open up this workspace in Xcode or typing &lt;code&gt;open *.xcworkspace&lt;/code&gt; in your terminal.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Installation Option 2: Carthage&lt;/h3&gt; 
+&lt;p&gt;Mixpanel supports Carthage to package your dependencies as a framework. Include the following dependency in your Cartfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;github &quot;mixpanel/mixpanel-iphone&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Check out the &lt;a href=&quot;https://github.com/Carthage/Carthage#quick-start&quot;&gt;Carthage docs&lt;/a&gt; for more info.&lt;/p&gt; 
+&lt;h3&gt;Installation Option 3: Swift Package Manager&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;In Xcode, select File &amp;gt; Add Packages...&lt;/li&gt; 
+ &lt;li&gt;Enter the package URL for this &lt;a href=&quot;https://github.com/mixpanel/mixpanel-iphone&quot;&gt;repository&lt;/a&gt; and must select a version greater than or equal to v4.0.0&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;2. Initialize Mixpanel&lt;/h2&gt; 
+&lt;p&gt;To initialize the library, add `#Import &quot;Mixpanel/Mixpanel.h&quot; into &quot;AppDelegate.m&quot; and call &lt;a href=&quot;https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/sharedInstanceWithToken:&quot;&gt;sharedInstanceWithToken:&lt;/a&gt; with your project token as its argument in &lt;a href=&quot;https://developer.apple.com/documentation/uikit/uiapplicationdelegate#//apple_ref/occ/intfm/UIApplicationDelegate/application:willFinishLaunchingWithOptions:&quot;&gt;application:didFinishLaunchingWithOptions:&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;#import &quot;Mixpanel/Mixpanel.h&quot;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+...
+  [Mixpanel sharedInstanceWithToken:@&quot;YOUR_API_TOKEN&quot; trackAutomaticEvents:NO];
+...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;a href=&quot;https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html&quot;&gt;See all configuration options&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;3. Send Data&lt;/h2&gt; 
+&lt;p&gt;Let&#39;s get started by sending event data. You can send an event from anywhere in your application. Better understand user behavior by storing details that are specific to the event (properties). After initializing the library, Mixpanel will &lt;a href=&quot;https://mixpanel.com/help/questions/articles/which-common-mobile-events-can-mixpanel-collect-on-my-behalf-automatically&quot;&gt;automatically collect common mobile events&lt;/a&gt;. You can enable/disable automatic collection through your &lt;a href=&quot;https://help.mixpanel.com/hc/en-us/articles/115004596186#enable-or-disable-common-mobile-events&quot;&gt;project settings&lt;/a&gt;. Also, Mixpanel automatically tracks some properties by default. &lt;a href=&quot;https://help.mixpanel.com/hc/en-us/articles/115004613766-Default-Properties-Collected-by-Mixpanel#iOS&quot;&gt;learn more&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;Mixpanel *mixpanel = [Mixpanel sharedInstance];
+[mixpanel track:@&quot;Sign Up&quot; properties:@{
+  @&quot;source&quot;: @&quot;Pat&#39;s affiliate site&quot;,
+  @&quot;Opted out of email&quot;: @YES
+}];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;4. Check for Success&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;http://mixpanel.com/report/events&quot;&gt;Open up Events in Mixpanel&lt;/a&gt; to view incoming events.&lt;/p&gt; 
+&lt;p&gt;Once data hits our API, it generally takes ~60 seconds for it to be processed, stored, and queryable in your project.&lt;/p&gt; 
+&lt;h2&gt;Complete Code Example&lt;/h2&gt; 
+&lt;p&gt;Here&#39;s a runnable code example that covers everything in this quickstart guide.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;#import &quot;Mixpanel/Mixpanel.h&quot;
+
+- (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions {
+...
+  Mixpanel *mixpanel = [Mixpanel sharedInstanceWithToken:@&quot;YOUR_API_TOKEN&quot; trackAutomaticEvents:NO];
+  [mixpanel track:@&quot;Sign Up&quot; properties:@{
+    @&quot;source&quot;: @&quot;Pat&#39;s affiliate site&quot;,
+    @&quot;Opted out of email&quot;: @YES
+  }];
+...
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;FAQ&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;I want to stop tracking an event/event property in Mixpanel. Is that possible?&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Yes, in Lexicon, you can intercept and drop incoming events or properties. Mixpanel won’t store any new data for the event or property you select to drop. &lt;a href=&quot;https://help.mixpanel.com/hc/en-us/articles/360001307806#dropping-events-and-properties&quot;&gt;See this article for more information&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;I have a test user I would like to opt out of tracking. How do I do that?&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Mixpanel’s client-side tracking library contains the &lt;a href=&quot;https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/optOutTracking&quot;&gt;optOutTracking()&lt;/a&gt; method, which will set the user’s local opt-out state to “true” and will prevent data from being sent from a user’s device. More detailed instructions can be found in the section, &lt;a href=&quot;https://raw.githubusercontent.com/mixpanel/mixpanel-iphone/master/ios#opting-users-out-of-tracking&quot;&gt;Opting users out of tracking&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Why aren&#39;t my events showing up?&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;To preserve battery life and customer bandwidth, the Mixpanel library doesn&#39;t send the events you record immediately. Instead, it sends batches to the Mixpanel servers every 60 seconds while your application is running, as well as when the application transitions to the background. You can call &lt;a href=&quot;https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/flush&quot;&gt;flush()&lt;/a&gt; manually if you want to force a flush at a particular moment.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;[mixpanel flush];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If your events are still not showing up after 60 seconds, check if you have opted out of tracking. You can also enable Mixpanel debugging and logging, it allows you to see the debug output from the Mixpanel library. To enable it, set &lt;a href=&quot;https://mixpanel.github.io/mixpanel-iphone/Classes/Mixpanel.html#//api/name/enableLogging&quot;&gt;enableLogging&lt;/a&gt; to true.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;mixpanel.enableLogging = YES;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Starting with iOS 14.5, do I need to request the user’s permission through the AppTrackingTransparency framework to use Mixpanel?&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;No, Mixpanel does not use IDFA so it does not require user permission through the AppTrackingTransparency(ATT) framework.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;If I use Mixpanel, how do I answer app privacy questions for the App Store?&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Please refer to our &lt;a href=&quot;https://mixpanel.com/legal/app-store-privacy-details/&quot;&gt;Apple App Developer Privacy Guidance&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;I want to know more!&lt;/h2&gt; 
+&lt;p&gt;No worries, here are some links that you will find useful:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://developer.mixpanel.com/docs/ios&quot;&gt;Advanced iOS - Objective-C Guide&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/mixpanel/mixpanel-iphone/tree/master/HelloMixpanel&quot;&gt;Sample app&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://mixpanel.github.io/mixpanel-iphone/index.html&quot;&gt;Full API Reference&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://deepwiki.com/mixpanel/mixpanel-iphone&quot;&gt;&lt;img src=&quot;https://deepwiki.com/badge.svg?sanitize=true&quot; alt=&quot;Ask DeepWiki&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Have any questions? Reach out to Mixpanel &lt;a href=&quot;https://help.mixpanel.com/hc/en-us/requests/new&quot;&gt;Support&lt;/a&gt; to speak to someone smart, quickly.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/af0bdc4bcf491e23960811c628df893da5507ee70052c6ef253e914c848d68b7/mixpanel/mixpanel-iphone" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>CleverTap/clevertap-ios-sdk</title>
+      <link>https://github.com/CleverTap/clevertap-ios-sdk</link>
+      <description>&lt;p&gt;CleverTap iOS SDK&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/images/clevertap-logo.png&quot; width=&quot;50%&quot; /&gt; &lt;/p&gt; 
+&lt;h1&gt;CleverTap iOS SDK&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/CleverTap/clevertap-ios-sdk&quot;&gt;&lt;img src=&quot;https://api.travis-ci.org/CleverTap/clevertap-ios-sdk.svg?branch=master&quot; alt=&quot;CI Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/CleverTap-iOS-SDK&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/CleverTap-iOS-SDK.svg?style=flat&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/CleverTap-iOS-SDK&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/CleverTap-iOS-SDK.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/CleverTap-iOS-SDK&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/CleverTap-iOS-SDK.svg?style=flat&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/badge/iOS-9.0%2B-blue.svg?sanitize=true&quot; alt=&quot;iOS 8.0+&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/tvOS-9.0%2B-blue.svg?sanitize=true&quot; alt=&quot;tvOS 9.0+&quot; /&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/SwiftPM-compatible-brightgreen.svg?sanitize=true&quot; alt=&quot;SwiftPM compatible&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;👋 Introduction&lt;/h2&gt; 
+&lt;p&gt;The CleverTap iOS SDK for Mobile Customer Engagement and Analytics solutions&lt;/p&gt; 
+&lt;p&gt;CleverTap brings together real-time user insights, an advanced segmentation engine, and easy-to-use marketing tools in one mobile marketing platform — giving your team the power to create amazing experiences that deepen customer relationships. Our intelligent mobile marketing platform provides the insights you need to keep users engaged and drive long-term retention and growth.&lt;/p&gt; 
+&lt;p&gt;For more information check out our &lt;a href=&quot;https://clevertap.com/&quot; title=&quot;CleverTap&quot;&gt;website&lt;/a&gt; and &lt;a href=&quot;https://developer.clevertap.com/docs/&quot; title=&quot;CleverTap Technical Documentation&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To get started, sign up &lt;a href=&quot;https://clevertap.com/live-product-demo/&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;📋 Requirements&lt;/h2&gt; 
+&lt;p&gt;Following are required for using CleverTap iOS SDK -&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iOS 9.0 or later&lt;/li&gt; 
+ &lt;li&gt;tvOS 9.0 or later&lt;/li&gt; 
+ &lt;li&gt;Xcode 10.0 or later&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🎉 Installation&lt;/h2&gt; 
+&lt;p&gt;Details about the different installation methods&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/CocoaPods.md&quot;&gt;CocoaPods&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/SwiftPackageManager.md&quot;&gt;Swift Package Manager&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/Carthage.md&quot;&gt;Carthage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/Manual.md&quot;&gt;Manual Installation&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;🚀 Integration&lt;/h2&gt; 
+&lt;h4&gt;Add your CleverTap account credentials&lt;/h4&gt; 
+&lt;p&gt;Update your .plist file:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Create a key called &lt;strong&gt;CleverTapAccountID&lt;/strong&gt; with a string value&lt;/li&gt; 
+ &lt;li&gt;Create a key called &lt;strong&gt;CleverTapToken&lt;/strong&gt; with a string value&lt;/li&gt; 
+ &lt;li&gt;Insert the values from your CleverTap &lt;a href=&quot;https://dashboard.clevertap.com&quot;&gt;Dashboard&lt;/a&gt; -&amp;gt; Settings -&amp;gt; Integration Details.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For more details, refer to our &lt;a href=&quot;https://developer.clevertap.com/docs/ios-quickstart-guide&quot;&gt;installation guide&lt;/a&gt; for instructions on installing and using our iOS SDK in your project.&lt;/p&gt; 
+&lt;p&gt;To get started with Custom Proxy domain feature, refer to our &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/CustomDomainSetup.md&quot;&gt;Custom domain setup guide&lt;/a&gt; for instructions on enabling this feature with AWS proxy setup.&lt;/p&gt; 
+&lt;h2&gt;📲 Rich Push Notifications&lt;/h2&gt; 
+&lt;p&gt;Apart from Title and Message, you have the below-mentioned options to add to your iOS push notification. Please note that each of these is optional.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/CleverTap/CTNotificationService&quot;&gt;CTNotificationService&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/CleverTap/CTNotificationContent&quot;&gt;CTNotificationContent&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For more details, refer to our &lt;a href=&quot;https://developer.clevertap.com/docs/ios#section-advanced-ios-push-notifications&quot;&gt;Advanced iOS Push Notifications&lt;/a&gt; guide.&lt;/p&gt; 
+&lt;h2&gt;📍 Geofence&lt;/h2&gt; 
+&lt;p&gt;CleverTap Geofence SDK provides Geofencing capabilities to CleverTap iOS SDK. To find the installation &amp;amp; integration steps for CleverTap Geofence SDK, click &lt;a href=&quot;https://github.com/CleverTap/clevertap-geofence-ios&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;📲 Push Primer&lt;/h2&gt; 
+&lt;p&gt;CleverTap iOS SDK supports Push Primer for push notification runtime permission, refer to &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/PushPrimer.md&quot;&gt;Push Primer&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;h2&gt;#️⃣ Remote Config Variables&lt;/h2&gt; 
+&lt;p&gt;CleverTap iOS SDK supports creating remote config variables, refer to &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/Variables.md&quot;&gt;Remote Config Variables&lt;/a&gt; for more details and usage examples.&lt;/p&gt; 
+&lt;h2&gt;🕹️ Custom Code Templates&lt;/h2&gt; 
+&lt;p&gt;CleverTap iOS SDK supports creating Custom Code Templates for in-app notifications, refer to &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/CustomCodeTemplates.md&quot;&gt;Custom Code Templates&lt;/a&gt; for more details and usage examples.&lt;/p&gt; 
+&lt;h2&gt;🕹️ User Event Logging APIs&lt;/h2&gt; 
+&lt;p&gt;CleverTap iOS SDK supports user-level event log APIs, refer to &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/docs/UserEventLogging.md&quot;&gt;User Event Logging&lt;/a&gt; for more details and usage examples.&lt;/p&gt; 
+&lt;h2&gt;𝌡 Example Usage&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/ObjCStarter&quot;&gt;demo application&lt;/a&gt; showing the integration of our SDK in Objective-C language.&lt;/li&gt; 
+ &lt;li&gt;A &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/SwiftStarter&quot;&gt;demo application&lt;/a&gt; showing the integration of our SDK in Swift language.&lt;/li&gt; 
+ &lt;li&gt;A &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/SPMStarter&quot;&gt;demo application&lt;/a&gt; showing the installation of our SDK via Swift Package Manager.&lt;/li&gt; 
+ &lt;li&gt;A &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/SwiftUIStarter&quot;&gt;demo application&lt;/a&gt; showing the installation of our SDK in Swift UI Application.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🆕 Change Log&lt;/h2&gt; 
+&lt;p&gt;Refer to the &lt;a href=&quot;https://raw.githubusercontent.com/CleverTap/clevertap-ios-sdk/master/CHANGELOG.md&quot;&gt;CleverTap iOS SDK Change Log&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;📄 License&lt;/h2&gt; 
+&lt;p&gt;CleverTap iOS SDK is released under the MIT license. See &lt;a href=&quot;https://github.com/CleverTap/clevertap-ios-sdk/raw/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/5276ae4339c1849c0b855f00dc0018a59868131ac03238d6a31a3e29b53bc724/CleverTap/clevertap-ios-sdk" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>robbiehanson/KissXML</title>
+      <link>https://github.com/robbiehanson/KissXML</link>
+      <description>&lt;p&gt;A replacement for Cocoa&#39;s NSXML cluster of classes. Based on libxml. Works on iOS.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;a href=&quot;https://github.com/robbiehanson/KissXML&quot;&gt;KissXML&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://travis-ci.org/robbiehanson/KissXML&quot;&gt;&lt;img src=&quot;http://img.shields.io/travis/robbiehanson/KissXML.svg?style=flat&quot; alt=&quot;CI Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/KissXML&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/KissXML.svg?style=flat&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/KissXML&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/KissXML.svg?style=flat&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://cocoapods.org/pods/KissXML&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/KissXML.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;KissXML provides a drop-in replacement for Apple&#39;s NSXML class culster in environments without NSXML (e.g. iOS).&lt;/p&gt; 
+&lt;p&gt;It is implemented atop the defacto libxml2 C library, which comes pre-installed on Mac &amp;amp; iOS. But it shields you from all the nasty low-level C pointers and malloc&#39;s, and provides an easy-to-use Objective-C library.&lt;/p&gt; 
+&lt;p&gt;It is designed for speed and reliability, so it&#39;s read-access thread-safe and will &quot;just-work&quot;. That is, KissXML provides an API that follows &quot;what-you-would-expect&quot; rules from an Objective-C library. So feel free to do things like parallel processing of an xml document using blocks. It will &quot;just work&quot; so you can get back to designing the rest of your app.&lt;/p&gt; 
+&lt;p&gt;KissXML is a mature library used in thousands of products. It&#39;s also used in other libraries, such as &lt;a href=&quot;https://github.com/robbiehanson/XMPPFramework&quot;&gt;XMPPFramework&lt;/a&gt; (an objective-c library for real-time xml streaming). It&#39;s even used in hospital applications.&lt;/p&gt; 
+&lt;p&gt;KissXML was inspired by the TouchXML project, but was created to add full support for generating XML as well as supporting the entire NSXML API.&lt;/p&gt; 
+&lt;h3&gt;Getting Started&lt;/h3&gt; 
+&lt;p&gt;The minimum deployment target is iOS 8.0 / macOS 10.9 / tvOS 9.0 / watchOS 2.0.&lt;/p&gt; 
+&lt;h4&gt;Swift Package Manager&lt;/h4&gt; 
+&lt;p&gt;The easiest way to install &lt;code&gt;KissXML&lt;/code&gt; is using Swift Package Manager, simply add the following to your &lt;strong&gt;&lt;code&gt;Package.swift&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;dependencies: [
+    .package(url: &quot;https://github.com/robbiehanson/KissXML.git&quot;, .upToNextMajor(from: &quot;x.x.x&quot;))
+]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Make sure to replace &lt;code&gt;x.x.x&lt;/code&gt; with the appropriate version number.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;CocoaPods&lt;/h4&gt; 
+&lt;p&gt;To install &lt;code&gt;KissXML&lt;/code&gt; using CocoaPods, add the following to your &lt;strong&gt;&lt;code&gt;Podfile&lt;/code&gt;&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;use_frameworks!
+pod &#39;KissXML&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;After &lt;code&gt;pod install&lt;/code&gt; open your &lt;code&gt;.xcworkspace&lt;/code&gt; and import:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;// Swift
+import KissXML     
+// Objective-C on iOS 8+ with `use_frameworks!`
+@import KissXML;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Carthage&lt;/h4&gt; 
+&lt;p&gt;The &lt;code&gt;KissXML.xcodeproj&lt;/code&gt; project contains framework targets for iOS, macOS, tvOS, and watchOS.&lt;/p&gt; 
+&lt;h3&gt;Learn More&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/robbiehanson/KissXML/wiki/GettingStarted&quot;&gt;Get started using KissXML&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; &lt;strong&gt;&lt;a href=&quot;https://github.com/robbiehanson/KissXML/wiki&quot;&gt;Learn more about KissXML&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt;&lt;/p&gt; 
+&lt;br /&gt; Can&#39;t find the answer to your question in any of the [wiki](https://github.com/robbiehanson/KissXML/wiki) articles? Try the **[mailing list](http://groups.google.com/group/kissxml)**. 
+&lt;br /&gt; 
+&lt;br /&gt; Love the project? Wanna buy me a ☕️&amp;nbsp;&amp;nbsp;? (or a 🍺&amp;nbsp;&amp;nbsp;😀&amp;nbsp;): 
+&lt;p&gt;&lt;a href=&quot;https://onename.com/robbiehanson&quot;&gt;&lt;img src=&quot;https://bitpay.com/img/donate-sm.png&quot; alt=&quot;donation-bitcoin&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=69SPF7R4ZF69J&quot;&gt;&lt;img src=&quot;http://www.paypal.com/en_US/i/btn/btn_donate_SM.gif&quot; alt=&quot;donation-paypal&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Changelog&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;5.2.0 - Feb 2 2017 - Swift 3 and Carthage support. Requires iOS 8 or higher, removes static library support.&lt;/li&gt; 
+ &lt;li&gt;5.1.2 - Jul 8 2016 - Better Swift generated interface cross-compatibility with NSXML by matching NSXML headers more closely, specifically by changing many set/get methods to properties.&lt;/li&gt; 
+ &lt;li&gt;5.1.1 - Jul 7 2016 - Fixes issue when integrated as a static library. Min iOS version is back to 6.0. Moved DDXML-&amp;gt;NSXML Swift mappings to &lt;code&gt;SwiftNSXML&lt;/code&gt; subspec. Added test for static library integration.&lt;/li&gt; 
+ &lt;li&gt;5.1.0 - Jul 6 2016 - Removed need for &lt;code&gt;libxml_module&lt;/code&gt; subspec by removing references to libxml in public headers. Added Obj-C generics and nullability support to match NSXML API. Added watchOS support. Minimum iOS version is now 8.0.&lt;/li&gt; 
+ &lt;li&gt;5.0.3 - Feb 1 2016 - Removed &lt;code&gt;DDXML_NS_DECLARATIONS_ENABLED&lt;/code&gt; to allow for better Swift compatibility. Added &lt;code&gt;DDXML.swift&lt;/code&gt; with mappings between NSXML classes and constants and DDXML.&lt;/li&gt; 
+ &lt;li&gt;5.0.2 - Jan 26 2016 - Enable Swift support via &lt;code&gt;libxml/module.modulemap&lt;/code&gt; and &lt;code&gt;DDXML_LIBXML_MODULE_ENABLED&lt;/code&gt; macro. You can use the &lt;code&gt;KissXML/libxml_module&lt;/code&gt; CocoaPods subspec to enable this feature.&lt;/li&gt; 
+ &lt;li&gt;5.0.1 - Jan 21 2016 - Run tests on iOS and Mac targets.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/761a117e8d06280994b5116f976276f41631e9497b8e8f94f442362c802ad634/robbiehanson/KissXML" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
