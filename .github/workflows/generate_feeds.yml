@@ -28,11 +28,13 @@ jobs:
         run: ./scripts/build.sh --target ${{ matrix.target }}
       - name: Validate Feed Output
         run: ./scripts/validate_feeds.sh output
+      - name: Package Feed Output
+        run: tar -czf feed-${{ matrix.target }}.tar.gz output
       - name: Upload Feed Artifact
         uses: actions/upload-artifact@v7
         with:
-          name: feed-${{ matrix.target }}
-          path: output
+          path: feed-${{ matrix.target }}.tar.gz
+          archive: false
           if-no-files-found: error
 
   website:
@@ -50,16 +52,17 @@ jobs:
       url: ${{ steps.deployment.outputs.page_url }}
     steps:
       - uses: actions/checkout@v6
-      - name: Download Repository Feed Artifact
+      - name: Download Feed Artifacts
         uses: actions/download-artifact@v8
         with:
-          name: feed-repos
-          path: .artifacts/repos
-      - name: Download Developer Feed Artifact
-        uses: actions/download-artifact@v8
-        with:
-          name: feed-developers
-          path: .artifacts/developers
+          pattern: feed-*.tar.gz
+          merge-multiple: true
+          path: .artifacts
+      - name: Extract Feed Artifacts
+        run: |
+          mkdir -p .artifacts/repos .artifacts/developers
+          tar -xzf .artifacts/feed-repos.tar.gz -C .artifacts/repos --strip-components=1
+          tar -xzf .artifacts/feed-developers.tar.gz -C .artifacts/developers --strip-components=1
       - name: Prepare Website Feed Files
         run: bash ./scripts/prepare_website_feeds.sh .artifacts
       - name: Set up Node.js
