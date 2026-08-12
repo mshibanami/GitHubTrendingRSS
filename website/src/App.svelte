@@ -5,7 +5,7 @@
   import { feedEntryCounts } from './lib/generated/feed-entry-counts';
   import { feedManifest } from './lib/generated/feed-manifest';
   import { formatRelativeUpdate } from './lib/format-relative-update';
-  import type { CopyState, SpokenLanguage, ViewKey, VisibleFeed } from './lib/types';
+  import type { CopyState, FeedSortOrder, SpokenLanguage, ViewKey, VisibleFeed } from './lib/types';
   import FeedControls from './components/FeedControls.svelte';
   import FeedList from './components/FeedList.svelte';
   import Footer from './components/Footer.svelte';
@@ -24,6 +24,7 @@
   let selectedPeriod = $state<FeedPeriod>('monthly');
   let selectedSpokenLanguage = $state<SpokenLanguage>('any');
   let hideEmptyEntries = $state(false);
+  let sortOrder = $state<FeedSortOrder>('alphabetical-ascending');
   let searchQuery = $state('');
   let copiedPath = $state<string | null>(null);
   let copyState = $state<CopyState>('idle');
@@ -45,7 +46,8 @@
           .includes(searchQuery.trim().toLocaleLowerCase());
         const matchesEntryCount = !hideEmptyEntries || feed.entryCount > 0;
         return matchesSearch && matchesEntryCount;
-      }),
+      })
+      .sort(compareFeeds),
   );
   const updateLabel = $derived(formatRelativeUpdate(activeManifest.generatedAt));
 
@@ -61,6 +63,53 @@
 
     const languagePrefix = selectedSpokenLanguage === 'en' ? 'en/' : '';
     return `${languagePrefix}${selectedPeriod}/${slug}.xml`;
+  }
+
+  function compareFeeds(first: VisibleFeed, second: VisibleFeed): number {
+    const isAlphabetical = sortOrder.startsWith('alphabetical');
+    const isAscending = sortOrder.endsWith('ascending');
+
+    if (isAlphabetical) {
+      const firstSpecialRank = specialLanguageRank(first);
+      const secondSpecialRank = specialLanguageRank(second);
+
+      if (firstSpecialRank !== secondSpecialRank) {
+        return firstSpecialRank - secondSpecialRank;
+      }
+
+      const nameComparison = first.language.displayName.localeCompare(
+        second.language.displayName,
+        undefined,
+        { sensitivity: 'base' },
+      );
+      return isAscending ? nameComparison : -nameComparison;
+    }
+
+    const entryCountComparison = first.entryCount - second.entryCount;
+    if (entryCountComparison !== 0) {
+      return isAscending ? entryCountComparison : -entryCountComparison;
+    }
+
+    return compareAlphabetically(first, second);
+  }
+
+  function compareAlphabetically(first: VisibleFeed, second: VisibleFeed): number {
+    const firstSpecialRank = specialLanguageRank(first);
+    const secondSpecialRank = specialLanguageRank(second);
+
+    if (firstSpecialRank !== secondSpecialRank) {
+      return firstSpecialRank - secondSpecialRank;
+    }
+
+    return first.language.displayName.localeCompare(second.language.displayName, undefined, {
+      sensitivity: 'base',
+    });
+  }
+
+  function specialLanguageRank(feed: VisibleFeed): number {
+    if (feed.language.slug === 'all') return 0;
+    if (feed.language.slug === 'unknown') return 1;
+    return 2;
   }
 
   async function copyFeed(path: string): Promise<void> {
@@ -96,7 +145,7 @@
   <meta property="og:url" content="https://mshibanami.github.io/GitHubTrendingRSS/" />
 </svelte:head>
 
-<div class="min-h-screen bg-white font-sans text-[#172033]">
+<div class="min-h-screen bg-[#F2F2F7] font-sans text-[#172033]">
   <Header
     {siteBase}
     {repositoryUrl}
@@ -110,6 +159,7 @@
     class="mx-auto w-[calc(100%_-_28px)] max-w-[840px] pb-[30px] max-[480px]:w-[calc(100%_-_24px)]"
   >
     <FeedControls
+      {activeView}
       {selectedPeriod}
       onPeriodChange={(period) => (selectedPeriod = period)}
       {selectedSpokenLanguage}
@@ -118,6 +168,8 @@
       onSearchQueryChange={(query) => (searchQuery = query)}
       {hideEmptyEntries}
       onHideEmptyEntriesChange={(hide) => (hideEmptyEntries = hide)}
+      {sortOrder}
+      onSortOrderChange={(order) => (sortOrder = order)}
     />
     <FeedList
       feeds={visibleFeeds}

@@ -70,8 +70,8 @@
                   GitHub Trending as RSS
                 </h2>
                 <p class="text-[0.76rem] leading-[1.5] text-[#667085]">
-                  This site publishes RSS feeds for GitHub's trending repositories and developers.
-                  The feeds are generated once a day from GitHub Trending.
+                  This site unofficially publishes RSS feeds for GitHub's trending repositories and developers.
+                  The feeds are generated once a day from <a class="text-[#2563eb]" href="https://github.com/trending">GitHub Trending</a>.
                 </p>
               </div>
 
