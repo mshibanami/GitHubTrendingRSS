@@ -107,6 +107,12 @@ jobs:
         with:
           fetch-depth: 0
 
+      - name: Install xmllint
+        run: |
+          sudo apt-get update
+          sudo apt-get install -y --no-install-recommends libxml2-utils
+          command -v xmllint
+
       - name: Download Repository Feed Artifact
         uses: actions/download-artifact@v8
         with:
@@ -147,7 +153,7 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git switch --orphan generated-feeds
-          git rm -rf .
+          git rm -rf --ignore-unmatch .
           cp -R "$SNAPSHOT_DIR"/. .
           rm -rf .artifacts
           git add -A
