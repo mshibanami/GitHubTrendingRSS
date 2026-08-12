@@ -2,6 +2,8 @@ name: Unit Test
 
 on:
   push:
+    branches-ignore:
+      - generated-feeds
 jobs:
   build:
     runs-on: macos-latest
@@ -26,6 +28,9 @@ jobs:
       - name: Install Website Dependencies
         working-directory: website
         run: corepack pnpm install --frozen-lockfile
+      - name: Test Website
+        working-directory: website
+        run: corepack pnpm test
       - name: Check Website Formatting
         working-directory: website
         run: corepack pnpm format:check

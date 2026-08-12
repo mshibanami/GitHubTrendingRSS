@@ -1,4 +1,4 @@
-name: Generate feeds and deploy website
+name: Generate feeds and publish data
 
 on:
   schedule:
@@ -6,93 +6,150 @@ on:
   repository_dispatch:
   workflow_dispatch:
 
+permissions:
+  actions: read
+  contents: read
+
+concurrency:
+  group: feed-generation
+  cancel-in-progress: false
+
 jobs:
+  build-generator:
+    runs-on: macos-latest
+    steps:
+      - uses: actions/checkout@v6
+
+      - name: Setup Swift
+        uses: swift-actions/setup-swift@v2
+        with:
+          swift-version: "6.2"
+
+      - name: Cache SwiftPM build
+        uses: actions/cache@v4
+        with:
+          path: |
+            .build
+            ~/Library/Caches/org.swift.swiftpm
+          key: ${{ runner.os }}-${{ runner.arch }}-swift-${{ hashFiles('Package.swift', 'Package.resolved') }}
+          restore-keys: |
+            ${{ runner.os }}-${{ runner.arch }}-swift-
+
+      - name: Install librsvg
+        run: brew list --versions librsvg >/dev/null 2>&1 || brew install librsvg
+
+      - name: Convert icons to PNG
+        run: ./scripts/convert_icons_to_png.sh
+
+      - name: Build Feed Generator
+        run: |
+          bin_dir="$(swift build --configuration release --show-bin-path)"
+          swift build --configuration release
+          test -x "$bin_dir/GitHubTrendingRSS"
+          test -d "$bin_dir/GitHubTrendingRSS_GitHubTrendingRSSKit.bundle"
+          (cd "$bin_dir" && tar -czf "$GITHUB_WORKSPACE/feed-generator.tar.gz" ./GitHubTrendingRSS ./*.bundle)
+
+      - name: Upload Feed Generator
+        uses: actions/upload-artifact@v7
+        with:
+          name: feed-generator
+          path: feed-generator.tar.gz
+          if-no-files-found: error
+          retention-days: 1
+
   fetch:
+    needs: build-generator
     runs-on: macos-latest
     strategy:
       matrix:
         target: [repos, developers]
     steps:
       - uses: actions/checkout@v6
-      - name: Setup Swift
-        uses: swift-actions/setup-swift@v2
+
+      - name: Download Feed Generator
+        uses: actions/download-artifact@v8
         with:
-          swift-version: "6.2"
-      - name: Install librsvg
-        run: brew install librsvg
-      - name: Convert icons to PNG
-        run: ./scripts/convert_icons_to_png.sh
+          name: feed-generator
+          path: .feed-generator
+
+      - name: Extract Feed Generator
+        run: |
+          mkdir -p .feed-generator/bin
+          tar -xzf .feed-generator/feed-generator.tar.gz -C .feed-generator/bin
+
       - name: Build and Fetch Feeds
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: ./scripts/build.sh --target ${{ matrix.target }}
+        run: .feed-generator/bin/GitHubTrendingRSS --configuration=release --github-token="${GITHUB_TOKEN}" --target="${{ matrix.target }}"
+
       - name: Validate Feed Output
         run: ./scripts/validate_feeds.sh output
+
       - name: Package Feed Output
         run: tar -czf feed-${{ matrix.target }}.tar.gz output
+
       - name: Upload Feed Artifact
         uses: actions/upload-artifact@v7
         with:
+          name: feed-${{ matrix.target }}
           path: feed-${{ matrix.target }}.tar.gz
-          archive: false
           if-no-files-found: error
+          retention-days: 7
 
-  website:
+  publish:
     needs: fetch
     runs-on: ubuntu-latest
     permissions:
-      contents: read
-      pages: write
-      id-token: write
-    concurrency:
-      group: github-pages
-      cancel-in-progress: true
-    environment:
-      name: github-pages
-      url: ${{ steps.deployment.outputs.page_url }}
+      actions: read
+      contents: write
     steps:
       - uses: actions/checkout@v6
-      - name: Download Feed Artifacts
+        with:
+          fetch-depth: 0
+
+      - name: Download Repository Feed Artifact
         uses: actions/download-artifact@v8
         with:
-          pattern: feed-*.tar.gz
-          merge-multiple: true
-          path: .artifacts
+          name: feed-repos
+          path: .artifacts/repos
+
+      - name: Download Developer Feed Artifact
+        uses: actions/download-artifact@v8
+        with:
+          name: feed-developers
+          path: .artifacts/developers
+
       - name: Extract Feed Artifacts
         run: |
-          mkdir -p .artifacts/repos .artifacts/developers
-          tar -xzf .artifacts/feed-repos.tar.gz -C .artifacts/repos --strip-components=1
-          tar -xzf .artifacts/feed-developers.tar.gz -C .artifacts/developers --strip-components=1
-      - name: Prepare Website Feed Files
-        run: bash ./scripts/prepare_website_feeds.sh .artifacts
-      - name: Set up Node.js
-        uses: actions/setup-node@v6
-        with:
-          node-version: lts/*
-      - name: Enable Corepack
-        run: corepack enable
-      - name: Install Website Dependencies
-        working-directory: website
-        run: corepack pnpm install --frozen-lockfile
-      - name: Check Website Formatting
-        working-directory: website
-        run: corepack pnpm format:check
-      - name: Check Website
-        working-directory: website
-        run: corepack pnpm check
-      - name: Build Website
+          mkdir -p .artifacts/repos/output .artifacts/developers/output
+          tar -xzf .artifacts/repos/feed-repos.tar.gz -C .artifacts/repos --strip-components=1
+          tar -xzf .artifacts/developers/feed-developers.tar.gz -C .artifacts/developers --strip-components=1
+
+      - name: Assemble Feed Snapshot
         env:
-          VITE_BASE_PATH: /GitHubTrendingRSS/
-        working-directory: website
-        run: corepack pnpm build
-      - name: Validate Website Output
-        run: node scripts/validate_website_output.mjs website/dist
-      - name: Configure GitHub Pages
-        uses: actions/configure-pages@v6
-      - name: Upload GitHub Pages Artifact
-        uses: actions/upload-pages-artifact@v5
-        with:
-          path: website/dist
-      - name: Deploy to GitHub Pages
-        id: deployment
-        uses: actions/deploy-pages@v5
+          SNAPSHOT_DIR: ${{ runner.temp }}/feed-snapshot
+        run: |
+          rm -rf "$SNAPSHOT_DIR"
+          mkdir -p "$SNAPSHOT_DIR"
+
+          for directory in daily weekly monthly en assets; do
+            cp -R ".artifacts/repos/${directory}" "$SNAPSHOT_DIR/${directory}"
+          done
+          cp -R .artifacts/developers/developers "$SNAPSHOT_DIR/developers"
+          cp .artifacts/repos/feed-manifest.json "$SNAPSHOT_DIR/feed-manifest.json"
+
+          ./scripts/validate_feeds.sh "$SNAPSHOT_DIR"
+
+      - name: Publish Feed Snapshot
+        env:
+          SNAPSHOT_DIR: ${{ runner.temp }}/feed-snapshot
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git switch --orphan generated-feeds
+          git rm -rf .
+          cp -R "$SNAPSHOT_DIR"/. .
+          rm -rf .artifacts
+          git add -A
+          git commit -m "Update generated feeds"
+          git push --force origin generated-feeds

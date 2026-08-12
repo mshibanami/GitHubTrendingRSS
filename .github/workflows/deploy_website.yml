@@ -1,0 +1,91 @@
+name: Deploy website
+
+on:
+  push:
+    branches:
+      - master
+    paths:
+      - "website/**"
+      - "scripts/prepare_website_feeds.sh"
+      - "scripts/generate_website_manifest.mjs"
+      - "scripts/generate_website_entry_counts.mjs"
+      - "scripts/validate_website_output.mjs"
+      - ".github/workflows/deploy_website.yml"
+  workflow_run:
+    workflows:
+      - Generate feeds and publish data
+    types:
+      - completed
+  workflow_dispatch:
+
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+jobs:
+  website:
+    if: github.event_name != 'workflow_run' || github.event.workflow_run.conclusion == 'success'
+    runs-on: ubuntu-latest
+    concurrency:
+      group: github-pages
+      cancel-in-progress: true
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - uses: actions/checkout@v6
+        with:
+          ref: master
+
+      - name: Checkout Generated Feed Snapshot
+        uses: actions/checkout@v6
+        with:
+          ref: generated-feeds
+          path: .artifacts
+
+      - name: Prepare Website Feed Files
+        run: bash ./scripts/prepare_website_feeds.sh .artifacts
+
+      - name: Enable Corepack
+        run: corepack enable
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v6
+        with:
+          node-version: lts/*
+          cache: pnpm
+          cache-dependency-path: website/pnpm-lock.yaml
+
+      - name: Install Website Dependencies
+        working-directory: website
+        run: corepack pnpm install --frozen-lockfile
+
+      - name: Check Website Formatting
+        working-directory: website
+        run: corepack pnpm format:check
+
+      - name: Check Website
+        working-directory: website
+        run: corepack pnpm check
+
+      - name: Build Website
+        env:
+          VITE_BASE_PATH: /GitHubTrendingRSS/
+        working-directory: website
+        run: corepack pnpm build
+
+      - name: Validate Website Output
+        run: node scripts/validate_website_output.mjs website/dist
+
+      - name: Configure GitHub Pages
+        uses: actions/configure-pages@v6
+
+      - name: Upload GitHub Pages Artifact
+        uses: actions/upload-pages-artifact@v5
+        with:
+          path: website/dist
+
+      - name: Deploy to GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v5

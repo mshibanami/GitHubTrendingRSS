@@ -8,6 +8,11 @@ ARTIFACT_ROOT="${1:-.artifacts}"
 REPOSITORY_ARTIFACT="${ARTIFACT_ROOT}/repos"
 DEVELOPER_ARTIFACT="${ARTIFACT_ROOT}/developers"
 
+if [ -f "${ARTIFACT_ROOT}/feed-manifest.json" ]; then
+    REPOSITORY_ARTIFACT="${ARTIFACT_ROOT}"
+    DEVELOPER_ARTIFACT="${ARTIFACT_ROOT}"
+fi
+
 if [ -f "${REPOSITORY_ARTIFACT}/output/feed-manifest.json" ]; then
     REPOSITORY_ARTIFACT="${REPOSITORY_ARTIFACT}/output"
 fi
@@ -36,7 +41,7 @@ fi
 WEBSITE_PUBLIC="website/public"
 
 for directory in daily weekly monthly en developers assets; do
-    rm -rf "${WEBSITE_PUBLIC}/${directory}"
+    rm -rf "${WEBSITE_PUBLIC:?}/${directory}"
 done
 
 for directory in daily weekly monthly en assets; do
