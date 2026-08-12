@@ -91,7 +91,7 @@
           aria-expanded={filterOpen}
         >
           <SlidersHorizontal class="size-4 shrink-0" size={15} strokeWidth={2} aria-hidden="true" />
-          <span class="text-left leading-tight">
+          <span class="text-left leading-tight text-xs">
             <span class="block">Filter</span>
             <span class="block">&amp; Sort</span>
           </span>
