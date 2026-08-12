@@ -17,6 +17,7 @@
       ? devPreviewFeedManifest
       : feedManifest;
   const repositoryUrl = 'https://github.com/mshibanami/GitHubTrendingRSS';
+  const githubTrendingUrl = 'https://github.com/trending';
   const workflowUrl =
     'https://github.com/mshibanami/GitHubTrendingRSS/actions/workflows/generate_feeds.yml';
 
@@ -63,6 +64,24 @@
 
     const languagePrefix = selectedSpokenLanguage === 'en' ? 'en/' : '';
     return `${languagePrefix}${selectedPeriod}/${slug}.xml`;
+  }
+
+  function githubTrendingHref(slug: string): string {
+    const pathSegments = [githubTrendingUrl];
+
+    if (activeView === 'developers') {
+      pathSegments.push('developers');
+    }
+    if (slug !== 'all') {
+      pathSegments.push(encodeURIComponent(slug));
+    }
+
+    const query = new URLSearchParams({ since: selectedPeriod });
+    if (activeView === 'repositories' && selectedSpokenLanguage === 'en') {
+      query.set('spoken_language_code', 'en');
+    }
+
+    return `${pathSegments.join('/')}?${query.toString()}`;
   }
 
   function compareFeeds(first: VisibleFeed, second: VisibleFeed): number {
@@ -172,6 +191,7 @@
     <FeedList
       feeds={visibleFeeds}
       {feedHref}
+      {githubTrendingHref}
       {copiedPath}
       {copyState}
       onCopy={copyFeed}

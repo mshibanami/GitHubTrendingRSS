@@ -144,6 +144,14 @@
     @apply inline-flex min-h-8 shrink-0 items-center justify-center gap-1.5 rounded-md border border-error-line bg-error-soft px-2 text-error transition-colors hover:border-error-line hover:bg-error-soft-hover hover:text-error-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring;
   }
 
+  .feed-github-link {
+    @apply inline-flex size-8 shrink-0 items-center justify-center rounded-md p-0 text-ink-faint hover:text-brand-strong focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-ring;
+  }
+
+  .feed-action {
+    transition: none;
+  }
+
   .popover-panel {
     @apply z-20 rounded-lg border border-line bg-surface shadow-popover;
     max-width: calc(100vw - 2rem);
@@ -152,6 +160,20 @@
   .tab-indicator {
     @apply pointer-events-none absolute inset-y-1 left-1 rounded-lg bg-white shadow-sm transition-transform duration-200 ease-out motion-reduce:transition-none;
     width: calc(50% - 0.25rem);
+  }
+}
+
+@media (hover: hover) and (pointer: fine) {
+  .feed-action {
+    pointer-events: none;
+    opacity: 0;
+  }
+
+  .feed-card:hover .feed-action,
+  .feed-card:focus-within .feed-action,
+  .feed-action:focus-visible {
+    pointer-events: auto;
+    opacity: 1;
   }
 }
 

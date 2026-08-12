@@ -87,13 +87,13 @@
             'control-button min-w-0 justify-center max-compact:gap-1 max-compact:px-2 max-compact:text-xs',
             filterOpen && 'control-button-active',
           ]}
-          aria-label="Filter and sort feeds"
+          aria-label="Sort and filter feeds"
           aria-expanded={filterOpen}
         >
           <SlidersHorizontal class="size-4 shrink-0" size={15} strokeWidth={2} aria-hidden="true" />
-          <span class="text-left text-xs leading-tight">
-            <span class="block">Filter</span>
-            <span class="block">&amp; Sort</span>
+          <span class="text-left text-xs leading-none">
+            Sort<br />
+            &amp; Filter
           </span>
         </Popover.Trigger>
         <Popover.Portal>

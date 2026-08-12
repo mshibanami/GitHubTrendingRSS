@@ -1,15 +1,30 @@
 <script lang="ts">
+  import { icon } from '@fortawesome/fontawesome-svg-core';
+  import { faGithub } from '@fortawesome/free-brands-svg-icons';
   import { Check, Copy, Rss, X } from '@lucide/svelte';
   import type { CopyState, VisibleFeed } from '../lib/types';
 
-  let { feeds, feedHref, copiedPath, copyState, onCopy, onResetFilters } = $props<{
-    feeds: ReadonlyArray<VisibleFeed>;
-    feedHref: (path: string) => string;
-    copiedPath: string | null;
-    copyState: CopyState;
-    onCopy: (path: string) => void;
-    onResetFilters: () => void;
-  }>();
+  let { feeds, feedHref, githubTrendingHref, copiedPath, copyState, onCopy, onResetFilters } =
+    $props<{
+      feeds: ReadonlyArray<VisibleFeed>;
+      feedHref: (path: string) => string;
+      githubTrendingHref: (slug: string) => string;
+      copiedPath: string | null;
+      copyState: CopyState;
+      onCopy: (path: string) => void;
+      onResetFilters: () => void;
+    }>();
+
+  const githubIcon = icon(faGithub, {
+    styles: {
+      width: '16px',
+      height: '16px',
+    },
+    attributes: {
+      'aria-hidden': 'true',
+      focusable: 'false',
+    },
+  });
 </script>
 
 <section class="mt-2" aria-labelledby="feed-list-title">
@@ -20,21 +35,36 @@
     >
       {#each feeds as feed (feed.language.slug)}
         {@const href = feedHref(feed.path)}
+        {@const githubHref = githubTrendingHref(feed.language.slug)}
         {@const isCopied = copiedPath === feed.path && copyState === 'copied'}
         {@const copyFailed = copiedPath === feed.path && copyState === 'failed'}
         <article
-          class="border-b border-line-soft bg-surface p-3 last:border-b-0 sm:rounded-lg sm:border sm:border-line-soft sm:p-3 sm:transition-colors sm:hover:border-line-hover"
+          class="feed-card border-b border-line-soft bg-surface p-3 last:border-b-0 sm:rounded-lg sm:border sm:border-line-soft sm:p-3 sm:hover:border-line-hover"
         >
           <div class="flex min-w-0 items-center justify-between gap-2.5">
-            <h2
-              class="min-w-0 overflow-hidden text-sm font-bold tracking-tight text-ellipsis whitespace-nowrap text-ink-strong"
-            >
-              {feed.language.displayName}
-            </h2>
-            <span
-              class="inline-flex shrink-0 items-center self-start rounded-full text-xs text-ink-faint"
-              aria-label={`${feed.entryCount} entries`}>{feed.entryCount} entries</span
-            >
+            <div class="flex min-w-0 flex-1 items-center gap-1.5">
+              <h2
+                class="min-w-0 overflow-hidden text-sm font-bold tracking-tight text-ellipsis whitespace-nowrap text-ink-strong"
+              >
+                {feed.language.displayName}
+              </h2>
+              <a
+                class="feed-github-link"
+                href={githubHref}
+                target="_blank"
+                rel="noreferrer"
+                aria-label={`Open GitHub Trending for ${feed.language.displayName}`}
+                title="Open GitHub Trending page"
+              >
+                {@html githubIcon.html.join('')}
+              </a>
+            </div>
+            <div class="inline-flex shrink-0 items-center gap-1">
+              <span
+                class="inline-flex items-center self-start rounded-full text-xs text-ink-faint"
+                aria-label={`${feed.entryCount} entries`}>{feed.entryCount} entries</span
+              >
+            </div>
           </div>
           <div class="mt-2 flex min-w-0 items-center gap-2">
             <a
@@ -48,11 +78,10 @@
               <span class="min-w-0 overflow-hidden text-ellipsis">{href}</span>
             </a>
             <button
-              class={isCopied
-                ? 'icon-button-success'
-                : copyFailed
-                  ? 'icon-button-error'
-                  : 'icon-button'}
+              class={[
+                'feed-action',
+                isCopied ? 'icon-button-success' : copyFailed ? 'icon-button-error' : 'icon-button',
+              ]}
               type="button"
               aria-label={isCopied
                 ? 'RSS feed URL copied'
