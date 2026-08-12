@@ -11,23 +11,20 @@
 </script>
 
 <label class="grid min-w-0 gap-0.5">
-  <span
-    class="text-[0.68rem] font-bold tracking-[0.04em] text-[#667085] uppercase max-[480px]:text-[0.64rem]"
-    >{label}:</span
-  >
+  <span class="field-label">{label}:</span>
   <span class="relative block">
     <select
-      class="h-[34px] w-full cursor-pointer appearance-none rounded-[7px] border border-[#bfd2f7] bg-[#eef4ff] px-3 pr-[31px] text-[0.82rem] font-bold text-[#1d4ed8] shadow-[0_1px_2px_rgba(37,99,235,0.05)] hover:border-[#8fb1ed] hover:bg-[#e7efff] focus-visible:border-[#5b8fe8] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300 max-[480px]:px-2.5 max-[480px]:text-[0.77rem]"
+      class="select-control"
       {value}
       onchange={(event) => onChange((event.currentTarget as HTMLSelectElement).value as T)}
       aria-label={label}
     >
-      {#each options as option}
+      {#each options as option (option.key)}
         <option value={option.key}>{option.label}</option>
       {/each}
     </select>
     <ChevronDown
-      class="pointer-events-none absolute top-1/2 right-2.5 size-3.5 -translate-y-1/2 text-[#2563eb]"
+      class="pointer-events-none absolute top-1/2 right-2.5 size-4 -translate-y-1/2 text-brand"
       size={14}
       strokeWidth={1.8}
       aria-hidden="true"

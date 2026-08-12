@@ -15,17 +15,15 @@
 </script>
 
 <header
-  class="sticky top-0 z-10 border-b border-white/10 bg-[#172033]/95 pt-2 text-white backdrop-blur"
+  class="sticky top-0 z-10 border-b border-white/10 bg-header/95 pt-2 text-white backdrop-blur"
 >
-  <div
-    class="flex items-center justify-between gap-3 px-3 sm:px-[max(14px,calc((100%_-_1000px)/2))]"
-  >
+  <div class="page-shell flex items-center justify-between gap-3">
     <a
-      class="inline-flex min-w-0 items-center gap-2 text-base font-light tracking-[-0.015em] text-white no-underline sm:gap-[9px]"
+      class="inline-flex min-w-0 items-center gap-2 text-base font-light tracking-tight text-white no-underline"
       href={siteBase}
       aria-label="GitHub Trending RSS home"
     >
-      <span class="grid size-7 shrink-0 place-items-center rounded-[8px] bg-white p-1">
+      <span class="grid size-7 shrink-0 place-items-center rounded-lg bg-white p-1">
         <img
           class="block size-full"
           src={`${siteBase}img/logo.svg`}
@@ -44,21 +42,21 @@
         aria-label="Star mshibanami/GitHubTrendingRSS on GitHub"
       >
         <img
-          class="block h-5 w-auto sm:h-[19px]"
+          class="block h-5 w-auto"
           src="https://img.shields.io/github/stars/mshibanami/GitHubTrendingRSS?style=social"
           alt="GitHub stars"
         />
       </a>
       <Popover.Root>
         <Popover.Trigger
-          class="inline-grid size-[30px] place-items-center rounded-md border border-transparent bg-transparent p-0 text-white/75 hover:border-white/15 hover:bg-white/10 hover:text-white focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-sky-300 data-[state=open]:border-white/15 data-[state=open]:bg-white/10 data-[state=open]:text-white"
+          class="icon-button icon-button-on-dark data-[state=open]:border-white/15 data-[state=open]:bg-white/10 data-[state=open]:text-white"
           aria-label="About GitHub Trending RSS"
         >
           <Info size={16} strokeWidth={2} aria-hidden="true" />
         </Popover.Trigger>
         <Popover.Portal>
           <Popover.Content
-            class="z-20 w-[min(280px,calc(100vw_-_28px))] rounded-[9px] border border-[#d7dce6] bg-white p-[13px_14px] text-[0.78rem] leading-[1.45] text-[#172033] shadow-[0_10px_22px_rgba(22,32,51,0.1)] data-[state=open]:animate-[popover-in_140ms_ease-out] motion-reduce:animate-none"
+            class="popover-panel w-72 p-3.5 text-sm leading-normal text-ink data-[state=open]:animate-popover-in motion-reduce:animate-none"
             side="bottom"
             align="end"
             sideOffset={8}
@@ -66,28 +64,31 @@
           >
             <div class="grid gap-3">
               <div class="grid gap-1.5">
-                <h2 class="text-[0.86rem] leading-tight font-extrabold text-[#172033]">
+                <h2 class="text-base leading-tight font-extrabold text-ink">
                   GitHub Trending as RSS
                 </h2>
-                <p class="text-[0.76rem] leading-[1.5] text-[#667085]">
-                  This site unofficially publishes RSS feeds for GitHub's trending repositories and developers.
-                  The feeds are generated once a day from <a class="text-[#2563eb]" href="https://github.com/trending">GitHub Trending</a>.
+                <p class="text-sm leading-normal text-ink-subtle">
+                  This site unofficially publishes RSS feeds for GitHub's trending repositories and
+                  developers. The feeds are generated once a day from <a
+                    class="text-link"
+                    href="https://github.com/trending">GitHub Trending</a
+                  >.
                 </p>
               </div>
 
-              <p class="text-[0.76rem] leading-[1.5] text-[#667085]">
+              <p class="text-sm leading-normal text-ink-subtle">
                 Choose a period and, for repository feeds, a programming language. Subscribe in your
                 RSS reader instead of checking the Trending page.
               </p>
 
-              <p class="text-[0.76rem] leading-[1.5] text-[#667085]">
+              <p class="text-sm leading-normal text-ink-subtle">
                 Select a feed below to open or copy its URL.
               </p>
 
-              <p class="border-t border-[#edf0f5] pt-3 text-[0.76rem] leading-[1.5] text-[#667085]">
+              <p class="border-t border-line-soft pt-3 text-sm leading-normal text-ink-subtle">
                 <span>Last update: </span>
                 <a
-                  class="font-semibold text-[#1d4ed8] underline decoration-transparent underline-offset-2 hover:decoration-current focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
+                  class="text-link font-semibold"
                   href={workflowUrl}
                   target="_blank"
                   rel="noreferrer">{updateLabel}</a
@@ -95,7 +96,7 @@
               </p>
 
               <a
-                class="font-semibold text-[#1d4ed8] underline decoration-transparent underline-offset-2 hover:decoration-current focus-visible:rounded-sm focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-blue-300"
+                class="text-link font-semibold"
                 href={repositoryUrl}
                 target="_blank"
                 rel="noreferrer">View source on GitHub</a

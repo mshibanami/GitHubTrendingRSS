@@ -10,6 +10,7 @@
     "ensure:generated": "if [ -f src/lib/generated/feed-manifest.ts ] && [ -f src/lib/generated/feed-entry-counts.ts ]; then :; else pnpm prepare:generated; fi",
     "build": "pnpm ensure:generated && vite build",
     "check": "pnpm ensure:generated && svelte-check --tsconfig ./tsconfig.json",
+    "test": "node --experimental-strip-types --test src/lib/*.test.ts",
     "format": "prettier --write .",
     "format:check": "prettier --check .",
     "preview": "vite preview"

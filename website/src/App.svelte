@@ -145,7 +145,7 @@
   <meta property="og:url" content="https://mshibanami.github.io/GitHubTrendingRSS/" />
 </svelte:head>
 
-<div class="min-h-screen bg-[#F2F2F7] font-sans text-[#172033]">
+<div class="min-h-screen bg-page font-sans text-ink">
   <Header
     {siteBase}
     {repositoryUrl}
@@ -155,9 +155,7 @@
     onViewChange={(view) => (activeView = view)}
   />
 
-  <main
-    class="mx-auto w-[calc(100%_-_28px)] max-w-[840px] pb-[30px] max-[480px]:w-[calc(100%_-_24px)]"
-  >
+  <main class="page-shell pb-8">
     <FeedControls
       {activeView}
       {selectedPeriod}
