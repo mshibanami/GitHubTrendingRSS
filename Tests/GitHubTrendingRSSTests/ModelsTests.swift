@@ -26,6 +26,27 @@ final class ModelsTests: XCTestCase {
         XCTAssertTrue(html.contains("<img src=\"hi.png\""))
     }
 
+    func testRepositoryIncludingWebsiteURL() async throws {
+        let repository = Repository(
+            pageLink: RepositoryPageLink(href: "/user/repo"),
+            summary: "dummy summary",
+            websiteURL: URL(string: "https://example.com/project")
+        )
+
+        let readMeHTML = try await repository.makeReadMeHTML(
+            includesSummary: true, supportedEmojis: supportedEmojis
+        )
+        let html = try XCTUnwrap(readMeHTML)
+        XCTAssertTrue(
+            html.contains(
+                #"<p><a href="https://example.com/project">https://example.com/project</a></p>"#
+            )
+        )
+        XCTAssertFalse(html.contains("Website:"))
+        XCTAssertTrue(html.contains("<p>dummy summary</p><p><a href="))
+        XCTAssertTrue(html.contains("</p><hr>"))
+    }
+
     func testRepositoryIncludingBlobImage() async throws {
         var repo = Repository(
             pageLink: RepositoryPageLink(href: "/uber/ribs"),

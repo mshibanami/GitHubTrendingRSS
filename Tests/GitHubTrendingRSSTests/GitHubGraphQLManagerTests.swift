@@ -17,6 +17,7 @@ final class GitHubGraphQLManagerTests: XCTestCase {
           repo_0: repository(owner: "facebook", name: "react") {
             openGraphImageUrl
             usesCustomOpenGraphImage
+            homepageUrl
             id
             stargazerCount
             forkCount
@@ -24,6 +25,7 @@ final class GitHubGraphQLManagerTests: XCTestCase {
           repo_1: repository(owner: "vuejs", name: "vue") {
             openGraphImageUrl
             usesCustomOpenGraphImage
+            homepageUrl
             id
             stargazerCount
             forkCount
@@ -53,6 +55,7 @@ final class GitHubGraphQLManagerTests: XCTestCase {
             "https://opengraph.githubassets.com/dbdb7c9a03dabaa2e52463f68846ac5ea6830d3f326e266518b92f9bc0237e8b/swiftlang/swift"
         )
         XCTAssertFalse(repo0.usesCustomOpenGraphImage)
+        XCTAssertEqual(repo0.homepageUrl?.absoluteString, "https://swift.org")
 
         let repo1Optional = try XCTUnwrap(repos["repo_1"])
         let repo1 = try XCTUnwrap(repo1Optional)
@@ -61,6 +64,7 @@ final class GitHubGraphQLManagerTests: XCTestCase {
             "https://opengraph.githubassets.com/4a95d64df8f4beb813af3dca2b07b851592c6a28adc4075e03a4d73a1167561c/microsoft/vscode"
         )
         XCTAssertFalse(repo1.usesCustomOpenGraphImage)
+        XCTAssertNil(repo1.homepageUrl)
     }
 
     func testBuildBatchUserQuery() {

@@ -292,6 +292,7 @@ private func processFeed(
                     let pageLink = updatedRepositories[i].pageLink
                     if let ogNode = ogDataMap["\(pageLink.userID)/\(pageLink.repositoryName)"] {
                         updatedRepositories[i].openGraphImageUrl = ogNode.openGraphImageUrl
+                        updatedRepositories[i].websiteURL = ogNode.homepageUrl
                         updatedRepositories[i].usesCustomOpenGraphImage = ogNode.usesCustomOpenGraphImage
                     }
                 }

@@ -177,6 +177,7 @@ public actor GitHubGraphQLManager {
               repo_\(index): repository(owner: "\(repo.owner)", name: "\(repo.name)") {
                 openGraphImageUrl
                 usesCustomOpenGraphImage
+                homepageUrl
                 id
                 stargazerCount
                 forkCount

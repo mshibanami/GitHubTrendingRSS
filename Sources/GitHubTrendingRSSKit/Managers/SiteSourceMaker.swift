@@ -53,9 +53,15 @@ public final class SiteSourceMaker: @unchecked Sendable {
             )] = []
         for repository in repositories {
             let cacheKey =
-                "\(repository.pageLink.url.absoluteString)|hasReadMe:\(repository.readMe != nil)"
+                "\(repository.pageLink.url.absoluteString)|website:\(repository.websiteURL?.absoluteString ?? "")|hasReadMe:\(repository.readMe != nil)"
             let renderedHTML = try await descriptionHTMLCache.value(for: cacheKey) {
-                try await repository.makeReadMeHTML(includesSummary: true, supportedEmojis: supportedEmojis)
+                try await repository.makeReadMeHTML(
+                    includesSummary: true,
+                    supportedEmojis: supportedEmojis,
+                    websiteIconHTML: repository.websiteURL.map { _ in
+                        self.iconImageHTML(name: "link", rightMargin: 8)
+                    }
+                )
             }
             let descriptionHTML = renderedHTML ?? noDescriptionHTML
             repositoryContexts.append(

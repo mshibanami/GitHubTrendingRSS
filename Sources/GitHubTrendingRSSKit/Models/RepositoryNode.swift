@@ -25,6 +25,7 @@ public struct GraphQLError: Decodable {
 public struct RepositoryNode: Decodable, Sendable {
     public let openGraphImageUrl: URL
     public let usesCustomOpenGraphImage: Bool
+    public let homepageUrl: URL?
     public let id: String
     public let stargazerCount: Int?
     public let forkCount: Int?
@@ -32,12 +33,14 @@ public struct RepositoryNode: Decodable, Sendable {
     public init(
         openGraphImageUrl: URL,
         usesCustomOpenGraphImage: Bool,
+        homepageUrl: URL? = nil,
         id: String,
         stargazerCount: Int? = nil,
         forkCount: Int? = nil
     ) {
         self.openGraphImageUrl = openGraphImageUrl
         self.usesCustomOpenGraphImage = usesCustomOpenGraphImage
+        self.homepageUrl = homepageUrl
         self.id = id
         self.stargazerCount = stargazerCount
         self.forkCount = forkCount

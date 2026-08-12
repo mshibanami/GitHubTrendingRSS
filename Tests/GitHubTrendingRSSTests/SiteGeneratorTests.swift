@@ -34,6 +34,7 @@ final class SiteGeneratorTests: XCTestCase {
             pageLink: RepositoryPageLink(href: "hello/world"), summary: "hello world"
         )
         repoWithOpenGraph.openGraphImageUrl = URL(string: "https://example.com/hello-world.png")
+        repoWithOpenGraph.websiteURL = URL(string: "https://example.com/hello-world")
         let html = try await maker.makeRSS(
             from: LanguageTrendingLink(displayName: "My Lang", href: "/my/lang"),
             period: .weekly,
@@ -43,6 +44,9 @@ final class SiteGeneratorTests: XCTestCase {
             ], supportedEmojis: supportedEmojis
         )
         XCTAssertTrue(html.contains("hello-world.png"))
+        XCTAssertFalse(html.contains("Website:"))
+        XCTAssertTrue(html.contains("assets/icons/link.png"))
+        XCTAssertTrue(html.contains("https://example.com/hello-world"))
         XCTAssertTrue(
             html.contains(
                 "<media:content url=\"https://example.com/hello-world.png\" medium=\"image\" />"
