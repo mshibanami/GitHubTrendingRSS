@@ -119,38 +119,23 @@ public final class GitHubDownloader: Sendable {
                                 )
                             }
                         }
+                        if var popularRepository = updatedDev.popularRepository {
+                            if let matched = updatedDev.popularRepositories.first(where: {
+                                $0.name == popularRepository.name || $0.href == popularRepository.href
+                            }) {
+                                popularRepository.stargazerCount = matched.stargazerCount
+                                popularRepository.forkCount = matched.forkCount
+                            } else if let matchedPinned = updatedDev.pinnedRepositories.first(where: {
+                                $0.name == popularRepository.name
+                                    || $0.url.absoluteString.hasSuffix(popularRepository.href)
+                            }) {
+                                popularRepository.stargazerCount = matchedPinned.stargazerCount
+                                popularRepository.forkCount = matchedPinned.forkCount
+                            }
+                            updatedDev.popularRepository = popularRepository
+                        }
                     }
                     return updatedDev
-                }
-            }
-
-            let popularRepositories = developers.compactMap {
-                developer -> (owner: String, name: String)? in
-                guard let popularRepository = developer.popularRepository,
-                      let repositoryPath = Self.gitHubRepositoryPath(from: popularRepository.href) else {
-                    return nil
-                }
-                return repositoryPath
-            }
-            if !popularRepositories.isEmpty,
-               let repositoryInfo = try? await graphQLManager.fetchRepositoriesOGImages(
-                   repositories: popularRepositories
-               ) {
-                developers = developers.map { developer in
-                    var updatedDeveloper = developer
-                    guard var popularRepository = updatedDeveloper.popularRepository,
-                          let repositoryPath = Self.gitHubRepositoryPath(from: popularRepository.href),
-                          let repoNode = repositoryInfo["\(repositoryPath.owner)/\(repositoryPath.name)"] else {
-                        return updatedDeveloper
-                    }
-                    if let stargazerCount = repoNode.stargazerCount {
-                        popularRepository.stargazerCount = stargazerCount
-                    }
-                    if let forkCount = repoNode.forkCount {
-                        popularRepository.forkCount = forkCount
-                    }
-                    updatedDeveloper.popularRepository = popularRepository
-                    return updatedDeveloper
                 }
             }
         }
@@ -239,24 +224,5 @@ public final class GitHubDownloader: Sendable {
         }
         let emojiList = try JSONDecoder().decode(APIEmojiList.self, from: data)
         return emojiList.makeEmojis()
-    }
-
-    private static func gitHubRepositoryPath(from href: String) -> (owner: String, name: String)? {
-        let url: URL?
-        if href.hasPrefix("http://") || href.hasPrefix("https://") {
-            url = URL(string: href)
-        } else if href.hasPrefix("/") {
-            url = URL(string: "https://github.com" + href)
-        } else {
-            url = URL(string: "https://github.com/" + href)
-        }
-        guard let url else {
-            return nil
-        }
-        let pathComponents = url.pathComponents.filter { $0 != "/" }
-        guard pathComponents.count >= 2 else {
-            return nil
-        }
-        return (owner: pathComponents[0], name: pathComponents[1])
     }
 }
