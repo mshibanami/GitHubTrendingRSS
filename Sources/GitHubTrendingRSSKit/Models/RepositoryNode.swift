@@ -30,6 +30,15 @@ public struct RepositoryNode: Decodable, Sendable {
     public let stargazerCount: Int?
     public let forkCount: Int?
 
+    enum CodingKeys: String, CodingKey {
+        case openGraphImageUrl
+        case usesCustomOpenGraphImage
+        case homepageUrl
+        case id
+        case stargazerCount
+        case forkCount
+    }
+
     public init(
         openGraphImageUrl: URL,
         usesCustomOpenGraphImage: Bool,
@@ -44,5 +53,17 @@ public struct RepositoryNode: Decodable, Sendable {
         self.id = id
         self.stargazerCount = stargazerCount
         self.forkCount = forkCount
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        openGraphImageUrl = try container.decode(URL.self, forKey: .openGraphImageUrl)
+        usesCustomOpenGraphImage = try container.decode(Bool.self, forKey: .usesCustomOpenGraphImage)
+        id = try container.decode(String.self, forKey: .id)
+        stargazerCount = try? container.decode(Int.self, forKey: .stargazerCount)
+        forkCount = try? container.decode(Int.self, forKey: .forkCount)
+        homepageUrl = URL(
+            sanitizedURLString: try? container.decode(String.self, forKey: .homepageUrl)
+        )
     }
 }

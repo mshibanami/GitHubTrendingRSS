@@ -67,6 +67,56 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertNil(repo1.homepageUrl)
     }
 
+    func testDecodeRepositoryNodeWithVariousHomepageUrlFormats() throws {
+        let json = """
+        {
+            "data": {
+                "repo_empty": {
+                    "openGraphImageUrl": "https://example.com/image.png",
+                    "usesCustomOpenGraphImage": false,
+                    "homepageUrl": "",
+                    "id": "1"
+                },
+                "repo_whitespace": {
+                    "openGraphImageUrl": "https://example.com/image.png",
+                    "usesCustomOpenGraphImage": false,
+                    "homepageUrl": "   ",
+                    "id": "2"
+                },
+                "repo_no_scheme": {
+                    "openGraphImageUrl": "https://example.com/image.png",
+                    "usesCustomOpenGraphImage": false,
+                    "homepageUrl": "openseo.so",
+                    "id": "3"
+                },
+                "repo_full_url": {
+                    "openGraphImageUrl": "https://example.com/image.png",
+                    "usesCustomOpenGraphImage": false,
+                    "homepageUrl": "https://openseo.so",
+                    "id": "4"
+                },
+                "repo_null": {
+                    "openGraphImageUrl": "https://example.com/image.png",
+                    "usesCustomOpenGraphImage": false,
+                    "homepageUrl": null,
+                    "id": "5"
+                }
+            }
+        }
+        """.data(using: .utf8)!
+
+        let response = try JSONDecoder().decode(
+            GraphQLResponse<[String: RepositoryNode?]>.self, from: json
+        )
+        let repos = try XCTUnwrap(response.data)
+
+        XCTAssertNil(repos["repo_empty"]??.homepageUrl)
+        XCTAssertNil(repos["repo_whitespace"]??.homepageUrl)
+        XCTAssertEqual(repos["repo_no_scheme"]??.homepageUrl?.absoluteString, "https://openseo.so")
+        XCTAssertEqual(repos["repo_full_url"]??.homepageUrl?.absoluteString, "https://openseo.so")
+        XCTAssertNil(repos["repo_null"]??.homepageUrl)
+    }
+
     func testBuildBatchUserQuery() {
         let manager = GitHubGraphQLManager(downloadManager: DownloadManager(), apiToken: "dummy")
         let query = manager.buildBatchUserQuery(usernames: ["Astro-Han", "lalalune"])
@@ -151,6 +201,26 @@ final class GitHubGraphQLManagerTests: XCTestCase {
         XCTAssertEqual(node.popularRepositories?.nodes?.first?.name, "popular-project")
         XCTAssertEqual(node.popularRepositories?.nodes?.first?.stargazerCount, 500)
         XCTAssertEqual(node.popularRepositories?.nodes?.first?.forkCount, 34)
+    }
+
+    func testDecodeDeveloperNodeWithVariousWebsiteUrlFormats() throws {
+        let jsonEmpty = """
+        { "websiteUrl": "" }
+        """.data(using: .utf8)!
+        let nodeEmpty = try JSONDecoder().decode(DeveloperNode.self, from: jsonEmpty)
+        XCTAssertNil(nodeEmpty.websiteUrl)
+
+        let jsonNoScheme = """
+        { "websiteUrl": "dev.example.com" }
+        """.data(using: .utf8)!
+        let nodeNoScheme = try JSONDecoder().decode(DeveloperNode.self, from: jsonNoScheme)
+        XCTAssertEqual(nodeNoScheme.websiteUrl?.absoluteString, "https://dev.example.com")
+
+        let jsonNull = """
+        { "websiteUrl": null }
+        """.data(using: .utf8)!
+        let nodeNull = try JSONDecoder().decode(DeveloperNode.self, from: jsonNull)
+        XCTAssertNil(nodeNull.websiteUrl)
     }
 
     func testDecodeGraphQLPartialResponseWithErrors() throws {

@@ -85,7 +85,7 @@ final class FeedFileCreatorTests: XCTestCase {
         let creator = FeedFileCreator(outputDirectory: tempDir, siteGenerator: maker)
         let links = [
             LanguageTrendingLink(displayName: "All Languages", href: Const.gitHubTopTrendingURL.path),
-            LanguageTrendingLink(displayName: "Swift", href: "/trending/swift")
+            LanguageTrendingLink(displayName: "Swift", href: "/trending/swift"),
         ]
 
         let fileURL = try creator.createFeedManifestFile(languageLinks: links)

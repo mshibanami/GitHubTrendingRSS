@@ -76,6 +76,21 @@ public struct DeveloperNode: Decodable, Sendable {
     public let pinnedItems: PinnedItemsContainer?
     public let popularRepositories: PopularRepositoriesContainer?
 
+    enum CodingKeys: String, CodingKey {
+        case bio
+        case company
+        case location
+        case email
+        case followers
+        case following
+        case repositories
+        case websiteUrl
+        case twitterUsername
+        case socialAccounts
+        case pinnedItems
+        case popularRepositories
+    }
+
     public init(
         bio: String? = nil,
         company: String? = nil,
@@ -102,6 +117,24 @@ public struct DeveloperNode: Decodable, Sendable {
         self.socialAccounts = socialAccounts
         self.pinnedItems = pinnedItems
         self.popularRepositories = popularRepositories
+    }
+
+    public init(from decoder: Decoder) throws {
+        let container = try decoder.container(keyedBy: CodingKeys.self)
+        bio = try? container.decode(String.self, forKey: .bio)
+        company = try? container.decode(String.self, forKey: .company)
+        location = try? container.decode(String.self, forKey: .location)
+        email = try? container.decode(String.self, forKey: .email)
+        followers = try? container.decode(TotalCountContainer.self, forKey: .followers)
+        following = try? container.decode(TotalCountContainer.self, forKey: .following)
+        repositories = try? container.decode(TotalCountContainer.self, forKey: .repositories)
+        twitterUsername = try? container.decode(String.self, forKey: .twitterUsername)
+        socialAccounts = try? container.decode(SocialAccountsContainer.self, forKey: .socialAccounts)
+        pinnedItems = try? container.decode(PinnedItemsContainer.self, forKey: .pinnedItems)
+        popularRepositories = try? container.decode(PopularRepositoriesContainer.self, forKey: .popularRepositories)
+        websiteUrl = URL(
+            sanitizedURLString: try? container.decode(String.self, forKey: .websiteUrl)
+        )
     }
 }
 

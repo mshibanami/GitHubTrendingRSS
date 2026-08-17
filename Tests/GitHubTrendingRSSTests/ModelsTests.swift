@@ -229,4 +229,29 @@ final class ModelsTests: XCTestCase {
         let enDir = SpokenLanguage.en.outputDirectory(relativeTo: baseURL, period: .weekly)
         XCTAssertEqual(enDir.path, "/tmp/output/en/weekly")
     }
+
+    func testSanitizedURL() {
+        XCTAssertNil(URL(sanitizedURLString: nil))
+        XCTAssertNil(URL(sanitizedURLString: ""))
+        XCTAssertNil(URL(sanitizedURLString: "   \n\t  "))
+        XCTAssertEqual(
+            URL(sanitizedURLString: "https://example.com")?.absoluteString,
+            "https://example.com"
+        )
+        XCTAssertEqual(
+            URL(sanitizedURLString: "http://example.com/path?foo=bar#baz")?.absoluteString,
+            "http://example.com/path?foo=bar#baz"
+        )
+        XCTAssertEqual(
+            URL(sanitizedURLString: "openseo.so")?.absoluteString,
+            "https://openseo.so"
+        )
+        XCTAssertEqual(
+            URL(sanitizedURLString: "   openseo.so/path   ")?.absoluteString,
+            "https://openseo.so/path"
+        )
+        XCTAssertNil(URL(sanitizedURLString: "https://"))
+        XCTAssertNil(URL(sanitizedURLString: "http://"))
+        XCTAssertNil(URL(sanitizedURLString: "http:///"))
+    }
 }

@@ -27,7 +27,6 @@ public struct FeedManifestLanguage: Codable, Equatable, Sendable {
 }
 
 public struct FeedManifest: Codable, Equatable, Sendable {
-
     public let generatedAt: String
     public let latestBuildDate: String
     public let languages: [FeedManifestLanguage]
