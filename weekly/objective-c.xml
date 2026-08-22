@@ -1,0 +1,1028 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Objective-C Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of Objective-C on GitHub</description>
+    
+    <pubDate>Sat, 22 Aug 2026 02:21:29 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>Mininglamp-OSS/octo-ios</title>
+      <link>https://github.com/Mininglamp-OSS/octo-ios</link>
+      <description>&lt;p&gt;OCTO iOS Client — Open-source enterprise IM&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/docs/assets/logo-light.png#gh-light-mode-only&quot; width=&quot;200&quot; alt=&quot;OCTO&quot; /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/docs/assets/logo-dark.png#gh-dark-mode-only&quot; width=&quot;200&quot; alt=&quot;OCTO&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;b&gt;OCTO — the open workplace built for humans × AI agents.&lt;/b&gt;&lt;br /&gt; &lt;sub&gt;Let &lt;b&gt;Lobsters&lt;/b&gt; (OpenClaw-powered digital doubles) do the &lt;i&gt;thinking&lt;/i&gt; and &lt;i&gt;doing&lt;/i&gt;. You focus on &lt;i&gt;taste&lt;/i&gt;.&lt;/sub&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/Mininglamp-OSS&quot;&gt;&lt;b&gt;🏠 OCTO Home&lt;/b&gt;&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/#-quickstart&quot;&gt;&lt;b&gt;🚀 Quickstart&lt;/b&gt;&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/#-octo-ecosystem&quot;&gt;&lt;b&gt;📦 Ecosystem&lt;/b&gt;&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/CONTRIBUTING.md&quot;&gt;&lt;b&gt;🤝 Contributing&lt;/b&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-Apache_2.0-blue.svg?sanitize=true&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/README.zh.md&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lang-%E7%AE%80%E4%BD%93%E4%B8%AD%E6%96%87-red.svg?sanitize=true&quot; alt=&quot;简体中文&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🌐 &lt;strong&gt;Read in&lt;/strong&gt;: &lt;strong&gt;English&lt;/strong&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/README.zh.md&quot;&gt;简体中文&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h1&gt;OCTO iOS&lt;/h1&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Native iOS client&lt;/strong&gt; for the OCTO messaging platform — Swift / Objective-C, talking to &lt;code&gt;octo-server&lt;/code&gt; over REST + WebSocket.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;&lt;code&gt;octo-ios&lt;/code&gt; is the official iOS front-end for OCTO. It is a native Swift / Objective-C app (not a webview wrapper) that talks to &lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-server&quot;&gt;&lt;code&gt;octo-server&lt;/code&gt;&lt;/a&gt; over REST + WebSocket, and drives the same Lobster-agent conversation surface as &lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-web&quot;&gt;&lt;code&gt;octo-web&lt;/code&gt;&lt;/a&gt; and &lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-android&quot;&gt;&lt;code&gt;octo-android&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;🌟 Why OCTO iOS&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Native, not a webview.&lt;/strong&gt; UIKit + SwiftUI hybrid, uses platform features (APNS push, Share / Notification / Widget extensions, Universal Links, Shortcuts) rather than shipping a browser shell. First-class mobile UX for Lobster conversations.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Ships without secrets.&lt;/strong&gt; No &lt;code&gt;GoogleService-Info.plist&lt;/code&gt;, no signing certificates, no provisioning profiles bound to the upstream team. You bring your own Apple Developer team, your own Bundle Identifier (&lt;code&gt;com.example.octo&lt;/code&gt; placeholder → &lt;code&gt;com.yourcompany.octo&lt;/code&gt;), your own Firebase project, your own certificates. All stripped by the &lt;code&gt;octo-release&lt;/code&gt; pipeline before this repo is published.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Mirrors the web surface.&lt;/strong&gt; Same REST + WebSocket protocol as &lt;code&gt;octo-web&lt;/code&gt; / &lt;code&gt;octo-android&lt;/code&gt;, same i18n resource keys (English · 简体中文), same Lobster identity / streaming / typing indicators — so feature work can land on three clients without a protocol fork.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🚀 Quickstart&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;⚠️ Mandatory pre-flight&lt;/strong&gt; — this fork will &lt;strong&gt;not&lt;/strong&gt; build a signed or distributable &lt;code&gt;.ipa&lt;/code&gt; until you swap four placeholder artefacts:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Bundle Identifier&lt;/strong&gt; — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/README-BUNDLE-ID.md&quot;&gt;&lt;code&gt;README-BUNDLE-ID.md&lt;/code&gt;&lt;/a&gt; for the full rename checklist across the &lt;code&gt;.pbxproj&lt;/code&gt;, entitlements, and every extension target (&lt;code&gt;com.example.octo&lt;/code&gt; → your reverse-DNS).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Firebase configuration&lt;/strong&gt; — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/firebase-template.md&quot;&gt;&lt;code&gt;firebase-template.md&lt;/code&gt;&lt;/a&gt; for how to obtain and drop in your own &lt;code&gt;GoogleService-Info.plist&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Provisioning / certificates&lt;/strong&gt; — use your Apple Developer team&#39;s own signing certificate and provisioning profile; the upstream fork references none.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Universal Links&lt;/strong&gt; — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/universal-link-setup.md&quot;&gt;&lt;code&gt;universal-link-setup.md&lt;/code&gt;&lt;/a&gt; for the &lt;code&gt;apple-app-site-association&lt;/code&gt; file that your domain must host before deep-links resolve to your build.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Once those are done, open in Xcode:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/Mininglamp-OSS/octo-ios.git
+cd octo-ios
+
+# CocoaPods (if used):
+pod install
+
+# Or Swift Package Manager — handled by Xcode on open.
+
+open OCTO.xcworkspace   # or OCTO.xcodeproj
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;From CLI, a development build after signing is configured:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;xcodebuild -workspace OCTO.xcworkspace \
+    -scheme OCTO \
+    -configuration Debug \
+    -destination &#39;generic/platform=iOS Simulator&#39; \
+    build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;By default the app points at &lt;code&gt;http://localhost:8080&lt;/code&gt; for &lt;code&gt;octo-server&lt;/code&gt;. Edit &lt;code&gt;OCTO/Config/Config.plist&lt;/code&gt; (or the flavour-specific equivalent) to aim at your own deployment.&lt;/p&gt; 
+&lt;h2&gt;📦 Modules / Architecture&lt;/h2&gt; 
+&lt;p&gt;Top-level layout (typical OCTO iOS tree):&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Path&lt;/th&gt; 
+   &lt;th&gt;Purpose&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Main app target — view controllers, SwiftUI views, app delegate&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/UI/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Screen surfaces: chat, channels, org, settings&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Data/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;REST + WebSocket client, local cache, Core Data / Realm models&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Agent/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Lobster-aware UI components (streaming, tool-call previews, agent identity)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Push/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;APNS registration + push routing + notification-service extension&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;OCTO/Resources/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Assets, localisations (&lt;code&gt;en.lproj&lt;/code&gt;, &lt;code&gt;zh-Hans.lproj&lt;/code&gt;), launch storyboards&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;ShareExtension/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Share-sheet target for forwarding content into OCTO&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;NotificationExtension/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Rich-notification + encryption-aware decryption target&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;WuKongSDK/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;WuKongIM iOS client wrapper (real-time messaging transport)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;Pods/&lt;/code&gt; or &lt;code&gt;Packages/&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;CocoaPods / SPM dependencies&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Runtime pillars:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Auth&lt;/strong&gt; — token / refresh-token stored in Keychain.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Transport&lt;/strong&gt; — &lt;code&gt;URLSession&lt;/code&gt; for REST; WuKongIM iOS SDK for the persistent WebSocket.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Persistence&lt;/strong&gt; — Core Data (or Realm, depending on flavour) for message cache and offline drafts; file attachments under the app container.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Push&lt;/strong&gt; — APNS device token → &lt;code&gt;octo-server&lt;/code&gt; → Firebase fan-out (optional) → Notification-Service extension decrypts the payload before display.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;UI&lt;/strong&gt; — UIKit navigation skeleton + SwiftUI screens where it pays off; Dynamic Type + Dark Mode supported by default.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;🔗 OCTO Ecosystem&lt;/h2&gt; 
+&lt;!-- shared snippet: OCTO repo matrix. Keep identical across all 9 repos. --&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-mermaid&quot;&gt;graph TD
+  subgraph Clients[Clients]
+    Web[octo-web&amp;lt;br/&amp;gt;Web / PC]
+    Android[octo-android&amp;lt;br/&amp;gt;Android]
+    iOS[octo-ios&amp;lt;br/&amp;gt;iOS]
+  end
+
+  subgraph Core[Core Services]
+    Server[octo-server&amp;lt;br/&amp;gt;Backend API]
+    Matter[octo-matter&amp;lt;br/&amp;gt;Task / Todo]
+    Summary[octo-smart-summary&amp;lt;br/&amp;gt;AI Summary]
+    Admin[octo-admin&amp;lt;br/&amp;gt;Admin Console]
+  end
+
+  subgraph Shared[Shared Libraries &amp;amp; Integrations]
+    Lib[octo-lib&amp;lt;br/&amp;gt;Core Go Library]
+    Adapters[octo-adapters&amp;lt;br/&amp;gt;Third-party Adapters]
+  end
+
+  Web --&amp;gt; Server
+  Android --&amp;gt; Server
+  iOS --&amp;gt; Server
+  Admin --&amp;gt; Server
+  Server --&amp;gt; Matter
+  Server --&amp;gt; Summary
+  Server --&amp;gt; Adapters
+  Server -.uses.-&amp;gt; Lib
+  Matter -.uses.-&amp;gt; Lib
+  Adapters -.uses.-&amp;gt; Lib
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Repository&lt;/th&gt; 
+   &lt;th&gt;Language&lt;/th&gt; 
+   &lt;th&gt;Role&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-server&quot;&gt;&lt;code&gt;octo-server&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;Backend API · business orchestration · Lobster agent scheduling&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-matter&quot;&gt;&lt;code&gt;octo-matter&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;Task / Todo / Matter micro-service&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-smart-summary&quot;&gt;&lt;code&gt;octo-smart-summary&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;LLM-powered conversation summarisation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-web&quot;&gt;&lt;code&gt;octo-web&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;TypeScript / React&lt;/td&gt; 
+   &lt;td&gt;Web &amp;amp; PC (Electron) client&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-android&quot;&gt;&lt;code&gt;octo-android&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Kotlin / Java&lt;/td&gt; 
+   &lt;td&gt;Native Android client&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-ios&quot;&gt;&lt;code&gt;octo-ios&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Swift / Objective-C&lt;/td&gt; 
+   &lt;td&gt;Native iOS client&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-admin&quot;&gt;&lt;code&gt;octo-admin&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;TypeScript / React&lt;/td&gt; 
+   &lt;td&gt;Admin console (tenant / org / user / channel management)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-lib&quot;&gt;&lt;code&gt;octo-lib&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Go&lt;/td&gt; 
+   &lt;td&gt;Shared core library (protocol, crypto, storage, HTTP)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Mininglamp-OSS/octo-adapters&quot;&gt;&lt;code&gt;octo-adapters&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;TypeScript / Python&lt;/td&gt; 
+   &lt;td&gt;Third-party integrations (IM bridges, AI channels)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;🧭 Philosophy&lt;/h2&gt; 
+&lt;p&gt;OCTO ships under three shared principles that apply to every repository in this matrix:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Local-first.&lt;/strong&gt; Anything that can run on the user&#39;s own box — chats, embeddings, agents — should. Your data stays yours; cloud is a choice, not a requirement.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Humans judge, AI thinks and acts.&lt;/strong&gt; Humans focus on &lt;em&gt;taste&lt;/em&gt; (what matters, what&#39;s right, what to ship). Lobster agents — OpenClaw-powered digital doubles — carry the &lt;em&gt;thinking&lt;/em&gt; and &lt;em&gt;execution&lt;/em&gt; load.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Release-as-product.&lt;/strong&gt; Every open-source cut is shipped as a self-contained product, not a code dump: one squash per release, Apache 2.0, no internal baggage, reproducible from this repo alone.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;🤝 Contributing&lt;/h2&gt; 
+&lt;p&gt;We love pull requests! Before you open one, please read:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; — workflow, branch model, commit style&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/CODE_OF_CONDUCT.md&quot;&gt;CODE_OF_CONDUCT.md&lt;/a&gt; — community expectations&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For security issues please follow &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/SECURITY.md&quot;&gt;SECURITY.md&lt;/a&gt; instead of the public tracker.&lt;/p&gt; 
+&lt;h2&gt;📄 License&lt;/h2&gt; 
+&lt;p&gt;Apache License 2.0 — see &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for the full text and &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/NOTICE&quot;&gt;NOTICE&lt;/a&gt; for third-party attributions.&lt;/p&gt; 
+&lt;h2&gt;🙏 Acknowledgments&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;octo-ios&lt;/code&gt; owes its original scaffolding to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/TangSengDaoDao/TangSengDaoDaoiOS&quot;&gt;TangSengDaoDaoiOS&lt;/a&gt;&lt;/strong&gt; — our upstream, by the TangSengDaoDao team.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/WuKongIM/WuKongIM&quot;&gt;WuKongIM&lt;/a&gt;&lt;/strong&gt; — the real-time messaging core that &lt;code&gt;octo-server&lt;/code&gt; drives behind this client.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/Mininglamp-OSS/octo-ios/main/NOTICE&quot;&gt;NOTICE&lt;/a&gt; for the full attribution list and third-party component licenses.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;sub&gt;Made with 🐙 by &lt;b&gt;OCTO Contributors&lt;/b&gt; · &lt;a href=&quot;https://github.com/Mininglamp-OSS&quot;&gt;Mininglamp-OSS&lt;/a&gt;&lt;/sub&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e52cc7cc72a458046e6d486e0e8cad88e0214882bf90733dc868322cf148aa4c/Mininglamp-OSS/octo-ios" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>darlinghq/darling</title>
+      <link>https://github.com/darlinghq/darling</link>
+      <description>&lt;p&gt;Darwin/macOS emulation layer for Linux&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;http://www.darlinghq.org&quot;&gt;http://www.darlinghq.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://darlinghq.org/&quot;&gt; &lt;img alt=&quot;Darling logo&quot; src=&quot;https://darlinghq.org/img/darling250.png&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/darlinghq/darling/releases/latest&quot;&gt; &lt;img alt=&quot;Darling Latest Release&quot; src=&quot;https://img.shields.io/badge/latest-release-0688CB.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/darlinghq/darling/raw/master/LICENSE&quot;&gt; &lt;img alt=&quot;License&quot; src=&quot;https://img.shields.io/badge/license-GNU_GPL_3.0-E44E4A.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://opencollective.com/darlinghq&quot;&gt; &lt;img alt=&quot;Donate&quot; src=&quot;https://img.shields.io/badge/%24-donate-FF813F.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;h2&gt;Quick links&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://darlinghq.org/&quot;&gt;Website&lt;/a&gt; • &lt;a href=&quot;https://discord.gg/7knjvhT&quot;&gt;Community Discord&lt;/a&gt; • &lt;a href=&quot;https://github.com/darlinghq/darling/issues&quot;&gt;Bug Tracker&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;p&gt;Darling is a runtime environment that allows running macOS applications on Linux without a virtual machine. It consists of a Mach-O binary loader and a userspace kernel server (darlingserver) that implements macOS&#39;s Mach IPC, POSIX, and Darwin syscall interfaces on top of Linux — along with reimplementations of Apple&#39;s frameworks, such as Foundation, AppKit (based on Cocotron), CoreAudio, and CoreFoundation.&lt;/p&gt; 
+&lt;p&gt;Darling&#39;s low-level components (XNU, libSystem, Security) are based on &lt;a href=&quot;https://github.com/apple-oss-distributions&quot;&gt;Apple&#39;s open-source&lt;/a&gt; releases. Higher-level frameworks are being actively reimplemented, with many CLI tools already functional. GUI application support is in active development, backed by an AppKit implementation and an initial Metal backend powered by Vulkan translation.&lt;/p&gt; 
+&lt;p&gt;The code of Darling is licensed under &lt;a href=&quot;https://github.com/darlinghq/darling/raw/master/LICENSE&quot;&gt;GNU GPL 3.0&lt;/a&gt;. Individual submodules may be licensed differently, as indicated within each of them.&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Official packages for some distributions are available under &lt;a href=&quot;https://github.com/darlinghq/darling/releases&quot;&gt;releases&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Community Packages&lt;/h3&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-caution&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-stop mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Caution&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;These packages are neither maintained nor vetted by the Darling team.&lt;/strong&gt;&lt;br /&gt; Use them at your own risk.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;For a list of community packages, see the &lt;a href=&quot;https://docs.darlinghq.org/community/packages.html&quot;&gt;Community Packages&lt;/a&gt; section in the Darling documentation.&lt;/p&gt; 
+&lt;h2&gt;Build Instructions&lt;/h2&gt; 
+&lt;p&gt;For build instructions, visit &lt;a href=&quot;https://docs.darlinghq.org/build-instructions.html&quot;&gt;Darling Docs&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;h3&gt;Prefixes&lt;/h3&gt; 
+&lt;p&gt;Darling has support for DPREFIXes, which are very similar to WINEPREFIXes. They are virtual “chroot” environments with a macOS-like filesystem structure, where you can install software safely. The default DPREFIX location is &lt;code&gt;~/.darling&lt;/code&gt;, but this can be changed by exporting an identically named environment variable. A prefix is automatically created and initialized on first use.&lt;/p&gt; 
+&lt;p&gt;Please note that we use &lt;code&gt;overlayfs&lt;/code&gt; for creating prefixes, and so we cannot support putting prefix on a filesystem like NFS or eCryptfs. In particular, the default prefix location won&#39;t work if you have an encrypted home directory.&lt;/p&gt; 
+&lt;h3&gt;Hello world&lt;/h3&gt; 
+&lt;p&gt;Let&#39;s start with a Hello world:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ darling shell echo Hello world
+Hello world
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Congratulations, you have printed Hello world through Darling&#39;s OS X system call emulation and runtime libraries.&lt;/p&gt; 
+&lt;h3&gt;Installing software&lt;/h3&gt; 
+&lt;h4&gt;Working with &lt;code&gt;.pkg&lt;/code&gt; files&lt;/h4&gt; 
+&lt;p&gt;You can install &lt;code&gt;.pkg&lt;/code&gt; packages with the installer tool available inside shell. It is a somewhat limited cousin of OS X&#39;s installer:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;$ darling shell
+Darling [~]$ installer -pkg mc-4.8.7-0.pkg -target /
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Darling does not support installing &lt;a href=&quot;https://github.com/darlinghq/darling/issues/1662&quot;&gt;&lt;code&gt;.mpkg&lt;/code&gt;&lt;/a&gt; files yet&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;The Midnight Commander package from the above example is &lt;a href=&quot;https://darling-misc.s3.eu-central-1.amazonaws.com/mc-4.8.7-0.pkg&quot;&gt;available for download&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You can uninstall and list packages with the &lt;code&gt;uninstaller&lt;/code&gt; command.&lt;/p&gt; 
+&lt;h4&gt;Working with DMG images&lt;/h4&gt; 
+&lt;p&gt;DMG images can be attached and detached from inside &lt;code&gt;darling shell&lt;/code&gt; with &lt;code&gt;hdiutil&lt;/code&gt;. This is how you can install Xcode along with its toolchain and SDKs (note that Xcode itself doesn&#39;t run yet):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;Darling [~]$ hdiutil attach Xcode_7.2.dmg
+/Volumes/Xcode_7.2
+Darling [~]$ cp -r /Volumes/Xcode_7.2/Xcode.app /Applications
+Darling [~]$ export SDKROOT=/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX10.11.sdk
+Darling [~]$ echo &#39;void main() { puts(&quot;Hello world&quot;); }&#39; &amp;gt; helloworld.c
+Darling [~]$ /Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/clang helloworld.c -o helloworld
+Darling [~]$ ./helloworld
+Hello world
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Congratulations, you have just compiled and run your own Hello world application with Apple&#39;s toolchain.&lt;/p&gt; 
+&lt;h4&gt;Working with XIP archives&lt;/h4&gt; 
+&lt;p&gt;Xcode is now distributed in &lt;code&gt;.xip&lt;/code&gt; files. These can be installed using &lt;code&gt;unxip&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;cd /Applications
+unxip Xcode_11.3.xip
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/455333e33fa9dc346141f7c1c0edb3a7ef98eb0e2f5e0b607f706db06d31db92/darlinghq/darling" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>sparkle-project/Sparkle</title>
+      <link>https://github.com/sparkle-project/Sparkle</link>
+      <description>&lt;p&gt;A software update framework for macOS&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://sparkle-project.org&quot;&gt;https://sparkle-project.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Sparkle 2 &lt;a href=&quot;https://github.com/sparkle-project/Sparkle/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/sparkle-project/Sparkle/actions/workflows/ci.yml/badge.svg?branch=2.x&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/badge/SwiftPM-compatible-4BC51D.svg?style=flat&quot; alt=&quot;SwiftPM&quot; /&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;Secure and reliable software update framework for macOS.&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/Resources/Screenshot2.png&quot; width=&quot;732&quot; alt=&quot;Sparkle shows familiar update window with release notes&quot; /&gt; 
+&lt;p&gt;Sparkle 2 adds support for application sandboxing, custom user interfaces, updating external bundles, and a more modern architecture which includes faster and more reliable installs.&lt;/p&gt; 
+&lt;p&gt;Pre-releases when available can be found on the &lt;a href=&quot;https://github.com/sparkle-project/Sparkle/releases&quot;&gt;Sparkle&#39;s Releases&lt;/a&gt; or on your favorite package manager. More nightly builds can be downloaded by selecting a recent &lt;a href=&quot;https://github.com/sparkle-project/Sparkle/actions?query=event%3Apush+is%3Asuccess+branch%3A2.x&quot;&gt;workflow run&lt;/a&gt; and downloading the corresponding Sparkle-distribution artifact.&lt;/p&gt; 
+&lt;p&gt;The current status for future versions of Sparkle is tracked by &lt;a href=&quot;https://github.com/sparkle-project/Sparkle/milestones&quot;&gt;its roadmap&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Please visit &lt;a href=&quot;http://sparkle-project.org&quot;&gt;Sparkle&#39;s website&lt;/a&gt; for up to date documentation on using and migrating over to Sparkle 2. Refer to &lt;a href=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/CHANGELOG&quot;&gt;Changelog&lt;/a&gt; for a more detailed list of changes. More internal design documents to the project can be found in the repository under &lt;a href=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/Documentation/&quot;&gt;Documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Seamless. There&#39;s no mention of Sparkle; your icons and app name are used.&lt;/li&gt; 
+ &lt;li&gt;Secure. Updates are verified using EdDSA signatures and Apple Code Signing. Supports Sandboxed applications in Sparkle 2.&lt;/li&gt; 
+ &lt;li&gt;Fast. Supports delta updates which only patch files that have changed and atomic-safe installs.&lt;/li&gt; 
+ &lt;li&gt;Easy to install. Sparkle requires no code in your app, and only needs static files on a web server.&lt;/li&gt; 
+ &lt;li&gt;Customizable. Sparkle 2 supports plugging in a custom UI for updates.&lt;/li&gt; 
+ &lt;li&gt;Flexible. Supports applications, package installers, preference panes, and other plug-ins. Sparkle 2 supports updating external bundles.&lt;/li&gt; 
+ &lt;li&gt;Handles permissions, quarantine, and automatically asks for authentication if needed.&lt;/li&gt; 
+ &lt;li&gt;Uses RSS-based appcasts for release information. Appcasts are a de-facto standard supported by 3rd party update-tracking programs and websites.&lt;/li&gt; 
+ &lt;li&gt;Stays hidden until second launch for better first impressions.&lt;/li&gt; 
+ &lt;li&gt;Truly self-updating — the user can choose to automatically download and install all updates in the background.&lt;/li&gt; 
+ &lt;li&gt;Ability to use channels for beta updates (in Sparkle 2), add phased rollouts to users, and mark updates as critical or major.&lt;/li&gt; 
+ &lt;li&gt;Progress and status notifications for the host app.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Runtime: macOS 12.0 or later on &lt;code&gt;2.x&lt;/code&gt;, macOS 10.13 or later on &lt;code&gt;2.9.3&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Build: Latest major Xcode (stable or beta, whichever is latest) and one major version less.&lt;/li&gt; 
+ &lt;li&gt;HTTPS server for serving updates (see &lt;a href=&quot;http://sparkle-project.org/documentation/app-transport-security/&quot;&gt;App Transport Security&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://sparkle-project.org/documentation/&quot;&gt;getting started guide&lt;/a&gt;. No code is necessary, but a bit of configuration is required.&lt;/p&gt; 
+&lt;h3&gt;Troubleshooting&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Please check &lt;strong&gt;Console.app&lt;/strong&gt; for logs under your application. Sparkle prints detailed information there about all problems it encounters. It often also suggests solutions to the problems, so please read Sparkle&#39;s log messages carefully.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Use the &lt;code&gt;generate_appcast&lt;/code&gt; tool which creates appcast files, correct signatures, and delta updates automatically.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Make sure the URL specified in &lt;a href=&quot;https://sparkle-project.org/documentation/customization/&quot;&gt;&lt;code&gt;SUFeedURL&lt;/code&gt;&lt;/a&gt; is valid (typos/404s are a common error!), and that it uses modern TLS (&lt;a href=&quot;https://www.ssllabs.com/ssltest/&quot;&gt;test it&lt;/a&gt;).&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;API symbols&lt;/h3&gt; 
+&lt;p&gt;Sparkle is built with &lt;code&gt;-fvisibility=hidden -fvisibility-inlines-hidden&lt;/code&gt; which means no symbols are exported by default. If you are adding a symbol to the public API you must decorate the declaration with the &lt;code&gt;SU_EXPORT&lt;/code&gt; macro (grep the source code for examples).&lt;/p&gt; 
+&lt;h3&gt;Building the distribution package&lt;/h3&gt; 
+&lt;p&gt;You do not usually need to build a Sparkle distribution unless you&#39;re making changes to Sparkle itself.&lt;/p&gt; 
+&lt;p&gt;To build a Sparkle distribution, &lt;code&gt;cd&lt;/code&gt; to the root of the Sparkle source tree and run &lt;code&gt;make release&lt;/code&gt;. Sparkle-&lt;em&gt;VERSION&lt;/em&gt;.tar.xz will be created and revealed in Finder after the build has completed.&lt;/p&gt; 
+&lt;p&gt;Alternatively, build the Distribution scheme in the Xcode UI.&lt;/p&gt; 
+&lt;h3&gt;Code of Conduct&lt;/h3&gt; 
+&lt;p&gt;We pledge to have an open and welcoming environment. See our &lt;a href=&quot;https://raw.githubusercontent.com/sparkle-project/Sparkle/2.x/CODE_OF_CONDUCT.md&quot;&gt;Code of Conduct&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/b1f2dcf4c80ef27ae7fb2b40384c660a7ef31087d14cc7abab6f45a39a59ec28/sparkle-project/Sparkle" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>34306/FilzaJailedDS</title>
+      <link>https://github.com/34306/FilzaJailedDS</link>
+      <description>&lt;p&gt;Filza Jailed Darksword, support iOS 17.0-26.0.1. This repo open source the tweak inject into the Filza iPA (4.0.0 and back, 4.0.2 seems crash something)&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;FilzaJailedDS&lt;/h1&gt; 
+&lt;p&gt;Filza Jailed Darksword, support iOS 17.0-26.0.1 (except 18.7.2-18.7.7). This repo open source the tweak inject into the Filza iPA (4.0.0 and back, 4.0.2 seems crash something)&lt;/p&gt; 
+&lt;p&gt;About iPhone 17 series and iPad M5: SUPPORT ETA SOON!👌&lt;/p&gt; 
+&lt;p&gt;Note: I just change the name due to requested. But i think jailed is okay then&lt;/p&gt; 
+&lt;h1&gt;Credit&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/khanhduytran0&quot;&gt;Duy Tran&lt;/a&gt; for the sandbox hook token&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/wh1te4ever/&quot;&gt;wh1te4ever&lt;/a&gt; for the super details &lt;a href=&quot;https://github.com/wh1te4ever/darksword-kexploit-fun&quot;&gt;darksword-kfun&lt;/a&gt; with offset/XPF&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/opa334/&quot;&gt;opa334&lt;/a&gt; for the XPF/krw&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/crazymind90/&quot;&gt;CrazyMind90&lt;/a&gt; for idea how to get sbx token with krw only&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://github.com/rooootdev&quot;&gt;roootdev&lt;/a&gt; for sandbox elevate in &lt;a href=&quot;https://github.com/rooootdev/lara&quot;&gt;lara&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;And me 😄&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/56c0f25fbab9aa9f272966335c9c4b4fe86ca717882e6b77972a5abf7cac0322/34306/FilzaJailedDS" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>newmarcel/KeepingYouAwake</title>
+      <link>https://github.com/newmarcel/KeepingYouAwake</link>
+      <description>&lt;p&gt;Prevents your Mac from going to sleep.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://keepingyouawake.app&quot;&gt;https://keepingyouawake.app&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;KeepingYouAwake&lt;/h1&gt; 
+&lt;p&gt;KeepingYouAwake is a small menu bar utility for macOS &lt;em&gt;(Version 10.13 and newer)&lt;/em&gt; that can prevent your Mac from entering sleep mode for a predefined duration or as long as it is activated.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://keepingyouawake.app/&quot;&gt;https://keepingyouawake.app/&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/newmarcel/KeepingYouAwake/releases/latest&quot;&gt;Download the latest version here.&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;or install it via &lt;a href=&quot;http://caskroom.github.io/&quot;&gt;cask&lt;/a&gt;: &lt;code&gt;brew install --cask keepingyouawake&lt;/code&gt;.&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/newmarcel/KeepingYouAwake/main/Extras/Screenshot@2x.jpg&quot; width=&quot;500&quot; /&gt; 
+&lt;h2&gt;How does it work?&lt;/h2&gt; 
+&lt;p&gt;The app is a small wrapper around Apple&#39;s &lt;code&gt;caffeinate&lt;/code&gt; command line utility. All current versions of macOS ship with this tool by default. You can read the manual page &lt;a href=&quot;https://web.archive.org/web/20140604153141/https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Does it work on a MacBook with a closed lid?&lt;/h3&gt; 
+&lt;p&gt;No. Because of &lt;em&gt;(sensible)&lt;/em&gt; macOS limitations and out of thermal considerations, KeepingYouAwake will only prevent sleep on desktop Macs and portable Macs with an open lid.&lt;/p&gt; 
+&lt;h2&gt;Is this dangerous?&lt;/h2&gt; 
+&lt;p&gt;This utility will not harm your Mac because it is based on an official command line tool by Apple. &lt;strong&gt;BUT&lt;/strong&gt; I cannot guarantee anything, so use this tool &lt;strong&gt;AT YOUR OWN RISK&lt;/strong&gt;.&lt;/p&gt; 
+&lt;h2&gt;Inspired by Caffeine&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;KeepingYouAwake&lt;/em&gt; is inspired by &lt;em&gt;&lt;a href=&quot;https://web.archive.org/web/20240625031548/https://www.lightheadsw.com/caffeine/&quot;&gt;Caffeine&lt;/a&gt;&lt;/em&gt; from &lt;em&gt;Lighthead Software&lt;/em&gt;. I used it for many years, but sadly it hasn&#39;t been updated in a while. Eventually in 2014 I decided to build a replacement for myself that was optimized for macOS Yosemite and used the &lt;a href=&quot;https://web.archive.org/web/20140604153141/https://developer.apple.com/library/mac/documentation/Darwin/Reference/ManPages/man8/caffeinate.8.html&quot;&gt;&lt;code&gt;caffeinate&lt;/code&gt;&lt;/a&gt; command line tool under the hood.&lt;/p&gt; 
+&lt;h2&gt;Still using old macOS versions?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/newmarcel/KeepingYouAwake/releases/tag/1.6.8&quot;&gt;Version 1.6.8&lt;/a&gt; is the last release that supports macOS Big Sur and older (11.0, 10.15, 10.14, 10.13)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/newmarcel/KeepingYouAwake/releases/tag/1.6.2&quot;&gt;Version 1.6.2&lt;/a&gt; is the last release that supports macOS Sierra (10.12)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/newmarcel/KeepingYouAwake/releases/tag/1.5.2&quot;&gt;Version 1.5.2&lt;/a&gt; is the last release that supports macOS Yosemite (10.10) and El Capitan (10.11)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contribution Guidelines&lt;/h2&gt; 
+&lt;p&gt;If you plan to contribute to the project, I recommend taking a look at the &lt;a href=&quot;https://raw.githubusercontent.com/newmarcel/KeepingYouAwake/main/CONTRIBUTING.md&quot;&gt;Contribution Guidelines&lt;/a&gt;. These should cover common questions and will be updated over time.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Everything in this project is licensed under the &lt;a href=&quot;http://opensource.org/licenses/MIT&quot;&gt;MIT license&lt;/a&gt;. Provided image assets are also covered by this license.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Although it&#39;s not required please do not redistribute forked versions of the app with the same name and icon. Thanks!&lt;/em&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/3a0626deac4febd332a0a10f7f96ac7e1f04c3297638e875da819fea15463fc4/newmarcel/KeepingYouAwake" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>AliSoftware/OHHTTPStubs</title>
+      <link>https://github.com/AliSoftware/OHHTTPStubs</link>
+      <description>&lt;p&gt;Stub your network requests easily! Test your apps with fake network data and custom response time, response code and headers!&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;OHHTTPStubs&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cocoadocs.org/docsets/OHHTTPStubs&quot;&gt;&lt;img src=&quot;http://cocoapod-badges.herokuapp.com/p/OHHTTPStubs/badge.png&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Swift-2.x%2F3.x%2F4.x%2F5.x-orange.svg?sanitize=true&quot; alt=&quot;Language: Swift-2.x/3.x/4.x/5.x&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://travis-ci.org/AliSoftware/OHHTTPStubs&quot;&gt;&lt;img src=&quot;https://travis-ci.org/AliSoftware/OHHTTPStubs.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cocoadocs.org/docsets/OHHTTPStubs&quot;&gt;&lt;img src=&quot;http://cocoapod-badges.herokuapp.com/v/OHHTTPStubs/badge.png&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/carthage-supported-4BC51D.svg?style=flat&quot; alt=&quot;Carthage Supported&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/spm-supported-4BC51D.svg?style=flat&quot; alt=&quot;Swift Package Manager Supported&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is a library designed to stub your network requests very easily. It can help you:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;test your apps with &lt;strong&gt;fake network data&lt;/strong&gt; (stubbed from file) and &lt;strong&gt;simulate slow networks&lt;/strong&gt;, to check your application behavior in bad network conditions&lt;/li&gt; 
+ &lt;li&gt;write &lt;strong&gt;unit tests&lt;/strong&gt; that use fake network data from your fixtures.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;It works with &lt;code&gt;NSURLConnection&lt;/code&gt;, &lt;code&gt;NSURLSession&lt;/code&gt;, &lt;code&gt;AFNetworking&lt;/code&gt;, &lt;code&gt;Alamofire&lt;/code&gt; or any networking framework that use Cocoa&#39;s URL Loading System.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=TRTU3UEWEHV92&quot; title=&quot;Donate&quot;&gt;&lt;img alt=&quot;Donate&quot; src=&quot;https://www.paypalobjects.com/webstatic/mktg/merchant_portal/button/donate.en.png&quot; height=&quot;32px&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;Documentation &amp;amp; Usage Examples&lt;/h1&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; headers are fully documented using Appledoc-like / Headerdoc-like comments in the header files. You can also &lt;a href=&quot;http://cocoadocs.org/docsets/OHHTTPStubs&quot;&gt;read the &lt;strong&gt;online documentation&lt;/strong&gt; here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Basic example&lt;/h2&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;In Objective-C&lt;/summary&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;[HTTPStubs stubRequestsPassingTest:^BOOL(NSURLRequest *request) {
+  return [request.URL.host isEqualToString:@&quot;mywebservice.com&quot;];
+} withStubResponse:^HTTPStubsResponse*(NSURLRequest *request) {
+  // Stub it with our &quot;wsresponse.json&quot; stub file (which is in same bundle as self)
+  NSString* fixture = OHPathForFile(@&quot;wsresponse.json&quot;, self.class);
+  return [HTTPStubsResponse responseWithFileAtPath:fixture
+            statusCode:200 headers:@{@&quot;Content-Type&quot;:@&quot;application/json&quot;}];
+}];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt; 
+&lt;details open=&quot;1&quot;&gt; 
+ &lt;summary&gt;In Swift&lt;/summary&gt; 
+ &lt;p&gt;This example is using the Swift helpers found in &lt;code&gt;OHHTTPStubsSwift.swift&lt;/code&gt; provided by the &lt;code&gt;OHHTTPStubs/Swift&lt;/code&gt; subspec or &lt;code&gt;OHHTTPStubs&lt;/code&gt; package.&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;stub(condition: isHost(&quot;mywebservice.com&quot;)) { _ in
+  // Stub it with our &quot;wsresponse.json&quot; stub file (which is in same bundle as self)
+  let stubPath = OHPathForFile(&quot;wsresponse.json&quot;, type(of: self))
+  return fixture(filePath: stubPath!, headers: [&quot;Content-Type&quot;:&quot;application/json&quot;])
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: if you&#39;re using &lt;code&gt;OHHTTPStubs&lt;/code&gt;&#39;s Swiftier API (&lt;code&gt;OHHTTPStubsSwift.swift&lt;/code&gt; and the &lt;code&gt;Swift&lt;/code&gt; subspec or &lt;code&gt;OHTTPStubsSwift&lt;/code&gt; package), you can also compose the matcher functions like this: &lt;code&gt;stub(isScheme(&quot;http&quot;) &amp;amp;&amp;amp; isHost(&quot;myhost&quot;)) { … }&lt;/code&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;More examples &amp;amp; Help Topics&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For a lot more examples, see the dedicated &quot;&lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki/Usage-Examples&quot;&gt;Usage Examples&lt;/a&gt;&quot; wiki page.&lt;/li&gt; 
+ &lt;li&gt;The wiki also contain &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki&quot;&gt;some articles that can help you get started&lt;/a&gt; with (and troubleshoot if needed) &lt;code&gt;OHHTTPStubs&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Recording requests to replay them later&lt;/h2&gt; 
+&lt;p&gt;Instead of writing the content of the stubs you want to use manually, you can use tools like &lt;a href=&quot;https://github.com/capitalone/SWHttpTrafficRecorder&quot;&gt;SWHttpTrafficRecorder&lt;/a&gt; to record network requests into files. This way you can later use those files as stub responses.&lt;br /&gt; This tool can record all three formats that are supported by &lt;code&gt;OHHTTPStubs&lt;/code&gt; (the &lt;code&gt;HTTPMessage&lt;/code&gt; format, the simple response boby/content file, and the &lt;code&gt;Mocktail&lt;/code&gt; format).&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;(There are also other ways to perform a similar task, including using &lt;code&gt;curl -is &amp;lt;url&amp;gt; &amp;gt;foo.response&lt;/code&gt; to generate files compatible with the &lt;code&gt;HTTPMessage&lt;/code&gt; format, or using other network recording libraries similar to &lt;code&gt;SWHttpTrafficRecorder&lt;/code&gt;).&lt;/em&gt;&lt;/p&gt; 
+&lt;h1&gt;Compatibility&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is compatible with &lt;strong&gt;iOS5+&lt;/strong&gt;, &lt;strong&gt;OS X 10.7+&lt;/strong&gt;, &lt;strong&gt;tvOS&lt;/strong&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; also works with &lt;code&gt;NSURLSession&lt;/code&gt; as well as any network library wrapping them.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is &lt;strong&gt;fully compatible with Swift 3.x, 4.x and Swift 5.x&lt;/strong&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;&lt;a href=&quot;https://developer.apple.com/swift/blog/?id=25&quot;&gt;Nullability annotations&lt;/a&gt; have also been added to the ObjC API to allow a cleaner API when used from Swift even if you don&#39;t use the dedicated Swift API wrapper provided by &lt;code&gt;OHHTTPStubsSwift.swift&lt;/code&gt;.&lt;/em&gt;&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Updating to Version 9.0+&lt;/b&gt;&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;All classes dropped the &lt;code&gt;OH&lt;/code&gt; prefix (&lt;code&gt;OHHHTTPStubs&lt;/code&gt; -&amp;gt; &lt;code&gt;HTTPStubs&lt;/code&gt;, &lt;code&gt;OHHTTPStubsResponse&lt;/code&gt; -&amp;gt; &lt;code&gt;HTTPStubsResponse&lt;/code&gt;, etc).&lt;/li&gt; 
+  &lt;li&gt;The &lt;code&gt;OHPathHelpers&lt;/code&gt; class was renamed &lt;code&gt;HTTPStubsPathHelpers&lt;/code&gt;.&lt;/li&gt; 
+  &lt;li&gt;No method and module names were changed.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h1&gt;Installing in your projects&lt;/h1&gt; 
+&lt;h2&gt;CocoaPods&lt;/h2&gt; 
+&lt;p&gt;Using &lt;a href=&quot;https://guides.cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt; is the recommended way.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;If you &lt;strong&gt;intend to use &lt;code&gt;OHHTTPStubs&lt;/code&gt; from Objective-C only&lt;/strong&gt;, add &lt;code&gt;pod &#39;OHHTTPStubs&#39;&lt;/code&gt; to your &lt;code&gt;Podfile&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;If you &lt;strong&gt;intend to use &lt;code&gt;OHHTTPStubs&lt;/code&gt; from Swift&lt;/strong&gt;, add &lt;code&gt;pod &#39;OHHTTPStubs/Swift&#39;&lt;/code&gt; to your &lt;code&gt;Podfile&lt;/code&gt; instead.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &#39;OHHTTPStubs/Swift&#39; # includes the Default subspec, with support for NSURLSession &amp;amp; JSON, and the Swiftier API wrappers
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;All available subspecs&lt;/h3&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is split into subspecs so that when using Cocoapods, you can get only what you need, no more, no less.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The default subspec includes &lt;code&gt;NSURLSession&lt;/code&gt;, &lt;code&gt;JSON&lt;/code&gt;, and &lt;code&gt;OHPathHelpers&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;The &lt;code&gt;Swift&lt;/code&gt; subspec adds the Swiftier API to that default subspec&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;HTTPMessage&lt;/code&gt; and &lt;code&gt;Mocktail&lt;/code&gt; are opt-in subspecs: list them explicitly if you need them&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHPathHelpers&lt;/code&gt; doesn&#39;t depend on &lt;code&gt;Core&lt;/code&gt; and can be used independently of &lt;code&gt;OHHTTPStubs&lt;/code&gt; altogether&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;List of all the subspecs &amp;amp; their dependencies&lt;/summary&gt; 
+ &lt;p&gt;Here&#39;s a list of which subspecs are included for each of the different lines you could use in your &lt;code&gt;Podfile&lt;/code&gt;:&lt;/p&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Subspec&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;Core&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;NSURLSession&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;JSON&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;Swift&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;OHPathHelpers&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;HTTPMessage&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;Mocktail&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Default&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Swift&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Core&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/NSURLSession&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/JSON&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/OHPathHelpers&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/HTTPMessage&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;pod&amp;nbsp;&#39;OHHTTPStubs/Mocktail&#39;&lt;/code&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;✅&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Swift Package Manager&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is compatible with Swift Package Manager, and provides 2 targets for consumption: &lt;code&gt;OHHTTPStubs&lt;/code&gt; and &lt;code&gt;OHHTTPStubsSwift&lt;/code&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is equivalent to the &lt;code&gt;OHHTTPStubs&lt;/code&gt; subspec.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubsSwift&lt;/code&gt; is equivalent to the &lt;code&gt;OHHTTPStubs/Swift&lt;/code&gt; subspec.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;Note: We currently do not have support for the HTTPMessage or Mocktail subspecs in Swift Package Manager. If you are interested in these, please open an issue to explain your needs.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Carthage&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is also compatible with Carthage. Just add it to your &lt;code&gt;Cartfile&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Note: The &lt;code&gt;OHHTTPStubs.framework&lt;/code&gt; built with Carthage will include &lt;strong&gt;all&lt;/strong&gt; features of &lt;code&gt;OHHTTPStubs&lt;/code&gt; turned on (in other words, all subspecs of the pod), including &lt;code&gt;NSURLSession&lt;/code&gt; and &lt;code&gt;JSON&lt;/code&gt; support, &lt;code&gt;OHPathHelpers&lt;/code&gt;, &lt;code&gt;HTTPMessage&lt;/code&gt; and &lt;code&gt;Mocktail&lt;/code&gt; support, and the Swiftier API.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Using the right Swift version for your project&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; supports Swift 3.0 (Xcode 8+), Swift 3.1 (Xcode 8.3+), Swift 3.2 (Xcode 9.0+), Swift 4.0 (Xcode 9.0+), Swift 4.1 (Xcode 9.3+), Swift 4.2 (Xcode 10+), Swift 5.0 (Xcode 10.2), and Swift 5.1 (Xcode 11) however we are only testing Swift 4.x (using Xcode 9.1 and 10.1) and Swift 5.x (using Xcode 10.2 AND 11) in CI.&lt;/p&gt; 
+&lt;p&gt;Here are some details about the correct setup you need depending on how you integrated &lt;code&gt;OHHTTPStubs&lt;/code&gt; into your project.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;CocoaPods: nothing to do&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;If you use CocoaPods version &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/releases/tag/1.1.0.beta.1&quot;&gt;&lt;code&gt;1.1.0.beta.1&lt;/code&gt;&lt;/a&gt; or later, then CocoaPods will compile &lt;code&gt;OHHTTPStubs&lt;/code&gt; with the right Swift Version matching the one you use for your project automatically. You have nothing to do! 🎉&lt;/p&gt; 
+ &lt;p&gt;For more info, see &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/pull/5540&quot;&gt;CocoaPods/CocoaPods#5540&lt;/a&gt; and &lt;a href=&quot;https://github.com/CocoaPods/CocoaPods/pull/5760&quot;&gt;CocoaPods/CocoaPods#5760&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Carthage: choose the right version&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;The project is set up with &lt;code&gt;SWIFT_VERSION=5.0&lt;/code&gt; on &lt;code&gt;master&lt;/code&gt;.&lt;/p&gt; 
+ &lt;p&gt;This means that the framework on &lt;code&gt;master&lt;/code&gt; will build using:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Swift 5.1 on Xcode 11&lt;/li&gt; 
+  &lt;li&gt;Swift 5.0 on Xcode 10.2&lt;/li&gt; 
+  &lt;li&gt;Swift 4.2 on Xcode 10.1&lt;/li&gt; 
+  &lt;li&gt;Swift 4.0 on Xcode 9.1&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;If you want Carthage to build the framework with Swift 3.x you can:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;either use an older Xcode version&lt;/li&gt; 
+  &lt;li&gt;or use the previous version of &lt;code&gt;OHHTTPStubs&lt;/code&gt; (6.2.0) — whose &lt;code&gt;master&lt;/code&gt; branch uses &lt;code&gt;3.0&lt;/code&gt;&lt;/li&gt; 
+  &lt;li&gt;or fork the repo just to change the &lt;code&gt;SWIFT_VERSION&lt;/code&gt; build setting to &lt;code&gt;3.0&lt;/code&gt;&lt;/li&gt; 
+  &lt;li&gt;or build the framework passing a &lt;code&gt;SWIFT_VERSION&lt;/code&gt; to carthage via &lt;code&gt;XCODE_XCCONFIG_FILE=&amp;lt;config file declaring SWIFT_VERSION&amp;gt; carthage build&lt;/code&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h1&gt;Special Considerations&lt;/h1&gt; 
+&lt;h2&gt;Using OHHTTPStubs in your unit tests&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is ideal to write unit tests that normally would perform network requests. But if you use it in your unit tests, don&#39;t forget to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;remove any stubs you installed after each test — to avoid those stubs to still be installed when executing the next Test Case — by calling &lt;code&gt;[HTTPStubs removeAllStubs]&lt;/code&gt; in your &lt;code&gt;tearDown&lt;/code&gt; method. &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki/Remove-stubs-after-each-test&quot;&gt;see this wiki page for more info&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;be sure to wait until the request has received its response before doing your assertions and letting the test case finish (like for any asynchronous test). &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/wiki/OHHTTPStubs-and-asynchronous-tests&quot;&gt;see this wiki page for more info&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Automatic loading&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; is automatically loaded and installed (at the time the library is loaded in memory), both for:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;requests made using &lt;code&gt;NSURLConnection&lt;/code&gt; or &lt;code&gt;[NSURLSession sharedSession]&lt;/code&gt; — &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/raw/master/OHHTTPStubs/Sources/OHHTTPStubs.m#L107-L113&quot;&gt;thanks to this code&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;requests made using a &lt;code&gt;NSURLSession&lt;/code&gt; that was created via &lt;code&gt;[NSURLSession sessionWithConfiguration:…]&lt;/code&gt; and using either &lt;code&gt;[NSURLSessionConfiguration defaultSessionConfiguration]&lt;/code&gt; or &lt;code&gt;[NSURLSessionConfiguration ephemeralSessionConfiguration]&lt;/code&gt; configuration — thanks to &lt;a href=&quot;http://nshipster.com/method-swizzling/&quot;&gt;method swizzling&lt;/a&gt; done &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/raw/master/OHHTTPStubs/Sources/NSURLSession/HTTPStubs+NSURLSessionConfiguration.m&quot;&gt;here in the code&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you need to disable (and re-enable) &lt;code&gt;OHHTTPStubs&lt;/code&gt; — globally or per &lt;code&gt;NSURLSession&lt;/code&gt; — you can use &lt;code&gt;[HTTPStubs setEnabled:]&lt;/code&gt; / &lt;code&gt;[HTTPStubs setEnabled:forSessionConfiguration:]&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Known limitations&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; &lt;strong&gt;can&#39;t work on background sessions&lt;/strong&gt; (sessions created using &lt;code&gt;[NSURLSessionConfiguration backgroundSessionConfiguration]&lt;/code&gt;) because background sessions don&#39;t allow the use of custom &lt;code&gt;NSURLProtocols&lt;/code&gt; and are handled by the iOS Operating System itself.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; don&#39;t simulate data upload. The &lt;code&gt;NSURLProtocolClient&lt;/code&gt; &lt;code&gt;@protocol&lt;/code&gt; does not provide a way to signal the delegate that data has been &lt;strong&gt;sent&lt;/strong&gt; (only that some has been loaded), so any data in the &lt;code&gt;HTTPBody&lt;/code&gt; or &lt;code&gt;HTTPBodyStream&lt;/code&gt; of an &lt;code&gt;NSURLRequest&lt;/code&gt;, or data provided to &lt;code&gt;-[NSURLSession uploadTaskWithRequest:fromData:];&lt;/code&gt; will be ignored, and more importantly, the &lt;code&gt;-URLSession:task:didSendBodyData:totalBytesSent:totalBytesExpectedToSend:&lt;/code&gt; delegate method will never be called when you stub the request using &lt;code&gt;OHHTTPStubs&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;OHTTPStubs&lt;/code&gt; &lt;strong&gt;has a known issue with redirects&lt;/strong&gt; that we believe is an Apple bug. It has been discussed &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/issues/230&quot;&gt;here&lt;/a&gt; and &lt;a href=&quot;https://github.com/AliSoftware/OHHTTPStubs/issues/280&quot;&gt;here&lt;/a&gt;. The actual result of this bug is that redirects with a zero second delay may nondeterministically end up with a null response.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;em&gt;As far as I know, there&#39;s nothing we can do about those three limitations. Please let me know if you know a solution that would make that possible anyway.&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Submitting to the App Store&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;OHHTTPStubs&lt;/code&gt; &lt;strong&gt;can be used&lt;/strong&gt; on apps submitted &lt;strong&gt;on the App Store&lt;/strong&gt;. It does not use any private API and nothing prevents you from shipping it.&lt;/p&gt; 
+&lt;p&gt;But you generally only use stubs during the development phase and want to remove your stubs when submitting to the App Store. So be careful to only include &lt;code&gt;OHHTTPStubs&lt;/code&gt; when needed (only in your test targets, or only inside &lt;code&gt;#if DEBUG&lt;/code&gt; sections, or by using &lt;a href=&quot;https://guides.cocoapods.org/syntax/podfile.html#pod&quot;&gt;per-Build-Configuration pods&lt;/a&gt;) to avoid forgetting to remove it when the time comes that you release for the App Store and you want your requests to hit the real network!&lt;/p&gt; 
+&lt;h1&gt;License and Credits&lt;/h1&gt; 
+&lt;p&gt;This project and library has been created by Olivier Halligon (&lt;a href=&quot;https://twitter.com/aligatr&quot;&gt;@aligatr&lt;/a&gt; on Twitter) and is under the MIT License.&lt;/p&gt; 
+&lt;p&gt;It has been inspired by &lt;a href=&quot;https://web-beta.archive.org/web/20161219003951/http://www.infinite-loop.dk/blog/2011/09/using-nsurlprotocol-for-injecting-test-data/&quot;&gt;this article from InfiniteLoop.dk&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;I would also like to thank:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Sébastien Duperron (&lt;a href=&quot;https://github.com/Liquidsoul&quot;&gt;@Liquidsoul&lt;/a&gt;) for helping me maintaining this library, triaging and responding to issues and PRs&lt;/li&gt; 
+ &lt;li&gt;Kevin Harwood (&lt;a href=&quot;https://github.com/kcharwood&quot;&gt;@kcharwood&lt;/a&gt;) for migrating the code to &lt;code&gt;NSInputStream&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Jinlian Wang (&lt;a href=&quot;https://github.com/JinlianWang&quot;&gt;@JinlianWang&lt;/a&gt;) for adding Mocktail support&lt;/li&gt; 
+ &lt;li&gt;and everyone else who contributed to this project on GitHub somehow.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you want to support the development of this library, feel free to &lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=TRTU3UEWEHV92&quot; title=&quot;Donate&quot;&gt;&lt;img alt=&quot;Donate&quot; src=&quot;https://www.paypalobjects.com/webstatic/mktg/merchant_portal/button/donate.en.png&quot; height=&quot;25px&quot; /&gt;&lt;/a&gt;. Thanks to all contributors so far!&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/65999cb89639c6aba2607b9d6e6922fb9b0230b57b6ccc2aa8468915c39c491d/AliSoftware/OHHTTPStubs" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>AzureAD/microsoft-authentication-library-common-for-objc</title>
+      <link>https://github.com/AzureAD/microsoft-authentication-library-common-for-objc</link>
+      <description>&lt;p&gt;Common code used by both the Active Directory Authentication Library (ADAL) and the Microsoft Authentication Library (MSAL)&lt;/p&gt;&lt;hr&gt;&lt;div class=&quot;markdown-alert markdown-alert-important&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-report mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Important&lt;/p&gt;
+ &lt;p&gt;Do not consume this repository directly. IdentityCore is being migrated to the MSAL monorepo.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;This library contains code shared between the &lt;a href=&quot;https://github.com/AzureAD/azure-activedirectory-library-for-objc&quot;&gt;Active Directory Authentication Library (ADAL) for Objective-C&lt;/a&gt; and the &lt;a href=&quot;https://github.com/AzureAD/microsoft-authentication-library-for-objc&quot;&gt;Microsoft Authentication Library (MSAL) for iOS and macOS&lt;/a&gt;. This library includes only internal classes and is NOT part of the public API. The contents of this library are subject to change without notice.&lt;/p&gt; 
+&lt;h2&gt;Master branch deprercation&lt;/h2&gt; 
+&lt;p&gt;The master branch has been copied over to main branch. The master branch will contain updates only until version 1.7.24, for further releases please refer to &#39;main&#39; branch instead of &#39;master&#39;.&lt;/p&gt; 
+&lt;h2&gt;Issues&lt;/h2&gt; 
+&lt;p&gt;We encourage users of ADAL and MSAL to file issues against the library that they are using rather than against common. This helps us understand the version of the common library in use based on the version of ADAL or MSAL against which you report the issue. With that said, if you determine that the issue is indeed with common please go ahead and create it within this repo. Likewise if you have a suggestion, request and/or other feedback relative to common please file it here.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;This project welcomes contributions and suggestions. Most contributions require you to agree to a Contributor License Agreement (CLA) declaring that you have the right to, and actually do, grant us the rights to use your contribution. For details, visit &lt;a href=&quot;https://cla.microsoft.com&quot;&gt;https://cla.microsoft.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;When you submit a pull request, a CLA-bot will automatically determine whether you need to provide a CLA and decorate the PR appropriately (e.g., label, comment). Simply follow the instructions provided by the bot. You will only need to do this once across all repos using our CLA.&lt;/p&gt; 
+&lt;p&gt;This project has adopted the &lt;a href=&quot;https://opensource.microsoft.com/codeofconduct/&quot;&gt;Microsoft Open Source Code of Conduct&lt;/a&gt;. For more information see the &lt;a href=&quot;https://opensource.microsoft.com/codeofconduct/faq/&quot;&gt;Code of Conduct FAQ&lt;/a&gt; or contact &lt;a href=&quot;mailto:opencode@microsoft.com&quot;&gt;opencode@microsoft.com&lt;/a&gt; with any additional questions or comments.&lt;/p&gt; 
+&lt;h2&gt;Security Library&lt;/h2&gt; 
+&lt;p&gt;This library controls how users sign-in and access services. We recommend you always take the latest version of our library in your app when possible. We use &lt;a href=&quot;http://semver.org&quot;&gt;semantic versioning&lt;/a&gt; so you can control the risk associated with updating your app. As an example, always downloading the latest minor version number (e.g. x.&lt;em&gt;y&lt;/em&gt;.x) ensures you get the latest security and feature enhanements but our API surface remains the same. You can always see the latest version and release notes under the Releases tab of GitHub.&lt;/p&gt; 
+&lt;h3&gt;Security Reporting&lt;/h3&gt; 
+&lt;p&gt;If you find a security issue with our libraries or services please report it to &lt;a href=&quot;mailto:secure@microsoft.com&quot;&gt;secure@microsoft.com&lt;/a&gt; with as much detail as possible. Your submission may be eligible for a bounty through the &lt;a href=&quot;http://aka.ms/bugbounty&quot;&gt;Microsoft Bounty&lt;/a&gt; program. Please do not post security issues to GitHub Issues or any other public site. We will contact you shortly upon receiving the information. We encourage you to get notifications of when security incidents occur by visiting &lt;a href=&quot;https://technet.microsoft.com/en-us/security/dd252948&quot;&gt;this page&lt;/a&gt; and subscribing to Security Advisory Alerts.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Copyright (c) Microsoft Corporation. All rights reserved. Licensed under the MIT License (the &quot;License&quot;).&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ee315afeeb27d604cc7081ff01b45d47952763fbd78633dd45acb9ef9dad0a6f/AzureAD/microsoft-authentication-library-common-for-objc" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Flipboard/FLAnimatedImage</title>
+      <link>https://github.com/Flipboard/FLAnimatedImage</link>
+      <description>&lt;p&gt;Performant animated GIF engine for iOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;a href=&quot;https://github.com/Flipboard/FLAnimatedImage&quot;&gt;FLAnimatedImage&lt;/a&gt; · &lt;a href=&quot;https://github.com/Flipboard/FLAnimatedImage/raw/master/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-MIT-blue.svg?sanitize=true&quot; alt=&quot;GitHub license&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Flipboard/FLAnimatedImage/pulls&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/PRs-welcome-brightgreen.svg?sanitize=true&quot; alt=&quot;PRs Welcome&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;FLAnimatedImage is a performant animated GIF engine for iOS:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Plays multiple GIFs simultaneously with a playback speed comparable to desktop browsers&lt;/li&gt; 
+ &lt;li&gt;Honors variable frame delays&lt;/li&gt; 
+ &lt;li&gt;Behaves gracefully under memory pressure&lt;/li&gt; 
+ &lt;li&gt;Eliminates delays or blocking during the first playback loop&lt;/li&gt; 
+ &lt;li&gt;Interprets the frame delays of fast GIFs the same way modern browsers do&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;It&#39;s a well-tested &lt;a href=&quot;http://engineering.flipboard.com/2014/05/animated-gif&quot;&gt;component that powers all GIFs in Flipboard&lt;/a&gt;. To understand its behavior it comes with an interactive demo:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/Flipboard/FLAnimatedImage/raw/master/images/flanimatedimage-demo-player.gif&quot; alt=&quot;Flipboard playing multiple GIFs&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Who is this for?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Apps that don&#39;t support animated GIFs yet&lt;/li&gt; 
+ &lt;li&gt;Apps that already support animated GIFs but want a higher performance solution&lt;/li&gt; 
+ &lt;li&gt;People who want to tinker with the code (&lt;a href=&quot;http://engineering.flipboard.com/2014/05/animated-gif/&quot;&gt;the corresponding blog post&lt;/a&gt; is a great place to start; also see the &lt;em&gt;To Do&lt;/em&gt; section below)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation &amp;amp; Usage&lt;/h2&gt; 
+&lt;p&gt;FLAnimatedImage is a well-encapsulated drop-in component. Simply replace your &lt;code&gt;UIImageView&lt;/code&gt; instances with instances of &lt;code&gt;FLAnimatedImageView&lt;/code&gt; to get animated GIF support. There is no central cache or state to manage.&lt;/p&gt; 
+&lt;p&gt;If using CocoaPods, the quickest way to try it out is to type this on the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;$ pod try FLAnimatedImage
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To add it to your app, copy the two classes &lt;code&gt;FLAnimatedImage.h/.m&lt;/code&gt; and &lt;code&gt;FLAnimatedImageView.h/.m&lt;/code&gt; into your Xcode project or add via &lt;a href=&quot;http://cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt; by adding this to your Podfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ruby&quot;&gt;pod &#39;FLAnimatedImage&#39;, &#39;~&amp;gt; 1.0&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If using &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt;, add the following line into your &lt;code&gt;Cartfile&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;github &quot;Flipboard/FLAnimatedImage&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If using &lt;a href=&quot;https://github.com/apple/swift-package-manager&quot;&gt;Swift Package Manager&lt;/a&gt;, add the following to your &lt;code&gt;Package.swift&lt;/code&gt; or add via XCode:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;dependencies: [
+    .package(url: &quot;https://github.com/Flipboard/FLAnimatedImage.git&quot;, .upToNextMajor(from: &quot;1.0.16&quot;))
+],
+targets: [
+    .target(name: &quot;TestProject&quot;, dependencies: [&quot;FLAnimatedImage&quot;&quot;])
+]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;In your code, &lt;code&gt;#import &quot;FLAnimatedImage.h&quot;&lt;/code&gt;, create an image from an animated GIF, and setup the image view to display it:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;FLAnimatedImage *image = [FLAnimatedImage animatedImageWithGIFData:[NSData dataWithContentsOfURL:[NSURL URLWithString:@&quot;https://upload.wikimedia.org/wikipedia/commons/2/2c/Rotating_earth_%28large%29.gif&quot;]]];
+FLAnimatedImageView *imageView = [[FLAnimatedImageView alloc] init];
+imageView.animatedImage = image;
+imageView.frame = CGRectMake(0.0, 0.0, 100.0, 100.0);
+[self.view addSubview:imageView];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It&#39;s flexible to integrate in your custom image loading stack and backwards compatible to iOS 9.&lt;/p&gt; 
+&lt;p&gt;It uses ARC and the Apple frameworks &lt;code&gt;QuartzCore&lt;/code&gt;, &lt;code&gt;ImageIO&lt;/code&gt;, &lt;code&gt;MobileCoreServices&lt;/code&gt;, and &lt;code&gt;CoreGraphics&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;It is capable of fine-grained logging. A block can be set on &lt;code&gt;FLAnimatedImage&lt;/code&gt; that&#39;s invoked when logging occurs with various log levels via the &lt;code&gt;+setLogBlock:logLevel:&lt;/code&gt; method. For example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;// Set up FLAnimatedImage logging.
+[FLAnimatedImage setLogBlock:^(NSString *logString, FLLogLevel logLevel) {
+    // Using NSLog
+    NSLog(@&quot;%@&quot;, logString);
+
+    // ...or CocoaLumberjackLogger only logging warnings and errors
+    if (logLevel == FLLogLevelError) {
+        DDLogError(@&quot;%@&quot;, logString);
+    } else if (logLevel == FLLogLevelWarn) {
+        DDLogWarn(@&quot;%@&quot;, logString);
+    }
+} logLevel:FLLogLevelWarn];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Since FLAnimatedImage is licensed under MIT, it&#39;s compatible with the terms of using it for any app on the App Store.&lt;/p&gt; 
+&lt;h2&gt;Release process&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Bump version in &lt;code&gt;FLAnimatedImage.podspec&lt;/code&gt;, update CHANGES, and commit.&lt;/li&gt; 
+ &lt;li&gt;Tag commit with &lt;code&gt;&amp;gt; git tag -a &amp;lt;VERSION&amp;gt; -m &quot;&amp;lt;VERSION&amp;gt;&quot;&lt;/code&gt; and &lt;code&gt;&amp;gt; git push --tags&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://guides.cocoapods.org/making/specs-and-specs-repo.html#how-do-i-update-an-existing-pod&quot;&gt;Submit Podspec to Trunk with&lt;/a&gt; &lt;code&gt;&amp;gt; pod trunk push FLAnimatedImage.podspec&lt;/code&gt; (&lt;a href=&quot;https://guides.cocoapods.org/making/getting-setup-with-trunk.html#getting-started&quot;&gt;ensure you&#39;re auth&#39;ed&lt;/a&gt;).&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;To Do&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Support other animated image formats such as APNG or WebP (WebP support implemented &lt;a href=&quot;https://github.com/Flipboard/FLAnimatedImage/pull/86&quot;&gt;here&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Integration into network libraries and image caches&lt;/li&gt; 
+ &lt;li&gt;Investigate whether &lt;code&gt;FLAnimatedImage&lt;/code&gt; should become a &lt;code&gt;UIImage&lt;/code&gt; subclass&lt;/li&gt; 
+ &lt;li&gt;Smarter buffering&lt;/li&gt; 
+ &lt;li&gt;Bring demo app to iPhone&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This code has successfully shipped to many people as is, but please do come with your questions, issues and pull requests!&lt;/p&gt; 
+&lt;h2&gt;Select apps using FLAnimatedImage&lt;/h2&gt; 
+&lt;p&gt;(alphabetically)&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://closeu.pe&quot;&gt;Close-up&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/app/id792517951&quot;&gt;Design Shots&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dropbox.com&quot;&gt;Dropbox&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://dumpert.nl&quot;&gt;Dumpert&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://ello.co/&quot;&gt;Ello&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://facebook.com&quot;&gt;Facebook&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://flipboard.com&quot;&gt;Flipboard&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/app/id964784701&quot;&gt;getGIF&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/us/app/gifalicious-see-your-gifs/id965346708?mt=8&quot;&gt;Gifalicious&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/app/id685784609&quot;&gt;HashPhotos&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.instagram.com/&quot;&gt;Instagram&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.liveboothapp.com&quot;&gt;LiveBooth&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://lwlvl.com&quot;&gt;lWlVl Festival&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://medium.com&quot;&gt;Medium&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pinterest.com&quot;&gt;Pinterest&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://slack.com/&quot;&gt;Slack&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://telegram.org/&quot;&gt;Telegram&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://itunes.apple.com/app/id893031254&quot;&gt;Zip Code Finder&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you&#39;re using FLAnimatedImage in your app, please open a PR to add it to this list!&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/bdab7caa83ac76cd40a7c69f79ade65ca34c50cdb5ed267a4c06f6367a18df28/Flipboard/FLAnimatedImage" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Giphy/giphy-ios-sdk</title>
+      <link>https://github.com/Giphy/giphy-ios-sdk</link>
+      <description>&lt;p&gt;Home of the GIPHY SDK iOS example app, along with iOS SDK documentation, issue tracking, &amp; release notes.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://developers.giphy.com/&quot;&gt;https://developers.giphy.com/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;750&quot; height=&quot;150&quot; src=&quot;https://raw.githubusercontent.com/Giphy/giphy-ios-sdk/main/sdk_logo.gif&quot; /&gt; &lt;/p&gt; 
+&lt;img align=&quot;right&quot; width=&quot;300&quot; height=&quot;483&quot; src=&quot;https://raw.githubusercontent.com/Giphy/giphy-ios-sdk/main/example.gif&quot; /&gt; 
+&lt;h1&gt;GIPHY SDK for iOS&lt;/h1&gt; 
+&lt;p&gt;The fastest and easiest way to bring the full GIPHY experience directly to your app is with the GIPHY SDK. Built with developers and product designers in mind, the GIPHY SDK is a top-to-bottom solution for all things GIF in your app. This includes interfacing with GIPHY API, fetching and caching assets, and displaying GIFs and Stickers on screen in customizable UI templates.&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Giphy/giphy-ios-sdk/main/Docs.md&quot;&gt;Get Started&lt;/a&gt;&lt;/h3&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d04d11f089820ed69160692e976b79e490faba3ac745bbba87d76f246a75f9f5/Giphy/giphy-ios-sdk" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>adjust/ios_sdk</title>
+      <link>https://github.com/adjust/ios_sdk</link>
+      <description>&lt;p&gt;This is the iOS SDK of&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;http://www.adjust.com&quot;&gt;http://www.adjust.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Adjust SDK for iOS&lt;/h1&gt; 
+&lt;p&gt;This is the &lt;a href=&quot;https://adjust.com&quot;&gt;Adjust&lt;/a&gt;™ SDK for iOS. Documentation is available on our help center in the following languages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.adjust.com/en/developer/ios-sdk-documentation&quot;&gt;English&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.adjust.com/zh/developer/ios-sdk-documentation&quot;&gt;中文&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.adjust.com/ja/developer/ios-sdk-documentation&quot;&gt;日本語&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://help.adjust.com/ko/developer/ios-sdk-documentation&quot;&gt;한국어&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Distributed under the &lt;a href=&quot;https://opensource.org/licenses/MIT&quot;&gt;MIT license&lt;/a&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/adjust/ios_sdk/master/MIT-LICENSE&quot;&gt;&lt;code&gt;MIT-LICENSE&lt;/code&gt;&lt;/a&gt; for the full text.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/163cf8c6b5f80411e96cc5676a80ced8464d3280e9aad23756a06fd6b654206e/adjust/ios_sdk" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Sequel-Ace/Sequel-Ace</title>
+      <link>https://github.com/Sequel-Ace/Sequel-Ace</link>
+      <description>&lt;p&gt;MySQL/MariaDB database management for macOS&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://sequel-ace.com&quot;&gt;https://sequel-ace.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Sequel Ace &lt;img alt=&quot;Logo&quot; src=&quot;https://sequel-ace.com/images/appIcon-1024.png&quot; align=&quot;right&quot; height=&quot;80&quot; /&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://crowdin.com/project/sequel-ace&quot;&gt;&lt;img src=&quot;https://badges.crowdin.net/sequel-ace/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Sequel Ace is the &quot;sequel&quot; to the longtime macOS tool Sequel Pro. Sequel Ace is a fast, easy-to-use Mac database management application for working with MySQL &amp;amp; MariaDB databases.&lt;/p&gt; 
+&lt;p&gt;If you would like to sponsor Sequel Ace, please check out our &lt;a href=&quot;https://opencollective.com/sequel-ace&quot;&gt;Open Collective&lt;/a&gt; or sponsor one of our maintainers via GitHub Sponsors!&lt;/p&gt; 
+&lt;p&gt;Documentation can be found at the website &lt;a href=&quot;https://sequel-ace.com&quot;&gt;sequel-ace.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;img width=&quot;1440&quot; height=&quot;900&quot; alt=&quot;1&quot; src=&quot;https://github.com/user-attachments/assets/1ed88ef5-c89d-4dca-95d5-0a567aa1409b&quot; /&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;macOS:&lt;/strong&gt; &amp;gt;= 12.0&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Processors:&lt;/strong&gt; Intel &amp;amp; Apple Silicon&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Databases:&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;MySQL:&lt;/strong&gt; &amp;gt;= 5.7&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;MariaDB:&lt;/strong&gt; &amp;gt;= 10.0&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Previous Versions:&lt;/h3&gt; 
+&lt;p&gt;&lt;em&gt;If you have an unsupported version of macOS or MySQL, you can download a previous release of Sequel Ace. No support is provided for old versions and compatiblity is not guaranteed. Use at your own risk.&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;For macOS 10.15-11 - &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/releases/tag/production%2F4.1.7-20080&quot;&gt;Sequel Ace (version 4.1.7)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;For macOS 10.13-10.14 - &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/releases/tag/production%2F4.1.7-20080&quot;&gt;Sequel Ace (version 4.1.7)&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;To run Sequel Ace on Mac OS X 10.13-10.14.4, you need to install Apple&#39;s Swift Standard Libraries for the app to work as expected. You can download this support package free of charge from &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/raw/main/Scripts/&quot;&gt;here (this repository)&lt;/a&gt; or &lt;a href=&quot;https://support.apple.com/kb/DL1998?locale=en_GB&quot;&gt;here (Apple directly)&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;For Mac OS X 10.12 or for MySQL 5.6 support - &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/releases/tag/production%2F3.5.2-20033&quot;&gt;Sequel Ace (version 3.5.2)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;For Mac OS X 10.10-10.11 - &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/releases/tag/production%2F2.3.2-2121&quot;&gt;Sequel Ace (version 2.3.2)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Mac AppStore &lt;a href=&quot;https://apps.apple.com/us/app/sequel-ace/id1518036000?ls=1&quot;&gt;&lt;img alt=&quot;Download on the Mac AppStore&quot; src=&quot;https://sequel-ace.com/images/download_on_mas.png&quot; align=&quot;right&quot; height=&quot;60&quot; /&gt;&lt;/a&gt;&lt;/h3&gt; 
+&lt;p&gt;Download Sequel Ace today from the &lt;a href=&quot;https://apps.apple.com/us/app/sequel-ace/id1518036000?ls=1&quot;&gt;macOS App Store&lt;/a&gt;!&lt;/p&gt; 
+&lt;h3&gt;MAS CLI&lt;/h3&gt; 
+&lt;p&gt;To install via &lt;code&gt;mas&lt;/code&gt; &lt;a href=&quot;https://github.com/mas-cli/mas&quot;&gt;MAS CLI&lt;/a&gt; use Sequel Ace id &lt;code&gt;1518036000&lt;/code&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;mas install 1518036000 # Sequel Ace
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Homebrew&lt;/h3&gt; 
+&lt;p&gt;To install an unofficial community maintained &lt;a href=&quot;https://brew.sh&quot;&gt;Homebrew&lt;/a&gt; &lt;a href=&quot;https://github.com/Homebrew/homebrew-cask&quot;&gt;Cask&lt;/a&gt; of the &lt;a href=&quot;https://github.com/sequel-ace/sequel-ace/releases&quot;&gt;GitHub Release&lt;/a&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;brew install --cask sequel-ace
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;MCP Server (AI Agent Integration)&lt;/h2&gt; 
+&lt;p&gt;Sequel Ace includes a built-in &lt;a href=&quot;https://modelcontextprotocol.io&quot;&gt;Model Context Protocol (MCP)&lt;/a&gt; server that lets AI agents (Claude Code, Cursor, and others) query your databases through Sequel Ace&#39;s existing connections. It is off by default, listens on localhost only, and runs in read-only mode unless you turn that off.&lt;/p&gt; 
+&lt;p&gt;Enable it under &lt;strong&gt;Preferences &amp;gt; MCP Server&lt;/strong&gt;. See the &lt;a href=&quot;https://sequel-ace.com/get-started/mcp-server.html&quot;&gt;MCP server guide&lt;/a&gt; for setup, the full tool list, client configuration, and the security model.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Moving Saved Connections from Sequel Pro&lt;/h2&gt; 
+&lt;p&gt;To migrate your favorites, please check the &lt;a href=&quot;https://sequel-ace.com/get-started/migrating-from-sequel-pro.html&quot;&gt;migration guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Please refer to &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/raw/main/Guides/Contributing.md&quot;&gt;this&lt;/a&gt; doc.&lt;/p&gt; 
+&lt;h3&gt;Translations&lt;/h3&gt; 
+&lt;p&gt;If you would like to help with translations, please sign up for Crowdin and join our &lt;a href=&quot;https://crowdin.com/project/sequel-ace&quot;&gt;Crowdin project&lt;/a&gt; to translate Sequel Ace into supported languages. Also, if you want to add a new language, please &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/issues/new/choose&quot;&gt;create a new issue&lt;/a&gt;, and we will be happy to enable that language for you to translate!&lt;/p&gt; 
+&lt;h3&gt;Development&lt;/h3&gt; 
+&lt;p&gt;If you would like to help with code and development, please see either our &lt;a href=&quot;https://github.com/sequel-ace/sequel-ace/projects&quot;&gt;projects page&lt;/a&gt; or &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/issues/new/choose&quot;&gt;issues&lt;/a&gt; with relevant labels such as &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/issues?q=is%3Aopen+is%3Aissue+label%3A%22Help+wanted%22&quot;&gt;Help Wanted&lt;/a&gt;, &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/issues?q=is%3Aopen+is%3Aissue+label%3ABug&quot;&gt;Bug&lt;/a&gt;, &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/labels/Feature%20Request&quot;&gt;Feature Request&lt;/a&gt;, and &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/labels/PR%20Welcome&quot;&gt;PR Welcome&lt;/a&gt;. These lists contain the issues where we would most like your help. There are both challenging and straightforward tasks there, so new contributors should be able to get started. For more technical information see &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/raw/main/Guides/Developing.md&quot;&gt;the developer guide&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Branches&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;main: Main is our active development branch. All contribution PRs should be pointed at main!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Tags &amp;amp; Releases&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;production/ tags represent submissions to the macOS App Store. These are marked as &quot;Pre-Release&quot; until approved by Apple and officially released by the team. Both release candidates and final releases use production/ tags. Release candidates will have RC or Release Candidate in their title.&lt;/li&gt; 
+ &lt;li&gt;beta/ tags represent pre-release versions of Sequel Ace intended to test new features and bug fixes. The downloadable app in a beta/ tag has a different name and identifier (Sequel Ace Beta), meaning you can install it side-by-side with the latest App Store release. Beta releases also have increased logging turned on to help us identify critical issues.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Code of Conduct&lt;/h2&gt; 
+&lt;p&gt;Please refer &lt;a href=&quot;https://github.com/Sequel-Ace/Sequel-Ace/raw/main/Guides/Code_of_conduct.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Copyright (c) 2020-2026 Moballo, LLC. All rights reserved. Forked from Sequel Pro: Copyright (c) 2002-2019 Sequel Pro &amp;amp; CocoaMySQL Teams. All rights reserved.&lt;/p&gt; 
+&lt;p&gt;Sequel Ace is free and open-source software licensed under &lt;a href=&quot;https://opensource.org/licenses/MIT&quot;&gt;MIT&lt;/a&gt;. See &lt;a href=&quot;https://github.com/sequel-ace/sequel-ace/raw/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for complete details.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/271553915/d9329f80-c38d-11ea-866a-c63f97834e8d" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>nicklockwood/GZIP</title>
+      <link>https://github.com/nicklockwood/GZIP</link>
+      <description>&lt;p&gt;A simple NSData category for gzipping/unzipping data in iOS and Mac OS&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/nicklockwood/GZIP/actions/workflows/build.yml&quot;&gt;&lt;img src=&quot;https://github.com/nicklockwood/GZIP/actions/workflows/build.yml/badge.svg?sanitize=true&quot; alt=&quot;Build&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/nicklockwood/GZIP&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/nicklockwood/GZIP/graphs/badge.svg?sanitize=true&quot; alt=&quot;Codecov&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://opensource.org/licenses/MIT&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-MIT-lightgrey.svg?sanitize=true&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://mastodon.social/@nicklockwood&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/mastodon-@nicklockwood@mastodon.social-636dff.svg?sanitize=true&quot; alt=&quot;Mastodon&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Purpose&lt;/h2&gt; 
+&lt;p&gt;GZIP is category on NSData that provides simple gzip compression and decompression functionality.&lt;/p&gt; 
+&lt;h2&gt;Supported OS &amp;amp; SDK Versions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Supported build target - iOS 12.0 / Mac OS 10.14 (Xcode 10.1)&lt;/li&gt; 
+ &lt;li&gt;Earliest supported deployment target - iOS 11.0 / Mac OS 10.14.6&lt;/li&gt; 
+ &lt;li&gt;Earliest compatible deployment target - iOS 11.0 / Mac OS 10.6&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;NOTE: &#39;Supported&#39; means that the library has been tested with this version. &#39;Compatible&#39; means that the library should work on this iOS version (i.e. it doesn&#39;t rely on any unavailable SDK features) but is no longer being tested for compatibility and may require tweaking or bug fixes to run correctly.&lt;/p&gt; 
+&lt;h2&gt;ARC Compatibility&lt;/h2&gt; 
+&lt;p&gt;The GZIP category will work correctly in either ARC or non-ARC projects without modification.&lt;/p&gt; 
+&lt;h2&gt;Thread Safety&lt;/h2&gt; 
+&lt;p&gt;All the GZIP methods should be safe to call from multiple threads concurrently.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;The simplest way to install GZIP is to use CocoaPods, by adding the following to your Podfile:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;pod &#39;GZIP&#39;, &#39;~&amp;gt; 1.3.2&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively you can use Carthage, or if you prefer to install manually, drag the GZIP.xcodeproj into your project or workspace and include GZIP.framework under the linked libraries in your target.&lt;/p&gt; 
+&lt;h2&gt;NSData Extensions&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;- (NSData *)gzippedDataWithCompressionLevel:(float)level;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This method will apply the gzip deflate algorithm and return the compressed data. The compression level is a floating point value between 0.0 and 1.0, with 0.0 meaning no compression and 1.0 meaning maximum compression. A value of 0.1 will provide the fastest possible compression. If you supply a negative value, this will apply the default compression level, which is equivalent to a value of around 0.7.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;- (NSData *)gzippedData;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This method is equivalent to calling &lt;code&gt;gzippedDataWithCompressionLevel:&lt;/code&gt; with the default compression level.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;- (NSData *)gunzippedData;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This method will unzip data that was compressed using the deflate algorithm and return the result.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;- (BOOL)isGzippedData;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This method will return YES if the data is gzip-encoded.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c3e8ee97f35acd0c1d13b99e1f181c425bd29fae4f93d286e2e05a5c5a72cf2c/nicklockwood/GZIP" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>pinterest/PINCache</title>
+      <link>https://github.com/pinterest/PINCache</link>
+      <description>&lt;p&gt;Fast, non-deadlocking parallel object cache for iOS, tvOS and OS X&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;PINCache&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;http://cocoadocs.org/docsets/PINCache/&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/PINCache.svg?sanitize=true&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/pinterest/PINCache/actions?query=workflow%3ACI+branch%3Amaster&quot;&gt;&lt;img src=&quot;https://github.com/pinterest/PINCache/workflows/CI/badge.svg?sanitize=true&quot; alt=&quot;Build status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Fast, non-deadlocking parallel object cache for iOS and OS X.&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/pinterest/PINCache/master/Source/PINCache.h&quot;&gt;PINCache&lt;/a&gt; is a fork of &lt;a href=&quot;https://github.com/tumblr/TMCache&quot;&gt;TMCache&lt;/a&gt; re-architected to fix issues with deadlocking caused by heavy use. It is a key/value store designed for persisting temporary objects that are expensive to reproduce, such as downloaded data or the results of slow processing. It is comprised of two self-similar stores, one in memory (&lt;a href=&quot;https://raw.githubusercontent.com/pinterest/PINCache/master/Source/PINMemoryCache.h&quot;&gt;PINMemoryCache&lt;/a&gt;) and one on disk (&lt;a href=&quot;https://raw.githubusercontent.com/pinterest/PINCache/master/Source/PINDiskCache.h&quot;&gt;PINDiskCache&lt;/a&gt;), all backed by GCD and safe to access from multiple threads simultaneously. On iOS, &lt;code&gt;PINMemoryCache&lt;/code&gt; will clear itself when the app receives a memory warning or goes into the background. Objects stored in &lt;code&gt;PINDiskCache&lt;/code&gt; remain until you trim the cache yourself, either manually or by setting a byte or age limit.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;PINCache&lt;/code&gt; and &lt;code&gt;PINDiskCache&lt;/code&gt; accept any object conforming to &lt;a href=&quot;https://developer.apple.com/library/ios/#documentation/Cocoa/Reference/Foundation/Protocols/NSCoding_Protocol/Reference/Reference.html&quot;&gt;NSCoding&lt;/a&gt;. Put things in like this:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;UIImage *img = [[UIImage alloc] initWithData:data scale:[[UIScreen mainScreen] scale]];
+[[PINCache sharedCache] setObject:img forKey:@&quot;image&quot; block:nil]; // returns immediately
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Swift&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let img = UIImage(data: data, scale:UIScreen.main.scale)
+PINCache.shared().setObject(img, forKey: &quot;img&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Get them back out like this:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objc&quot;&gt;[[PINCache sharedCache] objectForKeyAsync:@&quot;image&quot; block:^(PINCache *cache, NSString *key, id object) {
+    UIImage *image = (UIImage *)object;
+    NSLog(@&quot;image scale: %f&quot;, image.scale);
+}];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Swift&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;PINCache.shared().object(forKey: &quot;image&quot;) { (cache, key, object) in
+    if let image = object as? UIImage {
+        print(&quot;image scale: %f&quot;, image.scale)
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Both &lt;code&gt;PINMemoryCache&lt;/code&gt; and &lt;code&gt;PINDiskCache&lt;/code&gt; use locks to protect reads and writes. &lt;code&gt;PINCache&lt;/code&gt; coordinates them so that objects added to memory are available immediately to other threads while being written to disk safely in the background. Both caches are public properties of &lt;code&gt;PINCache&lt;/code&gt;, so it&#39;s easy to manipulate one or the other separately if necessary.&lt;/p&gt; 
+&lt;p&gt;Collections work too. Thanks to the magic of &lt;code&gt;NSKeyedArchiver&lt;/code&gt;, objects repeated in a collection only occupy the space of one on disk:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;NSArray *images = @[ image, image, image ];
+[[PINCache sharedCache] setObject:images forKey:@&quot;images&quot;];
+NSLog(@&quot;3 for the price of 1: %d&quot;, [[[PINCache sharedCache] diskCache] byteCount]);
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Swift&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;// In Swift, Array, String, and Dictionary are all value types.
+let images = [image, image, image] as NSArray // Cast to NSArray
+PINCache.shared.setObject(images, forKey: &quot;images&quot;)
+print(&quot;3 for the prices of 1: %d&quot;, PINCache.shared.diskCache.byteCount)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;h3&gt;Manually&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/pinterest/PINCache/tags&quot;&gt;Download the latest tag&lt;/a&gt; and drag the &lt;code&gt;PINCache&lt;/code&gt; folder into your Xcode project.&lt;/p&gt; 
+&lt;p&gt;Install the docs by double clicking the &lt;code&gt;.docset&lt;/code&gt; file under &lt;code&gt;docs/&lt;/code&gt;, or view them online at &lt;a href=&quot;http://cocoadocs.org/docsets/PINCache/&quot;&gt;cocoadocs.org&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Git Submodule&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;git submodule add https://github.com/pinterest/PINCache.git
+git submodule update --init
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;p&gt;Add &lt;a href=&quot;http://cocoapods.org/?q=name%3APINCache&quot;&gt;PINCache&lt;/a&gt; to your &lt;code&gt;Podfile&lt;/code&gt; and run &lt;code&gt;pod install&lt;/code&gt;.&lt;/p&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;p&gt;Add the following line to your &lt;code&gt;Cartfile&lt;/code&gt; and run &lt;code&gt;carthage update --platform ios&lt;/code&gt;. Then follow &lt;a href=&quot;https://github.com/carthage/carthage#adding-frameworks-to-unit-tests-or-a-framework&quot;&gt;this instruction of Carthage&lt;/a&gt; to embed the framework.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;github &quot;pinterest/PINCache&quot;&lt;/code&gt;&lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;PINCache&lt;/strong&gt; requires iOS 12.0, tvOS 12.0, watchOS 4.0 or macOS 10.13 and greater.&lt;/p&gt; 
+&lt;h2&gt;Contact&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;mailto:garrett@pinterest.com&quot;&gt;Garrett Moon&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Copyright 2013 Tumblr, Inc. Copyright 2015 Pinterest, Inc.&lt;/p&gt; 
+&lt;p&gt;Licensed under the Apache License, Version 2.0 (the &quot;License&quot;); you may not use this file except in compliance with the License. You may obtain a copy of the License at &lt;a href=&quot;http://www.apache.org/licenses/LICENSE-2.0&quot;&gt;http://www.apache.org/licenses/LICENSE-2.0&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Unless required by applicable law or agreed to in writing, software distributed under the License is distributed on an &quot;AS IS&quot; BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied. &lt;a href=&quot;https://raw.githubusercontent.com/pinterest/PINCache/master/LICENSE.txt&quot;&gt;See the License&lt;/a&gt; for the specific language governing permissions and limitations under the License.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/090852555fdc1f7ebc02cf0863413238e770b910890ca10dd236ba49bf96861a/pinterest/PINCache" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
