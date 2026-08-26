@@ -62,6 +62,7 @@ public class Const {
         "rust",
         "scala",
         "shell",
+        "svelte",
         "svg",
         "swift",
         "tex",
