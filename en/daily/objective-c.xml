@@ -1,0 +1,156 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Objective-C Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Objective-C on GitHub</description>
+    
+    <pubDate>Sat, 05 Sep 2026 05:16:19 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>opa334/TrollStore</title>
+      <link>https://github.com/opa334/TrollStore</link>
+      <description>&lt;p&gt;Jailed iOS app that can install IPAs permanently with arbitary entitlements and root helpers because it trolls Apple&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;TrollStore&lt;/h1&gt; 
+&lt;p&gt;TrollStore is a permasigned jailed app that can permanently install any IPA you open in it.&lt;/p&gt; 
+&lt;p&gt;It works because of an AMFI/CoreTrust bug where iOS does not correctly verify code signatures of binaries in which there are multiple signers.&lt;/p&gt; 
+&lt;p&gt;Supported versions: 14.0 beta 2 - 16.6.1, 16.7 RC (20H18), 17.0&lt;/p&gt; 
+&lt;h2&gt;Installing TrollStore&lt;/h2&gt; 
+&lt;p&gt;For installing TrollStore, refer to the guides at &lt;a href=&quot;https://ios.cfw.guide/installing-trollstore&quot;&gt;ios.cfw.guide&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;16.7.x (excluding 16.7 RC) and 17.0.1+ will NEVER be supported (unless a third CoreTrust bug is discovered, which is unlikely).&lt;/p&gt; 
+&lt;h2&gt;Updating TrollStore&lt;/h2&gt; 
+&lt;p&gt;When a new TrollStore update is available, a button to install it will appear at the top in the TrollStore settings. After tapping the button, TrollStore will automatically download the update, install it, and respring.&lt;/p&gt; 
+&lt;p&gt;Alternatively (if anything goes wrong), you can download the TrollStore.tar file under Releases and open it in TrollStore, TrollStore will install the update and respring.&lt;/p&gt; 
+&lt;h2&gt;Uninstalling an app&lt;/h2&gt; 
+&lt;p&gt;Apps installed from TrollStore can only be uninstalled from TrollStore itself, tap an app or swipe it to the left in the &#39;Apps&#39; tab to delete it.&lt;/p&gt; 
+&lt;h2&gt;Persistence Helper&lt;/h2&gt; 
+&lt;p&gt;The CoreTrust bug used in TrollStore is only enough to install &quot;System&quot; apps, this is because FrontBoard has an additional security check (it calls libmis) every time before a user app is launched. Unfortunately it is not possible to install new &quot;System&quot; apps that stay through an icon cache reload. Therefore, when iOS reloads the icon cache, all TrollStore installed apps including TrollStore itself will revert back to &quot;User&quot; state and will no longer launch.&lt;/p&gt; 
+&lt;p&gt;The only way to work around this is to install a persistence helper into a system app, this helper can then be used to reregister TrollStore and its installed apps as &quot;System&quot; so that they become launchable again, an option for this is available in TrollStore settings.&lt;/p&gt; 
+&lt;p&gt;On jailbroken iOS 14 when TrollHelper is used for installation, it is located in /Applications and will persist as a &quot;System&quot; app through icon cache reloads, therefore TrollHelper is used as the persistence helper on iOS 14.&lt;/p&gt; 
+&lt;h2&gt;URL Scheme&lt;/h2&gt; 
+&lt;p&gt;As of version 1.3, TrollStore replaces the system URL scheme &quot;apple-magnifier&quot; (this is done so &quot;jailbreak&quot; detections can&#39;t detect TrollStore like they could if TrollStore had a unique URL scheme). This URL scheme can be used to install applications right from the browser, or to enable JIT from the app itself (only 2.0.12 and above), the format goes as follows:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;apple-magnifier://install?url=&amp;lt;URL_to_IPA&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;apple-magnifier://enable-jit?bundle-id=&amp;lt;Bundle_ID&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;On devices that don&#39;t have TrollStore (1.3+) installed, this will just open the magnifier app.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;The binaries inside an IPA can have arbitrary entitlements, fakesign them with ldid and the entitlements you want (&lt;code&gt;ldid -S&amp;lt;path/to/entitlements.plist&amp;gt; &amp;lt;path/to/binary&amp;gt;&lt;/code&gt;) and TrollStore will preserve the entitlements when resigning them with the fake root certificate on installation. This gives you a lot of possibilities, some of which are explained below.&lt;/p&gt; 
+&lt;h3&gt;Banned entitlements&lt;/h3&gt; 
+&lt;p&gt;iOS 15 on A12+ has banned the following three entitlements related to running unsigned code, these are impossible to get without a PPL bypass, apps signed with them will crash on launch.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;com.apple.private.cs.debugger&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;dynamic-codesigning&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;com.apple.private.skip-library-validation&lt;/code&gt;&lt;/p&gt; 
+&lt;h3&gt;Unsandboxing&lt;/h3&gt; 
+&lt;p&gt;Your app can run unsandboxed using one of the following entitlements:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.container-required&amp;lt;/key&amp;gt;
+&amp;lt;false/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.no-container&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.no-sandbox&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The third one is recommended if you still want a sandbox container for your application.&lt;/p&gt; 
+&lt;p&gt;You might also need the platform-application entitlement in order for these to work properly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;platform-application&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Please note that the platform-application entitlement causes side effects such as some parts of the sandbox becoming tighter, so you may need additional private entitlements to circumvent that. (For example afterwards you need an exception entitlement for every single IOKit user client class you want to access).&lt;/p&gt; 
+&lt;p&gt;In order for an app with &lt;code&gt;com.apple.private.security.no-sandbox&lt;/code&gt; and &lt;code&gt;platform-application&lt;/code&gt; to be able to access it&#39;s own data container, you might need the additional entitlement:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.storage.AppDataContainers&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Root Helpers&lt;/h3&gt; 
+&lt;p&gt;When your app is not sandboxed, you can spawn other binaries using posix_spawn, you can also spawn binaries as root with the following entitlement:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.persona-mgmt&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also add your own binaries into your app bundle.&lt;/p&gt; 
+&lt;p&gt;Afterwards you can use the &lt;a href=&quot;https://raw.githubusercontent.com/opa334/TrollStore/main/Shared/TSUtil.m#L79&quot;&gt;spawnRoot function in TSUtil.m&lt;/a&gt; to spawn the binary as root.&lt;/p&gt; 
+&lt;h3&gt;Things that are not possible using TrollStore&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Getting proper platformization (&lt;code&gt;TF_PLATFORM&lt;/code&gt; / &lt;code&gt;CS_PLATFORMIZED&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Spawning a launch daemon (Would need &lt;code&gt;CS_PLATFORMIZED&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Injecting a tweak into a system process (Would need &lt;code&gt;TF_PLATFORM&lt;/code&gt;, a userland PAC bypass and a PMAP trust level bypass)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Compilation&lt;/h3&gt; 
+&lt;p&gt;To compile TrollStore, ensure &lt;a href=&quot;https://theos.dev/docs/installation&quot;&gt;theos&lt;/a&gt; is installed. Additionaly ensure &lt;a href=&quot;https://brew.sh/&quot;&gt;brew&lt;/a&gt; is installed and install &lt;a href=&quot;https://formulae.brew.sh/formula/libarchive&quot;&gt;libarchive&lt;/a&gt; from brew.&lt;/p&gt; 
+&lt;h2&gt;Credits and Further Reading&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/alfiecg_dev/&quot;&gt;@alfiecg_dev&lt;/a&gt; - Found the CoreTrust bug that allows TrollStore to work through patchdiffing and worked on automating the bypass.&lt;/p&gt; 
+&lt;p&gt;Google Threat Analysis Group - Found the CoreTrust bug as part of an in-the-wild spyware chain and reported it to Apple.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/LinusHenze&quot;&gt;@LinusHenze&lt;/a&gt; - Found the installd bypass used to install TrollStore on iOS 14-15.6.1 via TrollHelperOTA, as well as the original CoreTrust bug used in TrollStore 1.0.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/rPTifU1lG7Q&quot;&gt;Fugu15 Presentation&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://worthdoingbadly.com/coretrust/&quot;&gt;Write-Up on the first CoreTrust bug with more information&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/af7f2ca72a756e2802a9e3c0cfba2292e3c5273ca4c89cc5d22a23935e95cd27/opa334/TrollStore" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>google/GoogleSignIn-iOS</title>
+      <link>https://github.com/google/GoogleSignIn-iOS</link>
+      <description>&lt;p&gt;Enables iOS and macOS apps to sign in with Google.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://developers.google.com/identity/sign-in/ios&quot;&gt;https://developers.google.com/identity/sign-in/ios&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://cocoapods.org/pods/GoogleSignIn&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/GoogleSignIn.svg?style=flat&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org/pods/GoogleSignIn&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/p/GoogleSignIn.svg?style=flat&quot; alt=&quot;Platform&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org/pods/GoogleSignIn&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/l/GoogleSignIn.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/google/GoogleSignIn-iOS/actions/workflows/unit_tests.yml&quot;&gt;&lt;img src=&quot;https://github.com/google/GoogleSignIn-iOS/actions/workflows/unit_tests.yml/badge.svg?branch=main&quot; alt=&quot;unit_tests&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/google/GoogleSignIn-iOS/actions/workflows/integration_tests.yml&quot;&gt;&lt;img src=&quot;https://github.com/google/GoogleSignIn-iOS/actions/workflows/integration_tests.yml/badge.svg?branch=main&quot; alt=&quot;integration_tests&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Google Sign-In for iOS and macOS&lt;/h1&gt; 
+&lt;p&gt;Get users into your apps quickly and securely, using a registration system they already use and trust—their Google account.&lt;/p&gt; 
+&lt;p&gt;Visit &lt;a href=&quot;https://developers.google.com/identity/sign-in/ios/&quot;&gt;our developer site&lt;/a&gt; for integration instructions, documentation, support information, and terms of service.&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Try either the &lt;a href=&quot;https://raw.githubusercontent.com/google/GoogleSignIn-iOS/main/Samples/ObjC&quot;&gt;Objective-C&lt;/a&gt; or &lt;a href=&quot;https://raw.githubusercontent.com/google/GoogleSignIn-iOS/main/Samples/Swift&quot;&gt;Swift&lt;/a&gt; sample app. For example, to demo the Objective-C sample project, you have two options:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Using CocoaPod&#39;s &lt;code&gt;install&lt;/code&gt; method:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/google/GoogleSignIn-iOS
+cd GoogleSignIn-iOS/Samples/ObjC/SignInSample/
+pod install
+open SignInSampleForPod.xcworkspace
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Using &lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;Swift Package Manager&lt;/a&gt;:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;git clone https://github.com/google/GoogleSignIn-iOS
+open GoogleSignIn-iOS/Samples/ObjC/SignInSample/SignInSample.xcodeproj
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you would like to see a Swift example, take a look at &lt;a href=&quot;https://raw.githubusercontent.com/google/GoogleSignIn-iOS/main/Samples/Swift/DaysUntilBirthday&quot;&gt;Samples/Swift/DaysUntilBirthday&lt;/a&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Add Google Sign-In to your own app by following our &lt;a href=&quot;https://developers.google.com/identity/sign-in/ios/start-integrating&quot;&gt;getting started guides&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Take a look at the &lt;a href=&quot;https://developers.google.com/identity/sign-in/ios/api/&quot;&gt;API reference&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Google Sign-In on macOS&lt;/h2&gt; 
+&lt;p&gt;Google Sign-In allows your users to sign-in to your native macOS app using their Google account and default browser. When building for macOS, the &lt;code&gt;signInWithConfiguration:&lt;/code&gt; and &lt;code&gt;addScopes:&lt;/code&gt; methods take a &lt;code&gt;presentingWindow:&lt;/code&gt; parameter in place of &lt;code&gt;presentingViewController:&lt;/code&gt;. Note that in order for your macOS app to store credentials via the Keychain on macOS, you will need to add &lt;code&gt;$(AppIdentifierPrefix)$(CFBundleIdentifier)&lt;/code&gt; as the first item in its keychain access group.&lt;/p&gt; 
+&lt;h3&gt;Mac Catalyst&lt;/h3&gt; 
+&lt;p&gt;Google Sign-In also supports iOS apps that are built for macOS via &lt;a href=&quot;https://developer.apple.com/mac-catalyst/&quot;&gt;Mac Catalyst&lt;/a&gt;. In order for your Mac Catalyst app to store credentials via the Keychain on macOS, you will need to add &lt;code&gt;$(AppIdentifierPrefix)$(CFBundleIdentifier)&lt;/code&gt; as the first item in the keychain access group.&lt;/p&gt; 
+&lt;h2&gt;Using the Google Sign-In Button&lt;/h2&gt; 
+&lt;p&gt;There are several ways to add a &#39;Sign in with Google&#39; button to your app, which path you choose will depend on your UI framework and target platform.&lt;/p&gt; 
+&lt;h3&gt;SwiftUI (iOS and macOS)&lt;/h3&gt; 
+&lt;p&gt;Creating a &#39;Sign in with Google&#39; button in SwiftUI can be as simple as this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;GoogleSignInButton {
+  GIDSignIn.sharedInstance.signIn(withPresenting: yourViewController) { signInResult, error in
+      // check `error`; do something with `signInResult`
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This example takes advantage of the initializer&#39;s &lt;a href=&quot;https://raw.githubusercontent.com/google/GoogleSignIn-iOS/main/GoogleSignInSwift/Sources/GoogleSignInButton.swift#L39&quot;&gt;default argument for the view model&lt;/a&gt;. The default arguments for the view model will use the light scheme, the standard button style, and the normal button state. You can supply an instance of &lt;a href=&quot;https://raw.githubusercontent.com/google/GoogleSignIn-iOS/main/GoogleSignInSwift/Sources/GoogleSignInButtonViewModel.swift&quot;&gt;&lt;code&gt;GoogleSignInButtonViewModel&lt;/code&gt;&lt;/a&gt; with different values for these properties to customize the button. &lt;a href=&quot;https://raw.githubusercontent.com/google/GoogleSignIn-iOS/main/GoogleSignInSwift/Sources/GoogleSignInButton.swift#L56&quot;&gt;This convenience initializer&lt;/a&gt; provides parameters that you can use to set these values as needed.&lt;/p&gt; 
+&lt;h3&gt;UIKit (iOS)&lt;/h3&gt; 
+&lt;p&gt;If you are not using SwiftUI to build your user interfaces, you can either create &lt;code&gt;GIDSignInButton&lt;/code&gt; programmatically, or in a Xib/Storyboard. If you are writing programmatic UI code, it will look something like this:&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;let button = GIDSignInButton(frame: CGRect(&amp;lt;YOUR_RECT&amp;gt;))&lt;/code&gt;&lt;/p&gt; 
+&lt;h3&gt;AppKit (macOS)&lt;/h3&gt; 
+&lt;p&gt;Given that &lt;code&gt;GIDSignInButton&lt;/code&gt; is implemented as a subclass of &lt;code&gt;UIControl&lt;/code&gt;, it will not be available on macOS. You can instead use the SwiftUI Google sign-in button. Doing so will require that you wrap the SwiftUI button in a hosting view so that it will be available for use in AppKit.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;let signInButton = GoogleSignInButton {
+  GIDSignIn.sharedInstance.signIn(withPresenting: yourViewController) { signInResult, error in
+      // check `error`; do something with `signInResult`
+  }
+}
+let hostedButton = NSHostingView(rootView: signInButton)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;A Note on iOS Keychain Access Groups&lt;/h2&gt; 
+&lt;p&gt;GSI uses your default (first listed) keychain access group. If you don&#39;t add a custom keychain access group, the default keychain access group is provided by Xcode and looks like &lt;code&gt;$(AppIdentifierPrefix)$(CFBundleIdentifier)&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;GSI &lt;a href=&quot;https://github.com/google/GoogleSignIn-iOS/pull/567&quot;&gt;removes keychain items upon fresh install&lt;/a&gt; to ensure that stale credentials from previous installs of your app are not mistakenly used. If your app uses a shared access group by default this may lead to new installs of apps sharing the same keychain access group to remove keychain credentials for apps already installed.&lt;/p&gt; 
+&lt;p&gt;To prevent unintentional credential removal, you can explicitly list the typical default access group (or whatever you prefer so long as it is not shared) in your list first. GSI, will then use that default access group.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/cac539aaddc51852cd0b07ab38203d45d2997895955ff03d8e735a2c3badff8a/google/GoogleSignIn-iOS" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

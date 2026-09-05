@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Common Lisp Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Common Lisp on GitHub</description>
+    
+    <pubDate>Sat, 05 Sep 2026 05:06:46 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>dimitri/pgloader</title>
+      <link>https://github.com/dimitri/pgloader</link>
+      <description>&lt;p&gt;Migrate to PostgreSQL in a single command!&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;http://pgloader.io&quot;&gt;http://pgloader.io&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;pgloader&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/dimitri/pgloader/actions/workflows/clojure-integration-tests.yml&quot;&gt;&lt;img src=&quot;https://github.com/dimitri/pgloader/actions/workflows/clojure-integration-tests.yml/badge.svg?branch=v4-clojure-rewrite&quot; alt=&quot;pgloader v4 CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://pgloader.readthedocs.io/en/latest/&quot;&gt;&lt;img src=&quot;https://readthedocs.org/projects/pgloader/badge/?version=latest&amp;amp;style=plastic&quot; alt=&quot;Read The Docs&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;pgloader is a data loading tool for PostgreSQL, using the &lt;code&gt;COPY&lt;/code&gt; command.&lt;/p&gt; 
+&lt;p&gt;Its main advantage over just using &lt;code&gt;COPY&lt;/code&gt; or &lt;code&gt;\copy&lt;/code&gt;, and over using a &lt;em&gt;Foreign Data Wrapper&lt;/em&gt;, is its transaction behaviour, where &lt;em&gt;pgloader&lt;/em&gt; will keep a separate file of rejected data, but continue trying to &lt;code&gt;copy&lt;/code&gt; good data in your database.&lt;/p&gt; 
+&lt;p&gt;The default PostgreSQL behaviour is transactional, which means that &lt;em&gt;any&lt;/em&gt; erroneous line in the input data (file or remote database) will stop the entire bulk load for the table.&lt;/p&gt; 
+&lt;p&gt;pgloader also implements data reformatting, a typical example of that being the transformation of MySQL datestamps &lt;code&gt;0000-00-00&lt;/code&gt; and &lt;code&gt;0000-00-00 00:00:00&lt;/code&gt; to PostgreSQL &lt;code&gt;NULL&lt;/code&gt; value (because our calendar never had a &lt;em&gt;year zero&lt;/em&gt;).&lt;/p&gt; 
+&lt;h2&gt;Version 4 — Clojure/JVM rewrite&lt;/h2&gt; 
+&lt;p&gt;pgloader v4 is a full rewrite in Clojure, distributed as a single self-contained JAR requiring &lt;strong&gt;Java 21 or later&lt;/strong&gt;. It is a drop-in replacement for v3 and accepts the same &lt;code&gt;.load&lt;/code&gt; file syntax and command-line flags.&lt;/p&gt; 
+&lt;p&gt;Key improvements over v3:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Single JAR&lt;/strong&gt; — no native dependencies, no SBCL, no shared libraries&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;JDBC connection strings&lt;/strong&gt; — use &lt;code&gt;jdbc:mysql://&lt;/code&gt;, &lt;code&gt;jdbc:postgresql://&lt;/code&gt;, &lt;code&gt;jdbc:sqlserver://&lt;/code&gt; etc. everywhere; driver-specific parameters pass through unchanged&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Java heap&lt;/strong&gt; — no more Common Lisp heap exhaustion on large migrations; tune with standard &lt;code&gt;-Xmx&lt;/code&gt; JVM flag&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SSL via URI&lt;/strong&gt; — use &lt;code&gt;?sslmode=require&lt;/code&gt; / &lt;code&gt;?sslmode=disable&lt;/code&gt; in the connection string instead of &lt;code&gt;--no-ssl-cert-verification&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Full documentation is available at &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/&quot;&gt;https://pgloader.readthedocs.io/&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ java -jar pgloader.jar --help
+pgloader [ option ... ] SOURCE TARGET
+  --help                          Show usage and exit.
+  --version                       Display pgloader version and exit.
+  --quiet                         Be quiet.
+  --verbose                       Be verbose.
+  --debug                         Display debug level information.
+  --client-min-messages           Filter logs seen at the console (default: info)
+  --log-min-messages              Filter logs seen in the logfile (default: info)
+  --logfile                       Filename where to send the logs.
+  --summary                       Filename where to copy the summary.
+  --root-dir                      Output root directory (default: /tmp/pgloader/).
+  --list-encodings                List pgloader known encodings and exit.
+  --dry-run                       Check connections only, don&#39;t load anything.
+  --on-error-stop                 Stop on first error instead of continuing.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;You can either give a command file to pgloader or run it all from the command line, see the &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/tutorial/tutorial.html#pgloader-quick-start&quot;&gt;pgloader quick start&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ java -jar pgloader.jar --help
+$ java -jar pgloader.jar &amp;lt;file.load&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, for a full migration from SQLite:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb newdb
+$ java -jar pgloader.jar ./test/sqlite/sqlite.db postgresql:///newdb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or for a full migration from MySQL, including schema definition (tables, indexes, foreign keys, comments) and parallel loading of the corrected data:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb pagila
+$ java -jar pgloader.jar mysql://user@localhost/sakila postgresql:///pagila
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;INSTALL&lt;/h2&gt; 
+&lt;h3&gt;Java (v4 — recommended)&lt;/h3&gt; 
+&lt;p&gt;pgloader v4 requires &lt;strong&gt;Java 21 or later&lt;/strong&gt; (&lt;a href=&quot;https://adoptium.net/&quot;&gt;Temurin&lt;/a&gt;, OpenJDK, or any compatible distribution).&lt;/p&gt; 
+&lt;p&gt;Download the latest pre-release JAR — this URL always points to the most recent build from the &lt;code&gt;v4-clojure-rewrite&lt;/code&gt; branch:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ curl -L -o pgloader.jar \
+    https://github.com/dimitri/pgloader/releases/download/v4-dev/pgloader.jar
+$ java -jar pgloader.jar --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To make it available system-wide:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ sudo install -m 755 pgloader.jar /usr/local/lib/pgloader.jar
+$ echo &#39;#!/bin/sh\nexec java -jar /usr/local/lib/pgloader.jar &quot;$@&quot;&#39; \
+    | sudo tee /usr/local/bin/pgloader
+$ sudo chmod 755 /usr/local/bin/pgloader
+$ pgloader --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Docker&lt;/h3&gt; 
+&lt;p&gt;The latest image is built by CI on every push to &lt;code&gt;v4-clojure-rewrite&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ docker pull ghcr.io/dimitri/pgloader:latest
+$ docker run --rm -it ghcr.io/dimitri/pgloader:latest pgloader --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Debian / Ubuntu (v3)&lt;/h3&gt; 
+&lt;p&gt;The v3 package is available in the Debian and Ubuntu repositories:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ apt-get install pgloader
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A v4 Debian package is planned.&lt;/p&gt; 
+&lt;h2&gt;LICENCE&lt;/h2&gt; 
+&lt;p&gt;pgloader is available under &lt;a href=&quot;http://www.postgresql.org/about/licence/&quot;&gt;The PostgreSQL Licence&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/5c4748c6e50fe50181001fc8b8e45d9547f1fea3c9459f83de76ed1d9e697913/dimitri/pgloader" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

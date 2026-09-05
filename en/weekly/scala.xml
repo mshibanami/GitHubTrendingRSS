@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Scala Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of Scala on GitHub</description>
+    
+    <pubDate>Sat, 05 Sep 2026 05:19:23 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>apache/gluten</title>
+      <link>https://github.com/apache/gluten</link>
+      <description>&lt;p&gt;Gluten is a middle layer responsible for offloading JVM-based SQL engines&#39; execution to native engines.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://gluten.apache.org/&quot;&gt;https://gluten.apache.org/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/gluten-logo.svg?sanitize=true&quot; alt=&quot;Gluten&quot; width=&quot;260&quot; /&gt; 
+&lt;p&gt;&lt;strong&gt;A Middle Layer for Offloading JVM-Based SQL Execution to Native Engines&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.bestpractices.dev/projects/8452&quot;&gt;&lt;img src=&quot;https://www.bestpractices.dev/projects/8452/badge&quot; alt=&quot;OpenSSF Best Practices&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;1. Introduction&lt;/h2&gt; 
+&lt;h3&gt;Background&lt;/h3&gt; 
+&lt;p&gt;Apache Spark is a mature and stable project that has been under continuous development for many years. It is one of the most widely used frameworks for scaling out the processing of petabyte-scale datasets. Over time, the Spark community has had to address significant performance challenges, which required a variety of optimizations. A major milestone came with Spark 2.0, where Whole-Stage Code Generation replaced the Volcano Model, delivering up to a 2× speedup. Since then, most subsequent improvements have focused on the query plan level, while the performance of individual operators has almost stopped improving.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/47296334/199853029-b6d0ea19-f8e4-4f62-9562-2838f7f159a7.png&quot; width=&quot;700&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;In recent years, several native SQL engines have been developed, such as ClickHouse and Velox. With features like native execution, columnar data formats, and vectorized data processing, these engines can outperform Spark’s JVM-based SQL engine. However, they currently don&#39;t directly support Spark SQL execution.&lt;/p&gt; 
+&lt;h3&gt;Design Overview&lt;/h3&gt; 
+&lt;p&gt;“Gluten” is Latin for &quot;glue&quot;. The main goal of the Gluten project is to glue native engines to Spark SQL. Thus, we can benefit from the high performance of native engines and the high scalability enabled by the Spark ecosystem.&lt;/p&gt; 
+&lt;p&gt;The basic design principle is to reuse Spark’s control flow, while offloading compute-intensive data processing to the native side. More specifically:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Transform Spark’s physical plan into a Substrait plan, then transform it into the native engine&#39;s plan.&lt;/li&gt; 
+ &lt;li&gt;Offload performance-critical data processing to native engine.&lt;/li&gt; 
+ &lt;li&gt;Define clear JNI interfaces for native SQL engines.&lt;/li&gt; 
+ &lt;li&gt;Allow easy switching between available native backends.&lt;/li&gt; 
+ &lt;li&gt;Reuse Spark’s distributed control flow.&lt;/li&gt; 
+ &lt;li&gt;Manage data sharing between JVM and native.&lt;/li&gt; 
+ &lt;li&gt;Provide extensibility to support more native engines.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Target Users&lt;/h3&gt; 
+&lt;p&gt;Gluten&#39;s target users include anyone who wants to fundamentally accelerate Spark SQL. As a plugin to Spark, Gluten requires no changes to the DataFrame API or SQL queries; users only need to configure it correctly.&lt;/p&gt; 
+&lt;h2&gt;2. Architecture&lt;/h2&gt; 
+&lt;p&gt;The overview chart is shown below. &lt;a href=&quot;https://substrait.io/&quot;&gt;Substrait&lt;/a&gt; provides a well-defined, cross-language specification for data compute operations. Spark’s physical plan is transformed into a Substrait plan, which is then passed to the native side through a JNI call. On the native side, a chain of native operators is constructed and offloaded to the native engine. Gluten returns the results as a ColumnarBatch, and Spark’s Columnar API (introduced in Spark 3.0) is used during execution. Gluten adopts the Apache Arrow data format as its underlying representation.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/47296334/199617207-1140698a-4d53-462d-9bc7-303d14be060b.png&quot; width=&quot;700&quot; /&gt; &lt;/p&gt; Currently, Gluten supports only the ClickHouse and Velox backends. Velox is a C++ database acceleration library that provides reusable, extensible, and high-performance data processing components. In addition, Gluten is designed to be extensible, allowing support for additional backends in the future. 
+&lt;p&gt;Gluten&#39;s key components:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Query Plan Conversion&lt;/strong&gt;: Converts Spark&#39;s physical plan to Substrait plan.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Unified Memory Management&lt;/strong&gt;: Manages native memory allocation.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Columnar Shuffle&lt;/strong&gt;: Handles shuffling of Gluten&#39;s columnar data. The shuffle service of Spark core is reused, while a columnar exchange operator is implemented to support Gluten&#39;s columnar data format.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Fallback Mechanism&lt;/strong&gt;: Provides fallback to vanilla Spark for unsupported operators. Gluten&#39;s ColumnarToRow (C2R) and RowToColumnar (R2C) convert data between Gluten&#39;s columnar format and Spark&#39;s internal row format to support fallback transitions.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Metrics&lt;/strong&gt;: Collected from Gluten native engine to help monitor execution, identify bugs, and diagnose performance bottlenecks. The metrics are displayed in Spark UI.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Shim Layer&lt;/strong&gt;: Ensures compatibility with multiple Spark versions. Gluten supports the latest 3–4 Spark releases during its development cycle, and currently supports Spark 3.4, 3.5, 4.0, and 4.1.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;3. User Guide&lt;/h2&gt; 
+&lt;p&gt;Below is a basic configuration to enable Gluten in Spark.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;export GLUTEN_JAR=/PATH/TO/GLUTEN_JAR
+spark-shell \
+  --master yarn --deploy-mode client \
+  --conf spark.plugins=org.apache.gluten.GlutenPlugin \
+  --conf spark.memory.offHeap.enabled=true \
+  --conf spark.memory.offHeap.size=20g \
+  --conf spark.driver.extraClassPath=${GLUTEN_JAR} \
+  --conf spark.executor.extraClassPath=${GLUTEN_JAR} \
+  --conf spark.shuffle.manager=org.apache.spark.shuffle.sort.ColumnarShuffleManager
+  ...
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;There are two ways to acquire Gluten jar for the above configuration.&lt;/p&gt; 
+&lt;h3&gt;Use Released JAR&lt;/h3&gt; 
+&lt;p&gt;Please download the tar package &lt;a href=&quot;https://gluten.apache.org/downloads/&quot;&gt;here&lt;/a&gt;, then extract the Gluten JAR from it. Additionally, Gluten provides nightly builds based on the main branch for early testing. The nightly build JARs are available at &lt;a href=&quot;https://nightlies.apache.org/gluten/&quot;&gt;Apache Gluten Nightlies&lt;/a&gt;. They have been verified on Centos 7/8/9, Ubuntu 20.04/22.04.&lt;/p&gt; 
+&lt;h3&gt;Build From Source&lt;/h3&gt; 
+&lt;p&gt;For &lt;strong&gt;Velox&lt;/strong&gt; backend, please refer to &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/Velox.md&quot;&gt;Velox.md&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/build-guide.md&quot;&gt;build-guide.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For &lt;strong&gt;ClickHouse&lt;/strong&gt; backend, please refer to &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/get-started/ClickHouse.md&quot;&gt;ClickHouse.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The Gluten JAR will be generated under &lt;code&gt;/PATH/TO/GLUTEN/package/target/&lt;/code&gt; after the build.&lt;/p&gt; 
+&lt;h3&gt;Configurations&lt;/h3&gt; 
+&lt;p&gt;Common configurations used by Gluten are listed in &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/Configuration.md&quot;&gt;Configuration.md&lt;/a&gt;. Velox specific configurations are listed in &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-configuration.md&quot;&gt;velox-configuration.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The Gluten Velox backend honors some Spark configurations, ignores others, and many are transparent to it. See &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-spark-configuration.md&quot;&gt;velox-spark-configuration.md&lt;/a&gt; for details, and &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/velox-parquet-write-configuration.md&quot;&gt;velox-parquet-write-configuration.md&lt;/a&gt; for Parquet write configurations.&lt;/p&gt; 
+&lt;h2&gt;4. Resources&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gluten.apache.org/&quot;&gt;Gluten website&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/facebookincubator/velox&quot;&gt;Velox repository&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Kyligence/ClickHouse&quot;&gt;ClickHouse repository&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=0Q6gHT_N-1U&quot;&gt;Gluten Intro Video at Data AI Summit 2022&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://medium.com/intel-analytics-software/accelerate-spark-sql-queries-with-gluten-9000b65d1b4e&quot;&gt;Gluten Intro Article on Medium&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cn.kyligence.io/blog/gluten-spark/&quot;&gt;Gluten Intro Article on Kyligence.io (Chinese)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://engineering.fb.com/2023/03/09/open-source/velox-open-source-execution-engine/&quot;&gt;Velox Intro from Meta&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;5. Contribution&lt;/h2&gt; 
+&lt;p&gt;Welcome to contribute to the Gluten project! See &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for guidelines on how to make contributions.&lt;/p&gt; 
+&lt;h2&gt;6. Community&lt;/h2&gt; 
+&lt;p&gt;Here are several ways to connect with the community.&lt;/p&gt; 
+&lt;h3&gt;GitHub&lt;/h3&gt; 
+&lt;p&gt;Welcome to report issues or start discussions in GitHub. Please search the GitHub issue list before creating a new one to avoid duplication.&lt;/p&gt; 
+&lt;h3&gt;Mailing List&lt;/h3&gt; 
+&lt;p&gt;For any technical discussions, please email &lt;a href=&quot;mailto:dev@gluten.apache.org&quot;&gt;dev@gluten.apache.org&lt;/a&gt;. You can browse the &lt;a href=&quot;https://lists.apache.org/list.html?dev@gluten.apache.org&quot;&gt;archives&lt;/a&gt; to view past discussions, or &lt;a href=&quot;mailto:dev-subscribe@gluten.apache.org&quot;&gt;subscribe to the mailing list&lt;/a&gt; to receive updates.&lt;/p&gt; 
+&lt;h3&gt;Slack Channel (English)&lt;/h3&gt; 
+&lt;p&gt;Request an invitation to the ASF Slack workspace via &lt;a href=&quot;https://github.com/apache/gluten/discussions/8429&quot;&gt;this page&lt;/a&gt;. Once invited, you can join the &lt;strong&gt;gluten&lt;/strong&gt; channel.&lt;/p&gt; 
+&lt;p&gt;The ASF Slack login entry: &lt;a href=&quot;https://the-asf.slack.com/&quot;&gt;https://the-asf.slack.com/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;WeChat Group (Chinese)&lt;/h3&gt; 
+&lt;p&gt;Please contact weitingchen at &lt;a href=&quot;http://apache.org&quot;&gt;apache.org&lt;/a&gt; or zhangzc at &lt;a href=&quot;http://apache.org&quot;&gt;apache.org&lt;/a&gt; to request an invitation to the WeChat group. It is for Chinese-language communication.&lt;/p&gt; 
+&lt;h2&gt;7. Performance&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/tools/workload/tpch&quot;&gt;TPC-H&lt;/a&gt; is used to evaluate Gluten&#39;s performance. Please note that the results below do not reflect the latest performance.&lt;/p&gt; 
+&lt;h3&gt;Velox Backend&lt;/h3&gt; 
+&lt;p&gt;The Gluten Velox backend demonstrated an overall speedup of 2.71x, with up to a 14.53x speedup observed in a single query.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/velox_decision_support_bench1_22queries_performance.png&quot; alt=&quot;Performance&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;Tested in Jun. 2023. Test environment: single node with 2TB data, using Spark 3.3.2 as the baseline and with Gluten integrated into the same Spark version.&lt;/sub&gt;&lt;/p&gt; 
+&lt;h3&gt;ClickHouse Backend&lt;/h3&gt; 
+&lt;p&gt;ClickHouse backend demonstrated an average speedup of 2.12x, with up to 3.48x speedup observed in a single query.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/gluten/main/docs/image/clickhouse_decision_support_bench1_22queries_performance.png&quot; alt=&quot;Performance&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;Test environment: a 8-nodes AWS cluster with 1TB data, using Spark 3.1.1 as the baseline and with Gluten integrated into the same Spark version.&lt;/sub&gt;&lt;/p&gt; 
+&lt;h2&gt;8. Qualification Tool&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/apache/gluten/main/tools/qualification-tool/README.md&quot;&gt;Qualification Tool&lt;/a&gt; is a utility to analyze Spark event log files and assess the compatibility and performance of SQL workloads with Gluten. This tool helps users understand how their workloads can benefit from Gluten.&lt;/p&gt; 
+&lt;h2&gt;9. License&lt;/h2&gt; 
+&lt;p&gt;Gluten is licensed under &lt;a href=&quot;https://www.apache.org/licenses/LICENSE-2.0&quot;&gt;Apache License Version 2.0&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;10. Acknowledgements&lt;/h2&gt; 
+&lt;p&gt;Gluten was initiated by Intel and Kyligence in 2022 and became an Apache Top-Level Project in March 2026. Several other companies are also actively contributing to its development, including BIGO, Meituan, Alibaba Cloud, NetEase, Baidu, Microsoft, IBM, Google, and others.&lt;/p&gt; 
+&lt;a href=&quot;https://github.com/apache/gluten/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=apache/gluten&amp;amp;columns=25&quot; /&gt; &lt;/a&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/592894e0fccccf9136ae684bb8460f8de3609352602e1fe9aa3d58043a5c2e5c/apache/gluten" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>NVIDIA/cudf-spark</title>
+      <link>https://github.com/NVIDIA/cudf-spark</link>
+      <description>&lt;p&gt;NVIDIA cuDF for Apache Spark plugin - accelerate Apache Spark with GPUs&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://nvidia.github.io/cudf-spark&quot;&gt;https://nvidia.github.io/cudf-spark&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;NVIDIA cuDF plugin for Apache Spark&lt;/h1&gt; 
+&lt;p&gt;NOTE: For the latest stable &lt;a href=&quot;https://github.com/NVIDIA/cudf-spark/raw/main/README.md&quot;&gt;README.md&lt;/a&gt; ensure you are on the main branch.&lt;/p&gt; 
+&lt;p&gt;The NVIDIA cuDF plugin for &lt;a href=&quot;https://spark.apache.org&quot;&gt;Apache Spark&lt;/a&gt; provides a plugin library that leverages GPUs to accelerate processing via the &lt;a href=&quot;https://github.com/NVIDIA/cudf&quot;&gt;cuDF&lt;/a&gt; (CUDA DataFrame) libraries.&lt;/p&gt; 
+&lt;p&gt;Documentation on the current release can be found &lt;a href=&quot;https://nvidia.github.io/cudf-spark/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To get started and try the plugin out use the &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/getting-started/overview.html&quot;&gt;getting started guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://deepwiki.com/NVIDIA/cudf-spark&quot;&gt;&lt;img src=&quot;https://deepwiki.com/badge.svg?sanitize=true&quot; alt=&quot;Ask DeepWiki&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Note: The NVIDIA cuDF plugin for Apache Spark was formerly known as the RAPIDS Accelerator for Apache Spark. The RAPIDS name will be sunset over time. GitHub links from &lt;code&gt;spark-rapids&lt;/code&gt; will redirect to &lt;code&gt;cudf-spark&lt;/code&gt;. Artifact names will remain the same for now.&lt;/p&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;p&gt;The SQL plugin tries to produce results that are bit for bit identical with Apache Spark. Operator compatibility is documented &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/docs/compatibility.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Tuning&lt;/h2&gt; 
+&lt;p&gt;To get started tuning your job and get the most performance out of it please start with the &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/tuning-guide.html&quot;&gt;tuning guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;p&gt;The plugin has a set of Spark configs that control its behavior and are documented &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/docs/configs.md&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Issues &amp;amp; Questions&lt;/h2&gt; 
+&lt;p&gt;We use github to track bugs, feature requests, and answer questions. File an &lt;a href=&quot;https://github.com/NVIDIA/cudf-spark/issues/new/choose&quot;&gt;issue&lt;/a&gt; for a bug or feature request. Ask or answer a question on the &lt;a href=&quot;https://github.com/NVIDIA/cudf-spark/discussions&quot;&gt;discussion board&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;p&gt;The jar files for the most recent release can be retrieved from the &lt;a href=&quot;https://nvidia.github.io/cudf-spark/docs/download.html&quot;&gt;download&lt;/a&gt; page.&lt;/p&gt; 
+&lt;h2&gt;Building From Source&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/CONTRIBUTING.md#building-from-source&quot;&gt;build instructions in the contributing guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Testing&lt;/h2&gt; 
+&lt;p&gt;Tests are described &lt;a href=&quot;https://raw.githubusercontent.com/NVIDIA/cudf-spark/main/tests/README.md&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Integration&lt;/h2&gt; 
+&lt;p&gt;The cuDF plugin provides some APIs for doing zero copy data transfer into other GPU enabled applications. It is described &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/additional-functionality/ml-integration.html&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Currently, we are working with XGBoost to try to provide this integration out of the box.&lt;/p&gt; 
+&lt;p&gt;You may need to disable RMM caching when exporting data to an ML library as that library will likely want to use all of the GPU&#39;s memory and if it is not aware of RMM it will not have access to any of the memory that RMM is holding.&lt;/p&gt; 
+&lt;h2&gt;Qualification and Profiling tools&lt;/h2&gt; 
+&lt;p&gt;The Qualification and Profiling tools are available in the &lt;a href=&quot;https://github.com/NVIDIA/cudf-spark-tools&quot;&gt;NVIDIA/cudf-spark-tools&lt;/a&gt; repository.&lt;/p&gt; 
+&lt;p&gt;Please refer to &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/qualification/overview.html&quot;&gt;Qualification tool documentation&lt;/a&gt; and &lt;a href=&quot;https://docs.nvidia.com/spark-rapids/user-guide/latest/profiling/overview.html&quot;&gt;Profiling tool documentation&lt;/a&gt; for more details on how to use the tools.&lt;/p&gt; 
+&lt;h2&gt;Dependency for External Projects&lt;/h2&gt; 
+&lt;p&gt;If you develop functionality on top of the cuDF plugin (we currently limit support to GPU-accelerated UDFs) we recommend you declare the distribution artifact as a &lt;code&gt;provided&lt;/code&gt; dependency.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;dependency&amp;gt;
+    &amp;lt;groupId&amp;gt;com.nvidia&amp;lt;/groupId&amp;gt;
+    &amp;lt;artifactId&amp;gt;rapids-4-spark_2.12&amp;lt;/artifactId&amp;gt;
+    &amp;lt;version&amp;gt;26.10.0-SNAPSHOT&amp;lt;/version&amp;gt;
+    &amp;lt;scope&amp;gt;provided&amp;lt;/scope&amp;gt;
+&amp;lt;/dependency&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/45052751ac20249bf00d004a33f04d58cfff1f5ddb7854214d250c1b2f0090c0/NVIDIA/cudf-spark" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
