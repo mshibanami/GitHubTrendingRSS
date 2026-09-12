@@ -1,0 +1,1215 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub XSLT Monthly Trending Repositories</title>
+    <description>Monthly Trending Repositories of XSLT on GitHub</description>
+    
+    <pubDate>Sat, 12 Sep 2026 05:34:56 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>LOLBAS-Project/LOLBAS</title>
+      <link>https://github.com/LOLBAS-Project/LOLBAS</link>
+      <description>&lt;p&gt;Living Off The Land Binaries And Scripts - (LOLBins and LOLScripts)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://lolbas-project.github.io&quot;&gt;https://lolbas-project.github.io&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/actions/workflows/yaml-linting.yml/badge.svg?branch=master&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/LOLBAS-Project/LOLBAS/yaml-linting.yml?branch=master&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS&quot;&gt; &lt;img src=&quot;https://lolbas-project.github.io/assets/lolbas-count.svg?sanitize=true&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/stargazers&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/stars/LOLBAS-Project/LOLBAS?style=social&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;h1&gt;Living Off The Land Binaries and Scripts (and now also Libraries)&lt;/h1&gt; 
+&lt;img src=&quot;https://github.com/api0cradle/LOLBAS/raw/master/Logo/LOLBAS.png&quot; height=&quot;250&quot; /&gt; 
+&lt;p&gt;All the different files can be found behind a fancy frontend here: &lt;a href=&quot;https://lolbas-project.github.io&quot;&gt;https://lolbas-project.github.io&lt;/a&gt; (thanks @ConsciousHacker for this bit of eyecandy and the team over at &lt;a href=&quot;https://gtfobins.github.io/&quot;&gt;https://gtfobins.github.io/&lt;/a&gt;). This repo serves as a place where we maintain the YML files that are used by the fancy frontend.&lt;/p&gt; 
+&lt;h2&gt;Goal&lt;/h2&gt; 
+&lt;p&gt;The goal of the LOLBAS project is to document every binary, script, and library that can be used for Living Off The Land techniques.&lt;/p&gt; 
+&lt;h2&gt;Criteria&lt;/h2&gt; 
+&lt;p&gt;A LOLBin/Lib/Script must:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Be a Microsoft-signed file, either native to the OS or downloaded from Microsoft.&lt;/li&gt; 
+ &lt;li&gt;Have extra &quot;unexpected&quot; functionality. It is not interesting to document intended use cases. 
+  &lt;ul&gt; 
+   &lt;li&gt;Exceptions are application whitelisting bypasses&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Have functionality that would be useful to an APT or red team&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Interesting functionality can include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Executing code 
+  &lt;ul&gt; 
+   &lt;li&gt;Arbitrary code execution&lt;/li&gt; 
+   &lt;li&gt;Pass-through execution of other programs (unsigned) or scripts (via a LOLBin)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Compiling code&lt;/li&gt; 
+ &lt;li&gt;File operations 
+  &lt;ul&gt; 
+   &lt;li&gt;Downloading&lt;/li&gt; 
+   &lt;li&gt;Upload&lt;/li&gt; 
+   &lt;li&gt;Copy&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Persistence 
+  &lt;ul&gt; 
+   &lt;li&gt;Pass-through persistence utilizing existing LOLBin&lt;/li&gt; 
+   &lt;li&gt;Persistence (e.g. hide data in ADS, execute at logon)&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;UAC bypass&lt;/li&gt; 
+ &lt;li&gt;Credential theft&lt;/li&gt; 
+ &lt;li&gt;Dumping process memory&lt;/li&gt; 
+ &lt;li&gt;Surveillance (e.g. keylogger, network trace)&lt;/li&gt; 
+ &lt;li&gt;Log evasion/modification&lt;/li&gt; 
+ &lt;li&gt;DLL side-loading/hijacking without being relocated elsewhere in the filesystem.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We do not approve binaries that allows for netntlm coercing, since most Windows binaries allows for that. Only exception is binaries that allows that on other than default ports (such as rpcping) or can allow direct credential theft.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you have found a new LOLBin or LOLScript that you would like to contribute, please review the contributing guidelines located here: &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/raw/master/CONTRIBUTING.md&quot;&gt;https://github.com/LOLBAS-Project/LOLBAS/blob/master/CONTRIBUTING.md&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A template for the required format has been provided here: &lt;a href=&quot;https://github.com/LOLBAS-Project/LOLBAS/raw/master/YML-Template.yml&quot;&gt;https://github.com/LOLBAS-Project/LOLBAS/blob/master/YML-Template.yml&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;The History of the LOLBin&lt;/h2&gt; 
+&lt;p&gt;The phrase &quot;Living off the land&quot; was coined by Christopher Campbell (@obscuresec) &amp;amp; Matt Graeber (@mattifestation) at &lt;a href=&quot;https://www.youtube.com/watch?v=j-r6UonEkUw&quot;&gt;DerbyCon 3&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The term LOLBins came from a Twitter discussion on what to call binaries that can be used by an attacker to perform actions beyond their original purpose. Philip Goh (@MathCasualty) &lt;a href=&quot;https://twitter.com/MathCasualty/status/969174982579273728&quot;&gt;proposed LOLBins&lt;/a&gt;. A highly scientific internet poll ensued, and after a general consensus (69%) was reached, the name was &lt;a href=&quot;https://twitter.com/Oddvarmoe/status/985432848961343488&quot;&gt;made official&lt;/a&gt;. Jimmy (@bohops) &lt;a href=&quot;https://twitter.com/bohops/status/984828803120881665&quot;&gt;followed up with LOLScripts&lt;/a&gt;. No poll was taken.&lt;/p&gt; 
+&lt;p&gt;Common hashtags for these files are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;#LOLBin&lt;/li&gt; 
+ &lt;li&gt;#LOLBins&lt;/li&gt; 
+ &lt;li&gt;#LOLScript&lt;/li&gt; 
+ &lt;li&gt;#LOLScripts&lt;/li&gt; 
+ &lt;li&gt;#LOLLib&lt;/li&gt; 
+ &lt;li&gt;#LOLLibs&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Our primary maintainer (@oddvarmoe) of this project did a talk at DerbyCon 2018 called: #Lolbins Nothing to LOL about! - &lt;a href=&quot;https://www.youtube.com/watch?v=NiYTdmZ8GR4&quot;&gt;https://www.youtube.com/watch?v=NiYTdmZ8GR4&lt;/a&gt; This talk goes over the history of this project.&lt;/p&gt; 
+&lt;h2&gt;Maintainers&lt;/h2&gt; 
+&lt;p&gt;The following folks help maintain the LOLBAS Project on their personal time:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Oddvar Moe (&lt;a href=&quot;https://twitter.com/Oddvarmoe&quot;&gt;@oddvarmoe&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Jimmy Bayne (&lt;a href=&quot;https://twitter.com/bohops&quot;&gt;@bohops&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Conor Richard (&lt;a href=&quot;https://twitter.com/xenosCR&quot;&gt;@xenosCR&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Chris &#39;Lopi&#39; Spehn (&lt;a href=&quot;https://twitter.com/ConsciousHacker&quot;&gt;@ConsciousHacker&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Liam (&lt;a href=&quot;https://twitter.com/liamsomerville&quot;&gt;@liamsomerville&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Wietze (&lt;a href=&quot;https://twitter.com/@Wietze&quot;&gt;@Wietze&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Jose Hernandez (&lt;a href=&quot;https://twitter.com/_josehelps&quot;&gt;@_josehelps&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Thanks&lt;/h2&gt; 
+&lt;p&gt;As with many open-source projects, this one is the product of a community and we would like to thank ours:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The domain &lt;a href=&quot;http://lolbins.com&quot;&gt;http://lolbins.com&lt;/a&gt; has been registered by an unknown individual and redirected it to the old version of this project.&lt;/li&gt; 
+ &lt;li&gt;The domain &lt;a href=&quot;http://lolbas-project.com&quot;&gt;http://lolbas-project.com&lt;/a&gt; has been registered by Jimmy (@bohops).&lt;/li&gt; 
+ &lt;li&gt;The logos for the project were created by Adam Nadrowski (@_sup_mane). We #@&amp;amp;!!@#! love them.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Notice&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Please refer to &lt;a href=&quot;http://NOTICE.md&quot;&gt;NOTICE.md&lt;/a&gt; for license information&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d79d4be1103e6b54b07fe1e5adbadab2aabcea3bc1cf003a52cc6b970cd46f0f/LOLBAS-Project/LOLBAS" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>briankavanaugh/APA-7th-Edition</title>
+      <link>https://github.com/briankavanaugh/APA-7th-Edition</link>
+      <description>&lt;p&gt;Microsoft Word XSD for generating APA 7th edition references&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;APA 7th Edition for Microsoft Word&lt;/h1&gt; 
+&lt;p&gt;Until (unless) Microsoft gets around to adding a template for the latest version, this is the APA 7th Edition XSLT modified by Mike Slagle, plus the two additional fixes posted in the comments found &lt;a href=&quot;https://answers.microsoft.com/en-us/msoffice/forum/all/apa-7th-edition-in-ms-word/486fc70e-b7c7-40df-89bb-f8fc07169d40&quot;&gt;here&lt;/a&gt;. This way, if other changes are needed, this file can be updated.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;IMPORTANT&lt;/strong&gt;: These files are provided as a courtesy to those needing a better option for APA 7 than what Microsoft currently provides. I did not create the template. If there are issues, take the time to make the changes necessary (if possible; there are limitations to what can be done) and submit a pull request.&lt;/p&gt; 
+&lt;h2&gt;How to Use&lt;/h2&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;h4&gt;Manual Method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Windows Explorer, copy the file APASeventhEdition.xsl to C:\Users&amp;lt;your_user_name&amp;gt;\AppData\Roaming\Microsoft\Bibliography\Style&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Bat file method / Cmd method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word&lt;/li&gt; 
+ &lt;li&gt;Copy the APASeventhEdition.bat file and allow it to run.&lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Note: The bat file simply runs the following line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl https://raw.githubusercontent.com/briankavanaugh/APA-7th-Edition/main/APASeventhEdition.xsl -o &quot;%appdata%\Microsoft\Bibliography\Style\APASeventhEdition.xsl&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;MacOS&lt;/h3&gt; 
+&lt;h4&gt;Manual method&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit Word&lt;/li&gt; 
+ &lt;li&gt;Using Finder, copy the file APASeventhEdition.xsl to &lt;em&gt;two&lt;/em&gt; locations: 
+  &lt;ol&gt; 
+   &lt;li&gt;HD/Applications/Microsoft Word.app/Contents/Resources/Style/ (note that you will have to right-click and &quot;View Contents&quot; on the app icon at HD/Applications/Microsoft Word.app/)&lt;/li&gt; 
+   &lt;li&gt;HD/Users/&amp;lt;your_user_name&amp;gt;/Library/Containers/com.microsoft.Word/Data/Library/Application Support/Microsoft/Office/Style/&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Restart Word and from the References tab in Word, you should be able to choose APA7.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Shell script method / terminal method&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;The file asks for elevated priveliges using &lt;code&gt;sudo&lt;/code&gt;. Only run files you trust and understand the contents of.&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Exit word and ensure it is closed before proceeding&lt;/li&gt; 
+ &lt;li&gt;Copy the &lt;code&gt;APASeventhEdition.sh&lt;/code&gt; file to a local folder&lt;/li&gt; 
+ &lt;li&gt;Open the terminal (Search &quot;Terminal through spotlight)&lt;/li&gt; 
+ &lt;li&gt;Navigate to the folder containing the shell script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;cd /path/to/your/file&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt;Run the script 
+  &lt;ol&gt; 
+   &lt;li&gt;&lt;code&gt;bash APASeventhEdition.sh&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Enter password when prompted. The terminal stay blank while password is entered. Once entered, press enter&lt;/li&gt; 
+   &lt;li&gt;The files should be placed in their corresponding folders&lt;/li&gt; 
+   &lt;li&gt;&lt;em&gt;Optionally:&lt;/em&gt; run the script with the &lt;code&gt;--persist&lt;/code&gt; flag to create a LaunchDaemon. The LaunchDaemon will copy the files into their respective folders at reboot to combat issue where Microsoft AutoUpdater removes the files: &lt;code&gt;bash APASeventhEdition.sh --persist&lt;/code&gt;.&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Notes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The bash file will use the &lt;code&gt;curl&lt;/code&gt; command to retrieve the file from github at the specified link and place it in &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Then it will copy the stylesheet into the two specified folders.&lt;/li&gt; 
+ &lt;li&gt;If the &lt;code&gt;--persist&lt;/code&gt; flag is used a LaunchDaemon is created. This will copy the file from the &lt;code&gt;/Library/Application Support/APAStyleTool&lt;/code&gt; folder to the two Word-folders every time the computer is rebooted.&lt;/li&gt; 
+ &lt;li&gt;Be aware, that the LaunchDaemon is run at boot and has root privileges to avoid user interaction. &lt;strong&gt;Always read the script before running it.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;I do not have a Mac to test this on. The script was run successfully on a Mac with Office installed.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Disclaimer&lt;/h2&gt; 
+&lt;p&gt;(same as Mike&#39;s) I am only providing this file and the necessary location for it for education purposes. If any installations of MS Office are corrupted as a result of using this file, I am not responsible to address or repair any issues.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/6731ef4207d68c2d3a8deac2acc8a31c254d59dbf4d9c5a17710657b561f0b74/briankavanaugh/APA-7th-Edition" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>usnistgov/oscal-content</title>
+      <link>https://github.com/usnistgov/oscal-content</link>
+      <description>&lt;p&gt;NIST SP 800-53 content and other OSCAL content examples&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://gitter.im/usnistgov-OSCAL/Lobby&quot;&gt;&lt;img src=&quot;https://img.shields.io/gitter/room/usnistgov-OSCAL/Lobby&quot; alt=&quot;Gitter&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://github.com/usnistgov/oscal-content/workflows/Process%20Content/badge.svg?branch=main&quot; alt=&quot;Process Content&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;OSCAL Examples&lt;/h1&gt; 
+&lt;p&gt;This directory contains numerous OSCAL examples in XML, JSON, and YAML formats based on &lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/github.com/usnistgov/OSCAL/releases/latest&quot;&gt;the latest OSCAL stable release&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;These files are maintained by a Continuous Integration and Continuous Deployment (CI/CD) process that automatically converts source content into the alternate formats found in the many subdirectories of this repository. As a result, these example files should not be modified. Instead, the source of the file should be edited in the &lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/src&quot;&gt;src&lt;/a&gt; subdirectories.&lt;/p&gt; 
+&lt;p&gt;The structure and contents of the examples directory are as follows:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/examples&quot;&gt;examples&lt;/a&gt;: This directory contains sample OSCAL content organized by OSCAL model.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev4&quot;&gt;nist.gov/SP800-53/rev4&lt;/a&gt;: This directory contains OSCAL examples of the catalog, and low, moderate, and high baselines defined by NIST Special Publication (SP) &lt;a href=&quot;https://csrc.nist.gov/publications/detail/sp/800-53/rev-4/final&quot;&gt;800-53 Revision 4&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/nist.gov/SP800-53/rev5&quot;&gt;nist.gov/SP800-53/rev5&lt;/a&gt;: This directory contains OSCAL examples of the catalog, and low, moderate, and high baselines defined by NIST Special Publication (SP) &lt;a href=&quot;https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final&quot;&gt;800-53 Revision 5&lt;/a&gt; and &lt;a href=&quot;https://csrc.nist.gov/publications/detail/sp/800-53b/final&quot;&gt;SP 800-53B&lt;/a&gt; respectively.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/src&quot;&gt;src&lt;/a&gt;: This directory contains the source files for all the OSCAL examples located in this repository.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/build&quot;&gt;build&lt;/a&gt;: This directory includes &lt;a href=&quot;https://raw.githubusercontent.com/usnistgov/oscal-content/main/build/README.md&quot;&gt;instructions&lt;/a&gt; and tools to build OSCAL dependencies, generate, convert, and check example content in this repository for release.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ec249c0b775b3ae4e20331067c95340ad34936b9147d28b447a44d1566bee645/usnistgov/oscal-content" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>codingo/BibWord</title>
+      <link>https://github.com/codingo/BibWord</link>
+      <description>&lt;p&gt;Microsoft Word and Bibliography Styles extender.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://github.com/codingo/BibWord/raw/master/BibWord.png&quot; alt=&quot;Microsoft Word Citation and Bibliography Styles&quot; title=&quot;BibWord&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/codingo_&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/twitter-@codingo__-blue.svg?sanitize=true&quot; alt=&quot;Twitter&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Credit / Foreward&lt;/h1&gt; 
+&lt;p&gt;This work is only made possible by the original work of Yves Dhondt (&lt;a href=&quot;mailto:yves.dhondt@gmail.com&quot;&gt;yves.dhondt@gmail.com&lt;/a&gt;) and his original project, found at &lt;a href=&quot;https://bibword.codeplex.com/&quot;&gt;https://bibword.codeplex.com/&lt;/a&gt;. I have created this project to preserve this work as it will otherwise disappear with the closure of CodePlex and I found it invaluable in my own studies. I will aim to keep this up to date (feel free to raise issues) however should the original project be migrated to another source I will be closing this in favor of one maintained by its original author.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To get the style files find the desired file using the above links. Once found, look for a button labelled &quot;Raw&quot;. Either right-click this button and select &quot;save linked content as&quot; or, or click the button and right-click to save-as. Note that once downloaded, ensure that the filename extension is &lt;code&gt;.xsl&lt;/code&gt;, some browsers will append &lt;code&gt;.txt&lt;/code&gt;. Windows, by default hides file extensions.&lt;/p&gt; 
+&lt;p&gt;To use the bibliography styles, they have to be copied into the Microsoft Word bibliography style directory. This directory can vary depending on where Word is installed. Once the styles are copied to the directory, they will show up every time Microsoft Word is opened.&lt;/p&gt; 
+&lt;p&gt;It should be noted that on a 64 bit machine you have &quot;Program Files&quot; and &quot;Program Files (x86)&quot;. For the majority of cases the style folder will be located within &lt;em&gt;Program Files x86&lt;/em&gt;. Locations where files should then be installed are as follows:&lt;/p&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;h4&gt;Word 2007&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&amp;lt;winword.exe directory&amp;gt;\Bibliography\Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2010&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&amp;lt;winword.exe directory&amp;gt;\Bibliography\Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2010 (32 bit systems)&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;%programfiles%\Microsoft Office\Office14\Bibliography\Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2016 (Office 365)&lt;/h4&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;C:\Users&amp;lt;currentusername&amp;gt;\AppData\Roaming\Microsoft\Bibliography\Style or %AppData%\Microsoft\Templates\LiveContent\15\Managed\Word Document Bibliography Styles&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Mac OS&lt;/h3&gt; 
+&lt;h4&gt;Word 2008 and Word 2011&lt;/h4&gt; 
+&lt;p&gt;To use the bibliography styles, right-click on Microsoft Word 2008 and select show package contents. Put the files in:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Contents/Resources/Style/ On most Macs with Microsoft Word 2008 this will be: /Applications/Microsoft Office 2008/Microsoft Word.app/Contents/Resources/Style/&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Word 2016 for Mac (version 15.17.0 and up)&lt;/h4&gt; 
+&lt;p&gt;To use the bibliography styles, place them in the following folder&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;/Library/AppSupport/Microsoft/Office365/Citations/ More information can be found here: &lt;a href=&quot;https://msdn.microsoft.com/VBA/Word-VBA/articles/create-custom-bibliography-styles?f=255&amp;amp;MSPPError=-2147217396&quot;&gt;https://msdn.microsoft.com/VBA/Word-VBA/articles/create-custom-bibliography-styles?f=255&amp;amp;MSPPError=-2147217396&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Office 365&lt;/h4&gt; 
+&lt;p&gt;For the latest releases of Office 365 these need to be placed within the application at:&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;/Applications/Microsoft Word.app/Contents/Resources/Style&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;To do this, open Finder, right click on /Application/Microsoft Word (or /Application/Microsoft Word.app - depending on your Finder Preferences), then click Show Package Contents to see the folders within the .app file.&lt;/p&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;h3&gt;Why is a new style not showing up in Word when I add it to the Style directory?&lt;/h3&gt; 
+&lt;p&gt;The list of available reference styles gets loaded only once. So when you add a new style to the style directory, you need to restart Word.&lt;/p&gt; 
+&lt;h3&gt;In Word 2008, new styles are only added for citations. How can I use the new styles for bibliographies?&lt;/h3&gt; 
+&lt;p&gt;Add the bibliography using one of the four predefined styles. Then go to the citation toolbox and select the style you want. This will update all the citations and bibliographies in your text to the new style.&lt;/p&gt; 
+&lt;h3&gt;Why does it take Word so long to show the dropdown list with style names the first time?&lt;/h3&gt; 
+&lt;p&gt;Word has to retrieve the style names of every XSL in the style directory the first time. Hence, the more styles you put in the directory, the more time Word needs to fill the drop down list.&lt;/p&gt; 
+&lt;h3&gt;Why do I get &#39;BO&#39; instead of a number when using certain styles?&lt;/h3&gt; 
+&lt;p&gt;&#39;BO&#39; is often printed when the BibOrder number is not available. Use the BibWord Extender tool on the document to add the missing numbers.&lt;/p&gt; 
+&lt;h3&gt;Why do certain styles have a * at the end of their name?&lt;/h3&gt; 
+&lt;p&gt;Although the usage of a * is not mandatory, it often indicates that part of the functionality of the style can only be used in combination with the BibWord Extender tool.&lt;/p&gt; 
+&lt;h3&gt;Can I request to get a certain style?&lt;/h3&gt; 
+&lt;p&gt;No. Using BibWord, you really should try to create the style yourself. Keep in mind that even if you find someone prepared to create the style for you that you will have to provide him/her with detailed information about the formatting guidelines for your style. Messages containing &quot;I need style x.&quot; will most likely be ignored.&lt;/p&gt; 
+&lt;h3&gt;Can I (not) link my in-text citations to their bibliography entries?&lt;/h3&gt; 
+&lt;p&gt;Yes. Set the value of citation_as_link to &#39;yes&#39; if you want in-text citations to link to their specific bibliography entry, or to any other value if you do not.&lt;/p&gt; 
+&lt;h3&gt;Can I change the surrounding brackets for in-text citations?&lt;/h3&gt; 
+&lt;p&gt;Yes. You can change the surrounding brackets by changing the values of openbracket and closebracket&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;&amp;lt;openbracket&amp;gt;(&amp;lt;/openbracket&amp;gt;
+&amp;lt;closebracket&amp;gt;)&amp;lt;/closebracket&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How do I get my in-text citations in superscript?&lt;/h3&gt; 
+&lt;p&gt;In-text citations inherit the style of their surroundings. Only limited formatting (bold, underline, italic) can be applied to them through the reference style. For any further formatting, such as superscript, a character style has to be applied to all CITATION fields.&lt;/p&gt; 
+&lt;p&gt;The following macro creates a character style called In-Text Citation if it does not yet exist. When the style is newly created, it sets the font to superscript. Then the style is applied to all CITATION fields in the document. By changing/updating the style In-Text Citation you can then update the formatting of all citations&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub ApplyCitationStyle()
+    Dim stylename As String
+    Dim exists As Boolean
+    Dim s As Style
+    Dim fld As Field
+                
+    stylename = &quot;In-Text Citation&quot;
+        
+    &#39; Check if the style already exists.
+    exists = False
+        
+    For Each s In ActiveDocument.Styles
+        If s.NameLocal = stylename Then
+           exists = True
+           Exit For
+        End If
+    Next
+    
+    &#39; If the style did not exist yet, create it.
+    If exists = False Then
+        Set s = ActiveDocument.Styles.Add(stylename, wdStyleTypeCharacter)
+        s.BaseStyle = ActiveDocument.Styles(wdStyleDefaultParagraphFont).BaseStyle
+        s.Font.Superscript = True
+    End If
+    
+    &#39; Now that the style really exists, select it.
+    Set s = ActiveDocument.Styles(stylename)
+     
+    &#39; Apply the style to all in-text citations.
+    For Each fld In ActiveDocument.Fields
+        If fld.Type = wdFieldCitation Then
+            fld.Select
+            Selection.Style = s
+        End If
+    Next
+
+End Sub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How do I convert all my in-text citations to static text in one go?&lt;/h3&gt; 
+&lt;p&gt;You can use the following macro to convert all in-text citations:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub CitationsToStaticText()
+    Dim fld As Field
+            
+    &#39; Go over all stories, including main, footnotes, ...
+    For Each sr In ActiveDocument.StoryRanges
+        &#39; Find all citation fields and convert them to static text.
+        For Each fld In sr.Fields
+            If fld.Type = wdFieldCitation Then
+                fld.Select
+                WordBasic.BibliographyCitationToText
+            End If
+        Next
+    Next
+
+End Sub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Is there an easy way to get rid of sources which are not cited in the text?&lt;/h3&gt; 
+&lt;p&gt;You can use the following macro to remove all uncited sources from a document:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub RemoveUnusedCitations()
+    &#39; Get the number of sources.
+    idx = ActiveDocument.Bibliography.Sources.Count
+    
+    &#39; Remmove unused sources starting from the last one.
+    Do While (idx &amp;gt; 0)
+        If ActiveDocument.Bibliography.Sources(idx).Cited = False Then
+            ActiveDocument.Bibliography.Sources(idx).Delete
+        End If
+        idx = idx - 1
+    Loop
+End Sub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;How do I set the indentation of my bibliography?&lt;/h3&gt; 
+&lt;p&gt;Add a bibliography to your document. Open the &#39;Styles&#39; pane (CTRL+ALT+SHIFT+S) and look for a style called &#39;Bibliography&#39; (or a localized translation of the word &#39;Bibliography&#39;). Change the indentation settings there. That way, whenever your bibliography gets updated, the indentation will remain correct.&lt;/p&gt; 
+&lt;h3&gt;Is it possible to group several citations? Currently I have something like (1)(2) and I want (1,2).&lt;/h3&gt; 
+&lt;p&gt;Yes. You can add a second source to a citation by using the &#39;\m&#39; switch and the tag of the source you want to add. In Word 2007, if you want to add a source with tag &#39;Bee99&#39; to an existing citation, right click the citation and select &#39;Edit Field...&#39;. It will show you something like &#39;CITATION Gup97 \l 2060&#39;. To add the extra source, change it to &#39;CITATION Gup97 \l 2060 \m Bee99&#39;. For more information, also see the Microsoft Office online help topic on the CITATION field code.&lt;/p&gt; 
+&lt;p&gt;Alternatively, you can put your cursor inside any in-text citation, then go to &#39;References&#39; tab in the ribbon and click &#39;Insert Citation&#39;.&lt;/p&gt; 
+&lt;p&gt;To change the separator between two grouped in-text citations, BibWord uses the separator element.&lt;/p&gt; 
+&lt;h3&gt;Only the name of the first author is displayed correctly, all other author names are abbreviated. Is this a bug?&lt;/h3&gt; 
+&lt;p&gt;No. You probably made a mistake when entering the different author names. You should enter them one by one in the dialog that comes up when clicking the &quot;Edit...&quot; button next to the author field. That way you will not make a mistake.&lt;/p&gt; 
+&lt;p&gt;If you really want to enter them as a string, then be aware that the correct format is &quot;Last1, First1 Middle1; Last2, First2 Middle2; ...&quot;. So the names are separated by a &quot;;&quot; while name parts are separated by a &quot;,&quot;.&lt;/p&gt; 
+&lt;p&gt;Note that there is a bug in Word where sometimes the name conversion goes wrong.&lt;/p&gt; 
+&lt;h3&gt;When using a numbered style (e.g. IEEE), the number is wrapped over multiple lines. Is this a bug?&lt;/h3&gt; 
+&lt;p&gt;No. Numbered styles are mostly represented using a 2 column table where the first column contains the number and the second column contains the text. The text wrap you see is caused by the first column not being wide enough. You can simple solve this by positioning your cursor on the the table border between the first and second column and drag it to the right.&lt;/p&gt; 
+&lt;p&gt;This can also be used to add extra white space after the number if you set the halign element to left of the first column.&lt;/p&gt; 
+&lt;h3&gt;My in-text citations are displayed in bold. How do I change this?&lt;/h3&gt; 
+&lt;p&gt;If you link your in-text citation to your bibliography, Word formats the link using the &#39;Heading 2 Character style&#39;. So if that style is configured to use bold, so will the in-text citation. Assuming you cannot or do not want to change that style, there are two possible solutions:&lt;/p&gt; 
+&lt;h4&gt;Disable linking between in-text citations and bibliographies.&lt;/h4&gt; 
+&lt;p&gt;This can be done easily be setting the value of citation_as_link to &#39;no&#39; in the xsl file.&lt;/p&gt; 
+&lt;h4&gt;Format each in-text citation with another character style.&lt;/h4&gt; 
+&lt;p&gt;This way you will be able to keep using the links between in-text citations and bibliographies. To ease this job, you could use the following macro which you can run every time you insert an in-text citation or once at the end.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;Sub ApplyCitationStyle()
+    Dim stylename As String
+    Dim exists As Boolean
+    Dim s As Style
+    Dim fld As Field
+                
+    stylename = &quot;In-Text Citation&quot;
+        
+    &#39; Check if the style already exists.
+    exists = False
+        
+    For Each s In ActiveDocument.Styles
+        If s.NameLocal = stylename Then
+           exists = True
+           Exit For
+        End If
+    Next
+    
+    &#39; If the style did not exist yet, create it.
+    If exists = False Then
+        Set s = ActiveDocument.Styles.Add(stylename, wdStyleTypeCharacter)
+        s.BaseStyle = ActiveDocument.Styles(wdStyleDefaultParagraphFont).BaseStyle
+        s.Font.Bold = False
+    End If
+    
+    &#39; Now that the style really exists, select it.
+    Set s = ActiveDocument.Styles(stylename)
+     
+    &#39; Apply the style to all in-text citations.
+    For Each fld In ActiveDocument.Fields
+        If fld.Type = wdFieldCitation Then
+            fld.Select
+            Selection.Style = s
+        End If
+    Next
+
+End Sub
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a4922e9bdeb4080d811c5a5680d6c8ad62fb20a7b7e26b01392dc191cd7b0fea/codingo/BibWord" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>justicecanada/laws-lois-xml</title>
+      <link>https://github.com/justicecanada/laws-lois-xml</link>
+      <description>&lt;p&gt;The consolidated Acts and regulations of Canada. Des lois et règlements codifiés du Canada.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;laws-lois-xml - &lt;a href=&quot;https://github.com/justicecanada/laws-lois-xml?tab=readme-ov-file#laws-lois-xml---fran%C3%A7ais&quot;&gt;Aller en français&lt;/a&gt;&lt;/h1&gt; 
+&lt;p&gt;The consolidated Acts and regulations of Canada.&lt;/p&gt; 
+&lt;h2&gt;Structure of Elements&lt;/h2&gt; 
+&lt;p&gt;The following will outline examples of the XML structure for Acts and Regulations.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;The XML content displayed here are only examples and should not be used as a full reference.&lt;/p&gt; 
+ &lt;p&gt;The full and updated XML should be referenced within the repository. For more information on laws, visit the &lt;a href=&quot;https://laws-lois.justice.gc.ca/&quot;&gt;Justice Laws Website&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;In the examples shown, if a &quot;...&quot; is seen. This mean that the content had to be cut due to it&#39;s length or complexity.&lt;/p&gt; 
+ &lt;p&gt;All tables are not shown due to this reason.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Acts&lt;/h3&gt; 
+&lt;p&gt;Generally, an Act will have the following structure:&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/eng/acts/A-1/index.html&quot;&gt;Access to Information Act (R.S.C., 1985, c. A-1)&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Statute lims:pit-date=&quot;2024-01-22&quot; hasPreviousVersion=&quot;true&quot; lims:lastAmendedDate=&quot;2024-01-22&quot; lims:current-date=&quot;2024-01-23&quot; lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;167&quot; lims:id=&quot;167&quot; bill-origin=&quot;commons&quot; bill-type=&quot;govt-public&quot; in-force=&quot;yes&quot; xml:lang=&quot;en&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;168&quot; lims:id=&quot;168&quot;&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;169&quot; lims:id=&quot;1171136&quot;&amp;gt;An Act to extend the present laws of Canada that provide access to information under the control of the Government of Canada and to provide for the proactive publication of certain information&amp;lt;/LongTitle&amp;gt;
+        &amp;lt;ShortTitle lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;170&quot; lims:id=&quot;170&quot; status=&quot;official&quot;&amp;gt;Access to Information Act&amp;lt;/ShortTitle&amp;gt;
+        &amp;lt;RunningHead lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;171&quot; lims:id=&quot;171&quot;&amp;gt;Access to Information&amp;lt;/RunningHead&amp;gt;
+        &amp;lt;BillHistory lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;172&quot; lims:id=&quot;172&quot;&amp;gt;
+            &amp;lt;Stages lims:inforce-start-date=&quot;2018-12-13&quot; stage=&quot;consolidation&quot;&amp;gt;
+                &amp;lt;Date&amp;gt;
+                    &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                    &amp;lt;MM&amp;gt;1&amp;lt;/MM&amp;gt;
+                    &amp;lt;DD&amp;gt;24&amp;lt;/DD&amp;gt;
+                &amp;lt;/Date&amp;gt;
+            &amp;lt;/Stages&amp;gt;
+        &amp;lt;/BillHistory&amp;gt;
+        &amp;lt;Chapter lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;174&quot; lims:id=&quot;174&quot;&amp;gt;
+            &amp;lt;ConsolidatedNumber official=&quot;yes&quot;&amp;gt;A-1&amp;lt;/ConsolidatedNumber&amp;gt;
+        &amp;lt;/Chapter&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Body lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;175&quot; lims:id=&quot;175&quot;&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;176&quot; lims:id=&quot;176&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Short Title&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2002-12-31&quot; lims:lastAmendedDate=&quot;2002-12-31&quot; lims:fid=&quot;177&quot; lims:id=&quot;177&quot;&amp;gt;
+            &amp;lt;MarginalNote lims:inforce-start-date=&quot;2002-12-31&quot; lims:fid=&quot;178&quot; lims:id=&quot;178&quot;&amp;gt;Short title&amp;lt;/MarginalNote&amp;gt;
+            &amp;lt;Label&amp;gt;1&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;This Act may be cited as the
+                &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;A-1&quot;&amp;gt;Access to Information Act&amp;lt;/XRefExternal&amp;gt;.
+            &amp;lt;/Text&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2002-12-31&quot; lims:fid=&quot;180&quot; lims:id=&quot;180&quot;&amp;gt;1980-81-82-83, c. 111, Sch. I “1”&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;181&quot; lims:id=&quot;181&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Purpose of Act&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:lastAmendedDate=&quot;2019-06-21&quot; lims:fid=&quot;182&quot; lims:id=&quot;1171637&quot;&amp;gt;
+            &amp;lt;MarginalNote lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171638&quot; lims:id=&quot;1171638&quot;&amp;gt;Purpose of Act&amp;lt;/MarginalNote&amp;gt;
+            &amp;lt;Label&amp;gt;2&amp;lt;/Label&amp;gt;
+            &amp;lt;Subsection lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171639&quot; lims:id=&quot;1171639&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(1)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;The purpose of this Act is to enhance the accountability...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Subsection&amp;gt;
+            &amp;lt;Subsection lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171640&quot; lims:id=&quot;1171640&quot;&amp;gt;
+                &amp;lt;MarginalNote lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171641&quot; lims:id=&quot;1171641&quot;&amp;gt;Specific purposes of Parts 1 and 2&amp;lt;/MarginalNote&amp;gt;
+                &amp;lt;Label&amp;gt;(2)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;In furtherance of that purpose,&amp;lt;/Text&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171642&quot; lims:id=&quot;1171642&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;(a)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;Part 1 extends the present laws of Canada to provide...&amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171643&quot; lims:id=&quot;1171643&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;(b)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;Part 2 sets out requirements for the proactive...&amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+            &amp;lt;/Subsection&amp;gt;
+            &amp;lt;Subsection lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171644&quot; lims:id=&quot;1171644&quot;&amp;gt;
+                &amp;lt;MarginalNote lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171645&quot; lims:id=&quot;1171645&quot;&amp;gt;Complementary procedures&amp;lt;/MarginalNote&amp;gt;
+                &amp;lt;Label&amp;gt;(3)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;This Act is also intended to complement and not replace...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Subsection&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;188&quot; lims:id=&quot;1171646&quot; lims:enactId=&quot;1150199&quot; type=&quot;original&quot;&amp;gt;R.S., 1985, c. A-1, s. 2&amp;lt;/HistoricalNoteSubItem&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171647&quot; lims:id=&quot;1171647&quot; lims:enactId=&quot;1150199&quot;&amp;gt;2019, c. 18, s. 2&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;189&quot; lims:id=&quot;189&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Interpretation&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2007-09-01&quot; lims:lastAmendedDate=&quot;2019-06-21&quot; lims:fid=&quot;190&quot; lims:id=&quot;190&quot;&amp;gt;
+            &amp;lt;MarginalNote lims:inforce-start-date=&quot;2007-09-01&quot; lims:fid=&quot;191&quot; lims:id=&quot;191&quot;&amp;gt;Definitions&amp;lt;/MarginalNote&amp;gt;
+            &amp;lt;Label&amp;gt;3&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;In this Act,&amp;lt;/Text&amp;gt;
+            &amp;lt;Definition lims:inforce-start-date=&quot;2007-09-01&quot; lims:fid=&quot;192&quot; lims:id=&quot;192&quot;&amp;gt;
+                &amp;lt;Text&amp;gt;&amp;lt;DefinedTermEn&amp;gt;alternative format&amp;lt;/DefinedTermEn&amp;gt;, with respect to a record, means... (&amp;lt;DefinedTermFr&amp;gt;support de substitution&amp;lt;/DefinedTermFr&amp;gt;)&amp;lt;/Text&amp;gt;
+            &amp;lt;/Definition&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2007-09-01&quot; lims:fid=&quot;207&quot; lims:id=&quot;207&quot;&amp;gt;R.S., 1985, c. A-1, s. 3; 1992, c. 21, s. 1; 2002, c. 8, s. 183; 2006, c. 9, s. 141&amp;lt;/HistoricalNoteSubItem&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171654&quot; lims:id=&quot;1171654&quot; lims:enactId=&quot;1150201&quot;&amp;gt;2019, c. 18, s. 3&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+    &amp;lt;/Body&amp;gt;
+    &amp;lt;Schedule lims:inforce-start-date=&quot;2018-11-05&quot; lims:lastAmendedDate=&quot;2024-01-22&quot; lims:fid=&quot;1229&quot; lims:id=&quot;1229&quot; bilingual=&quot;no&quot; spanlanguages=&quot;yes&quot;&amp;gt;
+        &amp;lt;ScheduleFormHeading lims:inforce-start-date=&quot;2018-11-05&quot; lims:fid=&quot;1230&quot; lims:id=&quot;1230&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;SCHEDULE II&amp;lt;/Label&amp;gt;
+            &amp;lt;OriginatingRef&amp;gt;(Section 24)&amp;lt;/OriginatingRef&amp;gt;
+        &amp;lt;/ScheduleFormHeading&amp;gt;
+        &amp;lt;TableGroup lims:inforce-start-date=&quot;2018-11-05&quot; lims:fid=&quot;1231&quot; lims:id=&quot;1231&quot; pointsize=&quot;9&quot; topmarginspacing=&quot;10&quot; rowbreak=&quot;no&quot; bilingual=&quot;no&quot; spanlanguages=&quot;no&quot;&amp;gt;
+            &amp;lt;table lims:inforce-start-date=&quot;2018-11-05&quot; lims:fid=&quot;1232&quot; lims:id=&quot;1232&quot; colsep=&quot;0&quot; frame=&quot;topbot&quot; rowsep=&quot;0&quot;&amp;gt;...
+			&amp;lt;/table&amp;gt;
+        &amp;lt;/TableGroup&amp;gt;
+        &amp;lt;HistoricalNote&amp;gt;
+            &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-18&quot; lims:enacted-date=&quot;2014-12-09&quot; lims:fid=&quot;1146092&quot; lims:id=&quot;1146137&quot; lims:enactId=&quot;1035379&quot;&amp;gt;R.S., 1985, c. A-1, Sch. II; R.S., 1985, c. 28 (1st Supp.)&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1171131&quot; lims:id=&quot;1171131&quot; lims:enactId=&quot;1149587&quot;&amp;gt;2019, c. 14, s. 54&amp;lt;/HistoricalNoteSubItem&amp;gt;
+        &amp;lt;/HistoricalNote&amp;gt;
+    &amp;lt;/Schedule&amp;gt;
+    &amp;lt;RecentAmendments&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation link=&quot;2023_29&quot;&amp;gt;2023, c. 29&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2024-01-22&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation link=&quot;2023_22&quot;&amp;gt;2023, c. 22&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2023-09-01&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+    &amp;lt;/RecentAmendments&amp;gt;
+&amp;lt;/Statute&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Regulations&lt;/h3&gt; 
+&lt;p&gt;Generally, a Regulation will have the following structure:&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/eng/regulations/C.R.C.,_c._870/index.html&quot;&gt;Food and Drug Regulations (C.R.C., c. 870)&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Regulation lims:pit-date=&quot;2023-11-24&quot; hasPreviousVersion=&quot;true&quot; lims:lastAmendedDate=&quot;2023-11-24&quot; lims:current-date=&quot;2023-11-27&quot; lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567721&quot; lims:id=&quot;567721&quot; regulation-type=&quot;SOR&quot; xml:lang=&quot;en&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567722&quot; lims:id=&quot;567722&quot;&amp;gt;
+        &amp;lt;InstrumentNumber&amp;gt;C.R.C., c. 870&amp;lt;/InstrumentNumber&amp;gt;
+        &amp;lt;ConsolidationDate lims:inforce-start-date=&quot;2018-10-23&quot;&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2023&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;11&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;28&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/ConsolidationDate&amp;gt;
+        &amp;lt;EnablingAuthority lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567724&quot; lims:id=&quot;567724&quot;&amp;gt;
+            &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;F-27&quot;&amp;gt;FOOD AND DRUGS ACT&amp;lt;/XRefExternal&amp;gt;
+        &amp;lt;/EnablingAuthority&amp;gt;
+        &amp;lt;ShortTitle lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567725&quot; lims:id=&quot;567725&quot;&amp;gt;Food and Drug Regulations&amp;lt;/ShortTitle&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567726&quot; lims:id=&quot;567726&quot;&amp;gt;Regulations Respecting Food and Drugs&amp;lt;/LongTitle&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Body lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567727&quot; lims:id=&quot;567727&quot;&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567728&quot; lims:id=&quot;567728&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;PART A&amp;lt;/Label&amp;gt;
+            &amp;lt;TitleText&amp;gt;Administration&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567729&quot; lims:id=&quot;567729&quot; level=&quot;2&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;General&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;567730&quot; lims:id=&quot;567730&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.001&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;These Regulations may be cited as the &amp;lt;XRefExternal reference-type=&quot;regulation&quot; link=&quot;C.R.C.,_c._870&quot;&amp;gt;Food and Drug Regulations&amp;lt;/XRefExternal&amp;gt;.&amp;lt;/Text&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;567731&quot; lims:id=&quot;567731&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.002&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;These Regulations, where applicable...&amp;lt;/Text&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;567732&quot; lims:id=&quot;567732&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.003&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;
+                &amp;lt;Repealed&amp;gt;[Repealed, SOR/94-289, s. 1]&amp;lt;/Repealed&amp;gt;
+            &amp;lt;/Text&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;567733&quot; lims:id=&quot;567733&quot; level=&quot;2&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Interpretation&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2018-04-04&quot; lims:lastAmendedDate=&quot;2022-09-27&quot; lims:fid=&quot;567734&quot; lims:id=&quot;567734&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.010&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;In these Regulations,&amp;lt;/Text&amp;gt;
+            &amp;lt;Definition lims:inforce-start-date=&quot;2018-04-04&quot; lims:fid=&quot;567735&quot; lims:id=&quot;567735&quot; generate-in-text=&quot;no&quot;&amp;gt;
+                &amp;lt;Text&amp;gt;&amp;lt;DefinedTermEn&amp;gt;acceptable method&amp;lt;/DefinedTermEn&amp;gt; means a method of analysis or examination..,(&amp;lt;DefinedTermFr&amp;gt;méthode acceptable&amp;lt;/DefinedTermFr&amp;gt;)&amp;lt;/Text&amp;gt;
+            &amp;lt;/Definition&amp;gt;
+            &amp;lt;Definition lims:inforce-start-date=&quot;2018-04-04&quot; lims:fid=&quot;567736&quot; lims:id=&quot;567736&quot; generate-in-text=&quot;no&quot;&amp;gt;
+                &amp;lt;Text&amp;gt;&amp;lt;DefinedTermEn&amp;gt;Act&amp;lt;/DefinedTermEn&amp;gt; means the &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;F-27&quot;&amp;gt;Food and Drugs Act&amp;lt;/XRefExternal&amp;gt;, except in Parts G and J;(&amp;lt;DefinedTermFr&amp;gt;Loi&amp;lt;/DefinedTermFr&amp;gt;)&amp;lt;/Text&amp;gt;
+            &amp;lt;/Definition&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2018-04-04&quot; lims:fid=&quot;567751&quot; lims:id=&quot;567751&quot;&amp;gt;SOR/84-300, s. 1(F); SOR/85-141, s. 1;&amp;lt;/HistoricalNoteSubItem&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2022-09-27&quot; lims:enacted-date=&quot;2022-09-27&quot; lims:fid=&quot;1376789&quot; lims:id=&quot;1376789&quot; lims:enactId=&quot;1375613&quot;&amp;gt;SOR/2022-197, s. 1
+                &amp;lt;/HistoricalNteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+    &amp;lt;/Body&amp;gt;
+    &amp;lt;Schedule lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:lastAmendedDate=&quot;2022-07-20&quot; lims:fid=&quot;1371609&quot; lims:id=&quot;1371609&quot;&amp;gt;
+        &amp;lt;ScheduleFormHeading lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1371610&quot; lims:id=&quot;1371610&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;SCHEDULE K.1&amp;lt;/Label&amp;gt;
+            &amp;lt;OriginatingRef&amp;gt;(Subsections B.01.350(1) and B.01.351(1) and (5))&amp;lt;/OriginatingRef&amp;gt;
+        &amp;lt;/ScheduleFormHeading&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1371611&quot; lims:id=&quot;1371611&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Nutrition Symbols and Formats&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1371612&quot; lims:id=&quot;1371612&quot; level=&quot;2&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Unilingual Horizontal Format&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;TableGroup lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1371613&quot; lims:id=&quot;1371613&quot; bilingual=&quot;no&quot; pointsize=&quot;8&quot; spanlanguages=&quot;no&quot; topmarginspacing=&quot;10&quot;&amp;gt;
+            &amp;lt;table lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1371614&quot; lims:id=&quot;1371614&quot; frame=&quot;none&quot;&amp;gt;...
+            &amp;lt;/Table&amp;gt;
+        &amp;lt;/TableGroup&amp;gt;
+    &amp;lt;/Schedule&amp;gt;
+    &amp;lt;RecentAmendments&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;SOR/2023-247&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2023-11-24&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;SOR/2023-18&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2023-02-15&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+    &amp;lt;/RecentAmendments&amp;gt;
+&amp;lt;/Regulation&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/eng/regulations/SOR-97-175/index.html&quot;&gt;Federal Child Support Guidelines (SOR/97-175)&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Regulation lims:pit-date=&quot;2024-02-01&quot; hasPreviousVersion=&quot;true&quot; lims:lastAmendedDate=&quot;2024-02-01&quot; lims:current-date=&quot;2024-02-06&quot; lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004143&quot; lims:id=&quot;1004143&quot; regulation-type=&quot;SOR&quot; xml:lang=&quot;en&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004144&quot; lims:id=&quot;1004144&quot;&amp;gt;
+        &amp;lt;InstrumentNumber&amp;gt;SOR/97-175&amp;lt;/InstrumentNumber&amp;gt;
+        &amp;lt;RegistrationDate&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;1997&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;4&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;8&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegistrationDate&amp;gt;
+        &amp;lt;ConsolidationDate lims:inforce-start-date=&quot;2006-03-22&quot;&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;7&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/ConsolidationDate&amp;gt;
+        &amp;lt;EnablingAuthority lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004146&quot; lims:id=&quot;1004146&quot;&amp;gt;
+            &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;D-3.4&quot;&amp;gt;DIVORCE ACT&amp;lt;/XRefExternal&amp;gt;
+        &amp;lt;/EnablingAuthority&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004147&quot; lims:id=&quot;1004147&quot;&amp;gt;Federal Child Support Guidelines&amp;lt;/LongTitle&amp;gt;
+        &amp;lt;RegulationMakerOrder&amp;gt;
+            &amp;lt;RegulationMaker&amp;gt;P.C.&amp;lt;/RegulationMaker&amp;gt;
+            &amp;lt;OrderNumber&amp;gt;1997-469&amp;lt;/OrderNumber&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;1997&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;4&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;8&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegulationMakerOrder&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Order lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004148&quot; lims:id=&quot;1004148&quot;&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004149&quot; lims:id=&quot;1004149&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;His Excellency the Governor General in Council...&amp;lt;FootnoteRef idref=&quot;footnotea_e&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt; of the &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;D-3.4&quot;&amp;gt;Divorce Act&amp;lt;/XRefExternal&amp;gt;&amp;lt;FootnoteRef idref=&quot;footnoteb_e&quot;&amp;gt;b&amp;lt;/FootnoteRef&amp;gt;, hereby establishes the annexed &amp;lt;XRefExternal reference-type=&quot;regulation&quot; link=&quot;SOR-97-175&quot;&amp;gt;Federal Child Support Guidelines&amp;lt;/XRefExternal&amp;gt;.
+            &amp;lt;/Text&amp;gt;
+            &amp;lt;Footnote id=&quot;footnotea_e&quot; placement=&quot;page&quot; status=&quot;official&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;a&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;S.C. 1997, c. 1, s. 11&amp;lt;/Text&amp;gt;
+            &amp;lt;/Footnote&amp;gt;
+            &amp;lt;Footnote id=&quot;footnoteb_e&quot; placement=&quot;page&quot; status=&quot;official&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;b&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;R.S., c. 3 (2nd Supp.)&amp;lt;/Text&amp;gt;
+            &amp;lt;/Footnote&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+    &amp;lt;/Order&amp;gt;
+    &amp;lt;Body lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004150&quot; lims:id=&quot;1004150&quot;&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004151&quot; lims:id=&quot;1004151&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Objectives&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;1004152&quot; lims:id=&quot;1004152&quot;&amp;gt;
+            &amp;lt;MarginalNote lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004153&quot; lims:id=&quot;1004153&quot;&amp;gt;Objectives&amp;lt;/MarginalNote&amp;gt;
+            &amp;lt;Label&amp;gt;1&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;The objectives of these Guidelines are&amp;lt;/Text&amp;gt;
+            &amp;lt;Paragraph lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004154&quot; lims:id=&quot;1004154&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(a)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;to establish a fair standard of support for children that...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Paragraph&amp;gt;
+            &amp;lt;Paragraph lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;1004155&quot; lims:id=&quot;1004155&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(b)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;to reduce conflict and tension between spouses by making...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Paragraph&amp;gt;
+        &amp;lt;/Section&amp;gt;
+    &amp;lt;/Body&amp;gt;
+    &amp;lt;Schedule lims:inforce-start-date=&quot;2009-06-11&quot; lims:lastAmendedDate=&quot;2009-06-11&quot; lims:fid=&quot;1004937&quot; lims:id=&quot;1004937&quot; bilingual=&quot;no&quot; spanlanguages=&quot;no&quot;&amp;gt;
+        &amp;lt;ScheduleFormHeading lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;1004938&quot; lims:id=&quot;1004938&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;SCHEDULE III&amp;lt;/Label&amp;gt;
+            &amp;lt;OriginatingRef&amp;gt;(Section 16)&amp;lt;/OriginatingRef&amp;gt;
+            &amp;lt;TitleText&amp;gt;Adjustments to Income&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/ScheduleFormHeading&amp;gt;
+        &amp;lt;RegulationPiece lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;1004939&quot; lims:id=&quot;1004939&quot;&amp;gt;
+            &amp;lt;Section lims:inforce-start-date=&quot;2009-06-11&quot; lims:lastAmendedDate=&quot;2009-06-11&quot; lims:fid=&quot;1004940&quot; lims:id=&quot;1004940&quot;&amp;gt;
+                &amp;lt;MarginalNote lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;1004941&quot; lims:id=&quot;1004941&quot;&amp;gt;Employment expenses&amp;lt;/MarginalNote&amp;gt;
+                &amp;lt;Label&amp;gt;1&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;Where the spouse is an employee, the spouse’s applicable employment expenses described in the following provisions of the &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;I-3.3&quot;&amp;gt;Income Tax Act&amp;lt;/XRefExternal&amp;gt; are deducted:&amp;lt;/Text&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;1004942&quot; lims:id=&quot;1004942&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;(a)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;
+                        &amp;lt;Repealed&amp;gt;[Repealed, SOR/2000-337, s. 8]&amp;lt;/Repealed&amp;gt;
+                    &amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;1004943&quot; lims:id=&quot;1004943&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;(b)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;paragraph 8(1)(d) concerning expenses of teacher’s exchange fund contribution;&amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+            &amp;lt;/Section&amp;gt;
+            &amp;lt;Section lims:inforce-start-date=&quot;2009-06-11&quot; lims:lastAmendedDate=&quot;2009-06-11&quot; lims:fid=&quot;1004956&quot; lims:id=&quot;1004956&quot;&amp;gt;
+                &amp;lt;MarginalNote lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;1004957&quot; lims:id=&quot;1004957&quot;&amp;gt;Child support&amp;lt;/MarginalNote&amp;gt;
+                &amp;lt;Label&amp;gt;2&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;Deduct any child support received that is included...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Section&amp;gt;
+        &amp;lt;/RegulationPiece&amp;gt;
+        &amp;lt;HistoricalNote&amp;gt;
+            &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;1004992&quot; lims:id=&quot;1004992&quot;&amp;gt;SOR/97-563, ss. 12 to 14; SOR/2000-337&amp;lt;/HistoricalNoteSubItem&amp;gt;
+        &amp;lt;/HistoricalNote&amp;gt;
+    &amp;lt;/Schedule&amp;gt;
+    &amp;lt;RecentAmendments&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;SOR/2020-247&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2024-02-01&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;SOR/2020-247&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2021-03-01&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+    &amp;lt;/RecentAmendments&amp;gt;
+&amp;lt;/Regulation&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/eng/regulations/SI-2024-7/&quot;&gt;Locally Engaged Staff Exclusion Approval Order (SI/2024-7)&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Regulation lims:pit-date=&quot;2024-02-02&quot; lims:lastAmendedDate=&quot;2024-02-02&quot; lims:current-date=&quot;2024-02-06&quot; lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441576&quot; lims:id=&quot;1441576&quot; gazette-part=&quot;II&quot; regulation-type=&quot;SI&quot; xml:lang=&quot;en&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441577&quot; lims:id=&quot;1441577&quot;&amp;gt;
+        &amp;lt;InstrumentNumber&amp;gt;SI/2024-7&amp;lt;/InstrumentNumber&amp;gt;
+        &amp;lt;RegistrationDate&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;14&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegistrationDate&amp;gt;
+        &amp;lt;ConsolidationDate&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;7&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/ConsolidationDate&amp;gt;
+        &amp;lt;EnablingAuthority lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441578&quot; lims:id=&quot;1441578&quot;&amp;gt;
+            &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;PUBLIC SERVICE EMPLOYMENT ACT&amp;lt;/XRefExternal&amp;gt;
+        &amp;lt;/EnablingAuthority&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441579&quot; lims:id=&quot;1441579&quot;&amp;gt;Locally Engaged Staff Exclusion Approval Order&amp;lt;/LongTitle&amp;gt;
+        &amp;lt;RegulationMakerOrder&amp;gt;
+            &amp;lt;RegulationMaker&amp;gt;P.C.&amp;lt;/RegulationMaker&amp;gt;
+            &amp;lt;OrderNumber&amp;gt;2024-86&amp;lt;/OrderNumber&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;2&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegulationMakerOrder&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Order lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441580&quot; lims:id=&quot;1441580&quot;&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441581&quot; lims:id=&quot;1441581&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Her Excellency the Governor General in Council... &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;Public Service Employment Act&amp;lt;/XRefExternal&amp;gt;
+                &amp;lt;FootnoteRef idref=&quot;fn_81000-2-4385_hq_28367&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt;, approves
+            &amp;lt;/Text&amp;gt;
+            &amp;lt;Footnote id=&quot;fn_81000-2-4385_hq_28367&quot; placement=&quot;page&quot; status=&quot;official&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;a&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;S.C. 2003, c. 22, ss. 12 and 13&amp;lt;/Text&amp;gt;
+            &amp;lt;/Footnote&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441582&quot; lims:id=&quot;1441582&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(a)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;the re-application by the Public Service Commission of the provisions of that Act to the positions...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441583&quot; lims:id=&quot;1441583&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(b)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;the exclusion by the Public Service Commission from the application of the Act of a person...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441584&quot; lims:id=&quot;1441584&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Whereas the Public Service Commission has decided...&amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;Public Service Employment Act&amp;lt;/XRefExternal&amp;gt;&amp;lt;FootnoteRef idref=&quot;fn_81000-2-4385_hq_28367&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt;, that it is neither practicable nor in the best interests of the public...&amp;lt;/Text&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441585&quot; lims:id=&quot;1441585&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;And whereas, under subsection&amp;nbsp;20(2) of that&amp;nbsp;Act, the Public Service Commission has consulted with the employer;&amp;lt;/Text&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441586&quot; lims:id=&quot;1441586&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Therefore, the Public Service Commission, under subsections&amp;nbsp;20(1) and (3) of the &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;Public Service Employment Act&amp;lt;/XRefExternal&amp;gt;&amp;lt;FootnoteRef idref=&quot;fn_81000-2-4385_hq_28367&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt;,&amp;lt;/Text&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441587&quot; lims:id=&quot;1441587&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(a)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;re-applies the provisions of that Act to the positions excluded under Order in Council P.C. 1967-444 of March 10, 1967 and to the persons occupying them; and&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441588&quot; lims:id=&quot;1441588&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(b)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;excludes from the application of that Act a person who is appointed and employed outside...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441589&quot; lims:id=&quot;1441589&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Gatineau, November 21, 2023&amp;lt;/Text&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441590&quot; lims:id=&quot;1441590&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot; topmarginspacing=&quot;12&quot;&amp;gt;
+            &amp;lt;TableGroup lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441591&quot; lims:id=&quot;1441591&quot; bilingual=&quot;yes&quot; orientation=&quot;portrait&quot; pointsize=&quot;11pt&quot; rowbreak=&quot;no&quot; spanlanguages=&quot;no&quot; spanmarginalnotecol=&quot;no&quot; topmarginspacing=&quot;50pt&quot;&amp;gt;
+                &amp;lt;table lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1441592&quot; lims:id=&quot;1441592&quot; frame=&quot;none&quot;&amp;gt;...&amp;lt;/table&amp;gt;
+            &amp;lt;/TableGroup&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+    &amp;lt;/Order&amp;gt;
+&amp;lt;/Regulation&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;laws-lois-xml - (Français)&lt;/h1&gt; 
+&lt;p&gt;Des lois et règlements codifiés du Canada&lt;/p&gt; 
+&lt;h2&gt;Structure des éléments&lt;/h2&gt; 
+&lt;p&gt;Ce qui suit présente des exemples de structure XML pour les lois et les règlements.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Le contenu XML affiché ici n&#39;est que des exemples et ne doit pas être utilisé comme référence complète.&lt;/p&gt; 
+ &lt;p&gt;Le XML complet et mis à jour doit être référencé dans le référentiel. Pour plus d’informations sur les lois, visitez le &lt;a href=&quot;https://laws-lois.justice.gc.ca/&quot;&gt;Site Web de la législation (Justice)&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;Dans les exemples présentés, si un &quot;...&quot; est vu. Cela signifiait que le contenu devait être coupé en raison de sa longueur ou de sa complexité.&lt;/p&gt; 
+ &lt;p&gt;Tous les tableaux ne sont pas affichés pour cette raison.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Lois&lt;/h3&gt; 
+&lt;p&gt;Généralement, une loi aura la structure suivante:&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/fra/lois/A-1/index.html&quot;&gt;Loi sur l’accès à l’information (L.R.C. (1985), ch. A-1)&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Statute lims:pit-date=&quot;2024-01-22&quot; hasPreviousVersion=&quot;true&quot; lims:lastAmendedDate=&quot;2024-01-22&quot; lims:current-date=&quot;2024-01-23&quot; lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;167&quot; lims:id=&quot;167&quot; bill-origin=&quot;commons&quot; bill-type=&quot;govt-public&quot; in-force=&quot;yes&quot; xml:lang=&quot;fr&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;168&quot; lims:id=&quot;168&quot;&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;169&quot; lims:id=&quot;1157395&quot;&amp;gt;Loi visant à compléter la législation canadienne en matière d’accès à l’information relevant de l’administration fédérale et prévoyant la publication proactive de certains renseignements&amp;lt;/LongTitle&amp;gt;
+        &amp;lt;ShortTitle lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;170&quot; lims:id=&quot;170&quot; status=&quot;official&quot;&amp;gt;Loi sur l’accès à l’information&amp;lt;/ShortTitle&amp;gt;
+        &amp;lt;RunningHead lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;171&quot; lims:id=&quot;171&quot;&amp;gt;Accès à l’information&amp;lt;/RunningHead&amp;gt;
+        &amp;lt;BillHistory lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;172&quot; lims:id=&quot;172&quot;&amp;gt;
+            &amp;lt;Stages lims:inforce-start-date=&quot;2018-12-13&quot; stage=&quot;consolidation&quot;&amp;gt;
+                &amp;lt;Date&amp;gt;
+                    &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                    &amp;lt;MM&amp;gt;1&amp;lt;/MM&amp;gt;
+                    &amp;lt;DD&amp;gt;24&amp;lt;/DD&amp;gt;
+                &amp;lt;/Date&amp;gt;
+            &amp;lt;/Stages&amp;gt;
+        &amp;lt;/BillHistory&amp;gt;
+        &amp;lt;Chapter lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;174&quot; lims:id=&quot;174&quot;&amp;gt;
+            &amp;lt;ConsolidatedNumber official=&quot;yes&quot;&amp;gt;A-1&amp;lt;/ConsolidatedNumber&amp;gt;
+        &amp;lt;/Chapter&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Body lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;175&quot; lims:id=&quot;175&quot;&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;176&quot; lims:id=&quot;176&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Titre abrégé&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2005-10-05&quot; lims:lastAmendedDate=&quot;2005-10-05&quot; lims:fid=&quot;177&quot; lims:id=&quot;177&quot;&amp;gt;
+            &amp;lt;MarginalNote lims:inforce-start-date=&quot;2005-10-05&quot; lims:fid=&quot;178&quot; lims:id=&quot;178&quot;&amp;gt;Titre abrégé&amp;lt;/MarginalNote&amp;gt;
+            &amp;lt;Label&amp;gt;1&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;
+                &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;A-1&quot;&amp;gt;Loi sur l’accès à l’information&amp;lt;/XRefExternal&amp;gt;.
+            &amp;lt;/Text&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2005-10-05&quot; lims:fid=&quot;180&quot; lims:id=&quot;180&quot;&amp;gt;1980-81-82-83, ch. 111, ann. I «&amp;nbsp;1&amp;nbsp;»&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-12-13&quot; lims:fid=&quot;181&quot; lims:id=&quot;181&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Objet de la loi&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:lastAmendedDate=&quot;2019-06-21&quot; lims:fid=&quot;182&quot; lims:id=&quot;1157396&quot;&amp;gt;
+            &amp;lt;MarginalNote lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157397&quot; lims:id=&quot;1157397&quot;&amp;gt;Objet de la loi&amp;lt;/MarginalNote&amp;gt;
+            &amp;lt;Label&amp;gt;2&amp;lt;/Label&amp;gt;
+            &amp;lt;Subsection lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157398&quot; lims:id=&quot;1157398&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;(1)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;La présente loi a pour objet d’accroître la responsabilité et la transparence des institutions...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Subsection&amp;gt;
+            &amp;lt;Subsection lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157399&quot; lims:id=&quot;1157399&quot;&amp;gt;
+                &amp;lt;MarginalNote lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157400&quot; lims:id=&quot;1157400&quot;&amp;gt;Objets spécifiques&amp;nbsp;: parties 1 et 2&amp;lt;/MarginalNote&amp;gt;
+                &amp;lt;Label&amp;gt;(2)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;À cet égard&amp;nbsp;:&amp;lt;/Text&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157401&quot; lims:id=&quot;1157401&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;a)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;la partie 1 élargit l’accès aux documents de l’administration fédérale en consacrant...&amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157402&quot; lims:id=&quot;1157402&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;b)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;la partie 2 fixe des exigences visant la publication proactive de renseignements.&amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+            &amp;lt;/Subsection&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;188&quot; lims:id=&quot;1157405&quot; lims:enactId=&quot;1136662&quot; type=&quot;original&quot;&amp;gt;L.R. (1985), ch. A-1, art. 2&amp;lt;/HistoricalNoteSubItem&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157406&quot; lims:id=&quot;1157406&quot; lims:enactId=&quot;1136662&quot;&amp;gt;2019, ch. 18, art. 2&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+    &amp;lt;/body&amp;gt;
+    &amp;lt;Schedule lims:inforce-start-date=&quot;2018-11-05&quot; lims:lastAmendedDate=&quot;2024-01-22&quot; lims:fid=&quot;1216&quot; lims:id=&quot;1216&quot; bilingual=&quot;no&quot; spanlanguages=&quot;yes&quot;&amp;gt;
+        &amp;lt;ScheduleFormHeading lims:inforce-start-date=&quot;2018-11-05&quot; lims:fid=&quot;1217&quot; lims:id=&quot;1217&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;ANNEXE II&amp;lt;/Label&amp;gt;
+            &amp;lt;OriginatingRef&amp;gt;(article 24)&amp;lt;/OriginatingRef&amp;gt;
+        &amp;lt;/ScheduleFormHeading&amp;gt;
+        &amp;lt;TableGroup lims:inforce-start-date=&quot;2018-11-05&quot; lims:fid=&quot;1218&quot; lims:id=&quot;1218&quot; pointsize=&quot;9&quot; topmarginspacing=&quot;10&quot; rowbreak=&quot;no&quot; bilingual=&quot;no&quot; spanlanguages=&quot;no&quot;&amp;gt;
+            &amp;lt;table lims:inforce-start-date=&quot;2018-11-05&quot; lims:fid=&quot;1219&quot; lims:id=&quot;1219&quot; colsep=&quot;0&quot; frame=&quot;topbot&quot; rowsep=&quot;0&quot;&amp;gt;...
+            &amp;lt;/Table&amp;gt;
+        &amp;lt;/TableGroup&amp;gt;
+        &amp;lt;HistoricalNote&amp;gt;
+            &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-18&quot; lims:enacted-date=&quot;2014-12-09&quot; lims:fid=&quot;1132597&quot; lims:id=&quot;1132614&quot; lims:enactId=&quot;1023638&quot;&amp;gt;L.R. (1985), ch. A-1, ann. II; L.R. (1985), ch. 28 (1 &amp;lt;Sup&amp;gt;er&amp;lt;/Sup&amp;gt; suppl.)&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-06-21&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1157394&quot; lims:id=&quot;1157394&quot; lims:enactId=&quot;1136063&quot;&amp;gt;2019, ch. 14, art. 54&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2019-08-28&quot; lims:enacted-date=&quot;2019-06-21&quot; lims:fid=&quot;1184509&quot; lims:id=&quot;1184509&quot; lims:enactId=&quot;1144311&quot;&amp;gt;2019, ch. 28, art. 83&amp;lt;/HistoricalNoteSubItem&amp;gt;
+        &amp;lt;/HistoricalNote&amp;gt;
+    &amp;lt;/Schedule&amp;gt;
+    &amp;lt;RecentAmendments&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation link=&quot;2023_29&quot;&amp;gt;2023, ch. 29&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2024-01-22&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation link=&quot;2023_22&quot;&amp;gt;2023, ch. 22&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2023-09-01&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+    &amp;lt;/RecentAmendments&amp;gt;
+&amp;lt;/Statute&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Règlements&lt;/h3&gt; 
+&lt;p&gt;Généralement, un règlement aura la structure suivante:&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/fra/reglements/C.R.C.%2C_ch._870/index.html&quot;&gt;Règlement sur les aliments et drogues (C.R.C., ch. 870))&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Regulation lims:pit-date=&quot;2023-11-24&quot; hasPreviousVersion=&quot;true&quot; lims:lastAmendedDate=&quot;2023-11-24&quot; lims:current-date=&quot;2023-11-27&quot; lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556370&quot; lims:id=&quot;556370&quot; regulation-type=&quot;SOR&quot; xml:lang=&quot;fr&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556371&quot; lims:id=&quot;556371&quot;&amp;gt;
+        &amp;lt;InstrumentNumber&amp;gt;C.R.C., ch. 870&amp;lt;/InstrumentNumber&amp;gt;
+        &amp;lt;ConsolidationDate lims:inforce-start-date=&quot;2018-10-23&quot;&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2023&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;11&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;28&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/ConsolidationDate&amp;gt;
+        &amp;lt;EnablingAuthority lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556373&quot; lims:id=&quot;556373&quot;&amp;gt;
+            &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;F-27&quot;&amp;gt;LOI SUR LES ALIMENTS ET DROGUES&amp;lt;/XRefExternal&amp;gt;
+        &amp;lt;/EnablingAuthority&amp;gt;
+        &amp;lt;ShortTitle lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556374&quot; lims:id=&quot;556374&quot;&amp;gt;Règlement sur les aliments et drogues&amp;lt;/ShortTitle&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556375&quot; lims:id=&quot;556375&quot;&amp;gt;Règlement concernant les aliments et drogues&amp;lt;/LongTitle&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Body lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556376&quot; lims:id=&quot;556376&quot;&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556377&quot; lims:id=&quot;556377&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;PARTIE A&amp;lt;/Label&amp;gt;
+            &amp;lt;TitleText&amp;gt;Administration&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556378&quot; lims:id=&quot;556378&quot; level=&quot;2&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Dispositions générales&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;556379&quot; lims:id=&quot;556379&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.001&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;Le présent règlement peut être cité sous le titre&amp;nbsp;:
+                &amp;lt;XRefExternal reference-type=&quot;regulation&quot; link=&quot;C.R.C.,_ch._870&quot;&amp;gt;Règlement sur les aliments et drogues&amp;lt;/XRefExternal&amp;gt;.
+            &amp;lt;/Text&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;556380&quot; lims:id=&quot;556380&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.002&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;Lorsqu’il y a lieu, les dispositions du présent règlement établissent les normes de composition...&amp;lt;/Text&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;556381&quot; lims:id=&quot;556381&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.003&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;
+                &amp;lt;Repealed&amp;gt;[Abrogé, DORS/94-289, art. 1]&amp;lt;/Repealed&amp;gt;
+            &amp;lt;/Text&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2018-10-23&quot; lims:fid=&quot;556382&quot; lims:id=&quot;556382&quot; level=&quot;2&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Interprétation&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2018-04-04&quot; lims:lastAmendedDate=&quot;2022-09-27&quot; lims:fid=&quot;556383&quot; lims:id=&quot;556383&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.010&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;Dans le présent règlement,&amp;lt;/Text&amp;gt;
+            &amp;lt;Definition lims:inforce-start-date=&quot;2018-04-04&quot; lims:fid=&quot;556384&quot; lims:id=&quot;556384&quot;&amp;gt;
+                &amp;lt;Text&amp;gt;&amp;lt;DefinedTermFr&amp;gt;centimètre cube&amp;lt;/DefinedTermFr&amp;gt; ou son abréviation &amp;lt;DefinedTermFr&amp;gt;cc.&amp;lt;/DefinedTermFr&amp;gt; sont censées interchangeables avec le mot &amp;lt;DefinitionRef&amp;gt;millilitre&amp;lt;/DefinitionRef&amp;gt; et son abréviation &amp;lt;DefinitionRef&amp;gt;ml.&amp;lt;/DefinitionRef&amp;gt;; (&amp;lt;DefinedTermEn&amp;gt;cubic centimetre&amp;lt;/DefinedTermEn&amp;gt;)&amp;lt;/Text&amp;gt;
+            &amp;lt;/Definition&amp;gt;
+            &amp;lt;Definition lims:inforce-start-date=&quot;2022-09-27&quot; lims:enacted-date=&quot;2022-09-27&quot; lims:fid=&quot;556385&quot; lims:id=&quot;1365785&quot;&amp;gt;
+                &amp;lt;Text&amp;gt;&amp;lt;DefinedTermFr&amp;gt;conjoint de fait&amp;lt;/DefinedTermFr&amp;gt; S’entend au sens de l’article 2 du &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;C-46&quot;&amp;gt;Code criminel&amp;lt;/XRefExternal&amp;gt;; (&amp;lt;DefinedTermEn&amp;gt;common-law partner&amp;lt;/DefinedTermEn&amp;gt;)&amp;lt;/Text&amp;gt;
+            &amp;lt;/Definition&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2018-04-04&quot; lims:fid=&quot;556400&quot; lims:id=&quot;556400&quot;&amp;gt;DORS/84-300, art. 1(F); DORS/85-141, art. 1; DORS/89-455, art. 1; DORS/97-12, art. 1; DORS/2000-353&amp;lt;/HistoricalNoteSubItem&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2022-09-27&quot; lims:enacted-date=&quot;2022-09-27&quot; lims:fid=&quot;1365784&quot; lims:id=&quot;1365784&quot; lims:enactId=&quot;1364728&quot;&amp;gt;DORS/2022-197, art. 1&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2018-04-04&quot; lims:lastAmendedDate=&quot;2018-04-04&quot; lims:fid=&quot;556401&quot; lims:id=&quot;556401&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.011&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;Le ministre doit, sur demande, fournir des exemplaires des méthodes officielles.&amp;lt;/Text&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2018-04-04&quot; lims:fid=&quot;556403&quot; lims:id=&quot;556403&quot;&amp;gt;DORS/2018-69, art. 27&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2018-04-04&quot; lims:lastAmendedDate=&quot;2018-04-04&quot; lims:fid=&quot;556404&quot; lims:id=&quot;556404&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;A.01.012&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;Le ministre doit, sur demande, indiquer si une méthode est acceptable ou non, lorsqu’on la lui présente en vue d’une décision.&amp;lt;/Text&amp;gt;
+            &amp;lt;HistoricalNote&amp;gt;
+                &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2018-04-04&quot; lims:fid=&quot;556406&quot; lims:id=&quot;556406&quot;&amp;gt;DORS/2018-69, art. 27&amp;lt;/HistoricalNoteSubItem&amp;gt;
+            &amp;lt;/HistoricalNote&amp;gt;
+        &amp;lt;/Section&amp;gt;
+    &amp;lt;/Body&amp;gt;
+    &amp;lt;Schedule lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:lastAmendedDate=&quot;2022-07-20&quot; lims:fid=&quot;1360697&quot; lims:id=&quot;1360697&quot;&amp;gt;
+        &amp;lt;ScheduleFormHeading lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1360698&quot; lims:id=&quot;1360698&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;ANNEXE K.1&amp;lt;/Label&amp;gt;
+            &amp;lt;OriginatingRef&amp;gt;(paragraphes B.01.350(1), B.01.351(1) et (5))&amp;lt;/OriginatingRef&amp;gt;
+        &amp;lt;/ScheduleFormHeading&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1360699&quot; lims:id=&quot;1360699&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Symboles nutritionnels et modèles&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1360700&quot; lims:id=&quot;1360700&quot; level=&quot;2&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Modèle horizontal unilingue&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;TableGroup lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1360701&quot; lims:id=&quot;1360701&quot; bilingual=&quot;no&quot; pointsize=&quot;8&quot; spanlanguages=&quot;no&quot; topmarginspacing=&quot;10&quot;&amp;gt;
+            &amp;lt;Table lims:inforce-start-date=&quot;2022-07-20&quot; lims:enacted-date=&quot;2022-06-28&quot; lims:fid=&quot;1360702&quot; lims:id=&quot;1360702&quot; frame=&quot;none&quot;&amp;gt;...&amp;lt;/Table&amp;gt;
+        &amp;lt;/TableGroup&amp;gt;
+    &amp;lt;/Schedule&amp;gt;
+    &amp;lt;RecentAmendments&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;DORS/2023-247&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2023-11-24&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;DORS/2023-18&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2023-02-15&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+    &amp;lt;/RecentAmendments&amp;gt;
+&amp;lt;/Regulation&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/fra/reglements/DORS-97-175/index.html&quot;&gt;Lignes directrices fédérales sur les pensions alimentaires pour enfants (DORS/97-175)&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Regulation lims:pit-date=&quot;2024-02-01&quot; hasPreviousVersion=&quot;true&quot; lims:lastAmendedDate=&quot;2024-02-01&quot; lims:current-date=&quot;2024-02-06&quot; lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992366&quot; lims:id=&quot;992366&quot; regulation-type=&quot;SOR&quot; xml:lang=&quot;fr&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992367&quot; lims:id=&quot;992367&quot;&amp;gt;
+        &amp;lt;InstrumentNumber&amp;gt;DORS/97-175&amp;lt;/InstrumentNumber&amp;gt;
+        &amp;lt;RegistrationDate&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;1997&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;4&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;8&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegistrationDate&amp;gt;
+        &amp;lt;ConsolidationDate lims:inforce-start-date=&quot;2006-03-22&quot;&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;7&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/ConsolidationDate&amp;gt;
+        &amp;lt;EnablingAuthority lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992369&quot; lims:id=&quot;992369&quot;&amp;gt;
+            &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;D-3.4&quot;&amp;gt;LOI SUR LE DIVORCE&amp;lt;/XRefExternal&amp;gt;
+        &amp;lt;/EnablingAuthority&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992370&quot; lims:id=&quot;992370&quot;&amp;gt;Lignes directrices fédérales sur les pensions alimentaires pour enfants&amp;lt;/LongTitle&amp;gt;
+        &amp;lt;RegulationMakerOrder&amp;gt;
+            &amp;lt;RegulationMaker&amp;gt;C.P.&amp;lt;/RegulationMaker&amp;gt;
+            &amp;lt;OrderNumber&amp;gt;1997-469&amp;lt;/OrderNumber&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;1997&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;4&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;8&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegulationMakerOrder&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Order lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992371&quot; lims:id=&quot;992371&quot;&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992372&quot; lims:id=&quot;992372&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Sur recommandation du ministre de la Justice et en vertu de l’article 26.1
+                &amp;lt;FootnoteRef idref=&quot;footnotea_f&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt; de la
+                &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;D-3.4&quot;&amp;gt;Loi sur le divorce&amp;lt;/XRefExternal&amp;gt;
+                &amp;lt;FootnoteRef idref=&quot;footnoteb_f&quot;&amp;gt;b&amp;lt;/FootnoteRef&amp;gt;, Son Excellence le Gouverneur général en conseil établit les
+                &amp;lt;XRefExternal reference-type=&quot;regulation&quot; link=&quot;DORS-97-175&quot;&amp;gt;Lignes directrices fédérales sur les pensions alimentaires pour enfants&amp;lt;/XRefExternal&amp;gt;, ci-après.
+            &amp;lt;/Text&amp;gt;
+            &amp;lt;Footnote id=&quot;footnotea_f&quot; placement=&quot;page&quot; status=&quot;official&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;a&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;L.C. 1997, ch. 1, art. 11&amp;lt;/Text&amp;gt;
+            &amp;lt;/Footnote&amp;gt;
+            &amp;lt;Footnote id=&quot;footnoteb_f&quot; placement=&quot;page&quot; status=&quot;official&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;b&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;L.R., ch. 3 (2
+                    &amp;lt;Sup&amp;gt;e&amp;lt;/Sup&amp;gt; suppl.)
+                &amp;lt;/Text&amp;gt;
+            &amp;lt;/Footnote&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+    &amp;lt;/Order&amp;gt;
+    &amp;lt;Body lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992373&quot; lims:id=&quot;992373&quot;&amp;gt;
+        &amp;lt;Heading lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992374&quot; lims:id=&quot;992374&quot; level=&quot;1&quot;&amp;gt;
+            &amp;lt;TitleText&amp;gt;Objectifs&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/Heading&amp;gt;
+        &amp;lt;Section lims:inforce-start-date=&quot;2006-03-22&quot; lims:lastAmendedDate=&quot;2006-03-22&quot; lims:fid=&quot;992375&quot; lims:id=&quot;992375&quot;&amp;gt;
+            &amp;lt;MarginalNote lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992376&quot; lims:id=&quot;992376&quot;&amp;gt;Objectifs&amp;lt;/MarginalNote&amp;gt;
+            &amp;lt;Label&amp;gt;1&amp;lt;/Label&amp;gt;
+            &amp;lt;Text&amp;gt;Les présentes lignes directrices visent à&amp;nbsp;:&amp;lt;/Text&amp;gt;
+            &amp;lt;Paragraph lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992377&quot; lims:id=&quot;992377&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;a)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;établir des normes équitables en matière de soutien alimentaire des enfants afin de leur...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Paragraph&amp;gt;
+            &amp;lt;Paragraph lims:inforce-start-date=&quot;2006-03-22&quot; lims:fid=&quot;992378&quot; lims:id=&quot;992378&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;b)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;réduire les conflits et les tensions entre époux en rendant le calcul du montant des ordonnances alimentaires plus objectif;&amp;lt;/Text&amp;gt;
+            &amp;lt;/Paragraph&amp;gt;
+        &amp;lt;/Section&amp;gt;
+    &amp;lt;/Body&amp;gt;
+    &amp;lt;Schedule lims:inforce-start-date=&quot;2009-06-11&quot; lims:lastAmendedDate=&quot;2009-06-11&quot; lims:fid=&quot;993183&quot; lims:id=&quot;993183&quot; spanlanguages=&quot;no&quot; bilingual=&quot;no&quot;&amp;gt;
+        &amp;lt;ScheduleFormHeading lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;993184&quot; lims:id=&quot;993184&quot;&amp;gt;
+            &amp;lt;Label&amp;gt;ANNEXE III&amp;lt;/Label&amp;gt;
+            &amp;lt;OriginatingRef&amp;gt;(article 16)&amp;lt;/OriginatingRef&amp;gt;
+            &amp;lt;TitleText&amp;gt;Rajustements du revenu&amp;lt;/TitleText&amp;gt;
+        &amp;lt;/ScheduleFormHeading&amp;gt;
+        &amp;lt;RegulationPiece lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;993185&quot; lims:id=&quot;993185&quot;&amp;gt;
+            &amp;lt;Section lims:inforce-start-date=&quot;2009-06-11&quot; lims:lastAmendedDate=&quot;2009-06-11&quot; lims:fid=&quot;993186&quot; lims:id=&quot;993186&quot;&amp;gt;
+                &amp;lt;MarginalNote lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;993187&quot; lims:id=&quot;993187&quot;&amp;gt;Dépenses d’emploi&amp;lt;/MarginalNote&amp;gt;
+                &amp;lt;Label&amp;gt;1&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;Dans le cas où l’époux est un employé... &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;I-3.3&quot;&amp;gt;Loi de l’impôt sur le revenu&amp;lt;/XRefExternal&amp;gt;:&amp;lt;/Text&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;993188&quot; lims:id=&quot;993188&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;a)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;
+                        &amp;lt;Repealed&amp;gt;[Abrogé, DORS/2000-337, art. 8]&amp;lt;/Repealed&amp;gt;
+                    &amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+                &amp;lt;Paragraph lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;993189&quot; lims:id=&quot;993189&quot;&amp;gt;
+                    &amp;lt;Label&amp;gt;b)&amp;lt;/Label&amp;gt;
+                    &amp;lt;Text&amp;gt;l’alinéa 8(1)d) concernant la cotisation à une caisse d’enseignants;&amp;lt;/Text&amp;gt;
+                &amp;lt;/Paragraph&amp;gt;
+            &amp;lt;/Section&amp;gt;
+            &amp;lt;Section lims:inforce-start-date=&quot;2009-06-11&quot; lims:lastAmendedDate=&quot;2009-06-11&quot; lims:fid=&quot;993202&quot; lims:id=&quot;993202&quot;&amp;gt;
+                &amp;lt;MarginalNote lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;993203&quot; lims:id=&quot;993203&quot;&amp;gt;Pension alimentaire pour enfants&amp;lt;/MarginalNote&amp;gt;
+                &amp;lt;Label&amp;gt;2&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;Déduire tout montant de pension alimentaire pour enfants reçu qui est inclus...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Section&amp;gt;
+        &amp;lt;/RegulationPiece&amp;gt;
+        &amp;lt;HistoricalNote&amp;gt;
+            &amp;lt;HistoricalNoteSubItem lims:inforce-start-date=&quot;2009-06-11&quot; lims:fid=&quot;993238&quot; lims:id=&quot;993238&quot;&amp;gt;DORS/97-563, art. 12 à 14; DORS/2000-337&amp;lt;/HistoricalNoteSubItem&amp;gt;
+        &amp;lt;/HistoricalNote&amp;gt;
+    &amp;lt;/Schedule&amp;gt;
+    &amp;lt;RecentAmendments&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;DORS/2020-247&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2024-02-01&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+        &amp;lt;Amendment&amp;gt;
+            &amp;lt;AmendmentCitation&amp;gt;DORS/2020-247&amp;lt;/AmendmentCitation&amp;gt;
+            &amp;lt;AmendmentDate&amp;gt;2021-03-01&amp;lt;/AmendmentDate&amp;gt;
+        &amp;lt;/Amendment&amp;gt;
+    &amp;lt;/RecentAmendments&amp;gt;
+&amp;lt;/Regulation&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;&lt;a href=&quot;https://laws-lois.justice.gc.ca/fra/reglements/TR-2024-7/&quot;&gt;Décret agréant l’exemption du personnel embauché sur place (TR/2024-7)&lt;/a&gt;&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;?xml version=&quot;1.0&quot; encoding=&quot;utf-8&quot;?&amp;gt;
+&amp;lt;Regulation lims:pit-date=&quot;2024-02-02&quot; lims:lastAmendedDate=&quot;2024-02-02&quot; lims:current-date=&quot;2024-02-06&quot; lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429904&quot; lims:id=&quot;1429904&quot; gazette-part=&quot;II&quot; regulation-type=&quot;SI&quot; xml:lang=&quot;fr&quot; xmlns:lims=&quot;http://justice.gc.ca/lims&quot;&amp;gt;
+    &amp;lt;Identification lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429905&quot; lims:id=&quot;1429905&quot;&amp;gt;
+        &amp;lt;InstrumentNumber&amp;gt;TR/2024-7&amp;lt;/InstrumentNumber&amp;gt;
+        &amp;lt;RegistrationDate&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;14&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegistrationDate&amp;gt;
+        &amp;lt;ConsolidationDate&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;7&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/ConsolidationDate&amp;gt;
+        &amp;lt;EnablingAuthority lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429906&quot; lims:id=&quot;1429906&quot;&amp;gt;
+            &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;LOI SUR L’EMPLOI DANS LA FONCTION PUBLIQUE&amp;lt;/XRefExternal&amp;gt;
+        &amp;lt;/EnablingAuthority&amp;gt;
+        &amp;lt;LongTitle lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429907&quot; lims:id=&quot;1429907&quot;&amp;gt;Décret agréant l’exemption du personnel embauché sur place&amp;lt;/LongTitle&amp;gt;
+        &amp;lt;RegulationMakerOrder&amp;gt;
+            &amp;lt;RegulationMaker&amp;gt;C.P.&amp;lt;/RegulationMaker&amp;gt;
+            &amp;lt;OrderNumber&amp;gt;2024-86&amp;lt;/OrderNumber&amp;gt;
+            &amp;lt;Date&amp;gt;
+                &amp;lt;YYYY&amp;gt;2024&amp;lt;/YYYY&amp;gt;
+                &amp;lt;MM&amp;gt;2&amp;lt;/MM&amp;gt;
+                &amp;lt;DD&amp;gt;2&amp;lt;/DD&amp;gt;
+            &amp;lt;/Date&amp;gt;
+        &amp;lt;/RegulationMakerOrder&amp;gt;
+    &amp;lt;/Identification&amp;gt;
+    &amp;lt;Order lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429908&quot; lims:id=&quot;1429908&quot;&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429909&quot; lims:id=&quot;1429909&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Sur recommandation du président du Conseil... &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;Loi sur l’emploi dans la fonction publique&amp;lt;/XRefExternal&amp;gt;&amp;lt;FootnoteRef idref=&quot;nbp_81000-2-4385_hq_27276&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt;, Son Excellence la Gouverneure générale en conseil agrée&amp;nbsp;:&amp;lt;/Text&amp;gt;
+            &amp;lt;Footnote id=&quot;nbp_81000-2-4385_hq_27276&quot; placement=&quot;page&quot; status=&quot;official&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;a&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;L.C. 2003, ch. 22, art. 12 et 13&amp;lt;/Text&amp;gt;
+            &amp;lt;/Footnote&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429910&quot; lims:id=&quot;1429910&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;a)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;l’annulation, par la Commission de la fonction publique, de l’exemption agréée par le décret C.P. 1967-444 du 10 mars 1967;&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429911&quot; lims:id=&quot;1429911&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;b)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;l’exemption, par la Commission de la fonction publique, de l’application de cette loi à la personne...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429912&quot; lims:id=&quot;1429912&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Attendu que la Commission de la fonction... &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;Loi sur l’emploi dans la fonction publique&amp;lt;/XRefExternal&amp;gt;&amp;lt;FootnoteRef idref=&quot;nbp_81000-2-4385_hq_27276&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt;, estime que l’application de...&amp;lt;/Text&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429913&quot; lims:id=&quot;1429913&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Attendu que la Commission de la fonction publique a consulté l’employeur en application du paragraphe 20(2) de cette loi,&amp;lt;/Text&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429914&quot; lims:id=&quot;1429914&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;À ces causes, en vertu des paragraphes 20(1) et (3) de la  &amp;lt;XRefExternal reference-type=&quot;act&quot; link=&quot;P-33.01&quot;&amp;gt;Loi sur l’emploi dans la fonction publique&amp;lt;/XRefExternal&amp;gt;&amp;lt;FootnoteRef idref=&quot;nbp_81000-2-4385_hq_27276&quot;&amp;gt;a&amp;lt;/FootnoteRef&amp;gt;, la Commission de la fonction publique&amp;nbsp;:&amp;lt;/Text&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429915&quot; lims:id=&quot;1429915&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;a)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;annule l’exemption agréée par le décret C.P. 1967-444 du 10 mars 1967;&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+            &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429916&quot; lims:id=&quot;1429916&quot; format-ref=&quot;indent-1-1&quot; language-align=&quot;no&quot; list-item=&quot;no&quot;&amp;gt;
+                &amp;lt;Label&amp;gt;b)&amp;lt;/Label&amp;gt;
+                &amp;lt;Text&amp;gt;exempte de l’application de cette loi la personne nommée et employée à l’extérieur du Canada...&amp;lt;/Text&amp;gt;
+            &amp;lt;/Provision&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429917&quot; lims:id=&quot;1429917&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot;&amp;gt;
+            &amp;lt;Text&amp;gt;Gatineau, le 21 novembre 2023&amp;lt;/Text&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+        &amp;lt;Provision lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429918&quot; lims:id=&quot;1429918&quot; format-ref=&quot;indent-0-0&quot; language-align=&quot;yes&quot; list-item=&quot;no&quot; topmarginspacing=&quot;12&quot;&amp;gt;
+            &amp;lt;TableGroup lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429919&quot; lims:id=&quot;1429919&quot; bilingual=&quot;yes&quot; orientation=&quot;portrait&quot; pointsize=&quot;11pt&quot; rowbreak=&quot;no&quot; spanlanguages=&quot;no&quot; spanmarginalnotecol=&quot;no&quot; topmarginspacing=&quot;50pt&quot;&amp;gt;
+                &amp;lt;table lims:inforce-start-date=&quot;2024-02-02&quot; lims:enacted-date=&quot;2024-02-02&quot; lims:fid=&quot;1429920&quot; lims:id=&quot;1429920&quot; frame=&quot;none&quot;&amp;gt;...&amp;lt;/table&amp;gt;
+            &amp;lt;/TableGroup&amp;gt;
+        &amp;lt;/Provision&amp;gt;
+    &amp;lt;/Order&amp;gt;
+&amp;lt;/Regulation&amp;gt;
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/b22cd5ee2d259d1da083c12b49033ad25e3a9f10dc68e3f41eebe16b5eb5ac32/justicecanada/laws-lois-xml" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
