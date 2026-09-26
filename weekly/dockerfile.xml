@@ -1,0 +1,917 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Dockerfile Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of Dockerfile on GitHub</description>
+    
+    <pubDate>Sat, 26 Sep 2026 05:47:39 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>vulhub/vulhub</title>
+      <link>https://github.com/vulhub/vulhub</link>
+      <description>&lt;p&gt;Pre-Built Vulnerable Environments Based on Docker-Compose&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://vulhub.org&quot;&gt;https://vulhub.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://vulhub.org&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/.github/assets/banner.png&quot; alt=&quot;Vulhub&quot; height=&quot;auto&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/bQCpZEK&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/485505185167179778.svg?sanitize=true&quot; alt=&quot;Chat on Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sponsors/phith0n&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/sponsors/phith0n?color=aqua&quot; alt=&quot;GitHub Sponsors&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://vulhub.org/environments&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;Vulnerabilities count&quot; src=&quot;https://img.shields.io/badge/dynamic/json?url=https://vulhub.org/api/statistic&amp;amp;query=%24.environments&amp;amp;label=vulnerabilities&quot; /&gt;&lt;/a&gt; &lt;img alt=&quot;GitHub language count&quot; src=&quot;https://img.shields.io/github/languages/count/vulhub/vulhub?color=yellow&quot; /&gt; &lt;a href=&quot;https://github.com/vulhub/vulhub/graphs/contributors&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;GitHub contributors&quot; src=&quot;https://img.shields.io/github/contributors-anon/vulhub/vulhub?color=orange&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/vulhub/vulhub/raw/master/LICENSE&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/vulhub/vulhub.svg?sanitize=true&quot; alt=&quot;GitHub&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Vulhub is an open-source collection of pre-built, ready-to-use vulnerable Docker environments. With just one command you can launch a vulnerable environment for security research, learning, or demonstration, no prior Docker experience required.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/README.zh-cn.md&quot;&gt;中文版本(Chinese version)&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Install Docker&lt;/strong&gt; (example for Ubuntu 24.04):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Install the latest version docker
+curl -s https://get.docker.com/ | sh
+
+# Run docker service
+systemctl start docker
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For other operating systems, see the &lt;a href=&quot;https://docs.docker.com/&quot;&gt;Docker documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Although all Vulhub environments are running based on Docker Compose, you no longer need to install docker-compose separately. Instead, you can use the built-in &lt;code&gt;docker compose&lt;/code&gt; command to start Vulhub environments.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Download and set up Vulhub:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone --depth 1 https://github.com/vulhub/vulhub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Launch a vulnerable environment:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd vulhub/langflow/CVE-2025-3248  # Example: enter a vulnerability directory
+docker compose up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Each environment directory contains a detailed &lt;strong&gt;README&lt;/strong&gt; with reproduction steps and usage instructions.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Clean up after testing:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker compose down -v
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Use a VPS or VM with at least 1GB RAM for best results&lt;/li&gt; 
+  &lt;li&gt;The &lt;code&gt;your-ip&lt;/code&gt; in documentation refers to your host/VPS IP, not the Docker container IP&lt;/li&gt; 
+  &lt;li&gt;Ensure Docker has permission to access all files in the current directory to avoid permission errors&lt;/li&gt; 
+  &lt;li&gt;Some environments may not support ARM architectures, see &lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/#troubleshooting&quot;&gt;Troubleshooting&lt;/a&gt; for details&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;All environments are for testing and educational purposes only. Do not use in production!&lt;/strong&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Troubleshooting&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Docker image pull fails in mainland China&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Docker Hub may be inaccessible from mainland China. Use a registry mirror or run Vulhub on an overseas VPS.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Environments fail to start on Apple Silicon (M-series) Macs&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Most Vulhub environments run natively on Docker Desktop for Mac with M-series chips. If an environment fails, try setting the platform explicitly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;export DOCKER_DEFAULT_PLATFORM=linux/amd64
+docker compose up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Environments fail on Kali Linux&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Some environments may fail on Kali Linux due to a low &lt;code&gt;ulimit nofile&lt;/code&gt; setting. See the &lt;a href=&quot;https://vulhub.org/documentation/faq&quot;&gt;FAQ&lt;/a&gt; for the fix.&lt;/p&gt; 
+&lt;p&gt;If you encounter issues that you cannot resolve, feel free to seek help from the community:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discord.gg/bQCpZEK&quot;&gt;Discord&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://x.com/vulhub&quot;&gt;X (Twitter)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions! Please read our &lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/CONTRIBUTING.md&quot;&gt;Contributing Guide&lt;/a&gt; to get started.&lt;/p&gt; 
+&lt;p&gt;Thanks to all contributors:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/vulhub/vulhub/graphs/contributors&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/contributors.svg?width=890&amp;amp;button=false&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Partners&lt;/h2&gt; 
+&lt;p&gt;Our partners and users:&lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://www.wangan.com/vulhub&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/wangan.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.cvebase.com&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/cvebase.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.huoxian.cn&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/huoxian.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.chaitin.cn&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/chaitin.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://xianzhi.aliyun.com/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/aliyun.svg?sanitize=true&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Sponsor Vulhub on &lt;a href=&quot;https://github.com/sponsors/phith0n&quot;&gt;GitHub Sponsor&lt;/a&gt;, &lt;a href=&quot;https://opencollective.com/vulhub#backer&quot;&gt;OpenCollective&lt;/a&gt;, or &lt;a href=&quot;https://www.patreon.com/bePatron?u=12677520&quot;&gt;Patreon&lt;/a&gt; 🙏&lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://github.com/sponsors/phith0n&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/backers.svg?width=138&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sponsors/phith0n&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/sponsors.svg?width=138&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;More ways to &lt;a href=&quot;https://vulhub.org/&quot;&gt;donate&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Vulhub is licensed under the MIT License. See &lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e09d8202251fa280b5519d9ff8a2e48bb54b18728d4713acb6a97ffab0208c5e/vulhub/vulhub" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>kagisearch/kagi-docs</title>
+      <link>https://github.com/kagisearch/kagi-docs</link>
+      <description>&lt;p&gt;Documentation for products made by Kagi Inc&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://help.kagi.com&quot;&gt;https://help.kagi.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Kagi Inc. Documentation&lt;/h1&gt; 
+&lt;p&gt;This repository contains open-source documentation for products made by Kagi Inc.&lt;/p&gt; 
+&lt;h2&gt;Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#knowledgebase-map&quot;&gt;Knowledgebase Map&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#support&quot;&gt;Support&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#discussions&quot;&gt;Discussions&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#community&quot;&gt;Community&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#contributing&quot;&gt;Contributing&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#issues&quot;&gt;Issues&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#pull-requests&quot;&gt;Pull Requests&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#creating-a-pull-request&quot;&gt;Creating a Pull Request&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#building&quot;&gt;Building&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Knowledgebase Map&lt;/h2&gt; 
+&lt;p&gt;This repo serves documentation for multiple products developed by Kagi.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Product&lt;/th&gt; 
+   &lt;th&gt;Documentation&lt;/th&gt; 
+   &lt;th&gt;Repo Directory&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://kagi.com&quot;&gt;Kagi Search&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://help.kagi.com/kagi&quot;&gt;https://help.kagi.com/kagi&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/kagisearch/kagi-docs/tree/main/docs/kagi&quot;&gt;kagi&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://browser.kagi.com&quot;&gt;Orion Browser&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://help.kagi.com/orion&quot;&gt;https://help.kagi.com/orion&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/kagisearch/kagi-docs/tree/main/docs/orion&quot;&gt;orion&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Our documentation efforts are ongoing! We welcome your feedback and contributions - read on for details!&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;h3&gt;Discussions&lt;/h3&gt; 
+&lt;p&gt;On our &lt;a href=&quot;https://github.com/kagisearch/kagi-docs/discussions&quot;&gt;discussions&lt;/a&gt; page, you will find several categories:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Announcements&lt;/strong&gt;, where we will post important updates related to the documentation in this repo.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Q&amp;amp;A&lt;/strong&gt;, where you can discuss and ask questions about the documentation and APIs that we offer. This is the best place to start if you&#39;re not sure of a better place!&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For topics outside of the documentation &amp;amp; APIs, please refer to that product&#39;s official support venues, in the &lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#community&quot;&gt;Community&lt;/a&gt; section.&lt;/p&gt; 
+&lt;h3&gt;Community&lt;/h3&gt; 
+&lt;p&gt;Each of our products has their own forum, and we encourage you to join us there. We also have a shared Discord server where you can discuss all of our products.&lt;/p&gt; 
+&lt;p&gt;Discord Invite: &lt;a href=&quot;https://kagi.com/discord&quot;&gt;https://kagi.com/discord&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Product&lt;/th&gt; 
+   &lt;th&gt;Feedback &amp;amp; Bug Reports&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Kagi Search&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://kagifeedback.org&quot;&gt;kagifeedback.org&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Orion Browser&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://orionfeedback.org&quot;&gt;orionfeedback.org&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;h3&gt;Issues&lt;/h3&gt; 
+&lt;p&gt;We welcome any bug reports, requests for clarification, or other inquiries via the &lt;a href=&quot;https://github.com/kagisearch/kagi-docs/issues&quot;&gt;Issues&lt;/a&gt; tab.&lt;/p&gt; 
+&lt;p&gt;Upon opening an issue, you will be presented with a list of templates to choose from that will help you provide us with the information we need, and triage the issue with the correct labels.&lt;/p&gt; 
+&lt;p&gt;A staff member will review your issue, and help investigate what the best course of action is.&lt;/p&gt; 
+&lt;h3&gt;Pull Requests&lt;/h3&gt; 
+&lt;p&gt;Thank you for taking the time to contribute!&lt;/p&gt; 
+&lt;p&gt;We welcome contributions such as:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Fixes to incorrect statements or inaccuracies within the documentation.&lt;/li&gt; 
+ &lt;li&gt;Extending documentation with details, or clarifying complicated explanations with easier to understand wording.&lt;/li&gt; 
+ &lt;li&gt;Additions that fill gaps or missing pieces in the current documentation.&lt;/li&gt; 
+ &lt;li&gt;Fixing of spelling and grammatical errors in the documentation.&lt;/li&gt; 
+ &lt;li&gt;Adding new documentation when staff calls on the community to prepare new sections.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We would ask that you withhold:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Whitespace or formatting changes.&lt;/li&gt; 
+ &lt;li&gt;Subjective wording changes.&lt;/li&gt; 
+ &lt;li&gt;Modifications to the overall structure and format of the documentation.&lt;/li&gt; 
+ &lt;li&gt;Additions needlessly restructure current documentation.&lt;/li&gt; 
+ &lt;li&gt;Additions that document unreleased product functionality.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you are not sure, please feel free to &lt;a href=&quot;https://github.com/kagisearch/kagi-docs/issues/new/choose&quot;&gt;open an issue&lt;/a&gt; first, and we will help guide you along!&lt;/p&gt; 
+&lt;h3&gt;Creating a Pull Request&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kagisearch/kagi-docs/fork&quot;&gt;Create a fork&lt;/a&gt; of this repo&lt;/li&gt; 
+ &lt;li&gt;Create a branch: &lt;code&gt;git checkout -b username/my-cool-change&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Follow the &lt;a href=&quot;https://raw.githubusercontent.com/kagisearch/kagi-docs/main/#building&quot;&gt;Building&lt;/a&gt; instructions to compile the book you would like to change&lt;/li&gt; 
+ &lt;li&gt;Make your changes&lt;/li&gt; 
+ &lt;li&gt;Commit your changes: &lt;code&gt;git -am &#39;Update documentation&#39;&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Push the branch to your fork: &lt;code&gt;git push origin username/my-cool-change&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Create a new Pull Request&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;A template in the pull request form will guide you in providing any additional details we need to help accept your changes.&lt;/p&gt; 
+&lt;h2&gt;Building&lt;/h2&gt; 
+&lt;p&gt;Kagi&#39;s docs generated by &lt;a href=&quot;https://vitepress.dev/&quot;&gt;Vitepress&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Development on your localhost&lt;/h3&gt; 
+&lt;pre&gt;&lt;code&gt;npm install
+npm run docs:dev
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8d655584e24ca4f88bc3d8b1af4ded8d31f3dd32d8014ab99f864403df585375/kagisearch/kagi-docs" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>kubernetes-sigs/contributor-playground</title>
+      <link>https://github.com/kubernetes-sigs/contributor-playground</link>
+      <description>&lt;h1&gt;Kubernetes Contributor Playground&lt;/h1&gt; 
+&lt;p&gt;Hello new contributors!&lt;/p&gt; 
+&lt;p&gt;This repository will be used as a safe space for participants in the New Contributor Onboarding Track to familiarize themselves with (some of) the Kubernetes Project&#39;s review and pull request processes.&lt;/p&gt; 
+&lt;p&gt;A &lt;a href=&quot;https://www.youtube.com/playlist?list=PL69nYSiGNLP3M5X7stuD7N4r3uP2PZQUx&quot;&gt;Youtube playlist&lt;/a&gt; of the New Contributor workshop has been posted, and an outline of content covered in the videos can be found &lt;a href=&quot;http://git.k8s.io/community/events/2018/05-contributor-summit&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;&lt;strong&gt;If you want to practice submitting your Pull Request on demand, do so in the &lt;code&gt;remote&lt;/code&gt; directory. If you&#39;re instructed to use this repository at an event, run them in the specified event directory. When practicing, do not edit files in the root directory.&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;Community, discussion, contribution, and support&lt;/h2&gt; 
+&lt;p&gt;Learn how to engage with the Kubernetes community on the &lt;a href=&quot;http://kubernetes.io/community/&quot;&gt;community page&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You can reach the maintainers of this project at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://slack.k8s.io/&quot;&gt;Slack&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://groups.google.com/forum/#!forum/kubernetes-dev&quot;&gt;Mailing List&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Code of conduct&lt;/h3&gt; 
+&lt;p&gt;Participation in the Kubernetes community is governed by the &lt;a href=&quot;https://raw.githubusercontent.com/kubernetes-sigs/contributor-playground/master/code-of-conduct.md&quot;&gt;Kubernetes Code of Conduct&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c7f2cd6bec45b1c8d564578526cf73f00677d35d2c46bfefbf79055d35a140a2/kubernetes-sigs/contributor-playground" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Dark-Xploit/CypherX</title>
+      <link>https://github.com/Dark-Xploit/CypherX</link>
+      <description>&lt;p&gt;𝙏𝙃𝙀 𝙊𝙁𝙁𝙄𝘾𝙄𝘼𝙇 𝘾𝙔𝙋𝙃𝙀𝙍 𝙓 𝙍𝙀𝙋𝙊𝙎𝙄𝙏𝙊𝙍𝙔.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.cypherx.space&quot;&gt;https://www.cypherx.space&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; 𝐂𝐘𝐏𝐇𝐄𝐑 𝐗 &lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/Dark-Xploit/CypherX&quot;&gt; &lt;img alt=&quot;CypherX docs&quot; height=&quot;350&quot; src=&quot;https://i.ibb.co/nqsRcKDB/Xploader4.jpg&quot; /&gt; &lt;/a&gt; &lt;/p&gt;  
+&lt;p&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/Dark-Xploit&quot;&gt;&lt;img title=&quot;Author&quot; src=&quot;https://img.shields.io/badge/CypherX-darkgreen?style=for-the-badge&amp;amp;logo=whatsapp&quot; /&gt;&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;strong&gt;1. FORK REPOSITORY&lt;/strong&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/Dark-Xploit/CypherX/fork&quot; target=&quot;_blank&quot;&gt; &lt;img alt=&quot;Fork Repo&quot; src=&quot;https://img.shields.io/badge/Fork%20Repo-100000?style=for-the-badge&amp;amp;logo=scan&amp;amp;logoColor=white&amp;amp;labelColor=darkblue&amp;amp;color=darkblue&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;strong&gt;2. SESSION ID &amp;amp; DEPLOYMENTS&lt;/strong&gt; &lt;br /&gt; &lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://heroku.com/deploy?template=https://github.com/Dark-Xploit/CypherX&quot;&gt; &lt;img src=&quot;https://www.herokucdn.com/deploy/button.svg?sanitize=true&quot; alt=&quot;Deploy to Heroku&quot; width=&quot;200&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://pair.cypherxbot.space/&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Server_1-100000?style=for-the-badge&amp;amp;logo=scan&amp;amp;logoColor=white&amp;amp;labelColor=darkred&amp;amp;color=darkred&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://pair2.cypherxbot.space/&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Server_2-100000?style=for-the-badge&amp;amp;logo=scan&amp;amp;logoColor=white&amp;amp;labelColor=darkred&amp;amp;color=darkred&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://pair3.cypherxbot.space/&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Server_3-100000?style=for-the-badge&amp;amp;logo=scan&amp;amp;logoColor=white&amp;amp;labelColor=darkred&amp;amp;color=darkred&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://paircx3-3389649423ac.herokuapp.com/&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Server_Offline-100000?style=for-the-badge&amp;amp;logo=scan&amp;amp;logoColor=white&amp;amp;labelColor=darkred&amp;amp;color=darkred&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://paircx4-32adc0478cd2.herokuapp.com/&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Server_Offline-100000?style=for-the-badge&amp;amp;logo=scan&amp;amp;logoColor=white&amp;amp;labelColor=darkred&amp;amp;color=darkred&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://paircx2-156d078e4c76.herokuapp.com/&quot; target=&quot;_blank&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Server_Ofline-100000?style=for-the-badge&amp;amp;logo=scan&amp;amp;logoColor=white&amp;amp;labelColor=darkred&amp;amp;color=darkred&quot; /&gt; &lt;/a&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/914569265/02efa1ed-79f8-41c5-96aa-bfdb89c8955f" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>redhat-openshift-ecosystem/certified-operators</title>
+      <link>https://github.com/redhat-openshift-ecosystem/certified-operators</link>
+      <description>&lt;p&gt;Production catalog for Red Hat Certified Operator Bundles&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Red Hat certified operators production catalog&lt;/h1&gt; 
+&lt;p&gt;Production catalog for Red Hat Certified Operator Bundles&lt;/p&gt; 
+&lt;p&gt;See our &lt;a href=&quot;https://redhat-openshift-ecosystem.github.io/operator-pipelines/&quot;&gt;documentation&lt;/a&gt; to find out more about Certified operators and contribution.&lt;/p&gt; 
+&lt;h1&gt;Operator bundle submission&lt;/h1&gt; 
+&lt;p&gt;A new operator bundle submission needs to follow a predefined directory structure that is described below in this section. The new submission is done through Github pull requests which can be either open by the &lt;a href=&quot;https://github.com/redhat-openshift-ecosystem/operator-pipelines&quot;&gt;CI pipeline&lt;/a&gt; or manually by a user. The recommended way is to use the CI pipeline because it makes sure all necessary data are provided in the correct format. Documentation about how to use the pipeline is available in the pipeline repository.&lt;/p&gt; 
+&lt;h2&gt;Pull request&lt;/h2&gt; 
+&lt;p&gt;A pull request with a new operator bundle needs to follow given rules to pass a tests:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Title format: &lt;code&gt;operator package-name (version)&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Pull request can only modify one operator&lt;/li&gt; 
+ &lt;li&gt;Pull request can&#39;t modify already merged operators&lt;/li&gt; 
+ &lt;li&gt;Associated images need to be pinned to specific image digest - tags are not allowed&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Rules mentioned above are always followed when pull request is opened using CI pipeline.&lt;/p&gt; 
+&lt;h2&gt;Directory structure&lt;/h2&gt; 
+&lt;p&gt;This repository contains an &lt;code&gt;operator&lt;/code&gt; directory where all certified operators are stored. Each operator has its directory with its package name. Inside the directory, you have to provide a &lt;code&gt;ci.yaml&lt;/code&gt; file that stores the necessary metadata for a successful certification process. The format of the file is described below.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;operators
+└── kogito-operator
+    ├── 1.6.0
+    │&amp;nbsp;&amp;nbsp; ├── manifests
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitobuilds.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitoinfras.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitoruntimes.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitosupportingservices.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── kogito-operator.clusterserviceversion.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; └── kogito-operator-controller-manager_v1_serviceaccount.yaml
+    │&amp;nbsp;&amp;nbsp; └── metadata
+    │&amp;nbsp;&amp;nbsp;  &amp;nbsp;&amp;nbsp; └── annotations.yaml
+    └── ci.yaml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Format of ci.yaml file&lt;/h3&gt; 
+&lt;p&gt;In the file, user needs to provide necessary details for the operator certification process. Currently, the certification process supports the following options:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;cert_project_id&lt;/code&gt; - Identifier of certification project created through Red Hat Connect.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;merge&lt;/code&gt; - A boolean value that determines whether a new operator is automatically merged when passed all required checks. (optional, default: &lt;code&gt;True&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c10fb816ce8fd8bd3deedbbc2bd8d02af847f95d7bb1800eb74ba3c81d433b3e/redhat-openshift-ecosystem/certified-operators" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>datawhalechina/vibe-vibe</title>
+      <link>https://github.com/datawhalechina/vibe-vibe</link>
+      <description>&lt;p&gt;AI for All: The First Systematic Vibe Coding Tutorial | From Zero to Full-Stack, Bring Your Ideas to Life | Live at: www.vibevibe.cn ；全民AI学习第一课，首个系统化 Vibe Coding 开源教程 | 零基础到全栈实战，让人人都能借助 AI 实现自己的想法与创意 | 在线地址：www.vibevibe.cn&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.vibevibe.cn&quot;&gt;https://www.vibevibe.cn&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/datawhalechina/vibe-vibe/main/README.en.md&quot;&gt;English&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/datawhalechina/vibe-vibe/main/README.md&quot;&gt;&lt;strong&gt;简体中文&lt;/strong&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/datawhalechina/vibe-vibe/main/docs/public/logo.png&quot; width=&quot;100&quot; alt=&quot;Vibe Vibe&quot; /&gt; &lt;/p&gt; 
+&lt;h1 align=&quot;center&quot;&gt;Vibe Vibe &lt;/h1&gt; 
+&lt;h1&gt;Vibe Vibe —— 人人都能学会的 AI 编程（Vibe Coding）指南&lt;/h1&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;面向零编程基础学习者的 AI 辅助编程系统化教程，从「我有一个想法」到「我做出了一个产品」，让人人都能成为 Builder。&lt;/strong&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;点击以访问教程主页：&lt;a href=&quot;http://www.vibevibe.cn&quot;&gt;www.vibevibe.cn&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;核心理念&lt;/h3&gt; 
+&lt;p&gt;践行 OpenAI 联合创始人 &lt;strong&gt;Andrej Karpathy&lt;/strong&gt; 提出的 Vibe Coding 理念——&lt;strong&gt;从 Coder 到 Commander&lt;/strong&gt;：通过自然语言与 AI 对话，让编程从&quot;写代码&quot;转变为&quot;对话式创作&quot;。&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;em&gt;&quot;完全沉浸于编程的&#39;氛围&#39;中，忘记代码的存在。&quot;&lt;/em&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;快速开始&lt;/h3&gt; 
+&lt;p&gt;📖 &lt;strong&gt;在线阅读&lt;/strong&gt;：&lt;a href=&quot;https://www.vibevibe.cn&quot;&gt;www.vibevibe.cn&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;你是谁&lt;/th&gt; 
+   &lt;th&gt;推荐起点&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;完全零基础&lt;/td&gt; 
+   &lt;td&gt;基础篇 → 第1章 觉醒&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;用过 ChatGPT 等大语言模型工具但没做过项目&lt;/td&gt; 
+   &lt;td&gt;基础篇 → 第2章 心法&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;有编程基础想学 Vibe Coding&lt;/td&gt; 
+   &lt;td&gt;基础篇快速浏览 → 进阶篇&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;想直接动手做项目&lt;/td&gt; 
+   &lt;td&gt;基础篇 → 第4章 实战&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;想找项目练手&lt;/td&gt; 
+   &lt;td&gt;实践篇&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;私有化部署&lt;/h3&gt; 
+&lt;p&gt;如果你想在本地或内网环境部署本教程站点，仓库已经提供了可直接使用的 &lt;code&gt;Dockerfile&lt;/code&gt; 和 &lt;code&gt;docker-compose.yml&lt;/code&gt;：&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker compose up -d --build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;默认访问地址为 &lt;code&gt;http://localhost:1024&lt;/code&gt;。&lt;/p&gt; 
+&lt;p&gt;更完整的部署方式、静态文件部署方案和离线环境注意事项，请查看&lt;a href=&quot;https://raw.githubusercontent.com/datawhalechina/vibe-vibe/main/docs/deployment/index.md&quot;&gt;部署指南&lt;/a&gt;。&lt;/p&gt; 
+&lt;h3&gt;教程定位&lt;/h3&gt; 
+&lt;p&gt;国内首个系统化的 Vibe Coding 开源教程，分为四大板块：&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;板块&lt;/th&gt; 
+   &lt;th&gt;定位&lt;/th&gt; 
+   &lt;th&gt;适合人群&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;📘 &lt;strong&gt;基础篇&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;AI 编程入门 + 心法 + 第一个项目&lt;/td&gt; 
+   &lt;td&gt;完全零基础、用过 ChatGPT 但没做过项目&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;📗 &lt;strong&gt;进阶篇&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;16章&quot;序言可阅读&quot; · 从0到上线的避坑指南&lt;/td&gt; 
+   &lt;td&gt;想了解完整项目交付流程的开发者&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;📙 &lt;strong&gt;实践篇&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;分人群项目实战 + 进阶技能训练&lt;/td&gt; 
+   &lt;td&gt;想通过动手练习巩固所学&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;📕 &lt;strong&gt;优质文章篇&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;精选学习资源 + 行业前沿追踪&lt;/td&gt; 
+   &lt;td&gt;想持续学习、保持行业敏感度&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;为什么需要这份教程？&lt;/strong&gt; Vibe Coding 已成为全球趋势（越来越多的创业公司大部分代码由 AI 辅助生成），但国内学习资源碎片化严重，缺乏系统化、零基础友好、包含完整进阶路径的教程。&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;适合人群&lt;/strong&gt;：编程零基础者、大学生、创业者、传统程序员、职场人士，任何想用 AI 快速实现想法、提升工作效率或学习新范式的人。&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;进阶版预告：在线 IDE + Skills&lt;/h3&gt; 
+&lt;p&gt;我们即将推出&lt;strong&gt;在线开发环境&lt;/strong&gt;，无需本地配置环境，打开浏览器即可开始学习：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;云端 IDE&lt;/strong&gt; —— 内置完整的 Node.js 24、Python、Docker 等开发环境&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;50+ AI Skills&lt;/strong&gt; —— 预装丰富的 AI 辅助技能包，覆盖开发全流程&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;开箱即用&lt;/strong&gt; —— 无需安装任何软件，登录即可开始编程实践&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;让学习门槛降到最低，敬请期待！&lt;/p&gt; 
+&lt;h3&gt;学习产出&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;阶段&lt;/th&gt; 
+   &lt;th&gt;你将获得&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;基础篇&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;掌握 Vibe Coding 心法 · 用自然语言指挥 AI · 独立完成项目 · 部署上线能力&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;进阶篇&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;现代全栈技术栈 · 前后端架构 · 用户系统开发 · 生产级部署 · 工程化思维&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;贡献者名单&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;姓名&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;职责&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;简介&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://www.hangkangfu.cn&quot;&gt;符航康&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;项目负责人 &amp;amp; 核心贡献者&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;一位 AI 时代的原住民&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;a href=&quot;https://www.guohaoqi.cn&quot;&gt;齐国皓&lt;/a&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;项目负责人 &amp;amp; 核心贡献者&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;现就读于新加坡国立大学计算机学院, 湖南大学金融科技协会创始人&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;刘磊&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;「实践篇」贡献者、图像贡献者&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;中国科学院大学，一枚在职后端 Coder，热爱 Vibe，崇尚分享。&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;陈俊希&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;「优质文章篇」板块贡献者&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;湖南大学金融科技协会会长，湖南大学金融与统计学院24级本科生&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;金龙&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;「实践篇」板块贡献者&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;北京大学学生创新学社AI俱乐部副部长，北京大学24级研究生&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;舒璐璐&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;「实践篇」板块贡献者&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;湖南大学「麓山人文+」创始人，湖南大学岳麓书院23级本科生&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;目录&lt;/h2&gt; 
+&lt;p&gt;本教程分为&lt;strong&gt;四大板块&lt;/strong&gt;，采用渐进式学习路径设计（点击展开详细目录）：&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;📘 基础篇：Vibe Coding 启示录（写给所有人的 AI 编程入门）&lt;/b&gt;&lt;/summary&gt; 
+ &lt;pre&gt;&lt;code&gt;基础篇目录
+│
+├── 写在最前面
+│   └── 找到你的位置
+│
+├── 第1章：觉醒 —— 为什么现在是编程最好的时代
+│   ├── 1.1 编程已死，编程永生：从 Coder 到 Commander
+│   ├── 1.2 核心概念：Vibe Coding 与 Spec Coding 详解
+│   ├── 1.3 破除迷信：不懂英文、数学不好也能写代码吗？
+│   ├── 1.4 工具初探：Cursor、Windsurf、Bolt.new 与 Replit 选型指南
+│   └── 1.5 Hello World：你的第一个 3 分钟 AI 网页
+│
+├── 第2章：心法 —— 像产品经理一样思考
+│   ├── 2.1 拒绝功能堆砌：为什么你的 AI 写不出复杂的 App？
+│   ├── 2.2 MVP 思维：如何设计一个&quot;能跑的最小版本&quot;
+│   ├── 2.3 灵魂三问：用户是谁？痛点在哪？为何用你？
+│   └── 2.4 实战演练：拆解一个&quot;背单词软件&quot;的想法
+│
+├── 第3章：技法 —— 与 AI 对话的艺术
+│   ├── 3.1 提示词工程基础：Context is King
+│   ├── 3.2 用户旅程地图：把想法变成 AI 能懂的路径
+│   ├── 3.3 编写第一份 PRD：让 AI 不再胡编乱造
+│   └── 3.4 功能优先级 P0/P1/P2：学会对 AI 说&quot;这个先不做&quot;
+│
+├── 第4章：实战 —— 从 0 到 1 开发个人工具
+│   ├── 4.1 环境准备：无需命令行的开发环境搭建
+│   ├── 4.2 第一轮：生成静态页面 —— 先看&quot;脸&quot;
+│   ├── 4.3 第二轮：注入逻辑与交互 —— 再长&quot;脑&quot;
+│   ├── 4.4 第三轮：数据存储基础
+│   └── 4.5 Debug 指南：当 AI 报错时，如何用 AI 修复 AI
+│
+├── 第5章：精进 —— 从&quot;能用&quot;到&quot;好用&quot;
+│   ├── 5.1 后悔药：代码改崩了怎么办
+│   ├── 5.2 见世面：把网页发到互联网上
+│   ├── 5.3 护城河：AI 时代的安全意识
+│   ├── 5.4 再进化：项目的持续迭代与优化
+│   ├── 5.5 知边界：Vibe Coding 的能与不能
+│   └── 5.6 启程前：本章总结与进阶预告
+│
+├── 结语：给未来的你
+│
+├── 下部预告：Vibe Coding 全栈实战教程
+│
+└── 附录
+    ├── A. Prompt 速查清单
+    ├── B. 常见错误与解决方案速查表
+    ├── C. 术语表（中英对照）
+    ├── D. 工具对比速查表
+    └── E. 项目 idea 清单
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;📗 进阶篇：从0到上线的避坑指南&lt;/b&gt;&lt;/summary&gt; 
+ &lt;p&gt;本篇以&lt;strong&gt;完整的产品交付流程&lt;/strong&gt;为主线，共16章，每章序言均可阅读：&lt;/p&gt; 
+ &lt;pre&gt;&lt;code&gt;进阶篇目录
+│
+├── 第1章：环境搭建、代码形态与包管理器
+├── 第2章：开发工具与 AI 调教
+├── 第3章：PRD 与文档驱动开发
+├── 第4章：开发常识与技术栈
+├── 第5章：代码运行状态与构建原理
+├── 第6章：界面（UI）与交互（UX）
+├── 第7章：环境变量与安全机制
+├── 第8章：数据持久化与数据库
+├── 第9章：功能测试流程与自动化脚本
+├── 第10章：Localhost 与公网访问
+├── 第11章：Git 版本控制与跨平台协作
+├── 第12章：无服务器部署与 CI/CD 自动化
+├── 第13章：域名解析原理与网络接入
+├── 第14章：云服务器运维与项目部署
+├── 第15章：SEO、分享与数据统计
+└── 第16章：用户反馈与产品迭代
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;&lt;strong&gt;技术栈&lt;/strong&gt;：Next.js 16 · React · TypeScript · Tailwind CSS · shadcn/ui · Drizzle ORM · PostgreSQL&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;📙 实践篇：分人群项目实战&lt;/b&gt;&lt;/summary&gt; 
+ &lt;pre&gt;&lt;code&gt;实践篇目录
+│
+├── 基础板块（按人群分类）
+│   ├── 文科生/商科生项目 —— 内容创作、数据展示类
+│   ├── 理工科学生项目 —— 算法可视化、数据处理类
+│   └── 职场人士项目 —— 工作流自动化、效率提升类
+│
+└── 进阶板块（基于 Sean&#39;s Stories 系列）
+    ├── 核心技能 —— 上线应用、数据库、后端部署、用户认证
+    ├── AI Agent 开发 —— RAG、向量数据库、MCP 集成
+    ├── 全栈项目实战 —— SaaS、地图应用、移动应用
+    └── 工具与效率 —— n8n、GitHub 工作流、React/TS 进阶
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;📕 优质文章篇：精选学习资源&lt;/b&gt;&lt;/summary&gt; 
+ &lt;pre&gt;&lt;code&gt;优质文章篇目录
+│
+├── 知名公司博客 —— OpenAI、Anthropic、Vercel 等技术博客
+├── 优质播客 —— AI、开发者、创业者相关播客推荐
+├── 研究报告 —— AI 发展报告、开发者调查、行业趋势
+├── 优质 Newsletter —— 值得订阅的技术周刊
+└── 开发者社区 —— Discord、Twitter、GitHub 优质资源
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;参与贡献&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;如果你发现了一些问题，可以提Issue进行反馈，如果提完没有人回复你可以联系&lt;a href=&quot;https://github.com/datawhalechina/DOPMC/raw/main/OP.md&quot;&gt;保姆团队&lt;/a&gt;的同学进行反馈跟进~&lt;/li&gt; 
+ &lt;li&gt;如果你想参与贡献本项目，可以提Pull request，如果提完没有人回复你可以联系&lt;a href=&quot;https://github.com/datawhalechina/DOPMC/raw/main/OP.md&quot;&gt;保姆团队&lt;/a&gt;的同学进行反馈跟进~&lt;/li&gt; 
+ &lt;li&gt;如果你对 Datawhale 很感兴趣并想要发起一个新的项目，请按照&lt;a href=&quot;https://github.com/datawhalechina/DOPMC/raw/main/GUIDE.md&quot;&gt;Datawhale开源项目指南&lt;/a&gt;进行操作即可~&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;关注我们&lt;/h2&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;p&gt;扫描下方二维码关注公众号：Datawhale&lt;/p&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/datawhalechina/pumpkin-book/master/res/qrcode.jpeg&quot; width=&quot;180&quot; height=&quot;180&quot; /&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://star-history.com/#datawhalechina/vibe-vibe&amp;amp;Date&quot;&gt;&lt;img src=&quot;https://api.star-history.com/svg?repos=datawhalechina/vibe-vibe&amp;amp;type=Date&quot; alt=&quot;Star History Chart&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;LICENSE&lt;/h2&gt; 
+&lt;p&gt;&lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot;&gt;&lt;img alt=&quot;知识共享许可协议&quot; style=&quot;border-width:0&quot; src=&quot;https://img.shields.io/badge/license-CC%20BY--NC--SA%204.0-lightgrey&quot; /&gt;&lt;/a&gt;&lt;br /&gt;本作品采用&lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot;&gt;知识共享署名-非商业性使用-相同方式共享 4.0 国际许可协议&lt;/a&gt;进行许可。&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/38953b9960f3d303bcaf9b06d856f903d738b55cc99a40e369c8ae1f35f5e392/datawhalechina/vibe-vibe" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>freeCodeCamp/rdb-alpha</title>
+      <link>https://github.com/freeCodeCamp/rdb-alpha</link>
+      <description>&lt;h3&gt;Prerequisites&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.docker.com/engine/&quot;&gt;Docker Engine&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://code.visualstudio.com/download&quot;&gt;VS Code&lt;/a&gt; and the &lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ms-vscode-remote.remote-containers&quot;&gt;Dev Containers&lt;/a&gt; extension&lt;/li&gt; 
+ &lt;li&gt;Git&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;How to Run a Project in Docker&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Clone the RDB Alpha repo with &lt;code&gt;git clone https://github.com/freeCodeCamp/rdb-alpha&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Open a terminal, navigate to the &lt;code&gt;rdb-alpha&lt;/code&gt; directory, and open VSCode with &lt;code&gt;code .&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Press Ctrl / Cmd + Shift + P and enter &lt;code&gt;Dev Containers: Rebuild Container and Reopen in Container&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;A new VS Code window will open and begin building the Docker image. It will take several minutes to build the first time.&lt;/li&gt; 
+ &lt;li&gt;Once the image is finished building, press Ctrl / Cmd + Shift + P and enter &lt;code&gt;CodeRoad: Start&lt;/code&gt; to open CodeRoad&lt;/li&gt; 
+ &lt;li&gt;In the CodeRoad window, click &quot;Start New Tutorial&quot;&lt;/li&gt; 
+ &lt;li&gt;Enter the URL to the &lt;code&gt;tutorial.json&lt;/code&gt; file of the project you want to start (ex: &lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-bash-by-building-a-boilerplate/main/tutorial.json&quot;&gt;https://raw.githubusercontent.com/freeCodeCamp/learn-bash-by-building-a-boilerplate/main/tutorial.json&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Click the &quot;Start&quot; button&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;There may be some additional troubleshooting steps to get the container running properly. They can often be solved by following the onscreen instructions, or examining any error messages in your terminal.&lt;/p&gt; 
+&lt;h3&gt;How to Restart or Switch Projects&lt;/h3&gt; 
+&lt;p&gt;Note: If you restart or switch projects you will lose your progress, along with any files or directories you created.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Press Ctrl / Cmd + Shift + P and enter &lt;code&gt;Dev Containers: Rebuild Container&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Wait for VS Code to reopen and reload the Docker container&lt;/li&gt; 
+ &lt;li&gt;Open CodeRoad, enter the URL to a &lt;code&gt;tutorial.json&lt;/code&gt; file, and start the project as described above&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;&lt;code&gt;tutorial.json&lt;/code&gt; File URLs for CodeRoad&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-bash-by-building-a-boilerplate/main/tutorial.json&quot;&gt;Learn Bash by Building a Boilerplate&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-relational-databases-by-building-a-database-of-video-game-characters/main/tutorial.json&quot;&gt;Learn Relational Databases by Building a Database of Video Game Characters&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-celestial-bodies-database/main/tutorial.json&quot;&gt;Celestial Bodies Database&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-bash-scripting-by-building-five-programs/main/tutorial.json&quot;&gt;Learn Bash Scripting by Building Five Programs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-sql-by-building-a-student-database-part-1/main/tutorial.json&quot;&gt;Learn SQL by Building a Student Database: Part 1&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-sql-by-building-a-student-database-part-2/main/tutorial.json&quot;&gt;Learn SQL by Building a Student Database: Part 2&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-world-cup-database/main/tutorial.json&quot;&gt;World Cup Database&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-advanced-bash-by-building-a-kitty-ipsum-translator/main/tutorial.json&quot;&gt;Learn Advanced Bash by Building a Kitty Ipsum Translator&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-bash-and-sql-by-building-a-bike-rental-shop/main/tutorial.json&quot;&gt;Learn Bash and SQL by Building a Bike Rental Shop&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-salon-appointment-scheduler/main/tutorial.json&quot;&gt;Salon Appointment Scheduler&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-nano-by-building-a-castle/main/tutorial.json&quot;&gt;Learn Nano by Building a Castle&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-git-by-building-an-sql-reference-object/main/tutorial.json&quot;&gt;Learn Git by Building an SQL Reference Object&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-periodic-table-database/main/tutorial.json&quot;&gt;Periodic Table Database&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/freeCodeCamp/learn-number-guessing-game/main/tutorial.json&quot;&gt;Number Guessing Game&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/69b808e97088c78e6352127478b767bfe6913dc674155687ee5768d4ad6c8b3a/freeCodeCamp/rdb-alpha" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>odoo/docker</title>
+      <link>https://github.com/odoo/docker</link>
+      <description>&lt;h1&gt;About this Repo&lt;/h1&gt; 
+&lt;p&gt;This is the Git repo of the official Docker image for &lt;a href=&quot;https://registry.hub.docker.com/_/odoo/&quot;&gt;Odoo&lt;/a&gt;. See the Hub page for the full readme on how to use the Docker image and for information regarding contributing and issues.&lt;/p&gt; 
+&lt;p&gt;The full readme is generated over in &lt;a href=&quot;https://github.com/docker-library/docs&quot;&gt;docker-library/docs&lt;/a&gt;, specifically in &lt;a href=&quot;https://github.com/docker-library/docs/tree/master/odoo&quot;&gt;docker-library/docs/odoo&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/940d426f3ad52a4d00b861a3b601370e665970b994f771b2ae8b0f2f4587d1ef/odoo/docker" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Vinpink2/June-Ultra</title>
+      <link>https://github.com/Vinpink2/June-Ultra</link>
+      <description>&lt;p&gt;June Ultra (Official) Repository.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.youtube.com/@Suprem_e_Lord&quot;&gt;https://www.youtube.com/@Suprem_e_Lord&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;JUNE-X ULTRA&lt;/h1&gt; 
+ &lt;a href=&quot;https://git.io/typing-svg&quot;&gt; &lt;img src=&quot;https://readme-typing-svg.demolab.com?font=Rockwell&amp;amp;size=45&amp;amp;pause=1000&amp;amp;color=33ff00&amp;amp;center=true&amp;amp;width=800&amp;amp;height=80&amp;amp;lines=June-Official;Multi+Device+Whatsapp+Bot;Made+by+Supreme&quot; alt=&quot;Typing SVG&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://i.ibb.co/PzZPCy4m/upload-1777031446938-c2f61fb6-jpg.jpg&quot; alt=&quot;JUNE X&quot; height=&quot;250&quot; /&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://readme-typing-svg.demolab.com/?lines=The+bot+supports+deployment;On+all+free+panels+easily&quot; alt=&quot;Typing SVG&quot; /&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Quick Actions&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Action&lt;/th&gt; 
+    &lt;th&gt;Link&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Fork Repository&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://github.com/Vinpink2/June-Ultra/fork&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Fork%20Repo%2520-24292e?style=for-the-badge&amp;amp;logo=github&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Download ZIP&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://github.com/Vinpink2/June-Ultra/archive/refs/heads/main.zip&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Download%20-2ea043?style=for-the-badge&amp;amp;logo=github&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🌐 Deployment Options&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Platform&lt;/th&gt; 
+    &lt;th&gt;Button&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Heroku&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://dashboard.heroku.com/new?template=https://github.com/Vinpink2/June-Ultra&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/HerokuHosting-6762A6?style=for-the-badge&amp;amp;logo=heroku&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Railway&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://railway.app/new&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Railway-000000?style=for-the-badge&amp;amp;logo=railway&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Render&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://render.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Render-0099ff?style=for-the-badge&amp;amp;logo=render&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Koyeb (Docker)&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://app.koyeb.com/deploy?type=git&amp;amp;repository=github.com/Vinpink2/June-Ultra&amp;amp;branch=main&amp;amp;builder=dockerfile&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Koyeb-6C4CF1?style=for-the-badge&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;CypherXHost&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://platform.cypherx.store/register?ref=REPLI2955E16C9A&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/CypherXHosting-007BFF?style=for-the-badge&amp;amp;logo=cypherxhost&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🔑 Session &amp;amp; Pairing&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Method&lt;/th&gt; 
+    &lt;th&gt;Button&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Pair 1&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://burning-lorena-eminentbo-ede53cc1.koyeb.app/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Pair%201-1a1a4e?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Pair 2&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://pair-junex.onrender.com/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Pair%202-1a1a4e?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;QR Code&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://burning-lorena-eminentbo-ede53cc1.koyeb.app/pair&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/QR%20Code-1a1a4e?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;💬 Support &amp;amp; Community&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Platform&lt;/th&gt; 
+    &lt;th&gt;Link&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;WhatsApp Group&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://whatsapp.com/channel/0029VbBzXBN2kNFoxm7LiG3Q&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;YouTube&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://www.youtube.com/@Suprem_e_Lord&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&amp;amp;logo=youtube&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Telegram&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Vinpink2/June-Ultra/main/t.me/supremLord&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Telegram-0088cc?style=for-the-badge&amp;amp;logo=telegram&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;sub&gt;Built with ❤️ by &lt;a href=&quot;https://github.com/Vinpink2&quot;&gt;Supreme&lt;/a&gt;&lt;/sub&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/952a6725669fcf383ea99fc94249ef8801a624d2edde1acd605d86635c8e1518/Vinpink2/June-Ultra" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>MicrosoftDocs/windows-powershell-docs</title>
+      <link>https://github.com/MicrosoftDocs/windows-powershell-docs</link>
+      <description>&lt;p&gt;This repo is used to contribute to Windows, Windows Server, and MDOP PowerShell module documentation.&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Windows IT professional documentation&lt;/h1&gt; 
+&lt;p&gt;This repository houses the Windows client, Windows Server, and MDOP PowerShell module docs that are written for IT professionals.&lt;/p&gt; 
+&lt;p&gt;Edits to this content are published in the following places:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Various versions of &lt;a href=&quot;https://learn.microsoft.com/powershell/windows/get-started&quot;&gt;Windows client and Windows Server&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://learn.microsoft.com/powershell/mdop/get-started&quot;&gt;Microsoft Desktop Optimization Pack&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;PowerShell Updatable Help (CabGen) CI Build Status&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://apidrop.visualstudio.com/Content%20CI/_build/latest?definitionId=5077&amp;amp;repoName=MicrosoftDocs%2Fwindows-powershell-docs&amp;amp;branchName=live&quot;&gt;&lt;img src=&quot;https://apidrop.visualstudio.com/Content%20CI/_apis/build/status/PROD/CabGen(PowerShell_Updatable_Help)/GitHub_MicrosoftDocs_windows-powershell-docs/46a32786-a1f6-1250-e1e1-2a4554025dc9_cabgen_Publish-Updatable-Help?repoName=MicrosoftDocs%2Fwindows-powershell-docs&amp;amp;branchName=live&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We actively merge contributions into this repository via &lt;a href=&quot;https://help.github.com/articles/using-pull-requests/&quot;&gt;pull request&lt;/a&gt; into the &lt;em&gt;main&lt;/em&gt; branch. If you are not a Microsoft employee, before you submit a pull request you must sign a &lt;a href=&quot;https://cla.microsoft.com/&quot;&gt;Contribution License Agreement&lt;/a&gt; to ensure that the community is free to use your submissions. For more information on contributing, read our &lt;a href=&quot;https://raw.githubusercontent.com/MicrosoftDocs/windows-powershell-docs/main/CONTRIBUTING.md&quot;&gt;contributions guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;This project has adopted the &lt;a href=&quot;https://opensource.microsoft.com/codeofconduct/&quot;&gt;Microsoft Open Source Code of Conduct&lt;/a&gt;. For more information, see the &lt;a href=&quot;https://opensource.microsoft.com/codeofconduct/faq/&quot;&gt;Code of Conduct FAQ&lt;/a&gt; or contact &lt;a href=&quot;mailto:opencode@microsoft.com&quot;&gt;opencode@microsoft.com&lt;/a&gt; with any additional questions or comments.&lt;/p&gt; 
+&lt;!-- link references --&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/037f8f35ac11011df66189840c29ba344a1c6d9c2793c37b295e9b895dbeb24d/MicrosoftDocs/windows-powershell-docs" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>iggredible/Learn-Vim</title>
+      <link>https://github.com/iggredible/Learn-Vim</link>
+      <description>&lt;p&gt;Learning Vim and Vimscript doesn&#39;t have to be hard. This is the guide that you&#39;re looking for 📖&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Learn Vim (the Smart Way)&lt;/h1&gt; 
+&lt;h2&gt;What&#39;s This?&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;Learn Vim (the Smart Way)&lt;/em&gt; is a guide to learn the good parts of Vim.&lt;/p&gt; 
+&lt;p&gt;There are many places to learn Vim: the &lt;code&gt;vimtutor&lt;/code&gt; is a great place to start and the &lt;code&gt;help&lt;/code&gt; manual has all the references you will ever need. However, the average user needs something more than &lt;code&gt;vimtutor&lt;/code&gt; and less than the &lt;code&gt;help&lt;/code&gt; manual. This guide attempts to bridge that gap by highlighting only the key features to learn the most useful parts of Vim in the least amount of time possible.&lt;/p&gt; 
+&lt;p&gt;This guide is written for both beginner and advanced Vimmers. It starts out with broad and simple concepts and ends with specific and advanced concepts. If you&#39;re an advanced user already, I encourage you to read this guide from start to finish anyway, because you may learn something new!&lt;/p&gt; 
+&lt;h2&gt;Read Locally (with Docker)&lt;/h2&gt; 
+&lt;p&gt;You can read this book locally with Docker. Just run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker compose -f book/docker-compose.yml up --build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then open &lt;a href=&quot;http://localhost:8080&quot;&gt;http://localhost:8080&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;I Want More Vim Tips!&lt;/h2&gt; 
+&lt;p&gt;I sometimes blog about Vim on my personal site, &lt;a href=&quot;https://irian.to/&quot;&gt;irian.to&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;s&gt;Follow &lt;a href=&quot;https://twitter.com/learnvim&quot;&gt;@learnvim&lt;/a&gt; for updates, Vim tips, etc.&lt;/s&gt;&lt;/p&gt; 
+&lt;h2&gt;Support This Project&lt;/h2&gt; 
+&lt;p&gt;This guide is and will always be free.&lt;/p&gt; 
+&lt;p&gt;If you want to financially support this project, you can either &lt;a href=&quot;https://leanpub.com/learnvim&quot;&gt;purchase this guide on Leanpub&lt;/a&gt; or &lt;a href=&quot;https://www.buymeacoffee.com/iggredible&quot;&gt;buy me a coffee&lt;/a&gt;!&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://leanpub.com/learnvim&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/images/learn-vim-cover.png&quot; width=&quot;100&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.buymeacoffee.com/iggredible&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://cdn.buymeacoffee.com/buttons/v2/default-green.png&quot; alt=&quot;Buy Me A Coffee&quot; style=&quot;height: 60px !important;width: 217px !important;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Table Of Contents&lt;/h2&gt; 
+&lt;h3&gt;Prologue&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch00_read_this_first.md&quot;&gt;Ch 0 - Read This First&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Part 1: Learn Vim the Smart Way&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch01_starting_vim.md&quot;&gt;Ch 1 - Starting Vim&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch02_buffers_windows_tabs.md&quot;&gt;Ch 2 - Buffers, Windows, and Tabs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch03_searching_files.md&quot;&gt;Ch 3 - Opening and Searching Files&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch04_vim_grammar.md&quot;&gt;Ch 4 - Vim Grammar&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch05_moving_in_file.md&quot;&gt;Ch 5 - Moving in a File&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch06_insert_mode.md&quot;&gt;Ch 6 - Insert Mode&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch07_the_dot_command.md&quot;&gt;Ch 7 - The Dot command&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch08_registers.md&quot;&gt;Ch 8 - Registers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch09_macros.md&quot;&gt;Ch 9 - Macros&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch10_undo.md&quot;&gt;Ch 10 - Undo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch11_visual_mode.md&quot;&gt;Ch 11 - Visual Mode&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch12_search_and_substitute.md&quot;&gt;Ch 12 - Search and Substitute&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch13_the_global_command.md&quot;&gt;Ch 13 - The Global Command&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch14_external_commands.md&quot;&gt;Ch 14 - External Commands&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch15_command-line_mode.md&quot;&gt;Ch 15 - Command-line Mode&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch16_tags.md&quot;&gt;Ch 16 - Tags&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch17_fold.md&quot;&gt;Ch 17 - Fold&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch18_git.md&quot;&gt;Ch 18 - Git&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch19_compile.md&quot;&gt;Ch 19 - Compile&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch20_views_sessions_viminfo.md&quot;&gt;Ch 20 - Views, Sessions, and Viminfo&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch21_multiple_file_operations.md&quot;&gt;Ch 21 - Multiple File Operations&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Part 2: Customize Vim the Smart Way&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch22_vimrc.md&quot;&gt;Ch 22 - Vimrc&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch23_vim_packages.md&quot;&gt;Ch 23 - Vim Packages&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch24_vim_runtime.md&quot;&gt;Ch 24 - Vim Runtime&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Part 3: Learn Vimscript the Smart Way&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch25_vimscript_basic_data_types.md&quot;&gt;Ch 25 - Vimscript Basic Data Types&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch26_vimscript_conditionals_and_loops.md&quot;&gt;Ch 26 - Vimscript Conditionals And Loops&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch27_vimscript_variable_scopes.md&quot;&gt;Ch 27 - Vimscript Variable Scopes&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch28_vimscript_functions.md&quot;&gt;Ch 28 - Vimscript Functions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/iggredible/Learn-Vim/master/ch29_plugin_example_writing-a-titlecase-plugin.md&quot;&gt;Ch 29 - Plugin Example: Writing a Titlecase Plugin&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Translations&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wsdjeg.net/wiki/learn-vim/&quot;&gt;Learn-Vim 中文翻译&lt;/a&gt;(&lt;code&gt;zh-CN&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/victorhck/learn-Vim-es&quot;&gt;Learn-Vim Spanish&lt;/a&gt;(&lt;code&gt;es&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License &amp;amp; Copyright&lt;/h2&gt; 
+&lt;p&gt;The materials here are all © 2020-2021 Igor Irianto.&lt;/p&gt; 
+&lt;p&gt;&lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot;&gt;&lt;img alt=&quot;Creative Commons License&quot; style=&quot;border-width:0&quot; src=&quot;https://licensebuttons.net/l/by-nc-sa/4.0/88x31.png&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;/p&gt; 
+&lt;p&gt;This work is licensed under a &lt;a rel=&quot;license&quot; href=&quot;http://creativecommons.org/licenses/by-nc-sa/4.0/&quot;&gt;Creative Commons Attribution-NonCommercial-ShareAlike 4.0 International&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8518fdf6c8801827b51b92d4044c6f702caba7aef013ed34d82a749638c3f5ee/iggredible/Learn-Vim" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>autowarefoundation/autoware</title>
+      <link>https://github.com/autowarefoundation/autoware</link>
+      <description>&lt;p&gt;Autoware - the world&#39;s leading open-source software project for autonomous driving&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.autoware.org/&quot;&gt;https://www.autoware.org/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Autoware - the world&#39;s leading open-source software project for autonomous driving&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/63835446/158918717-58d6deaf-93fb-47f9-891d-e242b02cba7b.png&quot; alt=&quot;Autoware_RViz&quot; width=&quot;75%&quot; /&gt; &lt;/p&gt; 
+&lt;!-- License --&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/raw/main/LICENSE&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/license/autowarefoundation/autoware?style=flat&amp;amp;label=License&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;!-- Social Media --&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/Q94UsPvReQ&quot;&gt; &lt;img src=&quot;https://img.shields.io/discord/953808765935816715?logo=discord&amp;amp;logoColor=white&amp;amp;style=flat&amp;amp;label=Autoware%20Discord&quot; alt=&quot;Autoware Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/intent/follow?screen_name=AutowareFdn&quot;&gt; &lt;img src=&quot;https://img.shields.io/twitter/follow/AutowareFdn?logo=x&amp;amp;logoColor=white&amp;amp;style=flat&quot; alt=&quot;Autoware Twitter / X&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.linkedin.com/company/the-autoware-foundation/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Linkedin-Autoware%20Foundation-0a66c2?logo=linkedin&amp;amp;logoColor=white&amp;amp;style=flat&quot; alt=&quot;Autoware Linkedin&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Autoware is the world&#39;s leading open-source autonomous driving framework. Autoware provides a comprehensive, production-ready software stack designed to accelerate the commercial deployment of autonomous vehicles across diverse platforms and use cases.&lt;/p&gt; 
+&lt;h2&gt;🚀 Get Started&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/installation&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/%F0%9F%93%A5_Installation-Get_Autoware_Running-2ea44f?style=for-the-badge&quot; alt=&quot;Installation&quot; /&gt;&lt;/a&gt; &amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/demos/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/%E2%9A%A1_Quick_Start-Try_the_Demo-1f6feb?style=for-the-badge&quot; alt=&quot;Quick Start&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;New to Autoware?&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/installation&quot;&gt;Install Autoware&lt;/a&gt;&lt;/strong&gt; → Set up your environment and build the stack from source.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/demos/&quot;&gt;Run the Quick Start demo&lt;/a&gt;&lt;/strong&gt; → Drive a simulated vehicle in just a few minutes.&lt;/li&gt; 
+ &lt;/ol&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;To learn more about using or developing Autoware, refer to the &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/&quot;&gt;Autoware documentation site&lt;/a&gt;. You can find the source for the documentation in &lt;a href=&quot;https://github.com/autowarefoundation/autoware-documentation&quot;&gt;autowarefoundation/autoware-documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p align=&quot;left&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware_universe/graphs/contributors&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/contributors/autowarefoundation/autoware_universe?style=flat&amp;amp;label=Autoware%20Universe%20Contributors&quot; alt=&quot;Autoware Universe Contributors&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/graphs/contributors&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/contributors/autowarefoundation/autoware?style=flat&amp;amp;label=Autoware%20Contributors&quot; alt=&quot;Autoware Contributors&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;!-- Commit Activity --&gt; 
+&lt;p align=&quot;left&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware_universe/pulse&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/commit-activity/m/autowarefoundation/autoware_universe?style=flat&amp;amp;label=Autoware%20Universe%20Commit%20Activity&quot; alt=&quot;Autoware Universe Activity&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/pulse&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/commit-activity/m/autowarefoundation/autoware?style=flat&amp;amp;label=Autoware%20Commit%20Activity&quot; alt=&quot;Autoware Activity&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Make sure to follow the &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/contributing/&quot;&gt;Contribution Guidelines&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Take a look at Autoware&#39;s &lt;a href=&quot;https://github.com/autowarefoundation/autoware-projects/wiki#working-group-list&quot;&gt;various working groups&lt;/a&gt; to gain an understanding of any work in progress and to see how projects are managed.&lt;/li&gt; 
+ &lt;li&gt;If you have any technical questions, you can start a discussion in the &lt;a href=&quot;https://github.com/autowarefoundation/autoware/discussions/categories/q-a&quot;&gt;Q&amp;amp;A category&lt;/a&gt; to request help and confirm if a potential issue is a bug or not.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Useful resources&lt;/h2&gt; 
+&lt;!-- CI Reports --&gt; 
+&lt;p align=&quot;left&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/actions/workflows/health-check.yaml?query=branch%3Amain&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/autowarefoundation/autoware/health-check.yaml?style=flat&amp;amp;label=health-check&quot; alt=&quot;health-check CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/autowarefoundation/autoware_universe&quot;&gt; &lt;img src=&quot;https://img.shields.io/codecov/c/gh/autowarefoundation/autoware_universe?style=flat&amp;amp;label=Coverage&amp;amp;logo=codecov&amp;amp;logoColor=white&quot; alt=&quot;Code Coverage&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.autoware.org/&quot;&gt;Autoware Foundation homepage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/community/support/&quot;&gt;Support guidelines&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-ci-metrics/&quot;&gt;CI metrics&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/f248e24f22af06164f892fb42292523032741d0e81c648380790004cbbacf632/autowarefoundation/autoware" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
