@@ -1,0 +1,380 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub R Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of R on GitHub</description>
+    
+    <pubDate>Sat, 03 Oct 2026 06:09:35 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>tidyverse/dplyr</title>
+      <link>https://github.com/tidyverse/dplyr</link>
+      <description>&lt;p&gt;dplyr: A grammar of data manipulation&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://dplyr.tidyverse.org/&quot;&gt;https://dplyr.tidyverse.org/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;dplyr &lt;a href=&quot;https://dplyr.tidyverse.org&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/dplyr/main/man/figures/logo.png&quot; align=&quot;right&quot; height=&quot;138&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=dplyr&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/dplyr&quot; alt=&quot;CRAN
+status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/tidyverse/dplyr/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/tidyverse/dplyr/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/tidyverse/dplyr&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/tidyverse/dplyr/graph/badge.svg?sanitize=true&quot; alt=&quot;Codecov test
+coverage&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;dplyr is a grammar of data manipulation, providing a consistent set of verbs that help you solve the most common data manipulation challenges:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;mutate()&lt;/code&gt; adds new variables that are functions of existing variables&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;select()&lt;/code&gt; picks variables based on their names.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;filter()&lt;/code&gt; picks cases based on their values.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;summarise()&lt;/code&gt; reduces multiple values down to a single summary.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;arrange()&lt;/code&gt; changes the ordering of the rows.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;These all combine naturally with &lt;code&gt;group_by()&lt;/code&gt; which allows you to perform any operation “by group”. You can learn more about them in &lt;code&gt;vignette(&quot;dplyr&quot;)&lt;/code&gt;. As well as these single-table verbs, dplyr also provides a variety of two-table verbs, which you can learn about in &lt;code&gt;vignette(&quot;two-table&quot;)&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;If you are new to dplyr, the best place to start is the &lt;a href=&quot;https://r4ds.hadley.nz/data-transform&quot;&gt;data transformation chapter&lt;/a&gt; in R for Data Science.&lt;/p&gt; 
+&lt;h2&gt;Backends&lt;/h2&gt; 
+&lt;p&gt;In addition to data frames/tibbles, dplyr makes working with other computational backends accessible and efficient. Below is a list of alternative backends:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://arrow.apache.org/docs/r/&quot;&gt;arrow&lt;/a&gt; for larger-than-memory datasets, including on remote cloud storage like AWS S3, using the Apache Arrow C++ engine, &lt;a href=&quot;https://arrow.apache.org/docs/cpp/acero/overview.html&quot;&gt;Acero&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://dbplyr.tidyverse.org/&quot;&gt;dbplyr&lt;/a&gt; for data stored in a relational database. Translates your dplyr code to SQL.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://dtplyr.tidyverse.org/&quot;&gt;dtplyr&lt;/a&gt; for large, in-memory datasets. Translates your dplyr code to high performance &lt;a href=&quot;https://rdatatable.gitlab.io/data.table/&quot;&gt;data.table&lt;/a&gt; code.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://duckplyr.tidyverse.org/&quot;&gt;duckplyr&lt;/a&gt; for large, in-memory datasets. Translates your dplyr code to high performance &lt;a href=&quot;https://duckdb.org&quot;&gt;duckdb&lt;/a&gt; queries with zero extra copies and an automatic R fallback when translation isn’t possible.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://spark.posit.co/&quot;&gt;sparklyr&lt;/a&gt; for very large datasets stored in &lt;a href=&quot;https://spark.apache.org&quot;&gt;Apache Spark&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# The easiest way to get dplyr is to install the whole tidyverse:
+install.packages(&quot;tidyverse&quot;)
+
+# Alternatively, install just dplyr:
+install.packages(&quot;dplyr&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Development version&lt;/h3&gt; 
+&lt;p&gt;To get a bug fix or to use a feature from the development version, you can install the development version of dplyr from GitHub.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# install.packages(&quot;pak&quot;)
+pak::pak(&quot;tidyverse/dplyr&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Cheat Sheet&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/data-transformation.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-transformation-cheatsheet-thumbs.png&quot; width=&quot;630&quot; height=&quot;252&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(dplyr)
+
+starwars |&amp;gt;
+  filter(species == &quot;Droid&quot;)
+#&amp;gt; # A tibble: 6 × 14
+#&amp;gt;   name   height  mass hair_color skin_color  eye_color birth_year sex   gender  
+#&amp;gt;   &amp;lt;chr&amp;gt;   &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt;   
+#&amp;gt; 1 C-3PO     167    75 &amp;lt;NA&amp;gt;       gold        yellow           112 none  masculi…
+#&amp;gt; 2 R2-D2      96    32 &amp;lt;NA&amp;gt;       white, blue red               33 none  masculi…
+#&amp;gt; 3 R5-D4      97    32 &amp;lt;NA&amp;gt;       white, red  red               NA none  masculi…
+#&amp;gt; 4 IG-88     200   140 none       metal       red               15 none  masculi…
+#&amp;gt; 5 R4-P17     96    NA none       silver, red red, blue         NA none  feminine
+#&amp;gt; # ℹ 1 more row
+#&amp;gt; # ℹ 5 more variables: homeworld &amp;lt;chr&amp;gt;, species &amp;lt;chr&amp;gt;, films &amp;lt;list&amp;gt;,
+#&amp;gt; #   vehicles &amp;lt;list&amp;gt;, starships &amp;lt;list&amp;gt;
+
+starwars |&amp;gt;
+  select(name, ends_with(&quot;color&quot;))
+#&amp;gt; # A tibble: 87 × 4
+#&amp;gt;   name           hair_color skin_color  eye_color
+#&amp;gt;   &amp;lt;chr&amp;gt;          &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;       &amp;lt;chr&amp;gt;    
+#&amp;gt; 1 Luke Skywalker blond      fair        blue     
+#&amp;gt; 2 C-3PO          &amp;lt;NA&amp;gt;       gold        yellow   
+#&amp;gt; 3 R2-D2          &amp;lt;NA&amp;gt;       white, blue red      
+#&amp;gt; 4 Darth Vader    none       white       yellow   
+#&amp;gt; 5 Leia Organa    brown      light       brown    
+#&amp;gt; # ℹ 82 more rows
+
+starwars |&amp;gt;
+  mutate(name, bmi = mass / ((height / 100)^2)) |&amp;gt;
+  select(name:mass, bmi)
+#&amp;gt; # A tibble: 87 × 4
+#&amp;gt;   name           height  mass   bmi
+#&amp;gt;   &amp;lt;chr&amp;gt;           &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;dbl&amp;gt;
+#&amp;gt; 1 Luke Skywalker    172    77  26.0
+#&amp;gt; 2 C-3PO             167    75  26.9
+#&amp;gt; 3 R2-D2              96    32  34.7
+#&amp;gt; 4 Darth Vader       202   136  33.3
+#&amp;gt; 5 Leia Organa       150    49  21.8
+#&amp;gt; # ℹ 82 more rows
+
+starwars |&amp;gt;
+  arrange(desc(mass))
+#&amp;gt; # A tibble: 87 × 14
+#&amp;gt;   name      height  mass hair_color skin_color eye_color birth_year sex   gender
+#&amp;gt;   &amp;lt;chr&amp;gt;      &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;      &amp;lt;chr&amp;gt;          &amp;lt;dbl&amp;gt; &amp;lt;chr&amp;gt; &amp;lt;chr&amp;gt; 
+#&amp;gt; 1 Jabba De…    175  1358 &amp;lt;NA&amp;gt;       green-tan… orange         600   herm… mascu…
+#&amp;gt; 2 Grievous     216   159 none       brown, wh… green, y…       NA   male  mascu…
+#&amp;gt; 3 IG-88        200   140 none       metal      red             15   none  mascu…
+#&amp;gt; 4 Darth Va…    202   136 none       white      yellow          41.9 male  mascu…
+#&amp;gt; 5 Tarfful      234   136 brown      brown      blue            NA   male  mascu…
+#&amp;gt; # ℹ 82 more rows
+#&amp;gt; # ℹ 5 more variables: homeworld &amp;lt;chr&amp;gt;, species &amp;lt;chr&amp;gt;, films &amp;lt;list&amp;gt;,
+#&amp;gt; #   vehicles &amp;lt;list&amp;gt;, starships &amp;lt;list&amp;gt;
+
+starwars |&amp;gt;
+  group_by(species) |&amp;gt;
+  summarise(
+    n = n(),
+    mass = mean(mass, na.rm = TRUE)
+  ) |&amp;gt;
+  filter(
+    n &amp;gt; 1,
+    mass &amp;gt; 50
+  )
+#&amp;gt; # A tibble: 9 × 3
+#&amp;gt;   species      n  mass
+#&amp;gt;   &amp;lt;chr&amp;gt;    &amp;lt;int&amp;gt; &amp;lt;dbl&amp;gt;
+#&amp;gt; 1 Droid        6  69.8
+#&amp;gt; 2 Gungan       3  74  
+#&amp;gt; 3 Human       35  81.3
+#&amp;gt; 4 Kaminoan     2  88  
+#&amp;gt; 5 Mirialan     2  53.1
+#&amp;gt; # ℹ 4 more rows
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Getting help&lt;/h2&gt; 
+&lt;p&gt;If you encounter a clear bug, please file an issue with a minimal reproducible example on &lt;a href=&quot;https://github.com/tidyverse/dplyr/issues&quot;&gt;GitHub&lt;/a&gt;. For questions and other discussion, please use &lt;a href=&quot;https://forum.posit.co/&quot;&gt;forum.posit.co&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Code of conduct&lt;/h2&gt; 
+&lt;p&gt;Please note that this project is released with a &lt;a href=&quot;https://dplyr.tidyverse.org/CODE_OF_CONDUCT&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By participating in this project you agree to abide by its terms.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/32359e3bceb05b66bab8fab80b5d36943597e7b6688961fc28c7f90769ccd9e2/tidyverse/dplyr" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>r-spatial/sf</title>
+      <link>https://github.com/r-spatial/sf</link>
+      <description>&lt;p&gt;Simple Features for R&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://r-spatial.github.io/sf/&quot;&gt;https://r-spatial.github.io/sf/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://github.com/r-spatial/sf/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/r-spatial/sf/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/r-spatial/sf/actions/workflows/tic-db.yml&quot;&gt;&lt;img src=&quot;https://github.com/r-spatial/sf/actions/workflows/tic-db.yml/badge.svg?sanitize=true&quot; alt=&quot;tic-db&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/r-spatial/sf&quot;&gt;&lt;img src=&quot;https://img.shields.io/codecov/c/github/r-spatial/sf/main.svg?sanitize=true&quot; alt=&quot;Coverage Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://www.gnu.org/licenses/gpl-2.0.html&quot;&gt;&lt;img src=&quot;http://img.shields.io/badge/license-GPL%20%28%3E=%202%29-brightgreen.svg?style=flat&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=sf&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/sf&quot; alt=&quot;CRAN&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/web/checks/check_results_sf.html&quot;&gt;&lt;img src=&quot;https://badges.cranchecks.info/worst/sf.svg?sanitize=true&quot; alt=&quot;cran checks&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.r-pkg.org/pkg/sf&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/sf?color=brightgreen&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://CRAN.R-project.org/package=sf&quot;&gt;&lt;img src=&quot;https://tinyverse.netlify.app/badge/sf&quot; alt=&quot;status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h1&gt;Simple Features for R&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/edzer/f461a3a95570c4ab7edf3125c2f19d20&quot;&gt;&lt;img align=&quot;right&quot; src=&quot;https://user-images.githubusercontent.com/520851/34887433-ce1d130e-f7c6-11e7-83fc-d60ad4fae6bd.gif&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;A package that provides &lt;a href=&quot;https://en.wikipedia.org/wiki/Simple_Features&quot;&gt;simple features access&lt;/a&gt; for R.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#blogs-presentations-vignettes-sp-sf-wiki&quot;&gt;Blogs, links&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#cheatsheet&quot;&gt;Cheatsheet&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#installing&quot;&gt;Installing&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#contributing&quot;&gt;Contributing&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#acknowledgment&quot;&gt;Acknowledgment&lt;/a&gt; • &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/#how-to-cite&quot;&gt;How to cite&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Package sf:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;represents simple features as records in a &lt;code&gt;data.frame&lt;/code&gt; or &lt;code&gt;tibble&lt;/code&gt; with a geometry list-column&lt;/li&gt; 
+ &lt;li&gt;represents natively in R all 17 simple feature types for all dimensions (XY, XYZ, XYM, XYZM)&lt;/li&gt; 
+ &lt;li&gt;interfaces to &lt;a href=&quot;https://libgeos.org&quot;&gt;GEOS&lt;/a&gt; for geometrical operations on projected coordinates, and (through R package &lt;a href=&quot;https://cran.r-project.org/package=s2&quot;&gt;s2&lt;/a&gt;) to &lt;a href=&quot;http://s2geometry.io/&quot;&gt;s2geometry&lt;/a&gt; for geometrical operations on ellipsoidal coordinates&lt;/li&gt; 
+ &lt;li&gt;interfaces to &lt;a href=&quot;https://gdal.org/&quot;&gt;GDAL&lt;/a&gt;, supporting all driver options, &lt;code&gt;Date&lt;/code&gt; and &lt;code&gt;POSIXct&lt;/code&gt; and list-columns&lt;/li&gt; 
+ &lt;li&gt;interfaces to &lt;a href=&quot;http://proj.org/&quot;&gt;PRØJ&lt;/a&gt; for coordinate reference system conversion and transformation&lt;/li&gt; 
+ &lt;li&gt;uses &lt;a href=&quot;https://en.wikipedia.org/wiki/Well-known_text#Well-known_binary&quot;&gt;well-known-binary&lt;/a&gt; serialisations written in C++/Rcpp for fast I/O with GDAL and GEOS&lt;/li&gt; 
+ &lt;li&gt;reads from and writes to spatial databases such as &lt;a href=&quot;http://postgis.net/&quot;&gt;PostGIS&lt;/a&gt; using &lt;a href=&quot;https://cran.r-project.org/package=DBI&quot;&gt;DBI&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;is extended by 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/r-spatial/lwgeom/&quot;&gt;lwgeom&lt;/a&gt; for selected liblwgeom/PostGIS functions&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/r-spatial/stars/&quot;&gt;stars&lt;/a&gt; for raster data, and raster or vector data cubes (spatial time series)&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://luukvdmeer.github.io/sfnetworks/&quot;&gt;sfnetworks&lt;/a&gt; for geospatial network data&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://gist.github.com/edzer/442d74a5775abcd5068cf3e73b23687b&quot;&gt;&lt;img align=&quot;left&quot; src=&quot;https://user-images.githubusercontent.com/520851/50280460-e35c1880-044c-11e9-9ed7-cc46754e49db.jpg&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;(Illustration (c) 2018 by &lt;a href=&quot;https://twitter.com/allison_horst/status/1071456081308614656&quot;&gt;Allison Horst&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Books, journal articles, blogs, presentations, vignettes, sp-sf wiki&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;an open access &lt;a href=&quot;https://journal.r-project.org/archive/2018/RJ-2018-009/index.html&quot;&gt;R Journal article&lt;/a&gt; summarizes the package&lt;/li&gt; 
+ &lt;li&gt;two books: &lt;a href=&quot;https://r-spatial.org/book/&quot;&gt;Spatial Data Science: with applications in R&lt;/a&gt;, &lt;a href=&quot;https://r.geocompx.org/&quot;&gt;Geocomputation with R&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;package vignettes: &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf1.html&quot;&gt;first&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf2.html&quot;&gt;second&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf3.html&quot;&gt;third&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf4.html&quot;&gt;fourth&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf5.html&quot;&gt;fifth&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf6.html&quot;&gt;sixth&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.github.io/sf/articles/sf7.html&quot;&gt;seventh&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;blog posts: &lt;a href=&quot;https://r-spatial.org/r/2016/02/15/simple-features-for-r.html&quot;&gt;first&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.org/r/2016/07/18/sf2.html&quot;&gt;second&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.org/r/2016/11/02/sfcran.html&quot;&gt;third&lt;/a&gt;, &lt;a href=&quot;https://r-spatial.org/r/2017/01/12/newssf.html&quot;&gt;fourth&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;the original R Consortium ISC &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/PROPOSAL.md&quot;&gt;proposal&lt;/a&gt;, the R Consortium &lt;a href=&quot;https://www.r-consortium.org/blog/2017/01/03/simple-features-now-on-cran&quot;&gt;blog post&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;presentations: &lt;a href=&quot;https://edzer.github.io/rstudio_conf/#1&quot;&gt;rstudio::conf 2018&lt;/a&gt; (&lt;a href=&quot;https://posit.co/resources/videos/tidy-spatial-data-analysis/&quot;&gt;video&lt;/a&gt;), &lt;a href=&quot;http://pebesma.staff.ifgi.de/pebesma_sfr.pdf&quot;&gt;UseR! 2016&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;wiki page describing &lt;a href=&quot;https://github.com/r-spatial/sf/wiki/Migrating&quot;&gt;sp-sf migration&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Cheatsheet&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;CC 4.0&lt;/a&gt; BY &lt;a href=&quot;https://github.com/ryangarnett&quot;&gt;Ryan Garnett&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/sf.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/sf.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installing&lt;/h2&gt; 
+&lt;p&gt;Install either from CRAN with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;sf&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will install binary packages on Windows and MacOS, unless you configured R such that it tries to install source packages; in that case, see below.&lt;/p&gt; 
+&lt;p&gt;Install development versions from GitHub with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(remotes)
+install_github(&quot;r-spatial/sf&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Windows&lt;/h3&gt; 
+&lt;p&gt;Installing sf from source works under Windows when &lt;a href=&quot;https://cran.r-project.org/bin/windows/Rtools/&quot;&gt;Rtools&lt;/a&gt; is installed.&lt;/p&gt; 
+&lt;h3&gt;MacOS&lt;/h3&gt; 
+&lt;p&gt;MacOS users are strongly encouraged to install the &lt;code&gt;sf&lt;/code&gt; binary packages from CRAN, unless they are familiar with compilers, linking, C++ source code, and homebrew. If you experience that R tries to install &lt;code&gt;sf&lt;/code&gt; from source (or otherwise your install fails but you don&#39;t understand what is going on) try again by explicitly installing the binary, using&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;sf&quot;, type = &quot;binary&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The remainder of this section is for those who understand what source installs mean, and imply.&lt;/p&gt; 
+&lt;p&gt;Perhaps the easiest way of an install from source is to first install &lt;code&gt;gdal&lt;/code&gt; using Homebrew. Recent versions of Homebrew include a full-featured up-to-date &lt;a href=&quot;https://github.com/Homebrew/homebrew-core/raw/master/Formula/g/gdal.rb&quot;&gt;gdal formula&lt;/a&gt;, which installs &lt;code&gt;proj&lt;/code&gt; and &lt;code&gt;gdal&lt;/code&gt; at the same time:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;brew install pkg-config
+brew install gdal
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Once gdal is installed, you may be able to install &lt;code&gt;sf&lt;/code&gt; package from source in R. With the current version of &lt;code&gt;proj&lt;/code&gt; on homebrew, installation requires additional configuration:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;sf&quot;, type = &quot;source&quot;, configure.args = &quot;--with-proj-lib=$(brew --prefix)/lib/&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or the development version:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(remotes)
+install_github(&quot;r-spatial/sf&quot;, configure.args = &quot;--with-proj-lib=$(brew --prefix)/lib/&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, &lt;a href=&quot;https://stat.ethz.ch/pipermail/r-sig-mac/2017-June/012429.html&quot;&gt;these instructions&lt;/a&gt; explain how to install gdal using kyngchaos frameworks.&lt;/p&gt; 
+&lt;p&gt;For Mac OS 11 Big Sur source install instruction, see &lt;a href=&quot;https://github.com/r-spatial/sf/issues/1536#issuecomment-727342736&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Linux&lt;/h3&gt; 
+&lt;p&gt;For Unix-alikes, GDAL (&amp;gt;= 2.0.1), GEOS (&amp;gt;= 3.4.0) and PROJ (&amp;gt;= 4.8.0) are required.&lt;/p&gt; 
+&lt;h4&gt;Ubuntu&lt;/h4&gt; 
+&lt;p&gt;Dependencies for recent versions of Ubuntu (18.04 and later) are available in the official repositories; you can install them with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo apt -y update &amp;amp;&amp;amp; apt install -y libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite3-dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;However, to get more up-to-date versions of dependencies such as GDAL, GEOS and PROJ we recommend adding the &lt;a href=&quot;http://ppa.launchpad.net/ubuntugis/ubuntugis-unstable/ubuntu/&quot;&gt;ubuntugis-unstable&lt;/a&gt; PPA to the package repositories and installing them as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo add-apt-repository ppa:ubuntugis/ubuntugis-unstable
+sudo apt update
+sudo apt install libudunits2-dev libgdal-dev libgeos-dev libproj-dev libsqlite3-dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Adding this PPA is required for installing &lt;code&gt;sf&lt;/code&gt; on older versions of Ubuntu (e.g. Xenial).&lt;/p&gt; 
+&lt;p&gt;Another option, for advanced users, is to install dependencies from source; see e.g. an older &lt;a href=&quot;https://github.com/r-spatial/sf/raw/593ee48b34001fe3b383ea73ea57063ecf690732/.travis.yml&quot;&gt;Travis&lt;/a&gt; config file for hints.&lt;/p&gt; 
+&lt;h4&gt;Fedora&lt;/h4&gt; 
+&lt;p&gt;The following command installs all required dependencies:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo dnf install gdal-devel proj-devel geos-devel sqlite-devel udunits2-devel
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Arch&lt;/h4&gt; 
+&lt;p&gt;Get gdal, proj, geos and podofo from the main repos, and udunits from the AUR:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;pacman -S gdal proj geos arrow podofo
+yay/pacaur/yaourt/whatever -S udunits
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;&lt;code&gt;renv&lt;/code&gt; or &lt;code&gt;conda&lt;/code&gt;&lt;/h4&gt; 
+&lt;p&gt;There are several reports that &lt;code&gt;sf&lt;/code&gt; fails to install as a source package when R is used with &lt;code&gt;renv&lt;/code&gt;, or when R is installed in a &lt;code&gt;conda&lt;/code&gt; environment. If you experience this, please only raise an issue here if the problem persists without &lt;code&gt;renv&lt;/code&gt; or &lt;code&gt;conda&lt;/code&gt;, and otherwise&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;try to sort this out with the &lt;code&gt;renv&lt;/code&gt; developers or the &lt;code&gt;conda&lt;/code&gt; maintainers, or&lt;/li&gt; 
+ &lt;li&gt;try to use binary installs of the &lt;code&gt;sf&lt;/code&gt; package, e.g. from &lt;a href=&quot;https://github.com/eddelbuettel/r2u&quot;&gt;r2u&lt;/a&gt;, or the Posit package manager&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;Other&lt;/h4&gt; 
+&lt;p&gt;To install on Debian, the &lt;a href=&quot;https://github.com/rocker-org/geospatial&quot;&gt;rocker geospatial&lt;/a&gt; Dockerfiles may be helpful. Ubuntu Dockerfiles are found &lt;a href=&quot;https://github.com/r-spatial/sf/tree/main/inst/docker&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Support for (Geo)Parquet and Arrow&lt;/h3&gt; 
+&lt;p&gt;&lt;code&gt;sf&lt;/code&gt; links to GDAL, but does not control how GDAL was configured and built. Not every GDAL installation has built-in support for GeoParquet or Arrow. Please see &lt;a href=&quot;https://github.com/r-spatial/sf/issues/2585&quot;&gt;this issue&lt;/a&gt;, or configure and compile GDAL with Parquet support e.g. using &lt;a href=&quot;https://github.com/r-spatial/sf/tree/main/inst/docker/parquet&quot;&gt;this Dockerfile&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Multiple GDAL, GEOS and/or PROJ versions on your system&lt;/h3&gt; 
+&lt;p&gt;If you use dynamic linking (installation from source) and have multiple versions of these libraries installed (e.g. one from ubuntugis-unstable, another installed from source in &lt;code&gt;/usr/local/lib&lt;/code&gt;) then this will in general not work, even when setting &lt;code&gt;LD_LIBRARY_PATH&lt;/code&gt; manually. See &lt;a href=&quot;https://github.com/r-spatial/sf/issues/844&quot;&gt;here&lt;/a&gt; for the reason why.&lt;/p&gt; 
+&lt;h3&gt;lwgeom&lt;/h3&gt; 
+&lt;p&gt;Functions and methods that require &lt;code&gt;liblwgeom&lt;/code&gt;, including ellipsoidal (not spherical or Euclidean) metrics (area, distances), are provided by and used from &lt;a href=&quot;https://github.com/r-spatial/lwgeom&quot;&gt;lwgeom&lt;/a&gt;, which is also on &lt;a href=&quot;https://cran.r-project.org/package=lwgeom&quot;&gt;CRAN&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Contributions of all sorts are most welcome, issues and pull requests are the preferred ways of sharing them.&lt;/li&gt; 
+ &lt;li&gt;When contributing pull requests, please adhere to the package style (in package code use &lt;code&gt;=&lt;/code&gt; rather than &lt;code&gt;&amp;lt;-&lt;/code&gt;; don&#39;t change indentation; tab stops of 4 spaces are preferred).&lt;/li&gt; 
+ &lt;li&gt;This project is released with a &lt;a href=&quot;https://raw.githubusercontent.com/r-spatial/sf/main/CONDUCT.md&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By participating in this project, you agree to abide by its terms.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;How to cite&lt;/h2&gt; 
+&lt;p&gt;Package &lt;code&gt;sf&lt;/code&gt; can be cited as:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Edzer Pebesma, 2018. Simple Features for R: Standardized Support for Spatial Vector Data. The R Journal &lt;a href=&quot;https://journal.r-project.org/archive/2018/RJ-2018-009/index.html&quot;&gt;10:1, 439-446.&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Pebesma, E.; Bivand, R. (2023). &lt;a href=&quot;https://r-spatial.org/book/&quot;&gt;Spatial Data Science: With Applications in R&lt;/a&gt; (1st ed.). 314 pages. &lt;a href=&quot;https://doi.org/10.1201/9780429459016&quot;&gt;Chapman and Hall/CRC&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Acknowledgment&lt;/h2&gt; 
+&lt;p&gt;This project gratefully acknowledges financial &lt;a href=&quot;https://www.r-consortium.org/projects&quot;&gt;support&lt;/a&gt; from the&lt;/p&gt; 
+&lt;a href=&quot;https://r-consortium.org/all-projects/2016-group-1.html#simple-features-for-r&quot;&gt; &lt;img src=&quot;https://r-consortium.org/images/RConsortium_Horizontal_Pantone.webp&quot; width=&quot;300&quot; /&gt; &lt;/a&gt; 
+&lt;!--
+&lt;img src=&quot;http://pebesma.staff.ifgi.de/RConsortium_Horizontal_Pantone.png&quot; width=&quot;300&quot;&gt;
+--&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8df0465231d229083d37230900fbecd7aa053cd74f7072038066487979a8109b/r-spatial/sf" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>rstudio/shiny</title>
+      <link>https://github.com/rstudio/shiny</link>
+      <description>&lt;p&gt;Easy interactive web applications with R&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://shiny.posit.co/&quot;&gt;https://shiny.posit.co/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;shiny &lt;img src=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/man/figures/logo.png&quot; align=&quot;right&quot; width=&quot;120&quot; height=&quot;139&quot; alt=&quot;&quot; /&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://CRAN.R-project.org/package=shiny&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/shiny&quot; alt=&quot;CRAN&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/rstudio/shiny/actions&quot;&gt;&lt;img src=&quot;https://github.com/rstudio/shiny/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R build status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/community-shiny-blue?style=social&amp;amp;logo=rstudio&amp;amp;logoColor=75AADB&quot; alt=&quot;RStudio community&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;p&gt;Easily build rich and productive interactive web apps in R — no HTML/CSS/JavaScript required.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;An intuitive and extensible &lt;a href=&quot;https://en.wikipedia.org/wiki/Reactive_programming&quot;&gt;reactive programming&lt;/a&gt; model which makes it easy to transform existing R code into a &quot;live app&quot; where outputs automatically react to new user input. 
+  &lt;ul&gt; 
+   &lt;li&gt;Compared to event-based programming, reactivity allows Shiny to do the minimum amount of work when input(s) change, and allows humans to more easily reason about complex &lt;a href=&quot;https://en.wikipedia.org/wiki/Model%E2%80%93view%E2%80%93controller&quot;&gt;MVC logic&lt;/a&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;A prebuilt set of highly sophisticated, customizable, and easy-to-use widgets (e.g., plots, tables, sliders, dropdowns, date pickers, and more).&lt;/li&gt; 
+ &lt;li&gt;An attractive default look based on &lt;a href=&quot;https://getbootstrap.com/&quot;&gt;Bootstrap&lt;/a&gt; which can also be easily customized with the &lt;a href=&quot;https://github.com/rstudio/bslib&quot;&gt;bslib&lt;/a&gt; package or avoided entirely with more direct R bindings to HTML/CSS/JavaScript.&lt;/li&gt; 
+ &lt;li&gt;Seamless integration with &lt;a href=&quot;https://shiny.rstudio.com/articles/interactive-docs.html&quot;&gt;R Markdown&lt;/a&gt;, making it easy to embed numerous applications natively within a larger dynamic document.&lt;/li&gt; 
+ &lt;li&gt;Tools for improving and monitoring performance, including native support for &lt;a href=&quot;https://posit.co/blog/shiny-1-1-0&quot;&gt;async programming&lt;/a&gt;, &lt;a href=&quot;https://talks.cpsievert.me/20201117&quot;&gt;caching&lt;/a&gt;, &lt;a href=&quot;https://rstudio.github.io/shinyloadtest/&quot;&gt;load testing&lt;/a&gt;, and more.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://shiny.rstudio.com/articles/modules.html&quot;&gt;Modules&lt;/a&gt;: a framework for reducing code duplication and complexity.&lt;/li&gt; 
+ &lt;li&gt;An ability to &lt;a href=&quot;https://shiny.rstudio.com/articles/bookmarking-state.html&quot;&gt;bookmark application state&lt;/a&gt; and/or &lt;a href=&quot;https://github.com/rstudio/shinymeta&quot;&gt;generate code to reproduce output(s)&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;A rich ecosystem of extension packages for more &lt;a href=&quot;http://www.htmlwidgets.org/&quot;&gt;custom widgets&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinyvalidate&quot;&gt;input validation&lt;/a&gt;, &lt;a href=&quot;https://github.com/rstudio/shinytest&quot;&gt;unit testing&lt;/a&gt;, and more.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install the stable version from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;install.packages(&quot;shiny&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Once installed, load the library and run an example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(shiny)
+# Launches an app, with the app&#39;s source code included
+runExample(&quot;06_tabsets&quot;)
+# Lists more prepackaged examples
+runExample()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more examples and inspiration, check out the &lt;a href=&quot;https://shiny.rstudio.com/gallery/&quot;&gt;Shiny User Gallery&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For help with learning fundamental Shiny programming concepts, check out the &lt;a href=&quot;https://mastering-shiny.org/&quot;&gt;Mastering Shiny&lt;/a&gt; book and the &lt;a href=&quot;https://shiny.rstudio.com/tutorial/&quot;&gt;Shiny Tutorial&lt;/a&gt;. The former is currently more up-to-date with modern Shiny features, whereas the latter takes a deeper, more visual, dive into fundamental concepts.&lt;/p&gt; 
+&lt;h2&gt;Agent Skill&lt;/h2&gt; 
+&lt;p&gt;shiny ships an &lt;a href=&quot;https://agentskills.io&quot;&gt;Agent Skill&lt;/a&gt; at &lt;code&gt;system.file(&quot;skills&quot;, &quot;shiny-for-r&quot;, package = &quot;shiny&quot;)&lt;/code&gt; to help coding agents write idiomatic Shiny for R apps. Agents using &lt;a href=&quot;https://posit-dev.github.io/btw/&quot;&gt;btw&lt;/a&gt; discover it automatically once shiny is attached. To copy it into a project for use with Claude Code and other skill-aware tools, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;btw::btw_skill_install_package(&quot;shiny&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Join the conversation&lt;/h2&gt; 
+&lt;p&gt;If you want to chat about Shiny, meet other developers, or help us decide what to work on next, &lt;a href=&quot;https://discord.com/invite/yMGCamUMnS&quot;&gt;join us on Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Getting Help&lt;/h2&gt; 
+&lt;p&gt;To ask a question about Shiny, please use the &lt;a href=&quot;https://forum.posit.co/new-topic?category=shiny&amp;amp;tags=shiny&quot;&gt;RStudio Community website&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For bug reports, please use the &lt;a href=&quot;https://github.com/rstudio/shiny/issues&quot;&gt;issue tracker&lt;/a&gt; and also keep in mind that by &lt;a href=&quot;https://github.com/rstudio/shiny/wiki/Writing-Good-Bug-Reports&quot;&gt;writing a good bug report&lt;/a&gt;, you&#39;re more likely to get help with your problem.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions to the &lt;strong&gt;shiny&lt;/strong&gt; package. Please see our &lt;a href=&quot;https://github.com/rstudio/shiny/raw/main/.github/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; file for detailed guidelines of how to contribute.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The shiny package as a whole is licensed under the MIT License. See the &lt;a href=&quot;https://raw.githubusercontent.com/rstudio/shiny/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt; file for more details.&lt;/p&gt; 
+&lt;h2&gt;R version support&lt;/h2&gt; 
+&lt;p&gt;Shiny is supported on the latest release version of R, as well as the previous four minor release versions of R. For example, if the latest release R version is 4.3, then that version is supported, as well as 4.2, 4.1, 4.0, 3.6.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2b5cd2123adef81caa910a8dd183a9403ada64a330e8901a6a3beb9fbf9e558d/rstudio/shiny" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>tidyverse/ggplot2</title>
+      <link>https://github.com/tidyverse/ggplot2</link>
+      <description>&lt;p&gt;An implementation of the Grammar of Graphics in R&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://ggplot2.tidyverse.org&quot;&gt;https://ggplot2.tidyverse.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ggplot2 &lt;a href=&quot;https://ggplot2.tidyverse.org&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/logo.png&quot; align=&quot;right&quot; height=&quot;138&quot; alt=&quot;ggplot2 website&quot; /&gt;&lt;/a&gt;&lt;/h1&gt; 
+&lt;!-- badges: start --&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml&quot;&gt;&lt;img src=&quot;https://github.com/tidyverse/ggplot2/actions/workflows/R-CMD-check.yaml/badge.svg?sanitize=true&quot; alt=&quot;R-CMD-check&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=ggplot2&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/ggplot2&quot; alt=&quot;CRAN_Status_Badge&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/tidyverse/ggplot2&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/tidyverse/ggplot2/graph/badge.svg?sanitize=true&quot; alt=&quot;Codecov test
+coverage&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;!-- badges: end --&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;p&gt;ggplot2 is a system for declaratively creating graphics, based on &lt;a href=&quot;https://link.springer.com/book/10.1007/0-387-28695-0&quot;&gt;The Grammar of Graphics&lt;/a&gt;. You provide the data, tell ggplot2 how to map variables to aesthetics, what graphical primitives to use, and it takes care of the details.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;# The easiest way to get ggplot2 is to install the whole tidyverse:
+install.packages(&quot;tidyverse&quot;)
+
+# Alternatively, install just ggplot2:
+install.packages(&quot;ggplot2&quot;)
+
+# Or the development version from GitHub:
+# install.packages(&quot;pak&quot;)
+pak::pak(&quot;tidyverse/ggplot2&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Cheatsheet&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/rstudio/cheatsheets/raw/main/data-visualization.pdf&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/rstudio/cheatsheets/main/pngs/thumbnails/data-visualization-cheatsheet-thumbs.png&quot; width=&quot;630&quot; height=&quot;252&quot; alt=&quot;ggplot2 cheatsheet&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;It’s hard to succinctly describe how ggplot2 works because it embodies a deep philosophy of visualisation. However, in most cases you start with &lt;code&gt;ggplot()&lt;/code&gt;, supply a dataset and aesthetic mapping (with &lt;code&gt;aes()&lt;/code&gt;). You then add on layers (like &lt;code&gt;geom_point()&lt;/code&gt; or &lt;code&gt;geom_histogram()&lt;/code&gt;), scales (like &lt;code&gt;scale_colour_brewer()&lt;/code&gt;), faceting specifications (like &lt;code&gt;facet_wrap()&lt;/code&gt;) and coordinate systems (like &lt;code&gt;coord_flip()&lt;/code&gt;).&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;library(ggplot2)
+
+ggplot(mpg, aes(displ, hwy, colour = class)) +
+  geom_point()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/tidyverse/ggplot2/main/man/figures/README-example-1.png&quot; alt=&quot;Scatterplot of engine displacement versus highway miles per gallon, for 234 cars coloured by 7 &#39;types&#39; of car. The displacement and miles per gallon are inversely correlated.&quot; /&gt; 
+&lt;h2&gt;Lifecycle&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lifecycle.r-lib.org/articles/stages.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?sanitize=true&quot; alt=&quot;lifecycle&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;ggplot2 is now 18 years old and is used by hundreds of thousands of people to make millions of plots. That means, by-and-large, ggplot2 itself changes relatively little. When we do make changes, they will be generally to add new functions or arguments rather than changing the behaviour of existing functions, and if we do make changes to existing behaviour we will do them for compelling reasons.&lt;/p&gt; 
+&lt;p&gt;If you are looking for innovation, look to ggplot2’s rich ecosystem of extensions. See a community maintained list at &lt;a href=&quot;https://exts.ggplot2.tidyverse.org/gallery/&quot;&gt;https://exts.ggplot2.tidyverse.org/gallery/&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Learning ggplot2&lt;/h2&gt; 
+&lt;p&gt;If you are new to ggplot2 you are better off starting with a systematic introduction, rather than trying to learn from reading individual documentation pages. Currently, there are several good places to start:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;a href=&quot;https://r4ds.hadley.nz/data-visualize&quot;&gt;Data Visualization&lt;/a&gt; and &lt;a href=&quot;https://r4ds.hadley.nz/communication&quot;&gt;Communication&lt;/a&gt; chapters in &lt;a href=&quot;https://r4ds.hadley.nz&quot;&gt;R for Data Science&lt;/a&gt;. R for Data Science is designed to give you a comprehensive introduction to the &lt;a href=&quot;https://tidyverse.org/&quot;&gt;tidyverse&lt;/a&gt;, and these two chapters will get you up to speed with the essentials of ggplot2 as quickly as possible.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’d like to take an online course, try &lt;a href=&quot;https://learning.oreilly.com/videos/data-visualization-in/9781491963661/&quot;&gt;Data Visualization in R With ggplot2&lt;/a&gt; by Kara Woo.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’d like to follow a webinar, try &lt;a href=&quot;https://youtu.be/h29g21z0a68&quot;&gt;Plotting Anything with ggplot2&lt;/a&gt; by Thomas Lin Pedersen.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you want to dive into making common graphics as quickly as possible, I recommend &lt;a href=&quot;https://r-graphics.org&quot;&gt;The R Graphics Cookbook&lt;/a&gt; by Winston Chang. It provides a set of recipes to solve common graphics problems.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you’ve mastered the basics and want to learn more, read &lt;a href=&quot;https://ggplot2-book.org&quot;&gt;ggplot2: Elegant Graphics for Data Analysis&lt;/a&gt;. It describes the theoretical underpinnings of ggplot2 and shows you how all the pieces fit together. This book helps you understand the theory that underpins ggplot2, and will help you create new types of graphics specifically tailored to your needs.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;For articles about announcements and deep-dives you can visit the &lt;a href=&quot;https://tidyverse.org/tags/ggplot2/&quot;&gt;tidyverse blog&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Getting help&lt;/h2&gt; 
+&lt;p&gt;There are two main places to get help with ggplot2:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;The &lt;a href=&quot;https://forum.posit.co/&quot;&gt;Posit Community&lt;/a&gt; (formerly RStudio Community) is a friendly place to ask any questions about ggplot2.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;a href=&quot;https://stackoverflow.com/questions/tagged/ggplot2?sort=frequent&amp;amp;pageSize=50&quot;&gt;Stack Overflow&lt;/a&gt; is a great source of answers to common ggplot2 questions. It is also a great place to get help, once you have created a reproducible example that illustrates your problem.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c1d5d7d5bb98a33b346abfb1645d9c055c516c73fea71f24a579fcfa614d3d6e/tidyverse/ggplot2" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
