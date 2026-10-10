@@ -1,0 +1,499 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Dockerfile Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Dockerfile on GitHub</description>
+    
+    <pubDate>Sat, 10 Oct 2026 06:39:03 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>vulhub/vulhub</title>
+      <link>https://github.com/vulhub/vulhub</link>
+      <description>&lt;p&gt;Pre-Built Vulnerable Environments Based on Docker-Compose&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://vulhub.org&quot;&gt;https://vulhub.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://vulhub.org&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/.github/assets/banner.png&quot; alt=&quot;Vulhub&quot; height=&quot;auto&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/bQCpZEK&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/485505185167179778.svg?sanitize=true&quot; alt=&quot;Chat on Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sponsors/phith0n&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/sponsors/phith0n?color=aqua&quot; alt=&quot;GitHub Sponsors&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://vulhub.org/environments&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;Vulnerabilities count&quot; src=&quot;https://img.shields.io/badge/dynamic/json?url=https://vulhub.org/api/statistic&amp;amp;query=%24.environments&amp;amp;label=vulnerabilities&quot; /&gt;&lt;/a&gt; &lt;img alt=&quot;GitHub language count&quot; src=&quot;https://img.shields.io/github/languages/count/vulhub/vulhub?color=yellow&quot; /&gt; &lt;a href=&quot;https://github.com/vulhub/vulhub/graphs/contributors&quot; target=&quot;_blank&quot;&gt;&lt;img alt=&quot;GitHub contributors&quot; src=&quot;https://img.shields.io/github/contributors-anon/vulhub/vulhub?color=orange&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/vulhub/vulhub/raw/master/LICENSE&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/vulhub/vulhub.svg?sanitize=true&quot; alt=&quot;GitHub&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Vulhub is an open-source collection of pre-built, ready-to-use vulnerable Docker environments. With just one command you can launch a vulnerable environment for security research, learning, or demonstration, no prior Docker experience required.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/README.zh-cn.md&quot;&gt;中文版本(Chinese version)&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Install Docker&lt;/strong&gt; (example for Ubuntu 24.04):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Install the latest version docker
+curl -s https://get.docker.com/ | sh
+
+# Run docker service
+systemctl start docker
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For other operating systems, see the &lt;a href=&quot;https://docs.docker.com/&quot;&gt;Docker documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Although all Vulhub environments are running based on Docker Compose, you no longer need to install docker-compose separately. Instead, you can use the built-in &lt;code&gt;docker compose&lt;/code&gt; command to start Vulhub environments.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Download and set up Vulhub:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone --depth 1 https://github.com/vulhub/vulhub
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Launch a vulnerable environment:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cd vulhub/langflow/CVE-2025-3248  # Example: enter a vulnerability directory
+docker compose up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Each environment directory contains a detailed &lt;strong&gt;README&lt;/strong&gt; with reproduction steps and usage instructions.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Clean up after testing:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker compose down -v
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Use a VPS or VM with at least 1GB RAM for best results&lt;/li&gt; 
+  &lt;li&gt;The &lt;code&gt;your-ip&lt;/code&gt; in documentation refers to your host/VPS IP, not the Docker container IP&lt;/li&gt; 
+  &lt;li&gt;Ensure Docker has permission to access all files in the current directory to avoid permission errors&lt;/li&gt; 
+  &lt;li&gt;Some environments may not support ARM architectures, see &lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/#troubleshooting&quot;&gt;Troubleshooting&lt;/a&gt; for details&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;All environments are for testing and educational purposes only. Do not use in production!&lt;/strong&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Troubleshooting&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Docker image pull fails in mainland China&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Docker Hub may be inaccessible from mainland China. Use a registry mirror or run Vulhub on an overseas VPS.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Environments fail to start on Apple Silicon (M-series) Macs&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Most Vulhub environments run natively on Docker Desktop for Mac with M-series chips. If an environment fails, try setting the platform explicitly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;export DOCKER_DEFAULT_PLATFORM=linux/amd64
+docker compose up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Environments fail on Kali Linux&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Some environments may fail on Kali Linux due to a low &lt;code&gt;ulimit nofile&lt;/code&gt; setting. See the &lt;a href=&quot;https://vulhub.org/documentation/faq&quot;&gt;FAQ&lt;/a&gt; for the fix.&lt;/p&gt; 
+&lt;p&gt;If you encounter issues that you cannot resolve, feel free to seek help from the community:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discord.gg/bQCpZEK&quot;&gt;Discord&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://x.com/vulhub&quot;&gt;X (Twitter)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions! Please read our &lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/CONTRIBUTING.md&quot;&gt;Contributing Guide&lt;/a&gt; to get started.&lt;/p&gt; 
+&lt;p&gt;Thanks to all contributors:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/vulhub/vulhub/graphs/contributors&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/contributors.svg?width=890&amp;amp;button=false&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Partners&lt;/h2&gt; 
+&lt;p&gt;Our partners and users:&lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://www.wangan.com/vulhub&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/wangan.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.cvebase.com&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/cvebase.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.huoxian.cn&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/huoxian.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.chaitin.cn&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/chaitin.png&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://xianzhi.aliyun.com/&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://vulhub.org/sponsor/aliyun.svg?sanitize=true&quot; width=&quot;200&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Sponsor Vulhub on &lt;a href=&quot;https://github.com/sponsors/phith0n&quot;&gt;GitHub Sponsor&lt;/a&gt;, &lt;a href=&quot;https://opencollective.com/vulhub#backer&quot;&gt;OpenCollective&lt;/a&gt;, or &lt;a href=&quot;https://www.patreon.com/bePatron?u=12677520&quot;&gt;Patreon&lt;/a&gt; 🙏&lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://github.com/sponsors/phith0n&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/backers.svg?width=138&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sponsors/phith0n&quot;&gt;&lt;img src=&quot;https://opencollective.com/vulhub/sponsors.svg?width=138&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;More ways to &lt;a href=&quot;https://vulhub.org/&quot;&gt;donate&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Vulhub is licensed under the MIT License. See &lt;a href=&quot;https://raw.githubusercontent.com/vulhub/vulhub/master/LICENSE&quot;&gt;LICENSE&lt;/a&gt; for details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/0e1771f9e6af14a9e2cb9a5318a6db16bbb6ca7385493e99f91360fa49cebb18/vulhub/vulhub" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>autowarefoundation/autoware</title>
+      <link>https://github.com/autowarefoundation/autoware</link>
+      <description>&lt;p&gt;Autoware - the world&#39;s leading open-source software project for autonomous driving&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.autoware.org/&quot;&gt;https://www.autoware.org/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Autoware - the world&#39;s leading open-source software project for autonomous driving&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/63835446/158918717-58d6deaf-93fb-47f9-891d-e242b02cba7b.png&quot; alt=&quot;Autoware_RViz&quot; width=&quot;75%&quot; /&gt; &lt;/p&gt; 
+&lt;!-- License --&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/raw/main/LICENSE&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/license/autowarefoundation/autoware?style=flat&amp;amp;label=License&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;!-- Social Media --&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/Q94UsPvReQ&quot;&gt; &lt;img src=&quot;https://img.shields.io/discord/953808765935816715?logo=discord&amp;amp;logoColor=white&amp;amp;style=flat&amp;amp;label=Autoware%20Discord&quot; alt=&quot;Autoware Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/intent/follow?screen_name=AutowareFdn&quot;&gt; &lt;img src=&quot;https://img.shields.io/twitter/follow/AutowareFdn?logo=x&amp;amp;logoColor=white&amp;amp;style=flat&quot; alt=&quot;Autoware Twitter / X&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.linkedin.com/company/the-autoware-foundation/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Linkedin-Autoware%20Foundation-0a66c2?logo=linkedin&amp;amp;logoColor=white&amp;amp;style=flat&quot; alt=&quot;Autoware Linkedin&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Autoware is the world&#39;s leading open-source autonomous driving framework. Autoware provides a comprehensive, production-ready software stack designed to accelerate the commercial deployment of autonomous vehicles across diverse platforms and use cases.&lt;/p&gt; 
+&lt;h2&gt;🚀 Get Started&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/installation&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/%F0%9F%93%A5_Installation-Get_Autoware_Running-2ea44f?style=for-the-badge&quot; alt=&quot;Installation&quot; /&gt;&lt;/a&gt; &amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/demos/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/%E2%9A%A1_Quick_Start-Try_the_Demo-1f6feb?style=for-the-badge&quot; alt=&quot;Quick Start&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;New to Autoware?&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/installation&quot;&gt;Install Autoware&lt;/a&gt;&lt;/strong&gt; → Set up your environment and build the stack from source.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/demos/&quot;&gt;Run the Quick Start demo&lt;/a&gt;&lt;/strong&gt; → Drive a simulated vehicle in just a few minutes.&lt;/li&gt; 
+ &lt;/ol&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;To learn more about using or developing Autoware, refer to the &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/&quot;&gt;Autoware documentation site&lt;/a&gt;. You can find the source for the documentation in &lt;a href=&quot;https://github.com/autowarefoundation/autoware-documentation&quot;&gt;autowarefoundation/autoware-documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p align=&quot;left&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware_universe/graphs/contributors&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/contributors/autowarefoundation/autoware_universe?style=flat&amp;amp;label=Autoware%20Universe%20Contributors&quot; alt=&quot;Autoware Universe Contributors&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/graphs/contributors&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/contributors/autowarefoundation/autoware?style=flat&amp;amp;label=Autoware%20Contributors&quot; alt=&quot;Autoware Contributors&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;!-- Commit Activity --&gt; 
+&lt;p align=&quot;left&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware_universe/pulse&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/commit-activity/m/autowarefoundation/autoware_universe?style=flat&amp;amp;label=Autoware%20Universe%20Commit%20Activity&quot; alt=&quot;Autoware Universe Activity&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/pulse&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/commit-activity/m/autowarefoundation/autoware?style=flat&amp;amp;label=Autoware%20Commit%20Activity&quot; alt=&quot;Autoware Activity&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Make sure to follow the &lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/contributing/&quot;&gt;Contribution Guidelines&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Take a look at Autoware&#39;s &lt;a href=&quot;https://github.com/autowarefoundation/autoware-projects/wiki#working-group-list&quot;&gt;various working groups&lt;/a&gt; to gain an understanding of any work in progress and to see how projects are managed.&lt;/li&gt; 
+ &lt;li&gt;If you have any technical questions, you can start a discussion in the &lt;a href=&quot;https://github.com/autowarefoundation/autoware/discussions/categories/q-a&quot;&gt;Q&amp;amp;A category&lt;/a&gt; to request help and confirm if a potential issue is a bug or not.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Useful resources&lt;/h2&gt; 
+&lt;!-- CI Reports --&gt; 
+&lt;p align=&quot;left&quot;&gt; &lt;a href=&quot;https://github.com/autowarefoundation/autoware/actions/workflows/health-check.yaml?query=branch%3Amain&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/autowarefoundation/autoware/health-check.yaml?style=flat&amp;amp;label=health-check&quot; alt=&quot;health-check CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/autowarefoundation/autoware_universe&quot;&gt; &lt;img src=&quot;https://img.shields.io/codecov/c/gh/autowarefoundation/autoware_universe?style=flat&amp;amp;label=Coverage&amp;amp;logo=codecov&amp;amp;logoColor=white&quot; alt=&quot;Code Coverage&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.autoware.org/&quot;&gt;Autoware Foundation homepage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-documentation/main/community/support/&quot;&gt;Support guidelines&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://autowarefoundation.github.io/autoware-ci-metrics/&quot;&gt;CI metrics&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d7f0e27d7f781ace5191946c7a8fd023c9953bee3692286eb6f488463a1c0369/autowarefoundation/autoware" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Vinpink2/June-Ultra</title>
+      <link>https://github.com/Vinpink2/June-Ultra</link>
+      <description>&lt;p&gt;June Ultra (Official) Repository.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.youtube.com/@Suprem_e_Lord&quot;&gt;https://www.youtube.com/@Suprem_e_Lord&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;JUNE-X ULTRA&lt;/h1&gt; 
+ &lt;a href=&quot;https://git.io/typing-svg&quot;&gt; &lt;img src=&quot;https://readme-typing-svg.demolab.com?font=Rockwell&amp;amp;size=45&amp;amp;pause=1000&amp;amp;color=33ff00&amp;amp;center=true&amp;amp;width=800&amp;amp;height=80&amp;amp;lines=June-Official;Multi+Device+Whatsapp+Bot;Made+by+Supreme&quot; alt=&quot;Typing SVG&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://i.ibb.co/PzZPCy4m/upload-1777031446938-c2f61fb6-jpg.jpg&quot; alt=&quot;JUNE X&quot; height=&quot;250&quot; /&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://readme-typing-svg.demolab.com/?lines=The+bot+supports+deployment;On+all+free+panels+easily&quot; alt=&quot;Typing SVG&quot; /&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Quick Actions&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Action&lt;/th&gt; 
+    &lt;th&gt;Link&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Fork Repository&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://github.com/Vinpink2/June-Ultra/fork&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Fork%20Repo%2520-24292e?style=for-the-badge&amp;amp;logo=github&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Download ZIP&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://github.com/Vinpink2/June-Ultra/archive/refs/heads/main.zip&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Download%20-2ea043?style=for-the-badge&amp;amp;logo=github&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🌐 Deployment Options&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Platform&lt;/th&gt; 
+    &lt;th&gt;Button&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Heroku&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://dashboard.heroku.com/new?template=https://github.com/Vinpink2/June-Ultra&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Heroku-6762A6?style=for-the-badge&amp;amp;logo=heroku&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Railway&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://railway.app/new&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Railway-000000?style=for-the-badge&amp;amp;logo=railway&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Render&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://render.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Render-0099ff?style=for-the-badge&amp;amp;logo=render&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Koyeb (Docker)&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://app.koyeb.com/deploy?type=git&amp;amp;repository=github.com/Vinpink2/June-Ultra&amp;amp;branch=main&amp;amp;builder=dockerfile&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Koyeb-6C4CF1?style=for-the-badge&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;CypherXHost&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://platform.cypherx.store/register?ref=REPLI2955E16C9A&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/CypherX-007BFF?style=for-the-badge&amp;amp;logo=cypherxhost&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;🔑 Session &amp;amp; Pairing&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Method&lt;/th&gt; 
+    &lt;th&gt;Button&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Pair 1&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://burning-lorena-eminentbo-ede53cc1.koyeb.app/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Pair%201-1a1a4e?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Pair 2&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://pair1.junex.space&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Pair%202-1a1a4e?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;QR Code&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://burning-lorena-eminentbo-ede53cc1.koyeb.app/pair&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/QR%20Code-1a1a4e?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;💬 Support &amp;amp; Community&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Platform&lt;/th&gt; 
+    &lt;th&gt;Link&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;WhatsApp Group&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://whatsapp.com/channel/0029VbBzXBN2kNFoxm7LiG3Q&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/WhatsApp%20Group-25D366?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;YouTube&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://www.youtube.com/@Suprem_e_Lord&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/YouTube-FF0000?style=for-the-badge&amp;amp;logo=youtube&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;strong&gt;Telegram&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Vinpink2/June-Ultra/main/t.me/supremLord&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Telegram-0088cc?style=for-the-badge&amp;amp;logo=telegram&amp;amp;logoColor=white&amp;amp;logoSize=auto&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;sub&gt;Built with ❤️ by &lt;a href=&quot;https://github.com/Vinpink2&quot;&gt;Supreme&lt;/a&gt;&lt;/sub&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/6b055b31e80bfbe86225ecb4ba8657a4b00ebfc1b24cdb7e393d7372003d7baf/Vinpink2/June-Ultra" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>redhat-openshift-ecosystem/certified-operators</title>
+      <link>https://github.com/redhat-openshift-ecosystem/certified-operators</link>
+      <description>&lt;p&gt;Production catalog for Red Hat Certified Operator Bundles&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Red Hat certified operators production catalog&lt;/h1&gt; 
+&lt;p&gt;Production catalog for Red Hat Certified Operator Bundles&lt;/p&gt; 
+&lt;p&gt;See our &lt;a href=&quot;https://redhat-openshift-ecosystem.github.io/operator-pipelines/&quot;&gt;documentation&lt;/a&gt; to find out more about Certified operators and contribution.&lt;/p&gt; 
+&lt;h1&gt;Operator bundle submission&lt;/h1&gt; 
+&lt;p&gt;A new operator bundle submission needs to follow a predefined directory structure that is described below in this section. The new submission is done through Github pull requests which can be either open by the &lt;a href=&quot;https://github.com/redhat-openshift-ecosystem/operator-pipelines&quot;&gt;CI pipeline&lt;/a&gt; or manually by a user. The recommended way is to use the CI pipeline because it makes sure all necessary data are provided in the correct format. Documentation about how to use the pipeline is available in the pipeline repository.&lt;/p&gt; 
+&lt;h2&gt;Pull request&lt;/h2&gt; 
+&lt;p&gt;A pull request with a new operator bundle needs to follow given rules to pass a tests:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Title format: &lt;code&gt;operator package-name (version)&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Pull request can only modify one operator&lt;/li&gt; 
+ &lt;li&gt;Pull request can&#39;t modify already merged operators&lt;/li&gt; 
+ &lt;li&gt;Associated images need to be pinned to specific image digest - tags are not allowed&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Rules mentioned above are always followed when pull request is opened using CI pipeline.&lt;/p&gt; 
+&lt;h2&gt;Directory structure&lt;/h2&gt; 
+&lt;p&gt;This repository contains an &lt;code&gt;operator&lt;/code&gt; directory where all certified operators are stored. Each operator has its directory with its package name. Inside the directory, you have to provide a &lt;code&gt;ci.yaml&lt;/code&gt; file that stores the necessary metadata for a successful certification process. The format of the file is described below.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;operators
+└── kogito-operator
+    ├── 1.6.0
+    │&amp;nbsp;&amp;nbsp; ├── manifests
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitobuilds.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitoinfras.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitoruntimes.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── app.kiegroup.org_kogitosupportingservices.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; ├── kogito-operator.clusterserviceversion.yaml
+    │&amp;nbsp;&amp;nbsp; │&amp;nbsp;&amp;nbsp; └── kogito-operator-controller-manager_v1_serviceaccount.yaml
+    │&amp;nbsp;&amp;nbsp; └── metadata
+    │&amp;nbsp;&amp;nbsp;  &amp;nbsp;&amp;nbsp; └── annotations.yaml
+    └── ci.yaml
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Format of ci.yaml file&lt;/h3&gt; 
+&lt;p&gt;In the file, user needs to provide necessary details for the operator certification process. Currently, the certification process supports the following options:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;cert_project_id&lt;/code&gt; - Identifier of certification project created through Red Hat Connect.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;merge&lt;/code&gt; - A boolean value that determines whether a new operator is automatically merged when passed all required checks. (optional, default: &lt;code&gt;True&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/031a289671ee273362a1daec5ec7357df84352be2858bf5d0a4fc5369797682f/redhat-openshift-ecosystem/certified-operators" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>zoltanctoth/dbt-student-repo</title>
+      <link>https://github.com/zoltanctoth/dbt-student-repo</link>
+      <description>&lt;p&gt;Starter Repository for the Complete dbt Bootcamp Zero to Hero Course&lt;/p&gt;&lt;hr&gt;&lt;p&gt;This is a Student Repository for the Udemy&#39;s Complete dbt Bootcamp. You can:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Either start a codespace and start using dbt right away&lt;/li&gt; 
+ &lt;li&gt;Or clone this repo with Visual Studio Code and follow the instructions to set up a local dbt environment.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;Codespace setup: &lt;img width=&quot;930&quot; height=&quot;435&quot; alt=&quot;image&quot; src=&quot;https://github.com/user-attachments/assets/d7e15ad5-6df6-4651-895a-ea382c4da79c&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;Note: You don&#39;t need to create/activate a virtualenv in the Codespace. Everything has been set up for you.&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;Have fun! 😃&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/266e2a88408cb006f3ecd8f54c4417071f7bb976cd718c57406f7b046a0f4569/zoltanctoth/dbt-student-repo" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>microsoft/vscode-remote-release</title>
+      <link>https://github.com/microsoft/vscode-remote-release</link>
+      <description>&lt;p&gt;Visual Studio Code Remote Development: Open any folder in WSL, in a Docker container, or on a remote machine using SSH and take advantage of VS Code&#39;s full feature set.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://aka.ms/vscode-remote&quot;&gt;https://aka.ms/vscode-remote&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Visual Studio Code Remote Development&lt;/h1&gt; 
+&lt;table style=&quot;width: 100%; border-style: none;&quot;&gt;
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td style=&quot;width: 140px; text-align: center;&quot;&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/download/extension&quot;&gt;&lt;img width=&quot;128px&quot; src=&quot;https://raw.githubusercontent.com/microsoft/vscode-remote-release/main/docs/images/remote-extensionpack.png&quot; alt=&quot;Visual Studio Code logo&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt; &lt;strong&gt;Visual Studio Code Remote Development&lt;/strong&gt;&lt;br /&gt; &lt;i&gt;Open any folder in a container, on a remote machine, or in WSL and take advantage of VS Code&#39;s full feature set. &lt;strong&gt;&lt;a href=&quot;https://aka.ms/vscode-remote&quot;&gt;Learn more!&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; &lt;strong&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/download/extension&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/microsoft/vscode-remote-release/main/docs/images/download.png&quot; alt=&quot;Download now!&quot; /&gt;&lt;/a&gt;&lt;/strong&gt;&lt;/i&gt;&lt;br /&gt; &lt;/td&gt; 
+  &lt;/tr&gt;
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;This repository is for providing feedback on the &lt;strong&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/download/extension&quot;&gt;Visual Studio Remote Development&lt;/a&gt;&lt;/strong&gt; extension pack and its related extensions. You can use the repository to report issues or submit feature requests on any of these extensions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/download/ssh&quot;&gt;Remote - SSH&lt;/a&gt;&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Remote - SSH: Editing Configuration Files&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/download/containers&quot;&gt;Dev Containers&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/download/wsl&quot;&gt;WSL&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://marketplace.visualstudio.com/items?itemName=ms-vscode.remote-server&quot;&gt;Remote - Tunnels&lt;/a&gt;&lt;/strong&gt; and the &lt;strong&gt;&lt;a href=&quot;https://aka.ms/vscode-server-doc&quot;&gt;Visual Studio Code Server&lt;/a&gt;&lt;/strong&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you are running into an issue with &lt;strong&gt;another extension&lt;/strong&gt; you&#39;d like to use with the Remote Development extensions, please raise an issue in the extension&#39;s repository. You can reference our &lt;a href=&quot;https://aka.ms/vscode-remote/troubleshooting/extensions&quot;&gt;summary&lt;/a&gt; of tips for remote related issues and our &lt;a href=&quot;https://aka.ms/vscode-remote/developing-extensions&quot;&gt;extension guide&lt;/a&gt; to help the extension author get started.&lt;/p&gt; 
+&lt;p&gt;Issues related to &lt;a href=&quot;https://containers.dev/&quot;&gt;the Dev Container ecosystem&lt;/a&gt; may be reported in several places. Issues involving &lt;a href=&quot;https://github.com/devcontainers/features&quot;&gt;Features&lt;/a&gt;, &lt;a href=&quot;https://github.com/devcontainers/templates&quot;&gt;Templates&lt;/a&gt;, or &lt;a href=&quot;https://github.com/devcontainers/images&quot;&gt;Images&lt;/a&gt; can be reported in the relevant repo. Issues relating to the open source dev container CLI can be reported on &lt;a href=&quot;https://github.com/devcontainers/cli&quot;&gt;devcontainers/cli&lt;/a&gt;. You may use the &lt;a href=&quot;https://github.com/devcontainers/spec&quot;&gt;dev container spec repository&lt;/a&gt; to file and review issues to shape the direction of development containers and the dev container CLI.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Running into trouble? Wondering what you can do? These articles can help.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aka.ms/vscode-remote&quot;&gt;Overview&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/ssh&quot;&gt;Remote Development using SSH&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/containers&quot;&gt;Developing inside a Container&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/wsl&quot;&gt;Developing in WSL&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/troubleshooting&quot;&gt;Tips, Tricks, and Troubleshooting&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Releases&lt;/h2&gt; 
+&lt;p&gt;VS Code Remote Development extension &quot;stable&quot; releases are tied directly to VS Code releases. Release highlights can be found in &lt;a href=&quot;https://code.visualstudio.com/updates&quot;&gt;VS Code release notes&lt;/a&gt; which will include a link to &lt;a href=&quot;https://github.com/microsoft/vscode-docs/tree/main/remote-release-notes&quot;&gt;detailed extension release notes&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The extensions are developed using the same &lt;a href=&quot;https://github.com/microsoft/vscode/wiki/Development-Process#inside-an-iteration&quot;&gt;development process and schedule&lt;/a&gt; as VS Code itself. You can see what is planned for the current development iteration in a pinned &lt;a href=&quot;https://github.com/microsoft/vscode-remote-release/issues&quot;&gt;planning issue in this repository&lt;/a&gt;. This issue will include a link to the broader VS Code plan. As with VS Code itself, the extensions will update during a development iteration with changes that are only available in &lt;a href=&quot;https://code.visualstudio.com/insiders/&quot;&gt;VS Code Insiders Edition&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Providing Feedback&lt;/h2&gt; 
+&lt;p&gt;You can use this repository to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/feature-requests&quot;&gt;Up-vote a feature or request a new one&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Search for &lt;a href=&quot;https://aka.ms/vscode-remote/issues&quot;&gt;existing issues&lt;/a&gt; already reported for potential workarounds.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/issues/new&quot;&gt;Report a problem&lt;/a&gt; if you don&#39;t find what you are looking for.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you have a question, connect with the community using any of these social platforms:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://aka.ms/vscode-remote/twitter&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/microsoft/vscode-remote-release/main/docs/images/Twitter_Social_Icon_24x24.png&quot; alt=&quot;Twitter&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://stackoverflow.com/questions/tagged/vscode&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/microsoft/vscode-remote-release/main/docs/images/so-image-24x24.png&quot; alt=&quot;Stack Overflow&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://aka.ms/vscode-dev-community&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/microsoft/vscode-remote-release/main/docs/images/Slack_Mark-24x24.png&quot; alt=&quot;VS Code Dev Community Slack&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/Microsoft/vscode&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/microsoft/vscode-remote-release/main/docs/images/gitter-icon-24x24.png&quot; alt=&quot;VS Code Gitter&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;See our &lt;a href=&quot;https://aka.ms/vscode-remote/contributing&quot;&gt;CONTRIBUTING&lt;/a&gt; guide for more details.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;By downloading and using the Visual Studio Remote Development extension pack and its related extensions, you agree to the product &lt;a href=&quot;https://go.microsoft.com/fwlink/?linkid=2077057&quot;&gt;license terms&lt;/a&gt; and &lt;a href=&quot;https://www.microsoft.com/en-us/privacystatement/EnterpriseDev/default.aspx&quot;&gt;privacy statement&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;License for this repository:&lt;/p&gt; 
+&lt;p&gt;Copyright © Microsoft Corporation All rights reserved.&lt;br /&gt; Creative Commons Attribution 4.0 License (International): &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/legalcode&quot;&gt;https://creativecommons.org/licenses/by/4.0/legalcode&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/dd0a509ad6c8064d8ae5a581204da5168d713088adf3c838ab739dce91fee1f9/microsoft/vscode-remote-release" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>microsoft/mssql-docker</title>
+      <link>https://github.com/microsoft/mssql-docker</link>
+      <description>&lt;p&gt;Official Microsoft repository for SQL Server in Docker resources&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;SQL Server in Docker&lt;/h1&gt; 
+&lt;p&gt;This GitHub repository aims to provide a centralized location for community engagement. In here you will find documentation, Dockerfiles and additional developer resources.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;SQL Server in Docker&lt;/strong&gt; comes in two different flavors:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Microsoft/mssql-docker/tree/master/linux&quot;&gt;Linux-based containers&lt;/a&gt;: This Docker image uses &lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/&quot;&gt;SQL Server 2017 Developer Edition on Linux&lt;/a&gt; on top of an Ubuntu 16.04 base image. This is meant to be run on &lt;a href=&quot;https://www.docker.com/products/overview&quot;&gt;Docker Engine&lt;/a&gt; on its multiple platforms. There are also Dockerfiles here for building &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/mssql-docker/master/linux/preview/RHEL/Dockerfile&quot;&gt;RHEL&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/mssql-docker/master/linux/preview/CentOS/Dockerfile&quot;&gt;CentOS&lt;/a&gt; based images.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Microsoft/mssql-docker/tree/master/windows&quot;&gt;Windows-based containers&lt;/a&gt;: These Docker images use SQL Server 2017 Express Edition and SQL Server 2017 Developer Edition. Both images are based on Windows Container technology and can only be run using &lt;a href=&quot;https://msdn.microsoft.com/en-us/virtualization/windowscontainers/docker/configure_docker_daemon&quot;&gt;Docker Engine for Windows Containers&lt;/a&gt;. You can currently sign-up for SQL Server 2019 on Windows Containers available in our &lt;a href=&quot;https://cloudblogs.microsoft.com/sqlserver/2019/07/01/sql-server-2019-on-windows-containers-now-in-early-adopters-program/&quot;&gt;Early Adopter Preview&lt;/a&gt; program.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Before choosing to run a SQL Server container for production use cases, please review our &lt;a href=&quot;https://support.microsoft.com/en-us/help/4047326/support-policy-for-microsoft-sql-server&quot;&gt;support policy&lt;/a&gt; for SQL Server Containers to ensure that you are running on a supported configuration.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;SQL Server Command Line Tools(sqlcmd,bcp)&lt;/strong&gt; are also available as a Docker Image. You can now deliver SQL Server management payload using this as a base image for your CI/CD scenarios. Check out the &lt;a href=&quot;https://hub.docker.com/r/microsoft/mssql-tools/&quot;&gt;mssql-tools Docker Image&lt;/a&gt; to get started.&lt;/p&gt; 
+&lt;p&gt;Visit the &lt;a href=&quot;https://hub.docker.com/u/microsoft&quot;&gt;Microsoft Docker Hub page&lt;/a&gt; for more information and additional images.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/quickstart-install-connect-docker&quot;&gt;Getting started guide for the SQL Server on Linux container&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.microsoft.com/en-us/sql/linux/sql-server-linux-configure-docker&quot;&gt;Best practices guide&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Take our survey&lt;/h2&gt; 
+&lt;p&gt;Let us know more about how you would like to use SQL containers by taking our &lt;a href=&quot;https://www.surveymonkey.com/r/XXSY536&quot;&gt;survey&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Issues&lt;/h2&gt; 
+&lt;p&gt;For any issues with the repo, please file under this GitHub project on the &lt;a href=&quot;https://github.com/Microsoft/mssql-docker/issues&quot;&gt;Issues section&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you require support with a production related issue, then please raise a support incident with Microsoft &lt;a href=&quot;https://support.microsoft.com/en-us/hub/4343728/support-for-business&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;There is also a &lt;a href=&quot;https://gitter.im/Microsoft/mssql-devops?utm_source=share-link&amp;amp;utm_medium=link&amp;amp;utm_campaign=share-link&quot;&gt;Gitter channel for SQL Server in DevOps&lt;/a&gt; that you can join and discuss interesting topics with other container, SQL Server, and DevOps enthusiasts.&lt;/p&gt; 
+&lt;h2&gt;Troubleshooting &amp;amp; Frequently Asked Questions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&quot;Unknown blob&quot; error code: You are probably trying to run the Windows Containers-based Docker image on a Linux-based Docker Engine. If you want to continue running the Windows Container-based image, we recommend reading the following community article: &lt;a href=&quot;https://stefanscherer.github.io/run-linux-and-windows-containers-on-windows-10/&quot;&gt;Run Linux and Windows Containers on Windows 10&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;When using the Windows Docker CLI you must use double quotes instead of single ticks for the environment variables, else the mssql-server-linux image won&#39;t find the &lt;code&gt;ACCEPT_EULA&lt;/code&gt; or &lt;code&gt;SA_PASSWORD&lt;/code&gt; variables which are required to start the container.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;The &#39;sa&#39; password has a minimum complexity requirement (8 characters, uppercase, lowercase, alphanumerical and/or non-alphanumerical)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Licensing for SQL Server in Docker: Regardless of where you run it - VM, Docker, physical, cloud, on prem - the licensing model is the same and it depends on which edition of SQL Server you are using. The Express and Developer Editions are free. Standard and Enterprise have a cost. More information here: &lt;a href=&quot;https://www.microsoft.com/en-us/sql-server/sql-server-2016-editions&quot;&gt;https://www.microsoft.com/en-us/sql-server/sql-server-2016-editions&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;The Docker resource files for SQL Server are licensed under the MIT license. See the &lt;a href=&quot;https://raw.githubusercontent.com/microsoft/mssql-docker/master/LICENSE&quot;&gt;LICENSE file&lt;/a&gt; for more details.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/0498b52abda5376febd98e4f8bdbb514608ff490271a06703a223b4dcd97dbec/microsoft/mssql-docker" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>yankils/Simple-DevOps-Project</title>
+      <link>https://github.com/yankils/Simple-DevOps-Project</link>
+      <description>&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.udemy.com/course/valaxy-devops/?referralCode=8147A5CF4C8C7D9E253F&quot;&gt;https://www.udemy.com/course/valaxy-devops/?referralCode=8147A5CF4C8C7D9E253F&lt;/a&gt;&lt;/p&gt;&lt;h1&gt;Simple DevOps Project&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.udemy.com/course/valaxy-devops/?referralCode=8147A5CF4C8C7D9E253F&quot;&gt;&lt;img src=&quot;https://github.com/yankils/Simple-DevOps-Project/raw/master/Devops_course.PNG&quot; alt=&quot;Image&quot; title=&quot;DevOps Project - CI/CD with Jenkins Ansible Docker Kubernetes &quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This Repository is a collection of Implementation documents.&lt;/p&gt; 
+&lt;h3&gt;Purpose:&lt;/h3&gt; 
+&lt;p&gt;By following this repository you can able to setup a DevOps CI/CD Pipeline using&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;git&lt;/li&gt; 
+ &lt;li&gt;Jenkins&lt;/li&gt; 
+ &lt;li&gt;Maven&lt;/li&gt; 
+ &lt;li&gt;Ansible&lt;/li&gt; 
+ &lt;li&gt;Docker &amp;amp;&lt;/li&gt; 
+ &lt;li&gt;Kubernetes&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ed3e0430b2c8dd7486d6de237e773fcbbf5351fefc38f2e3de4bda910df9b042/yankils/Simple-DevOps-Project" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>TristanCage/CypherX</title>
+      <link>https://github.com/TristanCage/CypherX</link>
+      <description>&lt;p&gt;CypherX Repository&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://pair.cypherxbot.space&quot;&gt;https://pair.cypherxbot.space&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; &lt;img src=&quot;https://readme-typing-svg.herokuapp.com?font=Orbitron&amp;amp;size=35&amp;amp;duration=3000&amp;amp;pause=1000&amp;amp;color=00F7FF&amp;amp;center=true&amp;amp;vCenter=true&amp;amp;width=600&amp;amp;lines=CYPHER+X+BOT;WhatsApp+Automation+System;Multi+Pair+Servers;Easy+Deployment&quot; /&gt; &lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://i.ibb.co/nqsRcKDB/Xploader4.jpg&quot; width=&quot;350&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; Professional WhatsApp Automation Bot with Multi Pairing Servers and Easy Deployment &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;🍴 Fork Repository&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/TristanCage/CypherX/fork&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/FORK%20REPOSITORY-gradient?style=for-the-badge&amp;amp;logo=github&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;🔑 Pairing Servers&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://pair.cypherxbot.space/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/PAIR%201-ff0050?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://pair2.cypherxbot.space/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/PAIR%202-ff6a00?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://pair3.cypherxbot.space/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/PAIR%203-ffb300?style=for-the-badge&amp;amp;logo=whatsapp&amp;amp;logoColor=white&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;📷 QR Scan Servers&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://pair.cypherxbot.space/scan&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/SCAN%201-ff0050?style=for-the-badge&amp;amp;logo=qrcode&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://pair2.cypherxbot.space/scan&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/SCAN%202-ff6a00?style=for-the-badge&amp;amp;logo=qrcode&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://pair3.cypherxbot.space/scan&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/SCAN%203-ffb300?style=for-the-badge&amp;amp;logo=qrcode&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;📥 Download Bot Files&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://pair.cypherxbot.space/download&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/DOWNLOAD%20BOT-00ff88?style=for-the-badge&amp;amp;logo=download&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;⚠️ &lt;strong&gt;Note&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;This download provides a &lt;strong&gt;direct ZIP file&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;GitHub downloads usually place the files inside a folder which the tutorial video does not explain how to rearrange.&lt;/p&gt; 
+&lt;p&gt;Using the ZIP avoids this issue.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;🎥 Tutorials&lt;/h1&gt; 
+&lt;h3&gt;Pairing Tutorial&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://youtube.com/shorts/oi1Er4M2gbY&quot;&gt;https://youtube.com/shorts/oi1Er4M2gbY&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Deploy on Pterodactyl Panel&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://youtube.com/shorts/Ds-hn6jYij8&quot;&gt;https://youtube.com/shorts/Ds-hn6jYij8&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Deploy using Web Dashboard&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=ynlDcv-MBFc&quot;&gt;https://www.youtube.com/watch?v=ynlDcv-MBFc&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Deploy on CypherX Platform&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/lMheAzhjd24?si=8-vcXJLCrD0djKRB&quot;&gt;https://youtu.be/lMheAzhjd24?si=8-vcXJLCrD0djKRB&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;🟢 Brevo Host&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://dash.brevo.host/register&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/BREVO%20HOST-2e7d32?style=for-the-badge&amp;amp;logo=server&amp;amp;logoColor=white&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;p&gt;• Session ID&lt;br /&gt; • Bot Name&lt;br /&gt; • Bot Repository Link or Bot File&lt;br /&gt; • 🆓 &lt;strong&gt;Free Servers&lt;/strong&gt;&lt;br /&gt; • Minimum &lt;strong&gt;0.5$ / 50 Credits&lt;/strong&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;🚀 CypherX Platform&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://platform.cypherx.space&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/CYPHERX%20PLATFORM-0078ff?style=for-the-badge&amp;amp;logo=server&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;📋 Requirements&lt;/h1&gt; 
+&lt;p&gt;• Session ID&lt;br /&gt; • Bot Name&lt;br /&gt; • Bot Repository Link or Bot File&lt;br /&gt; • Minimum &lt;strong&gt;30 Coins Balance&lt;/strong&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;☁️ Deploy Options&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://dashboard.heroku.com/new?template=https://github.com/TristanCage/CypherX&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/HEROKU-6762A6?style=for-the-badge&amp;amp;logo=heroku&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://railway.app/new&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/RAILWAY-000000?style=for-the-badge&amp;amp;logo=railway&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://render.com&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/RENDER-0099ff?style=for-the-badge&amp;amp;logo=render&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h1&gt;👨‍💻 Developer&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://avatars.githubusercontent.com/u/236496610?s=240&amp;amp;v=7&quot; width=&quot;120&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; CypherX Developer &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p align=&quot;center&quot;&gt; ⭐ If you like this project, please star the repository. &lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/df07a8400a8feced079940bf7d7ec3e0f89a07cf31aa9942468bdab87b1c8992/TristanCage/CypherX" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1504 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub C++ Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of C++ on GitHub</description>
+    
+    <pubDate>Sat, 10 Oct 2026 06:37:00 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>boykopovar/AnyPS5</title>
+      <link>https://github.com/boykopovar/AnyPS5</link>
+      <description>&lt;p&gt;Tool for automatic PS5 executables porting to Linux and Windows&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://discord.gg/BHFztBPUe&quot;&gt;https://discord.gg/BHFztBPUe&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;About&lt;/h1&gt; 
+&lt;p&gt;Tool for automatic executables porting to Linux and Windows.&lt;/p&gt; 
+&lt;p&gt;Includes a &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/core/relinker&quot;&gt;relinker&lt;/a&gt; that converts executable to the target system&#39;s native format and implementations of &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/core/libs/prx&quot;&gt;system prx libraries&lt;/a&gt; suitable for dynamic linking. No emulation or separate runtime process.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/user/USAGE.md&quot;&gt;Usage&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/dev/BUILD.md&quot;&gt;Build instructions&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/dev/ARCHITECTURE.md&quot;&gt;Architecture&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/dev/TechnicalDebt.md&quot;&gt;Technical debt of the project&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/dev/CONVENTIONS.md&quot;&gt;code style conventions&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/CONTRIBUTING.md&quot;&gt;contributing&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Status&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://boykopovar.github.io/AnyPS5/&quot;&gt;&lt;img src=&quot;https://boykopovar.github.io/AnyPS5/badge-libraries.svg?sanitize=true&quot; alt=&quot;libraries&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://boykopovar.github.io/AnyPS5/&quot;&gt;&lt;img src=&quot;https://boykopovar.github.io/AnyPS5/badge-shaders.svg?sanitize=true&quot; alt=&quot;shaders&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://boykopovar.github.io/AnyPS5/&quot;&gt;&lt;img src=&quot;https://boykopovar.github.io/AnyPS5/progress.svg?sanitize=true&quot; alt=&quot;progress map&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;* System libraries: percentage of the functions known to the project so far (declared in &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/core/libs/prx&quot;&gt;core/libs/prx&lt;/a&gt;), not of every PS5 system function. The total grows as more functions are declared.&lt;/sub&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/user/COMPATIBILITY.md&quot;&gt;List of verified games&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Dreaming Sarah (2D platformer) runs at a stable 60 fps on a GTX 1050 Ti / i5-7500 3.4GHz.&lt;/p&gt; 
+&lt;p&gt;Unsupported or unexpected states strictly throw &lt;code&gt;std::runtime_error&lt;/code&gt;. &lt;code&gt;what()&lt;/code&gt; is printed to stderr and the process terminates.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/core/shader/recompiler/Recompiler.cpp&quot;&gt;shader recompiler&lt;/a&gt; successfully produces SPIR-V (validated via &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/3rdparty/SPIRV-Tools&quot;&gt;Spirv-Tools&lt;/a&gt; when built with &lt;code&gt;ANYPS5_ENABLE_SPIRV_TOOLS&lt;/code&gt;).&lt;/p&gt; 
+&lt;h2&gt;Compatibility&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/user/COMPATIBILITY.md&quot;&gt;game compatibility list&lt;/a&gt; for tested games and known issues.&lt;/p&gt; 
+&lt;h2&gt;Input mapping&lt;/h2&gt; 
+&lt;p&gt;SDL-mapped game controllers are supported, including analog sticks and triggers. Keyboard and mouse controls can be configured with an &lt;code&gt;anyps5-input.ini&lt;/code&gt; file. See &lt;a href=&quot;https://raw.githubusercontent.com/boykopovar/AnyPS5/main/docs/user/INPUT_MAPPING.md&quot;&gt;input mapping&lt;/a&gt; for the supported devices and configuration format.&lt;/p&gt; 
+&lt;h2&gt;Disclaimer&lt;/h2&gt; 
+&lt;p&gt;This project is intended for interoperability, research, preservation, and compatibility purposes. It does not include, distribute, or require copyrighted software, firmware, cryptographic keys, or proprietary libraries. Users are responsible for ensuring that any binaries used with this project are obtained and used in accordance with applicable laws and their respective license terms.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is licensed under the GNU General Public License version 2 only.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/6de7a83c1fd2962529e486f4398d6b98367c45746711707835137e6925e5097a/boykopovar/AnyPS5" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>78/xiaozhi-esp32</title>
+      <link>https://github.com/78/xiaozhi-esp32</link>
+      <description>&lt;p&gt;An MCP-based chatbot | 一个基于MCP的聊天机器人&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://xiaozhi.me&quot;&gt;https://xiaozhi.me&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;An MCP-based Chatbot&lt;/h1&gt; 
+&lt;p&gt;(English | &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/README_zh.md&quot;&gt;中文&lt;/a&gt; | &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/README_ja.md&quot;&gt;日本語&lt;/a&gt;)&lt;/p&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;p&gt;👉 &lt;a href=&quot;https://www.bilibili.com/video/BV1bpjgzKEhd/&quot;&gt;Human: Give AI a camera vs AI: Instantly finds out the owner hasn&#39;t washed hair for three days【bilibili】&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;👉 &lt;a href=&quot;https://www.bilibili.com/video/BV1XnmFYLEJN/&quot;&gt;Handcraft your AI girlfriend, beginner&#39;s guide【bilibili】&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;As a voice interaction entry, the XiaoZhi AI chatbot leverages the AI capabilities of large models like Qwen / DeepSeek, and achieves multi-terminal control via the MCP protocol.&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/mcp-based-graph.jpg&quot; alt=&quot;Control everything via MCP&quot; width=&quot;320&quot; /&gt; 
+&lt;h2&gt;Recent Updates&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The project now requires ESP-IDF v6.0.1 or later. &lt;a href=&quot;https://github.com/espressif/esp-idf/releases/tag/v6.1&quot;&gt;ESP-IDF v6.1&lt;/a&gt; is the recommended SDK. ESP-IDF 5.x is no longer supported. The current matrix contains 171 variants; ESP32-S31 builds require IDF 6.1 or later.&lt;/li&gt; 
+ &lt;li&gt;MQTT and BluFi cryptographic code has migrated to PSA Crypto. IDF 6 component splits and third-party dependency compatibility have also been addressed.&lt;/li&gt; 
+ &lt;li&gt;Audio pipeline concurrency, MQTT/UDP packet validation, and release-matrix selection have been hardened.&lt;/li&gt; 
+ &lt;li&gt;ESP32-P4 Rev1 and Rev3 are both supported on IDF 6 with ESP-SR 2.4.7.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Features Implemented&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Wi-Fi, wired Ethernet, USB RNDIS, and ML307/EC801E or NT26 Cat.1 4G networking; supported boards can switch between Wi-Fi and 4G&lt;/li&gt; 
+ &lt;li&gt;Offline voice wake-up with &lt;a href=&quot;https://github.com/espressif/esp-sr&quot;&gt;ESP-SR&lt;/a&gt;, including customizable wake words&lt;/li&gt; 
+ &lt;li&gt;Two communication transports: &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/websocket.md&quot;&gt;WebSocket&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/mqtt-udp.md&quot;&gt;MQTT + UDP&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Opus audio streaming with conventional streaming ASR + LLM + TTS pipelines and Realtime end-to-end voice models; AEC-capable hardware supports realtime full-duplex interaction&lt;/li&gt; 
+ &lt;li&gt;Speaker recognition, identifies the current speaker &lt;a href=&quot;https://github.com/modelscope/3D-Speaker&quot;&gt;3D Speaker&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;OLED / LCD displays with emoji and rich expression support, plus camera vision input on supported boards&lt;/li&gt; 
+ &lt;li&gt;Battery display and power management&lt;/li&gt; 
+ &lt;li&gt;39 interface languages, with localized voice prompts where available and English fallback&lt;/li&gt; 
+ &lt;li&gt;ESP32, ESP32-C3, ESP32-C5, ESP32-C6, ESP32-S3, and ESP32-P4 chip platforms&lt;/li&gt; 
+ &lt;li&gt;Wi-Fi provisioning through hotspot or BluFi&lt;/li&gt; 
+ &lt;li&gt;Device-side MCP for device control (Speaker, LED, Servo, GPIO, etc.)&lt;/li&gt; 
+ &lt;li&gt;Cloud-side MCP to extend large model capabilities (smart home control, PC desktop operation, knowledge search, email, etc.)&lt;/li&gt; 
+ &lt;li&gt;Customizable wake words, fonts, emojis, and chat backgrounds with online web-based editing (&lt;a href=&quot;https://github.com/78/xiaozhi-assets-generator&quot;&gt;Custom Assets Generator&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Hardware&lt;/h2&gt; 
+&lt;h3&gt;Breadboard DIY Practice&lt;/h3&gt; 
+&lt;p&gt;See the Feishu document tutorial:&lt;/p&gt; 
+&lt;p&gt;👉 &lt;a href=&quot;https://ccnphfhqs21z.feishu.cn/wiki/F5krwD16viZoF0kKkvDcrZNYnhb?from=from_copylink&quot;&gt;&quot;XiaoZhi AI Chatbot Encyclopedia&quot;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Breadboard demo:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/wiring2.jpg&quot; alt=&quot;Breadboard Demo&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;Supports 138 Board Directories and 171 Release Variants (Partial List)&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://oshwhub.com/li-chuang-kai-fa-ban/li-chuang-shi-zhan-pai-esp32-s3-kai-fa-ban&quot; target=&quot;_blank&quot; title=&quot;LiChuang ESP32-S3 Development Board&quot;&gt;LiChuang ESP32-S3 Development Board&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/espressif/esp-box&quot; target=&quot;_blank&quot; title=&quot;Espressif ESP32-S3-BOX-3&quot;&gt;Espressif ESP32-S3-BOX-3&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.m5stack.com/zh_CN/core/CoreS3&quot; target=&quot;_blank&quot; title=&quot;M5Stack CoreS3&quot;&gt;M5Stack CoreS3&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.m5stack.com/en/atom/Atomic%20Echo%20Base&quot; target=&quot;_blank&quot; title=&quot;AtomS3R + Echo Base&quot;&gt;M5Stack AtomS3R + Echo Base&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gf.bilibili.com/item/detail/1108782064&quot; target=&quot;_blank&quot; title=&quot;Magic Button 2.4&quot;&gt;Magic Button 2.4&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.waveshare.net/shop/ESP32-S3-Touch-AMOLED-1.8.htm&quot; target=&quot;_blank&quot; title=&quot;Waveshare ESP32-S3-Touch-AMOLED-1.8&quot;&gt;Waveshare ESP32-S3-Touch-AMOLED-1.8&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Xinyuan-LilyGO/T-Circle-S3&quot; target=&quot;_blank&quot; title=&quot;LILYGO T-Circle-S3&quot;&gt;LILYGO T-Circle-S3&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://oshwhub.com/tenclass01/xmini_c3&quot; target=&quot;_blank&quot; title=&quot;XiaGe Mini C3&quot;&gt;XiaGe Mini C3&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://oshwhub.com/movecall/cuican-ai-pendant-lights-up-y&quot; target=&quot;_blank&quot; title=&quot;Movecall CuiCan ESP32S3&quot;&gt;CuiCan AI Pendant&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/WMnologo/xingzhi-ai&quot; target=&quot;_blank&quot; title=&quot;WMnologo-Xingzhi-1.54&quot;&gt;WMnologo-Xingzhi-1.54TFT&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.seeedstudio.com/SenseCAP-Watcher-W1-A-p-5979.html&quot; target=&quot;_blank&quot; title=&quot;SenseCAP Watcher&quot;&gt;SenseCAP Watcher&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.bilibili.com/video/BV1BHJtz6E2S/&quot; target=&quot;_blank&quot; title=&quot;ESP-HI Low Cost Robot Dog&quot;&gt;ESP-HI Low Cost Robot Dog&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;div style=&quot;display: flex; justify-content: space-between;&quot;&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/lichuang-s3.jpg&quot; target=&quot;_blank&quot; title=&quot;LiChuang ESP32-S3 Development Board&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/lichuang-s3.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/espbox3.jpg&quot; target=&quot;_blank&quot; title=&quot;Espressif ESP32-S3-BOX3&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/espbox3.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/m5cores3.jpg&quot; target=&quot;_blank&quot; title=&quot;M5Stack CoreS3&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/m5cores3.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/atoms3r.jpg&quot; target=&quot;_blank&quot; title=&quot;AtomS3R + Echo Base&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/atoms3r.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/magiclick.jpg&quot; target=&quot;_blank&quot; title=&quot;Magic Button 2.4&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/magiclick.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/waveshare.jpg&quot; target=&quot;_blank&quot; title=&quot;Waveshare ESP32-S3-Touch-AMOLED-1.8&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/waveshare.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/lilygo-t-circle-s3.jpg&quot; target=&quot;_blank&quot; title=&quot;LILYGO T-Circle-S3&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/lilygo-t-circle-s3.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/xmini-c3.jpg&quot; target=&quot;_blank&quot; title=&quot;XiaGe Mini C3&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/xmini-c3.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/movecall-cuican-esp32s3.jpg&quot; target=&quot;_blank&quot; title=&quot;CuiCan&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/movecall-cuican-esp32s3.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/wmnologo_xingzhi_1.54.jpg&quot; target=&quot;_blank&quot; title=&quot;WMnologo-Xingzhi-1.54&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/wmnologo_xingzhi_1.54.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/sensecap_watcher.jpg&quot; target=&quot;_blank&quot; title=&quot;SenseCAP Watcher&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/sensecap_watcher.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/esp-hi.jpg&quot; target=&quot;_blank&quot; title=&quot;ESP-HI Low Cost Robot Dog&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/v1/esp-hi.jpg&quot; width=&quot;240&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Software&lt;/h2&gt; 
+&lt;h3&gt;Firmware Flashing&lt;/h3&gt; 
+&lt;p&gt;For beginners, it is recommended to use the firmware that can be flashed without setting up a development environment.&lt;/p&gt; 
+&lt;p&gt;The firmware connects to the official &lt;a href=&quot;https://xiaozhi.me&quot;&gt;xiaozhi.me&lt;/a&gt; server by default. Personal users can register an account to use the Qwen real-time model for free.&lt;/p&gt; 
+&lt;p&gt;👉 &lt;a href=&quot;https://ccnphfhqs21z.feishu.cn/wiki/Zpz4wXBtdimBrLk25WdcXzxcnNS&quot;&gt;Beginner&#39;s Firmware Flashing Guide&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Development Environment&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Cursor or VSCode&lt;/li&gt; 
+ &lt;li&gt;Install the ESP-IDF plugin. The minimum SDK is &lt;a href=&quot;https://github.com/espressif/esp-idf/releases/tag/v6.0.1&quot;&gt;ESP-IDF v6.0.1&lt;/a&gt;; &lt;a href=&quot;https://github.com/espressif/esp-idf/releases/tag/v6.1&quot;&gt;ESP-IDF v6.1&lt;/a&gt; is recommended. ESP-IDF 5.x is not supported.&lt;/li&gt; 
+ &lt;li&gt;Linux is better than Windows for faster compilation and fewer driver issues&lt;/li&gt; 
+ &lt;li&gt;This project uses Google C++ code style, please ensure compliance when submitting code&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Developer Documentation&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/custom-board.md&quot;&gt;Custom Board Guide&lt;/a&gt; - Learn how to create custom boards for XiaoZhi AI&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/mcp-usage.md&quot;&gt;MCP Protocol IoT Control Usage&lt;/a&gt; - Learn how to control IoT devices via MCP protocol&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/mcp-protocol.md&quot;&gt;MCP Protocol Interaction Flow&lt;/a&gt; - Device-side MCP protocol implementation&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/mqtt-udp.md&quot;&gt;MQTT + UDP Hybrid Communication Protocol Document&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/78/xiaozhi-esp32/main/docs/websocket.md&quot;&gt;A detailed WebSocket communication protocol document&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Large Model Configuration&lt;/h2&gt; 
+&lt;p&gt;If you already have a XiaoZhi AI chatbot device and have connected to the official server, you can log in to the &lt;a href=&quot;https://xiaozhi.me&quot;&gt;xiaozhi.me&lt;/a&gt; console for configuration.&lt;/p&gt; 
+&lt;p&gt;👉 &lt;a href=&quot;https://www.bilibili.com/video/BV1jUCUY2EKM/&quot;&gt;Backend Operation Video Tutorial (Old Interface)&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Related Open Source Projects&lt;/h2&gt; 
+&lt;p&gt;For server deployment on personal computers, refer to the following open-source projects:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/xinnan-tech/xiaozhi-esp32-server&quot;&gt;xinnan-tech/xiaozhi-esp32-server&lt;/a&gt; Python server&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/joey-zhou/xiaozhi-esp32-server-java&quot;&gt;joey-zhou/xiaozhi-esp32-server-java&lt;/a&gt; Java server&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/AnimeAIChat/xiaozhi-server-go&quot;&gt;AnimeAIChat/xiaozhi-server-go&lt;/a&gt; Golang server&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/hackers365/xiaozhi-esp32-server-golang&quot;&gt;hackers365/xiaozhi-esp32-server-golang&lt;/a&gt; Golang server&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Other client projects using the XiaoZhi communication protocol:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/huangjunsen0406/py-xiaozhi&quot;&gt;huangjunsen0406/py-xiaozhi&lt;/a&gt; Python client&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/TOM88812/xiaozhi-android-client&quot;&gt;TOM88812/xiaozhi-android-client&lt;/a&gt; Android client&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://github.com/100askTeam/xiaozhi-linux&quot;&gt;100askTeam/xiaozhi-linux&lt;/a&gt; Linux client by 100ask&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/78/xiaozhi-sf32&quot;&gt;78/xiaozhi-sf32&lt;/a&gt; Bluetooth chip firmware by Sichuan&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/QuecPython/solution-xiaozhiAI&quot;&gt;QuecPython/solution-xiaozhiAI&lt;/a&gt; QuecPython firmware by Quectel&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Custom Assets Tools:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/78/xiaozhi-assets-generator&quot;&gt;78/xiaozhi-assets-generator&lt;/a&gt; Custom Assets Generator (Wake words, fonts, emojis, backgrounds)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;About the Project&lt;/h2&gt; 
+&lt;p&gt;This is an open-source ESP32 project, released under the MIT license, allowing anyone to use it for free, including for commercial purposes.&lt;/p&gt; 
+&lt;p&gt;We hope this project helps everyone understand AI hardware development and apply rapidly evolving large language models to real hardware devices.&lt;/p&gt; 
+&lt;p&gt;If you have any ideas or suggestions, please feel free to raise Issues or join our &lt;a href=&quot;https://discord.gg/C759fGMBcZ&quot;&gt;Discord&lt;/a&gt; or QQ group: 1095994019&lt;/p&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;a href=&quot;https://star-history.com/#78/xiaozhi-esp32&amp;amp;Date&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://api.star-history.com/svg?repos=78/xiaozhi-esp32&amp;amp;type=Date&amp;amp;theme=dark&quot; /&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://api.star-history.com/svg?repos=78/xiaozhi-esp32&amp;amp;type=Date&quot; /&gt; 
+  &lt;img alt=&quot;Star History Chart&quot; src=&quot;https://api.star-history.com/svg?repos=78/xiaozhi-esp32&amp;amp;type=Date&quot; /&gt; 
+ &lt;/picture&gt; &lt;/a&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/aeb8032088f8ad9dee39f4120e97b9c8f3cc09680a1f82a70d3aa9a02e0ef189/78/xiaozhi-esp32" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>typesense/typesense</title>
+      <link>https://github.com/typesense/typesense</link>
+      <description>&lt;p&gt;Open Source alternative to Algolia + Pinecone and an Easier-to-Use alternative to ElasticSearch ⚡ 🔍 ✨ Fast, typo tolerant, in-memory fuzzy Search Engine for building delightful search experiences&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://typesense.org&quot;&gt;https://typesense.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://typesense.org&quot;&gt; 
+  &lt;picture&gt; 
+   &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;assets/typesense_logo_dark.svg&quot; /&gt; 
+   &lt;img src=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/assets/typesense_logo.svg?sanitize=true&quot; alt=&quot;Typesense&quot; width=&quot;600&quot; /&gt; 
+  &lt;/picture&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; Typesense is a fast, typo-tolerant search engine for building delightful search experiences. &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; An Open Source Algolia Alternative &amp;amp; &lt;br /&gt; An Easier-to-Use ElasticSearch Alternative &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; 
+ &lt;!-- &lt;a href=&quot;https://circleci.com/gh/typesense/typesense&quot;&gt;&lt;img src=&quot;https://circleci.com/gh/typesense/typesense.svg?style=shield&amp;circle-token=1addd775339738a3d90869ddd8201110d561feaa&quot;&gt;&lt;/a&gt; --&gt; &lt;a href=&quot;https://hub.docker.com/r/typesense/typesense/tags&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/typesense/typesense&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/typesense&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/typesense/typesense?label=github%20stars&amp;amp;style=flat&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://cloud.typesense.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/searches_per_month_on_typesense_cloud-10%20Billion-blue&quot; /&gt;&lt;/a&gt; &lt;/p&gt;
+&lt;p&gt; &lt;/p&gt;
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://typesense.org&quot;&gt;Website&lt;/a&gt; | &lt;a href=&quot;https://typesense.org/docs/&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://typesense.link/roadmap&quot;&gt;Roadmap&lt;/a&gt; | &lt;a href=&quot;https://typesense.link/slack-community&quot;&gt;Slack Community&lt;/a&gt; | &lt;a href=&quot;https://threads.typesense.org/&quot;&gt;Community Threads&lt;/a&gt; | &lt;a href=&quot;https://twitter.com/typesense&quot;&gt;Twitter&lt;/a&gt; &lt;/p&gt; 
+&lt;br /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/assets/typesense_books_demo.gif?raw=true&quot; alt=&quot;Typesense Demo&quot; width=&quot;459&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;✨ Here are a couple of &lt;strong&gt;live demos&lt;/strong&gt; that show Typesense in action on large datasets:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Search a 32M songs dataset from MusicBrainz: &lt;a href=&quot;https://songs-search.typesense.org/&quot;&gt;songs-search.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Search a 28M books dataset from OpenLibrary: &lt;a href=&quot;https://books-search.typesense.org/&quot;&gt;books-search.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Search a 2M recipe dataset from RecipeNLG: &lt;a href=&quot;https://recipe-search.typesense.org/&quot;&gt;recipe-search.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Search 1M Git commit messages from the Linux Kernel: &lt;a href=&quot;https://linux-commits-search.typesense.org/&quot;&gt;linux-commits-search.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Spellchecker with type-ahead, with 333K English words: &lt;a href=&quot;https://spellcheck.typesense.org/&quot;&gt;spellcheck.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;An E-Commerce Store Browsing experience: &lt;a href=&quot;https://ecommerce-store.typesense.org/&quot;&gt;ecommerce-store.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;GeoSearch / Browsing experience: &lt;a href=&quot;https://airbnb-geosearch.typesense.org/&quot;&gt;airbnb-geosearch.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Search / Browse xkcd comics by topic: &lt;a href=&quot;https://xkcd-search.typesense.org/&quot;&gt;xkcd-search.typesense.org&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Semantic / Hybrid search on 300K HN comments: &lt;a href=&quot;https://hn-comments-search.typesense.org&quot;&gt;hn-comments-search.typesense.org&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;🗣️ 🎥 If you prefer watching videos:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Here&#39;s one where we introduce Typesense and show a walk-through: &lt;a href=&quot;https://youtu.be/F4mB0x_B1AE?t=144&quot;&gt;https://youtu.be/F4mB0x_B1AE?t=144&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Check out Typesense&#39;s recent mention during Google I/O Developer Keynote: &lt;a href=&quot;https://youtu.be/qBkyU1TJKDg?t=2399&quot;&gt;https://youtu.be/qBkyU1TJKDg?t=2399&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Here&#39;s one where one of our community members gives an overview of Typesense and shows you an end-to-end demo: &lt;a href=&quot;https://www.youtube.com/watch?v=kwtHOkf7Jdg&quot;&gt;https://www.youtube.com/watch?v=kwtHOkf7Jdg&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Quick Links&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#benchmarks&quot;&gt;Benchmarks&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#roadmap&quot;&gt;Roadmap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#whos-using-this&quot;&gt;Who&#39;s using this&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#install&quot;&gt;Install&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#quick-start&quot;&gt;Quick Start&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#step-by-step-walk-through&quot;&gt;Step-by-step Walk-through&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#api-documentation&quot;&gt;API Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#api-clients&quot;&gt;API Clients&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#search-ui-components&quot;&gt;Search UI Components&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#faq&quot;&gt;FAQ&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#support&quot;&gt;Support&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#contributing&quot;&gt;Contributing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#getting-latest-updates&quot;&gt;Getting Latest Updates&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#build-from-source&quot;&gt;Build from Source&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Typo Tolerance:&lt;/strong&gt; Handles typographical errors elegantly, out-of-the-box.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Simple and Delightful:&lt;/strong&gt; Simple to set-up, integrate with, operate and scale.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;⚡ Blazing Fast:&lt;/strong&gt; Built in C++. Meticulously architected from the ground-up for low-latency (&amp;lt;50ms) instant searches.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Tunable Ranking:&lt;/strong&gt; Easy to tailor your search results to perfection.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Sorting:&lt;/strong&gt; Dynamically sort results based on a particular field at query time (helpful for features like &quot;Sort by Price (asc)&quot;).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Faceting &amp;amp; Filtering:&lt;/strong&gt; Drill down and refine results.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Grouping &amp;amp; Distinct:&lt;/strong&gt; Group similar results together to show more variety.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Federated Search:&lt;/strong&gt; Search across multiple collections (indices) in a single HTTP request.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Geo Search:&lt;/strong&gt; Search and sort by results around a latitude/longitude or within a bounding box.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Vector Search:&lt;/strong&gt; Index embeddings from your machine learning models in Typesense and do a nearest-neighbor search. Can be used to build similarity search, semantic search, visual search, recommendations, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Semantic / Hybrid Search:&lt;/strong&gt; Automatically generate embeddings from within Typesense using built-in models like S-BERT, E-5, etc or use OpenAI, PaLM API, etc, for both queries and indexed data. This allows you to send JSON data into Typesense and build an out-of-the-box semantic search + keyword search experience.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Conversational Search (Built-in RAG):&lt;/strong&gt; Send questions to Typesense and have the response be a fully-formed sentence, based on the data you&#39;ve indexed in Typesense. Think ChatGPT, but over your own data.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Natural Language Search:&lt;/strong&gt; LLM-powered intent detection &amp;amp; query understanding, that converts any free-form natural language phrases into structured filters, sorts and queries.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Image Search:&lt;/strong&gt; Search through images using text descriptions of their contents, or perform similarity searches, using the CLIP model.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Voice Search:&lt;/strong&gt; Capture and send query via voice recordings - Typesense will transcribe (via Whisper model) and provide search results.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Scoped API Keys:&lt;/strong&gt; Generate API keys that only allow access to certain records, for multi-tenant applications.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;JOINs:&lt;/strong&gt; Connect one or more collections via common reference fields and join them during query time. This allows you to model SQL-like relationships elegantly.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Synonyms:&lt;/strong&gt; Define words as equivalents of each other, so searching for a word will also return results for the synonyms defined.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Curation &amp;amp; Merchandizing:&lt;/strong&gt; Boost particular records to a fixed position in the search results, to feature them.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Raft-based Clustering:&lt;/strong&gt; Setup a distributed cluster that is highly available.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Seamless Version Upgrades:&lt;/strong&gt; As new versions of Typesense come out, upgrading is as simple as swapping out the binary and restarting Typesense.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;No Runtime Dependencies:&lt;/strong&gt; Typesense is a single binary that you can run locally or in production with a single command.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Don&#39;t see a feature on this list?&lt;/strong&gt; Search our issue tracker if someone has already requested it and add a comment to it explaining your use-case, or open a new issue if not. We prioritize our roadmap based on user feedback, so we&#39;d love to hear from you.&lt;/p&gt; 
+&lt;h2&gt;Roadmap&lt;/h2&gt; 
+&lt;p&gt;Here&#39;s Typesense&#39;s public roadmap: &lt;a href=&quot;https://typesense.link/roadmap&quot;&gt;https://typesense.link/roadmap&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The first column also explains how we prioritize features, how you can influence prioritization and our release cadence.&lt;/p&gt; 
+&lt;h2&gt;Benchmarks&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;A dataset containing &lt;strong&gt;2.2 Million recipes&lt;/strong&gt; (recipe names and ingredients): 
+  &lt;ul&gt; 
+   &lt;li&gt;Took up about 900MB of RAM when indexed in Typesense&lt;/li&gt; 
+   &lt;li&gt;Took 3.6mins to index all 2.2M records&lt;/li&gt; 
+   &lt;li&gt;On a server with 4vCPUs, Typesense was able to handle a concurrency of &lt;strong&gt;104 concurrent search queries per second&lt;/strong&gt;, with an average search processing time of &lt;strong&gt;11ms&lt;/strong&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;A dataset containing &lt;strong&gt;28 Million books&lt;/strong&gt; (book titles, authors and categories): 
+  &lt;ul&gt; 
+   &lt;li&gt;Took up about 14GB of RAM when indexed in Typesense&lt;/li&gt; 
+   &lt;li&gt;Took 78mins to index all 28M records&lt;/li&gt; 
+   &lt;li&gt;On a server with 4vCPUs, Typesense was able to handle a concurrency of &lt;strong&gt;46 concurrent search queries per second&lt;/strong&gt;, with an average search processing time of &lt;strong&gt;28ms&lt;/strong&gt;.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;With a dataset containing &lt;strong&gt;3 Million products&lt;/strong&gt; (Amazon product data), Typesense was able to handle a throughput of &lt;strong&gt;250 concurrent search queries per second&lt;/strong&gt; on an 8-vCPU 3-node Highly Available Typesense cluster.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We&#39;d love to benchmark with larger datasets, if we can find large ones in the public domain. If you have any suggestions for structured datasets that are open, please let us know by opening an issue. We&#39;d also be delighted if you&#39;re able to share benchmarks from your own large datasets. Please send us a PR!&lt;/p&gt; 
+&lt;h2&gt;Who&#39;s using this?&lt;/h2&gt; 
+&lt;p&gt;Typesense is used by a range of users across different domains and verticals.&lt;/p&gt; 
+&lt;p&gt;On Typesense Cloud we serve more than &lt;strong&gt;10 BILLION&lt;/strong&gt; searches per month. Typesense&#39;s Docker images have been downloaded over 12M times.&lt;/p&gt; 
+&lt;p&gt;We&#39;ve recently started documenting who&#39;s using it in our &lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/SHOWCASE.md&quot;&gt;Showcase&lt;/a&gt;. If you&#39;d like to be included in the list, please feel free to edit &lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/SHOWCASE.md&quot;&gt;SHOWCASE.md&lt;/a&gt; and send us a PR.&lt;/p&gt; 
+&lt;p&gt;You&#39;ll also see a list of user logos on the &lt;a href=&quot;https://cloud.typesense.org&quot;&gt;Typesense Cloud&lt;/a&gt; home page.&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Option 1:&lt;/strong&gt; You can download the &lt;a href=&quot;https://typesense.org/downloads&quot;&gt;binary packages&lt;/a&gt; that we publish for Linux (x86_64 &amp;amp; arm64) and Mac (x86_64).&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Option 2:&lt;/strong&gt; You can also run Typesense from our &lt;a href=&quot;https://hub.docker.com/r/typesense/typesense&quot;&gt;official Docker image&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Option 3:&lt;/strong&gt; Spin up a managed cluster with &lt;a href=&quot;https://cloud.typesense.org&quot;&gt;Typesense Cloud&lt;/a&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://cloud.typesense.org&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/assets/deploy_with_typesense_cloud.svg?raw=true&quot; alt=&quot;Deploy with Typesense Cloud&quot; height=&quot;60&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;p&gt;Here&#39;s a quick example showcasing how you can create a collection, index a document and search it on Typesense.&lt;/p&gt; 
+&lt;p&gt;Let&#39;s begin by starting the Typesense server via Docker:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;docker run -p 8108:8108 -v/tmp/data:/data typesense/typesense:29.0 --data-dir /data --api-key=Hu52dwsas2AdxdE
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;We have &lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/#api-clients&quot;&gt;API Clients&lt;/a&gt; in a couple of languages, but let&#39;s use the Python client for this example.&lt;/p&gt; 
+&lt;p&gt;Install the Python client for Typesense:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;pip install typesense
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;We can now initialize the client and create a &lt;code&gt;companies&lt;/code&gt; collection:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;import typesense
+
+client = typesense.Client({
+  &#39;api_key&#39;: &#39;Hu52dwsas2AdxdE&#39;,
+  &#39;nodes&#39;: [{
+    &#39;host&#39;: &#39;localhost&#39;,
+    &#39;port&#39;: &#39;8108&#39;,
+    &#39;protocol&#39;: &#39;http&#39;
+  }],
+  &#39;connection_timeout_seconds&#39;: 2
+})
+
+create_response = client.collections.create({
+  &quot;name&quot;: &quot;companies&quot;,
+  &quot;fields&quot;: [
+    {&quot;name&quot;: &quot;company_name&quot;, &quot;type&quot;: &quot;string&quot; },
+    {&quot;name&quot;: &quot;num_employees&quot;, &quot;type&quot;: &quot;int32&quot; },
+    {&quot;name&quot;: &quot;country&quot;, &quot;type&quot;: &quot;string&quot;, &quot;facet&quot;: True }
+  ],
+  &quot;default_sorting_field&quot;: &quot;num_employees&quot;
+})
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Now, let&#39;s add a document to the collection we just created:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;document = {
+ &quot;id&quot;: &quot;124&quot;,
+ &quot;company_name&quot;: &quot;Stark Industries&quot;,
+ &quot;num_employees&quot;: 5215,
+ &quot;country&quot;: &quot;USA&quot;
+}
+
+client.collections[&#39;companies&#39;].documents.create(document)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Finally, let&#39;s search for the document we just indexed:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-python&quot;&gt;search_parameters = {
+  &#39;q&#39;         : &#39;stork&#39;,
+  &#39;query_by&#39;  : &#39;company_name&#39;,
+  &#39;filter_by&#39; : &#39;num_employees:&amp;gt;100&#39;,
+  &#39;sort_by&#39;   : &#39;num_employees:desc&#39;
+}
+
+client.collections[&#39;companies&#39;].documents.search(search_parameters)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Did you notice the typo in the query text?&lt;/strong&gt; No big deal. Typesense handles typographic errors out-of-the-box!&lt;/p&gt; 
+&lt;h2&gt;Step-by-step Walk-through&lt;/h2&gt; 
+&lt;p&gt;A step-by-step walk-through is available on our website &lt;a href=&quot;https://typesense.org/guide&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;This will guide you through the process of starting up a Typesense server, indexing data in it and querying the data set.&lt;/p&gt; 
+&lt;h2&gt;API Documentation&lt;/h2&gt; 
+&lt;p&gt;Here&#39;s our official API documentation, available on our website: &lt;a href=&quot;https://typesense.org/api&quot;&gt;https://typesense.org/api&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you notice any issues with the documentation or walk-through, please let us know or send us a PR here: &lt;a href=&quot;https://github.com/typesense/typesense-website&quot;&gt;https://github.com/typesense/typesense-website&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;API Clients&lt;/h2&gt; 
+&lt;p&gt;While you can definitely use CURL to interact with Typesense Server directly, we offer official API clients to simplify using Typesense from your language of choice. The API Clients come built-in with a smart retry strategy to ensure that API calls made via them are resilient, especially in an HA setup.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-js&quot;&gt;JavaScript&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-php&quot;&gt;PHP&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-python&quot;&gt;Python&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-ruby&quot;&gt;Ruby&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If we don&#39;t offer an API client in your language, you can still use any popular HTTP client library to access Typesense&#39;s APIs directly.&lt;/p&gt; 
+&lt;p&gt;Here are some community-contributed clients and integrations:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-go&quot;&gt;Go&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/DAXGRID/typesense-dotnet&quot;&gt;.Net&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-java&quot;&gt;Java&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-rust&quot;&gt;Rust&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-dart&quot;&gt;Dart&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Ovid/Search-Typesense&quot;&gt;Perl&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-swift&quot;&gt;Swift&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/runeanielsen/typesense-clj&quot;&gt;Clojure&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/RedSnail/typesense_orm&quot;&gt;python orm client&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/schranz-search/seal-typesense-adapter&quot;&gt;PHP SEAL Adapter&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jaeyson/ex_typesense&quot;&gt;Elixir&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We welcome community contributions to add more official client libraries and integrations. Please reach out to us at &lt;a href=&quot;mailto:contact@typsense.org&quot;&gt;contact@typsense.org&lt;/a&gt; or open an issue on GitHub to collaborate with us on the architecture. 🙏&lt;/p&gt; 
+&lt;h3&gt;Framework Integrations&lt;/h3&gt; 
+&lt;p&gt;We also have the following framework integrations:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/laravel-scout-typesense-engine&quot;&gt;Laravel&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/firestore-typesense-search&quot;&gt;Firebase&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.gatsbyjs.com/plugins/gatsby-plugin-typesense/&quot;&gt;Gatsby&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wordpress.org/plugins/search-with-typesense/?ref=typesense&quot;&gt;WordPress&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.codemanas.com/downloads/typesense-search-for-woocommerce/?ref=typesense&quot;&gt;WooCommerce&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/acseo/TypesenseBundle&quot;&gt;Symfony&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/typesense-instantsearch-adapter&quot;&gt;InstantSearch&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://typesense.org/docs/guide/docsearch.html&quot;&gt;DocSearch&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/typesense/docusaurus-theme-search-typesense&quot;&gt;Docusaurus&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://tooljet.com/?ref=typesense&quot;&gt;ToolJet&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pypi.org/project/zopyx.typesense/&quot;&gt;Plone CMS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://plugins.craftcms.com/typesense&quot;&gt;Craft CMS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/schranz-search/schranz-search&quot;&gt;SEAL&lt;/a&gt; provides integrations of Typesense in Laravel, Symfony, Spiral, Yii and Laminas Mezzio PHP Framework&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Postman Collection&lt;/h3&gt; 
+&lt;p&gt;We have a community-maintained Postman Collection here: &lt;a href=&quot;https://github.com/typesense/postman&quot;&gt;https://github.com/typesense/postman&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.postman.com/downloads/&quot;&gt;Postman&lt;/a&gt; is an app that let&#39;s you perform HTTP requests by pointing and clicking, instead of having to type them out in the terminal. The Postman Collection above gives you template requests that you can import into Postman, to quickly make API calls to Typesense.&lt;/p&gt; 
+&lt;h2&gt;Search UI Components&lt;/h2&gt; 
+&lt;p&gt;You can use our &lt;a href=&quot;https://github.com/typesense/typesense-instantsearch-adapter&quot;&gt;InstantSearch.js adapter&lt;/a&gt; to quickly build powerful search experiences, complete with filtering, sorting, pagination and more.&lt;/p&gt; 
+&lt;p&gt;Here&#39;s how: &lt;a href=&quot;https://typesense.org/docs/guide/search-ui-components.html&quot;&gt;https://typesense.org/docs/guide/search-ui-components.html&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;FAQ&lt;/h2&gt; 
+&lt;h3&gt;How does this differ from Elasticsearch?&lt;/h3&gt; 
+&lt;p&gt;Elasticsearch is a large piece of software, that takes non-trivial amount of effort to setup, administer, scale and fine-tune. It offers you a few thousand configuration parameters to get to your ideal configuration. So it&#39;s better suited for large teams who have the bandwidth to get it production-ready, regularly monitor it and scale it, especially when they have a need to store billions of documents and petabytes of data (eg: logs).&lt;/p&gt; 
+&lt;p&gt;Typesense is built specifically for decreasing the &quot;time to market&quot; for a delightful search experience. It&#39;s a light-weight yet powerful &amp;amp; scaleable alternative that focuses on Developer Happiness and Experience with a clean well-documented API, clear semantics and smart defaults so it just works well out-of-the-box, without you having to turn many knobs.&lt;/p&gt; 
+&lt;p&gt;Elasticsearch also runs on the JVM, which by itself can be quite an effort to tune to run optimally. Typesense, on the other hand, is a single light-weight self-contained native binary, so it&#39;s simple to setup and operate.&lt;/p&gt; 
+&lt;p&gt;See a side-by-side feature comparison &lt;a href=&quot;https://typesense.org/typesense-vs-algolia-vs-elasticsearch-vs-meilisearch/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;How does this differ from Algolia?&lt;/h3&gt; 
+&lt;p&gt;Algolia is a proprietary, hosted, search-as-a-service product that works well, when cost is not an issue. From our experience, fast growing sites and apps quickly run into search &amp;amp; indexing limits, accompanied by expensive plan upgrades as they scale.&lt;/p&gt; 
+&lt;p&gt;Typesense on the other hand is an open-source product that you can run on your own infrastructure or use our managed SaaS offering - &lt;a href=&quot;https://cloud.typesense.org&quot;&gt;Typesense Cloud&lt;/a&gt;. The open source version is free to use (besides of course your own infra costs). With Typesense Cloud we don&#39;t charge by records or search operations. Instead, you get a dedicated cluster and you can throw as much data and traffic at it as it can handle. You only pay a fixed hourly cost &amp;amp; bandwidth charges for it, depending on the configuration your choose, similar to most modern cloud platforms.&lt;/p&gt; 
+&lt;p&gt;From a product perspective, Typesense is closer in spirit to Algolia than Elasticsearch. However, we&#39;ve addressed some important limitations with Algolia:&lt;/p&gt; 
+&lt;p&gt;Algolia requires separate indices for each sort order, which counts towards your plan limits. Most of the index settings like fields to search, fields to facet, fields to group by, ranking settings, etc are defined upfront when the index is created vs being able to set them on the fly at query time.&lt;/p&gt; 
+&lt;p&gt;With Typesense, these settings can be configured at search time via query parameters which makes it very flexible and unlocks new use cases. Typesense is also able to give you sorted results with a single index, vs having to create multiple. This helps reduce memory consumption.&lt;/p&gt; 
+&lt;p&gt;Algolia offers the following features that Typesense does not have currently: personalization &amp;amp; server-based search analytics. For analytics, you can still instrument your search on the client-side and send search metrics to your web analytics tool of choice.&lt;/p&gt; 
+&lt;p&gt;We intend to bridge this gap in Typesense, but in the meantime, please let us know if any of these are a show stopper for your use case by creating a feature request in our issue tracker.&lt;/p&gt; 
+&lt;p&gt;See a side-by-side feature comparison &lt;a href=&quot;https://typesense.org/typesense-vs-algolia-vs-elasticsearch-vs-meilisearch/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Speed is great, but what about the memory footprint?&lt;/h3&gt; 
+&lt;p&gt;A fresh Typesense server will consume about 30 MB of memory. As you start indexing documents, the memory use will increase correspondingly. How much it increases depends on the number and type of fields you index.&lt;/p&gt; 
+&lt;p&gt;We&#39;ve strived to keep the in-memory data structures lean. To give you a rough idea: when 1 million Hacker News titles are indexed along with their points, Typesense consumes 165 MB of memory. The same size of that data on disk in JSON format is 88 MB. If you have any numbers from your own datasets that we can add to this section, please send us a PR!&lt;/p&gt; 
+&lt;h3&gt;Why the GPL license?&lt;/h3&gt; 
+&lt;p&gt;From our experience companies are generally concerned when &lt;strong&gt;libraries&lt;/strong&gt; they use are GPL licensed, since library code is directly integrated into their code and will lead to derivative work and trigger GPL compliance. However, Typesense Server is &lt;strong&gt;server software&lt;/strong&gt; and we expect users to typically run it as a separate daemon, and not integrate it with their own code. GPL covers and allows for this use case generously &lt;strong&gt;(eg: Linux is GPL licensed)&lt;/strong&gt;. Now, AGPL is what makes server software accessed over a network result in derivative work and not GPL. And for that reason we’ve opted to not use AGPL for Typesense.&lt;/p&gt; 
+&lt;p&gt;Now, if someone makes modifications to Typesense server, GPL actually allows you to still keep the modifications to yourself as long as you don&#39;t distribute the modified code. So a company can for example modify Typesense server and run the modified code internally and still not have to open source their modifications, as long as they make the modified code available to everyone who has access to the modified software.&lt;/p&gt; 
+&lt;p&gt;Now, if someone makes modifications to Typesense server and distributes the modifications, that&#39;s where GPL kicks in. Given that we’ve published our work to the community, we&#39;d like for others&#39; modifications to also be made open to the community in the spirit of open source. &lt;strong&gt;We use GPL for this purpose.&lt;/strong&gt; Other licenses would allow our open source work to be modified, made closed source and distributed, which we want to avoid with Typesense for the project’s long term sustainability.&lt;/p&gt; 
+&lt;p&gt;Here&#39;s more background on why GPL, as described by Discourse: &lt;a href=&quot;https://meta.discourse.org/t/why-gnu-license/2531&quot;&gt;https://meta.discourse.org/t/why-gnu-license/2531&lt;/a&gt;. Many of the points mentioned there resonate with us.&lt;/p&gt; 
+&lt;p&gt;Now, all of the above only apply to Typesense Server. Our client libraries are indeed meant to be integrated into our users’ code and so they use Apache license.&lt;/p&gt; 
+&lt;p&gt;So in summary, AGPL is what is usually problematic for server software and we’ve opted not to use it. We believe GPL for Typesense Server captures the essence of what we want for this open source project. GPL has a long history of successfully being used by popular open source projects. Our libraries are still Apache licensed.&lt;/p&gt; 
+&lt;p&gt;If you have specifics that prevent you from using Typesense due to a licensing issue, we&#39;re happy to explore this topic further with you. Please reach out to us.&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;👋 🌐 If you have general questions about Typesense, want to say hello or just follow along, we&#39;d like to invite you to join our public &lt;a href=&quot;https://typesense.link/slack-community&quot;&gt;Slack Community&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;If you run into any problems or issues, please create a GitHub issue and we&#39;ll try our best to help.&lt;/p&gt; 
+&lt;p&gt;We strive to provide good support through our issue trackers on GitHub. However, if you&#39;d like to receive private &amp;amp; prioritized support with:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Guaranteed SLAs&lt;/li&gt; 
+ &lt;li&gt;Phone / video calls to discuss your specific use case and get recommendations on best practices&lt;/li&gt; 
+ &lt;li&gt;Private discussions over Slack&lt;/li&gt; 
+ &lt;li&gt;Guidance around scaling best practices&lt;/li&gt; 
+ &lt;li&gt;Prioritized feature requests&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We offer Paid Support options described &lt;a href=&quot;https://typesense.org/support/&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We are a lean team on a mission to democratize search and we&#39;ll take all the help we can get! If you&#39;d like to get involved, here&#39;s information on where we could use your help: &lt;a href=&quot;https://github.com/typesense/typesense/raw/master/CONTRIBUTING.md&quot;&gt;Contributing.md&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Getting Latest Updates&lt;/h2&gt; 
+&lt;p&gt;If you&#39;d like to get updates when we release new versions, click on the &quot;Watch&quot; button on the top and select &quot;Releases only&quot;. GitHub will then send you notifications along with a changelog with each new release.&lt;/p&gt; 
+&lt;p&gt;We also post updates to our Twitter account about releases and additional topics related to Typesense. Follow us here: &lt;a href=&quot;https://twitter.com/typesense&quot;&gt;@typesense&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;👋 🌐 We&#39;ll also post updates on our &lt;a href=&quot;https://typesense.link/slack-community&quot;&gt;Slack Community&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Build from source&lt;/h2&gt; 
+&lt;p&gt;We use &lt;a href=&quot;https://bazel.build&quot;&gt;Bazel&lt;/a&gt; to build Typesense.&lt;/p&gt; 
+&lt;p&gt;Typesense requires the following dependencies:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;C++11 compatible compiler (GCC &amp;gt;= 4.9.0, Apple Clang &amp;gt;= 8.0, Clang &amp;gt;= 3.9.0)&lt;/li&gt; 
+ &lt;li&gt;Snappy&lt;/li&gt; 
+ &lt;li&gt;zlib&lt;/li&gt; 
+ &lt;li&gt;OpenSSL (&amp;gt;=1.0.2)&lt;/li&gt; 
+ &lt;li&gt;curl&lt;/li&gt; 
+ &lt;li&gt;ICU&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Please refer to the &lt;a href=&quot;https://raw.githubusercontent.com/typesense/typesense/v31/.github/workflows/tests.yml&quot;&gt;CI build steps&lt;/a&gt; for the latest set of dependencies.&lt;/p&gt; 
+&lt;p&gt;Once you&#39;ve installed them, run the following from the root of the repo:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;bazel build //:typesense-server
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The first build will take some time since other third-party libraries are pulled and built as part of the build process.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;© 2016-present Typesense Inc.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/e72886f8d389eee2c4303147e1abb55b7a14a1e6eaf5356271229d0c60bcc00d/typesense/typesense" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>google/perfetto</title>
+      <link>https://github.com/google/perfetto</link>
+      <description>&lt;p&gt;Production-grade client-side tracing, profiling, and analysis for complex software systems.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.perfetto.dev&quot;&gt;https://www.perfetto.dev&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Perfetto - System profiling, app tracing and trace analysis&lt;/h1&gt; 
+&lt;p&gt;Perfetto is an open-source suite of SDKs, daemons and tools which use &lt;strong&gt;tracing&lt;/strong&gt; to help developers understand the behaviour of complex systems and root-cause functional and performance issues on client and embedded systems.&lt;/p&gt; 
+&lt;p&gt;It is a production-grade tool that is the default tracing system for the &lt;strong&gt;Android operating system&lt;/strong&gt; and the &lt;strong&gt;Chromium browser&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/google/perfetto/main/docs/images/perfetto-stack.svg?sanitize=true&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Core Components&lt;/h2&gt; 
+&lt;p&gt;Perfetto is not a single tool, but a collection of components that work together:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;High-performance tracing daemons:&lt;/strong&gt; For capturing tracing information from many processes on a single machine into a unified trace file.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Low-overhead tracing SDK:&lt;/strong&gt; A C++17 library for direct userspace-to-userspace tracing of timings and state changes in your application.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Extensive OS-level probes:&lt;/strong&gt; For capturing system-wide context on Android and Linux (e.g. scheduling states, CPU frequencies, memory profiling, callstack sampling).&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Browser-based UI:&lt;/strong&gt; A powerful, fully local UI for visualizing and exploring large, multi-GB traces on a timeline. It works in all major browsers, requires no installation, and can open traces from other tools.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SQL-based analysis library:&lt;/strong&gt; A powerful engine that allows you to programmatically query traces using SQL to automate analysis and extract custom metrics.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Why Use Perfetto?&lt;/h2&gt; 
+&lt;p&gt;Perfetto was designed to be a versatile and powerful tracing system for a wide range of use cases.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;For Android App &amp;amp; Platform Developers:&lt;/strong&gt; Debug and root-cause functional and performance issues like slow startups, dropped frames (jank), animation glitches, low memory kills, and ANRs. Profile both Java/Kotlin and native C++ memory usage with heap dumps and profiles.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;For C/C++ Developers (Linux, macOS, Windows):&lt;/strong&gt; Use the &lt;a href=&quot;https://raw.githubusercontent.com/google/perfetto/main/docs/instrumentation/tracing-sdk.md&quot;&gt;Tracing SDK&lt;/a&gt; to instrument your application with custom trace points to understand its execution flow, find performance bottlenecks, and debug complex behavior. On Linux, you can also perform detailed CPU and native heap profiling.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;For Linux Kernel &amp;amp; System Developers:&lt;/strong&gt; Get deep insights into kernel behavior. Perfetto acts as an efficient userspace daemon for &lt;code&gt;ftrace&lt;/code&gt;, allowing you to visualize scheduling, syscalls, interrupts, and custom kernel tracepoints on a timeline.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;For Chromium Developers:&lt;/strong&gt; Perfetto is the tracing backend for &lt;code&gt;chrome://tracing&lt;/code&gt;. Use it to debug and root-cause issues in the browser, V8, and Blink.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;For Performance Engineers &amp;amp; SREs:&lt;/strong&gt; Analyze and visualize a wide range of profiling and tracing formats, not just Perfetto&#39;s. Use the powerful SQL interface to programmatically analyze traces from tools like &lt;strong&gt;Linux perf&lt;/strong&gt;, &lt;strong&gt;macOS Instruments&lt;/strong&gt;, &lt;strong&gt;Chrome JSON traces&lt;/strong&gt;, and more.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;We&#39;ve designed our documentation to guide you to the right information as quickly as possible, whether you&#39;re a newcomer to performance analysis or an experienced developer.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;New to tracing?&lt;/strong&gt; If you&#39;re unfamiliar with concepts like tracing and profiling, start here:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://perfetto.dev/docs/tracing-101&quot;&gt;&lt;strong&gt;What is Tracing?&lt;/strong&gt;&lt;/a&gt; - A gentle introduction to the world of performance analysis.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Ready to dive in?&lt;/strong&gt; Our &quot;Getting Started&quot; guide is the main entry point for all users. It will help you find the right tutorials and documentation for your specific needs:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://perfetto.dev/docs/getting-started/start-using-perfetto&quot;&gt;&lt;strong&gt;How do I start using Perfetto?&lt;/strong&gt;&lt;/a&gt; - Find your path based on your role and goals (e.g., Android App Developer, C/C++ Developer, etc.).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Want the full overview?&lt;/strong&gt; For a comprehensive look at what Perfetto is, why it&#39;s useful, and who uses it, see our main documentation page:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://perfetto.dev/docs/&quot;&gt;&lt;strong&gt;Perfetto Documentation Home&lt;/strong&gt;&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Debian Distribution&lt;/h2&gt; 
+&lt;p&gt;For users interested in the Debian distribution of Perfetto, the official source of truth and packaging efforts are maintained at &lt;a href=&quot;https://salsa.debian.org/debian/perfetto&quot;&gt;Debian Perfetto Salsa Repository&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Community &amp;amp; Support&lt;/h2&gt; 
+&lt;p&gt;Have questions? Need help?&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/google/perfetto/discussions/categories/q-a&quot;&gt;GitHub Discussions&lt;/a&gt;:&lt;/strong&gt; For Q&amp;amp;A and general discussions.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/google/perfetto/issues&quot;&gt;GitHub Issues&lt;/a&gt;:&lt;/strong&gt; For bug reports.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://discord.gg/35ShE3A&quot;&gt;Discord&lt;/a&gt;:&lt;/strong&gt; For live chat with the community and developers.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We follow &lt;a href=&quot;https://opensource.google/conduct/&quot;&gt;Google&#39;s Open Source Community Guidelines&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2515c0e372f6fbf62193091865b83f67fc3545415f54f4cc23dcad00716642ca/google/perfetto" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>DamRsn/NeuralNote</title>
+      <link>https://github.com/DamRsn/NeuralNote</link>
+      <description>&lt;p&gt;Audio Plugin for Audio to MIDI transcription using deep learning.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://damrsn.github.io/NeuralNote/&quot;&gt;https://damrsn.github.io/NeuralNote/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;NeuralNote &lt;img align=&quot;right&quot; src=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/NeuralNote/Assets/Logo/neuralnote-1024.png&quot; width=&quot;100&quot; /&gt;&lt;/h1&gt; 
+&lt;p&gt;NeuralNote is the audio plugin that brings &lt;strong&gt;state-of-the-art audio-to-MIDI transcription&lt;/strong&gt; into your favorite Digital Audio Workstation. See the &lt;a href=&quot;https://damrsn.github.io/NeuralNote/&quot;&gt;website&lt;/a&gt;.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;🎉 &lt;strong&gt;NeuralNote v2.0.0 is out!&lt;/strong&gt; Download it from the &lt;a href=&quot;https://damrsn.github.io/NeuralNote/#download&quot;&gt;website&lt;/a&gt; or the &lt;a href=&quot;https://github.com/DamRsn/NeuralNote/releases&quot;&gt;releases page&lt;/a&gt;.&lt;/p&gt; 
+ &lt;p&gt;Testing so far covers only a few machines and GPUs. Whether something breaks or works great on your hardware, please tell us in &lt;a href=&quot;https://github.com/DamRsn/NeuralNote/issues&quot;&gt;GitHub issues&lt;/a&gt; (see &lt;a href=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/#models-and-performance&quot;&gt;Hardware&lt;/a&gt;).&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;What&#39;s new in v2&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;A new, much more capable transcription model.&lt;/strong&gt; v2 replaces Spotify&#39;s Basic Pitch with &lt;a href=&quot;https://github.com/muscriptor/muscriptor&quot;&gt;MuScriptor&lt;/a&gt;, from Kyutai and Mirelo (&lt;a href=&quot;https://arxiv.org/abs/2607.08168v1&quot;&gt;paper&lt;/a&gt;, &lt;a href=&quot;https://kyutai.org/blog/2026-07-10-muscriptor/&quot;&gt;blog post&lt;/a&gt;, &lt;a href=&quot;https://huggingface.co/MuScriptor&quot;&gt;checkpoints&lt;/a&gt;). It is a transformer with 103M to 1.4B parameters, compared with fewer than 17K for Basic Pitch.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Multi-instrument transcription.&lt;/strong&gt; Transcribe full mixes, not just one instrument at a time, with notes grouped by instrument.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;A built-in multi-instrument synth.&lt;/strong&gt; Listen to every transcribed instrument, with per-instrument gain, mute and solo.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;A new, modern UI.&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Still fully local.&lt;/strong&gt; Transcription runs on your machine, on the GPU or the CPU, and your audio never leaves it. NeuralNote only goes online to download models and to check for updates.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/NeuralNote_UI.png&quot; alt=&quot;UI&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Download the latest release for your platform from the &lt;a href=&quot;https://damrsn.github.io/NeuralNote/#download&quot;&gt;website&lt;/a&gt; or &lt;a href=&quot;https://github.com/DamRsn/NeuralNote/releases&quot;&gt;releases page&lt;/a&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;macOS (Apple Silicon):&lt;/strong&gt; &lt;code&gt;NeuralNote_Installer_Mac_arm64.pkg&lt;/code&gt; installs the Standalone app, VST3 and AU. It is signed and notarized. An installer for Intel Macs will come later. In the meantime, you can &lt;a href=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/#build-from-source&quot;&gt;build from source&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Windows (x64):&lt;/strong&gt; &lt;code&gt;NeuralNote_Installer_Windows_x64.exe&lt;/code&gt; installs the Standalone app and VST3. It is not code signed, so Windows may warn you before running it for the first time.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Linux:&lt;/strong&gt; prebuilt binaries are coming soon. In the meantime, you can &lt;a href=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/#build-from-source&quot;&gt;build from source&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The transcription model is not included. Download it from within NeuralNote the first time you open it (see &lt;a href=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/#models-and-performance&quot;&gt;Models and performance&lt;/a&gt;).&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;NeuralNote is a simple AudioFX plugin (VST®3/AU/Standalone app) that you apply to the track you want to transcribe.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Gather some audio: 
+  &lt;ul&gt; 
+   &lt;li&gt;Click record. This works both when recording live and when playing the track in your DAW.&lt;/li&gt; 
+   &lt;li&gt;Or drop an audio file on the plugin (.wav, .aiff, .flac, .mp3 and .ogg (vorbis) are supported).&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Select the instruments to transcribe in the left panel, or select &lt;code&gt;Automatic&lt;/code&gt; to let the model detect them. 
+  &lt;ul&gt; 
+   &lt;li&gt;Transcriptions tend to be better when the model is given the correct set of instruments.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Click &lt;code&gt;Transcribe&lt;/code&gt;. The transcription runs in the background, and the MIDI fills into the piano roll as it is decoded. A progress indicator and a cancel button are shown while it runs.&lt;/li&gt; 
+ &lt;li&gt;Click play to listen to the result without waiting for the transcription to finish. Only the part decoded so far plays. 
+  &lt;ul&gt; 
+   &lt;li&gt;Adjust the mix between the source audio and the synthesized transcription.&lt;/li&gt; 
+   &lt;li&gt;Adjust the level of each instrument.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;When you&#39;re happy with the result, drag and drop the MIDI from the plugin onto a MIDI track, or save the MIDI file to your computer.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Models and performance&lt;/h2&gt; 
+&lt;p&gt;MuScriptor comes in three sizes, &lt;code&gt;small&lt;/code&gt;, &lt;code&gt;medium&lt;/code&gt; and &lt;code&gt;large&lt;/code&gt;, which trade speed for quality. NeuralNote downloads them as GGUF files from &lt;a href=&quot;https://huggingface.co/DamRsn/muscriptor-gguf&quot;&gt;&lt;code&gt;DamRsn/muscriptor-gguf&lt;/code&gt;&lt;/a&gt; on Hugging Face. When no model is installed, all three sizes are available to download. The Model button in the top bar lets you switch between installed models, download other sizes, and open the folder where they are stored.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;OS&lt;/th&gt; 
+   &lt;th&gt;Models folder&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;~/Library/NeuralNote/models&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;%APPDATA%\NeuralNote\models&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;~/.config/NeuralNote/models&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The downloads are about 210 MB for &lt;code&gt;small&lt;/code&gt;, 620 MB for &lt;code&gt;medium&lt;/code&gt; and 2.7 GB for &lt;code&gt;large&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;You can also put a model file in that folder by hand. Use a file from &lt;code&gt;v1/&lt;/code&gt; of the &lt;a href=&quot;https://huggingface.co/DamRsn/muscriptor-gguf&quot;&gt;HF repo&lt;/a&gt;, unchanged and with its original name (e.g. &lt;code&gt;muscriptor-medium-f16.gguf&lt;/code&gt;). NeuralNote only picks up files whose name and size match the ones it downloads.&lt;/p&gt; 
+&lt;p&gt;You can remove a model by deleting it from this folder, and re-download it at any time.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Hardware.&lt;/strong&gt; Transcription speed depends mostly on the model size and on your hardware. The GPU is used when available, through Metal on macOS and Vulkan on Windows and Linux. A GPU is strongly recommended for the &lt;code&gt;medium&lt;/code&gt; and &lt;code&gt;large&lt;/code&gt; models. &lt;strong&gt;Settings &amp;gt; Compute device&lt;/strong&gt; picks the device: Auto (the default, which names the device it chose), a specific GPU, or the CPU. The choice applies from the next transcription, and GPUs added or removed later are listed after restarting NeuralNote (or your DAW). Only a few GPUs have been tested so far. If transcription fails, gives wrong results or is unexpectedly slow on your machine, please open an issue, either &lt;a href=&quot;https://github.com/DamRsn/NeuralNote/issues&quot;&gt;here&lt;/a&gt; or in &lt;a href=&quot;https://github.com/DamRsn/muscriptor.cpp/issues&quot;&gt;muscriptor.cpp&lt;/a&gt; if the problem is in the engine itself. Please include your OS, GPU and model size.&lt;/p&gt; 
+&lt;p&gt;Approximate real-time factors measured on an Apple M1 Pro (above 1× means faster than real time):&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Size&lt;/th&gt; 
+   &lt;th&gt;GPU (Metal)&lt;/th&gt; 
+   &lt;th&gt;CPU&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;small&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;~3.5×&lt;/td&gt; 
+   &lt;td&gt;~2×&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;medium&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;~1.5×&lt;/td&gt; 
+   &lt;td&gt;~0.7×&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;large&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;~0.5×&lt;/td&gt; 
+   &lt;td&gt;not recommended&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/DamRsn/muscriptor.cpp/raw/main/docs/PERFORMANCE.md&quot;&gt;muscriptor.cpp&#39;s performance notes&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;h2&gt;Build from source&lt;/h2&gt; 
+&lt;p&gt;Requirements:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;git&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmake.org/&quot;&gt;CMake&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;A C++23 compiler, such as Clang, MSVC or GCC. Only Clang has been tested so far, on macOS, Windows and Linux.&lt;/li&gt; 
+ &lt;li&gt;Python 3 (used at configure time to fetch and build the synth&#39;s soundfont)&lt;/li&gt; 
+ &lt;li&gt;Internet access on the first configure. &lt;code&gt;muscriptor.cpp&lt;/code&gt; fetches &lt;a href=&quot;https://github.com/ggml-org/ggml&quot;&gt;ggml&lt;/a&gt;, and the soundfont&#39;s two sources (~55 MB) are downloaded.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;macOS&lt;/strong&gt; needs Xcode&#39;s Metal toolchain, which compiles the GPU shaders at build time: &lt;code&gt;xcodebuild -downloadComponent MetalToolchain&lt;/code&gt;. Configuring with &lt;code&gt;-DMUSCRIPTOR_METAL_PRECOMPILED=OFF&lt;/code&gt; builds without it instead, and the shaders then compile when NeuralNote&#39;s window first opens in each app or DAW, and again after a macOS update, which takes about 20 seconds.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Windows GPU support&lt;/strong&gt; needs the &lt;a href=&quot;https://vulkan.lunarg.com/sdk/home&quot;&gt;Vulkan SDK&lt;/a&gt; at build time. Without it, NeuralNote builds and transcribes on the CPU only. With it, configure from a Visual Studio developer prompt, or set &lt;code&gt;CC&lt;/code&gt;, &lt;code&gt;CXX&lt;/code&gt; and &lt;code&gt;RC&lt;/code&gt; in the environment: ggml builds its shader generator as a separate project that doesn&#39;t see CMake&#39;s compiler settings.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Linux&lt;/strong&gt; has been tested on Ubuntu 24.04 with Clang 20. Install the compiler, JUCE&#39;s &lt;a href=&quot;https://github.com/juce-framework/JUCE/raw/master/docs/Linux%20Dependencies.md&quot;&gt;Linux dependencies&lt;/a&gt;, and the Vulkan headers and shader compiler:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;sudo apt install clang-20 ninja-build pkg-config python3 \
+    libasound2-dev libjack-jackd2-dev ladspa-sdk libcurl4-openssl-dev libfreetype-dev libfontconfig1-dev \
+    libx11-dev libxcomposite-dev libxcursor-dev libxext-dev libxinerama-dev libxrandr-dev libxrender-dev \
+    libwebkit2gtk-4.1-dev libglu1-mesa-dev mesa-common-dev \
+    libvulkan-dev glslc spirv-headers
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Select the compiler through the environment when configuring, e.g. &lt;code&gt;CC=clang-20 CXX=clang++-20 cmake -B build -G Ninja -DCMAKE_BUILD_TYPE=Release&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://ninja-build.org/&quot;&gt;Ninja&lt;/a&gt; is optional but makes builds faster (&lt;code&gt;-G Ninja&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;Clone with submodules:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;git clone --recurse-submodules https://github.com/DamRsn/NeuralNote
+cd NeuralNote
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you already cloned without them, run &lt;code&gt;git submodule update --init --recursive&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Configure and build:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;cmake -B build -DCMAKE_BUILD_TYPE=Release
+cmake --build build --config Release
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The Standalone app and the plugins are written to &lt;code&gt;build/NeuralNote_artefacts/Release/&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;On macOS, a build contains only one architecture, the host&#39;s by default. To build for Intel Macs on Apple Silicon, configure with &lt;code&gt;-DCMAKE_OSX_ARCHITECTURES=x86_64&lt;/code&gt;. Such a build runs under Rosetta, and its plugins are not copied to &lt;code&gt;~/Library/Audio/Plug-Ins&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;On Windows, the Standalone app supports ASIO devices. Distributing a build with ASIO requires signing Steinberg&#39;s &lt;a href=&quot;https://www.steinberg.net/developers/prorietary-sdk/&quot;&gt;ASIO license agreement&lt;/a&gt;. To build without it, configure with &lt;code&gt;-DNEURALNOTE_ASIO=OFF&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Reuse NeuralNote&#39;s transcription engine&lt;/h2&gt; 
+&lt;p&gt;The transcription engine is a separate, self-contained repo: &lt;a href=&quot;https://github.com/DamRsn/muscriptor.cpp&quot;&gt;muscriptor.cpp&lt;/a&gt;. It is a C++/ggml port of MuScriptor, included here as a git submodule (&lt;code&gt;ThirdParty/muscriptor.cpp&lt;/code&gt;) and linked as a static library. It takes 16 kHz mono float32 audio and returns note events. See its &lt;a href=&quot;https://github.com/DamRsn/muscriptor.cpp/raw/main/docs/API.md&quot;&gt;&lt;code&gt;docs/API.md&lt;/code&gt;&lt;/a&gt; for the public API. The GGUF weights it loads are available on &lt;a href=&quot;https://huggingface.co/DamRsn/muscriptor-gguf&quot;&gt;Hugging Face&lt;/a&gt; (see &lt;a href=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/#license&quot;&gt;License&lt;/a&gt;).&lt;/p&gt; 
+&lt;h2&gt;Roadmap&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Prebuilt binaries for Linux&lt;/li&gt; 
+ &lt;li&gt;Installer for Intel Macs&lt;/li&gt; 
+ &lt;li&gt;MIDI out, with per-instrument channel selection&lt;/li&gt; 
+ &lt;li&gt;CLI&lt;/li&gt; 
+ &lt;li&gt;Performance optimizations&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Bug reports, feature requests and contributing&lt;/h2&gt; 
+&lt;p&gt;If you find a bug or have a suggestion, please file a &lt;a href=&quot;https://github.com/DamRsn/NeuralNote/issues&quot;&gt;GitHub issue&lt;/a&gt;. Contributions are most welcome. Feel free to open a PR!&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;NeuralNote&#39;s code is published under the &lt;strong&gt;Apache-2.0&lt;/strong&gt; license. See the &lt;a href=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/LICENSE&quot;&gt;license file&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;The MuScriptor model weights are not open source.&lt;/strong&gt; They were released by Kyutai and Mirelo under the &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/4.0/&quot;&gt;CC BY-NC 4.0&lt;/a&gt; license, and are redistributed as GGUF files on &lt;a href=&quot;https://huggingface.co/DamRsn/muscriptor-gguf&quot;&gt;Hugging Face&lt;/a&gt; under that same license. They may only be used non-commercially. The Apache-2.0 license covers NeuralNote&#39;s code only, not the weights.&lt;/p&gt; 
+&lt;h4&gt;Third-party libraries and assets&lt;/h4&gt; 
+&lt;p&gt;Their full license notices are in &lt;a href=&quot;https://raw.githubusercontent.com/DamRsn/NeuralNote/main/Installers/license.txt&quot;&gt;&lt;code&gt;Installers/license.txt&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://juce.com/&quot;&gt;JUCE&lt;/a&gt; (JUCE Starter)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/steinbergmedia/vst3sdk&quot;&gt;VST3 SDK&lt;/a&gt; (MIT license, bundled with JUCE)&lt;/li&gt; 
+ &lt;li&gt;ASIO SDK headers (Steinberg ASIO license, bundled with JUCE, Windows only)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/DamRsn/muscriptor.cpp&quot;&gt;muscriptor.cpp&lt;/a&gt; (MIT license)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ggml-org/ggml&quot;&gt;ggml&lt;/a&gt; (MIT license, fetched by muscriptor.cpp)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://bitbucket.org/jpommier/pffft&quot;&gt;PFFFT&lt;/a&gt; (BSD-style license, bundled in muscriptor.cpp)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/muscriptor/muscriptor&quot;&gt;MuScriptor&lt;/a&gt; model weights (CC BY-NC 4.0, see above)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/schellingb/TinySoundFont&quot;&gt;TinySoundFont&lt;/a&gt; (MIT license)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://ftp.osuosl.org/pub/musescore/soundfont/MuseScore_General/&quot;&gt;MuseScore_General&lt;/a&gt; soundfont (MIT license)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/musescore/MuseScore/tree/v2.3.2/share/sound&quot;&gt;FluidR3Mono_GM&lt;/a&gt; soundfont (MIT license)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/lieff/minimp3&quot;&gt;minimp3&lt;/a&gt; (CC0-1.0 license)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rsms/inter&quot;&gt;Inter&lt;/a&gt; (SIL Open Font License 1.1)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/JetBrains/JetBrainsMono&quot;&gt;JetBrains Mono&lt;/a&gt; (SIL Open Font License 1.1)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;VST is a registered trademark of Steinberg Media Technologies GmbH. ASIO is a registered trademark of Steinberg Media Technologies GmbH.&lt;/p&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;h4&gt;NeuralNote v2&lt;/h4&gt; 
+&lt;p&gt;Developed by &lt;a href=&quot;https://github.com/DamRsn&quot;&gt;Damien Ronssin&lt;/a&gt;, with AI assistance.&lt;/p&gt; 
+&lt;h4&gt;NeuralNote v1&lt;/h4&gt; 
+&lt;p&gt;Developed by &lt;a href=&quot;https://github.com/DamRsn&quot;&gt;Damien Ronssin&lt;/a&gt; and &lt;a href=&quot;https://github.com/tiborvass&quot;&gt;Tibor Vass&lt;/a&gt;. The plugin user interface was designed by Perrine Morel.&lt;/p&gt; 
+&lt;p&gt;Many thanks to the v1 contributors!&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jatinchowdhury18&quot;&gt;jatinchowdhury18&lt;/a&gt;: File browser.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/trirpi&quot;&gt;trirpi&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;More scale options in &lt;code&gt;SCALE QUANTIZE&lt;/code&gt;.&lt;/li&gt; 
+   &lt;li&gt;Horizontal zoom for the audio waveform and the piano roll.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/polygon&quot;&gt;polygon&lt;/a&gt; and &lt;a href=&quot;https://github.com/SamuMazzi&quot;&gt;SamuMazzi&lt;/a&gt;: Linux support.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/b03fa37889dc384cfae2e58d7da6ec5ba88c9ac9268908f3c2ec64f6dcde52d1/DamRsn/NeuralNote" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>wolfpld/tracy</title>
+      <link>https://github.com/wolfpld/tracy</link>
+      <description>&lt;p&gt;Frame profiler&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://tracy.nereid.pl/&quot;&gt;https://tracy.nereid.pl/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;Tracy Profiler&lt;/h1&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;A real time, nanosecond resolution, remote telemetry, hybrid frame and sampling profiler for games and other applications.&lt;/h3&gt; 
+&lt;p&gt;Tracy supports profiling CPU (Direct support is provided for C, C++, Lua, Python and Fortran integration. At the same time, third-party bindings to many other languages exist on the internet, such as &lt;a href=&quot;https://github.com/nagisa/rust_tracy_client&quot;&gt;Rust&lt;/a&gt;, &lt;a href=&quot;https://github.com/tealsnow/zig-tracy&quot;&gt;Zig&lt;/a&gt;, &lt;a href=&quot;https://github.com/clibequilibrium/Tracy-CSharp&quot;&gt;C#&lt;/a&gt;, &lt;a href=&quot;https://github.com/imandra-ai/ocaml-tracy&quot;&gt;OCaml&lt;/a&gt;, &lt;a href=&quot;https://github.com/oskarnp/odin-tracy&quot;&gt;Odin&lt;/a&gt;, etc.), GPU (All major graphics/compute APIs: OpenGL, Vulkan, Direct3D 11/12, Metal, OpenCL, CUDA, WebGPU.), memory allocations, locks, context switches, automatically attribute screenshots to captured frames, and much more.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/wolfpld/tracy/releases/latest/download/tracy.pdf&quot;&gt;Documentation&lt;/a&gt; for usage and build process instructions&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/wolfpld/tracy/releases&quot;&gt;Releases&lt;/a&gt; containing the documentation (&lt;code&gt;tracy.pdf&lt;/code&gt;) and compiled Windows x64 binaries (&lt;code&gt;Tracy-&amp;lt;version&amp;gt;.7z&lt;/code&gt;) as assets&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/wolfpld/tracy/master/NEWS&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://tracy.nereid.pl/&quot;&gt;Interactive demo&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/wolfpld/tracy/master/doc/profiler.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/wolfpld/tracy/master/doc/profiler2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/wolfpld/tracy/master/doc/profiler3.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/ghXk3Bk5F2U?t=37&quot;&gt;An Introduction to Tracy Profiler in C++ - Marcos Slomp - CppCon 2023&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=fB5B46lbapc&quot;&gt;Introduction to Tracy Profiler v0.2&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=3SXpDpDh2Uo&quot;&gt;New features in Tracy Profiler v0.3&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=eAkgkaO8B9o&quot;&gt;New features in Tracy Profiler v0.4&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=P6E7qLMmzTQ&quot;&gt;New features in Tracy Profiler v0.5&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=uJkrFgriuOo&quot;&gt;New features in Tracy Profiler v0.6&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=_hU7vw00MZ4&quot;&gt;New features in Tracy Profiler v0.7&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/watch?v=30wpRpHTTag&quot;&gt;New features in Tracy Profiler v0.8&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/248058818/dbb4d679-aa73-4b7d-bdcd-0f9350eef2a6" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>k4yt3x/video2x</title>
+      <link>https://github.com/k4yt3x/video2x</link>
+      <description>&lt;p&gt;A machine learning-based video super resolution and frame interpolation framework. Est. Hack the Valley II, 2018.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://docs.video2x.org&quot;&gt;https://docs.video2x.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://github.com/user-attachments/assets/5cd63373-e806-474f-94ec-6e04963bf90f&quot; alt=&quot;Video2X: A machine learning-based video super resolution and frame interpolation framework.&quot; /&gt; &lt;br /&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/k4yt3x/video2x?style=flat-square&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/downloads/k4yt3x/video2x/total?style=flat-square&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/license/k4yt3x/video2x?style=flat-square&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/sponsors/k4yt3x?style=flat-square&amp;amp;link=https%3A%2F%2Fgithub.com%2Fsponsors%2Fk4yt3x&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/dynamic/json?color=%23e85b46&amp;amp;label=Patreon&amp;amp;query=data.attributes.patron_count&amp;amp;suffix=%20patrons&amp;amp;url=https%3A%2F%2Fwww.patreon.com%2Fapi%2Fcampaigns%2F4507807&amp;amp;style=flat-square&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;🌟 Version 6.0.0&lt;/h2&gt; 
+&lt;p&gt;Video2X 6.0.0 highlights:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Complete rewrite of the Video2X project in C/C++.&lt;/li&gt; 
+ &lt;li&gt;Faster and more efficient architecture.&lt;/li&gt; 
+ &lt;li&gt;Cross-platform support for Windows and Linux.&lt;/li&gt; 
+ &lt;li&gt;Vastly improved output quality.&lt;/li&gt; 
+ &lt;li&gt;New GUI and installer for easy setup on Windows.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Click to see more details&lt;/summary&gt; 
+ &lt;p&gt;Version 6.0.0 is a complete rewrite of this project in C/C++. It:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;genuinely works this time, with much less hassle compared to the 5.0.0 beta;&lt;/li&gt; 
+  &lt;li&gt;is blazing fast, thanks to the new optimized pipeline and the efficiency of C/C++;&lt;/li&gt; 
+  &lt;li&gt;is cross-platform, available now for both Windows and Linux;&lt;/li&gt; 
+  &lt;li&gt;offers significantly better output quality with Anime4K v4, Real-ESRGAN, Real-CUGAN, and RIFE;&lt;/li&gt; 
+  &lt;li&gt;supports two modes: filtering (upscaling) and frame interpolation;&lt;/li&gt; 
+  &lt;li&gt;supports Anime4K v4 and all custom MPV-compatible GLSL shaders;&lt;/li&gt; 
+  &lt;li&gt;supports Real-ESRGAN, Real-CUGAN, and RIFE (all models) via ncnn and Vulkan;&lt;/li&gt; 
+  &lt;li&gt;requires zero additional disk space during processing, just space for the final output.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/9b1cc8a7-2903-4d2c-80a2-8d81f007e45b&quot; alt=&quot;6.4.0-screenshot&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;🖥️ Hardware Requirements&lt;/h2&gt; 
+&lt;p&gt;Your system must meet the minimum hardware requirements below to run Video2X.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;CPU&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;The precompiled binaries require CPUs with AVX2 support.&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Intel&lt;/strong&gt;: Haswell (Q2 2013) or newer&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;AMD&lt;/strong&gt;: Excavator (Q2 2015) or newer&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;GPU&lt;/strong&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;The GPU must support Vulkan.&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;NVIDIA&lt;/strong&gt;: Kepler (GTX 600 series, Q2 2012) or newer&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;AMD&lt;/strong&gt;: GCN 1.0 (Radeon HD 7000 series, Q1 2012) or newer&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Intel&lt;/strong&gt;: HD Graphics 4000 (Q2 2012) or newer&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://docs.video2x.org/installing/windows-qt6.html&quot;&gt;🪟 Install on Windows&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/k4yt3x/video2x/releases/download/6.4.0/video2x-qt6-windows-amd64-installer.exe&quot;&gt;Download the Latest Windows Installer Executable (6.4.0)&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;You can download the latest Windows release on the &lt;a href=&quot;https://github.com/k4yt3x/video2x/releases/latest&quot;&gt;releases page&lt;/a&gt;. For basic GUI usage, refer to the &lt;a href=&quot;https://docs.video2x.org/running/desktop.html&quot;&gt;documentation&lt;/a&gt;. If you&#39;re unable to download directly from GitHub, try the &lt;a href=&quot;https://files.k4yt3x.com&quot;&gt;mirror site&lt;/a&gt;. The GUI currently supports the following languages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;English (United States)&lt;/li&gt; 
+ &lt;li&gt;简体中文（中国）&lt;/li&gt; 
+ &lt;li&gt;日本語（日本）&lt;/li&gt; 
+ &lt;li&gt;Português (Portugal)&lt;/li&gt; 
+ &lt;li&gt;Français (France)&lt;/li&gt; 
+ &lt;li&gt;Deutsch (Deutschland)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://docs.video2x.org/installing/linux.html&quot;&gt;🐧 Install on Linux&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;Video2X packages are available for the Linux distros listed below. A universal AppImage is also available for other distros. If you&#39;d like to build it from source code, refer to the &lt;a href=&quot;https://raw.githubusercontent.com/k4yt3x/video2x/master/packaging/arch/PKGBUILD&quot;&gt;PKGBUILD&lt;/a&gt; file for a general overview of the required dependencies and commands.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Arch Linux: AUR packages, maintained by &lt;a href=&quot;https://github.com/k4yt3x&quot;&gt;@K4YT3X&lt;/a&gt;. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://aur.archlinux.org/packages/video2x&quot;&gt;aur/video2x&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://aur.archlinux.org/packages/video2x-git&quot;&gt;aur/video2x-git&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://aur.archlinux.org/packages/video2x-qt6&quot;&gt;aur/video2x-qt6&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://aur.archlinux.org/packages/video2x-qt6-git&quot;&gt;aur/video2x-qt6-git&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Arch Linux (Chinese Mainland): archlinuxcn packages, maintained by &lt;a href=&quot;https://github.com/Integral-Tech&quot;&gt;@Integral-Tech&lt;/a&gt;. 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/video2x&quot;&gt;archlinuxcn/video2x&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/video2x-git&quot;&gt;archlinuxcn/video2x-git&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/video2x-qt6&quot;&gt;archlinuxcn/video2x-qt6&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/archlinuxcn/repo/tree/master/archlinuxcn/video2x-qt6-git&quot;&gt;archlinuxcn/video2x-qt6-git&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Other distros: &lt;code&gt;Video2X-x86_64.AppImage&lt;/code&gt; on the &lt;a href=&quot;https://github.com/k4yt3x/video2x/releases/latest&quot;&gt;releases page&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://docs.video2x.org/running/container.html&quot;&gt;📦 Container Image&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;Video2X &lt;a href=&quot;https://github.com/k4yt3x/video2x/pkgs/container/video2x&quot;&gt;container images&lt;/a&gt; are available on the GitHub Container Registry for easy deployment on Linux and macOS. If you already have Docker/Podman installed, only one command is needed to start upscaling a video. For more information on how to use Video2X&#39;s Docker image, please refer to the &lt;a href=&quot;https://docs.video2x.org/running/container.html&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://colab.research.google.com/drive/1gWEwcA9y57EsxwOjmLNmNMXPsafw0kGo&quot;&gt;📔 Google Colab&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;You can use Video2X on &lt;a href=&quot;https://colab.research.google.com/&quot;&gt;Google Colab&lt;/a&gt; &lt;strong&gt;for free&lt;/strong&gt; if you don&#39;t have a powerful GPU of your own. You can borrow a powerful GPU (NVIDIA T4, L4, or A100) on Google&#39;s server for free for a maximum of 12 hours per session. &lt;strong&gt;Please use the free resource fairly&lt;/strong&gt; and do not create sessions back-to-back and run upscaling 24/7. This might result in you getting banned. You can get &lt;a href=&quot;https://colab.research.google.com/signup/pricing&quot;&gt;Colab Pro/Pro+&lt;/a&gt; if you&#39;d like to use better GPUs and get longer runtimes. Usage instructions are embedded in the &lt;a href=&quot;https://colab.research.google.com/drive/1gWEwcA9y57EsxwOjmLNmNMXPsafw0kGo&quot;&gt;Colab Notebook&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://t.me/video2x&quot;&gt;💬 Telegram Discussion Group&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;Join our Telegram discussion group to ask any questions you have about Video2X, chat directly with the developers, or discuss super resolution, frame interpolation technologies, or the future of Video2X in general.&lt;/p&gt; 
+&lt;h2&gt;&lt;a href=&quot;https://docs.video2x.org/&quot;&gt;📖 Documentation&lt;/a&gt;&lt;/h2&gt; 
+&lt;p&gt;Comprehensive documentation for Video2X is available at &lt;a href=&quot;https://docs.video2x.org/&quot;&gt;https://docs.video2x.org/&lt;/a&gt;. It offers detailed instructions on how to &lt;a href=&quot;https://docs.video2x.org/building/index.html&quot;&gt;build&lt;/a&gt;, &lt;a href=&quot;https://docs.video2x.org/installing/index.html&quot;&gt;install&lt;/a&gt;, &lt;a href=&quot;https://docs.video2x.org/running/index.html&quot;&gt;use&lt;/a&gt;, and &lt;a href=&quot;https://docs.video2x.org/developing/index.html&quot;&gt;develop&lt;/a&gt; with this program.&lt;/p&gt; 
+&lt;h2&gt;📽️ Video Demos (Outdated)&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/21986859/49412428-65083280-f73a-11e8-8237-bb34158a545e.png&quot; alt=&quot;Spirited Away Demo&quot; /&gt;&lt;br /&gt; &lt;em&gt;Upscale demo: Spirited Away&#39;s movie trailer&lt;/em&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Spirited Away&lt;/strong&gt;: &lt;a href=&quot;https://youtu.be/mGEfasQl2Zo&quot;&gt;YouTube&lt;/a&gt; | &lt;a href=&quot;https://www.bilibili.com/video/BV1V5411471i/&quot;&gt;Bilibili&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;360P to 4K&lt;/li&gt; 
+   &lt;li&gt;The &lt;a href=&quot;https://www.youtube.com/watch?v=ByXuk9QqQkk&quot;&gt;original video&lt;/a&gt;&#39;s copyright belongs to 株式会社スタジオジブリ&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Bad Apple!!&lt;/strong&gt;: &lt;a href=&quot;https://youtu.be/A81rW_FI3cw&quot;&gt;YouTube&lt;/a&gt; | &lt;a href=&quot;https://www.bilibili.com/video/BV16K411K7ue&quot;&gt;Bilibili&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;384P 30 FPS to 4K 120 FPS with waifu2x and DAIN&lt;/li&gt; 
+   &lt;li&gt;The &lt;a href=&quot;https://www.nicovideo.jp/watch/sm8628149&quot;&gt;original video&lt;/a&gt;&#39;s copyright belongs to あにら&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;The Pet Girl of Sakurasou&lt;/strong&gt;: &lt;a href=&quot;https://youtu.be/M0vDI1HH2_Y&quot;&gt;YouTube&lt;/a&gt; | &lt;a href=&quot;https://www.bilibili.com/video/BV14k4y167KP/&quot;&gt;Bilibili&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;240P 29.97 to 1080P 60 FPS with waifu2x and DAIN&lt;/li&gt; 
+   &lt;li&gt;The original video&#39;s copyright belongs to ASCII Media Works&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Standard Test Clip&lt;/h3&gt; 
+&lt;p&gt;The following clip can be used to test if your setup works properly. This is also the standard clip used for running performance benchmarks.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://files.k4yt3x.com/resources/videos/standard-test.mp4&quot;&gt;Standard Test Clip (240P)&lt;/a&gt; 4.54 MiB&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://files.k4yt3x.com/resources/videos/standard-realcugan.mp4&quot;&gt;Real-CUGAN Upscaled Sample (1704P)&lt;/a&gt; 3.5 MiB&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://files.k4yt3x.com/resources/videos/standard-realesrgan.mp4&quot;&gt;Real-ESRGAN Upscaled Sample (1704P)&lt;/a&gt; 3.1 MiB&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://files.k4yt3x.com/resources/videos/standard-waifu2x.mp4&quot;&gt;waifu2x Upscaled Sample (1080P)&lt;/a&gt; 4.54 MiB&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://files.k4yt3x.com/resources/videos/standard-original.mp4&quot;&gt;Ground Truth (1080P)&lt;/a&gt; 22.2 MiB&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The original clip came from the anime &quot;さくら荘のペットな彼女.&quot;&lt;br /&gt; Copyright of this clip belongs to 株式会社アニプレックス.&lt;/p&gt; 
+&lt;h2&gt;⚖️ License&lt;/h2&gt; 
+&lt;p&gt;This project is licensed under &lt;a href=&quot;https://www.gnu.org/licenses/agpl-3.0.txt&quot;&gt;GNU AGPL version 3&lt;/a&gt;.&lt;br /&gt; Copyright (C) 2018-2025 K4YT3X and &lt;a href=&quot;https://github.com/k4yt3x/video2x/graphs/contributors&quot;&gt;contributors&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://www.gnu.org/graphics/agplv3-155x51.png&quot; alt=&quot;AGPLv3&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;This project includes or depends on these following projects:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Project&lt;/th&gt; 
+   &lt;th&gt;License&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.ffmpeg.org/&quot;&gt;FFmpeg/FFmpeg&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;LGPLv2.1, GPLv2&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Tencent/ncnn&quot;&gt;Tencent/ncnn&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;BSD 3-Clause&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/bloc97/Anime4K&quot;&gt;bloc97/Anime4K&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;MIT License&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/nihui/realcugan-ncnn-vulkan&quot;&gt;nihui/realcugan-ncnn-vulkan&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;MIT License&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/nihui/rife-ncnn-vulkan&quot;&gt;nihui/rife-ncnn-vulkan&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;MIT License&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/xinntao/Real-ESRGAN-ncnn-vulkan&quot;&gt;xinntao/Real-ESRGAN-ncnn-vulkan&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;MIT License&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;More licensing information can be found in the &lt;a href=&quot;https://raw.githubusercontent.com/k4yt3x/video2x/master/NOTICE&quot;&gt;NOTICE&lt;/a&gt; file.&lt;/p&gt; 
+&lt;h2&gt;🌺 Special Thanks&lt;/h2&gt; 
+&lt;p&gt;Special thanks to the following individuals for their significant contributions to the project, listed in alphabetical order.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/archiemeng&quot;&gt;@ArchieMeng&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/BrianPetkovsek&quot;&gt;@BrianPetkovsek&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Integral-Tech&quot;&gt;@Integral-Tech&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ddouglas87&quot;&gt;@ddouglas87&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/lhanjian&quot;&gt;@lhanjian&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/nihui&quot;&gt;@nihui&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sat3ll&quot;&gt;@sat3ll&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/446bd890673acdbbc6f4739617206796415cacf9825f01058844d04688e3f4ad/k4yt3x/video2x" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ROCm/rocm-systems</title>
+      <link>https://github.com/ROCm/rocm-systems</link>
+      <description>&lt;p&gt;super repo for rocm systems projects&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ROCm Systems&lt;/h1&gt; 
+&lt;p&gt;Welcome to the ROCm Systems super-repo. This repository consolidates multiple ROCm systems projects into a single repository to streamline development, CI, and integration. The first set of projects focuses on requirements for building PyTorch.&lt;/p&gt; 
+&lt;h1&gt;Super-repo Status and CI Health&lt;/h1&gt; 
+&lt;p&gt;This table provides the current status of the migration of specific ROCm systems projects as well as a pointer to their current CI health.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Key:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Completed&lt;/strong&gt;: Fully migrated and integrated. This super-repo should be considered the source of truth for this project. The old repo may still be used for release activities.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;In Progress&lt;/strong&gt;: Ongoing migration, tests, or integration. Please refrain from submitting new pull requests on the individual repo of the project, and develop on the super-repo.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Pending&lt;/strong&gt;: Not yet started or in the early planning stages. The individual repo should be considered the source of truth for this project.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Component&lt;/th&gt; 
+   &lt;th&gt;Source of Truth&lt;/th&gt; 
+   &lt;th&gt;Migration Status&lt;/th&gt; 
+   &lt;th&gt;Component CI Status&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;amdsmi&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;aqlprofile&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/aqlprofile-codeql.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/aqlprofile-codeql.yml/badge.svg?branch=develop&quot; alt=&quot;CodeQL&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/aqlprofile-continuous_integration.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/aqlprofile-continuous_integration.yml/badge.svg?branch=develop&quot; alt=&quot;Continuous Integration&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;clr&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;hip&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;hipfile&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;hipother&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;hip-tests&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rdc&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocdbgapi&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;None&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocdecode&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/media-libs-ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/media-libs-ci.yml/badge.svg?branch=develop&quot; alt=&quot;Media Libs CI&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocjpeg&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/media-libs-ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/media-libs-ci.yml/badge.svg?branch=develop&quot; alt=&quot;Media Libs CI&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocm-core&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocminfo&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocm-smi-lib&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocprofiler&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocprofiler-compute&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-continuous-integration.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-continuous-integration.yml/badge.svg?event=schedule&quot; alt=&quot;Continuous Integration&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-formatting.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-formatting.yml/badge.svg?branch=develop&quot; alt=&quot;Formatting&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-rhel.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-rhel.yml/badge.svg?branch=develop&quot; alt=&quot;rhel&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-sanitizers.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-sanitizers.yml/badge.svg?branch=develop&quot; alt=&quot;Sanitizers&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-ubuntu-jammy.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-compute-ubuntu-jammy.yml/badge.svg?sanitize=true&quot; alt=&quot;ubuntu jammy&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocprofiler-register&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-register-continuous-integration.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-register-continuous-integration.yml/badge.svg?branch=develop&quot; alt=&quot;Continuous Integration&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocprofiler-sdk&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-code_coverage.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-code_coverage.yml/badge.svg?branch=develop&quot; alt=&quot;Code Coverage Integration&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-codeql.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-codeql.yml/badge.svg?branch=develop&quot; alt=&quot;CodeQL&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-continuous_integration.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-continuous_integration.yml/badge.svg?branch=develop&quot; alt=&quot;Continuous Integration&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-docs.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-docs.yml/badge.svg?branch=develop&quot; alt=&quot;Documentation&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-formatting.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-formatting.yml/badge.svg?branch=develop&quot; alt=&quot;Formatting&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-python.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-python.yml/badge.svg?branch=develop&quot; alt=&quot;Python Linting&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-restrictions.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-restrictions.yml/badge.svg?branch=develop&quot; alt=&quot;Restrictions&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-rocm_release_compatibility.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-sdk-rocm_release_compatibility.yml/badge.svg?branch=develop&quot; alt=&quot;Release Compatibility&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocprofiler-systems&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-containers.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-containers.yml/badge.svg?branch=develop&quot; alt=&quot;Containers&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-ghcr.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-ghcr.yml/badge.svg?sanitize=true&quot; alt=&quot;rocprofiler-systems GHCR Packages for CI Images&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-formatting.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-formatting.yml/badge.svg?branch=develop&quot; alt=&quot;Formatting&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-python.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-python.yml/badge.svg?branch=develop&quot; alt=&quot;Python Linting&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-redhat.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-redhat.yml/badge.svg?branch=develop&quot; alt=&quot;RedHat Linux&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-ubuntu-jammy.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-ubuntu-jammy.yml/badge.svg?branch=develop&quot; alt=&quot;Ubuntu Jammy&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-ubuntu-noble.yml&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/rocprofiler-systems-ubuntu-noble.yml/badge.svg?branch=develop&quot; alt=&quot;Ubuntu Noble&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocr-debug-agent&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;None&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocr-runtime&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;rocshmem&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;roctracer&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Public&lt;/td&gt; 
+   &lt;td&gt;Completed&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Tentative migration schedule&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Component&lt;/th&gt; 
+   &lt;th&gt;Tentative Date&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+&lt;/table&gt; 
+&lt;p&gt;*Remaining schedule to be determined.&lt;/p&gt; 
+&lt;h1&gt;TheRock CI Status&lt;/h1&gt; 
+&lt;p&gt;Note TheRock CI performs multi-component testing on top of builds leveraging &lt;a href=&quot;https://github.com/ROCm/TheRock&quot;&gt;TheRock&lt;/a&gt; build system.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/therock-ci.yml?query=branch%3Adevelop+event%3Apush&quot;&gt;&lt;img src=&quot;https://github.com/ROCm/rocm-systems/actions/workflows/therock-ci.yml/badge.svg?branch%3Adevelop+event%3Apush&quot; alt=&quot;The Rock CI&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Nomenclature&lt;/h2&gt; 
+&lt;p&gt;Project names have been standardized to match the casing and punctuation of released packages. This removes inconsistent camel-casing and underscores used in legacy repositories.&lt;/p&gt; 
+&lt;h2&gt;Structure&lt;/h2&gt; 
+&lt;p&gt;The repository is organized as follows:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;projects/
+  amdsmi/
+  aqlprofile/
+  clr/
+  hip/
+  hipfile/
+  hipother/
+  hip-tests/
+  rccl/
+  rdc/
+  rocdbgapi/
+  rocdecode/
+  rocjpeg/
+  rocm-core
+  rocminfo/
+  rocmsmilib/
+  rocprofiler/
+  rocprofiler-compute/
+  rocprofiler-register/
+  rocprofiler-sdk/
+  rocprofiler-systems/
+  rocr-debug-agent/
+  rocrruntime/
+  rocshmem/
+  roctracer/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Each folder under &lt;code&gt;projects/&lt;/code&gt; corresponds to a ROCm systems project that was previously maintained in a standalone GitHub repository and released as distinct packages.&lt;/li&gt; 
+ &lt;li&gt;Each folder under &lt;code&gt;shared/&lt;/code&gt; contains code that existed in its own repository and is used as a dependency by multiple projects, but does not produce its own distinct packages in previous ROCm releases.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Goals&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Enable unified build and test workflows across ROCm libraries.&lt;/li&gt; 
+ &lt;li&gt;Facilitate shared tooling, CI, and contributor experience.&lt;/li&gt; 
+ &lt;li&gt;Improve integration, visibility, and collaboration across ROCm library teams.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;To begin contributing or building, see the &lt;a href=&quot;https://raw.githubusercontent.com/ROCm/rocm-systems/develop/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; guide. It includes setup instructions, sparse-checkout configuration, development workflow, and pull request guidelines.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This super-repo contains multiple subprojects, each of which retains the license under which it was originally published.&lt;/p&gt; 
+&lt;p&gt;📁 Refer to the &lt;code&gt;LICENSE&lt;/code&gt;, &lt;code&gt;LICENSE.md&lt;/code&gt;, or &lt;code&gt;LICENSE.txt&lt;/code&gt; file within each &lt;code&gt;projects/&lt;/code&gt; or &lt;code&gt;shared/&lt;/code&gt; directory for specific license terms. 📄 Refer to the header notice in individual files outside &lt;code&gt;projects/&lt;/code&gt; or &lt;code&gt;shared/&lt;/code&gt; folders for their specific license terms.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: The root of this repository does not define a unified license across all components.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Questions or Feedback?&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;💬 &lt;a href=&quot;https://github.com/ROCm/rocm-systems/discussions&quot;&gt;Start a discussion&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;🐞 &lt;a href=&quot;https://github.com/ROCm/rocm-systems/issues&quot;&gt;Open an issue&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We&#39;re happy to help!&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a6a527a204560ff7c0625c01cbc6483cb1e62fb36de9a6ba382ab071834e8fa3/ROCm/rocm-systems" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>kvcache-ai/Mooncake</title>
+      <link>https://github.com/kvcache-ai/Mooncake</link>
+      <description>&lt;p&gt;Mooncake is the serving platform for Kimi, a leading LLM service provided by Moonshot AI.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/&quot;&gt;https://kvcache-ai.github.io/Mooncake/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/mooncake-icon.png&quot; width=&quot;44%&quot; /&gt; 
+ &lt;h2 align=&quot;center&quot;&gt; A KVCache-centric Disaggregated Architecture for LLM Serving &lt;/h2&gt; 
+ &lt;a href=&quot;https://www.usenix.org/system/files/fast25-qin.pdf&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Paper&lt;/strong&gt;&lt;/a&gt; | 
+ &lt;a href=&quot;https://www.usenix.org/system/files/fast25_slides-qin.pdf&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Slides&lt;/strong&gt;&lt;/a&gt; | 
+ &lt;a href=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/FAST25-release/traces&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Traces&lt;/strong&gt;&lt;/a&gt; | 
+ &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Documentation&lt;/strong&gt;&lt;/a&gt; | 
+ &lt;a href=&quot;https://kvcache.ai/&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Blog&lt;/strong&gt;&lt;/a&gt; | 
+ &lt;a href=&quot;https://join.slack.com/t/mooncake-project/shared_invite/zt-3qx4x35ea-zSSTqTHItHJs9SCoXLOSPA&quot; target=&quot;_blank&quot;&gt;&lt;strong&gt;Slack&lt;/strong&gt;&lt;/a&gt; 
+ &lt;br /&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine&quot;&gt;&lt;img src=&quot;https://static.pepy.tech/badge/mooncake-transfer-engine?period=month&quot; alt=&quot;PyPI - Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/kvcache-ai/Mooncake/graphs/commit-activity&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/commit-activity/w/kvcache-ai/Mooncake&quot; alt=&quot;GitHub commit activity&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/kvcache-ai/Mooncake/raw/main/LICENSE-APACHE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/kvcache-ai/mooncake.svg?sanitize=true&quot; alt=&quot;license&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/kvcacheai/mooncake&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/v/kvcacheai/mooncake?label=docker&amp;amp;logo=docker&amp;amp;logoColor=white&amp;amp;color=2496ED&quot; alt=&quot;Docker&quot; /&gt;&lt;/a&gt; &lt;br /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=pypi&amp;amp;message=CUDA%20%3C%3D12.9&amp;amp;color=76B900&quot; alt=&quot;PyPI CUDA &lt;=12.9&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine-cuda13&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=pypi&amp;amp;message=CUDA%2013.0%2F13.1&amp;amp;color=76B900&quot; alt=&quot;PyPI CUDA 13.0/13.1&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine-non-cuda/&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=pypi&amp;amp;message=non-CUDA&amp;amp;color=00BFFF&quot; alt=&quot;PyPI Non-CUDA&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine-npu/&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=pypi&amp;amp;message=NPU&amp;amp;color=F87171&quot; alt=&quot;PyPI NPU&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine-musa/&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=pypi&amp;amp;message=MUSA&amp;amp;color=F97316&quot; alt=&quot;PyPI MUSA&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine-efa/&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=pypi&amp;amp;message=EFA&amp;amp;color=F59E0B&quot; alt=&quot;PyPI EFA&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://pypi.org/project/mooncake-transfer-engine-rocm/&quot;&gt;&lt;img src=&quot;https://img.shields.io/static/v1?label=pypi&amp;amp;message=ROCm&amp;amp;color=black&quot; alt=&quot;PyPI ROCm&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;p&gt;Mooncake is the serving platform for &lt;a href=&quot;https://kimi.ai/&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/kimi.png&quot; alt=&quot;icon&quot; style=&quot;height: 16px; vertical-align: middle;&quot; /&gt; Kimi&lt;/a&gt;, a leading LLM service provided by &lt;a href=&quot;https://www.moonshot.cn/&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/moonshot.jpg&quot; alt=&quot;icon&quot; style=&quot;height: 16px; vertical-align: middle;&quot; /&gt; Moonshot AI&lt;/a&gt;. Under real workloads, Mooncake’s innovative architecture enables Kimi to handle 75% more requests while adhering to SLOs.&lt;/p&gt; 
+&lt;h2 id=&quot;updates&quot;&gt;🔄 Updates&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Aug 24, 2026&lt;/strong&gt;: &lt;a href=&quot;https://newsletter.semianalysis.com/p/agentx-inferencexv3-does-cuda-moat&quot;&gt;AgentX / InferenceX v3&lt;/a&gt; highlights Mooncake&#39;s contributions to agentic inference workloads, including ROCm wheels, CI, and packaging improvements. &lt;a href=&quot;https://inferencex.semianalysis.com/agentx/optimizations/mooncake&quot;&gt;Mooncake optimization details&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Aug 20, 2026&lt;/strong&gt;: Mooncake is integrated into &lt;a href=&quot;https://github.com/radixark/miles&quot;&gt;Miles&lt;/a&gt; as a rollout data-transfer backend for the fragmented, heterogeneous data moving between rollout and training in disaggregated RL. Blogs: &lt;a href=&quot;https://kvcache.ai/blog/mooncake-rl-rollout-data-transfer/&quot;&gt;KVCache.AI&lt;/a&gt;, &lt;a href=&quot;https://www.lmsys.org/blog/2026-08-20-miles-mooncake-rollout-data-transfer&quot;&gt;lmsys&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Aug 17, 2026&lt;/strong&gt;: Mooncake is integrated into &lt;a href=&quot;https://github.com/vllm-project/speculators&quot;&gt;Speculators&lt;/a&gt; as a distributed backend for multi-node online training, efficiently moves hidden-state between vLLM inference workers and Speculators trainers through RDMA, eliminating the need for massive hidden-state storage in offline training. &lt;a href=&quot;https://x.com/mgoin_/status/2072785822231728363&quot;&gt;Benchmark on GB300 NVL72&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;May 7, 2026&lt;/strong&gt;: 🚀 &lt;a href=&quot;https://vllm.ai/blog/mooncake-store&quot;&gt;vLLM officially features Mooncake Store&lt;/a&gt; — a deep dive into how Mooncake&#39;s distributed KVCache engine supercharges vLLM inference with high-throughput, memory-efficient, cross-instance KV cache sharing!&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Apr 29, 2026&lt;/strong&gt;: SGLang introduces &lt;a href=&quot;https://lmsys.org/blog/2026-04-29-p2p-update/&quot;&gt;RDMA-based P2P weight transfer for large-scale distributed RL&lt;/a&gt; using Mooncake TransferEngine, achieving 7x faster weight updates for the 1T-parameter Kimi-K2 model (53s → 7.2s) with zero-copy RDMA transfer across thousands of GPUs.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Mar 19, 2026&lt;/strong&gt;: &lt;a href=&quot;https://pytorch.org/blog/torchspec-speculative-decoding-training-at-scale&quot;&gt;TorchSpec: Speculative Decoding Training at Scale&lt;/a&gt; is &lt;a href=&quot;https://github.com/torchspec-project/TorchSpec&quot;&gt;open sourced&lt;/a&gt;, using Mooncake to decouple inference and training via efficient hidden states management.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;More&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;strong&gt;Mar 5, 2026&lt;/strong&gt;: &lt;a href=&quot;https://github.com/ModelTC/LightX2V/pull/893&quot;&gt;LightX2V&lt;/a&gt; now supports disaggregated deployment based on Mooncake, enabling encoder/transformer service decoupling with Mooncake Transfer Engine for high-performance cross-device and cross-machine data transfer. Details in &lt;a href=&quot;https://light-ai.top/LightX2V-BLOG/posts/Disaggregation/&quot;&gt;blog&lt;/a&gt;.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Feb 25, 2026&lt;/strong&gt;: &lt;a href=&quot;https://github.com/sgl-project/sglang&quot;&gt;SGLang&lt;/a&gt; merged &lt;a href=&quot;https://github.com/sgl-project/sglang/pull/16137&quot;&gt;Encoder Global Cache Manager&lt;/a&gt;, introducing a Mooncake-powered global multimodal embedding cache that enables cross-instance sharing of ViT embeddings to avoid redundant GPU computation.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Feb 24, 2026&lt;/strong&gt;: &lt;a href=&quot;https://docs.vllm.ai/projects/vllm-omni/en/latest/design/feature/disaggregated_inference/&quot;&gt;vLLM-Omni&lt;/a&gt; introduces disaggregated inference connectors with support for both &lt;code&gt;MooncakeStoreConnector&lt;/code&gt; and &lt;code&gt;MooncakeTransferEngineConnector&lt;/code&gt; for multi-node omni-modality pipelines.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Feb 12, 2026&lt;/strong&gt;: &lt;a href=&quot;https://pytorch.org/blog/mooncake-joins-pytorch-ecosystem/&quot;&gt;Mooncake Joins PyTorch Ecosystem&lt;/a&gt; We are thrilled to announce that Mooncake has officially joined the PyTorch Ecosystem!&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Jan 28, 2026&lt;/strong&gt;: &lt;a href=&quot;https://github.com/taco-project/FlexKV&quot;&gt;FlexKV&lt;/a&gt;, a distributed KV store and cache system from Tencent and NVIDIA in collaboration with the community, now supports &lt;a href=&quot;https://github.com/taco-project/FlexKV/raw/main/docs/dist_reuse/README_en.md&quot;&gt;distributed KVCache reuse&lt;/a&gt; with the Mooncake Transfer Engine.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Dec 27, 2025&lt;/strong&gt;: Collaboration with &lt;a href=&quot;https://github.com/alibaba/ROLL&quot;&gt;ROLL&lt;/a&gt;! Check out the paper &lt;a href=&quot;https://arxiv.org/abs/2512.22560&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Dec 23, 2025&lt;/strong&gt;: SGLang introduces &lt;a href=&quot;https://lmsys.org/blog/2026-01-12-epd/&quot;&gt;Encode-Prefill-Decode (EPD) Disaggregation&lt;/a&gt; with Mooncake as a transfer backend. This integration allows decoupling compute-intensive multimodal encoders (e.g., Vision Transformers) from language model nodes, utilizing Mooncake&#39;s RDMA engine for zero-copy transfer of large multimodal embeddings.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Dec 19, 2025&lt;/strong&gt;: Mooncake Transfer Engine has been &lt;a href=&quot;https://github.com/NVIDIA/TensorRT-LLM/tree/main/cpp/tensorrt_llm/executor/cache_transmission/mooncake_utils&quot;&gt;integrated into TensorRT LLM&lt;/a&gt; for KVCache transfer in PD-disaggregated inference.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Dec 19, 2025&lt;/strong&gt;: Mooncake Transfer Engine has been directly integrated into vLLM v1 as a &lt;a href=&quot;https://docs.vllm.ai/en/latest/features/mooncake_connector_usage/&quot;&gt;KV Connector&lt;/a&gt; in PD-disaggregated setups.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Nov 07, 2025&lt;/strong&gt;: &lt;a href=&quot;https://github.com/sgl-project/rbg/raw/main/keps/74-mooncake-integration/README.md&quot;&gt;RBG + SGLang HiCache + Mooncake&lt;/a&gt;, a role-based out-of-the-box solution for cloud native deployment, which is elastic, scalable, and high-performance.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Sept 18, 2025&lt;/strong&gt;: Mooncake Store empowers vLLM Ascend by serving as &lt;a href=&quot;https://docs.vllm.ai/projects/ascend/zh-cn/main/user_guide/feature_guide/kv_pool.html&quot;&gt;the distributed KV cache pool backend&lt;/a&gt;.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Sept 10, 2025&lt;/strong&gt;: SGLang officially supports Mooncake Store as a &lt;a href=&quot;https://lmsys.org/blog/2025-09-10-sglang-hicache/&quot;&gt;hierarchical KV caching storage backend&lt;/a&gt;. The integration extends RadixAttention with multi-tier KV cache storage across device, host, and remote storage layers.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Sept 10, 2025&lt;/strong&gt;: The official &amp;amp; high-performance version of Mooncake P2P Store is open-sourced as &lt;a href=&quot;https://github.com/MoonshotAI/checkpoint-engine/&quot;&gt;checkpoint-engine&lt;/a&gt;. It has been successfully applied in K1.5 and K2 production training, updating Kimi-K2 model (1T parameters) across thousands of GPUs in ~20s.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Aug 23, 2025&lt;/strong&gt;: &lt;a href=&quot;https://github.com/jd-opensource/xllm&quot;&gt;xLLM&lt;/a&gt; high-performance inference engine builds hybrid KV cache management based on Mooncake, supporting global KV cache management with intelligent offloading and prefetching.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Aug 18, 2025&lt;/strong&gt;: vLLM-Ascend &lt;a href=&quot;https://docs.vllm.ai/projects/ascend/en/latest/developer_guide/feature_guide/disaggregated_prefill.html&quot;&gt;integrates Mooncake Transfer Engine&lt;/a&gt; for KV cache register and disaggregate prefill, enabling efficient distributed inference on Ascend NPUs.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Jul 20, 2025&lt;/strong&gt;: Mooncake powers &lt;a href=&quot;https://lmsys.org/blog/2025-07-20-k2-large-scale-ep/&quot;&gt;the deployment of Kimi K2&lt;/a&gt; on 128 H200 GPUs with PD disaggregation and large-scale expert parallelism, achieving 224k tokens/sec prefill throughput and 288k tokens/sec decode throughput.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Jun 20, 2025&lt;/strong&gt;: Mooncake becomes a PD disaggregation &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/deployment/integrations/lmdeploy.html&quot;&gt;backend&lt;/a&gt; for LMDeploy.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;May 9, 2025&lt;/strong&gt;: NIXL officially supports Mooncake Transfer Engine as &lt;a href=&quot;https://github.com/ai-dynamo/nixl/raw/main/src/plugins/mooncake/README.md&quot;&gt;a backend plugin&lt;/a&gt;.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;May 8, 2025&lt;/strong&gt;: &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/deployment/integrations/lmcache/index.html&quot;&gt;Mooncake x LMCache&lt;/a&gt; unite to pioneer KVCache-centric LLM serving system.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;May 5, 2025&lt;/strong&gt;: Supported by Mooncake Team, SGLang release &lt;a href=&quot;https://lmsys.org/blog/2025-05-05-large-scale-ep/&quot; target=&quot;_blank&quot;&gt;guidance&lt;/a&gt; to deploy DeepSeek with PD Disaggregation on 96 H100 GPUs.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Apr 22, 2025&lt;/strong&gt;: LMCache officially supports Mooncake Store as a &lt;a href=&quot;https://blog.lmcache.ai/2025-04-22-tencent/&quot; target=&quot;_blank&quot;&gt;remote connector&lt;/a&gt;.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Apr 10, 2025&lt;/strong&gt;: SGLang officially supports Mooncake Transfer Engine for disaggregated prefilling and KV cache transfer.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Mar 7, 2025&lt;/strong&gt;: We open-sourced the Mooncake Store, a distributed KVCache based on Transfer Engine. vLLM&#39;s xPyD disaggregated prefilling &amp;amp; decoding based on Mooncake Store will be released soon.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Feb 25, 2025&lt;/strong&gt;: Mooncake receives the &lt;strong&gt;Best Paper Award&lt;/strong&gt; at &lt;strong&gt;FAST 2025&lt;/strong&gt;!&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Feb 21, 2025&lt;/strong&gt;: The updated &lt;a href=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/FAST25-release/traces&quot; target=&quot;_blank&quot;&gt;traces&lt;/a&gt; used in our FAST&#39;25 paper have been released.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Dec 16, 2024&lt;/strong&gt;: vLLM officially supports Mooncake Transfer Engine for disaggregated prefilling and KV cache transfer.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Nov 28, 2024&lt;/strong&gt;: We open-sourced the Transfer Engine, the central component of Mooncake. We also provide two demonstrations of Transfer Engine: a P2P Store and vLLM integration.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;July 9, 2024&lt;/strong&gt;: We open-sourced the trace as a &lt;a href=&quot;https://github.com/kvcache-ai/Mooncake/raw/main/FAST25-release/arxiv-trace/mooncake_trace.jsonl&quot; target=&quot;_blank&quot;&gt;JSONL file&lt;/a&gt;.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;June 27, 2024&lt;/strong&gt;: We present a series of Chinese blogs with more discussions on &lt;a href=&quot;https://zhuanlan.zhihu.com/p/705754254&quot;&gt;zhihu 1&lt;/a&gt;, &lt;a href=&quot;https://zhuanlan.zhihu.com/p/705910725&quot;&gt;2&lt;/a&gt;, &lt;a href=&quot;https://zhuanlan.zhihu.com/p/706204757&quot;&gt;3&lt;/a&gt;, &lt;a href=&quot;https://zhuanlan.zhihu.com/p/707997501&quot;&gt;4&lt;/a&gt;, &lt;a href=&quot;https://zhuanlan.zhihu.com/p/9461861451&quot;&gt;5&lt;/a&gt;, &lt;a href=&quot;https://zhuanlan.zhihu.com/p/1939988652114580803&quot;&gt;6&lt;/a&gt;, &lt;a href=&quot;https://zhuanlan.zhihu.com/p/1959366095443064318&quot;&gt;7&lt;/a&gt;.&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;June 26, 2024&lt;/strong&gt;: Initial technical report release.&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h2 id=&quot;overview&quot;&gt;🎉 Overview&lt;/h2&gt; 
+&lt;!-- ![components](image/components.png) --&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/components.png&quot; width=&quot;74%&quot; /&gt; 
+&lt;/div&gt; 
+&lt;p&gt;Mooncake is an infrastructure project for large-scale LLM inference and training. It features a KV cache-centric disaggregated architecture that separates prefill and decode clusters, while leveraging otherwise underutilized CPU, DRAM, and SSD resources in GPU clusters to build a disaggregated KV cache pool.&lt;/p&gt; 
+&lt;p&gt;Mooncake includes a high-performance Transfer Engine for low-latency data movement across heterogeneous networks and accelerators; Mooncake Store for distributed KV cache and model-weight management; and Mooncake EP &amp;amp; PG for elastic MoE serving. Deeply integrated with ecosystems such as SGLang and vLLM, Mooncake helps LLM systems improve cache reuse, reduce serving latency, and scale efficiently across multi-node clusters.&lt;/p&gt; 
+&lt;h2 id=&quot;show-cases&quot;&gt;🔥 Show Cases&lt;/h2&gt; 
+&lt;h3&gt;Transfer Engine (TE)&lt;/h3&gt; 
+&lt;p&gt;The core of Mooncake is the Transfer Engine (TE), a high-performance data transfer framework. TE offers a unified interface for batched data movement across diverse storage, network, and accelerator environments. By supporting multiple transport protocols, topology-aware routing, multi-NIC bandwidth aggregation, and automatic failover, TE delivers low-latency, scalable, and robust data transmission for distributed AI workloads. See the &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/design/transfer-engine/index.html&quot;&gt;Transfer Engine guide&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Highlights&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Efficient use of multiple RDMA NIC devices.&lt;/strong&gt; Transfer Engine supports the use of multiple RDMA NIC devices to achieve the &lt;em&gt;aggregation of transfer bandwidth&lt;/em&gt;.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Topology-aware path selection.&lt;/strong&gt; Transfer Engine can &lt;em&gt;select optimal devices&lt;/em&gt; based on the location (NUMA affinity, etc.) of both source and destination.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Robust against temporary network errors.&lt;/strong&gt; Once transmission fails, Transfer Engine will try to use alternative paths for data delivery automatically.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Superior performance at scale.&lt;/strong&gt; With 40 GB of data (equivalent to the size of the KVCache generated by 128k tokens in the LLaMA3-70B model), Mooncake Transfer Engine delivers up to &lt;strong&gt;87 GB/s&lt;/strong&gt; and &lt;strong&gt;190 GB/s&lt;/strong&gt; of bandwidth in 4×200 Gbps and 8×400 Gbps RoCE networks respectively, which are about &lt;strong&gt;2.4x and 4.6x faster&lt;/strong&gt; than the TCP protocol.&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;!-- ![transfer-engine-performance.png](image/transfer-engine-performance.png) --&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/transfer-engine-performance.png&quot; width=&quot;75%&quot; /&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Broad support for heterogeneous transports and accelerators.&lt;/strong&gt; Transfer Engine provides unified data transfer across diverse protocols, including TCP, RDMA, AWS EFA, NVMe-oF, NVLink, HIP, Barex, CXL, and Ascend-family transports. When built with the corresponding runtime, Transfer Engine can detect accelerator memory and select suitable transport paths for efficient data movement across CUDA, MUSA, HIP, MACA, Cambricon MLU, and Ascend-enabled environments. For a complete list of supported protocols and configuration guide, see the &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/getting_started/supported-protocols.html&quot;&gt;Supported Protocols Documentation&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Widely adopted across the LLM ecosystem.&lt;/strong&gt; TE is used in production inference stacks such as &lt;a href=&quot;https://github.com/sgl-project/sglang&quot;&gt;SGLang&lt;/a&gt;, &lt;a href=&quot;https://github.com/vllm-project/vllm&quot;&gt;vLLM&lt;/a&gt;, &lt;a href=&quot;https://github.com/NVIDIA/TensorRT-LLM&quot;&gt;TensorRT-LLM&lt;/a&gt;, &lt;a href=&quot;https://github.com/vllm-project/vllm-ascend&quot;&gt;vLLM-Ascend&lt;/a&gt;, &lt;a href=&quot;https://github.com/MoonshotAI/checkpoint-engine&quot;&gt;checkpoint-engine&lt;/a&gt;, and &lt;a href=&quot;https://github.com/ai-dynamo/nixl&quot;&gt;NIXL&lt;/a&gt;, among others, to efficiently transfer KV cache, embeddings, model weights, and other data.&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h3&gt;Mooncake Store&lt;/h3&gt; 
+&lt;p&gt;Mooncake Store is a high-performance distributed key-value cache storage engine designed for LLM inference. Built on the Transfer Engine, it stores and manages reusable KV caches and model weights across inference clusters, with support for efficient object storage, replication, eviction, and high-bandwidth data transfer. See the &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/design/mooncake-store.html&quot;&gt;Mooncake Store guide&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Highlights&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;High bandwidth utilization.&lt;/strong&gt; Mooncake Store supports large-object striping, parallel I/O, and end-to-end zero-copy data transfer, fully utilizing aggregated bandwidth across multiple NICs.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Multi-tier cache hierarchy&lt;/strong&gt;. Mooncake Store supports a multi-level cache design across DRAM and SSD/NVMe, enabling larger cache capacity.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Elastic and disaggregated storage.&lt;/strong&gt; Mooncake Store decouples KVCache storage from inference engines, allowing storage nodes to be dynamically added or removed while keeping cached data independent from engine restarts, upgrades, and scheduling decisions.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Programmatic object management.&lt;/strong&gt; Mooncake Store allows applications to control object placement and lifecycle through per-object policies, including replica counts, preferred segments, soft pin, and hard pin. These controls help inference systems protect important KV caches and model weights while guiding replication, placement, and eviction behavior.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Broad ecosystem adoption.&lt;/strong&gt; Mooncake Store is used across the LLM systems ecosystem as a high-performance distributed storage backend for KV caches, hidden states, and model weights. It supports integrations with &lt;a href=&quot;https://lmsys.org/blog/2025-09-10-sglang-hicache/&quot;&gt;SGLang&#39;s Hierarchical KV Caching&lt;/a&gt;, &lt;a href=&quot;https://docs.vllm.ai/en/latest/features/disagg_prefill.html&quot;&gt;vLLM&#39;s prefill serving&lt;/a&gt;, and &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/deployment/integrations/lmcache/index.html&quot;&gt;LMCache&lt;/a&gt;, and has been adopted by systems such as &lt;a href=&quot;https://pytorch.org/blog/torchspec-speculative-decoding-training-at-scale/&quot;&gt;TorchSpec&lt;/a&gt; and &lt;a href=&quot;https://github.com/Ascend/TransferQueue&quot;&gt;TransferQueue&lt;/a&gt; to decouple inference, training, and reinforcement-learning workloads through efficient state management and asynchronous data movement.&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h3&gt;Mooncake EP and Process Group (PG)&lt;/h3&gt; 
+&lt;p&gt;Mooncake EP and Mooncake PG extend Mooncake from high-performance data movement to fault-tolerant distributed execution for large-scale MoE inference. Mooncake EP adapts DeepEP-style expert-parallel dispatch and combine operations with rank activeness awareness, while Mooncake PG provides a PyTorch distributed process-group backend with collective communication primitives that can detect failed ranks, report failures to upper layers, and recover ranks without restarting the entire inference service. See the &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/api-reference/python/ep-backend.html&quot;&gt;Mooncake EP &amp;amp; Backend guide&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Highlights&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Fault-tolerant expert parallelism.&lt;/strong&gt; Mooncake EP adds &lt;code&gt;active_ranks&lt;/code&gt; awareness to expert-parallel dispatch and combine APIs, allowing MoE inference systems to route around failed ranks and continue serving with healthy experts.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;DeepEP-compatible programming model.&lt;/strong&gt; Mooncake EP keeps the API largely consistent with DeepEP&#39;s low-latency mode, making it easier for inference engines to adopt fault-tolerant expert parallelism without rewriting their MoE communication stack.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;PyTorch ProcessGroup integration.&lt;/strong&gt; Mooncake PG can be registered as a &lt;code&gt;torch.distributed&lt;/code&gt; backend, enabling standard collective APIs such as &lt;code&gt;all_gather&lt;/code&gt; while using Mooncake&#39;s communication and failure-reporting mechanisms underneath.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Elastic rank recovery.&lt;/strong&gt; Mooncake PG exposes recovery-oriented primitives such as peer-state polling and rank recovery, allowing replacement processes to rejoin existing process groups and helping inference services recover from partial failures.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;SGLang integration for production MoE serving.&lt;/strong&gt; Mooncake&#39;s collective backend and expert-parallel kernels are integrated into SGLang to support fault-tolerant expert-parallel inference for large MoE models, including Elastic Expert Parallel serving scenarios.&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h3&gt;Tensor-Centric Ecosystem&lt;/h3&gt; 
+&lt;p&gt;Mooncake establishes a full-stack, Tensor-oriented AI infrastructure where Tensors serve as the fundamental data carrier. The ecosystem spans from the Transfer Engine, which accelerates Tensor data movement across heterogeneous storage (DRAM/VRAM/NVMe), to Mooncake Store for distributed management of Tensor objects (e.g., KVCache and model weight), up to the Mooncake Backend enabling Tensor-based elastic distributed computing. This architecture is designed to maximize Tensor processing efficiency for large-scale model inference and training.&lt;/p&gt; 
+&lt;h3&gt;SGLang Integration (&lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/deployment/integrations/sglang/index.html&quot;&gt;Guide&lt;/a&gt;)&lt;/h3&gt; 
+&lt;p&gt;Mooncake is deeply integrated into &lt;a href=&quot;https://github.com/sgl-project/sglang/&quot;&gt;SGLang&lt;/a&gt; as a high-performance communication and storage backend. These integrations enable efficient KV cache transfer in PD-disaggregated serving, scalable multi-level KV caching through HiCache, fault-tolerant expert-parallel inference, high-performance multimodal pipeline data movement, and fast RDMA-based weight synchronization for large-scale RL training. Together, Mooncake and SGLang provide a production-oriented foundation for building elastic, high-throughput, and resource-efficient LLM and multimodal serving systems.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Details&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;PD Disaggregated Serving:&lt;/strong&gt; SGLang officially supports Mooncake Transfer Engine as a backend for disaggregated serving and KV cache transfer, enabling prefill and decode workers to exchange KV cache data efficiently across devices and machines.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Hierarchical KV Caching&lt;/strong&gt;: Mooncake Store serves as an external storage backend in SGLang&#39;s HiCache system, extending RadixAttention with multi-level KV cache storage across device, host, and remote storage layers.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Elastic Expert Parallel&lt;/strong&gt;: Mooncake&#39;s collective communication backend and expert parallel kernels are integrated into SGLang to enable fault-tolerant expert parallel inference (&lt;a href=&quot;https://www.lmsys.org/blog/2026-03-25-eep-partial-failure-tolerance/&quot;&gt;Elastic EP&lt;/a&gt;).&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Cloud-Native SGLang HiCache Deployment with RBG&lt;/strong&gt;: The &lt;a href=&quot;https://github.com/sgl-project/rbg&quot;&gt;RBG&lt;/a&gt; + SGLang HiCache + Mooncake integration provides a role-based, out-of-the-box cloud-native deployment solution that is elastic, scalable, and optimized for high-performance inference workloads.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Encode-Prefill-Decode Disaggregation for Multimodal Serving&lt;/strong&gt;: SGLang introduces Encode-Prefill-Decode disaggregation with Mooncake as a transfer backend. This enables compute-intensive multimodal encoders, such as Vision Transformers, to be decoupled from language model workers while transferring large embeddings efficiently through Mooncake’s RDMA-based engine.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;SGLang-Omni Multi-Stage Pipeline Data Transfer&lt;/strong&gt;: &lt;a href=&quot;https://github.com/sgl-project/sglang-omni&quot;&gt;SGLang-Omni&lt;/a&gt; integrates Mooncake as a relay backend for efficient cross-stage tensor and blob transfer in multimodal serving pipelines. This enables high-performance data movement between heterogeneous components such as thinker, talker, codec, and vocoder stages.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;RDMA-Based P2P Weight Transfer for Distributed RL&lt;/strong&gt;: SGLang adopts Mooncake TransferEngine for RDMA-based peer-to-peer weight transfer in large-scale distributed reinforcement learning. This enables zero-copy weight updates across thousands of GPUs and significantly accelerates synchronization for trillion-parameter models.&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h3&gt;vLLM Integration (&lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/deployment/integrations/vllm/index.html&quot;&gt;Guide&lt;/a&gt;)&lt;/h3&gt; 
+&lt;p&gt;Mooncake integrates with &lt;a href=&quot;https://github.com/vllm-project/vllm&quot;&gt;vLLM&lt;/a&gt; to accelerate large language model serving through high-performance KV cache transfer and distributed KV cache storage. The integration supports both disaggregated prefill-decode serving and cross-instance KV cache sharing, helping vLLM deployments reduce TTFT, improve cache reuse, and scale more efficiently across multi-node inference clusters.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Details&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Disaggregated prefill-decode serving&lt;/strong&gt;: Mooncake enables vLLM to split prefill and decode workloads across different nodes. Through MooncakeConnector, vLLM transfers KV cache blocks from prefill workers to decode workers using Mooncake’s high-performance transfer engine, allowing prefill and decode resources to scale independently while keeping cross-node KV transfer overhead low.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Distributed KV cache pooling and sharing&lt;/strong&gt;: &lt;a href=&quot;https://vllm.ai/blog/2026-05-06-mooncake-store&quot;&gt;Mooncake Store extends vLLM&lt;/a&gt; from isolated per-instance KV caches to a shared, cluster-level KV cache pool. Through MooncakeStoreConnector, multiple vLLM instances can store, retrieve, and reuse KV cache blocks based on hash-based prefix caching, reducing redundant prefill computation and improving cache efficiency for workloads with repeated prefixes, especially agentic and multi-turn serving scenarios.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;vLLM-Omni stage communication&lt;/strong&gt;: Mooncake also integrates with &lt;a href=&quot;https://github.com/vllm-project/vllm-omni&quot;&gt;vLLM-Omni&lt;/a&gt; through &lt;code&gt;MooncakeTransferEngineConnector&lt;/code&gt; and &lt;code&gt;MooncakeStoreConnector&lt;/code&gt;, enabling efficient cross-node data exchange between vLLM-Omni stages.&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h2 id=&quot;supported-hardware&quot;&gt;🖥️ Supported Hardware&lt;/h2&gt; 
+&lt;p&gt;Mooncake supports hardware backends across accelerator vendors, cloud fabrics, and standard datacenter interconnects, as listed below. See the &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/getting_started/supported-protocols.html&quot;&gt;supported protocols&lt;/a&gt; and &lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/design/transfer-engine/index.html&quot;&gt;Transfer Engine design docs&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/nvidia_logo.png&quot; width=&quot;120&quot; alt=&quot;NVIDIA&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/huawei_logo.png&quot; width=&quot;120&quot; alt=&quot;Huawei&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/amd_logo.png&quot; width=&quot;120&quot; alt=&quot;AMD&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/hardwares/cambricon_logo.png&quot; width=&quot;120&quot; alt=&quot;Cambricon&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/moore_thread_logo.jpg&quot; width=&quot;120&quot; alt=&quot;Moore Threads&quot; /&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/aws-logo.png&quot; width=&quot;120&quot; alt=&quot;AWS&quot; /&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/hardwares/MetaX_logo.png&quot; width=&quot;120&quot; alt=&quot;MetaX&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/hardwares/T-Head_logo.png&quot; width=&quot;120&quot; alt=&quot;T-Head&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/aliyun_logo.png&quot; width=&quot;120&quot; alt=&quot;Alibaba Cloud&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/sunrise_logo.png&quot; width=&quot;120&quot; alt=&quot;Sunrise&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/partners/hygon_logo.png&quot; width=&quot;120&quot; alt=&quot;Hygon&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/image/hardwares/biren_logo.png&quot; width=&quot;120&quot; alt=&quot;Biren Technology&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2 id=&quot;quick-start&quot;&gt;🚀 Getting Started&lt;/h2&gt; 
+&lt;p&gt;Install Mooncake using &lt;code&gt;pip&lt;/code&gt;. The &lt;code&gt;mooncake-transfer-engine&lt;/code&gt; package includes Mooncake Transfer Engine, Mooncake Store, Mooncake EP and PG:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;CUDA &amp;lt; 13.0&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pip install mooncake-transfer-engine
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;CUDA &amp;gt;= 13.0&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pip install mooncake-transfer-engine-cuda13
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Master image&lt;/h4&gt; 
+&lt;p&gt;The multi-architecture master image publishes explicit CUDA flavor tags:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Fixed versions, recommended for production
+docker pull kvcacheai/mooncake:0.3.14-cuda12
+docker pull kvcacheai/mooncake:0.3.14-cuda13
+
+# CUDA 13 is the default flavor
+docker pull kvcacheai/mooncake:0.3.14
+docker pull kvcacheai/mooncake:latest
+
+# Floating flavor aliases
+docker pull kvcacheai/mooncake:cuda12
+docker pull kvcacheai/mooncake:cuda13
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The unqualified &lt;code&gt;:&amp;lt;version&amp;gt;&lt;/code&gt; and &lt;code&gt;:latest&lt;/code&gt; tags point to CUDA 13 starting with the first release published by the new tagging workflow. Existing releases keep their original contents; use &lt;code&gt;:cuda12&lt;/code&gt; or &lt;code&gt;:&amp;lt;version&amp;gt;-cuda12&lt;/code&gt; when CUDA 12 is required. The former &lt;code&gt;:latest-cuda13&lt;/code&gt; tag is deprecated and is not part of the new naming contract.&lt;/p&gt; 
+&lt;p&gt;In addition to CUDA, Mooncake also supports other accelerator backends, along with flexible installation and deployment options. See the guides below for details:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/getting_started/quick-start.html&quot;&gt;Quick Start&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/getting_started/build.html&quot;&gt;Build from Source&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://kvcache-ai.github.io/Mooncake/deployment/mooncake-store-deployment-guide.html&quot;&gt;Deployment Guide&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Skills for AI Assistants&lt;/h3&gt; 
+&lt;p&gt;Mooncake ships a set of &lt;strong&gt;built-in skills&lt;/strong&gt; under &lt;a href=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/.claude/skills&quot;&gt;&lt;code&gt;.claude/skills&lt;/code&gt;&lt;/a&gt; — reusable, task-focused playbooks that an AI coding assistant (such as Claude Code) invokes automatically when your request matches, or that you can run as a slash command.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;Details&lt;/summary&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th&gt;Skill&lt;/th&gt; 
+    &lt;th&gt;Description&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;/mooncake-troubleshoot&lt;/code&gt;&lt;/td&gt; 
+    &lt;td&gt;Diagnose Mooncake deployment and runtime issues (services, RDMA, env vars, logs).&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;/mooncake-ci-local&lt;/code&gt;&lt;/td&gt; 
+    &lt;td&gt;Run pre-PR local validation via &lt;code&gt;scripts/run_ci_test.sh&lt;/code&gt;.&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;code&gt;/mooncake-api&lt;/code&gt;&lt;/td&gt; 
+    &lt;td&gt;Work with the Mooncake Store, Transfer Engine, and EP/Backend Python APIs.&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+ &lt;p&gt;Install them without cloning the repository via the &lt;a href=&quot;https://code.claude.com/docs/en/plugin-marketplaces&quot;&gt;Claude Code plugin marketplace&lt;/a&gt;:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;/plugin marketplace add kvcache-ai/Mooncake --sparse .claude-plugin
+/plugin install mooncake-troubleshoot@mooncake
+/plugin install mooncake-ci-local@mooncake
+/plugin install mooncake-api@mooncake
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;The &lt;code&gt;--sparse .claude-plugin&lt;/code&gt; flag fetches only the marketplace catalog, and each plugin is published as a &lt;code&gt;git-subdir&lt;/code&gt; source, so installing one fetches only that single skill directory — never the whole repo. If you are already working inside a Mooncake checkout, the skills under &lt;code&gt;.claude/skills/&lt;/code&gt; load automatically with no setup.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h2 id=&quot;trace&quot;&gt;📦 Open Source Traces and Tools &lt;/h2&gt; 
+&lt;p&gt;We open-source anonymized request traces containing request arrival times, input and output token counts, and remapped block hashes. These traces are designed to support reproducible simulation and evaluation of caching behavior while preserving user privacy. The released traces and related details are available in &lt;a href=&quot;https://raw.githubusercontent.com/kvcache-ai/Mooncake/main/FAST25-release&quot;&gt;FAST25-release&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Together with the released traces, we also provide two KV cache analysis tools: a &lt;a href=&quot;https://kvcache.ai/tools/kv-cache-size-calculator/&quot;&gt;KV Cache Size Calculator&lt;/a&gt; for calculating cache capacity across popular LLM model families, and a &lt;a href=&quot;https://kvcache.ai/tools/kv-cache-hit-rate-simulator/&quot;&gt;KV Cache Hit Rate Simulator&lt;/a&gt; for analyzing KV cache hit rates and planning cache capacity under different workloads and models. These tools help users better understand KV cache storage costs and caching effectiveness when analyzing or reproducing serving workloads. The tools are open-sourced &lt;a href=&quot;https://github.com/kvcache-ai/kvcache-blog&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2 id=&quot;citation&quot;&gt;📑 Citation&lt;/h2&gt; Please kindly cite our papers if you find the papers or the traces are useful: 
+&lt;pre&gt;&lt;code class=&quot;language-bibtex&quot;&gt;@inproceedings{qin2025mooncake,
+  author    = {Ruoyu Qin and Zheming Li and Weiran He and Jialei Cui and Feng Ren and Mingxing Zhang and Yongwei Wu and Weimin Zheng and Xinran Xu},
+  title     = {Mooncake: Trading More Storage for Less Computation {\textemdash} A {KVCache-centric} Architecture for Serving {LLM} Chatbot},
+  booktitle = {23rd USENIX Conference on File and Storage Technologies (FAST 25)},
+  year      = {2025},
+  isbn      = {978-1-939133-45-8},
+  address   = {Santa Clara, CA},
+  pages     = {155--170},
+  url       = {https://www.usenix.org/conference/fast25/presentation/qin},
+  publisher = {USENIX Association},
+  month     = {feb},
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;More&lt;/summary&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-bibtex&quot;&gt;@misc{ren2026tentdeclarativeslicespraying,
+  title     = {TENT: A Declarative Slice Spraying Engine for Performant and Resilient Data Movement in Disaggregated LLM Serving},
+  author    = {Feng Ren and Ruoyu Qin and Teng Ma and Shangming Cai and Zheng Liu and Chao Lei and Dejiang Zhu and Ke Yang and Zheming Li and Jialei Cui and Weixiao Huang and Yikai Zhao and Yineng Zhang and Hao Wu and Xiang Gao and Yuhao Fu and Jinlei Jiang and Yongwei Wu and Mingxing Zhang},
+  year      = {2026},
+  eprint    = {2604.00368},
+  archivePrefix = {arXiv},
+  primaryClass  = {cs.DC},
+  url       = {https://arxiv.org/abs/2604.00368},
+}
+
+@article{sun2026survivingpartialrankfailures,
+  title     = {Surviving Partial Rank Failures in Wide Expert-Parallel MoE Inference},
+  author    = {Xun Sun and Shaoyuan Chen and Pingchuan Ma and Yue Chen and Ziwei Yuan and Zhanhao Cao and Han Han and Shangming Cai and Teng Ma and Xuchun Shang and Xinpeng Zhao and Ke Yang and Junlin Wei and Lianzhi Lin and Yuji Liu and Feng Ren and Haoran Hu and Cheng Wan and Yingdi Shan and Yongwei Wu and Mingxing Zhang},
+  year      = {2026},
+  url       = {https://arxiv.org/abs/2605.10670},
+}
+
+@article{qin2025mooncake_tos,
+  author    = {Qin Ruoyu and Li Zheming and He Weiran and Cui Jialei and Tang Heyi and Ren Feng and Ma Teng and Cai Shangming and Zhang Yineng and Zhang Mingxing and Wu Yongwei and Zheng Weimin and Xu Xinran},
+  title     = {Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving},
+  year      = {2025},
+  publisher = {Association for Computing Machinery},
+  address   = {New York, NY, USA},
+  issn      = {1553-3077},
+  url       = {https://doi.org/10.1145/3773772},
+  doi       = {10.1145/3773772},
+  journal   = {ACM Trans. Storage},
+  month     = {nov},
+  keywords  = {Machine learning system, LLM serving, KVCache},
+}
+
+@article{qin2024mooncake_arxiv,
+  title  = {Mooncake: A KVCache-centric Disaggregated Architecture for LLM Serving},
+  author = {Ruoyu Qin and Zheming Li and Weiran He and Mingxing Zhang and Yongwei Wu and Weimin Zheng and Xinran Xu},
+  year   = {2024},
+  url    = {https://arxiv.org/abs/2407.00079},
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/819733173/b643a629-a15b-4d3d-9693-d98caeed4a08" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>FreeCAD/FreeCAD</title>
+      <link>https://github.com/FreeCAD/FreeCAD</link>
+      <description>&lt;p&gt;Official source code of FreeCAD, a free and opensource multiplatform 3D parametric modeler.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.freecad.org&quot;&gt;https://www.freecad.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://freecad.org&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/FreeCAD/FreeCAD/main/src/Gui/Icons/freecad.svg?sanitize=true&quot; height=&quot;100px&quot; width=&quot;100px&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Your own 3D Parametric Modeler&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.freecad.org&quot;&gt;Website&lt;/a&gt; • &lt;a href=&quot;https://wiki.freecad.org&quot;&gt;Documentation&lt;/a&gt; • &lt;a href=&quot;https://forum.freecad.org/&quot;&gt;Forum&lt;/a&gt; • &lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/issues&quot;&gt;Bug tracker&lt;/a&gt; • &lt;a href=&quot;https://github.com/FreeCAD/FreeCAD&quot;&gt;Git repository&lt;/a&gt; • &lt;a href=&quot;https://blog.freecad.org&quot;&gt;Blog&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/freecad/freecad/releases/latest&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/freecad/freecad.svg?sanitize=true&quot; alt=&quot;Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://crowdin.com/project/freecad&quot;&gt;&lt;img src=&quot;https://d322cqt584bo4o.cloudfront.net/freecad/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/FreeCAD/FreeCAD/main/.github/images/partdesign.jpg&quot; width=&quot;800&quot; /&gt; 
+&lt;h2&gt;Overview&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Freedom to build what you want&lt;/strong&gt; FreeCAD is an open-source parametric 3D modeler for designing real-life objects of any size. Parametric modeling lets you modify a design by changing parameters in its model history.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Create 3D from 2D and back&lt;/strong&gt; FreeCAD lets you sketch geometry-constrained 2D shapes and use them as a base to build other objects. It also provides tools to adjust dimensions and create high-quality production drawings from 3D models.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Designed for your needs&lt;/strong&gt; FreeCAD is designed to fit a wide range of uses including product design, mechanical engineering and architecture, whether you are a hobbyist, programmer, experienced CAD user, student or teacher.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Cross platform&lt;/strong&gt; FreeCAD runs on Windows, macOS and Linux operating systems.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Underlying technology&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;strong&gt;OpenCASCADE&lt;/strong&gt; A powerful geometry kernel, the most important component of FreeCAD&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Coin3D library&lt;/strong&gt; Open Inventor-compliant 3D scene representation model&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Python&lt;/strong&gt; FreeCAD offers a broad Python API&lt;/li&gt; 
+   &lt;li&gt;&lt;strong&gt;Qt&lt;/strong&gt; Graphical user interface built with Qt&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installing&lt;/h2&gt; 
+&lt;p&gt;Precompiled packages for stable releases are available for Windows, macOS and Linux on the &lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/releases/latest&quot;&gt;latest releases page&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;On most Linux distributions, FreeCAD is also directly installable from the software center application.&lt;/p&gt; 
+&lt;p&gt;For weekly development releases visit the &lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/releases/&quot;&gt;releases page&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Other options are described on the &lt;a href=&quot;https://wiki.freecad.org/Download&quot;&gt;wiki Download page&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Compiling&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://freecad.github.io/DevelopersHandbook/gettingstarted/&quot;&gt;Developers Handbook – Getting Started&lt;/a&gt; for build instructions.&lt;/p&gt; 
+&lt;h2&gt;Reporting Issues&lt;/h2&gt; 
+&lt;p&gt;To report an issue please:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Consider posting to the &lt;a href=&quot;https://forum.freecad.org&quot;&gt;Forum&lt;/a&gt;, &lt;a href=&quot;https://discord.com/invite/w2cTKGzccC&quot;&gt;Discord&lt;/a&gt; channel, or &lt;a href=&quot;https://www.reddit.com/r/FreeCAD&quot;&gt;Reddit&lt;/a&gt; to verify the issue;&lt;/li&gt; 
+ &lt;li&gt;Search the existing &lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/issues&quot;&gt;issues&lt;/a&gt; for potential duplicates;&lt;/li&gt; 
+ &lt;li&gt;Use the most updated stable or &lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/releases/&quot;&gt;development versions&lt;/a&gt; of FreeCAD;&lt;/li&gt; 
+ &lt;li&gt;Post version info from &lt;code&gt;Help &amp;gt; About FreeCAD &amp;gt; Copy to clipboard&lt;/code&gt;;&lt;/li&gt; 
+ &lt;li&gt;Restart FreeCAD in safe mode &lt;code&gt;Help &amp;gt; Restart in safe mode&lt;/code&gt; and try to reproduce the issue again. If the issue is resolved it can be fixed by deleting the FreeCAD config files.&lt;/li&gt; 
+ &lt;li&gt;Start recording a macro &lt;code&gt;Macro &amp;gt; Macro recording...&lt;/code&gt; and repeat all steps. Stop recording after the issue occurs and upload the saved macro or copy the macro code in the issue;&lt;/li&gt; 
+ &lt;li&gt;Post a Step-By-Step explanation on how to recreate the issue;&lt;/li&gt; 
+ &lt;li&gt;Upload an example file (FCStd as ZIP file) to demonstrate the problem;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For more details see:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/issues&quot;&gt;Bug Tracker&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/issues/new/choose&quot;&gt;Reporting Issues and Requesting Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FreeCAD/FreeCAD/raw/main/CONTRIBUTING.md&quot;&gt;Contributing&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://forum.freecad.org/viewforum.php?f=3&quot;&gt;Help Forum&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;The &lt;a href=&quot;https://fpa.freecad.org&quot;&gt;FPA&lt;/a&gt; offers developers the opportunity to apply for a grant to work on projects of their choosing. Check &lt;a href=&quot;https://blog.freecad.org/jobs/&quot;&gt;jobs and funding&lt;/a&gt; to know more.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Usage &amp;amp; Getting Help&lt;/h2&gt; 
+&lt;p&gt;The FreeCAD wiki contains documentation on general usage and Python scripting. View these pages for more information:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wiki.freecad.org/Getting_started&quot;&gt;Getting started&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wiki.freecad.org/Feature_list&quot;&gt;Features list&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wiki.freecad.org/FAQ/en&quot;&gt;Frequent questions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wiki.freecad.org/Workbenches&quot;&gt;Workbenches&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wiki.freecad.org/Power_users_hub&quot;&gt;Scripting&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://freecad.github.io/DevelopersHandbook/&quot;&gt;Developers Handbook&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://forum.freecad.org&quot;&gt;FreeCAD forum&lt;/a&gt; is a great place to find help and solve specific problems when learning to use FreeCAD.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;This project receives generous infrastructure support from &lt;a href=&quot;https://www.digitalocean.com/&quot;&gt; &lt;img src=&quot;https://opensource.nyc3.cdn.digitaloceanspaces.com/attribution/assets/SVG/DO_Logo_horizontal_blue.svg?sanitize=true&quot; width=&quot;91px&quot; /&gt; &lt;/a&gt; and &lt;a href=&quot;https://www.kipro-pcb.com/&quot;&gt;KiCad Services Corp.&lt;/a&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/5736080/982c5fba-1a6f-4547-a430-96fbb275e6d0" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>justcallmekoko/ESP32Marauder</title>
+      <link>https://github.com/justcallmekoko/ESP32Marauder</link>
+      <description>&lt;p&gt;A suite of WiFi/Bluetooth offensive and defensive tools for the ESP32&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://justcallmekokollc.com&quot;&gt;https://justcallmekokollc.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;ESP32 Marauder&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt;&lt;img alt=&quot;Marauder logo&quot; src=&quot;https://github.com/justcallmekoko/ESP32Marauder/raw/master/pictures/marauder_skull_patch_04_full_final.png?raw=true&quot; width=&quot;300&quot; /&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;b&gt;A suite of WiFi/Bluetooth offensive and defensive tools for the ESP32&lt;/b&gt; &lt;br /&gt;&lt;br /&gt; &lt;a href=&quot;https://github.com/justcallmekoko/ESP32Marauder/raw/master/LICENSE&quot;&gt;&lt;img alt=&quot;License&quot; src=&quot;https://img.shields.io/github/license/mashape/apistatus.svg?sanitize=true&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://gitter.im/justcallmekoko/ESP32Marauder&quot;&gt;&lt;img alt=&quot;Gitter&quot; src=&quot;https://badges.gitter.im/justcallmekoko/ESP32Marauder.png&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://twitter.com/intent/follow?screen_name=jcmkyoutube&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/jcmkyoutube?style=social&amp;amp;logo=twitter&quot; alt=&quot;Twitter&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.instagram.com/just.call.me.koko&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Follow%20Me-Instagram-orange&quot; alt=&quot;Instagram&quot; /&gt;&lt;/a&gt; &lt;br /&gt;&lt;br /&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/justcallmekoko/ESP32Marauder/actions/workflows/build_push.yml&quot;&gt;&lt;img src=&quot;https://github.com/justcallmekoko/ESP32Marauder/actions/workflows/build_push.yml/badge.svg?sanitize=true&quot; alt=&quot;Build and Push&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/justcallmekoko/ESP32Marauder/tree/develop&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/justcallmekoko/ESP32Marauder/branch/develop/graph/badge.svg?flag=firmware-unit-tests&quot; alt=&quot;Firmware coverage&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;Download the &lt;a href=&quot;https://github.com/justcallmekoko/ESP32Marauder/releases/latest&quot;&gt;latest release&lt;/a&gt; of the firmware.&lt;/p&gt; 
+&lt;p&gt;Check out the project &lt;a href=&quot;https://github.com/justcallmekoko/ESP32Marauder/wiki&quot;&gt;wiki&lt;/a&gt; for a full overview of the ESP32 Marauder&lt;/p&gt; 
+&lt;h1&gt;For Sale Now&lt;/h1&gt; 
+&lt;p&gt;You can buy the ESP32 Marauder using &lt;a href=&quot;https://www.justcallmekokollc.com&quot;&gt;this link&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/7877272c7151bcd59aa244b28908a4ed493066b339f266a2f6b943cd6bca0f0a/justcallmekoko/ESP32Marauder" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

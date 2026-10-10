@@ -1,0 +1,933 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Lua Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of Lua on GitHub</description>
+    
+    <pubDate>Sat, 10 Oct 2026 06:44:09 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>opentibiabr/canary</title>
+      <link>https://github.com/opentibiabr/canary</link>
+      <description>&lt;p&gt;Canary Server 15.25 for OpenTibia community.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://docs.opentibiabr.com/&quot;&gt;https://docs.opentibiabr.com/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Canary&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://discord.gg/gvTj5sh9Mp&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/528117503952551936.svg?style=flat-square&amp;amp;logo=discord&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/opentibiabr/canary/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/opentibiabr/canary/actions/workflows/ci.yml/badge.svg?sanitize=true&quot; alt=&quot;CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://sonarcloud.io/dashboard?id=opentibiabr_canary&quot;&gt;&lt;img src=&quot;https://sonarcloud.io/api/project_badges/measure?project=opentibiabr_canary&amp;amp;metric=alert_status&quot; alt=&quot;Quality Gate Status&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/repo-size/opentibiabr/canary&quot; alt=&quot;Repository size&quot; /&gt; &lt;a href=&quot;https://github.com/opentibiabr/canary/raw/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/license/opentibiabr/canary.svg?sanitize=true&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Canary is a free and open-source MMORPG server emulator for the OpenTibia community, written in C++20 and Lua. It is a fork of the &lt;a href=&quot;https://github.com/opentibiabr/otservbr-global&quot;&gt;OTServBR-Global&lt;/a&gt; project. The repository includes the server core, datapacks, Lua scripts, database schema, build presets, automated tests and development tooling used by the project.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/opentibiabr/canary/wiki&quot;&gt;Wiki&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Docker Quickstart&lt;/h2&gt; 
+&lt;p&gt;Canary includes a lightweight Docker quickstart for running a local test server without compiling Canary locally. The stack starts MariaDB, the published Canary runtime image, MyAAC as the website/admin AAC, and &lt;code&gt;opentibiabr/login-server&lt;/code&gt; as the client login webservice.&lt;/p&gt; 
+&lt;p&gt;This quickstart is for local development, testing, and LAN demos. Do not expose it directly to the public Internet with the default test accounts and passwords.&lt;/p&gt; 
+&lt;p&gt;Run from the &lt;code&gt;docker&lt;/code&gt; directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cp .env.dist .env
+docker compose up -d --build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;docker&lt;/code&gt; directory also provides guarded start scripts that start the stack and clean safe Docker leftovers without removing database volumes:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;.\up.ps1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;sh ./up.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Default local endpoints:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Website/admin: &lt;code&gt;http://localhost:8080&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Client login webservice: &lt;code&gt;http://localhost:8088/login&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Game port: &lt;code&gt;7172&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;MyAAC&#39;s &lt;code&gt;login.php&lt;/code&gt; is intentionally removed from the quickstart image. Clients should use &lt;code&gt;login-server&lt;/code&gt; only. See &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/docker/quickstart-for-beginners.md&quot;&gt;docs/docker/quickstart-for-beginners.md&lt;/a&gt; for a beginner guide and &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docker/DOCKER.md&quot;&gt;docker/DOCKER.md&lt;/a&gt; for the full setup, environment variables, test account, and troubleshooting guide.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/building/recompile.md&quot;&gt;Recompile on Linux with executable backups&lt;/a&gt;. Covers seven-day retention, crash analysis, optional restart and WSL tests.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/hardware-sizing.md&quot;&gt;Hardware sizing and capacity planning&lt;/a&gt;. Measure RAM and CPU, compare training and hunting workloads, and review capacity.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/development/shared-build-cache.md&quot;&gt;Shared build cache for worktrees and forks&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/docker/quickstart-for-beginners.md&quot;&gt;Docker beginner quickstart&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/systems/multiprotocol.md&quot;&gt;Multiprotocol runtime profiles&lt;/a&gt;. Covers the current, 11.00, and 8.60 runtime contracts, port layout, client preparation, and validation checklist.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/systems/README.md&quot;&gt;System documentation&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/docs/lua-api/lua_api.md&quot;&gt;Lua API reference and VSCode IntelliSense stubs&lt;/a&gt;. Canary generates these files from the C++ Lua bindings during startup when &lt;code&gt;generateLuaApiDocs&lt;/code&gt; is enabled. The repository &lt;code&gt;.luarc.json&lt;/code&gt; already adds &lt;code&gt;docs/lua-api&lt;/code&gt; to the Lua Language Server workspace library; for VSCode workspace settings, run &lt;code&gt;tools/setup_vscode_lua_api.ps1&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Recommended Tools and Clients&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Arch-Mina/Assets-Editor&quot;&gt;Assets Editor&lt;/a&gt;. Use this as the single asset source of truth, then export legacy-compatible &lt;code&gt;.dat&lt;/code&gt;/&lt;code&gt;.spr&lt;/code&gt; packages for 8.60 clients from the same current asset set.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/opentibiabr/remeres-map-editor/&quot;&gt;Remere&#39;s Map Editor&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/opentibiabr/otclient&quot;&gt;OTClient Redemption&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dudantas/Tibia-Extended-Client-Library&quot;&gt;Tibia Extended Client Library&lt;/a&gt;. Use this to prepare compatible 8.60/11.00 CipSoft clients with extended limits, config-driven login redirect, and per-client local state.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/dudantas/tibia-client/releases/latest&quot;&gt;Game Client&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Nightly Packages&lt;/h2&gt; 
+&lt;p&gt;Development builds can be downloaded from GitHub Actions artifacts. They are useful for testing recent changes from the &lt;code&gt;main&lt;/code&gt; branch, but may include behavior that is not present in stable releases yet.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/opentibiabr/canary/actions/workflows/ci.yml?query=branch%3Amain&quot;&gt;Github Actions&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Running Tests&lt;/h2&gt; 
+&lt;p&gt;Tests can be run from the repository root using the tool versions and tasks pinned in &lt;code&gt;.mise.toml&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;mise install
+mise run configure linux-debug
+mise run build linux-debug
+mise run test linux-debug
+
+# Replace linux-debug with macos-debug or windows-debug as needed.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For detailed testing information including adding tests and framework usage, see &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/canary/main/tests/README.md&quot;&gt;tests/README.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Support &amp;amp; Community&lt;/h2&gt; 
+&lt;p&gt;For real-time support, join the &lt;a href=&quot;https://discord.gg/gvTj5sh9Mp&quot;&gt;OpenTibiaBR Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The GitHub issue tracker should be used for bugs, improvements and technical project tasks. It is not a support forum.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Contributions are welcome. You can help in several ways:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Report bugs through the &lt;a href=&quot;https://github.com/opentibiabr/canary/issues/new/choose&quot;&gt;Issue Tracker&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Submit improvements through &lt;a href=&quot;https://github.com/opentibiabr/canary/pulls&quot;&gt;Pull Requests&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Improve tests, documentation, scripts, datapacks, or C++ code.&lt;/li&gt; 
+ &lt;li&gt;Validate releases, nightly builds and recent changes.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Before contributing, read the &lt;a href=&quot;https://github.com/opentibiabr/canary/raw/main/CODE_OF_CONDUCT.md&quot;&gt;Code of Conduct&lt;/a&gt; and the project &lt;a href=&quot;https://github.com/opentibiabr/canary/raw/main/CONTRIBUTING.md&quot;&gt;Contributing&lt;/a&gt; guide.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Sponsorship&lt;/h2&gt; 
+&lt;p&gt;Canary is maintained by community contributors. To support development, visit the &lt;a href=&quot;https://github.com/sponsors/opentibiabr&quot;&gt;OpenTibiaBR sponsors page&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Acknowledgements&lt;/h2&gt; 
+&lt;p&gt;Thanks to all contributors of &lt;a href=&quot;https://github.com/opentibiabr/canary/graphs/contributors&quot;&gt;Canary&lt;/a&gt;, &lt;a href=&quot;https://github.com/opentibiabr/otservbr-global/graphs/contributors&quot;&gt;OTServBR-Global&lt;/a&gt; and the OpenTibia community.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is distributed under the &lt;a href=&quot;https://github.com/opentibiabr/canary/raw/main/LICENSE&quot;&gt;GPL-2.0 license&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/153825ca08cb2787cae3f5f6e7d00a2b8fd12894a129a794f203f12e5e5ec6b6/opentibiabr/canary" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>opentibiabr/otclient</title>
+      <link>https://github.com/opentibiabr/otclient</link>
+      <description>&lt;p&gt;An alternative tibia client for otserv written in C++20 and Lua, made with a modular system that uses lua scripts for ingame interface and functionality, making otclient flexible and easy to customize&lt;/p&gt;&lt;hr&gt;&lt;h1&gt; &lt;img src=&quot;https://github.com/mehah/otclient/raw/main/data/images/clienticon.png?raw=true&quot; width=&quot;32&quot; alt=&quot;logo&quot; /&gt; OTClient - Redemption &lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://discord.gg/tUjTBZzMCy&quot;&gt;&lt;img src=&quot;https://discordapp.com/api/guilds/888062548082061433/widget.png?style=shield&quot; alt=&quot;Discord Shield&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/opentibiabr/otclient/actions/workflows/ci.yml&quot;&gt;&lt;img src=&quot;https://github.com/opentibiabr/otclient/actions/workflows/ci.yml/badge.svg?sanitize=true&quot; alt=&quot;CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://opensource.org/licenses/MIT&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-MIT-yellow.svg?sanitize=true&quot; alt=&quot;License: MIT&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;table-of-contents&quot;&gt;&lt;/a&gt;📋 Table of Contents&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mehah/otclient/main/src/otcicon.ico&quot; alt=&quot;Logo&quot; /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#what-is-otclient&quot;&gt;What is OTClient?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;🚀 &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;img height=&quot;16&quot; src=&quot;https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/android/android.png&quot; /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#the-mobile-project&quot;&gt;The Mobile Project&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;🔨 &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#compiling&quot;&gt;Compiling&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;🐳 &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#docker&quot;&gt;Docker&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;🩺 &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#need-help&quot;&gt;Need Help?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;📑 &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#bugs&quot;&gt;Bugs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;❤️ &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#roadmap&quot;&gt;Roadmap&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;💯 &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#support-protocol&quot;&gt;Support Protocol&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;©️ &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;❤️ &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#contributors&quot;&gt;Contributors&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;📦 &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/docs/client-assets-auto-install.md&quot;&gt;Client Assets Auto-Install&lt;/a&gt;&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;what-is-otclient&quot;&gt;&lt;/a&gt;&lt;img src=&quot;https://raw.githubusercontent.com/mehah/otclient/main/src/otcicon.ico&quot; alt=&quot;Logo&quot; /&gt; What is OTClient?&lt;/h2&gt; 
+&lt;p&gt;OTClient is an alternative Tibia client for usage with OTServ. It aims to be &lt;strong&gt;complete&lt;/strong&gt; and &lt;strong&gt;flexible&lt;/strong&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;LUA scripting&lt;/strong&gt; for all game interface functionality&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;CSS-like syntax&lt;/strong&gt; for UI design&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Modular system&lt;/strong&gt;: each functionality is a separate module, allowing easy customization&lt;/li&gt; 
+ &lt;li&gt;Users can create new mods and extend the interface&lt;/li&gt; 
+ &lt;li&gt;Written in &lt;strong&gt;C++20&lt;/strong&gt; and heavily scripted in &lt;strong&gt;LUA&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For a server to connect to, you can build your own with &lt;strong&gt;theforgottenserver&lt;/strong&gt; or &lt;strong&gt;canary&lt;/strong&gt;.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Based on &lt;a href=&quot;https://github.com/edubart/otclient&quot;&gt;edubart/otclient&lt;/a&gt; • Rev: &lt;a href=&quot;https://github.com/edubart/otclient/commit/fc39ee4adba8e780a2820bfda66fc942d74cedf4&quot;&gt;2.760&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;features&quot;&gt;&lt;/a&gt;🚀 Features&lt;/h2&gt; 
+&lt;p&gt;Beyond its flexibility with scripts, OTClient comes with many features that enable client-side innovation in OTServ: &lt;strong&gt;sound system&lt;/strong&gt;, &lt;strong&gt;graphics effects with shaders&lt;/strong&gt;, &lt;strong&gt;modules/addons&lt;/strong&gt;, &lt;strong&gt;animated textures&lt;/strong&gt;, &lt;strong&gt;styleable UI&lt;/strong&gt;, &lt;strong&gt;transparency&lt;/strong&gt;, &lt;strong&gt;multi-language&lt;/strong&gt;, &lt;strong&gt;in-game LUA terminal&lt;/strong&gt;, and an &lt;strong&gt;OpenGL 2.0 ES engine&lt;/strong&gt; that allows porting to mobile platforms. It is also flexible enough to create Tibia tools like map editors using scripts—OTClient is a &lt;strong&gt;framework + Tibia APIs&lt;/strong&gt;.&lt;/p&gt; 
+&lt;h3&gt;⚡ Performance &amp;amp; Engine&lt;/h3&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🖼️ Draw Render (optimization showcase)&lt;/summary&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/fe5f1d7f-7195-4d65-bca6-c2b5d62d3890&quot;&gt;https://github.com/user-attachments/assets/fe5f1d7f-7195-4d65-bca6-c2b5d62d3890&lt;/a&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;📦 Asynchronous Texture Loading&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Description&lt;/strong&gt;: with this the spr file is not cached, consequently, less RAM is consumed.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Video&lt;/strong&gt;:&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/f3b7916a-d6ed-46f5-b516-30421de4616d&quot;&gt;https://github.com/kokekanon/otclient.readme/assets/114332266/f3b7916a-d6ed-46f5-b516-30421de4616d&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧵 Multi-threading&lt;/summary&gt; 
+ &lt;p&gt;&lt;strong&gt;Main Thread&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Sound&lt;/li&gt; 
+  &lt;li&gt;Particles&lt;/li&gt; 
+  &lt;li&gt;Load Textures (files)&lt;/li&gt; 
+  &lt;li&gt;Windows Events (keyboard, mouse, ...)&lt;/li&gt; 
+  &lt;li&gt;Draw texture&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;&lt;strong&gt;Thread 2&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Connection&lt;/li&gt; 
+  &lt;li&gt;Events (g_dispatcher)&lt;/li&gt; 
+  &lt;li&gt;Collect information on what will be drawn on the Map&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;&lt;strong&gt;Thread 3&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Collect information on what will be drawn in the UI&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;&lt;strong&gt;Image:&lt;/strong&gt;&lt;br /&gt; &lt;img src=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/95fb15ac-553f-4eca-937d-8c8f49990f3e&quot; alt=&quot;multinucleo&quot; /&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧹 Garbage Collection&lt;/summary&gt; 
+ &lt;p&gt;&lt;strong&gt;Description (1):&lt;/strong&gt;&lt;/p&gt; 
+ &lt;pre&gt;&lt;code&gt;Garbage Collection is the feature responsible for automatically managing memory by identifying and releasing objects that are no longer in use. This allows the client to maintain efficient memory usage, avoid unnecessary data accumulation, and improve overall stability.
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;&lt;strong&gt;Description (2):&lt;/strong&gt;&lt;br /&gt; Garbage collector is used to check what is no longer being used and remove it from memory. &lt;em&gt;(lua, texture, drawpool, thingtype)&lt;/em&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧭 Texture Atlas System&lt;/summary&gt; 
+ &lt;p&gt;&lt;em&gt;(coming with engine improvements and draw-call reduction)&lt;/em&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;C++20 ( v17 , Unity build and Manifest Mode &lt;em&gt;(vcpkg.json)&lt;/em&gt; ) build in x32 and x64&lt;/li&gt; 
+ &lt;li&gt;Walking System Improvements&lt;/li&gt; 
+ &lt;li&gt;Supports sequenced packages and compression&lt;/li&gt; 
+ &lt;li&gt;Asserts load (Tibia 13)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;🎛️ UI &amp;amp; UX&lt;/h3&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧩 UIWidgets Improvements&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Description:&lt;/strong&gt; Improvements in the UI algorithm; better performance in add/remove/reposition widgets. Visible in the &lt;strong&gt;battle module&lt;/strong&gt;.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Video:&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/35c79819-b78b-4578-a4a2-af1235139807&quot;&gt;https://github.com/user-attachments/assets/35c79819-b78b-4578-a4a2-af1235139807&lt;/a&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🔁 Auto Reload Module&lt;/summary&gt; 
+ &lt;p&gt;Activate: &lt;code&gt;g_modules.enableAutoReload()&lt;/code&gt; (&lt;a href=&quot;https://github.com/mehah/otclient/raw/main/init.lua#L114&quot;&gt;init.lua&lt;/a&gt;)&lt;br /&gt; Video:&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/0c382d93-6217-4efa-8f22-b51844801df4&quot;&gt;https://github.com/kokekanon/otclient.readme/assets/114332266/0c382d93-6217-4efa-8f22-b51844801df4&lt;/a&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;✨ Attached Effects System (aura, wings…)&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Compatible with &lt;strong&gt;.APNG&lt;/strong&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt;ThingCategoryEffect&lt;/li&gt; 
+    &lt;li&gt;ThingCategoryCreature&lt;/li&gt; 
+    &lt;li&gt;ThingExternalTexture: images in &lt;strong&gt;PNG | APNG&lt;/strong&gt;&lt;/li&gt; 
+   &lt;/ul&gt; &lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Wiki:&lt;/strong&gt; &lt;a href=&quot;https://github.com/mehah/otclient/wiki/Tutorial-Attached-Effects&quot;&gt;https://github.com/mehah/otclient/wiki/Tutorial-Attached-Effects&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Example Code:&lt;/strong&gt; &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/modules/game_attachedeffects/effects.lua&quot;&gt;effects.lua&lt;/a&gt; • &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/modules/game_attachedeffects/attachedeffects.lua#L1&quot;&gt;test code&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Specific lookType settings:&lt;/strong&gt; &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/modules/game_attachedeffects/configs/outfit_618.lua&quot;&gt;outfit_618.lua&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+  &lt;p class=&quot;markdown-alert-title&quot;&gt;
+   &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+   &lt;/svg&gt;Tip&lt;/p&gt;
+  &lt;p&gt;You can adjust offsets per looktype using &lt;strong&gt;ThingConfig&lt;/strong&gt; when a default offset doesn’t align perfectly for a given sprite.&lt;/p&gt; 
+ &lt;/div&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Attached%20Effect/Creature/001_Bone.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Attached%20Effect/Creature/002_aura.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Attached%20Effect/Creature/003_particula.gif?raw=true&quot; width=&quot;250&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td align=&quot;center&quot;&gt;ThingCategory Attached Effect&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;Texture (PNG) Attached Effect&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;Particule&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧭 Module Controller System&lt;/summary&gt; 
+ &lt;p&gt;A safer way to create modules, without the need to unbind keys, disconnect events, or destroy widgets.&lt;br /&gt; &lt;strong&gt;Example:&lt;/strong&gt; (&lt;a href=&quot;https://github.com/mehah/otclient/raw/cache-for-all/modules/game_minimap/minimap.lua&quot;&gt;modules/game_minimap/minimap.lua&lt;/a&gt;)&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🖼️ Anti-Aliasing Mode Options&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;em&gt;Note&lt;/em&gt;: &lt;strong&gt;Smooth Retro&lt;/strong&gt; will consume a little more GPU.&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;&lt;strong&gt;GIF:&lt;/strong&gt;&lt;br /&gt; &lt;img src=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/5a411525-7d5a-4b16-8bb6-2c6462152d39&quot; alt=&quot;aa&quot; /&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧩 Creature Information by UIWidget&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Enable: &lt;a href=&quot;https://github.com/mehah/otclient/raw/e2c5199e52bd86f573c9bb582d7548cfe7a8b026/data/setup.otml#L20&quot;&gt;setup.otml&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Style: &lt;a href=&quot;https://github.com/mehah/otclient/tree/main/modules/game_creatureinformation&quot;&gt;modules/game_creatureinformation&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Note:&lt;/strong&gt; There is a performance degradation vs direct Draw Pool, about ~20%, tested with 60 monsters attacking each other.&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;&lt;strong&gt;Video:&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/c2567f3f-136e-4e11-964f-3ade89c0056b&quot;&gt;https://github.com/kokekanon/otclient.readme/assets/114332266/c2567f3f-136e-4e11-964f-3ade89c0056b&lt;/a&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧱 Tile Widget&lt;/summary&gt; 
+ &lt;p&gt;Wiki: &lt;a href=&quot;https://github.com/mehah/otclient/wiki/Tutorial-Attached-Effects&quot;&gt;https://github.com/mehah/otclient/wiki/Tutorial-Attached-Effects&lt;/a&gt;&lt;/p&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Attached%20Effect/Tile/001_attachedeffect.gif?raw=true&quot; width=&quot;250&quot; /&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Attached%20Effect/Tile/002_widget.png?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Attached%20Effect/Tile/003_particulas.gif?raw=true&quot; width=&quot;310&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td align=&quot;center&quot;&gt;Title Attached Effect&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;Title Widget&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;Title Particule&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧩 Support HTML/CSS Syntax&lt;/summary&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/b16359d3-09a4-4181-bcb8-c76339b64b37&quot;&gt;https://github.com/user-attachments/assets/b16359d3-09a4-4181-bcb8-c76339b64b37&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/d3844223-7e35-45da-a872-3141f1c5860a&quot;&gt;https://github.com/user-attachments/assets/d3844223-7e35-45da-a872-3141f1c5860a&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/9f20814f-0aed-4b70-8852-334ac745ec11&quot;&gt;https://github.com/user-attachments/assets/9f20814f-0aed-4b70-8852-334ac745ec11&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/3ac8473c-8e90-4639-b815-ef183c7e2adf&quot;&gt;https://github.com/user-attachments/assets/3ac8473c-8e90-4639-b815-ef183c7e2adf&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Module examples:&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mehah/otclient/tree/main/modules/game_shaders&quot;&gt;Shader&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://github.com/mehah/otclient/pull/825&quot;&gt;Blessing&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🎥 Latency-adaptive camera&lt;/summary&gt; 
+ &lt;p&gt;Basically the camera adapts to the server latency to always remain smooth and avoid stuttering while walking.&lt;br /&gt; If the ping gets high, the camera moves slower to keep up with the server&#39;s response time; if the ping drops, the camera moves faster. &lt;em&gt;(Depends on character speed.)&lt;/em&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🧭 Support Negative Offset (.dat)&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Compatible with &lt;a href=&quot;https://github.com/punkice3407/ObjectBuilder/releases/tag/v0.5.5&quot;&gt;ObjectBuilderV0.5.5&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Enable: &lt;code&gt;g_game.enableFeature(GameNegativeOffset)&lt;/code&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;&lt;strong&gt;Video:&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/16aaa78b-fc55-4c6e-ae63-7c4063c5b032&quot;&gt;https://github.com/kokekanon/otclient.readme/assets/114332266/16aaa78b-fc55-4c6e-ae63-7c4063c5b032&lt;/a&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Floor Shadowing&lt;/li&gt; 
+ &lt;li&gt;Highlight Mouse Target &lt;em&gt;(press &lt;strong&gt;Shift&lt;/strong&gt; to select any object)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Floor View Mode &lt;em&gt;(Normal, Fade, Locked, Always, Always with transparency)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Floating Effects Option&lt;/li&gt; 
+ &lt;li&gt;Refactored Walk System&lt;/li&gt; 
+ &lt;li&gt;Support for more mouse buttons &lt;em&gt;(e.g., 4 and 5)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Support DirectX&lt;/li&gt; 
+ &lt;li&gt;Hud Scale&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;🔗 Compatibility &amp;amp; Protocols&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Client &lt;strong&gt;7.6 ~ 12.85 ~ 12.92&lt;/strong&gt;, &lt;strong&gt;13.00 ~ 15.24&lt;/strong&gt; support &lt;em&gt;(protobuf)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Market rewritten (compatible with TFS and Canary)&lt;/li&gt; 
+ &lt;li&gt;Async Texture Loading &lt;em&gt;(engine-level feature)&lt;/em&gt;&lt;/li&gt; 
+ &lt;li&gt;Supports sequenced packages and compression&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;See section &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/#support-protocol&quot;&gt;💯 Support Protocol&lt;/a&gt;&lt;/strong&gt; for a full compatibility matrix and required flags.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;🧩 Community Mods &amp;amp; Integrations&lt;/h3&gt; 
+&lt;h4&gt;🙋 Community (Features)&lt;/h4&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🕹️ Discord RPC — @SkullzOTS&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/SkullzOTS&quot;&gt;@SkullzOTS&lt;/a&gt;, &lt;a href=&quot;https://github.com/surfaceflinger&quot;&gt;@surfaceflinger&lt;/a&gt; and &lt;a href=&quot;https://github.com/libergod&quot;&gt;@libergod&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;To enable just go to &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/src/framework/config.h#L43&quot;&gt;config.h&lt;/a&gt;, set &lt;strong&gt;1&lt;/strong&gt; in &lt;code&gt;ENABLE_DISCORD_RPC&lt;/code&gt; and configure the others definitions&lt;/li&gt; 
+  &lt;li&gt;If using CMake execute: 
+   &lt;ul&gt; 
+    &lt;li&gt;Removes Content of Build Folder if needed&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;if (Test-Path -Path build) { Remove-Item -Path build -Recurse -Force; New-Item -Path build -ItemType Directory }&lt;/code&gt;&lt;/li&gt; 
+    &lt;li&gt;Configure CMake&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;cmake -B build -G &quot;Ninja&quot; -DENABLE_DISCORD_RPC=ON&lt;/code&gt;&lt;/li&gt; 
+    &lt;li&gt;Build it&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;cmake --build build&lt;/code&gt;&lt;/li&gt; 
+   &lt;/ul&gt; &lt;/li&gt; 
+  &lt;li&gt;Step-by-step on &lt;strong&gt;YouTube&lt;/strong&gt;: &lt;a href=&quot;https://www.youtube.com/watch?v=zCHYtRlD58g&quot;&gt;https://www.youtube.com/watch?v=zCHYtRlD58g&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Discord/001.png?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Discord/002_ingame.png?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Discord/003_future.png?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td align=&quot;center&quot;&gt;Example interface&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;Example in game&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;future discord-game-sdk&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🔐 Encryption System — @Mrpox *(unsafe implementation)*&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/Mrpox&quot;&gt;@Mrpox&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Enable via &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/src/framework/config.h#L33&quot;&gt;config.h&lt;/a&gt;: set &lt;strong&gt;ENABLE_ENCRYPTION=1&lt;/strong&gt; and change &lt;strong&gt;ENCRYPTION_PASSWORD&lt;/strong&gt;&lt;/li&gt; 
+  &lt;li&gt;To enable building encryption with &lt;code&gt;--encrypt&lt;/code&gt;, set &lt;strong&gt;ENABLE_ENCRYPTION_BUILDER=1&lt;/strong&gt; (by &lt;a href=&quot;https://github.com/TheMaoci&quot;&gt;@TheMaoci&lt;/a&gt;) — removes encryption code from production build&lt;/li&gt; 
+  &lt;li&gt;Generate encrypted files by running client with: &lt;code&gt;--encrypt SET_YOUR_PASSWORD_HERE&lt;/code&gt; (or omit to use the password from &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/src/framework/config.h#L38&quot;&gt;config.h&lt;/a&gt;)&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+  &lt;p class=&quot;markdown-alert-title&quot;&gt;
+   &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+    &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+   &lt;/svg&gt;Warning&lt;/p&gt;
+  &lt;p&gt;This encryption implementation is considered &lt;strong&gt;unsafe&lt;/strong&gt;. Use at your own risk.&lt;/p&gt; 
+ &lt;/div&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;⬆️ Client Updater — @conde2&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/conde2&quot;&gt;@conde2&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Paste the &lt;strong&gt;API&lt;/strong&gt; folder in your www folder: &lt;a href=&quot;https://github.com/mehah/otclient/tree/main/tools/api&quot;&gt;https://github.com/mehah/otclient/tree/main/tools/api&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Create a folder called &lt;code&gt;files&lt;/code&gt; in your www and paste &lt;code&gt;init.lua&lt;/code&gt;, &lt;code&gt;modules&lt;/code&gt;, &lt;code&gt;data&lt;/code&gt;, and &lt;code&gt;exe&lt;/code&gt;&lt;/li&gt; 
+  &lt;li&gt;Uncomment and change this line: &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/init.lua#L6&quot;&gt;https://github.com/mehah/otclient/blob/main/init.lua#L6&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🌈 Colored Text — @conde2&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/conde2&quot;&gt;@conde2&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Usage: &lt;code&gt;widget:setColoredText(&quot;{Colored text, #ff00ff} normal text&quot;)&lt;/code&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🔳 QR Code support — @conde2&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/conde2&quot;&gt;@conde2&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;UIQrCode&lt;/strong&gt; properties example: 
+   &lt;ul&gt; 
+    &lt;li&gt;&lt;code&gt;code-border: 2&lt;/code&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;code&gt;code: Hail OTClient Redemption - Conde2 Dev&lt;/code&gt;&lt;/li&gt; 
+   &lt;/ul&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;💬 Typing Icon — @SkullzOTS&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/SkullzOTS&quot;&gt;@SkullzOTS&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Enable in &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/data/setup.otml&quot;&gt;setup.otml&lt;/a&gt;: set &lt;code&gt;draw-typing: true&lt;/code&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/typing%20ico/001.gif?raw=true&quot; width=&quot;200&quot; /&gt; &lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🪜 Smooth Walk Elevation — @SkullzOTS&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/SkullzOTS&quot;&gt;@SkullzOTS&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Preview: &lt;a href=&quot;https://i.gyazo.com/af0ed0f15a9e4d67bd4d0b2847bd6be7.gif&quot;&gt;Gyazo&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Enable in &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/modules/game_features/features.lua#L5&quot;&gt;modules/game_features/features.lua&lt;/a&gt;: uncomment line 5 (&lt;code&gt;g_game.enableFeature(GameSmoothWalkElevation)&lt;/code&gt;)&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/smooth/001_smooth.gif?raw=true&quot; width=&quot;200&quot; /&gt; &lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🗺️ Layout based on Tibia 13 — @marcosvf132&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/marcosvf132&quot;&gt;@marcosvf132&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Game_shop&lt;/strong&gt; based on Store by &lt;a href=&quot;https://github.com/Oskar1121/Store&quot;&gt;@Oskar1121&lt;/a&gt;, modified/fixed by &lt;a href=&quot;https://github.com/Nottinghster/&quot;&gt;@Nottinghster&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Minimap WorldTime&lt;/strong&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt;TFS C++ (old): &lt;code&gt;void ProtocolGame::sendWorldTime()&lt;/code&gt;&lt;/li&gt; 
+    &lt;li&gt;TFS LUA (new): &lt;code&gt;function Player.sendWorldTime(self, time)&lt;/code&gt;&lt;/li&gt; 
+    &lt;li&gt;Canary: &lt;code&gt;void ProtocolGame::sendTibiaTime(int32_t time)&lt;/code&gt;&lt;/li&gt; 
+   &lt;/ul&gt; &lt;/li&gt; 
+  &lt;li&gt;&lt;strong&gt;Outfit windows&lt;/strong&gt; compatible with attachEffect, shader 
+   &lt;ul&gt; 
+    &lt;li&gt;Canary&lt;/li&gt; 
+    &lt;li&gt;&lt;strong&gt;1.4.2&lt;/strong&gt;: &lt;a href=&quot;https://github.com/kokekanon/TFS-1.4.2-Compatible-Aura-Effect-Wings-Shader-MEHAH/commit/77f80d505b01747a7c519e224d11c124de157a8f&quot;&gt;https://github.com/kokekanon/TFS-1.4.2-Compatible-Aura-Effect-Wings-Shader-MEHAH/commit/77f80d505b01747a7c519e224d11c124de157a8f&lt;/a&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;strong&gt;Downgrade&lt;/strong&gt;: 
+     &lt;ul&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://github.com/kokekanon/forgottenserver-downgrade/pull/2&quot;&gt;https://github.com/kokekanon/forgottenserver-downgrade/pull/2&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://github.com/kokekanon/forgottenserver-downgrade/pull/7&quot;&gt;https://github.com/kokekanon/forgottenserver-downgrade/pull/7&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://github.com/kokekanon/forgottenserver-downgrade/pull/9&quot;&gt;https://github.com/kokekanon/forgottenserver-downgrade/pull/9&lt;/a&gt;&lt;/li&gt; 
+     &lt;/ul&gt; &lt;/li&gt; 
+   &lt;/ul&gt; &lt;/li&gt; 
+  &lt;li&gt;Calendar&lt;/li&gt; 
+  &lt;li&gt;&lt;code&gt;client_bottommenu&lt;/code&gt; (activate &lt;code&gt;Services.status&lt;/code&gt; array in &lt;code&gt;init.lua&lt;/code&gt;)&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;&lt;strong&gt;Status service&lt;/strong&gt;&lt;br /&gt; Put &lt;code&gt;./otclient/tools/api/status.php&lt;/code&gt; in:&lt;br /&gt; &lt;code&gt;C:/UniServerZ/www/api/&lt;/code&gt;&lt;/p&gt; 
+ &lt;p&gt;If it doesn&#39;t work, enable &lt;strong&gt;curl&lt;/strong&gt;:&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://github.com/Nottinghster/otclient/assets/114332266/99ad2ce7-d70f-47f4-aa19-083140fb5814&quot; alt=&quot;image&quot; /&gt; &lt;img src=&quot;https://github.com/Nottinghster/otclient/assets/114332266/84349388-a458-4eb5-b1d6-cce5693cfd5a&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Layout%2013/001_interface.png?raw=true&quot; width=&quot;300&quot; /&gt;&lt;/td&gt; 
+    &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Layout%2013/002_ingame.png?raw=true&quot; width=&quot;300&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td align=&quot;center&quot;&gt;Interface&lt;/td&gt; 
+    &lt;td align=&quot;center&quot;&gt;In-game&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Imbuement tracker — by &lt;a href=&quot;https://github.com/reyaleman&quot;&gt;@Reyaleman&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Blessing&lt;/li&gt; 
+  &lt;li&gt;Screenshot&lt;/li&gt; 
+  &lt;li&gt;Highscores&lt;/li&gt; 
+  &lt;li&gt;Store &lt;em&gt;(compatible with 1098, 12.91 ~ 15.24)&lt;/em&gt;&lt;/li&gt; 
+  &lt;li&gt;QuickLoot&lt;/li&gt; 
+  &lt;li&gt;Groups Vip&lt;/li&gt; 
+  &lt;li&gt;Reward Wall &lt;em&gt;(Daily Rewards)&lt;/em&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;🌐 Browser Client — @OTArchive&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;by &lt;a href=&quot;https://github.com/OTArchive&quot;&gt;@OTArchive&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Wiki: &lt;a href=&quot;https://github.com/OTArchive/otclient-web/wiki/Guia-%E2%80%90-OTClient-Redemption-Web&quot;&gt;https://github.com/OTArchive/otclient-web/wiki/Guia-‐-OTClient-Redemption-Web&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;Video: &lt;a href=&quot;https://github.com/user-attachments/assets/e8ab58c7-1be3-4c76-bc6d-bd831e846826&quot;&gt;https://github.com/user-attachments/assets/e8ab58c7-1be3-4c76-bc6d-bd831e846826&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Mobile Support — by &lt;a href=&quot;https://github.com/tuliomagalhaes&quot;&gt;@tuliomagalhaes&lt;/a&gt; • &lt;a href=&quot;https://github.com/BenDol&quot;&gt;@BenDol&lt;/a&gt; • &lt;a href=&quot;https://github.com/SkullzOTS&quot;&gt;@SkullzOTS&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Android/001_ingame.png?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Android/001_interface.png?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Android/003_patrikq.jpg?raw=true&quot; width=&quot;270&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;Interface&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;Density Pixel&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;Joystick&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Support &lt;strong&gt;HTTP/HTTPS/WS/WSS&lt;/strong&gt; — by &lt;a href=&quot;https://github.com/alfuveam&quot;&gt;@alfuveam&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Support Tibia 12.85/protobuf by &lt;a href=&quot;https://github.com/nekiro&quot;&gt;@Nekiro&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Action Bar — by &lt;a href=&quot;https://github.com/Dip-Set1&quot;&gt;@DipSet&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Access to widget children via &lt;code&gt;widget.childId&lt;/code&gt; — by &lt;a href=&quot;https://github.com/Hugo0x1337&quot;&gt;@Hugo0x1337&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Shader System Fix &lt;em&gt;(CTRL + Y)&lt;/em&gt; — by &lt;a href=&quot;https://github.com/FreshyPeshy&quot;&gt;@FreshyPeshy&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Shader/001_creature.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Shader/003_map.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Shader/002_mount.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;Creature&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;Map&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;Mount&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Refactored Battle Module — by &lt;a href=&quot;https://github.com/andersonfaaria&quot;&gt;@andersonfaaria&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Health &amp;amp; Mana Circle — by &lt;a href=&quot;https://github.com/EgzoT&quot;&gt;@EgzoT&lt;/a&gt;, &lt;a href=&quot;https://github.com/GustavoBlaze&quot;&gt;@GustavoBlaze&lt;/a&gt;, &lt;a href=&quot;https://github.com/Tekadon58&quot;&gt;@Tekadon58&lt;/a&gt; • &lt;a href=&quot;https://github.com/EgzoT/-OTClient-Mod-health_and_mana_circle&quot;&gt;Project&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Tibia Theme 1.2 by &lt;strong&gt;Zews&lt;/strong&gt; — &lt;a href=&quot;https://otland.net/threads/otc-tibia-theme-v1-2.230988/&quot;&gt;Forum Thread&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Add option &lt;code&gt;ADJUST_CREATURE_INFORMATION_BASED_ON_CROP_SIZE&lt;/code&gt; in &lt;a href=&quot;https://github.com/mehah/otclient/raw/main/data/setup.otml#L24&quot;&gt;setup.otml&lt;/a&gt; — by &lt;a href=&quot;https://github.com/SkullzOTS&quot;&gt;@SkullzOTS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Lua Debugger for VSCode&lt;/strong&gt; — &lt;a href=&quot;https://github.com/mehah/otclient/wiki/Lua-Debugging-(VSCode)&quot;&gt;see wiki&lt;/a&gt; — by &lt;a href=&quot;https://github.com/BenDol&quot;&gt;@BenDol&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;3D Sound and Sound Effects!&lt;/strong&gt; — by &lt;a href=&quot;https://github.com/codinablack&quot;&gt;@Codinablack&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Example 1&lt;/th&gt; 
+   &lt;th&gt;Example 2&lt;/th&gt; 
+   &lt;th&gt;Example 3&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;
+    &lt;video src=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/4547907a-8eb9-42f5-b445-901cb5270509&quot; width=&quot;200&quot; controls&gt;&lt;/video&gt;&lt;/td&gt; 
+   &lt;td&gt;
+    &lt;video src=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/0bb4739f-e902-4370-85dc-e796564aac8e&quot; width=&quot;200&quot; controls&gt;&lt;/video&gt;&lt;/td&gt; 
+   &lt;td&gt;
+    &lt;video src=&quot;https://github.com/kokekanon/otclient.readme/assets/114332266/95db3fa1-a793-4ab7-86a3-e21a8543a23c&quot; width=&quot;200&quot; controls&gt;&lt;/video&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h4&gt;💸 Sponsored (Features)&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Bot V8&lt;/strong&gt; — (&lt;a href=&quot;https://github.com/luanluciano93&quot;&gt;@luanluciano93&lt;/a&gt;, &lt;a href=&quot;https://github.com/SkullzOTS&quot;&gt;@SkullzOTS&lt;/a&gt;, &lt;a href=&quot;https://github.com/kokekanon&quot;&gt;@kokekanon&lt;/a&gt;, &lt;a href=&quot;https://github.com/FranciskoKing&quot;&gt;@FranciskoKing&lt;/a&gt;, &lt;a href=&quot;https://github.com/Kizuno18&quot;&gt;@Kizuno18&lt;/a&gt;)&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Adapted &lt;strong&gt;85%&lt;/strong&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/mehah/otclient/raw/68e4e1b94c2041bd235441244156e6477058250c/vc17/settings.props#L9&quot;&gt;VS Solution&lt;/a&gt; / &lt;a href=&quot;https://github.com/mehah/otclient/raw/68e4e1b94c2041bd235441244156e6477058250c/src/CMakeLists.txt#L13&quot;&gt;CMAKE&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Shader with Framebuffer&lt;/strong&gt; — (&lt;a href=&quot;https://github.com/SkullzOTS&quot;&gt;@SkullzOTS&lt;/a&gt;, &lt;a href=&quot;https://github.com/Mryukiimaru&quot;&gt;@Mryukiimaru&lt;/a&gt;, &lt;a href=&quot;https://github.com/JeanTheOne&quot;&gt;@JeanTheOne&lt;/a&gt;, &lt;a href=&quot;https://github.com/KizaruHere&quot;&gt;@KizaruHere&lt;/a&gt;)&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Shader/Framebuffer/001_creature.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Shader/Framebuffer/002_items.gif?raw=true&quot; width=&quot;200&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://github.com/kokekanon/OTredemption-Picture-NODELETE/raw/main/Picture/Shader/Framebuffer/003_UICreature.gif?raw=true&quot; width=&quot;110&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td align=&quot;center&quot;&gt;Creature&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;Items&lt;/td&gt; 
+   &lt;td align=&quot;center&quot;&gt;UICreature&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Full Cyclopedia&lt;/strong&gt; — (&lt;a href=&quot;https://github.com/luanluciano93&quot;&gt;@luanluciano93&lt;/a&gt;, &lt;a href=&quot;https://github.com/kokekanon&quot;&gt;@kokekanon&lt;/a&gt;, &lt;a href=&quot;https://github.com/MUN1Z&quot;&gt;@MUN1Z&lt;/a&gt;, &lt;a href=&quot;https://github.com/qatari&quot;&gt;@qatari&lt;/a&gt;)&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Wheel of Destiny&lt;/strong&gt; — (R!ck, ZLukSrT#8740, Christianlb, &lt;a href=&quot;https://github.com/andreoam&quot;&gt;@andreoam&lt;/a&gt;, &lt;a href=&quot;https://github.com/libergod&quot;&gt;@Libergod&lt;/a&gt;)&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;🔦 OTClient V8 (Features)&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Lighting System&lt;/li&gt; 
+ &lt;li&gt;Floor Fading&lt;/li&gt; 
+ &lt;li&gt;Path Finding&lt;/li&gt; 
+ &lt;li&gt;Module Shop&lt;/li&gt; 
+ &lt;li&gt;Module Outfit&lt;/li&gt; 
+ &lt;li&gt;Placeholder&lt;/li&gt; 
+ &lt;li&gt;UIGraph&lt;/li&gt; 
+ &lt;li&gt;Keybinds&lt;/li&gt; 
+ &lt;li&gt;Cam system&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;the-mobile-project&quot;&gt;&lt;/a&gt;&lt;img height=&quot;20&quot; src=&quot;https://raw.githubusercontent.com/github/explore/80688e429a7d4ef2fca1e82350fe8e3517d3494d/topics/android/android.png&quot; /&gt; The Mobile Project&lt;/h2&gt; 
+&lt;p&gt;This is a fork of edubart&#39;s OTClient. The objective of this fork is to develop a runnable OTClient on mobile devices.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Tasks&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul class=&quot;task-list&quot;&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_0&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_0&quot;&gt; Compile on Android devices&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_1&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_1&quot;&gt; Compile on Apple devices&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_2&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_2&quot;&gt; Adapt the UI reusing the existing LUA code&lt;/label&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;compiling&quot;&gt;&lt;/a&gt;🔨 Compiling&lt;/h2&gt; 
+&lt;p&gt;If you are interested in compiling this project, visit the &lt;strong&gt;&lt;a href=&quot;https://github.com/mehah/otclient/wiki&quot;&gt;Wiki&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;For content-addressed vcpkg reuse across CMake presets, Visual Studio Solutions, worktrees, and compatible forks, see the &lt;a href=&quot;https://raw.githubusercontent.com/opentibiabr/otclient/main/docs/development/shared-build-cache.md&quot;&gt;shared build cache guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;docker&quot;&gt;&lt;/a&gt;🐳 Docker&lt;/h2&gt; 
+&lt;p&gt;In order to build the app for production, run the following commands:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;1) Build the image&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker build -t mehah/otclient .
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;2) Run the built image&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Disable access control for the X server.
+xhost +
+
+# Run the container image with the required bindings to the host devices and volumes.
+docker run -it --rm \
+  --env DISPLAY \
+  --volume /tmp/.X11-unix:/tmp/.X11-unix \
+  --device /dev/dri \
+  --device /dev/snd mehah/otclient /bin/bash
+
+# Enable access control for the X server.
+xhost -
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;need-help&quot;&gt;&lt;/a&gt;🩺 Need Help?&lt;/h2&gt; 
+&lt;p&gt;Ask questions on &lt;strong&gt;Discord&lt;/strong&gt;: &lt;a href=&quot;https://discord.gg/tUjTBZzMCy&quot;&gt;https://discord.gg/tUjTBZzMCy&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;bugs&quot;&gt;&lt;/a&gt;📑 Bugs&lt;/h2&gt; 
+&lt;p&gt;Found a bug? Please create an issue in our &lt;strong&gt;&lt;a href=&quot;https://github.com/mehah/otclient/issues&quot;&gt;bug tracker&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;If using &lt;strong&gt;Nostalrius 7.2&lt;/strong&gt;, &lt;strong&gt;Nekiro TFS-1.5-Downgrades-7.72&lt;/strong&gt; OR any protocol below &lt;strong&gt;860&lt;/strong&gt; and the walking system is &lt;strong&gt;stuttering&lt;/strong&gt;, set&lt;br /&gt; &lt;a href=&quot;https://github.com/mehah/otclient/raw/cf7badda978de88cb3724615688e3d9da2ff4207/data/setup.otml#L21&quot;&gt;&lt;code&gt;force-new-walking-formula: true&lt;/code&gt;&lt;/a&gt; in &lt;code&gt;data/setup.otml&lt;/code&gt;.&lt;br /&gt; In old protocols, if item speed feels too fast, adjust&lt;br /&gt; &lt;a href=&quot;https://github.com/mehah/otclient/raw/cf7badda978de88cb3724615688e3d9da2ff4207/data/setup.otml#L32&quot;&gt;&lt;code&gt;item-ticks-per-frame: 75&lt;/code&gt;&lt;/a&gt; in &lt;code&gt;data/setup.otml&lt;/code&gt;.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;if you use TVP or Nostalrius 7.72 activate the feature &lt;code&gt;g_game.enableFeature(GameTileAddThingWithStackpos)&lt;/code&gt; in game_feature .&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;roadmap&quot;&gt;&lt;/a&gt;❤️ Roadmap&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;TO-DO list&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+   &lt;th&gt;PR&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Sound tibia 13&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://geps.dev/progress/80&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/pull/1098&quot;&gt;#1098&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Prey and tasks&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://geps.dev/progress/10&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/pull/1380&quot;&gt;#1380&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Compendium&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://geps.dev/progress/15&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/pull/1625&quot;&gt;#1625&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Party List&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://geps.dev/progress/0&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;None&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Proficiency&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://geps.dev/progress/80&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/pull/1593&quot;&gt;#1593&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;New Imbui 15x/14x&lt;/td&gt; 
+   &lt;td&gt;&lt;img src=&quot;https://geps.dev/progress/80&quot; alt=&quot;&quot; /&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/pull/1616&quot;&gt;#1616&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;support-protocol&quot;&gt;&lt;/a&gt;💯 Support Protocol&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Protocol / version&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+   &lt;th&gt;Required Feature&lt;/th&gt; 
+   &lt;th&gt;Compatibility&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;TFS (7.72)&lt;/td&gt; 
+   &lt;td&gt;Downgrade nekiro / Nostalrius&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/raw/cf7badda978de88cb3724615688e3d9da2ff4207/data/setup.otml#L21&quot;&gt;force-new-walking-formula: true&lt;/a&gt; • &lt;a href=&quot;https://github.com/mehah/otclient/raw/cf7badda978de88cb3724615688e3d9da2ff4207/data/setup.otml#L32&quot;&gt;item-ticks-per-frame: 500&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;TFS 0.4 (8.6)&lt;/td&gt; 
+   &lt;td&gt;Fir3element&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/raw/cf7badda978de88cb3724615688e3d9da2ff4207/data/setup.otml#L32&quot;&gt;item-ticks-per-frame: 500&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;TFS 1.5 (8.0 / 8.60)&lt;/td&gt; 
+   &lt;td&gt;Downgrade nekiro / MillhioreBT&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/raw/cf7badda978de88cb3724615688e3d9da2ff4207/data/setup.otml#L21&quot;&gt;force-new-walking-formula: true&lt;/a&gt; • &lt;a href=&quot;https://github.com/mehah/otclient/raw/cf7badda978de88cb3724615688e3d9da2ff4207/data/setup.otml#L32&quot;&gt;item-ticks-per-frame: 500&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;TFS 1.4.2 (10.98)&lt;/td&gt; 
+   &lt;td&gt;Release Otland&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;TFS 1.6 (13.10)&lt;/td&gt; 
+   &lt;td&gt;Main repo otland (2024)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/mehah/otclient/wiki/Tutorial-to-Use-OTC-in-TFS-main&quot;&gt;See wiki&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Canary (13.21 / 13.32 / 13.40)&lt;/td&gt; 
+   &lt;td&gt;OpenTibiaBr&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/opentibiabr/otclient/wiki/Tutorial-to-use-OTC-in-Canary-main&quot;&gt;See Wiki&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Canary (14.00 ~ 14.12)&lt;/td&gt; 
+   &lt;td&gt;OpenTibiaBr&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/opentibiabr/otclient/wiki/Tutorial-to-use-OTC-in-Canary-main&quot;&gt;See Wiki&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Canary (15.00 ~ 15.24)&lt;/td&gt; 
+   &lt;td&gt;OpenTibiaBr&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/opentibiabr/otclient/wiki/Tutorial-to-use-OTC-in-Canary-main&quot;&gt;See Wiki&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;license&quot;&gt;&lt;/a&gt;©️ License&lt;/h2&gt; 
+&lt;p&gt;OTClient is made available under the &lt;strong&gt;MIT License&lt;/strong&gt; — you are free to use it for commercial, non-commercial, closed or open projects.&lt;br /&gt; See: &lt;a href=&quot;http://opensource.org/licenses/MIT&quot;&gt;MIT License&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;&lt;a id=&quot;contributors&quot;&gt;&lt;/a&gt;❤️ Contributors&lt;/h2&gt; 
+&lt;p&gt;If you are interested in supporting the project, donate here:&lt;br /&gt; &lt;strong&gt;&lt;a href=&quot;https://www.paypal.com/donate/?business=CV9D5JF8E46LY&amp;amp;no_recurring=0&amp;amp;item_name=Thank+you+very+much+for+your+donation.&amp;amp;currency_code=BRL&quot;&gt;PayPal&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/4271b13f9ba7a47bc3b21f429e18a759143a9287d0d608f22a36c55e26d73e16/opentibiabr/otclient" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>FrSkyRC/ETHOS-Feedback-Community</title>
+      <link>https://github.com/FrSkyRC/ETHOS-Feedback-Community</link>
+      <description>&lt;p&gt;Feedback &amp; suggestions are welcomed here for ETHOS by FrSky&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Feedback about FrSky Ethos&lt;/h1&gt; 
+&lt;p&gt;Thank you for helping FrSky Ethos to be better! Here FrSky could collect input and suggestion from all the end users on the system operation. The goal of this program is to find issues/bugs that can be corrected in further software updates.&lt;/p&gt; 
+&lt;p&gt;Please keep the GitHub section focused on reporting issues/bugs. We will add a priority label on each issue and we may not reply on every issue in the first time but we are sure to take care of them. When the problem is resolved, we ask of you to double check and close the issue. Always check if the issue has already existed on GitHub, in order to prevent double posting. Well described bug description is very important for us to try to reproduce it and fix well.&lt;/p&gt; 
+&lt;p&gt;Thanks a lot for your participation in advance.&lt;/p&gt; 
+&lt;p&gt;Below are some notes to help you report issues/bugs or improvement suggestions.&lt;/p&gt; 
+&lt;h2&gt;Issue guides&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Please make sure that you have upgraded to latest software version before you post an issue.&lt;/li&gt; 
+ &lt;li&gt;If you find a new bug, first please look at opened and closed issues to see if the issue is already listed.&lt;/li&gt; 
+ &lt;li&gt;If it does exist you can comment if you have more information.&lt;/li&gt; 
+ &lt;li&gt;If does not exist, then create a new issue.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;New issue should contain:&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Firmware version where issue was found, name the topic to describe the bug as the best as possible&lt;/li&gt; 
+ &lt;li&gt;Description of the issue&lt;/li&gt; 
+ &lt;li&gt;Description of the expected behavior&lt;/li&gt; 
+ &lt;li&gt;Description how to reproduce the bug&lt;/li&gt; 
+ &lt;li&gt;If possible a screenshot or video, it is worth 1000 words 😃&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Thanks again for your interest and help on this new system, we hope it becomes better and better to fulfill all your demands!&lt;/p&gt; 
+&lt;h2&gt;Ethos Wiki&lt;/h2&gt; 
+&lt;p&gt;Ethos Wiki is there: &lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/wiki&quot;&gt;https://github.com/FrSkyRC/ETHOS-Feedback-Community/wiki&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Here are some direct links to the main pages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/wiki/ETHOS-File-Storage-and-Firmware-Flashing&quot;&gt;Ethos File Storage, ETHOS flashing and TD ISRM updating&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/wiki/Ethos-1.5-firmware-localization&quot;&gt;Ethos Localization&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Ethos Simulators&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Ethos Manuals&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/raw/1.5/doc/%5BCN%5D%20X20%20and%20Ethos%20User%20Manual_1.0.10_rev16.pdf&quot;&gt;Chinese Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/raw/1.6/doc/%5BEN%5D%20Ethos%20User%20Manual%201.6.2.pdf&quot;&gt;English Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/raw/1.5/doc/%5BFR%5D%20Ethos%20User%20Manual%201.5.10.pdf&quot;&gt;French Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/raw/1.6/doc/%5BIT%5D%20Ethos%20User%20Manual%201.6.2.pdf&quot;&gt;Italian Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/raw/1.5/doc/%5BPB%5D%20Ethos%20User%20Manual%201.0.x.pdf&quot;&gt;Brazilian Portuguese Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/raw/1.6/doc/%5BES%5D%20Ethos%20User%20Manual%201.6.6.pdf&quot;&gt;Spanish Manual&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FrSkyRC/ETHOS-Feedback-Community/raw/1.6/doc/%5BDE%5D%20Ethos%20User%20Manual%201.6.2.pdf&quot;&gt;German Manual&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If there are any mistakes, please feel free to tell us!&lt;/p&gt; 
+&lt;p&gt;Thanks.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/d8298f6056238c1138ddb2a643fadf90e2f6b25d857d6d05de436fb46ec4a43c/FrSkyRC/ETHOS-Feedback-Community" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>prometheus-lua/Prometheus</title>
+      <link>https://github.com/prometheus-lua/Prometheus</link>
+      <description>&lt;p&gt;Lua Obfuscator written in pure Lua&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://prometheus-lua.github.io/Prometheus/&quot;&gt;https://prometheus-lua.github.io/Prometheus/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img width=&quot;100%&quot; src=&quot;https://capsule-render.vercel.app/api?type=waving&amp;amp;height=180&amp;amp;color=gradient&amp;amp;text=Prometheus&amp;amp;fontAlign=50&amp;amp;fontAlignY=35&amp;amp;fontSize=42&amp;amp;desc=Lua%20Obfuscator%20%E2%80%A2%20AST%20Transformations%20%E2%80%A2%20Control%20Flow%20Obfuscation&amp;amp;descAlign=50&amp;amp;descAlignY=60&quot; /&gt; 
+ &lt;a href=&quot;https://github.com/prometheus-lua/Prometheus&quot;&gt; &lt;img src=&quot;https://readme-typing-svg.demolab.com?font=JetBrains+Mono&amp;amp;weight=600&amp;amp;size=24&amp;amp;duration=2500&amp;amp;pause=900&amp;amp;center=true&amp;amp;vCenter=true&amp;amp;width=760&amp;amp;lines=Pure+Lua+Obfuscation;AST+Transforms+%E2%80%A2+Encryption+%E2%80%A2+Anti-Tamper;Lua+5.1+and+LuaU+support;Built+for+code+protection&quot; alt=&quot;Typing SVG&quot; /&gt; &lt;/a&gt; 
+ &lt;br /&gt; 
+ &lt;a href=&quot;https://prometheus-lua.github.io/Prometheus/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Playground-Try%20Out-0F766E?style=for-the-badge&amp;amp;logo=github&amp;amp;logoColor=white&quot; alt=&quot;Open Prometheus Playground&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/prometheus-lua/Prometheus/actions/workflows/Test.yml&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/prometheus-lua/Prometheus/Test.yml?branch=master&amp;amp;style=for-the-badge&amp;amp;label=Tests&quot; alt=&quot;Tests&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://github.com/prometheus-lua/Prometheus/stargazers&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/stars/prometheus-lua/Prometheus?style=for-the-badge&amp;amp;logo=github&amp;amp;label=Stars&quot; alt=&quot;GitHub stars&quot; /&gt; &lt;/a&gt; 
+ &lt;a href=&quot;https://discord.gg/U8h4d4Rf64&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Discord-Join%20Server-5865F2?style=for-the-badge&amp;amp;logo=discord&amp;amp;logoColor=white&quot; alt=&quot;Discord server&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/prometheus-lua/Prometheus/master/assets/readme/obfuscation-preview.gif&quot; alt=&quot;Prometheus obfuscation process preview&quot; width=&quot;900&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Prometheus&lt;/strong&gt; is a Lua obfuscator written in pure Lua.&lt;/p&gt; 
+&lt;p&gt;It applies a range of &lt;strong&gt;AST-based transformations&lt;/strong&gt; to make source code significantly harder to read, analyze, and reverse engineer.&lt;br /&gt; These include techniques such as &lt;strong&gt;control-flow flattening&lt;/strong&gt;, &lt;strong&gt;constant encryption&lt;/strong&gt;, and other Lua-specific obfuscation strategies.&lt;/p&gt; 
+&lt;p&gt;The project was inspired by the excellent &lt;a href=&quot;https://github.com/javascript-obfuscator/javascript-obfuscator&quot;&gt;javascript-obfuscator&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Currently, Prometheus supports:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Lua 5.1&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;LuaU&lt;/strong&gt; &lt;em&gt;(basic support is available, but still not fully finished)&lt;/em&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;p&gt;Try the browser version first:&lt;/p&gt; 
+&lt;a href=&quot;https://prometheus-lua.github.io/Prometheus/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Playground-Try%20Out-0F766E?style=for-the-badge&amp;amp;logo=github&amp;amp;logoColor=white&quot; alt=&quot;Open Prometheus Playground&quot; /&gt; &lt;/a&gt; 
+&lt;h3&gt;Install CLI (Linux/macOS)&lt;/h3&gt; 
+&lt;p&gt;Install latest release with one command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl -fsSL https://raw.githubusercontent.com/prometheus-lua/Prometheus/master/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then use the CLI directly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;prometheus-lua --version
+prometheus-lua --preset Medium ./your_file.lua
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The release bundle includes a Lua runtime, so no separate Lua install is required for the packaged CLI.&lt;/p&gt; 
+&lt;p&gt;To update to the latest release:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;prometheus-lua update
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To uninstall:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;rm -f ~/.local/bin/prometheus-lua &amp;amp;&amp;amp; rm -rf ~/.local/share/prometheus-lua
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Local source usage&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/prometheus-lua/Prometheus.git
+cd Prometheus
+lua cli.lua --preset Medium ./your_file.lua
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;You can find the full documentation, including the getting started guide, here:&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://prometheus-lua.github.io/Prometheus/docs/&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Documentation-Read%20the%20Docs-111111?style=for-the-badge&amp;amp;logo=readthedocs&amp;amp;logoColor=white&quot; alt=&quot;Documentation&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;Contribution guidelines: &lt;a href=&quot;https://raw.githubusercontent.com/prometheus-lua/Prometheus/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;p&gt;Packaged CLI releases include a bundled Lua runtime. For source usage, Prometheus requires &lt;strong&gt;LuaJIT&lt;/strong&gt; or &lt;strong&gt;Lua 5.1+&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;Lua 5.1 binaries can be downloaded here:&lt;br /&gt; &lt;a href=&quot;https://sourceforge.net/projects/luabinaries/files/5.1.5/Tools%20Executables/&quot;&gt;https://sourceforge.net/projects/luabinaries/files/5.1.5/Tools Executables/&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Example&lt;/h2&gt; 
+&lt;h3&gt;Input&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;-- input.lua
+print(&quot;Hello, World!&quot;);
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Obfuscated output&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;-- input.obfuscated.lua
+return(function(...)local L={&quot;afT6mf1V&quot;,&quot;/7mJXsuvmE1c/fT3&quot;;&quot;tn1ZSn6=&quot;,&quot;37ghSJM=&quot;;&quot;WqermfWAWuuZpb3XX7M=&quot;,&quot;tqXGSJ3u&quot;,&quot;XQXpL9x21dxAWJa//p==&quot;,&quot;SrM=&quot;;&quot;3q+5SJM=&quot;,&quot;/D==&quot;;&quot;t7XUt0p=&quot;;&quot;mIeOmIx9&quot;;&quot;LdgrBfWdWuNABsb+KJxj&quot;,&quot;SJWJ4dahKsebW7t+KQv=&quot;,&quot;/cDu3AvP/D==&quot;;&quot;Llv7uD==&quot;,&quot;tJWhFfTE&quot;;&quot;TQ43ctIuy9HIop==&quot;,&quot;mEu93p==&quot;;&quot;WJax1sXEXEaxWuxGt6==&quot;,&quot;t0gPSEp=&quot;,...
+-- remaining obfuscated output omitted
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more advanced use cases, configuration, and presets, see the &lt;a href=&quot;https://prometheus-lua.github.io/Prometheus/docs/&quot;&gt;documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Tests&lt;/h2&gt; 
+&lt;p&gt;The test suite runs inside Docker with lua5.1 and Luau:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./scripts/run-tests.sh           # Run all tests (default: 10 iterations)
+./scripts/run-tests.sh -b        # Build image and run tests
+./scripts/run-tests.sh -n 5      # Run with 5 iterations
+./scripts/run-tests.sh -c config.lua  # Use a custom config
+./scripts/run-tests.sh -v        # Verbose output
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;p&gt;Prometheus has an official Discord server:&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/U8h4d4Rf64&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/Join%20the%20Discord%20Server-5865F2?style=for-the-badge&amp;amp;logo=discord&amp;amp;logoColor=white&quot; alt=&quot;Join Discord&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;License and Commercial Use&lt;/h2&gt; 
+&lt;p&gt;Prometheus is licensed under the &lt;strong&gt;Prometheus License&lt;/strong&gt;, a modified MIT-style license.&lt;/p&gt; 
+&lt;p&gt;You are free to use, modify, and distribute this software, including for commercial purposes, under the following conditions:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Any commercial product, wrapper, or service &lt;em&gt;(including SaaS or hosted solutions)&lt;/em&gt; that uses or integrates Prometheus must include clear attribution to:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;Based on Prometheus by Elias Oelschner, https://github.com/prometheus-lua/Prometheus
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The attribution must be visible in the product’s: 
+  &lt;ul&gt; 
+   &lt;li&gt;UI&lt;/li&gt; 
+   &lt;li&gt;documentation&lt;/li&gt; 
+   &lt;li&gt;public website&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;The obfuscated output files generated by Prometheus do &lt;strong&gt;not&lt;/strong&gt; need to include any license or copyright notice.&lt;/li&gt; 
+ &lt;li&gt;Derivative works and public forks must also include a statement in their README noting that they are based on Prometheus.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Full license text: &lt;a href=&quot;https://github.com/prometheus-lua/Prometheus/raw/master/LICENSE&quot;&gt;Prometheus License&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;img width=&quot;100%&quot; src=&quot;https://capsule-render.vercel.app/api?type=waving&amp;amp;height=120&amp;amp;section=footer&amp;amp;color=gradient&quot; /&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/44117b90fa83bb22af6a694a8bcd6a430d6e7247bc911328b26eeef5fdc98c62/prometheus-lua/Prometheus" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
