@@ -1,0 +1,1122 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Svelte Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Svelte on GitHub</description>
+    
+    <pubDate>Sat, 17 Oct 2026 05:29:30 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>leaningtech/webvm</title>
+      <link>https://github.com/leaningtech/webvm</link>
+      <description>&lt;p&gt;Virtual Machine for the Web&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://webvm.io&quot;&gt;https://webvm.io&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;WebVM&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://discord.gg/yWRr2YnD9c&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/988743885121548329?color=%235865F2&amp;amp;logo=discord&amp;amp;logoColor=%23fff&quot; alt=&quot;Discord server&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/leaningtech/webvm/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/leaningtech/webvm&quot; alt=&quot;Issues&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This repository hosts the source code for &lt;a href=&quot;https://webvm.io&quot;&gt;https://webvm.io&lt;/a&gt;, a Linux virtual machine that runs in your browser.&lt;/p&gt; 
+&lt;p&gt;Try out the new Alpine / Xorg / i3 graphical environment: &lt;a href=&quot;https://webvm.io/alpine.html&quot;&gt;https://webvm.io/alpine.html&lt;/a&gt;&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/assets/welcome_to_WebVM_alpine_2024.png&quot; width=&quot;90%&quot; /&gt; 
+&lt;h2&gt;What is WebVM?&lt;/h2&gt; 
+&lt;p&gt;WebVM is a server-less virtual environment running fully client-side in HTML5/WebAssembly. It&#39;s designed to be Linux ABI-compatible and runs an unmodified Debian distribution including many native development toolchains.&lt;/p&gt; 
+&lt;p&gt;WebVM is powered by the &lt;strong&gt;CheerpX&lt;/strong&gt; virtualization engine, which provides:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;x86-to-WebAssembly JIT compiler&lt;/li&gt; 
+ &lt;li&gt;Virtual block-based file system&lt;/li&gt; 
+ &lt;li&gt;Linux syscall emulator&lt;/li&gt; 
+ &lt;li&gt;Safe, sandboxed client-side execution&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#networking&quot;&gt;Networking&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#development--customization&quot;&gt;Development &amp;amp; Customization&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#deploy-to-github-pages&quot;&gt;Deploy to GitHub Pages&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#local-serving--image-configuration&quot;&gt;Local Serving &amp;amp; Image Configuration&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#claude-ai-integration&quot;&gt;Claude AI Integration&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#community--support&quot;&gt;Community &amp;amp; Support&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#learn-more&quot;&gt;Learn More&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Visit &lt;a href=&quot;https://webvm.io&quot;&gt;https://webvm.io&lt;/a&gt; to get started immediately in your browser. No setup required.&lt;/p&gt; 
+ &lt;p&gt;For local setup, custom image builds, and fork/deploy guidance, see &lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#development--customization&quot;&gt;Development &amp;amp; Customization&lt;/a&gt;.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Networking&lt;/h2&gt; 
+&lt;p&gt;WebVM supports &lt;strong&gt;Tailscale&lt;/strong&gt; integration. So your browser VM can reach your private network and, with an exit node, the public internet too.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Some low-level networking operations (especially ICMP used by &lt;code&gt;ping&lt;/code&gt;) are not currently available in this environment. For connectivity checks, use &lt;code&gt;curl&lt;/code&gt; or &lt;code&gt;wget&lt;/code&gt;.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Local network&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open the &quot;Networking&quot; panel from the sidebar&lt;/li&gt; 
+ &lt;li&gt;Click &quot;Connect to Tailscale&quot;&lt;/li&gt; 
+ &lt;li&gt;Log in (create a free account at &lt;a href=&quot;https://tailscale.com&quot;&gt;tailscale.com&lt;/a&gt; if needed)&lt;/li&gt; 
+ &lt;li&gt;Click &quot;Connect&quot; when prompted&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;WebVM now has access to all machines in your Tailscale network!&lt;/p&gt; 
+&lt;h3&gt;Internet Usage Tips&lt;/h3&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;On slower connections there may be a short delay before initialisation. Connection status is shown as a colored dot on the button: orange = local network, green = global/internet. The button text shows your Tailscale IP address once connected.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;To access the public internet from WebVM, set up an &lt;strong&gt;Exit Node&lt;/strong&gt; on another device in your Tailscale network:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Follow the &lt;a href=&quot;https://tailscale.com/kb/1408/quick-guide-exit-nodes?tab=linux&quot;&gt;Tailscale Exit Node quickstart&lt;/a&gt; (sections: &quot;Advertise a device as an exit node&quot;)&lt;/li&gt; 
+ &lt;li&gt;WebVM automatically uses the exit node once advertised&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Using an Auth Key&lt;/h3&gt; 
+&lt;p&gt;As an alternative to interactive login, add your Tailscale auth key to the URL fragment:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;https://webvm.io/#authKey=&amp;lt;your-ephemeral-key&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This is equivalent to Tailscale&#39;s &lt;code&gt;--login-server&lt;/code&gt; option.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;If you also need a custom control server, add &lt;code&gt;controlUrl&lt;/code&gt; in the same URL fragment and separate values with &lt;code&gt;&amp;amp;&lt;/code&gt;, for example: &lt;code&gt;#authKey=...&amp;amp;controlUrl=...&lt;/code&gt;.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Self-Hosting Tailscale with Headscale&lt;/h3&gt; 
+&lt;p&gt;We also support &lt;a href=&quot;https://headscale.net/stable/&quot;&gt;headscale&lt;/a&gt;, a selfhosted open source implementation of the Tailscale control server. Because Headscale does not add CORS headers by default, you will need a proxy in front of it. See the &lt;a href=&quot;https://headscale.net/stable/ref/integration/reverse-proxy/#nginx&quot;&gt;Headscale reverse proxy setup docs&lt;/a&gt; for an example.&lt;/p&gt; 
+&lt;p&gt;Once ready, add the following line to your &lt;code&gt;location /&lt;/code&gt; block in your nginx config file.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-nginx&quot;&gt;if ($http_origin = &quot;https://yourdomain.com&quot;) {
+    add_header &#39;Access-Control-Allow-Origin&#39; &quot;$http_origin&quot;;
+    add_header &#39;Access-Control-Allow-Credentials&#39; &#39;true&#39; always;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then access WebVM with:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;https://yourdomain.com/#controlUrl=&amp;lt;your-headscale-url&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Development &amp;amp; Customization&lt;/h2&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Users have root privileges by default. &lt;code&gt;sudo&lt;/code&gt; is not installed though this can easily be added to the Dockerfile if needed.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Deploy to GitHub Pages&lt;/h3&gt; 
+&lt;p&gt;This is a simple, beginner-friendly workflow. For local hosting and customization, see below &lt;a href=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/#local-serving--image-configuration&quot;&gt;Local Serving &amp;amp; Image Configuration&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Fork the WebVM repository to deploy your own version to GitHub Pages:&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/assets/fork_deploy_instructions.gif&quot; alt=&quot;deploy_instructions_gif&quot; width=&quot;90%&quot; /&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Fork the repository&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Enable GitHub Pages&lt;/strong&gt; &lt;em&gt;via forked repository&lt;/em&gt; in Settings → Pages using &quot;GitHub Actions&quot; as source&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Run the &lt;code&gt;Deploy&lt;/code&gt; workflow&lt;/strong&gt; from Actions&lt;/li&gt; 
+ &lt;li&gt;After completion, open the URL shown under the &lt;code&gt;deploy_to_github_pages&lt;/code&gt; job&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/assets/result.png&quot; width=&quot;70%&quot; /&gt; 
+&lt;p&gt;The same &lt;code&gt;Deploy&lt;/code&gt; workflow also builds custom &lt;code&gt;.ext2&lt;/code&gt; disk images from a Dockerfile. You can point it at &lt;code&gt;dockerfiles/debian_mini&lt;/code&gt; or another Dockerfile, then either publish the result as a GitHub Release asset or deploy the Pages build from your fork.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;&lt;code&gt;dockerfiles/debian_large&lt;/code&gt; is too large of an image for GitHub pages.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h3&gt;Local Serving &amp;amp; Image Configuration&lt;/h3&gt; 
+&lt;h4&gt;1. Clone the repository&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;git clone https://github.com/leaningtech/webvm.git
+cd webvm
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;2. Put your image in &lt;code&gt;custom-disk-images/&lt;/code&gt;&lt;/h4&gt; 
+&lt;p&gt;This repository includes a persistent &lt;code&gt;custom-disk-images/&lt;/code&gt; directory for local &lt;code&gt;.ext2&lt;/code&gt; files.&lt;/p&gt; 
+&lt;p&gt;To use the official Debian mini image, download it from Releases:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/leaningtech/webvm/releases/download/ext2_image/debian_mini_20230519_5022088024.ext2&quot;&gt;debian_mini_20230519_5022088024.ext2&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;You can also copy in an image you built yourself.&lt;/p&gt; 
+&lt;h4&gt;3. Point WebVM to your local image&lt;/h4&gt; 
+&lt;p&gt;Edit &lt;code&gt;config_public_terminal.js&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-js&quot;&gt;export const diskImageUrl =
+  &quot;/custom-disk-images/debian_mini_20230519_5022088024.ext2&quot;;
+export const diskImageType = &quot;bytes&quot;;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;4. Install dependencies and build&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install
+npm run build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;5. Start Nginx and open WebVM&lt;/h4&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;nginx -p . -c nginx.conf
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then open &lt;a href=&quot;http://127.0.0.1:8081&quot;&gt;http://127.0.0.1:8081&lt;/a&gt; and enjoy your local WebVM!&lt;/p&gt; 
+&lt;p&gt;For the full Alpine desktop environment, see &lt;a href=&quot;https://github.com/leaningtech/alpine-image&quot;&gt;leaningtech/alpine-image&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For more details, see &lt;a href=&quot;https://cheerpx.io/docs/guides/custom-images&quot;&gt;CheerpX Custom Images documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;For Python3 REPL, the &lt;code&gt;Deploy&lt;/code&gt; workflow takes into account the &lt;code&gt;CMD&lt;/code&gt; specified in the Dockerfile.&lt;/p&gt; 
+ &lt;p&gt;To build a REPL you can simply change &lt;code&gt;CMD [ &quot;/bin/bash&quot; ]&lt;/code&gt; to &lt;code&gt;CMD [ &quot;/usr/bin/python3&quot; ]&lt;/code&gt; and deploy.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Claude AI Integration&lt;/h2&gt; 
+&lt;p&gt;To access Claude AI, you need an API key. Follow these steps to get started:&lt;/p&gt; 
+&lt;h4&gt;1. Create an account&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Visit &lt;a href=&quot;https://console.anthropic.com/login&quot;&gt;Anthropic Console&lt;/a&gt; and sign up with your e-mail. You&#39;ll receive a sign in link to the Anthropic Console.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;2. Get your API key&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Once logged in, navigate to &lt;strong&gt;Get API keys&lt;/strong&gt;.&lt;/li&gt; 
+ &lt;li&gt;Purchase the amount of credits you need. After completing the purchase, you&#39;ll be able to generate the key through the API console.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;3. Log in with your API key&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Navigate to your WebVM and hover over the robot icon. This will show the Claude AI Integration tab. For added convenience, you can click the pin button in the top right corner to keep the tab in place.&lt;/li&gt; 
+ &lt;li&gt;You&#39;ll see a prompt where you can insert your Claude API key.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;4. Start using Claude AI&lt;/h4&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Once your API key is entered, you can begin interacting with Claude AI by asking questions such as:&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;&quot;Solve the CTF challenge at &lt;code&gt;/home/user/chall1.bin.&lt;/code&gt; Note that the binary reads from stdin.&quot;&lt;/strong&gt;&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/leaningtech/webvm/main/assets/webvm_claude_ctf.gif&quot; alt=&quot;deploy_instructions_gif&quot; width=&quot;90%&quot; /&gt; 
+&lt;p&gt;&lt;strong&gt;Important:&lt;/strong&gt; Your API key is private and should never be shared. We do not have access to your key, it is only stored locally in your browser.&lt;/p&gt; 
+&lt;h2&gt;Community &amp;amp; Support&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Report issues:&lt;/strong&gt; Use &lt;a href=&quot;https://github.com/leaningtech/webvm/issues&quot;&gt;GitHub Issues&lt;/a&gt; to report bugs or request features.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Chat with us:&lt;/strong&gt; Join our &lt;a href=&quot;https://discord.gg/yTNZgySKGa&quot;&gt;Discord community&lt;/a&gt; to discuss WebVM, share ideas, and get help.&lt;/p&gt; 
+&lt;h2&gt;Learn More&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Articles &amp;amp; Resources:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://leaningtech.com/webvm-server-less-x86-virtual-machines-in-the-browser/&quot;&gt;WebVM: Server-less x86 virtual machines in the browser&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://leaningtech.com/webvm-virtual-machine-with-networking-via-tailscale/&quot;&gt;WebVM: Linux Virtualization in WebAssembly with Full Networking via Tailscale&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://leaningtech.com/mini-webvm-your-linux-box-from-dockerfile-via-wasm/&quot;&gt;Mini.WebVM: Your own Linux box from Dockerfile, virtualized in the browser via WebAssembly&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.youtube.com/watch?v=VqrbVycTXmw&quot;&gt;Crafting the Impossible: X86 Virtualization in the Browser with WebAssembly&lt;/a&gt; — Talk at JsNation 2022&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Example Deployment:&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://mini.webvm.io&quot;&gt;Mini.WebVM Reference&lt;/a&gt; — A running example deployed to GitHub Pages&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Technology Behind WebVM:&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;This project is powered by:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://cheerpx.io/&quot;&gt;CheerpX&lt;/a&gt;&lt;/strong&gt; — x86-to-WebAssembly JIT compiler | by &lt;a href=&quot;https://leaningtech.com/&quot;&gt;Leaning Technologies&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://xtermjs.org/&quot;&gt;xterm.js&lt;/a&gt;&lt;/strong&gt; — Web-based terminal emulator&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://tailscale.com/&quot;&gt;Tailscale&lt;/a&gt;&lt;/strong&gt; — VPN networking layer&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://savannah.nongnu.org/projects/lwip/&quot;&gt;lwIP&lt;/a&gt;&lt;/strong&gt; — TCP/IP stack, compiled for the Web via &lt;a href=&quot;https://github.com/leaningtech/cheerp-meta/&quot;&gt;Cheerp&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Versioning:&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;WebVM uses the &lt;a href=&quot;https://www.npmjs.com/package/@leaningtech/cheerpx&quot;&gt;CheerpX&lt;/a&gt; NPM package, which is updated on every release.&lt;/p&gt; 
+&lt;p&gt;Every build is immutable. If a specific version works well for you today, it will keep working forever.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;WebVM is released under the Apache License, Version 2.0.&lt;/p&gt; 
+&lt;p&gt;You are welcome to use, modify, and redistribute the contents of this repository.&lt;/p&gt; 
+&lt;p&gt;The public CheerpX deployment is provided &lt;strong&gt;as-is&lt;/strong&gt; and is &lt;strong&gt;free to use&lt;/strong&gt; for technological exploration, testing and use by individuals. Any other use by organizations, including non-profit, academia and the public sector, requires a license. Downloading a CheerpX build for the purpose of hosting it elsewhere is not permitted without a commercial license.&lt;/p&gt; 
+&lt;p&gt;Read more &lt;a href=&quot;https://cheerpx.io/docs/licensing&quot;&gt;here&lt;/a&gt; about our licensing practices.&lt;/p&gt; 
+&lt;p&gt;If you want to build a product on top of CheerpX/WebVM, please see our other licensing options: &lt;a href=&quot;https://cheerpx.io/licensing&quot;&gt;CheerpX licensing&lt;/a&gt; or get in touch: &lt;a href=&quot;mailto:sales@leaningtech.com&quot;&gt;sales@leaningtech.com&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/454164378/00ded6d6-99da-4861-a71d-59cfa2fcc785" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>openfoodfacts/openfoodfacts-explorer</title>
+      <link>https://github.com/openfoodfacts/openfoodfacts-explorer</link>
+      <description>&lt;p&gt;The next-generation frontend for OpenFoodFacts, made with SvelteKit&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://beta.openfoodfacts.net&quot;&gt;https://beta.openfoodfacts.net&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;picture&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://static.openfoodfacts.org/images/logos/off-logo-horizontal-dark.png?refresh_github_cache=1&quot; /&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://static.openfoodfacts.org/images/logos/off-logo-horizontal-light.png?refresh_github_cache=1&quot; /&gt; 
+ &lt;img height=&quot;48&quot; src=&quot;https://static.openfoodfacts.org/images/logos/off-logo-horizontal-light.svg?sanitize=true&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;br /&gt; 
+&lt;h1&gt;Open Food Facts Explorer: the modern JS frontend to Open Food Facts&lt;/h1&gt; 
+&lt;p&gt;&quot;Explorer&quot; is the codename for the next gen frontend for Open Food Facts, built with modern web technologies (SvelteKit, Tailwind CSS, etc). It is currently in early development, and is not yet ready for production use. However, it is already possible to use it for development and testing purposes.&lt;/p&gt; 
+&lt;p&gt;By building a new frontend, we want to be able to iterate faster on the user experience, provide a more modern and responsive design, and make it easier for contributors to contribute to the frontend.&lt;/p&gt; 
+&lt;p&gt;You can test it in the staging environment at &lt;a href=&quot;https://beta.openfoodfacts.net&quot;&gt;https://beta.openfoodfacts.net&lt;/a&gt; &lt;em&gt;(HTTP Basic Auth credentials: username &lt;code&gt;off&lt;/code&gt;, password &lt;code&gt;off&lt;/code&gt;)&lt;/em&gt;.&lt;/p&gt; 
+&lt;h2&gt;Warning on the usage of AI tools&lt;/h2&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;While we support the usage of LLM-based tools to enhance productivity, we expect every contributor to review, test and more importantly &lt;strong&gt;take full responsibility&lt;/strong&gt; of any code generated by these tools before opening a Pull Request.&lt;/p&gt; 
+ &lt;p&gt;Remember that most people here are volunteers, and the free time they spend on this project is time they could have spent with their family, friends, or on other hobbies. Please respect that by making sure your contributions are of high quality and don&#39;t create extra work for the maintainers.&lt;/p&gt; 
+ &lt;p&gt;For more information, see the &lt;a href=&quot;https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-explorer/main/docs/CONTRIBUTING.md&quot;&gt;Contribution Guidelines&lt;/a&gt;.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Guide&lt;/th&gt; 
+   &lt;th&gt;Audience&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-explorer/main/docs/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Humans contributing code&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-explorer/main/AGENTS.md&quot;&gt;AGENTS.md&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;AI agents (Claude, Copilot, Codex, etc.)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-explorer/main/docs/DESIGN.md&quot;&gt;DESIGN.md&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Anyone building or reviewing UI&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Design&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;New to the project?&lt;/strong&gt; Check out our &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/openfoodfacts/openfoodfacts-explorer/main/docs/DESIGN.md&quot;&gt;Design Guide&lt;/a&gt;&lt;/strong&gt; for patterns, colors, and best practices.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;We currently don’t have any real visual mockup of it, nor “artistic direction” so for the time being, we&#39;re copying key features from the current frontend, improving them whenever we can.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.figma.com/design/Qg9URUyrjHgYmnDHXRsTTB/Current-Website-design?m=auto&amp;amp;t=RokuCr1uXrGFMhTB-6&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/figma-%23F24E1E.svg?logo=figma&amp;amp;logoColor=white&quot; alt=&quot;Figma&quot; /&gt; Mockups on the current website&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.figma.com/design/pgWZAEX1ZoTt0f7Azek4AV/Open-Food-Facts-Explorer-(next-gen-frontend)?node-id=1-53&amp;amp;t=XfEkgmUsvs6qiKr9-0&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/figma-%23F24E1E.svg?logo=figma&amp;amp;logoColor=white&quot; alt=&quot;Figma&quot; /&gt; Trying to create a digital twin of openfoodfacts-explorer&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Are you a designer ? &lt;a href=&quot;https://github.com/openfoodfacts/openfoodfacts-design&quot;&gt;Join the design team&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Roadmap&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Using more openfoodfacts-js&lt;/li&gt; 
+ &lt;li&gt;Using more openfoodfacts-webcomponents&lt;/li&gt; 
+ &lt;li&gt;Support for &lt;a href=&quot;https://prices.openfoodfacts.org/&quot;&gt;Open Prices&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Support for Nutri-Patrol&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.google.com/spreadsheets/d/1JE6prbafDeArI5GKzoxcEJRJDTFkakynBo-NltcPJx8/edit?usp=sharing&quot;&gt;Feature parity list&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Get in touch&lt;/h2&gt; 
+&lt;p&gt;The Open Food Facts community uses Slack for communication. You can join the &lt;code&gt;#off-explorer&lt;/code&gt; channel on the &lt;a href=&quot;https://slack.openfoodfacts.org&quot;&gt;Open Food Facts Slack&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Developing&lt;/h2&gt; 
+&lt;p&gt;This project uses pnpm. If you have corepack enabled, you should be able to directly use &lt;code&gt;pnpm&lt;/code&gt; commands. Otherwise, you can install pnpm with &lt;code&gt;npm install -g pnpm&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;First, set up the environment variables:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cp .env.example .env
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then install dependencies:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pnpm install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then start the development server:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pnpm run dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Building&lt;/h2&gt; 
+&lt;p&gt;To create a production version:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pnpm run build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can preview the production build with &lt;code&gt;pnpm run preview&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;p&gt;The app was initially created by @VaiTon. Since then, many people have contributed to it:&lt;/p&gt; 
+&lt;a href=&quot;https://github.com/openfoodfacts/openfoodfacts-explorer/graphs/contributors&quot;&gt; &lt;img alt=&quot;List of contributors to this repository&quot; src=&quot;https://contrib.rocks/image?repo=openfoodfacts/openfoodfacts-explorer&quot; /&gt; &lt;/a&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/645914853/a4b1f877-7564-4768-967e-9f516822c6c0" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>imputnet/cobalt</title>
+      <link>https://github.com/imputnet/cobalt</link>
+      <description>&lt;p&gt;best way to save what you love&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://cobalt.tools&quot;&gt;https://cobalt.tools&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt; &lt;img src=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/web/static/favicon.png&quot; title=&quot;cobalt&quot; alt=&quot;cobalt logo&quot; width=&quot;100&quot; /&gt; &lt;/p&gt; 
+ &lt;p&gt; best way to save what you love &lt;br /&gt; &lt;a href=&quot;https://cobalt.tools&quot;&gt; cobalt.tools &lt;/a&gt; &lt;/p&gt; 
+ &lt;p&gt; &lt;a href=&quot;https://discord.gg/pQPt8HBUPu&quot;&gt; 💬 community discord server &lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://x.com/justusecobalt&quot;&gt; 🐦 twitter &lt;/a&gt; &lt;a href=&quot;https://bsky.app/profile/cobalt.tools&quot;&gt; 🦋 bluesky &lt;/a&gt; &lt;/p&gt; 
+ &lt;br /&gt; 
+&lt;/div&gt; 
+&lt;p&gt;cobalt is a media downloader that doesn&#39;t piss you off. it&#39;s friendly, efficient, and doesn&#39;t have ads, trackers, paywalls or other nonsense.&lt;/p&gt; 
+&lt;p&gt;paste the link, get the file, move on. that simple, just how it should be.&lt;/p&gt; 
+&lt;h3&gt;cobalt monorepo&lt;/h3&gt; 
+&lt;p&gt;this monorepo includes source code for api, frontend, and related packages:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/api/&quot;&gt;api tree &amp;amp; readme&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/web/&quot;&gt;web tree &amp;amp; readme&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/packages/&quot;&gt;packages tree&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;it also includes documentation in the &lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/docs/&quot;&gt;docs tree&lt;/a&gt;:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/docs/run-an-instance.md&quot;&gt;how to run a cobalt instance&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/docs/protect-an-instance.md&quot;&gt;how to protect a cobalt instance&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/docs/api-env-variables.md&quot;&gt;cobalt api instance environment variables&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/docs/api.md&quot;&gt;cobalt api documentation&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;ethics&lt;/h3&gt; 
+&lt;p&gt;cobalt is a tool that makes downloading public content easier. it takes &lt;strong&gt;zero liability&lt;/strong&gt;. the end user is responsible for what they download, how they use and distribute that content. cobalt never caches any content, it &lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/api/src/stream/&quot;&gt;works like a fancy proxy&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;cobalt is in no way a piracy tool and cannot be used as such. it can only download free &amp;amp; publicly accessible content. same content can be downloaded via dev tools of any modern web browser.&lt;/p&gt; 
+&lt;h3&gt;contributing&lt;/h3&gt; 
+&lt;p&gt;if you&#39;re considering contributing to cobalt, first of all, thank you! check the &lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/CONTRIBUTING.md&quot;&gt;contribution guidelines here&lt;/a&gt; before getting started, they&#39;ll help you do your best right away.&lt;/p&gt; 
+&lt;h3&gt;thank you&lt;/h3&gt; 
+&lt;p&gt;cobalt is sponsored by &lt;a href=&quot;https://royalehosting.net/?partner=cobalt&quot;&gt;royalehosting.net&lt;/a&gt;. a part of our infrastructure is hosted on their network. we really appreciate their kindness and support!&lt;/p&gt; 
+&lt;h3&gt;licenses&lt;/h3&gt; 
+&lt;p&gt;for relevant licensing information, see the &lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/api/README.md&quot;&gt;api&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/web/README.md&quot;&gt;web&lt;/a&gt; READMEs. unless specified otherwise, the remainder of this repository is licensed under &lt;a href=&quot;https://raw.githubusercontent.com/imputnet/cobalt/main/LICENSE&quot;&gt;AGPL-3.0&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/32844b61b01d746246b096f24756553bc97d0a76f0a848a20a1106b21edb181e/imputnet/cobalt" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Bittu5134/LOTM-Reader</title>
+      <link>https://github.com/Bittu5134/LOTM-Reader</link>
+      <description>&lt;p&gt;A community driven webnovel reader built with Svelte, with offline caching and a tons of optimizations. Built to be faster and cleaner than what was out there.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://beyonder.pages.dev&quot;&gt;https://beyonder.pages.dev&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Bittu5134/LOTM-Reader/main/.github/banner.jpg&quot; alt=&quot;title image&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;LOTM-Reader&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;LOTM-Reader&lt;/strong&gt; is a fan-made project hosting unofficial fan translations of the popular webnovel &lt;em&gt;&lt;strong&gt;Lord of the Mysteries!&lt;/strong&gt;&lt;/em&gt;&lt;/p&gt; 
+&lt;p&gt;🌐: &lt;a href=&quot;https://beyonder.pages.dev&quot;&gt;beyonder.pages.dev&lt;/a&gt; &lt;br /&gt; 📥: &lt;a href=&quot;https://beyonder.pages.dev/download/&quot;&gt;Download EPUBs&lt;/a&gt; &lt;br /&gt; ⭐: Don&#39;t forget to star this repository!&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://img.shields.io/github/actions/workflow/status/bittu5134/lotm-reader/deploy-website.yml?style=flat-square&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/Bittu5134/LOTM-Reader/deploy-website.yml?branch=main&amp;amp;style=flat-square&quot; alt=&quot;GitHub Actions Workflow Status&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/discussions/Bittu5134/LOTM-Reader?style=flat-square&quot; alt=&quot;GitHub Discussions&quot; /&gt; &lt;img src=&quot;https://img.shields.io/github/stars/Bittu5134/LOTM-Reader?style=flat-square&quot; alt=&quot;GitHub Repo stars&quot; /&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;📖 About LOTM&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Lord of the Mysteries (LOTM)&lt;/strong&gt; is a masterpiece of steampunk, fantasy, and eldritch horror following Zhou Mingrui, who transmigrates into the body of Klein Moretti in a Victorian-era world filled with machinery, cannons, and Beyonders. The series includes:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FBittu5134%2FLOTM-Reader%2Fraw%2Frefs%2Fheads%2Fmain%2Fwebsite%2Fsrc%2Flib%2Fmeta.json&amp;amp;query=%24.lotm.webnovel.length&amp;amp;suffix=%20Chapters&amp;amp;style=flat-square&amp;amp;label=LOTM&quot; alt=&quot;Dynamic JSON Badge&quot; /&gt; &lt;br /&gt; &lt;img src=&quot;https://img.shields.io/badge/dynamic/json?url=https%3A%2F%2Fgithub.com%2FBittu5134%2FLOTM-Reader%2Fraw%2Frefs%2Fheads%2Fmain%2Fwebsite%2Fsrc%2Flib%2Fmeta.json&amp;amp;query=%24.coi.webnovel.length&amp;amp;suffix=%20Chapters&amp;amp;style=flat-square&amp;amp;label=COI&amp;amp;color=e87952&quot; alt=&quot;Dynamic JSON Badge&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Learn more about the author, &lt;strong&gt;Cuttlefish That Loves Diving&lt;/strong&gt;:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://my.qidian.com/author/4362088&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Qidian-Profile-BD2C00?style=for-the-badge&amp;amp;logo=book&amp;amp;logoColor=white&quot; alt=&quot;Qidian Profile&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://www.weibo.com/u/3898277412&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Author%20Cuttlefish-red?style=for-the-badge&amp;amp;logo=sinaweibo&amp;amp;logoColor=white&quot; alt=&quot;Author Weibo&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;✨ Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Custom Themes:&lt;/strong&gt; Multiple themes to fit the atmosphere of the stories.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;High-Quality Illustrations:&lt;/strong&gt; Official art and community-curated illustrations have been added to the site to enhance immersion.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Reader Settings:&lt;/strong&gt; Customize your reading experience with adjustable font size, line height, and more.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;EPUB Downloads:&lt;/strong&gt; Download the complete volumes as EPUB files for offline reading on your Kindle, Kobo, or phone.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Community Driven:&lt;/strong&gt; The website is built with the latest fan translations and can be edited by the community. That includes you, too!&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Privacy Focused:&lt;/strong&gt; The website does &lt;strong&gt;NOT&lt;/strong&gt; have any kind of trackers or ads. We prefer the purity of the Beyonder characteristics.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;🤝 Contributing&lt;/h2&gt; 
+&lt;p&gt;We welcome contributions from the community! Whether it&#39;s fixing typos, improving formatting, or adding new features.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Bittu5134/LOTM-Reader/main/contributing.md&quot;&gt;&lt;strong&gt;Contribution Guide&lt;/strong&gt;&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Have questions? Join our &lt;a href=&quot;https://discord.gg/XmzJVsyuTQ&quot;&gt;Discord Server&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;📥 Download EPUBs&lt;/h2&gt; 
+&lt;p&gt;You can download the complete volumes as EPUB files for offline reading. All EPUBs include high-quality illustrations and are compatible with most e-readers.&lt;/p&gt; 
+&lt;p&gt;📚 &lt;strong&gt;&lt;a href=&quot;https://beyonder.pages.dev/download/&quot;&gt;Go to Download Page&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Official Links&lt;/h2&gt; 
+&lt;h3&gt;Novel&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.webnovel.com/book/lord-of-mysteries_110227330062345055&quot;&gt;Official English Translation (Webnovel)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Circle of Inevitability&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.webnovel.com/book/lord-of-mysteries-2-circle-of-inevitability_25759730405792805&quot;&gt;Book 2 English (Webnovel)&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Donghua (Anime)&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://wetv.vip/en/play/7o961rwa3bmfgob-Lord_of_Mysteries&quot;&gt;WeTV Trailer&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://anilist.co/anime/137667/Guimi-Zhi-Zhu&quot;&gt;Anilist Entry&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://myanimelist.net/anime/49818/Guimi_Zhi_Zhu__Xiaochou_Pian&quot;&gt;MyAnimeList Entry&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;💖 Support the Project&lt;/h2&gt; 
+&lt;p&gt;If you enjoy LOTM-Reader and would like to support the project server costs, you can donate using &lt;strong&gt;Crypto&lt;/strong&gt;, &lt;strong&gt;Gift Cards&lt;/strong&gt;, or &lt;strong&gt;Steam games&lt;/strong&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://beyonder.pages.dev/donate.html&quot;&gt;Visit Donation Page&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;You can also contact me directly via Discord &lt;strong&gt;@bittu5134&lt;/strong&gt; or email &lt;a href=&quot;mailto:ssr7a5134@gmail.com&quot;&gt;ssr7a5134@gmail.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;📜 Sources&lt;/h2&gt; 
+&lt;p&gt;The content is sourced from fan translations and online communities, including:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://lordofthemysteries.fandom.com/wiki/Lord_of_the_Mysteries_Wiki&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/WIKI-%23032133?style=for-the-badge&amp;amp;logo=fandom&amp;amp;logoColor=fff&quot; alt=&quot;Fandom Wiki&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.reddit.com/r/LordofTheMysteries/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Reddit-FF4500?style=for-the-badge&amp;amp;logo=reddit&amp;amp;logoColor=white&quot; alt=&quot;Reddit&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/lordofthemysteries&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Official%20Discord-5865F2?style=for-the-badge&amp;amp;logo=discord&amp;amp;logoColor=white&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;⚖️ Legal Information&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;We do not own the rights to the original novel.&lt;/strong&gt; All translations available on this page are fan translations sourced from the public Internet.&lt;/p&gt; 
+&lt;p&gt;Support the creator, &lt;strong&gt;Cuttlefish That Loves Diving&lt;/strong&gt;, by purchasing official releases through the links above.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Bittu5134/LOTM-Reader/main/license.md&quot;&gt;View Full License &amp;amp; Credits&lt;/a&gt;&lt;/strong&gt; - Includes art credits and DMCA info.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Bittu5134/LOTM-Reader/main/license.md#-website-code-license&quot;&gt;Source Code License&lt;/a&gt;&lt;/strong&gt; - MIT License for the website engine.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For any inquiries, reach out via email at &lt;a href=&quot;mailto:%20ssr7a5134@gmail.com&quot;&gt;ssr7a5134@gmail.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;⭐ Star History&lt;/h2&gt; 
+&lt;a href=&quot;https://www.star-history.com/#Bittu5134/LOTM-Reader&amp;amp;Date&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://api.star-history.com/svg?repos=Bittu5134/LOTM-Reader&amp;amp;type=Date&amp;amp;theme=dark&quot; /&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://api.star-history.com/svg?repos=Bittu5134/LOTM-Reader&amp;amp;type=Date&quot; /&gt; 
+  &lt;img alt=&quot;Star History Chart&quot; src=&quot;https://api.star-history.com/svg?repos=Bittu5134/LOTM-Reader&amp;amp;type=Date&quot; /&gt; 
+ &lt;/picture&gt; &lt;/a&gt; 
+&lt;a href=&quot;https://github.com/Bittu5134/LOTM-Reader/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=Bittu5134/LOTM-Reader&quot; /&gt; &lt;/a&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/69d237b953980ac42a7b3e6364255557b240964dfc752d39471518b6dfc47588/Bittu5134/LOTM-Reader" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>seanmorley15/AdventureLog</title>
+      <link>https://github.com/seanmorley15/AdventureLog</link>
+      <description>&lt;p&gt;Self-hostable travel tracker and trip planner.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://adventurelog.app&quot;&gt;https://adventurelog.app&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/adventurelog.png&quot; alt=&quot;AdventureLog logo&quot; width=&quot;120&quot; /&gt; 
+ &lt;h1&gt;AdventureLog&lt;/h1&gt; 
+ &lt;p&gt;&lt;strong&gt;The ultimate travel companion — log where you&#39;ve been, plan what&#39;s next, and see your whole world on one map.&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-GPLv3-blue.svg?sanitize=true&quot; alt=&quot;License: GPL v3&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://adventurelog.app/docs/install/getting_started.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Docker-Ready-2496ED?logo=docker&amp;amp;logoColor=white&quot; alt=&quot;Docker&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://adventurelog.app/docs/install/getting_started.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Self--Hosted-Yes-success&quot; alt=&quot;Self-Hosted&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/wRbQ9Egr8C&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Discord-Join-5865F2?logo=discord&amp;amp;logoColor=white&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/seanmorley15/AdventureLog/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/seanmorley15/AdventureLog?style=social&quot; alt=&quot;GitHub stars&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://demo.adventurelog.app&quot;&gt;Live Demo&lt;/a&gt; · &lt;a href=&quot;https://adventurelog.app/docs/install/getting_started.html&quot;&gt;&lt;strong&gt;Get Started&lt;/strong&gt;&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/#quick-start&quot;&gt;Quick Install&lt;/a&gt; · &lt;a href=&quot;https://adventurelog.app&quot;&gt;Documentation&lt;/a&gt; · &lt;a href=&quot;https://discord.gg/wRbQ9Egr8C&quot;&gt;Discord&lt;/a&gt; · &lt;a href=&quot;https://seanmorley.com/sponsor&quot;&gt;Support the project&lt;/a&gt;&lt;/p&gt; 
+ &lt;br /&gt; 
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt; &lt;strong&gt;📍 Log travel experiences&lt;/strong&gt;&lt;br /&gt; Locations, visits, photos, trails &amp;amp; activities &lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt; &lt;strong&gt;✈️ Plan trips&lt;/strong&gt;&lt;br /&gt; Itineraries, checklists, calendar &amp;amp; shared planning &lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt; &lt;strong&gt;🌍 Track the world&lt;/strong&gt;&lt;br /&gt; Countries, regions, cities &amp;amp; travel stats &lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt; &lt;strong&gt;🔒 Own your data&lt;/strong&gt;&lt;br /&gt; Open source, self-hosted, GPL-3.0 &lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;h2&gt;What is AdventureLog?&lt;/h2&gt; 
+&lt;p&gt;AdventureLog is a &lt;strong&gt;modern open-source travel companion&lt;/strong&gt;. Pin every place you&#39;ve visited, build multi-day trip itineraries, mark countries and regions on an interactive world map, and collaborate with the people you travel with. It integrates with your existing tools and services to help you plan your next unforgettable adventure.&lt;/p&gt; 
+&lt;p&gt;Built for travelers who want to track, plan, and remember their travel experiences.&lt;/p&gt; 
+&lt;h2&gt;See it in action&lt;/h2&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/map.png&quot; alt=&quot;Interactive world map with location pins and visit filters&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt; &lt;em&gt;Interactive world map — every location, visit status, and filter at a glance&lt;/em&gt; &lt;/p&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/adventures.png&quot; alt=&quot;Location list with filters and categories&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt; &lt;strong&gt;Locations&lt;/strong&gt; — browse, filter, categorize &amp;amp; organize &lt;/td&gt; 
+   &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/dashboard.png&quot; alt=&quot;Travel statistics dashboard&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt; &lt;strong&gt;Dashboard&lt;/strong&gt; — travel stats, progress &amp;amp; milestones &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/itinerary.png&quot; alt=&quot;Trip itinerary planner with daily activities and lodging&quot; width=&quot;520&quot; /&gt; &lt;br /&gt; &lt;strong&gt;Trip planning&lt;/strong&gt; — itineraries, notes &amp;amp; daily activities &lt;/p&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/countries.png&quot; alt=&quot;World travel book with countries visited&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt; &lt;strong&gt;World travel&lt;/strong&gt; — countries, regions &amp;amp; cities &lt;/td&gt; 
+   &lt;td width=&quot;50%&quot; align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/trip_stats.png&quot; alt=&quot;Trip statistics with geographic breakdown and timeline&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt; &lt;strong&gt;Trip stats&lt;/strong&gt; — costs, geography &amp;amp; per-trip milestones &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;More screenshots&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/details.png&quot; alt=&quot;Location detail view with notes and rating&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt;&lt;em&gt;Rich location details — dates, notes, ratings &amp;amp; visit history&lt;/em&gt; &lt;/p&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/map-satellite.png&quot; alt=&quot;3D satellite map view of travel locations&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt;&lt;em&gt;3D satellite view — explore your travel history immersively&lt;/em&gt; &lt;/p&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/brand/screenshots/regions.png&quot; alt=&quot;Regional map for tracking sub-country travel&quot; width=&quot;100%&quot; /&gt; &lt;br /&gt;&lt;em&gt;Regions — drill into states, provinces &amp;amp; territories&lt;/em&gt; &lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;/th&gt; 
+   &lt;th&gt;Feature&lt;/th&gt; 
+   &lt;th&gt;What you get&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;📍&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Locations &amp;amp; visits&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Pin places on the map with dates, notes, photos, categories, tags, and multi-visit history&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;🗺️&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Interactive map&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Filter by visited / planned, add locations by click, 2D &amp;amp; 3D views&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;✈️&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Trip itineraries&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Multi-day collections with flights, lodging, checklists, links &amp;amp; calendar views&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;🤝&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Collaboration&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Share locations and itineraries via public links or invite other users to edit together&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;🌍&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;World travel book&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Track countries, regions, and cities — with stats and progress milestones&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;🥾&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Trails &amp;amp; activities&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Attach hiking routes, GPX tracks, distance, elevation &amp;amp; outdoor activity logs&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;🔍&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Search &amp;amp; organize&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Full-text search, custom categories, public/private visibility&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;🔐&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;Security&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;MFA, API keys, social auth (Google, GitHub, Authelia &amp;amp; more)&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Integrations&lt;/h3&gt; 
+&lt;p&gt;Connect the tools you already use:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Integration&lt;/th&gt; 
+   &lt;th&gt;Purpose&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/configuration/immich_integration.html&quot;&gt;&lt;strong&gt;Immich&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Link photos from your self-hosted media library&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/configuration/strava_integration.html&quot;&gt;&lt;strong&gt;Strava&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Import activities with GPX tracks &amp;amp; stats&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/configuration/endurain_integration.html&quot;&gt;&lt;strong&gt;Endurain&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Import activities with GPX tracks &amp;amp; stats&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/configuration/wanderer_integration.html&quot;&gt;&lt;strong&gt;Wanderer&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Attach trails with distance &amp;amp; elevation data&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/configuration/google_maps_integration.html&quot;&gt;&lt;strong&gt;Google Maps&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Geocoding &amp;amp; location search&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Why AdventureLog?&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;strong&gt;AdventureLog&lt;/strong&gt;&lt;/th&gt; 
+   &lt;th&gt;Typical closed travel apps&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Ownership&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Your data on your server&lt;/td&gt; 
+   &lt;td&gt;Locked in a vendor cloud&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Cost&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Free to self-host (GPL-3.0)&lt;/td&gt; 
+   &lt;td&gt;Subscriptions &amp;amp; upsells&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Privacy&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;You control access &amp;amp; sharing&lt;/td&gt; 
+   &lt;td&gt;Opaque data policies&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Customization&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Open source — extend &amp;amp; integrate&lt;/td&gt; 
+   &lt;td&gt;Fixed feature set&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Scope&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Locations, itineraries &amp;amp; world travel in one app&lt;/td&gt; 
+   &lt;td&gt;Split across multiple tools&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Quick start&lt;/h2&gt; 
+&lt;p&gt;Not sure which setup fits you? The &lt;strong&gt;&lt;a href=&quot;https://adventurelog.app/docs/install/getting_started.html&quot;&gt;Getting Started guide&lt;/a&gt;&lt;/strong&gt; covers every install path — Docker, homelab NAS, Kubernetes, reverse proxies, and more.&lt;/p&gt; 
+&lt;p&gt;The fastest way to get running — one container, one port:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl -sSL https://get.adventurelog.app | bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or follow the &lt;a href=&quot;https://adventurelog.app/docs/install/standard.html&quot;&gt;Standard Deployment guide&lt;/a&gt; for Docker Compose.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Requirements:&lt;/strong&gt; Docker Engine + Compose v2 · 2 GB RAM on first boot · Linux, VPS, homelab, or macOS&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;I want to…&lt;/th&gt; 
+   &lt;th&gt;Guide&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;See all install options&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/install/getting_started.html&quot;&gt;&lt;strong&gt;Getting Started&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Try before installing&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://demo.adventurelog.app&quot;&gt;Live demo&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;One-command install&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/install/quick_start.html&quot;&gt;Quick Start Installer&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Deploy on Proxmox / Synology / Unraid&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/install/getting_started.html&quot;&gt;Platform guides&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Run on Kubernetes&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/install/kustomize.html&quot;&gt;Kustomize guide&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Learn the app&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://adventurelog.app/docs/usage/usage.html&quot;&gt;Usage guide&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Default login is &lt;code&gt;admin&lt;/code&gt; / &lt;code&gt;admin&lt;/code&gt; — it&#39;s recommended to change it immediately after first sign-in.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h2&gt;Tech stack&lt;/h2&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Frontend&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://svelte.dev/&quot;&gt;SvelteKit&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://tailwindcss.com/&quot;&gt;Tailwind CSS&lt;/a&gt; + &lt;a href=&quot;https://daisyui.com/&quot;&gt;DaisyUI&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://github.com/dimfeld/svelte-maplibre/&quot;&gt;Svelte MapLibre&lt;/a&gt; (MapLibre GL)&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Backend&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://www.djangoproject.com/&quot;&gt;Django&lt;/a&gt; + &lt;a href=&quot;https://www.django-rest-framework.org/&quot;&gt;Django REST Framework&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://postgis.net/&quot;&gt;PostGIS&lt;/a&gt; / PostgreSQL&lt;/li&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://allauth.org/&quot;&gt;AllAuth&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Deployment&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Docker &amp;amp; Docker Compose (recommended)&lt;/li&gt; 
+  &lt;li&gt;Kubernetes (Kustomize)&lt;/li&gt; 
+  &lt;li&gt;Reverse proxy guides for &lt;a href=&quot;https://adventurelog.app/docs/install/nginx_proxy_manager.html&quot;&gt;Nginx&lt;/a&gt;, &lt;a href=&quot;https://adventurelog.app/docs/install/traefik.html&quot;&gt;Traefik&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://adventurelog.app/docs/install/caddy.html&quot;&gt;Caddy&lt;/a&gt;&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Roadmap&lt;/h2&gt; 
+&lt;p&gt;Track what&#39;s coming next on the &lt;a href=&quot;https://github.com/users/seanmorley15/projects/5&quot;&gt;public roadmap →&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Contributions are welcome! See &lt;a href=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/CONTRIBUTING.md&quot;&gt;&lt;code&gt;CONTRIBUTING.md&lt;/code&gt;&lt;/a&gt; to get started.&lt;/p&gt; 
+&lt;a href=&quot;https://github.com/seanmorley15/AdventureLog/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=seanmorley15/AdventureLog&quot; alt=&quot;Contributors&quot; /&gt; &lt;/a&gt; 
+&lt;h3&gt;Translation&lt;/h3&gt; 
+&lt;p&gt;Help translate AdventureLog on &lt;a href=&quot;https://hosted.weblate.org/projects/adventurelog/&quot;&gt;Weblate&lt;/a&gt;:&lt;/p&gt; 
+&lt;a href=&quot;https://hosted.weblate.org/engage/adventurelog/&quot;&gt; &lt;img src=&quot;https://hosted.weblate.org/widget/adventurelog/multi-auto.svg?sanitize=true&quot; alt=&quot;Translation status&quot; /&gt; &lt;/a&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Distributed under the &lt;a href=&quot;https://raw.githubusercontent.com/seanmorley15/AdventureLog/main/LICENSE&quot;&gt;GNU General Public License v3.0&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;About the creator&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://seanmorley.com&quot;&gt;Sean Morley&lt;/a&gt;&lt;/strong&gt; — I&#39;m an Electrical Engineering student at UConn, an open-source developer, and an avid traveler. AdventureLog started as my simple idea to track where I&#39;ve been and grew into a full travel companion built for people who love exploring the world. I&#39;m passionate about open-source software and building tools that solve real problems for real people. &lt;strong&gt;Feel free to reach out to me directly via the info on my website if you have any questions or feedback! 😃&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Want the full origin story? Read the &lt;a href=&quot;https://adventurelog.app/docs/changelogs/development_timeline.html&quot;&gt;Development Timeline&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Acknowledgements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Logo design by &lt;a href=&quot;https://github.com/nordtektiger&quot;&gt;nordtektiger&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;World geography data from &lt;a href=&quot;https://github.com/dr5hn/countries-states-cities-database&quot;&gt;dr5hn/countries-states-cities-database&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Supporters&lt;/h2&gt; 
+&lt;p&gt;AdventureLog is built and maintained as an open-source project. These supporters help make continued development possible.&lt;/p&gt; 
+&lt;h3&gt;Individual supporters&lt;/h3&gt; 
+&lt;p&gt;Huge thanks to Veymax, &lt;a href=&quot;https://github.com/Solution-Partner-Mathias-Ponnwitz&quot;&gt;Mathias Ponnwitz&lt;/a&gt;, &lt;a href=&quot;https://github.com/nebriv&quot;&gt;nebriv&lt;/a&gt;, &lt;a href=&quot;https://github.com/Tokynet&quot;&gt;Miguel Cruz&lt;/a&gt;, and &lt;a href=&quot;https://x.com/victor_butler&quot;&gt;Victor Butler&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Become a supporter&lt;/h3&gt; 
+&lt;p&gt;Your support funds new features, infrastructure, and continued open-source development.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://seanmorley.com/sponsor&quot;&gt;Become a Sponsor →&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;p&gt;&lt;strong&gt;Happy travels!&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/seanmorley15/AdventureLog/stargazers&quot;&gt;⭐ Star us on GitHub&lt;/a&gt; · &lt;a href=&quot;https://adventurelog.app/docs/install/getting_started.html&quot;&gt;Get Started&lt;/a&gt; · &lt;a href=&quot;https://github.com/seanmorley15/AdventureLog/issues&quot;&gt;Report a bug&lt;/a&gt; · &lt;a href=&quot;https://discord.gg/wRbQ9Egr8C&quot;&gt;Join Discord&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/779449791/d2c92e75-cc4a-41a2-92a1-bb7f60cfa4a7" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>PuruVJ/macos-web</title>
+      <link>https://github.com/PuruVJ/macos-web</link>
+      <description>&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://macos-web.app&quot;&gt;https://macos-web.app&lt;/a&gt;&lt;/p&gt;&lt;blockquote&gt; 
+ &lt;p&gt;🛑🛑 Note: This is the new iteration of macOS Web written in Svelte. Previous version written in Preact is available at &lt;a href=&quot;https://github.com/puruvj/macos-preact&quot;&gt;PuruVJ/macos-preact&lt;/a&gt; 🛑🛑&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h1&gt;Mac OS Ventura Web&lt;/h1&gt; 
+&lt;p&gt;This open source project aims to replicate some of the Mac OS(Monterey, at the time of writing)&#39;s desktop experience on web, using Svelte!&lt;/p&gt; 
+&lt;p&gt;🔗🔗 &lt;a href=&quot;https://macos.now.sh&quot;&gt;macos-web.app&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Why&lt;/h1&gt; 
+&lt;p&gt;I&#39;ve always been very fascinated with macOS, and have never owned a Mac/book. So I&#39;m making the most beautiful aspect of macOS, its desktop, myself. For web. Inspired from &lt;a href=&quot;https://winxp.now.sh/&quot;&gt;WinXP&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Stack&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Framework - Svelte (Earlier Preact)&lt;/li&gt; 
+ &lt;li&gt;Bundler - Vite, for super fast development.&lt;/li&gt; 
+ &lt;li&gt;Component Library - None!!&lt;/li&gt; 
+ &lt;li&gt;Styling Solution - SCSS.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;When will it be ready?&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://i.imgur.com/6xfbPzs.gif&quot; alt=&quot;Who knows?&quot; /&gt;&lt;/p&gt; 
+&lt;h1&gt;Can I contribute?&lt;/h1&gt; 
+&lt;p&gt;Sure, open an issue, point out errors, and what not. Wanna fix something yourselves, you&#39;re welcome to open a PR and I appreciate it.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://vercel.com/?utm_source=purus-projects&amp;amp;utm_campaign=oss&quot;&gt;&lt;img src=&quot;https://www.datocms-assets.com/31049/1618983297-powered-by-vercel.svg?sanitize=true&quot; alt=&quot;Hosted on Vercel&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c4f6e9ab26814135f2dd07f697d3d06baed3165dbcce5564823e213c16f731d6/PuruVJ/macos-web" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>kagisearch/kite-public</title>
+      <link>https://github.com/kagisearch/kite-public</link>
+      <description>&lt;p&gt;Open source repository for Kite, news app by Kagi.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://news.kagi.com&quot;&gt;https://news.kagi.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Kagi News - News. Elevated.&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://choosealicense.com/licenses/mit/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-MIT-green.svg?sanitize=true&quot; alt=&quot;MIT License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/4.0/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-CC%20BY--NC%204.0-lightgrey.svg?sanitize=true&quot; alt=&quot;CC BY-NC 4.0&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;This repository contains public files for &lt;a href=&quot;https://kite.kagi.com&quot;&gt;Kagi News&lt;/a&gt;, news app for people who want a healthy news diet, developed by &lt;a href=&quot;https://kagi.com&quot;&gt;Kagi&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Kagi News is designed for people who want to stay informed without getting overwhelmed. We provide daily updates of the most important news stories, from carefully curated sources and summarized by advanced language models to give you the essential information you need. We strive for diversity and transparency of resources and welcome your contributions to widen perspectives. This multi-source approach helps reveal the full picture beyond any single viewpoint.&lt;/p&gt; 
+&lt;p&gt;Most of what powers Kagi News is open sourced and is found in this repository.&lt;/p&gt; 
+&lt;p&gt;This includes&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Kagi News web app&lt;/li&gt; 
+ &lt;li&gt;Community curated feeds&lt;/li&gt; 
+ &lt;li&gt;Media information&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Core Principles&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Updated only once per day - no endless scrolling (12PM UTC)&lt;/li&gt; 
+ &lt;li&gt;Facts and perspectives, opinion-free&lt;/li&gt; 
+ &lt;li&gt;Zero tracking, zero ads&lt;/li&gt; 
+ &lt;li&gt;Pure signal, no noise&lt;/li&gt; 
+ &lt;li&gt;Quality over quantity&lt;/li&gt; 
+ &lt;li&gt;Complete news diet in 5 minutes&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can read more about core principles behind Kagi News&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.gwern.net/docs/culture/2010-dobelli.pdf&quot;&gt;Avoid News: Towards a Healthy News Diet&lt;/a&gt; (&lt;a href=&quot;https://news.ycombinator.com/item?id=21430337&quot;&gt;HN discussion&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://www.theguardian.com/media/2013/apr/12/news-is-bad-rolf-dobelli&quot;&gt;News is bad for you&lt;/a&gt; (&lt;a href=&quot;https://news.ycombinator.com/item?id=6894244&quot;&gt;HN discussion&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://fs.blog/2013/12/stop-reading-news/&quot;&gt;Stop reading news&lt;/a&gt; (&lt;a href=&quot;https://news.ycombinator.com/item?id=19084099&quot;&gt;HN discussion&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you prefer to watch a short video, check this Ted talk: &lt;a href=&quot;https://www.youtube.com/watch?v=-miTTiaqFlI&quot;&gt;Four reasons you should stop watching the news | Rolf Dobelli&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Install &amp;amp; run Kagi News front-end&lt;/h1&gt; 
+&lt;p&gt;Kagi News front end is a statically served app and is fully open source.&lt;/p&gt; 
+&lt;p&gt;Here is how to run it locally:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Clone the repository
+git clone https://github.com/kagisearch/kite-public.git
+cd kite-public
+
+# Make sure you have the Node.js LTS version installed.
+node -v
+
+# Install dependencies
+npm install
+
+# Run development server
+npm run dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Check out the Vite documentation on how a production build works: &lt;a href=&quot;https://vite.dev/guide/static-deploy.html&quot;&gt;https://vite.dev/guide/static-deploy.html&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Kagi News front-end uses Kagi News application data that can be found at &lt;a href=&quot;https://kite.kagi.com/kite.json&quot;&gt;kite.kagi.com/kite.json&lt;/a&gt; (explore other files from there). Note that kite.json and files referenced by it are licensed under &lt;a href=&quot;https://creativecommons.org/licenses/by-nc/4.0/&quot;&gt;CC BY-NC license&lt;/a&gt;. This means that this data can be used free of charge (with attribution and for non-commercial use). If you would like to license this data for commercial use let us know through &lt;a href=&quot;mailto:support@kagi.com&quot;&gt;support@kagi.com&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Kagi News web app is just one example front-end that one can run on top of the Kagi News data. We encourage others to contribute improvements to the Kagi News frontend.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;We would also love to see what kind of custom front-ends you can create on top of Kagi News data!&lt;/strong&gt; Feel free to share them with us and others by editing this Readme file.&lt;/p&gt; 
+&lt;h2&gt;Editing categories&lt;/h2&gt; 
+&lt;p&gt;To edit community curated categories, submit a pull request editing &lt;code&gt;kite_feeds.json&lt;/code&gt;. If you do not know how to do that, you can &lt;a href=&quot;https://github.com/kagisearch/kite-public/issues/new/choose&quot;&gt;open an issue&lt;/a&gt; and share the feeds you want to add there.&lt;/p&gt; 
+&lt;p&gt;This file contains RSS feeds for various categories.&lt;/p&gt; 
+&lt;p&gt;To add a new category or modify existing ones, follow this structure:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-jsonc&quot;&gt;{
+  &quot;Category Name&quot;: {
+    &quot;feeds&quot;: [
+      &quot;https://example.com/rss-feed-1&quot;,
+      &quot;https://example.com/rss-feed-2&quot;,
+      // ...
+    ],
+  },
+  &quot;Another Category&quot;: {
+    &quot;feeds&quot;: [
+      &quot;https://another-example.com/rss-feed-1&quot;,
+      &quot;https://another-example.com/rss-feed-2&quot;,
+      // ...
+    ],
+  },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Adding a new category&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Create a new object with the category name as the key&lt;/li&gt; 
+ &lt;li&gt;Add a &quot;feeds&quot; array containing the RSS feed URLs for that category&lt;/li&gt; 
+ &lt;li&gt;Ensure proper JSON formatting (commas between objects, no trailing comma)&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;All categories are created equal and will appear as top level categories in the Kagi News app.&lt;/p&gt; 
+&lt;p&gt;Ideas for categories:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Local news (city/state level)&lt;/li&gt; 
+ &lt;li&gt;Regional news (country/region)&lt;/li&gt; 
+ &lt;li&gt;Topical news (health, machine learning, aviation ...)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Guidelines for adding RSS feeds&lt;/h3&gt; 
+&lt;p&gt;Kagi News does not scrape websites, but only publicly available RSS feeds.&lt;/p&gt; 
+&lt;p&gt;When adding an RSS feed make sure to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Check that feed is working and has recent (daily) content.&lt;/li&gt; 
+ &lt;li&gt;Choose sources that have high quality content. Do not use low quality/gossip/SEO content.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Feeds can be in any language.&lt;/strong&gt; Kagi News translates all content automatically, so a single category can (and should) contain feeds in multiple languages. Do not create separate categories for different languages (e.g. &quot;Switzerland (DE)&quot; and &quot;Switzerland (FR)&quot;) — keep everything in one category. The &lt;code&gt;source_language&lt;/code&gt; field in &lt;code&gt;kite_feeds.json&lt;/code&gt; should be set to the language used by the majority of feeds; its exact value is not critical.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Important&lt;/h3&gt; 
+&lt;p&gt;We require at least &lt;strong&gt;25 feeds&lt;/strong&gt; for a category in order to surface it in Kagi News. This is to make sure we maintain high level of quality of events covered in the app. The more high quality feeds exist for a category, the better Kagi News coverage will be.&lt;/p&gt; 
+&lt;p&gt;Kagi News does not scrape news websites, it only uses publicly available information in RSS feeds.&lt;/p&gt; 
+&lt;h2&gt;Core Feeds&lt;/h2&gt; 
+&lt;p&gt;Kagi News&#39;s official core feeds are fully open source and available in &lt;code&gt;core_feeds.py&lt;/code&gt;. These feeds cover essential news categories and form the foundation of Kagi News&#39;s coverage. While primarily maintained by the Kagi team for quality and consistency, they are open to community contributions - you can submit pull requests to suggest improvements or additions to these core feeds.&lt;/p&gt; 
+&lt;p&gt;Core categories include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;World News&lt;/li&gt; 
+ &lt;li&gt;Business&lt;/li&gt; 
+ &lt;li&gt;Technology&lt;/li&gt; 
+ &lt;li&gt;Science&lt;/li&gt; 
+ &lt;li&gt;Sports&lt;/li&gt; 
+ &lt;li&gt;Culture&lt;/li&gt; 
+ &lt;li&gt;Politics&lt;/li&gt; 
+ &lt;li&gt;And many more specialized topics&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The combination of these core feeds and community-curated feeds ensures comprehensive, diverse news coverage from multiple perspectives.&lt;/p&gt; 
+&lt;h2&gt;Guidelines for editing Media information&lt;/h2&gt; 
+&lt;p&gt;Kagi News uses contents of &lt;code&gt;media_data.json&lt;/code&gt; to show additional information about sources of information. Initial information has been sources from &lt;a href=&quot;https://statemediamonitor.com/&quot;&gt;https://statemediamonitor.com/&lt;/a&gt; and the classification methodology is explained here &lt;a href=&quot;https://statemediamonitor.com/methodology/&quot;&gt;https://statemediamonitor.com/methodology/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Feel free to add additional information (by editing &lt;code&gt;media_data.json&lt;/code&gt;) both for privately owned and state funded media organization. Add your sources of information in the pull request.&lt;/p&gt; 
+&lt;h2&gt;Guidelines for editing Content Filters&lt;/h2&gt; 
+&lt;p&gt;Kagi News allows users to blur or hide articles on topics they prefer not to see. These personal content filters are defined in &lt;code&gt;src/lib/data/contentFilters.json&lt;/code&gt; and are open source and community editable.&lt;/p&gt; 
+&lt;p&gt;To edit content filters, submit a pull request editing &lt;code&gt;contentFilters.json&lt;/code&gt;. Each filter follows this structure:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;id&quot;: &quot;filter_id&quot;,
+  &quot;label&quot;: &quot;Display Name&quot;,
+  &quot;keywords&quot;: {
+    &quot;default&quot;: [&quot;keyword1&quot;, &quot;keyword2&quot;],
+    &quot;en&quot;: [&quot;keyword1&quot;, &quot;keyword2&quot;],
+    &quot;pt&quot;: [&quot;palavra1&quot;, &quot;palavra2&quot;],
+    // ... other languages
+  }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;When adding or modifying filters:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Use lowercase for all keywords&lt;/li&gt; 
+ &lt;li&gt;Include translations for all supported languages&lt;/li&gt; 
+ &lt;li&gt;Choose descriptive, clear labels for filter categories&lt;/li&gt; 
+ &lt;li&gt;Test that keywords accurately match the intended topic&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Feel free to add new filter categories or improve existing ones by adding relevant keywords in multiple languages.&lt;/p&gt; 
+&lt;h2&gt;Custom front-ends&lt;/h2&gt; 
+&lt;h3&gt;Raycast&lt;/h3&gt; 
+&lt;p&gt;&lt;a title=&quot;Install kagi-news Raycast Extension&quot; href=&quot;https://www.raycast.com/mickaphd/kagi-news&quot;&gt;&lt;img src=&quot;https://www.raycast.com/mickaphd/kagi-news/install_button@2x.png?v=1.1&quot; height=&quot;64&quot; style=&quot;height: 64px;&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Pebble&lt;/h3&gt; 
+&lt;p&gt;&lt;a title=&quot;Install Kagi News Pebble Application&quot; href=&quot;https://apps.rebble.io/en_US/application/692b3f0549be450009b545ce&quot;&gt;&lt;img src=&quot;https://assets2.rebble.io/720x320/692d3f44d7dcba0009f1b174&quot; height=&quot;100&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/be5aecfcaf7dfd2ac6c3fabbc9b5b83d42db2405dd032bde4001333761bef31e/kagisearch/kite-public" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>open-webui/desktop</title>
+      <link>https://github.com/open-webui/desktop</link>
+      <description>&lt;p&gt;Open WebUI Desktop 🌐&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://openwebui.com&quot;&gt;https://openwebui.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Open WebUI Desktop&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/open-webui/desktop?label=version&amp;amp;color=%2331c48d&quot; alt=&quot;Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/open-webui/desktop/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/downloads/open-webui/desktop/total?color=%23764abc&quot; alt=&quot;Downloads&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/open-webui&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/1170866489302188073?label=discord&amp;amp;color=%235865F2&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/open-webui/desktop/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-AGPL--3.0-blue&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/open-webui/desktop/main/demo.png&quot; alt=&quot;Open WebUI Desktop&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Your AI, right on your desktop. &lt;a href=&quot;https://github.com/open-webui/open-webui&quot;&gt;Open WebUI&lt;/a&gt; as a native app. Run models locally or connect to any server. No Docker, no terminal, no setup. Download, launch, chat.&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;Early Alpha.&lt;/strong&gt; Things move fast and stuff might break. &lt;a href=&quot;https://github.com/open-webui/desktop/issues&quot;&gt;Report bugs&lt;/a&gt; or &lt;a href=&quot;https://discord.gg/open-webui&quot;&gt;come hang out on Discord&lt;/a&gt;.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Download&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Platform&lt;/th&gt; 
+   &lt;th&gt;Installer&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS (Apple Silicon)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui-arm64.dmg&quot;&gt;&lt;strong&gt;Download .dmg&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;macOS (Intel)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui-x64.dmg&quot;&gt;&lt;strong&gt;Download .dmg&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows x64&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui-x64-setup.exe&quot;&gt;&lt;strong&gt;Download .exe&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Windows ARM64&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui-arm64-setup.exe&quot;&gt;&lt;strong&gt;Download .exe&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux x64 (AppImage)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui_x64.AppImage&quot;&gt;&lt;strong&gt;Download .AppImage&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux x64 (Debian/Ubuntu)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui_amd64.deb&quot;&gt;&lt;strong&gt;Download .deb&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux x64 (Snap)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui_amd64.snap&quot;&gt;&lt;strong&gt;Download .snap&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux x64 (Flatpak)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui.flatpak&quot;&gt;&lt;strong&gt;Download .flatpak&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux ARM64 (AppImage)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui_arm64.AppImage&quot;&gt;&lt;strong&gt;Download .AppImage&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Linux ARM64 (Debian/Ubuntu)&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/open-webui/desktop/releases/latest/download/open-webui_arm64.deb&quot;&gt;&lt;strong&gt;Download .deb&lt;/strong&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Internet required on first launch. After that, everything works offline. &lt;a href=&quot;https://github.com/open-webui/desktop/releases&quot;&gt;All releases →&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;How It Works&lt;/h2&gt; 
+&lt;p&gt;🖥️ &lt;strong&gt;Run locally.&lt;/strong&gt; The app runs Open WebUI on your machine. You can optionally enable the built-in llama.cpp engine to download and run models offline. Nothing leaves your computer.&lt;/p&gt; 
+&lt;p&gt;☁️ &lt;strong&gt;Connect remotely.&lt;/strong&gt; Point the app at any Open WebUI server. Switch between multiple connections from the sidebar.&lt;/p&gt; 
+&lt;p&gt;Use both at the same time.&lt;/p&gt; 
+&lt;h2&gt;Highlights&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;⚡ &lt;strong&gt;Spotlight.&lt;/strong&gt; Hit &lt;code&gt;Shift+Cmd+I&lt;/code&gt; (macOS) or &lt;code&gt;Shift+Ctrl+I&lt;/code&gt; (Windows/Linux) to summon a floating chat bar over whatever you&#39;re doing. Drag to screenshot anything on screen.&lt;/li&gt; 
+ &lt;li&gt;🎙️ &lt;strong&gt;Voice input.&lt;/strong&gt; System-wide push-to-talk. Press the shortcut from any app to record, and your speech is transcribed and sent to your chat automatically.&lt;/li&gt; 
+ &lt;li&gt;🧠 &lt;strong&gt;Local inference.&lt;/strong&gt; Optionally run models entirely on your hardware via the built-in llama.cpp engine. Your data never leaves your machine.&lt;/li&gt; 
+ &lt;li&gt;🎯 &lt;strong&gt;One-click setup.&lt;/strong&gt; Launch and connect to a server in seconds. Local models can be enabled from the settings.&lt;/li&gt; 
+ &lt;li&gt;🔌 &lt;strong&gt;Multiple connections.&lt;/strong&gt; Juggle servers and switch between them instantly.&lt;/li&gt; 
+ &lt;li&gt;🔄 &lt;strong&gt;Auto-updates.&lt;/strong&gt; New releases land in the background.&lt;/li&gt; 
+ &lt;li&gt;📡 &lt;strong&gt;Offline-ready.&lt;/strong&gt; No internet needed after initial setup.&lt;/li&gt; 
+ &lt;li&gt;💻 &lt;strong&gt;Cross-platform.&lt;/strong&gt; macOS, Windows, and Linux.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;System Requirements&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;/th&gt; 
+   &lt;th&gt;Local Models&lt;/th&gt; 
+   &lt;th&gt;Remote Only&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Disk&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;5 GB+&lt;/td&gt; 
+   &lt;td&gt;~500 MB&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;RAM&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;16 GB+&lt;/td&gt; 
+   &lt;td&gt;4 GB&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;OS&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;macOS 12+, Windows 10+, modern Linux (glibc 2.28+)&lt;/td&gt; 
+   &lt;td&gt;Same&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Local models need serious RAM (7B ≈ 8 GB, 13B ≈ 16 GB). Lighter machine? Connect to a remote server instead.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Privacy&lt;/h2&gt; 
+&lt;p&gt;No telemetry. No tracking. No phone-home. Your conversations stay on your machine. Period.&lt;/p&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;💬 &lt;a href=&quot;https://discord.gg/open-webui&quot;&gt;Discord&lt;/a&gt; - Come hang out&lt;/li&gt; 
+ &lt;li&gt;🐛 &lt;a href=&quot;https://github.com/open-webui/desktop/issues&quot;&gt;Issues&lt;/a&gt; - Report bugs or request features&lt;/li&gt; 
+ &lt;li&gt;🌐 &lt;a href=&quot;https://github.com/open-webui/open-webui&quot;&gt;Open WebUI&lt;/a&gt; - The main project&lt;/li&gt; 
+ &lt;li&gt;📖 &lt;a href=&quot;https://docs.openwebui.com&quot;&gt;Docs&lt;/a&gt; - Full documentation&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install
+npm run dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/open-webui/desktop/main/CHANGELOG.md&quot;&gt;CHANGELOG.md&lt;/a&gt; for release history. Licensed under &lt;a href=&quot;https://raw.githubusercontent.com/open-webui/desktop/main/LICENSE&quot;&gt;AGPL-3.0&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/1e9478fe2be5a55a944ca747e00b1b21303640f92da382a39488458accb7f774/open-webui/desktop" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>satisfactorymodding/SatisfactoryModManager</title>
+      <link>https://github.com/satisfactorymodding/SatisfactoryModManager</link>
+      <description>&lt;p&gt;A mod manager for easy installation of mods and modloader for Satisfactory&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://docs.ficsit.app/satisfactory-modding/latest/ForUsers/Welcome.html&quot;&gt;https://docs.ficsit.app/satisfactory-modding/latest/ForUsers/Welcome.html&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Satisfactory Mod Manager&lt;/h1&gt; 
+&lt;p&gt;Mod manager for &lt;a href=&quot;https://www.satisfactorygame.com/&quot;&gt;Satisfactory&lt;/a&gt;. Handles all the steps of installing mods for you.&lt;/p&gt; 
+&lt;p&gt;Implemented in &lt;a href=&quot;https://wails.io/&quot;&gt;Wails&lt;/a&gt; using &lt;a href=&quot;https://svelte.dev/&quot;&gt;Svelte&lt;/a&gt; and &lt;a href=&quot;https://www.skeleton.dev/&quot;&gt;Skeleton&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Installation and Usage&lt;/h2&gt; 
+&lt;p&gt;Check the &lt;a href=&quot;https://docs.ficsit.app/satisfactory-modding/latest/index.html#_for_users&quot;&gt;modding documentation&lt;/a&gt; for installation and usage instructions.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;One-click install of any mod&lt;/li&gt; 
+ &lt;li&gt;Automatically downloads the dependencies of any mod&lt;/li&gt; 
+ &lt;li&gt;Mod update notifications&lt;/li&gt; 
+ &lt;li&gt;Mod profiles and sharing of them&lt;/li&gt; 
+ &lt;li&gt;View the mod description in the app&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Reporting issues&lt;/h2&gt; 
+&lt;p&gt;If you have any questions or run into issues, you can ask in the &lt;a href=&quot;https://discord.gg/TShj39G&quot;&gt;Satisfactory Modding discord&lt;/a&gt; for quicker responses than the GitHub issues. If there is any error message, please include it along with the generated debug info zip.&lt;/p&gt; 
+&lt;h2&gt;Troubleshooting&lt;/h2&gt; 
+&lt;p&gt;Check the &lt;a href=&quot;https://docs.ficsit.app/satisfactory-modding/latest/ForUsers/SatisfactoryModManager.html&quot;&gt;modding documentation&lt;/a&gt; for common issues and their solutions.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Profile and installation records are located in &lt;code&gt;%APPDATA%\ficsit\&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Downloads are cached in &lt;code&gt;%LOCALAPPDATA%\ficsit\downloadCache\&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Logs are stored in &lt;code&gt;%LOCALAPPDATA%\SatisfactoryModManager\logs&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Development&lt;/h2&gt; 
+&lt;h3&gt;Dependencies&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://go.dev/doc/install&quot;&gt;Go&lt;/a&gt; (the version in &lt;a href=&quot;https://raw.githubusercontent.com/satisfactorymodding/SatisfactoryModManager/master/.github/actions/setup/action.yml&quot;&gt;the Setup CI action &lt;code&gt;go-version&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pnpm.io/installation&quot;&gt;pnpm&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://nodejs.org/en/download/&quot;&gt;nodejs&lt;/a&gt; (the version in &lt;a href=&quot;https://raw.githubusercontent.com/satisfactorymodding/SatisfactoryModManager/master/.github/actions/setup/action.yml&quot;&gt;the Setup CI action &lt;code&gt;node-version&lt;/code&gt;&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Wails (to install, execute the &lt;code&gt;run&lt;/code&gt; command from &lt;a href=&quot;https://raw.githubusercontent.com/satisfactorymodding/SatisfactoryModManager/master/.github/actions/setup/action.yml&quot;&gt;the Setup CI action&#39;s &lt;code&gt;Install Wails&lt;/code&gt; step&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;IDE of Choice. Goland or VSCode suggested.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Configuration&lt;/h3&gt; 
+&lt;p&gt;If you want to point to the SMR staging API instead of production, edit:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;main.go&lt;/code&gt; to set &lt;code&gt;api-base&lt;/code&gt; to the staging api (&lt;code&gt;https://api.ficsit.dev&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;frontend\.graphqlrc.yml&lt;/code&gt; to set &lt;code&gt;schema&lt;/code&gt; to the staging api (&lt;code&gt;https://api.ficsit.dev/v2/query&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;If you want to use a local build of &lt;a href=&quot;https://github.com/satisfactorymodding/ficsit-cli&quot;&gt;ficsit-cli&lt;/a&gt;, use the &lt;a href=&quot;https://go.dev/wiki/Modules#when-should-i-use-the-replace-directive&quot;&gt;Go &lt;code&gt;replace&lt;/code&gt; directive&lt;/a&gt; (and do not commit the change), for example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-ps1&quot;&gt;go mod edit -replace github.com/satisfactorymodding/ficsit-cli=C:\Git\ficsit-cli
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Development Server&lt;/h3&gt; 
+&lt;p&gt;The development server will hot reload whenever you make changes to the Go or Typescript code.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;wails dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Upon successful launch of the development server, the application will open automatically. The command line output will also include a localhost URL you can visit in your browser if you wish to utilize browser developer tools for debugging.&lt;/p&gt; 
+&lt;p&gt;Make sure you don&#39;t already have a copy of the application running or the command will silently fail.&lt;/p&gt; 
+&lt;p&gt;Although &lt;code&gt;wails dev&lt;/code&gt; should run these commands for you under normal circumstances, you may need to run &lt;code&gt;pnpm graphql-codegen&lt;/code&gt; in the &lt;code&gt;frontend&lt;/code&gt; directory to update the code generated from the SMR API, or run &lt;code&gt;pnpm translations&lt;/code&gt; to update the translation data.&lt;/p&gt; 
+&lt;h3&gt;IDE Configuration&lt;/h3&gt; 
+&lt;p&gt;Make sure that your IDE is connecting with the frontend&#39;s installation of ESLint to get the best experience.&lt;/p&gt; 
+&lt;p&gt;VSCode users, a preconfigured workspace is provided in &lt;code&gt;.vscode/&lt;/code&gt; that allows editing both Go and Svelte files while maintaining correct ESLint functionality.&lt;/p&gt; 
+&lt;h3&gt;Building&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;wails build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To build a version that includes browser devtools (extending production debugging capabilities),:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;wails build -devtools
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Linting&lt;/h3&gt; 
+&lt;p&gt;Install &lt;code&gt;golangci-lint&lt;/code&gt; via the directions &lt;a href=&quot;https://golangci-lint.run/docs/welcome/install/#local-installation&quot;&gt;in the Golangci-lint documentation&lt;/a&gt;, but make sure to install the version specified in &lt;a href=&quot;https://raw.githubusercontent.com/satisfactorymodding/SatisfactoryModManager/master/.github/workflows/push.yml&quot;&gt;&lt;code&gt;.github/workflows/push.yaml&lt;/code&gt;&lt;/a&gt; instead of whatever it suggests.&lt;/p&gt; 
+&lt;p&gt;Then, to run it, use:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;golangci-lint run --fix
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You may also need to manually run the frontend linter. First, navigate to the &lt;code&gt;frontend&lt;/code&gt; directory, then run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pnpm run format
+pnpm run check
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Assorted Development Helpers&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Browser dev tools should automatically open when running &lt;code&gt;wails dev&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;You can open the URL the frontend is being served on in a browser to use browser extensions like the Svelte Devtools. Check the logs for &lt;code&gt;Using DevServer URL:&lt;/code&gt; to find the correct URL.&lt;/li&gt; 
+ &lt;li&gt;You can manually trigger an error popup for testing purposes by running &lt;code&gt;debugCauseErrorMessage(&quot;your message here&quot;)&lt;/code&gt; in the devtools console.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Localization&lt;/h3&gt; 
+&lt;p&gt;If you&#39;d like to help translate and localize SMM to different languages, join our &lt;a href=&quot;https://discord.ficsit.app/&quot;&gt;discord server&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;SMM handles localization through the Tolgee Svelte integration. This allows for &lt;a href=&quot;https://tolgee.io/js-sdk/&quot;&gt;in-context translation&lt;/a&gt; - simply alt-click on a translatable element to open the Tolgee interface.&lt;/p&gt; 
+&lt;p&gt;In order to edit translations in-context, you will need to provide a tolgee API key with edit permissions. You can create an API key for yourself &lt;a href=&quot;https://translate.ficsit.app/projects/4/integrate&quot;&gt;in our Tolgee instance&lt;/a&gt; once you&#39;re added to the project. To supply this API key at development time, create or edit &lt;code&gt;/frontend/.env.local&lt;/code&gt; and supply the key in a similar format as &lt;code&gt;.env&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;The in-context translation screenshot feature requires installing the &lt;em&gt;Tolgee Tools&lt;/em&gt; browser extension. After running &lt;code&gt;wails dev&lt;/code&gt;, open &lt;code&gt;http://localhost:34115/&lt;/code&gt; in your browser of choice to access the application.&lt;/p&gt; 
+&lt;h2&gt;Code Signing Policy&lt;/h2&gt; 
+&lt;!-- markdownlint-disable --&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td colspan=&quot;3&quot;&gt; Free code signing provided by &lt;a href=&quot;https://about.signpath.io/&quot;&gt;SignPath.io&lt;/a&gt;, certificate by &lt;a href=&quot;https://signpath.org/&quot;&gt;SignPath Foundation&lt;/a&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt; Committers and reviewers &lt;/th&gt; 
+   &lt;th&gt; Approvers &lt;/th&gt; 
+   &lt;th&gt; Privacy Policy &lt;/th&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt; &lt;img src=&quot;https://github.com/satisfactorymodding.png?size=24&quot; alt=&quot;Satisfactory Modding Logo&quot; align=&quot;center&quot; /&gt;&lt;a href=&quot;https://github.com/orgs/satisfactorymodding/teams/members&quot;&gt;Organization members&lt;/a&gt; &lt;/td&gt; 
+   &lt;td&gt; &lt;img src=&quot;https://github.com/satisfactorymodding.png?size=24&quot; alt=&quot;Satisfactory Modding Logo&quot; align=&quot;center&quot; /&gt;&lt;a href=&quot;https://github.com/orgs/satisfactorymodding/people?query=role%3Aowner&quot;&gt;Owners&lt;/a&gt; &lt;/td&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://ficsit.app/privacy-policy&quot;&gt;https://ficsit.app/privacy-policy&lt;/a&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;!-- markdownlint-enable --&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ed8f3408f105e8b503bc67cd8012f90e30b6d1e6752deeb04b84690c3c94e7fe/satisfactorymodding/SatisfactoryModManager" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

@@ -1,0 +1,1610 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Objective-C Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of Objective-C on GitHub</description>
+    
+    <pubDate>Sat, 17 Oct 2026 05:24:35 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>opa334/TrollStore</title>
+      <link>https://github.com/opa334/TrollStore</link>
+      <description>&lt;p&gt;Jailed iOS app that can install IPAs permanently with arbitary entitlements and root helpers because it trolls Apple&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;TrollStore&lt;/h1&gt; 
+&lt;p&gt;TrollStore is a permasigned jailed app that can permanently install any IPA you open in it.&lt;/p&gt; 
+&lt;p&gt;It works because of an AMFI/CoreTrust bug where iOS does not correctly verify code signatures of binaries in which there are multiple signers.&lt;/p&gt; 
+&lt;p&gt;Supported versions: 14.0 beta 2 - 16.6.1, 16.7 RC (20H18), 17.0&lt;/p&gt; 
+&lt;h2&gt;Installing TrollStore&lt;/h2&gt; 
+&lt;p&gt;For installing TrollStore, refer to the guides at &lt;a href=&quot;https://ios.cfw.guide/installing-trollstore&quot;&gt;ios.cfw.guide&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;16.7.x (excluding 16.7 RC) and 17.0.1+ will NEVER be supported (unless a third CoreTrust bug is discovered, which is unlikely).&lt;/p&gt; 
+&lt;h2&gt;Updating TrollStore&lt;/h2&gt; 
+&lt;p&gt;When a new TrollStore update is available, a button to install it will appear at the top in the TrollStore settings. After tapping the button, TrollStore will automatically download the update, install it, and respring.&lt;/p&gt; 
+&lt;p&gt;Alternatively (if anything goes wrong), you can download the TrollStore.tar file under Releases and open it in TrollStore, TrollStore will install the update and respring.&lt;/p&gt; 
+&lt;h2&gt;Uninstalling an app&lt;/h2&gt; 
+&lt;p&gt;Apps installed from TrollStore can only be uninstalled from TrollStore itself, tap an app or swipe it to the left in the &#39;Apps&#39; tab to delete it.&lt;/p&gt; 
+&lt;h2&gt;Persistence Helper&lt;/h2&gt; 
+&lt;p&gt;The CoreTrust bug used in TrollStore is only enough to install &quot;System&quot; apps, this is because FrontBoard has an additional security check (it calls libmis) every time before a user app is launched. Unfortunately it is not possible to install new &quot;System&quot; apps that stay through an icon cache reload. Therefore, when iOS reloads the icon cache, all TrollStore installed apps including TrollStore itself will revert back to &quot;User&quot; state and will no longer launch.&lt;/p&gt; 
+&lt;p&gt;The only way to work around this is to install a persistence helper into a system app, this helper can then be used to reregister TrollStore and its installed apps as &quot;System&quot; so that they become launchable again, an option for this is available in TrollStore settings.&lt;/p&gt; 
+&lt;p&gt;On jailbroken iOS 14 when TrollHelper is used for installation, it is located in /Applications and will persist as a &quot;System&quot; app through icon cache reloads, therefore TrollHelper is used as the persistence helper on iOS 14.&lt;/p&gt; 
+&lt;h2&gt;URL Scheme&lt;/h2&gt; 
+&lt;p&gt;As of version 1.3, TrollStore replaces the system URL scheme &quot;apple-magnifier&quot; (this is done so &quot;jailbreak&quot; detections can&#39;t detect TrollStore like they could if TrollStore had a unique URL scheme). This URL scheme can be used to install applications right from the browser, or to enable JIT from the app itself (only 2.0.12 and above), the format goes as follows:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;apple-magnifier://install?url=&amp;lt;URL_to_IPA&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;apple-magnifier://enable-jit?bundle-id=&amp;lt;Bundle_ID&amp;gt;&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;On devices that don&#39;t have TrollStore (1.3+) installed, this will just open the magnifier app.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;The binaries inside an IPA can have arbitrary entitlements, fakesign them with ldid and the entitlements you want (&lt;code&gt;ldid -S&amp;lt;path/to/entitlements.plist&amp;gt; &amp;lt;path/to/binary&amp;gt;&lt;/code&gt;) and TrollStore will preserve the entitlements when resigning them with the fake root certificate on installation. This gives you a lot of possibilities, some of which are explained below.&lt;/p&gt; 
+&lt;h3&gt;Banned entitlements&lt;/h3&gt; 
+&lt;p&gt;iOS 15 on A12+ has banned the following three entitlements related to running unsigned code, these are impossible to get without a PPL bypass, apps signed with them will crash on launch.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;com.apple.private.cs.debugger&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;dynamic-codesigning&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;com.apple.private.skip-library-validation&lt;/code&gt;&lt;/p&gt; 
+&lt;h3&gt;Unsandboxing&lt;/h3&gt; 
+&lt;p&gt;Your app can run unsandboxed using one of the following entitlements:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.container-required&amp;lt;/key&amp;gt;
+&amp;lt;false/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.no-container&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.no-sandbox&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The third one is recommended if you still want a sandbox container for your application.&lt;/p&gt; 
+&lt;p&gt;You might also need the platform-application entitlement in order for these to work properly:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;platform-application&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Please note that the platform-application entitlement causes side effects such as some parts of the sandbox becoming tighter, so you may need additional private entitlements to circumvent that. (For example afterwards you need an exception entitlement for every single IOKit user client class you want to access).&lt;/p&gt; 
+&lt;p&gt;In order for an app with &lt;code&gt;com.apple.private.security.no-sandbox&lt;/code&gt; and &lt;code&gt;platform-application&lt;/code&gt; to be able to access it&#39;s own data container, you might need the additional entitlement:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.security.storage.AppDataContainers&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Root Helpers&lt;/h3&gt; 
+&lt;p&gt;When your app is not sandboxed, you can spawn other binaries using posix_spawn, you can also spawn binaries as root with the following entitlement:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-xml&quot;&gt;&amp;lt;key&amp;gt;com.apple.private.persona-mgmt&amp;lt;/key&amp;gt;
+&amp;lt;true/&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also add your own binaries into your app bundle.&lt;/p&gt; 
+&lt;p&gt;Afterwards you can use the &lt;a href=&quot;https://raw.githubusercontent.com/opa334/TrollStore/main/Shared/TSUtil.m#L79&quot;&gt;spawnRoot function in TSUtil.m&lt;/a&gt; to spawn the binary as root.&lt;/p&gt; 
+&lt;h3&gt;Things that are not possible using TrollStore&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Getting proper platformization (&lt;code&gt;TF_PLATFORM&lt;/code&gt; / &lt;code&gt;CS_PLATFORMIZED&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Spawning a launch daemon (Would need &lt;code&gt;CS_PLATFORMIZED&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;Injecting a tweak into a system process (Would need &lt;code&gt;TF_PLATFORM&lt;/code&gt;, a userland PAC bypass and a PMAP trust level bypass)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Compilation&lt;/h3&gt; 
+&lt;p&gt;To compile TrollStore, ensure &lt;a href=&quot;https://theos.dev/docs/installation&quot;&gt;theos&lt;/a&gt; is installed. Additionaly ensure &lt;a href=&quot;https://brew.sh/&quot;&gt;brew&lt;/a&gt; is installed and install &lt;a href=&quot;https://formulae.brew.sh/formula/libarchive&quot;&gt;libarchive&lt;/a&gt; from brew.&lt;/p&gt; 
+&lt;h2&gt;Credits and Further Reading&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/alfiecg_dev/&quot;&gt;@alfiecg_dev&lt;/a&gt; - Found the CoreTrust bug that allows TrollStore to work through patchdiffing and worked on automating the bypass.&lt;/p&gt; 
+&lt;p&gt;Google Threat Analysis Group - Found the CoreTrust bug as part of an in-the-wild spyware chain and reported it to Apple.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://twitter.com/LinusHenze&quot;&gt;@LinusHenze&lt;/a&gt; - Found the installd bypass used to install TrollStore on iOS 14-15.6.1 via TrollHelperOTA, as well as the original CoreTrust bug used in TrollStore 1.0.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://youtu.be/rPTifU1lG7Q&quot;&gt;Fugu15 Presentation&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://worthdoingbadly.com/coretrust/&quot;&gt;Write-Up on the first CoreTrust bug with more information&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/968f9301c55d688736b9cb4de519925cad7ce5942c5b8e8d85084fa022c01f03/opa334/TrollStore" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>geode-sdk/ios-launcher</title>
+      <link>https://github.com/geode-sdk/ios-launcher</link>
+      <description>&lt;p&gt;Manages installing and launching Geometry Dash for iOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Geode iOS Launcher&lt;/h1&gt; 
+&lt;p&gt;Manages installing and launching &lt;strong&gt;Geometry Dash&lt;/strong&gt; with &lt;strong&gt;Geode&lt;/strong&gt; for iOS.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/screenshots/thumbnail.png&quot; /&gt; &lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iOS/iPadOS 14.0 or later&lt;/li&gt; 
+ &lt;li&gt;Full version of Geometry Dash installed&lt;/li&gt; 
+ &lt;li&gt;An internet connection&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Navigate to &lt;a href=&quot;https://github.com/geode-sdk/ios-launcher/releases/latest&quot;&gt;https://github.com/geode-sdk/ios-launcher/releases/latest&lt;/a&gt;, if you are not &lt;strong&gt;jailbroken&lt;/strong&gt;, download the latest &lt;strong&gt;ipa&lt;/strong&gt; file. If you wish to use the tweak and have &lt;strong&gt;TrollStore&lt;/strong&gt;, download the latest &lt;strong&gt;tipa&lt;/strong&gt; file.&lt;/li&gt; 
+ &lt;li&gt;Install the launcher by following the &lt;a href=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/INSTALL.md&quot;&gt;Installation Guide&lt;/a&gt;. You can also access this guide by going in to the &lt;strong&gt;&lt;a href=&quot;http://INSTALL.md&quot;&gt;INSTALL.md&lt;/a&gt;&lt;/strong&gt; file in this repository.&lt;/li&gt; 
+ &lt;li&gt;Enjoy using Geode!&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;If you have any further questions, or need help, be sure to join &lt;a href=&quot;https://discord.gg/9e43WMKzhp&quot;&gt;our Discord server&lt;/a&gt;!&lt;/p&gt; 
+&lt;h2&gt;Building / Development&lt;/h2&gt; 
+&lt;p&gt;To build this project, you must have the following prerequisites installed:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://theos.dev/docs/&quot;&gt;Theos&lt;/a&gt; [WSL for Windows and GNU/Linux]&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://formulae.brew.sh/formula/make&quot;&gt;make&lt;/a&gt; [Mac OS only]&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;After installing these, you can compile the project by running:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone --recurse-submodules https://github.com/geode-sdk/ios-launcher
+cd ios-launcher
+make package FINALPACKAGE=1 STRIP=0
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Libraries&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/LiveContainer&quot;&gt;LiveContainer&lt;/a&gt; - Made the launcher possible!&lt;/li&gt; 
+ &lt;li&gt;Feather&#39;s &lt;a href=&quot;https://github.com/khcrysalis/Zsign-Package&quot;&gt;Zsign&lt;/a&gt; fork - For signing the app and mods for allowing the launcher to load JIT-less! (Originally made by &lt;a href=&quot;https://github.com/zhlynn/zsign&quot;&gt;zhlynn&lt;/a&gt;, but forked for &lt;a href=&quot;https://github.com/khcrysalis/Feather&quot;&gt;Feather&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/sgl0v/MSColorPicker&quot;&gt;MSColorPicker&lt;/a&gt; - Helper for Color Picking&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/swisspol/GCDWebServer&quot;&gt;GCDWebServer&lt;/a&gt; - For the web debug panel!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is licensed under the &lt;a href=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/LICENSE&quot;&gt;Boost Software License 1.0&lt;/a&gt;. Additionally, this project also uses code from &lt;a href=&quot;https://github.com/khanhduytran0/LiveContainer&quot;&gt;LiveContainer&lt;/a&gt;. View the &lt;a href=&quot;https://raw.githubusercontent.com/geode-sdk/ios-launcher/main/NOTICE.md&quot;&gt;NOTICE.md&lt;/a&gt; for more details.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/936793054/d358c7aa-b624-44a1-ba0e-7ed75185b1c9" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>orionblur/NeoFreeBird</title>
+      <link>https://github.com/orionblur/NeoFreeBird</link>
+      <description>&lt;p&gt;A tweak for Twitter that reverts branding to pre-2023, blocks ads, unlocks Twitter Blue features, and more!&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://neofreebird.com&quot;&gt;https://neofreebird.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/icon_rounded.png&quot; alt=&quot;NeoFreeBird-BHTwitter&quot; width=&quot;130&quot; height=&quot;130&quot; /&gt; 
+ &lt;h1&gt;NeoFreeBird-BHTwitter (tweak)&lt;/h1&gt; 
+ &lt;p&gt;&lt;i&gt;The ultimate way to tweak your Twitter/X experience.&lt;/i&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;&lt;b&gt;This repository has been archived. All further development has been moved to the &lt;a href=&quot;https://github.com/NeoFreeBird/app&quot;&gt;NeoFreeBird/app&lt;/a&gt; repository.&lt;/b&gt;&lt;/p&gt;
+ &lt;b&gt; &lt;/b&gt;
+&lt;/div&gt;
+&lt;b&gt; &lt;h2&gt;Twitter Branding&lt;/h2&gt; 
+ &lt;div&gt; 
+  &lt;a href=&quot;https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://raw.githubusercontent.com/orionblur/NeoFreeBird/refs/heads/v7/resources/AltSource.json&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/add_to_altstore.png&quot; alt=&quot;Add to AltStore&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+  &lt;a href=&quot;https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://raw.githubusercontent.com/orionblur/NeoFreeBird/refs/heads/v7/resources/AltSource.json&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/add_to_sidestore.png&quot; alt=&quot;Add to SideStore&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+  &lt;a href=&quot;https://intradeus.github.io/http-protocol-redirector?r=feather://source/https://raw.githubusercontent.com/orionblur/NeoFreeBird/refs/heads/v7/resources/AltSource.json&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/add_to_feather.png&quot; alt=&quot;Add to Feather&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+  &lt;a href=&quot;https://github.com/orionblur/NeoFreeBird/releases&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/download_from_github.png&quot; alt=&quot;Download from GitHub&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+ &lt;/div&gt; &lt;h2&gt;X Branding&lt;/h2&gt; 
+ &lt;div&gt; 
+  &lt;a href=&quot;https://intradeus.github.io/http-protocol-redirector?r=altstore://source?url=https://raw.githubusercontent.com/orionblur/NeoFreeBird/refs/heads/v7/resources/AltSource-X.json&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/add_to_altstore.png&quot; alt=&quot;Add to AltStore&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+  &lt;a href=&quot;https://intradeus.github.io/http-protocol-redirector?r=sidestore://source?url=https://raw.githubusercontent.com/orionblur/NeoFreeBird/refs/heads/v7/resources/AltSource-X.json&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/add_to_sidestore.png&quot; alt=&quot;Add to SideStore&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+  &lt;a href=&quot;https://intradeus.github.io/http-protocol-redirector?r=feather://source/https://raw.githubusercontent.com/orionblur/NeoFreeBird/refs/heads/v7/resources/AltSource-X.json&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/add_to_feather.png&quot; alt=&quot;Add to Feather&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+  &lt;a href=&quot;https://github.com/orionblur/NeoFreeBird/releases&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/badges/download_from_github.png&quot; alt=&quot;Download from GitHub&quot; height=&quot;40&quot; /&gt;&lt;/a&gt; &amp;nbsp; 
+ &lt;/div&gt;  &lt;br /&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 1&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/main/1.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 2&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/main/2.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 3&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/main/3.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 4&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/main/4.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; &lt;h1&gt;Preview&lt;/h1&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 1&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/timeline/timeline1.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 2&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/timeline/timeline2.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 3&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/timeline/timeline3.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 4&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/timeline/timeline4.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 5&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/timeline/timeline5.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 6&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/timeline/timeline6.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; &lt;h1&gt;Features&lt;/h1&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 1&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings1.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 2&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings2.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 3&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings3.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 4&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings4.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 5&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings5.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 6&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings6.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 4&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings7.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 5&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings8.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 6&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings9.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 4&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings10.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 5&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings11.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 6&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings12.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 4&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings13.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 5&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings14.png&quot; /&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;img width=&quot;1604&quot; alt=&quot;Screenshot 6&quot; src=&quot;https://raw.githubusercontent.com/orionblur/NeoFreeBird/v7/resources/settings/settings15.png&quot; /&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; &lt;h1&gt;Downloading&lt;/h1&gt; &lt;p&gt;Go to the &lt;a href=&quot;https://github.com/orionblur/NeoFreeBird/releases&quot;&gt;Releases&lt;/a&gt; page to download the latest version of NeoFreeBird-BHTwitter. You can also build it yourself by following the instructions below.&lt;/p&gt; &lt;h1&gt;Supporting the Project&lt;/h1&gt; &lt;p&gt;I welcome all help on NeoFreeBird! Translations, bug fixes, and new features are all welcome. If you do see any issues with the app, feel free to open an issue and follow the templates provided. I also have a Ko-Fi linked in the repo if you wish to support me directly, but by no means is it required! NeoFreeBird will always be open-source and free to use.&lt;/p&gt; &lt;h1&gt;Compiling NeoFreeBird-BHTwitter&lt;/h1&gt; &lt;h2&gt;Using your computer&lt;/h2&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;Install &lt;a href=&quot;https://github.com/theos/theos&quot;&gt;Theos&lt;/a&gt;.&lt;/li&gt; 
+ &lt;/ol&gt; 
+ &lt;blockquote&gt; 
+  &lt;p&gt;Note for Linux users: the current toolchain that ships with Theos is too outdated to build successfully (&quot;Undefined symbols for architecture arm64&quot;). Download the latest toolchain for your distro from &lt;a href=&quot;https://github.com/L1ghtmann/swift-toolchain-linux/releases/latest&quot;&gt;here&lt;/a&gt; and replace &lt;code&gt;$THEOS/toolchain/linux&lt;/code&gt; with its contents.&lt;/p&gt; 
+ &lt;/blockquote&gt; 
+ &lt;ol start=&quot;2&quot;&gt; 
+  &lt;li&gt;Install &lt;a href=&quot;https://github.com/asdfzxcvbn/pyzule-rw&quot;&gt;cyan&lt;/a&gt; if you want sideload or TrollStore builds.&lt;/li&gt; 
+  &lt;li&gt;Clone the NeoFreeBird-BHTwitter repository:&lt;/li&gt; 
+ &lt;/ol&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone --recursive https://github.com/orionblur/NeoFreeBird
+cd NeoFreeBird
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;ol start=&quot;4&quot;&gt; 
+  &lt;li&gt;Make the build script executable:&lt;/li&gt; 
+ &lt;/ol&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;chmod +x ./build.sh
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;ol start=&quot;5&quot;&gt; 
+  &lt;li&gt;Run the script with your preferred option:&lt;/li&gt; 
+ &lt;/ol&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./build.sh [OPTIONS]
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Available options:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;--sideloaded: for sideloading.
+--trollstore: for TrollStore users.
+--rootless: for rootless jailbreaks.
+--rootfull: for rootful jailbreaks.
+--help: for help
+&lt;/code&gt;&lt;/pre&gt; &lt;h2&gt;Using GitHub Actions&lt;/h2&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;Fork this repository.&lt;/li&gt; 
+  &lt;li&gt;Open the &quot;Actions&quot; tab and enable workflows.&lt;/li&gt; 
+  &lt;li&gt;Choose &quot;Release&quot;.&lt;/li&gt; 
+  &lt;li&gt;Click &quot;Run workflow&quot; and provide: 
+   &lt;ul&gt; 
+    &lt;li&gt;A decrypted IPA URL for sideloaded/TrollStore builds.&lt;/li&gt; 
+    &lt;li&gt;Any value for rootful/rootless builds.&lt;/li&gt; 
+   &lt;/ul&gt; &lt;/li&gt; 
+  &lt;li&gt;Check the &quot;Releases&quot; tab once the build completes.&lt;/li&gt; 
+ &lt;/ol&gt; &lt;h1&gt;Examples&lt;/h1&gt; &lt;h2&gt;Build for Sideloading&lt;/h2&gt; 
+ &lt;ol&gt; 
+  &lt;li&gt;Get a decrypted IPA for Twitter/X.&lt;/li&gt; 
+  &lt;li&gt;Rename it to &lt;code&gt;com.atebits.Tweetie2.ipa&lt;/code&gt; and move it to the &lt;code&gt;packages&lt;/code&gt; folder.&lt;/li&gt; 
+ &lt;/ol&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./build.sh --sideloaded
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Result: &lt;code&gt;NeoFreeBird-sideloaded.ipa&lt;/code&gt; inside &lt;code&gt;packages&lt;/code&gt;.&lt;/p&gt; &lt;h2&gt;Build for TrollStore&lt;/h2&gt; &lt;p&gt;Follow the same steps as sideloading, then run:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./build.sh --trollstore
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Result: &lt;code&gt;NeoFreeBird-trollstore.tipa&lt;/code&gt; inside &lt;code&gt;packages&lt;/code&gt;.&lt;/p&gt; &lt;h2&gt;Build for Rootless Jailbreaks&lt;/h2&gt; &lt;p&gt;Just run:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./build.sh --rootless
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Result: &lt;code&gt;com.bandarhl.bhtwitter_4.2_iphoneos-arm64.deb&lt;/code&gt; inside &lt;code&gt;packages&lt;/code&gt;.&lt;/p&gt; &lt;h2&gt;Build for Rootful Jailbreaks&lt;/h2&gt; &lt;p&gt;Just run:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./build.sh --rootfull
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Result: &lt;code&gt;com.bandarhl.bhtwitter_4.2_iphoneos-arm.deb&lt;/code&gt; inside &lt;code&gt;packages&lt;/code&gt;.&lt;/p&gt; &lt;h1&gt;Rebranding&lt;/h1&gt; &lt;p&gt;&lt;code&gt;rebrand.sh&lt;/code&gt; applies name and icon branding to an IPA. This can be done before or after patching with the tweak.&lt;/p&gt; &lt;p&gt;Resource packs work on both macOS and Linux via &lt;a href=&quot;https://github.com/theacrat/scar&quot;&gt;scar&lt;/a&gt;, which rebuilds the app&#39;s asset catalogs, and &lt;a href=&quot;https://github.com/linebender/resvg&quot;&gt;resvg&lt;/a&gt;, which rasterizes a pack&#39;s &lt;code&gt;svgs/&lt;/code&gt; glyphs into them. Both are downloaded automatically if they aren&#39;t in &lt;code&gt;PATH&lt;/code&gt; (or set &lt;code&gt;NFB_SCAR&lt;/code&gt; / &lt;code&gt;NFB_RESVG&lt;/code&gt; to a binary). The Pillow package they need is installed automatically into a cached venv on first use. There is a GitHub Actions workflow if you&#39;d rather not run it locally.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./rebrand.sh [-t | --twitter-branding] [--resource-pack ZIP] [-o OUTPUT] IPA
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;At least one branding option is required:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;-t, --twitter-branding: sets the app&#39;s display name to Twitter.
+--resource-pack ZIP: applies a theme pack ZIP.
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;By default the IPA is rebranded in place. Pass &lt;code&gt;-o&lt;/code&gt;/&lt;code&gt;--output&lt;/code&gt; to write a rebranded copy instead:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;./rebrand.sh -t --resource-pack theme.zip -o packages/Twitter-rebranded.ipa packages/NeoFreeBird-sideloaded.ipa
+&lt;/code&gt;&lt;/pre&gt; &lt;/b&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/27da66e88a506213e9978ff90d1725c24151580686b8846d502f81bf7840c386/orionblur/NeoFreeBird" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>benbaker76/Hackintool</title>
+      <link>https://github.com/benbaker76/Hackintool</link>
+      <description>&lt;p&gt;The Swiss army knife of vanilla Hackintoshing&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Hackintool&lt;/h1&gt; 
+&lt;p&gt;&lt;em&gt;The Swiss army knife of vanilla Hackintoshing&lt;/em&gt;&lt;/p&gt; 
+&lt;h2&gt;⚠️ Warning&lt;/h2&gt; 
+&lt;p&gt;Hackintool is not an automated patching tool that does all the work for you. &lt;strong&gt;Knowledge is required&lt;/strong&gt; on how to patch before using it. Please read the &lt;a href=&quot;https://www.tonymacx86.com/threads/guide-intel-framebuffer-patching-using-whatevergreen.256490/&quot;&gt;Intel Framebuffer patching using WhateverGreen&lt;/a&gt; guide before you download this tool! I also recommend reading:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.tonymacx86.com/threads/an-idiots-guide-to-lilu-and-its-plug-ins.260063/&quot;&gt;An iDiot&#39;s Guide To Lilu and its Plug-ins by @jaymonkey&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.tonymacx86.com/threads/guide-general-framebuffer-patching-guide-hdmi-black-screen-problem.269149&quot;&gt;General Framebuffer Patching Guide using Hackintool by @CaseySJ&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Mojave, Lilu, and WhateverGreen&lt;/h2&gt; 
+&lt;p&gt;Clover&#39;s &lt;code&gt;KextsToPatch&lt;/code&gt; is not usable for framebuffer patching in Mojave for Skylake and newer generations.&lt;/p&gt; 
+&lt;h2&gt;Framebuffer Dumps&lt;/h2&gt; 
+&lt;p&gt;There are several ways to dump your framebuffer data (the second two require WhateverGreen and Lilu debug versions) to read in Hackintool:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Use the &lt;strong&gt;Framebuffer -&amp;gt; macOS 10.13.6 / Framebuffer -&amp;gt; macOS 10.14&lt;/strong&gt; menu to create patches without a framebuffer dump.&lt;/li&gt; 
+ &lt;li&gt;Use the &lt;strong&gt;-igfxdump&lt;/strong&gt; boot flag to dump the IGPU framebuffer kext to &lt;code&gt;/AppleIntelFramebuffer_X_Y&lt;/code&gt; (root of your boot drive) and then use &lt;strong&gt;File -&amp;gt; Open&lt;/strong&gt; menu.&lt;/li&gt; 
+ &lt;li&gt;Use the &lt;strong&gt;-igfxfbdump&lt;/strong&gt; boot flag to dump the native and patched framebuffer table to ioreg and then use &lt;strong&gt;File -&amp;gt; Import -&amp;gt; IOReg Dump&lt;/strong&gt; menu.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Supports generations from Sandy Bridge to Ice Lake (Sandy Bridge, Ivy Bridge, Haswell, Broadwell, Skylake, Kaby Lake, Coffee Lake, Cannon Lake, and Ice Lake)&lt;/li&gt; 
+ &lt;li&gt;Create All, Connectors, or VRAM patches&lt;/li&gt; 
+ &lt;li&gt;Detect Changes for auto patch creation&lt;/li&gt; 
+ &lt;li&gt;Create Clover patches in hex, base64, or Devices/Properties formats&lt;/li&gt; 
+ &lt;li&gt;Displays native GPU and Model identifiers&lt;/li&gt; 
+ &lt;li&gt;Display and edit Memory Info such as Stolen, Framebuffer, VRAM, Cursor, etc.&lt;/li&gt; 
+ &lt;li&gt;Tooltips for additional info when hovering over some items&lt;/li&gt; 
+ &lt;li&gt;Reads &quot;live&quot; data directly from Framebuffer kexts (if available; see Mojave note below)&lt;/li&gt; 
+ &lt;li&gt;File -&amp;gt; Open framebuffer file generated by WhateverGreen&#39;s &lt;code&gt;-igfxdump&lt;/code&gt; boot flag&lt;/li&gt; 
+ &lt;li&gt;File -&amp;gt; Export -&amp;gt; Clover config.plist / File -&amp;gt; Export -&amp;gt; Framebuffer.txt file&lt;/li&gt; 
+ &lt;li&gt;Patch audio layout ID&lt;/li&gt; 
+ &lt;li&gt;Add USB port limit patch&lt;/li&gt; 
+ &lt;li&gt;Plug and unplug USB2/USB3 devices and set port connector types, then generate a &lt;code&gt;USBPorts.kext&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Advanced patching options (DVMT pre-alloc 32 MB, VRAM 2048 MB, Disable eGPU, Enable HDMI2.0 (4K), DP -&amp;gt; HDMI, GfxYTile Fix, Reboot Fix, USB port Limit, Spoof Audio Device ID, FB Port Limit, Spoof Gfx Device ID)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Screenshot&lt;/h2&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Click to expand&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool01.png&quot; alt=&quot;Hackintool Screenshot 1&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool02.png&quot; alt=&quot;Hackintool Screenshot 2&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool03.png&quot; alt=&quot;Hackintool Screenshot 3&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool04.png&quot; alt=&quot;Hackintool Screenshot 4&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool05.png&quot; alt=&quot;Hackintool Screenshot 5&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool06.png&quot; alt=&quot;Hackintool Screenshot 6&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool07.png&quot; alt=&quot;Hackintool Screenshot 7&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool08.png&quot; alt=&quot;Hackintool Screenshot 8&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool09.png&quot; alt=&quot;Hackintool Screenshot 9&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool10.png&quot; alt=&quot;Hackintool Screenshot 10&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool11.png&quot; alt=&quot;Hackintool Screenshot 11&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool12.png&quot; alt=&quot;Hackintool Screenshot 12&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool13.png&quot; alt=&quot;Hackintool Screenshot 13&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool14.png&quot; alt=&quot;Hackintool Screenshot 14&quot; /&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/benbaker76/Hackintool/master/images/Hackintool15.png&quot; alt=&quot;Hackintool Screenshot 15&quot; /&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Release Notes&lt;/h2&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Click to expand&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;&lt;a href=&quot;https://github.com/benbaker76/Hackintool/commits/master&quot;&gt;Updates are on Github&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;2.8.6 - Fix crash in getEDIDData, fix Import KextsToPatch&lt;/li&gt; 
+  &lt;li&gt;2.8.5 - Add &quot;Show Installed Only&quot; option for installed kexts&lt;/li&gt; 
+  &lt;li&gt;2.8.4 - Improved framebuffer enumeration, updated codecs and pci.ids&lt;/li&gt; 
+  &lt;li&gt;2.8.3 - Improved version checking routine, updated Turkish translation&lt;/li&gt; 
+  &lt;li&gt;2.8.2 - Updated Clover download location / OpenCore download support, Chinese translation update&lt;/li&gt; 
+  &lt;li&gt;2.8.1 - Data file updates&lt;/li&gt; 
+  &lt;li&gt;2.8.0 - Fixed OpenCore KextsToPatch format. Removed DSDT Rename auto selection&lt;/li&gt; 
+  &lt;li&gt;2.7.9 - Source is now on Github &lt;a href=&quot;https://github.com/benbaker76/Hackintool&quot;&gt;here&lt;/a&gt;&lt;/li&gt; 
+  &lt;li&gt;2.7.8 - Fix pcidevices.dsl compile error&lt;/li&gt; 
+  &lt;li&gt;2.7.7 - pcidevices.dsl export will now compile. Fix for Device Path&lt;/li&gt; 
+  &lt;li&gt;2.7.6 - Custom Device Path generation code (big thanks to &lt;a href=&quot;https://www.tonymacx86.com/members/195809/&quot;&gt;@jaymonkey&lt;/a&gt; for helping test). Updated Chinese translation&lt;/li&gt; 
+  &lt;li&gt;2.7.5 - PCI DevicePath fix&lt;/li&gt; 
+  &lt;li&gt;2.7.4 - Added &lt;a href=&quot;http://EveryMac.com&quot;&gt;EveryMac.com&lt;/a&gt; Serial Check&lt;/li&gt; 
+  &lt;li&gt;2.7.3 - Added Serial Number Generator (thanks to vit9696 / MacInfoPkg team)&lt;/li&gt; 
+  &lt;li&gt;2.7.2 - Added EDID injection to IGPU. Added DPCD Max Link Rate patching. Added tooltips for Advanced / LSPCON patch options. Updated pci.ids / AppleALC audio data&lt;/li&gt; 
+  &lt;li&gt;2.7.1 - Bug fixes. Updated pci.ids / AppleALC audio data&lt;/li&gt; 
+  &lt;li&gt;2.7.0 - Launch process output fix (big thanks to &lt;a href=&quot;https://www.tonymacx86.com/members/195809/&quot;&gt;@jaymonkey&lt;/a&gt; for the help testing this). Prepends &quot;Intel&quot; for IGPU name for Intel Power Gadget (thanks again to &lt;a href=&quot;https://www.tonymacx86.com/members/195809/&quot;&gt;@jaymonkey&lt;/a&gt; for discovering this). System Info now includes all graphics cards. iMessage Keys are now clearly labeled. Added new OpenCore logo. Updated pci.ids / AppleALC audio data&lt;/li&gt; 
+  &lt;li&gt;2.6.9 - Disable Gatekeeper tool fix&lt;/li&gt; 
+  &lt;li&gt;2.6.8 - Catalina fixes&lt;/li&gt; 
+  &lt;li&gt;2.6.7 - Added &quot;HDMI Infinite Loop Fix&quot;. Added LSPCON patching. Fixes&lt;/li&gt; 
+  &lt;li&gt;2.6.6 - Added &quot;Disable Gatekeeper and mount the disk in read/write mode&quot; tool. Change GFX0 to IGPU selection no longer shows for dGPU&lt;/li&gt; 
+  &lt;li&gt;2.6.5 - Improved BT hardware detection (when installed) and will show if FW Loaded (if using BrcmPatchRAM)&lt;/li&gt; 
+  &lt;li&gt;2.6.4 - Fixes&lt;/li&gt; 
+  &lt;li&gt;2.6.3 - Added Atheros BT device detection&lt;/li&gt; 
+  &lt;li&gt;2.6.2 - Added Bluetooth to Info-&amp;gt;Misc&lt;/li&gt; 
+  &lt;li&gt;2.6.1 - Fixed USB device speeds&lt;/li&gt; 
+  &lt;li&gt;2.6.0 - USB fixes for macOS Catalina. USB now shows device speeds. Much improved Log viewer. Installing kexts on macOS Catalina will prompt to disable Gatekeeper and mount the disk in read/write mode. Fixed Atheros install for macOS Catalina. Added NativeDisplayBrightness to kext install list. Updated translations for Korean / Chinese&lt;/li&gt; 
+  &lt;li&gt;2.5.9 - ACPI names must be 4 characters (thanks P1LGRIM)&lt;/li&gt; 
+  &lt;li&gt;2.5.8 - Now using pci.ids for Audio Controllers&lt;/li&gt; 
+  &lt;li&gt;2.5.7 - Removed kextcache -u / call for rebuild cache. Added more command output for tools&lt;/li&gt; 
+  &lt;li&gt;2.5.6 - Added column sorting to PCI table&lt;/li&gt; 
+  &lt;li&gt;2.5.5 - Added ASRock DeskMini 310 system config&lt;/li&gt; 
+  &lt;li&gt;2.5.4 - Will now output mounting errors&lt;/li&gt; 
+  &lt;li&gt;2.5.3 - Fixed &lt;a href=&quot;http://EveryMac.com&quot;&gt;EveryMac.com&lt;/a&gt; Visit link&lt;/li&gt; 
+  &lt;li&gt;2.5.2 - Added Host, OS, Kernel and RAM System Info&lt;/li&gt; 
+  &lt;li&gt;2.5.1 - Add support for 0x3EA50005 0x3EA60005 0x3E980003 frame id for CFL refresh&lt;/li&gt; 
+  &lt;li&gt;2.5.0 - Fixed stdout/stderr output capture for admin privilege shell commands (thanks jaymonkey)&lt;/li&gt; 
+  &lt;li&gt;2.4.9 - Fixes&lt;/li&gt; 
+  &lt;li&gt;2.4.8 - Fixes&lt;/li&gt; 
+  &lt;li&gt;2.4.7 - Fixes&lt;/li&gt; 
+  &lt;li&gt;2.4.6 - &quot;Rebuild KextCache and Repair Permissions&quot; moved to tools section now has progress bar&lt;/li&gt; 
+  &lt;li&gt;2.4.5 - Output added for &quot;Rebuild KextCache and Repair Permissions&quot;&lt;/li&gt; 
+  &lt;li&gt;2.4.4 - Chinese language updates. Compiler improvements&lt;/li&gt; 
+  &lt;li&gt;2.4.3 - Chinese language updates. USB configurator fixes&lt;/li&gt; 
+  &lt;li&gt;2.4.2 - Changed Framebuffer Info to Selected / Current Framebuffer Info for easier comparison&lt;/li&gt; 
+  &lt;li&gt;2.4.1 - Chinese language update&lt;/li&gt; 
+  &lt;li&gt;2.4.0 - Now includes iMessageDebug data (ElNono / mdmwii / flux84 / sugarface / pokenguyen). Export system info data. View model info (&lt;a href=&quot;http://everymac.com&quot;&gt;everymac.com&lt;/a&gt;). Check serial feature. Preliminary OpenCore support (thanks vit9696)&lt;/li&gt; 
+  &lt;li&gt;2.3.9 - ComboBox fix (thanks telepati)&lt;/li&gt; 
+  &lt;li&gt;2.3.8 - Bug fixes (thanks ReddestDream)&lt;/li&gt; 
+  &lt;li&gt;2.3.7 - Improved Clover EFI Mounting. Clover PCI export now uses SubClass for device_type&lt;/li&gt; 
+  &lt;li&gt;2.3.6 - Bug fixes. &quot;Use Intel HDMI&quot; option added (hda-gfx=onboard-x). Added &quot;Non Scaled&quot; resolution type&lt;/li&gt; 
+  &lt;li&gt;2.3.5 - Fixed bug in Device Path generator (gfxutil). Added &quot;Generate Windows UTC Registry Files&quot; tool&lt;/li&gt; 
+  &lt;li&gt;2.3.4 - Updated audio codecs, Export PCI list in Clover and dsl format, Now dumps all ACPI tables and decompiles to dsl&lt;/li&gt; 
+  &lt;li&gt;2.3.3 - Extract DSDT (phpdev32), Auto update PCIIDs (MuntashirAkon), Export PCI list in JSON format&lt;/li&gt; 
+  &lt;li&gt;2.3.2 - Monitor PCI hotplug&lt;/li&gt; 
+  &lt;li&gt;2.3.1 - UI Updates&lt;/li&gt; 
+  &lt;li&gt;2.3.1 - Right-click on a PCI device and select &quot;Copy IOReg Path&quot;. Launch IORegistryExplorer and select Go-&amp;gt;Go to Path... menu, paste in the path and click the &quot;Go to Path&quot; button.&lt;/li&gt; 
+  &lt;li&gt;2.2.8 - Added warning for HWP state logging (previous state can only be restored after a reboot)&lt;/li&gt; 
+  &lt;li&gt;2.2.7 - Added VDA Decoder status. Added DevicePath for PCI devices. Export PCI Devices list to desktop&lt;/li&gt; 
+  &lt;li&gt;2.2.6 - Improved Boot EFI detection. Set Boot EFI manually. AppleIntelInfo shows 30 second timer to log CStates. Restores HWP state after logging. Added Intel Regs warning. Calculator now shows reverse bytes&lt;/li&gt; 
+  &lt;li&gt;2.2.4 - Added AppleIntelInfo options (Enable HWP, Log: CStates, IGPU, IPG Style, Intel Regs, MSRs). Added AppleIntelInfo 20 second delay for CState capture.&lt;/li&gt; 
+  &lt;li&gt;2.2.2 - Added Info tab (Network Interfaces, Graphic Devices, Audio Devices and Storage Devices). Will highlight power settings green or red to indicate issues&lt;/li&gt; 
+  &lt;li&gt;2.2.1 - Fixes&lt;/li&gt; 
+  &lt;li&gt;2.2.0 - New PCI Devices, Network, Power and Tools tab&lt;/li&gt; 
+  &lt;li&gt;2.1.9 - Added Github kext downloading. The download version may be older than the source version. Also due to Github API rate limits it will store the latest download urls. Added Install kext(s) function. Added Rebuild KextCache and Repair Permissions function&lt;/li&gt; 
+  &lt;li&gt;2.1.8 - Uses kextstat to get the versions&lt;/li&gt; 
+  &lt;li&gt;2.1.7 - Now detects more kexts&lt;/li&gt; 
+  &lt;li&gt;2.1.6 - Can now download the current version numbers of Lilu + Plugins&lt;/li&gt; 
+  &lt;li&gt;2.0.8 - Patch-&amp;gt;System Configs menu with various configurations you can try if your Coffee Lake system is being troublesome (CaseySJ)&lt;/li&gt; 
+  &lt;li&gt;2.0.4 - Apply Clover patches (KernelToPatch, KextToPatch, DSDT Renames). View, create and edit NVRAM variables (be careful!). View installed Lilu + Plugins, download and automatically compile the latest versions&lt;/li&gt; 
+  &lt;li&gt;1.9.6 - Disk display enhancements (icons / mount / unmount buttons)&lt;/li&gt; 
+  &lt;li&gt;1.9.2 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.9.1 - Added SSDT-UIAC.aml / SSDT-USBX.aml export support&lt;/li&gt; 
+  &lt;li&gt;1.9.0 - Fixed launch bug (thanks &lt;a href=&quot;https://www.tonymacx86.com/members/9658/&quot;&gt;@Pavo&lt;/a&gt;)&lt;/li&gt; 
+  &lt;li&gt;1.8.7 - Added USB Power DSDT Renames&lt;/li&gt; 
+  &lt;li&gt;1.8.6 - Added DSDT Renames&lt;/li&gt; 
+  &lt;li&gt;1.8.5 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.8.4 - Auto update capability using Sparkle framework&lt;/li&gt; 
+  &lt;li&gt;1.8.3 - Improved Audio Device detection / selection, window can now be resized&lt;/li&gt; 
+  &lt;li&gt;1.8.2 - Added translations; French (Matgen84), German (al6042), Korean (zisqo), Russian / Ukrainian (ctich)&lt;/li&gt; 
+  &lt;li&gt;1.8.1 - Clover downloader (Kozlek / JrCs / slice), NVRAM boot-args edit, improved authorization, UI update&lt;/li&gt; 
+  &lt;li&gt;1.8.0 - Improved USB power export (corpnewt), other fixes, new icon&lt;/li&gt; 
+  &lt;li&gt;1.7.9 - Added USB power export, EFI partition mounting, calculator and log viewer&lt;/li&gt; 
+  &lt;li&gt;1.7.8 - Added resolution injection from one-key-hidpi script (xzhih)&lt;/li&gt; 
+  &lt;li&gt;1.7.7 - Added EDID patching support for AMD &amp;amp; nVidia&lt;/li&gt; 
+  &lt;li&gt;1.7.6 - EDID overrides can now export custom icons&lt;/li&gt; 
+  &lt;li&gt;1.7.5 - Improved USB guide, added print button&lt;/li&gt; 
+  &lt;li&gt;1.7.4 - Fixed defaults&lt;/li&gt; 
+  &lt;li&gt;1.7.3 - Updates&lt;/li&gt; 
+  &lt;li&gt;1.7.2 - Renamed app to Hackintool, added EDID injection support (Andy Vandijck)&lt;/li&gt; 
+  &lt;li&gt;1.7.1 - Dark mode fixes&lt;/li&gt; 
+  &lt;li&gt;1.7.0 - USB &amp;amp; Audio info added, shows possible spoof / kext requirements&lt;/li&gt; 
+  &lt;li&gt;1.6.9 - Updates&lt;/li&gt; 
+  &lt;li&gt;1.6.8 - Added framebuffer-camellia and framebuffer-flags patching support&lt;/li&gt; 
+  &lt;li&gt;1.6.7 - Added Macmini8,1 and MacBookAir8,1 definitions&lt;/li&gt; 
+  &lt;li&gt;1.6.6 - Data file updates&lt;/li&gt; 
+  &lt;li&gt;1.6.5 - Fixed USBInjectAll detection&lt;/li&gt; 
+  &lt;li&gt;1.6.4 - Audio layout id detection improvement&lt;/li&gt; 
+  &lt;li&gt;1.6.3 - Now shows Audio Controller&lt;/li&gt; 
+  &lt;li&gt;1.6.2 - USB fixes&lt;/li&gt; 
+  &lt;li&gt;1.6.1 - Improved Spoof Audio Device Id option&lt;/li&gt; 
+  &lt;li&gt;1.6.0 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.5.9 - Now shows USB Controllers&lt;/li&gt; 
+  &lt;li&gt;1.5.8 - Will store and restore USB ports between app sessions for use with new USBInjectAll.kext (0.7.0) to include boot flags for excluding groups of ports&lt;/li&gt; 
+  &lt;li&gt;1.5.7 - Now detects EHC and hub ports (thanks to RehabMan &amp;amp; SavageAUS). Multi-select USB Ports. Now detects if USBInjectAll is installed&lt;/li&gt; 
+  &lt;li&gt;1.5.4 - Fixed audio codec detection when user has multiple audio devices. Added &quot;Reboot Fix&quot; advanced patch (sets connector pipe values to 18)&lt;/li&gt; 
+  &lt;li&gt;1.5.3 - Improved Export-&amp;gt;Clover config.plist and now makes a backup (config-backup.plist)&lt;/li&gt; 
+  &lt;li&gt;1.5.2 - Added Patch-&amp;gt;AzulPatcher4600&lt;/li&gt; 
+  &lt;li&gt;1.5.1 - USBPorts port-count fix&lt;/li&gt; 
+  &lt;li&gt;1.5.0 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.4.9 - Added tab to show if Lilu, WhateverGreen and AppleALC are installed and version info&lt;/li&gt; 
+  &lt;li&gt;1.4.8 - Fixed framebuffer-cursormem output for iASL DSL Source patching&lt;/li&gt; 
+  &lt;li&gt;1.4.7 - Added support for new WEG -igfxfbdump boot flag using File-&amp;gt;Import-&amp;gt;IOReg Dump menu&lt;/li&gt; 
+  &lt;li&gt;1.4.6 - Fixes. Added Framebuffer-&amp;gt;macOS 10.14 menu item. Added QE/CI and Metal support detection&lt;/li&gt; 
+  &lt;li&gt;1.4.5 - Added support for framebuffer-cursormem (Haswell)&lt;/li&gt; 
+  &lt;li&gt;1.4.4 - Added ability to inject valid device-id&#39;s&lt;/li&gt; 
+  &lt;li&gt;1.4.3 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.4.2 - Added Patch-&amp;gt;Import KextsToPatch / Apply Current Patches menu. Renamed USBPower.kext -&amp;gt; USBPorts.kext&lt;/li&gt; 
+  &lt;li&gt;1.4.1 - Added TypeC USB ports&lt;/li&gt; 
+  &lt;li&gt;1.4.0 - Improved Intel Generation detection&lt;/li&gt; 
+  &lt;li&gt;1.3.9 - Now using AppleIntelFramebuffer@X index for connector association&lt;/li&gt; 
+  &lt;li&gt;1.3.8 - Fixed bug AppleIntelFramebuffer port-number should be connecter index + 4 or 0 for internal (RehabMan)&lt;/li&gt; 
+  &lt;li&gt;1.3.7 - Shows Display Info for connected displays on connector ports (with display hot plug support), fixed iASL DSL Source hex output, connector drag-drop to change order&lt;/li&gt; 
+  &lt;li&gt;1.3.6 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.3.5 - Will try HDAS if HDEF is not found&lt;/li&gt; 
+  &lt;li&gt;1.3.4 - Added AllData connector patch method (RehabMan). Will try GFX0 if IGPU is not found&lt;/li&gt; 
+  &lt;li&gt;1.3.3 - Fixes. Added more audio layout-id&#39;s (vandroiy2013)&lt;/li&gt; 
+  &lt;li&gt;1.3.2 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.3.1 - Fixes. Added new menu Framebuffer-&amp;gt;Current Version / macOS 10.13.6&lt;/li&gt; 
+  &lt;li&gt;1.3.0 - Added audio patching, Clover config.plist exporting, USB patching, advanced auto patching&lt;/li&gt; 
+  &lt;li&gt;1.2.8 - Added iASL DSL Source patch output, display detected Intel gen and platform-id&lt;/li&gt; 
+  &lt;li&gt;1.2.7 - File-&amp;gt;Export framebuffer text file&lt;/li&gt; 
+  &lt;li&gt;1.2.6 - Fix preallocated memory calculation formula (vit9696)&lt;/li&gt; 
+  &lt;li&gt;1.2.5 - Still outputs a config.plist/Devices/Properties patch when &quot;Auto Detect Changes&quot; is selected&lt;/li&gt; 
+  &lt;li&gt;1.2.4 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.2.3 - config.plist/Devices/Properties patch now outputs data format&lt;/li&gt; 
+  &lt;li&gt;1.2.2 - Fixes&lt;/li&gt; 
+  &lt;li&gt;1.2.1 - Updates and fixes&lt;/li&gt; 
+  &lt;li&gt;1.2.0 - Added support for Cannon Lake and Ice Lake&lt;/li&gt; 
+  &lt;li&gt;1.1.0 - Added MacBookPro15,1 and MacBookPro15,2 models&lt;/li&gt; 
+  &lt;li&gt;1.0.9 - Support for Mojave, Coffee Lake, WhateverGreen&#39;s -igfxdump boot flag and Clover&#39;s config.plist/Devices/Properties patch output&lt;/li&gt; 
+  &lt;li&gt;1.0.8 - Updates&lt;/li&gt; 
+  &lt;li&gt;1.0.7 - Fixed support for dark mode&lt;/li&gt; 
+  &lt;li&gt;1.0.6 - Better backwards compatibility&lt;/li&gt; 
+  &lt;li&gt;1.0.5 - Detects Chipset / Address on Startup, Edit Memory Values Easier&lt;/li&gt; 
+  &lt;li&gt;1.0.4 - Added GPU / Model Info&lt;/li&gt; 
+  &lt;li&gt;1.0.3 - Added Tooltips&lt;/li&gt; 
+  &lt;li&gt;1.0.2 - Added Memory tab&lt;/li&gt; 
+  &lt;li&gt;1.0.1 - Minor Fixes&lt;/li&gt; 
+  &lt;li&gt;1.0.0 - Initial Release&lt;/li&gt; 
+ &lt;/ul&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Credits &amp;amp; Contributions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;vit9696 for &lt;a href=&quot;https://github.com/acidanthera/WhateverGreen&quot;&gt;WhateverGreen&lt;/a&gt; (&lt;a href=&quot;https://github.com/acidanthera/WhateverGreen#credits&quot;&gt;full credits&lt;/a&gt;), &lt;a href=&quot;https://github.com/acidanthera/Lilu&quot;&gt;Lilu&lt;/a&gt; (&lt;a href=&quot;https://github.com/acidanthera/Lilu#credits&quot;&gt;full credits&lt;/a&gt;), &lt;a href=&quot;https://github.com/acidanthera/AppleALC&quot;&gt;AppleALC&lt;/a&gt; (&lt;a href=&quot;https://github.com/acidanthera/AppleALC#credits&quot;&gt;full credits&lt;/a&gt;), USBPorts.kext and additional help&lt;/li&gt; 
+ &lt;li&gt;vit9696 for &lt;a href=&quot;https://github.com/acidanthera/WhateverGreen/raw/master/Manual/IntelFramebuffer.bt&quot;&gt;IntelFramebuffer.bt&lt;/a&gt; with additional work by bcc9, Piker-Alpha and joevt&lt;/li&gt; 
+ &lt;li&gt;daliansky for Intel Core Platform ID and SMBIOS Quick Reference&lt;/li&gt; 
+ &lt;li&gt;Clover Development Team for various technical info&lt;/li&gt; 
+ &lt;li&gt;vandroiy2013 for audio id data from &lt;a href=&quot;https://github.com/acidanthera/AppleALC&quot;&gt;AppleALC&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;RehabMan for all data patching method, ioreg framebuffer dump and other contributions&lt;/li&gt; 
+ &lt;li&gt;EDID injection (Andy Vandijck / Marchrius)&lt;/li&gt; 
+ &lt;li&gt;USB power injection (corpnewt)&lt;/li&gt; 
+ &lt;li&gt;HDA controllers / codec lists by the VoodooHDA project&lt;/li&gt; 
+ &lt;li&gt;System Configs compilation (CaseySJ)&lt;/li&gt; 
+ &lt;li&gt;Clover downloader (Kozlek / JrCs / slice)&lt;/li&gt; 
+ &lt;li&gt;Kext compiler &amp;amp; installer (Sascha Lamprecht / Gengik84 / LAbyOne)&lt;/li&gt; 
+ &lt;li&gt;Atheros &amp;amp; SATA kexts (Sascha Lamprecht)&lt;/li&gt; 
+ &lt;li&gt;DPCIManager (phpdev32 / MuntashirAkon)&lt;/li&gt; 
+ &lt;li&gt;AppleIntelInfo (Pike R. Alpha)&lt;/li&gt; 
+ &lt;li&gt;gfxutil (mcmatrix)&lt;/li&gt; 
+ &lt;li&gt;VDADecoderChecker (Andy Breuhan)&lt;/li&gt; 
+ &lt;li&gt;iMessageDebug (ElNono / mdmwii / flux84 / sugarface / pokenguyen)&lt;/li&gt; 
+ &lt;li&gt;macserial (vit9696 / MacInfoPkg team)&lt;/li&gt; 
+ &lt;li&gt;Model data (&lt;a href=&quot;http://everymac.com&quot;&gt;everymac.com&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;Translations: French (Matgen84), German (al6042), Korean (zisqo), Russian / Ukrainian (ctich), Chinese (daliansky, Bat.bat, penghubingzhou)&lt;/li&gt; 
+ &lt;li&gt;Sparkle framework by Andy Matuschak&lt;/li&gt; 
+ &lt;li&gt;Icon &amp;amp; UI updates by ultratiem&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/744edec00425c603ed6e2afcbf25124cd0a9625e57b80ac7a68e84d917e33ac8/benbaker76/Hackintool" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>iodefog/VipVideo</title>
+      <link>https://github.com/iodefog/VipVideo</link>
+      <description>&lt;p&gt;这是一个Mac/Windows聚合App，聚合常见电视/视频/音乐/小说。比如CCTV中央电视台直播免费观看, 爱奇艺、腾讯视频、芒果视频、优酷视频付费电影，VIP会员剧等免费观看，bilibili、美剧、韩剧、日剧、网易云音乐、腾讯音乐、酷狗音乐、喜马拉雅、起点、七猫、有声小说等&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;VIP视频破解&lt;/h1&gt; 
+&lt;p&gt;各大视频网站、世界杯直播（CCTV5）免费观看 。付费电影，VIP会员剧等，去广告播放。自用看电影网站，CCTV世界杯等电视播放，爱奇艺、腾讯视频、芒果视频、bilibili、美剧、韩剧、日剧、网易云音乐、腾讯音乐，酷狗音乐&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;更新日志&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;更新日期&lt;/th&gt; 
+   &lt;th&gt;更新内容&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2026-09-29&lt;/td&gt; 
+   &lt;td&gt;1. 1.1.7版本发布 2. 更新多个vip解析url 3. 支持测试vip解析地址 4. 支持用浏览器打开页面 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2026-05-07&lt;/td&gt; 
+   &lt;td&gt;1. 1.1.6版本发布 2. 解决bilibili多次弹框后没有“vip”入口问题 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2026-01-17&lt;/td&gt; 
+   &lt;td&gt;1. 修复“编辑”渠道后保存不了问题 2.渠道过多，增加筛选功能 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2025-11-17&lt;/td&gt; 
+   &lt;td&gt;1. 保存自定义增加密码功能 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2025-11-10&lt;/td&gt; 
+   &lt;td&gt;1. 新增支持自定义播放列表和播放源的能力 &lt;br /&gt; 2.新增优酷源 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2025-08-27&lt;/td&gt; 
+   &lt;td&gt;1. 增加windows支持VIP播放功能 &lt;br /&gt; 2.解决网易云音乐不能播放和后台时自动停止问题 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2025-02-14&lt;/td&gt; 
+   &lt;td&gt;1. 新增抖音、快手等短视频渠道&lt;br /&gt; 2.新增腾讯音乐、网易云音乐等音乐渠道 &lt;br /&gt; 3.关闭编辑面板自动修正能力 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2025-02-10&lt;/td&gt; 
+   &lt;td&gt;1. 支持vip源自定义能力&lt;br /&gt; 2.支持添加新平台可编辑或排序 &lt;br /&gt; 3.更新一些vip解析源 &lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2023-01-17&lt;/td&gt; 
+   &lt;td&gt;1. 修复腾讯视频不能使用VIP问题&lt;br /&gt; 2.替换部分失效导航网站 &lt;br /&gt; 3. pkg支持Mac M1安装&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2022-11-08&lt;/td&gt; 
+   &lt;td&gt;1. 删除不可用视VIP源，添加新的VIP源&lt;br /&gt; 2.删除抖音网页版源 &lt;br /&gt; 3. 解决一些不友好操作，并更新安装包。&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2020-05-26&lt;/td&gt; 
+   &lt;td&gt;1. 移除部分视频源&lt;br /&gt; 2.增加抖音网页版源 &lt;br /&gt; 3. 并更新包。&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2020-04-02&lt;/td&gt; 
+   &lt;td&gt;修改证书问题&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2020-04-01&lt;/td&gt; 
+   &lt;td&gt;1. 修复某些网站点击出现空白页面问题 &lt;br /&gt; 2. 增加一个数据源 &lt;br /&gt;3.CCTV直播放入第一位&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2020-01&lt;/td&gt; 
+   &lt;td&gt;1. 视频网站入口改为CollectionView显示&lt;br /&gt; 2. 优化UI &lt;br /&gt;3. 增加历史记录功能 &lt;br /&gt; 4.历史记录存储顺序调整&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2019-12-23&lt;/td&gt; 
+   &lt;td&gt;1. 新增VIP解析源 &lt;br /&gt; 2. 完成调用本地播放器进行播放视频(利用&lt;font color=&quot;red&quot;&gt;MPV&lt;/font&gt;软件和&lt;font color=&quot;red&quot;&gt;FFPlay&lt;/font&gt;软件) &lt;br /&gt;3. 增加一列&quot;更新日志” &lt;br /&gt;4. dmg文件更新&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2019-8-24&lt;/td&gt; 
+   &lt;td&gt;1. 试部分源，失效源优先级挪低。&lt;br /&gt; 2. 更新icon&amp;nbsp;&lt;br /&gt; 3. &quot;转换接口&quot;改为&quot;破解接口&quot;&amp;nbsp;&lt;br /&gt; 4. 新增音乐破解地址&lt;br /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2019-2-21&lt;/td&gt; 
+   &lt;td&gt;新增2个电视直播源&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2019-2-15&lt;/td&gt; 
+   &lt;td&gt;全屏时隐藏底部按钮&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2019-1-7&lt;/td&gt; 
+   &lt;td&gt;修正dmg地址&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;2018-7-26&lt;/td&gt; 
+   &lt;td&gt;更新解析接口&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;概述&lt;/h2&gt; 
+&lt;p&gt;本软件不做破解，只是破解地址的搬运工&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;支持各大网站vip视频免费观看。&lt;/li&gt; 
+ &lt;li&gt;集合自用视频或者电影URL&lt;/li&gt; 
+ &lt;li&gt;集合自用音乐破解URL&lt;/li&gt; 
+ &lt;li&gt;集合CCTV等电视播放URL。&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;本软件仅供学习参考，切勿商业使用。接口数据均来源于互联网。如有侵权，请联系删除。&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;GitHub:&lt;/strong&gt; &lt;a href=&quot;https://github.com/iodefog/VipVideo&quot;&gt;https://github.com/iodefog/VipVideo&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;下载安装地址：&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;v1.1.7&lt;/strong&gt; 版本 (支持自定义源和顺序)&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/iodefog/VipVideo/releases/download/1.1.7/VipVideo-1.1.7-arm64-mac.zip&quot;&gt;Mac(Apple芯片)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/iodefog/VipVideo/releases/download/1.1.7/VipVideo-1.1.7-mac.zip&quot;&gt;Mac(Inter)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/iodefog/VipVideo/releases/download/1.1.7/VipVideo-1.1.7-64.exe.zip&quot;&gt;Windows版本 64位&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/iodefog/VipVideo/releases/download/1.1.7/VipVideo-1.1.7-32.exe.zip&quot;&gt;Windows版本 32位&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;百度网盘下载地址：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;链接: &lt;a href=&quot;https://pan.baidu.com/s/1oM922clCSNCVo-bTzXwpGw?pwd=be9f&quot;&gt;https://pan.baidu.com/s/1oM922clCSNCVo-bTzXwpGw?pwd=be9f&lt;/a&gt; 提取码: be9f&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;软件功能介绍：&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;破解接口&lt;/li&gt; 
+ &lt;li&gt;展示窗口&lt;/li&gt; 
+ &lt;li&gt;新建窗口&lt;/li&gt; 
+ &lt;li&gt;GoBack&lt;/li&gt; 
+ &lt;li&gt;GoFoward&lt;/li&gt; 
+ &lt;li&gt;切换下一个接口（支持快捷键）&lt;/li&gt; 
+ &lt;li&gt;切换上一个接口（支持快捷键）&lt;/li&gt; 
+ &lt;li&gt;Safari中打开&lt;/li&gt; 
+ &lt;li&gt;复制链接（用于分享或者浏览器播放）&lt;/li&gt; 
+ &lt;li&gt;启用本地播放（VIP接口已支持，其他网站待TODO）&lt;/li&gt; 
+ &lt;li&gt;退出&lt;/li&gt; 
+ &lt;li&gt;历史记录&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;主页&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/iodefog/VipVideo/master/images/home-v2.jpg&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;vip使用方法：先点击需要看的视频，然后点击“vip”，选择解析路线即可。如果不能播放，需要手动换下一条线路
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;支持源：&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;分类&lt;/th&gt; 
+   &lt;th&gt;平台名称&lt;/th&gt; 
+   &lt;th&gt;VIP解析&lt;/th&gt; 
+   &lt;th&gt;网址&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;电视台&lt;/td&gt; 
+   &lt;td&gt;CCTV&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://tv.cctv.com/live/cctv5/&quot;&gt;http://tv.cctv.com/live/cctv5/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;爱奇艺&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.iqiyi.com/&quot;&gt;https://www.iqiyi.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;腾讯视频&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://v.qq.com/&quot;&gt;https://v.qq.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;芒果TV&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.mgtv.com/&quot;&gt;https://www.mgtv.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;bilibili&lt;/td&gt; 
+   &lt;td&gt;✅&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.bilibili.com/&quot;&gt;https://www.bilibili.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;1905&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://vip.1905.com/&quot;&gt;https://vip.1905.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;西瓜视频&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.ixigua.com/&quot;&gt;https://www.ixigua.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;Netflix&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.netflix.com/&quot;&gt;https://www.netflix.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;视频网站&lt;/td&gt; 
+   &lt;td&gt;YouTube&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.youtube.com/&quot;&gt;https://www.youtube.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;音乐平台&lt;/td&gt; 
+   &lt;td&gt;网易云音乐&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://music.163.com/&quot;&gt;https://music.163.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;音乐平台&lt;/td&gt; 
+   &lt;td&gt;QQ音乐&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://y.qq.com/&quot;&gt;https://y.qq.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;音乐平台&lt;/td&gt; 
+   &lt;td&gt;酷狗音乐&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.kugou.com/&quot;&gt;https://www.kugou.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;音乐平台&lt;/td&gt; 
+   &lt;td&gt;酷我音乐&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.kuwo.cn/&quot;&gt;https://www.kuwo.cn/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;音乐平台&lt;/td&gt; 
+   &lt;td&gt;喜马拉雅&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.ximalaya.com/&quot;&gt;https://www.ximalaya.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;直播平台&lt;/td&gt; 
+   &lt;td&gt;抖音&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.douyin.com/&quot;&gt;https://www.douyin.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;直播平台&lt;/td&gt; 
+   &lt;td&gt;快手&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.kuaishou.com/&quot;&gt;https://www.kuaishou.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;影视剧网站&lt;/td&gt; 
+   &lt;td&gt;漫岛&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.mddm.tv/&quot;&gt;https://www.mddm.tv/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;影视剧网站&lt;/td&gt; 
+   &lt;td&gt;美剧&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://mjw21.com/&quot;&gt;https://mjw21.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;影视剧网站&lt;/td&gt; 
+   &lt;td&gt;韩剧&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.kan.cc/&quot;&gt;https://www.kan.cc/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;影视剧网站&lt;/td&gt; 
+   &lt;td&gt;日剧&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;http://www.wwmulu.com/&quot;&gt;http://www.wwmulu.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;影视剧网站&lt;/td&gt; 
+   &lt;td&gt;新视觉影院&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.finebv.com/&quot;&gt;https://www.finebv.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;影视剧网站&lt;/td&gt; 
+   &lt;td&gt;大师兄影视&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://dsxys.pro/&quot;&gt;https://dsxys.pro/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;影视剧网站&lt;/td&gt; 
+   &lt;td&gt;天空影视&lt;/td&gt; 
+   &lt;td&gt;-&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.yskj1.com/&quot;&gt;https://www.yskj1.com/&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;如果MAC软件提示已损坏，需要移到废纸篓的解决方法&lt;/h3&gt; 
+&lt;p&gt;&lt;b&gt;解决方法一： &lt;/b&gt; 允许任何来源的应用。在系统偏好设置里，打开“安全性和隐私”，将“允许从以下位置下载的应用程序”设置为“任何来源“。当然，这个设置已经无法在Mac OS Sierra上完成了。 在Mac OS Sierra上，应该进行以下操作：&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;打开终端（Terminal），输入以下命令后回车，输入密码 &lt;br /&gt;&lt;/p&gt; &lt;pre&gt;&lt;code&gt;sudo spctl --master-disable 
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;重新运行下载的应用程序&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;b&gt;解决方法二：&lt;/b&gt; 移除这个应用的安全隔离属性，操作如下：&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;打开终端（Terminal），输入以下命令后回车，如需要，请输入密码&lt;br /&gt; 格式：&lt;code&gt;tr -r -d com.apple.quarantine &amp;lt;path&amp;gt;&lt;/code&gt; &lt;br /&gt; 
+   &lt;path&gt;
+     是你下载的应用程序的路径，一般在/Applications/应用程序名字 
+    &lt;br /&gt; 示例：
+   &lt;/path&gt;&lt;/p&gt; &lt;pre&gt;&lt;code&gt;xattr -r -d com.apple.quarantine /Applications/VIPVideo.app
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;br /&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;重新运行下载的应用程序。&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;hr /&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;如有其他问题，请发送邮件 &lt;a href=&quot;mailto:592658688@qq.com&quot;&gt;592658688@qq.com&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;QQ群：2群：786219580; 1群：567503018[已满]&lt;/p&gt; 
+&lt;p&gt;个人QQ: 592658688；&lt;/p&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.star-history.com/#iodefog/VipVideo&amp;amp;type=date&amp;amp;legend=top-left&quot;&gt;&lt;img src=&quot;https://api.star-history.com/svg?repos=iodefog/VipVideo&amp;amp;type=date&amp;amp;legend=top-left&quot; alt=&quot;Star History Chart&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/5b55eb360efb9d72680345c9282ed14f065643121fe256d0bb6d2de1404aa219/iodefog/VipVideo" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>aws-amplify/aws-sdk-ios</title>
+      <link>https://github.com/aws-amplify/aws-sdk-ios</link>
+      <description>&lt;p&gt;AWS SDK for iOS. For more information, see our web site:&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://aws-amplify.github.io/docs&quot;&gt;https://aws-amplify.github.io/docs&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;⚠️ The AWS SDK for iOS is Deprecated.&lt;/h1&gt; 
+&lt;p&gt;We recommend that you start using &lt;a href=&quot;https://github.com/aws-amplify/amplify-swift&quot;&gt;AWS Amplify for Swift&lt;/a&gt;, our modern feature-rich library designed specifically for building cloud-connected apps powered by AWS. You can refer to the &lt;a href=&quot;https://github.com/aws-amplify/amplify-swift/raw/main/MobileSDK_To_AmplifySwift_Guidance.md&quot;&gt;AWS SDK for iOS migration guide&lt;/a&gt; to help you transition to AWS Amplify for Swift. This version is scheduled to reach End of Support on &lt;strong&gt;August 1, 2026&lt;/strong&gt;. After this date, no further updates of any kind will be provided. See &lt;a href=&quot;https://docs.amplify.aws/reference/maintenance-policy&quot;&gt;maintenance policy&lt;/a&gt; for more information about the Amplify Client Library lifecycle.&lt;/p&gt; 
+&lt;p&gt;To use the AWS SDK for iOS directly you can refer to &lt;a href=&quot;https://docs.amplify.aws/sdk/q/platform/ios/&quot;&gt;the AWS SDK Documentation here&lt;/a&gt; and follow the setup instructions below. You can also look at sample apps in &lt;a href=&quot;https://github.com/awslabs/aws-sdk-ios-samples&quot;&gt;the AWS SDK for iOS Samples repo&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aws-amplify/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/aws/aws-sdk-ios.svg?sanitize=true&quot; alt=&quot;Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/aws-amplify/aws-sdk-ios&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/aws-amplify/aws-sdk-ios/branch/main/graph/badge.svg?sanitize=true&quot; alt=&quot;Code Coverage&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cocoapods.org/pods/AWSCore&quot;&gt;&lt;img src=&quot;https://img.shields.io/cocoapods/v/AWSCore.svg?sanitize=true&quot; alt=&quot;CocoaPods&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Carthage-compatible-4BC51D.svg?style=flat&quot; alt=&quot;Carthage compatible&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/aws-amplify/aws-sdk-ios&quot;&gt;&lt;img src=&quot;https://github.com/aws-amplify/aws-sdk-ios/actions/workflows/integ-test.yml/badge.svg?sanitize=true&quot; alt=&quot;Integration Test&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/aws-amplify/aws-sdk-ios&quot;&gt;&lt;img src=&quot;https://github.com/aws-amplify/aws-sdk-ios/actions/workflows/unit-test.yml/badge.svg?sanitize=true&quot; alt=&quot;Unit Test&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/jWVbPfC&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/308323056592486420?logo=discord&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Setup&lt;/h2&gt; 
+&lt;p&gt;To use the AWS SDK for iOS, you will need the following installed on your development machine:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Xcode 11.0 or later&lt;/li&gt; 
+ &lt;li&gt;iOS 12 or later&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Include the SDK for iOS in an Existing Application&lt;/h2&gt; 
+&lt;p&gt;We have a couple &lt;a href=&quot;https://github.com/awslabs/aws-sdk-ios-samples&quot;&gt;samples&lt;/a&gt; applications which showcase how to use the AWS SDK for iOS. Please note that the code in these sample applications is not of production quality, and should be considered as exactly what we called them: samples.&lt;/p&gt; 
+&lt;p&gt;There are several ways to integrate the AWS Mobile SDK for iOS into your own project:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://swift.org/package-manager/&quot;&gt;Swift Package Manager&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cocoapods.org/&quot;&gt;CocoaPods&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Carthage/Carthage&quot;&gt;Carthage&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://aws.amazon.com/mobile/sdk/&quot;&gt;Dynamic Frameworks&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You should use ONE and only one of these ways to import the AWS Mobile SDK. Importing the SDK in multiple ways loads duplicate copies of the SDK into the project and causes compiler/linker errors.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: If you are using XCFrameworks (i.e., either Swift Package Manager, Carthage, or Dynamic Frameworks), some modules are named with the &lt;code&gt;XCF&lt;/code&gt; suffix to work around a &lt;a href=&quot;https://bugs.swift.org/browse/SR-11704&quot;&gt;Swift issue&lt;/a&gt;. &lt;code&gt;AWSMobileClient&lt;/code&gt; is named as &lt;code&gt;AWSMobileClientXCF&lt;/code&gt; and &lt;code&gt;AWSLocation&lt;/code&gt; is named as &lt;code&gt;AWSLocationXCF&lt;/code&gt;. To use the &lt;code&gt;AWSMobileClient&lt;/code&gt; or &lt;code&gt;AWSLocation&lt;/code&gt; SDKs, import them as:&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import AWSMobileClientXCF
+import AWSLocationXCF
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;and use it your app code without the &lt;code&gt;XCF&lt;/code&gt; suffix.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;AWSMobileClient.default().initialize() 
+let locationClient = AWSLocation.default()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Swift Package Manager&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Swift Package Manager is distributed with Xcode. To start adding the AWS SDK to your iOS project, open your project in Xcode and select &lt;strong&gt;File &amp;gt; Swift Packages &amp;gt; Add Package Dependency&lt;/strong&gt;.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aws-amplify/aws-sdk-ios/main/readme-images/spm-setup-01-add-package-dependency.png&quot; alt=&quot;Add package dependency&quot; /&gt;&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Enter the URL for the AWS SDK for iOS Swift Package Manager GitHub repo (&lt;code&gt;https://github.com/aws-amplify/aws-sdk-ios-spm&lt;/code&gt;) into the search bar and click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aws-amplify/aws-sdk-ios/main/readme-images/spm-setup-02-search-amplify-repo.png&quot; alt=&quot;Search for repo&quot; /&gt;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; This URL is &lt;em&gt;not&lt;/em&gt; the main URL of the SDK. We maintain the Swift Package Manager manifest (&lt;code&gt;Package.swift&lt;/code&gt;) file for this library in a separate repo so that apps that use the SDK do not have to download the entire source repository in order to consume the binary targets.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;You&#39;ll see the repository rules for which version of the SDK you want Swift Package Manager to install. Choose the first rule, &lt;strong&gt;Version&lt;/strong&gt;, and select &lt;strong&gt;Up to Next Minor&lt;/strong&gt; as it will use the latest compatible version of the dependency that can be detected from the &lt;code&gt;main&lt;/code&gt; branch, then click &lt;strong&gt;Next&lt;/strong&gt;.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aws-amplify/aws-sdk-ios/main/readme-images/spm-setup-03-dependency-version-options.png&quot; alt=&quot;Dependency version options&quot; /&gt;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;NOTE:&lt;/strong&gt; The AWS Mobile SDK for iOS does &lt;a href=&quot;https://docs.amplify.aws/sdk/configuration/setup-options/q/platform/ios#aws-sdk-version-vs-semantic-versioning&quot;&gt;not use Semantic Versioning&lt;/a&gt;, and may introduce breaking API changes on minor version releases. We recommend setting your &lt;strong&gt;Version&lt;/strong&gt; rule to &lt;strong&gt;Up to Next Minor&lt;/strong&gt; and evaluating minor version releases to ensure they are compatible with your app.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Choose which of the libraries you want added to your project. Always select the &lt;strong&gt;AWSCore&lt;/strong&gt; SDK. The remaining SDKs to install will vary based on which SDK you&#39;re trying to install. Most SDKs rely only on &lt;strong&gt;AWSCore&lt;/strong&gt;, but for a full dependency list, see the &lt;a href=&quot;https://raw.githubusercontent.com/aws-amplify/aws-sdk-ios/main/README-spm-support.md&quot;&gt;README-spm-support file&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;&lt;em&gt;Note: AWSLex is not currently supported for the &lt;code&gt;arm64&lt;/code&gt; architecture through Swift Package Manager due to conflicts with a packaged binary dependency.&lt;/em&gt;&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aws-amplify/aws-sdk-ios/main/readme-images/spm-setup-04-select-dependencies.png&quot; alt=&quot;Select dependencies&quot; /&gt;&lt;/p&gt; &lt;p&gt;Select all that are appropriate, then click &lt;strong&gt;Finish&lt;/strong&gt;.&lt;/p&gt; &lt;p&gt;You can always go back and modify which SPM packages are included in your project by opening the Swift Packages tab for your project: Click on the Project file in the Xcode navigator, then click on your project&#39;s icon, then select the &lt;strong&gt;Swift Packages&lt;/strong&gt; tab.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;The AWS Mobile SDK for iOS is available through &lt;a href=&quot;http://cocoapods.org&quot;&gt;CocoaPods&lt;/a&gt;. If you have not installed CocoaPods, install CocoaPods by running the command:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ gem install cocoapods
+ $ pod setup
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Depending on your system settings, you may have to use &lt;code&gt;sudo&lt;/code&gt; for installing &lt;code&gt;cocoapods&lt;/code&gt; as follows:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ sudo gem install cocoapods
+ $ pod setup
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;In your project directory (the directory where your &lt;code&gt;*.xcodeproj&lt;/code&gt; file is), run the following to create a &lt;code&gt;Podfile&lt;/code&gt; in your project.&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ pod init
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Edit the podfile to include the pods you want to integrate into your project. For example, if you need auth, you can use AWSMobileClient, and if you need analytics, you add AWSPinpoint. As a result, your podfile might look something like this:&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code&gt;target &#39;YourTarget&#39; do
+    pod &#39;AWSMobileClient&#39;
+    pod &#39;AWSPinpoint&#39;
+end
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For a complete list of our pods, check out the .podspec files in the root directory of this project.&lt;/p&gt; 
+&lt;ol start=&quot;3&quot;&gt; 
+ &lt;li&gt; &lt;p&gt;Then run the following command:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ pod install --repo-update
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;To open your project, open the newly generated &lt;code&gt;*.xcworkspace&lt;/code&gt; file in your project&#39;s directory with XCode. You can do this by issuing the following command in your project folder:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ xed .
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Do &lt;strong&gt;NOT&lt;/strong&gt; use &lt;code&gt;*.xcodeproj&lt;/code&gt;. If you open up a project file instead of a workspace, you may receive the following error:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; ld: library not found for -lPods-AWSCore
+ clang: error: linker command failed with exit code 1 (use -v to see invocation)
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;h4&gt;XCFrameworks (recommended)&lt;/h4&gt; 
+&lt;p&gt;Carthage supports XCFrameworks in Xcode 12 or above. Follow the steps below to consume the AWS SDK for iOS using XCFrameworks:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Install Carthage 0.37.0 or greater.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add the following to your &lt;code&gt;Cartfile&lt;/code&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; github &quot;aws-amplify/aws-sdk-ios&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Then run the following command:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ carthage update --use-xcframeworks --no-use-binaries
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;As of Carthage 0.37.0, prebuilt binaries using XCFrameworks are not supported, as mentioned in the Carthage release notes - &lt;a href=&quot;https://github.com/Carthage/Carthage/releases/tag/0.37.0&quot;&gt;https://github.com/Carthage/Carthage/releases/tag/0.37.0&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ol start=&quot;4&quot;&gt; 
+ &lt;li&gt;On your application targets’ General settings tab, in the Embedded Binaries section, drag and drop each xcframework you want to use from the Carthage/Build folder on disk.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Frameworks with &quot;fat libraries&quot; (not recommended)&lt;/h4&gt; 
+&lt;p&gt;To build platform-specific framework bundles with multiple architectures in the binary, (Xcode 11 and below)&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Install the latest version of &lt;a href=&quot;https://github.com/Carthage/Carthage#installing-carthage&quot;&gt;Carthage&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Add the following to your &lt;code&gt;Cartfile&lt;/code&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; github &quot;aws-amplify/aws-sdk-ios&quot;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Then run the following command:&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ carthage update
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;With your project open in Xcode, select your &lt;strong&gt;Target&lt;/strong&gt;. Under &lt;strong&gt;General&lt;/strong&gt; tab, find &lt;strong&gt;Frameworks, Libraries, and Embedded Content&lt;/strong&gt; and then click the &lt;strong&gt;+&lt;/strong&gt; button.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Click the &lt;strong&gt;Add Other...&lt;/strong&gt; button, then &quot;Add Files...&quot; in the popup menu, then navigate to the &lt;code&gt;AWS&amp;lt;#ServiceName#&amp;gt;.framework&lt;/code&gt; files under &lt;code&gt;Carthage&lt;/code&gt; &amp;gt; &lt;code&gt;Build&lt;/code&gt; &amp;gt; &lt;code&gt;iOS&lt;/code&gt; and select them. Do not check the &lt;strong&gt;Destination: Copy items if needed&lt;/strong&gt; checkbox if prompted. Add the frameworks that you need for you specific use case. For example, if you are using AWSMobileClient and AWSPinpoint, you will want to add the following frameworks:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;AWSAuthCore.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSCognitoIdentityProvider.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSCognitoIdentityProviderASF.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSCore.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSMobileClient.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSPinpoint.framework&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Under the &lt;strong&gt;Build Phases&lt;/strong&gt; tab in your &lt;strong&gt;Target&lt;/strong&gt;, click the &lt;strong&gt;+&lt;/strong&gt; button on the top left and then select &lt;strong&gt;New Run Script Phase&lt;/strong&gt;. Then setup the build phase as follows. Make sure this phase is below the &lt;code&gt;Embed Frameworks&lt;/code&gt; phase.&lt;/p&gt; &lt;pre&gt;&lt;code&gt; Shell /bin/sh
+ 
+ bash &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework/strip-frameworks.sh&quot;
+ 
+ Show environment variables in build log: Checked
+ Run script only when installing: Not checked
+ 
+ Input Files: Empty
+ Output Files: Empty
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: Currently, the AWS SDK for iOS builds the Carthage binaries using the latest released version of Xcode. To consume the pre-built binaries your Xcode version needs to be the same, else you have to build the frameworks on your machine by passing &lt;code&gt;--no-use-binaries&lt;/code&gt; flag to &lt;code&gt;carthage update&lt;/code&gt; command.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;Frameworks&lt;/h3&gt; 
+&lt;h4&gt;XCFramework setup&lt;/h4&gt; 
+&lt;p&gt;Starting AWS SDK iOS version 2.22.1, SDK binaries are released as XCFrameworks. Follow the steps below to install XCFramework.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the &lt;a href=&quot;https://releases.amplify.aws/aws-sdk-ios/latest/aws-ios-sdk.zip&quot;&gt;latest SDK&lt;/a&gt;. Older SDK versions can be downloaded from &lt;code&gt;https://releases.amplify.aws/aws-sdk-ios/aws-ios-sdk-#.#.#.zip&lt;/code&gt;, where &lt;code&gt;#.#.#&lt;/code&gt; represents the version number. So for version 2.23.3, the download link is &lt;a href=&quot;https://releases.amplify.aws/aws-sdk-ios/aws-ios-sdk-2.23.3.zip&quot;&gt;https://releases.amplify.aws/aws-sdk-ios/aws-ios-sdk-2.23.3.zip&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note1: If you are using version &amp;lt; 2.22.1 please refer to the &quot;Legacy framework setup&quot; section below. Note2: To download version &amp;lt; 2.23.3 use this link &lt;code&gt;https://sdk-for-ios.amazonwebservices.com/aws-ios-sdk-#.#.#.zip&lt;/code&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Uncompress the ZIP file&lt;/li&gt; 
+ &lt;li&gt;On your application targets’ General settings tab, in the Embedded Binaries section, drag and drop each xcframework you want to use from the downloaded folder.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Legacy framework setup&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download the required SDK using &lt;code&gt;https://sdk-for-ios.amazonwebservices.com/aws-ios-sdk-#.#.#.zip&lt;/code&gt;, where &lt;code&gt;#.#.#&lt;/code&gt; represents the version number. So for version 2.10.2, the download link is &lt;a href=&quot;https://sdk-for-ios.amazonwebservices.com/aws-ios-sdk-2.10.2.zip&quot;&gt;https://sdk-for-ios.amazonwebservices.com/aws-ios-sdk-2.10.2.zip&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Note: If you are using version &amp;gt; 2.22.0 please refer to the &quot;XCFramework setup&quot; section above.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt; &lt;p&gt;With your project open in Xcode, select your &lt;strong&gt;Target&lt;/strong&gt;. Under &lt;strong&gt;General&lt;/strong&gt; tab, find &lt;strong&gt;Embedded Binaries&lt;/strong&gt; and then click the &lt;strong&gt;+&lt;/strong&gt; button.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Click the &lt;strong&gt;Add Other...&lt;/strong&gt; button, navigate to the &lt;code&gt;AWS&amp;lt;#ServiceName#&amp;gt;.framework&lt;/code&gt; files and select them. Check the &lt;strong&gt;Destination: Copy items if needed&lt;/strong&gt; checkbox when prompted. Add the frameworks that you need for you specific use case. For example, if you are using AWSMobileClient and AWSPinpoint, you will want to add the following frameworks:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;code&gt;AWSAuthCore.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSCognitoIdentityProvider.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSCognitoIdentityProviderASF.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSCore.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSMobileClient.framework&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;code&gt;AWSPinpoint.framework&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Under the &lt;strong&gt;Build Phases&lt;/strong&gt; tab in your &lt;strong&gt;Target&lt;/strong&gt;, click the &lt;strong&gt;+&lt;/strong&gt; button on the top left and then select &lt;strong&gt;New Run Script Phase&lt;/strong&gt;. Then setup the build phase as follows. Make sure this phase is below the &lt;code&gt;Embed Frameworks&lt;/code&gt; phase.&lt;/p&gt; &lt;pre&gt;&lt;code&gt; Shell /bin/sh
+ 
+ bash &quot;${BUILT_PRODUCTS_DIR}/${FRAMEWORKS_FOLDER_PATH}/AWSCore.framework/strip-frameworks.sh&quot;
+ 
+ Show environment variables in build log: Checked
+ Run script only when installing: Not checked
+ 
+ Input Files: Empty
+ Output Files: Empty
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Update the SDK to a Newer Version&lt;/h2&gt; 
+&lt;p&gt;When we release a new version of the SDK, you can pick up the changes as described below.&lt;/p&gt; 
+&lt;h3&gt;CocoaPods&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Run the following command in your project directory. CocoaPods automatically picks up the new changes.&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ pod update
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: If your pod is having an issue, you can delete &lt;code&gt;Podfile.lock&lt;/code&gt; and &lt;code&gt;Pods/&lt;/code&gt; then run &lt;code&gt;pod install&lt;/code&gt; to cleanly install the SDK.&lt;/p&gt; &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/aws-amplify/aws-sdk-ios/main/readme-images/cocoapods-setup-03.png?raw=true&quot; alt=&quot;image&quot; /&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Carthage&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Run the following command in your project directory. Carthage automatically picks up the new changes.&lt;/p&gt; &lt;pre&gt;&lt;code&gt; $ carthage update
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Frameworks&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;In Xcode&#39;s &lt;strong&gt;Project Navigator&lt;/strong&gt;, type &quot;AWS&quot; to find the AWS Frameworks or XCFrameworks that you manually added to your project. Select all of the AWS Frameworks and hit &lt;strong&gt;Delete&lt;/strong&gt; on your keyboard. Then select &lt;strong&gt;Move to Trash&lt;/strong&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Follow the installation process above to include the new version of the SDK.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h2&gt;Getting Started with Swift&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Import the AWSCore header in the application delegate.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import AWSCore
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Create a default service configuration by adding the following code snippet in the &lt;code&gt;application:didFinishLaunchingWithOptions:&lt;/code&gt; application delegate method.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let credentialsProvider = AWSCognitoCredentialsProvider(
+    regionType: CognitoRegionType,
+    identityPoolId: CognitoIdentityPoolId)
+let configuration = AWSServiceConfiguration(
+    region: DefaultServiceRegionType,
+    credentialsProvider: credentialsProvider)
+AWSServiceManager.default().defaultServiceConfiguration = configuration
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;In Swift file you want to use the SDK, import the appropriate headers for the services you are using. The header file import convention is &lt;code&gt;import AWSServiceName&lt;/code&gt;, as in the following examples:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;import AWSS3
+import AWSDynamoDB
+import AWSSQS
+import AWSSNS
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Make a call to the AWS services.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let dynamoDB = AWSDynamoDB.default()
+let listTableInput = AWSDynamoDBListTablesInput()
+dynamoDB.listTables(listTableInput!).continueWith { (task:AWSTask&amp;lt;AWSDynamoDBListTablesOutput&amp;gt;) -&amp;gt; Any? in
+    if let error = task.error as? NSError {
+    print(&quot;Error occurred: \(error)&quot;)
+        return nil
+    }
+
+    let listTablesOutput = task.result
+
+    for tableName in listTablesOutput!.tableNames! {
+        print(&quot;\(tableName)&quot;)
+    }
+
+    return nil
+}
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Most of the service client classes have a singleton method to get a default client. The naming convention is &lt;code&gt;+ defaultSERVICENAME&lt;/code&gt; (e.g. &lt;code&gt;+ defaultDynamoDB&lt;/code&gt; in the above code snippet). This singleton method creates a service client with &lt;code&gt;defaultServiceConfiguration&lt;/code&gt;, which you set up in step 5, and maintains a strong reference to the client.&lt;/p&gt; 
+&lt;h2&gt;Getting Started with Objective-C&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Import the AWSCore header in the application delegate.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;@import AWSCore;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Create a default service configuration by adding the following code snippet in the &lt;code&gt;application:didFinishLaunchingWithOptions:&lt;/code&gt; application delegate method.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;AWSCognitoCredentialsProvider *credentialsProvider = [[AWSCognitoCredentialsProvider alloc] initWithRegionType:CognitoRegionType
+                                                                                                identityPoolId:CognitoIdentityPoolId];
+AWSServiceConfiguration *configuration = [[AWSServiceConfiguration alloc] initWithRegion:DefaultServiceRegionType
+                                                                     credentialsProvider:credentialsProvider];
+AWSServiceManager.defaultServiceManager.defaultServiceConfiguration = configuration;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Import the appropriate headers for the services you are using. The header file import convention is &lt;code&gt;@import AWSServiceName;&lt;/code&gt;, as in the following examples:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;@import AWSS3;
+@import AWSDynamoDB;
+@import AWSSQS;
+@import AWSSNS;
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Make a call to the AWS services.&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;AWSSNS *sns = [AWSSNS defaultSNS];
+AWSSNSListTopicsInput *listTopicsInput = [AWSSNSListTopicsInput new];
+[[sns listTopics:listTopicsInput] continueWithBlock:^id(AWSTask *task) {
+    // Do something with the response
+    return nil;
+}];
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;strong&gt;Note&lt;/strong&gt;: Most of the service client classes have a singleton method to get a default client. The naming convention is &lt;code&gt;+ defaultSERVICENAME&lt;/code&gt; (e.g. &lt;code&gt;+ defaultS3SNS&lt;/code&gt; in the above code snippet). This singleton method creates a service client with &lt;code&gt;defaultServiceConfiguration&lt;/code&gt;, which you set up in step 5, and maintains a strong reference to the client.&lt;/p&gt; 
+&lt;h2&gt;Working with AWSTask&lt;/h2&gt; 
+&lt;p&gt;The SDK returns &lt;code&gt;AWSTask&lt;/code&gt; objects when operating on asynchronous operations to avoid blocking the UI thread.&lt;/p&gt; 
+&lt;p&gt;The AWSTask class is a renamed version of BFTask from the Bolts framework. For complete documentation on Bolts, see the &lt;a href=&quot;https://github.com/BoltsFramework/Bolts-ObjC&quot;&gt;Bolts-iOS repo&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Logging&lt;/h2&gt; 
+&lt;p&gt;As of version 2.5.4 of this SDK, logging utilizes &lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack&quot;&gt;CocoaLumberjack&lt;/a&gt;, a flexible, fast, open source logging framework. It supports many capabilities including the ability to set logging level per output target, for instance, concise messages logged to the console and verbose messages to a log file.&lt;/p&gt; 
+&lt;p&gt;CocoaLumberjack logging levels are additive such that when the level is set to verbose, all messages from the levels below verbose are logged. It is also possible to set custom logging to meet your needs. For more information, see &lt;a href=&quot;https://github.com/CocoaLumberjack/CocoaLumberjack/raw/master/Documentation/CustomLogLevels.md&quot;&gt;CocoaLumberjack&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Changing Log Levels&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;Swift&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;AWSDDLog.sharedInstance.logLevel = .verbose
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The following logging level options are available:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;.off&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;.error&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;.warning&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;.info&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;.debug&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;.verbose&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;[AWSDDLog sharedInstance].logLevel = AWSDDLogLevelVerbose;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The following logging level options are available:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;AWSDDLogLevelOff&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;AWSDDLogLevelError&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;AWSDDLogLevelWarning&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;AWSDDLogLevelInfo&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;AWSDDLogLevelDebug&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;AWSDDLogLevelVerbose&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;We recommend setting the log level to &lt;code&gt;Off&lt;/code&gt; before publishing to the Apple App Store.&lt;/p&gt; 
+&lt;h3&gt;Targeting Log Output&lt;/h3&gt; 
+&lt;p&gt;CocoaLumberjack can direct logs to file or used as a framework that integrates with the Xcode console.&lt;/p&gt; 
+&lt;p&gt;To initialize logging to files, use the following code:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Swift&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;let fileLogger: AWSDDFileLogger = AWSDDFileLogger() // File Logger
+fileLogger.rollingFrequency = TimeInterval(60*60*24)  // 24 hours
+fileLogger.logFileManager.maximumNumberOfLogFiles = 7
+AWSDDLog.add(fileLogger)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;AWSDDFileLogger *fileLogger = [[AWSDDFileLogger alloc] init]; // File Logger
+fileLogger.rollingFrequency = 60 * 60 * 24; // 24 hour rolling
+fileLogger.logFileManager.maximumNumberOfLogFiles = 7;
+[AWSDDLog addLogger:fileLogger];
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To initialize logging to your Xcode console, use the following code:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Swift&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-swift&quot;&gt;AWSDDLog.add(AWSDDOSLogger.sharedInstance) // Apple&#39;s unified logging
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;strong&gt;Objective-C&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-objective-c&quot;&gt;[AWSDDLog addLogger:[AWSDDOSLogger sharedInstance]]; // Apple&#39;s unified logging
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Open Source Contributions&lt;/h2&gt; 
+&lt;p&gt;We welcome any and all contributions from the community! Make sure you read through our contribution guide &lt;a href=&quot;https://raw.githubusercontent.com/aws-amplify/aws-sdk-ios/main/CONTRIBUTING.md&quot;&gt;here&lt;/a&gt; before submitting any PR&#39;s. Thanks! ❤️&lt;/p&gt; 
+&lt;h2&gt;Talk to Us&lt;/h2&gt; 
+&lt;p&gt;Visit our GitHub &lt;a href=&quot;https://github.com/aws-amplify/aws-sdk-ios/issues&quot;&gt;Issues&lt;/a&gt; to leave feedback and to connect with other users of the SDK.&lt;/p&gt; 
+&lt;h2&gt;Author&lt;/h2&gt; 
+&lt;p&gt;Amazon Web Services&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;See the &lt;strong&gt;LICENSE&lt;/strong&gt; file for more info.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/c37d61b966d858deae9cae3fd1e0d5ce75308a99b7f604db64aba515d02c0023/aws-amplify/aws-sdk-ios" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>PojavLauncherTeam/PojavLauncher_iOS</title>
+      <link>https://github.com/PojavLauncherTeam/PojavLauncher_iOS</link>
+      <description>&lt;p&gt;A Minecraft: Java Edition Launcher for Android and iOS based on Boardwalk. Succeeded by https://github.com/AngelAuraMC/Amethyst-iOS&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;PojavLauncher for iOS&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions/workflows/development.yml&quot;&gt;&lt;img src=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions/workflows/development.yml/badge.svg?branch=main&quot; alt=&quot;Development build&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://crowdin.com/project/pojavlauncher&quot;&gt;&lt;img src=&quot;https://badges.crowdin.net/pojavlauncher/localized.svg?sanitize=true&quot; alt=&quot;Crowdin&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/pojavlauncher-724163890803638273&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/724163890803638273.svg?label=&amp;amp;logo=discord&amp;amp;logoColor=ffffff&amp;amp;color=7389D8&amp;amp;labelColor=6A7EC2&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Important note&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;PojavLauncher has been discontinued&lt;/strong&gt; and is no longer supported. Its successor is available &lt;a href=&quot;https://github.com/AngelAuraMC/Amethyst-iOS&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;p&gt;PojavLauncher is a Minecraft: Java Edition launcher for Android, iOS, and iPadOS, based off of zhuowei&#39;s &lt;a href=&quot;https://github.com/zhuowei/Boardwalk&quot;&gt;Boardwalk&lt;/a&gt; project.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Supports most versions of Minecraft: Java Edition, from the very first beta to the newest snapshots.&lt;/li&gt; 
+ &lt;li&gt;Supports Forge, Fabric, OptiFine, and Quilt for you to customize the experience with supported mods.&lt;/li&gt; 
+ &lt;li&gt;Includes customizable on-screen controls, keyboard and mouse support, and game controller support.&lt;/li&gt; 
+ &lt;li&gt;Optimized for jailbroken and TrollStore devices to enable better capabilities.&lt;/li&gt; 
+ &lt;li&gt;Microsoft account and demo mode support for logging into Minecraft.&lt;/li&gt; 
+ &lt;li&gt;...and much more!&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;This repository contains the code for our iOS and iPadOS port of PojavLauncher. Looking for &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher&quot;&gt;Android?&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Getting started with PojavLauncher&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://pojavlauncherteam.github.io/INSTALL.html#ios&quot;&gt;PojavLauncher Website&lt;/a&gt; has extensive documentation on how to install, set up, and play! For those who wish to install quickly, here&#39;s the basics:&lt;/p&gt; 
+&lt;h3&gt;Requirements&lt;/h3&gt; 
+&lt;p&gt;At the minimum, you&#39;ll need one of the following devices on &lt;strong&gt;iOS 14.0&lt;/strong&gt; and later:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iPhone 6s and later&lt;/li&gt; 
+ &lt;li&gt;iPad (5th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Air (2nd generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad mini (4th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Pro (all models)&lt;/li&gt; 
+ &lt;li&gt;iPod touch (7th generation)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;However, we recommend one of the following devices on &lt;strong&gt;iOS 14.0&lt;/strong&gt; and later:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;iPhone XS and later, excluding iPhone XR and iPhone SE (2nd generation)&lt;/li&gt; 
+ &lt;li&gt;iPad (10th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Air (4th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad mini (6th generation) and later&lt;/li&gt; 
+ &lt;li&gt;iPad Pro (all models, except for 9.7-inch)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Recommended devices provide a smoother and more enjoyable gameplay experience compared to other supported devices.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;tvOS support is in development.&lt;/li&gt; 
+ &lt;li&gt;iOS 17.x and iOS 18.x is supported. However, a computer is required. These methods will ultilized usage of pymobiledevice3. Python 3.11.(x) must be properly set up on your computer. For more information, please check out the official Wiki: &lt;a href=&quot;https://pojavlauncherteam.github.io/JIT.html#what-are-the-methods-to-enable-jit&quot;&gt;https://pojavlauncherteam.github.io/JIT.html#what-are-the-methods-to-enable-jit&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Setting up to sideload&lt;/h3&gt; 
+&lt;p&gt;PojavLauncher can be sideloaded in many ways. Our recommended solution is to install &lt;a href=&quot;https://github.com/opa334/TrollStore&quot;&gt;TrollStore&lt;/a&gt; if your iOS version supports it. Installing with TrollStore allows you to permenantly sign the application, automatically enable JIT, and increase memory limits.&lt;/p&gt; 
+&lt;p&gt;For iOS/iPadOS 17.0: Unfortunately,the above process will not work. It is required that you must use &lt;a href=&quot;https://github.com/JJTech0130/TrollRestore&quot;&gt;TrollRestore&lt;/a&gt;. Any versions above iOS/iPadOS 17.0 will NOT be supported (as of December 23, 2024).&lt;/p&gt; 
+&lt;p&gt;If you cannot, &lt;a href=&quot;https://altstore.io&quot;&gt;AltStore&lt;/a&gt; and &lt;a href=&quot;https://sidestore.io&quot;&gt;SideStore&lt;/a&gt; are your next best options.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;Signing services that do not use your UDID (and use distribution certificates) are not supported, as PojavLauncher requires capabilities they do not allow. However, if you do managed to gain access to a Development certificate, due to it having the necessary entitlement (being com.apple.security.get-task-allow) to attach a debugger to the running process (enabling JIT), you may use a Development certificate.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Only install sideloading software and PojavLauncher from trusted sources. We are not responsible for any harm caused by using unofficial software.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Jailbreaks also benefit from permenant signing, autoJIT, and increased memory limits, however we do not recommend them for regular use.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Installing PojavLauncher&lt;/h3&gt; 
+&lt;h4&gt;Release build (TrollStore)&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download an IPA of PojavLauncher in &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/releases&quot;&gt;Releases&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the package in TrollStore using the share menu.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Release build (AltStore/SideStore trusted source)&lt;/h4&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Add &lt;code&gt;PojavLauncher Repository&lt;/code&gt; from the Trusted Sources menu.&lt;/li&gt; 
+ &lt;li&gt;Tap &lt;code&gt;FREE&lt;/code&gt; to begin installing.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Nightly builds&lt;/h4&gt; 
+&lt;p&gt;&lt;em&gt;These builds can contain game-breaking bugs. Use with caution.&lt;/em&gt;&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Download an IPA build of PojavLauncher in the &lt;a href=&quot;https://github.com/PojavLauncherTeam/PojavLauncher_iOS/actions&quot;&gt;Actions tab&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Open the downloaded IPA in your sideloading app to install.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Enabling JIT&lt;/h3&gt; 
+&lt;p&gt;PojavLauncher makes use of &lt;strong&gt;just-in-time compilation&lt;/strong&gt;, or JIT, to provide usable speeds for the end user. JIT is not supported on iOS without the application being debugged, so workarounds are required to enable it. You can use this chart to determine the best solution for you and your setup.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Application&lt;/th&gt; 
+   &lt;th&gt;AltStore&lt;/th&gt; 
+   &lt;th&gt;SideStore&lt;/th&gt; 
+   &lt;th&gt;TrollStore&lt;/th&gt; 
+   &lt;th&gt;Jitterbug&lt;/th&gt; 
+   &lt;th&gt;Jailbroken&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Requires ext-device&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;If VPN unavailable&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Requires Wi-Fi&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Auto enabled&lt;/td&gt; 
+   &lt;td&gt;Yes(*)&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+   &lt;td&gt;No&lt;/td&gt; 
+   &lt;td&gt;Yes&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;(*) AltServer running on the local network is required.&lt;/p&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;p&gt;PojavLauncher is amazing, and surprisingly stable, and it wouldn&#39;t be this way without the commmunity that helped and contribute to the project! Some notable names:&lt;/p&gt; 
+&lt;p&gt;@khanhduytran0 - Lead iOS port developer&lt;br /&gt; @crystall1nedev - Lead iOS port developer&lt;br /&gt; @artdeell&lt;br /&gt; @Mathius-Boulay&lt;br /&gt; @zhuowei&lt;br /&gt; @jkcoxson&lt;br /&gt; @Diatrus&lt;/p&gt; 
+&lt;h2&gt;Third party components and their licenses&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/caciocavallo&quot;&gt;Caciocavallo&lt;/a&gt;: &lt;a href=&quot;https://github.com/PojavLauncherTeam/caciocavallo/raw/master/LICENSE&quot;&gt;GNU GPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://code.google.com/p/jsr-305&quot;&gt;jsr305&lt;/a&gt;: &lt;a href=&quot;http://opensource.org/licenses/BSD-3-Clause&quot;&gt;3-Clause BSD License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/zhuowei/Boardwalk&quot;&gt;Boardwalk&lt;/a&gt;: &lt;a href=&quot;https://github.com/zhuowei/Boardwalk/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ptitSeb/gl4es&quot;&gt;GL4ES&lt;/a&gt; by @lunixbochs @ptitSeb: &lt;a href=&quot;https://github.com/ptitSeb/gl4es/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://gitlab.freedesktop.org/mesa/mesa&quot;&gt;Mesa 3D Graphics Library&lt;/a&gt;: &lt;a href=&quot;https://docs.mesa3d.org/license.html&quot;&gt;MIT License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/metalangle&quot;&gt;MetalANGLE&lt;/a&gt; by @kakashidinho and ANGLE team: &lt;a href=&quot;https://github.com/kakashidinho/metalangle/raw/master/LICENSE&quot;&gt;BSD 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/KhronosGroup/MoltenVK&quot;&gt;MoltenVK&lt;/a&gt;: &lt;a href=&quot;https://github.com/KhronosGroup/MoltenVK/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/kcat/openal-soft&quot;&gt;openal-soft&lt;/a&gt;: &lt;a href=&quot;https://github.com/kcat/openal-soft/raw/master/COPYING&quot;&gt;LGPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.azul.com/downloads/?package=jdk&quot;&gt;Azul Zulu JDK&lt;/a&gt;: &lt;a href=&quot;https://openjdk.java.net/legal/gplv2+ce.html&quot;&gt;GNU GPLv2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/lwjgl3&quot;&gt;LWJGL3&lt;/a&gt;: &lt;a href=&quot;https://github.com/LWJGL/lwjgl3/raw/master/LICENSE.md&quot;&gt;BSD-3 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/PojavLauncherTeam/lwjglx&quot;&gt;LWJGLX&lt;/a&gt; (LWJGL2 API compatibility layer for LWJGL3): unknown license.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/DBNumberedSlider&quot;&gt;DBNumberedSlider&lt;/a&gt;: &lt;a href=&quot;https://github.com/immago/DBNumberedSlider/raw/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/fishhook&quot;&gt;fishhook&lt;/a&gt;: &lt;a href=&quot;https://github.com/facebook/fishhook/raw/main/LICENSE&quot;&gt;BSD-3 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/khanhduytran0/shaderc&quot;&gt;shaderc&lt;/a&gt; (used by Vulkan rendering mods): &lt;a href=&quot;https://github.com/google/shaderc/raw/main/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mozilla-mobile/firefox-ios/tree/b2f89ac40835c5988a1a3eb642982544e00f0f90/ThirdParty/NRFileManager&quot;&gt;NRFileManager&lt;/a&gt;: &lt;a href=&quot;https://www.mozilla.org/en-US/MPL/2.0&quot;&gt;MPL-2.0 License&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rileytestut/AltKit&quot;&gt;AltKit&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/abbeycode/UnzipKit&quot;&gt;UnzipKit&lt;/a&gt;: &lt;a href=&quot;https://github.com/abbeycode/UnzipKit/raw/master/LICENSE&quot;&gt;BSD-2 License&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/xpn/DyldDeNeuralyzer&quot;&gt;DyldDeNeuralyzer&lt;/a&gt;: bypasses Library Validation for loading external runtime&lt;/li&gt; 
+ &lt;li&gt;Thanks to &lt;a href=&quot;https://mc-heads.net&quot;&gt;MCHeads&lt;/a&gt; for providing Minecraft avatars.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Special thanks to MacStadium!&lt;/h2&gt; 
+&lt;p&gt;This project is listed under the MacStadium Open Source Program, which allows all of us developers to keep on moving forward even without physical access to a Mac.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/55281754/183129754-c3736bb9-d528-4af7-9351-a12b3be7549e.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;!-- sillysock was here --&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/36c94772153336aea3520e852753bac439588e4c2be20c10e9a718d1ae25547c/PojavLauncherTeam/PojavLauncher_iOS" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>noah-nuebling/mac-mouse-fix</title>
+      <link>https://github.com/noah-nuebling/mac-mouse-fix</link>
+      <description>&lt;p&gt;Mac Mouse Fix - Make Your $10 Mouse Better Than an Apple Trackpad!&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://macmousefix.com/&quot;&gt;https://macmousefix.com/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;details&gt; 
+ &lt;summary>󠁧󠁿🇬🇧 English&lt;/summary&gt; 
+ &lt;p&gt;&lt;strong&gt;🇬🇧 English&lt;/strong&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/de/Readme.md&quot;&gt;🇩🇪 Deutsch&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/es/Readme.md&quot;&gt;🇪🇸 Español&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/it/Readme.md&quot;&gt;🇮🇹 Italiano&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/nb/Readme.md&quot;&gt;🇳🇴 Norsk bokmål&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/pt-BR/Readme.md&quot;&gt;🇧🇷 Português (Brasil)&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/tr/Readme.md&quot;&gt;🇹🇷 Türkçe&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/cs/Readme.md&quot;&gt;🇨🇿 Čeština&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/ru/Readme.md&quot;&gt;🇷🇺 Русский&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/uk/Readme.md&quot;&gt;🇺🇦 Українська&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/zh-Hans/Readme.md&quot;&gt;🇨🇳 中文 (简体)&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/LocalizedDocuments/ja/Readme.md&quot;&gt;🇯🇵 日本語&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf-localization-contribution&quot;&gt;🌎 Help translate!&lt;/a&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;!-- This README is greatly inspired by / stolen from sindresorhus/Gifski and sindresorhus/caprine --&gt; 
+&lt;!-- ||| Ideas / Unused / Comments ||| --&gt; 
+&lt;!-- 
+
+    Section ideas: 
+    - 
+
+    Steal from these READMEs:
+    - https://github.com/exelban/stats
+    - sindresorhus/Gifski
+    - sindresorhus/caprine
+
+    Centered screenshot:
+    ````
+    &lt;div align=&quot;center&quot;&gt;&lt;img src=&quot;Markdown/Media/MMF-Buttons-Screenshot.png&quot; width=&quot;600&quot; height=&quot;auto&quot;&gt;&lt;/div&gt;
+    ````
+
+    Link section with pipe-symbols instead of html table:
+    ```
+    &lt;h3 align=&quot;center&quot;&gt;
+    &lt;a href=https://macmousefix.com/&gt;Download&lt;/a&gt; |
+    &lt;a href=https://github.com/noah-nuebling/mac-mouse-fix/releases&gt;Releases&lt;/a&gt; |
+    &lt;a href=&gt;Help &amp;  Feedback&lt;/a&gt;
+    &lt;/h3&gt;
+    ```
+
+  --&gt; 
+&lt;!-- ||| Head Section ||| --&gt; 
+&lt;!--
+    &lt;table align=&quot;center&quot;&gt;&lt;td&gt;
+    You can now test the &lt;a href=&quot;https://github.com/noah-nuebling/mac-mouse-fix/releases/&quot;&gt;Mac Mouse Fix 3 Beta!&lt;/a&gt;
+    &lt;/td&gt;&lt;/table&gt;
+  --&gt; 
+&lt;br /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;a href=&quot;https://macmousefix.com/&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/Media/AppIconRound3.png&quot; width=&quot;200&quot; height=&quot;auto&quot; /&gt; &lt;/a&gt; 
+ &lt;h1&gt;Mac Mouse Fix&lt;/h1&gt; 
+ &lt;p&gt;Make Your $10 Mouse Better Than an Apple Trackpad!&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;br /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt;
+    &lt;th&gt;&lt;a href=&quot;https://macmousefix.com/&quot;&gt;Website&amp;nbsp;↗&lt;/a&gt;&lt;/th&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf-help-and-feedback&quot;&gt;Help&amp;nbsp;&amp;amp;&amp;nbsp;Feedback&lt;/a&gt;&lt;/td&gt; 
+    &lt;!-- Note: Should probably use direct link instead of redirection-service: https://github.com/noah-nuebling/mac-mouse-fix/issues/new/choose --&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf-releases&quot;&gt;Releases&lt;/a&gt;&lt;/td&gt; 
+    &lt;!-- Note: Should probably use direct link instead of redirection-service: https://github.com/noah-nuebling/mac-mouse-fix/releases --&gt; 
+    &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Acknowledgements.md&quot;&gt;Acknowledgements&lt;/a&gt;&lt;/td&gt; 
+   &lt;/tr&gt;
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+ &lt;img src=&quot;https://img.shields.io/github/downloads/noah-nuebling/mac-mouse-fix/total?color=25c65f&amp;amp;label=Downloads&quot; /&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;br /&gt; 
+&lt;br /&gt; 
+&lt;br /&gt; 
+&lt;!--Use this extra br when theres text above the first header (Edit: I think by &quot;first header&quot; I meant the h1 saying &quot;Mac Mouse Fix&quot;, but not sure) --&gt; 
+&lt;!-- &lt;br&gt; --&gt; 
+&lt;!-- ||| Intro Text ||| --&gt; 
+&lt;p&gt;Mac Mouse Fix is an app that makes your mouse better.&lt;/p&gt; 
+&lt;p&gt;I want to turn Mac Mouse Fix into the best mouse driver &lt;em&gt;of all time&lt;/em&gt;! Some features are still missing at the moment, but I think it already &lt;strong&gt;turns regular mice into the best input devices for Macs&lt;/strong&gt; in some ways. At the same level or even better than an Apple Trackpad or a Logitech MX Master mouse.&lt;/p&gt; 
+&lt;p&gt;For more information on how exactly Mac Mouse Fix enhances your mouse, visit the &lt;a href=&quot;https://macmousefix.com/&quot;&gt;website&lt;/a&gt;.&lt;/p&gt; 
+&lt;!--
+    easy, efficient, natural and pleasant
+    Better than an Apple Trackpad or a Logitech MX Master. (These are often considered some of the best input devices for Macs)
+
+    It offers amazingly natural and polished gestures and smooth scrolling that let you breeze through macOS just like an Apple Trackpad.
+
+    It lets you do almost anything right from your mouse with its powerful customization options that are so simple and intuitive that anyone can use them.
+  --&gt; 
+&lt;!-- 
+  Note: We make these anchor links (`&lt;a name=&quot;somename&quot;&gt;&lt;/a&gt;`) non-localizable, so that we can link to a specific section of the document in a language-agnostic way. 
+    Example: 
+      Linking into the German document with `https://github.com/noah-nuebling/mac-mouse-fix/blob/master/Markdown/LocalizedDocuments/de/Readme.md#macos-compatibility`
+      will work, even though the `## macOS compatibility` header is localized to `## macOS Kompatibilität` in German. If we didn&#39;t have the anchor links, we&#39;d have to localize the link itself `[...]/LocalizedDocuments/de/Readme.md#macos-kompatibilität` - that&#39;s the problem that the anchor links solve.
+    Other:  
+      #macos-compatibility is called a &#39;url fragment identifier&#39;
+--&gt; 
+&lt;p&gt;&lt;a name=&quot;features&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://macmousefix.com/#trackpad&quot;&gt;website&lt;/a&gt; for an overview of the features of Mac Mouse Fix, including video demos!&lt;/p&gt; 
+&lt;p&gt;For more details, see the &lt;a href=&quot;https://github.com/noah-nuebling/mac-mouse-fix/releases&quot;&gt;Releases&lt;/a&gt;.&lt;/p&gt; 
+&lt;!--
+    Major features were introduced in these versions:
+
+    [0.9](https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/0.9.0)
+    | [1.0.0](https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/1.0.0)
+    | [2.0.0](https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.0.0)
+    | [2.1.0](https://github.com/noah-nuebling/mac-mouse-fix/releases/tag/2.1.0)
+    | 3.0.0
+  --&gt; 
+&lt;p&gt;&lt;a name=&quot;installation&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Download the latest version of Mac Mouse Fix on the &lt;a href=&quot;https://macmousefix.com/&quot;&gt;website&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You can also install Mac Mouse Fix through &lt;a href=&quot;https://brew.sh/&quot;&gt;Homebrew&lt;/a&gt;! Just type the following command into the terminal:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew install mac-mouse-fix
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can download older versions of Mac Mouse Fix under &lt;a href=&quot;https://github.com/noah-nuebling/mac-mouse-fix/releases&quot;&gt;Releases&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;a name=&quot;macos-compatibility&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;macOS compatibility&lt;/h2&gt; 
+&lt;p&gt;The latest version of Mac Mouse Fix is made for &lt;strong&gt;macOS 11 Big Sur&lt;/strong&gt; or later.&lt;/p&gt; 
+&lt;p&gt;If you&#39;re on macOS &lt;strong&gt;10.11 El Capitan&lt;/strong&gt; or later, you can use the &lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf2-latest&quot;&gt;latest version of Mac Mouse Fix 2&lt;/a&gt;. Mac Mouse Fix 3.0.0 and later might still work on your machine, but they will have visual issues and some features might not work properly.&lt;/p&gt; 
+&lt;!--
+    [Sep 2026] Note on `macos-compatibility` section:
+    - MMF 2.2.6 lowered deployment target from 10.13 back down to 10.11 (See 68ce2c8) letting us simplify the text above. I didn&#39;t test on macOS 10.11 or 10.12. [Sep 2026]
+--&gt; 
+&lt;p&gt;&lt;a name=&quot;pricing&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Pricing&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://macmousefix.com/#price&quot;&gt;website&lt;/a&gt; for an overview of the pricing for Mac Mouse Fix 3.&lt;br /&gt; Mac Mouse Fix 2 and below will remain free forever.&lt;/p&gt; 
+&lt;p&gt;&lt;a name=&quot;uninstallation&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Uninstallation&lt;/h2&gt; 
+&lt;p&gt;Uninstall Mac Mouse Fix by simply moving it to the bin.&lt;/p&gt; 
+&lt;p&gt;However, there will be files left on your system. To get rid of these files I recommend the awesome &lt;a href=&quot;https://freemacsoft.net/appcleaner/&quot;&gt;AppCleaner by FreeMacSoft&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Under macOS, it is not feasible for apps to delete these leftover files by themselves when you delete the app. That&#39;s why I highly recommend using an app like AppCleaner.&lt;/p&gt; 
+&lt;p&gt;&lt;a name=&quot;what-people-say&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;What people say&lt;/h2&gt; 
+&lt;p&gt;Thanks so much to everyone sharing their excitement about Mac Mouse Fix!&lt;br /&gt; On the &lt;a href=&quot;https://macmousefix.com/&quot;&gt;website&lt;/a&gt; you can find a collection of nice things people have said about the app.&lt;/p&gt; 
+&lt;!-- 
+    These cool articles were written about MMF
+
+    - That YouTube video (so sick)
+    - Lifehacker
+    - Blib blob (Japanese)
+    - Not CNET review
+    - (?If you know about other coverage of MMF let me know?) 
+  --&gt; 
+&lt;p&gt;&lt;a name=&quot;tips&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Tips&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Manage windows with a simple Click and Drag&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;&lt;a href=&quot;https://highlyopinionated.co/swish/&quot;&gt;Swish&lt;/a&gt; is my favorite way to manage windows on macOS. With a simple swipe on your trackpad, it lets you position any window so it takes up half, a quarter, or the whole screen.&lt;/p&gt; &lt;p&gt;Swish is designed for trackpad gestures, but with Mac Mouse Fix you can use it from any third-party mouse! Just go to Mac Mouse Fix and set any button&#39;s &#39;Click and Drag&#39; action to &#39;Scroll &amp;amp; Navigate&#39; and then you can snap windows with a simple Click and Drag.&lt;/p&gt; &lt;p&gt;Anything you can do with a two-finger swipe on an Apple trackpad works just as well with the &#39;Scroll &amp;amp; Navigate&#39; feature in Mac Mouse Fix.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Control Screen Brightness, Audio Volume, or Media Playback right from your mouse&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Mac Mouse Fix lets you use &lt;strong&gt;any key on your keyboard&lt;/strong&gt; directly from your mouse - even special keys only found on Apple keyboards that let you control Screen Brightness, Audio Volume, Media Playback, and more.&lt;/p&gt; &lt;p&gt;If you don&#39;t have an Apple keyboard at hand, &lt;strong&gt;hold Option (⌥)&lt;/strong&gt; to choose the special Apple keys.&lt;/p&gt; &lt;img src=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Markdown/Media/Apple-Keys-Demo.gif&quot; width=&quot;700&quot; /&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a name=&quot;questions&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Questions&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Is Mac Mouse Fix native on Apple Silicon?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Yes, Mac Mouse Fix runs 100% native on Apple Silicon.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Why is there a delay when I click?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;When you click, Mac Mouse Fix might wait to see if you&#39;re going to double click.&lt;br /&gt; To remove the delay for a button, delete any &#39;Double Click&#39; actions for that button.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--
+  &lt;&lt;&lt; [Sep 2025] Commenting this out because we moved this info into CapturedButtonsMMF3.md - maybe we should link to it here? &gt;&gt;&gt;
+
+- {{**How can I orbit around objects in 3D apps like Blender?**||questions.blender||}}
+
+  ```
+  key: questions.blender.body
+  ```
+  In 3D apps like Blender, you normally Click and Drag the Middle Mouse Button to orbit around objects.&lt;br&gt;
+  But if you assign actions to the Middle Mouse Button in Mac Mouse Fix, then this won&#39;t work anymore.
+  
+  To solve this, I know of 2 options:
+  1. Assign clicking and dragging one of the buttons of your mouse to the &quot;Scroll &amp; Navigate&quot; feature. This feature simulates swiping with 2 fingers on an Apple Trackpad. This will, among other things, let you orbit in 3D apps! 
+  2. *Uncapture* the Middle Mouse Button by deleting all actions assigned to it in Mac Mouse Fix. See [this guide](https://redirect.macmousefix.com/?target=mmf-captured-buttons-guide) for more info.
+  ```
+  comment: 
+  ```
+--&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Can I open App Exposé through a Click and Drag Gesture?&lt;/strong&gt; 
+   &lt;!-- Note: We&#39;re using App Exposé here and Application Windows in MMF. Not sure that&#39;s great. I felt this was clearer though. --&gt;&lt;/p&gt; &lt;p&gt;Yes! Just choose the &#39;Spaces &amp;amp; Mission Control&#39; Action and then Click and Drag &lt;em&gt;down&lt;/em&gt;.&lt;/p&gt; &lt;p&gt;If this doesn&#39;t work, it&#39;s likely because the &#39;App Exposé&#39; trackpad gesture is disabled on your Mac.&lt;br /&gt; You can enable the gesture under System Settings or by running the following command in the terminal:&lt;/p&gt; &lt;pre&gt;&lt;code&gt;defaults write com.apple.Dock showAppExposeGestureEnabled -bool TRUE; killall Dock
+&lt;/code&gt;&lt;/pre&gt; 
+  &lt;!-- ^^^ NOTES: Maybe we should automate this. For context, see Issue https://github.com/noah-nuebling/mac-mouse-fix/issues/387 --&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Are there &#39;App-Specific Settings&#39; or &#39;Profiles&#39;?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;In Mac Mouse Fix 2, you can &lt;strong&gt;disable features like Smooth Scrolling&lt;/strong&gt; under &lt;code&gt;More... &amp;gt; App-specific settings&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;In Mac Mouse Fix 3, this feature doesn&#39;t exist yet. &lt;br /&gt; Both &#39;app-specific settings&#39; and &#39;mouse-specific settings&#39; are planned, but I don&#39;t have a timeline yet for when they&#39;ll be released.&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Tip:&lt;/strong&gt; Until &#39;app-specific settings&#39; arrive in Mac Mouse Fix 3, you can do this:&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Open the &lt;code&gt;General&lt;/code&gt; tab&lt;/li&gt; 
+   &lt;li&gt;Turn on &lt;code&gt;Show in Menu Bar&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Now you can &lt;strong&gt;disable features like Smooth Scrolling&lt;/strong&gt; directly from the Menu Bar&lt;/li&gt; 
+  &lt;/ul&gt; &lt;p&gt;I&#39;m also interested to hear what your &lt;em&gt;use case&lt;/em&gt; is. Feel free to submit a &lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf-feedback-feature-request&quot;&gt;feature request&lt;/a&gt;. Your input will help make the feature as good as possible once it arrives.&lt;/p&gt; 
+  &lt;!-- ^^^ It&#39;s not a perfect solution, but I hope it helps a little until app-specific settings arrive. --&gt; 
+  &lt;!-- ^^^ Note: Us having to explain points at a bit of a UX failure I think. --&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Is my mouse supported?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Probably. If you want to know for sure, it&#39;s best to download Mac Mouse Fix and try it out.&lt;/p&gt; &lt;p&gt;Mac Mouse Fix works very well with most mice. However, on certain mice designed to be used with proprietary driver software like Logitech Options, Mac Mouse Fix can&#39;t recognize all the buttons at the moment.&lt;/p&gt; &lt;p&gt;That&#39;s because these mice communicate with your computer using a special, proprietary protocol, instead of the standard USB protocol.&lt;br /&gt; I would love to add full compatibility for these mice at some point, but it&#39;s a ton of work and it won&#39;t be coming soon.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Some buttons on my mouse are not recognized&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;See the question &lt;strong&gt;&#39;Is my mouse supported?&#39;&lt;/strong&gt; above.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Is the Magic Mouse supported?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;I might add features in the future which enhance the Apple Magic Mouse, but currently, Mac Mouse Fix has no effect on it.&lt;/p&gt; 
+  &lt;!-- You can use SteerMouse or proprietary driver like Logitech Options instead. --&gt; 
+  &lt;!--
+    - **How many buttons should my mouse have?**
+&lt;pre&gt;&lt;code&gt;  To get the best experience I recommend using Mac Mouse Fix with a mouse that has at least 5 buttons. If your mouse has fewer than 5 buttons, Mac Mouse Fix still provides rich functionality and a great experience, but some features will be less easy to access compared to a 5-button mouse. With a 5-button mouse, you can really breeze through macOS in a way that&#39;s just as nice as an Apple Trackpad!
+  
+  To learn more, see the [trackpad section](https://macmousefix.com/#trackpad) on the website.
+
+
+- **Mouse brands**
+
+  I&#39;m not the biggest expert on mouse hardware, but I do have quite a collection now, thanks to my work on Mac Mouse Fix! If I had to make a recommendation for what mouse to buy for the best experience with Mac Mouse fix, I&#39;d say get a smaller, chinese brand on Amazon. In my experience, these mice often have better build quality at a fraction of the price of a big brand mouse like Logitech or Roccat. Also, some models of bigger manufacturers like Logitech are made to be used with their proprietary driver software, and they won&#39;t be fully compatible with Mac Mouse Fix. If you buy a smaller brand, you can usually be sure, that they will work flawlessly with non-proprietary drivers like Mac Mouse Fix.
+&lt;/code&gt;&lt;/pre&gt;
+&lt;p&gt;--&amp;gt;&lt;/p&gt;
+&lt;/li&gt;
+&lt;li&gt;
+&lt;p&gt;&lt;strong&gt;Are tiltable scroll wheels supported?&lt;/strong&gt;&lt;/p&gt;
+&lt;p&gt;Some mice let you tilt the scroll wheel left or right to scroll horizontally. Mac Mouse Fix will make this feel more natural and easy to control. However, it&#39;s not currently possible to trigger other actions, such as switching between desktops, by tilting the scroll wheel. I&#39;d love to implement this feature at some point, but it&#39;s a ton of work and it won&#39;t be coming soon.&lt;/p&gt;
+  &lt;!-- This is so hard, because it would require reprogramming the mouse so that it sends button-signals instead of sending scroll-signals, when you tilt the scroll wheel. And to reprogram the mouse, would require communicating with the it through the custom vendor-specific protocol. And that&#39;s not easy. For many mice it&#39;s not even possible. --&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Turning off pointer acceleration&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Mac Mouse Fix doesn&#39;t let you turn off the pointer acceleration, but if you&#39;re on &lt;strong&gt;macOS 14 Sonoma&lt;/strong&gt; or later, you can turn off the pointer acceleration under &lt;code&gt;System Settings &amp;gt; Mouse &amp;gt; Advanced... &amp;gt; Pointer acceleration&lt;/code&gt;.&lt;/p&gt; &lt;p&gt;I plan to add really nice ways to improve pointer acceleration in the future, but I&#39;m not sure when that&#39;s coming.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;What&#39;s the difference between Mac Mouse Fix 2 and 3?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Monetization:&lt;/strong&gt; &lt;br /&gt; Mac Mouse Fix 2 is 100% free, and I plan to keep supporting it. &lt;br /&gt; Mac Mouse Fix 3 is free for 30 days, then costs a few bucks to own.&lt;/p&gt; &lt;p&gt;&lt;strong&gt;Features:&lt;/strong&gt; &lt;br /&gt; Here&#39;s a &lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf-version-2-vs-3&quot;&gt;feature comparison&lt;/a&gt;. I wrote it shortly after Mac Mouse Fix 3 released – so it may be slightly out of date. &lt;br /&gt; You can also download Mac Mouse Fix &lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf2-latest&quot;&gt;2&lt;/a&gt; and &lt;a href=&quot;https://macmousefix.com/&quot;&gt;3&lt;/a&gt; for free to evaluate them yourself!&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Does Mac Mouse Fix collect my data?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Mac Mouse Fix does not have ads, and it does not collect any personal information about you.&lt;/p&gt; &lt;p&gt;However, at the moment that you buy the app, the sales provider &lt;a href=&quot;http://Gumroad.com&quot;&gt;Gumroad.com&lt;/a&gt; collects some personal info, such as your email address, and this info is visible to me. This is necessary to be able to issue refunds, send a license key to your email, etc. I cannot turn this off. To learn more about the data collected when you buy Mac Mouse Fix, see the &lt;a href=&quot;https://gumroad.com/privacy&quot;&gt;Gumroad Privacy Policy&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;How many devices can I use my license on?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Your license works on &lt;strong&gt;all your Macs&lt;/strong&gt;. &lt;br /&gt; The goal is that you can just buy a license, activate it, and never have to worry about it again. &lt;br /&gt; If you log in with the same Apple Account, the license will even sync automatically to your other devices via iCloud!&lt;/p&gt; &lt;p&gt;If you encounter problems activating your license, you can &lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mailto-noah&quot;&gt;send me an email&lt;/a&gt;. &lt;br /&gt; I sometimes take a while to answer. I&#39;m sorry about this. But I will get back to you!&lt;/p&gt; &lt;p&gt;There is one restriction: &lt;br /&gt; Licenses are not meant to be shared publicly. One license is meant for one person. Publicly shared licenses might be invalidated. (Sharing with your mom is ok.)&lt;/p&gt; 
+  &lt;!-- ^^^ Note: ChatGPT tells me I should mention that ppl can still use the license after they *upgrade* to a new device. Don&#39;t think that&#39;s necessary --&gt; 
+  &lt;!-- ^^^ TODO: Consider linking / copying this on the (Gumroad) checkout page. Ppl may not find it here. --&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Will my license work with future versions?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Your license covers all Mac Mouse Fix 3.x versions.&lt;/p&gt; &lt;p&gt;Future versions, like 4.0, may require a new purchase, but I&#39;ll try to avoid this, unless it&#39;s necessary to support the continued development of the app.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Is there a refund policy?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;There is no official refund policy, but the app is free for 30 days.&lt;/p&gt; &lt;p&gt;If you experience any problems after buying the app, just reach out to me, and I will do my best to help.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Will Mac Mouse Fix still be Open Source now that it&#39;s monetized?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Yes, Mac Mouse Fix will still be open source!&lt;/p&gt; &lt;p&gt;I encourage anyone to use the source code of Mac Mouse Fix in their own projects, as long as they don&#39;t release a simple copy of Mac Mouse Fix.&lt;/p&gt; &lt;p&gt;Learn about the details in the &lt;a href=&quot;https://github.com/noah-nuebling/mac-mouse-fix/raw/master/License&quot;&gt;MMF License&lt;/a&gt; which Mac Mouse Fix 3 and later are licensed under.&lt;/p&gt; 
+  &lt;!--
+    , and I don&#39;t plan to change that at any point.
+  
+    This also means you can use Mac Mouse Fix for free by building it from source and disabling the licensing checks. That&#39;s perfectly fine, I just discourage sharing these cracked versions online.&lt;br&gt;
+    And of course, on the next update, you&#39;ll get a non-cracked version which means you&#39;ll have to do this again for every update. (Or just pay $1.99 for the greatest mouse driver ever! :)
+  --&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Can I get Mac Mouse Fix for free if I already donated?&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Yes! If you donated via PayPal, click &lt;a href=&quot;https://redirect.macmousefix.com/?locale=en&amp;amp;target=mmf-apply-for-milkshake-license&quot;&gt;here&lt;/a&gt; to receive a &lt;strong&gt;free license&lt;/strong&gt;.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;!--
+
+&gt;&gt;&gt; [Jun 2025] These questions are super rare – I think I just added it here cause I find it interesting.
+      ... If we ever wanna add these commented-out sections, we should probably edit them and make sure the links are correct and localized, too.
+
+
+- **Will there be an iPad or Windows version of the app?** 
+
+  That would be really cool, but it&#39;s not coming any time soon. iPad is currently lacking the necessary APIs, and either way I&#39;d have to rewrite most of the app, which would take a lot of time. For now, I&#39;m focused on making the macOS version as great as possible.
+
+  (I wrote more about this [here](https://github.com/noah-nuebling/mac-mouse-fix/issues/1437))
+
+--&gt; 
+&lt;!--
+
+&gt;&gt;&gt; [Jun 2025] People will email me anyways, this doesn&#39;t really add anything I think.
+
+- **I can&#39;t pay for the app. What can I do?** 
+
+  I want Mac Mouse Fix to be accessible to everyone. If you can&#39;t pay for the app due to regional restrictions or any other reason, please [send me an email](https://redirect.macmousefix.com/?locale=en&amp;target=mailto-noah). Unfortunately, it may take me a while to answer, but I will get back eventually, and work on finding a solution.
+
+--&gt; 
+&lt;!--
+
+ &gt;&gt;&gt; [Jul 2025] The fact that ppl continue to be confused about this is kind of a UX failure. This explanation shouldn&#39;t be necessary. I tweaked the UI text and hope it&#39;s better now.
+
+- **Why does the Mac Mouse Fix window open when I start my Mac?** 
+
+  This is likely because you&#39;ve set Mac Mouse Fix as a macOS Login Item. Please see [Apple&#39;s Guide](https://support.apple.com/en-me/guide/mac-help/mh15189/mac) on how to manage Login Items. 
+  
+  Mac Mouse Fix works differently from many other apps. Once the &#39;Enable Mac Mouse Fix&#39; switch is turned on, the app continues to affect your mouse even after you close the app or restart your computer. This means you don&#39;t need to add it as a Login Item to keep it working.
+
+  **Background Info**
+
+  This works because your mouse is not directly affected by the &#39;Mac Mouse Fix&#39; app, but instead by the &#39;Mac Mouse Fix Helper&#39; process, which runs in the background as long as the &#39;Enable Mac Mouse Fix&#39; switch is turned on.
+
+--&gt; 
+&lt;!--
+&gt;&gt;&gt; [Jun 2025] Commenting this out cause it&#39;s rare, and it&#39;s a stopgap measuere, and it&#39; too much work to make good rn. Also, the scroll-uncapture notifications in feature-strings-catalog might clear up this confusion. Might re-enable if ppl continue to be confused. But perhaps, the &#39;how to stop MMF from intercepting Scroll / Buttons&#39; stuff should be its own section. Sloppily wrote this, needs more editing &lt;&lt;&lt;
+
+- **Why do the &#39;Scrolling&#39; and &#39;Buttons&#39; items in the Menu Bar get re-enabled?**
+    
+  The Menu Bar buttons are meant to quickly, and temporarily turn off certain features while you&#39;re working in incompatible apps. 
+  This is intended as a stop-gap-measure while there&#39;s no &#39;App-Specific Settings&#39; feature, yet. &lt;br&gt;
+  Curently the UI would break if these are enabled, so when you open the Buttons tab or Scrolling tab, they get toggled and stuff.
+  To edit the settings in a permanent way, you can edit the settings in &#39;Buttons&#39; and &#39;Scrolling&#39; Tab. 
+  
+  To completely turn off all effects of Mac Mouse Fix on your buttons, delete all the actions on the &#39;Buttons&#39; tab. &lt;br&gt;
+  To completely turn off all effects of Mac Mouse Fix on your scroll wheel, configure the &#39;Scrolling&#39; tab like this:
+  &lt;Insert screenshot&gt;
+  
+  I know the current solution isn&#39;t amazing. But it allowed me to ship MMF 3.
+  I plan to eventually replace the buttons in the Menu Bar with powerful App-Specific Settings. 
+--&gt; 
+&lt;p&gt;&lt;a name=&quot;how-you-can-contribute&quot;&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;How you can contribute&lt;/h2&gt; 
+&lt;p&gt;There are several ways to help the project.&lt;br /&gt; Check out the &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Acknowledgements.md&quot;&gt;Acknowledgements&lt;/a&gt; for more info on who has already contributed!&lt;/p&gt; 
+&lt;!--
+    - **Spreading the word**
+
+      If you simply talk about Mac Mouse Fix on the internet or elsewhere, that is very helpful for the project.
+
+  --&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Giving feedback&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;You can help by sharing your &lt;strong&gt;ideas&lt;/strong&gt;, &lt;strong&gt;issues&lt;/strong&gt; and &lt;strong&gt;feedback&lt;/strong&gt; via the &lt;a href=&quot;https://noah-nuebling.github.io/mac-mouse-fix-feedback-assistant/?type=bug-report&quot;&gt;Feedback Assistant&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Contributing money&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;I hope to be able to sustain myself financially through Mac Mouse Fix. That way, I can keep improving and working on the app. If you would like to help, you can:&lt;/p&gt; 
+  &lt;ol&gt; 
+   &lt;li&gt;Buy Mac Mouse Fix by clicking the button in the app, or clicking &lt;a href=&quot;https://noahnuebling.gumroad.com/l/mmfinappusd&quot;&gt;here&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=ARSTVR6KFB524&amp;amp;source=url&amp;amp;lc=en_US&quot;&gt;Tip me&lt;/a&gt; on PayPal. I don&#39;t get a lot of money from this, but it&#39;s always cute and motivating to get a donation.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/sponsors/noah-nuebling&quot;&gt;Sponsor me&lt;/a&gt; on GitHub. A monthly sponsorship is a great way to support the project and help me have a more stable income.&lt;/li&gt; 
+  &lt;/ol&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Adding translations&lt;/strong&gt;&lt;/p&gt; &lt;p&gt;Mac Mouse Fix is available in English, German as well as the languages listed in the &lt;a href=&quot;https://raw.githubusercontent.com/noah-nuebling/mac-mouse-fix/master/Acknowledgements.md&quot;&gt;Acknowledgements&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;If you would like to &lt;strong&gt;help translate the project&lt;/strong&gt;, see the &lt;a href=&quot;https://redirect.macmousefix.com/?target=mmf-localization-contribution&quot;&gt;Translation Guide&lt;/a&gt;.&lt;br /&gt; If you want to &lt;strong&gt;report missing or suboptimal translations&lt;/strong&gt;, that&#39;s also very helpful. The best way to report problems is by commenting under the &lt;a href=&quot;https://redirect.macmousefix.com/?target=mmf-localization-contribution&quot;&gt;Translation Guide&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Contributing code&lt;/strong&gt;&lt;/p&gt; 
+  &lt;!-- 
+    Old note from contributing.code.body:
+    I should mention people who contributed code on the acknowledgements page. They are already in the update notes. 
+  --&gt; &lt;p&gt;If you would like to contribute code, that&#39;s awesome! I&#39;ll be happy about any &lt;a href=&quot;https://github.com/noah-nuebling/mac-mouse-fix/pulls&quot;&gt;pull requests&lt;/a&gt;.&lt;/p&gt; &lt;p&gt;However, I might not accept all pull requests. If you want to make sure that your work is not wasted, you can submit an initial pull request that only &lt;em&gt;describes&lt;/em&gt; the changes you want to make, but contains little or no code. Then I can give you feedback and tell you if I would adopt the changes you want to make in that way.&lt;/p&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;Thank you&lt;/strong&gt; to everyone who has already contributed and supported me in trying to make the best mouse driver &lt;em&gt;of all time&lt;/em&gt;! :)🚀&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/95a2c71e785de94551304f3981d59c91b887f1f16fce4dfdd13e3588d0388c07/noah-nuebling/mac-mouse-fix" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>

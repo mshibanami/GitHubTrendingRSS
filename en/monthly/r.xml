@@ -1,0 +1,146 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub R Monthly Trending Repositories</title>
+    <description>Monthly Trending Repositories of R on GitHub</description>
+    
+    <pubDate>Sat, 17 Oct 2026 05:26:23 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>r-lib/lintr</title>
+      <link>https://github.com/r-lib/lintr</link>
+      <description>&lt;p&gt;Static Code Analysis for R&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://lintr.r-lib.org&quot;&gt;https://lintr.r-lib.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;hr /&gt; 
+&lt;h2&gt;output: rmarkdown::github_document: pandoc_args: [&quot;--wrap=none&quot;]&lt;/h2&gt; 
+&lt;h1&gt;lintr &lt;img src=&quot;https://raw.githubusercontent.com/r-lib/lintr/main/man/figures/logo.png&quot; align=&quot;right&quot; width=&quot;240&quot; /&gt;&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/r-lib/lintr/actions&quot;&gt;&lt;img src=&quot;https://github.com/r-lib/lintr/workflows/R-CMD-check/badge.svg?sanitize=true&quot; alt=&quot;R build status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.codecov.io/gh/r-lib/lintr?branch=main&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/r-lib/lintr/branch/main/graphs/badge.svg?sanitize=true&quot; alt=&quot;codecov.io&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=lintr&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/lintr&quot; alt=&quot;CRAN_Status_Badge&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://lifecycle.r-lib.org/articles/stages.html&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/lifecycle-stable-brightgreen.svg?sanitize=true&quot; alt=&quot;lifecycle&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://doi.org/10.21105/joss.07240&quot;&gt;&lt;img src=&quot;https://joss.theoj.org/papers/10.21105/joss.07240/status.svg?sanitize=true&quot; alt=&quot;DOI&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;{lintr}&lt;/code&gt; provides &lt;a href=&quot;https://en.wikipedia.org/wiki/Static_program_analysis&quot;&gt;static code analysis for R&lt;/a&gt;. It checks for adherence to a given style, identifying syntax errors and possible semantic issues, then reports them to you so you can take action.&lt;/p&gt; 
+&lt;p&gt;For example, given a file &lt;code&gt;bad.R&lt;/code&gt; with the following contents:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-r&quot;&gt;my_func = function(x){
+    if(x &amp;gt; 0){
+        print(&quot;Positive&quot;)
+    }
+    else {
+        print(&quot;Not positive&quot;)
+    }
+    return(T)
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Running &lt;code&gt;lintr::lint()&lt;/code&gt; on this file would produce the following output:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-R&quot;&gt;lintr::lint(&quot;bad.R&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code&gt;bad.R:1:9: style: [assignment_linter] Use one of &amp;lt;-, &amp;lt;&amp;lt;- for assignment, not =.
+my_func = function(x){
+        ^
+bad.R:1:22: style: [brace_linter] There should be a space before an opening curly brace.
+my_func = function(x){
+                     ^
+bad.R:1:22: style: [paren_body_linter] Put a space between a right parenthesis and a body expression.
+my_func = function(x){
+                     ^
+bad.R:2:4: style: [indentation_linter] Indentation should be 2 spaces but is 4 spaces.
+    if(x &amp;gt; 0){
+  ~^
+bad.R:2:7: style: [spaces_left_parentheses_linter] Place a space before left parenthesis, except in a function call.
+    if(x &amp;gt; 0){
+      ^
+bad.R:2:14: style: [brace_linter] There should be a space before an opening curly brace.
+    if(x &amp;gt; 0){
+             ^
+bad.R:2:14: style: [paren_body_linter] Put a space between a right parenthesis and a body expression.
+    if(x &amp;gt; 0){
+             ^
+bad.R:3:8: style: [indentation_linter] Indentation should be 4 spaces but is 8 spaces.
+        print(&quot;Positive&quot;)
+    ~~~^
+bad.R:4:4: style: [indentation_linter] Indentation should be 2 spaces but is 4 spaces.
+    }
+  ~^
+bad.R:5:5: style: [brace_linter] `else` should come on the same line as the previous `}`.
+    else {
+    ^~~~
+bad.R:6:8: style: [indentation_linter] Indentation should be 4 spaces but is 8 spaces.
+        print(&quot;Not positive&quot;)
+    ~~~^
+bad.R:7:4: style: [indentation_linter] Indentation should be 2 spaces but is 4 spaces.
+    }
+  ~^
+bad.R:8:5: style: [return_linter] Use implicit return behavior; explicit return() is not needed.
+    return(T)
+    ^~~~~~
+bad.R:8:13: style: [T_and_F_symbol_linter] Use TRUE instead of the symbol T.
+    return(T)
+           ~^
+bad.R:10:1: style: [trailing_blank_lines_linter] Remove trailing blank lines.
+
+^
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;{lintr}&lt;/code&gt; is complementary to &lt;a href=&quot;https://github.com/r-lib/styler&quot;&gt;the &lt;code&gt;{styler}&lt;/code&gt; package&lt;/a&gt; which automatically restyles code, eliminating some of the problems that &lt;code&gt;{lintr}&lt;/code&gt; can detect.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Install the stable version from CRAN:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-R&quot;&gt;install.packages(&quot;lintr&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or the development version from GitHub:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-R&quot;&gt;# install.packages(&quot;remotes&quot;)
+remotes::install_github(&quot;r-lib/lintr&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;And then you can create a configuration file and run selected linters:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-R&quot;&gt;lintr::use_lintr(type = &quot;tidyverse&quot;)
+
+# in a project:
+lintr::lint_dir()
+
+# in a package:
+lintr::lint_package()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To see a list of linters included for each configuration:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-R&quot;&gt;# tidyverse (default)
+names(lintr::linters_with_defaults())
+
+# full
+names(lintr::all_linters())
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Setting up GitHub Actions&lt;/h3&gt; 
+&lt;p&gt;&lt;code&gt;{usethis}&lt;/code&gt; provides helper functions to generate lint workflows for GitHub Actions:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-R&quot;&gt;# in a project:
+usethis::use_github_action(&quot;lint-project&quot;)
+
+# in a package:
+usethis::use_github_action(&quot;lint&quot;)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also run lintr during continuous integration or within your IDE or text editor. See &lt;code&gt;vignette(&quot;continuous-integration&quot;)&lt;/code&gt; and &lt;code&gt;vignette(&quot;editors&quot;)&lt;/code&gt; for more details.&lt;/p&gt; 
+&lt;p&gt;Without further configuration, this will run the &lt;a href=&quot;https://lintr.r-lib.org/reference/default_linters.html&quot;&gt;default linters&lt;/a&gt;. See &lt;code&gt;vignette(&quot;lintr&quot;)&lt;/code&gt; to learn how to modify these defaults.&lt;/p&gt; 
+&lt;h2&gt;Code of Conduct&lt;/h2&gt; 
+&lt;p&gt;Please note that the lintr project is released with a &lt;a href=&quot;https://www.contributor-covenant.org/version/2/1/code_of_conduct/&quot;&gt;Contributor Code of Conduct&lt;/a&gt;. By contributing to this project, you agree to abide by its terms.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/24548375/d43f6987-3f5d-4dc2-8e95-c3758587ab2f" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>satijalab/seurat</title>
+      <link>https://github.com/satijalab/seurat</link>
+      <description>&lt;p&gt;R toolkit for single cell genomics&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;http://www.satijalab.org/seurat&quot;&gt;http://www.satijalab.org/seurat&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://www.r-pkg.org/badges/version/Seurat&quot; alt=&quot;CRAN Version&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://cran.r-project.org/package=Seurat&quot;&gt;&lt;img src=&quot;https://cranlogs.r-pkg.org/badges/Seurat&quot; alt=&quot;CRAN Downloads&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1&gt;Seurat v5&lt;/h1&gt; 
+&lt;p&gt;Seurat is an R toolkit for single-cell genomics, developed and maintained by the &lt;a href=&quot;https://satijalab.org/&quot;&gt;Satija Lab&lt;/a&gt; at &lt;a href=&quot;https://www.nygenome.org/&quot;&gt;NYGC&lt;/a&gt;.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;We are excited to release Seurat v5! This update introduces new functionality for spatial, multimodal, and scalable single-cell analysis.&lt;/p&gt; 
+ &lt;p&gt;Seurat v5 is backwards-compatible with previous versions, so that users will continue to be able to re-run existing workflows.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Installation instructions, documentation, and tutorials can be found at:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://satijalab.org/seurat&quot;&gt;https://satijalab.org/seurat&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Seurat can be successfully installed in R on any system (Mac OS X, Linux, Windows).&lt;/p&gt; 
+&lt;p&gt;Improvements and new features are added on a regular basis. For the most up-to-date development version, refer to the &lt;code&gt;main&lt;/code&gt; branch. For the most recent version released on CRAN, refer to the &lt;code&gt;cran&lt;/code&gt; branch.&lt;/p&gt; 
+&lt;p&gt;Please post under &lt;a href=&quot;https://github.com/satijalab/seurat/issues&quot;&gt;Issues&lt;/a&gt; with any bug reports, feature requests, etc., and use &lt;a href=&quot;https://github.com/satijalab/seurat/discussions&quot;&gt;Discussions&lt;/a&gt; to engage with the wider Seurat community on analysis questions and other topics. &lt;a href=&quot;https://github.com/satijalab/seurat/pulls&quot;&gt;PRs&lt;/a&gt; are welcome if you would like to contribute.&lt;/p&gt; 
+&lt;p&gt;For a version history/changelog, please see the &lt;a href=&quot;https://github.com/satijalab/seurat/raw/main/NEWS.md&quot;&gt;NEWS file&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/88fd29b82cb2bc7d828c4230480e9e07db7355ad1f17f8e9720d0f5bf4ea5702/satijalab/seurat" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
