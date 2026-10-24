@@ -1,0 +1,1696 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Lua Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Lua on GitHub</description>
+    
+    <pubDate>Sat, 24 Oct 2026 05:23:25 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>Kong/kong</title>
+      <link>https://github.com/Kong/kong</link>
+      <description>&lt;p&gt;🦍 The API and AI Gateway&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://konghq.com/install/&quot;&gt;https://konghq.com/install/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://konghq.com/&quot;&gt;&lt;img src=&quot;https://konghq.com/wp-content/uploads/2018/05/kong-logo-github-readme.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://img.shields.io/github/stars/Kong/kong?style=flat-square&quot; alt=&quot;Stars&quot; /&gt; &lt;img src=&quot;https://img.shields.io/docker/pulls/_/kong?style=flat-square&quot; alt=&quot;GitHub commit activity&quot; /&gt; &lt;a href=&quot;https://github.com/Kong/kong/actions&quot;&gt;&lt;img src=&quot;https://github.com/Kong/kong/actions/workflows/build_and_test.yml/badge.svg?branch=master&amp;amp;event=push&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/Kong/kong?color=green&amp;amp;label=Version&amp;amp;style=flat-square&quot; alt=&quot;Version&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/License-Apache%202.0-blue?style=flat-square&quot; alt=&quot;License&quot; /&gt; &lt;a href=&quot;https://x.com/thekonginc&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/thekonginc?style=social&quot; alt=&quot;Twitter Follow&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Kong or Kong Gateway is a cloud-native, platform-agnostic, scalable &lt;strong&gt;API 𖧹 LLM 𖧹 MCP&lt;/strong&gt; Gateway distinguished for its high performance and extensibility via plugins. It also provides advanced AI traffic capabilities with multi-LLM support, semantic security, MCP traffic security and analytics, and more.&lt;/p&gt; 
+&lt;p&gt;By providing functionality for proxying, routing, load balancing, health checking, authentication (and &lt;a href=&quot;https://raw.githubusercontent.com/Kong/kong/master/#features&quot;&gt;more&lt;/a&gt;), Kong serves as the central layer for orchestrating microservices or conventional API traffic - and agentic LLM and MCP as well - with ease.&lt;/p&gt; 
+&lt;p&gt;Kong runs natively on Kubernetes thanks to its official &lt;a href=&quot;https://github.com/Kong/kubernetes-ingress-controller&quot;&gt;Kubernetes Ingress Controller&lt;/a&gt;.&lt;/p&gt; 
+&lt;br /&gt; 
+&lt;p&gt;&lt;a href=&quot;https://konghq.com/&quot;&gt;&lt;img src=&quot;https://assets.prd.mktg.konghq.com/images/2025/09/68cc1bfd-kong-diagram.png?v=2&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;a href=&quot;https://konghq.com/install/#kong-community&quot;&gt;Installation&lt;/a&gt; | &lt;a href=&quot;https://docs.konghq.com&quot;&gt;Documentation&lt;/a&gt; | &lt;a href=&quot;https://github.com/Kong/kong/discussions&quot;&gt;Discussions&lt;/a&gt; | &lt;a href=&quot;https://discuss.konghq.com&quot;&gt;Forum&lt;/a&gt; | &lt;a href=&quot;https://konghq.com/blog&quot;&gt;Blog&lt;/a&gt; | &lt;a href=&quot;https://hub.docker.com/r/kong/kong/tags&quot;&gt;Builds&lt;/a&gt; | &lt;a href=&quot;https://konghq.com/products/kong-ai-gateway&quot;&gt;AI Gateway&lt;/a&gt; | &lt;a href=&quot;https://konghq.com/kong-konnect/&quot;&gt;Cloud Hosted Kong&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Getting Started&lt;/h2&gt; 
+&lt;p&gt;If you prefer to use a cloud-hosted Kong, you can &lt;a href=&quot;https://konghq.com/products/kong-konnect/register?utm_medium=Referral&amp;amp;utm_source=Github&amp;amp;utm_campaign=kong-gateway&amp;amp;utm_content=konnect-promo-in-gateway&amp;amp;utm_term=get-started&quot;&gt;sign up for a free trial of Kong Konnect&lt;/a&gt; and get started in minutes. If not, you can follow the instructions below to get started with Kong on your own infrastructure.&lt;/p&gt; 
+&lt;p&gt;Let’s test drive Kong by adding authentication to an API in under 5 minutes.&lt;/p&gt; 
+&lt;p&gt;We suggest using the docker-compose distribution via the instructions below, but there is also a &lt;a href=&quot;https://docs.konghq.com/gateway/latest/install/docker/#install-kong-gateway-in-db-less-mode&quot;&gt;docker installation&lt;/a&gt; procedure if you’d prefer to run the Kong Gateway in DB-less mode.&lt;/p&gt; 
+&lt;p&gt;Whether you’re running in the cloud, on bare metal, or using containers, you can find every supported distribution on our &lt;a href=&quot;https://konghq.com/install/#kong-community&quot;&gt;official installation&lt;/a&gt; page.&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;To start, clone the Docker repository and navigate to the compose folder.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt;  $ git clone https://github.com/Kong/docker-kong
+  $ cd docker-kong/compose/
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ol start=&quot;2&quot;&gt; 
+ &lt;li&gt;Start the Gateway stack using:&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-cmd&quot;&gt;  $ KONG_DATABASE=postgres docker-compose --profile database up
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The Gateway is now available on the following ports on localhost:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;:8000&lt;/code&gt; - send traffic to your service via Kong&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;:8001&lt;/code&gt; - configure Kong using Admin API or via &lt;a href=&quot;https://github.com/kong/deck&quot;&gt;decK&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;:8002&lt;/code&gt; - access Kong&#39;s management Web UI (&lt;a href=&quot;https://github.com/Kong/kong-manager&quot;&gt;Kong Manager&lt;/a&gt;) on &lt;a href=&quot;http://localhost:8002&quot;&gt;localhost:8002&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Next, follow the &lt;a href=&quot;https://docs.konghq.com/gateway-oss/latest/getting-started/configuring-a-service/&quot;&gt;quick start guide&lt;/a&gt; to tour the Gateway features.&lt;/p&gt; 
+&lt;h3&gt;Getting started with AI Gateway for LLM and MCP&lt;/h3&gt; 
+&lt;p&gt;If you would like to get started with Kong AI Gateway capabilities including LLM and MCP features, please refer to the &lt;a href=&quot;https://developer.konghq.com/ai-gateway/&quot;&gt;official AI documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;By centralizing common API, AI and MCP functionality across all your organization&#39;s services, Kong Gateway creates more freedom for engineering teams to focus on the challenges that matter most.&lt;/p&gt; 
+&lt;p&gt;The top Kong features include:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Advanced routing, load balancing, health checking - all configurable via a RESTful admin API or declarative configuration.&lt;/li&gt; 
+ &lt;li&gt;Authentication and authorization for APIs using methods like JWT, basic auth, OAuth, ACLs and more.&lt;/li&gt; 
+ &lt;li&gt;Universal LLM API to route across multiple providers like OpenAI, Anthropic, GCP Gemini, AWS Bedrock, Azure AI, Databricks, Mistral, Huggingface and more.&lt;/li&gt; 
+ &lt;li&gt;MCP traffic governance, MCP security and MCP observability in addition to MCP autogeneration from any RESTful API.&lt;/li&gt; 
+ &lt;li&gt;60+ AI features like AI observability, semantic security and caching, semantic routing and more.&lt;/li&gt; 
+ &lt;li&gt;Proxy, SSL/TLS termination, and connectivity support for L4 or L7 traffic.&lt;/li&gt; 
+ &lt;li&gt;Plugins for enforcing traffic controls, rate limiting, req/res transformations, logging, monitoring and including a plugin developer hub.&lt;/li&gt; 
+ &lt;li&gt;Sophisticated deployment models like Declarative Databaseless Deployment and Hybrid Deployment (control plane/data plane separation) without any vendor lock-in.&lt;/li&gt; 
+ &lt;li&gt;Native &lt;a href=&quot;https://github.com/Kong/kubernetes-ingress-controller&quot;&gt;ingress controller&lt;/a&gt; support for serving Kubernetes.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://konghq.com/&quot;&gt;&lt;img src=&quot;https://konghq.com/wp-content/uploads/2018/05/kong-benefits-github-readme.png&quot; alt=&quot;&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Plugin Hub&lt;/h3&gt; 
+&lt;p&gt;Plugins provide advanced functionality that extends the use of the Gateway. Many of the Kong Inc. and community-developed plugins like AWS Lambda, Correlation ID, and Response Transformer are showcased at the &lt;a href=&quot;https://docs.konghq.com/hub/&quot;&gt;Plugin Hub&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Contribute to the Plugin Hub and ensure your next innovative idea is published and available to the broader community!&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We ❤️ pull requests, and we’re continually working hard to make it as easy as possible for developers to contribute. Before beginning development with the Kong Gateway, please familiarize yourself with the following developer resources:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Community Pledge (&lt;a href=&quot;https://raw.githubusercontent.com/Kong/kong/master/COMMUNITY_PLEDGE.md&quot;&gt;COMMUNITY_PLEDGE.md&lt;/a&gt;) for our pledge to interact with you, the open source community.&lt;/li&gt; 
+ &lt;li&gt;Contributor Guide (&lt;a href=&quot;https://raw.githubusercontent.com/Kong/kong/master/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;) to learn about how to contribute to Kong.&lt;/li&gt; 
+ &lt;li&gt;Development Guide (&lt;a href=&quot;https://raw.githubusercontent.com/Kong/kong/master/DEVELOPER.md&quot;&gt;DEVELOPER.md&lt;/a&gt;): Setting up your development environment.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Kong/kong/master/CODE_OF_CONDUCT.md&quot;&gt;CODE_OF_CONDUCT&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/Kong/kong/master/COPYRIGHT&quot;&gt;COPYRIGHT&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Use the &lt;a href=&quot;https://docs.konghq.com/latest/plugin-development/&quot;&gt;Plugin Development Guide&lt;/a&gt; for building new and creative plugins, or browse the online version of Kong&#39;s source code documentation in the &lt;a href=&quot;https://docs.konghq.com/latest/pdk/&quot;&gt;Plugin Development Kit (PDK) Reference&lt;/a&gt;. Developers can build plugins in &lt;a href=&quot;https://docs.konghq.com/gateway/latest/plugin-development/&quot;&gt;Lua&lt;/a&gt;, &lt;a href=&quot;https://docs.konghq.com/gateway-oss/latest/external-plugins/#developing-go-plugins&quot;&gt;Go&lt;/a&gt; or &lt;a href=&quot;https://docs.konghq.com/gateway-oss/latest/external-plugins/#developing-javascript-plugins&quot;&gt;JavaScript&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Releases&lt;/h2&gt; 
+&lt;p&gt;Please see the &lt;a href=&quot;https://raw.githubusercontent.com/Kong/kong/master/CHANGELOG.md&quot;&gt;Changelog&lt;/a&gt; for more details about a given release. The &lt;a href=&quot;https://semver.org&quot;&gt;SemVer Specification&lt;/a&gt; is followed when versioning Gateway releases.&lt;/p&gt; 
+&lt;h2&gt;Join the Community&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Check out the &lt;a href=&quot;https://docs.konghq.com/&quot;&gt;docs&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Join the &lt;a href=&quot;https://github.com/Kong/kong/discussions&quot;&gt;Kong discussions forum&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Join the Kong discussions at the Kong Nation forum: &lt;a href=&quot;https://discuss.konghq.com/&quot;&gt;https://discuss.konghq.com/&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Join our &lt;a href=&quot;http://kongcommunity.slack.com/&quot;&gt;Community Slack&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Read up on the latest happenings at our &lt;a href=&quot;https://konghq.com/blog/&quot;&gt;blog&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Follow us on &lt;a href=&quot;https://x.com/thekonginc&quot;&gt;X&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Subscribe to our &lt;a href=&quot;https://www.youtube.com/c/KongInc/videos&quot;&gt;YouTube channel&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Visit our &lt;a href=&quot;https://konghq.com/&quot;&gt;homepage&lt;/a&gt; to learn more&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Konnect Cloud&lt;/h2&gt; 
+&lt;p&gt;Kong Inc. offers commercial subscriptions that enhance the Kong Gateway in a variety of ways. Customers of Kong&#39;s &lt;a href=&quot;https://konghq.com/kong-konnect/&quot;&gt;Konnect Cloud&lt;/a&gt; subscription take advantage of additional gateway functionality, commercial support, and access to Kong&#39;s managed (SaaS) control plane platform. The Konnect Cloud platform features include real-time analytics, a service catalog, developer portals, and so much more! &lt;a href=&quot;https://konghq.com/products/kong-konnect/register?utm_medium=Referral&amp;amp;utm_source=Github&amp;amp;utm_campaign=kong-gateway&amp;amp;utm_content=konnect-promo-in-gateway&amp;amp;utm_term=get-started&quot;&gt;Get started&lt;/a&gt; with Konnect Cloud.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;Copyright 2016-2026 Kong Inc.
+
+Licensed under the Apache License, Version 2.0 (the &quot;License&quot;);
+you may not use this file except in compliance with the License.
+You may obtain a copy of the License at
+
+   https://www.apache.org/licenses/LICENSE-2.0
+
+Unless required by applicable law or agreed to in writing, software
+distributed under the License is distributed on an &quot;AS IS&quot; BASIS,
+WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+See the License for the specific language governing permissions and
+limitations under the License.
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/1737dc4f6c67a0f649e6b18a3b03de6868bad8879b6bab036d80e58ca6c3a4db/Kong/kong" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>saghen/blink.cmp</title>
+      <link>https://github.com/saghen/blink.cmp</link>
+      <description>&lt;p&gt;Performant, batteries-included completion plugin for Neovim&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://cmp.saghen.dev&quot;&gt;https://cmp.saghen.dev&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;V2 is under active development with many breaking changes. Consider staying on stable by using &lt;code&gt;branch = &#39;v1&#39;&lt;/code&gt; or &lt;code&gt;version = &quot;1.*&quot;&lt;/code&gt; in your &lt;code&gt;lazy.nvim&lt;/code&gt; config. &lt;a href=&quot;https://cmp.saghen.dev/&quot;&gt;See the V1 docs&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;For V2, &lt;a href=&quot;https://github.com/saghen/blink.lib&quot;&gt;blink.lib&lt;/a&gt; must be installed via your package manager. See the &lt;a href=&quot;https://raw.githubusercontent.com/saghen/blink.cmp/main/UPGRADE.md&quot;&gt;UPGRADE.md&lt;/a&gt; for a detailed migration guide.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;/p&gt;
+&lt;h2 align=&quot;center&quot;&gt;Blink Completion (blink.cmp)&lt;/h2&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; Performant, batteries-included completion plugin for Neovim &lt;/p&gt; 
+&lt;p align=&quot;center&quot; style=&quot;text-decoration: none; border: none;&quot;&gt; &lt;a href=&quot;https://github.com/saghen/blink.cmp/stargazers&quot; style=&quot;text-decoration: none&quot;&gt; &lt;img alt=&quot;Stars&quot; src=&quot;https://img.shields.io/github/stars/saghen/blink.cmp?style=for-the-badge&amp;amp;logo=starship&amp;amp;color=C9CBFF&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/saghen/blink.cmp/issues&quot; style=&quot;text-decoration: none&quot;&gt; &lt;img alt=&quot;Issues&quot; src=&quot;https://img.shields.io/github/issues/saghen/blink.cmp?style=for-the-badge&amp;amp;logo=bilibili&amp;amp;color=F5E0DC&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/saghen/blink.cmp/contributors&quot; style=&quot;text-decoration: none&quot;&gt; &lt;img alt=&quot;Contributors&quot; src=&quot;https://img.shields.io/github/contributors/saghen/blink.cmp?color=%23DDB6F2&amp;amp;label=CONTRIBUTORS&amp;amp;logo=git&amp;amp;style=for-the-badge&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://cmp.saghen.dev&quot;&gt;V1 Documentation&lt;/a&gt; · &lt;a href=&quot;https://main.cmp.saghen.dev&quot;&gt;V2 Documentation&lt;/a&gt; · &lt;a href=&quot;https://cmp.saghen.dev/installation&quot;&gt;Installation&lt;/a&gt; · &lt;a href=&quot;https://cmp.saghen.dev/recipes&quot;&gt;Recipes&lt;/a&gt; · &lt;a href=&quot;https://cmp.saghen.dev/configuration/general&quot;&gt;Configuration&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;blink.cmp&lt;/strong&gt; is a completion plugin with support for LSPs, cmdline, signature help, and snippets. It uses an &lt;a href=&quot;https://cmp.saghen.dev/configuration/fuzzy.html#rust-vs-lua-implementation&quot;&gt;optional&lt;/a&gt; custom &lt;a href=&quot;https://github.com/saghen/frizbee&quot;&gt;fuzzy matcher&lt;/a&gt; for typo resistance. It provides extensibility via pluggable sources (LSP, buffer, snippets, etc), component based rendering and dynamic configuration.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/bd1e25dd-48b0-4d33-90f4-1468d822f2be&quot;&gt;https://github.com/user-attachments/assets/bd1e25dd-48b0-4d33-90f4-1468d822f2be&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Works out of the box with no additional configuration&lt;/li&gt; 
+ &lt;li&gt;Updates on every keystroke (0.5-4ms async, single core)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/saghen/frizbee&quot;&gt;Typo resistant fuzzy&lt;/a&gt; with frecency and proximity bonus&lt;/li&gt; 
+ &lt;li&gt;Extensive LSP support (&lt;a href=&quot;https://cmp.saghen.dev/development/lsp-tracker&quot;&gt;tracker&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmp.saghen.dev/configuration/snippets.html&quot;&gt;Snippet support&lt;/a&gt;: native &lt;code&gt;vim.snippet&lt;/code&gt; (including &lt;code&gt;friendly-snippets&lt;/code&gt;), &lt;code&gt;LuaSnip&lt;/code&gt; and &lt;code&gt;mini.snippets&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;External sources support (&lt;a href=&quot;https://cmp.saghen.dev/configuration/sources.html#community-sources&quot;&gt;community sources&lt;/a&gt; and &lt;a href=&quot;https://github.com/saghen/blink.compat&quot;&gt;compatibility layer for &lt;code&gt;nvim-cmp&lt;/code&gt; sources&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmp.saghen.dev/configuration/completion.html#auto-brackets&quot;&gt;Auto-bracket support&lt;/a&gt; based on semantic tokens&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmp.saghen.dev/configuration/signature.html&quot;&gt;Signature help&lt;/a&gt; (experimental, opt-in)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmp.saghen.dev/modes/cmdline.html&quot;&gt;Command line completion&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmp.saghen.dev/modes/term&quot;&gt;Terminal completion&lt;/a&gt; (0.11+ only! No source for shell completions exists yet, contributions welcome!)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmp.saghen.dev/#compared-to-built-in-completion&quot;&gt;Comparison with built-in completion&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://cmp.saghen.dev/#compared-to-nvim-cmp&quot;&gt;Comparison with nvim-cmp&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;Head over to the &lt;a href=&quot;https://cmp.saghen.dev/installation&quot;&gt;V1 documentation website&lt;/a&gt; for installation instructions and configuration options.&lt;/p&gt; 
+&lt;p&gt;For V2, use the &lt;a href=&quot;https://main.cmp.saghen.dev/installation&quot;&gt;documentation website tracking &lt;code&gt;main&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Special Thanks&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/hrsh7th/&quot;&gt;@hrsh7th&lt;/a&gt; nvim-cmp used as inspiration and cmp-path/cmp-cmdline implementations modified for path/cmdline sources&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/garymjr&quot;&gt;@garymjr&lt;/a&gt; nvim-snippets implementation modified for snippets source&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/redxtech&quot;&gt;@redxtech&lt;/a&gt; Help with design and testing&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/aaditya-sahay&quot;&gt;@aaditya-sahay&lt;/a&gt; Help with rust, design and testing&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Contributors&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/stefanboca&quot;&gt;@stefanboca&lt;/a&gt; Author of &lt;a href=&quot;https://github.com/saghen/blink.compat&quot;&gt;blink.compat&lt;/a&gt; and maintainer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/soifou&quot;&gt;@soifou&lt;/a&gt; Maintainer&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/lopi-py&quot;&gt;@lopi-py&lt;/a&gt; Windowing code&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/scottmckendry&quot;&gt;@scottmckendry&lt;/a&gt; CI and prebuilt binaries&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Balssh&quot;&gt;@balssh&lt;/a&gt; + &lt;a href=&quot;https://github.com/konradmalik&quot;&gt;@konradmalik&lt;/a&gt; Nix flake, nixpkg and nixvim&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/abeldekat&quot;&gt;@abeldekat&lt;/a&gt; mini.snippets source&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FelipeLema&quot;&gt;@FelipeLema&lt;/a&gt; vsnip source&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/wurli&quot;&gt;@wurli&lt;/a&gt; Terminal completions&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/mikavilpas&quot;&gt;@mikavilpas&lt;/a&gt; + &lt;a href=&quot;https://github.com/xzbdmw&quot;&gt;@xzbdmw&lt;/a&gt; Dot-repeat (&lt;code&gt;.&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/FerretDetective&quot;&gt;@FerretDetective&lt;/a&gt; &lt;code&gt;complete_func&lt;/code&gt; source&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/krovuxdev&quot;&gt;@krovuxdev&lt;/a&gt; Community moderation and help&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/168fee78f46c82c0b62399ade53c06809f8cadca4819fb0d825b28fc01ad1ceb/saghen/blink.cmp" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>PortsMaster/PortMaster-New</title>
+      <link>https://github.com/PortsMaster/PortMaster-New</link>
+      <description>&lt;p&gt;New PortMaster repo&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.portmaster.games&quot;&gt;https://www.portmaster.games&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h2&gt;PortMaster&lt;/h2&gt; 
+&lt;p&gt;PortMaster is a simple tool that allows easy installation of Ports for devices running AmberELEC, ArkOS, Rocknix, RetroOZ, TheRA, and EmuELEC for various handheld linux based devices.&lt;/p&gt; 
+&lt;p&gt;One of the goals of PortMaster is to not install or upgrade any existing OS libraries for any ports. Any of the ports that need a particular non standard library are maintained within the ports&#39; folder and made available specifically to that port during execution.&lt;/p&gt; 
+&lt;p&gt;To learn more visit &lt;a href=&quot;https://portmaster.games/&quot;&gt;portmaster.games&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Nitty gritty details&lt;/h2&gt; 
+&lt;p&gt;PortMaster used to be a collection of zips inside of a git repo, this got unwieldy, especially now that we have 300+ ports. It was impossible to tell from one release to the next what files were actually changed. It made checking scripts incredibly hard, and even harder to learn from other ports.&lt;/p&gt; 
+&lt;p&gt;The PortMaster-New repo now has all the ports unzipped, this makes the repo slightly larger initially, however changes will no longer greatly increase the size. The release system intelligently&lt;/p&gt; 
+&lt;h2&gt;Submitting a PR&lt;/h2&gt; 
+&lt;p&gt;To submit a PR you will have to fork the repo. After forking the repo, go into the settings for the fork and disable github actions for your fork.&lt;/p&gt; 
+&lt;p&gt;Afterwards you can clone the repo, it&#39;s quite big though, so you&#39;ll might want to use git sparse checkout, &lt;a href=&quot;https://gist.github.com/JeodC/7a51211ad94ad6084d14042d80a62549&quot;&gt;here is a great guide made by JeodC to help you with that&lt;/a&gt; Once you have it cloned you should run the newly made &lt;code&gt;tools/prepare_repo.sh&lt;/code&gt; from the root of repo. This will download the latest files from the release system.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;tools/prepare_repo.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;From there you can create a new directory in &lt;code&gt;ports/&lt;/code&gt; for your new port, be sure to check the below &lt;code&gt;New Port Structure&lt;/code&gt; section to make sure your port has all the required files.&lt;/p&gt; 
+&lt;p&gt;After your port has been added and you are ready to submit it, you can run the &lt;code&gt;build_release.py&lt;/code&gt; script to check if your port adheres to the port standards.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python3 tools/build_release.py --do-check
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This will check your port to make sure it has all the required files, and will warn of any issues.&lt;/p&gt; 
+&lt;p&gt;If you add a file that is larger than 90+ MB, you will have to run the script &lt;code&gt;tools/build_data.py&lt;/code&gt;. It will split the file into 50mb chunks suitable for committing to github. If you edit the large-file just rerun the above script and it will update the chunks. This also adds the file to &lt;code&gt;.gitginore&lt;/code&gt; in the ports directory so that the large file will not be committed to the repo.&lt;/p&gt; 
+&lt;p&gt;From there you can do a PR and it will be checked again, portmaster crew members will double check it once again.&lt;/p&gt; 
+&lt;p&gt;You can use the build_release.py to build the zips of any ports that have changed.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python3 tools/build_release.py
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Your port zips will then be in &lt;code&gt;releases/&lt;/code&gt;, these are suitable for posting to discord for testing.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;See our always up to date Packaging Documentation on our website. &lt;a href=&quot;https://portmaster.games/packaging.html&quot;&gt;https://portmaster.games/packaging.html&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Portname requirements&lt;/h3&gt; 
+&lt;p&gt;The &lt;strong&gt;portname&lt;/strong&gt; must start with either a lowercase letter (a-z) or a number (0-9).&lt;/p&gt; 
+&lt;p&gt;You can then have a combination of lowercase letters (a-z), numbers (0-9), periods (.), or underscores (_).&lt;/p&gt; 
+&lt;p&gt;There is no limit on the length of the name, but keep it short.&lt;/p&gt; 
+&lt;p&gt;This name must not clash with any other existing ports.&lt;/p&gt; 
+&lt;h3&gt;New Port Structure:&lt;/h3&gt; 
+&lt;p&gt;Ports are now contained within the &lt;code&gt;port&lt;/code&gt; top level directory, each port has its own sub-directory named after the port itself. Each port must adhere to the &lt;code&gt;portname&lt;/code&gt; rules stated above. Each port must have a &lt;code&gt;port.json&lt;/code&gt;, &lt;code&gt;screenshot.{jpg,png}&lt;/code&gt;, &lt;code&gt;README.md&lt;/code&gt;, a port script and a port directory. It may optionally include a &lt;code&gt;cover.{jpg,png}&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;The script should have capital letters (like &lt;code&gt;Port Name.sh&lt;/code&gt;) and must end in &lt;code&gt;.sh&lt;/code&gt;, the port directory should be the same as the containing directory. Some legacy ports have different names, new ports won&#39;t be accepted unless they follow the new convention.&lt;/p&gt; 
+&lt;p&gt;Scripts and port directories must be unique across the whole project, checks will be run to ensure this is right.&lt;/p&gt; 
+&lt;p&gt;A port directory might look like the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;- portname/
+  - port.json
+  - README.md
+  - screenshot.jpg
+  - gameinfo.xml
+  - cover.jpg (Optional)
+  - Port Name.sh
+  - portname/
+    - licenses/LICENSE Files
+    - &amp;lt;portfiles here&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The above file structure would create a &lt;code&gt;portname.zip&lt;/code&gt; file.&lt;/p&gt; 
+&lt;h4&gt;&lt;a href=&quot;http://README.md&quot;&gt;README.md&lt;/a&gt;&lt;/h4&gt; 
+&lt;p&gt;This adds additional info for the port on the wiki, &lt;a href=&quot;http://portmaster.games/port-markdown.html&quot;&gt;we have a handy README.md generator here&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-markdown&quot;&gt;## Notes
+
+{ADDITIONAL NOTES HERE}
+
+Thanks to {THANKS INFO HERE} for the source code. Also thanks to {PORTER NAME} for the packaging for portmaster.
+
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;port.json&lt;/h4&gt; 
+&lt;p&gt;This is used by portmaster, this should include all the pertinent info for the port, &lt;a href=&quot;http://portmaster.games/port-json.html&quot;&gt;we have a handy port.json generator here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Example from 2048.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+    &quot;version&quot;: 2,
+    &quot;name&quot;: &quot;2048.zip&quot;,
+    &quot;items&quot;: [
+        &quot;2048.sh&quot;,
+        &quot;2048/&quot;
+    ],
+    &quot;items_opt&quot;: null,
+    &quot;attr&quot;: {
+        &quot;title&quot;: &quot;2048&quot;,
+        &quot;desc&quot;: &quot;The 2048 puzzle game&quot;,
+        &quot;inst&quot;: &quot;Ready to run.&quot;,
+        &quot;genres&quot;: [
+            &quot;puzzle&quot;
+        ],
+        &quot;porter&quot;: [
+            &quot;Christian_Haitian&quot;
+        ],
+        &quot;image&quot;: {},
+        &quot;rtr&quot;: true,
+        &quot;runtime&quot;: null,
+        &quot;reqs&quot;: [],
+        &quot;arch&quot;: [
+            &quot;aarch64&quot;,
+            &quot;armhf&quot;
+        ]
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;TODO:&lt;/h2&gt; 
+&lt;ul class=&quot;task-list&quot;&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_0&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_0&quot;&gt; Load port data&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_1&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_1&quot;&gt; Check port has reqired files&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_2&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_2&quot;&gt; Check for common errors in ports.&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_3&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_3&quot;&gt; Check for gameinfo.xml errors.&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_4&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_4&quot;&gt; Check if port clashes with other ports&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_5&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_5&quot;&gt; Run port.spec before zipping port&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_6&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_6&quot;&gt; Create portname.zip only if port is changed&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_7&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_7&quot;&gt; Run in &lt;code&gt;--do-check&lt;/code&gt; for PR pre-check&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_8&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_8&quot;&gt; Create ports.json&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_9&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_9&quot;&gt; Create markdown.zip&lt;/label&gt;&lt;/li&gt; 
+ &lt;li class=&quot;task-list-item&quot;&gt;&lt;input type=&quot;checkbox&quot; id=&quot;cbx_10&quot; checked=&quot;true&quot; disabled=&quot;true&quot; /&gt;&lt;label for=&quot;cbx_10&quot;&gt; Create images.zip&lt;/label&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ebe4f1d79503ba8e9cc9749a0821d2b78fab1a30e6a655c59465103e96d59aa5/PortsMaster/PortMaster-New" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>apache/apisix</title>
+      <link>https://github.com/apache/apisix</link>
+      <description>&lt;p&gt;The Cloud-Native API Gateway and AI Gateway&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://apisix.apache.org/blog/&quot;&gt;https://apisix.apache.org/blog/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Apache APISIX API Gateway ｜ AI Gateway&lt;/h1&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/apache/apisix/master/logos/apisix-white-bg.jpg&quot; alt=&quot;APISIX logo&quot; height=&quot;150px&quot; align=&quot;right&quot; /&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/apache/apisix/actions/workflows/build.yml&quot;&gt;&lt;img src=&quot;https://github.com/apache/apisix/actions/workflows/build.yml/badge.svg?branch=master&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/apache/apisix/raw/master/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-Apache%202.0-blue.svg?sanitize=true&quot; alt=&quot;License&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/apache/apisix/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/apache/apisix?color=blue&quot; alt=&quot;GitHub release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/apache/apisix/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/apache/apisix?style=flat&amp;amp;color=blue&quot; alt=&quot;GitHub stars&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hub.docker.com/r/apache/apisix&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/apache/apisix?color=blue&quot; alt=&quot;Docker Pulls&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/apache/apisix/graphs/commit-activity&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/commit-activity/m/apache/apisix&quot; alt=&quot;Commit activity&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/apache/apisix/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/apache/apisix&quot; alt=&quot;GitHub issues&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://apisix.apache.org/slack&quot;&gt;&lt;img src=&quot;https://badgen.net/badge/Slack/Join%20Apache%20APISIX?icon=slack&quot; alt=&quot;Slack&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Apache APISIX&lt;/strong&gt; is a dynamic, real-time, high-performance API Gateway.&lt;/p&gt; 
+&lt;p&gt;APISIX API Gateway provides rich traffic management features such as load balancing, dynamic upstream, canary release, circuit breaking, authentication, observability, and more. You can use it to handle traditional north-south traffic, as well as east-west traffic between services. It can also be used as a &lt;a href=&quot;https://github.com/apache/apisix-ingress-controller&quot;&gt;Kubernetes ingress controller&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#why-apisix&quot;&gt;Why APISIX&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#ai-gateway&quot;&gt;AI Gateway&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#get-started&quot;&gt;Get Started&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#features&quot;&gt;Features&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#benchmark&quot;&gt;Benchmark&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#community&quot;&gt;Community&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#user-stories&quot;&gt;User Stories&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#who-uses-apisix-api-gateway&quot;&gt;Who Uses APISIX API Gateway?&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#logos&quot;&gt;Logos&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#acknowledgments&quot;&gt;Acknowledgments&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/#license&quot;&gt;License&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Why APISIX&lt;/h2&gt; 
+&lt;p&gt;APISIX is built on top of NGINX and etcd. Compared with traditional API gateways, APISIX has dynamic routing and hot-loading of plugins, which is especially suitable for API management under a microservice architecture.&lt;/p&gt; 
+&lt;p&gt;The technical architecture of Apache APISIX:&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/assets/images/apisix.png&quot; alt=&quot;Technical architecture of Apache APISIX&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;AI Gateway&lt;/h2&gt; 
+&lt;p&gt;APISIX can serve as an &lt;strong&gt;&lt;a href=&quot;https://apisix.apache.org/ai-gateway/&quot;&gt;AI Gateway&lt;/a&gt;&lt;/strong&gt; through its flexible plugin system, providing:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;AI proxying&lt;/strong&gt; to route traffic to different LLM providers through a unified interface.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Load balancing, retries, and fallbacks&lt;/strong&gt; across multiple LLMs to ensure the efficiency and reliability of AI agents.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Token-based rate limiting&lt;/strong&gt; to control cost and protect upstream models.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Robust security&lt;/strong&gt; for authentication, authorization, and traffic control on AI workloads.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Get Started&lt;/h2&gt; 
+&lt;p&gt;Install and run APISIX with a single command using the quickstart script (requires &lt;a href=&quot;https://docs.docker.com/get-docker/&quot;&gt;Docker&lt;/a&gt;):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;curl -sL https://run.api7.ai/apisix/quickstart | sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This starts APISIX (listening on port &lt;code&gt;9080&lt;/code&gt;) together with its etcd configuration store. Verify it is running:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;curl &quot;http://127.0.0.1:9080&quot; --head | grep Server
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Create your first route via the Admin API (port &lt;code&gt;9180&lt;/code&gt;) to proxy requests to an upstream service:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;curl -i &quot;http://127.0.0.1:9180/apisix/admin/routes/1&quot; -X PUT -d &#39;
+{
+  &quot;uri&quot;: &quot;/get&quot;,
+  &quot;upstream&quot;: {
+    &quot;type&quot;: &quot;roundrobin&quot;,
+    &quot;nodes&quot;: {
+      &quot;httpbin.org:80&quot;: 1
+    }
+  }
+}&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Send a request through APISIX to confirm the route works:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;curl &quot;http://127.0.0.1:9080/get&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To learn more, follow the &lt;a href=&quot;https://apisix.apache.org/docs/apisix/getting-started/&quot;&gt;Getting Started&lt;/a&gt; guide and the &lt;a href=&quot;https://apisix.apache.org/docs/apisix/installation-guide/&quot;&gt;installation documentation&lt;/a&gt; for other deployment methods. To extend APISIX, see the &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugin-develop.md&quot;&gt;plugin development guide&lt;/a&gt;, the &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/terminology/plugin.md&quot;&gt;plugin concept&lt;/a&gt;, and the &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/admin-api.md&quot;&gt;REST Admin API&lt;/a&gt; reference.&lt;/p&gt; 
+&lt;p&gt;For more documents, please refer to the &lt;a href=&quot;https://apisix.apache.org/docs/apisix/getting-started/&quot;&gt;Apache APISIX Documentation site&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;You can use APISIX API Gateway as a traffic entrance to process all business data, including dynamic routing, dynamic upstream, dynamic certificates, A/B testing, canary release, blue-green deployment, limit rate, defense against malicious attacks, metrics, monitoring alarms, service observability, service governance, etc.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;All platforms&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Cloud-Native: Platform agnostic, No vendor lock-in, APISIX API Gateway can run from bare-metal to Kubernetes.&lt;/li&gt; 
+   &lt;li&gt;Supports ARM64: Don&#39;t worry about the lock-in of the infra technology.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Multi protocols&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/stream-proxy.md&quot;&gt;TCP/UDP Proxy&lt;/a&gt;: Dynamic TCP/UDP proxy.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/dubbo-proxy.md&quot;&gt;Dubbo Proxy&lt;/a&gt;: Dynamic HTTP to Dubbo proxy.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/mqtt-proxy.md&quot;&gt;Dynamic MQTT Proxy&lt;/a&gt;: Supports to load balance MQTT by &lt;code&gt;client_id&lt;/code&gt;, both support MQTT &lt;a href=&quot;http://docs.oasis-open.org/mqtt/mqtt/v3.1.1/os/mqtt-v3.1.1-os.html&quot;&gt;3.1.*&lt;/a&gt;, &lt;a href=&quot;https://docs.oasis-open.org/mqtt/mqtt/v5.0/mqtt-v5.0.html&quot;&gt;5.0&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/grpc-proxy.md&quot;&gt;gRPC proxy&lt;/a&gt;: Proxying gRPC traffic.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/grpc-web.md&quot;&gt;gRPC Web Proxy&lt;/a&gt;: Proxying gRPC Web traffic to gRPC Service.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/grpc-transcode.md&quot;&gt;gRPC transcoding&lt;/a&gt;: Supports protocol transcoding so that clients can access your gRPC API by using HTTP/JSON.&lt;/li&gt; 
+   &lt;li&gt;Proxy Websocket&lt;/li&gt; 
+   &lt;li&gt;Proxy Protocol&lt;/li&gt; 
+   &lt;li&gt;HTTP(S) Forward Proxy&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/certificate.md&quot;&gt;SSL&lt;/a&gt;: Dynamically load an SSL certificate&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/http3.md&quot;&gt;HTTP/3 with QUIC&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Full Dynamic&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/terminology/plugin.md&quot;&gt;Hot Updates And Hot Plugins&lt;/a&gt;: Continuously updates its configurations and plugins without restarts!&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/proxy-rewrite.md&quot;&gt;Proxy Rewrite&lt;/a&gt;: Support rewrite the &lt;code&gt;host&lt;/code&gt;, &lt;code&gt;uri&lt;/code&gt;, &lt;code&gt;schema&lt;/code&gt;, &lt;code&gt;method&lt;/code&gt;, &lt;code&gt;headers&lt;/code&gt; of the request before send to upstream.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/response-rewrite.md&quot;&gt;Response Rewrite&lt;/a&gt;: Set customized response status code, body and header to the client.&lt;/li&gt; 
+   &lt;li&gt;Dynamic Load Balancing: Round-robin load balancing with weight.&lt;/li&gt; 
+   &lt;li&gt;Hash-based Load Balancing: Load balance with consistent hashing sessions.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/tutorials/health-check.md&quot;&gt;Health Checks&lt;/a&gt;: Enable health check on the upstream node and will automatically filter unhealthy nodes during load balancing to ensure system stability.&lt;/li&gt; 
+   &lt;li&gt;Circuit-Breaker: Intelligent tracking of unhealthy upstream services.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/proxy-mirror.md&quot;&gt;Proxy Mirror&lt;/a&gt;: Provides the ability to mirror client requests.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/traffic-split.md&quot;&gt;Traffic Split&lt;/a&gt;: Allows users to incrementally direct percentages of traffic between various upstreams.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Fine-grained routing&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/router-radixtree.md#how-to-use-libradixtree-in-apisix&quot;&gt;Supports full path matching and prefix matching&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/router-radixtree.md#how-to-filter-route-by-nginx-builtin-variable&quot;&gt;Support all Nginx built-in variables as conditions for routing&lt;/a&gt;, so you can use &lt;code&gt;cookie&lt;/code&gt;, &lt;code&gt;args&lt;/code&gt;, etc. as routing conditions to implement canary release, A/B testing, etc.&lt;/li&gt; 
+   &lt;li&gt;Support &lt;a href=&quot;https://github.com/iresty/lua-resty-radixtree#operator-list&quot;&gt;various operators as judgment conditions for routing&lt;/a&gt;, for example &lt;code&gt;{&quot;arg_age&quot;, &quot;&amp;gt;&quot;, 24}&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;Support &lt;a href=&quot;https://github.com/iresty/lua-resty-radixtree/raw/master/t/filter-fun.t#L10&quot;&gt;custom route matching function&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;IPv6: Use IPv6 to match the route.&lt;/li&gt; 
+   &lt;li&gt;Support &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/admin-api.md#route&quot;&gt;TTL&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/router-radixtree.md#3-match-priority&quot;&gt;Support priority&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/batch-requests.md&quot;&gt;Support Batch Http Requests&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/router-radixtree.md#how-to-filter-route-by-graphql-attributes&quot;&gt;Support filtering route by GraphQL attributes&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Security&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Rich authentication &amp;amp; authorization support: 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/key-auth.md&quot;&gt;key-auth&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/jwt-auth.md&quot;&gt;JWT&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/basic-auth.md&quot;&gt;basic-auth&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/wolf-rbac.md&quot;&gt;wolf-rbac&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/authz-casbin.md&quot;&gt;casbin&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/authz-keycloak.md&quot;&gt;keycloak&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/authz-casdoor.md&quot;&gt;casdoor&lt;/a&gt;&lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/ip-restriction.md&quot;&gt;IP Whitelist/Blacklist&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/referer-restriction.md&quot;&gt;Referer Whitelist/Blacklist&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/openid-connect.md&quot;&gt;IdP&lt;/a&gt;: Support external Identity platforms, such as Auth0, okta, etc..&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/limit-req.md&quot;&gt;Limit-req&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/limit-count.md&quot;&gt;Limit-count&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/limit-conn.md&quot;&gt;Limit-concurrency&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Anti-ReDoS(Regular expression Denial of Service): Built-in policies to Anti ReDoS without configuration.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/cors.md&quot;&gt;CORS&lt;/a&gt; Enable CORS(Cross-origin resource sharing) for your API.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/uri-blocker.md&quot;&gt;URI Blocker&lt;/a&gt;: Block client request by URI.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/request-validation.md&quot;&gt;Request Validator&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/csrf.md&quot;&gt;CSRF&lt;/a&gt; Based on the &lt;a href=&quot;https://en.wikipedia.org/wiki/Cross-site_request_forgery#Double_Submit_Cookie&quot;&gt;&lt;code&gt;Double Submit Cookie&lt;/code&gt;&lt;/a&gt; way, protect your API from CSRF attacks.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;OPS friendly&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Zipkin tracing: &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/zipkin.md&quot;&gt;Zipkin&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Open source APM: support &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/skywalking.md&quot;&gt;Apache SkyWalking&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Works with external service discovery: In addition to the built-in etcd, it also supports &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/discovery/consul.md&quot;&gt;Consul&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/discovery/consul_kv.md&quot;&gt;Consul_kv&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/discovery/nacos.md&quot;&gt;Nacos&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/discovery/eureka.md&quot;&gt;Eureka&lt;/a&gt; and &lt;a href=&quot;https://github.com/api7/apisix-seed/raw/main/docs/en/latest/zookeeper.md&quot;&gt;Zookeeper (CP)&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;Monitoring And Metrics: &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/prometheus.md&quot;&gt;Prometheus&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Clustering: APISIX nodes are stateless, creates clustering of the configuration center, please refer to &lt;a href=&quot;https://etcd.io/docs/v3.5/op-guide/clustering/&quot;&gt;etcd Clustering Guide&lt;/a&gt;.&lt;/li&gt; 
+   &lt;li&gt;High availability: Support to configure multiple etcd addresses in the same cluster.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/apache/apisix-dashboard&quot;&gt;Dashboard&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Version Control: Supports rollbacks of operations.&lt;/li&gt; 
+   &lt;li&gt;CLI: start\stop\reload APISIX through the command line.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/deployment-modes.md#standalone&quot;&gt;Standalone&lt;/a&gt;: Supports to load route rules from local YAML file, it is more friendly such as under the kubernetes(k8s).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/terminology/global-rule.md&quot;&gt;Global Rule&lt;/a&gt;: Allows to run any plugin for all request, eg: limit rate, IP filter etc.&lt;/li&gt; 
+   &lt;li&gt;High performance: The single-core QPS reaches 18k with an average delay of fewer than 0.2 milliseconds.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/fault-injection.md&quot;&gt;Fault Injection&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/admin-api.md&quot;&gt;REST Admin API&lt;/a&gt;: Using the REST Admin API to control Apache APISIX, which only allows 127.0.0.1 access by default, you can modify the &lt;code&gt;allow_admin&lt;/code&gt; field in &lt;code&gt;conf/config.yaml&lt;/code&gt; to specify a list of IPs that are allowed to call the Admin API. Also, note that the Admin API uses key auth to verify the identity of the caller.&lt;/li&gt; 
+   &lt;li&gt;External Loggers: Export access logs to external log management tools. (&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/http-logger.md&quot;&gt;HTTP Logger&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/tcp-logger.md&quot;&gt;TCP Logger&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/kafka-logger.md&quot;&gt;Kafka Logger&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/udp-logger.md&quot;&gt;UDP Logger&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/rocketmq-logger.md&quot;&gt;RocketMQ Logger&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/skywalking-logger.md&quot;&gt;SkyWalking Logger&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/sls-logger.md&quot;&gt;Alibaba Cloud Logging(SLS)&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/google-cloud-logging.md&quot;&gt;Google Cloud Logging&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/splunk-hec-logging.md&quot;&gt;Splunk HEC Logging&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/file-logger.md&quot;&gt;File Logger&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/loggly.md&quot;&gt;SolarWinds Loggly Logging&lt;/a&gt;, &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/tencent-cloud-cls.md&quot;&gt;TencentCloud CLS&lt;/a&gt;).&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/clickhouse-logger.md&quot;&gt;ClickHouse&lt;/a&gt;: push logs to ClickHouse.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/elasticsearch-logger.md&quot;&gt;Elasticsearch&lt;/a&gt;: push logs to Elasticsearch.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/datadog.md&quot;&gt;Datadog&lt;/a&gt;: push custom metrics to the DogStatsD server, comes bundled with &lt;a href=&quot;https://docs.datadoghq.com/agent/&quot;&gt;Datadog agent&lt;/a&gt;, over the UDP protocol. DogStatsD basically is an implementation of StatsD protocol which collects the custom metrics for Apache APISIX agent, aggregates it into a single data point and sends it to the configured Datadog server.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/apache/apisix-helm-chart&quot;&gt;Helm charts&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://www.vaultproject.io/&quot;&gt;HashiCorp Vault&lt;/a&gt;: Support secret management solution for accessing secrets from Vault secure storage backed in a low trust environment. Currently, RS256 keys (public-private key pairs) or secret keys can be linked from vault in jwt-auth authentication plugin using &lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/terminology/secret.md&quot;&gt;APISIX Secret&lt;/a&gt; resource.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Highly scalable&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugin-develop.md&quot;&gt;Custom plugins&lt;/a&gt;: Allows hooking of common phases, such as &lt;code&gt;rewrite&lt;/code&gt;, &lt;code&gt;access&lt;/code&gt;, &lt;code&gt;header filter&lt;/code&gt;, &lt;code&gt;body filter&lt;/code&gt; and &lt;code&gt;log&lt;/code&gt;, also allows to hook the &lt;code&gt;balancer&lt;/code&gt; stage.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/external-plugin.md&quot;&gt;Plugin can be written in Java/Go/Python&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/wasm.md&quot;&gt;Plugin can be written with Proxy Wasm SDK&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;Custom load balancing algorithms: You can use custom load balancing algorithms during the &lt;code&gt;balancer&lt;/code&gt; phase.&lt;/li&gt; 
+   &lt;li&gt;Custom routing: Support users to implement routing algorithms themselves.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Multi-Language support&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;Apache APISIX is a multi-language gateway for plugin development and provides support via &lt;code&gt;RPC&lt;/code&gt; and &lt;code&gt;Wasm&lt;/code&gt;. &lt;img src=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/assets/images/external-plugin.png&quot; alt=&quot;Multi Language Support into Apache APISIX&quot; /&gt;&lt;/li&gt; 
+   &lt;li&gt;The RPC way, is the current way. Developers can choose the language according to their needs and after starting an independent process with the RPC, it exchanges data with APISIX through local RPC communication. Till this moment, APISIX has support for &lt;a href=&quot;https://github.com/apache/apisix-java-plugin-runner&quot;&gt;Java&lt;/a&gt;, &lt;a href=&quot;https://github.com/apache/apisix-go-plugin-runner&quot;&gt;Golang&lt;/a&gt;, &lt;a href=&quot;https://github.com/apache/apisix-python-plugin-runner&quot;&gt;Python&lt;/a&gt; and Node.js.&lt;/li&gt; 
+   &lt;li&gt;The Wasm or WebAssembly, is an experimental way. APISIX can load and run Wasm bytecode via APISIX &lt;a href=&quot;https://github.com/apache/apisix/raw/master/docs/en/latest/wasm.md&quot;&gt;wasm plugin&lt;/a&gt; written with the &lt;a href=&quot;https://github.com/proxy-wasm/spec#sdks&quot;&gt;Proxy Wasm SDK&lt;/a&gt;. Developers only need to write the code according to the SDK and then compile it into a Wasm bytecode that runs on Wasm VM with APISIX.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;strong&gt;Serverless&lt;/strong&gt;&lt;/p&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/serverless.md&quot;&gt;Lua functions&lt;/a&gt;: Invoke functions in each phase in APISIX.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/aws-lambda.md&quot;&gt;AWS Lambda&lt;/a&gt;: Integration with AWS Lambda function as a dynamic upstream to proxy all requests for a particular URI to the AWS API gateway endpoint. Supports authorization via api key and AWS IAM access secret.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/azure-functions.md&quot;&gt;Azure Functions&lt;/a&gt;: Seamless integration with Azure Serverless Function as a dynamic upstream to proxy all requests for a particular URI to the Microsoft Azure cloud.&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/docs/en/latest/plugins/openwhisk.md&quot;&gt;Apache OpenWhisk&lt;/a&gt;: Seamless integration with Apache OpenWhisk as a dynamic upstream to proxy all requests for a particular URI to your own OpenWhisk cluster.&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Benchmark&lt;/h2&gt; 
+&lt;p&gt;Using AWS&#39;s eight-core server, APISIX&#39;s QPS reaches 140,000 with a latency of only 0.2 ms.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/apache/apisix/master/benchmark/run.sh&quot;&gt;Benchmark script&lt;/a&gt; has been open sourced, welcome to try and contribute.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://apisix.apache.org/blog/2022/06/07/installation-performance-test-of-apigateway-apisix-on-aws-graviton3&quot;&gt;APISIX also works perfectly in AWS graviton3 C7g.&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.g2.com/products/apache-apisix/reviews&quot;&gt;Kindly Write a Review&lt;/a&gt; for APISIX in G2.&lt;/li&gt; 
+ &lt;li&gt;Mailing List: Mail to &lt;a href=&quot;mailto:dev-subscribe@apisix.apache.org&quot;&gt;dev-subscribe@apisix.apache.org&lt;/a&gt;, follow the reply to subscribe to the mailing list.&lt;/li&gt; 
+ &lt;li&gt;Slack Workspace - &lt;a href=&quot;https://apisix.apache.org/slack&quot;&gt;invitation link&lt;/a&gt; (Please open an &lt;a href=&quot;https://apisix.apache.org/docs/general/submit-issue&quot;&gt;issue&lt;/a&gt; if this link is expired), and then join the #apisix channel (Channels -&amp;gt; Browse channels -&amp;gt; search for &quot;apisix&quot;).&lt;/li&gt; 
+ &lt;li&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/ApacheAPISIX?style=social&quot; alt=&quot;Twitter Follow&quot; /&gt; - follow and interact with us using hashtag &lt;code&gt;#ApacheAPISIX&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://apisix.apache.org/docs/&quot;&gt;Documentation&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/apache/apisix/discussions&quot;&gt;Discussions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://apisix.apache.org/blog&quot;&gt;Blog&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;User Stories&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.efactory-project.eu/post/api-security-gateway-using-apisix-in-the-efactory-platform&quot;&gt;European eFactory Platform: API Security Gateway – Using APISIX in the eFactory Platform&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/COPRS/infrastructure/wiki/Networking-trade-off&quot;&gt;Copernicus Reference System Software&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://apisix.apache.org/blog/tags/case-studies/&quot;&gt;More Stories&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Who Uses APISIX API Gateway?&lt;/h2&gt; 
+&lt;p&gt;A wide variety of companies and organizations use APISIX API Gateway for research, production and commercial product, below are some of them:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Airwallex&lt;/li&gt; 
+ &lt;li&gt;Bilibili&lt;/li&gt; 
+ &lt;li&gt;CVTE&lt;/li&gt; 
+ &lt;li&gt;European eFactory Platform&lt;/li&gt; 
+ &lt;li&gt;European Copernicus Reference System&lt;/li&gt; 
+ &lt;li&gt;Geely&lt;/li&gt; 
+ &lt;li&gt;HONOR&lt;/li&gt; 
+ &lt;li&gt;Horizon Robotics&lt;/li&gt; 
+ &lt;li&gt;iQIYI&lt;/li&gt; 
+ &lt;li&gt;Lenovo&lt;/li&gt; 
+ &lt;li&gt;NASA JPL&lt;/li&gt; 
+ &lt;li&gt;Nayuki&lt;/li&gt; 
+ &lt;li&gt;OPPO&lt;/li&gt; 
+ &lt;li&gt;QingCloud&lt;/li&gt; 
+ &lt;li&gt;Swisscom&lt;/li&gt; 
+ &lt;li&gt;Tencent Game&lt;/li&gt; 
+ &lt;li&gt;Travelsky&lt;/li&gt; 
+ &lt;li&gt;vivo&lt;/li&gt; 
+ &lt;li&gt;Sina Weibo&lt;/li&gt; 
+ &lt;li&gt;WeCity&lt;/li&gt; 
+ &lt;li&gt;WPS&lt;/li&gt; 
+ &lt;li&gt;XPENG&lt;/li&gt; 
+ &lt;li&gt;Zoom&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Logos&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/apache/apisix/tree/master/logos/apache-apisix.png&quot;&gt;Apache APISIX logo(PNG)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://apache.org/logos/#apisix&quot;&gt;Apache APISIX logo source&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Acknowledgments&lt;/h2&gt; 
+&lt;p&gt;Inspired by Kong and Orange.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/apache/apisix/tree/master/LICENSE&quot;&gt;Apache 2.0 License&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ecfc2436b399598b6347e19a2b6ebc5b52290a7fb865a108191c3328de0ebbf6/apache/apisix" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>mason-org/mason-lspconfig.nvim</title>
+      <link>https://github.com/mason-org/mason-lspconfig.nvim</link>
+      <description>&lt;p&gt;Extension to mason.nvim that makes it easier to use lspconfig with mason.nvim.&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://img.shields.io/badge/Linux-%23.svg?logo=linux&amp;amp;color=FCC624&amp;amp;logoColor=black&quot; alt=&quot;Linux&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/macOS-%23.svg?logo=apple&amp;amp;color=000000&amp;amp;logoColor=white&quot; alt=&quot;macOS&quot; /&gt; &lt;img src=&quot;https://img.shields.io/badge/Windows-%23.svg?logo=windows&amp;amp;color=0078D6&amp;amp;logoColor=white&quot; alt=&quot;Windows&quot; /&gt; &lt;a href=&quot;https://github.com/mason-org/mason-lspconfig.nvim/actions?query=workflow%3ATests+branch%3Amain+event%3Apush&quot;&gt;&lt;img src=&quot;https://github.com/mason-org/mason-lspconfig.nvim/workflows/Tests/badge.svg?sanitize=true&quot; alt=&quot;GitHub CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/sponsors/williamboman&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/sponsors/williamboman?style=flat-square&quot; alt=&quot;Sponsors&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h1 align=&quot;center&quot;&gt;mason-lspconfig.nvim&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;code&gt;mason-lspconfig&lt;/code&gt; bridges &lt;a href=&quot;https://github.com/mason-org/mason.nvim&quot;&gt;&lt;code&gt;mason.nvim&lt;/code&gt;&lt;/a&gt; with the &lt;a href=&quot;https://github.com/neovim/nvim-lspconfig&quot;&gt;&lt;code&gt;lspconfig&lt;/code&gt;&lt;/a&gt; plugin - making it easier to use both plugins together. &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;code&gt;:help mason-lspconfig.nvim&lt;/code&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;sup&gt;Latest version: v2.3.0&lt;/sup&gt; 
+ &lt;!-- x-release-please-version --&gt; &lt;/p&gt; 
+&lt;h2&gt;Table of Contents&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#introduction&quot;&gt;Introduction&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#requirements&quot;&gt;Requirements&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#installation--usage&quot;&gt;Installation &amp;amp; Usage&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#recommended-setup-for-lazynvim&quot;&gt;Recommended setup for &lt;code&gt;lazy.nvim&lt;/code&gt;&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#automatically-enable-installed-servers&quot;&gt;Automatically enable installed servers&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#commands&quot;&gt;Commands&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#configuration&quot;&gt;Configuration&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#default-configuration&quot;&gt;Default configuration&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Introduction&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;code&gt;:h mason-lspconfig-introduction&lt;/code&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;This plugin&#39;s main responsibilities are to:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;allow you to (i) automatically install, and (ii) automatically enable (&lt;code&gt;vim.lsp.enable()&lt;/code&gt;) installed servers&lt;/li&gt; 
+ &lt;li&gt;provide extra convenience APIs such as the &lt;code&gt;:LspInstall&lt;/code&gt; command&lt;/li&gt; 
+ &lt;li&gt;provide additional LSP configurations for a few servers&lt;/li&gt; 
+ &lt;li&gt;translate between &lt;code&gt;nvim-lspconfig&lt;/code&gt; server names and &lt;code&gt;mason.nvim&lt;/code&gt; package names (e.g. &lt;code&gt;lua_ls &amp;lt;-&amp;gt; lua-language-server&lt;/code&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;Since the introduction of &lt;a href=&quot;https://neovim.io/doc/user/lsp.html#vim.lsp.config()&quot;&gt;&lt;code&gt;:h vim.lsp.config&lt;/code&gt;&lt;/a&gt; in Neovim 0.11, this plugin&#39;s feature set has been reduced. Use this plugin if you want to automatically enable installed servers (&lt;a href=&quot;https://neovim.io/doc/user/lsp.html#vim.lsp.enable()&quot;&gt;&lt;code&gt;:h vim.lsp.enable()&lt;/code&gt;&lt;/a&gt;) or have access to the &lt;code&gt;:LspInstall&lt;/code&gt; command.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;code&gt;:h mason-lspconfig-requirements&lt;/code&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;neovim &amp;gt;= 0.11.0&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;mason.nvim &amp;gt;= 2.0.0&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;nvim-lspconfig &amp;gt;= 2.0.0&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Installation &amp;amp; Usage&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;code&gt;:h mason-lspconfig-quickstart&lt;/code&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Install using your plugin manager of choice. &lt;strong&gt;Setup is required&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;require(&quot;mason-lspconfig&quot;).setup()
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It&#39;s important that you set up &lt;code&gt;mason.nvim&lt;/code&gt; &lt;em&gt;and&lt;/em&gt; have &lt;code&gt;nvim-lspconfig&lt;/code&gt; available in &lt;a href=&quot;https://neovim.io/doc/user/options.html#&#39;runtimepath&#39;&quot;&gt;&lt;code&gt;:h runtimepath&lt;/code&gt;&lt;/a&gt; before setting up &lt;code&gt;mason-lspconfig.nvim&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Refer to the &lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#configuration&quot;&gt;Configuration&lt;/a&gt; section for information about which settings are available.&lt;/p&gt; 
+&lt;h3&gt;Recommended setup for &lt;code&gt;lazy.nvim&lt;/code&gt;&lt;/h3&gt; 
+&lt;p&gt;The following is the recommended setup when using &lt;code&gt;lazy.nvim&lt;/code&gt;. It will set up the plugin for you, meaning &lt;strong&gt;you don&#39;t have to call &lt;code&gt;require(&quot;mason-lspconfig&quot;).setup()&lt;/code&gt; yourself&lt;/strong&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+    &quot;mason-org/mason-lspconfig.nvim&quot;,
+    opts = {},
+    dependencies = {
+        { &quot;mason-org/mason.nvim&quot;, opts = {} },
+        &quot;neovim/nvim-lspconfig&quot;,
+    },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Automatically enable installed servers&lt;/h2&gt; 
+&lt;p&gt;&lt;code&gt;mason-lspconfig.nvim&lt;/code&gt; will automatically enable (&lt;code&gt;vim.lsp.enable()&lt;/code&gt;) installed servers for you by default.&lt;/p&gt; 
+&lt;p&gt;To disable this feature:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;require(&quot;mason-lspconfig&quot;).setup {
+    automatic_enable = false
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To exclude certain servers from being enabled:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;require(&quot;mason-lspconfig&quot;).setup {
+    automatic_enable = {
+        exclude = {
+            &quot;rust_analyzer&quot;,
+            &quot;ts_ls&quot;
+        }
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Alternatively, to only enable specific servers:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;require(&quot;mason-lspconfig&quot;).setup {
+    automatic_enable = {
+        &quot;lua_ls&quot;,
+        &quot;vimls&quot;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-note&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-info mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8Zm8-6.5a6.5 6.5 0 1 0 0 13 6.5 6.5 0 0 0 0-13ZM6.5 7.75A.75.75 0 0 1 7.25 7h1a.75.75 0 0 1 .75.75v2.75h.25a.75.75 0 0 1 0 1.5h-2a.75.75 0 0 1 0-1.5h.25v-2h-.25a.75.75 0 0 1-.75-.75ZM8 6a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Note&lt;/p&gt;
+ &lt;p&gt;This will only enable servers that are installed via Mason. It will not recognize servers installed elsewhere on your system.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h2&gt;Commands&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;code&gt;:h mason-lspconfig-commands&lt;/code&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;:LspInstall [&amp;lt;server&amp;gt; ...]&lt;/code&gt;: Installs the provided servers. If no server is provided you will be prompted to select a server based on the current buffer&#39;s &lt;code&gt;&amp;amp;filetype&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;:LspUninstall &amp;lt;server&amp;gt; ...&lt;/code&gt;: Uninstalls the provided servers.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Configuration&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;code&gt;:h mason-lspconfig-settings&lt;/code&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;You may optionally configure certain behavior of &lt;code&gt;mason-lspconfig.nvim&lt;/code&gt; when calling the &lt;code&gt;.setup()&lt;/code&gt; function. Refer to the &lt;a href=&quot;https://raw.githubusercontent.com/mason-org/mason-lspconfig.nvim/main/#default-configuration&quot;&gt;default configuration&lt;/a&gt; for a list of all available settings.&lt;/p&gt; 
+&lt;p&gt;Example:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;require(&quot;mason-lspconfig&quot;).setup {
+    ensure_installed = { &quot;lua_ls&quot;, &quot;rust_analyzer&quot; },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Configuration using &lt;code&gt;lazy.nvim&lt;/code&gt;&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+    &quot;mason-org/mason-lspconfig.nvim&quot;,
+    opts = {
+        ensure_installed = { &quot;lua_ls&quot;, &quot;rust_analyzer&quot; },
+    },
+    dependencies = {
+        { &quot;mason-org/mason.nvim&quot;, opts = {} },
+        &quot;neovim/nvim-lspconfig&quot;,
+    },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Default configuration&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;local DEFAULT_SETTINGS = {
+    -- A list of servers to automatically install if they&#39;re not already installed. Example: { &quot;rust_analyzer@nightly&quot;, &quot;lua_ls&quot; }
+    ---@type string[]
+    ensure_installed = {},
+
+    -- Whether installed servers should automatically be enabled via `:h vim.lsp.enable()`.
+    --
+    -- To exclude certain servers from being automatically enabled:
+    -- ```lua
+    --   automatic_enable = {
+    --     exclude = { &quot;rust_analyzer&quot;, &quot;ts_ls&quot; }
+    --   }
+    -- ```
+    --
+    -- To only enable certain servers to be automatically enabled:
+    -- ```lua
+    --   automatic_enable = {
+    --     &quot;lua_ls&quot;,
+    --     &quot;vimls&quot;
+    --   }
+    -- ```
+    ---@type boolean | string[] | { exclude: string[] }
+    automatic_enable = true,
+}
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/f93272e08bee69d7235e60adc45de677c31a31b5ecc4bc8783a970602a51f302/mason-org/mason-lspconfig.nvim" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>alpinelinux/docker-alpine</title>
+      <link>https://github.com/alpinelinux/docker-alpine</link>
+      <description>&lt;p&gt;Official Alpine Linux Docker image. Win at minimalism!&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;docker-alpine&lt;/h1&gt; 
+&lt;div id=&quot;preamble&quot;&gt; 
+ &lt;div class=&quot;sectionbody&quot;&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;&lt;span class=&quot;image&quot;&gt;&lt;a class=&quot;image&quot; href=&quot;https://hub.docker.com/r/_/alpine/&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/stars/_/alpine.svg?sanitize=true&quot; alt=&quot;alpine&quot; /&gt;&lt;/a&gt;&lt;/span&gt; &lt;span class=&quot;image&quot;&gt;&lt;a class=&quot;image&quot; href=&quot;https://hub.docker.com/r/_/alpine/&quot;&gt;&lt;img src=&quot;https://img.shields.io/docker/pulls/_/alpine.svg?sanitize=true&quot; alt=&quot;alpine&quot; /&gt;&lt;/a&gt;&lt;/span&gt;&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;The official Docker image for &lt;a href=&quot;https://alpinelinux.org&quot;&gt;Alpine Linux&lt;/a&gt;. The image is only 5MB and has access to a package repository that is much more featureful than other BusyBox based images.&lt;/p&gt; 
+  &lt;/div&gt; 
+ &lt;/div&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;sect1&quot;&gt; 
+ &lt;h2 id=&quot;_why&quot;&gt;Why&lt;/h2&gt; 
+ &lt;div class=&quot;sectionbody&quot;&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;Docker images today are big. Usually much larger than they need to be. There are a lot of ways to make them smaller, but the Docker populace still jumps to the &lt;code&gt;ubuntu&lt;/code&gt; base image for most projects. The size savings over &lt;code&gt;ubuntu&lt;/code&gt; and other bases are huge:&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;listingblock&quot;&gt; 
+   &lt;div class=&quot;content&quot;&gt; 
+    &lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;REPOSITORY  TAG     IMAGE ID      CREATED      SIZE
+alpine      latest  961769676411  4 weeks ago  5.58MB
+ubuntu      latest  2ca708c1c9cc  2 days ago   64.2MB
+debian      latest  c2c03a296d23  9 days ago   114MB
+centos      latest  67fa590cfc1c  4 weeks ago  202MB&lt;/code&gt;&lt;/pre&gt; 
+   &lt;/div&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;There are images such as &lt;code&gt;progrium/busybox&lt;/code&gt; which get us close to a minimal container and package system, but these particular BusyBox builds piggyback on the OpenWRT package index, which is often lacking and not tailored towards generic everyday applications. Alpine Linux has a much more featureful and up to date &lt;a href=&quot;https://pkgs.alpinelinux.org&quot;&gt;Package Index&lt;/a&gt;:&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;listingblock&quot;&gt; 
+   &lt;div class=&quot;content&quot;&gt; 
+    &lt;pre class=&quot;highlight&quot;&gt;&lt;code&gt;$ docker run progrium/busybox opkg-install nodejs
+Unknown package &#39;nodejs&#39;.
+Collected errors:
+ * opkg_install_cmd: Cannot install package nodejs.
+
+$ docker run alpine apk add --no-cache nodejs
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/main/x86_64/APKINDEX.tar.gz
+fetch http://dl-cdn.alpinelinux.org/alpine/v3.9/community/x86_64/APKINDEX.tar.gz
+(1/7) Installing ca-certificates (20190108-r0)
+(2/7) Installing c-ares (1.15.0-r0)
+(3/7) Installing libgcc (8.3.0-r0)
+(4/7) Installing http-parser (2.8.1-r0)
+(5/7) Installing libstdc++ (8.3.0-r0)
+(6/7) Installing libuv (1.23.2-r0)
+(7/7) Installing nodejs (10.14.2-r0)
+Executing busybox-1.29.3-r10.trigger
+Executing ca-certificates-20190108-r0.trigger
+OK: 31 MiB in 21 packages&lt;/code&gt;&lt;/pre&gt; 
+   &lt;/div&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;This makes Alpine Linux a great image base for utilities, as well as production applications. &lt;a href=&quot;https://www.alpinelinux.org/about/&quot;&gt;Read more about Alpine Linux here&lt;/a&gt; and it will become obvious how its mantra fits in right at home with Docker images.&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;admonitionblock note&quot;&gt; 
+   &lt;table&gt; 
+    &lt;tbody&gt;
+     &lt;tr&gt; 
+      &lt;td class=&quot;icon&quot;&gt; 
+       &lt;div class=&quot;title&quot;&gt;
+        Note
+       &lt;/div&gt; &lt;/td&gt; 
+      &lt;td class=&quot;content&quot;&gt; All of the example outputs above were last generated/updated on May 3rd 2019. &lt;/td&gt; 
+     &lt;/tr&gt; 
+    &lt;/tbody&gt;
+   &lt;/table&gt; 
+  &lt;/div&gt; 
+ &lt;/div&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;sect1&quot;&gt; 
+ &lt;h2 id=&quot;_usage&quot;&gt;Usage&lt;/h2&gt; 
+ &lt;div class=&quot;sectionbody&quot;&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;Stop doing this:&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;listingblock&quot;&gt; 
+   &lt;div class=&quot;content&quot;&gt; 
+    &lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;FROM ubuntu:22.04
+RUN apt-get update -q \
+  &amp;amp;&amp;amp; DEBIAN_FRONTEND=noninteractive apt-get install -qy mysql-client \
+  &amp;amp;&amp;amp; apt-get clean \
+  &amp;amp;&amp;amp; rm -rf /var/lib/apt
+ENTRYPOINT [&quot;mysql&quot;]&lt;/code&gt;&lt;/pre&gt; 
+   &lt;/div&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;This took 28 seconds to build and yields a 169 MB image. Start doing this:&lt;/p&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;listingblock&quot;&gt; 
+   &lt;div class=&quot;content&quot;&gt; 
+    &lt;pre class=&quot;highlight&quot;&gt;&lt;code class=&quot;language-dockerfile&quot; data-lang=&quot;dockerfile&quot;&gt;FROM alpine:3.16
+RUN apk add --no-cache mysql-client
+ENTRYPOINT [&quot;mysql&quot;]&lt;/code&gt;&lt;/pre&gt; 
+   &lt;/div&gt; 
+  &lt;/div&gt; 
+  &lt;div class=&quot;paragraph&quot;&gt; 
+   &lt;p&gt;Only 4 seconds to build and results in a 41 MB image!&lt;/p&gt; 
+  &lt;/div&gt; 
+ &lt;/div&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ed5bf9891235cca021a96875a356d3bb9a467dd844fffb528d82823aa9226ac2/alpinelinux/docker-alpine" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>gaboolic/rime-frost</title>
+      <link>https://github.com/gaboolic/rime-frost</link>
+      <description>&lt;p&gt;白霜拼音：蒹葭苍苍，白露为霜。白霜拼音使用高质量语料，进行分词，重新统计字频、词频，归一化，打造纯净、词频准确、智能的词库。白霜词库是目前rime方案下最好的开源词库，经评测准确性已经不输于商业输入法。在墨奇输入法内置，欢迎使用。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://github.com/gaboolic/moqi-im-windows&quot;&gt;https://github.com/gaboolic/moqi-im-windows&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;白霜拼音&lt;/h1&gt; 
+&lt;p&gt;白露凝烟绕玉堂，霜华浸月映回廊。拼将清景藏诗里，音绕庭轩岁月长。&lt;/p&gt; 
+&lt;p&gt;原始配置和词库由&lt;a href=&quot;https://github.com/iDvel/rime-ice&quot;&gt;雾凇拼音&lt;/a&gt;的 &lt;a href=&quot;https://github.com/iDvel/rime-ice/commit/af2480ba1b147a6a54c0c21e2997ef451c34e036&quot;&gt;af2480b&lt;/a&gt; commit 修改而来。&lt;/p&gt; 
+&lt;p&gt;雾凇词库主要的问题是字频和词频不太对，废词有点多，于是重新制作。&lt;a href=&quot;https://github.com/iDvel/rime-ice/issues/902&quot;&gt;相关讨论&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;主要维护词库、词频。在雾凇词库的基础上删除了不健康词汇，删除了大量冷僻词（频率==1 且分词器分不出的词），删除/调整了诸如“的吧”、“的了”这种不是词的词。手动大量修改了字频 词频。第一步是做了减法。&lt;/p&gt; 
+&lt;p&gt;然后使用 745396750 字的高质量语料，进行分词，重新统计字频、词频，归一化，以达到更好的输入效果。全拼和双拼都可以使用。&lt;/p&gt; 
+&lt;p&gt;根据最新评测结果（生成时间: 2026-04-25 16:49:02 +08:00），&lt;a href=&quot;https://github.com/gaboolic/rime-frost&quot;&gt;白霜拼音&lt;/a&gt;在不使用模型和使用相同模型的评测上，均取得最佳效果，同时也超越商业输入法（关闭云拼音）。参见评测：&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/gaboolic/rime-schema-compare/raw/main/report/latest.md&quot;&gt;查看rime各方案评测结果&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/gaboolic/rime-schema-compare/raw/main/report/other_latest.md&quot;&gt;查看其他windows输入法评测结果&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;评测的代码也是开源的，可复现。&lt;/p&gt; 
+&lt;p&gt;现在推出了windows端独立输入法，可安装&lt;a href=&quot;https://github.com/gaboolic/moqi-im-windows&quot;&gt;墨奇输入法&lt;/a&gt;，自带白霜拼音作为默认方案。&lt;/p&gt; 
+&lt;h3&gt;使用方法&lt;/h3&gt; 
+&lt;p&gt;使用方法基本同雾凇拼音，微调了一些触发指令，加入了 lua 辅助码的支持。辅助码是可选项，按下 &lt;code&gt;`&lt;/code&gt; 开启，不影响正常打字。&lt;/p&gt; 
+&lt;p&gt;默认方案是全拼，可以切换输入方案，也支持自然码双拼、小鹤双拼、微软双拼、搜狗双拼等双拼方案。&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;符号 /fh 更多符号详见 &lt;a href=&quot;https://github.com/gaboolic/rime-frost/raw/master/symbols_v.yaml&quot;&gt;https://github.com/gaboolic/rime-frost/blob/master/symbols_v.yaml&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;带调韵母 /a /e /u 等&lt;/li&gt; 
+ &lt;li&gt;日期与时间 rq sj xq dt ts&lt;/li&gt; 
+ &lt;li&gt;开启句中任意辅助码 ` 使用说明：&lt;a href=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/lua/aux_lookup_filter.lua&quot;&gt;句中任意辅助码&lt;/a&gt; 拆分说明：&lt;a href=&quot;https://moqiyinxing.chunqiujinjing.com/index/mo-qi-yin-xing-shuo-ming/fu-zhu-ma-shuo-ming/mo-qi-ma-chai-fen-shuo-ming&quot;&gt;墨奇辅助码拆分说明&lt;/a&gt; &lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/input-liuxingyusamantianji.gif&quot; alt=&quot;alt text&quot; /&gt;&lt;/li&gt; 
+ &lt;li&gt;部件拆字反查 uU&lt;/li&gt; 
+ &lt;li&gt;unicode字符 U&lt;/li&gt; 
+ &lt;li&gt;数字金额大写 R&lt;/li&gt; 
+ &lt;li&gt;农历 N&lt;/li&gt; 
+ &lt;li&gt;计算器 V&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;如何安装&amp;amp;配置文件路径&lt;/h3&gt; 
+&lt;h4&gt;手动下载安装&lt;/h4&gt; 
+&lt;p&gt;下载本仓库的压缩包 Code - Download ZIP（或者下载 &lt;a href=&quot;https://github.com/gaboolic/rime-frost/releases&quot;&gt;releases&lt;/a&gt; 最新的 source-code.zip），解压到如下路径即可&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Windows: 
+  &lt;ul&gt; 
+   &lt;li&gt;安装&lt;a href=&quot;https://github.com/gaboolic/moqi-im-windows&quot;&gt;墨奇输入法windows版&lt;/a&gt;的自带方案。Rime配置文件夹在：&lt;code&gt;%APPDATA%\Moqi\Rime&lt;/code&gt; （可以在右下角输入法右键打开菜单选用户文件夹）&lt;/li&gt; 
+   &lt;li&gt;小狼毫：&lt;code&gt;%APPDATA%\Rime&lt;/code&gt; （可以在右下角小狼毫输入法右键打开菜单选用户文件夹）复制完之后，去输入法设定里选择白霜拼音，然后重新部署&lt;/li&gt; 
+   &lt;li&gt;注：%APPDATA% 路径实际为 C:\Users&amp;lt;USER&amp;gt;\AppData\Roaming&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Mac 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/rime/squirrel&quot;&gt;鼠须管&lt;/a&gt;路径为 &lt;code&gt;~/Library/Rime&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/fcitx-contrib/fcitx5-macos&quot;&gt;fcitx5-Mac 版&lt;/a&gt;路径为 &lt;code&gt;~/.local/share/fcitx5/rime&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Linux 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/fcitx/fcitx5-rime&quot;&gt;fcitx5-rime&lt;/a&gt;路径为 &lt;code&gt;~/.local/share/fcitx5/rime&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;fcitx5 flatpak 版的路径 &lt;code&gt;~/.var/app/org.fcitx.Fcitx5/data/fcitx5/rime&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/rime/ibus-rime&quot;&gt;ibus-rime&lt;/a&gt;路径为 &lt;code&gt;~/.config/ibus/rime&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;Android 
+  &lt;ul&gt; 
+   &lt;li&gt;安装&lt;a href=&quot;https://github.com/gaboolic/moqi-im-android&quot;&gt;墨奇输入法安卓版&lt;/a&gt;的自带方案。（可以输入法设置页面打开菜单输入zip下载链接来下载）白霜拼音nightly下载链接：&lt;a href=&quot;https://github.com/gaboolic/rime-frost/releases/download/nightly/rime-frost-schemas.zip&quot;&gt;https://github.com/gaboolic/rime-frost/releases/download/nightly/rime-frost-schemas.zip&lt;/a&gt; （有问题时再用最新release下载链接：&lt;a href=&quot;https://github.com/gaboolic/rime-frost/releases/latest/download/rime-frost-schemas.zip&quot;&gt;https://github.com/gaboolic/rime-frost/releases/latest/download/rime-frost-schemas.zip&lt;/a&gt;）支持九键、二十六键、语音输入&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/fcitx5-android/fcitx5-android&quot;&gt;fcitx5-安卓版&lt;/a&gt;路径为 &lt;code&gt;/Android/data/org.fcitx.fcitx5.android/files/data/rime&lt;/code&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/osfans/trime&quot;&gt;同文&lt;/a&gt;路径为 &lt;code&gt;/rime&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;iOS 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/imfuxiao/Hamster&quot;&gt;仓输入法&lt;/a&gt;目前已内置，也可以通过【输入方案设置 - 右上角加号 - 方案下载 - 覆盖并部署】来更新白霜拼音。&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://ihsiao.com/apps/hamster/v3/docs/&quot;&gt;元书输入法&lt;/a&gt; 白霜拼音nightly下载链接：&lt;a href=&quot;https://github.com/gaboolic/rime-frost/releases/download/nightly/rime-frost-schemas.zip&quot;&gt;https://github.com/gaboolic/rime-frost/releases/download/nightly/rime-frost-schemas.zip&lt;/a&gt; （有问题时再用最新release下载链接：&lt;a href=&quot;https://github.com/gaboolic/rime-frost/releases/latest/download/rime-frost-schemas.zip&quot;&gt;https://github.com/gaboolic/rime-frost/releases/latest/download/rime-frost-schemas.zip&lt;/a&gt;）&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;通过 Git 安装&lt;/h4&gt; 
+&lt;p&gt;&lt;strong&gt;首次安装：&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;根据用户使用的系统、安装的软件不同，先 cd 到对应的配置文件的父级目录(例如 Windows 为 &lt;code&gt;%APPDATA%&lt;/code&gt;、mac 鼠须管为 &lt;code&gt;~/Library/&lt;/code&gt;)，然后执行以下命令：&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;git clone --depth 1 https://github.com/gaboolic/rime-frost Rime&lt;/code&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;后续更新：&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;在 Rime 文件夹执行 &lt;code&gt;git pull&lt;/code&gt; 即可。&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Mac: &lt;code&gt;cd ~/Library/Rime &amp;amp;&amp;amp; git pull&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;Windows: &lt;code&gt;cd &quot;$env:APPDATA\Rime&quot; &amp;amp;&amp;amp; git pull&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;其他系统以此类推&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h4&gt;通过 东风破 安装&lt;/h4&gt; 
+&lt;p&gt;选择配方（others/recipes/*.recipe.yaml）来进行安装或更新：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;℞ 安装或更新全部文件 执行 &lt;code&gt;bash rime-install gaboolic/rime-frost:others/recipes/full&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;无智能模型时的输入效果&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/gegegojx.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/mggjdgg.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/ddmdd.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/tushuguancangshu.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/kudsvqw.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/cqlbtdmdfu.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/djbwv.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/%E5%88%9A%E4%BA%A4%E7%9A%84%E5%A5%BD%E6%9C%8B%E5%8F%8B2.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/%E8%A1%8D%E5%B0%84.png&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;多整句、句中任意辅助码&lt;/h3&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/input-liuxingyusamantianji.gif&quot; alt=&quot;alt text&quot; /&gt;&lt;/p&gt; 
+&lt;h3&gt;不同方案整句效果对比&lt;/h3&gt; 
+&lt;p&gt;可以运行 &lt;a href=&quot;https://github.com/gaboolic/rime-schema-compare&quot;&gt;https://github.com/gaboolic/rime-schema-compare&lt;/a&gt; 来对比各个拼音方案&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/gaboolic/rime-schema-compare/raw/main/report/latest.md&quot;&gt;查看最新评测结果&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;语言模型&lt;/h3&gt; 
+&lt;p&gt;语言模型说明见 &lt;a href=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/%E8%AF%AD%E8%A8%80%E6%A8%A1%E5%9E%8B%E7%9B%B8%E5%85%B3/rime-octagram-data.txt&quot;&gt;rime-octagram-data.txt&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;修改 rime_frost.custom.yaml，添加：&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;patch:
+  grammar:
+    language: xxxx
+    non_collocation_penalty: -4
+    collocation_max_length: 5
+    collocation_min_length: 2
+    collocation_penalty: -14
+  translator/contextual_suggestions: true
+  translator/max_homophones: 4
+  translator/max_homographs: 2
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;(不想修改rime_frost.custom.yaml 可以下载模型把本项目里的zh-moqi替换掉)&lt;/p&gt; 
+&lt;p&gt;模型从如下地址可以获取：&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rimeinn/octagram-data&quot;&gt;八股文、s1、fcitx5等模型&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/gaboolic/rime-build-grammar&quot;&gt;墨奇模型&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/amzxyz/RIME-LMDG/releases/tag/LTS&quot;&gt;万象模型&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;鸣谢&lt;/h3&gt; 
+&lt;p&gt;雾凇词库 &lt;a href=&quot;https://github.com/iDvel/rime-ice&quot;&gt;https://github.com/iDvel/rime-ice&lt;/a&gt; 白霜词库的初始词库、绝大部分配置来自雾凇词库&lt;/p&gt; 
+&lt;p&gt;结巴中文分词 &lt;a href=&quot;https://github.com/fxsjy/jieba&quot;&gt;https://github.com/fxsjy/jieba&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;汉字转拼音(pypinyin) &lt;a href=&quot;https://github.com/mozillazg/python-pinyin&quot;&gt;https://github.com/mozillazg/python-pinyin&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;MNBVC 超大规模中文语料集 &lt;a href=&quot;https://github.com/esbatmop/MNBVC&quot;&gt;https://github.com/esbatmop/MNBVC&lt;/a&gt; 目前已有 33TB 数据量&lt;/p&gt; 
+&lt;p&gt;kenlm &lt;a href=&quot;https://github.com/kpu/kenlm&quot;&gt;https://github.com/kpu/kenlm&lt;/a&gt; 官网&lt;a href=&quot;https://kheafield.com/code/kenlm/&quot;&gt;https://kheafield.com/code/kenlm/&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;kenlm 教程、python 调用 &lt;a href=&quot;https://github.com/mattzheng/py-kenlm-model&quot;&gt;https://github.com/mattzheng/py-kenlm-model&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;吉祥物(于2024-10-12捡来)：&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/white-cat.jpg&quot; width=&quot;30%&quot; /&gt; 
+&lt;h3&gt;友情链接&lt;/h3&gt; 
+&lt;p&gt;使用白霜词库的方案&lt;/p&gt; 
+&lt;p&gt;墨奇输入法windows版 &lt;a href=&quot;https://github.com/gaboolic/moqi-im-windows&quot;&gt;https://github.com/gaboolic/moqi-im-windows&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;墨奇输入法android版 &lt;a href=&quot;https://github.com/gaboolic/moqi-im-android&quot;&gt;https://github.com/gaboolic/moqi-im-android&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;墨奇音形 &lt;a href=&quot;https://github.com/gaboolic/rime-shuangpin-fuzhuma&quot;&gt;https://github.com/gaboolic/rime-shuangpin-fuzhuma&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;墨奇五笔整句 &lt;a href=&quot;https://github.com/gaboolic/rime-wubi-sentence&quot;&gt;https://github.com/gaboolic/rime-wubi-sentence&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;薄荷拼音 &lt;a href=&quot;https://github.com/Mintimate/oh-my-rime&quot;&gt;https://github.com/Mintimate/oh-my-rime&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;雨燕输入法 &lt;a href=&quot;https://github.com/gurecn/YuyanIme&quot;&gt;https://github.com/gurecn/YuyanIme&lt;/a&gt; 一个开箱即用的安卓输入法&lt;/p&gt; 
+&lt;h3&gt;赞助&lt;/h3&gt; 
+&lt;p&gt;如果觉得项目不错，可以支持一下。&lt;a href=&quot;https://www.chunqiujinjing.com/donate/&quot;&gt;赞助&lt;/a&gt;&lt;/p&gt; 
+&lt;img src=&quot;https://raw.githubusercontent.com/gaboolic/rime-frost/master/others/img/zanshangma.jpg&quot; alt=&quot;微信赞赏码&quot; width=&quot;300&quot; /&gt; 
+&lt;h3&gt;Star History&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://star-history.dera.page/#gaboolic/rime-frost&amp;amp;Date&quot;&gt;&lt;img src=&quot;https://star-history.dera.page/svg?repos=gaboolic/rime-frost&amp;amp;type=Date&quot; alt=&quot;Star History Chart&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9e8f2bfb1e1b752c95836dc95f06903d0e81bb0e35213c4280d7f5fe2da46214/gaboolic/rime-frost" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>folke/snacks.nvim</title>
+      <link>https://github.com/folke/snacks.nvim</link>
+      <description>&lt;p&gt;🍿 A collection of QoL plugins for Neovim&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;🍿 &lt;code&gt;snacks.nvim&lt;/code&gt;&lt;/h1&gt; 
+&lt;p&gt;A collection of small QoL plugins for Neovim.&lt;/p&gt; 
+&lt;h2&gt;✨ Features&lt;/h2&gt; 
+&lt;!-- toc:start --&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Snack&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Setup&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/animate.md&quot;&gt;animate&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Efficient animations including over 45 easing functions &lt;em&gt;(library)&lt;/em&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/bigfile.md&quot;&gt;bigfile&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Deal with big files&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/bufdelete.md&quot;&gt;bufdelete&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Delete buffers without disrupting window layout&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/dashboard.md&quot;&gt;dashboard&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Beautiful declarative dashboards&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/debug.md&quot;&gt;debug&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Pretty inspect &amp;amp; backtraces for debugging&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/dim.md&quot;&gt;dim&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Focus on the active scope by dimming the rest&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/explorer.md&quot;&gt;explorer&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;A file explorer (picker in disguise)&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/gh.md&quot;&gt;gh&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;GitHub CLI integration&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/git.md&quot;&gt;git&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Git utilities&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/gitbrowse.md&quot;&gt;gitbrowse&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Open the current file, branch, commit, or repo in a browser (e.g. GitHub, GitLab, Bitbucket)&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/image.md&quot;&gt;image&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Image viewer using Kitty Graphics Protocol, supported by &lt;code&gt;kitty&lt;/code&gt;, &lt;code&gt;wezterm&lt;/code&gt; and &lt;code&gt;ghostty&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/indent.md&quot;&gt;indent&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Indent guides and scopes&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/input.md&quot;&gt;input&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Better &lt;code&gt;vim.ui.input&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/keymap.md&quot;&gt;keymap&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Better &lt;code&gt;vim.keymap&lt;/code&gt; with support for filetypes and LSP clients&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/layout.md&quot;&gt;layout&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Window layouts&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/lazygit.md&quot;&gt;lazygit&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Open LazyGit in a float, auto-configure colorscheme and integration with Neovim&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/notifier.md&quot;&gt;notifier&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Pretty &lt;code&gt;vim.notify&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/notify.md&quot;&gt;notify&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Utility functions to work with Neovim&#39;s &lt;code&gt;vim.notify&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/picker.md&quot;&gt;picker&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Picker for selecting items&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/profiler.md&quot;&gt;profiler&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Neovim lua profiler&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/quickfile.md&quot;&gt;quickfile&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;When doing &lt;code&gt;nvim somefile.txt&lt;/code&gt;, it will render the file as quickly as possible, before loading your plugins.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/rename.md&quot;&gt;rename&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;LSP-integrated file renaming with support for plugins like &lt;a href=&quot;https://github.com/nvim-neo-tree/neo-tree.nvim&quot;&gt;neo-tree.nvim&lt;/a&gt; and &lt;a href=&quot;https://github.com/nvim-mini/mini.files&quot;&gt;mini.files&lt;/a&gt;.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/scope.md&quot;&gt;scope&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Scope detection, text objects and jumping based on treesitter or indent&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/scratch.md&quot;&gt;scratch&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Scratch buffers with a persistent file&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/scroll.md&quot;&gt;scroll&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Smooth scrolling&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/statuscolumn.md&quot;&gt;statuscolumn&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Pretty status column&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/terminal.md&quot;&gt;terminal&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Create and toggle floating/split terminals&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/toggle.md&quot;&gt;toggle&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Toggle keymaps integrated with which-key icons / colors&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/util.md&quot;&gt;util&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Utility functions for Snacks &lt;em&gt;(library)&lt;/em&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/win.md&quot;&gt;win&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Create and manage floating windows or splits&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/words.md&quot;&gt;words&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Auto-show LSP references and quickly navigate between them&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;‼️&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/docs/zen.md&quot;&gt;zen&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Zen mode • distraction-free coding&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- toc:end --&gt; 
+&lt;h2&gt;⚡️ Requirements&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Neovim&lt;/strong&gt; &amp;gt;= 0.9.4&lt;/li&gt; 
+ &lt;li&gt;for proper icons support: 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/nvim-mini/mini.icons&quot;&gt;mini.icons&lt;/a&gt; &lt;em&gt;(optional)&lt;/em&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://github.com/nvim-tree/nvim-web-devicons&quot;&gt;nvim-web-devicons&lt;/a&gt; &lt;em&gt;(optional)&lt;/em&gt;&lt;/li&gt; 
+   &lt;li&gt;a &lt;a href=&quot;https://www.nerdfonts.com/&quot;&gt;Nerd Font&lt;/a&gt; &lt;strong&gt;&lt;em&gt;(optional)&lt;/em&gt;&lt;/strong&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;📦 Installation&lt;/h2&gt; 
+&lt;p&gt;Install the plugin with your package manager:&lt;/p&gt; 
+&lt;h3&gt;&lt;a href=&quot;https://github.com/folke/lazy.nvim&quot;&gt;lazy.nvim&lt;/a&gt;&lt;/h3&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-important&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-report mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Important&lt;/p&gt;
+ &lt;p&gt;A couple of plugins &lt;strong&gt;require&lt;/strong&gt; &lt;code&gt;snacks.nvim&lt;/code&gt; to be set-up early. Setup creates some autocmds and does not load any plugins. Check the &lt;a href=&quot;https://github.com/folke/snacks.nvim/raw/main/lua/snacks/init.lua&quot;&gt;code&lt;/a&gt; to see what it does.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-caution&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-stop mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M4.47.22A.749.749 0 0 1 5 0h6c.199 0 .389.079.53.22l4.25 4.25c.141.14.22.331.22.53v6a.749.749 0 0 1-.22.53l-4.25 4.25A.749.749 0 0 1 11 16H5a.749.749 0 0 1-.53-.22L.22 11.53A.749.749 0 0 1 0 11V5c0-.199.079-.389.22-.53Zm.84 1.28L1.5 5.31v5.38l3.81 3.81h5.38l3.81-3.81V5.31L10.69 1.5ZM8 4a.75.75 0 0 1 .75.75v3.5a.75.75 0 0 1-1.5 0v-3.5A.75.75 0 0 1 8 4Zm0 8a1 1 0 1 1 0-2 1 1 0 0 1 0 2Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Caution&lt;/p&gt;
+ &lt;p&gt;You need to explicitly pass options for a plugin or set &lt;code&gt;enabled = true&lt;/code&gt; to enable it.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;It&#39;s a good idea to run &lt;code&gt;:checkhealth snacks&lt;/code&gt; to see if everything is set up correctly.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+  &quot;folke/snacks.nvim&quot;,
+  priority = 1000,
+  lazy = false,
+  ---@type snacks.Config
+  opts = {
+    -- your configuration comes here
+    -- or leave it empty to use the default settings
+    -- refer to the configuration section below
+    bigfile = { enabled = true },
+    dashboard = { enabled = true },
+    explorer = { enabled = true },
+    indent = { enabled = true },
+    input = { enabled = true },
+    picker = { enabled = true },
+    notifier = { enabled = true },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = true },
+    statuscolumn = { enabled = true },
+    words = { enabled = true },
+  },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For an in-depth setup of &lt;code&gt;snacks.nvim&lt;/code&gt; with &lt;code&gt;lazy.nvim&lt;/code&gt;, check the &lt;a href=&quot;https://github.com/folke/snacks.nvim?tab=readme-ov-file#-usage&quot;&gt;example&lt;/a&gt; below.&lt;/p&gt; 
+&lt;h2&gt;⚙️ Configuration&lt;/h2&gt; 
+&lt;p&gt;Please refer to the readme of each plugin for their specific configuration.&lt;/p&gt; 
+&lt;details&gt;
+ &lt;summary&gt;Default Options&lt;/summary&gt; 
+ &lt;!-- config:start --&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;---@class snacks.Config
+---@field animate? snacks.animate.Config
+---@field bigfile? snacks.bigfile.Config
+---@field dashboard? snacks.dashboard.Config
+---@field dim? snacks.dim.Config
+---@field explorer? snacks.explorer.Config
+---@field gh? snacks.gh.Config
+---@field gitbrowse? snacks.gitbrowse.Config
+---@field image? snacks.image.Config
+---@field indent? snacks.indent.Config
+---@field input? snacks.input.Config
+---@field layout? snacks.layout.Config
+---@field lazygit? snacks.lazygit.Config
+---@field notifier? snacks.notifier.Config
+---@field picker? snacks.picker.Config
+---@field profiler? snacks.profiler.Config
+---@field quickfile? snacks.quickfile.Config
+---@field scope? snacks.scope.Config
+---@field scratch? snacks.scratch.Config
+---@field scroll? snacks.scroll.Config
+---@field statuscolumn? snacks.statuscolumn.Config
+---@field terminal? snacks.terminal.Config
+---@field toggle? snacks.toggle.Config
+---@field win? snacks.win.Config
+---@field words? snacks.words.Config
+---@field zen? snacks.zen.Config
+---@field styles? table&amp;lt;string, snacks.win.Config&amp;gt;
+---@field image? snacks.image.Config|{}
+{
+  image = {
+    -- define these here, so that we don&#39;t need to load the image module
+    formats = {
+      &quot;png&quot;,
+      &quot;jpg&quot;,
+      &quot;jpeg&quot;,
+      &quot;gif&quot;,
+      &quot;bmp&quot;,
+      &quot;webp&quot;,
+      &quot;tiff&quot;,
+      &quot;heic&quot;,
+      &quot;avif&quot;,
+      &quot;mp4&quot;,
+      &quot;mov&quot;,
+      &quot;avi&quot;,
+      &quot;mkv&quot;,
+      &quot;webm&quot;,
+      &quot;pdf&quot;,
+      &quot;icns&quot;,
+    },
+  },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;!-- config:end --&gt; 
+&lt;/details&gt; 
+&lt;p&gt;Some plugins have examples in their documentation. You can include them in your config like this:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+  dashboard = { example = &quot;github&quot; }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you want to customize options for a plugin after they have been resolved, you can use the &lt;code&gt;config&lt;/code&gt; function:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+  gitbrowse = {
+    config = function(opts, defaults)
+      table.insert(opts.remote_patterns, { &quot;my&quot;, &quot;custom pattern&quot; })
+    end
+  },
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;🚀 Usage&lt;/h2&gt; 
+&lt;p&gt;See the example below for how to configure &lt;code&gt;snacks.nvim&lt;/code&gt;.&lt;/p&gt; 
+&lt;!-- example:start --&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;{
+  &quot;folke/snacks.nvim&quot;,
+  priority = 1000,
+  lazy = false,
+  ---@type snacks.Config
+  opts = {
+    bigfile = { enabled = true },
+    dashboard = { enabled = true },
+    explorer = { enabled = true },
+    indent = { enabled = true },
+    input = { enabled = true },
+    notifier = {
+      enabled = true,
+      timeout = 3000,
+    },
+    picker = { enabled = true },
+    quickfile = { enabled = true },
+    scope = { enabled = true },
+    scroll = { enabled = true },
+    statuscolumn = { enabled = true },
+    words = { enabled = true },
+    styles = {
+      notification = {
+        -- wo = { wrap = true } -- Wrap notifications
+      }
+    }
+  },
+  keys = {
+    -- Top Pickers &amp;amp; Explorer
+    { &quot;&amp;lt;leader&amp;gt;&amp;lt;space&amp;gt;&quot;, function() Snacks.picker.smart() end, desc = &quot;Smart Find Files&quot; },
+    { &quot;&amp;lt;leader&amp;gt;,&quot;, function() Snacks.picker.buffers() end, desc = &quot;Buffers&quot; },
+    { &quot;&amp;lt;leader&amp;gt;/&quot;, function() Snacks.picker.grep() end, desc = &quot;Grep&quot; },
+    { &quot;&amp;lt;leader&amp;gt;:&quot;, function() Snacks.picker.command_history() end, desc = &quot;Command History&quot; },
+    { &quot;&amp;lt;leader&amp;gt;n&quot;, function() Snacks.picker.notifications() end, desc = &quot;Notification History&quot; },
+    { &quot;&amp;lt;leader&amp;gt;e&quot;, function() Snacks.explorer() end, desc = &quot;File Explorer&quot; },
+    -- find
+    { &quot;&amp;lt;leader&amp;gt;fb&quot;, function() Snacks.picker.buffers() end, desc = &quot;Buffers&quot; },
+    { &quot;&amp;lt;leader&amp;gt;fc&quot;, function() Snacks.picker.files({ cwd = vim.fn.stdpath(&quot;config&quot;) }) end, desc = &quot;Find Config File&quot; },
+    { &quot;&amp;lt;leader&amp;gt;ff&quot;, function() Snacks.picker.files() end, desc = &quot;Find Files&quot; },
+    { &quot;&amp;lt;leader&amp;gt;fg&quot;, function() Snacks.picker.git_files() end, desc = &quot;Find Git Files&quot; },
+    { &quot;&amp;lt;leader&amp;gt;fp&quot;, function() Snacks.picker.projects() end, desc = &quot;Projects&quot; },
+    { &quot;&amp;lt;leader&amp;gt;fr&quot;, function() Snacks.picker.recent() end, desc = &quot;Recent&quot; },
+    -- git
+    { &quot;&amp;lt;leader&amp;gt;gb&quot;, function() Snacks.picker.git_branches() end, desc = &quot;Git Branches&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gl&quot;, function() Snacks.picker.git_log() end, desc = &quot;Git Log&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gL&quot;, function() Snacks.picker.git_log_line() end, desc = &quot;Git Log Line&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gs&quot;, function() Snacks.picker.git_status() end, desc = &quot;Git Status&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gS&quot;, function() Snacks.picker.git_stash() end, desc = &quot;Git Stash&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gd&quot;, function() Snacks.picker.git_diff() end, desc = &quot;Git Diff (Hunks)&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gf&quot;, function() Snacks.picker.git_log_file() end, desc = &quot;Git Log File&quot; },
+    -- gh
+    { &quot;&amp;lt;leader&amp;gt;gi&quot;, function() Snacks.picker.gh_issue() end, desc = &quot;GitHub Issues (open)&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gI&quot;, function() Snacks.picker.gh_issue({ state = &quot;all&quot; }) end, desc = &quot;GitHub Issues (all)&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gp&quot;, function() Snacks.picker.gh_pr() end, desc = &quot;GitHub Pull Requests (open)&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gP&quot;, function() Snacks.picker.gh_pr({ state = &quot;all&quot; }) end, desc = &quot;GitHub Pull Requests (all)&quot; },
+    -- Grep
+    { &quot;&amp;lt;leader&amp;gt;sb&quot;, function() Snacks.picker.lines() end, desc = &quot;Buffer Lines&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sB&quot;, function() Snacks.picker.grep_buffers() end, desc = &quot;Grep Open Buffers&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sg&quot;, function() Snacks.picker.grep() end, desc = &quot;Grep&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sw&quot;, function() Snacks.picker.grep_word() end, desc = &quot;Visual selection or word&quot;, mode = { &quot;n&quot;, &quot;x&quot; } },
+    -- search
+    { &#39;&amp;lt;leader&amp;gt;s&quot;&#39;, function() Snacks.picker.registers() end, desc = &quot;Registers&quot; },
+    { &#39;&amp;lt;leader&amp;gt;s/&#39;, function() Snacks.picker.search_history() end, desc = &quot;Search History&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sa&quot;, function() Snacks.picker.autocmds() end, desc = &quot;Autocmds&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sb&quot;, function() Snacks.picker.lines() end, desc = &quot;Buffer Lines&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sc&quot;, function() Snacks.picker.command_history() end, desc = &quot;Command History&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sC&quot;, function() Snacks.picker.commands() end, desc = &quot;Commands&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sd&quot;, function() Snacks.picker.diagnostics() end, desc = &quot;Diagnostics&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sD&quot;, function() Snacks.picker.diagnostics_buffer() end, desc = &quot;Buffer Diagnostics&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sh&quot;, function() Snacks.picker.help() end, desc = &quot;Help Pages&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sH&quot;, function() Snacks.picker.highlights() end, desc = &quot;Highlights&quot; },
+    { &quot;&amp;lt;leader&amp;gt;si&quot;, function() Snacks.picker.icons() end, desc = &quot;Icons&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sj&quot;, function() Snacks.picker.jumps() end, desc = &quot;Jumps&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sk&quot;, function() Snacks.picker.keymaps() end, desc = &quot;Keymaps&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sl&quot;, function() Snacks.picker.loclist() end, desc = &quot;Location List&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sm&quot;, function() Snacks.picker.marks() end, desc = &quot;Marks&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sM&quot;, function() Snacks.picker.man() end, desc = &quot;Man Pages&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sp&quot;, function() Snacks.picker.lazy() end, desc = &quot;Search for Plugin Spec&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sq&quot;, function() Snacks.picker.qflist() end, desc = &quot;Quickfix List&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sR&quot;, function() Snacks.picker.resume() end, desc = &quot;Resume&quot; },
+    { &quot;&amp;lt;leader&amp;gt;su&quot;, function() Snacks.picker.undo() end, desc = &quot;Undo History&quot; },
+    { &quot;&amp;lt;leader&amp;gt;uC&quot;, function() Snacks.picker.colorschemes() end, desc = &quot;Colorschemes&quot; },
+    -- LSP
+    { &quot;gd&quot;, function() Snacks.picker.lsp_definitions() end, desc = &quot;Goto Definition&quot; },
+    { &quot;gD&quot;, function() Snacks.picker.lsp_declarations() end, desc = &quot;Goto Declaration&quot; },
+    { &quot;gr&quot;, function() Snacks.picker.lsp_references() end, nowait = true, desc = &quot;References&quot; },
+    { &quot;gI&quot;, function() Snacks.picker.lsp_implementations() end, desc = &quot;Goto Implementation&quot; },
+    { &quot;gy&quot;, function() Snacks.picker.lsp_type_definitions() end, desc = &quot;Goto T[y]pe Definition&quot; },
+    { &quot;gai&quot;, function() Snacks.picker.lsp_incoming_calls() end, desc = &quot;C[a]lls Incoming&quot; },
+    { &quot;gao&quot;, function() Snacks.picker.lsp_outgoing_calls() end, desc = &quot;C[a]lls Outgoing&quot; },
+    { &quot;&amp;lt;leader&amp;gt;ss&quot;, function() Snacks.picker.lsp_symbols() end, desc = &quot;LSP Symbols&quot; },
+    { &quot;&amp;lt;leader&amp;gt;sS&quot;, function() Snacks.picker.lsp_workspace_symbols() end, desc = &quot;LSP Workspace Symbols&quot; },
+    -- Other
+    { &quot;&amp;lt;leader&amp;gt;z&quot;,  function() Snacks.zen() end, desc = &quot;Toggle Zen Mode&quot; },
+    { &quot;&amp;lt;leader&amp;gt;Z&quot;,  function() Snacks.zen.zoom() end, desc = &quot;Toggle Zoom&quot; },
+    { &quot;&amp;lt;leader&amp;gt;.&quot;,  function() Snacks.scratch() end, desc = &quot;Toggle Scratch Buffer&quot; },
+    { &quot;&amp;lt;leader&amp;gt;S&quot;,  function() Snacks.scratch.select() end, desc = &quot;Select Scratch Buffer&quot; },
+    { &quot;&amp;lt;leader&amp;gt;n&quot;,  function() Snacks.notifier.show_history() end, desc = &quot;Notification History&quot; },
+    { &quot;&amp;lt;leader&amp;gt;bd&quot;, function() Snacks.bufdelete() end, desc = &quot;Delete Buffer&quot; },
+    { &quot;&amp;lt;leader&amp;gt;cR&quot;, function() Snacks.rename.rename_file() end, desc = &quot;Rename File&quot; },
+    { &quot;&amp;lt;leader&amp;gt;gB&quot;, function() Snacks.gitbrowse() end, desc = &quot;Git Browse&quot;, mode = { &quot;n&quot;, &quot;v&quot; } },
+    { &quot;&amp;lt;leader&amp;gt;gg&quot;, function() Snacks.lazygit() end, desc = &quot;Lazygit&quot; },
+    { &quot;&amp;lt;leader&amp;gt;un&quot;, function() Snacks.notifier.hide() end, desc = &quot;Dismiss All Notifications&quot; },
+    { &quot;&amp;lt;c-/&amp;gt;&quot;,      function() Snacks.terminal() end, desc = &quot;Toggle Terminal&quot; },
+    { &quot;&amp;lt;c-_&amp;gt;&quot;,      function() Snacks.terminal() end, desc = &quot;which_key_ignore&quot; },
+    { &quot;]]&quot;,         function() Snacks.words.jump(vim.v.count1) end, desc = &quot;Next Reference&quot;, mode = { &quot;n&quot;, &quot;t&quot; } },
+    { &quot;[[&quot;,         function() Snacks.words.jump(-vim.v.count1) end, desc = &quot;Prev Reference&quot;, mode = { &quot;n&quot;, &quot;t&quot; } },
+    {
+      &quot;&amp;lt;leader&amp;gt;N&quot;,
+      desc = &quot;Neovim News&quot;,
+      function()
+        Snacks.win({
+          file = vim.api.nvim_get_runtime_file(&quot;doc/news.txt&quot;, false)[1],
+          width = 0.6,
+          height = 0.6,
+          wo = {
+            spell = false,
+            wrap = false,
+            signcolumn = &quot;yes&quot;,
+            statuscolumn = &quot; &quot;,
+            conceallevel = 3,
+          },
+        })
+      end,
+    }
+  },
+  init = function()
+    vim.api.nvim_create_autocmd(&quot;User&quot;, {
+      pattern = &quot;VeryLazy&quot;,
+      callback = function()
+        -- Setup some globals for debugging (lazy-loaded)
+        _G.dd = function(...)
+          Snacks.debug.inspect(...)
+        end
+        _G.bt = function()
+          Snacks.debug.backtrace()
+        end
+
+        -- Override print to use snacks for `:=` command
+        if vim.fn.has(&quot;nvim-0.11&quot;) == 1 then
+          vim._print = function(_, ...)
+            dd(...)
+          end
+        else
+          vim.print = _G.dd 
+        end
+
+        -- Create some toggle mappings
+        Snacks.toggle.option(&quot;spell&quot;, { name = &quot;Spelling&quot; }):map(&quot;&amp;lt;leader&amp;gt;us&quot;)
+        Snacks.toggle.option(&quot;wrap&quot;, { name = &quot;Wrap&quot; }):map(&quot;&amp;lt;leader&amp;gt;uw&quot;)
+        Snacks.toggle.option(&quot;relativenumber&quot;, { name = &quot;Relative Number&quot; }):map(&quot;&amp;lt;leader&amp;gt;uL&quot;)
+        Snacks.toggle.diagnostics():map(&quot;&amp;lt;leader&amp;gt;ud&quot;)
+        Snacks.toggle.line_number():map(&quot;&amp;lt;leader&amp;gt;ul&quot;)
+        Snacks.toggle.option(&quot;conceallevel&quot;, { off = 0, on = vim.o.conceallevel &amp;gt; 0 and vim.o.conceallevel or 2 }):map(&quot;&amp;lt;leader&amp;gt;uc&quot;)
+        Snacks.toggle.treesitter():map(&quot;&amp;lt;leader&amp;gt;uT&quot;)
+        Snacks.toggle.option(&quot;background&quot;, { off = &quot;light&quot;, on = &quot;dark&quot;, name = &quot;Dark Background&quot; }):map(&quot;&amp;lt;leader&amp;gt;ub&quot;)
+        Snacks.toggle.inlay_hints():map(&quot;&amp;lt;leader&amp;gt;uh&quot;)
+        Snacks.toggle.indent():map(&quot;&amp;lt;leader&amp;gt;ug&quot;)
+        Snacks.toggle.dim():map(&quot;&amp;lt;leader&amp;gt;uD&quot;)
+      end,
+    })
+  end,
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;!-- example:end --&gt; 
+&lt;h2&gt;🌈 Highlight Groups&lt;/h2&gt; 
+&lt;p&gt;Snacks defines &lt;strong&gt;a lot&lt;/strong&gt; of highlight groups and it&#39;s impossible to document them all.&lt;/p&gt; 
+&lt;p&gt;Instead, you can use the picker to see all the highlight groups.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-lua&quot;&gt;Snacks.picker.highlights({pattern = &quot;hl_group:^Snacks&quot;})
+&lt;/code&gt;&lt;/pre&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/882482569/62265501-363d-4cf4-9ded-55d42b2d37bf" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>LunarVim/LunarVim</title>
+      <link>https://github.com/LunarVim/LunarVim</link>
+      <description>&lt;p&gt;🌙 LunarVim is an IDE layer for Neovim. Completely free and community driven.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.lunarvim.org&quot;&gt;https://www.lunarvim.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/59826753/159940098-54284f26-f1da-4481-8b03-1deb34c57533.png&quot; alt=&quot;lunarvim_logo_dark&quot; /&gt;&lt;/p&gt; 
+&lt;div align=&quot;center&quot;&gt;
+ &lt;p&gt; &lt;a href=&quot;https://github.com/lunarvim/LunarVim/releases/latest&quot;&gt; &lt;img alt=&quot;Latest release&quot; src=&quot;https://img.shields.io/github/v/release/LunarVim/LunarVim?style=for-the-badge&amp;amp;logo=starship&amp;amp;color=C9CBFF&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/lunarvim/LunarVim/pulse&quot;&gt; &lt;img alt=&quot;Last commit&quot; src=&quot;https://img.shields.io/github/last-commit/lunarvim/LunarVim?style=for-the-badge&amp;amp;logo=starship&amp;amp;color=8bd5ca&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/lunarvim/LunarVim/raw/main/LICENSE&quot;&gt; &lt;img alt=&quot;License&quot; src=&quot;https://img.shields.io/github/license/lunarvim/lunarvim?style=for-the-badge&amp;amp;logo=starship&amp;amp;color=ee999f&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/LunarVim/LunarVim/stargazers&quot;&gt; &lt;img alt=&quot;Stars&quot; src=&quot;https://img.shields.io/github/stars/LunarVim/LunarVim?style=for-the-badge&amp;amp;logo=starship&amp;amp;color=c69ff5&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/LunarVim/LunarVim/issues&quot;&gt; &lt;img alt=&quot;Issues&quot; src=&quot;https://img.shields.io/github/issues/LunarVim/LunarVim?style=for-the-badge&amp;amp;logo=bilibili&amp;amp;color=F5E0DC&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/LunarVim/LunarVim&quot;&gt; &lt;img alt=&quot;Repo Size&quot; src=&quot;https://img.shields.io/github/repo-size/LunarVim/LunarVim?color=%23DDB6F2&amp;amp;label=SIZE&amp;amp;logo=codesandbox&amp;amp;style=for-the-badge&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://patreon.com/chrisatmachine&quot; title=&quot;Donate to this project using Patreon&quot;&gt; &lt;img alt=&quot;Patreon donate button&quot; src=&quot;https://img.shields.io/badge/patreon-donate-yellow.svg?style=for-the-badge&amp;amp;logo=starship&amp;amp;color=f5a97f&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://twitter.com/intent/follow?screen_name=chrisatmachine&quot;&gt; &lt;img alt=&quot;follow on Twitter&quot; src=&quot;https://img.shields.io/twitter/follow/chrisatmachine?style=for-the-badge&amp;amp;logo=twitter&amp;amp;color=8aadf3&amp;amp;logoColor=D9E0EE&amp;amp;labelColor=302D41&quot; /&gt; &lt;/a&gt; &lt;/p&gt;
+ &lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://stars.medv.io/LunarVim/LunarVim.svg?sanitize=true&quot; , title=&quot;commits&quot; /&gt; &lt;/p&gt; 
+ &lt;p&gt;An IDE layer for Neovim with sane defaults. Completely free and community driven.&lt;/p&gt; 
+ &lt;hr /&gt; 
+ &lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://www.lunarvim.org/docs/installation&quot;&gt;&lt;kbd&gt; &lt;br /&gt; Install &lt;br /&gt; &lt;/kbd&gt;&lt;/a&gt;&lt;/strong&gt;  &lt;strong&gt;&lt;a href=&quot;https://www.lunarvim.org/docs/configuration&quot;&gt;&lt;kbd&gt; &lt;br /&gt; Configure &lt;br /&gt; &lt;/kbd&gt;&lt;/a&gt;&lt;/strong&gt;  &lt;strong&gt;&lt;a href=&quot;https://www.lunarvim.org/docs/troubleshooting&quot;&gt;&lt;kbd&gt; &lt;br /&gt; Troubleshooting &lt;br /&gt; &lt;/kbd&gt;&lt;/a&gt;&lt;/strong&gt;  &lt;strong&gt;&lt;a href=&quot;https://github.com/LunarVim/LunarVim/raw/master/CONTRIBUTING.md&quot;&gt;&lt;kbd&gt; &lt;br /&gt; Contribute &lt;br /&gt; &lt;/kbd&gt;&lt;/a&gt;&lt;/strong&gt;&lt;/p&gt; 
+ &lt;hr /&gt; 
+ &lt;h2&gt;Showcase&lt;/h2&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/29136904/191626246-ce0cc0c5-4b41-49e3-9cb7-4b1867ab0dcb.png&quot; alt=&quot;demo3&quot; /&gt; &lt;img src=&quot;https://user-images.githubusercontent.com/29136904/191624942-3d75ef87-35cf-434d-850e-3e7cd5ce2ad0.png&quot; alt=&quot;info&quot; /&gt;&lt;/p&gt; 
+ &lt;!----&gt; 
+ &lt;h2&gt;Socials&lt;/h2&gt; 
+ &lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/Lunarvim&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/696094/196835284-c52d4bd1-7034-439e-848b-47d4f2933dff.svg?sanitize=true&quot; width=&quot;64&quot; height=&quot;64&quot; alt=&quot;Github Logo&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://raw.githubusercontent.com/LunarVim/LunarVim/master/assets/misc/transparent.png&quot; height=&quot;1&quot; width=&quot;5&quot; /&gt; &lt;a href=&quot;https://discord.gg/Xb9B4Ny&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/696094/196835282-f5c47d66-29b7-4210-9ee0-d9cdecde3559.svg?sanitize=true&quot; width=&quot;64&quot; height=&quot;64&quot; alt=&quot;Discord Logo&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://raw.githubusercontent.com/LunarVim/LunarVim/master/assets/misc/transparent.png&quot; height=&quot;1&quot; width=&quot;5&quot; /&gt; &lt;a href=&quot;https://twitter.com/chrisatmachine&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/696094/196835281-52617611-ede6-40da-a4bc-8c5025622bbf.svg?sanitize=true&quot; width=&quot;64&quot; height=&quot;64&quot; alt=&quot;Twitter Logo&quot; /&gt;&lt;/a&gt; &lt;img src=&quot;https://raw.githubusercontent.com/LunarVim/LunarVim/master/assets/misc/transparent.png&quot; height=&quot;1&quot; width=&quot;5&quot; /&gt; &lt;a href=&quot;https://reddit.com/r/Lunarvim&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/696094/196835278-041a4f99-28e1-4a93-8e35-c8912f1089fc.svg?sanitize=true&quot; width=&quot;64&quot; height=&quot;64&quot; alt=&quot;Reddit Logo&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+ &lt;h2&gt;Thanks to all contributors&lt;/h2&gt; 
+ &lt;a href=&quot;https://github.com/Lunarvim/Lunarvim/graphs/contributors&quot;&gt; &lt;img src=&quot;https://contrib.rocks/image?repo=Lunarvim/Lunarvim&quot; /&gt; &lt;/a&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/145050544/911c4c2c-7607-46ca-904c-02bfe53474cd" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>xhcherry/GTA5-Stand-LuaAIO</title>
+      <link>https://github.com/xhcherry/GTA5-Stand-LuaAIO</link>
+      <description>&lt;p&gt;GTA5 Mod Stand Lua All in One:快捷任务、crash、模组(人物|车辆|地图|模型)、娱乐等多种拓展功能玩法的lua脚本&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;GTA5-Stand-LuaAIO&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://hitscounter.dev/api/hit?url=https%3A%2F%2Fgithub.com%2Fxhcherry%2FGTA5-Stand-LuaAIO&amp;amp;label=page+views&amp;amp;icon=github&amp;amp;color=%23198754&amp;amp;message=&amp;amp;style=flat&amp;amp;tz=UTC&quot; /&gt; &lt;a href=&quot;https://discord.gg/wDcY8FFnt5&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/1167118210735276062?color=blue&amp;amp;label=discord&amp;amp;logo=discord&amp;amp;logoColor=white&quot; /&gt;&lt;/a&gt; 
+ &lt;!-- &lt;a href=&quot;http://qm.qq.com&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/QQ%E7%BE%A4-24242-blue&quot; /&gt;&lt;/a&gt; --&gt; &lt;img src=&quot;https://img.shields.io/github/license/xhcherry/GTA5-Stand-LuaAIO&quot; /&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/xhcherry/GTA5-Stand-LuaAIO&quot;&gt;中文版本&lt;/a&gt;/&lt;a href=&quot;https://github.com/xhcherry/GTA5-Stand-LuaAIO/tree/English&quot;&gt;English Version&lt;/a&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; GTA5 Mod Stand Lua All in One:将快捷任务、远程崩溃、模组(人物|车辆|地图|模型)、娱乐等多种standlua脚本于一体的综合库 &lt;/p&gt; 
+&lt;h1&gt;目录&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#gta5-stand-luaaio&quot;&gt;GTA5-Stand-LuaAIO&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#%E7%9B%AE%E5%BD%95&quot;&gt;目录&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#%E5%90%88%E9%9B%86%E4%BC%98%E5%8A%BF&quot;&gt;合集优势&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#%E7%AE%80%E6%98%93%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&quot;&gt;简易安装教程&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#%E4%B8%80%E5%8A%B3%E6%B0%B8%E9%80%B8%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&quot;&gt;一劳永逸安装教程&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#%E6%96%87%E4%BB%B6%E7%9B%AE%E5%BD%95%E7%BB%93%E6%9E%84&quot;&gt;文件目录结构&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#%E4%BB%93%E5%BA%93lua%E4%BA%8C%E6%AC%A1%E5%BC%80%E5%8F%91%E6%8C%87%E5%8D%97&quot;&gt;仓库Lua二次开发指南&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/xhcherry/GTA5-Stand-LuaAIO/main/#%E8%B4%A1%E7%8C%AE&quot;&gt;贡献&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;合集优势&lt;/h2&gt; 
+&lt;p&gt;1.&lt;strong&gt;核心优势&lt;/strong&gt; 可以通过此仓库体验到gt ultra功能和daidai ultimate功能&lt;br /&gt; 2.免去单独下载每个lua的繁琐步骤,解压即可使用&lt;/p&gt; 
+&lt;h2&gt;简易安装教程&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;建议没有固定电脑玩游戏的玩家使用&lt;/strong&gt;,这需要频繁重新下载200多MB的压缩包并完全解压,很耗时间&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/xhcherry/GTA5-Stand-LuaAIO/archive/refs/heads/main.zip&quot;&gt;点击此处自动开始下载lua合集&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;等待下载完成后将下载的压缩包完全解压出来(&lt;strong&gt;是解压出来,不是直接打开压缩包&lt;/strong&gt;),将文件夹中的所有文件拖到Stand目录即可&lt;/p&gt; 
+&lt;h2&gt;一劳永逸安装教程&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;建议在固定电脑玩的玩家使用&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;此教程会教你配置完整lua仓库环境,在日后的更新按两下就行了&lt;br /&gt; &lt;a href=&quot;https://github.com/xhcherry/GTA5-Stand-LuaAIO/wiki/lua%E5%AE%89%E8%A3%85%E6%95%99%E7%A8%8B&quot;&gt;一次性完成standlua合集仓库的配置教程&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;文件目录结构&lt;/h2&gt; 
+&lt;p&gt;Lua Scripts:脚本目录:GRANDTOURINGVIP(ultra),Heist Control,daidai(ultimate)&lt;/p&gt; 
+&lt;p&gt;Profiles:stand配置文件&lt;/p&gt; 
+&lt;p&gt;Theme:中文标签与主题文件&lt;/p&gt; 
+&lt;h2&gt;仓库Lua二次开发指南&lt;/h2&gt; 
+&lt;p&gt;对于想要了解统计数据、全局和局部变量或 Stand Lua Script API 的开发人员&lt;/p&gt; 
+&lt;p&gt;Lua基础:&lt;a href=&quot;https://www.tutorialspoint.com/lua/index.htm&quot;&gt;Lua基础教程&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;pluto基础: &lt;a href=&quot;https://pluto-lang.org/&quot;&gt;pluto&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;学习stand lua API:&lt;a href=&quot;https://stand.gg/help/lua-api-documentation&quot;&gt;Stand Lua开发文档&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;游戏原生功能,两个地址一样的,哪个能访问就用哪个:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://nativedb.dotindustries.dev/gta5/natives&quot;&gt;GTA5原生功能1&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://alloc8or.re/gta5/nativedb/&quot;&gt;GTA5原生功能2&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;控件、Blip等:&lt;a href=&quot;https://docs.fivem.net/docs/game-references/&quot;&gt;FiveM Docs-Game References&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;soup lua bindings:&lt;a href=&quot;https://github.com/calamity-inc/Soup-Lua-Bindings/raw/main/LUA_API.md#soup-lua-bindings&quot;&gt;soup lua bindings&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;查找统计数据、全局和局部变量:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;常用freemode.c和tuneables_processing.c&lt;/li&gt; 
+ &lt;li&gt;GTA 在线反编译脚本:&lt;a href=&quot;https://github.com/root-cause/v-decompiled-scripts&quot;&gt;https://github.com/root-cause/v-decompiled-scripts&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;贡献&lt;/h2&gt; 
+&lt;p&gt;参考此仓库&lt;a href=&quot;https://github.com/zeblyo/GTA-Stand-Lua-Scripts-Crack&quot;&gt;GTA-Stand-Lua-Scripts-Crack&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/560355bcd6199286eafd8aac12787c85cf452422ee4ca8e624d390690b5cc0d4/xhcherry/GTA5-Stand-LuaAIO" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>amzxyz/rime-wanxiang</title>
+      <link>https://github.com/amzxyz/rime-wanxiang</link>
+      <description>&lt;p&gt;「万象拼音」：把算法留在幕后，把纯粹还给指尖，用更优质的数据，接管你的候选。&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://amzxyz.github.io/rime-wanxiang/&quot;&gt;https://amzxyz.github.io/rime-wanxiang/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;h1&gt;🌳 万象拼音&lt;/h1&gt; 
+ &lt;p&gt;&lt;strong&gt;重塑 Rime 生态，带来极致的输入体验。&lt;/strong&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://amzxyz.github.io/rime-wanxiang/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/%F0%9F%9A%80_%E5%BF%AB%E9%80%9F%E4%B8%8A%E6%89%8B-%E6%8E%A2%E7%B4%A2%E6%96%87%E6%A1%A3-4CAF50?style=for-the-badge&quot; alt=&quot;快速上手&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/amzxyz/rime-wanxiang&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/%E2%AD%90_GitHub_%E4%BB%93%E5%BA%93-%E8%AE%BF%E9%97%AE%E4%B8%BB%E9%A1%B5-2ea44f?style=for-the-badge&quot; alt=&quot;GitHub&quot; /&gt;&lt;/a&gt; &lt;br /&gt; &lt;a href=&quot;https://creativecommons.org/licenses/by/4.0/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-CC%20BY%204.0-lightgrey.svg?sanitize=true&quot; alt=&quot;License: CC BY 4.0&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/amzxyz/rime-wanxiang/releases/&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/amzxyz/rime-wanxiang?filter=!nightly&quot; alt=&quot;GitHub Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/amzxyz/rime-wanxiang/actions/workflows/release.yml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/amzxyz/rime-wanxiang/release.yml&quot; alt=&quot;GitHub Actions Workflow Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/amzxyz/rime-wanxiang/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/amzxyz/rime-wanxiang?style=flat&amp;amp;color=success&quot; alt=&quot;GitHub Repo stars&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;🌌 万象拼音——基于深度优化的词库和语法模型&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;💎 核心基石：&lt;/strong&gt; &lt;a href=&quot;https://github.com/amzxyz/RIME-LMDG&quot;&gt;万象词库&lt;/a&gt; 经 AI 与海量语料深度优化(目前已进入手动维护期)，是一款专为“语句流”“类大厂”打造的全方案立体词库。它将&lt;strong&gt;带调拼音标注、词组构成与精准词频&lt;/strong&gt;作为体验基石，以日常与专业词汇为主体，结合语法模型，为您带来精准、流畅的输入体验。&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;开放生态&lt;/strong&gt;：支持高度自定义，鼓励通过“词库 + 转写”打造您的专属输入方案。&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;持续打磨&lt;/strong&gt;：我们极度重视数据准确与时效，欢迎随时反馈。&lt;/li&gt; 
+ &lt;li&gt;📝 &lt;strong&gt;&lt;a href=&quot;https://docs.qq.com/smartsheet/DWHZsdnZZaGh5bWJI?viewId=vUQPXH&amp;amp;tab=BB08J2&quot;&gt;万象词库问题收集反馈表&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;✨ 效果预览&lt;/h2&gt; 
+&lt;p&gt;&lt;img src=&quot;https://storage.deepin.org/thread/202502200358104987_%E6%95%88%E6%9E%9C.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;🧭 探索万象&lt;/h2&gt; 
+&lt;table width=&quot;100%&quot; align=&quot;center&quot; border=&quot;0&quot; cellspacing=&quot;15&quot; cellpadding=&quot;0&quot;&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; 
+    &lt;div style=&quot;border: 1px solid #546e7a4d; border-radius: 12px; padding: 20px;&quot;&gt; 
+     &lt;h3&gt;🚀 快速上手&lt;/h3&gt; 
+     &lt;p&gt;从零开始，为您在 Windows、macOS 以及 iOS/Android 移动端部署万象。&lt;/p&gt; 
+     &lt;a href=&quot;https://amzxyz.github.io/rime-wanxiang/doc/intro&quot;&gt;&lt;strong&gt;➡️ 立即安装&lt;/strong&gt;&lt;/a&gt; 
+    &lt;/div&gt; &lt;/td&gt; 
+   &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; 
+    &lt;div style=&quot;border: 1px solid #546e7a4d; border-radius: 12px; padding: 20px;&quot;&gt; 
+     &lt;h3&gt;⌨️ 核心输入体系&lt;/h3&gt; 
+     &lt;p&gt;深入解析万象独特的“带调拼音标注”、强大的辅码系统（小鹤、自然码等）以及中英混输机制。&lt;/p&gt; 
+     &lt;a href=&quot;https://amzxyz.github.io/rime-wanxiang/doc/aux_code&quot;&gt;&lt;strong&gt;➡️ 了解核心&lt;/strong&gt;&lt;/a&gt; 
+    &lt;/div&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; 
+    &lt;div style=&quot;border: 1px solid #546e7a4d; border-radius: 12px; padding: 20px;&quot;&gt; 
+     &lt;h3&gt;🪄 Lua 魔法扩展&lt;/h3&gt; 
+     &lt;p&gt;计算器、超级注释、符号包裹、动态时间戳、超级符号库（按名输入数千 Unicode 符号）... 探索让 Rime 拥有“超能力”的数十种微创新脚本。&lt;/p&gt; 
+     &lt;a href=&quot;https://amzxyz.github.io/rime-wanxiang/doc/shijian&quot;&gt;&lt;strong&gt;➡️ 探索魔法&lt;/strong&gt;&lt;/a&gt; 
+    &lt;/div&gt; &lt;/td&gt; 
+   &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; 
+    &lt;div style=&quot;border: 1px solid #546e7a4d; border-radius: 12px; padding: 20px;&quot;&gt; 
+     &lt;h3&gt;⚙️ 词库与模型&lt;/h3&gt; 
+     &lt;p&gt;深度解析万象的现代数据工程。算一笔隐形的“时间账”，彻底告别低效的候选翻页，让输入如呼吸般自然。&lt;/p&gt; 
+     &lt;a href=&quot;https://amzxyz.github.io/rime-wanxiang/doc/dict_gram&quot;&gt;&lt;strong&gt;➡️ 揭秘底层逻辑&lt;/strong&gt;&lt;/a&gt; 
+    &lt;/div&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;💎 四种版本，怎么选？&lt;/h2&gt; 
+&lt;p&gt;万象目前提供 &lt;strong&gt;Base / Pro / Lite / Pure&lt;/strong&gt; 四种发行方案。&lt;br /&gt; 它们共享万象的核心数据体系，但在 &lt;strong&gt;功能完整度、辅助码、Lua 扩展与运行环境&lt;/strong&gt; 上各有侧重。&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;🟢 &lt;strong&gt;Base&lt;/strong&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;🔵 &lt;strong&gt;Pro&lt;/strong&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;🟡 &lt;strong&gt;Lite&lt;/strong&gt;&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;⚪ &lt;strong&gt;Pure&lt;/strong&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;定位&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;完整标准版&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;双拼 / 辅助码增强版&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;轻量现代版&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;原生兼容版&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;适合谁&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;全拼、双拼及绝大多数用户&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;重度双拼、辅助码与精细控制用户&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;希望减少重型功能的日常用户&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;老系统、旧 Rime、无 Lua 环境&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;输入方式&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;全拼 + 双拼&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;双拼 + 多套辅助码&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;全拼 + 双拼&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;全拼 + 双拼&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;词库&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;完整带调万象词库&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;独立 Pro 辅助码词库&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;无声调 Lite 词库&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;Pure 专用轻量入口&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Lua 扩展&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ 完整&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ 完整增强&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;🟡 保留常用、裁剪重模块&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;❌ 不携带 Lua&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;典型特点&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;功能全面，开箱即用&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;辅码、造词、筛选能力最强&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;更轻、更少依赖&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;最大化兼容性&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;主方案文件&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;wanxiang.schema.yaml&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;wanxiang_pro.schema.yaml&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;wanxiang_lite.schema.yaml&lt;/code&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;code&gt;wanxiang_pure.schema.yaml&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;一句话推荐&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;🟢 &lt;strong&gt;Base&lt;/strong&gt;：默认首选，第一次使用万象直接装它。&lt;/li&gt; 
+ &lt;li&gt;🔵 &lt;strong&gt;Pro&lt;/strong&gt;：明确知道自己需要双拼辅助码、造词或更强筛选能力时选择。&lt;/li&gt; 
+ &lt;li&gt;🟡 &lt;strong&gt;Lite&lt;/strong&gt;：喜欢 Base 的整体体验，但不需要预测、声调、复杂造词等重型功能。&lt;/li&gt; 
+ &lt;li&gt;⚪ &lt;strong&gt;Pure&lt;/strong&gt;：优先考虑兼容性，适合 Win7、fcitx4-rime 或无法运行 Lua 的环境。&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;更完整的功能差异与选型说明，请查看 &lt;a href=&quot;https://amzxyz.github.io/rime-wanxiang/&quot;&gt;万象拼音文档&lt;/a&gt;。&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;生态：&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/Mintimate/oh-my-rime&quot;&gt;薄荷拼音&lt;/a&gt; :使用万象词库的综合性方案，特别是其修改的地球拼音能够继承万象的词库声调编码。&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/yuanz-12/wanxiang_yoemin&quot;&gt;鸢鸣万象&lt;/a&gt; :一个基于万象拼音生态融合李氏三拼与辅助码能力的手机用方案。&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/arsenali/rime-triple-pinyin-lssp&quot;&gt;李氏三拼&lt;/a&gt; :一个使用万象声调词库驱动的原创型特殊布局手机用方案。&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/zhhwux/wxzhh&quot;&gt;万象虎&lt;/a&gt; : 一个基于万象生态的虎码整句方案。&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;div align=&quot;center&quot; style=&quot;margin-top: 3rem; margin-bottom: 2rem;&quot;&gt; 
+ &lt;img alt=&quot;pay&quot; src=&quot;https://raw.githubusercontent.com/amzxyz/rime-wanxiang/wanxiang/custom/%E8%B5%9E%E8%B5%8F.jpg&quot; width=&quot;300&quot; style=&quot;width: 300px !important; max-width: 300px !important;&quot; /&gt; 
+ &lt;p style=&quot;margin-top: 1.2rem; font-size: 1.1em;&quot;&gt; &lt;strong&gt;如果觉得项目好用，欢迎在 GitHub 为我们点亮 Star！&lt;/strong&gt; &lt;/p&gt; 
+ &lt;p style=&quot;margin-top: 0.5rem; color: #555;&quot;&gt; &lt;/p&gt;
+ &lt;p style=&quot;margin-top: 0.5rem; opacity: 0.8;&quot;&gt; &lt;i&gt;用更优质的数据，接管你的候选词。&lt;/i&gt; &lt;/p&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/2d05ae6cdf65183b130f0f1a70de0d4d576d5a86b417763ad4562f60a055b96a/amzxyz/rime-wanxiang" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>jitsi/docker-jitsi-meet</title>
+      <link>https://github.com/jitsi/docker-jitsi-meet</link>
+      <description>&lt;p&gt;Jitsi Meet on Docker&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://github.com/orgs/jitsi/packages?repo_name=docker-jitsi-meet&quot;&gt;https://github.com/orgs/jitsi/packages?repo_name=docker-jitsi-meet&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Jitsi Meet on Docker&lt;/h1&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/jitsi/docker-jitsi-meet/master/resources/jitsi-docker.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://jitsi.org/&quot;&gt;Jitsi&lt;/a&gt; is a set of Open Source projects that allows you to easily build and deploy secure videoconferencing solutions.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://jitsi.org/jitsi-meet/&quot;&gt;Jitsi Meet&lt;/a&gt; is a fully encrypted, 100% Open Source video conferencing solution that you can use all day, every day, for free — with no account needed.&lt;/p&gt; 
+&lt;p&gt;This repository contains the necessary tools to run a Jitsi Meet stack on &lt;a href=&quot;https://www.docker.com&quot;&gt;Docker&lt;/a&gt; using &lt;a href=&quot;https://docs.docker.com/compose/&quot;&gt;Docker Compose&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;All our images are published on the &lt;a href=&quot;https://github.com/orgs/jitsi/packages&quot;&gt;GitHub Container Registry (GHCR)&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Tags&lt;/h2&gt; 
+&lt;p&gt;These are the currently published tags for all our images:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Tag&lt;/th&gt; 
+   &lt;th&gt;Description&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;stable&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Points to the latest stable release&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;stable-NNNN-X&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;A stable release&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;unstable&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Points to the latest unstable release&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;unstable-YYYY-MM-DD&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Daily unstable release&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;The installation manual is available &lt;a href=&quot;https://jitsi.github.io/handbook/docs/devops-guide/devops-guide-docker&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Kubernetes&lt;/h3&gt; 
+&lt;p&gt;If you plan to install the jitsi-meet stack on a Kubernetes cluster you can find tools and tutorials in the project &lt;a href=&quot;https://github.com/jitsi-contrib/jitsi-kubernetes&quot;&gt;Jitsi on Kubernetes&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/64742eac96b636f5cdbbcb98df70993fdecc9c8758e509a5767a1ab4459f3185/jitsi/docker-jitsi-meet" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
