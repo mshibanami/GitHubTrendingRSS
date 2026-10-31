@@ -1,0 +1,1273 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub C++ Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of C++ on GitHub</description>
+    
+    <pubDate>Sat, 31 Oct 2026 06:29:49 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>aardappel/goose</title>
+      <link>https://github.com/aardappel/goose</link>
+      <description>&lt;p&gt;The Goose Programming Language&lt;/p&gt;&lt;hr&gt;&lt;picture&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;docs/logo/logo_white_fg_trans_bg_mini.png&quot; /&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;docs/logo/logo_black_fg_white_bg_mini.png&quot; /&gt; 
+ &lt;img alt=&quot;The Goose programming language&quot; src=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/logo/logo_black_fg_white_bg_mini.png&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;h1&gt;The Goose Programming Language&lt;/h1&gt; 
+&lt;p&gt;A memory-safe systems language with no heap allocator, garbage collector, or lifetime annotations. In this repository&#39;s benchmarks, Goose runs faster than C++ and Rust while using less memory.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/tutorial.md&quot;&gt;Tutorial&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/reference.md&quot;&gt;Reference&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/goose_spec.md&quot;&gt;Specification&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/command_line.md&quot;&gt;Command line&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/packages.md&quot;&gt;Packages&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/samples/README.md&quot;&gt;Samples&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/results.md&quot;&gt;Benchmarks&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/stdlib.md&quot;&gt;Standard library&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Goose has syntax familiar to C and Rust programmers, but &lt;strong&gt;there is no heap&lt;/strong&gt;. Every dynamic value lives inline on data stacks managed by the compiler. Growth advances a pointer, and memory is freed when its scope ends. The language&#39;s type and lifetime rules make this memory model safe to use.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://discord.gg/397eZdbnsR&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/chat-discord-blue&quot; alt=&quot;Discord Chat&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/wvo&quot;&gt;&lt;img src=&quot;https://img.shields.io/twitter/follow/wvo.svg?style=social&quot; alt=&quot;Twitter Follow&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Why Goose&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Faster than C++ and than safe Rust, while memory safe.&lt;/strong&gt; Over sixteen benchmarks Goose runs at 3.3x the speed of idiomatic C++, 1.16x hand-optimized C++ and 1.12x the best safe Rust, and uses 1.9x, 1.3x and 1.2x less memory (&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/results.md&quot;&gt;results&lt;/a&gt;). These gains come from Goose&#39;s data layouts and memory model.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;No allocator, no GC, no reference counting, no destructors.&lt;/strong&gt; Memory is a handful of data stacks that the compiler assigns statically. Freeing a structure with a million elements takes a single store, no matter how deeply it is nested.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Growth preserves references.&lt;/strong&gt; A reference into a growing array stays valid for as long as the array does. In the corresponding benchmarks, Goose keeps typed references where C++ must call &lt;code&gt;reserve&lt;/code&gt; and safe Rust uses &lt;code&gt;u32&lt;/code&gt; indices.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Memory safe with zero annotations.&lt;/strong&gt; There is no lifetime syntax, there are no aliasing or exclusivity rules, and there is no &lt;code&gt;unsafe&lt;/code&gt;. The compiler infers what every reference is rooted at and rejects references that could outlive their owners.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Nested data stays inline.&lt;/strong&gt; A string, an array of strings, a record with variable-size fields and an array of those records are each stored as one contiguous block that contains no pointers. A example record that takes 160 bytes and one allocation in C++ takes 29 bytes and no allocations in Goose.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Variable sized Enums.&lt;/strong&gt; Variable-mode ADTs store each value at the size of its own variant rather than that of the largest variant. On the benchmark that exercises this, they use 4x less memory than a Rust &lt;code&gt;enum&lt;/code&gt; and run at 2x its speed.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Links narrower than pointers.&lt;/strong&gt; A relative reference stores a typed, checked link as a 1, 2 or 4-byte offset. Structures built from them are position independent, so a data structure can be written to a file as is. Saving it is a single write, and loading it is a single read followed by a verification pass that rejects malformed or hostile data.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Everything is built in place, guaranteed.&lt;/strong&gt; A value is constructed at its final destination through any depth of calls. &lt;code&gt;items.push(parse(line))&lt;/code&gt; writes the parsed record directly into the array, and returning a growable array by value does not copy it.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Returns across multiple calls.&lt;/strong&gt; &lt;code&gt;return err from load&lt;/code&gt; returns from a function any number of frames up the call stack. It is checked statically, and needs no unwinder, no &lt;code&gt;Result&lt;/code&gt; type and no &lt;code&gt;?&lt;/code&gt; on every call.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Threads with no shared memory.&lt;/strong&gt; A worker is compiled as a separate program with its own memory, and flat values are passed between threads through typed queues with a &lt;code&gt;memcpy&lt;/code&gt;. Data races, locks, atomics and memory orderings do not exist in the language.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Generics and higher-order functions with no overhead.&lt;/strong&gt; An untyped parameter is generic. Function values are compile-time entities, so &lt;code&gt;xs.filter() { it &amp;gt; 0 }&lt;/code&gt; compiles to what the handwrittend loop would looks like and builds its result directly in its destination.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Compiles to C and can call C.&lt;/strong&gt; Goose compiles to one C file, so it runs wherever a C compiler does and calls C directly through &lt;code&gt;extern fn&lt;/code&gt;. The bundled TinyCC backend compiles and runs a program in-process, with no build step.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/tutorial.md&quot;&gt;tutorial&lt;/a&gt; walks through all of this by example, the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/reference.md&quot;&gt;reference&lt;/a&gt; covers the whole language topic by topic, the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/goose_spec.md&quot;&gt;specification&lt;/a&gt; has the exact rules, and the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/results.md&quot;&gt;benchmarks&lt;/a&gt; have the numbers, including the cases where Goose loses.&lt;/p&gt; 
+&lt;h2&gt;Features&lt;/h2&gt; 
+&lt;p&gt;This section focuses on what distinguishes Goose. The &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/tutorial.md&quot;&gt;tutorial&lt;/a&gt; explains these features in more detail, and the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/samples/README.md&quot;&gt;samples&lt;/a&gt; show them in thirty-one complete programs.&lt;/p&gt; 
+&lt;h3&gt;One memory model: data stacks freed at scope exit&lt;/h3&gt; 
+&lt;p&gt;A program has the native call stack, static data and N data stacks, where the compiler works out N. A data stack is a large address-space reservation with a bump pointer, and there is no other memory. At most one resizable value is live per stack and it is always on top, so growth never moves anything and never checks a capacity. All of this is proved at compile time; the runtime tracks only the bump pointers.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;for round in 3 {
+    var scratch: u8[&amp;gt;..] = [];                        // grow-only: growth is a pointer bump
+    for i in 100000 { scratch.push((i % 256) as! u8); }
+    print(&quot;round &quot;, round, &quot;: &quot;, scratch.len, &quot; bytes&quot;);
+}                                                     // the free: one store to the stack top
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Memory never moves, so references survive growth&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;struct Item { id: i32, weight: f32 }
+
+var items: Item[&amp;gt;..] = [];
+let first .= items.push(Item { 1, 0.5 });             // a reference to element 0
+for i: i32 in 2..1000001 { items.push(Item { i, 0.0 }); }
+first.weight = 99.5;                                  // still valid, a million pushes later
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;push&lt;/code&gt; returns a reference to the new element, so a program can link elements while building the array. A &lt;code&gt;vector&amp;lt;T&amp;gt;&lt;/code&gt; or &lt;code&gt;Vec&amp;lt;T&amp;gt;&lt;/code&gt; may reallocate and cannot provide this guarantee. Stable references account for several benchmark gains.&lt;/p&gt; 
+&lt;h3&gt;Safe references, no annotations&lt;/h3&gt; 
+&lt;p&gt;Every reference and slice has a static &lt;em&gt;root&lt;/em&gt;: the variable that bounds its target&#39;s lifetime. A reference must not outlive the variable that owns its target or access that target through an incompatible type. The compiler infers roots and specializes functions for them, so no annotations are needed. There are no aliasing or exclusivity rules. When a lifetime check fails, the error names the reference&#39;s root and its destination:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;fn longest(a: u8[:], b: u8[:]) -&amp;gt; u8[:] { if a.len &amp;gt;= b.len { a } else { b } }
+
+var outer: u8[&amp;gt;..] = [];
+var w = outer[..];
+{
+    var inner: u8[&amp;gt;..] = [];
+    format(inner, &quot;inner text&quot;);
+    w = longest(outer, inner);     // error: storing a reference rooted at inner,
+}                                  //        which does not outlive the destination (§9.2)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A slice &lt;code&gt;T[:]&lt;/code&gt; lets a function accept a range from any array kind without copying its elements. For example, &lt;code&gt;split&lt;/code&gt; returns slices into its input, and a dictionary keyed by &lt;code&gt;u8[:]&lt;/code&gt; stores views of strings rather than copies.&lt;/p&gt; 
+&lt;h3&gt;Nested data stays inline&lt;/h3&gt; 
+&lt;p&gt;There is no single array type. Instead there is a family of array types that differ only in how their size can change. Every member is laid out as &lt;code&gt;[metadata][elements...]&lt;/code&gt;, inline and packed, never as a pointer to a separate block of elements:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;What it is&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;T[k]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;fixed size, known at compile time&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;T[]&lt;/code&gt;, &lt;code&gt;T[varint]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;sized at construction, frozen after; a fixed or variable-width length&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;T[..k]&lt;/code&gt;, &lt;code&gt;T[..]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;capacity inline; grows and shrinks within it&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;T[&amp;gt;..]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;grow-only&lt;/strong&gt;: the most commonly used kind; references into it stay valid&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;T[&amp;gt;..&amp;lt;]&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;grow-shrink&lt;/strong&gt;: stacks, queues, heaps&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Strings are &lt;code&gt;u8&lt;/code&gt; arrays: &lt;code&gt;u8[&amp;gt;..]&lt;/code&gt; is a builder, &lt;code&gt;u8[]&lt;/code&gt; a finished string stored inline in whatever holds it, &lt;code&gt;u8[..16]&lt;/code&gt; a small string inside a struct, &lt;code&gt;u8[:]&lt;/code&gt; a view. A struct may contain variable-size parts, which are stored inline in declaration order, so a record is a sequence of bytes with no indirection in it:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;struct Item  { sku: u8[varint], qty: varint, cents: varint }
+struct Order { id: varint, customer: u8[varint], items: Item[varint] }
+
+var book: Order[&amp;gt;..] = [];
+book.push(Order { id: 1001, customer: &quot;alice&quot;,
+                  items: [Item { sku: &quot;SKU-441&quot;, qty: 2, cents: 1999 },
+                          Item { sku: &quot;SKU-7&quot;, qty: 1, cents: 500 }] });
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;That order is &lt;strong&gt;29 bytes and 0 allocations&lt;/strong&gt;. As C++ &lt;code&gt;std::string&lt;/code&gt; + &lt;code&gt;std::vector&amp;lt;Item&amp;gt;&lt;/code&gt; it is 160 bytes and 1 allocation, and as Rust &lt;code&gt;String&lt;/code&gt; + &lt;code&gt;Vec&amp;lt;Item&amp;gt;&lt;/code&gt; it is 153 bytes and 4 allocations. An entire order book is a single array, so reading it streams through the cache. The trade-off is that an array of variable-size elements is sequential: you can iterate it but not index it (unless you keep a second array of references into it as an index).&lt;/p&gt; 
+&lt;h3&gt;Enums in two sizes&lt;/h3&gt; 
+&lt;p&gt;Algebraic data types are the only form of dynamic polymorphism; there is no inheritance and there are no vtables. Every ADT can be stored in two ways, chosen at the point of use. Fixed mode (&lt;code&gt;Shape&lt;/code&gt;) stores a tag plus room for the largest payload, so values can be indexed and overwritten. Variable mode (&lt;code&gt;Shape..&lt;/code&gt;) gives each value exactly the size of its variant. An array of such values becomes sequential and a value never changes variant, but in exchange you may take references &lt;em&gt;into&lt;/em&gt; a payload:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;enum Shape { Circle { r: f64 }, Rect { w: f64, h: f64 }, Dot }
+
+var packed: Shape..[&amp;gt;..] = [];                 // 9, 17 and 1 bytes, not 17 each
+packed.push(Shape.Circle { r: 1.0 });
+packed.push(Shape.Rect { w: 2.0, h: 3.0 });
+packed.push(Shape.Dot);
+for s in packed {
+    match s { Rect &amp;amp;r =&amp;gt; { r.w += 1.0; }, _ =&amp;gt; {} }   // edits the payload in place, inside the array
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;em&gt;Case functions&lt;/em&gt; provide another way to dispatch on a variant: define one overload per variant. Calls dispatch on the tag through a jump table, and the compiler checks that the overloads cover every variant:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;fn area(s: Shape.Circle) -&amp;gt; f64 { 3.14159 * s.r * s.r }
+fn area(s: Shape.Rect) -&amp;gt; f64   { s.w * s.h }
+fn area(s: Shape.Dot) -&amp;gt; f64    { 0.0 }
+
+for s in packed { print(s, &quot; area &quot;, area(s)); }
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Links narrower than pointers&lt;/h3&gt; 
+&lt;p&gt;A &lt;code&gt;T&amp;amp;&lt;/code&gt; is a machine address: it takes eight bytes and never dangles. A &lt;em&gt;relative reference&lt;/em&gt; is the same link stored as a narrow offset. A &lt;code&gt;T&amp;amp;&amp;lt;u32&amp;gt;&lt;/code&gt; is measured from the field itself to a target in the same array, so the structure is position independent. A &lt;code&gt;T&amp;amp;&amp;lt;u32 in pool&amp;gt;&lt;/code&gt; is measured from the base of a named pool, so other arrays can link into the pool. &lt;code&gt;T&amp;amp;&amp;lt;u32&amp;gt;?&lt;/code&gt; uses offset 0 as null. Here is a binary search tree in one grow-only array, with 12-byte nodes:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;struct Node { key: i32, left: Node&amp;amp;&amp;lt;u32&amp;gt;?, right: Node&amp;amp;&amp;lt;u32&amp;gt;? }   // 12 bytes, links included
+
+fn insert(pool: Node[&amp;gt;..]&amp;amp;, key: i32) {
+    if pool.len == 0 { pool.push(Node { key: key }); return; }
+    var cur .= pool[0];                             // .= binds a reference; = would copy the node
+    loop {
+        if key == cur.key { return; }
+        let next = if key &amp;lt; cur.key { cur.left } else { cur.right };
+        if next { cur .= next; continue; }          // narrowed by `if`: next is a Node&amp;amp;
+        if key &amp;lt; cur.key { cur.left .= pool.push(Node { key: key }); }
+        else             { cur.right .= pool.push(Node { key: key }); }
+        return;
+    }
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;References are transparent (there is no &lt;code&gt;*&lt;/code&gt; or &lt;code&gt;-&amp;gt;&lt;/code&gt;). &lt;code&gt;.=&lt;/code&gt; binds or retargets a reference, and &lt;code&gt;Node?&lt;/code&gt; is a nullable reference that &lt;code&gt;if&lt;/code&gt;, &lt;code&gt;guard&lt;/code&gt; and &lt;code&gt;assert&lt;/code&gt; narrow. The insert is one push and one store, and the push cannot invalidate &lt;code&gt;cur&lt;/code&gt;. When lifetimes are not nested, the standard library&#39;s &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/stdlib.md#slot_pool&quot;&gt;&lt;code&gt;slot_pool&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt; pairs a grow-only &lt;code&gt;items&lt;/code&gt; array with a freelist. &lt;code&gt;alloc_ref&lt;/code&gt; reuses a free slot or pushes a new one, and &lt;code&gt;free&lt;/code&gt; returns a slot to the pool. Since a slot&#39;s memory is never actually freed, a stale slot reads a &lt;em&gt;different value of the correct type&lt;/em&gt; rather than corrupting memory.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/stdlib.md#slice_pool&quot;&gt;&lt;code&gt;slice_pool&amp;lt;T&amp;gt;&lt;/code&gt;&lt;/a&gt; provides contiguous runs with allocation, free and resize operations. The language features &lt;code&gt;reusable&lt;/code&gt; and &lt;code&gt;reusable[]&lt;/code&gt; are &lt;strong&gt;deprecated&lt;/strong&gt; in favor of these pool types. They remain available for existing code and the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/design/root_structs.md#separate-follow-up-reusable-pools-in-the-stdlib&quot;&gt;remaining migration gaps&lt;/a&gt;; removal is a later step.&lt;/p&gt; 
+&lt;h3&gt;Saving and loading data as bytes&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;var image: u8[&amp;gt;..] = tree.to_bytes();           // a framed byte image of the whole array
+var loaded, ok = from_bytes&amp;lt;Node[&amp;gt;..]&amp;gt;(image);  // verified before it becomes a value
+image[image.len - 3] = 200;                     // tamper with a link ...
+var bad, bok = from_bytes&amp;lt;Node[&amp;gt;..]&amp;gt;(image);    // ... and it is false and an empty array
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The tree&#39;s links are self-relative, so the tree means the same thing wherever it is stored. Saving it writes its bytes and loading it reads them back, with no serializer, no schema and no pointer fixups. &lt;code&gt;from_bytes&lt;/code&gt; checks the framing, every tag, every length and every link before the bytes become a value, so a corrupt or hostile file makes it return &lt;code&gt;false&lt;/code&gt;, never a wild reference.&lt;/p&gt; 
+&lt;h3&gt;In-place construction&lt;/h3&gt; 
+&lt;p&gt;The copy-free construction guarantee (&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/goose_spec.md#43-the-in-place-construction-guarantee&quot;&gt;spec §4.3&lt;/a&gt;) says a constructed value is always built at its final location, which is passed down through calls. A function returning a grow-only array by value writes its elements directly into the caller&#39;s variable, or into a field of the record being built inside another array, so out-parameters are rarely needed.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;words.push(str(&quot;word&quot;, i));                    // formatted straight into the new element
+let evens = xs.filter() { it % 2 == 0 };       // built straight into `evens`: no temporary
+book.push(Order { id: 1001, customer: &quot;alice&quot;, items: parse_items(&quot;SKU-441:2:1999;SKU-7:1:500&quot;) });
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Returning errors across calls&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;struct User { name: u8[..16], age: i32 }
+
+fn load(text: u8[:]) -&amp;gt; User[&amp;gt;..], u8[] {
+    var users: User[&amp;gt;..] = [];
+    each_split(text, &#39;\n&#39;) { users.push(parse_user(it)); };
+    return users, &quot;&quot;;
+}
+
+fn parse_user(line: u8[:]) -&amp;gt; User {              // returns a User: no Result, no error parameter
+    let comma = find(line, &quot;,&quot;);
+    guard comma &amp;gt;= 0 else { return [], str(&quot;expected name,age: &quot;, line) from load; }
+    let age, ok = parse_int(line[comma + 1..]);
+    guard ok else { return [], str(&quot;bad age: &quot;, line) from load; }
+    let name = trim(line[..comma]);
+    return User { name: name, age: age as i32 };
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;return E from f&lt;/code&gt; returns &lt;code&gt;E&lt;/code&gt; as the result of the innermost active call of &lt;code&gt;f&lt;/code&gt;, however many frames up that call is. Every function in between keeps its plain signature. The construct is checked statically: every call of &lt;code&gt;parse_user&lt;/code&gt; must lie inside a &lt;code&gt;load&lt;/code&gt; call, so nothing can go uncaught at runtime. It is implemented as a hidden discriminant checked in each frame rather than as an unwinder, and the message is built directly where &lt;code&gt;load&lt;/code&gt;&#39;s caller wants it. The parsers in the samples use it for every syntax error.&lt;/p&gt; 
+&lt;h3&gt;Generics and function blocks&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;fn twice(x) { x + x }                              // an untyped parameter is a generic one
+
+fn each_pair&amp;lt;T, F&amp;gt;(xs: T[:]) {                     // F is a function value: a compile-time entity
+    for i in 0..xs.len - 1 { F(xs[i], xs[i + 1]); }
+}
+
+fn first_gap(xs: i64[:]) -&amp;gt; i64 {
+    each_pair(xs) { a, b =&amp;gt; if b - a &amp;gt; 1 { return a; } };   // returns from first_gap, not each_pair
+    return -1;
+}
+
+let evens = xs.filter() { it % 2 == 0 };
+let total = fold(xs, 0) { acc, x =&amp;gt; acc + x };
+sort(xs) { a, b =&amp;gt; a &amp;gt; b };
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Everything is monomorphized. Type arguments are inferred from argument types; type parameters that do not appear in those types can be supplied explicitly. Function values are passed as generic parameters. Every call of a function value is direct and can be inlined, function values cannot escape, and there are no closure objects or function pointers, so a higher-order function compiles to exactly the loop it looks like. A block may &lt;code&gt;return&lt;/code&gt; from its lexically enclosing function, and nested functions can use the enclosing function&#39;s locals.&lt;/p&gt; 
+&lt;h3&gt;Threads with no shared memory&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;thread_fn worker() {                                // a separate program with its own memory
+    loop {
+        let job = qget&amp;lt;Job&amp;gt;();                      // blocks on the typed queue for Job
+        guard job.n &amp;gt;= 0 else { break; }            // -1 means stop
+        qput(Result { n: job.n, digits: count_digits(job.n) });
+    }
+}
+
+for i in n { ids.push(thread_spawn(worker)); }
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;There is no shared mutable memory. A &lt;code&gt;thread_fn&lt;/code&gt; and everything it calls is compiled as its own program with its own data stacks and its own copies of the globals. Values are passed between threads through typed queues, one per type, and must be &lt;em&gt;flat&lt;/em&gt;, with no references at any depth. Passing them is cheap because a flat Goose value is contiguous: a job or a result can carry real data, such as pixels, and passing it is a single &lt;code&gt;memcpy&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;A failed check or &lt;code&gt;abort&lt;/code&gt; in a worker started with &lt;code&gt;thread_spawn_contained&lt;/code&gt; ends only that worker. Its message goes to whoever waits for it, not to stderr, so a supervisor can log it and start another:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;var why: u8[&amp;gt;..] = [];
+while !thread_wait(thread_spawn_contained(serve, attempt), why) {
+    log(why);                                       // &quot;assert failed (serve.goose:12)&quot;
+    why.clear();
+    attempt++;
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The first &lt;code&gt;thread_wait(id, msg)&lt;/code&gt; for a worker takes the message; a caller that doesn&#39;t ask for it loses it.&lt;/p&gt; 
+&lt;h3&gt;Compiling to and calling C&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-goose&quot;&gt;extern fn hypot(x: f64, y: f64) -&amp;gt; f64;             // straight from libm
+extern fn crc32_bytes(s: const u8[:]) -&amp;gt; u32;       // a slice crosses as { data, len }
+extern fn stats_of(xs: i32[:], out: Stats&amp;amp;);        // a struct filled through a pointer
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;An &lt;code&gt;extern fn&lt;/code&gt; binds a Goose signature to a C symbol. The &lt;code&gt;math&lt;/code&gt; and &lt;code&gt;os&lt;/code&gt; modules use this interface. Only types with supported C representations may cross the boundary; unsupported signatures are rejected at the declaration. The compiler emits one C file for the whole program. The bundled TinyCC backend can compile and run that C inside the Goose compiler&#39;s process.&lt;/p&gt; 
+&lt;h3&gt;Where the speed comes from&lt;/h3&gt; 
+&lt;p&gt;Much of the speed comes from the memory model: no heap allocation or per-object teardown, contiguous data, narrow links, and enums sized for the variant they contain. Every index is bounds-checked, and the compiler removes checks it can prove unnecessary. An &lt;code&gt;assert&lt;/code&gt; on a slice length often lets the compiler remove the remaining checks in a kernel, so that the kernel can be vectorized. &lt;code&gt;--bce-lines&lt;/code&gt; reports the checks that remain. &lt;code&gt;checkfree fn&lt;/code&gt; rejects a kernel if any bounds check remains in it; index types let graph edges keep the validation done while the graph was built. Benchmark measurements use whole-process wall-clock time, including teardown.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Geometric mean over 16 benchmarks&lt;/th&gt; 
+   &lt;th style=&quot;text-align:right&quot;&gt;vs idiomatic C++&lt;/th&gt; 
+   &lt;th style=&quot;text-align:right&quot;&gt;vs hand-optimized C++&lt;/th&gt; 
+   &lt;th style=&quot;text-align:right&quot;&gt;vs best safe Rust&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;speed, MSVC backend&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;3.51x&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;1.24x&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;1.13x&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;speed, clang backend&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;3.54x&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;1.26x&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;1.19x&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;peak memory&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;1.95x less&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;1.32x less&lt;/td&gt; 
+   &lt;td style=&quot;text-align:right&quot;&gt;1.25x less&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/summary.md&quot;&gt;summary&lt;/a&gt; explains the gains and losses; &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/results.md&quot;&gt;results.md&lt;/a&gt; has every measurement, and &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/design.md&quot;&gt;design.md&lt;/a&gt; explains what the suite tests.&lt;/p&gt; 
+&lt;h3&gt;Limitations&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;You have to think about where data lives: who owns it, and how long its scope lasts. Usually the owner is the function that builds the data, which needs no extra work; when it is not, use a &lt;code&gt;slot_pool&lt;/code&gt; or &lt;code&gt;slice_pool&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;Recursive functions cannot keep growable data across a recursive call. Scratch data must end before the call, and data that outlives the call is passed in as a pool.&lt;/li&gt; 
+ &lt;li&gt;Arrays of variable-size elements can be iterated but not indexed (unless you keep an index of references beside them). A fixed-mode enum cannot be pointed into, and a variable-mode one cannot be overwritten. You make this choice per container.&lt;/li&gt; 
+ &lt;li&gt;There are no escaping closures, no function pointers and no dynamic dispatch beyond ADT tags, and only whole-program compilation is supported.&lt;/li&gt; 
+ &lt;li&gt;A slot that was returned to a pool but is still referenced reads whatever its next owner put there. That is a logic bug, but never memory corruption.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/tutorial.md#18-limitations&quot;&gt;Tutorial §18&lt;/a&gt; is the full list.&lt;/p&gt; 
+&lt;h2&gt;Install a release&lt;/h2&gt; 
+&lt;p&gt;Prebuilt compilers for Windows (x64), Linux (x64) and macOS (Apple silicon and Intel) are on the &lt;a href=&quot;https://github.com/aardappel/goose/releases&quot;&gt;releases page&lt;/a&gt;, with the graphics, audio, ui and physics packages compiled in. Unpack one anywhere and put its directory on PATH: the compiler finds the standard library, TinyCC&#39;s runtime and the packages beside itself, and keeps what it builds under &lt;code&gt;~/.goose&lt;/code&gt; (&lt;code&gt;GOOSE_HOME&lt;/code&gt;). The archive also holds these docs, the samples and the VS Code extension.&lt;/p&gt; 
+&lt;p&gt;Running a program in-process (&lt;code&gt;goose file.goose&lt;/code&gt;) needs nothing else on Windows. On Linux it needs the C library&#39;s headers (&lt;code&gt;libc6-dev&lt;/code&gt;, or &lt;code&gt;glibc-devel&lt;/code&gt;); on macOS, the SDK of the Xcode command line tools (&lt;code&gt;xcode-select --install&lt;/code&gt;). &lt;code&gt;goose build&lt;/code&gt; also needs a C compiler: Visual Studio 2022 or later, or clang, on Windows; gcc or clang elsewhere. The Linux compiler needs glibc 2.35 or later (Ubuntu 22.04, Debian 12), and the macOS compiler needs macOS 13.3 or later. macOS keeps a downloaded archive&#39;s files from running until &lt;code&gt;xattr -dr com.apple.quarantine&lt;/code&gt; is run on the unpacked directory.&lt;/p&gt; 
+&lt;h2&gt;Build and run&lt;/h2&gt; 
+&lt;p&gt;You need CMake 3.27 or later, a C++20 compiler (MSVC, clang or gcc) and Python 3 for the test and sample runners. TinyCC, which the in-process backend is built from, is part of the tree. The graphics, audio, ui and physics modules are packages in repositories of their own (&lt;a href=&quot;https://github.com/aardappel/goose_gfx&quot;&gt;goose_gfx&lt;/a&gt; and &lt;a href=&quot;https://github.com/aardappel/goose_physics&quot;&gt;goose_physics&lt;/a&gt;; &lt;code&gt;docs/design/packages.md&lt;/code&gt;). &lt;code&gt;-DGOOSE_BUILTIN_LIBS=all&lt;/code&gt; fetches them with git at configure time, at the pinned tags, and compiles them into the compiler, so programs that use them run with nothing else installed. Without that option the compiler is built on its own, and the first time a program imports one of these packages, the package is built into &lt;code&gt;~/.goose&lt;/code&gt;, which needs git, cmake and a C compiler.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/aardappel/goose
+cd goose
+cmake -B build -DCMAKE_BUILD_TYPE=Release -DGOOSE_BUILTIN_LIBS=all
+cmake --build build --config Release
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;GOOSE_BUILTIN_LIBS&lt;/code&gt; can also name some of the packages (&lt;code&gt;physics&lt;/code&gt;, or &lt;code&gt;gfx&lt;/code&gt;, which includes &lt;code&gt;audio&lt;/code&gt; and &lt;code&gt;ui&lt;/code&gt; too). On Linux, SDL needs the X11 or Wayland development packages (&lt;a href=&quot;https://github.com/libsdl-org/SDL/raw/main/docs/README-linux.md&quot;&gt;&lt;code&gt;third_party/SDL/docs/README-linux.md&lt;/code&gt;&lt;/a&gt;); without them the build leaves the &lt;code&gt;gfx&lt;/code&gt; module out and says what to install.&lt;/p&gt; 
+&lt;p&gt;The runner scripts prefer &lt;code&gt;build/Release&lt;/code&gt;, then &lt;code&gt;build/RelWithDebInfo&lt;/code&gt;, then &lt;code&gt;build&lt;/code&gt;, then &lt;code&gt;build/Debug&lt;/code&gt;. Pass &lt;code&gt;--exe&lt;/code&gt; to select a specific compiler; use an explicit Debug executable when testing with compiler assertions enabled. The compiler is &lt;code&gt;build/goose&lt;/code&gt; (&lt;code&gt;build/Release/goose.exe&lt;/code&gt; with the Visual Studio generator), and it finds the standard library in the source tree it was built from. On Windows 10 version 1903 and later, its embedded manifest selects a UTF-8 process code page so compiler paths do not depend on the system locale. Earlier Windows versions retain their legacy code page. Generated native executables retain their own process settings.&lt;/p&gt; 
+&lt;p&gt;Run a program directly from source, in-process, with no C compiler and no build step (&lt;code&gt;goose run&lt;/code&gt; is the explicit form of the same command):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;build/goose samples/01_tour.goose
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or build an executable, which is written beside the source. The compiler finds a C compiler on the machine (&lt;code&gt;goose toolchain&lt;/code&gt; shows which one) and links the generated C with the runtime and any native modules the program uses, including graphics. Programs that use threads must be built this way, since TinyCC cannot place thread-local storage.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;build/goose build samples/01_tour.goose &amp;amp;&amp;amp; samples/01_tour
+build/goose build samples/27_gfx_cube.goose &amp;amp;&amp;amp; samples/27_gfx_cube
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;goose check&lt;/code&gt; only typechecks. &lt;code&gt;--debug&lt;/code&gt; turns on the overflow, range and tag checks, each of which names its source line when it fails, and &lt;code&gt;--bce-lines&lt;/code&gt; reports the bounds checks that remain on each line. Every resizable value lives on a data stack of 2 GB of reserved address space, committed as it is used, and &lt;code&gt;--stack-reserve 16G&lt;/code&gt; changes that size. &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/command_line.md&quot;&gt;The command line&lt;/a&gt; describes every command and option, including how to write the C for a build system or a C host of your own (&lt;code&gt;goose -o tour.c tour.goose&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;A program with C of its own lists that C in a sidecar file beside the source, &lt;code&gt;foo.build&lt;/code&gt; beside &lt;code&gt;foo.goose&lt;/code&gt;: &lt;code&gt;c_sources = [&quot;impl.c&quot;];&lt;/code&gt;. Both forms build that C, so an &lt;code&gt;extern fn&lt;/code&gt; can call it either way. A program uses a library by writing &lt;code&gt;import name from &quot;source&quot;;&lt;/code&gt; in its root file. The source is a directory (&lt;code&gt;&quot;./lib&quot;&lt;/code&gt;), or a git repository at a tag or commit (&lt;code&gt;&quot;owner/repo@v1&quot;&lt;/code&gt; on GitHub, &lt;code&gt;&quot;host/owner/repo@ref&quot;&lt;/code&gt;), which is fetched into &lt;code&gt;~/.goose&lt;/code&gt; and built there once per C compiler (&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/packages.md&quot;&gt;packages&lt;/a&gt;).&lt;/p&gt; 
+&lt;p&gt;A program using &lt;code&gt;audio&lt;/code&gt; plays procedural mono/stereo PCM through SDL3 without opening a graphics window. See the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/stdlib.md#audio&quot;&gt;audio reference&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The test suite and the samples run on Windows, macOS and Linux:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;python test/run_tests.py
+python samples/run_samples.py
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For editing, the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/vscode/README.md&quot;&gt;VS Code extension&lt;/a&gt; gives syntax highlighting, the compiler&#39;s language server (&lt;code&gt;goose lsp&lt;/code&gt;: errors as you type, hover, go to definition, completion, rename, symbols) and one-key runs through the JIT:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;code --install-extension vscode/goose-language.vsix
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Other editors can run &lt;code&gt;goose lsp&lt;/code&gt; themselves; &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/editors.md&quot;&gt;editors&lt;/a&gt; has the configuration for Neovim, Helix and Emacs.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/index.md&quot;&gt;Documentation index&lt;/a&gt;: the map of everything below, and the root of the documentation site built from these files (&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/site/README.md&quot;&gt;how&lt;/a&gt;).&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/tutorial.md&quot;&gt;Tutorial&lt;/a&gt;: the friendly introduction, by example. Read this first.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/reference.md&quot;&gt;Language reference&lt;/a&gt;: every feature, topic by topic, with a compiling example for each. It covers the whole language and is written to be read.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/goose_spec.md&quot;&gt;Language specification&lt;/a&gt;: the exact rules, when you want to know why something did not compile.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/samples/README.md&quot;&gt;Samples&lt;/a&gt;: thirty-one complete programs in reading order, from a tour of the language to a JSON parser, a threaded Mandelbrot, a file tree built from two pools, a spinning cube on the GPU, thousands of boxes raining into a heap and a to-do list in windows of widgets.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/stdlib.md&quot;&gt;Standard library&lt;/a&gt;: fourteen modules, all written in readable Goose under &lt;code&gt;stdlib/&lt;/code&gt;. They include &lt;code&gt;gfx&lt;/code&gt; for graphics on SDL3&#39;s GPU API (&lt;a href=&quot;https://github.com/aardappel/goose_gfx/raw/main/docs/gfx.md&quot;&gt;how it is built&lt;/a&gt;) and &lt;code&gt;physics&lt;/code&gt; for rigid body physics on Box3D (&lt;a href=&quot;https://github.com/aardappel/goose_physics/raw/main/docs/physics.md&quot;&gt;how it is built&lt;/a&gt;). The &lt;code&gt;ui&lt;/code&gt; module provides fonts, &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/stdlib.md#text-rendering-and-game-huds&quot;&gt;text rendering and game HUDs&lt;/a&gt;. It also provides windows and widgets on Nuklear, drawn through gfx (&lt;a href=&quot;https://github.com/aardappel/goose_gfx/raw/main/docs/ui.md&quot;&gt;how it is built&lt;/a&gt;).&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/command_line.md&quot;&gt;The command line&lt;/a&gt;: every command and option of &lt;code&gt;goose&lt;/code&gt;, from running and building to writing the C yourself, the formatter and the language server.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/packages.md&quot;&gt;Building programs and using packages&lt;/a&gt;: libraries from git repositories or directories, a program&#39;s own C, and how to make a package of your own.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/summary.md&quot;&gt;Benchmarks&lt;/a&gt;: the numbers, with the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/results.md&quot;&gt;full results&lt;/a&gt; and the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/bench/design.md&quot;&gt;design&lt;/a&gt; behind them.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/implementation.md&quot;&gt;Implementation notes&lt;/a&gt;: how the compiler works, pass by pass, and &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/testing.md&quot;&gt;how it is tested&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Status&lt;/h2&gt; 
+&lt;p&gt;Goose is new. What exists today is a whole-program compiler of about thirty thousand lines of C++, the specification, the standard library, the samples, and a test suite that CI runs on Windows, macOS and Linux with an extra sanitizer job. These are deliberately out of scope for now: moves for resizable values, more than one resizable per struct, labeled &lt;code&gt;break&lt;/code&gt;, namespace privacy, and more OS/library access. Open items are tracked in the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/docs/goose_spec.md#appendix-b-todo--open-items&quot;&gt;specification&#39;s Appendix B&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Goose is licensed under the &lt;a href=&quot;https://raw.githubusercontent.com/aardappel/goose/master/LICENSE&quot;&gt;Apache License, Version 2.0&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Authors&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Wouter van Oortmerssen&lt;/strong&gt;: Language Design, Compiler Design, Coding standards. &lt;a href=&quot;https://strlen.com/&quot;&gt;home&lt;/a&gt; page, &lt;a href=&quot;https://x.com/wvo&quot;&gt;twitter&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Claude Fable&lt;/strong&gt;: Compiler implementation, Benchmarking, Sample &amp;amp; Doc writing.&lt;/p&gt; 
+&lt;h2&gt;History &amp;amp; Use of AI&lt;/h2&gt; 
+&lt;p&gt;This repo was produced almost entirely with AI, from a human language design. I had designed Goose several years ago, and had started to implement it, but running a game startup (which is built on another programming language of mine, &lt;a href=&quot;https://strlen.com/lobster/&quot;&gt;Lobster&lt;/a&gt;) there was no time to finish it. Which was sad, because I knew Goose could do things other languages can&#39;t, and it should exist.&lt;/p&gt; 
+&lt;p&gt;I had not expected AI to help with this until Fable came out. I thought it might be capable enough to do a good job. I made it essentially clone the style and structure of my other recent compiler (Lobster), which is why if you look at the code, it looks rather similar to that. My initial design had left lots of things unspecified, and lots of back and forth with Fable made me decide on all of those, and it is now a better language for it.&lt;/p&gt; 
+&lt;p&gt;It is also an experiment in using AI to implement a new language, rather than reproduce an existing one.&lt;/p&gt; 
+&lt;p&gt;You may wonder why I had it work in C++, if clearly I could have used any language, like Rust, or my own Lobster, or.. Goose itself (that may still happen). With Fable, it was my observation that it is almost equally capable in any language, and the strong guardrails of Rust or other languages are not as pressing as they once were. Since the compiler emits C, you likely already need to have a C/C++ compiler around, so sticking inside one ecosystem would seem to simplify deployment and adoption. I&#39;ve also integrated libtcc and who knows what other C libraries in the future. And, like I said, to have the compiler code mimic my existing Lobster compiler seemed fun, at least I can read it like it is my own.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/39bb527d6014a25d7f33c4ca393aa910b9795e13de688ebeba0c09320a7a0594/aardappel/goose" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>geode-sdk/geode</title>
+      <link>https://github.com/geode-sdk/geode</link>
+      <description>&lt;p&gt;The ultimate Geometry Dash modding framework&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://geode-sdk.org/&quot;&gt;https://geode-sdk.org/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/geode-sdk/geode/main/title.png&quot; /&gt; &lt;/p&gt;
+&lt;h3 align=&quot;center&quot;&gt; &lt;a href=&quot;https://geode-sdk.org&quot;&gt;Home page&lt;/a&gt; &lt;/h3&gt; 
+&lt;p&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt;&lt;b&gt;Geode&lt;/b&gt; is a &lt;a href=&quot;https://store.steampowered.com/app/322170/Geometry_Dash/&quot;&gt;Geometry Dash&lt;/a&gt; &lt;b&gt;mod loader&lt;/b&gt; and &lt;b&gt;modding SDK&lt;/b&gt; with a modern approach towards mod development.&lt;/p&gt; 
+&lt;h2&gt;Why Geode?&lt;/h2&gt; 
+&lt;p&gt;Unlike previous mod loaders, which merely inject the DLLs and let devs handle the rest, Geode aims to be a more comprehensive project that provides all the tools needed for creating mods in one package.&lt;/p&gt; 
+&lt;p&gt;Geode&#39;s goal is to solve &lt;strong&gt;mod incompatibility&lt;/strong&gt; - to ensure that mods work together without buttons getting misplaced or hooks mysteriously disappearing.&lt;/p&gt; 
+&lt;h2&gt;&quot;Hello World!&quot; Example&lt;/h2&gt; 
+&lt;p&gt;Here&#39;s a &lt;strong&gt;Hello World&lt;/strong&gt; mod in Geode:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;#include &amp;lt;Geode/Bindings.hpp&amp;gt;
+#include &amp;lt;Geode/modify/MenuLayer.hpp&amp;gt;
+
+using namespace geode::prelude;
+
+class $modify(MenuLayer) {
+	void onMoreGames(CCObject*) {
+		FLAlertLayer::create(
+			&quot;Geode&quot;,
+			&quot;Hello World from my Custom Mod!&quot;,
+			&quot;OK&quot;
+		)-&amp;gt;show();
+	}
+};
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This code modifies what happens when the &quot;More Games&quot; button is clicked on the home scene in Geometry Dash, showing a custom popup.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Detailed documentation, tutorials, and installation instructions on using Geode can be found &lt;a href=&quot;https://docs.geode-sdk.org&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;New to modding GD? Geode&#39;s documentation also comes with a handy &lt;a href=&quot;https://docs.geode-sdk.org/#/handbook/chap0&quot;&gt;tutorial book&lt;/a&gt; that explains all the basics of GD modding!&lt;/p&gt; 
+&lt;h2&gt;Contribution&lt;/h2&gt; 
+&lt;p&gt;You can contribute to Geode by opening a &lt;a href=&quot;https://github.com/geode-sdk/geode/pulls&quot;&gt;Pull Request&lt;/a&gt;! Please follow the contribution guidelines.&lt;/p&gt; 
+&lt;h2&gt;Questions, help, etc.&lt;/h2&gt; 
+&lt;p&gt;If you have any further questions, need help, or just want to share your love for catgirls, be sure to join &lt;a href=&quot;https://discord.gg/9e43WMKzhp&quot;&gt;our Discord server&lt;/a&gt;!&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/449738859/a877409c-2584-4448-abba-b2975a958a29" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>duckdb/duckdb</title>
+      <link>https://github.com/duckdb/duckdb</link>
+      <description>&lt;p&gt;DuckDB is a high-performance analytical database system&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;http://www.duckdb.org&quot;&gt;http://www.duckdb.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://duckdb.org/images/designmanual/DuckDB_inline-lightmode.svg&quot; /&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://duckdb.org/images/designmanual/DuckDB_inline-darkmode.svg&quot; /&gt; 
+  &lt;img alt=&quot;DuckDB logo&quot; src=&quot;https://duckdb.org/images/designmanual/DuckDB_inline-lightmode.svg?sanitize=true&quot; height=&quot;100&quot; /&gt; 
+ &lt;/picture&gt; 
+&lt;/div&gt; 
+&lt;br /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/duckdb/duckdb/actions&quot;&gt;&lt;img src=&quot;https://github.com/duckdb/duckdb/actions/workflows/Main.yml/badge.svg?branch=main&quot; alt=&quot;Github Actions Badge&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/tcvwpjfnZx&quot;&gt;&lt;img src=&quot;https://shields.io/discord/909674491309850675&quot; alt=&quot;discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/duckdb/duckdb/releases/&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/duckdb/duckdb?color=brightgreen&amp;amp;display_name=tag&amp;amp;logo=duckdb&amp;amp;logoColor=white&quot; alt=&quot;Latest Release&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;h2&gt;DuckDB&lt;/h2&gt; 
+&lt;p&gt;DuckDB is a high-performance analytical database system. It is designed to be fast, reliable, portable, and easy to use. DuckDB runs in-process inside your application, so there is no separate server to manage and no external dependencies. It can also read remote files, query other databases, and connect to other DuckDB instances when needed. It provides a rich SQL dialect with support far beyond basic SQL: arbitrary and nested correlated subqueries, window functions, collations, and complex types (arrays, structs, maps). Its &lt;a href=&quot;https://duckdb.org/docs/current/sql/dialect/friendly_sql.html&quot;&gt;friendly SQL&lt;/a&gt; extensions add syntax that makes queries shorter and easier to write.&lt;/p&gt; 
+&lt;p&gt;DuckDB is available as a &lt;a href=&quot;https://duckdb.org/docs/current/clients/cli/overview&quot;&gt;standalone CLI application&lt;/a&gt; and has clients for &lt;a href=&quot;https://duckdb.org/docs/current/clients/python/overview&quot;&gt;Python&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/clients/r&quot;&gt;R&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/clients/java&quot;&gt;Java&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/clients/rust&quot;&gt;Rust&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/clients/go&quot;&gt;Go&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/clients/wasm/overview&quot;&gt;Wasm&lt;/a&gt;, and &lt;a href=&quot;https://duckdb.org/docs/current/clients/overview&quot;&gt;many more&lt;/a&gt;, with deep integrations with packages such as &lt;a href=&quot;https://duckdb.org/docs/current/guides/python/sql_on_pandas&quot;&gt;pandas&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For more information on using DuckDB, please refer to the &lt;a href=&quot;https://duckdb.org/docs/current/&quot;&gt;DuckDB documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Reads and writes any data&lt;/h2&gt; 
+&lt;p&gt;DuckDB reads and writes a wide range of file formats, including &lt;a href=&quot;https://duckdb.org/docs/current/data/csv/overview&quot;&gt;CSV&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/data/parquet/overview&quot;&gt;Parquet&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/data/json/overview&quot;&gt;JSON&lt;/a&gt;, and &lt;a href=&quot;https://duckdb.org/docs/current/core_extensions/excel&quot;&gt;Excel&lt;/a&gt;, directly from local disk or from remote endpoints such as S3, HTTP(S), Azure, and Google Cloud Storage. For many of these formats, including CSV, Parquet, and JSON, loading data is as simple as referencing the file in the FROM clause:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sql&quot;&gt;SELECT * FROM &#39;myfile.csv&#39;;
+SELECT * FROM &#39;myfile.parquet&#39;;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;DuckDB also works with open lakehouse formats. &lt;a href=&quot;https://ducklake.select/&quot;&gt;DuckLake&lt;/a&gt; stores table metadata in a SQL database rather than in metadata files, which removes the need for a separate catalog server while still providing ACID transactions, snapshots, and time travel. DuckDB also supports the &lt;a href=&quot;https://duckdb.org/docs/current/core_extensions/iceberg/overview&quot;&gt;Apache Iceberg&lt;/a&gt; and &lt;a href=&quot;https://duckdb.org/docs/current/core_extensions/delta&quot;&gt;Delta Lake&lt;/a&gt; formats. Refer to our &lt;a href=&quot;https://duckdb.org/docs/current/data/overview&quot;&gt;Data Import&lt;/a&gt; section for more information.&lt;/p&gt; 
+&lt;h2&gt;Connects to other databases&lt;/h2&gt; 
+&lt;p&gt;DuckDB can attach to other database systems and query them in place, so you can read, join, and move data across engines without a separate ETL step. It speaks the native protocols of &lt;a href=&quot;https://duckdb.org/docs/current/core_extensions/postgres/overview&quot;&gt;PostgreSQL&lt;/a&gt;, &lt;a href=&quot;https://duckdb.org/docs/current/core_extensions/mysql&quot;&gt;MySQL&lt;/a&gt;, and &lt;a href=&quot;https://duckdb.org/docs/current/core_extensions/sqlite&quot;&gt;SQLite&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;DuckDB instances can also connect to each other over the &lt;a href=&quot;https://duckdb.org/docs/current/quack/overview&quot;&gt;quack protocol&lt;/a&gt;, which turns a DuckDB instance into a server that other DuckDB clients attach to over HTTP.&lt;/p&gt; 
+&lt;h2&gt;Extensible&lt;/h2&gt; 
+&lt;p&gt;DuckDB has a modular &lt;a href=&quot;https://duckdb.org/docs/current/extensions/overview&quot;&gt;extension mechanism&lt;/a&gt;: core extensions are bundled with DuckDB, while community and third-party extensions can be installed and loaded at runtime. Extensions add file formats, database connectors, and new functions, types, and more.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;If you want to install DuckDB, please see &lt;a href=&quot;https://duckdb.org/docs/installation/&quot;&gt;our installation page&lt;/a&gt; for instructions.&lt;/p&gt; 
+&lt;h2&gt;SQL Reference&lt;/h2&gt; 
+&lt;p&gt;The documentation contains a &lt;a href=&quot;https://duckdb.org/docs/current/sql/introduction&quot;&gt;SQL introduction and reference&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Development&lt;/h2&gt; 
+&lt;p&gt;For development, DuckDB requires &lt;a href=&quot;https://cmake.org&quot;&gt;CMake&lt;/a&gt;, Python 3 and a &lt;code&gt;C++17&lt;/code&gt; compliant compiler. In the root directory, run &lt;code&gt;make&lt;/code&gt; to compile the sources. For development, use &lt;code&gt;make debug&lt;/code&gt; to build a non-optimized debug version. You should run &lt;code&gt;make unit&lt;/code&gt; and &lt;code&gt;make allunit&lt;/code&gt; to verify that your version works properly after making changes. To test performance, you can run &lt;code&gt;BUILD_BENCHMARK=1 BUILD_TPCH=1 make&lt;/code&gt; and then perform several standard benchmarks from the root directory by executing &lt;code&gt;./build/release/benchmark/benchmark_runner&lt;/code&gt;. The details of benchmarks are in our &lt;a href=&quot;https://raw.githubusercontent.com/duckdb/duckdb/main/benchmark/README.md&quot;&gt;Benchmark Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Please also refer to our &lt;a href=&quot;https://duckdb.org/docs/current/dev/building/overview&quot;&gt;Build Guide&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/duckdb/duckdb/main/CONTRIBUTING.md&quot;&gt;Contribution Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Support&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://ducklabs.com/support/&quot;&gt;Support Options&lt;/a&gt; page and the dedicated &lt;a href=&quot;https://endoflife.date/duckdb&quot;&gt;&lt;code&gt;endoflife.date&lt;/code&gt;&lt;/a&gt; page.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/138754790/fdc92700-357b-11eb-9761-54b3c051137c" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>godotengine/godot</title>
+      <link>https://github.com/godotengine/godot</link>
+      <description>&lt;p&gt;Godot Engine – Multi-platform 2D and 3D game engine&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://godotengine.org&quot;&gt;https://godotengine.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Godot Engine&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://godotengine.org&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/godotengine/godot/master/misc/logo/logo_outlined.svg?sanitize=true&quot; width=&quot;400&quot; alt=&quot;Godot Engine logo&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;h2&gt;2D and 3D cross-platform game engine&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;&lt;a href=&quot;https://godotengine.org&quot;&gt;Godot Engine&lt;/a&gt; is a feature-packed, cross-platform game engine to create 2D and 3D games from a unified interface.&lt;/strong&gt; It provides a comprehensive set of &lt;a href=&quot;https://godotengine.org/features&quot;&gt;common tools&lt;/a&gt;, so that users can focus on making games without having to reinvent the wheel. Games can be exported with one click to a number of platforms, including the major desktop platforms (Linux, macOS, Windows), mobile platforms (Android, iOS), as well as Web-based platforms and &lt;a href=&quot;https://godotengine.org/consoles&quot;&gt;consoles&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Free, open source and community-driven&lt;/h2&gt; 
+&lt;p&gt;Godot is completely free and open source under the very permissive &lt;a href=&quot;https://godotengine.org/license&quot;&gt;MIT license&lt;/a&gt;. No strings attached, no royalties, nothing. The users&#39; games are theirs, down to the last line of engine code. Godot&#39;s development is fully independent and community-driven, empowering users to help shape their engine to match their expectations. It is supported by the &lt;a href=&quot;https://godot.foundation/&quot;&gt;Godot Foundation&lt;/a&gt; not-for-profit.&lt;/p&gt; 
+&lt;p&gt;Before being open sourced in &lt;a href=&quot;https://github.com/godotengine/godot/commit/0b806ee0fc9097fa7bda7ac0109191c9c5e0a1ac&quot;&gt;February 2014&lt;/a&gt;, Godot had been developed by &lt;a href=&quot;https://github.com/reduz&quot;&gt;Juan Linietsky&lt;/a&gt; and &lt;a href=&quot;https://github.com/punto-&quot;&gt;Ariel Manzur&lt;/a&gt; for several years as an in-house engine, used to publish several work-for-hire titles.&lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/godotengine/godot-design/master/screenshots/editor_tps_demo_1920x1080.jpg&quot; alt=&quot;Screenshot of a 3D scene in the Godot Engine editor&quot; /&gt;&lt;/p&gt; 
+&lt;h2&gt;Getting the engine&lt;/h2&gt; 
+&lt;h3&gt;Binary downloads&lt;/h3&gt; 
+&lt;p&gt;Official binaries for the Godot editor and the export templates can be found &lt;a href=&quot;https://godotengine.org/download&quot;&gt;on the Godot website&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;Compiling from source&lt;/h3&gt; 
+&lt;p&gt;&lt;a href=&quot;https://docs.godotengine.org/en/latest/engine_details/development/compiling&quot;&gt;See the official docs&lt;/a&gt; for compilation instructions for every supported platform.&lt;/p&gt; 
+&lt;h2&gt;Community and contributing&lt;/h2&gt; 
+&lt;p&gt;Godot is not only an engine but an ever-growing community of users and engine developers. The main community channels are listed &lt;a href=&quot;https://godotengine.org/community&quot;&gt;on the homepage&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The best way to get in touch with the core engine developers is to join the &lt;a href=&quot;https://chat.godotengine.org&quot;&gt;Godot Contributors Chat&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To get started contributing to the project, see the &lt;a href=&quot;https://raw.githubusercontent.com/godotengine/godot/master/CONTRIBUTING.md&quot;&gt;contributing guide&lt;/a&gt;. This document also includes guidelines for reporting bugs.&lt;/p&gt; 
+&lt;h2&gt;Documentation and demos&lt;/h2&gt; 
+&lt;p&gt;The official documentation is hosted on &lt;a href=&quot;https://docs.godotengine.org&quot;&gt;Read the Docs&lt;/a&gt;. It is maintained by the Godot community in its own &lt;a href=&quot;https://github.com/godotengine/godot-docs&quot;&gt;GitHub repository&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://docs.godotengine.org/en/latest/classes/&quot;&gt;class reference&lt;/a&gt; is also accessible from the Godot editor.&lt;/p&gt; 
+&lt;p&gt;We also maintain official demos in their own &lt;a href=&quot;https://github.com/godotengine/godot-demo-projects&quot;&gt;GitHub repository&lt;/a&gt; as well as the &lt;a href=&quot;https://store.godotengine.org/&quot;&gt;Asset Store&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;There are also a number of other &lt;a href=&quot;https://docs.godotengine.org/en/latest/community/tutorials.html&quot;&gt;learning resources&lt;/a&gt; provided by the community, such as text and video tutorials, demos, etc. Consult the &lt;a href=&quot;https://godotengine.org/community&quot;&gt;community channels&lt;/a&gt; for more information.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.codetriage.com/godotengine/godot&quot;&gt;&lt;img src=&quot;https://www.codetriage.com/godotengine/godot/badges/users.svg?sanitize=true&quot; alt=&quot;Code Triagers Badge&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hosted.weblate.org/engage/godot-engine/?utm_source=widget&quot;&gt;&lt;img src=&quot;https://hosted.weblate.org/widgets/godot-engine/-/godot/svg-badge.svg?sanitize=true&quot; alt=&quot;Translate on Weblate&quot; /&gt;&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a991c0d479cb0b257a08dbbbe3d63c7894f4e76b30be3383192b34d6c240bd34/godotengine/godot" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>electron/electron</title>
+      <link>https://github.com/electron/electron</link>
+      <description>&lt;p&gt;Build cross-platform desktop apps with JavaScript, HTML, and CSS&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://electronjs.org&quot;&gt;https://electronjs.org&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://electronjs.org&quot;&gt;&lt;img src=&quot;https://electronjs.org/images/electron-logo.svg?sanitize=true&quot; alt=&quot;Electron Logo&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/electron/electron/actions/workflows/build.yml&quot;&gt;&lt;img src=&quot;https://github.com/electron/electron/actions/workflows/build.yml/badge.svg?sanitize=true&quot; alt=&quot;GitHub Actions Build Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;📝 Available Translations: 🇨🇳 🇧🇷 🇪🇸 🇯🇵 🇷🇺 🇫🇷 🇺🇸 🇩🇪. View these docs in other languages on our &lt;a href=&quot;https://crowdin.com/project/electron&quot;&gt;Crowdin&lt;/a&gt; project.&lt;/p&gt; 
+&lt;p&gt;The Electron framework lets you write cross-platform desktop applications using JavaScript, HTML and CSS. It is based on &lt;a href=&quot;https://nodejs.org/&quot;&gt;Node.js&lt;/a&gt; and &lt;a href=&quot;https://www.chromium.org&quot;&gt;Chromium&lt;/a&gt; and is used by the &lt;a href=&quot;https://github.com/Microsoft/vscode/&quot;&gt;Visual Studio Code&lt;/a&gt; and many other &lt;a href=&quot;https://electronjs.org/apps&quot;&gt;apps&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Follow &lt;a href=&quot;https://twitter.com/electronjs&quot;&gt;@electronjs&lt;/a&gt; on Twitter for important announcements.&lt;/p&gt; 
+&lt;p&gt;This project adheres to the Contributor Covenant &lt;a href=&quot;https://github.com/electron/electron/tree/main/CODE_OF_CONDUCT.md&quot;&gt;code of conduct&lt;/a&gt;. By participating, you are expected to uphold this code. Please report unacceptable behavior to &lt;a href=&quot;mailto:coc@electronjs.org&quot;&gt;coc@electronjs.org&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;To install prebuilt Electron binaries, use &lt;a href=&quot;https://docs.npmjs.com/&quot;&gt;&lt;code&gt;npm&lt;/code&gt;&lt;/a&gt;. The preferred method is to install Electron as a development dependency in your app:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;npm install electron --save-dev
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For more installation options and troubleshooting tips, see &lt;a href=&quot;https://raw.githubusercontent.com/electron/electron/main/docs/tutorial/installation.md&quot;&gt;installation&lt;/a&gt;. For info on how to manage Electron versions in your apps, see &lt;a href=&quot;https://raw.githubusercontent.com/electron/electron/main/docs/tutorial/electron-versioning.md&quot;&gt;Electron versioning&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Platform support&lt;/h2&gt; 
+&lt;p&gt;Each Electron release provides binaries for macOS, Windows, and Linux.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;macOS (Ventura and up): Electron provides 64-bit Intel and Apple Silicon / ARM binaries for macOS.&lt;/li&gt; 
+ &lt;li&gt;Windows (Windows 10 and up): Electron provides &lt;code&gt;x64&lt;/code&gt; (&lt;code&gt;amd64&lt;/code&gt;) and &lt;code&gt;arm64&lt;/code&gt; binaries for Windows.&lt;/li&gt; 
+ &lt;li&gt;Linux: Electron provides &lt;code&gt;x64&lt;/code&gt; (&lt;code&gt;amd64&lt;/code&gt;) and &lt;code&gt;arm64&lt;/code&gt; binaries for Linux. Electron supports major Linux distributions (e.g., Ubuntu, Fedora, Debian) in versions that are still supported by both Chromium and the distro maker (without requiring a paid subscription). The prebuilt binaries are built on Ubuntu.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;In general, Electron tries to &lt;a href=&quot;https://support.google.com/chrome/answer/95346&quot;&gt;align with Chromium on platform support&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Electron Fiddle&lt;/h2&gt; 
+&lt;p&gt;Use &lt;a href=&quot;https://github.com/electron/fiddle&quot;&gt;&lt;code&gt;Electron Fiddle&lt;/code&gt;&lt;/a&gt; to build, run, and package small Electron experiments, to see code examples for all of Electron&#39;s APIs, and to try out different versions of Electron. It&#39;s designed to make the start of your journey with Electron easier.&lt;/p&gt; 
+&lt;h2&gt;Resources for learning Electron&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://electronjs.org/docs&quot;&gt;electronjs.org/docs&lt;/a&gt; - All of Electron&#39;s documentation&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/electron/fiddle&quot;&gt;electron/fiddle&lt;/a&gt; - A tool to build, run, and package small Electron experiments&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Programmatic usage&lt;/h2&gt; 
+&lt;p&gt;Most people use Electron from the command line, but if you require &lt;code&gt;electron&lt;/code&gt; inside your &lt;strong&gt;Node app&lt;/strong&gt; (not your Electron app) it will return the file path to the binary. Use this to spawn Electron from Node scripts:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-javascript&quot;&gt;const electron = require(&#39;electron&#39;)
+const proc = require(&#39;node:child_process&#39;)
+
+// will print something similar to /Users/maf/.../Electron
+console.log(electron)
+
+// spawn Electron
+const child = proc.spawn(electron)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Mirrors&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://npmmirror.com/mirrors/electron/&quot;&gt;China&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://www.electronjs.org/docs/latest/tutorial/installation#mirror&quot;&gt;Advanced Installation Instructions&lt;/a&gt; to learn how to use a custom mirror.&lt;/p&gt; 
+&lt;h2&gt;Documentation translations&lt;/h2&gt; 
+&lt;p&gt;We crowdsource translations for our documentation via &lt;a href=&quot;https://crowdin.com/project/electron&quot;&gt;Crowdin&lt;/a&gt;. We currently accept translations for Chinese (Simplified), French, German, Japanese, Portuguese, Russian, and Spanish.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you are interested in reporting/fixing issues and contributing directly to the code base, please see &lt;a href=&quot;https://raw.githubusercontent.com/electron/electron/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; for more information on what we&#39;re looking for and how to get started.&lt;/p&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;p&gt;Info on reporting bugs, getting help, finding third-party tools and sample apps, and more can be found on the &lt;a href=&quot;https://www.electronjs.org/community&quot;&gt;Community page&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/electron/electron/raw/main/LICENSE&quot;&gt;MIT&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;When using Electron logos, make sure to follow &lt;a href=&quot;https://trademark-policy.openjsf.org/&quot;&gt;OpenJS Foundation Trademark Policy&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/ec342651a9084e4e6c4a6e8e12840a3084776cdecbe4e00599e654cce2aac4c5/electron/electron" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>Fincept-Corporation/FinceptTerminal</title>
+      <link>https://github.com/Fincept-Corporation/FinceptTerminal</link>
+      <description>&lt;p&gt;FinceptTerminal is a modern finance application offering advanced market analytics, investment research, and economic data tools, designed for interactive exploration and data-driven decision-making in a user-friendly environment.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://fincept.in&quot;&gt;https://fincept.in&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div class=&quot;markdown-alert markdown-alert-important&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-report mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Important&lt;/p&gt;
+ &lt;p&gt;&lt;/p&gt; 
+ &lt;h2&gt;🔒 Fincept Terminal &lt;strong&gt;Enterprise&lt;/strong&gt; — the private edition is now available.&lt;/h2&gt; 
+ &lt;p&gt;RealTime data · Multi-agent AI research · Live broker, Backtest &amp;amp; Algo execution · Priority support · Equity Research · Portfolio Management · Financial Workflows · Quant Research Lab · Maritime · Geopolitics&lt;/p&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th style=&quot;text-align:left&quot;&gt;Plan&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;Price&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Exclusive&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;$15&lt;/strong&gt; /user/mo&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Exclusive+&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;$30&lt;/strong&gt; /user/mo&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Exclusive Pro&lt;/strong&gt; ⭐ Most popular&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;$45&lt;/strong&gt; /user/mo&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://fincept.in/enterprise/signup&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Get_Enterprise_%E2%86%92-C06524?style=for-the-badge&quot; alt=&quot;Get Enterprise&quot; /&gt;&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://fincept.in/pricing&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Compare_plans-1F2328?style=for-the-badge&quot; alt=&quot;Compare plans&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;sub&gt;No annual lock-in, cancel anytime · This open-source repo stays free under AGPL-3.0&lt;/sub&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-tip&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-light-bulb mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M8 1.5c-2.363 0-4 1.69-4 3.75 0 .984.424 1.625.984 2.304l.214.253c.223.264.47.556.673.848.284.411.537.896.621 1.49a.75.75 0 0 1-1.484.211c-.04-.282-.163-.547-.37-.847a8.456 8.456 0 0 0-.542-.68c-.084-.1-.173-.205-.268-.32C3.201 7.75 2.5 6.766 2.5 5.25 2.5 2.31 4.863 0 8 0s5.5 2.31 5.5 5.25c0 1.516-.701 2.5-1.328 3.259-.095.115-.184.22-.268.319-.207.245-.383.453-.541.681-.208.3-.33.565-.37.847a.751.751 0 0 1-1.485-.212c.084-.593.337-1.078.621-1.489.203-.292.45-.584.673-.848.075-.088.147-.173.213-.253.561-.679.985-1.32.985-2.304 0-2.06-1.637-3.75-4-3.75ZM5.75 12h4.5a.75.75 0 0 1 0 1.5h-4.5a.75.75 0 0 1 0-1.5ZM6 15.25a.75.75 0 0 1 .75-.75h2.5a.75.75 0 0 1 0 1.5h-2.5a.75.75 0 0 1-.75-.75Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Tip&lt;/p&gt;
+ &lt;p&gt;&lt;/p&gt; 
+ &lt;h2&gt;Quantcept — the AI research desk that never closes.&lt;/h2&gt; 
+ &lt;p&gt;Markets · Backtests · Portfolios · Watchlists · Memory — 800+ primary data sources, running around the clock.&lt;/p&gt; 
+ &lt;table&gt; 
+  &lt;thead&gt; 
+   &lt;tr&gt; 
+    &lt;th style=&quot;text-align:left&quot;&gt;Plan&lt;/th&gt; 
+    &lt;th style=&quot;text-align:center&quot;&gt;Price&lt;/th&gt; 
+   &lt;/tr&gt; 
+  &lt;/thead&gt; 
+  &lt;tbody&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Free&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;$0&lt;/strong&gt; · 350 credits, no card&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Alpha&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;$3&lt;/strong&gt; / 30 days&lt;/td&gt; 
+   &lt;/tr&gt; 
+   &lt;tr&gt; 
+    &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Apex&lt;/strong&gt;&lt;/td&gt; 
+    &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;$8&lt;/strong&gt; / 30 days&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt; 
+ &lt;/table&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://quantcept.io/register&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Start_free_%E2%86%92-0E7490?style=for-the-badge&quot; alt=&quot;Start free&quot; /&gt;&lt;/a&gt; &amp;nbsp; &lt;a href=&quot;https://quantcept.io&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/See_the_desk-1F2328?style=for-the-badge&quot; alt=&quot;See the desk&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;sub&gt;30-day passes — nothing auto-renews · Students: Apex for $5 · Free to start at &lt;a href=&quot;https://quantcept.io&quot;&gt;quantcept.io&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;h1&gt;Fincept Terminal&lt;/h1&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/raw/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-AGPL--3.0-C06524&quot; alt=&quot;License: AGPL-3.0&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://isocpp.org/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/C%2B%2B-20-00599C?logo=cplusplus&quot; alt=&quot;C++20&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.qt.io/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Qt-6-41CD52?logo=qt&amp;amp;logoColor=white&quot; alt=&quot;Qt6&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.python.org/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Python-3.11+-3776AB?logo=python&amp;amp;logoColor=white&quot; alt=&quot;Python&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal/&quot;&gt;&lt;img src=&quot;https://hits.sh/github.com/Fincept-Corporation/FinceptTerminal.svg?label=Visits&quot; alt=&quot;Hits&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://trendshift.io/repositories/17028&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://trendshift.io/api/badge/repositories/17028&quot; alt=&quot;Fincept-Corporation%2FFinceptTerminal | Trendshift&quot; style=&quot;width: 250px; height: 55px;&quot; width=&quot;250&quot; height=&quot;55&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/Fincept-Corporation/FinceptTerminal?style=social&quot; alt=&quot;GitHub Stars&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/network/members&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/forks/Fincept-Corporation/FinceptTerminal?style=social&quot; alt=&quot;GitHub Forks&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/watchers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/watchers/Fincept-Corporation/FinceptTerminal?style=social&quot; alt=&quot;GitHub Watchers&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/Fincept-Corporation/FinceptTerminal?color=brightgreen&amp;amp;logo=github&quot; alt=&quot;GitHub Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/issues&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/issues/Fincept-Corporation/FinceptTerminal&quot; alt=&quot;GitHub Issues&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://x.com/finceptcorp&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-X-000000?style=flat-square&amp;amp;logo=x&amp;amp;logoColor=white&quot; alt=&quot;X&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://twitter.com/intent/tweet?text=Check%20out%20FinceptTerminal&amp;amp;url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Twitter-1DA1F2?style=flat-square&amp;amp;logo=twitter&amp;amp;logoColor=white&quot; alt=&quot;Twitter&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.linkedin.com/sharing/share-offsite/?url=https%3A//github.com/Fincept-Corporation/FinceptTerminal/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-LinkedIn-0077B5?style=flat-square&amp;amp;logo=linkedin&amp;amp;logoColor=white&quot; alt=&quot;LinkedIn&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.facebook.com/sharer/sharer.php?u=https%3A//github.com/Fincept-Corporation/FinceptTerminal/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Facebook-1877F2?style=flat-square&amp;amp;logo=facebook&amp;amp;logoColor=white&quot; alt=&quot;Facebook&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.reddit.com/r/finceptTerminal/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Reddit-FF4500?style=flat-square&amp;amp;logo=reddit&amp;amp;logoColor=white&quot; alt=&quot;Reddit&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://api.whatsapp.com/send?text=Check%20out%20FinceptTerminal%3A%20https%3A//github.com/Fincept-Corporation/FinceptTerminal/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-WhatsApp-25D366?style=flat-square&amp;amp;logo=whatsapp&amp;amp;logoColor=white&quot; alt=&quot;WhatsApp&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://t.me/finceptTerminalcorp&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Telegram-26A5E4?style=flat-square&amp;amp;logo=telegram&amp;amp;logoColor=white&quot; alt=&quot;Telegram&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;h3&gt;&lt;strong&gt;Your Thinking is the Only Limit. The Data Isn&#39;t.&lt;/strong&gt;&lt;/h3&gt; 
+ &lt;p&gt;State-of-the-art financial intelligence platform with institutional-grade financial analytics, AI automation, and unlimited data connectivity.&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases&quot;&gt;📥 Download&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/enterprise&quot;&gt;🏢 Enterprise&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/pricing&quot;&gt;💳 Pricing&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/manual&quot;&gt;📖 Manual&lt;/a&gt; · &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/discussions&quot;&gt;💬 Discussions&lt;/a&gt; · &lt;a href=&quot;https://discord.gg/ae87a8ygbN&quot;&gt;💬 Discord&lt;/a&gt; · &lt;a href=&quot;https://quantcept.io&quot;&gt;📈 Quantcept&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;sub&gt;English · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.de.md&quot;&gt;Deutsch&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.es.md&quot;&gt;Español&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.fr.md&quot;&gt;Français&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.hi.md&quot;&gt;हिन्दी&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.ja.md&quot;&gt;日本語&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.ko.md&quot;&gt;한국어&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.zh-CN.md&quot;&gt;简体中文&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/translations/README.zh-TW.md&quot;&gt;繁體中文&lt;/a&gt;&lt;/sub&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/FinceptBanner.png&quot; alt=&quot;Fincept Terminal&quot; /&gt;&lt;/p&gt; 
+ &lt;table&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/EquityResearch.png&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;Equity Research&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/Portfolio.png&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;Portfolio&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/News.png&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;News&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+    &lt;td align=&quot;center&quot; width=&quot;25%&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/images/NodeEditor.png&quot; width=&quot;100%&quot; /&gt;&lt;/a&gt;&lt;br /&gt;&lt;sub&gt;&lt;b&gt;Node Editor&lt;/b&gt;&lt;/sub&gt;&lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;About&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Fincept Terminal&lt;/strong&gt; is a native C++20 desktop terminal for financial research — Qt6 UI, embedded Python 3.11 analytics, one binary, no Electron.&lt;/p&gt; 
+&lt;p&gt;Two editions run on one data core. &lt;strong&gt;&lt;a href=&quot;https://fincept.in/enterprise&quot;&gt;Enterprise&lt;/a&gt;&lt;/strong&gt; is the private, closed-source build the team develops daily, for funds, family offices and research desks. &lt;strong&gt;This repo&lt;/strong&gt; is the free AGPL-3.0 edition — learning, personal use, academic research — shipping one release a month.&lt;/p&gt; 
+&lt;p&gt;Use the open build if you&#39;re a student, hobbyist or academic. Use Enterprise if you&#39;re a firm, or if the terminal is how you earn: AGPL copyleft won&#39;t apply, and the open build&#39;s real cost is your own data and LLM bills, charged per token with no ceiling.&lt;/p&gt; 
+&lt;p&gt;Fincept account (this terminal): Free, or Pro at $10/month for monthly cloud credits, higher API limits and priority support.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;/th&gt; 
+   &lt;th&gt;Open Source&lt;/th&gt; 
+   &lt;th&gt;&lt;strong&gt;Enterprise&lt;/strong&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Licence&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;AGPL-3.0 — strong copyleft&lt;/td&gt; 
+   &lt;td&gt;Proprietary — no copyleft to manage&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Cost&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Free, plus your own data and LLM bills&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;$15 / $30 / $45&lt;/strong&gt; per user/month&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Data&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Free public feeds, your own API keys&lt;/td&gt; 
+   &lt;td&gt;Private datasets, deeper history, point-in-time&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;AI&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Bring your own LLM key&lt;/td&gt; 
+   &lt;td&gt;400–5,000 credits included · multi-agent research · private dataroom&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Trading&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Paper + live trading via your broker&lt;/td&gt; 
+   &lt;td&gt;Managed live routing, execution analytics, priority SLA&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Controls&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;—&lt;/td&gt; 
+   &lt;td&gt;SSO/SAML, audit logs, RBAC, SLA-backed support&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;a href=&quot;https://fincept.in/enterprise&quot;&gt;&lt;strong&gt;See Enterprise →&lt;/strong&gt;&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/comparison&quot;&gt;Full comparison&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/pricing&quot;&gt;Pricing&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/faq&quot;&gt;FAQ&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Enterprise&lt;/h2&gt; 
+&lt;p&gt;41 modules across six desks — agentic research, quant lab and backtesting, deep fundamental research, markets and execution, macro and global intelligence, and your own workspace. All of it in a &lt;a href=&quot;https://fincept.in/manual&quot;&gt;700-page manual&lt;/a&gt;.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;strong&gt;Exclusive&lt;/strong&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;strong&gt;Exclusive+&lt;/strong&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;strong&gt;Exclusive Pro&lt;/strong&gt; ★&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;$15&lt;/strong&gt;/user/mo&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;$30&lt;/strong&gt;/user/mo&lt;/td&gt; 
+   &lt;td&gt;&lt;strong&gt;$45&lt;/strong&gt;/user/mo&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;AI credits / month&lt;/td&gt; 
+   &lt;td&gt;400&lt;/td&gt; 
+   &lt;td&gt;2,000&lt;/td&gt; 
+   &lt;td&gt;5,000&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Deep research + agent teams&lt;/td&gt; 
+   &lt;td&gt;—&lt;/td&gt; 
+   &lt;td&gt;✓&lt;/td&gt; 
+   &lt;td&gt;✓&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Live broker trading + algo&lt;/td&gt; 
+   &lt;td&gt;—&lt;/td&gt; 
+   &lt;td&gt;—&lt;/td&gt; 
+   &lt;td&gt;✓&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Monthly billing, no annual lock-in, no seat minimum — &lt;strong&gt;$180–$540 per user per year&lt;/strong&gt;, against roughly $27,000 for a Bloomberg seat. Quarterly and university terms are on the &lt;a href=&quot;https://fincept.in/pricing&quot;&gt;pricing page&lt;/a&gt;. There is no negotiated pricing and no separate commercial licence.&lt;/p&gt; 
+&lt;p&gt;Enterprise needs its own account — free Fincept logins don&#39;t sign in to it.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://fincept.in/enterprise/signup&quot;&gt;&lt;strong&gt;Create account&lt;/strong&gt;&lt;/a&gt; · &lt;a href=&quot;https://calendly.com/nikultilak/fincept-terminal-demo&quot;&gt;&lt;strong&gt;Book a walkthrough&lt;/strong&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;!-- DOWNLOAD-TABLE-START --&gt; 
+&lt;p&gt;Latest release: &lt;strong&gt;v4.5.1&lt;/strong&gt; — &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases/tag/v4.5.1&quot;&gt;View all releases&lt;/a&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Platform&lt;/th&gt; 
+   &lt;th&gt;Download&lt;/th&gt; 
+   &lt;th&gt;Run&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Windows x64&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.5.1/FinceptTerminal-4.5.1-windows-x64-setup.exe&quot;&gt;FinceptTerminal-Windows-x64-setup.exe&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Run installer → launch &lt;code&gt;FinceptTerminal.exe&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Linux x64 (AppImage)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.5.1/FinceptTerminal-4.5.1-linux-x64-setup.run&quot;&gt;FinceptTerminal-Linux-x64.run&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;chmod +x&lt;/code&gt; → run installer&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Linux x64 (Debian/Ubuntu)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.5.1/FinceptTerminal-4.5.1-linux-x64.deb&quot;&gt;FinceptTerminal-Linux-x64.deb&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;sudo apt install ./FinceptTerminal-*.deb&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Linux x64 (Fedora/RHEL)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.5.1/FinceptTerminal-4.5.1-linux-x64.rpm&quot;&gt;FinceptTerminal-Linux-x64.rpm&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;sudo dnf install ./FinceptTerminal-*.rpm&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;macOS Apple Silicon&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/releases/download/v4.5.1/FinceptTerminal-4.5.1-macos-arm64-setup.dmg&quot;&gt;FinceptTerminal-macOS-arm64.dmg&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Open DMG → drag to Applications&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;!-- DOWNLOAD-TABLE-END --&gt; 
+&lt;p&gt;&lt;strong&gt;Build from source&lt;/strong&gt; — Linux/macOS: &lt;code&gt;git clone … &amp;amp;&amp;amp; ./setup.sh&lt;/code&gt;. Windows and manual builds, the pinned toolchain (&lt;strong&gt;CMake 3.27.7 · Ninja 1.11.1 · Qt 6.8.3 · Python 3.11.9&lt;/strong&gt;) and troubleshooting live in &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/GETTING_STARTED.md&quot;&gt;docs/GETTING_STARTED.md&lt;/a&gt;&lt;/strong&gt;. Versions are pinned — newer or older ones are unsupported.&lt;/p&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Looking for the Enterprise build? It has its own signed installers for Windows, macOS and Linux, behind an Enterprise login — &lt;a href=&quot;https://fincept.in/enterprise&quot;&gt;get them here&lt;/a&gt;.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;What&#39;s in the open build&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Analytics&lt;/strong&gt; — DCF, portfolio optimisation, VaR/Sharpe, derivatives pricing, fixed income, alternatives, plus an 18-module QuantLib suite&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;AI&lt;/strong&gt; — 37 trader/investor, economic and geopolitics agents; bring your own key (OpenAI, Anthropic, Gemini, Groq, DeepSeek, OpenRouter, Ollama)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Data&lt;/strong&gt; — 100+ connectors: FRED, IMF, World Bank, DBnomics, AkShare, Polygon, Kraken, Yahoo Finance, government APIs&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Trading&lt;/strong&gt; — crypto and equity feeds, paper-trading engine, 16 broker integrations&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Automation&lt;/strong&gt; — visual node editor, MCP tools, AI Quant Lab (ML, factor discovery, RL)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Global intelligence&lt;/strong&gt; — maritime tracking, geopolitical analysis, relationship mapping&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Native C++20 · Qt6 · embedded Python 3.11 · single binary · no Node.js, no browser runtime.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;How this repo is maintained&lt;/h2&gt; 
+&lt;p&gt;This repo &lt;strong&gt;stays public and will not be deleted&lt;/strong&gt;. Everything already released stays released.&lt;/p&gt; 
+&lt;p&gt;It now ships &lt;strong&gt;one release a month&lt;/strong&gt; rather than continuous development, because the team&#39;s daily work is on Enterprise. Issues and pull requests are still reviewed, and fixes land on the monthly cycle. Security reports go to &lt;a href=&quot;mailto:support@fincept.in&quot;&gt;support@fincept.in&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;New data connectors, AI agents, analytics modules, C++ screens and documentation are all welcome.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/CONTRIBUTING.md&quot;&gt;Contributing guide&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/CPP_CONTRIBUTOR_GUIDE.md&quot;&gt;C++ guide&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/PYTHON_CONTRIBUTOR_GUIDE.md&quot;&gt;Python guide&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/docs/ARCHITECTURE.md&quot;&gt;Architecture&lt;/a&gt; · &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/issues&quot;&gt;Report a bug&lt;/a&gt; · &lt;a href=&quot;https://github.com/Fincept-Corporation/FinceptTerminal/discussions&quot;&gt;Request a feature&lt;/a&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Also from Fincept&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://docs.fincept.in&quot;&gt;Fincept Data API&lt;/a&gt;&lt;/strong&gt; — 500+ REST endpoints, 423,000+ instruments, 2,000+ sources. Free tier included with any account.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://quantcept.io&quot;&gt;Quantcept&lt;/a&gt;&lt;/strong&gt; — AI research desk for markets: primary data, backtests, portfolios, documents and 24/7 monitors. Free to start; Alpha $14 / Apex $24 per 30 days.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;AGPL-3.0-or-later&lt;/strong&gt; — full text in &lt;a href=&quot;https://raw.githubusercontent.com/Fincept-Corporation/FinceptTerminal/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Free for personal use, learning and academic research. AGPL-3.0 is &lt;strong&gt;strong copyleft, not permissive&lt;/strong&gt;: distribute a modified build, or run one as a service other people reach, and you must publish your changes under the same licence. For most legal teams that is the row that ends the discussion — which is why firms take &lt;strong&gt;&lt;a href=&quot;https://fincept.in/enterprise&quot;&gt;Enterprise&lt;/a&gt;&lt;/strong&gt;, which is proprietary and carries no copyleft obligations to manage. Personal, non-distributed use carries no obligations.&lt;/p&gt; 
+&lt;p&gt;Fincept no longer sells a separate commercial or academic licence for this repository. Commercial, enterprise and university needs are served by &lt;strong&gt;&lt;a href=&quot;https://fincept.in/enterprise&quot;&gt;Fincept Terminal Enterprise&lt;/a&gt;&lt;/strong&gt; at the published prices above.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Trademarks.&lt;/strong&gt; &quot;Fincept&quot;, &quot;Fincept Terminal&quot; and the Fincept logo are trademarks of Fincept Corporation. Use in any forked, derivative, rebranded or commercial product requires prior written permission.&lt;/p&gt; 
+&lt;p&gt;Questions: &lt;a href=&quot;mailto:support@fincept.in&quot;&gt;support@fincept.in&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/terms&quot;&gt;Terms&lt;/a&gt; · &lt;a href=&quot;https://fincept.in/privacy&quot;&gt;Privacy&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;© 2025–2026 Fincept Corporation. All rights reserved.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;div align=&quot;center&quot;&gt; 
+ &lt;h3&gt;&lt;strong&gt;Your Thinking is the Only Limit. The Data Isn&#39;t.&lt;/strong&gt;&lt;/h3&gt; 
+ &lt;div align=&quot;center&quot;&gt; 
+  &lt;a href=&quot;https://star-history.dera.page/#Fincept-Corporation/FinceptTerminal&amp;amp;Date&quot;&gt; 
+   &lt;picture&gt; 
+    &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://star-history.dera.page/svg?repos=Fincept-Corporation/FinceptTerminal&amp;amp;type=Date&amp;amp;theme=dark&quot; /&gt; 
+    &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;https://star-history.dera.page/svg?repos=Fincept-Corporation/FinceptTerminal&amp;amp;type=Date&quot; /&gt; 
+    &lt;img alt=&quot;Star History Chart&quot; src=&quot;https://star-history.dera.page/svg?repos=Fincept-Corporation/FinceptTerminal&amp;amp;type=Date&quot; /&gt; 
+   &lt;/picture&gt; &lt;/a&gt; 
+ &lt;/div&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://repobeats.axiom.co&quot;&gt;&lt;img src=&quot;https://repobeats.axiom.co/api/embed/fincept-corporation-finceptterminal.svg?sanitize=true&quot; alt=&quot;Repobeats&quot; title=&quot;Repobeats analytics image&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;mailto:support@fincept.in&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Email-support@fincept.in-blue&quot; alt=&quot;Email&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;⭐ &lt;strong&gt;Star&lt;/strong&gt; · 🔄 &lt;strong&gt;Share&lt;/strong&gt; · 🤝 &lt;strong&gt;Contribute&lt;/strong&gt;&lt;/p&gt; 
+&lt;/div&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/0ea4808c78e48623ff6143099fcc0a68d2de76793bcd050b5481cfeb8f30b225/Fincept-Corporation/FinceptTerminal" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ocornut/imgui</title>
+      <link>https://github.com/ocornut/imgui</link>
+      <description>&lt;p&gt;Dear ImGui: Bloat-free Graphical User interface for C++ with minimal dependencies&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Dear ImGui&lt;/h1&gt; 
+&lt;center&gt;
+ &lt;b&gt;&lt;i&gt;&quot;Give someone state and they&#39;ll have a bug one day, but teach them how to represent state in two separate locations that have to be kept in sync and they&#39;ll have bugs for a lifetime.&quot;&lt;/i&gt;&lt;/b&gt;
+&lt;/center&gt; 
+&lt;a href=&quot;https://twitter.com/rygorous/status/1507178315886444544&quot;&gt;-ryg&lt;/a&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/actions?workflow=build&quot;&gt;&lt;img src=&quot;https://github.com/ocornut/imgui/workflows/build/badge.svg?sanitize=true&quot; alt=&quot;Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ocornut/imgui/actions?workflow=static-analysis&quot;&gt;&lt;img src=&quot;https://github.com/ocornut/imgui/workflows/static-analysis/badge.svg?sanitize=true&quot; alt=&quot;Static Analysis Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ocornut/imgui_test_engine/actions?workflow=tests&quot;&gt;&lt;img src=&quot;https://github.com/ocornut/imgui_test_engine/workflows/tests/badge.svg?sanitize=true&quot; alt=&quot;Tests Status&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;sub&gt;(This library is available under a free and permissive license, but needs financial support to sustain its continued improvements. In addition to maintenance and stability there are many desirable features yet to be added. If your company is using Dear ImGui, please consider reaching out.)&lt;/sub&gt;&lt;/p&gt; 
+&lt;p&gt;Businesses: support continued development and maintenance via invoiced sponsoring/support contracts: &lt;br /&gt;&amp;nbsp;&amp;nbsp;&lt;em&gt;E-mail: contact @ dearimgui dot com&lt;/em&gt; &lt;br /&gt;Individuals: support continued development and maintenance &lt;a href=&quot;https://www.paypal.com/cgi-bin/webscr?cmd=_s-xclick&amp;amp;hosted_button_id=WGHNC6MBFLZ2S&quot;&gt;here&lt;/a&gt;. Also see &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Funding&quot;&gt;Funding&lt;/a&gt; page.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#the-pitch&quot;&gt;The Pitch&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#usage&quot;&gt;Usage&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#how-it-works&quot;&gt;How it works&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#releases--changelogs&quot;&gt;Releases &amp;amp; Changelogs&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#demo&quot;&gt;Demo&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#getting-started--integration&quot;&gt;Getting Started &amp;amp; Integration&lt;/a&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#gallery&quot;&gt;Gallery&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#support-frequently-asked-questions-faq&quot;&gt;Support, FAQ&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#how-to-help&quot;&gt;How to help&lt;/a&gt; - &lt;strong&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Funding&quot;&gt;Funding &amp;amp; Sponsors&lt;/a&gt;&lt;/strong&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#credits&quot;&gt;Credits&lt;/a&gt; - &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#license&quot;&gt;License&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/wiki&quot;&gt;Wiki&lt;/a&gt; - &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Useful-Extensions&quot;&gt;Extensions&lt;/a&gt; - &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Bindings&quot;&gt;Language bindings &amp;amp; framework backends&lt;/a&gt; - &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Software-using-dear-imgui&quot;&gt;Software using Dear ImGui&lt;/a&gt; - &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Quotes&quot;&gt;User quotes&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;The Pitch&lt;/h3&gt; 
+&lt;p&gt;Dear ImGui is a &lt;strong&gt;bloat-free graphical user interface library for C++&lt;/strong&gt;. It outputs optimized vertex buffers that you can render anytime in your 3D-pipeline-enabled application. It is fast, portable, renderer agnostic, and self-contained (no external dependencies).&lt;/p&gt; 
+&lt;p&gt;Dear ImGui is designed to &lt;strong&gt;enable fast iterations&lt;/strong&gt; and to &lt;strong&gt;empower programmers&lt;/strong&gt; to create &lt;strong&gt;content creation tools and visualization / debug tools&lt;/strong&gt; (as opposed to UI for the average end-user). It favors simplicity and productivity toward this goal and lacks certain features commonly found in more high-level libraries. Among other things, full internationalization (right-to-left text, bidirectional text, text shaping etc.) and accessibility features are not supported.&lt;/p&gt; 
+&lt;p&gt;Dear ImGui is particularly suited to integration in game engines (for tooling), real-time 3D applications, fullscreen applications, embedded applications, or any applications on console platforms where operating system features are non-standard.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Minimize state synchronization.&lt;/li&gt; 
+ &lt;li&gt;Minimize UI-related state storage on user side.&lt;/li&gt; 
+ &lt;li&gt;Minimize setup and maintenance.&lt;/li&gt; 
+ &lt;li&gt;Easy to use to create dynamic UI which are the reflection of a dynamic data set.&lt;/li&gt; 
+ &lt;li&gt;Easy to use to create code-driven and data-driven tools.&lt;/li&gt; 
+ &lt;li&gt;Easy to use to create ad hoc short-lived tools and long-lived, more elaborate tools.&lt;/li&gt; 
+ &lt;li&gt;Easy to hack and improve.&lt;/li&gt; 
+ &lt;li&gt;Portable, minimize dependencies, run on target (consoles, phones, etc.).&lt;/li&gt; 
+ &lt;li&gt;Efficient runtime and memory consumption.&lt;/li&gt; 
+ &lt;li&gt;Battle-tested, used by &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Software-using-dear-imgui&quot;&gt;many major actors in the game industry&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Usage&lt;/h3&gt; 
+&lt;p&gt;&lt;strong&gt;The core of Dear ImGui is self-contained within a few platform-agnostic files&lt;/strong&gt; which you can easily compile in your application/engine. They are all the files in the root folder of the repository (&lt;code&gt;imgui*.cpp&lt;/code&gt;, &lt;code&gt;imgui*.h&lt;/code&gt;). &lt;strong&gt;No specific build process is required&lt;/strong&gt;: you can add all files into your existing project.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Backends for a variety of graphics API and rendering platforms&lt;/strong&gt; are provided in the &lt;a href=&quot;https://github.com/ocornut/imgui/tree/master/backends&quot;&gt;backends/&lt;/a&gt; folder, along with example applications in the &lt;a href=&quot;https://github.com/ocornut/imgui/tree/master/examples&quot;&gt;examples/&lt;/a&gt; folder. You may also create your own backend. Anywhere where you can render textured triangles, you can render Dear ImGui.&lt;/p&gt; 
+&lt;p&gt;C++20 users wishing to use a module may use the &lt;a href=&quot;https://github.com/stripe2933/imgui-module&quot;&gt;stripe2933/imgui-module&lt;/a&gt; third-party extension.&lt;/p&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/ocornut/imgui/master/#getting-started--integration&quot;&gt;Getting Started &amp;amp; Integration&lt;/a&gt; section of this document for more details.&lt;/p&gt; 
+&lt;p&gt;After Dear ImGui is set up in your application, you can use it from _anywhere_ in your program loop:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;ImGui::Text(&quot;Hello, world %d&quot;, 123);
+if (ImGui::Button(&quot;Save&quot;))
+    MySaveFunction();
+ImGui::InputText(&quot;string&quot;, buf, IM_COUNTOF(buf));
+ImGui::SliderFloat(&quot;float&quot;, &amp;amp;f, 0.0f, 1.0f);
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;img width=&quot;412&quot; height=&quot;236&quot; alt=&quot;sample code output (dark)&quot; src=&quot;https://github.com/user-attachments/assets/32b838df-6378-498b-84a8-9a79ee6264a7&quot; /&gt; 
+&lt;img width=&quot;412&quot; height=&quot;236&quot; alt=&quot;sample code output (light)&quot; src=&quot;https://github.com/user-attachments/assets/f075e2b0-98de-4be8-acb4-99ba0c9966cd&quot; /&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-cpp&quot;&gt;// Create a window called &quot;My First Tool&quot;, with a menu bar.
+ImGui::Begin(&quot;My First Tool&quot;, &amp;amp;my_tool_active, ImGuiWindowFlags_MenuBar);
+if (ImGui::BeginMenuBar())
+{
+    if (ImGui::BeginMenu(&quot;File&quot;))
+    {
+        if (ImGui::MenuItem(&quot;Open..&quot;, &quot;Ctrl+O&quot;)) { /* Do stuff */ }
+        if (ImGui::MenuItem(&quot;Save&quot;, &quot;Ctrl+S&quot;))   { /* Do stuff */ }
+        if (ImGui::MenuItem(&quot;Close&quot;, &quot;Ctrl+W&quot;))  { my_tool_active = false; }
+        ImGui::EndMenu();
+    }
+    ImGui::EndMenuBar();
+}
+
+// Edit a color stored as 4 floats
+ImGui::ColorEdit4(&quot;Color&quot;, my_color);
+
+// Generate samples and plot them
+float samples[100];
+for (int n = 0; n &amp;lt; 100; n++)
+    samples[n] = sinf(n * 0.2f + ImGui::GetTime() * 1.5f);
+ImGui::PlotLines(&quot;Samples&quot;, samples, 100);
+
+// Display contents in a scrolling region
+ImGui::TextColored(ImVec4(1,1,0,1), &quot;Important Stuff&quot;);
+ImGui::BeginChild(&quot;Scrolling&quot;);
+for (int n = 0; n &amp;lt; 50; n++)
+    ImGui::Text(&quot;%04d: Some text&quot;, n);
+ImGui::EndChild();
+ImGui::End();
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/6c76658c-302f-403b-af26-d517e2bfb0d4&quot; alt=&quot;my_first_tool_v192 6&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;Dear ImGui allows you to &lt;strong&gt;create elaborate tools&lt;/strong&gt; as well as very short-lived ones. On the extreme side of short-livedness: using the Edit&amp;amp;Continue (hot code reload) feature of modern compilers you can add a few widgets to tweak variables while your application is running, and remove the code a minute later! Dear ImGui is not just for tweaking values. You can use it to trace a running algorithm by just emitting text commands. You can use it along with your own reflection data to browse your dataset live. You can use it to expose the internals of a subsystem in your engine, to create a logger, an inspection tool, a profiler, a debugger, an entire game-making editor/framework, etc.&lt;/p&gt; 
+&lt;h3&gt;How it works&lt;/h3&gt; 
+&lt;p&gt;The IMGUI paradigm through its API tries to minimize superfluous state duplication, state synchronization, and state retention from the user&#39;s point of view. It is less error-prone (less code and fewer bugs) than traditional retained-mode interfaces, and lends itself to creating dynamic user interfaces. Check out the Wiki&#39;s &lt;a href=&quot;https://github.com/ocornut/imgui/wiki#about-the-imgui-paradigm&quot;&gt;About the IMGUI paradigm&lt;/a&gt; section for more details.&lt;/p&gt; 
+&lt;p&gt;Dear ImGui outputs vertex buffers and command lists that you can easily render in your application. The number of draw calls and state changes required to render them is fairly small. Because Dear ImGui doesn&#39;t know or touch graphics state directly, you can call its functions anywhere in your code (e.g. in the middle of a running algorithm, or in the middle of your own rendering process). Refer to the sample applications in the examples/ folder for instructions on how to integrate Dear ImGui with your existing codebase.&lt;/p&gt; 
+&lt;p&gt;&lt;em&gt;A common misunderstanding is to mistake immediate mode GUI for immediate mode rendering, which usually implies hammering your driver/GPU with a bunch of inefficient draw calls and state changes as the GUI functions are called. This is NOT what Dear ImGui does. Dear ImGui outputs vertex buffers and a small list of draw calls batches. It never touches your GPU directly. The draw call batches are decently optimal and you can render them later, in your app or even remotely.&lt;/em&gt;&lt;/p&gt; 
+&lt;h3&gt;Releases &amp;amp; Changelogs&lt;/h3&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://github.com/ocornut/imgui/releases&quot;&gt;Releases&lt;/a&gt; page for decorated Changelogs. Reading the changelogs is a good way to keep up to date with the things Dear ImGui has to offer, and maybe will give you ideas of some features that you&#39;ve been ignoring until now!&lt;/p&gt; 
+&lt;h3&gt;Demo&lt;/h3&gt; 
+&lt;p&gt;Calling the &lt;code&gt;ImGui::ShowDemoWindow()&lt;/code&gt; function will create a demo window showcasing a variety of features and examples. The code is always available for reference in &lt;code&gt;imgui_demo.cpp&lt;/code&gt;.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pthom.github.io/imgui_explorer&quot;&gt;imgui_explorer&lt;/a&gt;: Web version of the demo w/ source code browser, courtesy of &lt;a href=&quot;https://github.com/pthom&quot;&gt;@pthom&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You should be able to build the examples from sources. If you don&#39;t, let us know! If you want to have a quick look at some Dear ImGui features, you can download Windows binaries of the demo app here:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.dearimgui.com/binaries/imgui-demo-binaries-20261015-win32.zip&quot;&gt;imgui-demo-binaries-20261015-win32.zip&lt;/a&gt; (Win32, 1.93.0, built 2026/10/15, master) or &lt;a href=&quot;https://www.dearimgui.com/binaries&quot;&gt;older binaries&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Gallery&lt;/h3&gt; 
+&lt;p&gt;Examples projects using Dear ImGui: &lt;a href=&quot;https://github.com/wolfpld/tracy&quot;&gt;Tracy&lt;/a&gt; (profiler), &lt;a href=&quot;https://github.com/WerWolv/ImHex&quot;&gt;ImHex&lt;/a&gt; (hex editor/data analysis), &lt;a href=&quot;https://remedybg.itch.io/remedybg&quot;&gt;RemedyBG&lt;/a&gt; (debugger) and &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Software-using-Dear-ImGui&quot;&gt;hundreds of others&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;For more user-submitted screenshots of projects using Dear ImGui, check out the &lt;a href=&quot;https://github.com/ocornut/imgui/issues?q=label%3Agallery&quot;&gt;Gallery Threads&lt;/a&gt;!&lt;/p&gt; 
+&lt;p&gt;For a list of third-party widgets and extensions, check out the &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Useful-Extensions&quot;&gt;Useful Extensions/Widgets&lt;/a&gt; wiki page.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;&lt;/th&gt; 
+   &lt;th&gt;&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Custom engine &lt;a href=&quot;https://github.com/tksuoran/erhe&quot;&gt;erhe&lt;/a&gt; (docking branch)&lt;br /&gt;&lt;a href=&quot;https://user-images.githubusercontent.com/994606/147875067-a848991e-2ad2-4fd3-bf71-4aeb8a547bcf.png&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8225057/190203358-6988b846-0686-480e-8663-1311fbd18abd.jpg&quot; alt=&quot;erhe&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Custom engine for &lt;a href=&quot;http://www.TheDragonsTrap.com&quot;&gt;Wonder Boy: The Dragon&#39;s Trap&lt;/a&gt; (2017)&lt;br /&gt;&lt;a href=&quot;https://cloud.githubusercontent.com/assets/8225057/20628927/33e14cac-b329-11e6-80f6-9524e93b048a.png&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8225057/190203379-57fcb80e-4aec-4fec-959e-17ddd3cd71e5.jpg&quot; alt=&quot;the dragon&#39;s trap&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Custom engine (untitled)&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v160/editor_white.png&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8225057/190203393-c5ac9f22-b900-4d1e-bfeb-6027c63e3d92.jpg&quot; alt=&quot;editor white&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+   &lt;td&gt;Tracy Profiler (&lt;a href=&quot;https://github.com/wolfpld/tracy&quot;&gt;github&lt;/a&gt;)&lt;br /&gt;&lt;a href=&quot;https://raw.githubusercontent.com/wiki/ocornut/imgui/web/v176/tracy_profiler.png&quot;&gt;&lt;img src=&quot;https://user-images.githubusercontent.com/8225057/190203401-7b595f6e-607c-44d3-97ea-4c2673244dfb.jpg&quot; alt=&quot;tracy profiler&quot; /&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h3&gt;Getting Started &amp;amp; Integration&lt;/h3&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Getting-Started&quot;&gt;Getting Started&lt;/a&gt; guide for details.&lt;/p&gt; 
+&lt;p&gt;On most platforms and when using C++, &lt;strong&gt;you should be able to use a combination of the &lt;a href=&quot;https://github.com/ocornut/imgui/tree/master/backends&quot;&gt;imgui_impl_xxxx&lt;/a&gt; backends without modification&lt;/strong&gt; (e.g. &lt;code&gt;imgui_impl_win32.cpp&lt;/code&gt; + &lt;code&gt;imgui_impl_dx11.cpp&lt;/code&gt;). If your engine supports multiple platforms, consider using more imgui_impl_xxxx files instead of rewriting them: this will be less work for you, and you can get Dear ImGui running immediately. You can &lt;em&gt;later&lt;/em&gt; decide to rewrite a custom backend using your custom engine functions if you wish so.&lt;/p&gt; 
+&lt;p&gt;Integrating Dear ImGui within your custom engine is a matter of mainly 1) wiring mouse/keyboard/gamepad inputs 2) uploading a texture to your GPU/render engine 3) providing a render function that can create/update textures and render textured triangles. This is exactly what backends are doing.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;The &lt;a href=&quot;https://github.com/ocornut/imgui/tree/master/examples&quot;&gt;examples/&lt;/a&gt; folder is populated with applications setting up a window and using standard backends.&lt;/li&gt; 
+ &lt;li&gt;The &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Getting-Started&quot;&gt;Getting Started&lt;/a&gt; guide has instructions to integrate imgui into an existing application using standard backends. It should in theory take you less than an hour to integrate Dear ImGui into your existing codebase where support libraries are linked. Less if you read carefully.&lt;/li&gt; 
+ &lt;li&gt;The &lt;a href=&quot;https://github.com/ocornut/imgui/raw/master/docs/BACKENDS.md&quot;&gt;Backends&lt;/a&gt; guide explains what backends are doing, and has instructions to implement a custom backend. You can also refer to the source code of our ~20 backends to understand how they work.&lt;/li&gt; 
+ &lt;li&gt;Generally, &lt;strong&gt;make sure to spend time reading the &lt;a href=&quot;https://www.dearimgui.com/faq&quot;&gt;FAQ&lt;/a&gt;, comments, and the examples applications!&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Officially maintained backends (in repository):&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Renderers: DirectX9, DirectX10, DirectX11, DirectX12, Metal 3/4, OpenGL/ES/ES2, SDL_GPU, SDL_Renderer2/3, Vulkan, WebGPU.&lt;/li&gt; 
+ &lt;li&gt;Platforms: GLFW, SDL2/SDL3, Win32, Glut, OSX, Android.&lt;/li&gt; 
+ &lt;li&gt;Frameworks: Allegro5, Emscripten.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Bindings&quot;&gt;Third-party backends/bindings&lt;/a&gt; wiki page:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Languages: C, C# and: Beef, ChaiScript, CovScript, Crystal, D, Go, Haskell, Haxe/hxcpp, Java, JavaScript, Julia, Kotlin, Lobster, Lua, Nim, Odin, Pascal, PureBasic, Python, ReaScript, Ruby, Rust, Swift, Zig...&lt;/li&gt; 
+ &lt;li&gt;Frameworks: AGS/Adventure Game Studio, Amethyst, Blender, bsf, Cinder, Cocos2d-x, Defold, Diligent Engine, Ebiten, Flexium, GML/Game Maker Studio, GLEQ, Godot, GTK3, Irrlicht Engine, JUCE, LÖVE+LUA, Mach Engine, Magnum, Marmalade, Monogame, NanoRT, nCine, Nim Game Lib, Nintendo 3DS/Switch/WiiU (homebrew), Ogre, openFrameworks, OSG/OpenSceneGraph, Orx, Photoshop, px_render, Qt/QtDirect3D, raylib, SFML, Sokol, Unity, Unreal Engine 4/5, UWP, vtk, VulkanHpp, VulkanSceneGraph, Win32 GDI, WxWidgets.&lt;/li&gt; 
+ &lt;li&gt;Many bindings are auto-generated (by good old &lt;a href=&quot;https://github.com/cimgui/cimgui&quot;&gt;cimgui&lt;/a&gt; or our newer &lt;a href=&quot;https://github.com/dearimgui/dear_bindings&quot;&gt;dear_bindings&lt;/a&gt;), you can use their metadata output to generate bindings for other languages.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Useful-Extensions&quot;&gt;Useful Extensions/Widgets&lt;/a&gt; wiki page:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Useful-Extensions&quot;&gt;&lt;img src=&quot;https://github.com/user-attachments/assets/e6b0aa7c-bf53-41c5-ac69-bea3098b1dee&quot; alt=&quot;Useful extensions thumbnails&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Automation/testing, Text editors, node editors, timeline editors, plotting, software renderers, remote network access, memory editors, gizmos, etc. Notable and well supported extensions include &lt;a href=&quot;https://github.com/epezent/implot&quot;&gt;ImPlot&lt;/a&gt;, &lt;a href=&quot;https://github.com/brenocq/implot3d&quot;&gt;ImPlot3d&lt;/a&gt; and &lt;a href=&quot;https://github.com/ocornut/imgui_test_engine&quot;&gt;Dear ImGui Test Engine&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Also see &lt;a href=&quot;https://github.com/ocornut/imgui/wiki&quot;&gt;Wiki&lt;/a&gt; for more links and ideas.&lt;/p&gt; 
+&lt;h3&gt;Support, Frequently Asked Questions (FAQ)&lt;/h3&gt; 
+&lt;p&gt;See: &lt;a href=&quot;https://github.com/ocornut/imgui/raw/master/docs/FAQ.md&quot;&gt;Frequently Asked Questions (FAQ)&lt;/a&gt; where common questions are answered.&lt;/p&gt; 
+&lt;p&gt;See: &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Getting-Started&quot;&gt;Getting Started&lt;/a&gt; and &lt;a href=&quot;https://github.com/ocornut/imgui/wiki&quot;&gt;Wiki&lt;/a&gt; for many links, references, articles.&lt;/p&gt; 
+&lt;p&gt;See: &lt;a href=&quot;https://github.com/ocornut/imgui/wiki#about-the-imgui-paradigm&quot;&gt;Articles about the IMGUI paradigm&lt;/a&gt; to read/learn about the Immediate Mode GUI paradigm.&lt;/p&gt; 
+&lt;p&gt;See: &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Upcoming-Changes&quot;&gt;Upcoming Changes&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;See: &lt;a href=&quot;https://github.com/ocornut/imgui_test_engine&quot;&gt;Dear ImGui Test Engine + Test Suite&lt;/a&gt; for Automation &amp;amp; Testing.&lt;/p&gt; 
+&lt;p&gt;For the purposes of getting search engines to crawl the wiki, here&#39;s a link to the &lt;a href=&quot;https://github-wiki-see.page/m/ocornut/imgui/wiki&quot;&gt;Crawlable Wiki&lt;/a&gt; (not for humans, &lt;a href=&quot;https://github-wiki-see.page/&quot;&gt;here&#39;s why&lt;/a&gt;).&lt;/p&gt; 
+&lt;p&gt;Getting started? For first-time users having issues compiling/linking/running or issues loading fonts, please use &lt;a href=&quot;https://github.com/ocornut/imgui/discussions&quot;&gt;GitHub Discussions&lt;/a&gt;. For ANY other questions, bug reports, requests, feedback, please post on &lt;a href=&quot;https://github.com/ocornut/imgui/issues&quot;&gt;GitHub Issues&lt;/a&gt;. Please read and fill the New Issue template carefully.&lt;/p&gt; 
+&lt;p&gt;Private support is available for paying business customers (E-mail: &lt;em&gt;contact @ dearimgui dot com&lt;/em&gt;).&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Which version should I get?&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;We occasionally tag &lt;a href=&quot;https://github.com/ocornut/imgui/releases&quot;&gt;Releases&lt;/a&gt; (with nice releases notes) but it is generally safe and recommended to sync to latest &lt;code&gt;master&lt;/code&gt; or &lt;code&gt;docking&lt;/code&gt; branch. The library is fairly stable and regressions tend to be fixed fast when reported. Advanced users may want to use the &lt;code&gt;docking&lt;/code&gt; branch with &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Multi-Viewports&quot;&gt;Multi-Viewport&lt;/a&gt; and &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Docking&quot;&gt;Docking&lt;/a&gt; features. This branch is kept in sync with master regularly.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Who uses Dear ImGui?&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Quotes&quot;&gt;Quotes&lt;/a&gt;, &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Funding&quot;&gt;Funding &amp;amp; Sponsors&lt;/a&gt;, and &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Software-using-dear-imgui&quot;&gt;Software using Dear ImGui&lt;/a&gt; Wiki pages for an idea of who is using Dear ImGui. Please add your game/software if you can! Also, see the &lt;a href=&quot;https://github.com/ocornut/imgui/issues?q=label%3Agallery&quot;&gt;Gallery Threads&lt;/a&gt;!&lt;/p&gt; 
+&lt;h2&gt;How to help&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;How can I help?&lt;/strong&gt;&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;See &lt;a href=&quot;https://github.com/ocornut/imgui/issues&quot;&gt;GitHub Forum/Issues&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;You may help with development and submit pull requests! Please understand that by submitting a PR you are also submitting a request for the maintainer to review your code and then take over its maintenance forever. PR should be crafted both in the interest of the end-users and also to ease the maintainer into understanding and accepting it.&lt;/li&gt; 
+ &lt;li&gt;See &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Help-Wanted&quot;&gt;Help wanted&lt;/a&gt; on the &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/&quot;&gt;Wiki&lt;/a&gt; for some more ideas.&lt;/li&gt; 
+ &lt;li&gt;Be a &lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Funding&quot;&gt;Funding Supporter&lt;/a&gt;! Have your company financially support this project via invoiced sponsors/maintenance or by buying a license for &lt;a href=&quot;https://github.com/ocornut/imgui_test_engine&quot;&gt;Dear ImGui Test Engine&lt;/a&gt; (please reach out: contact AT dearimgui DOT com).&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Sponsors&lt;/h2&gt; 
+&lt;p&gt;Ongoing Dear ImGui development is and has been financially supported by users and private sponsors. &lt;br /&gt;Please see the &lt;strong&gt;&lt;a href=&quot;https://github.com/ocornut/imgui/wiki/Funding&quot;&gt;detailed list of current and past Dear ImGui funding supporters and sponsors&lt;/a&gt;&lt;/strong&gt; for details. &lt;br /&gt;From November 2014 to December 2019, ongoing development has also been financially supported by its users on Patreon and through individual donations.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;THANK YOU to all past and present supporters for helping to keep this project alive and thriving!&lt;/strong&gt;&lt;/p&gt; 
+&lt;p&gt;Dear ImGui is using software and services provided free of charge for open source projects:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://pvs-studio.com/en/pvs-studio/?utm_source=website&amp;amp;utm_medium=github&amp;amp;utm_campaign=open_source&quot;&gt;PVS-Studio&lt;/a&gt; for static analysis (supports C/C++/C#/Java).&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/features/actions&quot;&gt;GitHub actions&lt;/a&gt; for continuous integration systems.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/OpenCppCoverage/OpenCppCoverage&quot;&gt;OpenCppCoverage&lt;/a&gt; for code coverage analysis.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Credits&lt;/h2&gt; 
+&lt;p&gt;Developed by &lt;a href=&quot;https://www.miracleworld.net&quot;&gt;Omar Cornut&lt;/a&gt; and every direct or indirect &lt;a href=&quot;https://github.com/ocornut/imgui/graphs/contributors&quot;&gt;contributors&lt;/a&gt; to the GitHub. The early version of this library was developed with the support of &lt;a href=&quot;https://www.mediamolecule.com&quot;&gt;Media Molecule&lt;/a&gt; and first used internally on the game &lt;a href=&quot;https://youtu.be/w0oxBviRGlU&quot;&gt;Tearaway&lt;/a&gt; (PS Vita).&lt;/p&gt; 
+&lt;p&gt;Recurring contributors include Rokas Kupstys &lt;a href=&quot;https://github.com/rokups&quot;&gt;@rokups&lt;/a&gt; (2020-2022): a good portion of work on automation system and regression tests now available in &lt;a href=&quot;https://github.com/ocornut/imgui_test_engine&quot;&gt;Dear ImGui Test Engine&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Maintenance/support contracts, sponsoring invoices and other B2B transactions are hosted and handled by &lt;a href=&quot;https://www.discohello.com&quot;&gt;Disco Hello&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Omar: &quot;I first discovered the IMGUI paradigm at &lt;a href=&quot;https://www.q-games.com&quot;&gt;Q-Games&lt;/a&gt; where Atman Binstock had dropped his own simple implementation in the codebase, which I spent quite some time improving and thinking about. It turned out that Atman was exposed to the concept directly by working with Casey. When I moved to Media Molecule I rewrote a new library trying to overcome the flaws and limitations of the first one I&#39;ve worked with. It became this library and since then I have spent an unreasonable amount of time iterating and improving it.&quot;&lt;/p&gt; 
+&lt;p&gt;Embeds &lt;a href=&quot;https://www.proggyfonts.net&quot;&gt;ProggyClean&lt;/a&gt; font by Tristan Grimmer (MIT license). &lt;br /&gt;Embeds &lt;a href=&quot;https://github.com/ocornut/proggyforever&quot;&gt;ProggyForever&lt;/a&gt; fonts by Disco Hello, Tristan Grimmer (MIT license). &lt;br /&gt;Embeds &lt;a href=&quot;https://github.com/nothings/stb/&quot;&gt;stb_textedit.h, stb_truetype.h, stb_rect_pack.h&lt;/a&gt; by Sean Barrett (public domain).&lt;/p&gt; 
+&lt;p&gt;Inspiration, feedback, and testing for early versions: Casey Muratori, Atman Binstock, Mikko Mononen, Emmanuel Briney, Stefan Kamoda, Anton Mikhailov, Matt Willis. Special thanks to Alex Evans, Patrick Doane, Marco Koegler for kindly helping. Also thank you to everyone posting feedback, questions and patches on GitHub.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Dear ImGui is licensed under the MIT License, see &lt;a href=&quot;https://github.com/ocornut/imgui/raw/master/LICENSE.txt&quot;&gt;LICENSE.txt&lt;/a&gt; for more information.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/22067521/01b5ff00-53d7-11ea-86fa-52aee7e335a2" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>OrcaSlicer/OrcaSlicer</title>
+      <link>https://github.com/OrcaSlicer/OrcaSlicer</link>
+      <description>&lt;p&gt;G-code generator for 3D printers (Bambu, Prusa, Voron, VzBot, RatRig, Creality, etc.)&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://www.orcaslicer.com&quot;&gt;https://www.orcaslicer.com&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;div align=&quot;center&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;img alt=&quot;OrcaSlicer logo&quot; src=&quot;https://raw.githubusercontent.com/OrcaSlicer/OrcaSlicer/main/resources/images/OrcaSlicer.png&quot; width=&quot;15%&quot; height=&quot;15%&quot; /&gt; 
+ &lt;/picture&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://trendshift.io/repositories/15552&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://trendshift.io/api/badge/repositories/15552&quot; alt=&quot;OrcaSlicer%2FOrcaSlicer | Trendshift&quot; style=&quot;width: 250px; height: 55px;&quot; width=&quot;250&quot; height=&quot;55&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/stargazers&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/stars/OrcaSlicer/OrcaSlicer&quot; alt=&quot;GitHub Repo stars&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/actions/workflows/build_all.yml&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/actions/workflow/status/OrcaSlicer/OrcaSlicer/main_build_status.yml?label=Build%20all&quot; alt=&quot;Build all&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+ &lt;p&gt;OrcaSlicer: an open source Next-Gen Slicing Software for Precision 3D Prints.&lt;br /&gt; Optimize your prints with ultra-fast slicing, intelligent support generation, and seamless printer compatibility—engineered for perfection.&lt;/p&gt; 
+ &lt;h1&gt;Official links and community&lt;/h1&gt; 
+ &lt;h4&gt;Official Website:&lt;/h4&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://www.orcaslicer.com/&quot; style=&quot;font-size:2em;&quot;&gt;OrcaSlicer.com&lt;/a&gt;&lt;/p&gt; 
+ &lt;h4&gt;Github Repository:&lt;/h4&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/OrcaSlicer-181717?style=flat&amp;amp;logo=github&amp;amp;logoColor=white&quot; width=&quot;200&quot; alt=&quot;GitHub Logo&quot; /&gt; &lt;/a&gt;&lt;/p&gt; 
+ &lt;h4&gt;Follow us:&lt;/h4&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://twitter.com/real_OrcaSlicer&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/real__OrcaSlicer-000000?style=flat&amp;amp;logo=x&amp;amp;logoColor=white&quot; width=&quot;200&quot; alt=&quot;X Logo&quot; /&gt; &lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://www.youtube.com/@OfficialOrcaSlicer&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/OfficialOrcaSlicer-FF0000?style=flat&amp;amp;logo=youtube&amp;amp;logoColor=white&quot; width=&quot;200&quot; alt=&quot;YouTube Logo&quot; /&gt; &lt;/a&gt;&lt;/p&gt; 
+ &lt;h4&gt;Join our Discord community:&lt;/h4&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://discord.gg/P4VE9UY9gJ&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/-Discord-5865F2?style=flat&amp;amp;logo=discord&amp;amp;logoColor=fff&quot; width=&quot;200&quot; alt=&quot;discord logo&quot; /&gt; &lt;/a&gt;&lt;/p&gt; 
+ &lt;table border=&quot;2&quot; style=&quot;border-color: #ffa500; background-color:rgb(232, 220, 180); color: #856404;&quot;&gt; 
+  &lt;tbody&gt;
+   &lt;tr&gt; 
+    &lt;td&gt; &lt;strong&gt;⚠️ CAUTION:&lt;/strong&gt;&lt;br /&gt; Several clickbait and malicious websites, such as &lt;b&gt;orca-slicer[.]com&lt;/b&gt; and &lt;b&gt;orcaslicer[.]net&lt;/b&gt;, are pretending to be the official OrcaSlicer site. These sites may redirect you to dangerous downloads or contain misleading information.&lt;br /&gt; &lt;b&gt;Our only official website is &lt;a href=&quot;https://www.orcaslicer.com/&quot;&gt;www.orcaslicer.com&lt;/a&gt;.&lt;/b&gt;&lt;br /&gt;&lt;br /&gt; If you come across any of these in search results, please &lt;b&gt;report them&lt;/b&gt; as unsafe or phishing to help keep the community secure with:&lt;br /&gt; - &lt;a href=&quot;https://safebrowsing.google.com/safebrowsing/report_phish/&quot;&gt;Google Safe Browsing&lt;/a&gt;&lt;br /&gt; - &lt;a href=&quot;https://www.microsoft.com/en-us/wdsi/support/report-unsafe-site&quot;&gt;Microsoft Security Intelligence&lt;/a&gt;&lt;br /&gt; - &lt;a href=&quot;https://ipthreat.net/tools/reportphishing&quot;&gt;IPThreat&lt;/a&gt; &lt;/td&gt; 
+   &lt;/tr&gt; 
+  &lt;/tbody&gt;
+ &lt;/table&gt; 
+&lt;/div&gt; 
+&lt;h1&gt;Main features&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/calibration_guide&quot;&gt;Advanced Calibration Tools&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Comprehensive suite: temperature towers, flow rate, retraction &amp;amp; more for optimal performance.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/quality_settings_precision#precise-wall&quot;&gt;Precise Wall&lt;/a&gt; and &lt;a href=&quot;https://www.orcaslicer.com/wiki/quality_settings_seam&quot;&gt;Seam Control&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Adjust outer wall spacing and apply scarf seams to enhance print accuracy.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/quality_settings_wall_and_surfaces#innerouterinner&quot;&gt;Sandwich Mode&lt;/a&gt; and &lt;a href=&quot;https://www.orcaslicer.com/wiki/quality_settings_precision#polyholes&quot;&gt;Polyholes&lt;/a&gt; Support&lt;/strong&gt;&lt;br /&gt; Use varied infill &lt;a href=&quot;https://www.orcaslicer.com/wiki/strength_settings_patterns&quot;&gt;patterns&lt;/a&gt; and accurate hole shapes for improved clarity.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/quality_settings_overhangs&quot;&gt;Overhang&lt;/a&gt; and &lt;a href=&quot;https://www.orcaslicer.com/wiki#support-settings&quot;&gt;Support Optimization&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Modify geometry for printable overhangs with precise support placement.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki#process-settings&quot;&gt;Granular Controls and Customization&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Fine-tune print speed, layer height, pressure, and temperature with precision.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Network Printer Support&lt;/strong&gt;&lt;br /&gt; Seamless integration with Klipper, PrusaLink, and OctoPrint for remote control.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/others_settings_brim&quot;&gt;Mouse Ear Brims&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://www.orcaslicer.com/wiki/printer_basic_information_adaptive_bed_mesh&quot;&gt;Adaptive Bed Mesh&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Automatic brims and adaptive mesh calibration ensure consistent adhesion.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;User-Friendly Interface&lt;/strong&gt;&lt;br /&gt; Intuitive drag-and-drop design with pre-made profiles for popular printers.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer&quot;&gt;Open-Source&lt;/a&gt; &amp;amp; &lt;a href=&quot;https://discord.gg/P4VE9UY9gJ&quot;&gt;Community Driven&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Regular updates fueled by continuous community contributions.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Wide Printer Compatibility&lt;/strong&gt;&lt;br /&gt; Supports a broad range of printers: Bambu Lab, Prusa, Creality, Voron, and more.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/belt_printing&quot;&gt;Belt Printer Support&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Slice for belt / conveyor (infinite-Z) printers, with belt-aware supports and a tilted-bed preview. Contributed by &lt;a href=&quot;https://github.com/HarrierPigeon&quot;&gt;Joseph Robertson (@HarrierPigeon)&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/idex_iqex_parallel_printing&quot;&gt;IDEX/IQEX Parallel Printing Support&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Print copies or mirror images of a part on every carriage of an IDEX or IQEX printer at once, with the mode chosen per plate and nozzle clearance zones shown on the bed. Contributed by &lt;a href=&quot;https://github.com/cgarwood82&quot;&gt;Clifford (@cgarwood82)&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;Additional features can be found in the &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases/&quot;&gt;change notes&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Wiki&lt;/h1&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://www.orcaslicer.com/wiki&quot;&gt;wiki&lt;/a&gt; aims to provide a detailed explanation of the slicer settings, including how to maximize their use and how to calibrate and set up your printer.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki&quot;&gt;Access the wiki here&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://www.orcaslicer.com/wiki/how_to_wiki&quot;&gt;Contribute to the wiki&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h1&gt;Download&lt;/h1&gt; 
+&lt;h2&gt;Stable Release&lt;/h2&gt; 
+&lt;p&gt;📥 &lt;strong&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases/latest&quot;&gt;Download the Latest Stable Release&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Visit our GitHub Releases page for the latest stable version of OrcaSlicer, recommended for most users.&lt;br /&gt; Windows release binaries are code signed; see our &lt;a href=&quot;https://raw.githubusercontent.com/OrcaSlicer/OrcaSlicer/main/#code-signing-policy&quot;&gt;Code signing policy&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Nightly Builds&lt;/h2&gt; 
+&lt;p&gt;🌙 &lt;strong&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases/tag/nightly-builds&quot;&gt;Download the Latest Nightly Build&lt;/a&gt;&lt;/strong&gt;&lt;br /&gt; Explore the latest developments in OrcaSlicer with our nightly builds. Feedback on these versions is highly appreciated.&lt;/p&gt; 
+&lt;h1&gt;How to install&lt;/h1&gt; 
+&lt;h2&gt;Windows&lt;/h2&gt; 
+&lt;p&gt;Download the &lt;strong&gt;Windows Installer exe&lt;/strong&gt; for your preferred version from the &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases&quot;&gt;releases page&lt;/a&gt;. Both &lt;code&gt;x64&lt;/code&gt; and &lt;code&gt;arm64&lt;/code&gt; installers are published — pick the one matching your CPU.&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;em&gt;For convenience there is also a portable build available.&lt;/em&gt;&lt;/p&gt; 
+  &lt;details&gt; 
+   &lt;summary&gt;Troubleshooting&lt;/summary&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt;&lt;em&gt;If you have troubles to run the build, you might need to install following runtimes:&lt;/em&gt;&lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases/download/v1.0.10-sf2/MicrosoftEdgeWebView2RuntimeInstallerX64.exe&quot;&gt;MicrosoftEdgeWebView2RuntimeInstallerX64&lt;/a&gt; 
+     &lt;ul&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://aka.ms/webview2&quot;&gt;Details of this runtime&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://go.microsoft.com/fwlink/p/?LinkId=2124703&quot;&gt;Alternative Download Link Hosted by Microsoft&lt;/a&gt;&lt;/li&gt; 
+     &lt;/ul&gt; &lt;/li&gt; 
+    &lt;li&gt;&lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases/download/v1.0.10-sf2/vcredist2019_x64.exe&quot;&gt;vcredist2019_x64&lt;/a&gt; 
+     &lt;ul&gt; 
+      &lt;li&gt;&lt;a href=&quot;https://aka.ms/vs/17/release/vc_redist.x64.exe&quot;&gt;Alternative Download Link Hosted by Microsoft&lt;/a&gt;&lt;/li&gt; 
+      &lt;li&gt;This file may already be available on your computer if you&#39;ve installed visual studio. Check the following location: &lt;code&gt;%VCINSTALLDIR%Redist\MSVC\v142&lt;/code&gt;&lt;/li&gt; 
+     &lt;/ul&gt; &lt;/li&gt;
+   &lt;/ul&gt;
+  &lt;/details&gt; &lt;/li&gt; 
+&lt;/ul&gt;   
+&lt;h3&gt;Microsoft Store&lt;/h3&gt; 
+&lt;p&gt;Install from the &lt;a href=&quot;https://apps.microsoft.com/detail/9mv6gl23xm59&quot;&gt;Microsoft Store&lt;/a&gt; when you prefer a Store-signed package (helps on Windows 11 Smart App Control).&lt;/p&gt; 
+&lt;h3&gt;Windows Package Manager&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;winget install --id=SoftFever.OrcaSlicer -e
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Mac&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Download the universal DMG, which runs on both Apple Silicon and Intel Macs.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Drag OrcaSlicer.app to Application folder.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;&lt;em&gt;If you want to run a build from a PR, you also need to follow the instructions below:&lt;/em&gt;&lt;/p&gt; 
+  &lt;details&gt; 
+   &lt;summary&gt;Quarantine&lt;/summary&gt; 
+   &lt;ul&gt; 
+    &lt;li&gt; &lt;p&gt;Option 1 (You only need to do this once. After that the app can be opened normally.):&lt;/p&gt; 
+     &lt;ul&gt; 
+      &lt;li&gt;Step 1: Hold &lt;em&gt;cmd&lt;/em&gt; and right click the app, from the context menu choose &lt;strong&gt;Open&lt;/strong&gt;.&lt;/li&gt; 
+      &lt;li&gt;Step 2: A warning window will pop up, click &lt;em&gt;Open&lt;/em&gt;&lt;/li&gt; 
+     &lt;/ul&gt; &lt;/li&gt; 
+    &lt;li&gt; &lt;p&gt;Option 2: Execute this command in terminal:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;xattr -dr com.apple.quarantine /Applications/OrcaSlicer.app
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+    &lt;li&gt; &lt;p&gt;Option 3:&lt;/p&gt; 
+     &lt;ul&gt; 
+      &lt;li&gt;Step 1: open the app, a warning window will pop up&lt;br /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/OrcaSlicer/OrcaSlicer/main/SoftFever_doc/mac_cant_open.png&quot; alt=&quot;mac_cant_open&quot; /&gt;&lt;/li&gt; 
+      &lt;li&gt;Step 2: in &lt;code&gt;System Settings&lt;/code&gt; -&amp;gt; &lt;code&gt;Privacy &amp;amp; Security&lt;/code&gt;, click &lt;code&gt;Open Anyway&lt;/code&gt;:&lt;br /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/OrcaSlicer/OrcaSlicer/main/SoftFever_doc/mac_security_setting.png&quot; alt=&quot;mac_security_setting&quot; /&gt;&lt;/li&gt; 
+     &lt;/ul&gt; &lt;/li&gt; 
+   &lt;/ul&gt; 
+  &lt;/details&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h3&gt;Homebrew Cask&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;brew install --cask orcaslicer
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://formulae.brew.sh/cask/orcaslicer&quot;&gt;Homebrew cask&lt;/a&gt; installs the official macOS DMG from &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases&quot;&gt;GitHub Releases&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Linux&lt;/h2&gt; 
+&lt;h3&gt;Flathub (Recommended)&lt;/h3&gt; 
+&lt;p&gt;OrcaSlicer is available through FlatHub:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://flathub.org/apps/com.orcaslicer.OrcaSlicer&quot;&gt;&lt;img width=&quot;240&quot; alt=&quot;Download on Flathub&quot; src=&quot;https://dl.flathub.org/assets/badges/flathub-badge-en.png&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Install from the command line:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-shell&quot;&gt;flatpak install flathub com.orcaslicer.OrcaSlicer
+flatpak run com.orcaslicer.OrcaSlicer
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It can also be installed through graphical software managers (KDE Discover, GNOME Software, etc.) when Flathub is enabled. Search for &lt;strong&gt;OrcaSlicer&lt;/strong&gt; in your software center.&lt;/p&gt; 
+&lt;h3&gt;AppImage&lt;/h3&gt; 
+&lt;p&gt;AppImages are published for both &lt;strong&gt;x86_64&lt;/strong&gt; and &lt;strong&gt;aarch64&lt;/strong&gt; (ARM64). Pick the file matching your CPU — the ARM64 build has &lt;code&gt;aarch64&lt;/code&gt; in its name (e.g. &lt;code&gt;OrcaSlicer_Linux_AppImage_Ubuntu2404_aarch64_*.AppImage&lt;/code&gt;).&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt; &lt;p&gt;Download App image from the &lt;a href=&quot;https://github.com/OrcaSlicer/OrcaSlicer/releases&quot;&gt;releases page&lt;/a&gt;.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;Double click the downloaded file to run it.&lt;/p&gt; &lt;/li&gt; 
+ &lt;li&gt; &lt;p&gt;If you run into trouble executing it, try this command in the terminal: &lt;code&gt;chmod +x /path_to_appimage/OrcaSlicer_Linux.AppImage&lt;/code&gt;&lt;/p&gt; &lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h1&gt;How to Compile&lt;/h1&gt; 
+&lt;p&gt;All updated build instructions for Windows, macOS, and Linux are now available on the official &lt;a href=&quot;https://www.orcaslicer.com/wiki/how_to_build&quot;&gt;OrcaSlicer Wiki - How to build&lt;/a&gt; page.&lt;/p&gt; 
+&lt;p&gt;Please refer to the wiki to ensure you&#39;re following the latest and most accurate steps for your platform.&lt;/p&gt; 
+&lt;h1&gt;Klipper Note&lt;/h1&gt; 
+&lt;p&gt;If you&#39;re running Klipper, it&#39;s recommended to add the following configuration to your &lt;code&gt;printer.cfg&lt;/code&gt; file.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-gcode&quot;&gt;# Enable object exclusion
+[exclude_object]
+
+# Enable arcs support
+[gcode_arcs]
+resolution: 0.1
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h1&gt;Supports&lt;/h1&gt; 
+&lt;p&gt;&lt;strong&gt;OrcaSlicer&lt;/strong&gt; is an open-source project, and we&#39;re deeply grateful to all our sponsors and backers.&lt;br /&gt; Their generous support helps fund filaments and other essential 3D printing materials for the project.&lt;br /&gt; Thank you! 😃&lt;/p&gt; 
+&lt;h2&gt;Sponsors&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://qidi3d.com/&quot; style=&quot;display:inline-block; border-radius:8px; background:#fff;&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/OrcaSlicer/OrcaSlicer/main/SoftFever_doc%5Csponsor_logos%5CQIDI.png&quot; alt=&quot;QIDI&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt; &lt;/a&gt; &lt;/td&gt; 
+   &lt;td&gt; &lt;a href=&quot;https://bigtree-tech.com/&quot; style=&quot;display:inline-block; border-radius:8px; background:#222;&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/OrcaSlicer/OrcaSlicer/main/SoftFever_doc%5Csponsor_logos%5CBigTreeTech.png&quot; alt=&quot;BIGTREE TECH&quot; width=&quot;100&quot; height=&quot;100&quot; /&gt; &lt;/a&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;h2&gt;Backers:&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Ko-fi supporters&lt;/strong&gt; ☕: &lt;a href=&quot;https://github.com/user-attachments/files/16147016/Supporters_638561417699952499.csv&quot;&gt;Backers list&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Support the project&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/sponsors/SoftFever&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/GitHub%20Sponsors-30363D?style=flat&amp;amp;logo=GitHub-Sponsors&amp;amp;logoColor=EA4AAA&quot; height=&quot;50&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://ko-fi.com/G2G5IP3CP&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Support_me_on_Ko--fi-FF5E5B?style=flat&amp;amp;logo=ko-fi&amp;amp;logoColor=white&quot; height=&quot;50&quot; /&gt;&lt;/a&gt;&lt;br /&gt; &lt;a href=&quot;https://paypal.me/softfever3d&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/PayPal-003087?style=flat&amp;amp;logo=paypal&amp;amp;logoColor=fff&quot; height=&quot;50&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Some Background&lt;/h2&gt; 
+&lt;p&gt;Open-source slicing has always been built on a tradition of collaboration and attribution. &lt;a href=&quot;https://github.com/Slic3r/Slic3r&quot;&gt;Slic3r&lt;/a&gt;, created by Alessandro Ranellucci and the RepRap community, laid the foundation. &lt;a href=&quot;https://github.com/prusa3d/PrusaSlicer&quot;&gt;PrusaSlicer&lt;/a&gt; by Prusa Research built on Slic3r and acknowledged that heritage. &lt;a href=&quot;https://github.com/bambulab/BambuStudio&quot;&gt;Bambu Studio&lt;/a&gt; in turn forked from PrusaSlicer, and &lt;a href=&quot;https://github.com/supermerill/SuperSlicer&quot;&gt;SuperSlicer&lt;/a&gt; by @supermerill extended PrusaSlicer with community-driven enhancements. Each project carried the work of its predecessors forward, crediting those who came before.&lt;/p&gt; 
+&lt;p&gt;OrcaSlicer began in that same spirit, drawing from BambuStudio, PrusaSlicer, and ideas inspired by CuraSlicer and SuperSlicer. But it has since grown far beyond its origins. Through relentless innovation — introducing advanced calibration tools, precise wall and seam control, tree supports, adaptive slicing, and hundreds of other features — OrcaSlicer has become the most widely used and actively developed open-source slicer in the 3D printing community. Many of its innovations have been adopted by other slicers, making it a driving force for the entire industry.&lt;/p&gt; 
+&lt;p&gt;The OrcaSlicer logo was designed by community member &lt;a href=&quot;https://github.com/jal-co&quot;&gt;Justin Levine&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;Code Signing Policy&lt;/h1&gt; 
+&lt;p&gt;Free code signing provided by &lt;a href=&quot;https://about.signpath.io&quot;&gt;SignPath.io&lt;/a&gt;, certificate by &lt;a href=&quot;https://signpath.org&quot;&gt;SignPath Foundation&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Windows release binaries are built by GitHub Actions from this repository and signed through the SignPath Foundation program. Every signing request is manually approved.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Team roles:&lt;/strong&gt; &lt;a href=&quot;https://github.com/SoftFever&quot;&gt;SoftFever&lt;/a&gt; is the committer, reviewer and approver for all signed releases.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Privacy policy:&lt;/strong&gt; See the &lt;a href=&quot;https://www.orcaslicer.com/privacy-policy/&quot;&gt;OrcaSlicer privacy policy&lt;/a&gt;.&lt;/p&gt; 
+&lt;h1&gt;License&lt;/h1&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;OrcaSlicer&lt;/strong&gt; is licensed under the GNU Affero General Public License, version 3.&lt;/li&gt; 
+ &lt;li&gt;The &lt;strong&gt;GNU Affero General Public License&lt;/strong&gt;, version 3 ensures that if you use any part of this software in any way (even behind a web server), your software must be released under the same license.&lt;/li&gt; 
+ &lt;li&gt;OrcaSlicer includes a &lt;strong&gt;pressure advance calibration pattern test&lt;/strong&gt; adapted from Andrew Ellis&#39; generator, which is licensed under GNU General Public License, version 3. Ellis&#39; generator is itself adapted from a generator developed by Sineos for Marlin, which is licensed under GNU General Public License, version 3.&lt;/li&gt; 
+ &lt;li&gt;The &lt;strong&gt;Bambu networking plugin&lt;/strong&gt; is based on non-free libraries from BambuLab. It is optional to the OrcaSlicer and provides extended functionalities for Bambulab printer users.&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/b714fcf922f3fcd140912ebed523062a8b7736f2be0ba31c3c12ba5d672b8d7f/OrcaSlicer/OrcaSlicer" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>SpriteOvO/AirPodsDesktop</title>
+      <link>https://github.com/SpriteOvO/AirPodsDesktop</link>
+      <description>&lt;p&gt;☄️ AirPods desktop user experience enhancement program, for Windows and Linux (WIP)&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/SpriteOvO/AirPodsDesktop&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/Source/Resource/Image/Icon.svg?sanitize=true&quot; alt=&quot;Icon&quot; width=&quot;128&quot; /&gt;&lt;/a&gt; &lt;br /&gt; AirPodsDesktop &lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt;Enhance your AirPods experience on Windows&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/SpriteOvO/AirPodsDesktop/actions/workflows/windows.yml&quot;&gt; &lt;img src=&quot;https://github.com/SpriteOvO/AirPodsDesktop/actions/workflows/windows.yml/badge.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/SpriteOvO/AirPodsDesktop/releases&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/v/release/SpriteOvO/AirPodsDesktop?include_prereleases&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/SpriteOvO/AirPodsDesktop/releases&quot;&gt; &lt;img src=&quot;https://img.shields.io/github/downloads/SpriteOvO/AirPodsDesktop/total.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://github.com/SpriteOvO/AirPodsDesktop/compare&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/PRs-welcome-brightgreen.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/LICENSE&quot;&gt; &lt;img src=&quot;https://img.shields.io/badge/license-GPLv3-yellow.svg?sanitize=true&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt;🌎 English | 🌏 &lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/README-CN.md&quot;&gt;简体中文&lt;/a&gt; | 🌏 &lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/README-TW.md&quot;&gt;繁體中文&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;🔍 Preview&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Light theme&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Dark theme&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/Assets/Preview-Light.gif&quot; alt=&quot;Light theme popup animation&quot; width=&quot;360&quot; /&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/Assets/Preview-Dark.gif&quot; alt=&quot;Dark theme popup animation&quot; width=&quot;360&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;✨ Features&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;🔋 Battery information in the notification area.&lt;/li&gt; 
+ &lt;li&gt;👂 Automatic ear detection and media playback control.&lt;/li&gt; 
+ &lt;li&gt;🚀 Low audio latency mode.&lt;/li&gt; 
+ &lt;li&gt;🌈 Animated device popups and light, dark, or system themes.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;💻 System requirements&lt;/h2&gt; 
+&lt;p&gt;Official builds support Windows 10 1809 or newer and Windows 11 on x64. 32-bit Windows and ARM64 are not supported. Existing Qt 5/Win32 users can migrate through the in-app updater while keeping their user settings.&lt;/p&gt; 
+&lt;h2&gt;🛠️ Build and test&lt;/h2&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/Docs/Build.md&quot;&gt;Build Instructions&lt;/a&gt; for Windows prerequisites, build commands, and tests.&lt;/p&gt; 
+&lt;h2&gt;🤝 Contribute&lt;/h2&gt; 
+&lt;p&gt;&lt;em&gt;AirPodsDesktop&lt;/em&gt; is an open source project, here are some ways you can contribute:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/SpriteOvO/AirPodsDesktop/issues/new/choose&quot;&gt;Open an issue&lt;/a&gt; to report bugs or suggest new features.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/SpriteOvO/AirPodsDesktop/compare&quot;&gt;Submit a PR&lt;/a&gt; to fix bugs, improve documentation, or add features.&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/CONTRIBUTING.md#-translation-guide&quot;&gt;Translate to other languages&lt;/a&gt; or &lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/CONTRIBUTING.md#-translation-guide&quot;&gt;improve existing translations&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Keep &lt;code&gt;README.md&lt;/code&gt;, &lt;code&gt;README-CN.md&lt;/code&gt;, and &lt;code&gt;README-TW.md&lt;/code&gt; aligned in section order, features, commands, links, and credits when updating project documentation.&lt;/p&gt; 
+&lt;h2&gt;💎 Third-party dependencies&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://www.qt.io/download-qt-installer&quot;&gt;Qt 6.8.3&lt;/a&gt; (&lt;a href=&quot;https://doc.qt.io/qt-6/lgpl.html&quot;&gt;LGPLv3 License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/gabime/spdlog&quot;&gt;spdlog&lt;/a&gt; (&lt;a href=&quot;https://github.com/gabime/spdlog/raw/v1.x/LICENSE&quot;&gt;MIT License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/jarro2783/cxxopts&quot;&gt;cxxopts&lt;/a&gt; (&lt;a href=&quot;https://github.com/jarro2783/cxxopts/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/whoshuu/cpr&quot;&gt;cpr&lt;/a&gt; (&lt;a href=&quot;https://github.com/whoshuu/cpr/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/nlohmann/json&quot;&gt;json&lt;/a&gt; (&lt;a href=&quot;https://github.com/nlohmann/json/raw/develop/LICENSE.MIT&quot;&gt;MIT License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/itay-grudev/SingleApplication&quot;&gt;SingleApplication&lt;/a&gt; (&lt;a href=&quot;https://github.com/itay-grudev/SingleApplication/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/boostorg/pfr&quot;&gt;pfr&lt;/a&gt; (&lt;a href=&quot;https://github.com/boostorg/pfr/raw/develop/LICENSE_1_0.txt&quot;&gt;BSL-1.0 License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/Neargye/magic_enum&quot;&gt;magic_enum&lt;/a&gt; (&lt;a href=&quot;https://github.com/Neargye/magic_enum/raw/master/LICENSE&quot;&gt;MIT License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/boostorg/stacktrace&quot;&gt;stacktrace&lt;/a&gt; (&lt;a href=&quot;https://www.boost.org/LICENSE_1_0.txt&quot;&gt;BSL-1.0 License&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/Source/Resource/Font/Inter/LICENSE.txt&quot;&gt;Inter&lt;/a&gt; (SIL Open Font License 1.1)&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/SpriteOvO/AirPodsDesktop/main/Source/Resource/Font/NotoSansTC/LICENSE.txt&quot;&gt;Noto Sans TC&lt;/a&gt; (SIL Open Font License 1.1)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;🍺 Credits&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/adolfintel/OpenPods&quot;&gt;OpenPods&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://hal.inria.fr/hal-02394619/document&quot;&gt;Discontinued Privacy: Personal Data Leaks in Apple Bluetooth-Low-Energy Continuity Protocols&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://magicpods.app/&quot;&gt;MagicPods&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/370397287/01ccac85-7e2a-4e40-ab15-2807cabdfd8b" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>keepassxreboot/keepassxc</title>
+      <link>https://github.com/keepassxreboot/keepassxc</link>
+      <description>&lt;p&gt;KeePassXC is a cross-platform community-driven port of the Windows application “KeePass Password Safe”.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://keepassxc.org/&quot;&gt;https://keepassxc.org/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;&lt;img src=&quot;https://keepassxc.org/assets/img/keepassxc.svg?sanitize=true&quot; width=&quot;40&quot; height=&quot;40&quot; /&gt; KeePassXC&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://bestpractices.coreinfrastructure.org/projects/6326&quot;&gt;&lt;img src=&quot;https://bestpractices.coreinfrastructure.org/projects/6326/badge&quot; alt=&quot;OpenSSF Best Practices&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://ci.keepassxc.org/?guest=1&quot;&gt;&lt;img src=&quot;https://ci.keepassxc.org/app/rest/builds/buildType:(project:KeepassXC)/statusIcon&quot; alt=&quot;TeamCity Build Status&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://codecov.io/gh/keepassxreboot/keepassxc&quot;&gt;&lt;img src=&quot;https://codecov.io/gh/keepassxreboot/keepassxc/branch/develop/graph/badge.svg?sanitize=true&quot; alt=&quot;codecov&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/keepassxreboot/keepassxc/releases/&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/release/keepassxreboot/keepassxc&quot; alt=&quot;GitHub release&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://app.element.io/#/room/%23keepassxc:mozilla.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/matrix/keepassxc:matrix.org?label=Community%20channel&quot; alt=&quot;Matrix community channel&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://app.element.io/#/room/%23keepassxc-dev:mozilla.org&quot;&gt;&lt;img src=&quot;https://img.shields.io/matrix/keepassxc-dev:matrix.org?label=Development%20channel&quot; alt=&quot;Matrix development channel&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://keepassxc.org&quot;&gt;KeePassXC&lt;/a&gt; is a modern, secure, and open-source password manager that stores and manages your most sensitive information. You can run KeePassXC on Windows, macOS, and Linux systems. KeePassXC is for people with extremely high demands of secure personal data management. It saves many different types of information, such as usernames, passwords, URLs, attachments, and notes in an offline, encrypted file that can be stored in any location, including private and public cloud solutions. For easy identification and management, user-defined titles and icons can be specified for entries. In addition, entries are sorted into customizable groups. An integrated search function allows you to use advanced patterns to easily find any entry in your database. A customizable, fast, and easy-to-use password generator utility allows you to create passwords with any combination of characters or easy to remember passphrases.&lt;/p&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;p&gt;The &lt;a href=&quot;https://keepassxc.org/docs/KeePassXC_GettingStarted.html&quot;&gt;QuickStart Guide&lt;/a&gt; gets you started using KeePassXC on your Windows, macOS, or Linux computer using pre-compiled binaries from the &lt;a href=&quot;https://keepassxc.org/download&quot;&gt;downloads page&lt;/a&gt;. Additionally, individual Linux distributions may ship their own versions, so please check your distribution&#39;s package list to see if KeePassXC is available. Detailed documentation is available in the &lt;a href=&quot;https://keepassxc.org/docs/KeePassXC_UserGuide.html&quot;&gt;User Guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Features List&lt;/h2&gt; 
+&lt;p&gt;KeePassXC has numerous features for novice and power users alike. Our goal is to create an application that can be used by anyone while still offering advanced features to those that need them.&lt;/p&gt; 
+&lt;h3&gt;Core Features&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Create, open, and save databases in the KDBX format (KeePass-compatible with KDBX4 and KDBX3)&lt;/li&gt; 
+ &lt;li&gt;All information is encrypted at rest and never exposed outside the program&lt;/li&gt; 
+ &lt;li&gt;Store sensitive information in entries that are organized by groups&lt;/li&gt; 
+ &lt;li&gt;Password generator&lt;/li&gt; 
+ &lt;li&gt;Search for entries&lt;/li&gt; 
+ &lt;li&gt;TOTP storage and generation&lt;/li&gt; 
+ &lt;li&gt;YubiKey/OnlyKey challenge-response support&lt;/li&gt; 
+ &lt;li&gt;Auto-Type passwords into applications&lt;/li&gt; 
+ &lt;li&gt;Browser integration with Google Chrome, Mozilla Firefox, Microsoft Edge, Chromium, Vivaldi, Brave, and Tor-Browser&lt;/li&gt; 
+ &lt;li&gt;Support for passkeys using the browser integration&lt;/li&gt; 
+ &lt;li&gt;Entry icon download&lt;/li&gt; 
+ &lt;li&gt;Import databases from CSV, 1Password, Bitwarden, Proton Pass, and KeePass1 formats&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Advanced&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Database reports (password health, HIBP, and statistics)&lt;/li&gt; 
+ &lt;li&gt;Database export to CSV, XML, and HTML formats&lt;/li&gt; 
+ &lt;li&gt;TOTP storage and generation&lt;/li&gt; 
+ &lt;li&gt;Field references between entries&lt;/li&gt; 
+ &lt;li&gt;File attachments and custom attributes&lt;/li&gt; 
+ &lt;li&gt;Entry history and data restoration&lt;/li&gt; 
+ &lt;li&gt;Command line interface (keepassxc-cli)&lt;/li&gt; 
+ &lt;li&gt;SSH Agent integration&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;http://FreeDesktop.org&quot;&gt;FreeDesktop.org&lt;/a&gt; Secret Service (replace Gnome keyring, etc.)&lt;/li&gt; 
+ &lt;li&gt;Additional encryption choices: Twofish and ChaCha20&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For a full list of changes, read the &lt;a href=&quot;https://raw.githubusercontent.com/keepassxreboot/keepassxc/develop/CHANGELOG.md&quot;&gt;CHANGELOG&lt;/a&gt; document. &lt;br /&gt; For a full list of keyboard shortcuts, see &lt;a href=&quot;https://raw.githubusercontent.com/keepassxreboot/keepassxc/develop/docs/topics/KeyboardShortcuts.adoc&quot;&gt;KeyboardShortcuts.adoc&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Building KeePassXC&lt;/h2&gt; 
+&lt;p&gt;Detailed instructions are available in the &lt;a href=&quot;https://raw.githubusercontent.com/keepassxreboot/keepassxc/develop/INSTALL.md&quot;&gt;Build and Install&lt;/a&gt; page and in the &lt;a href=&quot;https://github.com/keepassxreboot/keepassxc/wiki/Building-KeePassXC&quot;&gt;Wiki&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;We are always looking for suggestions on how to improve KeePassXC. If you find any bugs or have an idea for a new feature, please let us know by opening a report in the &lt;a href=&quot;https://github.com/keepassxreboot/keepassxc/issues&quot;&gt;issue tracker&lt;/a&gt; on GitHub, or join us on &lt;a href=&quot;https://matrix.to/#/!zUxwGnFkUyycpxeHeM:matrix.org?via=matrix.org&quot;&gt;Matrix community channel&lt;/a&gt; or &lt;a href=&quot;https://matrix.to/#/!RhJPJPGwQIFVQeXqZa:matrix.org?via=matrix.org&quot;&gt;Matrix development channel&lt;/a&gt;, or on IRC in &lt;a href=&quot;https://web.libera.chat/&quot;&gt;Libera.Chat&lt;/a&gt; channels #keepassxc and #keepassxc-dev.&lt;/p&gt; 
+&lt;p&gt;You may directly contribute your own code by submitting a pull request. Please read the &lt;a href=&quot;https://raw.githubusercontent.com/keepassxreboot/keepassxc/develop/.github/CONTRIBUTING.md&quot;&gt;CONTRIBUTING&lt;/a&gt; document for further information.&lt;/p&gt; 
+&lt;p&gt;Contributors are required to adhere to the project&#39;s &lt;a href=&quot;https://raw.githubusercontent.com/keepassxreboot/keepassxc/develop/CODE-OF-CONDUCT.md&quot;&gt;Code of Conduct&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Generative AI&lt;/h2&gt; 
+&lt;p&gt;Generative AI is fast becoming a first-party feature in most development environments, including GitHub itself. If the majority of a code submission is made using Generative AI (e.g., agent-based or vibe coding) then &lt;strong&gt;we will document that in the pull request.&lt;/strong&gt; All code submissions go through a rigorous review process regardless of the development workflow or submitter.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;KeePassXC code is licensed under GPL-2 or GPL-3. Additional licensing for third-party files is detailed in &lt;a href=&quot;https://raw.githubusercontent.com/keepassxreboot/keepassxc/develop/COPYING&quot;&gt;COPYING&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/aae2c5f9c5d6c1df978665be74fd08f40bd45bc54f5895d445f2e98bc74b31b2/keepassxreboot/keepassxc" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
