@@ -1,0 +1,497 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Common Lisp Daily Trending Repositories</title>
+    <description>Daily Trending Repositories of Common Lisp on GitHub</description>
+    
+    <pubDate>Sat, 07 Nov 2026 06:46:59 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>nodecode-ai/nodecode</title>
+      <link>https://github.com/nodecode-ai/nodecode</link>
+      <description>&lt;p&gt;A living agent organism in Lisp.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://nodecode.ai&quot;&gt;https://nodecode.ai&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://nodecode.ai&quot;&gt;
+  &lt;picture&gt; 
+   &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/banner-light.svg&quot; /&gt; 
+   &lt;img alt=&quot;Nodecode&quot; src=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/resources/assets/readme/banner-dark.svg?sanitize=true&quot; width=&quot;100%&quot; /&gt; 
+  &lt;/picture&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;b&gt;A living agent.&lt;/b&gt;&lt;br /&gt; It becomes yours and evolves over time. &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://nodecode.ai&quot;&gt;Website&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://nodecode.ai/docs&quot;&gt;Docs&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://nodecode.ai/cells/browse&quot;&gt;Cells&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://foresight-labs.eu/research&quot;&gt;Research&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://discord.gg/cujGhaGCnS&quot;&gt;Discord&lt;/a&gt; &lt;/p&gt; 
+&lt;br /&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(max-width: 699px), (min-width: 768px) and (max-width: 959px)&quot; srcset=&quot;resources/assets/readme/read-pdf-phone.gif&quot; /&gt; 
+ &lt;img alt=&quot;Nodecode in a terminal. Asked &amp;quot;you can&#39;t read PDFs. teach yourself.&amp;quot;, it defines read-pdf, the layer keeps it, and it reads invoices/0421.pdf: Globex owes $1,240.00, due Oct 24, unpaid.&quot; src=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/resources/assets/readme/read-pdf.gif&quot; width=&quot;100%&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;p align=&quot;center&quot;&gt;&lt;sub&gt;&lt;i&gt;you can&#39;t read PDFs. teach yourself.&lt;/i&gt; It defines &lt;code&gt;read-pdf&lt;/code&gt;, keeps it, and reads the invoice. The shell and every evaluation are real; the model&#39;s replies are scripted so the take repeats.&lt;/sub&gt;&lt;/p&gt; 
+&lt;p&gt;Nodecode is an agent that rewrites itself. It runs as one process in SBCL, a Common Lisp system, and shells attach to it. The model has one tool: it evaluates Lisp in the running program and keeps what it defines.&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;p&gt;Linux and macOS:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;curl -fsSL https://nodecode.ai/install.sh | sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Windows, in PowerShell:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;irm https://nodecode.ai/install.ps1 | iex
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Then run &lt;code&gt;nodecode&lt;/code&gt;. The first launch opens setup. If another coding agent lives on the machine (Claude Code, Codex, Hermes Agent, OpenCode, Cursor CLI, Gemini CLI and 9 more), setup names it and asks before it reads anything; say Import and it brings over the agent&#39;s keys, instructions, memory, skills, MCP servers, bots and jobs, tick the agents one by one when it found several, or Skip and &lt;code&gt;/import&lt;/code&gt; brings them over later. Then you pick a provider, a model and the reasoning effort. See &lt;a href=&quot;https://nodecode.ai/docs/quickstart&quot;&gt;Quickstart&lt;/a&gt; and &lt;a href=&quot;https://nodecode.ai/docs/first-run&quot;&gt;First run&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;What&#39;s different&lt;/h2&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(max-width: 479px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-orchid-light.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 479px)&quot; srcset=&quot;resources/assets/readme/emblem-orchid-dark.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-orchid-light-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px)&quot; srcset=&quot;resources/assets/readme/emblem-orchid-dark-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-orchid-light-side.png 3.67x&quot; /&gt; 
+ &lt;source srcset=&quot;resources/assets/readme/emblem-orchid-dark-side.png 3.67x&quot; /&gt; 
+ &lt;img align=&quot;left&quot; alt=&quot;An orchid branch in flower, drawn in cells&quot; src=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/resources/assets/readme/emblem-orchid-dark.png&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;h3&gt;Updates while it runs&lt;/h3&gt; 
+&lt;p&gt;An orchid opens new flowers while it keeps growing. An installed Nodecode updates itself the same way: most releases go live in the running program, one changed definition at a time, with no restart. Its own growth is kept as generations: &lt;code&gt;nodecode generations&lt;/code&gt; lists them, &lt;code&gt;nodecode rollback N&lt;/code&gt; restores one, and &lt;code&gt;--pristine&lt;/code&gt; runs the binary alone. &lt;a href=&quot;https://nodecode.ai/docs/updates&quot;&gt;Updates&lt;/a&gt;&lt;/p&gt; 
+&lt;br clear=&quot;left&quot; /&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(max-width: 479px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-dandelion-light.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 479px)&quot; srcset=&quot;resources/assets/readme/emblem-dandelion-dark.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-dandelion-light-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px)&quot; srcset=&quot;resources/assets/readme/emblem-dandelion-dark-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-dandelion-light-side.png 3.67x&quot; /&gt; 
+ &lt;source srcset=&quot;resources/assets/readme/emblem-dandelion-dark-side.png 3.67x&quot; /&gt; 
+ &lt;img align=&quot;left&quot; alt=&quot;Two dandelion clocks shedding seeds as single cells&quot; src=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/resources/assets/readme/emblem-dandelion-dark.png&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;h3&gt;Everything is a cell&lt;/h3&gt; 
+&lt;p&gt;A cell is a folder that teaches Nodecode something new: a chat room it can live in, a provider login, a tool, a skill, a GitHub repo, an MCP server. &lt;code&gt;nodecode add nc://cline&lt;/code&gt; installs one from the hub and turns it on in every attached shell. Or ask Nodecode to write one. &lt;a href=&quot;https://nodecode.ai/docs/cells&quot;&gt;Cells&lt;/a&gt;&lt;/p&gt; 
+&lt;br clear=&quot;left&quot; /&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(max-width: 479px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-nautilus-light.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 479px)&quot; srcset=&quot;resources/assets/readme/emblem-nautilus-dark.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-nautilus-light-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px)&quot; srcset=&quot;resources/assets/readme/emblem-nautilus-dark-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-nautilus-light-side.png 3.67x&quot; /&gt; 
+ &lt;source srcset=&quot;resources/assets/readme/emblem-nautilus-dark-side.png 3.67x&quot; /&gt; 
+ &lt;img align=&quot;left&quot; alt=&quot;A nautilus in its shell, drawn in cells&quot; src=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/resources/assets/readme/emblem-nautilus-dark.png&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;h3&gt;Edits its own context&lt;/h3&gt; 
+&lt;p&gt;Like an organism, Nodecode decides what stays in its context and what goes, and nothing it lets go is lost. Old turns leave the window whole, never rewritten into a summary; &lt;code&gt;(recall-entry N)&lt;/code&gt; reads any of them back word for word, and &lt;code&gt;/evict&lt;/code&gt; makes room when you ask. The idea behind &lt;a href=&quot;https://arxiv.org/abs/2609.37725&quot;&gt;Context Language Models&lt;/a&gt; (Shao et al., 2026). &lt;a href=&quot;https://nodecode.ai/docs/context&quot;&gt;Context and recall&lt;/a&gt;&lt;/p&gt; 
+&lt;br clear=&quot;left&quot; /&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(max-width: 479px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-mccarthy-light.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 479px)&quot; srcset=&quot;resources/assets/readme/emblem-mccarthy-dark.png 1x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-mccarthy-light-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 1279px)&quot; srcset=&quot;resources/assets/readme/emblem-mccarthy-dark-stack.png 2.62x&quot; /&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/emblem-mccarthy-light-side.png 3.67x&quot; /&gt; 
+ &lt;source srcset=&quot;resources/assets/readme/emblem-mccarthy-dark-side.png 3.67x&quot; /&gt; 
+ &lt;img align=&quot;left&quot; alt=&quot;John McCarthy, who made Lisp, drawn in cells&quot; src=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/resources/assets/readme/emblem-mccarthy-dark.png&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;h3&gt;Rewrites itself in Lisp&lt;/h3&gt; 
+&lt;p&gt;&lt;em&gt;&quot;Its programs are in the same format as its data.&quot;&lt;/em&gt; (John McCarthy, 1984). Code is data, so a program can rewrite itself while it runs. The model&#39;s one tool, &lt;code&gt;eval&lt;/code&gt;, evaluates Lisp in the running Nodecode: what it defines runs at once and is kept, one file per definition, committed with git, loaded at every start. Missing a tool? It writes one. &lt;a href=&quot;https://nodecode.ai/docs/eval&quot;&gt;Eval and the layer&lt;/a&gt;&lt;/p&gt; 
+&lt;br clear=&quot;left&quot; /&gt; 
+&lt;h2&gt;One organism, every client&lt;/h2&gt; 
+&lt;p&gt;The gateway is the local server every client attaches to: the terminal, a browser tab (&lt;code&gt;nodecode web&lt;/code&gt;), your phone (&lt;code&gt;/link&lt;/code&gt;), bots in Discord, Telegram and Slack, and programs (&lt;code&gt;nodecode rpc&lt;/code&gt;). They all talk to the same running Nodecode, so a tool it writes in one is there in all of them.&lt;/p&gt; 
+&lt;p&gt;On Linux and macOS the background gateway is on by default: it keeps Nodecode running with no shell open and starts it at login. &lt;code&gt;nodecode gateway&lt;/code&gt; shows its state. On Windows, keep &lt;code&gt;nodecode serve&lt;/code&gt; open in a terminal. See &lt;a href=&quot;https://nodecode.ai/docs/gateway&quot;&gt;The gateway&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;To put it in a chat room:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;nodecode gateway setup discord    # or telegram, slack
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;It walks one channel from the bot&#39;s token to a connected bot. The token stays in a private file or an environment variable, never in the config, and the bot answers only the channels and people you allow.&lt;/p&gt; 
+&lt;h2&gt;Fewer tokens, same games won&lt;/h2&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(max-width: 600px) and (prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/bars-mobile-light.svg&quot; /&gt; 
+ &lt;source media=&quot;(max-width: 600px)&quot; srcset=&quot;resources/assets/readme/bars-mobile-dark.svg&quot; /&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;resources/assets/readme/bars-light.svg&quot; /&gt; 
+ &lt;img alt=&quot;Tokens to finish ARC-AGI-3, all 25 public games. Claude Opus 5.5, both scoring 100: Nodecode 181M tokens ($124), Claude Code 393M ($210). GPT-6.1 Sol, both winning all 25 games: Nodecode 58M ($33), Codex CLI 172M ($43).&quot; src=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/resources/assets/readme/bars-dark.svg?sanitize=true&quot; width=&quot;100%&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;p&gt;On the same model, Nodecode won every public ARC-AGI-3 game with &lt;strong&gt;54% fewer tokens than Claude Code&lt;/strong&gt; (41% less cost) and &lt;strong&gt;66% fewer tokens than the Codex CLI&lt;/strong&gt; (24% less cost). The write-up: &lt;a href=&quot;https://foresight-labs.eu/research/fl-2026-006&quot;&gt;What ARC-AGI-3 costs&lt;/a&gt;, Foresight Labs FL-2026-006.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;How the runs were measured&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;The 25 public ARC-AGI-3 games, 183 levels, each scored with the official scorecard rule, all harnesses at xhigh reasoning. A token is every token put through the model: input, cache reads, cache writes and output. Cost uses each provider&#39;s official prices of 11 October 2026. Where a game was played more than once, the best run counts, for every harness alike. On Claude Opus 5.5, Nodecode and Claude Code both score 100. On GPT-6.1 Sol, both win all 25 games; the Codex CLI, playing through Prime Intellect&#39;s published game adapter, scores 99.9 to Nodecode&#39;s 99.5 because it took fewer actions. The GPT-6.1 Sol runs reached the model through a LiteLLM gateway and a third-party API relay.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;h2&gt;Cells that ship with it&lt;/h2&gt; 
+&lt;p&gt;Turn one on with Space in &lt;code&gt;/cells&lt;/code&gt;, or &lt;code&gt;nodecode add nc://NAME&lt;/code&gt;:&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Cell&lt;/th&gt; 
+   &lt;th&gt;What it does&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;discord&lt;/code&gt; · &lt;code&gt;telegram&lt;/code&gt; · &lt;code&gt;slack&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Talk to Nodecode through a bot&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;web&lt;/code&gt; · &lt;code&gt;link&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Use it in a browser tab with &lt;code&gt;nodecode web&lt;/code&gt;; open that page from anywhere with &lt;code&gt;/link&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;chrome&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Drive Chrome, with the companion extension&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;websearch&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Web search and page fetch, no key needed&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;mcp&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Tools from the MCP servers you list in the config&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;cron&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Prompts that run on a schedule&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;goal&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;A session keeps taking turns until its goal&#39;s check passes&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;team&lt;/code&gt; · &lt;code&gt;board&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Several sessions work one task in a shared folder; sessions on a board read each other&#39;s posts&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;prs&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Pull requests ranked and reviewed minutes after each push&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;experience&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Learns from each turn: reflections and recaps&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;context&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;The always-visible context-editing skill&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;cyber-security&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;The latest breaches and the fix for each, re-scanned every 6 hours; checks your server and website and walks you through patching&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;guard&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Refuses risky shell commands before they run&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;qa&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Anonymous usage counts, one page a week, sent only if you say so&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;More, from Nodecode and the community, are at &lt;a href=&quot;https://nodecode.ai/cells/browse&quot;&gt;nodecode.ai/cells&lt;/a&gt;. To write your own, ask Nodecode, or read the &lt;a href=&quot;https://nodecode.ai/docs/cell-api&quot;&gt;Cell API&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/docs/CELLS.md&quot;&gt;docs/CELLS.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;More&lt;/h2&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;What does it cost?&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;Nodecode is free, under the MIT license. It runs on your own provider key and the provider bills you; &lt;code&gt;/usage&lt;/code&gt; reports the spend.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Which models?&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;Any provider that speaks one of four wire dialects: &lt;code&gt;openai-completions&lt;/code&gt;, &lt;code&gt;openai-responses&lt;/code&gt;, &lt;code&gt;anthropic&lt;/code&gt; or &lt;code&gt;google&lt;/code&gt;. &lt;code&gt;/models&lt;/code&gt; connects a provider from the &lt;a href=&quot;https://models.dev&quot;&gt;models.dev&lt;/a&gt; catalog, saves its key in &lt;code&gt;~/.nodecode/auth.json&lt;/code&gt; and picks its model; a local server works through &lt;code&gt;base_url&lt;/code&gt;. Its Backup tab lists the models a failing turn moves on to. See &lt;a href=&quot;https://nodecode.ai/docs/models&quot;&gt;Models and providers&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Do I need to know Lisp?&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;No. You ask in plain words, the model writes the Lisp, and your project can be in any language. The forms it runs show on screen, and they are short.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Is it safe to run?&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;Nodecode ships no sandbox. &lt;code&gt;eval&lt;/code&gt; runs Lisp and shell commands with everything your user account can do. The &lt;code&gt;guard&lt;/code&gt; cell refuses listed risky commands, but it is not a security boundary. A cell is code with full access to your files and keys, and a message in a chat room runs with the same authority, so allowlists decide who may send one. Run it in a container or a VM before you leave it working alone. See &lt;a href=&quot;https://nodecode.ai/docs/security&quot;&gt;Safety and trust&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Where does my data live?&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;In &lt;code&gt;~/.nodecode/&lt;/code&gt;: the config, your keys, every session, the cells and what the agent kept. What a turn sends goes to the provider you chose. Besides that, Nodecode checks the release feed for updates (&lt;code&gt;update.mode&lt;/code&gt;: &lt;code&gt;auto&lt;/code&gt;, &lt;code&gt;ask&lt;/code&gt; or &lt;code&gt;off&lt;/code&gt;) and reads the models.dev catalog. The &lt;code&gt;qa&lt;/code&gt; cell sends anonymous counts only if you set it to weekly. See &lt;a href=&quot;https://nodecode.ai/docs/files&quot;&gt;Files&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Which platforms?&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Linux x86_64 with glibc 2.34 or newer: Ubuntu 22.04+, Debian 12+, RHEL 9+, Fedora 35+, Arch.&lt;/li&gt; 
+  &lt;li&gt;macOS 15+ on Apple Silicon, with Homebrew &lt;code&gt;openssl@3&lt;/code&gt; and &lt;code&gt;zstd&lt;/code&gt;.&lt;/li&gt; 
+  &lt;li&gt;Windows x86_64, with Git for Windows. No background gateway: run &lt;code&gt;nodecode serve&lt;/code&gt; instead.&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;No builds yet for arm64 Linux or Intel Macs. See &lt;a href=&quot;https://nodecode.ai/docs/support&quot;&gt;Current support&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Update and uninstall&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;An installed build updates itself by default; &lt;code&gt;nodecode update&lt;/code&gt; moves to the latest release now, and &lt;code&gt;nodecode --version&lt;/code&gt; names the build you run. To uninstall on Linux or macOS, run &lt;code&gt;nodecode gateway off&lt;/code&gt;, then delete &lt;code&gt;~/.local/share/nodecode/&lt;/code&gt; and &lt;code&gt;~/.local/bin/nodecode&lt;/code&gt;. On Windows, delete &lt;code&gt;%LOCALAPPDATA%\Programs\nodecode\&lt;/code&gt; and its user PATH entry. Delete &lt;code&gt;~/.nodecode/&lt;/code&gt; only to remove your sessions, keys and definitions too. See &lt;a href=&quot;https://nodecode.ai/docs/updates&quot;&gt;Updates&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Build from source&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;You need SBCL, &lt;a href=&quot;https://www.quicklisp.org/beta/&quot;&gt;Quicklisp&lt;/a&gt;, git, python3 and &lt;code&gt;just&lt;/code&gt;.&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;git clone https://github.com/nodecode-ai/nodecode &amp;amp;&amp;amp; cd nodecode
+just test        # run the core suite
+just release     # pull the shipped cells, dump ./nodecode
+./nodecode
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;&lt;code&gt;just check&lt;/code&gt; runs lint, the line-count ceiling, build and test. A source build doesn&#39;t update itself: pull and run &lt;code&gt;just release&lt;/code&gt; again. To work on Nodecode itself, start with &lt;a href=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/docs/README.md&quot;&gt;docs/README.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;b&gt;Where do I get help?&lt;/b&gt;&lt;/summary&gt; 
+ &lt;br /&gt; 
+ &lt;p&gt;Run &lt;code&gt;/doctor&lt;/code&gt;: it lists what is missing and prints a fix for each problem. To ask a person, join the &lt;a href=&quot;https://discord.gg/cujGhaGCnS&quot;&gt;Nodecode Discord&lt;/a&gt; or write to &lt;a href=&quot;mailto:hi@nodecode.ai&quot;&gt;hi@nodecode.ai&lt;/a&gt;. See &lt;a href=&quot;https://nodecode.ai/docs/troubleshooting&quot;&gt;Troubleshooting&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;br /&gt; 
+&lt;p&gt;&lt;sub&gt;MIT; see &lt;a href=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/LICENSE&quot;&gt;LICENSE&lt;/a&gt;. &lt;a href=&quot;https://raw.githubusercontent.com/nodecode-ai/nodecode/main/NOTICE&quot;&gt;NOTICE&lt;/a&gt; carries the attribution for cl-tuition, which the terminal core builds on. The emblems are drawn in cells from other people&#39;s footage: the nautilus from video S2 of Barord et al., PLOS ONE 9(6): e100799, 2014, under CC BY 4.0, and John McCarthy from The Computer Chronicles, 1984, © Stewart Cheifet Productions. Every source is listed on &lt;a href=&quot;https://nodecode.ai/credits&quot;&gt;nodecode.ai/credits&lt;/a&gt;.&lt;/sub&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/1042290287/032950cd-9728-478d-a9f0-49cadb5c3843" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>dimitri/pgloader</title>
+      <link>https://github.com/dimitri/pgloader</link>
+      <description>&lt;p&gt;Migrate to PostgreSQL in a single command!&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;http://pgloader.io&quot;&gt;http://pgloader.io&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;pgloader&lt;/h1&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/dimitri/pgloader/actions/workflows/clojure-integration-tests.yml&quot;&gt;&lt;img src=&quot;https://github.com/dimitri/pgloader/actions/workflows/clojure-integration-tests.yml/badge.svg?branch=v4-clojure-rewrite&quot; alt=&quot;pgloader v4 CI&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;http://pgloader.readthedocs.io/en/latest/&quot;&gt;&lt;img src=&quot;https://readthedocs.org/projects/pgloader/badge/?version=latest&amp;amp;style=plastic&quot; alt=&quot;Read The Docs&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;pgloader is a data loading tool for PostgreSQL, using the &lt;code&gt;COPY&lt;/code&gt; command.&lt;/p&gt; 
+&lt;p&gt;Its main advantage over just using &lt;code&gt;COPY&lt;/code&gt; or &lt;code&gt;\copy&lt;/code&gt;, and over using a &lt;em&gt;Foreign Data Wrapper&lt;/em&gt;, is its transaction behaviour, where &lt;em&gt;pgloader&lt;/em&gt; will keep a separate file of rejected data, but continue trying to &lt;code&gt;copy&lt;/code&gt; good data in your database.&lt;/p&gt; 
+&lt;p&gt;The default PostgreSQL behaviour is transactional, which means that &lt;em&gt;any&lt;/em&gt; erroneous line in the input data (file or remote database) will stop the entire bulk load for the table.&lt;/p&gt; 
+&lt;p&gt;pgloader also implements data reformatting, a typical example of that being the transformation of MySQL datestamps &lt;code&gt;0000-00-00&lt;/code&gt; and &lt;code&gt;0000-00-00 00:00:00&lt;/code&gt; to PostgreSQL &lt;code&gt;NULL&lt;/code&gt; value (because our calendar never had a &lt;em&gt;year zero&lt;/em&gt;).&lt;/p&gt; 
+&lt;h2&gt;Version 4 — Clojure/JVM rewrite&lt;/h2&gt; 
+&lt;p&gt;pgloader v4 is a full rewrite in Clojure, distributed as a single self-contained JAR requiring &lt;strong&gt;Java 21 or later&lt;/strong&gt;. It is a drop-in replacement for v3 and accepts the same &lt;code&gt;.load&lt;/code&gt; file syntax and command-line flags.&lt;/p&gt; 
+&lt;p&gt;Key improvements over v3:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Single JAR&lt;/strong&gt; — no native dependencies, no SBCL, no shared libraries&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;JDBC connection strings&lt;/strong&gt; — use &lt;code&gt;jdbc:mysql://&lt;/code&gt;, &lt;code&gt;jdbc:postgresql://&lt;/code&gt;, &lt;code&gt;jdbc:sqlserver://&lt;/code&gt; etc. everywhere; driver-specific parameters pass through unchanged&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Java heap&lt;/strong&gt; — no more Common Lisp heap exhaustion on large migrations; tune with standard &lt;code&gt;-Xmx&lt;/code&gt; JVM flag&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;SSL via URI&lt;/strong&gt; — use &lt;code&gt;?sslmode=require&lt;/code&gt; / &lt;code&gt;?sslmode=disable&lt;/code&gt; in the connection string instead of &lt;code&gt;--no-ssl-cert-verification&lt;/code&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;Full documentation is available at &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/&quot;&gt;https://pgloader.readthedocs.io/&lt;/a&gt;.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ java -jar pgloader.jar --help
+pgloader [ option ... ] SOURCE TARGET
+  --help                          Show usage and exit.
+  --version                       Display pgloader version and exit.
+  --quiet                         Be quiet.
+  --verbose                       Be verbose.
+  --debug                         Display debug level information.
+  --client-min-messages           Filter logs seen at the console (default: info)
+  --log-min-messages              Filter logs seen in the logfile (default: info)
+  --logfile                       Filename where to send the logs.
+  --summary                       Filename where to copy the summary.
+  --root-dir                      Output root directory (default: /tmp/pgloader/).
+  --list-encodings                List pgloader known encodings and exit.
+  --dry-run                       Check connections only, don&#39;t load anything.
+  --on-error-stop                 Stop on first error instead of continuing.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;You can either give a command file to pgloader or run it all from the command line, see the &lt;a href=&quot;https://pgloader.readthedocs.io/en/latest/tutorial/tutorial.html#pgloader-quick-start&quot;&gt;pgloader quick start&lt;/a&gt; for more details.&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ java -jar pgloader.jar --help
+$ java -jar pgloader.jar &amp;lt;file.load&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, for a full migration from SQLite:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb newdb
+$ java -jar pgloader.jar ./test/sqlite/sqlite.db postgresql:///newdb
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Or for a full migration from MySQL, including schema definition (tables, indexes, foreign keys, comments) and parallel loading of the corrected data:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ createdb pagila
+$ java -jar pgloader.jar mysql://user@localhost/sakila postgresql:///pagila
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;INSTALL&lt;/h2&gt; 
+&lt;h3&gt;Java (v4 — recommended)&lt;/h3&gt; 
+&lt;p&gt;pgloader v4 requires &lt;strong&gt;Java 21 or later&lt;/strong&gt; (&lt;a href=&quot;https://adoptium.net/&quot;&gt;Temurin&lt;/a&gt;, OpenJDK, or any compatible distribution).&lt;/p&gt; 
+&lt;p&gt;Download the latest pre-release JAR — this URL always points to the most recent build from the &lt;code&gt;v4-clojure-rewrite&lt;/code&gt; branch:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ curl -L -o pgloader.jar \
+    https://github.com/dimitri/pgloader/releases/download/v4-dev/pgloader.jar
+$ java -jar pgloader.jar --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;To make it available system-wide:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ sudo install -m 755 pgloader.jar /usr/local/lib/pgloader.jar
+$ echo &#39;#!/bin/sh\nexec java -jar /usr/local/lib/pgloader.jar &quot;$@&quot;&#39; \
+    | sudo tee /usr/local/bin/pgloader
+$ sudo chmod 755 /usr/local/bin/pgloader
+$ pgloader --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Docker&lt;/h3&gt; 
+&lt;p&gt;The latest image is built by CI on every push to &lt;code&gt;v4-clojure-rewrite&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ docker pull ghcr.io/dimitri/pgloader:latest
+$ docker run --rm -it ghcr.io/dimitri/pgloader:latest pgloader --version
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;Debian / Ubuntu (v3)&lt;/h3&gt; 
+&lt;p&gt;The v3 package is available in the Debian and Ubuntu repositories:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;$ apt-get install pgloader
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A v4 Debian package is planned.&lt;/p&gt; 
+&lt;h2&gt;LICENCE&lt;/h2&gt; 
+&lt;p&gt;pgloader is available under &lt;a href=&quot;http://www.postgresql.org/about/licence/&quot;&gt;The PostgreSQL Licence&lt;/a&gt;.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/9bac69c0c8d2e579ff2707d730032ef79126abda0044de9a8dbf4ef7e63327ff/dimitri/pgloader" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>open-goal/jak-project</title>
+      <link>https://github.com/open-goal/jak-project</link>
+      <description>&lt;p&gt;Reviving the language that brought us the Jak &amp; Daxter Series&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://opengoal.dev&quot;&gt;https://opengoal.dev&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img width=&quot;500&quot; height=&quot;100%&quot; src=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/img/logo-text-colored-new.png&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://opengoal.dev/docs/intro&quot; rel=&quot;nofollow&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Documentation-Here-informational&quot; alt=&quot;Documentation Badge&quot; style=&quot;max-width:100%;&quot; /&gt;&lt;/a&gt; &lt;a title=&quot;Crowdin&quot; target=&quot;_blank&quot; href=&quot;https://crowdin.com/project/opengoal&quot;&gt;&lt;img src=&quot;https://badges.crowdin.net/opengoal/localized.svg?sanitize=true&quot; /&gt;&lt;/a&gt; &lt;a target=&quot;_blank&quot; rel=&quot;noopener noreferrer&quot; href=&quot;https://github.com/open-goal/jak-project/actions/workflows/build-matrix.yaml&quot;&gt;&lt;img src=&quot;https://github.com/open-goal/jak-project/actions/workflows/build-matrix.yaml/badge.svg?sanitize=true&quot; alt=&quot;Linux and Windows Build&quot; style=&quot;max-width:100%;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.codacy.com/gh/open-goal/jak-project/dashboard?utm_source=github.com&amp;amp;utm_medium=referral&amp;amp;utm_content=open-goal/jak-project&amp;amp;utm_campaign=Badge_Grade&quot; rel=&quot;nofollow&quot;&gt;&lt;img src=&quot;https://app.codacy.com/project/badge/Grade/29316d04a1644aa390c33be07289f3f5&quot; alt=&quot;Codacy Badge&quot; style=&quot;max-width:100%;&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://discord.gg/VZbXMHXzWv&quot;&gt;&lt;img src=&quot;https://img.shields.io/discord/756287461377703987&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;h2&gt;Please read first 
+ &lt;!-- omit from toc --&gt;&lt;/h2&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-important&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-report mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Important&lt;/p&gt;
+ &lt;p&gt;Our repositories on GitHub are for development of the project and tracking active issues. Most of the information you will find here pertains to setting up the project for development purposes and is not relevant to the end-user.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;For a setup guide on how to install and play the game there is the following video that you can check out: &lt;a href=&quot;https://youtu.be/K84UUMnkJc4&quot;&gt;https://youtu.be/K84UUMnkJc4&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;For questions or additional information pertaining to the project, we have a Discord for discussion here: &lt;a href=&quot;https://discord.gg/VZbXMHXzWv&quot;&gt;https://discord.gg/VZbXMHXzWv&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Additionally, you can find further documentation and answers to &lt;strong&gt;frequently asked questions&lt;/strong&gt; on the project&#39;s main website: &lt;a href=&quot;https://opengoal.dev&quot;&gt;https://opengoal.dev&lt;/a&gt;&lt;/p&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;Do not use this decompilation project without the use of your own legally purchased copy of the game.&lt;/strong&gt; OpenGOAL does not include any assets from the original games, so you must provide your own legitimately obtained PS2 copy of the game. OpenGOAL supports every retail PAL, NTSC, and NTSC-J build, including Greatest Hits copies. Please note that does NOT include any of the later releases (PS3/PS4/PS5).&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#project-description&quot;&gt;Project Description&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#current-status&quot;&gt;Current Status&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#methodology&quot;&gt;Methodology&lt;/a&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#setting-up-a-development-environment&quot;&gt;Setting up a Development Environment&lt;/a&gt; 
+  &lt;ul&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#os-setup&quot;&gt;OS Setup&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#editor-setup&quot;&gt;Editor Setup&lt;/a&gt;&lt;/li&gt; 
+   &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#building-and-running-the-game&quot;&gt;Building and Running the Game&lt;/a&gt; 
+    &lt;ul&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#extract-assets&quot;&gt;Extract Assets&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#build-the-game-running-the-compiler&quot;&gt;Build the Game (Running the Compiler)&lt;/a&gt;&lt;/li&gt; 
+     &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#run-the-game&quot;&gt;Run the Game&lt;/a&gt; 
+      &lt;ul&gt; 
+       &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#connecting-the-repl-to-the-game&quot;&gt;Connecting the REPL to the Game&lt;/a&gt;&lt;/li&gt; 
+       &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#running-the-game-without-auto-booting&quot;&gt;Running the Game Without Auto-Booting&lt;/a&gt;&lt;/li&gt; 
+      &lt;/ul&gt; &lt;/li&gt; 
+    &lt;/ul&gt; &lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#technical-project-overview&quot;&gt;Technical Project Overview&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Project Description&lt;/h2&gt; 
+&lt;p&gt;The project&#39;s goal is to port the original trilogy (Jak 1 -&amp;gt; Jak 3) to PC. Over 98% of the games were written in GOAL, a custom LISP language developed by Naughty Dog. Our strategy is:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;decompile the original game code into human-readable GOAL code&lt;/li&gt; 
+ &lt;li&gt;develop our own compiler for GOAL and recompile the game code for x86-64&lt;/li&gt; 
+ &lt;li&gt;create a tool to extract game assets into formats that can be easily viewed or modified&lt;/li&gt; 
+ &lt;li&gt;create tools to repack game assets into a format that our port uses.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Our objectives are:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;make the port a &quot;native application&quot; on x86-64, with high performance. It shouldn&#39;t be emulated, interpreted, or transpiled.&lt;/li&gt; 
+ &lt;li&gt;Our GOAL compiler&#39;s performance should be around the same as unoptimized C.&lt;/li&gt; 
+ &lt;li&gt;try to match things from the original game and development as possible. For example, the original GOAL compiler supported live modification of code while the game is running, so we do the same, even though it&#39;s not required for just porting the game.&lt;/li&gt; 
+ &lt;li&gt;support modifications. It should be possible to make edits to the code without everything else breaking.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;At the moment we support &lt;strong&gt;x86_64&lt;/strong&gt; on Windows, Linux and macOS (via Rosetta translation). There are no plans to ever make a mobile release.&lt;/p&gt; 
+&lt;h3&gt;Current Status&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Jak 1 has been considered in a polished, complete state for years at this point.&lt;/li&gt; 
+ &lt;li&gt;Jak 2 is considered in beta due to a few issues we are aware of that need fixing, however to the casual user, the game is essentially complete.&lt;/li&gt; 
+ &lt;li&gt;Jak 3 has a good amount of work left to do.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/img/promosmall1.png&quot; alt=&quot;&quot; /&gt; &lt;img src=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/img/promosmall2.png&quot; alt=&quot;&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;YouTube playlist showcasing some of the early progress for Jak 1: &lt;a href=&quot;https://www.youtube.com/playlist?list=PLWx9T30aAT50cLnCTY1SAbt2TtWQzKfXX&quot;&gt;https://www.youtube.com/playlist?list=PLWx9T30aAT50cLnCTY1SAbt2TtWQzKfXX&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;Methodology&lt;/h3&gt; 
+&lt;p&gt;To assist with decompiling, we&#39;ve built a decompiler that can process GOAL code and unpack game assets. We manually specify function types and locations where we believe the original code had type casts (or where they feel appropriate) until the decompilation succeeds, then we clean up the output of the decompiled code by adding comments and adjusting formatting, then save it in &lt;code&gt;goal_src/&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Our decompiler is designed specifically for processing the output of the original GOAL compiler. As a result, when given correct casts, it often produces code that can be directly fed into a compiler and works perfectly. This is continually tested as part of our unit tests.&lt;/p&gt; 
+&lt;h2&gt;Setting up a Development Environment&lt;/h2&gt; 
+&lt;p&gt;The remainder of this README is aimed at people interested in building the project from source, typically with the intention of contributing as a developer.&lt;/p&gt; 
+&lt;p&gt;If this does not sound like you and you just want to play the game, refer to the above section &lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/#quick-start&quot;&gt;Quick Start&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;OS Setup&lt;/h3&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/setup/system/windows.md&quot;&gt;Windows&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/setup/system/linux.md&quot;&gt;Linux&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/setup/system/macos.md&quot;&gt;MacOS&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/setup/system/docker.md&quot;&gt;Docker&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Editor Setup&lt;/h3&gt; 
+&lt;p&gt;You can of course use whatever editor you want, but here is some documentation that should help you get started on some of the editor&#39;s we have used and have written about:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/setup/dev/vs.md&quot;&gt;Visual Studio (Windows)&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/setup/dev/vscode.md&quot;&gt;Visual Studio Code&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/setup/dev/zed.md&quot;&gt;Zed&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Building and Running the Game&lt;/h3&gt; 
+&lt;p&gt;Getting a running game involves 4 main steps:&lt;/p&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Build C++ tools (follow Getting Started steps above for your platform)&lt;/li&gt; 
+ &lt;li&gt;Extract assets from the game&lt;/li&gt; 
+ &lt;li&gt;Build the game&lt;/li&gt; 
+ &lt;li&gt;Run the game&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;h4&gt;Extract Assets&lt;/h4&gt; 
+&lt;p&gt;First, we have to setup our environment so we know which game and version we are operating with. For the black label version of Jak 1 we would run the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;task set-game-jak1
+task set-decomp-ntscv1 # or for example for PAL, `task set-decomp-pal`
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;Run &lt;code&gt;task --list&lt;/code&gt; to see the other available options&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;p&gt;Next, ensure you extract your ISO file contents into the relevant &lt;code&gt;iso_data/&amp;lt;game-name&amp;gt;&lt;/code&gt; folder. In the case of Jak 1 this is &lt;code&gt;iso_data/jak1&lt;/code&gt;.&lt;/p&gt; 
+&lt;p&gt;Once this is done, open a terminal in the &lt;code&gt;jak-project&lt;/code&gt; folder and run the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;task extract
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h4&gt;Build the Game (Running the Compiler)&lt;/h4&gt; 
+&lt;p&gt;The next step is to build the game itself. To do so, in the same terminal run the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;task repl
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You will be greeted with a prompt like so:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt; _____             _____ _____ _____ __
+|     |___ ___ ___|   __|     |  _  |  |
+|  |  | . | -_|   |  |  |  |  |     |  |__
+|_____|  _|___|_|_|_____|_____|__|__|_____|
+      |_|
+Welcome to OpenGOAL 0.8!
+Run (repl-help) for help with common commands and REPL usage.
+Run (lt) to connect to the local target.
+
+g &amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run the following to build the game:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;g &amp;gt; (mi)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;IMPORTANT NOTE! If you&#39;re not using the non-default version of the game, you may hit issues trying to run &lt;code&gt;(mi)&lt;/code&gt; in this step. An example error might include something like:&lt;/p&gt; 
+ &lt;p&gt;&lt;code&gt;Input file iso_data/jak1/MUS/TWEAKVAL.MUS does not exist.&lt;/code&gt;&lt;/p&gt; 
+ &lt;p&gt;This is because the decompiler inputs/outputs using the &lt;code&gt;gameName&lt;/code&gt; JSON field in the decompiler config. For example if you are using Jak 1 PAL, it will assume &lt;code&gt;iso_data/jak1_pal&lt;/code&gt; and &lt;code&gt;decompiler_out/jak1_pal&lt;/code&gt;. Therefore, you can inform the REPL/compiler of this via the &lt;code&gt;gameVersionFolder&lt;/code&gt; config field described &lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/goal_src/user/README.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h4&gt;Run the Game&lt;/h4&gt; 
+&lt;p&gt;Finally the game can be launched. Open a second terminal from the &lt;code&gt;jak-project&lt;/code&gt; directory and run the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;task boot-game
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The game should boot automatically if everything was done correctly.&lt;/p&gt; 
+&lt;h5&gt;Connecting the REPL to the Game&lt;/h5&gt; 
+&lt;p&gt;Connecting the REPL to the game allows you to inspect and modify code or data while the game is running.&lt;/p&gt; 
+&lt;p&gt;To do so, in the REPL after a successful &lt;code&gt;(mi)&lt;/code&gt;, run the following:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;g &amp;gt; (lt)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If successful, your prompt should change to:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;gc&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For example, running the following will print out some basic information about Jak:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;gc&amp;gt; *target*
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h5&gt;Running the Game Without Auto-Booting&lt;/h5&gt; 
+&lt;p&gt;You can also start up the game without booting. To do so run the following in one terminal&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;task run-game
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;And then in your REPL run the following (after a successful &lt;code&gt;(mi)&lt;/code&gt;):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;g &amp;gt; (lt)
+[Listener] Socket connected established! (took 0 tries). Waiting for version...
+Got version 0.8 OK!
+[Debugger] Context: valid = true, s7 = 0x147d24, base = 0x2123000000, tid = 2438049
+
+gc&amp;gt; (lg)
+10836466        #xa559f2              0.0000        (&quot;game&quot; &quot;kernel&quot;)
+
+gc&amp;gt; (test-play)
+(play :use-vis #t :init-game #f) has been called!
+0        #x0              0.0000        0
+
+gc&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Technical Project Overview&lt;/h2&gt; 
+&lt;p&gt;Some more detail about the various components of the project can be found &lt;a href=&quot;https://raw.githubusercontent.com/open-goal/jak-project/master/docs/project-overview.md&quot;&gt;here&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/8a9c469bf6af95ebf31922e36b25061292a1dea4a93cc9be341b2a13be540f45/open-goal/jak-project" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
