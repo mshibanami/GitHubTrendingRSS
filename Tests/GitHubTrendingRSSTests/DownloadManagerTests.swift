@@ -107,8 +107,8 @@ final class DownloadManagerTests: XCTestCase {
             maxConcurrentRequests: 1,
             session: Self.makeMockSession()
         )
-        manager.maxRetryCount = 1
-        manager.retryInterval = 0.5
+        manager.maxServerErrorRetryCount = 1
+        manager.serverErrorBaseRetryInterval = 0.5
 
         try await withThrowingTaskGroup(of: Void.self) { group in
             group.addTask {
@@ -178,6 +178,45 @@ final class DownloadManagerTests: XCTestCase {
 
         let attempts = await attemptCounter.nextAttempt(for: "request") - 1
         XCTAssertEqual(attempts, 3, "The initial attempt plus maxRetryCount retries")
+    }
+
+    func testGatewayTimeoutIsRetriedAndRecovers() async throws {
+        let attemptCounter = AttemptCounter()
+        MockURLProtocol.handler = { _ in
+            let attempt = await attemptCounter.nextAttempt(for: "request")
+            return (statusCode: attempt <= 2 ? 504 : 200, data: Data("ok".utf8))
+        }
+
+        let manager = DownloadManager(session: Self.makeMockSession())
+        manager.serverErrorBaseRetryInterval = 0.01
+
+        let result = try await manager.fetch(url: XCTUnwrap(URL(string: "https://mock.example/trending")))
+        XCTAssertEqual(result, "ok")
+
+        let attempts = await attemptCounter.nextAttempt(for: "request") - 1
+        XCTAssertEqual(attempts, 3)
+    }
+
+    func testServerErrorRetriesUpToMaxServerErrorRetryCount() async throws {
+        let attemptCounter = AttemptCounter()
+        MockURLProtocol.handler = { _ in
+            _ = await attemptCounter.nextAttempt(for: "request")
+            return (statusCode: 504, data: Data())
+        }
+
+        let manager = DownloadManager(session: Self.makeMockSession())
+        manager.maxServerErrorRetryCount = 3
+        manager.serverErrorBaseRetryInterval = 0.01
+
+        do {
+            _ = try await manager.fetch(url: XCTUnwrap(URL(string: "https://mock.example/down")))
+            XCTFail("Expected an error")
+        } catch {
+            XCTAssertEqual(error as? DownloadManager.Error, .failedFetching(statusCode: 504))
+        }
+
+        let attempts = await attemptCounter.nextAttempt(for: "request") - 1
+        XCTAssertEqual(attempts, 4, "The initial attempt plus maxServerErrorRetryCount retries")
     }
 
     func testFetchProfileReadMePageSuccess() async throws {

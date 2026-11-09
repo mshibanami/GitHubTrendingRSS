@@ -80,7 +80,21 @@ jobs:
       - name: Build and Fetch Feeds
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        run: .feed-generator/bin/GitHubTrendingRSS --configuration=release --github-token="${GITHUB_TOKEN}" --target="${{ matrix.target }}"
+          TARGET: ${{ matrix.target }}
+        run: |
+          max_attempts=3
+          for attempt in $(seq 1 "$max_attempts"); do
+            if .feed-generator/bin/GitHubTrendingRSS --configuration=release --github-token="${GITHUB_TOKEN}" --target="${TARGET}"; then
+              exit 0
+            fi
+            if [ "$attempt" -lt "$max_attempts" ]; then
+              echo "::warning::Feed generation failed (attempt ${attempt}/${max_attempts}). Retrying in 120s..."
+              rm -rf output
+              sleep 120
+            fi
+          done
+          echo "::error::Feed generation failed after ${max_attempts} attempts."
+          exit 1
 
       - name: Validate Feed Output
         run: ./scripts/validate_feeds.sh output

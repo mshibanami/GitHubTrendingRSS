@@ -14,6 +14,10 @@ public final class DownloadManager: @unchecked Sendable {
     var maxRetryCount = 10
     var retryInterval: TimeInterval = 2 * 60
 
+    static let retryableServerErrorStatusCodes: Set<Int> = [500, 502, 503, 504]
+    var maxServerErrorRetryCount = 4
+    var serverErrorBaseRetryInterval: TimeInterval = 5
+
     static let maxCooldownInterval: TimeInterval = 15 * 60
 
     private let session: URLSession
@@ -52,7 +56,8 @@ public final class DownloadManager: @unchecked Sendable {
         )
 
         let gate = await gateRegistry.gate(forHost: url.host ?? "")
-        var currentRetryCount = 0
+        var rateLimitRetryCount = 0
+        var serverErrorRetryCount = 0
         while true {
             do {
                 return try await gate.semaphore.withPermit {
@@ -60,25 +65,35 @@ public final class DownloadManager: @unchecked Sendable {
                     try await gate.pacer?.waitTurn()
                     return try await performRequest(request, gate: gate)
                 }
+            } catch let Error.failedFetching(statusCode) where Self.retryableServerErrorStatusCodes.contains(statusCode) {
+                guard serverErrorRetryCount < maxServerErrorRetryCount else {
+                    NSLog("🛑 Giving up after \(serverErrorRetryCount) retries: \(url.absoluteString)")
+                    throw Error.failedFetching(statusCode: statusCode)
+                }
+                let delay = serverErrorBaseRetryInterval * pow(2, Double(serverErrorRetryCount))
+                serverErrorRetryCount += 1
+                NSLog(
+                    "🔁 Will retry (\(serverErrorRetryCount)/\(maxServerErrorRetryCount)) in \(Int(delay))s "
+                        + "after \(statusCode): \(url.absoluteString)"
+                )
+                try await Task.sleep(nanoseconds: UInt64(delay * 1_000_000_000))
+            } catch let Error.failedFetching(statusCode) where [429, 403].contains(statusCode) {
+                guard rateLimitRetryCount < maxRetryCount else {
+                    NSLog("🛑 Giving up after \(rateLimitRetryCount) retries: \(url.absoluteString)")
+                    throw Error.failedFetching(statusCode: statusCode)
+                }
+                rateLimitRetryCount += 1
+                NSLog("🔁 Will retry (\(rateLimitRetryCount)/\(maxRetryCount)): \(url.absoluteString)")
+            } catch let Error.failedFetching(statusCode) {
+                throw Error.failedFetching(statusCode: statusCode)
             } catch {
-                if currentRetryCount >= maxRetryCount {
-                    NSLog("🛑 Giving up after \(currentRetryCount) retries: \(url.absoluteString)")
+                guard rateLimitRetryCount < maxRetryCount else {
+                    NSLog("🛑 Giving up after \(rateLimitRetryCount) retries: \(url.absoluteString)")
                     throw error
                 }
-
-                var shouldSleepFixedInterval = true
-                if let err = error as? Error, case let .failedFetching(statusCode) = err {
-                    if ![429, 403, 502].contains(statusCode) {
-                        throw error
-                    }
-                    shouldSleepFixedInterval = statusCode == 502
-                }
-
-                currentRetryCount += 1
-                NSLog("🔁 Will retry (\(currentRetryCount)/\(maxRetryCount)): \(url.absoluteString)")
-                if shouldSleepFixedInterval {
-                    try await Task.sleep(nanoseconds: UInt64(retryInterval * 1_000_000_000))
-                }
+                rateLimitRetryCount += 1
+                NSLog("🔁 Will retry (\(rateLimitRetryCount)/\(maxRetryCount)): \(url.absoluteString)")
+                try await Task.sleep(nanoseconds: UInt64(retryInterval * 1_000_000_000))
             }
         }
     }
