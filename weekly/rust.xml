@@ -1,0 +1,1791 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<rss version="2.0" xmlns:media="http://search.yahoo.com/mrss/">
+  <channel>
+    
+    <title>GitHub Rust Weekly Trending Repositories</title>
+    <description>Weekly Trending Repositories of Rust on GitHub</description>
+    
+    <pubDate>Sat, 28 Nov 2026 08:51:33 GMT</pubDate>
+    <link>https://mshibanami.github.io/GitHubTrendingRSS</link>
+    
+    <item>
+      <title>vercel-labs/agent-browser</title>
+      <link>https://github.com/vercel-labs/agent-browser</link>
+      <description>&lt;p&gt;Browser automation CLI for AI agents&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://agent-browser.dev&quot;&gt;https://agent-browser.dev&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;agent-browser&lt;/h1&gt; 
+&lt;p&gt;Browser automation for AI agents: open pages, read them as an accessibility tree, and act on elements from the shell.&lt;/p&gt; 
+&lt;p&gt; &lt;a href=&quot;https://vercel.com/labs#labs-products&quot;&gt;&lt;img alt=&quot;Vercel Labs Product&quot; src=&quot;https://img.shields.io/badge/LABS-PRODUCT-0a0a0a.svg?style=for-the-badge&amp;amp;logo=Vercel&amp;amp;labelColor=000000&quot; height=&quot;28&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.npmjs.com/package/agent-browser&quot;&gt;&lt;img alt=&quot;npm version: agent-browser&quot; src=&quot;https://img.shields.io/npm/v/agent-browser.svg?style=for-the-badge&amp;amp;labelColor=000000&quot; height=&quot;28&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/vercel-labs/agent-browser/raw/main/LICENSE&quot;&gt;&lt;img alt=&quot;License: Apache-2.0&quot; src=&quot;https://img.shields.io/github/license/vercel-labs/agent-browser.svg?style=for-the-badge&amp;amp;labelColor=000000&quot; height=&quot;28&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://www.npmjs.com/package/agent-browser&quot;&gt;&lt;img alt=&quot;npm downloads per month: agent-browser&quot; src=&quot;https://img.shields.io/npm/dm/agent-browser.svg?style=for-the-badge&amp;amp;labelColor=000000&amp;amp;label=npm%20downloads&quot; height=&quot;28&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://skills.sh/vercel-labs/agent-browser&quot;&gt;&lt;img alt=&quot;skills.sh&quot; src=&quot;https://skills.sh/b/vercel-labs/agent-browser?style=for-the-badge&quot; height=&quot;28&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;agent-browser is a native Rust CLI that gives an AI agent a browser it can drive one command at a time. &lt;code&gt;snapshot&lt;/code&gt; returns the page as compact text with a ref such as &lt;code&gt;@e1&lt;/code&gt; for each element. The agent acts on a ref, reads the page again to check the result, and repeats. The browser stays open between commands, so each step is one short shell call.&lt;/p&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npm install -g agent-browser
+agent-browser install           # download Chrome for Testing (first time only)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Homebrew:&lt;/strong&gt; &lt;code&gt;brew install agent-browser&lt;/code&gt;, then &lt;code&gt;agent-browser install&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Linux:&lt;/strong&gt; &lt;code&gt;agent-browser install --with-deps&lt;/code&gt; also installs the browser&#39;s system libraries.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;No install:&lt;/strong&gt; &lt;code&gt;npx agent-browser open example.com&lt;/code&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Project installs, building from source, &lt;code&gt;upgrade&lt;/code&gt;, and &lt;code&gt;doctor&lt;/code&gt; are covered in &lt;a href=&quot;https://agent-browser.dev/installation&quot;&gt;Installation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Quick start&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;agent-browser open example.com
+agent-browser snapshot -i       # interactive elements, each with a ref
+agent-browser click @e1         # act on a ref from that snapshot
+agent-browser get url           # check the result
+agent-browser close
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The snapshot for &lt;code&gt;example.com&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;- link &quot;Learn more&quot; [ref=e1]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Refs describe the page at the time of the snapshot. After navigation or a DOM change, take a new snapshot before using refs again.&lt;/li&gt; 
+ &lt;li&gt;CSS selectors, text, XPath, and semantic locators also work, for example &lt;code&gt;agent-browser find role button click --name &quot;Submit&quot;&lt;/code&gt;. See &lt;a href=&quot;https://agent-browser.dev/selectors&quot;&gt;Selectors&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;A click fails, instead of reporting success, when the target is hidden, disabled, outside the viewport, or covered by another element such as a consent banner. Dismiss the covering element, take a new snapshot, and retry.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;The full walkthrough is in the &lt;a href=&quot;https://agent-browser.dev/quick-start&quot;&gt;quick start&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;How it works&lt;/h2&gt; 
+&lt;p&gt;The CLI sends each command to a background daemon that starts on the first command and controls the browser over the Chrome DevTools Protocol. Each &lt;code&gt;--session&lt;/code&gt; gets its own daemon and browser. By default, the daemon closes a headless browser and exits after one hour without commands, saving state first when &lt;a href=&quot;https://agent-browser.dev/sessions&quot;&gt;session persistence&lt;/a&gt; is configured.&lt;/p&gt; 
+&lt;p&gt;Chrome for Testing is the default browser. You can also attach to a running Chrome with &lt;code&gt;--cdp&lt;/code&gt; or &lt;code&gt;--auto-connect&lt;/code&gt; (&lt;a href=&quot;https://agent-browser.dev/cdp-mode&quot;&gt;CDP mode&lt;/a&gt;), select the &lt;a href=&quot;https://agent-browser.dev/engines/lightpanda&quot;&gt;Lightpanda&lt;/a&gt; or &lt;a href=&quot;https://agent-browser.dev/engines/obscura&quot;&gt;Obscura&lt;/a&gt; engine with &lt;code&gt;--engine&lt;/code&gt;, drive Mobile Safari in the &lt;a href=&quot;https://agent-browser.dev/ios&quot;&gt;iOS Simulator&lt;/a&gt;, or use a cloud browser provider such as &lt;a href=&quot;https://agent-browser.dev/providers/browserbase&quot;&gt;Browserbase&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/providers/browserless&quot;&gt;Browserless&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/providers/browser-use&quot;&gt;Browser Use&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/providers/kernel&quot;&gt;Kernel&lt;/a&gt;, or &lt;a href=&quot;https://agent-browser.dev/providers/agentcore&quot;&gt;AgentCore&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://agent-browser.dev/engines/firefox&quot;&gt;Firefox engine guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;For AI agents&lt;/h2&gt; 
+&lt;p&gt;The CLI ships skills that match its version:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;agent-browser skills get core                 # the core loop, refs, waiting, and common workflows
+agent-browser skills get core --ref commands  # one reference, such as the full command list
+agent-browser skills get core --full          # adds the full command reference and templates
+agent-browser skills list                     # specialized skills: electron, slack, dogfood, and more
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Install the discovery skill into an agent harness from &lt;a href=&quot;https://skills.sh/vercel-labs/agent-browser&quot;&gt;skills.sh&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;npx skills add vercel-labs/agent-browser
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The installed skill is a thin stub that tells the agent to load &lt;code&gt;agent-browser skills get core&lt;/code&gt;, so its instructions always match the installed CLI. Or add this to your &lt;code&gt;AGENTS.md&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-markdown&quot;&gt;Use `agent-browser` for browser automation. Before the first use, run
+`agent-browser skills get core` and follow it.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For MCP clients, &lt;code&gt;agent-browser mcp&lt;/code&gt; starts an MCP server over stdio. See &lt;a href=&quot;https://agent-browser.dev/commands#mcp-server&quot;&gt;MCP server&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Commands&lt;/h2&gt; 
+&lt;p&gt;Run &lt;code&gt;agent-browser --help&lt;/code&gt; for the full list, or &lt;code&gt;agent-browser &amp;lt;command&amp;gt; --help&lt;/code&gt; for one command.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Group&lt;/th&gt; 
+   &lt;th&gt;Commands&lt;/th&gt; 
+   &lt;th&gt;Docs&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Navigate and read&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;open&lt;/code&gt;, &lt;code&gt;back&lt;/code&gt;, &lt;code&gt;forward&lt;/code&gt;, &lt;code&gt;reload&lt;/code&gt;, &lt;code&gt;read&lt;/code&gt;, &lt;code&gt;snapshot&lt;/code&gt;, &lt;code&gt;get&lt;/code&gt;, &lt;code&gt;is&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/commands#core&quot;&gt;Core&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/snapshots&quot;&gt;Snapshots&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Interact&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;click&lt;/code&gt;, &lt;code&gt;dblclick&lt;/code&gt;, &lt;code&gt;fill&lt;/code&gt;, &lt;code&gt;type&lt;/code&gt;, &lt;code&gt;press&lt;/code&gt;, &lt;code&gt;keyboard&lt;/code&gt;, &lt;code&gt;hover&lt;/code&gt;, &lt;code&gt;focus&lt;/code&gt;, &lt;code&gt;select&lt;/code&gt;, &lt;code&gt;check&lt;/code&gt;, &lt;code&gt;uncheck&lt;/code&gt;, &lt;code&gt;scroll&lt;/code&gt;, &lt;code&gt;drag&lt;/code&gt;, &lt;code&gt;upload&lt;/code&gt;, &lt;code&gt;mouse&lt;/code&gt;, &lt;code&gt;find&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/commands#core&quot;&gt;Core&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/commands#find-elements&quot;&gt;Find elements&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Wait&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;wait&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/commands#wait&quot;&gt;Wait&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Capture&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;screenshot&lt;/code&gt;, &lt;code&gt;pdf&lt;/code&gt;, &lt;code&gt;record&lt;/code&gt;, &lt;code&gt;download&lt;/code&gt;, &lt;code&gt;diff&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/recording&quot;&gt;Recording&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/diffing&quot;&gt;Diffing&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/files&quot;&gt;Files&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Page and network state&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;cookies&lt;/code&gt;, &lt;code&gt;storage&lt;/code&gt;, &lt;code&gt;network&lt;/code&gt;, &lt;code&gt;set&lt;/code&gt;, &lt;code&gt;clipboard&lt;/code&gt;, &lt;code&gt;eval&lt;/code&gt;, &lt;code&gt;pushstate&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/network&quot;&gt;Network&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/commands#settings&quot;&gt;Settings&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Tabs, frames, and dialogs&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;tab&lt;/code&gt;, &lt;code&gt;frame&lt;/code&gt;, &lt;code&gt;dialog&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/commands#tabs-frames&quot;&gt;Tabs and frames&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Debug and performance&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;console&lt;/code&gt;, &lt;code&gt;errors&lt;/code&gt;, &lt;code&gt;highlight&lt;/code&gt;, &lt;code&gt;inspect&lt;/code&gt;, &lt;code&gt;trace&lt;/code&gt;, &lt;code&gt;profiler&lt;/code&gt;, &lt;code&gt;vitals&lt;/code&gt;, &lt;code&gt;react&lt;/code&gt;, &lt;code&gt;a11y&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/debugging&quot;&gt;Debugging&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/profiler&quot;&gt;Profiler&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/react&quot;&gt;React&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Sessions and auth&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;session&lt;/code&gt;, &lt;code&gt;state&lt;/code&gt;, &lt;code&gt;auth&lt;/code&gt;, &lt;code&gt;profiles&lt;/code&gt;, &lt;code&gt;confirm&lt;/code&gt;, &lt;code&gt;deny&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/sessions&quot;&gt;Sessions&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/security&quot;&gt;Security&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Agents and integrations&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;skills&lt;/code&gt;, &lt;code&gt;mcp&lt;/code&gt;, &lt;code&gt;webmcp&lt;/code&gt;, &lt;code&gt;flow&lt;/code&gt;, &lt;code&gt;chat&lt;/code&gt;, &lt;code&gt;batch&lt;/code&gt;, &lt;code&gt;plugin&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/skills&quot;&gt;Skills&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/webmcp&quot;&gt;WebMCP&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/plugins&quot;&gt;Plugins&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Observe&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;stream&lt;/code&gt;, &lt;code&gt;dashboard&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/streaming&quot;&gt;Streaming&lt;/a&gt;, &lt;a href=&quot;https://agent-browser.dev/dashboard&quot;&gt;Dashboard&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Setup&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;install&lt;/code&gt;, &lt;code&gt;upgrade&lt;/code&gt;, &lt;code&gt;doctor&lt;/code&gt;, &lt;code&gt;connect&lt;/code&gt;, &lt;code&gt;close&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://agent-browser.dev/installation&quot;&gt;Installation&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Flags, environment variables, and &lt;code&gt;agent-browser.json&lt;/code&gt; are documented in &lt;a href=&quot;https://agent-browser.dev/configuration&quot;&gt;Configuration&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Platforms&lt;/h2&gt; 
+&lt;p&gt;Native binaries ship for macOS (ARM64, x64), Linux (ARM64, x64, glibc and musl), and Windows (x64). The npm package picks the right binary for the host.&lt;/p&gt; 
+&lt;h2&gt;Development&lt;/h2&gt; 
+&lt;p&gt;Building from source requires Node.js 24 or later, pnpm 11 or later, and Rust:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;pnpm install
+pnpm build:source               # builds the dashboard and the native CLI
+pnpm link --global
+agent-browser install
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Run the Rust checks from &lt;code&gt;cli/&lt;/code&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cargo fmt -- --check
+cargo clippy
+cargo test
+cargo test e2e -- --ignored --test-threads=1   # launches real headless Chrome
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/vercel-labs/agent-browser/main/AGENTS.md&quot;&gt;AGENTS.md&lt;/a&gt; lists the files to update with each change, the docs checks, and the release process.&lt;/p&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://agent-browser.dev&quot;&gt;agent-browser.dev&lt;/a&gt;: introduction, guides, and reference&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://agent-browser.dev/commands&quot;&gt;Commands&lt;/a&gt; and &lt;a href=&quot;https://agent-browser.dev/configuration&quot;&gt;Configuration&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://agent-browser.dev/security&quot;&gt;Security&lt;/a&gt;: the auth vault, domain allowlists, action policies, and content boundaries&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://agent-browser.dev/next&quot;&gt;Next.js and Vercel&lt;/a&gt; and &lt;a href=&quot;https://agent-browser.dev/eve&quot;&gt;eve&lt;/a&gt;: running agent-browser in Vercel Sandbox and eve agents&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/vercel-labs/agent-browser/main/CHANGELOG.md&quot;&gt;Changelog&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Apache-2.0&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/03dcf012c1353ba1557e703b8a484cf8020fed7fc714781c0b5154a813f38db4/vercel-labs/agent-browser" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>block/buzz</title>
+      <link>https://github.com/block/buzz</link>
+      <description>&lt;p&gt;A hive mind communication platform&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt;Buzz 🐝&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;strong&gt;A workspace where humans and agents build together, on a relay you own.&lt;/strong&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION.md&quot;&gt;Vision&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION_SOVEREIGN.md&quot;&gt;Sovereign&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION_PROJECTS.md&quot;&gt;Forge&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION_AGENT.md&quot;&gt;Agents&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/ARCHITECTURE.md&quot;&gt;Architecture&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/RELEASING.md&quot;&gt;Releasing&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/LICENSE&quot;&gt;Apache 2.0&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/block/buzz/main/docs/assets/screenshots/channel-thread.png&quot; alt=&quot;A Buzz project channel where people and an agent coordinate on a release plan&quot; width=&quot;100%&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;sub&gt;&lt;em&gt;People and agents building together in the same room.&lt;/em&gt;&lt;/sub&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;What is this, really?&lt;/h2&gt; 
+&lt;p&gt;Buzz is a self-hostable workspace where humans and AI agents share the same rooms.&lt;/p&gt; 
+&lt;p&gt;A Buzz &lt;strong&gt;community&lt;/strong&gt; is the workspace a user reaches by URL. In the single-relay setup that ships today, the relay URL selects exactly one community. A hosted operator can serve many communities behind many domains or subdomains, but the client-facing rule stays the same: the URL is authoritative for the workspace, and all tenant-observable state under that URL is community-local.&lt;/p&gt; 
+&lt;p&gt;It&#39;s a Nostr relay: every message, reaction, workflow step, review approval, and git event is a signed event in one log. Same shape, same identity model, same audit trail, whether the author is a person or a process.&lt;/p&gt; 
+&lt;p&gt;In practice it feels like a team workspace. Under the hood it&#39;s an event log with taste and a suspicious number of Rust crates.&lt;/p&gt; 
+&lt;p&gt;Yes, it&#39;s another AI-adjacent developer tool. We&#39;re sorry. The difference is what agents can actually &lt;em&gt;do&lt;/em&gt; once they&#39;re inside: open repos, send patches, review code, run workflows, edit canvases, orchestrate other agents, drop into voice huddles, create channels, and pull in whoever needs to see it. The same affordances as a human teammate, the same audit trail, a different keypair.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Stuff you do in Buzz&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Ask the project a question and get an answer with receipts.&lt;/strong&gt; Agents search six months of history and post the threads, not vibes.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Let an agent triage a bug without giving it the keys to the kingdom.&lt;/strong&gt; Agents have their own keys, their own channel memberships, and their own audit trail. Scoped by identity, not by permission flags — the same way you&#39;d scope a teammate.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Turn a feature branch into a room&lt;/strong&gt; where patches, CI, review, and the merge decision live together — so the channel becomes the record of why the code exists.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Search the conversation, the patch, the workflow run, and the approval in one place&lt;/strong&gt; — because they&#39;re all the same kind of event.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Let an agent run the workspace, not just talk in it.&lt;/strong&gt; Channels, canvases, workflows, huddles — agents have the same surface area as humans, with their own keys and their own audit trail.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Where to find things&lt;/h2&gt; 
+&lt;p&gt;Buzz&#39;s open-source code lives in two repositories. The desktop app has its own; the relay and the mobile client are here.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Component&lt;/th&gt; 
+   &lt;th&gt;Home&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Desktop app&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://github.com/block/buzz-app&quot;&gt;block/buzz-app&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Mobile client (iOS + Android)&lt;/td&gt; 
+   &lt;td&gt;This repo, in &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/mobile/&quot;&gt;&lt;code&gt;mobile/&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Relay&lt;/td&gt; 
+   &lt;td&gt;This repo, in &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/crates/buzz-relay/&quot;&gt;&lt;code&gt;crates/buzz-relay/&lt;/code&gt;&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;A look inside&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;tbody&gt;
+  &lt;tr&gt; 
+   &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/block/buzz/main/docs/assets/screenshots/channel-agents.png&quot; alt=&quot;People and agents collaborating in a Buzz engineering channel and reacting with emoji&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt; &lt;sub&gt;&lt;strong&gt;Agents are members, not bots.&lt;/strong&gt; Add an agent to a channel the same way you add a person.&lt;/sub&gt; &lt;/td&gt; 
+   &lt;td width=&quot;50%&quot; valign=&quot;top&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/block/buzz/main/docs/assets/screenshots/create-channel.png&quot; alt=&quot;The Add a channel dialog with search, filters, and channels to join or create&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt; &lt;sub&gt;&lt;strong&gt;Spin up a room in seconds.&lt;/strong&gt; Name it, describe it, make it private.&lt;/sub&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td colspan=&quot;2&quot; valign=&quot;top&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/block/buzz/main/docs/assets/screenshots/media-comments.png&quot; alt=&quot;A video playing in Buzz with frame-anchored comments in a side panel&quot; width=&quot;100%&quot; /&gt;&lt;br /&gt; &lt;sub&gt;&lt;strong&gt;Media you can talk about.&lt;/strong&gt; Leave comments pinned to specific frames.&lt;/sub&gt; &lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt;
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Why Buzz is better&lt;/h2&gt; 
+&lt;p&gt;One community. One identity model. One event log. Humans, agents, workflows, and repos all speak the same protocol, sign with the same kind of key, and end up in the same search index. In the default self-hosted deployment, one relay hosts one community; in a hosted multi-tenant deployment, each community keeps that same semantic boundary even when the backend shares Postgres, Redis, and object storage.&lt;/p&gt; 
+&lt;p&gt;The bet is that one community can do what teams currently fake with chat, forges, bots, CI dashboards, release tools, search indexes, and a pile of glue code. Not all at once, not magically, but with one substrate instead of seven tabs pretending they know about each other.&lt;/p&gt; 
+&lt;p&gt;Agents are part of the room, not haunted cron jobs.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Three little stories&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Incident memory.&lt;/strong&gt; It&#39;s 2am. You type &lt;em&gt;&quot;have we seen this error before?&quot;&lt;/em&gt; An agent watching the channel pulls six months of history, posts the threads, the root causes, the fixes, and offers to page whoever shipped the last one. The whole exchange — question, answer, evidence — stays in the channel.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Branch as room.&lt;/strong&gt; You open a feature branch. A channel appears. Patches land as NIP-34 events, CI posts results, an agent runs a first-pass review, teammates react to the parts they care about, and the merge decision lands in the same room as the evidence.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;A release that writes itself.&lt;/strong&gt; A workflow fires on a tag. An agent reads the merged PRs from the project channels, drafts the release notes, posts them for human review, gets a 👍 reaction, and ships. Every step signed. Every step searchable.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Works today · Being wired up · Strong opinions, pending code&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;✅ Works today&lt;/th&gt; 
+   &lt;th&gt;🚧 Being wired up&lt;/th&gt; 
+   &lt;th&gt;💭 Strong opinions, pending code&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Relay, channels, threads, DMs, canvases, media, search, audit log&lt;/td&gt; 
+   &lt;td&gt;Mobile clients (iOS + Android, Flutter)&lt;/td&gt; 
+   &lt;td&gt;Web-of-trust reputation across relays&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Desktop app (in &lt;a href=&quot;https://github.com/block/buzz-app&quot;&gt;block/buzz-app&lt;/a&gt;)&lt;/td&gt; 
+   &lt;td&gt;Workflow approval gates (infra exists, glue still drying)&lt;/td&gt; 
+   &lt;td&gt;Push notifications&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;code&gt;buzz-cli&lt;/code&gt; (agent-first, JSON in / JSON out) + ACP harness (Goose, Codex, Claude Code)&lt;/td&gt; 
+   &lt;td&gt;Huddle lifecycle events&lt;/td&gt; 
+   &lt;td&gt;Culture features&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;YAML workflows: message / reaction / schedule / webhook triggers&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Git events (NIP-34: patches, repo announcements, status)&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Git hosting backend&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;sub&gt;Please do not plan your compliance program around the 💭 column yet. The &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION.md&quot;&gt;VISION docs&lt;/a&gt; are the long version of what we think this becomes.&lt;/sub&gt;&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Getting started&lt;/h2&gt; 
+&lt;p&gt;New to Buzz? Pick the path that matches you.&lt;/p&gt; 
+&lt;h3&gt;I just want to try the app&lt;/h3&gt; 
+&lt;p&gt;The desktop app lives in &lt;a href=&quot;https://github.com/block/buzz-app&quot;&gt;block/buzz-app&lt;/a&gt;. Head there to install, build, or run it.&lt;/p&gt; 
+&lt;p&gt;Need a relay for it to connect to? Deploy a hosted one, or follow &lt;strong&gt;Quick start&lt;/strong&gt; below to stand one up locally.&lt;/p&gt; 
+&lt;h3&gt;I want my own hosted relay&lt;/h3&gt; 
+&lt;p&gt;To run a relay for your team without managing servers, you can deploy one to Railway in a click:&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://railway.com/deploy/buzz-relay-block&quot;&gt;&lt;img src=&quot;https://railway.com/button.svg?sanitize=true&quot; alt=&quot;Deploy on Railway&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;See &lt;a href=&quot;https://engineering.block.xyz/blog/run-your-own-buzz-relay&quot;&gt;here&lt;/a&gt; for details.&lt;/p&gt; 
+&lt;h3&gt;I want to run the relay from source&lt;/h3&gt; 
+&lt;p&gt;See &lt;strong&gt;Quick start&lt;/strong&gt; below — this is the developer / self-host path.&lt;/p&gt; 
+&lt;h3&gt;I want to work on the mobile app&lt;/h3&gt; 
+&lt;p&gt;The Flutter client is in &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/mobile/&quot;&gt;&lt;code&gt;mobile/&lt;/code&gt;&lt;/a&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/mobile/README.md&quot;&gt;mobile/README.md&lt;/a&gt; for setup and run instructions.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Quick start&lt;/h2&gt; 
+&lt;p&gt;This stands up the relay locally. For the desktop app, see &lt;a href=&quot;https://github.com/block/buzz-app&quot;&gt;block/buzz-app&lt;/a&gt;; for the mobile app, see &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/mobile/README.md&quot;&gt;mobile/README.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;You&#39;ll need &lt;a href=&quot;https://docs.docker.com/get-docker/&quot;&gt;Docker&lt;/a&gt; and &lt;a href=&quot;https://cashapp.github.io/hermit/&quot;&gt;Hermit&lt;/a&gt; (or Rust 1.88+, Node 24+, pnpm 10+, &lt;code&gt;just&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Once:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;git clone https://github.com/block/buzz.git &amp;amp;&amp;amp; cd buzz
+. ./bin/activate-hermit   # pinned toolchain (tools auto-download on first use)
+just setup &amp;amp;&amp;amp; just build
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;just setup&lt;/code&gt; runs &lt;code&gt;just bootstrap&lt;/code&gt; automatically — it copies &lt;code&gt;.env.example&lt;/code&gt; to &lt;code&gt;.env&lt;/code&gt; if needed, downloads all required tools via Hermit, and starts Docker services + migrations.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Every day:&lt;/strong&gt;&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;. ./bin/activate-hermit
+just relay   # starts the relay (and its Docker services if needed)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Relay on &lt;code&gt;ws://localhost:3000&lt;/code&gt;. You&#39;re in.&lt;/p&gt; 
+&lt;p&gt;Want a single-node / VPS relay instead of the local-dev stack? Use the production Compose bundle in &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/deploy/compose/README.md&quot;&gt;&lt;code&gt;deploy/compose/&lt;/code&gt;&lt;/a&gt; (&lt;code&gt;docker compose&lt;/code&gt; + Postgres, Redis, MinIO, optional Caddy/TLS). The root &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/docker-compose.yml&quot;&gt;&lt;code&gt;docker-compose.yml&lt;/code&gt;&lt;/a&gt; is for day-to-day development only.&lt;/p&gt; 
+&lt;p&gt;For agents, set &lt;code&gt;BUZZ_PRIVATE_KEY&lt;/code&gt; and use &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/crates/buzz-cli&quot;&gt;&lt;code&gt;buzz-cli&lt;/code&gt;&lt;/a&gt; — JSON in, JSON out, designed for LLM tool calls.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Windows prerequisites&lt;/h2&gt; 
+&lt;p&gt;The agent shell tool runs commands under bash. On macOS and Linux that&#39;s already there; on Windows you need to bring it.&lt;/p&gt; 
+&lt;p&gt;Install &lt;a href=&quot;https://git-scm.com/download/win&quot;&gt;Git for Windows&lt;/a&gt; — it ships Git Bash, which is what buzz resolves at runtime. Once it&#39;s installed, everything works the same as on other platforms.&lt;/p&gt; 
+&lt;p&gt;If you&#39;d rather point buzz at a different bash-compatible shell, set &lt;code&gt;BUZZ_SHELL&lt;/code&gt; to its path (e.g. &lt;code&gt;BUZZ_SHELL=C:\path\to\bash.exe&lt;/code&gt;). The agent&#39;s tool description updates automatically to reflect whichever shell is active.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Architecture&lt;/h2&gt; 
+&lt;pre&gt;&lt;code&gt;┌─────────────────────────────────────────────────────────────────────────┐
+│                             Clients                                     │
+│  Human client         AI agent              CLI / scripts               │
+│  (desktop, mobile)    (Goose, Codex, ...)   (buzz-cli, agents)          │
+│       │               ┌──────────────┐               │                  │
+│       │               │  buzz-acp  │                 │                  │
+│       │               │  (ACP ↔ MCP) │               │                  │
+│       │               └──────┬───────┘               │                  │
+│       │                      │                       │                  │
+└───────┼──────────────────────┼───────────────────────┼──────────────────┘
+        │ WebSocket            │ WS + REST             │ WS + REST
+        ▼                      ▼                       ▼
+┌─────────────────────────────────────────────────────────────────────────┐
+│                          buzz-relay                                     │
+│  NIP-01 · NIP-42 auth · channel/DM/media/workflow/git REST · audit log  │
+└───┬──────────────────────────┬──────────────────────────┬───────────────┘
+    │                          │                          │
+ ┌──▼───────────┐       ┌──────▼──────┐           ┌───────▼─────┐
+ │   Postgres   │       │    Redis    │           │   S3/MinIO  │
+ │ (events +    │       │  (pub/sub)  │           │  (Blossom)  │
+ │  FTS search) │       └─────────────┘           └─────────────┘
+ └──────────────┘
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;A Rust workspace of focused crates. Single source of truth: the relay. The human clients are the desktop app in &lt;a href=&quot;https://github.com/block/buzz-app&quot;&gt;block/buzz-app&lt;/a&gt; and the mobile app in &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/mobile/&quot;&gt;&lt;code&gt;mobile/&lt;/code&gt;&lt;/a&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/ARCHITECTURE.md&quot;&gt;ARCHITECTURE.md&lt;/a&gt; for the full breakdown.&lt;/p&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Crate map&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;p&gt;&lt;strong&gt;Core protocol&lt;/strong&gt; — &lt;code&gt;buzz-core&lt;/code&gt; (zero-I/O types, NIP-01 filters, Schnorr verify) · &lt;code&gt;buzz-relay&lt;/code&gt; (Axum WS + REST)&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Services&lt;/strong&gt; — &lt;code&gt;buzz-db&lt;/code&gt; (Postgres) · &lt;code&gt;buzz-auth&lt;/code&gt; (NIP-42/98 Schnorr auth, rate limiting) · &lt;code&gt;buzz-pubsub&lt;/code&gt; (Redis, presence, typing) · &lt;code&gt;buzz-search&lt;/code&gt; (Postgres FTS) · &lt;code&gt;buzz-audit&lt;/code&gt; (hash-chain log). Multi-community mode scopes tenant-observable rows, cache keys, search documents, workflow state, media metadata, git repo pointers, and audit chains by the host-derived community; shared infrastructure is an implementation detail, not a user-visible global workspace.&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Agent surface&lt;/strong&gt; — &lt;code&gt;buzz-cli&lt;/code&gt; (agent-first CLI, JSON in / JSON out) · &lt;code&gt;buzz-acp&lt;/code&gt; (ACP harness for Goose/Codex/Claude Code) · &lt;code&gt;buzz-agent&lt;/code&gt; (ACP agent — see &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION_AGENT.md&quot;&gt;VISION_AGENT.md&lt;/a&gt;) · &lt;code&gt;buzz-dev-mcp&lt;/code&gt; (shell + file-edit tools) · &lt;code&gt;buzz-workflow&lt;/code&gt; (YAML automation) · &lt;code&gt;buzz-persona&lt;/code&gt; (agent persona packs)&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Git &amp;amp; pairing&lt;/strong&gt; — &lt;code&gt;git-sign-nostr&lt;/code&gt; / &lt;code&gt;git-credential-nostr&lt;/code&gt; (nostr-signed git) · &lt;code&gt;buzz-pair-relay&lt;/code&gt; / &lt;code&gt;buzz-pairing-cli&lt;/code&gt; (relay pairing)&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Shared&lt;/strong&gt; — &lt;code&gt;buzz-sdk&lt;/code&gt; (typed event builders) · &lt;code&gt;buzz-media&lt;/code&gt; (Blossom/S3)&lt;/p&gt; 
+ &lt;p&gt;&lt;strong&gt;Tooling&lt;/strong&gt; — &lt;code&gt;buzz-admin&lt;/code&gt; (admin CLI) · &lt;code&gt;buzz-test-client&lt;/code&gt; (E2E)&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Going further&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION.md&quot;&gt;VISION.md&lt;/a&gt;&lt;/strong&gt; · &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION_SOVEREIGN.md&quot;&gt;VISION_SOVEREIGN.md&lt;/a&gt;&lt;/strong&gt; · &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION_PROJECTS.md&quot;&gt;VISION_PROJECTS.md&lt;/a&gt;&lt;/strong&gt; · &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/VISION_AGENT.md&quot;&gt;VISION_AGENT.md&lt;/a&gt;&lt;/strong&gt; — the four vision docs&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/ARCHITECTURE.md&quot;&gt;ARCHITECTURE.md&lt;/a&gt;&lt;/strong&gt; — system design, kind ranges, subsystem boundaries&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/TESTING.md&quot;&gt;TESTING.md&lt;/a&gt;&lt;/strong&gt; — multi-agent E2E test suite&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;&lt;/strong&gt; · &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/CODE_OF_CONDUCT.md&quot;&gt;CODE_OF_CONDUCT.md&lt;/a&gt;&lt;/strong&gt; · &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/SECURITY.md&quot;&gt;SECURITY.md&lt;/a&gt;&lt;/strong&gt; · &lt;strong&gt;&lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/GOVERNANCE.md&quot;&gt;GOVERNANCE.md&lt;/a&gt;&lt;/strong&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Configuration&lt;/strong&gt; (env vars, defaults work for local dev)&lt;/summary&gt; 
+ &lt;p&gt;All defaults work out of the box. Override via &lt;code&gt;.env&lt;/code&gt;. Full reference in &lt;a href=&quot;https://raw.githubusercontent.com/block/buzz/main/.env.example&quot;&gt;&lt;code&gt;.env.example&lt;/code&gt;&lt;/a&gt;.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Common dev commands&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;just setup          # Docker, migrations, JS deps
+just relay          # Run the relay
+just mobile-dev     # Run the mobile app in an iOS Simulator
+just build          # Build the Rust workspace
+just check          # Lint, formatting, and repo policy checks
+just test-unit      # Unit tests (no infra required)
+just test           # Full suite (starts services if needed)
+just ci             # Everything CI runs
+just reset          # ⚠️  Wipe data + recreate
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;/details&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://buzz.communities.buzz.xyz/invite/v2.EeLHaUAe23P7qK0NuWnsdfnH-6L0wJLDnnzpFzrG7rQ&quot;&gt;Buzz community&lt;/a&gt;&lt;/strong&gt; — connect &amp;amp; build plugins with the Buzz team and community&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;&lt;a href=&quot;https://x.com/buzzdotxyz&quot;&gt;@buzzdotxyz on X&lt;/a&gt;&lt;/strong&gt; — news and updates&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;What it is not&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Not blockchain. Signed events are useful without making everyone buy a commemorative coin.&lt;/li&gt; 
+ &lt;li&gt;Not an AI replacement plan. Buzz works best when humans stay in the loop and agents stay in the room.&lt;/li&gt; 
+ &lt;li&gt;Not finished. We will tell you what works and what doesn&#39;t.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;What it is:&lt;/strong&gt; one relay where humans, agents, workflows, git events, and project memory cooperate — the beginning of a workspace that can grow past the tabs it replaces.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;sub&gt;Buzz 🐝&lt;/sub&gt;&lt;br /&gt; &lt;sub&gt;Apache 2.0 · Built by &lt;a href=&quot;https://block.xyz&quot;&gt;Block, Inc.&lt;/a&gt;&lt;/sub&gt; &lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/a4beb76bc116c13c647e965257b3a230af831818d3d2ffd77ce28b465771a2e5/block/buzz" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ModernRelay/omnigraph</title>
+      <link>https://github.com/ModernRelay/omnigraph</link>
+      <description>&lt;p&gt;Object-storage native graph database with branching and typed ontology&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://omnigraph.dev&quot;&gt;https://omnigraph.dev&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img alt=&quot;OMNIGRAPH&quot; src=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/assets/omnigraph-wordmark.svg#gh-light-mode-only&quot; width=&quot;420&quot; /&gt; &lt;img alt=&quot;OMNIGRAPH&quot; src=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/assets/omnigraph-wordmark-dark.svg#gh-dark-mode-only&quot; width=&quot;420&quot; /&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;strong&gt;Object-storage native graph database with branching and typed ontology.&lt;/strong&gt;&lt;br /&gt; &lt;sub&gt;Unified retrieval engine (vector/BM25/graph) · Git-style workflows · Open data format (Lance)&lt;/sub&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/quickstart.md&quot;&gt;Quickstart&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/index.md&quot;&gt;Docs&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://github.com/ModernRelay/omnigraph-cookbooks&quot;&gt;Cookbooks&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/cli/reference.md&quot;&gt;CLI&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://www.omnigraph.dev/studio?utm_source=github&amp;amp;utm_medium=readme&amp;amp;utm_campaign=studio&quot;&gt;Studio&lt;/a&gt; &amp;nbsp;·&amp;nbsp; &lt;a href=&quot;https://www.omnigraph.dev/llms.txt&quot;&gt;llms.txt&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/LICENSE&quot;&gt;&lt;img alt=&quot;License: MIT&quot; src=&quot;https://img.shields.io/badge/license-MIT-1b1b1f?style=flat-square&amp;amp;labelColor=1b1b1f&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/rust-toolchain.toml&quot;&gt;&lt;img alt=&quot;Rust&quot; src=&quot;https://img.shields.io/badge/rust-stable-1b1b1f?style=flat-square&amp;amp;labelColor=1b1b1f&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;p&gt;Omnigraph is engineered for the new workload introduced by long-horizon agents: multiple agents sharing a typed world model to continuously retrieve and update context and coordinate work. Agents and UIs can become thin stateless consumers of durable state.&lt;/p&gt; 
+&lt;p&gt;Omnigraph Cloud is in private preview: &lt;a href=&quot;https://www.omnigraph.dev/cloud?utm_source=github&amp;amp;utm_medium=readme&amp;amp;utm_campaign=cloud-waitlist&quot;&gt;join the waitlist&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Join the &lt;a href=&quot;https://join.slack.com/t/omnigraphworkspace/shared_invite/zt-3wfpglyxj-lHvJGhuySPfqLtN35uJZNw&quot;&gt;Omnigraph Slack community&lt;/a&gt; to ask questions, share feedback, and follow development.&lt;/p&gt; 
+&lt;h2&gt;Capabilities&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Capability&lt;/th&gt; 
+   &lt;th&gt;What it gives you&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Typed ontology&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Agents share one enforceable model of the domain. &lt;code&gt;.pg&lt;/code&gt; schemas declare node and edge types, keys and constraints, and the engine enforces them on every write.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Multimodal retrieval&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Agents assemble high-precision &amp;amp; recall context in one query: graph traversal + vector ANN + full-text + Reciprocal Rank Fusion in &lt;strong&gt;one&lt;/strong&gt; runtime, with filtering.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Branching&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Agents propose reviewable changes instead of writing to main: a branch per agent or task, three-way merge, time travel across the whole graph.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Declared as code&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;A &lt;code&gt;cluster.yaml&lt;/code&gt; declares graphs, schemas, stored queries, embedding providers and policies. &lt;code&gt;cluster plan&lt;/code&gt; previews, &lt;code&gt;cluster apply&lt;/code&gt; converges, Terraform-style.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Security as code&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Cedar policy enforced &lt;strong&gt;server-side on every mutation&lt;/strong&gt;, per graph or server-wide; bearer auth, server-resolved actors, audit tracking.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Object-storage native, open format&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Decoupled storage and compute. Store graphs on local disk or S3-compatible storage: RustFS / MinIO, AWS S3 / R2, or Azure preview. Graph data uses open, versioned &lt;a href=&quot;https://github.com/lance-format/lance&quot;&gt;Lance&lt;/a&gt;, including Blob values.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;What you can build&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Use case&lt;/th&gt; 
+   &lt;th&gt;What it&#39;s for&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Company brain&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Org knowledge unified into one graph every agent can query&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Agentic memory&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Durable, versioned memory: a branch per agent or per task, merged on review&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Context graph&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Decision traces and codified tribal knowledge for retrieval&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Dev graph&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Issues &amp;amp; dependency model that coding agents read and write&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;R&amp;amp;D / ML data layer&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Experiments and trials written into branches, versioned for training &amp;amp; eval&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl -fsSL https://raw.githubusercontent.com/ModernRelay/omnigraph/main/scripts/install.sh | bash
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;This installs &lt;code&gt;omnigraph&lt;/code&gt; (CLI) and &lt;code&gt;omnigraph-server&lt;/code&gt; into &lt;code&gt;~/.local/bin&lt;/code&gt; from published release binaries. Or with Homebrew:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;brew tap ModernRelay/tap
+brew install ModernRelay/tap/omnigraph
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Studio&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.omnigraph.dev/studio?utm_source=github&amp;amp;utm_medium=readme&amp;amp;utm_campaign=studio&quot;&gt;Omnigraph Studio&lt;/a&gt; is the desktop app for your graphs. Browse each type as a table, follow relationships on a canvas, write queries with the compiler&#39;s errors as you type, and review what a branch changes before you merge it. It is a native Rust app on GPUI, the framework behind Zed, for macOS, Windows and Linux.&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.omnigraph.dev/studio?utm_source=github&amp;amp;utm_medium=readme&amp;amp;utm_campaign=studio&quot;&gt;&lt;img alt=&quot;Omnigraph Studio showing what a branch adds, changes and removes, inline in a table&quot; src=&quot;https://www.omnigraph.dev/studio/studio-demo-poster.jpg&quot; width=&quot;800&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;Open a graph on one of your server targets in Studio:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;omnigraph studio --target &amp;lt;server&amp;gt; --graph &amp;lt;graph&amp;gt;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;a href=&quot;https://www.omnigraph.dev/studio?utm_source=github&amp;amp;utm_medium=readme&amp;amp;utm_campaign=studio&quot;&gt;Download Studio&lt;/a&gt; or read &lt;a href=&quot;https://github.com/ModernRelay/omnigraph-studio&quot;&gt;its source&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Set it up with an AI agent&lt;/h2&gt; 
+&lt;p&gt;Omnigraph is built to be run by coding agents. Two ways in:&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Teach your agent the playbook.&lt;/strong&gt; The &lt;code&gt;omnigraph&lt;/code&gt; binary carries the &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/skills/omnigraph&quot;&gt;&lt;strong&gt;&lt;code&gt;omnigraph&lt;/code&gt; agent skill&lt;/strong&gt;&lt;/a&gt; written for it: the operational playbook covering cluster mode, the two config surfaces, schema evolution, query linting, data writes, branches, Cedar policy, and the common gotchas. Export it where your agent loads skills, so the skill always matches the installed CLI:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;omnigraph skill export ~/.claude/skills/omnigraph --force
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;With an older CLI that has no &lt;code&gt;skill&lt;/code&gt; command, or none installed, &lt;code&gt;npx skills add ModernRelay/omnigraph@omnigraph&lt;/code&gt; installs the copy on the default branch instead.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Or have an agent set it up from scratch.&lt;/strong&gt; Paste this into Claude Code, Codex, or any agent that can read a URL and run a shell command:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-text&quot;&gt;Read https://github.com/ModernRelay/omnigraph/blob/main/skills/omnigraph/references/onboarding.md and follow it to set up Omnigraph for me.
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The agent installs the CLI, asks what the graph is for, builds and queries a small local graph, and then points to the cookbooks, a cluster or Omnigraph Cloud.&lt;/p&gt; 
+&lt;p&gt;For ready-to-run graphs with real seed data (company brain, VC operating system, pharma &amp;amp; industry intel), &lt;a href=&quot;https://github.com/ModernRelay/omnigraph-cookbooks&quot;&gt;&lt;code&gt;ModernRelay/omnigraph-cookbooks&lt;/code&gt;&lt;/a&gt; is the fastest way to see Omnigraph shaped to a real domain.&lt;/p&gt; 
+&lt;h2&gt;Deploy&lt;/h2&gt; 
+&lt;p&gt;A &lt;strong&gt;cluster&lt;/strong&gt; declares graphs, schemas, stored queries, and policies in a configuration bundle. &lt;code&gt;cluster plan&lt;/code&gt; previews changes and &lt;code&gt;cluster apply&lt;/code&gt; submits them to the selected destination. The cluster-only HTTP server exposes graphs at &lt;code&gt;/graphs/{id}/…&lt;/code&gt; and activates applied changes without a restart.&lt;/p&gt; 
+&lt;p&gt;Keep desired configuration separate from its destination:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;company-brain/
+├── cluster.yaml
+├── people.pg          # schema for the &quot;knowledge&quot; graph
+├── queries/           # stored queries: the .gq files ARE the declaration
+│   └── people.gq
+├── cluster.policy.yaml # deployment permissions
+└── graph.policy.yaml   # graph permissions
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-yaml&quot;&gt;# cluster.yaml
+version: 1
+metadata:
+  name: company-brain
+graphs:
+  knowledge:
+    schema: people.pg
+    queries: queries/                          # every `query &amp;lt;name&amp;gt;` in queries/*.gq registers
+policies:
+  cluster-access:
+    file: cluster.policy.yaml
+    applies_to: [cluster]
+  graph-access:
+    file: graph.policy.yaml
+    applies_to: [knowledge]
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;For first boot, follow the &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/clusters/index.md#bootstrap-a-cluster&quot;&gt;cluster guide&lt;/a&gt;, including writer ownership transfer and authentication. The &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/deployment.md&quot;&gt;deployment guide&lt;/a&gt; covers containers and object stores; Azure writers require its admission wrapper.&lt;/p&gt; 
+&lt;p&gt;The applied cluster policy must grant the authenticated operator &lt;code&gt;config_manage&lt;/code&gt;. Schema changes also require &lt;code&gt;read&lt;/code&gt; and &lt;code&gt;schema_apply&lt;/code&gt; on the affected graphs. With those grants and a server target named &lt;code&gt;production&lt;/code&gt;, deploy local edits:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;omnigraph cluster validate --config ./company-brain
+omnigraph cluster plan --target production --config ./company-brain
+omnigraph cluster apply --target production --config ./company-brain
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;code&gt;--config&lt;/code&gt; names the source bundle; &lt;code&gt;--target&lt;/code&gt; names the destination. Omitting &lt;code&gt;storage&lt;/code&gt; from the bundle uses the selected destination&#39;s root. If present, &lt;code&gt;storage&lt;/code&gt; must match that root; it never selects or redirects the target. Apply prints a deployment ID. If delivery is interrupted, inspect that ID before submitting again; see &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/clusters/index.md&quot;&gt;deployment recovery&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Query and mutate&lt;/h2&gt; 
+&lt;p&gt;Define a server target with &lt;code&gt;default_graph&lt;/code&gt; and set &lt;code&gt;defaults.target&lt;/code&gt; once in &lt;code&gt;~/.omnigraph/config.yaml&lt;/code&gt; (&lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/cli/index.md&quot;&gt;configuration&lt;/a&gt;), and the everyday commands stay short. Stored queries and mutations run &lt;strong&gt;by name&lt;/strong&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;omnigraph query  search_docs --params &#39;{&quot;q&quot;:&quot;AI safety&quot;}&#39;
+omnigraph mutate add_person  --params &#39;{&quot;name&quot;:&quot;Mina&quot;}&#39;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Branch, review and merge across the whole graph, so agents write in isolation:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;omnigraph branch create --from main agent/ingest-42
+omnigraph branch merge  agent/ingest-42 --into main
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;An &lt;strong&gt;alias&lt;/strong&gt; is shorter still: bind a target, graph, and stored query to one name, then &lt;code&gt;omnigraph alias triage&lt;/code&gt; runs it. Data commands use &lt;code&gt;--target NAME&lt;/code&gt; for a configured server or managed resource, plus &lt;code&gt;--graph ID&lt;/code&gt; when needed. Use &lt;code&gt;--target ./graph.omni&lt;/code&gt; for a standalone local graph. Control-plane login and organization operations use &lt;code&gt;--profile&lt;/code&gt;; see &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/cli/targets.md&quot;&gt;operator configuration&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Security &amp;amp; governance&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Engine-wide enforcement:&lt;/strong&gt; every write path goes through the same Cedar gate, so the HTTP server, the CLI, and the embedded SDK obey identical rules.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Declared in the cluster:&lt;/strong&gt; a policy bundle is bound to graphs (or the whole server) via &lt;code&gt;policies:&lt;/code&gt; → &lt;code&gt;applies_to&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Scoped:&lt;/strong&gt; rules apply per graph, per branch, or server-wide.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Static server credentials:&lt;/strong&gt; static bearer tokens are hashed at startup and compared in constant time.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Forge-proof identity:&lt;/strong&gt; the actor is resolved server-side from the token; clients can&#39;t set it.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;See the &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/policy.md&quot;&gt;policy guide&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Clients &amp;amp; SDKs&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Client&lt;/th&gt; 
+   &lt;th&gt;Use it for&lt;/th&gt; 
+   &lt;th&gt;Where&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;TypeScript SDK&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;typed access from Node / TS&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.npmjs.com/package/@modernrelay/omnigraph&quot;&gt;&lt;code&gt;@modernrelay/omnigraph&lt;/code&gt;&lt;/a&gt; · &lt;a href=&quot;https://github.com/ModernRelay/omnigraph-ts&quot;&gt;source&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Python SDK&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;async typed access from Python&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://pypi.org/project/omnigraph/&quot;&gt;&lt;code&gt;omnigraph&lt;/code&gt;&lt;/a&gt; · &lt;a href=&quot;https://github.com/ModernRelay/omnigraph-python&quot;&gt;source&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Built-in MCP&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;connect an agent to the server&#39;s &lt;code&gt;/mcp&lt;/code&gt;, directly or through &lt;code&gt;omnigraph mcp --target NAME&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/mcp.md&quot;&gt;MCP guide&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Omnigraph Studio&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;browse, query and review a graph in a desktop app&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://www.omnigraph.dev/studio?utm_source=github&amp;amp;utm_medium=readme&amp;amp;utm_campaign=studio&quot;&gt;download&lt;/a&gt; · &lt;a href=&quot;https://github.com/ModernRelay/omnigraph-studio&quot;&gt;source&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;HTTP / OpenAPI&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;use the wire contract from any language&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/server.md&quot;&gt;HTTP guide&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/openapi.json&quot;&gt;OpenAPI&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Match the client&#39;s HTTP contract to the server&#39;s. The 0.14 server requires contract &lt;code&gt;0.14&lt;/code&gt;; see &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/install.md#client-compatibility&quot;&gt;client availability&lt;/a&gt; before selecting an npm or PyPI package.&lt;/p&gt; 
+&lt;h2&gt;Docs&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/releases/v0.14.0-overview.md&quot;&gt;0.14 highlights and upgrade actions&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/index.md&quot;&gt;User guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/clusters/index.md&quot;&gt;Cluster guide&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/deployment.md&quot;&gt;Deployment guide&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/cli/reference.md&quot;&gt;CLI reference&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/schema/index.md&quot;&gt;Schema&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/queries/index.md&quot;&gt;Queries&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/search/index.md&quot;&gt;Search&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/user/operations/policy.md&quot;&gt;Policy&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Build and test&lt;/h2&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;cargo build --workspace --locked
+cargo test --workspace --exclude omnigraph-gqt --exclude omnigraph-gqt-served --exclude omnigraph-dst --locked \
+  --features omnigraph-engine/failpoints,omnigraph-cluster/failpoints
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Notes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Rust stable toolchain, edition 2024&lt;/li&gt; 
+ &lt;li&gt;The GQT corpus (&lt;code&gt;cargo test -p omnigraph-gqt&lt;/code&gt;) and the DST suite (&lt;code&gt;cargo test&lt;/code&gt; from &lt;code&gt;crates/omnigraph-dst&lt;/code&gt;, which supplies its process environment) run separately; a plain &lt;code&gt;cargo test --workspace&lt;/code&gt; starts the DST binaries without that environment and they refuse. Commands and CI gates: &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/docs/dev/testing.md&quot;&gt;docs/dev/testing.md&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;Full CI and some local test flows require &lt;code&gt;protobuf-compiler&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;S3 integration tests expect an S3-compatible endpoint such as RustFS&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Please open an issue before sending large code changes — a maintainer triages it, and the &lt;code&gt;accepted&lt;/code&gt; label is the green light for a PR (see &lt;a href=&quot;https://raw.githubusercontent.com/ModernRelay/omnigraph/main/GOVERNANCE.md&quot;&gt;GOVERNANCE.md&lt;/a&gt;). Concrete problem statements are the fastest way to collaborate on the roadmap.&lt;/p&gt; 
+&lt;h2&gt;Community&lt;/h2&gt; 
+&lt;p&gt;Join the &lt;a href=&quot;https://join.slack.com/t/omnigraphworkspace/shared_invite/zt-3wfpglyxj-lHvJGhuySPfqLtN35uJZNw&quot;&gt;Omnigraph Slack community&lt;/a&gt; to ask questions, share feedback, and follow development.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/7a5857bfbf4c74e54f996f0f7f106ed8321f321642b3c9c0fc239a8b56d262d6/ModernRelay/omnigraph" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>martin-olivier/airgorah</title>
+      <link>https://github.com/martin-olivier/airgorah</link>
+      <description>&lt;p&gt;A WiFi security auditing software&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://crates.io/crates/airgorah&quot;&gt;https://crates.io/crates/airgorah&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1 align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/martin-olivier/airgorah/main/crates/gui/icons/app_icon.png&quot; width=&quot;100&quot; height=&quot;100/&quot; /&gt;&lt;br /&gt; Airgorah&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;span&gt;A WiFi security auditing software&lt;/span&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/martin-olivier/airgorah/wiki/Installation&quot;&gt;Installation&lt;/a&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://github.com/martin-olivier/airgorah/wiki/Usage&quot;&gt;Usage&lt;/a&gt; &amp;nbsp;&amp;nbsp;&amp;nbsp;|&amp;nbsp;&amp;nbsp;&amp;nbsp; &lt;a href=&quot;https://github.com/martin-olivier/airgorah/wiki/Credits&quot;&gt;Credits&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;&lt;img src=&quot;https://raw.githubusercontent.com/martin-olivier/airgorah/main/.github/assets/illustration.png&quot; alt=&quot;illustration&quot; /&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;a href=&quot;https://crates.io/crates/airgorah&quot;&gt;&lt;img src=&quot;https://img.shields.io/crates/v/airgorah.svg?sanitize=true&quot; alt=&quot;crates&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://aur.archlinux.org/packages/airgorah&quot;&gt;&lt;img src=&quot;https://img.shields.io/aur/version/airgorah&quot; alt=&quot;aur&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/martin-olivier/airgorah/actions/workflows/CI.yml&quot;&gt;&lt;img src=&quot;https://github.com/martin-olivier/airgorah/actions/workflows/CI.yml/badge.svg?sanitize=true&quot; alt=&quot;ci&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;Airgorah&lt;/code&gt; is a WiFi security auditing software that can capture nearby WiFi traffic, discover clients connected to access points, perform deauthentication attacks, capture handshakes and PMKIDs, and crack the password of access points.&lt;/p&gt; 
+&lt;p&gt;It is written in Rust and uses &lt;a href=&quot;https://github.com/gtk-rs/gtk4-rs&quot;&gt;GTK4&lt;/a&gt; for the graphical part.&lt;/p&gt; 
+&lt;p&gt;&lt;code&gt;⭐ Don&#39;t forget to put a star if you like the project!&lt;/code&gt;&lt;/p&gt; 
+&lt;h2&gt;Legal&lt;/h2&gt; 
+&lt;p&gt;⚠️ Airgorah is designed to be used in testing and discovering flaws in networks you are owner of. Performing attacks on WiFi networks you are not owner of is illegal in almost all countries. I am not responsible for whatever damage you may cause by using this software.&lt;/p&gt; 
+&lt;h2&gt;Requirements&lt;/h2&gt; 
+&lt;p&gt;This software only works on &lt;code&gt;linux&lt;/code&gt;. The graphical interface runs as a normal user (so it works under both &lt;code&gt;X11&lt;/code&gt; and &lt;code&gt;Wayland&lt;/code&gt;). When a privileged operation is needed, it launches a small privileged agent (&lt;code&gt;airgorah-agent&lt;/code&gt;) via &lt;code&gt;polkit&lt;/code&gt;, which will prompt for authentication once.&lt;/p&gt; 
+&lt;p&gt;You will also need a wireless network card that supports &lt;code&gt;monitor mode&lt;/code&gt; and &lt;code&gt;packet injection&lt;/code&gt;.&lt;/p&gt; 
+&lt;h2&gt;Installation&lt;/h2&gt; 
+&lt;p&gt;The installation instructions are available &lt;a href=&quot;https://github.com/martin-olivier/airgorah/wiki/Installation&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Usage&lt;/h2&gt; 
+&lt;p&gt;The documentation about the usage of the application is available &lt;a href=&quot;https://github.com/martin-olivier/airgorah/wiki/Usage&quot;&gt;here&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;This project is released under &lt;a href=&quot;https://raw.githubusercontent.com/martin-olivier/airgorah/main/LICENSE&quot;&gt;MIT&lt;/a&gt; license.&lt;/p&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;If you have any question about the usage of the application, do not hesitate to open a &lt;a href=&quot;https://github.com/martin-olivier/airgorah/discussions&quot;&gt;discussion&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;If you want to report a bug or provide a feature, do not hesitate to open an &lt;a href=&quot;https://github.com/martin-olivier/airgorah/issues&quot;&gt;issue&lt;/a&gt; or submit a &lt;a href=&quot;https://github.com/martin-olivier/airgorah/pulls&quot;&gt;pull request&lt;/a&gt;&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/543516398/e65da23d-0cc8-424f-a670-84271590d291" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>crmne/zapfast</title>
+      <link>https://github.com/crmne/zapfast</link>
+      <description>&lt;p&gt;ZapFast: a fast, native WhatsApp client in Rust and egui&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://zapfast.rocks/&quot;&gt;https://zapfast.rocks/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p align=&quot;center&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/docs/assets/images/logo.svg?sanitize=true&quot; alt=&quot;ZapFast logo&quot; width=&quot;88&quot; height=&quot;88&quot; /&gt; &lt;/p&gt; 
+&lt;h1 align=&quot;center&quot;&gt;ZapFast&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt;&lt;strong&gt;WhatsApp, native and fast.&lt;/strong&gt;&lt;br /&gt;A lightweight WhatsApp app for Linux, macOS, and Windows.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://zapfast.rocks/download/&quot;&gt;&lt;strong&gt;Download&lt;/strong&gt;&lt;/a&gt; · &lt;a href=&quot;https://zapfast.rocks/getting-started/&quot;&gt;Getting started&lt;/a&gt; · &lt;a href=&quot;https://zapfast.rocks/using-zapfast/&quot;&gt;User guide&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/CONTRIBUTING.md&quot;&gt;Contribute&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/Cargo.toml&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Built_with-Rust-00a884&quot; alt=&quot;Built with Rust&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://zapfast.rocks/download/&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Linux_%C2%B7_macOS_%C2%B7_Windows-24292f&quot; alt=&quot;Linux, macOS, and Windows&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/LICENSE&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/License-MIT-00a884&quot; alt=&quot;MIT license&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;ZapFast is a WhatsApp client written in Rust with &lt;a href=&quot;https://www.egui.rs&quot;&gt;egui&lt;/a&gt; and &lt;a href=&quot;https://fastframe.dev&quot;&gt;fastframe&lt;/a&gt;, the framework behind a family of native desktop apps. It links to your phone as a companion device through &lt;a href=&quot;https://github.com/oxidezap/whatsapp-rust&quot;&gt;whatsapp-rust&lt;/a&gt; and has no browser engine. In our Linux test it opens in under a second and uses about 200 MB of idle RAM, against 1.13 GB for WhatsApp Web. &lt;a href=&quot;https://zapfast.rocks/benchmarks/&quot;&gt;See the measurements&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;The interface is available in English, Chinese (Simplified and Traditional), Dutch, French, German, Indonesian, Italian, Portuguese (Brazil), Russian, Spanish, and Turkish.&lt;/p&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: light)&quot; srcset=&quot;docs/screenshot-light.png&quot; /&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/docs/screenshot.png&quot; alt=&quot;ZapFast showing a conversation with an attachment, voice messages, reactions, a quoted reply, and a link preview&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;strong&gt;Watch ZapFast in action&lt;/strong&gt;&lt;/summary&gt; 
+ &lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/2bf86b54-45fc-4add-8de7-c426c3cdad9b&quot;&gt;https://github.com/user-attachments/assets/2bf86b54-45fc-4add-8de7-c426c3cdad9b&lt;/a&gt;&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/#your-chats-on-your-desktop&quot;&gt;Features&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/#install&quot;&gt;Install&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/#link-your-phone&quot;&gt;Link your phone&lt;/a&gt; · &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/#guides-and-help&quot;&gt;Help&lt;/a&gt;&lt;/p&gt; 
+&lt;h2&gt;Your chats, on your desktop&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Feature&lt;/th&gt; 
+   &lt;th&gt;What you can do&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Messages&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Send formatted text, replies, edits, reactions, forwards, pictures, files, stickers, GIFs, polls, and voice messages.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Media in the chat&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Play voice messages, videos, round video messages, GIFs, and animated stickers in place.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Your history&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Keep your chats in an encrypted archive on this computer, fetch older messages from your phone as you scroll, and export locally saved chat history as text or a ZIP with downloaded attachments.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Several numbers&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Link more than one WhatsApp number and switch between them in one window.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Desktop controls&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Use keyboard shortcuts, select and copy text across messages, and stay linked in the tray with notifications.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Themes&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Choose light, dark, system appearance, or custom colours. On Omarchy, follow your desktop theme.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Privacy&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Hide locked chats behind a code, or the whole window behind an app lock. Nothing goes to a server of ours.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Install&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Platform&lt;/th&gt; 
+   &lt;th&gt;Installation&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;macOS&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;brew install --cask crmne/tap/zapfast&lt;/code&gt;, or &lt;a href=&quot;https://zapfast.rocks/download/#macos&quot;&gt;download the Mac app&lt;/a&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Arch Linux&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;yay -S zapfast-bin&lt;/code&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Windows&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Choose your build on the &lt;a href=&quot;https://zapfast.rocks/download/#windows&quot;&gt;Download page&lt;/a&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Other Linux&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Find Nix, AppImage, and other options on the &lt;a href=&quot;https://zapfast.rocks/download/#linux&quot;&gt;Download page&lt;/a&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;From source&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Follow &lt;a href=&quot;https://zapfast.rocks/getting-started/&quot;&gt;Getting started&lt;/a&gt; for dependencies and commands.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Link your phone&lt;/h2&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;Open ZapFast. It shows a QR code.&lt;/li&gt; 
+ &lt;li&gt;On your phone, open WhatsApp, then &lt;strong&gt;Settings&lt;/strong&gt;, &lt;strong&gt;Linked devices&lt;/strong&gt;, &lt;strong&gt;Link a device&lt;/strong&gt;, and scan the code. Or click &lt;strong&gt;Link with phone number&lt;/strong&gt; and enter the eight-character code on your phone.&lt;/li&gt; 
+ &lt;li&gt;Your recent chats arrive from the phone. Older messages follow as you scroll up.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;The link survives restarts, and your phone does not need to stay online to read what ZapFast has already stored. See &lt;a href=&quot;https://zapfast.rocks/getting-started/&quot;&gt;Getting started&lt;/a&gt; for the full walkthrough and &lt;a href=&quot;https://zapfast.rocks/how-it-links/&quot;&gt;How it links&lt;/a&gt; for the details.&lt;/p&gt; 
+&lt;h2&gt;Guides and help&lt;/h2&gt; 
+&lt;p&gt;The complete guide lives at &lt;strong&gt;&lt;a href=&quot;https://zapfast.rocks/&quot;&gt;zapfast.rocks&lt;/a&gt;&lt;/strong&gt;.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;You want to…&lt;/th&gt; 
+   &lt;th&gt;Read&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Know what ZapFast does and does not do yet&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://zapfast.rocks/what-is-zapfast/&quot;&gt;What is ZapFast?&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Link your phone or build from source&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://zapfast.rocks/getting-started/&quot;&gt;Getting started&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Learn messages, stickers, polls, and shortcuts&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://zapfast.rocks/using-zapfast/&quot;&gt;Using ZapFast&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Find settings, stored files, encryption, the app lock, and updates&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://zapfast.rocks/settings-and-files/&quot;&gt;Settings and files&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Make your own theme&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://zapfast.rocks/themes/&quot;&gt;Making a theme&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Understand what stays on this computer&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://zapfast.rocks/how-it-links/&quot;&gt;How it links&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Understand account risk&lt;/td&gt; 
+   &lt;td&gt;&lt;a href=&quot;https://zapfast.rocks/what-is-zapfast/#account-safety&quot;&gt;Account safety&lt;/a&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Report a bug or propose a feature&lt;/td&gt; 
+   &lt;td&gt;Read &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/CONTRIBUTING.md&quot;&gt;Contributing&lt;/a&gt;, then use the &lt;a href=&quot;https://github.com/crmne/zapfast/issues/new/choose&quot;&gt;issue forms&lt;/a&gt;.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Contributing&lt;/h2&gt; 
+&lt;p&gt;Read &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt; before opening an issue or pull request. To look at the interface without a WhatsApp account, run:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;cargo run --features demo -- --demo
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;&lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/AGENTS.md&quot;&gt;AGENTS.md&lt;/a&gt; describes the architecture, &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/DEMO.md&quot;&gt;DEMO.md&lt;/a&gt; the demo pages, screenshots, and recorded tours, and &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/PACKAGING.md&quot;&gt;PACKAGING.md&lt;/a&gt; releases and packages.&lt;/p&gt; 
+&lt;p&gt;Native notifications use Fastframe on Linux, macOS and Windows. ZapFast keeps its account/chat routing, privacy settings, notification limits and sound previews. Clicks open the announced message; reading a chat withdraws its tracked notifications. OS permissions and notification presentation still apply.&lt;/p&gt; 
+&lt;h2&gt;More native apps&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Want Spotify just as fast and native?&lt;/strong&gt; &lt;a href=&quot;https://spotifast.rocks&quot;&gt;Spotifast&lt;/a&gt; is ZapFast&#39;s sibling. Both are built on &lt;a href=&quot;https://fastframe.dev&quot;&gt;fastframe&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Acknowledgements&lt;/h2&gt; 
+&lt;p&gt;ZapFast uses &lt;a href=&quot;https://github.com/oxidezap/whatsapp-rust&quot;&gt;whatsapp-rust&lt;/a&gt;, &lt;a href=&quot;https://www.egui.rs&quot;&gt;egui&lt;/a&gt;, &lt;a href=&quot;https://fastframe.dev&quot;&gt;fastframe&lt;/a&gt;, the &lt;a href=&quot;https://rsms.me/inter/&quot;&gt;Inter&lt;/a&gt; typeface and Noto Color Emoji (OFL), and &lt;a href=&quot;https://lucide.dev&quot;&gt;Lucide&lt;/a&gt; icons (ISC), also used for the chat wallpaper doodles. The notification sounds are &lt;a href=&quot;https://pidgin.im&quot;&gt;Pidgin&lt;/a&gt;&#39;s, under the GPL-2.0 (see &lt;code&gt;assets/sounds/&lt;/code&gt;).&lt;/p&gt; 
+&lt;p&gt;ZapFast is an unofficial client and is not affiliated with WhatsApp or Meta. Using an unofficial client may be against WhatsApp&#39;s terms of service and could get an account suspended. Use it at your own risk. WhatsApp is a trademark of WhatsApp LLC.&lt;/p&gt; 
+&lt;p&gt;Licensed under the &lt;a href=&quot;https://raw.githubusercontent.com/crmne/zapfast/main/LICENSE&quot;&gt;MIT License&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Star history&lt;/h2&gt; 
+&lt;a href=&quot;https://www.star-history.com/?repos=crmne%2Fzapfast&amp;amp;type=date&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://api.star-history.com/chart?repos=crmne/zapfast&amp;amp;type=date&amp;amp;theme=dark&quot; /&gt; 
+  &lt;img alt=&quot;ZapFast GitHub stars over time&quot; src=&quot;https://api.star-history.com/chart?repos=crmne/zapfast&amp;amp;type=date&quot; /&gt; 
+ &lt;/picture&gt; &lt;/a&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/1350713137/51d132b5-ac5f-4382-ad0a-2720c41f2a60" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>rustfs/rustfs</title>
+      <link>https://github.com/rustfs/rustfs</link>
+      <description>&lt;p&gt;RustFS is an open-source, S3-compatible high-performance object storage system supporting migration and coexistence with other S3-compatible platforms such as MinIO and Ceph.&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://rustfs.com/download/&quot;&gt;https://rustfs.com/download/&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;p&gt;&lt;a href=&quot;https://rustfs.com&quot;&gt;&lt;img src=&quot;https://repository-images.githubusercontent.com/722597620/0fa936a2-8164-4f53-867f-def4beb64b21&quot; alt=&quot;RustFS&quot; /&gt;&lt;/a&gt;&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt;RustFS is a high-performance, distributed object storage system built in Rust.&lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/rustfs/rustfs/actions/workflows/ci.yml&quot;&gt;&lt;img alt=&quot;CI&quot; src=&quot;https://github.com/rustfs/rustfs/actions/workflows/ci.yml/badge.svg?sanitize=true&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/rustfs/rustfs/actions/workflows/docker.yml&quot;&gt;&lt;img alt=&quot;Build and Push Docker Images&quot; src=&quot;https://github.com/rustfs/rustfs/actions/workflows/docker.yml/badge.svg?sanitize=true&quot; /&gt;&lt;/a&gt; &lt;img alt=&quot;GitHub commit activity&quot; src=&quot;https://img.shields.io/github/commit-activity/m/rustfs/rustfs&quot; /&gt; &lt;img alt=&quot;Github Last Commit&quot; src=&quot;https://img.shields.io/github/last-commit/rustfs/rustfs&quot; /&gt; &lt;a href=&quot;https://discord.gg/NcKBCEJp6P&quot;&gt;&lt;img alt=&quot;Discord&quot; src=&quot;https://img.shields.io/badge/Discord-Join%20Chat-5865F2?logo=discord&amp;amp;logoColor=white&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://hellogithub.com/repository/rustfs/rustfs&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://abroad.hellogithub.com/v1/widgets/recommend.svg?rid=b95bcb72bdc340b68f16fdf6790b7d5b&amp;amp;claim_uid=MsbvjYeLDKAH457&amp;amp;theme=small&quot; alt=&quot;Featured｜HelloGitHub&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://trendshift.io/repositories/14181&quot; target=&quot;_blank&quot;&gt;&lt;img src=&quot;https://trendshift.io/api/badge/repositories/14181&quot; alt=&quot;rustfs%2Frustfs | Trendshift&quot; style=&quot;width: 250px; height: 55px;&quot; width=&quot;250&quot; height=&quot;55&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://docs.rustfs.com/en/installation&quot;&gt;Getting Started&lt;/a&gt; · &lt;a href=&quot;https://docs.rustfs.com/&quot;&gt;Docs&lt;/a&gt; · &lt;a href=&quot;https://github.com/rustfs/rustfs/issues&quot;&gt;Bug reports&lt;/a&gt; · &lt;a href=&quot;https://github.com/rustfs/rustfs/discussions&quot;&gt;Discussions&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; English | &lt;a href=&quot;https://github.com/rustfs/rustfs/raw/main/README_ZH.md&quot;&gt;简体中文&lt;/a&gt; | &lt;a href=&quot;https://readme-i18n.com/rustfs/rustfs?lang=de&quot;&gt;Deutsch&lt;/a&gt; | &lt;a href=&quot;https://readme-i18n.com/rustfs/rustfs?lang=es&quot;&gt;Español&lt;/a&gt; | &lt;a href=&quot;https://readme-i18n.com/rustfs/rustfs?lang=fr&quot;&gt;français&lt;/a&gt; | &lt;a href=&quot;https://readme-i18n.com/rustfs/rustfs?lang=ja&quot;&gt;日本語&lt;/a&gt; | &lt;a href=&quot;https://readme-i18n.com/rustfs/rustfs?lang=ko&quot;&gt;한국어&lt;/a&gt; | &lt;a href=&quot;https://readme-i18n.com/rustfs/rustfs?lang=pt&quot;&gt;Portuguese&lt;/a&gt; | &lt;a href=&quot;https://readme-i18n.com/rustfs/rustfs?lang=ru&quot;&gt;Русский&lt;/a&gt; &lt;/p&gt; 
+&lt;p&gt;RustFS is a high-performance, distributed object storage system built in Rust—one of the most loved programming languages worldwide. RustFS combines the simplicity of MinIO with the memory safety and raw performance of Rust. It offers broad S3 API compatibility for supported features, is completely open-source, and is optimized for data lakes, AI, and big data workloads.&lt;/p&gt; 
+&lt;p&gt;Unlike other storage systems, RustFS is released under the permissible Apache 2.0 license, avoiding the restrictions of AGPL. With Rust as its foundation, RustFS delivers superior speed and secure distributed features for next-generation object storage.&lt;/p&gt; 
+&lt;h2&gt;Feature &amp;amp; Status&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;High Performance&lt;/strong&gt;: Built with Rust to ensure maximum speed and resource efficiency.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Distributed Architecture&lt;/strong&gt;: Scalable and fault-tolerant design suitable for large-scale deployments.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;S3 Compatibility&lt;/strong&gt;: Seamless integration with common S3-compatible applications and tools; current coverage is tracked in the &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/architecture/s3-compatibility-matrix.md&quot;&gt;S3 compatibility matrix&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;OpenStack Swift API&lt;/strong&gt;: Native support for Swift protocol with Keystone authentication.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;OpenStack Keystone Integration&lt;/strong&gt;: Native support for OpenStack Keystone authentication with X-Auth-Token headers.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Data Lake Support&lt;/strong&gt;: Optimized for high-throughput big data and AI workloads.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Open Source&lt;/strong&gt;: Licensed under Apache 2.0, encouraging unrestricted community contributions and commercial usage.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;User-Friendly&lt;/strong&gt;: Designed with simplicity in mind for easy deployment and management.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Status legend: ✅ Available — shipped and covered by CI gates; 🧪 Preview — shipped behind an opt-in flag or with a bounded compatibility claim.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Feature&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Status&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Feature&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Status&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;S3 Core Features&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Distributed Mode&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Upload / Download&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Single Node Mode&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Versioning&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Bitrot Protection&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Object Lock (WORM)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Healing &amp;amp; Scanner&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Server-Side Encryption&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Pool Expansion / Decommission&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;RustFS KMS&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Bucket Replication&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Lifecycle Management (ILM)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Site Replication&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;ILM Tiering (Remote S3)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Bucket Quota&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;S3 Select&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Event Notifications&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;S3 Tables (Iceberg REST)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;🧪 Preview&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Audit Logging&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;IAM / Policies&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Logging &amp;amp; Observability&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;OIDC / SSO&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Web Console&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Keystone Auth&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;K8s Helm Charts&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Swift API&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;FTPS / WebDAV&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Multi-Tenancy&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;SFTP&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;✅ Available&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;MinIO On-Disk Compatibility&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;🧪 Preview&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;Notes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;RustFS KMS&lt;/strong&gt;: Vault (KV2 / Transit) and AWS KMS backends are supported for production. The &lt;code&gt;Local&lt;/code&gt; and &lt;code&gt;Static&lt;/code&gt; backends are for development and testing only. See &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/operations/kms-backend-security.md&quot;&gt;KMS backend security properties&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Swift API / SFTP&lt;/strong&gt;: opt-in cargo features (&lt;code&gt;--features swift&lt;/code&gt;, &lt;code&gt;--features sftp&lt;/code&gt;, or &lt;code&gt;full&lt;/code&gt;). FTPS and WebDAV are enabled in the default build.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;S3 Tables&lt;/strong&gt;: ships as an Iceberg REST Catalog with automated PyIceberg and DuckDB coverage; other engines and vendor profiles carry bounded claims listed in the &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/architecture/s3-tables-support-matrix.md&quot;&gt;S3 Tables support matrix&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;MinIO On-Disk Compatibility&lt;/strong&gt;: gated behind the &lt;code&gt;rio-v2&lt;/code&gt; feature and not part of the default build. Objects MinIO encrypted are not readable by RustFS. See &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/architecture/minio-file-format-compat.md&quot;&gt;MinIO file-format interoperability&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;RustFS vs MinIO Performance&lt;/h2&gt; 
+&lt;p&gt;&lt;strong&gt;Stress Test Environment:&lt;/strong&gt;&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Type&lt;/th&gt; 
+   &lt;th&gt;Parameter&lt;/th&gt; 
+   &lt;th&gt;Remark&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;CPU&lt;/td&gt; 
+   &lt;td&gt;2 Core&lt;/td&gt; 
+   &lt;td&gt;Intel Xeon (Sapphire Rapids) Platinum 8475B, 2.7/3.2 GHz&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Memory&lt;/td&gt; 
+   &lt;td&gt;4GB&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Network&lt;/td&gt; 
+   &lt;td&gt;15Gbps&lt;/td&gt; 
+   &lt;td&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;Drive&lt;/td&gt; 
+   &lt;td&gt;40GB x 4&lt;/td&gt; 
+   &lt;td&gt;IOPS 3800 / Drive&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;p&gt;&lt;a href=&quot;https://github.com/user-attachments/assets/2e4979b5-260c-4f2c-ac12-c87fd558072a&quot;&gt;https://github.com/user-attachments/assets/2e4979b5-260c-4f2c-ac12-c87fd558072a&lt;/a&gt;&lt;/p&gt; 
+&lt;h3&gt;RustFS vs Other Object Storage&lt;/h3&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Feature&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;RustFS&lt;/th&gt; 
+   &lt;th style=&quot;text-align:left&quot;&gt;Other Object Storage&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Console Experience&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Powerful Console&lt;/strong&gt;&lt;br /&gt;Comprehensive management interface.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Basic / Limited Console&lt;/strong&gt;&lt;br /&gt;Often overly simple or lacking critical features.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Language &amp;amp; Safety&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Rust-based&lt;/strong&gt;&lt;br /&gt;Memory safety by design.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Go or C-based&lt;/strong&gt;&lt;br /&gt;Potential for memory GC pauses or leaks.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Data Sovereignty&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;No Telemetry / Full Compliance&lt;/strong&gt;&lt;br /&gt;Guards against unauthorized cross-border data egress. Compliant with GDPR (EU/UK), CCPA (US), and APPI (Japan).&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Potential Risk&lt;/strong&gt;&lt;br /&gt;Possible legal exposure and unwanted data telemetry.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Licensing&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Permissive Apache 2.0&lt;/strong&gt;&lt;br /&gt;Business-friendly, no &quot;poison pill&quot; clauses.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Restrictive AGPL v3&lt;/strong&gt;&lt;br /&gt;Risk of license traps and intellectual property pollution.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Compatibility&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;S3-Compatible Core&lt;/strong&gt;&lt;br /&gt;Works with common S3-compatible clients, with coverage tracked in the compatibility matrix.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Variable Compatibility&lt;/strong&gt;&lt;br /&gt;May lack support for local cloud vendors or specific APIs.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Edge &amp;amp; IoT&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Strong Edge Support&lt;/strong&gt;&lt;br /&gt;Ideal for secure, innovative edge devices.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Weak Edge Support&lt;/strong&gt;&lt;br /&gt;Often too heavy for edge gateways.&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Risk Profile&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Enterprise Risk Mitigation&lt;/strong&gt;&lt;br /&gt;Clear IP rights and safe for commercial use.&lt;/td&gt; 
+   &lt;td style=&quot;text-align:left&quot;&gt;&lt;strong&gt;Legal Risks&lt;/strong&gt;&lt;br /&gt;Intellectual property ambiguity and usage restrictions.&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;h2&gt;Staying ahead&lt;/h2&gt; 
+&lt;p&gt;Star RustFS on GitHub and be instantly notified of new releases.&lt;/p&gt; 
+&lt;img src=&quot;https://github.com/user-attachments/assets/7ee40bb4-3e46-4eac-b0d0-5fbeb85ff8f3&quot; /&gt; 
+&lt;h2&gt;Quickstart&lt;/h2&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-important&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-report mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M0 1.75C0 .784.784 0 1.75 0h12.5C15.216 0 16 .784 16 1.75v9.5A1.75 1.75 0 0 1 14.25 13H8.06l-2.573 2.573A1.458 1.458 0 0 1 3 14.543V13H1.75A1.75 1.75 0 0 1 0 11.25Zm1.75-.25a.25.25 0 0 0-.25.25v9.5c0 .138.112.25.25.25h2a.75.75 0 0 1 .75.75v2.19l2.72-2.72a.749.749 0 0 1 .53-.22h6.5a.25.25 0 0 0 .25-.25v-9.5a.25.25 0 0 0-.25-.25Zm7 2.25v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 9a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Important&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;Pool expansion notice:&lt;/strong&gt;&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;A single-node single-drive (SNSD) deployment is supported only as a standalone local path. It cannot expand in place or be added as a Pool. To move to a multi-drive topology, create a new deployment and migrate data through S3.&lt;/li&gt; 
+  &lt;li&gt;Keep an existing multi-drive Pool&#39;s endpoints and Erasure Set width unchanged; expand by appending a new Pool. With ellipsis-based expansion, every Pool argument must contain an ellipsis expression and expand to at least two drive endpoints.&lt;/li&gt; 
+  &lt;li&gt;Single-node multi-drive Pools and multi-node Pools with one drive per node are allowed, subject to valid Erasure Set geometry and EC settings; acceptance does not guarantee host-failure tolerance.&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;These topology rules follow MinIO, but automatic parity selection differs between the projects. See the &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/testing/pool-layout-compatibility.md&quot;&gt;Pool layout compatibility and regression tests&lt;/a&gt; before expanding a deployment.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;p&gt;To get started with RustFS, follow these steps:&lt;/p&gt; 
+&lt;h3&gt;1. One-click Installation (Option 1)&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;curl -O https://rustfs.com/install_rustfs.sh &amp;amp;&amp;amp; bash install_rustfs.sh
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;2. Docker Quick Start (Option 2)&lt;/h3&gt; 
+&lt;p&gt;The RustFS container runs as a non-root user &lt;code&gt;rustfs&lt;/code&gt; (UID/GID &lt;code&gt;10001:10001&lt;/code&gt;). If you bind-mount host directories with Docker or Compose, every mounted path must be writable by that user, otherwise startup may fail with permission denied errors. This applies to data directories, log directories, and TLS certificate directories when &lt;code&gt;RUSTFS_TLS_PATH&lt;/code&gt; is enabled.&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;Upgrading an existing data volume:&lt;/strong&gt; some older images ran as root. Replacing the image does not change ownership of mounted files. Before upgrading to a non-root image, stop the instances using the volume, confirm the actual host mount paths and runtime UID/GID, and grant that identity access to all existing data and log directories. For ordinary Docker bind mounts using the default identity, run &lt;code&gt;sudo chown -R 10001:10001 /actual/data /actual/logs&lt;/code&gt; on the host. Repeat for each data mount; do not apply this recursively to unrelated shared directories. Kubernetes, NFS, ACLs, and rootless UID mappings may require a different ownership or access-control adjustment.&lt;/p&gt; 
+&lt;p&gt;RustFS checks creation, writing, and deletion of a small temporary file in each data root and fixed internal metadata directories when opening a local disk. A failed check rejects that disk through the existing startup/quorum rules and logs the filesystem error; permission diagnostics include the runtime UID/GID and path owner on Unix. This is not a recursive scan of existing buckets or objects: permissions must also allow access to their contents. RustFS does not change ownership automatically. After migration, verify upload, download, and deletion rather than relying only on a green health endpoint.&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Create data and logs directories
+mkdir -p data logs
+
+# Change the owner of these directories
+chown -R 10001:10001 data logs
+
+# Using latest version
+docker run -d -p 9000:9000 -p 9001:9001 -v $(pwd)/data:/data -v $(pwd)/logs:/logs rustfs/rustfs:latest
+
+# Using specific version
+docker run -d -p 9000:9000 -p 9001:9001 -v $(pwd)/data:/data -v $(pwd)/logs:/logs rustfs/rustfs:1.0.5
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you use &lt;a href=&quot;https://github.com/containers/podman&quot;&gt;podman&lt;/a&gt; instead of docker, you can install the RustFS with the below command&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Create data and logs directories
+mkdir -p data logs
+
+# Run the container (podman will automatically set the folders ownership)
+podman run -d -p 9000:9000 -p 9001:9001 -v $(pwd)/data:/data:Z,U -v $(pwd)/logs:/logs:Z,U rustfs/rustfs:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;If you enable TLS with a bind-mounted certificate directory, prepare that mount the same way:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;mkdir -p certs
+chown -R 10001:10001 certs
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;You can also use Docker Compose. Using the &lt;code&gt;docker-compose-simple.yml&lt;/code&gt; file in the root directory:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker compose -f docker-compose-simple.yml up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Before running Compose with host bind mounts:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Ensure every mounted host path is writable by &lt;code&gt;10001:10001&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;If you enable TLS, ensure the certificate mount for &lt;code&gt;/opt/tls&lt;/code&gt; is also readable by &lt;code&gt;10001:10001&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;If matching host ownership is not practical, run the &lt;code&gt;rustfs&lt;/code&gt; service with &lt;code&gt;user: &quot;&amp;lt;host-uid&amp;gt;:&amp;lt;host-gid&amp;gt;&quot;&lt;/code&gt; instead.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;docker-compose-simple.yml&lt;/code&gt; includes a &lt;code&gt;volume-permission-helper&lt;/code&gt; service for named volumes. &lt;code&gt;docker-compose-simple.yml&lt;/code&gt; relies on you to prepare bind-mounted host paths in advance.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;Similarly, you can run the command with podman&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;podman compose -f docker-compose-simple.yml up -d
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Webhook notification quick start (Docker):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;docker run -d --name rustfs -p 9000:9000 \
+  -e RUSTFS_NOTIFY_ENABLE=true \
+  -e RUSTFS_NOTIFY_WEBHOOK_ENABLE_PRIMARY=on \
+  -e RUSTFS_NOTIFY_WEBHOOK_ENDPOINT_PRIMARY=http://&amp;lt;host-ip&amp;gt;:3020/webhook \
+  -e RUSTFS_NOTIFY_WEBHOOK_QUEUE_DIR_PRIMARY=/tmp/rustfs-events \
+  -e RUSTFS_OUTBOUND_ALLOW_ORIGINS=http://&amp;lt;host-ip&amp;gt;:3020 \
+  rustfs/rustfs:latest
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Notes:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;code&gt;RUSTFS_NOTIFY_ENABLE=true&lt;/code&gt; enables the global notify module switch.&lt;/li&gt; 
+ &lt;li&gt;For ARN &lt;code&gt;arn:rustfs:sqs::primary:webhook&lt;/code&gt;, use instance-scoped env vars with &lt;code&gt;_PRIMARY&lt;/code&gt;.&lt;/li&gt; 
+ &lt;li&gt;If queue dir is omitted, the official image maps &lt;code&gt;/opt/rustfs/events&lt;/code&gt; into the persistent &lt;code&gt;/data&lt;/code&gt; volume so it is writable by the runtime user and pending events survive container recreation. Override &lt;code&gt;queue_dir&lt;/code&gt; when using another deployment layout, or set &lt;code&gt;RUSTFS_TARGET_STORE_DIR&lt;/code&gt; to move every default queue; native Windows defaults to &lt;code&gt;%ProgramData%\RustFS&lt;/code&gt;. See &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/operations/target-queue-storage.md&quot;&gt;Target queue storage&lt;/a&gt;.&lt;/li&gt; 
+ &lt;li&gt;&lt;code&gt;RUSTFS_NOTIFY_WEBHOOK_SKIP_TLS_VERIFY_PRIMARY&lt;/code&gt; defaults to &lt;code&gt;false&lt;/code&gt;; enabling it skips webhook TLS certificate verification, allows MITM attacks, and emits a startup warning. Prefer &lt;code&gt;RUSTFS_NOTIFY_WEBHOOK_CLIENT_CA_PRIMARY&lt;/code&gt; for private CAs.&lt;/li&gt; 
+ &lt;li&gt;Since &lt;code&gt;1.0.0-beta.11&lt;/code&gt;, webhook endpoints on private or container networks (&lt;code&gt;Docker Compose service names&lt;/code&gt;, &lt;code&gt;host.docker.internal&lt;/code&gt;, RFC 1918 addresses) are blocked unless their exact &lt;code&gt;scheme://host:port&lt;/code&gt; origin is listed in &lt;code&gt;RUSTFS_OUTBOUND_ALLOW_ORIGINS&lt;/code&gt; (the origin only, without the path). See &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/operations/outbound-connection-policy.md&quot;&gt;Outbound Connection Policy&lt;/a&gt;.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: We recommend reviewing the &lt;code&gt;docker-compose.yml&lt;/code&gt; file before running. It defines several services including Grafana, Prometheus, and Jaeger, which are helpful for RustFS observability. If you wish to start Redis or Nginx containers, you can specify the corresponding profiles.&lt;/p&gt; 
+&lt;h3&gt;3. Build from Source (Option 3) - Advanced Users&lt;/h3&gt; 
+&lt;p&gt;For developers who want to build RustFS Docker images from source with multi-architecture support:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Build multi-architecture images locally
+./docker-buildx.sh
+
+# Build a single-platform image locally
+./docker-buildx.sh -p linux/amd64
+
+# Build and push to registry
+./docker-buildx.sh --push
+
+# Build specific version
+./docker-buildx.sh --release 1.0.5 --push
+
+# Build for custom registry
+./docker-buildx.sh --registry your-registry.com --namespace yourname --push
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The &lt;code&gt;docker-buildx.sh&lt;/code&gt; script supports:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Multi-architecture builds&lt;/strong&gt;: &lt;code&gt;linux/amd64&lt;/code&gt;, &lt;code&gt;linux/arm64&lt;/code&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Automatic version detection&lt;/strong&gt;: Uses git tags or commit hashes&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Registry flexibility&lt;/strong&gt;: Supports Docker Hub, GitHub Container Registry, etc.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Build optimization&lt;/strong&gt;: Includes caching and parallel builds&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;You can also use Make targets for convenience:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;make docker-buildx                    # Build locally
+make docker-buildx-push               # Build and push
+make docker-buildx-version VERSION=1.0.5  # Build specific version
+make help-docker                      # Show all Docker-related commands
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Heads-up (macOS cross-compilation)&lt;/strong&gt;: macOS keeps the default &lt;code&gt;ulimit -n&lt;/code&gt; at 256, so &lt;code&gt;cargo zigbuild&lt;/code&gt; or &lt;code&gt;./build-rustfs.sh --platform ...&lt;/code&gt; may fail with &lt;code&gt;ProcessFdQuotaExceeded&lt;/code&gt; when targeting Linux. The build script attempts to raise the limit automatically, but if you still see the warning, run &lt;code&gt;ulimit -n 4096&lt;/code&gt; (or higher) in your shell before building.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;h3&gt;4. Build with Helm Chart (Option 4) - Cloud Native&lt;/h3&gt; 
+&lt;p&gt;Follow the instructions in the &lt;a href=&quot;https://charts.rustfs.com/&quot;&gt;Helm Chart README&lt;/a&gt; to install RustFS on a Kubernetes cluster.&lt;/p&gt; 
+&lt;p&gt;For scanner pacing, cycle budgets, bitrot cadence, lifecycle transition status, and single-node single-disk idle CPU tuning, see &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/operations/scanner-runtime-controls.md&quot;&gt;Scanner Runtime Controls&lt;/a&gt;. For repeatable scanner-pressure validation, see &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/operations/scanner-benchmark-runbook.md&quot;&gt;Scanner Benchmark Runbook&lt;/a&gt;. For drive timeout knobs on slow storage — including the walk stall budget that governs &lt;code&gt;ListObjects&lt;/code&gt; on large prefixes — see &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/docs/operations/drive-timeout-tuning.md&quot;&gt;Drive Timeout Tuning&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;5. Nix Flake (Option 5)&lt;/h3&gt; 
+&lt;p&gt;If you have &lt;a href=&quot;https://nixos.wiki/wiki/Flakes#Enable_flakes&quot;&gt;Nix with flakes enabled&lt;/a&gt;:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Run directly without installing
+nix run github:rustfs/rustfs
+
+# Build the binary
+nix build github:rustfs/rustfs
+./result/bin/rustfs --help
+
+# Or from a local checkout
+nix build
+nix run
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;The flake also exports a NixOS module and the RustFS &lt;code&gt;rc&lt;/code&gt; client. Add the module to your system and provide credentials through runtime files (for example, sops-nix or agenix) so secrets are never stored in the Nix store:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-nix&quot;&gt;imports = [ inputs.rustfs.nixosModules.rustfs ];
+
+services.rustfs = {
+  enable = true;
+  accessKeyFile = &quot;/run/secrets/rustfs-access-key&quot;;
+  secretKeyFile = &quot;/run/secrets/rustfs-secret-key&quot;;
+  volumes = [ &quot;/var/lib/rustfs&quot; ];
+};
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Install the S3-compatible client with &lt;code&gt;nix profile install github:rustfs/rustfs#rustfs-client&lt;/code&gt; (the executable is named &lt;code&gt;rc&lt;/code&gt;), or use &lt;code&gt;inputs.rustfs.packages.${pkgs.system}.rustfs-client&lt;/code&gt; in a system configuration.&lt;/p&gt; 
+&lt;h3&gt;6. X-CMD (Option 6)&lt;/h3&gt; 
+&lt;p&gt;If you are an &lt;a href=&quot;https://www.x-cmd.com/install/rustfs&quot;&gt;x-cmd&lt;/a&gt; user:&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;# Run directly without installing
+x rustfs
+
+# Download the binary and install it to the global environment
+x env use rustfs
+rustfs --help
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h3&gt;7. Docker Swarm with the SwarmCLI chart (Option 7)&lt;/h3&gt; 
+&lt;p&gt;Follow the &lt;a href=&quot;https://docs.rustfs.com/en/installation/cloud-native/swarmcli-chart&quot;&gt;SwarmCLI chart guide&lt;/a&gt; to run RustFS on Docker Swarm, as a single-node service or a distributed, erasure-coded cluster with one peer per node, with the open-source &lt;a href=&quot;https://github.com/Eldara-Tech/swarmcli-charts/tree/main/charts/rustfs&quot;&gt;SwarmCLI &lt;code&gt;rustfs&lt;/code&gt; chart&lt;/a&gt;. The chart keeps the root credentials in Docker secrets and refuses the default &lt;code&gt;rustfsadmin&lt;/code&gt; keys, upgrades and rolls back as versioned releases, and can serve the S3 API over HTTPS through Traefik. Its Console stays off until you enable it. The chart and &lt;a href=&quot;https://github.com/Eldara-Tech/swarmcli&quot;&gt;SwarmCLI&lt;/a&gt; are maintained by Eldara Tech, not by the RustFS project.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h3&gt;Accessing RustFS&lt;/h3&gt; 
+&lt;ol&gt; 
+ &lt;li&gt;&lt;strong&gt;Access the Console&lt;/strong&gt;: Open your web browser and navigate to &lt;code&gt;http://localhost:9001&lt;/code&gt; to access the RustFS console. 
+  &lt;ul&gt; 
+   &lt;li&gt;Default credentials: &lt;code&gt;rustfsadmin&lt;/code&gt; / &lt;code&gt;rustfsadmin&lt;/code&gt;&lt;/li&gt; 
+  &lt;/ul&gt; &lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Create a Bucket&lt;/strong&gt;: Use the console to create a new bucket for your objects.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Upload Objects&lt;/strong&gt;: You can upload files directly through the console or use S3-compatible APIs/clients to interact with your RustFS instance.&lt;/li&gt; 
+&lt;/ol&gt; 
+&lt;p&gt;&lt;strong&gt;NOTE&lt;/strong&gt;: To access the RustFS instance via &lt;code&gt;https&lt;/code&gt;, please refer to the &lt;a href=&quot;https://docs.rustfs.com/integration/tls-configured&quot;&gt;TLS Configuration Docs&lt;/a&gt;.&lt;/p&gt; 
+&lt;h3&gt;OIDC Roles Claim (Microsoft Entra ID)&lt;/h3&gt; 
+&lt;p&gt;RustFS supports mapping an OIDC claim containing role values into the existing authorization pipeline. The &lt;code&gt;roles_claim&lt;/code&gt; setting is &lt;strong&gt;optional&lt;/strong&gt;: when unset or empty, only the &lt;code&gt;groups&lt;/code&gt; claim contributes to authorization (same as older RustFS releases). For Microsoft Entra ID app roles, set &lt;code&gt;roles_claim=roles&lt;/code&gt; so both console admin checks and bucket IAM policies can evaluate those roles.&lt;/p&gt; 
+&lt;p&gt;Example environment configuration (opt-in roles claim):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-bash&quot;&gt;RUSTFS_IDENTITY_OPENID_ENABLE=on
+RUSTFS_IDENTITY_OPENID_CONFIG_URL=&quot;https://login.microsoftonline.com/&amp;lt;tenant-id&amp;gt;/v2.0/.well-known/openid-configuration&quot;
+RUSTFS_IDENTITY_OPENID_CLIENT_ID=&quot;&amp;lt;client-id&amp;gt;&quot;
+RUSTFS_IDENTITY_OPENID_CLIENT_SECRET=&quot;&amp;lt;client-secret&amp;gt;&quot;
+RUSTFS_IDENTITY_OPENID_SCOPES=&quot;openid,profile,email&quot;
+RUSTFS_IDENTITY_OPENID_GROUPS_CLAIM=&quot;groups&quot;
+RUSTFS_IDENTITY_OPENID_ROLES_CLAIM=&quot;roles&quot;
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Policy condition example (evaluate app roles directly with &lt;code&gt;jwt:roles&lt;/code&gt;; when &lt;code&gt;roles_claim&lt;/code&gt; is configured, RustFS also merges those values into &lt;code&gt;jwt:groups&lt;/code&gt; for backward compatibility with older policies):&lt;/p&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-json&quot;&gt;{
+  &quot;Version&quot;: &quot;2012-10-17&quot;,
+  &quot;Statement&quot;: [
+    {
+      &quot;Effect&quot;: &quot;Allow&quot;,
+      &quot;Action&quot;: [&quot;admin:*&quot;],
+      &quot;Resource&quot;: [&quot;arn:aws:s3:::*&quot;],
+      &quot;Condition&quot;: {
+        &quot;ForAnyValue:StringEquals&quot;: {
+          &quot;jwt:roles&quot;: [&quot;RustFS.ConsoleAdmin&quot;]
+        }
+      }
+    }
+  ]
+}
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;p&gt;For detailed documentation, including configuration options, API references, and advanced usage, please visit our &lt;a href=&quot;https://docs.rustfs.com&quot;&gt;Documentation&lt;/a&gt;.&lt;/p&gt; 
+&lt;h2&gt;Getting Help&lt;/h2&gt; 
+&lt;p&gt;If you have any questions or need assistance:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;Check the &lt;a href=&quot;https://github.com/rustfs/rustfs/discussions/categories/q-a&quot;&gt;FAQ&lt;/a&gt; for common issues and solutions.&lt;/li&gt; 
+ &lt;li&gt;Join our &lt;a href=&quot;https://github.com/rustfs/rustfs/discussions&quot;&gt;GitHub Discussions&lt;/a&gt; to ask questions and share your experiences.&lt;/li&gt; 
+ &lt;li&gt;Open an issue on our &lt;a href=&quot;https://github.com/rustfs/rustfs/issues&quot;&gt;GitHub Issues&lt;/a&gt; page for bug reports or feature requests.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Links&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://docs.rustfs.com&quot;&gt;Documentation&lt;/a&gt; - The manual you should read&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rustfs/rustfs/releases&quot;&gt;Changelog&lt;/a&gt; - What we broke and fixed&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/rustfs/rustfs/discussions&quot;&gt;GitHub Discussions&lt;/a&gt; - Where the community lives&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://discord.gg/NcKBCEJp6P&quot;&gt;Discord&lt;/a&gt; - Chat with the RustFS community&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contact&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Bugs&lt;/strong&gt;: &lt;a href=&quot;https://github.com/rustfs/rustfs/issues&quot;&gt;GitHub Issues&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Business&lt;/strong&gt;: &lt;a href=&quot;mailto:hello@rustfs.com&quot;&gt;hello@rustfs.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Jobs&lt;/strong&gt;: &lt;a href=&quot;mailto:jobs@rustfs.com&quot;&gt;jobs@rustfs.com&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;General Discussion&lt;/strong&gt;: &lt;a href=&quot;https://github.com/rustfs/rustfs/discussions&quot;&gt;GitHub Discussions&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Contributing&lt;/strong&gt;: &lt;a href=&quot;https://raw.githubusercontent.com/rustfs/rustfs/main/CONTRIBUTING.md&quot;&gt;CONTRIBUTING.md&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h2&gt;Contributors&lt;/h2&gt; 
+&lt;p&gt;RustFS is a community-driven project, and we appreciate all contributions. Check out the &lt;a href=&quot;https://github.com/rustfs/rustfs/graphs/contributors&quot;&gt;Contributors&lt;/a&gt; page to see the amazing people who have helped make RustFS better.&lt;/p&gt; 
+&lt;a href=&quot;https://github.com/rustfs/rustfs/graphs/contributors&quot;&gt; 
+ &lt;picture&gt; 
+  &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://raw.githubusercontent.com/rustfs/rustfs/star-history/contributors-dark.svg&quot; /&gt; 
+  &lt;img src=&quot;https://raw.githubusercontent.com/rustfs/rustfs/star-history/contributors-light.svg?sanitize=true&quot; alt=&quot;RustFS contributors&quot; /&gt; 
+ &lt;/picture&gt; &lt;/a&gt; 
+&lt;h2&gt;Star History&lt;/h2&gt; 
+&lt;picture&gt; 
+ &lt;source media=&quot;(prefers-color-scheme: dark)&quot; srcset=&quot;https://raw.githubusercontent.com/rustfs/rustfs/star-history/star-history-dark.svg&quot; /&gt; 
+ &lt;img src=&quot;https://raw.githubusercontent.com/rustfs/rustfs/star-history/star-history-light.svg?sanitize=true&quot; alt=&quot;RustFS star history chart&quot; /&gt; 
+&lt;/picture&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;&lt;a href=&quot;https://opensource.org/licenses/Apache-2.0&quot;&gt;Apache 2.0&lt;/a&gt;&lt;/p&gt; 
+&lt;p&gt;&lt;strong&gt;RustFS&lt;/strong&gt; is a trademark of RustFS, Inc. All other trademarks are the property of their respective owners.&lt;/p&gt;</description>
+      
+      <media:content url="https://repository-images.githubusercontent.com/722597620/0fa936a2-8164-4f53-867f-def4beb64b21" medium="image" />
+      
+    </item>
+    
+    <item>
+      <title>ViceVerse-cz/Serein</title>
+      <link>https://github.com/ViceVerse-cz/Serein</link>
+      <description>&lt;p&gt;Tiny, Performant &amp; 100% Native client for Discord made in Rust&lt;/p&gt;&lt;p&gt;&lt;img src=&quot;https://mshibanami.github.io/GitHubTrendingRSS/assets/icons/link.png&quot; width=&quot;20&quot; height=&quot;20&quot; alt=&quot;link&quot; style=&quot;margin: 0 8px 0 0; padding: 0; display: inline-block; vertical-align: middle;&quot; /&gt;&lt;a href=&quot;https://discord.gg/UqTDGCENaN&quot;&gt;https://discord.gg/UqTDGCENaN&lt;/a&gt;&lt;/p&gt;&lt;hr&gt;&lt;h1&gt;Serein&lt;/h1&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://github.com/ViceVerse-cz/Serein&quot;&gt; &lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/preview.png&quot; alt=&quot;Serein Native Discord Client&quot; width=&quot;900&quot; style=&quot;max-width: 100%; height: auto; border-radius: 8px; box-shadow: 0 4px 20px rgba(0,0,0,0.3);&quot; /&gt; &lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;strong&gt;A lightweight, native Discord desktop client written in Rust, powered by egui and wgpu.&lt;/strong&gt; &lt;/p&gt; 
+&lt;h3 align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/UqTDGCENaN&quot;&gt;💬 Join our Discord server for updates&lt;/a&gt; &lt;/h3&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/#downloads--installation&quot;&gt;&lt;strong&gt;📦 Downloads&lt;/strong&gt;&lt;/a&gt; &amp;nbsp;•&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/#highlights&quot;&gt;&lt;strong&gt;⚡ Highlights&lt;/strong&gt;&lt;/a&gt; &amp;nbsp;•&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/#feature-showcase&quot;&gt;&lt;strong&gt;✨ Showcase&lt;/strong&gt;&lt;/a&gt; &amp;nbsp;•&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/#measured-performance-vs-official-discord&quot;&gt;&lt;strong&gt;📊 Benchmarks&lt;/strong&gt;&lt;/a&gt; &amp;nbsp;•&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/#quick-start&quot;&gt;&lt;strong&gt;🛠️ Quick Start&lt;/strong&gt;&lt;/a&gt; &amp;nbsp;•&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/#feature-matrix&quot;&gt;&lt;strong&gt;📋 Features&lt;/strong&gt;&lt;/a&gt; &amp;nbsp;•&amp;nbsp; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/#architecture-overview&quot;&gt;&lt;strong&gt;🏗️ Architecture&lt;/strong&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;p align=&quot;center&quot;&gt; &lt;a href=&quot;https://discord.gg/UqTDGCENaN&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/Discord-Join%20our%20Discord%20server%20for%20updates-5865F2?logo=discord&amp;amp;logoColor=white&quot; alt=&quot;Discord&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://github.com/ViceVerse-cz/Serein/releases&quot;&gt;&lt;img src=&quot;https://img.shields.io/github/v/release/ViceVerse-cz/Serein?label=release&amp;amp;color=blue&quot; alt=&quot;GitHub Release&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/Cargo.toml&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/rust-1.99.1_pinned-blue.svg?logo=rust&quot; alt=&quot;Rust 1.99.1 Pinned&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/crates/ui&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/ui-egui%20%2F%20wgpu-orange.svg?sanitize=true&quot; alt=&quot;UI egui/wgpu&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/platform-support.md&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/platform-macOS%20%7C%20Linux%20%7C%20Windows-informational.svg?sanitize=true&quot; alt=&quot;Platform Support&quot; /&gt;&lt;/a&gt; &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/LICENSE-MIT&quot;&gt;&lt;img src=&quot;https://img.shields.io/badge/license-MIT%20OR%20Apache--2.0-green.svg?sanitize=true&quot; alt=&quot;License: MIT or Apache-2.0&quot; /&gt;&lt;/a&gt; &lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;div class=&quot;markdown-alert markdown-alert-warning&quot;&gt;
+ &lt;p class=&quot;markdown-alert-title&quot;&gt;
+  &lt;svg class=&quot;octicon octicon-alert mr-2&quot; viewbox=&quot;0 0 16 16&quot; version=&quot;1.1&quot; width=&quot;16&quot; height=&quot;16&quot; aria-hidden=&quot;true&quot;&gt;
+   &lt;path d=&quot;M6.457 1.047c.659-1.234 2.427-1.234 3.086 0l6.082 11.378A1.75 1.75 0 0 1 14.082 15H1.918a1.75 1.75 0 0 1-1.543-2.575Zm1.763.707a.25.25 0 0 0-.44 0L1.698 13.132a.25.25 0 0 0 .22.368h12.164a.25.25 0 0 0 .22-.368Zm.53 3.996v2.5a.75.75 0 0 1-1.5 0v-2.5a.75.75 0 0 1 1.5 0ZM9 11a1 1 0 1 1-2 0 1 1 0 0 1 2 0Z&quot;&gt;&lt;/path&gt;
+  &lt;/svg&gt;Warning&lt;/p&gt;
+ &lt;p&gt;&lt;strong&gt;Unofficial and not endorsed by Discord.&lt;/strong&gt; Serein communicates directly with Discord&#39;s public gateway and REST endpoints for your existing account. Automating normal accounts outside the official OAuth2/bot API violates Discord&#39;s Terms of Service and carries risk of account termination. Technical interoperability does not imply platform approval. Review the &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/discord-compatibility.md&quot;&gt;compatibility matrix&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/authentication.md&quot;&gt;authentication guide&lt;/a&gt; before use.&lt;/p&gt; 
+&lt;/div&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Downloads &amp;amp; Installation&lt;/h2&gt; 
+&lt;p&gt;Pre-compiled releases for macOS, Linux, and Windows are published on GitHub &lt;a href=&quot;https://github.com/ViceVerse-cz/Serein/releases&quot;&gt;Releases&lt;/a&gt;.&lt;/p&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Platform&lt;/th&gt; 
+   &lt;th&gt;Format&lt;/th&gt; 
+   &lt;th&gt;Architectures&lt;/th&gt; 
+   &lt;th&gt;Details&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Windows&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;-Setup.exe&lt;/code&gt;, &lt;code&gt;.zip&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;x86_64&lt;/code&gt;, &lt;code&gt;aarch64&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Per-user NSIS installer (recommended) or standalone portable archive&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;macOS&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Homebrew Cask, &lt;code&gt;.zip&lt;/code&gt;, Nix flake&lt;/td&gt; 
+   &lt;td&gt;Apple Silicon (&lt;code&gt;aarch64&lt;/code&gt;)&lt;/td&gt; 
+   &lt;td&gt;Signed and notarized &lt;code&gt;.app&lt;/code&gt; bundle; the Nix build is unsigned&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Linux&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Flatpak (recommended), Repositories (&lt;code&gt;apt&lt;/code&gt;, &lt;code&gt;dnf&lt;/code&gt;, &lt;code&gt;zypper&lt;/code&gt;, &lt;code&gt;pacman&lt;/code&gt;), Gentoo ebuild, Nix flake, &lt;code&gt;.AppImage&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;&lt;code&gt;x86_64&lt;/code&gt;&lt;/td&gt; 
+   &lt;td&gt;Flatpak with automatic updates; signed package repositories; portable AppImage&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;details open&gt; 
+ &lt;summary&gt;&lt;h3&gt;🐧 Linux (Flatpak, Repositories, Gentoo, Nix, AppImage)&lt;/h3&gt;&lt;/summary&gt; 
+ &lt;h4&gt;1. Flatpak (Recommended)&lt;/h4&gt; 
+ &lt;p&gt;Flatpak is the recommended distribution format for Linux, featuring sandbox isolation, bundled GNOME/WebKit runtimes, and automatic background updates.&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;One-Click Repository Install (Automatic Updates)&lt;/strong&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;flatpak install --user https://viceverse-cz.github.io/Serein/flatpak/serein.flatpakref
+&lt;/code&gt;&lt;/pre&gt; &lt;p&gt;Once installed, your desktop software store (GNOME Software, KDE Discover) or &lt;code&gt;flatpak update&lt;/code&gt; will automatically discover and install updates.&lt;/p&gt; &lt;/li&gt; 
+  &lt;li&gt; &lt;p&gt;&lt;strong&gt;Standalone Offline Bundle&lt;/strong&gt;: Download &lt;code&gt;Serein-linux.flatpak&lt;/code&gt; from &lt;a href=&quot;https://github.com/ViceVerse-cz/Serein/releases&quot;&gt;Releases&lt;/a&gt;:&lt;/p&gt; &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;flatpak install --user ./Serein-linux.flatpak
+flatpak run cz.viceverse.serein
+&lt;/code&gt;&lt;/pre&gt; &lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;p&gt;See &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/packaging/flatpak/README.md&quot;&gt;Flatpak guide&lt;/a&gt; for sandbox permissions and source build details.&lt;/p&gt; 
+ &lt;h4&gt;2. Native Package Repositories (apt, dnf, zypper, pacman)&lt;/h4&gt; 
+ &lt;p&gt;Configure the signed package repository for your distribution with one command:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;curl -fsSL https://viceverse-cz.github.io/Serein/setup.sh | sh
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;The script detects your distribution (Ubuntu/Debian, Fedora, openSUSE, Arch Linux), cryptographically verifies the GPG signing key, and configures the repository with an option to install immediately.&lt;/p&gt; 
+ &lt;p&gt;After setup, manage Serein with your native package manager:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;# Ubuntu / Debian: sudo apt install serein
+# Fedora:          sudo dnf install serein
+# openSUSE:        sudo zypper install serein
+# Arch Linux:      sudo pacman -S serein
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;Your normal system updates (&lt;code&gt;apt upgrade&lt;/code&gt;, &lt;code&gt;dnf upgrade&lt;/code&gt;, &lt;code&gt;zypper update&lt;/code&gt;, &lt;code&gt;pacman -Syu&lt;/code&gt;) will keep Serein updated. See &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/packaging/repositories/README.md&quot;&gt;Signed package repositories&lt;/a&gt; for manual GPG verification steps.&lt;/p&gt; 
+ &lt;h4&gt;3. Gentoo (source or binary)&lt;/h4&gt; 
+ &lt;p&gt;Gentoo users can install Serein from the &lt;a href=&quot;https://github.com/vitaly-zdanevich/gentoo-overlay&quot;&gt;vitaly-zdanevich-overlay&lt;/a&gt; overlay. It provides a source ebuild (&lt;a href=&quot;https://github.com/vitaly-zdanevich/gentoo-overlay/tree/main/net-im/serein&quot;&gt;net-im/serein&lt;/a&gt;) and a prebuilt amd64 ebuild (&lt;a href=&quot;https://github.com/vitaly-zdanevich/gentoo-overlay/tree/main/net-im/serein-bin&quot;&gt;net-im/serein-bin&lt;/a&gt;).&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;sudo eselect repository add vitaly-zdanevich-overlay git https://github.com/vitaly-zdanevich/gentoo-overlay.git
+sudo emaint sync -r vitaly-zdanevich-overlay
+echo &#39;net-im/serein ~amd64&#39; | sudo tee /etc/portage/package.accept_keywords/serein
+sudo emerge --ask net-im/serein
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;Use &lt;code&gt;net-im/serein-bin&lt;/code&gt; in the keyword file and emerge command to install the prebuilt binary instead. The source ebuild requires Rust 1.99 or newer. The binary ebuild targets amd64 systems with glibc 2.43 or newer. The two ebuilds install the same files, so choose one.&lt;/p&gt; 
+ &lt;h4&gt;4. Nix (flake)&lt;/h4&gt; 
+ &lt;p&gt;Nix installs are updated through Nix, not the in-app updater. On macOS the build produces an unsigned, non-notarized &lt;code&gt;Serein.app&lt;/code&gt;. See the &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/packaging/nix/README.md&quot;&gt;Nix package guide&lt;/a&gt; for the development shell and details.&lt;/p&gt; 
+ &lt;p&gt;The repository flake builds Serein from source for &lt;code&gt;x86_64-linux&lt;/code&gt; and &lt;code&gt;aarch64-darwin&lt;/code&gt;:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;nix run github:ViceVerse-cz/Serein#serein
+nix profile install github:ViceVerse-cz/Serein#serein
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;Or declaring it in the flake&lt;/p&gt; 
+ &lt;p&gt;Both modules below take &lt;code&gt;inputs&lt;/code&gt; as an argument, so your flake must pass it through &lt;code&gt;specialArgs&lt;/code&gt; (NixOS) and &lt;code&gt;extraSpecialArgs&lt;/code&gt; (Home Manager). Without this, importing the modules fails with a missing &lt;code&gt;inputs&lt;/code&gt; argument.&lt;/p&gt; 
+ &lt;p&gt;&lt;code&gt;flake.nix&lt;/code&gt;&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-nix&quot;&gt;{
+    inputs = {
+        nixpkgs.url = &quot;github:NixOS/nixpkgs/nixos-unstable&quot;;
+        home-manager = {
+            url = &quot;github:nix-community/home-manager&quot;;
+            inputs.nixpkgs.follows = &quot;nixpkgs&quot;;
+        };
+        serein = {
+            url = &quot;github:ViceVerse-cz/Serein&quot;;
+            inputs.nixpkgs.follows = &quot;nixpkgs&quot;;
+        };
+    };
+
+    outputs = { nixpkgs, home-manager, ... }@inputs: {
+        # NixOS
+        nixosConfigurations.hostname = nixpkgs.lib.nixosSystem {
+            system = &quot;x86_64-linux&quot;;
+            specialArgs = { inherit inputs; };
+            modules = [ ./configuration.nix ];
+        };
+
+        # Standalone Home Manager
+        homeConfigurations.username = home-manager.lib.homeManagerConfiguration {
+            pkgs = nixpkgs.legacyPackages.x86_64-linux;
+            extraSpecialArgs = { inherit inputs; };
+            modules = [ ./home-manager.nix ];
+        };
+    };
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;If you use Home Manager as a NixOS module instead, pass &lt;code&gt;inputs&lt;/code&gt; through its own option:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-nix&quot;&gt;{
+    nixosConfigurations.hostname = nixpkgs.lib.nixosSystem {
+        system = &quot;x86_64-linux&quot;;
+        specialArgs = { inherit inputs; };
+        modules = [
+            ./configuration.nix
+            home-manager.nixosModules.home-manager
+            {
+                home-manager.extraSpecialArgs = { inherit inputs; };
+                home-manager.users.username = import ./home-manager.nix;
+            }
+        ];
+    };
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;&lt;code&gt;configuration.nix&lt;/code&gt;&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-nix&quot;&gt;{
+    inputs,
+    pkgs,
+    ...
+}: {
+    environment.systemPackages = [
+        inputs.serein.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;&lt;code&gt;home-manager.nix&lt;/code&gt;&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-nix&quot;&gt;{
+    inputs,
+    pkgs,
+    ...
+}: {
+    home.packages = [
+        inputs.serein.packages.${pkgs.stdenv.hostPlatform.system}.default
+    ];
+}
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;h4&gt;5. Standalone AppImage (Portable)&lt;/h4&gt; 
+ &lt;p&gt;Download &lt;code&gt;serein-&amp;lt;version&amp;gt;-Linux-X64.AppImage&lt;/code&gt; from &lt;a href=&quot;https://github.com/ViceVerse-cz/Serein/releases&quot;&gt;Releases&lt;/a&gt;, make it executable, and run:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;chmod +x ./serein-*-Linux-X64.AppImage
+./serein-*-Linux-X64.AppImage
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;Keep the AppImage in a writable directory to receive in-app updates via &lt;strong&gt;Settings → Updates&lt;/strong&gt;. Note that the AppImage uses host GTK4 and WebKitGTK 6.0 libraries; see &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/packaging/appimage/README.md&quot;&gt;AppImage setup and runtime dependencies&lt;/a&gt; for host requirements.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;h3&gt;🪟 Windows (Installer, PowerShell, Portable)&lt;/h3&gt;&lt;/summary&gt; 
+ &lt;h4&gt;1. Setup Installer (Recommended)&lt;/h4&gt; 
+ &lt;p&gt;Download the &lt;code&gt;Windows-X64-Setup.exe&lt;/code&gt; or &lt;code&gt;Windows-ARM64-Setup.exe&lt;/code&gt; asset for your system from &lt;a href=&quot;https://github.com/ViceVerse-cz/Serein/releases&quot;&gt;Releases&lt;/a&gt; and run it:&lt;/p&gt; 
+ &lt;ul&gt; 
+  &lt;li&gt;Installs per-user to &lt;code&gt;%LOCALAPPDATA%\Programs\Serein&lt;/code&gt; without requiring administrator/UAC elevation.&lt;/li&gt; 
+  &lt;li&gt;Automatically registers Start Menu shortcuts and configures AppUserModelID (&lt;code&gt;cz.viceverse.serein&lt;/code&gt;) for native Windows toast notifications.&lt;/li&gt; 
+  &lt;li&gt;Registers in Windows Settings (Installed Apps / Add or Remove Programs) with full uninstall support.&lt;/li&gt; 
+  &lt;li&gt;Fully compatible with in-app self-updates: updates automatically synchronize the registered version.&lt;/li&gt; 
+ &lt;/ul&gt; 
+ &lt;h4&gt;2. Standalone PowerShell Setup&lt;/h4&gt; 
+ &lt;p&gt;Extract the &lt;code&gt;Windows-X64.zip&lt;/code&gt; or &lt;code&gt;Windows-ARM64.zip&lt;/code&gt; asset for your system and run:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;powershell -ExecutionPolicy Bypass -File .\setup.ps1
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;To uninstall later:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;powershell -ExecutionPolicy Bypass -File .\setup.ps1 -Uninstall
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;h4&gt;3. Portable Archive&lt;/h4&gt; 
+ &lt;p&gt;Extract the &lt;code&gt;Windows-X64.zip&lt;/code&gt; or &lt;code&gt;Windows-ARM64.zip&lt;/code&gt; asset for your system anywhere and launch &lt;code&gt;serein.exe&lt;/code&gt;. To enable native desktop notifications:&lt;/p&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-powershell&quot;&gt;powershell -File .\install-notifications.ps1
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;Run the script from the extracted folder beside &lt;code&gt;serein.exe&lt;/code&gt;. If PowerShell&#39;s &lt;code&gt;RemoteSigned&lt;/code&gt; policy blocks the downloaded script, review it and run &lt;code&gt;Unblock-File -LiteralPath .\install-notifications.ps1&lt;/code&gt; in that folder before retrying. The Windows installer registers the shortcut automatically, so installed builds do not need this script.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;details&gt; 
+ &lt;summary&gt;&lt;h3&gt;🍎 macOS (Homebrew Cask, Standalone .app)&lt;/h3&gt;&lt;/summary&gt; 
+ &lt;h4&gt;Homebrew Cask&lt;/h4&gt; 
+ &lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;brew tap ViceVerse-cz/serein
+brew install --cask serein
+&lt;/code&gt;&lt;/pre&gt; 
+ &lt;p&gt;The cask lives in the small &lt;a href=&quot;https://github.com/ViceVerse-cz/homebrew-serein&quot;&gt;&lt;code&gt;homebrew-serein&lt;/code&gt;&lt;/a&gt; tap, so installing does not clone this repository. If you tapped the old URL, run &lt;code&gt;brew untap ViceVerse-cz/serein&lt;/code&gt; first and tap again.&lt;/p&gt; 
+ &lt;h4&gt;Standalone Bundle&lt;/h4&gt; 
+ &lt;p&gt;Download &lt;code&gt;serein-&amp;lt;version&amp;gt;-macOS-ARM64.zip&lt;/code&gt; from &lt;a href=&quot;https://github.com/ViceVerse-cz/Serein/releases&quot;&gt;Releases&lt;/a&gt;, unzip, and drag &lt;code&gt;Serein.app&lt;/code&gt; to your &lt;code&gt;/Applications&lt;/code&gt; folder.&lt;/p&gt; 
+&lt;/details&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Highlights&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;⚡ &lt;strong&gt;Pure Native Performance:&lt;/strong&gt; Built with pure Rust, &lt;code&gt;egui&lt;/code&gt;, and &lt;code&gt;wgpu&lt;/code&gt;. Immediate-mode rendering with minimal idle CPU, low memory footprint, and instantaneous launch times — zero Electron, Node.js, or web runtime overhead.&lt;/li&gt; 
+ &lt;li&gt;🌐 &lt;strong&gt;Direct Gateway &amp;amp; REST Transports:&lt;/strong&gt; Direct connection to Discord&#39;s official endpoints with active rate-limiting cooldowns, heartbeat handling, reconnect/resume loops, and partial payload patching.&lt;/li&gt; 
+ &lt;li&gt;🔒 &lt;strong&gt;Secure OS Credential Storage:&lt;/strong&gt; Session tokens use your operating system&#39;s secure vault by default (macOS Keychain, Windows Credential Manager, or Linux Secret Service). Settings › Storage offers an explicit, unencrypted plaintext fallback when the keyring does not work.&lt;/li&gt; 
+ &lt;li&gt;🛡️ &lt;strong&gt;Ephemeral Authentication Webview:&lt;/strong&gt; Sign-in uses Discord&#39;s official hosted login page inside a temporary native webview (WKWebView, WebView2, or WebKitGTK) supporting email/password, QR login, and MFA. An origin-checked handoff secures the session credential and immediately terminates the webview.&lt;/li&gt; 
+ &lt;li&gt;💾 &lt;strong&gt;Bounded Local Persistence:&lt;/strong&gt; Recent chat history, drafts, image previews, settings, and diagnostics are stored in an account-isolated, bounded local SQLite database. All local data is strictly cleared upon explicit logout.&lt;/li&gt; 
+ &lt;li&gt;🎙️ &lt;strong&gt;Voice Calls, Video &amp;amp; Screen Sharing:&lt;/strong&gt; Complete native voice engine with 1-to-1 and group DM calls, server voice channels, push-to-talk, Sonora AEC3 acoustic echo cancellation, RNNoise noise suppression, Opus codec, and DAVE v1 end-to-end encryption. Includes native screen capture (macOS ScreenCaptureKit, Windows Graphics Capture, Linux portal/PipeWire with VA-API/NVENC hardware encoding and software fallback; Linux native capture remains unverified) and incoming stream &amp;amp; camera video playback with hardware-accelerated decoding (VideoToolbox, VA-API, DirectX).&lt;/li&gt; 
+ &lt;li&gt;🧵 &lt;strong&gt;Forum Channels &amp;amp; Active Threads:&lt;/strong&gt; Browse forum channels, view posts sorted by recent activity, read message threads with unread indicators, and create new forum posts directly in-app.&lt;/li&gt; 
+ &lt;li&gt;⚙️ &lt;strong&gt;Server Administration Suite:&lt;/strong&gt; Full server management interface including Server Profiles (banners, icons, traits, descriptions), custom sticker management, role editor with fine-grained permission matrix, paginated audit logs with action filters, invite manager with revocation, integrations and webhooks, and member moderation.&lt;/li&gt; 
+ &lt;li&gt;✨ &lt;strong&gt;GIF &amp;amp; Twemoji Picker:&lt;/strong&gt; Instant KLIPY GIF search with favorites and one-click sending, full Twemoji picker with search and quick-reactions, plus custom guild emojis.&lt;/li&gt; 
+ &lt;li&gt;📎 &lt;strong&gt;Multi-Attachment Batch Uploads:&lt;/strong&gt; Composer staging tray supporting multiple files of any type (PDF, ZIP, 3D STL, videos, audio, images) with file-type badges, thumbnails, size indicators, individual removal, and progress tracking.&lt;/li&gt; 
+ &lt;li&gt;👤 &lt;strong&gt;Native Profile Customization:&lt;/strong&gt; In-app profile editor for global display names, bios / about me, pronouns, and custom accent colors with real-time live preview cards.&lt;/li&gt; 
+ &lt;li&gt;🎨 &lt;strong&gt;Extensions &amp;amp; Theme Shop:&lt;/strong&gt; Git-backed plugin engine and community theme shop with preview cards, color preset toggles, permission verification, and a built-in deleted-message retention protector.&lt;/li&gt; 
+ &lt;li&gt;🎬 &lt;strong&gt;Rich Media &amp;amp; Video Player:&lt;/strong&gt; Inline video playback for MOV, MP4, and WebM attachments where platform codecs are available, interactive seekable voice message waveforms, right-click media save/copy context menus, and full-resolution image viewer modals.&lt;/li&gt; 
+ &lt;li&gt;⌨️ &lt;strong&gt;Keybinds &amp;amp; Shortcuts:&lt;/strong&gt; Built-in keybind reference sheet styled with raised keycaps, quick edit (&lt;code&gt;Up&lt;/code&gt;), quick delete (&lt;code&gt;Backspace&lt;/code&gt;), and intuitive keyboard navigation.&lt;/li&gt; 
+ &lt;li&gt;🎮 &lt;strong&gt;Rich Presence &amp;amp; Game Detection:&lt;/strong&gt; Built-in Discord IPC and WebSocket RPC servers, plus executable-based detection of running games, showing live game activities in member rosters, DM lists, and user profiles, with opt-in system tray integration.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Feature Showcase&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Voice Calls &amp;amp; Live Screen Sharing&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;User Settings &amp;amp; Profile Customizer&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/voice-calls-screenshare.png&quot; alt=&quot;Voice Calls &amp;amp; Screen Sharing&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/user-settings.png&quot; alt=&quot;User Settings &amp;amp; Profile Customizer&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;Server Administration &amp;amp; Profiles&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;Threads &amp;amp; Forum Channels&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/server-settings.png&quot; alt=&quot;Server Administration &amp;amp; Profiles&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/threads-forums.png&quot; alt=&quot;Threads &amp;amp; Forum Channels&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;Multi-File Attachment Uploads&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;GIFs &amp;amp; Twemoji Picker&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/file-uploads.png&quot; alt=&quot;Multi-File Attachment Uploads&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/gifs-and-emojis.png&quot; alt=&quot;GIFs &amp;amp; Twemoji Picker&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Measured Performance vs. Official Discord&lt;/h2&gt; 
+&lt;blockquote&gt; 
+ &lt;p&gt;&lt;strong&gt;Testing Scenario:&lt;/strong&gt; Browsing channels while joined in a Voice Channel (VC) and streaming screen at 60 FPS on macOS.&lt;/p&gt; 
+&lt;/blockquote&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Metric&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Official Discord Client (Electron)&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Serein (Native Rust + egui/wgpu)&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Advantage&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Memory (RAM)&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;1,178.4 MB&lt;/strong&gt; &lt;em&gt;(across 7 helper processes)&lt;/em&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;129.7 MB&lt;/strong&gt; &lt;em&gt;(single unified process)&lt;/em&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;~9× less memory (-89%)&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;CPU Usage&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;22.8%&lt;/strong&gt; &lt;em&gt;(Renderer + Helper processes)&lt;/em&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;8.1%&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;~2.8× lower CPU (-64%)&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Official Discord (Electron)&lt;/th&gt; 
+   &lt;th style=&quot;text-align:center&quot;&gt;Serein (Native Rust)&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;RAM: ~1,178.4 MB across 7 processes&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;RAM: 129.7 MB single process&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/perf-discord-ram.png&quot; alt=&quot;Discord RAM Usage&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/perf-serein-ram.png&quot; alt=&quot;Serein RAM Usage&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;CPU: 22.8% total&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;strong&gt;CPU: 8.1% total&lt;/strong&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/perf-discord-cpu.png&quot; alt=&quot;Discord CPU Usage&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+   &lt;td style=&quot;text-align:center&quot;&gt;&lt;img src=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/screenshots/perf-serein-cpu.png&quot; alt=&quot;Serein CPU Usage&quot; width=&quot;450&quot; /&gt;&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Quick Start&lt;/h2&gt; 
+&lt;h3&gt;Prerequisites&lt;/h3&gt; 
+&lt;p&gt;Rust &lt;strong&gt;1.99.1&lt;/strong&gt; is pinned. Ensure you have the standard C/C++ toolchain, CMake, Git and libclang installed for your platform (the bundled BoringSSL TLS library is built from source):&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;macOS:&lt;/strong&gt; Xcode command-line tools (&lt;code&gt;xcode-select --install&lt;/code&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Linux:&lt;/strong&gt; GCC/Clang, ALSA development headers, &lt;code&gt;pkg-config&lt;/code&gt;, GTK 4, WebKitGTK 6.0, fontconfig, and Vulkan drivers (see &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/platform-support.md&quot;&gt;Platform Support&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Windows:&lt;/strong&gt; Visual Studio C++ build tools and WebView2 Runtime&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;h3&gt;Running Locally&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;# 1. Run synthetic conversations; extension browsing uses public GitHub downloads
+cargo run --locked --features demo -- --demo
+
+# 2. Launch standard client with voice (uses saved login or official webview)
+cargo run --locked
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;p&gt;Default source builds keep SQLite, image caches, extensions and game metadata in the OS-local &lt;code&gt;serein-development&lt;/code&gt; directory, isolated from installed Serein data and safe from &lt;code&gt;cargo clean&lt;/code&gt;. Set &lt;code&gt;SEREIN_DATA_DIR&lt;/code&gt; to another absolute path when development copies need separate data roots; packaged builds use the normal &lt;code&gt;serein&lt;/code&gt; directory when the variable is absent. Login tokens remain in the operating-system credential store under separate development and packaged-build entries.&lt;/p&gt; 
+&lt;h3&gt;Workspace Commands&lt;/h3&gt; 
+&lt;pre&gt;&lt;code class=&quot;language-sh&quot;&gt;# Run full workspace validation (formatting, Clippy, tests, policy checks)
+cargo xtask check
+
+# Run release reducer benchmark
+cargo replay
+
+# Run authentication bridge JS test harness
+node tests/login-handoff.cjs
+
+# Package release including voice (macOS .app bundle, Linux .deb by default)
+cargo xtask package
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Feature Matrix&lt;/h2&gt; 
+&lt;table&gt; 
+ &lt;thead&gt; 
+  &lt;tr&gt; 
+   &lt;th&gt;Capability&lt;/th&gt; 
+   &lt;th&gt;Status&lt;/th&gt; 
+   &lt;th&gt;Notes&lt;/th&gt; 
+  &lt;/tr&gt; 
+ &lt;/thead&gt; 
+ &lt;tbody&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Navigation &amp;amp; Guilds&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Collapsible categories, cached icons, guild channels, forum channels, active threads, DM lists, People pane, and server channel context menus&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Message Timeline&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Virtualized variable-height rows, inline link confirmations, spoiler text/media reveal, unread message banners, deleted message protector, and local timezone timestamps&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Markdown &amp;amp; System Messages&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Bold, italics, code blocks, blockquotes, clickable links, and styled system events with tinted Phosphor icons and clickable member names&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Reactions &amp;amp; Emojis&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Twemoji rendering, native reaction counts, eight-emoji quick picker, full emoji picker integration, custom guild emojis, and add/remove reaction controls&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;GIFs &amp;amp; Media Search&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;KLIPY GIF picker with search, favorites category, and one-click direct sending&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;User Mentions &amp;amp; Autocomplete&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Clickable user mentions with interactive composer autocompletion and visual highlight styling&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Media Previews &amp;amp; Video Player&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Inline MOV, MP4, and WebM playback where platform codecs are available; media copy/save context menus, inline image cards, embed cards, related embed image galleries, and full-resolution image viewer modals&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;File &amp;amp; Attachment Uploads&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Multi-attachment batch staging with file-type badges (PDF, ZIP, STL, images), thumbnail previews, individual file removal, upload progress bar, and drag-and-drop&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Voice Engine &amp;amp; Calls&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;1-to-1/group DM calls &amp;amp; server channels, Opus codec, DAVE v1 E2EE, Sonora AEC3 acoustic echo cancellation, RNNoise or DeepFilterNet suppression, push-to-talk (&lt;code&gt;V&lt;/code&gt;), audio device selector&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Voice Messages&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Inline voice message playback with interactive waveforms and bounded streaming audio buffering&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Screen Sharing &amp;amp; Video&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Native screen capture (macOS ScreenCaptureKit, Windows Graphics Capture, Linux portal/PipeWire with VA-API/NVENC hardware encoding and software fallback; Linux native capture remains unverified), quality presets (480p/720p/1080p/1440p/2160p, up to 60fps), and local camera/screen previews&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Camera Video &amp;amp; Stream Viewing&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Hardware-accelerated decoding (macOS VideoToolbox, Linux VA-API, Windows DXVA/D3D11) for incoming screen streams and camera video feeds&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Threads &amp;amp; Forum Channels&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Forum post listing, recent activity sorting, active thread browsing, and new forum post / thread creation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Server Administration&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Server profile editor (banners, icons, traits), custom sticker upload/edit/delete, role management with permissions matrix, audit log viewer, invite tracking and revocation, integrations/webhooks, and member moderation&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Extensions &amp;amp; Theme Shop&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Git-backed plugins, community theme catalog with preview cards and color presets, permission prompt modals, and deleted-message protector&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Keybinds &amp;amp; Shortcuts&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;In-app keybind cheat sheet with raised keycaps, quick edit (&lt;code&gt;Up&lt;/code&gt;), quick delete (&lt;code&gt;Backspace&lt;/code&gt;), and keyboard navigation hotkeys&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Rich Presence &amp;amp; Game IPC&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Discord IPC and WebSocket RPC servers plus running-game detection; displays activities in member rosters, DMs, and user profiles; opt-in system tray&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Profile Cards &amp;amp; Editing&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;On-demand profile popouts with banners, bios, badges, connections; native in-app editor for display name, bio, pronouns, and custom accent color with live preview&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Server &amp;amp; Group Actions&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Server dropdown with friend invites and leave server; group DM actions (edit name/icon preview, mute, leave)&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Context Menus &amp;amp; Shortcuts&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Right-click context menus for messages, media (save/copy), server channels, and members&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Typing Indicators&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Displays incoming typing with short expiry; Serein strictly avoids emitting outgoing typing signals&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Persistence &amp;amp; Drafts&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Implemented&lt;/td&gt; 
+   &lt;td&gt;Bounded SQLite cache for history, drafts, settings, and diagnostics; OS credential store for auth tokens; sanitary logout&lt;/td&gt; 
+  &lt;/tr&gt; 
+  &lt;tr&gt; 
+   &lt;td&gt;&lt;strong&gt;Internationalization&lt;/strong&gt;&lt;/td&gt; 
+   &lt;td&gt;Partial&lt;/td&gt; 
+   &lt;td&gt;Bundled Inter font, CJK and Arabic font fallbacks included; full IME and bidirectional editing unverified&lt;/td&gt; 
+  &lt;/tr&gt; 
+ &lt;/tbody&gt; 
+&lt;/table&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Architecture Overview&lt;/h2&gt; 
+&lt;p&gt;Serein is engineered as a clean multi-crate Cargo workspace, isolating UI rendering from networking, persistence, and service protocols:&lt;/p&gt; 
+&lt;pre&gt;&lt;code&gt;serein/
+├── apps/
+│   └── desktop/          # Application entrypoint, CLI flags, window lifecycle
+├── crates/
+│   ├── client-core/      # Client state coordinator, generation tracking, events
+│   ├── session-cache/    # In-memory bounded cache and state reconciliation
+│   ├── ui/               # egui widgets, message virtualizer, themes, design tokens
+│   ├── model/            # Strongly-typed Discord domain entities
+│   ├── discord-protocol/ # Wire protocol serialization and partial payload patches
+│   ├── discord-api/      # HTTP/2 REST client with rate limiting and backoff
+│   ├── discord-gateway/  # WebSocket gateway client with heartbeat and resume
+│   ├── discord-voice/    # Opus codecs, RTP/UDP transport, DAVE v1, Sonora AEC, RNNoise, DeepFilterNet, video decoding
+│   ├── deepfilternet/    # DeepFilterNet3 noise suppression in plain Rust with embedded weights
+│   ├── local-store/      # Bounded SQLite database for history, drafts, settings
+│   ├── platform/         # OS credential store (Keychain/CredManager/SecretService)
+│   └── test-support/     # Deterministic synthetic fixtures and mocks
+└── tools/
+    ├── replay-bench/     # Benchmarking harness for state reducers
+    └── xtask/            # Workspace automation tasks (packaging, checks, linting)
+&lt;/code&gt;&lt;/pre&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Security &amp;amp; Storage Policy&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;Token Protection:&lt;/strong&gt; Tokens use the native OS credential store by default (macOS Keychain, Windows Credential Manager, Linux Secret Service). An explicit Storage setting allows private, bounded plaintext files when OS saving fails; disabling it deletes those secret files. Active tokens remain redacted in memory.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Local Cache Bounds:&lt;/strong&gt; SQLite databases store recent channel history, drafts, settings, diagnostics, and image preview metadata within bounded byte and count limits. The local SQLite store is &lt;strong&gt;not&lt;/strong&gt; encrypted by the application.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Sanitary Logout:&lt;/strong&gt; Executing an explicit logout destroys active network sessions, purges active secrets from memory, deletes the token from the OS credential store, and erases that account&#39;s local cache and drafts.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Zero Telemetry:&lt;/strong&gt; Serein contains no analytics, telemetry, background crash collectors, or tracking beacons.&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Platform Integrity:&lt;/strong&gt; No CAPTCHA/MFA bypasses, bot substitutions, token scrapers, or third-party relays. Every Discord connection presents one consistent browser identity matching the platform webview (unofficial; see &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/authentication.md&quot;&gt;authentication&lt;/a&gt;); it is not randomized or rotated to evade detection.&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;For full details, review the &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/storage-policy.md&quot;&gt;Storage Policy&lt;/a&gt; and &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/threat-model.md&quot;&gt;Threat Model&lt;/a&gt;.&lt;/p&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;Documentation&lt;/h2&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/architecture.md&quot;&gt;Architecture &amp;amp; Monorepo Design&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/discord-compatibility.md&quot;&gt;Discord Compatibility &amp;amp; Protocol Details&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/authentication.md&quot;&gt;Authentication &amp;amp; Login Handoff&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/storage-policy.md&quot;&gt;Storage Policy &amp;amp; Cache Retention&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/platform-support.md&quot;&gt;Platform Support &amp;amp; Build Requirements&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/packaging/nix/README.md&quot;&gt;Nix Package &amp;amp; Development Shell&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/voice.md&quot;&gt;Voice Architecture &amp;amp; Procedure&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/design.md&quot;&gt;Design Tokens &amp;amp; UI Styling&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/extensions.md&quot;&gt;Extensions &amp;amp; Plugin Architecture&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://github.com/ViceVerse-cz/Serein/wiki&quot;&gt;Extension SDK Creator Wiki&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/examples/extensions/README.md&quot;&gt;SDK Examples and Offline Authoring Guide&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/theme-api.md&quot;&gt;Theme API Specification&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/docs/threat-model.md&quot;&gt;Threat Model &amp;amp; Security&lt;/a&gt;&lt;/li&gt; 
+ &lt;li&gt;&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/THIRD_PARTY_NOTICES.md&quot;&gt;Third-Party Licenses &amp;amp; Notices&lt;/a&gt;&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;hr /&gt; 
+&lt;h2&gt;License&lt;/h2&gt; 
+&lt;p&gt;Original Serein code is dual-licensed under either:&lt;/p&gt; 
+&lt;ul&gt; 
+ &lt;li&gt;&lt;strong&gt;MIT License&lt;/strong&gt; (&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/LICENSE-MIT&quot;&gt;LICENSE-MIT&lt;/a&gt;)&lt;/li&gt; 
+ &lt;li&gt;&lt;strong&gt;Apache License, Version 2.0&lt;/strong&gt; (&lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/LICENSE-APACHE&quot;&gt;LICENSE-APACHE&lt;/a&gt;)&lt;/li&gt; 
+&lt;/ul&gt; 
+&lt;p&gt;at your option. Third-party library notices, bundled font licenses (Inter, Noto Sans CJK/Arabic), and Twemoji graphics licenses are cataloged in &lt;a href=&quot;https://raw.githubusercontent.com/ViceVerse-cz/Serein/main/THIRD_PARTY_NOTICES.md&quot;&gt;THIRD_PARTY_NOTICES.md&lt;/a&gt;.&lt;/p&gt; 
+&lt;p&gt;Demo fixtures and simulated actions are excluded from normal app and CI packages. Build with &lt;code&gt;--features demo&lt;/code&gt; and launch with &lt;code&gt;--demo&lt;/code&gt; to enable them; &lt;code&gt;--demo-*&lt;/code&gt; scenario flags additionally require &lt;code&gt;--demo&lt;/code&gt;. &lt;code&gt;cargo xtask package&lt;/code&gt; always builds without demo support, while offline tests can still use synthetic fixtures.&lt;/p&gt;</description>
+      
+      <media:content url="https://opengraph.githubassets.com/f915b53eefb6d9e5748618aa865df710dbae3e4d12a72bfd5c44cff41f0db8da/ViceVerse-cz/Serein" medium="image" />
+      
+    </item>
+    
+  </channel>
+</rss>
